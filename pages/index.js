@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 // import { I18nProvider } from './I18nProvider';
 // import config from './config';
 import Header from '../components/Header'
+import Filter from '../components/Filter'
 import ProductListQuery from '../components/products/ProductList'
 import { withApollo } from '../lib/withApollo'
 
@@ -15,6 +16,7 @@ const HomePage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
+      <Filter />
       <ProductListQuery />
       <footer className={styles.footer} />
     </div>
