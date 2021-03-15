@@ -1,6 +1,5 @@
-import React from 'react';
-import {useQuery} from '@apollo/react-hooks'
-import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
 import ProductCard from './ProductCard'
 
 const PRODUCTS_QUERY = gql`
@@ -15,14 +14,13 @@ query {
     }
   }
 }
-`;
+`
 
 const ProductList = (props) => {
-
   return (
     <>
-      <div id="content" className="container-fluid with-header">
-        <div className="row flex flex-wrap grid grid-cols-4 gap-3">
+      <div id='content' className='container-fluid with-header'>
+        <div className='row flex flex-wrap grid grid-cols-4 gap-3'>
           {props.productList.map((product) => {
             return <ProductCard key={product.id} product={product} />
           })}
@@ -33,16 +31,16 @@ const ProductList = (props) => {
 }
 
 const ProductListQuery = () => {
-  const { loading, error, data} = useQuery(PRODUCTS_QUERY);
-  if (loading) 
+  const { loading, error, data } = useQuery(PRODUCTS_QUERY)
+  if (loading) {
     return <div>Fetching..</div>
-
-  if (error) 
-    return <div>Error!</div> 
-    
+  }
+  if (error) {
+    return <div>Error!</div>
+  }
   return (
-      <ProductList productList={data.products} />
+    <ProductList productList={data.products} />
   )
 }
 
-export default ProductListQuery;
+export default ProductListQuery
