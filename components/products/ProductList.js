@@ -77,7 +77,7 @@ const ProductListQuery = () => {
       hasMore={pageInfo.hasNextPage}
       loader={<div>Loading...</div>}
     >
-      <div id='content' className='container-fluid with-header' >
+      <div id='content' className='container-fluid with-header'>
         <ProductList productList={nodes} />
       </div>
     </InfiniteScroll>
