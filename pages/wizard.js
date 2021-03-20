@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css'
 import Header from '../components/Header'
 import WizardHeader from '../components/wizard/WizardHeader'
 import WizardContent from '../components/wizard/WizardContent'
-import { withApollo } from '../lib/withApollo'
+import withApollo from '../lib/apolloClient'
 
 const WizardPage = () => {
   return (

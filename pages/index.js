@@ -6,7 +6,7 @@ import styles from '../styles/Home.module.css'
 import Header from '../components/Header'
 import Filter from '../components/Filter'
 import ProductListQuery from '../components/products/ProductList'
-import { withApollo } from '../lib/withApollo'
+import withApollo from '../lib/apolloClient'
 
 const HomePage = () => {
   return (
