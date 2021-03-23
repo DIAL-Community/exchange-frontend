@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
+    "@popperjs/core": "^2.9.1",
     "apollo-boost": "^0.4.9",
     "apollo-link-context": "^1.0.20",
     "apollo-link-http": "^1.5.17",
@@ -23,6 +24,7 @@
     "react-apollo": "^3.1.5",
     "react-dom": "17.0.1",
     "react-html-parser": "^2.0.2",
+    "react-icons": "^4.2.0",
     "react-infinite-scroll-component": "^6.0.0",
     "react-intl": "^5.13.4",
     "subscriptions-transport-ws": "^0.9.18"

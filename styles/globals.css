@@ -19,3 +19,11 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.header {
+  height: 70px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
