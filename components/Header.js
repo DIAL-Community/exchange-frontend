@@ -1,129 +1,150 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useState, createRef } from 'react'
 import { signIn, signOut, useSession } from 'next-auth/client'
+
+import { useState, createRef } from 'react'
 import { useIntl } from 'react-intl'
-import { HiChevronDown } from 'react-icons/hi'
+
 import { createPopper } from '@popperjs/core'
-
-const LanguageDropdown = () => {
-  // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false)
-  const { pathname, asPath, query } = useRouter()
-  const router = useRouter()
-  const btnDropdownRef = createRef()
-  const popoverDropdownRef = createRef()
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
-  const openDropdownPopover = () => {
-    createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: 'bottom'
-    })
-    setDropdownPopoverShow(true)
-  }
-  const closeDropdownPopover = () => {
-    setDropdownPopoverShow(false)
-  }
-  return (
-    <>
-      <div className='relative w-full'>
-        <a
-          className='flex justify-center text-buttongray text-buttongray text-sm pr-1 focus:outline-none ease-linear transition-all duration-150'
-          ref={btnDropdownRef}
-          onClick={() => {
-            dropdownPopoverShow
-              ? closeDropdownPopover()
-              : openDropdownPopover()
-          }}
-        >
-          {format('header.selectLanguage')}
-          <HiChevronDown />
-        </a>
-        <div
-          ref={popoverDropdownRef}
-          className={
-            (dropdownPopoverShow ? 'block ' : 'hidden ') + 'bg-dialgray-light ' +
-            'text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1'
-          }
-          style={{ minWidth: '10rem' }}
-        >
-          <a
-            href='#english'
-            className='text-sm py-2 px-4 font-normal block w-full whitespace-nowrap text-buttongray'
-            onClick={(e) => {
-              e.preventDefault()
-              router.push({ pathname, query }, asPath, { locale: 'en' })
-            }}
-          >
-            {format('header.english')}
-          </a>
-          <a
-            href='#german'
-            className='text-sm py-2 px-4 font-normal block w-full whitespace-nowrap text-buttongray'
-            onClick={(e) => {
-              e.preventDefault()
-              router.push({ pathname, query }, asPath, { locale: 'de' })
-            }}
-          >
-            {format('header.german')}
-          </a>
-          <a
-            href='#frenchg'
-            className='text-sm py-2 px-4 font-normal block w-full whitespace-nowrap text-buttongray'
-            onClick={(e) => {
-              e.preventDefault()
-              router.push({ pathname, query }, asPath, { locale: 'fr' })
-            }}
-          >
-            {format('header.french')}
-          </a>
-        </div>
-      </div>
-    </>
-  )
-}
 
 const Header = () => {
   const [session] = useSession()
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
+  const [showLanguages, setShowLanguages] = useState(false)
+
+  const { pathname, asPath, query } = useRouter()
+  const router = useRouter()
+
+  const buttonRef = createRef()
+  const popoverRef = createRef()
+
+  const openDropdownPopover = () => {
+    createPopper(buttonRef.current, popoverRef.current, {
+      placement: 'bottom'
+    })
+    setShowLanguages(true)
+  }
+  const closeDropdownPopover = () => {
+    setShowLanguages(false)
+  }
+
+  const menuItemStyles = `
+    lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400
+  `
+
+  const dropdwonMenuStyles = `
+    block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  `
+
+  const dropdownPanelStyles = `
+    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+    ring-1 ring-black ring-opacity-5 focus:outline-none
+  `
+
+  const switchLanguage = (e, localeCode) => {
+    e.preventDefault()
+    router.push({ pathname, query }, asPath, { locale: localeCode })
+    setShowLanguages(!showLanguages)
+  }
+
+  const toggleSwitcher = (e) => {
+    e.preventDefault()
+    showLanguages ? closeDropdownPopover() : openDropdownPopover()
+  }
+
+  const signInUser = (e) => {
+    e.preventDefault()
+    signIn()
+  }
+
+  const signOutUser = (e) => {
+    e.preventDefault()
+    signOut()
+  }
+
   return (
-    <nav className='bg-white header align-middle w-full py-2 border-solid border-b-2 border-dialyellow'>
-      <Link href='/'>
-        <a className='tracking-tight float-left text-dialblue-darkest'>
-          <div>Digital Impact Alliance</div>
-          <div className='font-bold text-xl'>Catalog of Digital Solutions</div>
-        </a>
-      </Link>
-      <div className='flex items-center h-full justify-between flex-wrap float-right w-3/5 text-dialblue-darkest'>
-        <Link href='/wizard'>
-          <a>{format('header.covidResources')}</a>
+    <header className='relative z-50 sticky top-0 px-6 border-b-2 border-gray-600 bg-white flex flex-wrap items-center py-2 lg:px-8 lg:py-0'>
+      <div className='flex-1 flex justify-between items-center'>
+        <Link href='/'>
+          <a href='/'>
+            <div className='text-gray-900 text-xs'>
+              {format('landing.subtitle')}
+            </div>
+            <div className='font-bold text-base'>
+              <span className='block'>
+                {format('landing.title.firstLine')} {format('landing.title.secondLine')}
+              </span>
+            </div>
+          </a>
         </Link>
-        <Link href='/wizard'>
-          <a>{format('header.about')}</a>
-        </Link>
-        {
-          !session &&
-            <>
-              <button onClick={() => signIn()}>{format('header.signIn')}</button>
-            </>
-        }
+      </div>
+
+      <label htmlFor='menu-toggle' className='pointer-cursor lg:hidden block'>
+        <svg className='fill-current text-gray-900' xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'>
+          <title>Menu</title>
+          <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
+        </svg>
+      </label>
+      <input className='hidden' type='checkbox' id='menu-toggle' />
+
+      <div className='hidden lg:flex lg:items-center lg:w-auto w-full' id='menu'>
+        <nav>
+          <ul className='lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0'>
+            <li>
+              <Link href='/wizard'>
+                <a className={`${menuItemStyles}`} href='covid-19-resources'>COVID-19 Resources</a>
+              </Link>
+            </li>
+            <li><a className={`${menuItemStyles}`} href='about'>About</a></li>
+            {
+              !session &&
+                <li>
+                  <a className={`${menuItemStyles}`} href='sign-in' onClick={(e) => signInUser(e)}>Log in</a>
+                </li>
+            }
+            <li>
+              <Link href='/help'>
+                <a className={`${menuItemStyles} lg:mb-0 mb-2`} href='help'>Help</a>
+              </Link>
+            </li>
+            <li><div className='border border-gray-400 border-t-0 lg:border-l-0 lg:h-9' /></li>
+            <li className='relative'>
+              <a
+                className={`${menuItemStyles} lg:mb-0 mb-2`} ref={buttonRef}
+                href='switchLanguage' onClick={(e) => toggleSwitcher(e)}
+              >
+                Select Language
+              </a>
+              <div className={`${showLanguages ? 'block' : 'hidden'} ${dropdownPanelStyles} z-10`} ref={popoverRef} role='menu'>
+                <div className='py-1' role='none'>
+                  <a href='en' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'en')}>
+                    English (en)
+                  </a>
+                  <a href='de' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'de')}>
+                    Deutsch (de)
+                  </a>
+                  <a href='fr' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'fr')}>
+                    France (fr)
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
         {
           session &&
-            <>
-              <button onClick={() => signOut()}>{session.user.email}</button>
-            </>
+            <a href='sign-out' onClick={(e) => signOutUser(e)} className='lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor'>
+              <img
+                className='rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400'
+                src='https://secure.gravatar.com/avatar/1d06fedaf6ac9a5a899b052f567e6696?s=180&d=identicon'
+                alt='Andy Leverenz'
+              />
+            </a>
         }
-        <Link href='/wizard'>
-          <a>{format('header.help')}</a>
-        </Link>
-        <div className='dropdown w-1/4 flex justify-center border-l border-buttongray'>
-          <LanguageDropdown />
-        </div>
       </div>
-    </nav>
+    </header>
   )
 }
 
