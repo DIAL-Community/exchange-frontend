@@ -11,6 +11,11 @@ export const en = {
 
   'products.header': 'Products',
 
+  'wizard.title': 'Requirements and Recommendation Wizard',
+  'wizard.complete': 'Complete',
+  'wizard.close': 'Close',
+  'wizard.back': 'Back',
+  'wizard.next': 'Next',
   'landing.subtitle': 'Digital Impact Alliance',
   'landing.title.firstLine': 'Catalog of',
   'landing.title.secondLine': 'Digital Solutions',

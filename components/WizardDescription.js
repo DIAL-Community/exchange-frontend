@@ -15,7 +15,7 @@ const WizardDescription = () => {
           tailored to wherever you are in a project lifecycle — ideation, planning, or implementation.
         </p>
         <div className='text-center mt-12'>
-          <a href='catalog-wizard' className='border border-white rounded shadow-2xl text-2xl py-4 px-12 text-gray-800 bg-dial-yellow'>
+          <a href='wizard' className='border border-white rounded shadow-2xl text-2xl py-4 px-12 text-gray-800 bg-dial-yellow'>
             Launch Recommendations Wizard
           </a>
         </div>

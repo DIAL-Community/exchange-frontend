@@ -17,6 +17,7 @@ module.exports = {
           DEFAULT: '#fab230'
         },
         'dial-teal': {
+          light: '#3e81a8',
           DEFAULT: '#3F9EDD'
         },
         'dial-blue': {
@@ -26,6 +27,9 @@ module.exports = {
         'dial-purple': {
           DEFAULT: '#323245',
           light: '#636374'
+        },
+        'dial-violet': {
+          DEFAULT: '#613970'
         }
       },
       fontSize: {

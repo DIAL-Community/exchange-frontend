@@ -9,5 +9,11 @@ export const de = {
   'header.german': 'Deutsch (de)',
   'header.french': 'Francais (fr)',
 
-  'products.header': 'Products (DE)'
+  'products.header': 'Products (DE)',
+
+  'wizard.title': 'Requirements and Recommendation Wizard',
+  'wizard.complete': 'Complete',
+  'wizard.close': 'Close',
+  'wizard.back': 'Back',
+  'wizard.next': 'Next'
 }
