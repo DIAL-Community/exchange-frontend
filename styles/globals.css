@@ -10,20 +10,14 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.header {
-  height: 70px;
-}
-
-.dropdown:hover .dropdown-menu {
+#menu-toggle:checked + #menu {
   display: block;
+}
+
+.landing-with-menu {
+  height: calc(100vh - 60px);
+}
+
+.description-with-wizard {
+  height: calc(100vh - 320px);
 }

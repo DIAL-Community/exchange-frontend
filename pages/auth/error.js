@@ -10,12 +10,12 @@ export default function Error ({ csrfToken }) {
         <h1 className='block'>Error in authentication</h1>
         <div className='flex items-center'>
           <Link href='/auth/signin'>
-            <button className='bg-dialgray-dark hover:bg-blue-dark text-dialgray-light font-bold py-2 px-4 mx-2 rounded'>
+            <button className='bg-dial-gray-dark hover:bg-blue-dark text-dial-gray-light font-bold py-2 px-4 mx-2 rounded'>
               Try Again
             </button>
           </Link>
           <Link href='/'>
-            <button className='bg-dialgray-dark hover:bg-blue-dark text-dialgray-light font-bold py-2 px-4 mx-2 rounded'>
+            <button className='bg-dial-gray-dark hover:bg-blue-dark text-dial-gray-light font-bold py-2 px-4 mx-2 rounded'>
               Go Back to Catalog
             </button>
           </Link>

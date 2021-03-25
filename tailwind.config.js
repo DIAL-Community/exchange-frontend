@@ -2,28 +2,41 @@ module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    colors: {
-      dialgray: {
-        light: '#f5f6fa',
-        DEFAULT: '#dfdfea',
-        dark: '#46465a'
+    extend: {
+      colors: {
+        'dial-gray': {
+          light: '#f5f6fa',
+          DEFAULT: '#dfdfea',
+          dark: '#46465a'
+        },
+        'button-gray': {
+          light: '#9899b4',
+          DEFAULT: '#323345'
+        },
+        'dial-yellow': {
+          DEFAULT: '#fab230'
+        },
+        'dial-teal': {
+          DEFAULT: '#3F9EDD'
+        },
+        'dial-blue': {
+          DEFAULT: '#3F9EDD',
+          darkest: '#000043'
+        },
+        'dial-purple': {
+          DEFAULT: '#323245',
+          light: '#636374'
+        }
       },
-      buttongray: {
-        light: '#9899b4',
-        DEFAULT: '#323345'
+      fontSize: {
+        'landing-title': ['66px', {
+          lineHeight: '76px'
+        }]
       },
-      dialyellow: {
-        DEFAULT: '#fab230'
-      },
-      dialteal: {
-        DEFAULT: '#3F9EDD'
-      },
-      dialblue: {
-        DEFAULT: '#3F9EDD',
-        darkest: '#000043'
+      lineHeight: {
+        landing: '2.625rem'
       }
-    },
-    extend: {}
+    }
   },
   variants: {
     extend: {}

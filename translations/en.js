@@ -9,5 +9,12 @@ export const en = {
   'header.german': 'Deutsch (de)',
   'header.french': 'Francais (fr)',
 
-  'products.header': 'Products'
+  'products.header': 'Products',
+
+  'landing.subtitle': 'Digital Impact Alliance',
+  'landing.title.firstLine': 'Catalog of',
+  'landing.title.secondLine': 'Digital Solutions',
+  'landing.blurb': 'A Whole-of-Government Approach to Coordinating Investment in Digital Technologies to Achieve the SDGs.',
+  'landing.wizard.title': 'Recommendations Wizard',
+  'landing.catalog.title': 'Launch Catalog'
 }

@@ -24,7 +24,7 @@ export default function SignIn ({ csrfToken }) {
               <p className='text-red text-xs italic'>Please choose a password.</p>
             </div>
             <div className='flex items-center justify-between'>
-              <button className='bg-dialgray-dark hover:bg-blue-dark text-dialgray-light font-bold py-2 px-4 rounded' type='submit'>
+              <button className='bg-dial-gray-dark hover:bg-blue-dark text-dial-gray-light font-bold py-2 px-4 rounded' type='submit'>
                 Sign In
               </button>
               <a className='inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker' href='#'>

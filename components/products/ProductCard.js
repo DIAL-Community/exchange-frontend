@@ -1,7 +1,7 @@
 import ReactHtmlParser from 'react-html-parser'
 
 const ProductCard = ({ product }) => (
-  <div className='max-w-sm bg-white border-2 border-dialgray p-6 tracking-wide shadow-lg'>
+  <div className='max-w-sm bg-white border-2 border-dial-gray p-6 tracking-wide shadow-lg'>
     <div id='header' className='flex items-center mb-4'>
       <img alt='avatar' className='w-20 rounded-full border-2 border-gray-300' src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile} />
       <div id='header-text' className='leading-5 ml-6 sm'>
