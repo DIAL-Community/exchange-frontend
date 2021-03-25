@@ -4,6 +4,7 @@ import { signIn, signOut, useSession } from 'next-auth/client'
 
 import { useState, createRef } from 'react'
 import { useIntl } from 'react-intl'
+import { HiChevronDown } from 'react-icons/hi'
 
 import { createPopper } from '@popperjs/core'
 
@@ -65,7 +66,7 @@ const Header = () => {
   }
 
   return (
-    <header className='relative z-50 sticky top-0 px-6 border-b-2 border-gray-600 bg-white flex flex-wrap items-center py-2 lg:px-8 lg:py-0'>
+    <header className='relative w-full z-50 sticky top-0 px-6 border-b-2 border-gray-600 bg-white flex flex-wrap items-center py-2 lg:px-8 lg:py-0'>
       <div className='flex-1 flex justify-between items-center'>
         <Link href='/'>
           <a href='/'>
@@ -94,39 +95,40 @@ const Header = () => {
           <ul className='lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0'>
             <li>
               <Link href='/wizard'>
-                <a className={`${menuItemStyles}`} href='covid-19-resources'>COVID-19 Resources</a>
+                <a className={`${menuItemStyles}`} href='covid-19-resources'>{format('header.covidResources')}</a>
               </Link>
             </li>
-            <li><a className={`${menuItemStyles}`} href='about'>About</a></li>
+            <li><a className={`${menuItemStyles}`} href='about'>{format('header.about')}</a></li>
             {
               !session &&
                 <li>
-                  <a className={`${menuItemStyles}`} href='sign-in' onClick={(e) => signInUser(e)}>Log in</a>
+                  <a className={`${menuItemStyles}`} href='sign-in' onClick={(e) => signInUser(e)}>{format('header.signIn')}</a>
                 </li>
             }
             <li>
               <Link href='/help'>
-                <a className={`${menuItemStyles} lg:mb-0 mb-2`} href='help'>Help</a>
+                <a className={`${menuItemStyles} lg:mb-0 mb-2`} href='help'>{format('header.help')}</a>
               </Link>
             </li>
             <li><div className='border border-gray-400 border-t-0 lg:border-l-0 lg:h-9' /></li>
             <li className='relative'>
               <a
-                className={`${menuItemStyles} lg:mb-0 mb-2`} ref={buttonRef}
+                className={`${menuItemStyles} lg:mb-0 mb-2 text-sm inline`} ref={buttonRef}
                 href='switchLanguage' onClick={(e) => toggleSwitcher(e)}
               >
-                Select Language
+                {format('header.selectLanguage')}
+                <HiChevronDown className='ml-1 inline' />
               </a>
               <div className={`${showLanguages ? 'block' : 'hidden'} ${dropdownPanelStyles} z-10`} ref={popoverRef} role='menu'>
                 <div className='py-1' role='none'>
                   <a href='en' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'en')}>
-                    English (en)
+                    {format('header.english')}
                   </a>
                   <a href='de' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'de')}>
-                    Deutsch (de)
+                    {format('header.german')}
                   </a>
                   <a href='fr' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'fr')}>
-                    France (fr)
+                    {format('header.french')}
                   </a>
                 </div>
               </div>

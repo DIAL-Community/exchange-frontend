@@ -37,7 +37,7 @@ const Landing = () => {
                   </a>
                 </div>
                 <div className='mt-3 sm:mt-0 sm:ml-3 lg:py-1'>
-                  <a href='catalog-wizard' className={`${buttonAnchorStyle} shadow-2xl px-8 text-gray-800 bg-dial-yellow`}>
+                  <a href='wizard' className={`${buttonAnchorStyle} shadow-2xl px-8 text-gray-800 bg-dial-yellow`}>
                     {format('landing.wizard.title')}
                   </a>
                 </div>
