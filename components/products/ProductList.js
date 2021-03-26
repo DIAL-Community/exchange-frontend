@@ -41,7 +41,7 @@ const ProductList = (props) => {
 }
 
 const ProductListQuery = () => {
-  const { loading, error, data, fetchMore } = useQuery(PRODUCTS_QUERY, { variables: { first: 20 } })
+  const { loading, error, data, fetchMore } = useQuery(PRODUCTS_QUERY, { variables: { first: DEFAULT_PAGE_SIZE } })
   if (loading) {
     return <div>Fetching..</div>
   }
@@ -56,17 +56,6 @@ const ProductListQuery = () => {
       variables: {
         after: pageInfo.endCursor,
         first: DEFAULT_PAGE_SIZE
-      },
-      updateQuery (previousResult, { fetchMoreResult }) {
-        const connection = fetchMoreResult.products
-
-        return {
-          products: {
-            pageInfo: connection.pageInfo,
-            nodes: [...previousResult.products.nodes, ...connection.nodes],
-            __typename: previousResult.products.__typename
-          }
-        }
       }
     })
   }
