@@ -39,6 +39,9 @@ const Filter = () => {
             </span>
           </div>
         </div>
+        <div className='text-right -mt-5'>
+          <a href='wizard' className='text-sm text-dial-yellow font-bold hover:underline'>Launch Recommendations Wizard</a>
+        </div>
       </div>
       <div className='sticky bg-white' style={{ top: '85px' }}>
         <span className='flex flex-wrap'>
