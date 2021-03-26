@@ -70,7 +70,7 @@ const Filter = () => {
             <div className='relative flex flex-col min-w-0 break-words bg-white mb-6 mx-2'>
               <div className='px-4 bg-dial-gray-dark flex-auto'>
                 <div className='tab-content tab-space'>
-                  <div class='p-2 text-sm text-white'>
+                  <div className='p-2 text-sm text-white'>
                     Filter `tab-name` by
                   </div>
                   <div className={openTab === 1 ? 'block' : 'hidden'} id='link1'>
