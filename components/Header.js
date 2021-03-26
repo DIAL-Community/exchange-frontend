@@ -65,8 +65,13 @@ const Header = () => {
     signOut()
   }
 
+  const headerStyles = `
+    relative w-full z-50 sticky top-0 px-6 border-b-2 border-gray-600 bg-white flex flex-wrap
+    items-center py-2 lg:px-8 lg:py-0
+  `
+
   return (
-    <header className='relative w-full z-50 sticky top-0 px-6 border-b-2 border-gray-600 bg-white flex flex-wrap items-center py-2 lg:px-8 lg:py-0'>
+    <header className={headerStyles}>
       <div className='flex-1 flex justify-between items-center'>
         <Link href='/'>
           <a href='/'>
@@ -137,11 +142,14 @@ const Header = () => {
         </nav>
         {
           session &&
-            <a href='sign-out' onClick={(e) => signOutUser(e)} className='lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor'>
+            <a
+              href='sign-out' onClick={(e) => signOutUser(e)}
+              className='lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor'
+            >
               <img
                 className='rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400'
                 src='https://secure.gravatar.com/avatar/1d06fedaf6ac9a5a899b052f567e6696?s=180&d=identicon'
-                alt='Andy Leverenz'
+                alt='Your name goes here'
               />
             </a>
         }
