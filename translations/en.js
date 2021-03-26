@@ -4,7 +4,7 @@ export const en = {
   'header.covidResources': 'COVID-19 Resources',
   'header.help': 'Help',
   'header.about': 'About',
-  'header.selectLanguage': 'SELECT LANGUAGE',
+  'header.selectLanguage': 'Select Language',
   'header.english': 'English (en)',
   'header.german': 'Deutsch (de)',
   'header.french': 'Francais (fr)',

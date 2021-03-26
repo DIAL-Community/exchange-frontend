@@ -118,7 +118,7 @@ const Header = () => {
             <li><div className='border border-gray-400 border-t-0 lg:border-l-0 lg:h-9' /></li>
             <li className='relative'>
               <a
-                className={`${menuItemStyles} lg:mb-0 mb-2 text-sm inline`} ref={buttonRef}
+                className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={buttonRef}
                 href='switchLanguage' onClick={(e) => toggleSwitcher(e)}
               >
                 {format('header.selectLanguage')}
