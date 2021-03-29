@@ -10,22 +10,22 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 const SECTOR_QUERY = gql`
-query Sectors($first: Int, $after: String) {
-  products(first: $first, after: $after) {
-    pageInfo {
-      endCursor
-      startCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    nodes {
-      id
-      name
-      slug
-      imageFile
-      productDescriptions {
-        description
-      }
+query Sector {
+  sectors {
+    id
+    name
+    slug
+  }
+}
+`
+const USE_CASE_QUERY = gql`
+query UseCases {
+  useCases {
+    id
+    name
+    slug
+    useCaseDescriptions {
+      description
     }
   }
 }
@@ -33,21 +33,23 @@ query Sectors($first: Int, $after: String) {
 
 const WizardPage = () => {
   const [stage, setStage] = useState(0)
-  const { loading, error, data } = useQuery(SECTOR_QUERY)
-  if (loading) {
+  const { loading: sectorLoading, error: sectorError, data: sectorData } = useQuery(SECTOR_QUERY)
+  const { loading: useCaseLoading, error: useCaseError, data: useCaseData } = useQuery(USE_CASE_QUERY)
+  if (sectorLoading || useCaseLoading) {
     return <div>Fetching..</div>
   }
-  if (error) {
+  if (sectorError || useCaseError) {
     return <div>Error!</div>
   }
 
-  const { sectors } = data
+  const sectors = sectorData.sectors.map((sector) => { return { label: sector.name, value: sector.name }})
+  const useCases = useCaseData.useCases.map((useCase) => { return { label: useCase.name, value: useCase.name }})
 
   return (
     <div className={styles.container}>
       <Header />
       <WizardHeader stage={stage} />
-      <WizardContent stage={stage} setStage={setStage} sectors={sectors} />
+      <WizardContent stage={stage} setStage={setStage} sectors={sectors} useCases={useCases} />
       <footer className={styles.footer} />
     </div>
   )
