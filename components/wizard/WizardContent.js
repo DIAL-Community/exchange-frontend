@@ -1,14 +1,17 @@
-import { useIntl } from 'react-intl'
+import { useIntl, FormattedMessage } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import Select from 'react-select'
 
-import Dropdown from '../general/Dropdown'
-
-const WizardContent = ({ stage, setStage }) => {
+const WizardContent = ({ stage, setStage, sectors, useCases }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   const router = useRouter()
-  const [projectPhase, setProjectPhase] = useState('')
+  const [allValues, setAllValues] = useState({
+    projectPhase: '',
+    sector: '',
+    useCase: ''
+  });
 
   const getTitle = () => {
     switch (stage) {
@@ -29,20 +32,23 @@ const WizardContent = ({ stage, setStage }) => {
   const getContent = () => {
     switch (stage) {
       case 0:
-        return (<div className='w-1/2 text-sm'>The Requirements and Recommendation Wizard is a part of the DIAL Catalog of Digital Solutions. It is a tool designed to provide information and resources to individuals and teams working on development projects that leverage digital tools and technologies.<br /><br />The Wizard can be used at different times during the project lifecycle - ideation, planning, or implementation. The output of this tool will be tailored to provide the resources and information that are applicable to the current project phase.<br /><br />We will first ask a series of brief questions about your project and then generate a report that links to data within the DIAL Catalog as well as to other helpful resources.</div>)
+        return (<div className='w-1/2 text-sm'>{<FormattedMessage id='wizard.intro' />}</div>)
       case 1:
         return (<div className='flex'>
-          <div className='w-1/4 h-40 border-2 border-dial-yellow mr-2 py-4 px-3' onClick={() => {setProjectPhase('Ideation')}}><div className='text-xl font-bold'>Ideation</div><div className='text-sm'>Exploring possible solutions to address a specific use case</div></div>
-          <div className='w-1/4 border-2 border-dial-teal mx-2 py-4 px-3' onClick={() => {setProjectPhase('Planning')}}><div className='text-xl font-bold'>Planning</div><div className='text-sm'>Writing requirements, preparing RFPs and developing timelines</div></div>
-          <div className='w-1/4 border-2 border-dial-violet mx-2 py-4 px-3' onClick={() => {setProjectPhase('Implementation')}}><div className='text-xl font-bold'>Implementation</div><div className='text-sm'>Working with partners to implement all aspects of the project</div></div>
-          <div className='w-1/4 border-2 border-dial-teal-light mx-2 py-4 px-3' onClick={() => {setProjectPhase('Evaluaton')}}><div className='text-xl font-bold'>Monitoring and Evaluation</div><div className='text-sm'>Working with partners to implement all aspects of the project</div></div>
+          <div className='w-1/4 h-40 border-2 border-dial-yellow mr-2 py-4 px-3' onClick={() => setAllValues( prevValues => {return { ...prevValues, projectPhase: 'Ideation'}})}><div className='text-xl font-bold'>Ideation</div><div className='text-sm'>Exploring possible solutions to address a specific use case</div></div>
+          <div className='w-1/4 border-2 border-dial-teal mx-2 py-4 px-3' onClick={() => setAllValues( prevValues => {return { ...prevValues, projectPhase: 'Planning'}})}><div className='text-xl font-bold'>Planning</div><div className='text-sm'>Writing requirements, preparing RFPs and developing timelines</div></div>
+          <div className='w-1/4 border-2 border-dial-violet mx-2 py-4 px-3' onClick={() => setAllValues( prevValues => {return { ...prevValues, projectPhase: 'Implementation'}})}><div className='text-xl font-bold'>Implementation</div><div className='text-sm'>Working with partners to implement all aspects of the project</div></div>
+          <div className='w-1/4 border-2 border-dial-teal-light mx-2 py-4 px-3' onClick={() => setAllValues( prevValues => {return { ...prevValues, projectPhase: 'Evaluation'}})}><div className='text-xl font-bold'>Monitoring and Evaluation</div><div className='text-sm'>Working with partners to implement all aspects of the project</div></div>
           </div>)
         case 2:
-          return (<div className='w-1/5'><div className='text-sm py-2'>Select the sector that your project supports</div><Dropdown title='Select a Sector' itemList={['One', 'Two', 'Three']} onChangeValue={(val) => { console.log(val) }} /></div>)
+          return (<div className='flex'>
+            <div className='w-1/4 px-5'><div className='text-sm pt-6 pb-2'>{format('wizard.selectSector')}</div><Select className='text-button-gray' options={sectors} onChange={(val) => setAllValues( prevValues => {return { ...prevValues, sector: val.value}})} placeholder="Select a Sector" /></div>
+            <div className='w-1/4 px-5'><div className='text-sm pt-1 pb-2'>{format('wizard.selectUseCase')}</div><Select className='text-button-gray' options={useCases} onChange={(val) => setAllValues( prevValues => {return { ...prevValues, useCase: val.value}})}  placeholder="Select a Use Case" /></div>
+            </div>)
     }
   }
   const hideNext = () => {
-    if (stage === 1 && projectPhase === '') {
+    if (stage === 1 && allValues.projectPhase === '') {
       return true
     }
     if (stage > 4) {

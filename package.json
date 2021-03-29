@@ -27,6 +27,7 @@
     "react-icons": "^4.2.0",
     "react-infinite-scroll-component": "^6.0.0",
     "react-intl": "^5.13.4",
+    "react-select": "^4.3.0",
     "subscriptions-transport-ws": "^0.9.18"
   },
   "devDependencies": {
