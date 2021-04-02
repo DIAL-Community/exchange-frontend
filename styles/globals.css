@@ -18,8 +18,14 @@ body {
   height: calc(100vh - 60px);
 }
 
-.description-with-wizard {
-  height: calc(100vh - 320px);
+@media(min-height: 880px) {
+  .description-with-wizard {
+    height: calc(100vh - 320px);
+  }
+}
+
+.body-container {
+  min-height: calc(100vh - 597px);
 }
 
 .form-checkbox:checked {

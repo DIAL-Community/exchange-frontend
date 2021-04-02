@@ -16,60 +16,37 @@ const Description = () => {
     ${openTab === tabNumber ? 'font-bold text-blue-500 bg-blue-100' : 'text-gray-600 bg-white'}
   `
 
+  const actorList = [
+    'Donors', 'Policy Makers', 'Implementing Partners', 'Technology and ICT Partners',
+    'Technology Specialists'
+  ]
+
   return (
     <div className='hidden lg:block description-with-wizard'>
       <div className='relative pb-8 sm:pb-16 md:pb-20 xl:pb-32 2xl:max-w-full'>
         <main className='pt-6 mx-auto px-6 sm:pt-12 sm:px-12 lg:pt-16 xl:pt-16 xl:max-w-6xl 2xl:max-w-7xl'>
           <div className='text-xl text-gray-900 md:text-2xl xl:text-3xl xl:leading-landing py-8'>
-            A useful tool for a wide range of users
+            {format('definition.subtitle')}
           </div>
           <div className='flex'>
             <ul className='flex flex-col mb-0 list-none' role='tablist'>
-              <li className='-mb-px'>
-                <a
-                  data-toggle='tab' href='#donors' role='tablist'
-                  className={generateAnchorStyles(1)} onClick={e => tabClickHandler(e, 1)}
-                >
-                  Donors
-                </a>
-              </li>
-              <li className='-mb-px'>
-                <a
-                  data-toggle='tab' href='#policy-makers' role='tablist'
-                  className={generateAnchorStyles(2)} onClick={e => tabClickHandler(e, 2)}
-                >
-                  Policy Makers
-                </a>
-              </li>
-              <li className='-mb-px'>
-                <a
-                  data-toggle='tab' href='#implementing-partners' role='tablist'
-                  className={generateAnchorStyles(3)} onClick={e => tabClickHandler(e, 3)}
-                >
-                  Implementing Partners
-                </a>
-              </li>
-              <li className='-mb-px'>
-                <a
-                  data-toggle='tab' href='#tech-ict-partners' role='tablist'
-                  className={generateAnchorStyles(4)} onClick={e => tabClickHandler(e, 4)}
-                >
-                  Technology and ICT Partners
-                </a>
-              </li>
-              <li className='-mb-px'>
-                <a
-                  data-toggle='tab' href='#tech-specialists' role='tablist'
-                  className={generateAnchorStyles(5)} onClick={e => tabClickHandler(e, 5)}
-                >
-                  Technology Specialists
-                </a>
-              </li>
+              {
+                actorList.map((actor, index) => (
+                  <li key={`actor-${index}`} className='-mb-px'>
+                    <a
+                      data-toggle='tab' href={`#${actor.replace(/\s+/g, '-').toLowerCase()}`} role='tablist'
+                      className={generateAnchorStyles(index)} onClick={e => tabClickHandler(e, index)}
+                    >
+                      {actor}
+                    </a>
+                  </li>
+                ))
+              }
             </ul>
             <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded-b bg-gradient-to-r from-blue-100'>
               <div className='px-4 py-5'>
                 <div className='tab-content tab-space'>
-                  <div className={openTab === 1 ? 'block' : 'hidden'} id='donors'>
+                  <div className={openTab === 0 ? 'block' : 'hidden'} id='donors'>
                     <div className='flex flex-col flex-wrap p-8 max-h-96'>
                       <p className='text-xl max-w-md mr-16 tracking-wide'>
                         <span className='font-bold'>Donors </span>
@@ -83,7 +60,7 @@ const Description = () => {
                       <img className='rounded-lg shadow-2xl object-cover w-56 h-56' src='images/workflow-placeholder.png' alt='' />
                     </div>
                   </div>
-                  <div className={openTab === 2 ? 'block' : 'hidden'} id='policy-makers'>
+                  <div className={openTab === 1 ? 'block' : 'hidden'} id='policy-makers'>
                     <div className='flex flex-col flex-wrap p-8 max-h-96'>
                       <p className='text-xl max-w-md mr-16 tracking-wide'>
                         <span className='font-bold'>Policy Makers </span>
@@ -97,7 +74,7 @@ const Description = () => {
                       <img className='rounded-lg shadow-2xl object-cover w-56 h-56' src='images/workflow-placeholder.png' alt='' />
                     </div>
                   </div>
-                  <div className={openTab === 3 ? 'block' : 'hidden'} id='implementing-partners'>
+                  <div className={openTab === 2 ? 'block' : 'hidden'} id='implementing-partners'>
                     <div className='flex flex-col flex-wrap p-8 max-h-96'>
                       <p className='text-xl max-w-md mr-16 tracking-wide'>
                         <span className='font-bold'>Implementing Partners </span>
@@ -111,7 +88,7 @@ const Description = () => {
                       <img className='rounded-lg shadow-2xl object-cover w-56 h-56' src='images/workflow-placeholder.png' alt='' />
                     </div>
                   </div>
-                  <div className={openTab === 4 ? 'block' : 'hidden'} id='tech-ict-partners'>
+                  <div className={openTab === 3 ? 'block' : 'hidden'} id='tech-ict-partners'>
                     <div className='flex flex-col flex-wrap p-8 max-h-96'>
                       <p className='text-xl max-w-md mr-16 tracking-wide'>
                         <span className='font-bold'>Technology and ICT Partners </span>
@@ -125,7 +102,7 @@ const Description = () => {
                       <img className='rounded-lg shadow-2xl object-cover w-56 h-56' src='images/workflow-placeholder.png' alt='' />
                     </div>
                   </div>
-                  <div className={openTab === 5 ? 'block' : 'hidden'} id='tech-specialists'>
+                  <div className={openTab === 4 ? 'block' : 'hidden'} id='tech-specialists'>
                     <div className='flex flex-col flex-wrap p-8 max-h-96'>
                       <p className='text-xl max-w-md mr-16 tracking-wide'>
                         <span className='font-bold'>Technology Specialists </span>

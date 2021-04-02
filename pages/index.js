@@ -1,30 +1,38 @@
 import Head from 'next/head'
+import { useIntl } from 'react-intl'
 
 // import { I18nProvider } from './I18nProvider';
 // import config from './config';
 import Header from '../components/Header'
-import Filter from '../components/Filter'
+import Filter from '../components/filter/Filter'
 import ProductListQuery from '../components/products/ProductList'
 import withApollo from '../lib/apolloClient'
 import Landing from '../components/Landing'
-import Description from '../components/Description'
+import Definition from '../components/Definition'
 import Carousel from '../components/Carousel'
 import WizardDescription from '../components/WizardDescription'
+import CatalogTitle from '../components/CatalogTitle'
+import Footer from '../components/Footer'
 
 const HomePage = () => {
+  const { formatMessage } = useIntl()
+  const format = (id) => formatMessage({ id })
+
   return (
     <>
       <Head>
-        <title>DIAL Catalog of Digital Solutions</title>
+        <title>{format('app.title')}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Landing />
       <Header />
-      <Description />
+      <Definition />
       <Carousel />
       <WizardDescription />
-      <Filter />
+      <CatalogTitle />
+      <Filter activeTab='products' />
       <ProductListQuery />
+      <Footer />
     </>
   )
 }
