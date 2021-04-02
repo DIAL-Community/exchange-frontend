@@ -30,6 +30,9 @@ module.exports = {
         },
         'dial-violet': {
           DEFAULT: '#613970'
+        },
+        'use-case': {
+          DEFAULT: '#613970'
         }
       },
       fontSize: {
@@ -45,5 +48,7 @@ module.exports = {
   variants: {
     extend: {}
   },
-  plugins: []
+  plugins: [
+    require('@tailwindcss/custom-forms'),
+  ]
 }
