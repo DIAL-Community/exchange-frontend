@@ -1,4 +1,6 @@
 export const en = {
+  'app.title': 'DIAL Catalog of Digital Solutions',
+
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
   'header.covidResources': 'COVID-19 Resources',
@@ -8,6 +10,20 @@ export const en = {
   'header.english': 'English (en)',
   'header.german': 'Deutsch (de)',
   'header.french': 'Francais (fr)',
+
+  'footer.text.firstLine': `
+    The Digital Impact Alliance is a partnership amongst some of the world’s most active
+    digital development champions. We are grateful for the support of our Founding Partners.
+  `,
+  'footer.text.secondLine': `
+    We are also thankful for direct support for this Catalog of Digital Solutions provided
+    by the following partners:
+  `,
+  'footer.organizationName': 'Digital Impact Alliance',
+  'footer.reportIssue': 'Report Issue',
+  'footer.privacyPolicy': 'Privacy Policy',
+
+  'definition.subtitle': 'A useful tool for a wide range of users',
 
   'products.header': 'Products',
 
@@ -60,5 +76,11 @@ export const en = {
   'landing.title.secondLine': 'Digital Solutions',
   'landing.blurb': 'A Whole-of-Government Approach to Coordinating Investment in Digital Technologies to Achieve the SDGs.',
   'landing.wizard.title': 'Recommendations Wizard',
-  'landing.catalog.title': 'Launch Catalog'
+  'landing.catalog.title': 'Launch Catalog',
+  'landing.wizard.whereToStart': "Don't know where to start?",
+  'landing.wizard.description': `
+    Use the Requirements and Recommendation Wizard to help guide you to a curated list of resources,
+    tailored to wherever you are in a project lifecycle — ideation, planning, or implementation.'
+  `,
+  'landing.wizard.buttonText': 'Launch Recommendations Wizard'
 }

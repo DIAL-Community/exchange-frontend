@@ -31,6 +31,11 @@ const Header = () => {
     setShowLanguages(false)
   }
 
+  const headerStyles = `
+    relative w-full z-50 sticky top-0 px-6 border-b-2 border-gray-600 bg-white flex flex-wrap
+    items-center py-2 lg:px-8 lg:py-0
+  `
+
   const menuItemStyles = `
     lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400
   `
@@ -64,11 +69,6 @@ const Header = () => {
     e.preventDefault()
     signOut()
   }
-
-  const headerStyles = `
-    relative w-full z-50 sticky top-0 px-6 border-b-2 border-gray-600 bg-white flex flex-wrap
-    items-center py-2 lg:px-8 lg:py-0
-  `
 
   return (
     <header className={headerStyles}>
