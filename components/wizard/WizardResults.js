@@ -8,8 +8,11 @@ import withApollo from '../../lib/apolloClient'
 
 import DigitalPrinciple from '../principles/DigitalPrinciple'
 import ProjectCard from '../projects/ProjectCard'
+import ProductCard from '../products/ProductCard'
+import OrganizationCard from '../organizations/OrganizationCard'
 import UseCaseCard from '../useCases/UseCaseCard'
 import BuildingBlockCard from '../buildingBlocks/BuildingBlockCard'
+import Resource from '../resources/Resource'
 import Phases from './Phases'
 
 const IDEATION_QUERY = gql`
@@ -40,7 +43,7 @@ query Wizard {
 
 const PLANNING_QUERY = gql`
 query Wizard {
-  wizard(phase:"Planning", sector:"Health", buildingBlocks:["Data Collection"]) {
+  wizard(phase:"Planning", sector:"Health", buildingBlocks:["Data collection"]) {
     digitalPrinciples {
       name
       slug
@@ -58,6 +61,44 @@ query Wizard {
   }
 }
 `
+
+const IMPLEMENTATION_QUERY = gql`
+query Wizard {
+  wizard(phase:"Implementation", sector:"Health", buildingBlocks:["Data collection"]) {
+    digitalPrinciples {
+      name
+      slug
+      url
+    }
+    products {
+      name
+      imageFile
+    }
+    organizations {
+      name
+      imageFile
+    }
+  }
+}
+`
+
+const EVALUATION_QUERY = gql`
+query Wizard {
+  wizard(phase:"Planning", sector:"Health", buildingBlocks:["Data collection"]) {
+    digitalPrinciples {
+      name
+      slug
+      url
+    }
+    resources {
+      name
+      imageUrl
+      link
+    }
+  }
+}
+`
+
 const LeftMenu = ({currentSection, phase, clickHandler}) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -70,10 +111,15 @@ const LeftMenu = ({currentSection, phase, clickHandler}) => {
       <div className={`${(currentSection == 1) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4`}
         onClick={() => { clickHandler(1) }}>
         {phase === 'Ideation' && format('wizard.results.similarProjects')}
+        {phase === 'Planning' && format('wizard.results.buildingBlocks')}
+        {phase === 'Implementation' && format('wizard.results.products')}
+        {phase === 'Evaluation' && format('wizard.results.resources')}
       </div>
       <div className={`${(currentSection == 2) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4`}
         onClick={() => { clickHandler(2) }}>
         {phase === 'Ideation' && format('wizard.results.useCases')}
+        {phase === 'Planning' && format('wizard.results.resources')}
+        {phase === 'Implementation' && format('wizard.results.aggregators')}
       </div>
       <div className={`${(currentSection == 3) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4`}
         onClick={() => { clickHandler(3) }}>
@@ -91,9 +137,19 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const [wizardData, setWizardData] = useState()
 
   const [runIdeationQuery, { error: ideationErrors, loading: ideationLoading }] = useLazyQuery(IDEATION_QUERY, {
-        onCompleted: (data) => { setWizardData(data.wizard) }
+        fetchPolicy: 'no-cache',
+        onCompleted: (data) => { console.log(JSON.stringify(data)); setWizardData(data.wizard) }
       })
   const [runPlanningQuery, { error: planningErrors, loading: planningLoading }] = useLazyQuery(PLANNING_QUERY, {
+        fetchPolicy: 'no-cache',
+        onCompleted: (data) => { setWizardData(data.wizard) }
+      })
+  const [runImplementationQuery, { error: implementationErrors, loading: implementationLoading }] = useLazyQuery(IMPLEMENTATION_QUERY, {
+        fetchPolicy: 'no-cache',
+        onCompleted: (data) => { setWizardData(data.wizard) }
+      })
+  const [runEvaluationQuery, { error: evaluationErrors, loading: evaluationLoading }] = useLazyQuery(EVALUATION_QUERY, {
+        fetchPolicy: 'no-cache',
         onCompleted: (data) => { setWizardData(data.wizard) }
       })
 
@@ -105,8 +161,11 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
 
   const phase = allValues.projectPhase
 
-  useEffect(() => { if (allValues.projectPhase === 'Ideaton' || allValues.projectPhase === '') { runIdeationQuery() }
-                    if (allValues.projectPhase === 'Planning') { runPlanningQuery() }}, 
+  useEffect(() => { if (allValues.projectPhase === 'Ideation' || allValues.projectPhase === '') { runIdeationQuery() }
+                    if (allValues.projectPhase === 'Planning') { runPlanningQuery() }
+                    if (allValues.projectPhase === 'Implementation') { runImplementationQuery() }
+                    if (allValues.projectPhase === 'Evaluation') { runEvaluationQuery() }
+                  }, 
         [allValues.projectPhase]);
 
   const clickHandler = (section) => {
@@ -139,10 +198,10 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
     }
   }
   
-  if (ideationLoading || planningLoading) {
+  if (ideationLoading || planningLoading || implementationLoading || evaluationLoading) {
     return <div>Fetching</div>
   }
-  if (ideationErrors || planningErrors) {
+  if (ideationErrors || planningErrors || implementationErrors || evaluationErrors) {
     return <div>Error!</div>
   }
 
@@ -179,27 +238,47 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           <div className='text-2xl font-bold py-4'>
             {phase === 'Ideation' && format('wizard.results.similarProjects')}
             {phase === 'Planning' && format('wizard.results.buildingBlocks')}
+            {phase === 'Implementation' && format('wizard.results.products')}
+            {phase === 'Evaluation' && format('wizard.results.resources')}
           </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
-            {phase === 'Ideation' && wizardData.projects.map((project) => {
+            {phase === 'Ideation' && wizardData.projects && wizardData.projects.map((project) => {
               return(<ProjectCard key={`${project.name}`} project={project} listType='list' />)
             })}
-            {phase === 'Planning' && wizardData.buildingBlocks.map((bb) => {
+            {phase === 'Planning' && wizardData.buildingBlocks && wizardData.buildingBlocks.map((bb) => {
               return(<BuildingBlockCard key={`${bb.name}`} buildingBlock={bb} listType='list' />)
             })}
+            {phase === 'Implementation' && wizardData.products && wizardData.products.map((product) => {
+              return(<ProductCard key={`${product.name}`} product={product} listType='list' />)
+            })}
+            {phase === 'Evaluation' && wizardData.resources && (
+              <div className='pb-6 grid grid-cols-3'>
+                {wizardData.resources.map((resource) => {
+                  return(<Resource key={`${resource.name}`} resource={resource} listType='list' />)
+                })}
+              </div>)
+            }  
           </div>
         </div>
         <div ref={section3Ref}>
           <div className='text-2xl font-bold py-4'>
             {phase === 'Ideation' && format('wizard.results.useCases')}
             {phase === 'Planning' && format('wizard.results.resources')}
+            {phase === 'Implementation' && format('wizard.results.aggregators')}
           </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
-            {phase === 'Ideation' && wizardData.useCases.map((useCase) => {
+            {phase === 'Ideation' && wizardData.useCases && wizardData.useCases.map((useCase) => {
               return(<UseCaseCard key={`${useCase.name}`} useCase={useCase} listType='list' />)
             })}
-            {phase === 'Planning' && wizardData.resources.map((resource) => {
-              return(<Resource key={`${useCase.name}`} useCase={useCase} listType='list' />)
+            {phase === 'Planning' && wizardData.resources && (
+              <div className='pb-6 grid grid-cols-3'>
+                {wizardData.resources.map((resource) => {
+                  return(<Resource key={`${resource.name}`} resource={resource} listType='list' />)
+                })}
+              </div>)
+            }  
+            {phase === 'Implementation' && wizardData.organizations && wizardData.organizations.map((org) => {
+              return(<OrganizationCard key={`${org.name}`} organization={org} listType='list' />)
             })}
           </div>
         </div>
