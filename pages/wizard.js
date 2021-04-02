@@ -53,7 +53,7 @@ query Tags {
 `
 
 const WizardPage = () => {
-  const [stage, setStage] = useState(5)
+  const [stage, setStage] = useState(0)
   const [allValues, setAllValues] = useState({
     projectPhase: '',
     sector: '',
@@ -82,7 +82,7 @@ const WizardPage = () => {
   projData.countries = countryData.countries.map((country) => { return { label: country.name, value: country.name }})
   projData.tags = tagData.tags.map((tag) => { return { label: tag.name, value: tag.name }})
   projData.mobileServices = mobileServices.map((service) => { return { label: service, value: service}})
-  projData.buildingBlocks = ['Data Collection', 'Registration','Payments','Identification','Information Mediator']
+  projData.buildingBlocks = ['Data collection', 'Registration','Payments','Identification','Information mediator']
 
   return (
     <>
