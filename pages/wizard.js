@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import WizardHeader from '../components/wizard/WizardHeader'
 import WizardContent from '../components/wizard/WizardContent'
 import WizardResults from '../components/wizard/WizardResults'
@@ -93,7 +94,7 @@ const WizardPage = () => {
         :
         <WizardResults stage={stage} setStage={setStage} allValues={allValues} setAllValues={setAllValues} />
       }
-      <footer className={styles.footer} />
+      <Footer />
     </>
   )
 }
