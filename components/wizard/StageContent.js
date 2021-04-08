@@ -60,10 +60,17 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
         <div className='text-sm pt-6 pb-2'>
           {format('wizard.selectTags')}
         </div>
-        <Select className='text-button-gray' options={projData.tags} 
-          onChange={(val) => setAllValues( prevValues => {return { ...prevValues, tag: val.value}})} 
+        <Select className='text-button-gray pb-2' options={projData.tags} 
+          onChange={(val) => allValues.tags.push(val.value) && setAllValues( prevValues => {return { ...prevValues, tags: allValues.tags}})} 
           placeholder={format('wizard.tagPlaceholder')} 
         />
+        { allValues.tags.map((tag) => {
+          return (<div className='text-button-gray-light w-1/2 flex justify-between bg-button-gray pl-2 p-1 rounded m-1' key={tag}>{tag}<div className='text-white' onClick={() => {
+            setAllValues( prevValues => { return { ...prevValues, tags: allValues.tags.filter(val => val !== tag)}})
+          }}>
+            <img src='/icons/CloseIcon.svg' className='inline mr-2' alt='Back' height='10px' width='10px' />
+            </div></div>)
+        })}
       </div>
       <div className='w-1/3 px-5 mx-5'>
         <div className='text-sm pt-6 pb-2'>
@@ -118,7 +125,7 @@ export const WizardStage4 = ({ projData, allValues, setAllValues }) => {
                   {format('wizard.yes')}
                 </button>
                 <button onClick={() => { setAllValues( prevValues => { return { ...prevValues, buildingBlocks: allValues.buildingBlocks.filter(val => val !== bb)}})}} 
-                  className={allValues.buildingBlocks.includes(bb.name) ? classNameNotSelected : classNameSelected}>
+                  className={allValues.buildingBlocks.includes(bb) ? classNameNotSelected : classNameSelected}>
                   {format('wizard.no')}
                 </button>
                 <div className='inline-block'>

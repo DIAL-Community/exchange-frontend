@@ -70,7 +70,7 @@ const WizardPage = () => {
   const { loading: countryLoading, error: countryError, data: countryData } = useQuery(COUNTRY_QUERY)
   const { loading: tagLoading, error: tagError, data: tagData } = useQuery(TAG_QUERY)
   if (sectorLoading || useCaseLoading || countryLoading || tagLoading) {
-    return <div>Fetching..</div>
+    return <><Header /><div>Fetching..</div><Footer /></>
   }
   if (sectorError || useCaseError || countryError || tagError) {
     return <div>Error!</div>
