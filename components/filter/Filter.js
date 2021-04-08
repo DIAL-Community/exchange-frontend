@@ -4,6 +4,11 @@ import Link from 'next/link'
 
 import { HiChevronDown, HiChevronUp, HiQuestionMarkCircle } from 'react-icons/hi'
 import ProductFilter from './ProductFilter'
+import BuildingBlockFilter from './BuildingBlockFilter'
+import WorkflowFilter from './WorkflowFilter'
+import UseCaseFilter from './UseCaseFilter'
+import ProjectFilter from './ProjectFilter'
+import OrganizationFilter from './OrganizationFilter'
 
 const filterItems = [
   'SDGs', 'Use Cases', 'Workflows', 'Building Blocks', 'Products', 'Projects',
@@ -79,20 +84,40 @@ const Filter = (props) => {
                   {
                     filterItems.map((filterItem, index) => (
                       <div key={`filter-panel-${index}`} className={activeTab === index ? 'block' : 'hidden'}>
-                        <div className='p-2 text-sm text-white' onClick={e => clickHandler(e)}>
-                          Filter for by {filterItem}
+                        <div className='px-2 py-4 text-sm text-white' onClick={e => clickHandler(e)}>
+                          Filter {filterItem} by
                           {
                             !openFilter &&
-                              <HiChevronDown className='ml-1 inline' />
+                              <HiChevronDown className='ml-1 inline text-2xl' />
                           }
                           {
                             openFilter &&
-                              <HiChevronUp className='ml-1 inline' />
+                              <HiChevronUp className='ml-1 inline text-2xl' />
                           }
                         </div>
                         {
+                          activeTab === 1 &&
+                            <UseCaseFilter openFilter={openFilter} />
+                        }
+                        {
+                          activeTab === 2 &&
+                            <WorkflowFilter openFilter={openFilter} />
+                        }
+                        {
+                          activeTab === 3 &&
+                            <BuildingBlockFilter openFilter={openFilter} />
+                        }
+                        {
                           activeTab === 4 &&
                             <ProductFilter openFilter={openFilter} />
+                        }
+                        {
+                          activeTab === 5 &&
+                            <ProjectFilter openFilter={openFilter} />
+                        }
+                        {
+                          activeTab === 6 &&
+                            <OrganizationFilter openFilter={openFilter} />
                         }
                       </div>
                     ))

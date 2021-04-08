@@ -7,7 +7,7 @@ import Filter from '../../components/filter/Filter'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
-const Products = () => {
+const Maps = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -25,4 +25,4 @@ const Products = () => {
   )
 }
 
-export default apolloClient()(Products)
+export default apolloClient()(Maps)
