@@ -6,6 +6,8 @@ import * as translations from '../translations'
 
 import '../styles/globals.css'
 
+import CatalogContext from '../lib/CatalogContext'
+
 function MyApp ({ Component, pageProps }) {
   const router = useRouter()
   const { locale, defaultLocale } = router
@@ -14,7 +16,9 @@ function MyApp ({ Component, pageProps }) {
   return (
     <IntlProvider locale={locale} defaultLocale={defaultLocale} messages={messages}>
       <Provider session={pageProps.session}>
-        <Component {...pageProps} />
+        <CatalogContext>
+          <Component {...pageProps} />
+        </CatalogContext>
       </Provider>
     </IntlProvider>
   )

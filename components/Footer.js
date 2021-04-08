@@ -17,25 +17,25 @@ const Footer = () => {
           <div className='flex-grow flex flex-row flex-wrap'>
             <div className='relative p-2 lg:my-auto'>
               <Image
-                src='/images/unf-logo.png' width={246} height={59}
+                src='/images/footer/unf-logo.png' width={246} height={59}
                 alt='The United Nations Foundation Logo'
               />
             </div>
             <div className='relative p-2 m-auto'>
               <Image
-                src='/images/bill-n-melinda-logo.png' width={244} height={50}
+                src='/images/footer/bill-n-melinda-logo.png' width={244} height={50}
                 alt='The Bill & Melinda Gates Foundation'
               />
             </div>
             <div className='relative p-2 m-auto'>
               <Image
-                src='/images/sida-logo.png' width={102} height={100}
+                src='/images/footer/sida-logo.png' width={102} height={100}
                 alt='The Swedish International Development Cooperation Agency Logo'
               />
             </div>
             <div className='h-20 w-24 relative p-2 m-auto'>
               <Image
-                src='/images/fcdo-logo.png' layout='fill' objectFit='scale-down'
+                src='/images/footer/fcdo-logo.png' layout='fill' objectFit='scale-down'
                 alt='The Foreign, Commonwealth & Development Office Logo'
               />
             </div>
@@ -50,13 +50,13 @@ const Footer = () => {
           </div>
           <div className='h-auto w-72 relative p-2 my-auto'>
             <Image
-              src='/images/giz-logo.png' width={1745} height={568}
+              src='/images/footer/giz-logo.png' width={1745} height={568}
               alt='The German Corporation for International Cooperation GmbH Logo'
             />
           </div>
           <div className='h-auto w-72 relative p-2 my-auto'>
             <Image
-              src='/images/bmz-logo.png' width={1280} height={596}
+              src='/images/footer/bmz-logo.png' width={1280} height={596}
               alt='The Federal Ministry for Economic Cooperation and Development Logo'
             />
           </div>

@@ -4,7 +4,7 @@ import { signIn, signOut, useSession } from 'next-auth/client'
 
 import { useState, createRef } from 'react'
 import { useIntl } from 'react-intl'
-import { HiChevronDown } from 'react-icons/hi'
+import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 
 import { createPopper } from '@popperjs/core'
 
@@ -122,7 +122,9 @@ const Header = () => {
                 href='switchLanguage' onClick={(e) => toggleSwitcher(e)}
               >
                 {format('header.selectLanguage')}
-                <HiChevronDown className='ml-1 inline' />
+                {
+                  showLanguages ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
+                }
               </a>
               <div className={`${showLanguages ? 'block' : 'hidden'} ${dropdownPanelStyles} z-10`} ref={popoverRef} role='menu'>
                 <div className='py-1' role='none'>

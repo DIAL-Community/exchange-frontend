@@ -7,7 +7,6 @@ import Filter from '../../components/filter/Filter'
 import Header from '../../components/Header'
 import ProductListQuery from '../../components/products/ProductList'
 import Footer from '../../components/Footer'
-import { ProductFilterProvider } from '../../components/context/ProductFilterContext'
 
 const Products = () => {
   const { formatMessage } = useIntl()
@@ -20,10 +19,8 @@ const Products = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <ProductFilterProvider>
-        <Filter activeTab='products' />
-        <ProductListQuery />
-      </ProductFilterProvider>
+      <Filter activeTab='products' />
+      <ProductListQuery />
       <Footer />
     </>
   )

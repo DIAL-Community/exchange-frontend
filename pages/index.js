@@ -13,7 +13,6 @@ import Carousel from '../components/Carousel'
 import WizardDescription from '../components/WizardDescription'
 import CatalogTitle from '../components/CatalogTitle'
 import Footer from '../components/Footer'
-import { ProductFilterProvider } from '../components/context/ProductFilterContext'
 
 const HomePage = () => {
   const { formatMessage } = useIntl()
@@ -30,11 +29,9 @@ const HomePage = () => {
       <Definition />
       <Carousel />
       <WizardDescription />
-      <CatalogTitle />
-      <ProductFilterProvider>
-        <Filter activeTab='products' />
-        <ProductListQuery />
-      </ProductFilterProvider>
+      <CatalogTitle />\
+      <Filter activeTab='products' />
+      <ProductListQuery />\
       <Footer />
     </>
   )
