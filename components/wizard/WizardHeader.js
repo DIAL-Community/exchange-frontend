@@ -5,7 +5,7 @@ const ProgressBar = ({ stage }) => {
   const format = (id) => formatMessage({ id })
 
   return (
-    <div className='w-1/2 py-3 float-right'>
+    <div className='w-1/2 pt-3 float-right'>
       <style global jsx>{`
         .progress-line {
           width: calc(100% - 1.5rem - 1rem);

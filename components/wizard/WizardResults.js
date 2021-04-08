@@ -16,8 +16,8 @@ import Resource from '../resources/Resource'
 import Phases from './Phases'
 
 const IDEATION_QUERY = gql`
-query Wizard {
-  wizard(phase:"Ideation", sector:"Health", buildingBlocks:["Data Collection"]) {
+query Wizard($phase: String!, $sector: String, $buildingBlocks: [String!]) {
+  wizard(phase: $phase, sector: $sector, buildingBlocks: $buildingBlocks) {
     digitalPrinciples {
       name
       slug
@@ -42,8 +42,8 @@ query Wizard {
 `
 
 const PLANNING_QUERY = gql`
-query Wizard {
-  wizard(phase:"Planning", sector:"Health", buildingBlocks:["Data collection"]) {
+query Wizard($phase: String!, $sector: String, $buildingBlocks: [String!]) {
+  wizard(phase: $phase, sector: $sector, buildingBlocks: $buildingBlocks) {
     digitalPrinciples {
       name
       slug
@@ -63,8 +63,8 @@ query Wizard {
 `
 
 const IMPLEMENTATION_QUERY = gql`
-query Wizard {
-  wizard(phase:"Implementation", sector:"Health", buildingBlocks:["Data collection"]) {
+query Wizard($phase: String!, $sector: String, $buildingBlocks: [String!]) {
+  wizard(phase: $phase, sector: $sector, buildingBlocks: $buildingBlocks) {
     digitalPrinciples {
       name
       slug
@@ -83,8 +83,8 @@ query Wizard {
 `
 
 const EVALUATION_QUERY = gql`
-query Wizard {
-  wizard(phase:"Planning", sector:"Health", buildingBlocks:["Data collection"]) {
+query Wizard($phase: String!, $sector: String, $buildingBlocks: [String!]) {
+  wizard(phase: $phase, sector: $sector, buildingBlocks: $buildingBlocks) {
     digitalPrinciples {
       name
       slug
@@ -137,20 +137,24 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const [wizardData, setWizardData] = useState()
 
   const [runIdeationQuery, { error: ideationErrors, loading: ideationLoading }] = useLazyQuery(IDEATION_QUERY, {
+        variables: { phase: 'Ideation', sector: allValues.sector, buildingBlocks: allValues.buildingBlocks },
         fetchPolicy: 'no-cache',
-        onCompleted: (data) => { console.log(JSON.stringify(data)); setWizardData(data.wizard) }
+        onCompleted: (data) => { setWizardData(data.wizard); if (wizardData !== undefined) { clickHandler(0); } }
       })
   const [runPlanningQuery, { error: planningErrors, loading: planningLoading }] = useLazyQuery(PLANNING_QUERY, {
+        variables: { phase: 'Planning', sector: allValues.sector, buildingBlocks: allValues.buildingBlocks },
         fetchPolicy: 'no-cache',
-        onCompleted: (data) => { setWizardData(data.wizard) }
+        onCompleted: (data) => { setWizardData(data.wizard); if (wizardData !== undefined) { clickHandler(0); } }
       })
   const [runImplementationQuery, { error: implementationErrors, loading: implementationLoading }] = useLazyQuery(IMPLEMENTATION_QUERY, {
+        variables: { phase: 'Implementation', sector: allValues.sector, buildingBlocks: allValues.buildingBlocks },
         fetchPolicy: 'no-cache',
-        onCompleted: (data) => { setWizardData(data.wizard) }
+        onCompleted: (data) => { setWizardData(data.wizard); if (wizardData !== undefined) { clickHandler(0); }}
       })
   const [runEvaluationQuery, { error: evaluationErrors, loading: evaluationLoading }] = useLazyQuery(EVALUATION_QUERY, {
+        variables: { phase: 'Evaluation', sector: allValues.sector, buildingBlocks: allValues.buildingBlocks },
         fetchPolicy: 'no-cache',
-        onCompleted: (data) => { setWizardData(data.wizard) }
+        onCompleted: (data) => { setWizardData(data.wizard); if (wizardData !== undefined) { clickHandler(0); }}
       })
 
   const parentRef = useRef(null)
@@ -172,7 +176,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
     setCurrentSection(section)
     switch (section) {
       case 0:
-        parentRef.current.scrollTo({
+        parentRef.current && parentRef.current.scrollTo({
           top: section1Ref.current.offsetTop - 210,
           behavior: 'smooth'
         })
@@ -197,10 +201,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
         break;
     }
   }
-  
-  if (ideationLoading || planningLoading || implementationLoading || evaluationLoading) {
-    return <div>Fetching</div>
-  }
+
   if (ideationErrors || planningErrors || implementationErrors || evaluationErrors) {
     return <div>Error!</div>
   }
@@ -210,23 +211,28 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   }
 
   return (
-    <div className='flex w-full'>
-      <div className='bg-dial-gray-dark text-dial-gray-light p-6 w-1/4 wizard-content'>
+    <div className='flex w-full relative wizard-content'>
+      <div className='bg-dial-gray-dark text-dial-gray-light p-6 w-1/4'>
         <div className='block text-2xl px-6 py-3'>{format('wizard.results')}</div>
         <div className='block py-3 px-6'>{format('wizard.resultsDesc')}</div>
         <LeftMenu currentSection={currentSection} phase={phase} clickHandler={clickHandler} />
-        <div className='float-left w-full py-4 px-6 absolute bottom-32'>
-          <button onClick={() => { stage > 0 && setStage(stage - 1) }} className='bg-button-gray border border-dial-yellow rounded p-4 my-4 mr-4 text-button-gray-light'>{format('wizard.back')}</button>
+        <div className='float-left w-full py-4 px-6'>
+          <button onClick={() => { stage > 0 && setStage(stage - 1) }} className='bg-button-gray border border-dial-yellow rounded p-4 my-4 mr-4 text-button-gray-light'>
+            <img src='/icons/LeftArrow.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
+            {format('wizard.back')}
+          </button>
         </div>
       </div>
-      <div ref={parentRef} className='bg-dial-gray-light text-dial-gray-dark p-6 w-3/4 h-screen overflow-y-scroll wizard-content'>
-        <button className='bg-button-gray p-4 float-right rounded text-button-gray-light'
+      <div ref={parentRef} className='bg-dial-gray-light text-button-gray-light p-6 w-3/4 h-screen overflow-y-scroll wizard-content'>
+        <button className='bg-dial-gray p-4 float-right rounded text-button-gray-light'
           onClick={() => {router.push('/')}}>
+          <img src='/icons/CloseIcon.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
           {format('wizard.close')}
         </button>
         <div ref={section1Ref}>
           <div className='text-2xl font-bold py-4'>{format('wizard.results.principles')}</div>
-          <div className='pb-6 grid grid-cols-4'>
+          <div className='pb-4 text-sm'>{format('wizard.results.principlesDesc')}</div>
+          <div className='pb-6 grid grid-cols-5'>
             {wizardData.digitalPrinciples.map((principle) => {
               return(
                 <DigitalPrinciple key={`${principle.name}`} principle={principle} />
@@ -240,6 +246,12 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             {phase === 'Planning' && format('wizard.results.buildingBlocks')}
             {phase === 'Implementation' && format('wizard.results.products')}
             {phase === 'Evaluation' && format('wizard.results.resources')}
+          </div>
+          <div className='pb-4 text-sm'>
+            {phase === 'Ideation' && (wizardData.projects ? format('wizard.results.similarProjectsDesc') : format('wizard.results.noProjects'))}
+            {phase === 'Planning' && format('wizard.results.buildingBlocksDesc')}
+            {phase === 'Implementation' && format('wizard.results.productsDesc')}
+            {phase === 'Evaluation' && format('wizard.results.resourcesDesc')}
           </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
             {phase === 'Ideation' && wizardData.projects && wizardData.projects.map((project) => {
@@ -266,6 +278,12 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             {phase === 'Planning' && format('wizard.results.resources')}
             {phase === 'Implementation' && format('wizard.results.aggregators')}
           </div>
+          <div className='pb-4 text-sm'>
+            {phase === 'Ideation' && (wizardData.useCases ? format('wizard.results.useCasesDesc') : format('wizard.results.noUseCases'))}
+            {phase === 'Ideation' && !wizardData.useCases && <a className='text-dial-teal' href='https://solutions.dial.community/use_cases' target='_blank'>{format('wizard.results.clickHere')}</a>}
+            {phase === 'Planning' && format('wizard.results.resourcesDesc')}
+            {phase === 'Implementation' && format('wizard.results.aggregatorsDesc')}
+          </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
             {phase === 'Ideation' && wizardData.useCases && wizardData.useCases.map((useCase) => {
               return(<UseCaseCard key={`${useCase.name}`} useCase={useCase} listType='list' />)
@@ -284,6 +302,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
         </div>
         <div ref={phasesRef}>
           <div className='text-2xl font-bold py-4'>{format('wizard.results.phases')}</div>
+          <div className='pb-4 text-sm'>{format('wizard.results.phasesDesc')}</div>
           <div className='grid grid-cols-1 w-3/4'>
             <Phases currPhase={phase} setAllValues={setAllValues} />
           </div>
