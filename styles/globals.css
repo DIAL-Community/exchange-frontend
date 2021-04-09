@@ -36,6 +36,10 @@ body {
   filter: invert(29%) sepia(4%) saturate(7288%) hue-rotate(240deg) brightness(80%) contrast(85%);
 }
 
+.bb-filter {
+  filter: invert(46%) sepia(27%) saturate(292%) hue-rotate(157deg) brightness(92%) contrast(82%);
+}
+
 .form-checkbox:checked {
   background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='gray' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
 }
@@ -44,19 +48,15 @@ body {
   min-height: 600px;
 }
 
-.use-case-filter {
-  filter: invert(29%) sepia(4%) saturate(7288%) hue-rotate(240deg) brightness(80%) contrast(85%);
+.bb-content {
+  max-height: 448px;
 }
 
-.form-checkbox:checked {
-  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='gray' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+.card-link:hover {
+  cursor: pointer;
+  border: 2px solid #fab230;
 }
 
-.wizard-content {
-  height: calc(100vh - 280px);
-  z-index: 100;
-}
-
-.use-case-filter {
-  filter: invert(29%) sepia(4%) saturate(7288%) hue-rotate(240deg) brightness(80%) contrast(85%);
+.card-link-text:hover {
+  color: #fab230;
 }
