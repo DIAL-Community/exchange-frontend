@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import styles from '../styles/Home.module.css'
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -26,9 +25,6 @@ query UseCases {
     id
     name
     slug
-    useCaseDescriptions {
-      description
-    }
   }
 }
 `
@@ -63,7 +59,7 @@ const WizardPage = () => {
     tags: [],
     mobileServices: [],
     buildingBlocks: []
-  });
+  })
 
   const { loading: sectorLoading, error: sectorError, data: sectorData } = useQuery(SECTOR_QUERY)
   const { loading: useCaseLoading, error: useCaseError, data: useCaseData } = useQuery(USE_CASE_QUERY)
@@ -76,24 +72,22 @@ const WizardPage = () => {
     return <div>Error!</div>
   }
 
-  const mobileServices = ['Airtime', 'API', 'HS', 'Mobile-Internet', 'Mobile-Money', 'Ops-Maintenance', 'OTT', 'SLA', 'SMS', 'User-Interface', 'USSD', 'Voice' ]
-  const projData = {sectors:[], useCases:[], countries:[], mobileServices: [], tags: [], buildingBlocks: []}
-  projData.sectors = sectorData.sectors.map((sector) => { return { label: sector.name, value: sector.name }})
-  projData.useCases = useCaseData.useCases.map((useCase) => { return { label: useCase.name, value: useCase.name }})
-  projData.countries = countryData.countries.map((country) => { return { label: country.name, value: country.name }})
-  projData.tags = tagData.tags.map((tag) => { return { label: tag.name, value: tag.name }})
-  projData.mobileServices = mobileServices.map((service) => { return { label: service, value: service}})
-  projData.buildingBlocks = ['Data collection', 'Registration','Payments','Identification','Information mediator']
+  const mobileServices = ['Airtime', 'API', 'HS', 'Mobile-Internet', 'Mobile-Money', 'Ops-Maintenance', 'OTT', 'SLA', 'SMS', 'User-Interface', 'USSD', 'Voice']
+  const projData = { sectors: [], useCases: [], countries: [], mobileServices: [], tags: [], buildingBlocks: [] }
+  projData.sectors = sectorData.sectors.map((sector) => { return { label: sector.name, value: sector.name } })
+  projData.useCases = useCaseData.useCases.map((useCase) => { return { label: useCase.name, value: useCase.name } })
+  projData.countries = countryData.countries.map((country) => { return { label: country.name, value: country.name } })
+  projData.tags = tagData.tags.map((tag) => { return { label: tag.name, value: tag.name } })
+  projData.mobileServices = mobileServices.map((service) => { return { label: service, value: service } })
+  projData.buildingBlocks = ['Data collection', 'Registration', 'Payments', 'Identification', 'Information mediator', 'Messaging', 'Scheduling', 'Content Management', 'eMarketplace']
 
   return (
     <>
       <Header />
       <WizardHeader stage={stage} />
-      { stage < 5 ? 
-        <WizardContent stage={stage} setStage={setStage} projData={projData} allValues={allValues} setAllValues={setAllValues} />
-        :
-        <WizardResults stage={stage} setStage={setStage} allValues={allValues} setAllValues={setAllValues} />
-      }
+      {stage < 5
+        ? <WizardContent stage={stage} setStage={setStage} projData={projData} allValues={allValues} setAllValues={setAllValues} />
+        : <WizardResults stage={stage} setStage={setStage} allValues={allValues} setAllValues={setAllValues} />}
       <Footer />
     </>
   )

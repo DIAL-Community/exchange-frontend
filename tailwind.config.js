@@ -28,11 +28,17 @@ module.exports = {
           DEFAULT: '#323245',
           light: '#636374'
         },
+        'dial-cyan': {
+          DEFAULT: '#2fd1c5'
+        },
         'dial-violet': {
           DEFAULT: '#613970'
         },
         'use-case': {
           DEFAULT: '#613970'
+        },
+        'building-block': {
+          DEFAULT: '#647883'
         }
       },
       fontSize: {
@@ -56,6 +62,6 @@ module.exports = {
     extend: {}
   },
   plugins: [
-    require('@tailwindcss/custom-forms'),
+    require('@tailwindcss/custom-forms')
   ]
 }

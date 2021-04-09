@@ -3,18 +3,20 @@ import ReactHtmlParser from 'react-html-parser'
 
 const ProductCard = ({ product, listType }) => {
   return (
-    <Link href='/'>
-        {listType === 'list' ? (
-          <div className='bg-white border-2 border-dial-gray p-2 m-2 shadow-lg flex justify-between items-center'>
-            <div className='inline-block w-2/3 text-lg font-bold truncate '>
+    <Link href={`/product/${product.slug}`}>
+      {listType === 'list'
+        ? (
+          <div className='bg-white border-2 border-dial-gray p-2 m-2 shadow-lg flex justify-between items-center card-link'>
+            <div className='inline-block w-1/3 text-lg font-bold truncate text-dial-gray-dark card-link-text'>
               {product.name}
             </div>
-            <div className='inline-block w-1/4 right'>
-            <img className='inline pr-4' src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}`} alt={product.imageFile} width="30" height="30" />
+            <div className='inline-block w-1/3 right text-sm flex truncate justify-end'>
+              {product.endorsers.map((endorser) => {
+                return (<div key={endorser.slug} className='px-2 py-1 mx-1 rounded bg-dial-cyan text-white'>{endorser.slug.toUpperCase()}</div>)
+              })}
             </div>
-          </div>
-        ) : 
-        (
+          </div>)
+        : (
           <div className='bg-white border-2 border-dial-gray p-6 tracking-wide shadow-lg'>
             <div id='header' className='flex items-center mb-4'>
               <img alt='avatar' className='w-20 rounded-full border-2 border-gray-300' src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile} />
@@ -26,7 +28,7 @@ const ProductCard = ({ product, listType }) => {
               {product.productDescriptions[0] && ReactHtmlParser(product.productDescriptions[0].description)}
             </div>
           </div>
-        )}
+          )}
     </Link>
   )
 }
