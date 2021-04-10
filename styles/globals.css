@@ -20,16 +20,16 @@ body {
 
 .h2 {
   font: Arial;
-  font-size: 30px;
-  line-height: 36px;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
   font-weight: normal;
   color: #323245;
 }
 
 .h3 {
   font: Arial;
-  font-size: 20px;
-  line-height: 26px;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
   text-transform: uppercase; 
   font-weight: normal;
   color: #323245;
@@ -37,8 +37,8 @@ body {
 
 .h4 {
   font: Arial;
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 1rem;
+  line-height: 1.25rem;
   text-transform: uppercase; 
   font-weight: normal;
   color: #46465A;
@@ -46,8 +46,8 @@ body {
 
 .h5 {
   font: Arial;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: .75rem;
+  line-height: 1.125rem;
   text-transform: uppercase; 
   font-weight: normal;
   color: #636374;
@@ -55,24 +55,24 @@ body {
 
 .card-title {
   font: Arial;
-  font-size: 27px;
-  line-height: 31px;
+  font-size: 1.375rem;
+  line-height: 1.5rem;
   font-weight: bold;
   color: #323245;
 }
 
 .body-large {
   font: Arial;
-  font-size: 18px;
-  line-height: 28px;
+  font-size: 1rem;
+  line-height: 1.25rem;
   font-weight: normal;
   color: #46465A;
 }
 
 .body-small {
   font: Arial;
-  font-size: 16px;
-  line-height: 26px;
+  font-size: .875rem;
+  line-height: 1.125rem;
   font-weight: normal;
   color: #46465A
 }
