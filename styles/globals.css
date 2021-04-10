@@ -10,6 +10,73 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+.h1 {
+  font: Arial;
+  font-size: 1.75rem;
+  line-height: 2rem;
+  font-weight: bold;
+  color: #323245;
+}
+
+.h2 {
+  font: Arial;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: normal;
+  color: #323245;
+}
+
+.h3 {
+  font: Arial;
+  font-size: 20px;
+  line-height: 26px;
+  text-transform: uppercase; 
+  font-weight: normal;
+  color: #323245;
+}
+
+.h4 {
+  font: Arial;
+  font-size: 18px;
+  line-height: 22px;
+  text-transform: uppercase; 
+  font-weight: normal;
+  color: #46465A;
+}
+
+.h5 {
+  font: Arial;
+  font-size: 13px;
+  line-height: 20px;
+  text-transform: uppercase; 
+  font-weight: normal;
+  color: #636374;
+}
+
+.card-title {
+  font: Arial;
+  font-size: 27px;
+  line-height: 31px;
+  font-weight: bold;
+  color: #323245;
+}
+
+.body-large {
+  font: Arial;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: normal;
+  color: #46465A;
+}
+
+.body-small {
+  font: Arial;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: normal;
+  color: #46465A
+}
+
 #menu-toggle:checked + #menu {
   display: block;
 }

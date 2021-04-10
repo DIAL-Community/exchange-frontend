@@ -31,7 +31,7 @@ const ProgressBar = ({ stage }) => {
               </span>
             </div>
           </div>
-          {(stage === 0 || stage === 1) && <div className='text-xs text-center'>0% {format('wizard.complete')}</div>}
+          {(stage === 0 || stage === 1) && <div className='text-xs uppercase text-center'>0% {format('wizard.complete')}</div>}
         </div>
 
         <div className='w-1/5'>
@@ -48,7 +48,7 @@ const ProgressBar = ({ stage }) => {
               </span>
             </div>
           </div>
-          {(stage === 2) && <div className='text-xs text-center'>25% {format('wizard.complete')}</div>}
+          {(stage === 2) && <div className='text-xs uppercase text-center'>25% {format('wizard.complete')}</div>}
         </div>
 
         <div className='w-1/5'>
@@ -65,7 +65,7 @@ const ProgressBar = ({ stage }) => {
               </span>
             </div>
           </div>
-          {(stage === 3) && <div className='text-xs text-center'>50% {format('wizard.complete')}</div>}
+          {(stage === 3) && <div className='text-xs uppercase text-center'>50% {format('wizard.complete')}</div>}
         </div>
 
         <div className='w-1/5'>
@@ -82,7 +82,7 @@ const ProgressBar = ({ stage }) => {
               </span>
             </div>
           </div>
-          {(stage === 4) && <div className='text-xs text-center'>75% {format('wizard.complete')}</div>}
+          {(stage === 4) && <div className='text-xs uppercase text-center'>75% {format('wizard.complete')}</div>}
         </div>
         <div className='w-1/5'>
           <div className='relative mb-2'>
@@ -98,7 +98,7 @@ const ProgressBar = ({ stage }) => {
               </span>
             </div>
           </div>
-          {(stage === 5) && <div className='text-xs text-center'>100% {format('wizard.complete')}</div>}
+          {(stage === 5) && <div className='text-xs uppercase text-center'>100% {format('wizard.complete')}</div>}
         </div>
       </div>
     </div>
@@ -112,7 +112,7 @@ const WizardHeader = ({ stage }) => {
   return (
     <>
       <header className='bg-dial-yellow p-5 w-full sticky z-40 flex items-center' style={{ top: '60px' }}>
-        <div className='px-6 text-button-gray font-bold text-2xl inline py-3 w-1/2'>{format('wizard.title')}</div>
+        <div className='px-6 h1 inline py-3 w-1/2'>{format('wizard.title')}</div>
         <ProgressBar stage={stage} />
       </header>
     </>
