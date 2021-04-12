@@ -63,7 +63,7 @@ const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) =
             }}
             className='bg-button-gray p-4 float-right rounded text-button-gray-light'
           >
-            <img src='/icons/CloseIcon.svg' className='inline mr-2' alt='Close' height='20px' width='20px' />
+            <img src='/icons/close.svg' className='inline mr-2' alt='Close' height='20px' width='20px' />
             {format('wizard.close')}
           </button>
         </div>
@@ -74,10 +74,10 @@ const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) =
             <button onClick={() => { stage < 5 && setStage(stage + 1) }} className={`${hideNext() === true && 'hidden'} bg-button-gray border border-dial-yellow rounded p-4 my-4 mr-4 float-right text-button-gray-light`}>
               {stage === 4
                 ? format('wizard.seeResults')
-                : <div>{format('wizard.next')}<img src='/icons/RightArrow.svg' className='inline ml-2' alt='Next' height='20px' width='20px' /></div>}
+                : <div>{format('wizard.next')}<img src='/icons/right-arrow.svg' className='inline ml-2' alt='Next' height='20px' width='20px' /></div>}
             </button>
             <button onClick={() => { stage > 0 && setStage(stage - 1) }} className={`${hideBack() === true && 'hidden'} bg-button-gray border border-dial-yellow rounded p-4 my-4 mr-4 text-button-gray-light`}>
-              <img src='/icons/LeftArrow.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
+              <img src='/icons/left-arrow.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
               {format('wizard.back')}
             </button>
           </div>

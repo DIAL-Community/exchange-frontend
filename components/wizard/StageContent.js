@@ -77,7 +77,7 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
                   setAllValues(prevValues => { return { ...prevValues, tags: allValues.tags.filter(val => val !== tag) } })
                 }}
               >
-                <img src='/icons/CloseIcon.svg' className='inline mr-2' alt='Back' height='10px' width='10px' />
+                <img src='/icons/close.svg' className='inline mr-2' alt='Back' height='10px' width='10px' />
               </div>
             </div>
           )

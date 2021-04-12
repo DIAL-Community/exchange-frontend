@@ -240,7 +240,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
         <LeftMenu currentSection={currentSection} phase={phase} clickHandler={clickHandler} />
         <div className='float-left w-full py-4 px-6'>
           <button onClick={() => { stage > 0 && setStage(stage - 1) }} className='bg-button-gray border border-dial-yellow rounded p-4 my-4 mr-4 text-button-gray-light'>
-            <img src='/icons/LeftArrow.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
+            <img src='/icons/left-arrow.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
             {format('wizard.back')}
           </button>
         </div>
@@ -250,7 +250,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           className='bg-dial-gray p-4 float-right rounded text-button-gray-light'
           onClick={() => { router.push('/') }}
         >
-          <img src='/icons/CloseIcon.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
+          <img src='/icons/close.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
           {format('wizard.close')}
         </button>
         <div ref={section1Ref}>
