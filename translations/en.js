@@ -1,5 +1,8 @@
 export const en = {
   'app.title': 'DIAL Catalog of Digital Solutions',
+  'app.edit': 'Edit',
+  'app.comment': 'Leave a Comment',
+  'app.home': 'Home',
 
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
@@ -26,6 +29,44 @@ export const en = {
   'definition.subtitle': 'A useful tool for a wide range of users',
 
   'products.header': 'Products',
+  'products.label': 'Product',
+  'product.languages': 'Languages',
+  'product.website': 'Website',
+  'product.repository': 'Code Repository',
+  'product.current-version': 'Current Version',
+  'product.license': 'License',
+  'product.source': 'Source',
+  'product.repository-info': 'Repository Information',
+  'product.very-active': 'Very Active',
+  'product.not-very-active': 'Not Very Active',
+  'product.inactive': 'Inactive',
+  'product.star': 'Stars',
+  'product.watcher': 'Watchers',
+  'product.fork': 'Forks',
+  'product.current-version': 'Current Version',
+  'product.no-version-data': 'No Version Data',
+  'product.created': 'Created',
+  'product.last-updated': 'Last Updated',
+  'product.open-pr': 'Open PRs',
+  'product.merged-pr': 'Merged PRs',
+  'product.owner': 'If you are the owner of this product, you can update this product information.',
+  'product.owner-link': 'Find more information here',
+
+  'project.header': 'Projects',
+  'project.label': 'Project',
+
+  'organization.header': 'Organizations',
+  'organization.label': 'Organization',
+  'organization.endorsed-in': 'Endorsed in',
+
+  'building-block.header': 'Building Blocks',
+  'building-block.label': 'Building Block',
+
+  'sector.header': 'Sectors',
+  'sector.label': 'Sector',
+
+  'sdg.header': 'Sustainable Development Goals',
+  'sdg.label': 'Sustainable Development Goal',
 
   'wizard.title': 'Requirements and Recommendation Wizard',
   'wizard.complete': 'Complete',

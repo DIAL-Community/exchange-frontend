@@ -7,12 +7,14 @@ const SDGCard = ({ sdg, listType }) => {
       {
         listType === 'list'
           ? (
-            <div className='bg-white border-2 border-dial-gray p-2 m-2 shadow-lg flex justify-between items-center'>
-              <div className='inline-block w-2/3 text-lg font-bold truncate '>
-                {sdg.name}
-              </div>
-              <div className='inline-block w-1/4 right'>
-                <img className='inline pr-4' src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`} alt={sdg.imageFile} width='30' height='30' />
+            <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
+              <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+                <div className='flex justify-between my-4 px-4'>
+                  <div className='inline-block card-title truncate card-link-text text-sdg'>
+                    <img className='inline pr-4' src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`} alt={sdg.imageFile} width='40' height='40' />
+                    {sdg.name}
+                  </div>
+                </div>
               </div>
             </div>
             )

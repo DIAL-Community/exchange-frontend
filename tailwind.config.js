@@ -38,11 +38,17 @@ module.exports = {
         'dial-violet': {
           DEFAULT: '#613970'
         },
+        'dial-not-active': {
+          DEFAULT: '#647883'
+        },
         'use-case': {
           DEFAULT: '#613970'
         },
         'building-block': {
           DEFAULT: '#647883'
+        },
+        'sdg': {
+          DEFAULT: '#7c5048'
         }
       },
       fontSize: {

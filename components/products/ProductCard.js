@@ -40,7 +40,7 @@ const ProductCard = ({ product, listType }) => {
                   <div className='col-span-1 flex flex-row justify-end'>
                     <img className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
                     {
-                      product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
+                      product.tags && product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
                         <img className='mr-1.5 last:mr-0 h-5' src='/icons/coronavirus/coronavirus.png' />
                     }
                     {product.isLaunchable && <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />}

@@ -1,8 +1,5 @@
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
-
-// import { I18nProvider } from './I18nProvider';
-// import config from './config';
 import Header from '../components/Header'
 import Filter from '../components/filter/Filter'
 import ProductListQuery from '../components/products/ProductList'
