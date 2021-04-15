@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react'
 const UseCaseFilterContext = createContext()
 const UseCaseFilterDispatchContext = createContext()
 
-function UseCaseFilterProvider ({ children }) {
+const UseCaseFilterProvider = ({ children }) => {
   const [showBeta, setShowBeta] = useState(false)
   const [sectors, setSectors] = useState([])
   const [sdgs, setSDGs] = useState([])

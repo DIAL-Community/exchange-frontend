@@ -3,14 +3,16 @@ import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 
+import { BuildingBlockLogo } from '../../logo'
+
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
 const BUILDING_BLOCK_SEARCH_QUERY = gql`
-  query SearchBuildingBlocks($search: String!) {
-    searchBuildingBlocks(search: $search) {
+  query BuildingBlocks($search: String!) {
+    buildingBlocks(search: $search) {
+      id
       name
-      slug
     }
   }
 `
@@ -18,7 +20,12 @@ const BUILDING_BLOCK_SEARCH_QUERY = gql`
 const customStyles = {
   control: (provided) => ({
     ...provided,
-    width: '14rem'
+    width: '14rem',
+    cursor: 'pointer'
+  }),
+  option: (provided) => ({
+    ...provided,
+    cursor: 'pointer'
   })
 }
 
@@ -44,10 +51,10 @@ export const BuildingBlockAutocomplete = (props) => {
       }
     })
 
-    if (response.data && response.data.searchBuildingBlocks) {
-      return response.data.searchBuildingBlocks.map((buildingBlock) => ({
+    if (response.data && response.data.buildingBlocks) {
+      return response.data.buildingBlocks.map((buildingBlock) => ({
         label: buildingBlock.name,
-        value: buildingBlock.slug
+        value: buildingBlock.id
       }))
     }
 
@@ -57,7 +64,12 @@ export const BuildingBlockAutocomplete = (props) => {
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
       <label className='block mt-4'>
-        <span className='text-sm text-dial-gray-light'>Building Blocks</span>
+        <div className='flex flex-row'>
+          <BuildingBlockLogo fill='white' className='ml-2' />
+          <div className='text-sm px-2 text-dial-gray-light my-auto'>
+            Building Blocks
+          </div>
+        </div>
         <AsyncSelect
           className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
           cacheOptions

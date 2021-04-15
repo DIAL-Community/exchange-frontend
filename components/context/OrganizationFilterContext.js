@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react'
 const OrganizationFilterContext = createContext()
 const OrganizationFilterDispatchContext = createContext()
 
-function OrganizationFilterProvider ({ children }) {
+const OrganizationFilterProvider = ({ children }) => {
   const [aggregator, setAggregator] = useState(false)
   const [endorser, setEndorser] = useState(false)
   const [years, setYears] = useState([])

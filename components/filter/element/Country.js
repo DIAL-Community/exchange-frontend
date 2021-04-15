@@ -7,10 +7,10 @@ import { gql, useApolloClient } from '@apollo/client'
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
 const COUNTRY_SEARCH_QUERY = gql`
-  query SearchCountries($search: String!) {
-    searchCountries(search: $search) {
+  query Countries($search: String!) {
+    countries(search: $search) {
+      id
       name
-      slug
     }
   }
 `
@@ -18,7 +18,12 @@ const COUNTRY_SEARCH_QUERY = gql`
 const customStyles = {
   control: (provided) => ({
     ...provided,
-    width: '10rem'
+    width: '10rem',
+    cursor: 'pointer'
+  }),
+  option: (provided) => ({
+    ...provided,
+    cursor: 'pointer'
   })
 }
 
@@ -44,10 +49,10 @@ export const CountryAutocomplete = (props) => {
       }
     })
 
-    if (response.data && response.data.searchCountries) {
-      return response.data.searchCountries.map((country) => ({
+    if (response.data && response.data.countries) {
+      return response.data.countries.map((country) => ({
         label: country.name,
-        value: country.slug
+        value: country.id
       }))
     }
 
@@ -63,7 +68,7 @@ export const CountryAutocomplete = (props) => {
           cacheOptions
           defaultOptions={false}
           loadOptions={(input, callback) => fetchOptions(input, callback, COUNTRY_SEARCH_QUERY)}
-          noOptionsMessage={() => 'Search for countries.'}
+          noOptionsMessage={() => ' for countries.'}
           onChange={selectCountry}
           placeholder='Filter by Country'
           styles={customStyles}

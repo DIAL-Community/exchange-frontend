@@ -61,7 +61,7 @@ const Description = () => {
                     </div>
                   </div>
                   <div className={openTab === 1 ? 'block' : 'hidden'} id='policy-makers'>
-                    <div className='flex flex-col flex-wrap p-8 max-h-96'>
+                    <div className='flex flex-col flex-wrap p-8 xl:max-h-96'>
                       <p className='text-xl max-w-md mr-16 tracking-wide'>
                         <span className='font-bold'>Policy Makers </span>
                         can use this tool to identify what ICT Building Blocks and Products deliver various needed
@@ -71,7 +71,7 @@ const Description = () => {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacinia cursus fringilla. Aliquam eleifend,
                         nunc vitae volutpat porta, augue quam elementum leo, nec consequat dolor dui eget leo.
                       </p>
-                      <img className='rounded-lg shadow-2xl object-cover w-56 h-56' src='images/workflow-placeholder.png' alt='' />
+                      <img className='rounded-lg shadow-2xl object-cover w-56 h-56 mt-8 xl:mt-0' src='images/workflow-placeholder.png' alt='' />
                     </div>
                   </div>
                   <div className={openTab === 2 ? 'block' : 'hidden'} id='implementing-partners'>

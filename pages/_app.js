@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import * as translations from '../translations'
 
 import '../styles/globals.css'
+import '../styles/filter.css'
 
 import CatalogContext from '../lib/CatalogContext'
 

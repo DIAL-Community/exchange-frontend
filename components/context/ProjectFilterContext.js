@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react'
 const ProjectFilterContext = createContext()
 const ProjectFilterDispatchContext = createContext()
 
-function ProjectFilterProvider ({ children }) {
+const ProjectFilterProvider = ({ children }) => {
   const [origins, setOrigins] = useState([])
   const [countries, setCountries] = useState([])
   const [sectors, setSectors] = useState([])

@@ -8,7 +8,12 @@ const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 const customStyles = {
   control: (provided) => ({
     ...provided,
-    width: '10rem'
+    width: '10rem',
+    cursor: 'pointer'
+  }),
+  option: (provided) => ({
+    ...provided,
+    cursor: 'pointer'
   })
 }
 
@@ -23,8 +28,8 @@ export const ProductTypeSelect = (props) => {
 
   const options = [
     { value: 'product_and_dataset', label: 'All Type' },
-    { value: 'product_only', label: 'Product Only' },
-    { value: 'dataset_only', label: 'Dataset Only' }
+    { value: 'product', label: 'Product Only' },
+    { value: 'dataset', label: 'Dataset Only' }
   ]
 
   const fetchOptions = async (input) => {

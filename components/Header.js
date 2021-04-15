@@ -32,8 +32,8 @@ const Header = () => {
   }
 
   const headerStyles = `
-    relative w-full z-50 sticky top-0 px-6 border-b-2 border-gray-600 bg-white flex flex-wrap
-    items-center py-2 lg:px-8 lg:py-0
+    relative w-full z-30 sticky top-0 border-b-2 border-gray-600 bg-white flex flex-wrap
+    items-center py-2 lg:py-0
   `
 
   const menuItemStyles = `
@@ -74,7 +74,7 @@ const Header = () => {
     <header className={headerStyles}>
       <div className='flex-1 flex justify-between items-center'>
         <Link href='/'>
-          <a href='/'>
+          <a href='/' className='px-6 lg:px-8'>
             <div className='text-gray-900 text-xs'>
               {format('landing.subtitle')}
             </div>
@@ -126,7 +126,7 @@ const Header = () => {
                   showLanguages ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
                 }
               </a>
-              <div className={`${showLanguages ? 'block' : 'hidden'} ${dropdownPanelStyles} z-10`} ref={popoverRef} role='menu'>
+              <div className={`${showLanguages ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
                 <div className='py-1' role='none'>
                   <a href='en' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'en')}>
                     {format('header.english')}

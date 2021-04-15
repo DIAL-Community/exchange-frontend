@@ -103,5 +103,18 @@ export const en = {
     Use the Requirements and Recommendation Wizard to help guide you to a curated list of resources,
     tailored to wherever you are in a project lifecycle — ideation, planning, or implementation.'
   `,
-  'landing.wizard.buttonText': 'Launch Recommendations Wizard'
+  'landing.wizard.buttonText': 'Launch Recommendations Wizard',
+
+  'product.card.dataset': 'Dataset',
+  'product.card.coronavirusTagValue': 'COVID-19',
+  'product.card.maturityScore': 'Maturity Score',
+  'product.card.dataSources': 'Sources',
+  'product.card.license': 'License',
+  'product.card.buildingBlocks': 'Building Blocks',
+  'product.card.sdgs': 'SDGs',
+
+  'general.na': 'N/A',
+  'general.fetchingData': 'Fetching data ...',
+  'general.fetchError': 'Error fetching data. Please check your network connection.',
+  'general.loadingData': 'Loading for more data ...'
 }

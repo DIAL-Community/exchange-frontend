@@ -3,14 +3,16 @@ import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 
+import { UseCaseLogo } from '../../logo'
+
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
 const USE_CASE_SEARCH_QUERY = gql`
-  query SearchUseCases($search: String!) {
-    searchUseCases(search: $search) {
+  query UseCases($search: String!) {
+    useCases(search: $search) {
+      id
       name
-      slug
     }
   }
 `
@@ -18,7 +20,12 @@ const USE_CASE_SEARCH_QUERY = gql`
 const customStyles = {
   control: (provided) => ({
     ...provided,
-    width: '11rem'
+    width: '11rem',
+    cursor: 'pointer'
+  }),
+  option: (provided) => ({
+    ...provided,
+    cursor: 'pointer'
   })
 }
 
@@ -44,10 +51,10 @@ export const UseCaseAutocomplete = (props) => {
       }
     })
 
-    if (response.data && response.data.searchUseCases) {
-      return response.data.searchUseCases.map((useCase) => ({
+    if (response.data && response.data.useCases) {
+      return response.data.useCases.map((useCase) => ({
         label: useCase.name,
-        value: useCase.slug
+        value: useCase.id
       }))
     }
 
@@ -57,7 +64,12 @@ export const UseCaseAutocomplete = (props) => {
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
       <label className='block mt-4'>
-        <span className='text-sm text-dial-gray-light'>Use Cases</span>
+        <div className='flex flex-row'>
+          <UseCaseLogo fill='white' className='ml-2' />
+          <div className='text-sm px-2 text-dial-gray-light my-auto'>
+            Use Cases
+          </div>
+        </div>
         <AsyncSelect
           className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
           cacheOptions

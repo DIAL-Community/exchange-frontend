@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react'
 const ProductFilterContext = createContext()
 const ProductFilterDispatchContext = createContext()
 
-function ProductFilterProvider ({ children }) {
+const ProductFilterProvider = ({ children }) => {
   const [withMaturity, setWithMaturity] = useState(false)
   const [productDeployable, setProductDeployable] = useState(false)
   const [origins, setOrigins] = useState([])
@@ -16,8 +16,27 @@ function ProductFilterProvider ({ children }) {
   const [buildingBlocks, setBuildingBlocks] = useState([])
   const [productTypes, setProductTypes] = useState([])
 
+  const [search, setSearch] = useState('')
+  const [displayType, setDisplayType] = useState('card')
+  const [sortColumn, setSortColumn] = useState('name')
+  const [sortDirection, setSortDirection] = useState('asc')
+
   const productFilterValues = {
-    withMaturity, productDeployable, origins, countries, sectors, organizations, sdgs, useCases, workflows, buildingBlocks, productTypes
+    withMaturity,
+    productDeployable,
+    origins,
+    countries,
+    sectors,
+    organizations,
+    sdgs,
+    useCases,
+    workflows,
+    buildingBlocks,
+    productTypes,
+    search,
+    displayType,
+    sortColumn,
+    sortDirection
   }
   const productFilterDispatchValues = {
     setWithMaturity,
@@ -30,7 +49,11 @@ function ProductFilterProvider ({ children }) {
     setUseCases,
     setWorkflows,
     setBuildingBlocks,
-    setProductTypes
+    setProductTypes,
+    setSearch,
+    setDisplayType,
+    setSortColumn,
+    setSortDirection
   }
 
   return (

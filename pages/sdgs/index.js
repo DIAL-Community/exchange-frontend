@@ -6,6 +6,7 @@ import apolloClient from '../../lib/apolloClient'
 import Filter from '../../components/filter/Filter'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import SDGListQuery from '../../components/sdgs/SDGList'
 
 const SDGs = () => {
   const { formatMessage } = useIntl()
@@ -19,7 +20,7 @@ const SDGs = () => {
       </Head>
       <Header />
       <Filter activeTab='sdgs' />
-      <div className='body-container'>&nbsp;</div>
+      <SDGListQuery />
       <Footer />
     </>
   )

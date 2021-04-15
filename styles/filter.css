@@ -1,0 +1,24 @@
+/* Filter is coming from this:
+ * https: //stackoverflow.com/a/43960991
+ * https: //codepen.io/sosuke/pen/Pjoqqp
+ */
+
+.building-block-filter {
+  filter: invert(55%) sepia(7%) saturate(1062%) hue-rotate(157deg) brightness(81%) contrast(86%);
+}
+
+.workflow-filter {
+  filter: invert(44%) sepia(83%) saturate(325%) hue-rotate(158deg) brightness(89%) contrast(90%);
+}
+
+.use-case-filter {
+  filter: invert(26%) sepia(7%) saturate(4002%) hue-rotate(239deg) brightness(93%) contrast(91%);
+}
+
+.sdg-filter {
+  filter: invert(58%) sepia(39%) saturate(2289%) hue-rotate(177deg) brightness(94%) contrast(83%);
+}
+
+.other-filter {
+  filter: invert(59%) sepia(31%) saturate(957%) hue-rotate(163deg) brightness(89%) contrast(94%);
+}

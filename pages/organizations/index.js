@@ -6,6 +6,7 @@ import apolloClient from '../../lib/apolloClient'
 import Filter from '../../components/filter/Filter'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import OrganizationListQuery from '../../components/organizations/OrganizationList'
 
 const Organizations = () => {
   const { formatMessage } = useIntl()
@@ -19,7 +20,7 @@ const Organizations = () => {
       </Head>
       <Header />
       <Filter activeTab='organizations' />
-      <div className='body-container'>&nbsp;</div>
+      <OrganizationListQuery />
       <Footer />
     </>
   )

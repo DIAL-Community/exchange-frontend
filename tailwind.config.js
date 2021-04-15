@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      borderWidth: {
+        3: '3px'
+      },
       colors: {
         'dial-gray': {
           light: '#f5f6fa',
@@ -14,7 +17,8 @@ module.exports = {
           DEFAULT: '#323345'
         },
         'dial-yellow': {
-          DEFAULT: '#fab230'
+          DEFAULT: '#faab19',
+          light: '#feeed1'
         },
         'dial-teal': {
           light: '#3e81a8',
@@ -59,7 +63,10 @@ module.exports = {
     }
   },
   variants: {
-    extend: {}
+    extend: {
+      margin: ['last'],
+      borderWidth: ['hover']
+    }
   },
   plugins: [
     require('@tailwindcss/custom-forms')
