@@ -6,6 +6,7 @@ import apolloClient from '../../lib/apolloClient'
 import Filter from '../../components/filter/Filter'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import UseCaseListQuery from '../../components/use-cases/UseCaseList'
 
 const UseCases = () => {
   const { formatMessage } = useIntl()
@@ -19,7 +20,7 @@ const UseCases = () => {
       </Head>
       <Header />
       <Filter activeTab='use-cases' />
-      <div className='body-container'>&nbsp;</div>
+      <UseCaseListQuery />
       <Footer />
     </>
   )

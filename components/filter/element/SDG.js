@@ -2,15 +2,17 @@ import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
+import { SDGLogo } from '../../logo'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
 const SDG_SEARCH_QUERY = gql`
-  query SearchSDGs($search: String!) {
-    searchSdgs(search: $search) {
+  query SDGs($search: String!) {
+    sdgs(search: $search) {
+      id
       name
-      slug
+      number
     }
   }
 `
@@ -18,7 +20,12 @@ const SDG_SEARCH_QUERY = gql`
 const customStyles = {
   control: (provided) => ({
     ...provided,
-    width: '11rem'
+    width: '11rem',
+    cursor: 'pointer'
+  }),
+  option: (provided) => ({
+    ...provided,
+    cursor: 'pointer'
   })
 }
 
@@ -44,10 +51,10 @@ export const SDGAutocomplete = (props) => {
       }
     })
 
-    if (response.data && response.data.searchSdgs) {
-      return response.data.searchSdgs.map((sdg) => ({
-        label: sdg.name,
-        value: sdg.slug
+    if (response.data && response.data.sdgs) {
+      return response.data.sdgs.map((sdg) => ({
+        label: `${sdg.number}. ${sdg.name}`,
+        value: sdg.id
       }))
     }
 
@@ -57,7 +64,12 @@ export const SDGAutocomplete = (props) => {
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
       <label className='block mt-4'>
-        <span className='text-sm text-dial-gray-light'>SDGs</span>
+        <div className='flex flex-row'>
+          <SDGLogo fill='white' className='ml-2' />
+          <div className='text-sm px-2 text-dial-gray-light my-auto'>
+            SDGs
+          </div>
+        </div>
         <AsyncSelect
           className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
           cacheOptions

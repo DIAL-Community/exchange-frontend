@@ -29,9 +29,9 @@ const HomePage = () => {
       <Definition />
       <Carousel />
       <WizardDescription />
-      <CatalogTitle />\
+      <CatalogTitle />
       <Filter activeTab='products' />
-      <ProductListQuery />\
+      <ProductListQuery />
       <Footer />
     </>
   )

@@ -2,15 +2,16 @@ import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
+import { WorkflowLogo } from '../../logo'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
 const WORKFLOW_SEARCH_QUERY = gql`
-  query SearchWorkflows($search: String!) {
-    searchWorkflows(search: $search) {
+  query Workflows($search: String!) {
+    workflows(search: $search) {
+      id
       name
-      slug
     }
   }
 `
@@ -18,7 +19,12 @@ const WORKFLOW_SEARCH_QUERY = gql`
 const customStyles = {
   control: (provided) => ({
     ...provided,
-    width: '11rem'
+    width: '11rem',
+    cursor: 'pointer'
+  }),
+  option: (provided) => ({
+    ...provided,
+    cursor: 'pointer'
   })
 }
 
@@ -44,10 +50,10 @@ export const WorkflowAutocomplete = (props) => {
       }
     })
 
-    if (response.data && response.data.searchWorkflows) {
-      return response.data.searchWorkflows.map((workflow) => ({
+    if (response.data && response.data.workflows) {
+      return response.data.workflows.map((workflow) => ({
         label: workflow.name,
-        value: workflow.slug
+        value: workflow.id
       }))
     }
 
@@ -57,7 +63,12 @@ export const WorkflowAutocomplete = (props) => {
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
       <label className='block mt-4'>
-        <span className='text-sm text-dial-gray-light'>Workflows</span>
+        <div className='flex flex-row'>
+          <WorkflowLogo fill='white' className='ml-2' />
+          <div className='text-sm px-2 text-dial-gray-light my-auto'>
+            Workflows
+          </div>
+        </div>
         <AsyncSelect
           className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
           cacheOptions

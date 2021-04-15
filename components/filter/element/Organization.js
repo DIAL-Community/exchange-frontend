@@ -7,10 +7,10 @@ import { gql, useApolloClient } from '@apollo/client'
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
 const ORGANIZATION_SEARCH_QUERY = gql`
-  query SearchOrganizations($search: String!) {
-    searchOrganizations(search: $search) {
+  query Organizations($search: String!) {
+    organizations(search: $search) {
+      id
       name
-      slug
     }
   }
 `
@@ -18,7 +18,12 @@ const ORGANIZATION_SEARCH_QUERY = gql`
 const customStyles = {
   control: (provided) => ({
     ...provided,
-    width: '12rem'
+    width: '12rem',
+    cursor: 'pointer'
+  }),
+  option: (provided) => ({
+    ...provided,
+    cursor: 'pointer'
   })
 }
 
@@ -44,10 +49,10 @@ export const OrganizationAutocomplete = (props) => {
       }
     })
 
-    if (response.data && response.data.searchOrganizations) {
-      return response.data.searchOrganizations.map((organization) => ({
+    if (response.data && response.data.organizations) {
+      return response.data.organizations.map((organization) => ({
         label: organization.name,
-        value: organization.slug
+        value: organization.id
       }))
     }
 

@@ -8,7 +8,12 @@ const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 const customStyles = {
   control: (provided) => ({
     ...provided,
-    width: '14rem'
+    width: '14rem',
+    cursor: 'pointer'
+  }),
+  option: (provided) => ({
+    ...provided,
+    cursor: 'pointer'
   })
 }
 

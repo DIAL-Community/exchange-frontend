@@ -7,10 +7,10 @@ import { gql, useApolloClient } from '@apollo/client'
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
 const SECTOR_SEARCH_QUERY = gql`
-  query SearchSectors($search: String!) {
-    searchSectors(search: $search) {
+  query Sectors($search: String!) {
+    sectors(search: $search) {
+      id
       name
-      slug
     }
   }
 `
@@ -18,7 +18,12 @@ const SECTOR_SEARCH_QUERY = gql`
 const customStyles = {
   control: (provided) => ({
     ...provided,
-    width: '12rem'
+    width: '12rem',
+    cursor: 'pointer'
+  }),
+  option: (provided) => ({
+    ...provided,
+    cursor: 'pointer'
   })
 }
 
@@ -44,10 +49,10 @@ export const SectorAutocomplete = (props) => {
       }
     })
 
-    if (response.data && response.data.searchSectors) {
-      return response.data.searchSectors.map((sector) => ({
+    if (response.data && response.data.sectors) {
+      return response.data.sectors.map((sector) => ({
         label: sector.name,
-        value: sector.slug
+        value: sector.id
       }))
     }
 

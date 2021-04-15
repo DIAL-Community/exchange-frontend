@@ -95,7 +95,7 @@ const Footer = () => {
             <div className='py-2 px-0 lg:px-2 rounded-md'>
               Follow DIAL on social media
             </div>
-            <div className='py-2 px-3 rounded-md bg-dial-gray-light mx-2'>
+            <div className='p-2 rounded-md bg-dial-gray-light mx-2'>
               <a
                 className='border-b-2 border-transparent hover:border-dial-teal-light'
                 href='https://facebook.com/DigitalImpactAlliance' target='_blank' rel='noreferrer'
@@ -103,7 +103,7 @@ const Footer = () => {
                 <FaFacebookF className='inline' />
               </a>
             </div>
-            <div className='py-2 px-3 rounded-md bg-dial-gray-light'>
+            <div className='p-2 rounded-md bg-dial-gray-light'>
               <a
                 href='https://twitter.com/DIAL_Community' target='_blank' rel='noreferrer'
                 className='border-b-2 border-transparent hover:border-dial-teal-light'
@@ -111,7 +111,7 @@ const Footer = () => {
                 <FaTwitter className='inline' />
               </a>
             </div>
-            <div className='py-2 px-3 rounded-md bg-dial-gray-light mx-2'>
+            <div className='p-2 rounded-md bg-dial-gray-light mx-2'>
               <a
                 href='https://www.instagram.com/dial_community' target='_blank' rel='noreferrer'
                 className='border-b-2 border-transparent hover:border-dial-teal-light'
