@@ -3,14 +3,18 @@ import Link from 'next/link'
 
 const ProjectCard = ({project, listType}) => {
   return(
-    <Link href='/'>
+    <Link className='card-link' href={`/projects/${project.slug}`}>
       {listType === 'list' ? (
-        <div className='bg-white border-2 border-dial-gray p-2 m-2 shadow-lg flex justify-between items-center'>
-          <div className='inline-block w-2/3 text-lg font-bold truncate '>
-            {project.name}
-          </div>
-          <div className='inline-block w-1/4 right'>
-            <Image src={`/images/origins/${project.origin.slug}.png`} alt={project.origin.slug} width="100%" height="30" />
+        <div className='border-3 border-transparent hover:border-dial-yellow text-button-gray hover:text-dial-yellow cursor-pointer'>
+          <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+            <div className='flex justify-between my-4 px-4'>
+              <div className='text-lg font-bold truncate '>
+                {project.name}
+              </div>
+              <div className='right pr-5'>
+                <Image src={`/images/origins/${project.origin.slug}.png`} alt={project.origin.slug} width="100%" height="30" />
+              </div>
+            </div>
           </div>
         </div>
       ) : (

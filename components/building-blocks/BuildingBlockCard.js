@@ -8,31 +8,30 @@ const BuildingBlockCard = ({ buildingBlock, listType }) => {
   const format = (id) => formatMessage({ id })
 
   return (
-    <Link href={`/product/${buildingBlock.slug}`}>
+    <Link href={`/building-blocks/${buildingBlock.slug}`}>
       {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
-                <div className='grid grid-cols-12 my-5 px-4'>
+                <div className='grid grid-cols-12 my-4 px-4'>
                   <div className='col-span-4 text-base font-semibold'>
+                    <img
+                      alt={`Logo for ${buildingBlock.name}`} className='building-block-filter inline mr-2 '
+                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
+                      height='20' width='20'
+                    />
                     {truncate(buildingBlock.name, 40, true)}
                   </div>
                   <div className='col-span-3 text-base text-dial-purple'>
                     {
-                      buildingBlock.products.length === 0 && format('general.na')
-                    }
-                    {
-                      buildingBlock.products.length > 0 &&
+                      buildingBlock.products && buildingBlock.products.length > 0 &&
                         truncate(buildingBlock.products.map(p => p.name).join(', '), 60, true)
                     }
                   </div>
                   <div className='col-span-4 text-base text-dial-purple'>
                     {
-                      buildingBlock.workflows.length === 0 && format('general.na')
-                    }
-                    {
-                      buildingBlock.workflows.length > 0 &&
+                      buildingBlock.workflows && buildingBlock.workflows.length > 0 &&
                         truncate(buildingBlock.workflows.map(w => w.name).join(', '), 60, true)
                     }
                   </div>
