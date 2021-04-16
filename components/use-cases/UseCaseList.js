@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -6,6 +7,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import UseCaseCard from './UseCaseCard'
 import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
 import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
+import { HiSortAscending } from 'react-icons/hi'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -14,13 +16,15 @@ query SearchUseCases(
   $first: Int,
   $after: String,
   $sdgs: [String!],
-  $showBeta: Boolean
+  $showBeta: Boolean,
+  $search: String!
   ) {
   searchUseCases(
     first: $first,
     after: $after,
     sdgs: $sdgs,
-    showBeta: $showBeta
+    showBeta: $showBeta,
+    search: $search
   ) {
     __typename
     totalCount
@@ -35,22 +39,55 @@ query SearchUseCases(
       name
       slug
       imageFile
-      useCaseDescriptions {
-        description
+      maturity
+      sdgTargets {
+        id
+        name
+        targetNumber
+      }
+      useCaseSteps {
+        id
+        name
+        workflows {
+          id
+          name
+          slug
+          imageFile
+        }
       }
     }
   }
 }
 `
-
 const UseCaseList = (props) => {
+  const displayType = props.displayType
+  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-4 gap-4' : 'grid-cols-1'}`
+
   return (
     <>
-      <div className='row grid grid-cols-4 gap-3'>
+      <div className={gridStyles}>
         {
-          props.useCaseList.map((useCase) => {
-            return <UseCaseCard key={useCase.id} useCase={useCase} listType='list'/>
-          })
+          displayType === 'list' &&
+            <div className='grid grid-cols-12 my-3 px-4 text-use-case'>
+              <div className='col-span-4 ml-2 text-sm font-semibold opacity-80'>
+                {'Use Cases'.toUpperCase()}
+                <HiSortAscending className='ml-1 inline text-2xl' />
+              </div>
+              <div className='col-span-2 text-sm font-semibold opacity-50'>
+                {'SDG Targets'.toUpperCase()}
+                <HiSortAscending className='ml-1 inline text-2xl' />
+              </div>
+              <div className='col-span-5 text-sm font-semibold opacity-50'>
+                {'Example Workflows'.toUpperCase()}
+                <HiSortAscending className='ml-1 inline text-2xl' />
+              </div>
+              <div className='col-span-1' />
+            </div>
+        }
+        {
+          props.useCaseList.map((useCase) => (
+            <UseCaseCard key={useCase.id} useCase={useCase} listType={displayType} />
+          ))
         }
       </div>
     </>
@@ -59,13 +96,17 @@ const UseCaseList = (props) => {
 
 const UseCaseListQuery = () => {
   const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { sdgs, showBeta } = useContext(UseCaseFilterContext)
+  const { sdgs, showBeta, search, displayType } = useContext(UseCaseFilterContext)
+
+  const { formatMessage } = useIntl()
+  const format = (id) => formatMessage({ id })
 
   const { loading, error, data, fetchMore } = useQuery(USE_CASES_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       sdgs: sdgs.map(sdg => sdg.value),
-      showBeta: showBeta
+      showBeta: showBeta,
+      search: search
     },
     onCompleted: (data) => {
       setResultCounts({ ...resultCounts, ...{ [`${convertToKey('Use Cases')}`]: data.searchUseCases.totalCount } })
@@ -73,10 +114,11 @@ const UseCaseListQuery = () => {
   })
 
   if (loading) {
-    return <div>Fetching..</div>
+    return <div className='relative text-center my-3'>{format('general.fetchingData')}</div>
   }
+
   if (error) {
-    return <div>Error!</div>
+    return <div className='relative text-center my-3'>{format('general.fetchError')}</div>
   }
 
   const { searchUseCases: { nodes, pageInfo } } = data
@@ -93,14 +135,13 @@ const UseCaseListQuery = () => {
   }
   return (
     <InfiniteScroll
+      className='relative mx-2 mt-3'
       dataLength={nodes.length}
       next={handleLoadMore}
       hasMore={pageInfo.hasNextPage}
-      loader={<div>Loading...</div>}
+      loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
-      <div id='content' className='container-fluid with-header p-3'>
-        <UseCaseList useCaseList={nodes} />
-      </div>
+      <UseCaseList useCaseList={nodes} displayType={displayType} />
     </InfiniteScroll>
   )
 }

@@ -39,8 +39,19 @@ query SearchWorkflows(
       name
       slug
       imageFile
-      workflowDescriptions {
-        description
+      useCaseSteps {
+        slug
+        name
+        useCase {
+          slug
+          name
+          imageFile
+        }
+      }
+      buildingBlocks {
+        slug
+        name
+        imageFile
       }
     }
   }
@@ -56,20 +67,19 @@ const WorkflowList = (props) => {
       <div className={gridStyles}>
         {
           displayType === 'list' &&
-            <div className='grid grid-cols-12 my-3'>
-              <div className='col-span-5 ml-6 text-sm font-semibold opacity-70'>
-                {'Name'.toUpperCase()}
+            <div className='grid grid-cols-12 my-3 px-4'>
+              <div className='col-span-4 ml-2 text-sm font-semibold text-workflow opacity-80'>
+                {'Workflows'.toUpperCase()}
                 <HiSortAscending className='ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-2 text-sm font-semibold opacity-50'>
-                {'Product or Dataset'.toUpperCase()}
+              <div className='col-span-4 text-sm font-semibold text-use-case opacity-80'>
+                {'Example Use Cases'.toUpperCase()}
                 <HiSortAscending className='ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-4 text-sm font-semibold opacity-50'>
-                {'Sources'.toUpperCase()}
+              <div className='col-span-4 text-sm font-semibold text-building-block'>
+                {'Example Building Blocks'.toUpperCase()}
                 <HiSortAscending className='ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-1' />
             </div>
         }
         {

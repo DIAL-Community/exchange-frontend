@@ -25,11 +25,17 @@ const BuildingBlockCard = ({ buildingBlock, listType }) => {
                   </div>
                   <div className='col-span-3 text-base text-dial-purple'>
                     {
+                      buildingBlock.products && buildingBlock.products.length === 0 && format('general.na')
+                    }
+                    {
                       buildingBlock.products && buildingBlock.products.length > 0 &&
                         truncate(buildingBlock.products.map(p => p.name).join(', '), 60, true)
                     }
                   </div>
                   <div className='col-span-4 text-base text-dial-purple'>
+                    {
+                      buildingBlock.workflows && buildingBlock.workflows.length === 0 && format('general.na')
+                    }
                     {
                       buildingBlock.workflows && buildingBlock.workflows.length > 0 &&
                         truncate(buildingBlock.workflows.map(w => w.name).join(', '), 60, true)
@@ -63,9 +69,9 @@ const BuildingBlockCard = ({ buildingBlock, listType }) => {
                 </div>
                 <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark '>
                   <div className='flex flex-row border-b border-dial-gray'>
-                    <div className='pl-3 py-1 text-dial-teal-light flex flex-row'>
+                    <div className='pl-3 py-3 text-dial-teal-light flex flex-row'>
                       <div className='text-base my-auto mr-2'>Workflows</div>
-                      <div className='rounded p-2 flex flex-row'>
+                      <div className='pl-3 flex flex-row flex-wrap font-semibold'>
                         {
                           buildingBlock.workflows.length === 0 &&
                             <span className='text-base my-1 mx-auto font-semibold'>
@@ -76,9 +82,9 @@ const BuildingBlockCard = ({ buildingBlock, listType }) => {
                           buildingBlock.workflows
                             .filter((_, index) => index < 4)
                             .map(workflow => (
-                              <div key={`workflow-${workflow.slug}`} className='bg-white p-2 mr-2'>
+                              <div key={`workflow-${workflow.slug}`} className='bg-white p-2 mr-1.5'>
                                 <img
-                                  key={`sdg-${workflow.slug}`} className='mx-1.5 last:mr-0 h-6 workflow-filter'
+                                  key={`sdg-${workflow.slug}`} className='m-auto h-6 workflow-filter'
                                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
                                 />
                               </div>
@@ -114,7 +120,7 @@ const BuildingBlockCard = ({ buildingBlock, listType }) => {
                             ))
                         }
                         {
-                          buildingBlock.products.length > 3 &&
+                          buildingBlock.products.length > 6 &&
                             <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
                               ...
                             </div>

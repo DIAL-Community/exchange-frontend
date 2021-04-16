@@ -10,15 +10,24 @@ const OrganizationFilterProvider = ({ children }) => {
   const [countries, setCountries] = useState([])
   const [sectors, setSectors] = useState([])
 
+  const [search, setSearch] = useState('')
+  const [displayType, setDisplayType] = useState('card')
+  const [sortColumn, setSortColumn] = useState('name')
+  const [sortDirection, setSortDirection] = useState('asc')
+
   const organizationFilterValues = {
-    aggregator, endorser, years, countries, sectors
+    aggregator, endorser, years, countries, sectors, search, displayType, sortColumn, sortDirection
   }
   const organizationFilterDispatchValues = {
     setAggregator,
     setEndorser,
     setYears,
     setCountries,
-    setSectors
+    setSectors,
+    setSearch,
+    setDisplayType,
+    setSortColumn,
+    setSortDirection
   }
 
   return (
