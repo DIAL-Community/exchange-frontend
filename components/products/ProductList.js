@@ -64,9 +64,6 @@ query SearchProducts(
         name
         slug
       }
-      productDescriptions {
-        description
-      }
       buildingBlocks {
         slug
         imageFile
@@ -89,8 +86,8 @@ const ProductList = (props) => {
       <div className={gridStyles}>
         {
           displayType === 'list' &&
-            <div className='grid grid-cols-12 my-3'>
-              <div className='col-span-5 ml-6 text-sm font-semibold opacity-70'>
+            <div className='grid grid-cols-12 my-3 px-4'>
+              <div className='col-span-5 ml-2 text-sm font-semibold opacity-70'>
                 {'Name'.toUpperCase()}
                 <HiSortAscending className='ml-1 inline text-2xl' />
               </div>

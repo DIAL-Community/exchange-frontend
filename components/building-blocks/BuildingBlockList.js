@@ -44,9 +44,6 @@ query SearchBuildingBlocks(
       slug
       imageFile
       maturity
-      buildingBlockDescriptions {
-        description
-      }
       workflows {
         slug
         name
@@ -71,8 +68,8 @@ const BuildingBlockList = (props) => {
       <div className={gridStyles}>
         {
           displayType === 'list' &&
-            <div className='grid grid-cols-12 my-3'>
-              <div className='col-span-4 ml-6 text-sm font-semibold opacity-70'>
+            <div className='grid grid-cols-12 my-3 px-4 text-building-block'>
+              <div className='col-span-4 ml-2 text-sm font-semibold opacity-80'>
                 {'Building Blocks'.toUpperCase()}
                 <HiSortAscending className='ml-1 inline text-2xl' />
               </div>

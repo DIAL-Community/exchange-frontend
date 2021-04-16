@@ -8,13 +8,22 @@ const UseCaseFilterProvider = ({ children }) => {
   const [sectors, setSectors] = useState([])
   const [sdgs, setSDGs] = useState([])
 
+  const [search, setSearch] = useState('')
+  const [displayType, setDisplayType] = useState('card')
+  const [sortColumn, setSortColumn] = useState('name')
+  const [sortDirection, setSortDirection] = useState('asc')
+
   const useCaseFilterValues = {
-    showBeta, sectors, sdgs
+    showBeta, sectors, sdgs, search, displayType, sortColumn, sortDirection
   }
   const useCaseFilterDispatchValues = {
     setShowBeta,
     setSectors,
-    setSDGs
+    setSDGs,
+    setSearch,
+    setDisplayType,
+    setSortColumn,
+    setSortDirection
   }
 
   return (

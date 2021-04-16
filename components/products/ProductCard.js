@@ -8,11 +8,10 @@ const ProductCard = ({ product, listType }) => {
   const format = (id) => formatMessage({ id })
 
   return (
-    <Link href={`/product/${product.slug}`}>
+    <Link href={`/products/${product.slug}`}>
       {
         listType === 'list'
           ? (
-
             <div className='border-3 border-transparent hover:border-dial-yellow text-dial-purple hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
@@ -24,10 +23,10 @@ const ProductCard = ({ product, listType }) => {
                   </div>
                   <div className='col-span-4 text-base text-dial-purple'>
                     {
-                      product.origins.length === 0 && format('general.na')
+                      product.origins && product.origins.length === 0 && format('general.na')
                     }
                     {
-                      product.origins.length > 0 &&
+                      product.origins && product.origins.length > 0 &&
                         truncate(
                           product.origins
                             .map(origin => ORIGIN_EXPANSIONS[origin.name.toLowerCase()] || origin.name)

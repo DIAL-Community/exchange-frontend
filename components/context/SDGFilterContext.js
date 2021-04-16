@@ -6,8 +6,19 @@ const SDGFilterDispatchContext = createContext()
 const SDGFilterProvider = ({ children }) => {
   const [sdgs, setSDGs] = useState([])
 
-  const sdgFilterValues = { sdgs }
-  const sdgFilterDispatchValues = { setSDGs }
+  const [search, setSearch] = useState('')
+  const [displayType, setDisplayType] = useState('card')
+  const [sortColumn, setSortColumn] = useState('name')
+  const [sortDirection, setSortDirection] = useState('asc')
+
+  const sdgFilterValues = { sdgs, search, displayType, sortColumn, sortDirection }
+  const sdgFilterDispatchValues = {
+    setSDGs,
+    setSearch,
+    setDisplayType,
+    setSortColumn,
+    setSortDirection
+  }
 
   return (
     <SDGFilterContext.Provider value={sdgFilterValues}>
