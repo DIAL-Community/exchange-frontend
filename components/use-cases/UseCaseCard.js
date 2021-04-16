@@ -84,7 +84,7 @@ const UseCaseCard = ({ useCase, listType }) => {
                 <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark '>
                   <div className='flex flex-row border-b border-dial-gray'>
                     <div className='pl-3 py-3 text-dial-teal-light flex flex-row'>
-                      <div className='text-base my-auto text-sdg-target mr-2'>SDG Targets</div>
+                      <div className='text-base my-auto text-sdg-target mr-2'>{format('use-case.sdg-targets')}</div>
                       <div className='pl-3 flex flex-row flex-wrap font-semibold'>
                         {
                           useCase.sdgTargets.length === 0 &&

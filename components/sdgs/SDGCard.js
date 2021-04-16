@@ -35,6 +35,7 @@ const SDGCard = ({ sdg, listType }) => {
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-3 my-5 px-4'>
                   <div className='col-span-1 text-base text-sdg font-semibold'>
+                  <img className='inline pr-4' src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`} alt={sdg.imageFile} width='40' height='40' />
                     {truncate(sdg.name, 40, true)}
                   </div>
                   <div className='col-span-2 text-base text-use-case'>

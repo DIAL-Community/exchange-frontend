@@ -28,6 +28,34 @@ query Product($slug: String!) {
     origins {
       name
     }
+    childProducts {
+      name
+      slug
+      repository
+      license
+      statistics
+      languageData
+      productDescriptions {
+        description
+      }
+      origins {
+        name
+      }
+    }
+    interoperatesWith {
+      name
+      slug
+      origins {
+        name
+      }
+    }
+    includes {
+      name 
+      slug
+      origins {
+        name
+      }
+    }
     organizations {
       name
       slug

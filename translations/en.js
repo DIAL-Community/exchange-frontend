@@ -51,6 +51,15 @@ export const en = {
   'product.merged-pr': 'Merged PRs',
   'product.owner': 'If you are the owner of this product, you can update this product information.',
   'product.owner-link': 'Find more information here',
+  'product.cost-data': 'Cost data for this product',
+  'product.code-lines': 'Total lines of code',
+  'product.est-effort': 'Estimated effort (person months)',
+  'product.interoperable': 'Interoperable products',
+  'product.included': 'Included products',
+  'product.no-interop': 'We don’t have any interoperating information for this product.',
+  'product.no-include': 'We don’t have any includes information for this product.',
+  'product.maturity-scores': 'Product maturity scores',
+  'product.no-maturity': 'We do not have any maturity information for this product.',
 
   'project.header': 'Projects',
   'project.label': 'Project',
@@ -67,6 +76,8 @@ export const en = {
 
   'sdg.header': 'Sustainable Development Goals',
   'sdg.label': 'Sustainable Development Goal',
+
+  'use-case.sdg-targets': 'SDG Targets',
 
   'wizard.title': 'Requirements and Recommendation Wizard',
   'wizard.complete': 'Complete',
