@@ -47,14 +47,14 @@ module.exports = {
         'building-block': {
           DEFAULT: '#647883'
         },
+        'sdg': {
+          DEFAULT: '#7c5048'
+        },
         'sdg-target': {
           DEFAULT: '#4b9f38'
         },
         workflow: {
           DEFAULT: '#3e81a8'
-        },
-        sdg: {
-          DEFAULT: '#3f9edd'
         }
       },
       fontSize: {
