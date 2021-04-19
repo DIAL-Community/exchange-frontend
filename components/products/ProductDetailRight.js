@@ -9,7 +9,7 @@ import SectorCard from '../sectors/SectorCard'
 import ProjectCard from '../projects/ProjectCard'
 import ProductCard from './ProductCard'
 import RepositoryInfo from './RepositoryInfo'
-import MaturityCategory from './Maturity'
+import MaturityAccordion from './Maturity'
 
 const ProductDetailRight = ({ product }) => {
   const { formatMessage } = useIntl()
@@ -121,13 +121,9 @@ const ProductDetailRight = ({ product }) => {
       </div>
       <div className='mt-12'>
         <div className='card-title mb-3'>{format('product.maturity-scores')}</div>
-        { console.log(product.maturityScores)}
-        { product.maturityScores && 
-            <div className='pb-5 mr-6'>Overall score {product.maturityScore}</div>
+        { product.maturityScore ? <MaturityAccordion maturityScores={product.maturityScores} overallScore={product.maturityScore} />
+          : <div className='text-sm pb-5'>{format('product.no-maturity')}</div>
         }
-        { product.maturityScores && product.maturityScores.map((category, i) => {
-          return (<MaturityCategory key={i} category={category} />)
-        })}
       </div>
     </div>
   )
