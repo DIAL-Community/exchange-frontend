@@ -9,6 +9,7 @@ import SectorCard from '../sectors/SectorCard'
 import ProjectCard from '../projects/ProjectCard'
 import ProductCard from './ProductCard'
 import RepositoryInfo from './RepositoryInfo'
+import MaturityCategory from './Maturity'
 
 const ProductDetailRight = ({ product }) => {
   const { formatMessage } = useIntl()
@@ -26,9 +27,9 @@ const ProductDetailRight = ({ product }) => {
           <RepositoryDetail repositoryData={product.statistics.data && product.statistics.data.repository} languageData={product.languageData.data && product.languageData.data.repository} />
         </div>
       </div>
-      { product.childProducts && product.childProducts.map((childProd) => {
+      { product.childProducts && product.childProducts.map((childProd, i) => {
         return (
-          <div className='w-full flex mt-10'>
+          <div key={i} className='w-full flex mt-10'>
             <div className='w-2/5 mr-4 border-r text-dial-purple-light'>
               <div className='mb-2'>{childProd.name}</div>
               <RepositoryInfo product={childProd} />
@@ -120,14 +121,13 @@ const ProductDetailRight = ({ product }) => {
       </div>
       <div className='mt-12'>
         <div className='card-title mb-3'>{format('product.maturity-scores')}</div>
-        { (product.interoperatesWith.length > 0) ? 
-          product.interoperatesWith.map((interopProd) => {
-            return (<div className='pb-5 mr-6'>
-              <ProductCard product={interopProd} listType='list' />
-            </div>)}) 
-          :
-          (<div className='text-sm pb-5'>{format('product.no-maturity')}</div>)
+        { console.log(product.maturityScores)}
+        { product.maturityScores && 
+            <div className='pb-5 mr-6'>Overall score {product.maturityScore}</div>
         }
+        { product.maturityScores && product.maturityScores.map((category, i) => {
+          return (<MaturityCategory key={i} category={category} />)
+        })}
       </div>
     </div>
   )

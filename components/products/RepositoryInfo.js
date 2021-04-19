@@ -28,8 +28,8 @@ const RepositoryInfo = ({product}) => {
     </div>
     <div className='pb-5'>
       <div className='h5 pb-1'>{format('product.source')}</div>
-      {product.origins.map((origin) => {
-        return (<div className='text-sm'>{origin.name}</div>)
+      {product.origins.map((origin, i) => {
+        return (<div key={i} className='text-sm'>{origin.name}</div>)
       })}
     </div>
   </>
