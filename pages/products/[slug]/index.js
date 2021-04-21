@@ -85,6 +85,8 @@ query Product($slug: String!) {
       name
       slug
     }
+    maturityScore
+    maturityScores
   }
 }
 `
