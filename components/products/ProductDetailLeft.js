@@ -30,7 +30,7 @@ const ProductDetailLeft = ({ product }) => {
         </div>
       </div>
       { !product.owner &&
-        <div class='bg-dial-gray-dark text-xs text-dial-gray-light p-6 mr-6 shadow-lg border-b-2 border-dial-gray'>
+        <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 mr-6 shadow-lg border-b-2 border-dial-gray'>
           {format('product.owner')}
           <a className='text-dial-yellow block mt-2' href='https://docs.osc.dial.community/projects/product-registry/en/latest/product_owner.html' target='_blank'>
             {format('product.owner-link')}

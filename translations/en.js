@@ -60,6 +60,9 @@ export const en = {
   'product.no-include': 'We don’t have any includes information for this product.',
   'product.maturity-scores': 'Product maturity scores',
   'product.no-maturity': 'We do not have any maturity information for this product.',
+  'product.overall-score': 'Overall maturity score',
+  'product.category-score': 'Category score',
+  'product.indicator-score': 'Indicator score',
 
   'project.header': 'Projects',
   'project.label': 'Project',
