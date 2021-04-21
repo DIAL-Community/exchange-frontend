@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl'
 import ReactHtmlParser from 'react-html-parser'
 import Breadcrumb from '../shared/breadcrumb'
+import DiscourseForum from '../shared/discourse'
 import RepositoryDetail from './RepositoryDetail'
 import OrganizationCard from '../organizations/OrganizationCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
@@ -124,6 +125,10 @@ const ProductDetailRight = ({ product }) => {
         { product.maturityScore ? <MaturityAccordion maturityScores={product.maturityScores} overallScore={product.maturityScore} />
           : <div className='text-sm pb-5'>{format('product.no-maturity')}</div>
         }
+      </div>
+      <div className='mt-12'>
+        <div className='card-title mb-3'>{format('product.discussion')}</div>
+        <DiscourseForum />
       </div>
     </div>
   )
