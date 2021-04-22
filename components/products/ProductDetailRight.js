@@ -128,7 +128,7 @@ const ProductDetailRight = ({ product }) => {
       </div>
       <div className='mt-12'>
         <div className='card-title mb-3'>{format('product.discussion')}</div>
-        <DiscourseForum />
+        <DiscourseForum topicId={product.discourseId} />
       </div>
     </div>
   )

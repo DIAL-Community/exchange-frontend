@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 
-export default function DiscourseForum() {
+const DiscourseForum = ({ topicId }) => {
+  console.log(topicId)
   const apiKey = process.env.NEXT_PUBLIC_DISCOURSE_KEY
   useEffect(() => {
     window.DiscourseEmbed = {
       discourseUrl: 'https://discourse.dial.community/',
-      topicId: 14,
-    };
+      topicId: topicId
+    }
 
     const d = document.createElement('script');
     d.type = 'text/javascript';
@@ -21,3 +22,5 @@ export default function DiscourseForum() {
     </div>
   );
 }
+
+export default DiscourseForum

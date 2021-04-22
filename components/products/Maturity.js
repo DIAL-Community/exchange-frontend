@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl'
 const MaturityCategory = ({ category }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
-  console.log(category.indicator_scores.length)
   const numIndicators = category.indicator_scores.length
   return (
     <AccordionItem>
