@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -6,6 +7,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import ProjectCard from './ProjectCard'
 import { ProjectFilterContext } from '../context/ProjectFilterContext'
 import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
+import { HiSortAscending } from 'react-icons/hi'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -17,7 +19,8 @@ query SearchProjects(
   $sectors: [String!],
   $countries: [String!],
   $organizations: [String!],
-  $sdgs: [String!]
+  $sdgs: [String!],
+  $search: String!
   ) {
   searchProjects(
     first: $first,
@@ -27,6 +30,7 @@ query SearchProjects(
     countries: $countries,
     organizations: $organizations,
     sdgs: $sdgs,
+    search: $search
   ) {
     __typename
     totalCount
@@ -43,6 +47,18 @@ query SearchProjects(
       projectDescriptions {
         description
       }
+      organizations {
+        id
+        slug
+        name
+        imageFile
+      }
+      products {
+        id
+        slug
+        name
+        imageFile
+      }
       origin {
         slug
       }
@@ -52,13 +68,33 @@ query SearchProjects(
 `
 
 const ProjectList = (props) => {
+  const displayType = props.displayType
+  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
+
   return (
     <>
-      <div className='row grid grid-cols-4 gap-3'>
+      <div className={gridStyles}>
         {
-          props.projectList.map((project) => {
-            return <ProjectCard key={project.id} project={project} listType='list' />
-          })
+          displayType === 'list' &&
+            <div className='grid grid-cols-12 my-3 text-dial-gray-dark px-4 font-semibold '>
+              <div className='col-span-3 md:col-span-4 lg:col-span-5 mr-4 text-sm opacity-80'>
+                {'Organizations'.toUpperCase()}
+                <HiSortAscending className='ml-1 inline text-2xl' />
+              </div>
+              <div className='col-span-3 md:col-span-3 lg:col-span-3 mr-4 text-sm opacity-50'>
+                {'Organizations'.toUpperCase()}
+                <HiSortAscending className='ml-1 inline text-2xl' />
+              </div>
+              <div className='col-span-3 md:col-span-3 lg:col-span-2 mr-4 text-sm opacity-50'>
+                {'Products'.toUpperCase()}
+                <HiSortAscending className='ml-1 inline text-2xl' />
+              </div>
+            </div>
+        }
+        {
+          props.projectList.map((project) => (
+            <ProjectCard key={project.id} project={project} listType={displayType} />
+          ))
         }
       </div>
     </>
@@ -67,7 +103,10 @@ const ProjectList = (props) => {
 
 const ProjectListQuery = () => {
   const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { origins, countries, sectors, organizations, sdgs } = useContext(ProjectFilterContext)
+  const { origins, countries, sectors, organizations, sdgs, search, displayType } = useContext(ProjectFilterContext)
+
+  const { formatMessage } = useIntl()
+  const format = (id) => formatMessage({ id })
 
   const { loading, error, data, fetchMore } = useQuery(PROJECTS_QUERY, {
     variables: {
@@ -77,6 +116,7 @@ const ProjectListQuery = () => {
       sectors: sectors.map(sector => sector.value),
       organizations: organizations.map(organization => organization.value),
       sdgs: sdgs.map(sdg => sdg.value),
+      search: search
     },
     onCompleted: (data) => {
       setResultCounts({ ...resultCounts, ...{ [`${convertToKey('Projects')}`]: data.searchProjects.totalCount } })
@@ -84,10 +124,11 @@ const ProjectListQuery = () => {
   })
 
   if (loading) {
-    return <div>Fetching..</div>
+    return <div className='relative text-center my-3'>{format('general.fetchingData')}</div>
   }
+
   if (error) {
-    return <div>Error!</div>
+    return <div className='relative text-center my-3 default-height'>{format('general.fetchError')}</div>
   }
 
   const { searchProjects: { nodes, pageInfo } } = data
@@ -102,19 +143,19 @@ const ProjectListQuery = () => {
         sectors: sectors.map(sector => sector.value),
         organizations: organizations.map(organization => organization.value),
         sdgs: sdgs.map(organization => organization.value),
+        search: search
       }
     })
   }
   return (
     <InfiniteScroll
+      className='relative mx-2 mt-3'
       dataLength={nodes.length}
       next={handleLoadMore}
       hasMore={pageInfo.hasNextPage}
-      loader={<div>Loading...</div>}
+      loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
-      <div id='content' className='container-fluid with-header p-3'>
-        <ProjectList projectList={nodes} />
-      </div>
+      <ProjectList projectList={nodes} displayType={displayType} />
     </InfiniteScroll>
   )
 }

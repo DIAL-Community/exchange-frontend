@@ -10,15 +10,24 @@ const ProjectFilterProvider = ({ children }) => {
   const [organizations, setOrganizations] = useState([])
   const [sdgs, setSDGs] = useState([])
 
+  const [search, setSearch] = useState('')
+  const [displayType, setDisplayType] = useState('card')
+  const [sortColumn, setSortColumn] = useState('name')
+  const [sortDirection, setSortDirection] = useState('asc')
+
   const projectFilterValues = {
-    origins, countries, sectors, organizations, sdgs
+    origins, countries, sectors, organizations, sdgs, search, displayType, sortColumn, sortDirection
   }
   const projectFilterDispatchValues = {
     setOrigins,
     setCountries,
     setSectors,
     setOrganizations,
-    setSDGs
+    setSDGs,
+    setSearch,
+    setDisplayType,
+    setSortColumn,
+    setSortDirection
   }
 
   return (

@@ -81,6 +81,7 @@ export const en = {
   'sdg.label': 'Sustainable Development Goal',
 
   'use-case.sdg-targets': 'SDG Targets',
+  'use-case.workflow': 'Workflows',
 
   'wizard.title': 'Requirements and Recommendation Wizard',
   'wizard.complete': 'Complete',
@@ -162,7 +163,7 @@ export const en = {
 
   'product.card.dataset': 'Dataset',
   'product.card.coronavirusTagValue': 'COVID-19',
-  'product.card.maturityScore': 'Maturity Score',
+  'product.card.maturityScore': 'Maturity',
   'product.card.dataSources': 'Sources',
   'product.card.license': 'License',
   'product.card.buildingBlocks': 'Building Blocks',
@@ -171,5 +172,13 @@ export const en = {
   'general.na': 'N/A',
   'general.fetchingData': 'Fetching data ...',
   'general.fetchError': 'Error fetching data. Please check your network connection.',
-  'general.loadingData': 'Loading for more data ...'
+  'general.loadingData': 'Loading for more data ...',
+
+  'view.switch.title': 'Switch View',
+  'search.input.label': 'Enter Search Term',
+  'sdg.sdgTargets': 'SDG Targets',
+  'sdg.useCases': 'Use Cases',
+
+  'workflow.useCases': 'Use Cases',
+  'workflow.buildingBlocks': 'Use Cases'
 }

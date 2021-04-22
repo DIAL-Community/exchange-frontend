@@ -47,7 +47,7 @@ const ProjectFilter = (props) => {
                 <SDGAutocomplete {...{ sdgs, setSDGs }} containerStyles='px-2 pb-2' />
               </div>
             </div>
-            <div className='col-span-11 md:col-span-6 px-4'>
+            <div className='col-span-11 md:col-span-6'>
               <div className='text-white text-xl px-2 pb-3'>
                 {'Project Filters'.toUpperCase()}
               </div>

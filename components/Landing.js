@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 
 const Landing = () => {
@@ -37,7 +38,7 @@ const Landing = () => {
                 </p>
                 <div className='mt-8 sm:mt-12 sm:flex lg:justify-start md:text-lg lg:text-2xl'>
                   <div className='text-white lg:py-1'>
-                    <a href='launch-catalog' className={`${buttonAnchorStyle} shadow-2xl px-10 text-white bg-dial-blue`}>
+                    <a href='products' className={`${buttonAnchorStyle} shadow-2xl px-10 text-white bg-dial-blue`}>
                       {format('landing.catalog.title')}
                     </a>
                   </div>

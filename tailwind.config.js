@@ -47,7 +47,7 @@ module.exports = {
         'building-block': {
           DEFAULT: '#647883'
         },
-        'sdg': {
+        sdg: {
           DEFAULT: '#7c5048'
         },
         'sdg-target': {

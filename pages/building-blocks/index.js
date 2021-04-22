@@ -28,7 +28,7 @@ const BuildingBlocks = () => {
       <GradientBackground />
       <Header />
       <Filter activeTab='building-blocks' />
-      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} componentName='Building Block' />
+      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder='Search for a Building Block' />
       <BuildingBlockListQuery />
       <Footer />
     </>
