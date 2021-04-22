@@ -28,7 +28,7 @@ const Products = () => {
       <GradientBackground />
       <Header />
       <Filter activeTab='products' />
-      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} componentName='Product' />
+      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder='Search for a Product' />
       <ProductListQuery />
       <Footer />
     </>

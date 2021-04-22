@@ -8,9 +8,9 @@ const Footer = () => {
   const format = (id) => formatMessage({ id })
 
   return (
-    <>
+    <footer className='mt-4'>
       <div className='relative w-full bg-dial-gray-light text-dial-purple-light'>
-        <div className='px-4 pt-10 2xl:px-24 2xl:pt-10 2xl:pb-8 flex flex-row flex-wrap justify-center 2xl:justify-start mx-auto'>
+        <div className='px-4 2xl:px-24 pt-8 2xl:pb-8 flex flex-row flex-wrap justify-center 2xl:justify-start mx-auto'>
           <div className='max-w-prose sm:w-full flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto md:text-center 2xl:text-left'>
             {format('footer.text.firstLine')}
           </div>
@@ -41,10 +41,10 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className='2xl:px-24'>
+        <div className='2xl:px-24 my-3 xl:my-0'>
           <div className='border border-t-0 border-dial-gray' />
         </div>
-        <div className='px-4 lg:pt-4 2xl:px-24 2xl:pb-4 flex flex-row flex-wrap justify-center 2xl:justify-start'>
+        <div className='px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap justify-center 2xl:justify-start'>
           <div className='w-full lg:max-w-2/4 2xl:max-w-prose flex-auto my-auto md:text-center 2xl:text-left'>
             {format('footer.text.secondLine')}
           </div>
@@ -64,7 +64,7 @@ const Footer = () => {
       </div>
       <div className='relative w-full bg-dial-gray text-dial-purple-light leading-none text-base'>
         <div className='px-4 pb-4 pt-8 lg:px-10 2xl:pt-12 2xl:pb-8 2xl:px-24 flex flex-row flex-wrap mx-auto'>
-          <div className='py-2 px-3 rounded-md bg-dial-gray-light'>
+          <div className='py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light'>
             <a
               href='https://digitalimpactalliance.org/contact-us/ict4sdg/'
               target='_blank' rel='noreferrer'
@@ -73,7 +73,7 @@ const Footer = () => {
               Sign up for updates on the digital investment framework
             </a>
           </div>
-          <div className='py-2 px-3 rounded-md bg-dial-gray-light my-4 lg:my-0 lg:mx-4'>
+          <div className='py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light'>
             <a
               href='https://forum.osc.dial.community/'
               target='_blank' rel='noreferrer'
@@ -82,7 +82,7 @@ const Footer = () => {
               Discuss on the Open Source Center Forum
             </a>
           </div>
-          <div className='py-2 px-3 rounded-md bg-dial-gray-light mb-4 sm:m-4 lg:my-2 lg:mx-0 xl:my-0'>
+          <div className='py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light'>
             <a
               href='https://gitlab.com/dial/osc/eng/t4d-online-catalog/product-registry'
               target='_blank' rel='noreferrer'
@@ -91,8 +91,8 @@ const Footer = () => {
               View this project on GitLab
             </a>
           </div>
-          <div className='flex-grow text-right lg:my-2 2xl:my-0 flex lg:justify-end xl:justify-start 2xl:justify-end'>
-            <div className='py-2 px-0 lg:px-2 rounded-md'>
+          <div className='flex-grow mt-4 flex flex-row'>
+            <div className='py-2 px-0 lg:px-2 rounded-md flex-grow text-right'>
               Follow DIAL on social media
             </div>
             <div className='p-2 rounded-md bg-dial-gray-light mx-2'>
@@ -166,7 +166,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </>
+    </footer>
   )
 }
 

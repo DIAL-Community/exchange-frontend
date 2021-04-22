@@ -28,7 +28,7 @@ const SDGs = () => {
       <GradientBackground />
       <Header />
       <Filter activeTab='sdgs' />
-      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} componentName='Sustainable Development Goal' />
+      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder='Search for a Sustainable Development Goal' />
       <SDGListQuery />
       <Footer />
     </>

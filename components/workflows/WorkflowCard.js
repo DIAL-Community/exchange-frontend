@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 
 import { truncate } from '../../lib/utilities'
@@ -6,6 +7,26 @@ import { truncate } from '../../lib/utilities'
 const WorkflowCard = ({ workflow, listType }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+
+  const buildingBlockContainer = createRef()
+  const [buildingBlockOverflow, setBuildingBlockOverflow] = useState(false)
+
+  const useCaseContainer = createRef()
+  const [useCaseOverflow, setUseCaseOverflow] = useState(false)
+
+  useEffect(() => {
+    const uc = useCaseContainer.current
+    if (uc) {
+      const useCaseOverflow = uc.offsetHeight < uc.scrollHeight || uc.offsetWidth < uc.scrollWidth
+      setUseCaseOverflow(useCaseOverflow)
+    }
+
+    const bc = buildingBlockContainer.current
+    if (bc) {
+      const buildingBlockOverflow = bc.offsetHeight < bc.scrollHeight || bc.offsetWidth < bc.scrollWidth
+      setBuildingBlockOverflow(buildingBlockOverflow)
+    }
+  }, [useCaseOverflow, buildingBlockOverflow])
 
   const useCases = (() => {
     if (!workflow.useCaseSteps) {
@@ -31,25 +52,25 @@ const WorkflowCard = ({ workflow, listType }) => {
             <div className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
-                  <div className='col-span-4 text-base font-semibold'>
-                    {truncate(workflow.name, 40, true)}
+                  <div className='col-span-4 pr-3 text-base font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                    {workflow.name}
                   </div>
-                  <div className='col-span-4 text-base text-dial-purple'>
+                  <div className='col-span-4 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
                     {
                       useCases && useCases.length === 0 && format('general.na')
                     }
                     {
                       useCases && useCases.length > 0 &&
-                        truncate(useCases.map(u => u.name).join(', '), 60, true)
+                        useCases.map(u => u.name).join(', ')
                     }
                   </div>
-                  <div className='col-span-4 text-base text-dial-purple'>
+                  <div className='col-span-4 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
                     {
                       workflow.buildingBlocks && workflow.buildingBlocks.length === 0 && format('general.na')
                     }
                     {
                       workflow.buildingBlocks && workflow.buildingBlocks.length > 0 &&
-                        truncate(workflow.buildingBlocks.map(b => b.name).join(', '), 60, true)
+                        workflow.buildingBlocks.map(b => b.name).join(', ')
                     }
                   </div>
                 </div>
@@ -73,30 +94,37 @@ const WorkflowCard = ({ workflow, listType }) => {
                 <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark '>
                   <div className='flex flex-row border-b border-dial-gray'>
                     <div className='pl-3 py-3 text-dial-teal-light flex flex-row'>
-                      <div className='text-base my-auto text-use-case mr-2'>Use Cases</div>
-                      <div className='pl-3 flex flex-row flex-wrap font-semibold'>
-                        {
-                          useCases.length === 0 &&
-                            <div className='bg-white p-2 text-use-case rounded text-base'>
-                              {format('general.na')}
-                            </div>
-                        }
-                        {
-                          useCases
-                            .filter((_, index) => index <= 3)
-                            .map(useCase => (
-                              <div key={`workflow-${useCase.slug}`} className='bg-white rounded p-2 mr-1.5'>
-                                <img
-                                  className='m-auto h-6 use-case-filter'
-                                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
-                                />
+                      <div className='text-base my-auto whitespace-nowrap text-use-case mr-2'>
+                        {format('workflow.useCases')}
+                      </div>
+                      <div className='flex flex-row'>
+                        <div
+                          className='pl-3 flex flex-row flex-wrap font-semibold overflow-hidden'
+                          style={{ maxHeight: '40px' }}
+                          ref={useCaseContainer}
+                        >
+                          {
+                            useCases.length === 0 &&
+                              <div className='bg-white p-2 text-use-case rounded text-base'>
+                                {format('general.na')}
                               </div>
-                            ))
-                        }
+                          }
+                          {
+                            useCases
+                              .map(u => (
+                                <div key={`${workflow.id}-${u.id}`} className='bg-white rounded p-2 mr-1.5'>
+                                  <img
+                                    className='m-auto h-6 use-case-filter'
+                                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + u.imageFile}
+                                  />
+                                </div>
+                              ))
+                          }
+                        </div>
                         {
-                          useCases.length > 4 && (
-                            <div className='bg-white rounded p-2'>
-                              <span className='text-xl text-use-case bg-white leading-none'>...</span>
+                          useCaseOverflow && (
+                            <div className='bg-white mr-3 px-2 rounded text-sm text-use-case'>
+                              <span className='text-xl bg-white leading-normal'>...</span>
                             </div>
                           )
                         }
@@ -105,30 +133,37 @@ const WorkflowCard = ({ workflow, listType }) => {
                   </div>
                   <div className='flex flex-row text-dial-gray-dark'>
                     <div className='py-3 text-dial-gray-dark flex flex-row'>
-                      <div className='pl-3 text-base text-building-block my-auto'>Building Blocks</div>
-                      <div className='pl-3 flex flex-row flex-wrap font-semibold'>
-                        {
-                          workflow.buildingBlocks.length === 0 &&
-                            <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
-                              {format('general.na')}
-                            </div>
-                        }
-                        {
-                          workflow.buildingBlocks
-                            .filter((_, index) => index <= 3)
-                            .map(buildingBlock => (
-                              <div key={`workflow-${buildingBlock.slug}`} className='bg-white rounded p-2 mr-1'>
-                                <img
-                                  className='m-auto h-6 building-block-filter'
-                                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
-                                />
+                      <div className='pl-3 text-base whitespace-nowrap text-building-block my-auto'>
+                        {format('workflow.buildingBlocks')}
+                      </div>
+                      <div className='flex flex-row'>
+                        <div
+                          className='pl-3 flex flex-row flex-wrap font-semibold overflow-hidden'
+                          style={{ maxHeight: '40px' }}
+                          ref={buildingBlockContainer}
+                        >
+                          {
+                            workflow.buildingBlocks.length === 0 &&
+                              <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
+                                {format('general.na')}
                               </div>
-                            ))
-                        }
+                          }
+                          {
+                            workflow.buildingBlocks
+                              .map(b => (
+                                <div key={`${workflow.id}-${b.slug}`} className='bg-white rounded p-2 mr-1'>
+                                  <img
+                                    className='m-auto h-6 building-block-filter'
+                                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + b.imageFile}
+                                  />
+                                </div>
+                              ))
+                          }
+                        </div>
                         {
-                          workflow.buildingBlocks.length > 4 && (
-                            <div className='bg-white rounded p-2'>
-                              <span className='text-xl text-building-block bg-white leading-none'>...</span>
+                          buildingBlockOverflow && (
+                            <div className='bg-white mr-3 px-2 rounded text-sm'>
+                              <span className='text-xl text-workflow bg-white leading-normal'>...</span>
                             </div>
                           )
                         }

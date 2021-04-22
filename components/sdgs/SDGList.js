@@ -56,19 +56,19 @@ query SearchSDGs(
 
 const SDGList = (props) => {
   const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-4 gap-4' : 'grid-cols-1'}`
+  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
 
   return (
     <>
       <div className={gridStyles}>
         {
           displayType === 'list' &&
-            <div className='grid grid-cols-3 my-3 px-4 '>
-              <div className='col-span-1 ml-2 text-sm font-semibold text-sdg opacity-80'>
+            <div className='grid grid-cols-1 md:grid-cols-6 gap-4 my-3 px-4'>
+              <div className='col-span-5 md:col-span-3 lg:col-span-2 ml-2 whitespace-nowrap text-sm font-semibold text-sdg opacity-80'>
                 {'Sustainable Development Goals'.toUpperCase()}
                 <HiSortAscending className='ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-2 text-sm font-semibold text-use-case opacity-50'>
+              <div className='hidden md:block md:col-span-3 lg:col-span-4 text-sm font-semibold text-use-case opacity-50'>
                 {'Example Use Cases'.toUpperCase()}
                 <HiSortAscending className='ml-1 inline text-2xl' />
               </div>
@@ -107,7 +107,7 @@ const SDGListQuery = () => {
   }
 
   if (error) {
-    return <div className='relative text-center my-3'>{format('general.fetchError')}</div>
+    return <div className='relative text-center my-3 default-height'>{format('general.fetchError')}</div>
   }
 
   const { searchSdgs: { nodes, pageInfo } } = data
