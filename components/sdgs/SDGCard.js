@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 
 import { truncate } from '../../lib/utilities'
@@ -6,6 +7,26 @@ import { truncate } from '../../lib/utilities'
 const SDGCard = ({ sdg, listType }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+
+  const sdgTargetContainer = createRef()
+  const [sdgTargetOverflow, setSdgTargetOverflow] = useState(false)
+
+  const useCaseContainer = createRef()
+  const [useCaseOverflow, setUseCaseOverflow] = useState(false)
+
+  useEffect(() => {
+    const uc = useCaseContainer.current
+    if (uc) {
+      const useCaseOverflow = uc.offsetHeight < uc.scrollHeight || uc.offsetWidth < uc.scrollWidth
+      setUseCaseOverflow(useCaseOverflow)
+    }
+
+    const sc = sdgTargetContainer.current
+    if (sc) {
+      const sdgTargetOverflow = sc.offsetHeight < sc.scrollHeight || sc.offsetWidth < sc.scrollWidth
+      setSdgTargetOverflow(sdgTargetOverflow)
+    }
+  }, [useCaseOverflow, sdgTargetOverflow])
 
   const useCases = (() => {
     if (!sdg.sdgTargets) {
@@ -33,12 +54,12 @@ const SDGCard = ({ sdg, listType }) => {
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
-                <div className='grid grid-cols-3 my-5 px-4'>
-                  <div className='col-span-1 text-base text-sdg font-semibold'>
-                  <img className='inline pr-4' src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`} alt={sdg.imageFile} width='40' height='40' />
-                    {truncate(sdg.name, 40, true)}
+                <div className='grid grid-cols-1 md:grid-cols-6 gap-4 my-5 px-4'>
+                  <div className='col-span-5 md:col-span-3 lg:col-span-2 pr-3 text-base text-sdg font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                    <img className='inline pr-4' src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`} alt={sdg.imageFile} width='40' height='40' />
+                    {sdg.name}
                   </div>
-                  <div className='col-span-2 text-base text-use-case'>
+                  <div className='hidden md:block md:col-span-3 lg:col-span-4 text-base text-use-case whitespace-nowrap overflow-ellipsis overflow-hidden'>
                     {
                       useCases && useCases.length === 0 && format('general.na')
                     }
@@ -68,27 +89,32 @@ const SDGCard = ({ sdg, listType }) => {
                 <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark '>
                   <div className='flex flex-row border-b border-dial-gray'>
                     <div className='pl-3 py-3 text-dial-teal-light flex flex-row'>
-                      <div className='text-base my-auto text-sdg-target mr-2'>SDG Targets</div>
-                      <div className='flex flex-row flex-wrap font-semibold'>
-                        {
-                          sdg.sdgTargets.length === 0 &&
-                            <div className='bg-white p-2 text-use-case rounded text-base'>
-                              {format('general.na')}
-                            </div>
-                        }
-                        {
-                          sdg.sdgTargets
-                            .filter((_, index) => index <= 3)
-                            .map(sdgTarget => (
-                              <div key={`workflow-${sdgTarget.slug}`} className='bg-white rounded text-sdg-target p-2 mr-1.5'>
-                                {sdgTarget.targetNumber}
+                      <div className='text-base whitespace-nowrap my-auto text-sdg-target mr-2'>{format('sdg.sdgTargets')}</div>
+                      <div className='flex flex-row'>
+                        <div
+                          className='flex flex-row flex-wrap font-semibold overflow-hidden'
+                          style={{ maxHeight: '40px' }}
+                          ref={sdgTargetContainer}
+                        >
+                          {
+                            sdg.sdgTargets.length === 0 &&
+                              <div className='bg-white p-2 text-use-case rounded text-base'>
+                                {format('general.na')}
                               </div>
-                            ))
-                        }
+                          }
+                          {
+                            sdg.sdgTargets
+                              .map(sdgTarget => (
+                                <div key={`${sdg.id}-${sdgTarget.id}`} className='bg-white rounded text-sdg-target p-2 mr-1.5'>
+                                  {sdgTarget.targetNumber}
+                                </div>
+                              ))
+                          }
+                        </div>
                         {
-                          sdg.sdgTargets.length > 4 && (
-                            <div className='bg-white rounded p-2'>
-                              <span className='text-xl text-use-case bg-white leading-none'>...</span>
+                          sdgTargetOverflow && (
+                            <div className='bg-white mr-3 px-2 rounded text-sm text-sdg-target'>
+                              <span className='text-xl bg-white leading-normal'>...</span>
                             </div>
                           )
                         }
@@ -97,30 +123,35 @@ const SDGCard = ({ sdg, listType }) => {
                   </div>
                   <div className='flex flex-row text-dial-gray-dark'>
                     <div className='py-3 text-dial-gray-dark flex flex-row'>
-                      <div className='pl-3 text-base text-use-case my-auto'>Use Cases</div>
-                      <div className='pl-3 flex flex-row flex-wrap font-semibold'>
-                        {
-                          useCases.length === 0 &&
-                            <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
-                              {format('general.na')}
-                            </div>
-                        }
-                        {
-                          useCases
-                            .filter((_, index) => index <= 2)
-                            .map(useCase => (
-                              <div key={`workflow-${useCase.slug}`} className='bg-white rounded p-2 mr-1'>
-                                <img
-                                  className='m-auto h-6 use-case-filter'
-                                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
-                                />
+                      <div className='pl-3 text-base text-use-case my-auto'>{format('sdg.useCases')}</div>
+                      <div className='flex flex-row'>
+                        <div
+                          className='pl-3 flex flex-row flex-wrap font-semibold overflow-hidden'
+                          style={{ maxHeight: '42px' }}
+                          ref={useCaseContainer}
+                        >
+                          {
+                            useCases.length === 0 &&
+                              <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
+                                {format('general.na')}
                               </div>
-                            ))
-                        }
+                          }
+                          {
+                            useCases
+                              .map(useCase => (
+                                <div key={`${sdg.id}-${useCase.id}`} className='bg-white rounded p-2 mr-1'>
+                                  <img
+                                    className='m-auto h-6 use-case-filter'
+                                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+                                  />
+                                </div>
+                              ))
+                          }
+                        </div>
                         {
-                          useCases.length > 3 && (
-                            <div className='bg-white rounded p-2'>
-                              <span className='text-xl text-use-case bg-white leading-none'>...</span>
+                          useCaseOverflow && (
+                            <div className='bg-white mr-3 px-2 rounded text-sm'>
+                              <span className='text-xl bg-white leading-normal'>...</span>
                             </div>
                           )
                         }

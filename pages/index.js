@@ -10,10 +10,16 @@ import Carousel from '../components/Carousel'
 import WizardDescription from '../components/WizardDescription'
 import CatalogTitle from '../components/CatalogTitle'
 import Footer from '../components/Footer'
+import SearchFilter from '../components/shared/SearchFilter'
+import { ProductFilterContext, ProductFilterDispatchContext } from '../components/context/ProductFilterContext'
+import { useContext } from 'react'
 
 const HomePage = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+
+  const { search, displayType } = useContext(ProductFilterContext)
+  const { setSearch, setDisplayType } = useContext(ProductFilterDispatchContext)
 
   return (
     <>
@@ -28,6 +34,7 @@ const HomePage = () => {
       <WizardDescription />
       <CatalogTitle />
       <Filter activeTab='products' />
+      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder='Search for a Product' />
       <ProductListQuery />
       <Footer />
     </>

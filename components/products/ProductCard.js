@@ -15,25 +15,21 @@ const ProductCard = ({ product, listType }) => {
             <div className='border-3 border-transparent hover:border-dial-yellow text-dial-purple hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
-                  <div className='col-span-5 text-base font-semibold'>
-                    {truncate(product.name, 40, true)}
+                  <div className='col-span-5 text-base font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                    {product.name}
                   </div>
-                  <div className='col-span-2 text-base text-dial-purple'>
+                  <div className='col-span-2 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
                     {product.productType === 'dataset' ? 'Dataset' : 'Product'}
                   </div>
-                  <div className='col-span-4 text-base text-dial-purple'>
+                  <div className='col-span-4 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
                     {
                       product.origins && product.origins.length === 0 && format('general.na')
                     }
                     {
                       product.origins && product.origins.length > 0 &&
-                        truncate(
-                          product.origins
-                            .map(origin => ORIGIN_EXPANSIONS[origin.name.toLowerCase()] || origin.name)
-                            .join(', '),
-                          70,
-                          true
-                        )
+                        product.origins
+                          .map(origin => ORIGIN_EXPANSIONS[origin.name.toLowerCase()] || origin.name)
+                          .join(', ')
                     }
                   </div>
                   <div className='col-span-1 flex flex-row justify-end'>
@@ -50,7 +46,7 @@ const ProductCard = ({ product, listType }) => {
             )
           : (
             <div className='border-3 border-transparent hover:border-dial-yellow text-dial-purple hover:text-dial-yellow cursor-pointer'>
-              <div className='border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
+              <div className='h-full flex flex-col justify-between border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray'>
                   <img className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
                   {
@@ -77,8 +73,8 @@ const ProductCard = ({ product, listType }) => {
                   </div>
                 </div>
                 <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark '>
-                  <div className='flex flex-row border-b border-dial-gray'>
-                    <div className='pl-3 py-3 flex flex-row'>
+                  <div className='pb-3 flex flex-row flex-wrap justify-between border-b border-dial-gray'>
+                    <div className='pl-3 pt-3 flex flex-row flex-wrap'>
                       <div className='text-base my-auto mr-2'>{format('product.card.sdgs')}</div>
                       <div className='bg-white rounded p-2 flex flex-row'>
                         {
@@ -103,7 +99,7 @@ const ProductCard = ({ product, listType }) => {
                         }
                       </div>
                     </div>
-                    <div className='px-3 py-3 flex flex-row ml-auto'>
+                    <div className='px-3 pt-3 flex flex-row flex-wrap'>
                       <div className='text-base my-auto mr-2'>{format('product.card.buildingBlocks')}</div>
                       <div className='bg-white rounded p-2 flex flex-row'>
                         {
@@ -129,7 +125,7 @@ const ProductCard = ({ product, listType }) => {
                       </div>
                     </div>
                   </div>
-                  <div className='flex flex-row text-dial-gray-dark'>
+                  <div className='flex flex-row justify-between text-dial-gray-dark'>
                     <div className='pl-3 py-3 flex-auto flex flex-col'>
                       <div className='text-base my-auto'>{format('product.card.license')}</div>
                       <div className='bg-white mt-1.5 mr-auto p-2 rounded text-sm font-semibold'>
@@ -149,7 +145,7 @@ const ProductCard = ({ product, listType }) => {
                     }
                     <div className='pr-3 py-3 flex-auto flex flex-col'>
                       <div className='text-base text-right my-auto'>Sources</div>
-                      <div className='flex flex-row flex-wrap justify-end font-semibold'>
+                      <div className='flex flex-row justify-end font-semibold'>
                         {
                           product.origins.length === 0 && 
                             <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
@@ -161,7 +157,7 @@ const ProductCard = ({ product, listType }) => {
                             .filter((_, index) => index <= 2)
                             .map(origin => (
                               <div key={`origin-${origin.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
-                                {(ORIGIN_ACRONYMS[origin.name.toLowerCase()] || origin.name).toUpperCase()}
+                                {(ORIGIN_ACRONYMS[origin.slug.toLowerCase()] || origin.slug).toUpperCase()}
                               </div>
                             ))
                         }

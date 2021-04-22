@@ -46,7 +46,7 @@ const UseCaseFilter = (props) => {
               </div>
             </div>
 
-            <div className='col-span-11 md:col-span-6 px-4'>
+            <div className='col-span-11 md:col-span-6'>
               <div className='text-white text-xl px-2 pb-3'>
                 {'Use Case Filters'.toUpperCase()}
               </div>

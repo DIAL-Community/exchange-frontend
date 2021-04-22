@@ -54,7 +54,7 @@ const BuildingBlockFilter = (props) => {
                 <WorkflowAutocomplete {...{ workflows, setWorkflows }} containerStyles='px-2 pb-2' />
               </div>
             </div>
-            <div className='col-span-11 md:col-span-6 px-4'>
+            <div className='col-span-11 md:col-span-6'>
               <div className='text-white text-xl px-2 pb-3'>
                 {'Building Block Filters'.toUpperCase()}
               </div>

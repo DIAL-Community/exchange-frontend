@@ -16,13 +16,15 @@ query SearchOrganizations(
   $first: Int,
   $after: String,
   $sectors: [String!],
-  $countries: [String!]
+  $countries: [String!],
+  $search: String!
   ) {
   searchOrganizations(
     first: $first,
     after: $after,
     sectors: $sectors,
-    countries: $countries
+    countries: $countries,
+    search: $search
   ) {
     __typename
     totalCount
@@ -51,7 +53,7 @@ query SearchOrganizations(
 
 const OrganizationList = (props) => {
   const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-4 gap-4' : 'grid-cols-1'}`
+  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
 
   return (
     <>
@@ -104,7 +106,7 @@ const OrganizationListQuery = () => {
   }
 
   if (error) {
-    return <div className='relative text-center my-3'>{format('general.fetchError')}</div>
+    return <div className='relative text-center my-3 default-height'>{format('general.fetchError')}</div>
   }
 
   const { searchOrganizations: { nodes, pageInfo } } = data
