@@ -63,6 +63,7 @@ export const en = {
   'product.overall-score': 'Overall maturity score',
   'product.category-score': 'Category score',
   'product.indicator-score': 'Indicator score',
+  'product.discussion': 'Discussion',
 
   'project.header': 'Projects',
   'project.label': 'Project',

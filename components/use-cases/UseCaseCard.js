@@ -63,7 +63,7 @@ const UseCaseCard = ({ useCase, listType }) => {
                       useCase.sdgTargets && useCase.sdgTargets.length === 0 && format('general.na')
                     }
                     {
-                      useCase.sdgTargets.length > 0 &&
+                      useCase.sdgTargets && useCase.sdgTargets.length > 0 &&
                         useCase.sdgTargets.map(u => u.targetNumber).join(', ')
                     }
                   </div>
