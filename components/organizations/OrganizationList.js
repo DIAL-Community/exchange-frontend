@@ -53,7 +53,7 @@ query SearchOrganizations(
 
 const OrganizationList = (props) => {
   const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
+  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4' : 'grid-cols-1'}`
 
   return (
     <>
