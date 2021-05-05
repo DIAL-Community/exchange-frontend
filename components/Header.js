@@ -8,6 +8,123 @@ import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 
 import { createPopper } from '@popperjs/core'
 
+const headerStyles = `
+    relative w-full z-30 sticky top-0 border-b-2 border-gray-600 bg-white flex flex-wrap
+    items-center py-2 lg:py-0
+  `
+
+  const menuItemStyles = `
+    lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400
+  `
+
+  const dropdwonMenuStyles = `
+    block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  `
+
+  const dropdownPanelStyles = `
+    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+    ring-1 ring-black ring-opacity-5 focus:outline-none
+  `
+
+const AdminMenu = () => {
+  const { formatMessage } = useIntl()
+  const format = (id) => formatMessage({ id })
+
+  const [showAdminMenu, setShowAdminMenu] = useState(false)
+
+  const buttonRef = createRef()
+  const popoverRef = createRef()
+
+  const toggleSwitcher = (e) => {
+    e.preventDefault()
+    showAdminMenu ? closeDropdownPopover() : openDropdownPopover()
+  }
+
+  const openDropdownPopover = () => {
+    createPopper(buttonRef.current, popoverRef.current, {
+      placement: 'bottom'
+    })
+    setShowAdminMenu(true)
+  }
+  const closeDropdownPopover = () => {
+    setShowAdminMenu(false)
+  }
+  
+  return (
+    <>
+    <a className={`lg:mb-0 mb-2 inline`} ref={buttonRef}
+      href='admin' onClick={(e) => toggleSwitcher(e)}
+    >
+      <div className={`${menuItemStyles} inline`}>{format('header.admin')}
+        {
+          showAdminMenu ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
+        }
+      </div>
+    </a>
+    <div className={`${showAdminMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
+      <div className='py-1' role='none'>
+        <a href='/admin/users' role='menuitem' className={dropdwonMenuStyles}>
+          {format('header.admin.users')}
+        </a>
+      </div>
+    </div>
+  </>
+  )
+}
+
+const UserMenu = () => {
+  const { formatMessage } = useIntl()
+  const format = (id) => formatMessage({ id })
+
+  const [session] = useSession()
+  const [showUserMenu, setShowUserMenu] = useState(false)
+
+  const buttonRef = createRef()
+  const popoverRef = createRef()
+
+  const signOutUser = (e) => {
+    e.preventDefault()
+    signOut()
+  }
+
+  const toggleSwitcher = (e) => {
+    e.preventDefault()
+    showUserMenu ? closeDropdownPopover() : openDropdownPopover()
+  }
+
+  const openDropdownPopover = () => {
+    createPopper(buttonRef.current, popoverRef.current, {
+      placement: 'bottom'
+    })
+    setShowUserMenu(true)
+  }
+  const closeDropdownPopover = () => {
+    setShowUserMenu(false)
+  }
+
+  return (
+    <>
+    <a className={`lg:mb-0 mb-2 inline bg-dial-yellow-light pt-2 pr-2 pb-2 rounded`} ref={buttonRef}
+      href='signOut' onClick={(e) => toggleSwitcher(e)}
+    >
+      <img src='/icons/user.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
+      <div className='inline'>{session.user.username}
+        {
+          showUserMenu ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
+        }
+      </div>
+    </a>
+    <div className={`${showUserMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
+      <div className='py-1' role='none'>
+        <a href='en' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => signOutUser(e)}>
+          {format('header.signOut')}
+        </a>
+      </div>
+    </div>
+    </>
+    )
+}
+
 const Header = () => {
   const [session] = useSession()
   const { formatMessage } = useIntl()
@@ -30,24 +147,6 @@ const Header = () => {
   const closeDropdownPopover = () => {
     setShowLanguages(false)
   }
-
-  const headerStyles = `
-    relative w-full z-30 sticky top-0 border-b-2 border-gray-600 bg-white flex flex-wrap
-    items-center py-2 lg:py-0
-  `
-
-  const menuItemStyles = `
-    lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400
-  `
-
-  const dropdwonMenuStyles = `
-    block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  `
-
-  const dropdownPanelStyles = `
-    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
-    ring-1 ring-black ring-opacity-5 focus:outline-none
-  `
 
   const switchLanguage = (e, localeCode) => {
     e.preventDefault()
@@ -105,10 +204,15 @@ const Header = () => {
             </li>
             <li><a className={`${menuItemStyles}`} href='about'>{format('header.about')}</a></li>
             {
-              !session &&
-                <li>
+              session ? 
+                (<div>
+                  {session.user.can_edit && (<AdminMenu />)}
+                  <UserMenu />
+                </div>)
+              : 
+                (<li>
                   <a className={`${menuItemStyles}`} href='sign-in' onClick={(e) => signInUser(e)}>{format('header.signIn')}</a>
-                </li>
+                </li>)
             }
             <li>
               <Link href='/help'>
@@ -142,19 +246,6 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-        {
-          session &&
-            <a
-              href='sign-out' onClick={(e) => signOutUser(e)}
-              className='lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor'
-            >
-              <img
-                className='rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400'
-                src='https://secure.gravatar.com/avatar/1d06fedaf6ac9a5a899b052f567e6696?s=180&d=identicon'
-                alt='Your name goes here'
-              />
-            </a>
-        }
       </div>
     </header>
   )

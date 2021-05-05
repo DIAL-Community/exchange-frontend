@@ -3,16 +3,19 @@ export const en = {
   'app.edit': 'Edit',
   'app.comment': 'Leave a Comment',
   'app.home': 'Home',
+  'app.submit': 'Submit',
 
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
   'header.covidResources': 'COVID-19 Resources',
   'header.help': 'Help',
   'header.about': 'About',
+  'header.admin': 'Admin Menu',
   'header.selectLanguage': 'Select Language',
   'header.english': 'English (en)',
   'header.german': 'Deutsch (de)',
   'header.french': 'Francais (fr)',
+  'header.admin.users': 'Users',
 
   'footer.text.firstLine': `
     The Digital Impact Alliance is a partnership amongst some of the world’s most active
@@ -64,6 +67,10 @@ export const en = {
   'product.category-score': 'Category score',
   'product.indicator-score': 'Indicator score',
   'product.discussion': 'Discussion',
+  'product.discourse': 'View on Discourse',
+  'product.noforum': 'No posts or discussion topics to view',
+  'product.post': 'Post',
+  'product.forum.login': 'You must be logged in to post',
 
   'project.header': 'Projects',
   'project.label': 'Project',
