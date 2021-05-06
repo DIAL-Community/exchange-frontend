@@ -126,10 +126,12 @@ const ProductDetailRight = ({ product }) => {
           : <div className='text-sm pb-5'>{format('product.no-maturity')}</div>
         }
       </div>
-      <div className='mt-12'>
-        <div className='card-title mb-3'>{format('product.discussion')}</div>
-        <DiscourseForum topicId={product.discourseId} />
-      </div>
+      {product.discourseId &&
+        <div className='mt-12'>
+          <div className='card-title mb-3'>{format('product.discussion')}</div>
+          <DiscourseForum topicId={product.discourseId} />
+        </div>
+      }
     </div>
   )
 }
