@@ -22,6 +22,7 @@ query Product($slug: String!) {
     owner
     codeLines
     cocomo
+    discourseId
     productDescriptions {
       description
     }
