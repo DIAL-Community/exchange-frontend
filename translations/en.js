@@ -71,6 +71,7 @@ export const en = {
   'product.noforum': 'No posts or discussion topics to view',
   'product.post': 'Post',
   'product.forum.login': 'You must be logged in to post',
+  'product.forum.createAccount': 'In order to create a new post, you must first create an account on our forum. Click the button below and register an account with the username',
 
   'project.header': 'Projects',
   'project.label': 'Project',

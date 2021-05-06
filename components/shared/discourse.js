@@ -10,6 +10,7 @@ const DiscourseForum = ({ topicId }) => {
 
   const [posts, setPosts] = useState()
   const [showPost, setShowPost] = useState(false)
+  const [showUser, setShowUser] = useState(false)
   const [newPost, setNewPost] = useState()
   const [session] = useSession()
 
@@ -48,7 +49,8 @@ const DiscourseForum = ({ topicId }) => {
     })
     fetch(postURL).then(res => {
       if (res.status == 404) {
-        console.log('No User account - create one')
+        setShowPost(false)
+        setShowUser(true)
       } else {
         if (res.status == 200) {
           res.json().then(data => {
@@ -94,10 +96,17 @@ const DiscourseForum = ({ topicId }) => {
           :
           (<div className='p-2 text-dial-purple-light'>{format('product.forum.login')}</div>)
       ) :
+        !showUser && (
         <div className='mt-2'>
           <button className='py-1 px-2 h5 text-white bg-dial-teal rounded' onClick={(e) => toggleShowPosts(e)}>{format('product.post')}</button>
-        </div>
+        </div>)
       }
+      {showUser && (
+        <div className='mt-2'>
+          <div className='text-dial-purple-light'>{format('product.forum.createAccount')} '{session.user.username}'</div>
+          <a href={`${url}/signup`} target='_blank' className='py-1 px-2 h5 text-white bg-dial-teal rounded'>Sign Up</a>
+        </div>
+      )}
     </div>
     :
     <div className='text-sm'>{format('product.noforum')}</div>
