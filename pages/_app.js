@@ -6,7 +6,10 @@ import * as translations from '../translations'
 
 import '../styles/globals.css'
 import '../styles/filter.css'
+import '../styles/sticky.css'
 import '../styles/accordion.css'
+import '../styles/view-content.css'
+import '../styles/leaflet.css'
 
 import CatalogContext from '../lib/CatalogContext'
 

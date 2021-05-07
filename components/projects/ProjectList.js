@@ -77,7 +77,7 @@ const ProjectList = (props) => {
         {
           displayType === 'list' &&
             <div className='grid grid-cols-12 my-3 text-dial-gray-dark px-4 font-semibold '>
-              <div className='col-span-3 md:col-span-4 lg:col-span-5 mr-4 text-sm opacity-80'>
+              <div className='col-span-3 md:col-span-4 lg:col-span-4 mr-4 text-sm opacity-80'>
                 {'Organizations'.toUpperCase()}
                 <HiSortAscending className='ml-1 inline text-2xl' />
               </div>
@@ -85,7 +85,7 @@ const ProjectList = (props) => {
                 {'Organizations'.toUpperCase()}
                 <HiSortAscending className='ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-3 md:col-span-3 lg:col-span-2 mr-4 text-sm opacity-50'>
+              <div className='col-span-3 md:col-span-3 lg:col-span-3 mr-4 text-sm opacity-50'>
                 {'Products'.toUpperCase()}
                 <HiSortAscending className='ml-1 inline text-2xl' />
               </div>

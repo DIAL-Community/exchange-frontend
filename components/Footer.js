@@ -50,7 +50,7 @@ const Footer = () => {
           </div>
           <div className='h-auto w-72 relative p-2 my-auto'>
             <Image
-              src='/images/footer/giz-logo.png' width={1745} height={568}
+              src='/images/footer/giz-logo.png' width={1744} height={977}
               alt='The German Corporation for International Cooperation GmbH Logo'
             />
           </div>
