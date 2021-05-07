@@ -4,7 +4,6 @@ import { createCountryMarkerIcon } from './CountryMarker'
 import { createRef, useState } from 'react'
 
 const CountryMarkers = (props) => {
-  const [active, setActive] = useState('')
   const [zooming, setZooming] = useState(false)
   const { countries, setSelectedCountry } = props
 
@@ -57,7 +56,7 @@ const CountryMarkers = (props) => {
           return (
             <Marker
               key={countryName}
-              icon={createCountryMarkerIcon(country, active)}
+              icon={createCountryMarkerIcon(country)}
               position={[country.latitude, country.longitude]}
               eventHandlers={{
                 click: (e) => markerClickHandler(e, countryName)

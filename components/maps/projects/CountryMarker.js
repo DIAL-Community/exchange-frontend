@@ -25,7 +25,7 @@ const iconSizeSets = {
 
 const findIndex = (projectCount) => {
   const keys = Object.keys(iconSizeSets)
-  if (projectCount > parseInt(keys[keys.length - 1])) {
+  if (projectCount >= parseInt(keys[keys.length - 1])) {
     return keys[keys.length - 1]
   }
   
@@ -33,9 +33,7 @@ const findIndex = (projectCount) => {
   return filteredIndex.shift()
 }
 
-export const createCountryMarkerIcon = (country, active) => {
-  console.log('Index: ', findIndex(country.projects.length))
-  console.log('Icon Size: ', iconSizeSets[findIndex(country.projects.length)])
+export const createCountryMarkerIcon = (country) => {
   const iconSize = iconSizeSets[findIndex(country.projects.length)]
 
   return divIcon({
