@@ -25,6 +25,7 @@ module.exports = {
           DEFAULT: '#3F9EDD'
         },
         'dial-blue': {
+          light: '#b2daf5',
           DEFAULT: '#3F9EDD',
           darkest: '#000043'
         },

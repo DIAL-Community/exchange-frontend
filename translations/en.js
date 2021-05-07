@@ -8,6 +8,8 @@ export const en = {
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
   'header.covidResources': 'COVID-19 Resources',
+  'header.resources': 'Resources',
+  'header.dialResourcesPortal': 'DIAL Resources Portal',
   'header.help': 'Help',
   'header.about': 'About',
   'header.admin': 'Admin Menu',
@@ -189,5 +191,19 @@ export const en = {
   'sdg.useCases': 'Use Cases',
 
   'workflow.useCases': 'Use Cases',
-  'workflow.buildingBlocks': 'Use Cases'
+  'workflow.buildingBlocks': 'Use Cases',
+
+  'country.header': 'Countries',
+  'workflow.header': 'Workflows',
+  'useCase.header': 'Use Cases',
+
+  'organization.detail.website': 'Website',
+  'organization.detail.whenEndorsed': 'Endorsed On',
+  'organization.owner': 'If you are the owner of this organization, you can update this organization information.',
+  'organization.owner-link': 'Find more information here',
+
+  'map.endorsers.viewOrganization': 'View Organization',
+  'map.projects.viewProject': 'View Project',
+
+  'useCase.label': 'Use Case'
 }

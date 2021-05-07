@@ -47,6 +47,18 @@ const UseCaseCard = ({ useCase, listType }) => {
     return workflows
   })()
 
+  const nameColSpan = (useCase) => {
+    return !useCase.sdgTargets && !workflows
+      ? 'col-span-10'
+      : 'col-span-4'
+  }
+
+  const maturityColSpan = (useCase) => {
+    return !useCase.sdgTargets && !workflows
+      ? 'col-span-2'
+      : 'col-span-1'
+  }
+
   return (
     <Link href={`/use-cases/${useCase.slug}`}>
       {
@@ -55,28 +67,34 @@ const UseCaseCard = ({ useCase, listType }) => {
             <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
-                  <div className='col-span-4 pr-3 text-base font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                  <div className={`${nameColSpan(useCase)} col-span-4 pr-3 text-base font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden`}>
                     {useCase.name}
                   </div>
-                  <div className='col-span-2 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
-                    {
-                      useCase.sdgTargets && useCase.sdgTargets.length === 0 && format('general.na')
-                    }
-                    {
-                      useCase.sdgTargets && useCase.sdgTargets.length > 0 &&
-                        useCase.sdgTargets.map(u => u.targetNumber).join(', ')
-                    }
-                  </div>
-                  <div className='col-span-5 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
-                    {
-                      workflows && workflows.length === 0 && format('general.na')
-                    }
-                    {
-                      workflows && workflows.length > 0 &&
-                        workflows.map(b => b.name).join(', ')
-                    }
-                  </div>
-                  <div className='col-span-1 flex flex-row font-semibold opacity-50 text-button-gray-light justify-end'>
+                  {
+                    useCase.sdgTargets && 
+                      <div className='col-span-2 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                        {
+                          useCase.sdgTargets.length === 0 && format('general.na')
+                        }
+                        {
+                          useCase.sdgTargets.length > 0 &&
+                            useCase.sdgTargets.map(u => u.targetNumber).join(', ')
+                        }
+                      </div>
+                  }
+                  {
+                    workflows &&
+                      <div className='col-span-5 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                        {
+                          workflows.length === 0 && format('general.na')
+                        }
+                        {
+                          workflows.length > 0 &&
+                            workflows.map(b => b.name).join(', ')
+                        }
+                      </div>
+                  }
+                  <div className={`${maturityColSpan(useCase)} flex flex-row font-semibold opacity-50 text-button-gray-light justify-end`}>
                     {useCase.maturity}
                   </div>
                 </div>

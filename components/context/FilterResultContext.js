@@ -6,11 +6,12 @@ const FilterResultContext = createContext()
 const initialCounts = (() => {
   const filterItems = [
     'SDGs', 'Use Cases', 'Workflows', 'Building Blocks', 'Products', 'Projects',
-    'Organizations', 'Map Views'
+    'Organizations', 'Maps'
   ]
 
   return filterItems.reduce((map, item) => {
-    map[convertToKey(item)] = '--'
+    const key = convertToKey(item)
+    map[key] = key === 'maps' ? '3' : '--'
     return map
   }, {})
 })()

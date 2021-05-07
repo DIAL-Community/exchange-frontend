@@ -1,0 +1,26 @@
+.header-min-height {
+  /*
+    Setting the minimum height of the header. The value is based on the minimum height used in the mobile menu.
+    This is to prevent the menu from looking like dropping when transitioning from mobile to desktop menu.
+  */
+
+  min-height: 66px;
+}
+
+.sticky-under-header {
+  /*
+    This should be set with the same value as above, because we want to make this stick under the header.
+  */
+  top: 66px;
+  /* Header have z-index of 30. This will prevent this part clipping the language dropdown. */
+  z-index: 20;
+}
+
+.sticky-filter {
+  /*
+    This is sticking under the above. So the top value will be minHeight + height of the above element.
+  */
+  top: 103px;
+  /* Header have z-index of 30. This will prevent this part clipping the language dropdown. */
+  z-index: 20;
+}

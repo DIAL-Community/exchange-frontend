@@ -28,6 +28,18 @@ const BuildingBlockCard = ({ buildingBlock, listType }) => {
     }
   }, [workflowOverflow, productOverflow])
 
+  const nameColSpan = (buildingBlock) => {
+    return !buildingBlock.products && !buildingBlock.workflows
+      ? 'col-span-10'
+      : 'col-span-4'
+  }
+
+  const maturityColSpan = (buildingBlock) => {
+    return !buildingBlock.products && !buildingBlock.workflows
+      ? 'col-span-2'
+      : 'col-span-1'
+  }
+
   return (
     <Link href={`/building-blocks/${buildingBlock.slug}`}>
       {
@@ -36,33 +48,42 @@ const BuildingBlockCard = ({ buildingBlock, listType }) => {
             <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-4 px-4'>
-                  <div className='col-span-4 pr-3 text-base font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden'>
-                    <img
-                      alt={`Logo for ${buildingBlock.name}`} className='building-block-filter inline mr-2 '
-                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
-                      height='20' width='20'
-                    />
+                  <div className={`${nameColSpan(buildingBlock)} pr-3 text-base font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden`}>
+                    {
+                      buildingBlock.imageFile &&
+                        <img
+                          alt={`Logo for ${buildingBlock.name}`} className='building-block-filter inline mr-2 '
+                          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
+                          height='20' width='20'
+                        />
+                    }
                     {buildingBlock.name}
                   </div>
-                  <div className='col-span-3 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
-                    {
-                      buildingBlock.products && buildingBlock.products.length === 0 && format('general.na')
-                    }
-                    {
-                      buildingBlock.products && buildingBlock.products.length > 0 &&
-                        buildingBlock.products.map(p => p.name).join(', ')
-                    }
-                  </div>
-                  <div className='col-span-4 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
-                    {
-                      buildingBlock.workflows && buildingBlock.workflows.length === 0 && format('general.na')
-                    }
-                    {
-                      buildingBlock.workflows && buildingBlock.workflows.length > 0 &&
-                        buildingBlock.workflows.map(w => w.name).join(', ')
-                    }
-                  </div>
-                  <div className='col-span-1 flex flex-row font-semibold opacity-50 text-button-gray-light justify-end'>
+                  {
+                    buildingBlock.products &&
+                      <div className='col-span-3 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                        {
+                          buildingBlock.products.length === 0 && format('general.na')
+                        }
+                        {
+                          buildingBlock.products.length > 0 &&
+                            buildingBlock.products.map(p => p.name).join(', ')
+                        }
+                      </div>
+                  }
+                  {
+                    buildingBlock.workflows &&
+                      <div className='col-span-4 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                        {
+                          buildingBlock.workflows && buildingBlock.workflows.length === 0 && format('general.na')
+                        }
+                        {
+                          buildingBlock.workflows && buildingBlock.workflows.length > 0 &&
+                            buildingBlock.workflows.map(w => w.name).join(', ')
+                        }
+                      </div>
+                  }
+                  <div className={`${maturityColSpan(buildingBlock)} flex flex-row font-semibold opacity-50 text-button-gray-light justify-end`}>
                     {buildingBlock.maturity}
                   </div>
                 </div>

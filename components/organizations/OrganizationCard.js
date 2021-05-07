@@ -75,16 +75,19 @@ const OrganizationCard = ({ organization, listType }) => {
                     </div>
                   </div>
                 </Link>
-                <div className='bg-dial-blue hover:bg-dial-yellow text-white mt-auto'>
-                  <div className='border-b border-dial-gray'>
-                    <div className='py-3'>
-                      <a href={`//${organization.website}`} className='flex flex-row justify-center' target='_blank' rel='noreferrer'>
-                        <div className='my-auto'>Visit website</div>
-                        <img className='ml-2 h-5' src='/icons/visit-light/visit-light.png' />
-                      </a>
+                {
+                  organization.website &&
+                    <div className='bg-dial-blue hover:bg-dial-yellow text-white mt-auto'>
+                      <div className='border-b border-dial-gray'>
+                        <div className='py-3'>
+                          <a href={`//${organization.website}`} className='flex flex-row justify-center' target='_blank' rel='noreferrer'>
+                            <div className='my-auto'>Visit website</div>
+                            <img className='ml-2 h-5' src='/icons/visit-light/visit-light.png' />
+                          </a>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                }
               </div>
             </div>
             )
