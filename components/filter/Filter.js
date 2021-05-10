@@ -14,6 +14,26 @@ import SDGFilter from './SDGFilter'
 
 import { FilterResultContext } from '../context/FilterResultContext'
 
+import withApollo from '../../lib/apolloClient'
+
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
+
+const COUNT_QUERY = gql`
+  query Counts {
+    counts {
+      sdgCount
+      useCaseCount
+      workflowCount
+      buildingBlockCount
+      productCount
+      projectCount
+      orgCount
+      mapCount
+    }
+  }
+`
+
 const filterItems = [
   'SDGs', 'Use Cases', 'Workflows', 'Building Blocks', 'Products', 'Projects',
   'Organizations', 'Maps'
@@ -24,7 +44,22 @@ const Filter = (props) => {
   const activeTab = indexableFilterItems.indexOf(props.activeTab)
   const [openFilter, setOpenFilter] = useState(false)
 
-  const { resultCounts } = useContext(FilterResultContext)
+  const { resultCounts, setResultCounts } = useContext(FilterResultContext)
+
+  const { loading, error, data } = useQuery(COUNT_QUERY, {
+    onCompleted: (data) => {
+      console.log(data)
+      setResultCounts({ 'sdgs': data.counts.sdgCount,
+        'use-cases': data.counts.useCaseCount,
+        'workflows': data.counts.workflowCount,
+        'building-blocks': data.counts.buildingBlockCount,
+        'products': data.counts.productCount,
+        'projects': data.counts.projectCount,
+        'organizations': data.counts.orgCount,
+        'maps': data.counts.mapCount,
+      })
+    }
+  })
 
   const clickHandler = (e) => {
     e.preventDefault()
@@ -261,4 +296,4 @@ const Filter = (props) => {
   )
 }
 
-export default Filter
+export default withApollo()(Filter)

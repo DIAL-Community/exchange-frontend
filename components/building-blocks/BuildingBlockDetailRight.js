@@ -32,6 +32,12 @@ const BuildingBlockDetailRight = ({ buildingBlock }) => {
             </div>
           </div>
       }
+      {buildingBlock.discourseId &&
+        <div className='mt-12'>
+          <div className='card-title mb-3'>{format('product.discussion')}</div>
+          <DiscourseForum topicId={buildingBlock.discourseId} />
+        </div>
+      }
     </div>
   )
 }
