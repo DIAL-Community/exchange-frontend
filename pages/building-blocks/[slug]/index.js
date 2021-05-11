@@ -11,6 +11,7 @@ import gql from 'graphql-tag'
 
 import BuildingBlockDetailLeft from '../../../components/building-blocks/BuildingBlockDetailLeft'
 import BuildingBlockDetailRight from '../../../components/building-blocks/BuildingBlockDetailRight'
+import { Loading, Error } from '../shared/FetchStatus'
 
 const BUILDING_BLOCK_QUERY = gql`
 query BuildingBlock($slug: String!) {
@@ -46,7 +47,7 @@ const BuildingBlock = () => {
     return (
       <>
         <Header />
-        <div className='relative text-center my-3'>{format('general.fetchingData')}</div>
+        <Loading />
       </>
     )
   }
@@ -54,7 +55,7 @@ const BuildingBlock = () => {
     return (
       <>
         <Header />
-        <div className='relative text-center my-3 default-height'>{format('general.fetchError')}</div>
+        <Error />
       </>
     )
   }
