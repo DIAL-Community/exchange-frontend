@@ -13,22 +13,25 @@ const Description = () => {
 
   const generateAnchorStyles = (tabNumber) => `
     px-5 py-3 rounded-l-lg block leading-loose tracking-wide whitespace-nowrap xl:pr-24
-    ${openTab === tabNumber ? 'font-bold text-blue-500 bg-blue-100' : 'text-gray-600 bg-white'}
+    ${openTab === tabNumber ? 'font-bold text-carousel bg-carousel-light' : 'text-dial-gray-dark bg-white'}
+  `
+  const buttonAnchorStyle = `
+    rounded-full flex items-center justify-center py-2 leading-8 lg:py-2
   `
 
   const actorList = [
-    'Donors', 'Policy Makers', 'Implementing Partners', 'Technology and ICT Partners',
-    'Technology Specialists'
+    format('definition.donors'), format('definition.policy-makers'), format('definition.implementers'), 
+    format('definition.ministers'), format('definition.procurers')
   ]
 
   return (
     <div className='hidden lg:block description-with-wizard'>
       <div className='relative pb-8 sm:pb-16 md:pb-20 xl:pb-32 2xl:max-w-full'>
         <main className='pt-6 mx-auto px-6 sm:pt-12 sm:px-12 lg:pt-16 xl:pt-16 xl:max-w-6xl 2xl:max-w-7xl'>
-          <div className='text-xl text-gray-900 md:text-2xl xl:text-3xl xl:leading-landing py-8'>
+          <div className='text-xl text-dial-blue-darkest md:text-2xl xl:text-3xl xl:leading-landing py-8'>
             {format('definition.subtitle')}
           </div>
-          <div className='flex'>
+          <div className='grid grid-cols-3'>
             <ul className='flex flex-col mb-0 list-none' role='tablist'>
               {
                 actorList.map((actor, index) => (
@@ -43,77 +46,82 @@ const Description = () => {
                 ))
               }
             </ul>
-            <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded-b bg-gradient-to-r from-blue-100'>
+            <div className='col-span-2 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded-b bg-gradient-to-r from-carousel-light'>
               <div className='px-4 py-5'>
                 <div className='tab-content tab-space'>
                   <div className={openTab === 0 ? 'block' : 'hidden'} id='donors'>
-                    <div className='flex flex-col flex-wrap p-8 max-h-96'>
-                      <p className='text-xl max-w-md mr-16 tracking-wide'>
-                        <span className='font-bold'>Donors </span>
-                        can use this tool to identify what ICT Building Blocks and Products deliver various needed
-                        workflows, or business process, to deliver development programming or various digital initiatives.
+                    <div className='flex flex-col flex-wrap p-8 max-h-96 text-dial-blue-darkest'>
+                      <p className='text-lg max-w-md mr-16 tracking-wide'>
+                        <span className='font-bold'>{format('definition.donors')} </span>
+                        {format('definition.donor.desc1')}
                       </p>
                       <p className='text-base max-w-md pt-4 tracking-wide'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacinia cursus fringilla. Aliquam eleifend,
-                        nunc vitae volutpat porta, augue quam elementum leo, nec consequat dolor dui eget leo.
+                        {format('definition.donor.desc2')}
                       </p>
-                      <img className='rounded-lg shadow-2xl object-cover w-56 h-56' src='images/workflow-placeholder.png' alt='' />
+                      <img className='w-56 h-56 mt-8 xl:mt-0' src='images/tiles/sdg.svg' alt='' />
+                      <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-dial-teal`}>
+                        {format('definition.explore-sdg')}
+                      </a>
                     </div>
                   </div>
                   <div className={openTab === 1 ? 'block' : 'hidden'} id='policy-makers'>
-                    <div className='flex flex-col flex-wrap p-8 xl:max-h-96'>
-                      <p className='text-xl max-w-md mr-16 tracking-wide'>
-                        <span className='font-bold'>Policy Makers </span>
-                        can use this tool to identify what ICT Building Blocks and Products deliver various needed
-                        workflows, or business process, to deliver development programming or various digital initiatives.
+                    <div className='flex flex-col flex-wrap p-8 xl:max-h-96 text-dial-blue-darkest'>
+                      <p className='text-lg max-w-md mr-16 tracking-wide'>
+                        <span className='font-bold'>{format('definition.policy-makers')} </span>
+                        {format('definition.policy-maker.desc1')}
                       </p>
                       <p className='text-base max-w-md pt-4 tracking-wide'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacinia cursus fringilla. Aliquam eleifend,
-                        nunc vitae volutpat porta, augue quam elementum leo, nec consequat dolor dui eget leo.
+                        {format('definition.policy-maker.desc2')}
                       </p>
-                      <img className='rounded-lg shadow-2xl object-cover w-56 h-56 mt-8 xl:mt-0' src='images/workflow-placeholder.png' alt='' />
+                      <img className='w-56 h-56 mt-8 xl:mt-0' src='images/tiles/use-case.svg' alt='' />
+                      <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-use-case`}>
+                        {format('definition.explore-usecase')}
+                      </a>
                     </div>
                   </div>
                   <div className={openTab === 2 ? 'block' : 'hidden'} id='implementing-partners'>
-                    <div className='flex flex-col flex-wrap p-8 max-h-96'>
-                      <p className='text-xl max-w-md mr-16 tracking-wide'>
-                        <span className='font-bold'>Implementing Partners </span>
-                        can use this tool to identify what ICT Building Blocks and Products deliver various needed
-                        workflows, or business process, to deliver development programming or various digital initiatives.
+                    <div className='flex flex-col flex-wrap p-8 max-h-96 text-dial-blue-darkest'>
+                      <p className='text-lg max-w-md mr-16 tracking-wide'>
+                        <span className='font-bold'>{format('definition.implementers')} </span>
+                        {format('definition.implementer.desc1')}
                       </p>
                       <p className='text-base max-w-md pt-4 tracking-wide'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacinia cursus fringilla. Aliquam eleifend,
-                        nunc vitae volutpat porta, augue quam elementum leo, nec consequat dolor dui eget leo.
+                        {format('definition.implementer.desc2')}
                       </p>
-                      <img className='rounded-lg shadow-2xl object-cover w-56 h-56' src='images/workflow-placeholder.png' alt='' />
+                      <img className='w-56 h-56 mt-8 xl:mt-0' src='images/tiles/workflow.svg' alt='' />
+                      <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-workflow`}>
+                        {format('definition.explore-workflow')}
+                      </a>
                     </div>
                   </div>
                   <div className={openTab === 3 ? 'block' : 'hidden'} id='tech-ict-partners'>
-                    <div className='flex flex-col flex-wrap p-8 max-h-96'>
+                    <div className='flex flex-col flex-wrap p-8 max-h-96 text-dial-blue-darkest'>
                       <p className='text-xl max-w-md mr-16 tracking-wide'>
-                        <span className='font-bold'>Technology and ICT Partners </span>
-                        can use this tool to identify what ICT Building Blocks and Products deliver various needed
-                        workflows, or business process, to deliver development programming or various digital initiatives.
+                        <span className='font-bold'>{format('definition.ministers')} </span>
+                        {format('definition.minister.desc1')}
                       </p>
                       <p className='text-base max-w-md pt-4 tracking-wide'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacinia cursus fringilla. Aliquam eleifend,
-                        nunc vitae volutpat porta, augue quam elementum leo, nec consequat dolor dui eget leo.
+                        {format('definition.minister.desc2')}
                       </p>
-                      <img className='rounded-lg shadow-2xl object-cover w-56 h-56' src='images/workflow-placeholder.png' alt='' />
+                      <img className='w-56 h-56 mt-8 xl:mt-0' src='images/tiles/building-block.svg' alt='' />
+                      <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-building-block`}>
+                        {format('definition.explore-bb')}
+                      </a>
                     </div>
                   </div>
-                  <div className={openTab === 4 ? 'block' : 'hidden'} id='tech-specialists'>
-                    <div className='flex flex-col flex-wrap p-8 max-h-96'>
+                  <div className={openTab === 4 ? 'block' : 'hidden'} id='procurers'>
+                    <div className='flex flex-col flex-wrap p-8 max-h-96 text-dial-blue-darkest'>
                       <p className='text-xl max-w-md mr-16 tracking-wide'>
-                        <span className='font-bold'>Technology Specialists </span>
-                        can use this tool to identify what ICT Building Blocks and Products deliver various needed
-                        workflows, or business process, to deliver development programming or various digital initiatives.
+                        <span className='font-bold'>{format('definition.procurers')} </span>
+                        {format('definition.procurer.desc1')}
                       </p>
                       <p className='text-base max-w-md pt-4 tracking-wide'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lacinia cursus fringilla. Aliquam eleifend,
-                        nunc vitae volutpat porta, augue quam elementum leo, nec consequat dolor dui eget leo.
+                        {format('definition.procurer.desc2')}
                       </p>
-                      <img className='rounded-lg shadow-2xl object-cover w-56 h-56' src='images/workflow-placeholder.png' alt='' />
+                      <img className='w-56 h-56 mt-8 xl:mt-0' src='images/tiles/product.svg' alt='' />
+                      <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-product`}>
+                        {format('definition.explore-prod')}
+                      </a>
                     </div>
                   </div>
                 </div>

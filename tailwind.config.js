@@ -51,11 +51,18 @@ module.exports = {
         sdg: {
           DEFAULT: '#7c5048'
         },
+        product: {
+          DEFAULT: '#46465a'
+        },  
         'sdg-target': {
           DEFAULT: '#4b9f38'
         },
         workflow: {
           DEFAULT: '#3e81a8'
+        },
+        carousel: {
+          DEFAULT: '#3f9edd',
+          light: '#eef6fc'
         }
       },
       fontSize: {

@@ -195,7 +195,7 @@ const Filter = (props) => {
                       <a
                         className={`
                           text-base font-bold px-3 py-3 block leading-normal
-                          ${index === activeTab ? 'text-white' : 'rounded text-gray-600 bg-dial-gray'}
+                          ${index === activeTab ? 'text-white' : 'rounded text-dial-gray-dark bg-dial-gray'}
                         `}
                         role='tablist'
                         data-toggle='tab'
@@ -250,7 +250,7 @@ const Filter = (props) => {
                       <Link href={`/${href}`}>
                       <a
                         className={`
-                          text-base font-bold px-3 py-3 block leading-normal rounded text-gray-600
+                          text-base font-bold px-3 py-3 block leading-normal rounded text-dial-gray-dark
                           bg-gradient-to-r from-dial-gray to-white
                         `}
                         role='tablist'

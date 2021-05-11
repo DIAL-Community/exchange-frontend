@@ -9,7 +9,7 @@ import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 import { createPopper } from '@popperjs/core'
 
 const headerStyles = `
-    relative w-full z-30 sticky top-0 border-b-2 border-gray-600 bg-white flex flex-wrap
+    relative w-full z-30 sticky top-0 border-b-2 border-dial-gray-dark bg-white flex flex-wrap
     items-center py-2 lg:py-0
   `
 
@@ -153,7 +153,7 @@ const Header = () => {
   }
 
   const headerStyles = `
-    z-30 sticky top-0 border-b-2 border-gray-600 bg-white flex flex-wrap
+    z-30 sticky top-0 border-b-2 border-dial-gray-dark bg-white flex flex-wrap
     items-center py-3 lg:py-0
   `
 
