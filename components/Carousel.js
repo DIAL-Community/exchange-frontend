@@ -8,13 +8,12 @@ const Carousel = () => {
     <div className='block lg:hidden mx-auto p-6 sm:p-12 lg:p-48 bg-gray-200'>
       <div className='relative rounded-lg block md:flex items-center bg-gray-100 shadow-xl' style={{ minHeight: '19rem' }}>
         <div className='relative w-full md:w-2/5 h-full overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg' style={{ minHeight: '19rem' }}>
-          <img className='absolute inset-0 w-full h-full object-cover object-center' src='images/hero-banner.png' alt='' />
           <div className='absolute inset-0 w-full h-full bg-indigo-900 opacity-75' />
         </div>
         <div className='w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg'>
           <div className='p-12 md:pr-24 md:pl-16 md:py-12'>
-            <p className='text-gray-600'>
-              <span className='text-gray-900'>Bacon </span>
+            <p className='text-dial-gray-dark'>
+              <span className='text-dial-blue-darkest'>Bacon </span>
               ipsum dolor amet ham t-bone bresaola pig tongue short ribs tri-tip landjaeger. Cow drumstick
               beef, short ribs chicken pastrami alcatra t-bone. Leberkas fatback rump pastrami tail, jowl t-bone
               meatloaf turkey prosciutto kevin chislic ribeye sausage. Picanha venison fatback frankfurter

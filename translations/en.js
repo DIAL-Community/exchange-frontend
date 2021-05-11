@@ -32,6 +32,26 @@ export const en = {
   'footer.privacyPolicy': 'Privacy Policy',
 
   'definition.subtitle': 'A useful tool for a wide range of users',
+  'definition.donors': 'Donors',
+  'definition.policy-makers': 'Policy Makers',
+  'definition.implementers': 'Implementing Partners',
+  'definition.ministers': 'Technology and ICT Ministers',
+  'definition.procurers': 'Procurers',
+  'definition.donor.desc1': 'can use this tool to coordinate investments with other donors. Using the lens of the SDG target, a donor can navigate to a priority SDG target to see what use cases, workflows, and ICT building blocks map support the progression of that target.',
+  'definition.donor.desc2': 'Understanding those associations set the groundwork for donors to see the overlap they have with other donors supporting other SDG targets. The tool demonstrates that a handful of work flows and building blocks can deliver a wide range of SDG targets and corresponding use cases.',
+  'definition.policy-maker.desc1': 'at any level, can use this tool to explore the different use cases they are interested in implementing to achieve various development outcomes. ',
+  'definition.policy-maker.desc2': 'Each use cases will highlight what workflows and ICT building blocks are needed to support the digital aspect of the use case. Identifying the generic ICT building blocks supports the coordinate across sectors and ministries, to take a whole of government approach, to making its digital investment.',
+  'definition.implementer.desc1': 'can use this tool to identify what ICT Building Blocks and Products deliver various needed workflows, or business process, to deliver development programming or various digital initiatives.',
+  'definition.implementer.desc2': 'Adhering to Building Block specifications can greatly increase speed of development and ensure interoperability with other platforms.',
+  'definition.minister.desc1': 'can use this tool to map systems and applications currently deployed in country to the ICT Building Blocks to understand what other use cases could be supported using their current technology. ',
+  'definition.minister.desc2': 'Mapping systems to the ICT Building Blocks can also provides a better understanding of what gaps currently exist or opportunities for consolidation.',
+  'definition.procurer.desc1': 'can use this tool to identify what ICT Building Blocks and Products deliver various needed workflows, or business process, to deliver development programming or various digital initiatives.',
+  'definition.procurer.desc2': 'Also, discover existing products that can meet the use cases and workflows for specific programmatic needs, providing insights to the “build or buy” questions for project implementation.',
+  'definition.explore-sdg': 'Explore SDGs',
+  'definition.explore-bb': 'Explore Building Blocks',
+  'definition.explore-prod': 'Explore Products',
+  'definition.explore-usecase': 'Explore Use Cases',
+  'definition.explore-workflow': 'Explore Workflows',
 
   'products.header': 'Products',
   'products.label': 'Product',
@@ -168,7 +188,7 @@ export const en = {
   'landing.wizard.whereToStart': "Don't know where to start?",
   'landing.wizard.description': `
     Use the Requirements and Recommendation Wizard to help guide you to a curated list of resources,
-    tailored to wherever you are in a project lifecycle — ideation, planning, or implementation.'
+    tailored to wherever you are in a project lifecycle — ideation, planning, or implementation.
   `,
   'landing.wizard.buttonText': 'Launch Recommendations Wizard',
 
