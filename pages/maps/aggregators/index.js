@@ -9,17 +9,19 @@ import Filter from '../../../components/filter/Filter'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 
-import ProjectMap from '../../../components/maps/projects/ProjectMap'
+import AggregatorMap from '../../../components/maps/aggregators/AggregatorMap'
 
 const DEFAULT_PAGE_SIZE = 10000
 
-const PROJECTS_QUERY = gql`
-query SearchProjects(
+const AGGREGATORS_QUERY = gql`
+query SearchOrganizations(
   $first: Int,
+  $aggregatorOnly: Boolean,
   $sectors: [String!]
   ) {
-  searchProjects(
+  searchOrganizations(
     first: $first,
+    aggregatorOnly: $aggregatorOnly,
     sectors: $sectors
   ) {
     __typename
@@ -34,10 +36,19 @@ query SearchProjects(
       id
       name
       slug
+      website
+      whenEndorsed
       countries {
-        id
         name
         slug
+        latitude
+        longitude
+      }
+      offices {
+        id
+        name
+        latitude
+        longitude
       }
     }
   }
@@ -61,22 +72,23 @@ const ProjectMapPage = () => {
   const format = (id) => formatMessage({ id })
 
   const fetchProjectData = () => {
-    const projects = useQuery(PROJECTS_QUERY, {
+    const aggregators = useQuery(AGGREGATORS_QUERY, {
       variables: {
-        first: DEFAULT_PAGE_SIZE
+        first: DEFAULT_PAGE_SIZE,
+        aggregatorOnly: true
       }
     })
     const countries = useQuery(COUNTRIES_QUERY)
 
-    return [projects, countries]
+    return [aggregators, countries]
   }
 
   const [
-    { loading: loadingProjects, data: projectData, error: errorProject },
+    { loading: loadingAggregators, data: aggregatorData, error: errorAggregator },
     { loading: loadingCountries, data: countryData, error: errorCountry }
   ] = fetchProjectData()
 
-  if (loadingProjects || loadingCountries) {
+  if (loadingAggregators || loadingCountries) {
     return (
       <>
         <Head>
@@ -89,7 +101,7 @@ const ProjectMapPage = () => {
     )
   }
 
-  if (errorProject || errorCountry) {
+  if (errorAggregator || errorCountry) {
     return (
       <>
         <Head>
@@ -102,7 +114,7 @@ const ProjectMapPage = () => {
     )
   }
 
-  const { searchProjects: { nodes } } = projectData
+  const { searchOrganizations: { nodes } } = aggregatorData
   const { countries } = countryData
 
   return (
@@ -113,7 +125,7 @@ const ProjectMapPage = () => {
       </Head>
       <Header />
       <Filter activeTab='maps' />
-      <ProjectMap projects={nodes} countries={countries} />
+      <AggregatorMap aggregators={nodes} countries={countries} />
       <Footer />
     </>
   )

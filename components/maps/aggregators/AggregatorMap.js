@@ -14,39 +14,39 @@ const CountryMarkers = (props) => {
   return <CountryMarkers {...props} />
 }
 
-const ProjectMap = (props) => {
+const AggregatorMap = (props) => {
   const [selectedCountry, setSelectedCountry] = useState('')
-  const { projects, countries } = props
+  const { aggregators, countries } = props
 
   // Group project into map of countries with projects
-  const countriesWithProjects = (() => {
-    const countriesWithProjects = {}
+  const countriesWithAggregators = (() => {
+    const countriesWithAggregators = {}
     countries.forEach(country => {
-      countriesWithProjects[country.name] = {
+      countriesWithAggregators[country.name] = {
         name: country.name,
         latitude: country.latitude,
         longitude: country.longitude,
-        projects: []
+        aggregators: []
       }
     })
 
-    projects.forEach(project => {
-      project.countries.forEach(country => {
-        const currentCountry = countriesWithProjects[country.name]
-        currentCountry.projects.push({ name: project.name, slug: project.slug })
+    aggregators.forEach(aggregator => {
+      aggregator.countries.forEach(country => {
+        const currentCountry = countriesWithAggregators[country.name]
+        currentCountry.aggregators.push({ name: aggregator.name, slug: aggregator.slug })
       })
     })
-    return countriesWithProjects
+    return countriesWithAggregators
   })()
 
-  const country = countriesWithProjects[selectedCountry]
+  const country = countriesWithAggregators[selectedCountry]
 
   return (
     <div className='flex flex-row mx-2 my-2'>
-      <CountryMarkers countries={countriesWithProjects} setSelectedCountry={setSelectedCountry} />
+      <CountryMarkers countries={countriesWithAggregators} setSelectedCountry={setSelectedCountry} />
       <CountryInfo country={country} />
     </div>
   )
 }
 
-export default ProjectMap
+export default AggregatorMap
