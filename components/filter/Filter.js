@@ -9,13 +9,34 @@ import WorkflowFilter from './WorkflowFilter'
 import UseCaseFilter from './UseCaseFilter'
 import ProjectFilter from './ProjectFilter'
 import OrganizationFilter from './OrganizationFilter'
+import MapFilter from './MapFilter'
+import SDGFilter from './SDGFilter'
 
 import { FilterResultContext } from '../context/FilterResultContext'
-import SDGFilter from './SDGFilter'
+
+import withApollo from '../../lib/apolloClient'
+
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
+
+const COUNT_QUERY = gql`
+  query Counts {
+    counts {
+      sdgCount
+      useCaseCount
+      workflowCount
+      buildingBlockCount
+      productCount
+      projectCount
+      orgCount
+      mapCount
+    }
+  }
+`
 
 const filterItems = [
   'SDGs', 'Use Cases', 'Workflows', 'Building Blocks', 'Products', 'Projects',
-  'Organizations', 'Map Views'
+  'Organizations', 'Maps'
 ]
 
 const Filter = (props) => {
@@ -23,7 +44,22 @@ const Filter = (props) => {
   const activeTab = indexableFilterItems.indexOf(props.activeTab)
   const [openFilter, setOpenFilter] = useState(false)
 
-  const { resultCounts } = useContext(FilterResultContext)
+  const { resultCounts, setResultCounts } = useContext(FilterResultContext)
+
+  const { loading, error, data } = useQuery(COUNT_QUERY, {
+    onCompleted: (data) => {
+      console.log(data)
+      setResultCounts({ 'sdgs': data.counts.sdgCount,
+        'use-cases': data.counts.useCaseCount,
+        'workflows': data.counts.workflowCount,
+        'building-blocks': data.counts.buildingBlockCount,
+        'products': data.counts.productCount,
+        'projects': data.counts.projectCount,
+        'organizations': data.counts.orgCount,
+        'maps': data.counts.mapCount,
+      })
+    }
+  })
 
   const clickHandler = (e) => {
     e.preventDefault()
@@ -32,7 +68,7 @@ const Filter = (props) => {
 
   return (
     <>
-      <div className='sticky mx-2 py-1 bg-white' style={{ top: '60px', zIndex: 20 }}>
+      <div className='sticky mx-2 py-1 bg-white sticky-under-header'>
         <div className='invisible 2xl:visible' style={{ maxWidth: 'calc(62.5% - 4px)' }}>
           <div className='px-5 mt-3 py-2 border-t border-r border-l border-gray-300 rounded-t' />
           <div className='text-center -mt-7' style={{ lineHeight: 0.1 }}>
@@ -46,7 +82,7 @@ const Filter = (props) => {
           <a href='wizard' className='text-sm text-dial-yellow font-bold hover:underline'>Launch Recommendations Wizard</a>
         </div>
       </div>
-      <div className='sticky bg-white mx-2' style={{ top: '97px', zIndex: '20' }}>
+      <div className='sticky bg-white mx-2 sticky-filter'>
         <div className='w-full'>
           <ul className='flex flex-row mb-0 list-none pt-2' role='tablist'>
             {
@@ -60,7 +96,15 @@ const Filter = (props) => {
               // * --> Last element: show count of activeTab - 1 for last element, show activeTab + 1 title for first element.
               // * md: count of the activeTab - 2 & title of the activeTab + 2
               // * --> Last element: show count of activeTab - 3 for last element, show activeTab + 3 title for first element.
-              filterItems.map((filterItem, index) => (
+              filterItems.map((filterItem, index) => {
+                const normalizedFilterItem = filterItem.replace(/\s+/g, '-').toLowerCase()
+                // Need to default map viewing to projects (or to endorsers?)
+                let href = normalizedFilterItem
+                if (href.indexOf('map') >= 0) {
+                  href = `${href}/endorsers`
+                }
+
+                return (
                 <React.Fragment key={`menu-${filterItem}`}>
                   <li
                     className={`
@@ -84,7 +128,7 @@ const Filter = (props) => {
                       }
                     `}
                   >
-                    <Link href={`/${filterItem.replace(/\s+/g, '-').toLowerCase()}`}>
+                      <Link href={`/${href}`}>
                       <a
                         className={`
                           text-base font-bold px-3 py-3 block leading-normal rounded
@@ -92,10 +136,10 @@ const Filter = (props) => {
                         `}
                         role='tablist'
                         data-toggle='tab'
-                        href={`/${filterItem.replace(/\s+/g, '-').toLowerCase()}`}
+                        href={`/${href}`}
                       >&nbsp;
                         <span className='float-right p-2 -my-1 text-sm font-bold leading-none rounded text-dial-gray-dark bg-white'>
-                          {resultCounts[filterItem.replace(/\s+/g, '-').toLowerCase()]}
+                          {resultCounts[normalizedFilterItem]}
                         </span>
                       </a>
                     </Link>
@@ -147,15 +191,15 @@ const Filter = (props) => {
                     `}
                     style={{ flex: '1 1 0px' }}
                   >
-                    <Link href={`/${filterItem.replace(/\s+/g, '-').toLowerCase()}`}>
+                      <Link href={`/${href}`}>
                       <a
                         className={`
                           text-base font-bold px-3 py-3 block leading-normal
-                          ${index === activeTab ? 'text-white' : 'rounded text-gray-600 bg-dial-gray'}
+                          ${index === activeTab ? 'text-white' : 'rounded text-dial-gray-dark bg-dial-gray'}
                         `}
                         role='tablist'
                         data-toggle='tab'
-                        href={`/${filterItem.replace(/\s+/g, '-').toLowerCase()}`}
+                        href={`/${href}`}
                       >
                         {filterItem}
                         <span
@@ -164,7 +208,7 @@ const Filter = (props) => {
                             ${index === activeTab ? 'text-dial-gray-dark bg-dial-yellow' : 'text-dial-gray-dark bg-white'}
                           `}
                         >
-                          {resultCounts[filterItem.replace(/\s+/g, '-').toLowerCase()]}
+                          {resultCounts[normalizedFilterItem]}
                         </span>
                       </a>
                     </Link>
@@ -203,22 +247,22 @@ const Filter = (props) => {
                       }
                     `}
                   >
-                    <Link href={`/${filterItem.replace(/\s+/g, '-').toLowerCase()}`}>
+                      <Link href={`/${href}`}>
                       <a
                         className={`
-                          text-base font-bold px-3 py-3 block leading-normal rounded text-gray-600
+                          text-base font-bold px-3 py-3 block leading-normal rounded text-dial-gray-dark
                           bg-gradient-to-r from-dial-gray to-white
                         `}
                         role='tablist'
                         data-toggle='tab'
-                        href={`/${filterItem.replace(/\s+/g, '-').toLowerCase()}`}
+                        href={`/${href}`}
                       >
                         <span className='gradient-text'>{filterItem}</span>
                       </a>
                     </Link>
                   </li>
                 </React.Fragment>
-              ))
+              )})
             }
           </ul>
           <div className='relative flex flex-col min-w-0 break-words bg-white'>
@@ -238,6 +282,7 @@ const Filter = (props) => {
                       {activeTab === 4 && <ProductFilter openFilter={openFilter} />}
                       {activeTab === 5 && <ProjectFilter openFilter={openFilter} />}
                       {activeTab === 6 && <OrganizationFilter openFilter={openFilter} />}
+                      {activeTab === 7 && <MapFilter openFilter={openFilter} />}
                     </div>
                   ))
                 }
@@ -251,4 +296,4 @@ const Filter = (props) => {
   )
 }
 
-export default Filter
+export default withApollo()(Filter)

@@ -9,7 +9,7 @@ import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 import { createPopper } from '@popperjs/core'
 
 const headerStyles = `
-    relative w-full z-30 sticky top-0 border-b-2 border-gray-600 bg-white flex flex-wrap
+    relative w-full z-30 sticky top-0 border-b-2 border-dial-gray-dark bg-white flex flex-wrap
     items-center py-2 lg:py-0
   `
 
@@ -18,7 +18,7 @@ const headerStyles = `
   `
 
   const dropdwonMenuStyles = `
-    block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
   `
 
   const dropdownPanelStyles = `
@@ -107,7 +107,7 @@ const UserMenu = () => {
     <a className={`lg:mb-0 mb-2 inline bg-dial-yellow-light pt-2 pr-2 pb-2 rounded`} ref={buttonRef}
       href='signOut' onClick={(e) => toggleSwitcher(e)}
     >
-      <img src='/icons/user.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
+      <img src='/icons/user.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
       <div className='inline'>{session.user.username}
         {
           showUserMenu ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
@@ -131,22 +131,44 @@ const Header = () => {
   const format = (id) => formatMessage({ id })
 
   const [showLanguages, setShowLanguages] = useState(false)
+  const [showResources, setShowResources] = useState(false)
 
   const { pathname, asPath, query } = useRouter()
   const router = useRouter()
 
-  const buttonRef = createRef()
-  const popoverRef = createRef()
+  const languagePopoverButton = createRef()
+  const languagePopover = createRef()
 
-  const openDropdownPopover = () => {
+  const resourcePopoverButton = createRef()
+  const resourcePopover = createRef()
+
+  const openDropdownPopover = (buttonRef, popoverRef, openCallback) => {
     createPopper(buttonRef.current, popoverRef.current, {
       placement: 'bottom'
     })
-    setShowLanguages(true)
+    openCallback(true)
   }
-  const closeDropdownPopover = () => {
-    setShowLanguages(false)
+  const closeDropdownPopover = (closeCallback) => {
+    closeCallback(false)
   }
+
+  const headerStyles = `
+    z-30 sticky top-0 border-b-2 border-dial-gray-dark bg-white flex flex-wrap
+    items-center py-3 lg:py-0
+  `
+
+  const menuItemStyles = `
+    lg:p-4 lg:py-3 px-6 py-2 block border-b-2 border-transparent lg:hover:border-indigo-400
+  `
+
+  const dropdwonMenuStyles = `
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  `
+
+  const dropdownPanelStyles = `
+    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+    ring-1 ring-black ring-opacity-5 focus:outline-none
+  `
 
   const switchLanguage = (e, localeCode) => {
     e.preventDefault()
@@ -154,9 +176,25 @@ const Header = () => {
     setShowLanguages(!showLanguages)
   }
 
-  const toggleSwitcher = (e) => {
+  const toggleLanguageSwitcher = (e) => {
     e.preventDefault()
-    showLanguages ? closeDropdownPopover() : openDropdownPopover()
+    showLanguages
+      ? closeDropdownPopover(setShowLanguages)
+      : openDropdownPopover(languagePopoverButton, languagePopover, setShowLanguages)
+  }
+
+  const toggleResourceSwitcher = (e) => {
+    e.preventDefault()
+    showResources
+      ? closeDropdownPopover(setShowResources)
+      : openDropdownPopover(resourcePopoverButton, resourcePopover, setShowResources)
+  }
+
+  const navigateToCovidResource = (e) => {
+    e.preventDefault()
+    setShowResources(false)
+    // TODO: Replace this with the eventual url of the covid resources.
+    router.push('/products')
   }
 
   const signInUser = (e) => {
@@ -170,7 +208,7 @@ const Header = () => {
   }
 
   return (
-    <header className={headerStyles}>
+    <header className={`${headerStyles} header-min-height`}>
       <div className='flex-1 flex justify-between items-center'>
         <Link href='/'>
           <a href='/' className='px-6 lg:px-8'>
@@ -186,7 +224,7 @@ const Header = () => {
         </Link>
       </div>
 
-      <label htmlFor='menu-toggle' className='pointer-cursor lg:hidden block'>
+      <label htmlFor='menu-toggle' className='pointer-cursor block lg:hidden px-8'>
         <svg className='fill-current text-gray-900' xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'>
           <title>Menu</title>
           <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
@@ -197,10 +235,29 @@ const Header = () => {
       <div className='hidden lg:flex lg:items-center lg:w-auto w-full' id='menu'>
         <nav>
           <ul className='lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0'>
-            <li>
-              <Link href='/wizard'>
-                <a className={`${menuItemStyles}`} href='covid-19-resources'>{format('header.covidResources')}</a>
-              </Link>
+            <li className='relative mt-2 lg:mt-0'>
+              <a
+                className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={resourcePopoverButton}
+                href='switchLanguage' onClick={(e) => toggleResourceSwitcher(e)}
+              >
+                {format('header.resources')}
+                {
+                  showResources ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
+                }
+              </a>
+              <div className={`${showResources ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={resourcePopover} role='menu'>
+                <div className='py-1' role='none'>
+                  <a href='/covid-19-resources' onClick={navigateToCovidResource} role='menuitem' className={dropdwonMenuStyles}>
+                    {format('header.covidResources')}
+                  </a>
+                  <a
+                    href='//resources.dial.community/' target='_blank' rel='noreferrer'
+                    role='menuitem' className={dropdwonMenuStyles} onClick={() => setShowResources(false)}
+                  >
+                    {format('header.dialResourcesPortal')}
+                  </a>
+                </div>
+              </div>
             </li>
             <li><a className={`${menuItemStyles}`} href='about'>{format('header.about')}</a></li>
             {
@@ -220,17 +277,17 @@ const Header = () => {
               </Link>
             </li>
             <li><div className='border border-gray-400 border-t-0 lg:border-l-0 lg:h-9' /></li>
-            <li className='relative'>
+            <li className='relative mt-2 lg:mt-0'>
               <a
-                className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={buttonRef}
-                href='switchLanguage' onClick={(e) => toggleSwitcher(e)}
+                className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={languagePopoverButton}
+                href='switchLanguage' onClick={(e) => toggleLanguageSwitcher(e)}
               >
                 {format('header.selectLanguage')}
                 {
                   showLanguages ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
                 }
               </a>
-              <div className={`${showLanguages ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
+              <div className={`${showLanguages ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={languagePopover} role='menu'>
                 <div className='py-1' role='none'>
                   <a href='en' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'en')}>
                     {format('header.english')}

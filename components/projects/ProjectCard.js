@@ -17,6 +17,18 @@ const ProjectCard = ({ project, listType }) => {
     }
   })()
 
+  const nameColSpan = (project) => {
+    return !project.organizations && !project.products
+      ? 'col-span-8'
+      : 'col-span-3 md:col-span-4 lg:col-span-4'
+  }
+
+  const originColSpan = (project) => {
+    return !project.organizations && !project.products
+      ? 'col-span-4'
+      : 'col-span-3 md:col-span-2'
+  }
+
   return (
     <Link className='card-link' href={`/projects/${project.slug}`}>
       {
@@ -25,28 +37,34 @@ const ProjectCard = ({ project, listType }) => {
             <div className='border-3 border-transparent hover:border-dial-yellow text-button-gray hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4 text-base font-semibold text-dial-gray-dark whitespace-nowrap overflow-ellipsis overflow-hidden'>
-                  <div className='col-span-3 md:col-span-4 lg:col-span-5 mr-4 overflow-hidden overflow-ellipsis'>
+                  <div className={`${nameColSpan(project)} mr-4 overflow-hidden overflow-ellipsis`}>
                     {project.name}
                   </div>
-                  <div className='col-span-3 md:col-span-3 lg:col-span-3 mr-4 overflow-hidden overflow-ellipsis'>
-                    {
-                      project.organizations && project.organizations.length === 0 && format('general.na')
-                    }
-                    {
-                      project.organizations && project.organizations.length > 0 &&
-                        project.organizations.map(o => o.name).join(', ')
-                    }
-                  </div>
-                  <div className='col-span-3 md:col-span-3 lg:col-span-2 mr-4 overflow-hidden overflow-ellipsis'>
-                    {
-                      project.products && project.products.length === 0 && format('general.na')
-                    }
-                    {
-                      project.products && project.products.length > 0 &&
-                        project.products.map(p => p.name).join(', ')
-                    }
-                  </div>
-                  <div className='col-span-3 md:col-span-2'>
+                  {
+                    project.organizations &&
+                      <div className='col-span-3 md:col-span-3 lg:col-span-3 mr-4 overflow-hidden overflow-ellipsis'>
+                        {
+                          project.organizations.length === 0 && format('general.na')
+                        }
+                        {
+                          project.organizations.length > 0 &&
+                            project.organizations.map(o => o.name).join(', ')
+                        }
+                      </div>
+                  }
+                  {
+                    project.products && 
+                      <div className='col-span-3 md:col-span-3 lg:col-span-3 mr-4 overflow-hidden overflow-ellipsis'>
+                        {
+                          project.products.length === 0 && format('general.na')
+                        }
+                        {
+                          project.products.length > 0 &&
+                            project.products.map(p => p.name).join(', ')
+                        }
+                      </div>
+                  }
+                  <div className={originColSpan(project)}>
                     <img
                       className='h-6 md:h-8'
                       src={`/images/origins/${project.origin.slug}.png`}
