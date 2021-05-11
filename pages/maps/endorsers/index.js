@@ -10,6 +10,7 @@ import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 
 import EndorserMap from '../../../components/maps/endorsers/EndorserMap'
+import { Loading, Error } from '../shared/FetchStatus'
 
 const DEFAULT_PAGE_SIZE = 1000
 
@@ -71,7 +72,7 @@ const EndorserMapPage = () => {
           <link rel='icon' href='/favicon.ico' />
         </Head>
         <Header />
-        <div className='relative text-center my-3'>{format('general.fetchingData')}</div>
+        <Loading />
       </>
     )
   }
@@ -83,7 +84,7 @@ const EndorserMapPage = () => {
           <link rel='icon' href='/favicon.ico' />
         </Head>
         <Header />
-        <div className='relative text-center my-3 default-height'>{format('general.fetchError')}</div>
+        <Error />
       </>
     )
   }

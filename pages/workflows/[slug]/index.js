@@ -11,6 +11,7 @@ import gql from 'graphql-tag'
 
 import WorkflowDetailLeft from '../../../components/workflows/WorkflowDetailLeft'
 import WorkflowDetailRight from '../../../components/workflows/WorkflowDetailRight'
+import { Loading, Error } from '../shared/FetchStatus'
 
 const WORKFLOW_QUERY = gql`
   query Workflow($slug: String!) {
@@ -53,7 +54,7 @@ const Workflow = () => {
     return (
       <>
         <Header />
-        <div className='relative text-center my-3'>{format('general.fetchingData')}</div>
+        <Loading />
       </>
     )
   }
@@ -61,7 +62,7 @@ const Workflow = () => {
     return (
       <>
         <Header />
-        <div className='relative text-center my-3 default-height'>{format('general.fetchError')}</div>
+        <Error />
       </>
     )
   }

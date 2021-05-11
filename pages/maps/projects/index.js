@@ -10,6 +10,7 @@ import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 
 import ProjectMap from '../../../components/maps/projects/ProjectMap'
+import { Loading, Error } from '../shared/FetchStatus'
 
 const DEFAULT_PAGE_SIZE = 10000
 
@@ -84,7 +85,7 @@ const ProjectMapPage = () => {
           <link rel='icon' href='/favicon.ico' />
         </Head>
         <Header />
-        <div className='relative text-center my-3'>{format('general.fetchingData')}</div>
+        <Loading />
       </>
     )
   }
@@ -97,7 +98,7 @@ const ProjectMapPage = () => {
           <link rel='icon' href='/favicon.ico' />
         </Head>
         <Header />
-        <div className='relative text-center my-3 default-height'>{format('general.fetchError')}</div>
+        <Error />
       </>
     )
   }

@@ -15,6 +15,8 @@ import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import Resource from '../resources/Resource'
 import Phases from './Phases'
 
+import { Loading, Error } from '../shared/FetchStatus'
+
 const IDEATION_QUERY = gql`
 query Wizard($phase: String!, $sector: String, $buildingBlocks: [String!], $tags: [String!], $country: String, $mobileServices: [String!]) {
   wizard(phase: $phase, sector: $sector, buildingBlocks: $buildingBlocks, tags: $tags, country: $country, mobileServices: $mobileServices) {
@@ -225,11 +227,11 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   }
 
   if (ideationErrors || planningErrors || implementationErrors || evaluationErrors) {
-    return <div>Error!</div>
+    return <div><Error /></div>
   }
 
   if (wizardData === undefined) {
-    return <div>Loading</div>
+    return <div><Loading /></div>
   }
 
   return (
