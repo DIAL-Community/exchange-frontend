@@ -55,6 +55,7 @@ module.exports = {
           DEFAULT: '#4b9f38'
         },
         workflow: {
+          light: '#85b8d6',
           DEFAULT: '#3e81a8'
         }
       },

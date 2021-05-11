@@ -202,6 +202,9 @@ export const en = {
   'organization.owner': 'If you are the owner of this organization, you can update this organization information.',
   'organization.owner-link': 'Find more information here',
 
+  'aggregator.header': 'Aggregator Organization',
+
+  'map.aggregators.viewAggregator': 'View Aggregator',
   'map.endorsers.viewOrganization': 'View Organization',
   'map.projects.viewProject': 'View Project',
 

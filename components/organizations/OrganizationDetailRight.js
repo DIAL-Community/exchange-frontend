@@ -21,11 +21,13 @@ const DynamicOfficeMarker = (props) => {
 const OrganizationDetailRight = ({ organization }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
-  const marker = {
-    position: [parseFloat(organization.offices[0].latitude), parseFloat(organization.offices[0].longitude)],
-    title: organization.name,
-    body: organization.offices[0].name
-  }
+  const marker = organization.offices.length > 0
+    ? {
+        position: [parseFloat(organization.offices[0].latitude), parseFloat(organization.offices[0].longitude)],
+        title: organization.name,
+        body: organization.offices[0].name
+      }
+    : undefined
 
   return (
     <div className=''>
@@ -52,7 +54,10 @@ const OrganizationDetailRight = ({ organization }) => {
               </>
           }
         </div>
-        <DynamicOfficeMarker {...marker} />
+        {
+          marker &&
+            <DynamicOfficeMarker {...marker} />
+        }
       </div>
       {
         organization.sectors &&
