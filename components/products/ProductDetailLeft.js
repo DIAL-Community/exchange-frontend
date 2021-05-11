@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl'
 import ReactHtmlParser from 'react-html-parser'
+import { DiscourseCount } from '../shared/discourse'
 
 const ProductDetailLeft = ({ product }) => {
   const { formatMessage } = useIntl()
@@ -13,8 +14,7 @@ const ProductDetailLeft = ({ product }) => {
             <img src='/icons/edit.svg' className='inline mr-2' alt='Edit' height='12px' width='12px' />
             {format('app.edit')}
           </button>
-          <img src='/icons/comment.svg' className='inline mr-2' alt='Edit' height='15px' width='15px' />
-          <div className='text-dial-blue inline'>{format('app.comment')}</div>
+          <DiscourseCount />
         </div>
         <div className='h4 font-bold py-4'>{format('products.label')}</div>
       </div>

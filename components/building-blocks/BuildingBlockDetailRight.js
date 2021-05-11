@@ -3,6 +3,7 @@ import Breadcrumb from '../shared/breadcrumb'
 import ProductCard from '../products/ProductCard'
 import WorkflowCard from '../workflows/WorkflowCard'
 import ReactHtmlParser from 'react-html-parser'
+import { DiscourseForum } from '../shared/discourse'
 
 const BuildingBlockDetailRight = ({ buildingBlock }) => {
   const { formatMessage } = useIntl()

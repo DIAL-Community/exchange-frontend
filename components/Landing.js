@@ -23,8 +23,8 @@ const Landing = () => {
       <div className='relative overflow-hidden landing-with-menu'>
         <div className='mx-auto'>
           <div className='relative h-full z-10 pb-8'>
-            <main className='grid grid-cols-3'>
-              <div className='col-span-2 h-screen text-left grid place-content-center'>
+            <main className='grid grid-cols-5'>
+              <div className='col-span-3 h-screen text-left grid place-content-center'>
                 <div className='text-lg text-dial-blue-darkest md:text-xl xl:text-2xl xl:leading-landing'>
                   {format('landing.subtitle')}
                 </div>

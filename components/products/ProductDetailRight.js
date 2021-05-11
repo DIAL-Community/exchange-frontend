@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import ReactHtmlParser from 'react-html-parser'
 import Breadcrumb from '../shared/breadcrumb'
-import DiscourseForum from '../shared/discourse'
+import { DiscourseForum } from '../shared/discourse'
 import RepositoryDetail from './RepositoryDetail'
 import OrganizationCard from '../organizations/OrganizationCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
@@ -126,12 +126,10 @@ const ProductDetailRight = ({ product }) => {
           : <div className='text-sm pb-5'>{format('product.no-maturity')}</div>
         }
       </div>
-      {product.discourseId &&
-        <div className='mt-12'>
-          <div className='card-title mb-3'>{format('product.discussion')}</div>
-          <DiscourseForum topicId={product.discourseId} />
-        </div>
-      }
+      <div className='mt-12'>
+        <div className='card-title mb-3'>{format('product.discussion')}</div>
+        <DiscourseForum topicId={product.discourseId} />
+      </div>
     </div>
   )
 }
