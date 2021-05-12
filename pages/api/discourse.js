@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default (req, res) => {
-  console.log(req.query)
   const apiKey = process.env.NEXT_PUBLIC_DISCOURSE_KEY
   const url = 'https://discourse.govstack.global/'
   
