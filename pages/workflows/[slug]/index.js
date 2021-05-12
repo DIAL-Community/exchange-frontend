@@ -11,7 +11,7 @@ import gql from 'graphql-tag'
 
 import WorkflowDetailLeft from '../../../components/workflows/WorkflowDetailLeft'
 import WorkflowDetailRight from '../../../components/workflows/WorkflowDetailRight'
-import { Loading, Error } from '../shared/FetchStatus'
+import { Loading, Error } from '../../../components/shared/FetchStatus'
 
 const WORKFLOW_QUERY = gql`
   query Workflow($slug: String!) {
