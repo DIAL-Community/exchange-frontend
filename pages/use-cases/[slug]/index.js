@@ -11,7 +11,7 @@ import gql from 'graphql-tag'
 
 import UseCaseDetailLeft from '../../../components/use-cases/UseCaseDetailLeft'
 import UseCaseDetailRight from '../../../components/use-cases/UseCaseDetailRight'
-import { Loading, Error } from '../shared/FetchStatus'
+import { Loading, Error } from '../../../components/shared/FetchStatus'
 
 const USE_CASE_QUERY = gql`
   query UseCase($slug: String!) {

@@ -10,7 +10,7 @@ import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 
 import ProjectMap from '../../../components/maps/projects/ProjectMap'
-import { Loading, Error } from '../shared/FetchStatus'
+import { Loading, Error } from '../../../components/shared/FetchStatus'
 
 const DEFAULT_PAGE_SIZE = 10000
 
