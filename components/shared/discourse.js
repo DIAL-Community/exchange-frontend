@@ -1,10 +1,32 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import { FaThumbsUp, FaHeart, FaLightbulb, FaTh } from 'react-icons/fa';
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 
-const DiscourseForum = ({ topicId }) => {
+import { DiscourseContext, DiscourseDispatchContext } from '../context/DiscourseContext'
+
+export const DiscourseCount = () => {
+  const { formatMessage } = useIntl()
+  const format = (id) => formatMessage({ id })
+  const { postCount } = useContext(DiscourseContext)
+
+  return (
+    postCount ? (
+      <>
+      <img src='/icons/comment.svg' className='inline mr-2' alt='Edit' height='15px' width='15px' />
+      <div className='text-dial-blue text-sm inline'>{postCount} - {format('app.comment')}</div>
+      </>
+      ) : (
+        <>
+        <img src='/icons/comment.svg' className='inline mr-2' alt='Edit' height='15px' width='15px' />
+        <div className='text-dial-blue text-sm inline'>{format('app.nocomment')}</div>
+        </>
+      )
+  )
+}
+
+export const DiscourseForum = ({ topicId }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -14,24 +36,31 @@ const DiscourseForum = ({ topicId }) => {
   const [newPost, setNewPost] = useState()
   const [session] = useSession()
 
+  const { setPostCount } = useContext(DiscourseDispatchContext)
+
   const apiKey = process.env.NEXT_PUBLIC_DISCOURSE_KEY
   const url = 'https://discourse.govstack.global/'
 
   useEffect(() => {
-    const res = fetch(url+'/t/'+topicId+'.json', {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(response => 
-      response.json())
-    .then(data => {
-      if (data.post_stream && data.post_stream.posts.length > 0) {
-        setPosts(data.post_stream.posts)
-      }
-    })
-    .catch((error) => {
-      console.error('Error:', error)
-    })
+    if (topicId) {
+      const res = fetch(url+'/t/'+topicId+'.json', {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(response => 
+        response.json())
+      .then(data => {
+        if (data.post_stream && data.post_stream.posts.length > 0) {
+          setPosts(data.post_stream.posts)
+          setPostCount(data.post_stream.posts.length)
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error)
+      })
+    } else {
+      setPostCount(0)
+    }
   }, [])
   
   const toggleShowPosts = (e) => {
@@ -112,5 +141,3 @@ const DiscourseForum = ({ topicId }) => {
     <div className='text-sm'>{format('product.noforum')}</div>
   );
 }
-
-export default DiscourseForum
