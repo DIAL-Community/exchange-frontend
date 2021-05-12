@@ -8,6 +8,7 @@ import SDGCard from './SDGCard'
 import { SDGFilterContext } from '../context/SDGFilterContext'
 import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
 import { HiSortAscending } from 'react-icons/hi'
+import { Loading, Error } from '../shared/FetchStatus'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -103,11 +104,11 @@ const SDGListQuery = () => {
   })
 
   if (loading) {
-    return <div className='relative text-center my-3'>{format('general.fetchingData')}</div>
+    return <Loading />
   }
 
   if (error) {
-    return <div className='relative text-center my-3 default-height'>{format('general.fetchError')}</div>
+    return <Error />
   }
 
   const { searchSdgs: { nodes, pageInfo } } = data

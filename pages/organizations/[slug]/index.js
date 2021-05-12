@@ -11,6 +11,7 @@ import gql from 'graphql-tag'
 
 import OrganizationDetailLeft from '../../../components/organizations/OrganizationDetailLeft'
 import OrganizationDetailRight from '../../../components/organizations/OrganizationDetailRight'
+import { Loading, Error } from '../shared/FetchStatus'
 
 const ORGANIZATION_QUERY = gql`
 query Organization($slug: String!) {
@@ -61,7 +62,7 @@ const Organization = () => {
     return (
       <>
         <Header />
-        <div className='relative text-center my-3'>{format('general.fetchingData')}</div>
+        <Loading />
       </>
     )
   }
@@ -69,7 +70,7 @@ const Organization = () => {
     return (
       <>
         <Header />
-        <div className='relative text-center my-3 default-height'>{format('general.fetchError')}</div>
+        <Error />
       </>
     )
   }

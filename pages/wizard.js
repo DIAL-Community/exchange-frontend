@@ -10,6 +10,8 @@ import withApollo from '../lib/apolloClient'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
+import { Loading, Error } from '../components/shared/FetchStatus'
+
 const SECTOR_QUERY = gql`
 query Sector {
   sectors {
@@ -66,10 +68,10 @@ const WizardPage = () => {
   const { loading: countryLoading, error: countryError, data: countryData } = useQuery(COUNTRY_QUERY)
   const { loading: tagLoading, error: tagError, data: tagData } = useQuery(TAG_QUERY)
   if (sectorLoading || useCaseLoading || countryLoading || tagLoading) {
-    return <><Header /><div>Fetching..</div><Footer /></>
+    return <><Header /><div><Loading /></div><Footer /></>
   }
   if (sectorError || useCaseError || countryError || tagError) {
-    return <div>Error!</div>
+    return <div><Error /></div>
   }
 
   const mobileServices = ['Airtime', 'API', 'HS', 'Mobile-Internet', 'Mobile-Money', 'Ops-Maintenance', 'OTT', 'SLA', 'SMS', 'User-Interface', 'USSD', 'Voice']

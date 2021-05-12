@@ -11,6 +11,7 @@ import gql from 'graphql-tag'
 
 import SDGDetailLeft from '../../../components/sdgs/SDGDetailLeft'
 import SDGDetailRight from '../../../components/sdgs/SDGDetailRight'
+import { Loading, Error } from '../shared/FetchStatus'
 
 const SDG_QUERY = gql`
   query SDG($slug: String!) {
@@ -47,7 +48,7 @@ const SDG = () => {
     return (
       <>
         <Header />
-        <div className='relative text-center my-3'>{format('general.fetchingData')}</div>
+        <Loading />
       </>
     )
   }
@@ -55,7 +56,7 @@ const SDG = () => {
     return (
       <>
         <Header />
-        <div className='relative text-center my-3 default-height'>{format('general.fetchError')}</div>
+        <Error />
       </>
     )
   }

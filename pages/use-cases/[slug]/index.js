@@ -11,6 +11,7 @@ import gql from 'graphql-tag'
 
 import UseCaseDetailLeft from '../../../components/use-cases/UseCaseDetailLeft'
 import UseCaseDetailRight from '../../../components/use-cases/UseCaseDetailRight'
+import { Loading, Error } from '../shared/FetchStatus'
 
 const USE_CASE_QUERY = gql`
   query UseCase($slug: String!) {
@@ -53,7 +54,7 @@ const UseCase = () => {
     return (
       <>
         <Header />
-        <div className='relative text-center my-3'>{format('general.fetchingData')}</div>
+        <Loading />
       </>
     )
   }
@@ -61,7 +62,7 @@ const UseCase = () => {
     return (
       <>
         <Header />
-        <div className='relative text-center my-3 default-height'>{format('general.fetchError')}</div>
+        <Error />
       </>
     )
   }
