@@ -11,7 +11,7 @@ import gql from 'graphql-tag'
 
 import OrganizationDetailLeft from '../../../components/organizations/OrganizationDetailLeft'
 import OrganizationDetailRight from '../../../components/organizations/OrganizationDetailRight'
-import { Loading, Error } from '../shared/FetchStatus'
+import { Loading, Error } from '../../../components/shared/FetchStatus'
 
 const ORGANIZATION_QUERY = gql`
 query Organization($slug: String!) {

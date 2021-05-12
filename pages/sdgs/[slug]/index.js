@@ -11,7 +11,7 @@ import gql from 'graphql-tag'
 
 import SDGDetailLeft from '../../../components/sdgs/SDGDetailLeft'
 import SDGDetailRight from '../../../components/sdgs/SDGDetailRight'
-import { Loading, Error } from '../shared/FetchStatus'
+import { Loading, Error } from '../../../components/shared/FetchStatus'
 
 const SDG_QUERY = gql`
   query SDG($slug: String!) {
