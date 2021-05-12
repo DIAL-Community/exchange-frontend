@@ -15,7 +15,7 @@ export default NextAuth({
         password: {  label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        const response = await fetch('http://localhost:3000/authenticate/credentials', {
+        const response = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_SERVER + '/authenticate/credentials', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached

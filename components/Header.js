@@ -212,10 +212,10 @@ const Header = () => {
       <div className='flex-1 flex justify-between items-center'>
         <Link href='/'>
           <a href='/' className='px-6 lg:px-8'>
-            <div className='text-gray-900 text-xs'>
+            <div className='text-dial-blue-darkest text-xs'>
               {format('landing.subtitle')}
             </div>
-            <div className='font-bold text-base'>
+            <div className='font-bold text-base text-dial-blue-darkest'>
               <span className='block'>
                 {format('landing.title.firstLine')} {format('landing.title.secondLine')}
               </span>
@@ -225,7 +225,7 @@ const Header = () => {
       </div>
 
       <label htmlFor='menu-toggle' className='pointer-cursor block lg:hidden px-8'>
-        <svg className='fill-current text-gray-900' xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'>
+        <svg className='fill-current text-dial-blue-darkest' xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'>
           <title>Menu</title>
           <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
         </svg>
@@ -234,7 +234,7 @@ const Header = () => {
 
       <div className='hidden lg:flex lg:items-center lg:w-auto w-full' id='menu'>
         <nav>
-          <ul className='lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0'>
+          <ul className='lg:flex items-center justify-between text-base text-dial-blue-darkest pt-4 lg:pt-0'>
             <li className='relative mt-2 lg:mt-0'>
               <a
                 className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={resourcePopoverButton}
