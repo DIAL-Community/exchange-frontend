@@ -5,7 +5,7 @@ import WorkflowCard from '../workflows/WorkflowCard'
 import ReactHtmlParser from 'react-html-parser'
 import { DiscourseForum } from '../shared/discourse'
 
-const BuildingBlockDetailRight = ({ buildingBlock }) => {
+const BuildingBlockDetailRight = ({ buildingBlock, discourseRef }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -33,12 +33,10 @@ const BuildingBlockDetailRight = ({ buildingBlock }) => {
             </div>
           </div>
       }
-      {buildingBlock.discourseId &&
-        <div className='mt-12'>
-          <div className='card-title mb-3'>{format('product.discussion')}</div>
-          <DiscourseForum topicId={buildingBlock.discourseId} />
-        </div>
-      }
+      <div className='mt-12' ref={discourseRef}>
+        <div className='card-title mb-3'>{format('product.discussion')}</div>
+        <DiscourseForum topicId={buildingBlock.discourseId} />
+      </div>
     </div>
   )
 }

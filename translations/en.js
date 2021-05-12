@@ -1,7 +1,8 @@
 export const en = {
   'app.title': 'DIAL Catalog of Digital Solutions',
   'app.edit': 'Edit',
-  'app.comment': 'Leave a Comment',
+  'app.comment': 'Comments',
+  'app.nocomment': 'Start a Conversation',
   'app.home': 'Home',
   'app.submit': 'Submit',
 

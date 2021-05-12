@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import ReactHtmlParser from 'react-html-parser'
+import { createRef } from 'react'
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseForum } from '../shared/discourse'
 import RepositoryDetail from './RepositoryDetail'
@@ -12,9 +12,10 @@ import ProductCard from './ProductCard'
 import RepositoryInfo from './RepositoryInfo'
 import MaturityAccordion from './Maturity'
 
-const ProductDetailRight = ({ product }) => {
+const ProductDetailRight = ({ product, discourseRef }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+
 
   return (
     <div className='pl-6'>
@@ -126,7 +127,7 @@ const ProductDetailRight = ({ product }) => {
           : <div className='text-sm pb-5'>{format('product.no-maturity')}</div>
         }
       </div>
-      <div className='mt-12'>
+      <div className='mt-12' ref={discourseRef} >
         <div className='card-title mb-3'>{format('product.discussion')}</div>
         <DiscourseForum topicId={product.discourseId} />
       </div>

@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import { useRef } from 'react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import withApollo from '../../../lib/apolloClient'
@@ -6,6 +7,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import ProductDetailLeft from '../../../components/products/ProductDetailLeft'
 import ProductDetailRight from '../../../components/products/ProductDetailRight'
+import { Loading, Error } from '../../../components/shared/FetchStatus'
 
 const PRODUCT_QUERY = gql`
 query Product($slug: String!) {
@@ -97,11 +99,32 @@ const Product = () => {
   const { slug } = router.query
   const { loading, error, data } = useQuery(PRODUCT_QUERY, { variables: {slug: slug}})
 
+  const scrollToDiv = (ref) => {
+    rightPanel.current.scrollTo({
+      top: ref.current.offsetTop - 100,
+      behavior: 'smooth'
+    })
+  }
+  const discourseElement = useRef();
+  const rightPanel = useRef();
+
   if (loading) {
-    return <><Header /><div>Fetching..</div><Footer /></>
+    return (
+      <>
+        <Header />
+        <Loading />
+        <Footer />
+      </>
+    )
   }
   if (error) {
-    return <div>Error!</div>
+    (
+      <>
+        <Header />
+        <Error />
+        <Footer />
+      </>
+    )
   }
 
   const product = data.product
@@ -110,10 +133,10 @@ const Product = () => {
       <Header />
       <div className='w-full h-full flex p-6 page-gradient'>
         <div className='w-1/4 pl-12 pt-4'>
-          <ProductDetailLeft product={product} />
+          <ProductDetailLeft product={product} discourseClick={()=> scrollToDiv(discourseElement)} />
         </div>
-        <div className='w-3/4 pt-4 h-screen overflow-y-scroll'>
-          <ProductDetailRight product={product} />
+        <div className='w-3/4 pt-4 h-screen overflow-y-scroll' ref={rightPanel}>
+          <ProductDetailRight product={product} discourseRef={discourseElement} />
         </div>
       </div>
       <Footer />

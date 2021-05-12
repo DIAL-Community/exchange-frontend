@@ -12,10 +12,17 @@ export const DiscourseCount = () => {
   const { postCount } = useContext(DiscourseContext)
 
   return (
-    <>
-    <img src='/icons/comment.svg' className='inline mr-2' alt='Edit' height='15px' width='15px' />
-    <div className='text-dial-blue inline'>{postCount} - {format('app.comment')}</div>
-    </>
+    postCount ? (
+      <>
+      <img src='/icons/comment.svg' className='inline mr-2' alt='Edit' height='15px' width='15px' />
+      <div className='text-dial-blue text-sm inline'>{postCount} - {format('app.comment')}</div>
+      </>
+      ) : (
+        <>
+        <img src='/icons/comment.svg' className='inline mr-2' alt='Edit' height='15px' width='15px' />
+        <div className='text-dial-blue text-sm inline'>{format('app.nocomment')}</div>
+        </>
+      )
   )
 }
 

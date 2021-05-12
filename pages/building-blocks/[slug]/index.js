@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import { useRef } from 'react'
 import { useIntl } from 'react-intl'
 import Head from 'next/head'
 
@@ -11,7 +12,7 @@ import gql from 'graphql-tag'
 
 import BuildingBlockDetailLeft from '../../../components/building-blocks/BuildingBlockDetailLeft'
 import BuildingBlockDetailRight from '../../../components/building-blocks/BuildingBlockDetailRight'
-import { Loading, Error } from '../shared/FetchStatus'
+import { Loading, Error } from '../../../components/shared/FetchStatus'
 
 const BUILDING_BLOCK_QUERY = gql`
 query BuildingBlock($slug: String!) {
@@ -20,6 +21,7 @@ query BuildingBlock($slug: String!) {
     name
     slug
     imageFile
+    discourseId
     buildingBlockDescriptions {
       description
     }
@@ -42,6 +44,15 @@ const BuildingBlock = () => {
   const router = useRouter()
   const { slug } = router.query
   const { loading, error, data } = useQuery(BUILDING_BLOCK_QUERY, { variables: { slug: slug } })
+
+  const scrollToDiv = (ref) => {
+    rightPanel.current.scrollTo({
+      top: ref.current.offsetTop - 100,
+      behavior: 'smooth'
+    })
+  }
+  const discourseElement = useRef();
+  const rightPanel = useRef();
 
   if (loading) {
     return (
@@ -70,10 +81,10 @@ const BuildingBlock = () => {
       <Header />
       <div className='w-full h-full flex flex-col md:flex-row p-6 page-gradient'>
         <div className='w-full xl:w-1/4 md:w-1/3 pt-4'>
-          <BuildingBlockDetailLeft buildingBlock={buildingBlock} />
+          <BuildingBlockDetailLeft buildingBlock={buildingBlock} discourseClick={()=> scrollToDiv(discourseElement)} />
         </div>
-        <div className='w-full xl:w-3/4 md:w-2/3 pt-4 h-screen overflow-y-scroll'>
-          <BuildingBlockDetailRight buildingBlock={buildingBlock} />
+        <div className='w-full xl:w-3/4 md:w-2/3 pt-4 h-screen overflow-y-scroll' ref={rightPanel}>
+          <BuildingBlockDetailRight buildingBlock={buildingBlock} discourseRef={discourseElement} />
         </div>
       </div>
       <Footer />
