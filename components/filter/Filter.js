@@ -48,7 +48,6 @@ const Filter = (props) => {
 
   const { loading, error, data } = useQuery(COUNT_QUERY, {
     onCompleted: (data) => {
-      console.log(data)
       setResultCounts({ 'sdgs': data.counts.sdgCount,
         'use-cases': data.counts.useCaseCount,
         'workflows': data.counts.workflowCount,

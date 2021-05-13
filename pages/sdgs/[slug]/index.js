@@ -19,11 +19,13 @@ const SDG_QUERY = gql`
       id
       name
       slug
+      number
       imageFile
       longTitle
       sdgTargets {
         id
         name
+        imageFile
         targetNumber
         useCases {
           id
@@ -73,7 +75,7 @@ const SDG = () => {
         <div className='w-full xl:w-1/4 md:w-1/3 pt-4'>
           <SDGDetailLeft sdg={sdg} />
         </div>
-        <div className='w-full xl:w-3/4 md:w-2/3 pt-4 h-screen overflow-y-scroll'>
+        <div className='w-full xl:w-3/4 md:w-2/3 pt-4'>
           <SDGDetailRight sdg={sdg} />
         </div>
       </div>

@@ -41,15 +41,18 @@ query SearchWorkflows(
       slug
       imageFile
       useCaseSteps {
+        id
         slug
         name
         useCase {
+          id
           slug
           name
           imageFile
         }
       }
       buildingBlocks {
+        id
         slug
         name
         imageFile

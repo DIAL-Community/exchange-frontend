@@ -53,7 +53,7 @@ module.exports = {
         },
         product: {
           DEFAULT: '#46465a'
-        },  
+        },
         'sdg-target': {
           DEFAULT: '#4b9f38'
         },

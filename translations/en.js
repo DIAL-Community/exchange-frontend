@@ -105,6 +105,7 @@ export const en = {
 
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',
+  'buildingBlock.label': 'Building Block',
 
   'sector.header': 'Sectors',
   'sector.label': 'Sector',
@@ -210,6 +211,7 @@ export const en = {
   'search.input.label': 'Enter Search Term',
   'sdg.sdgTargets': 'SDG Targets',
   'sdg.useCases': 'Use Cases',
+  'sdg.target.title': 'Target',
 
   'workflow.useCases': 'Use Cases',
   'workflow.buildingBlocks': 'Use Cases',
