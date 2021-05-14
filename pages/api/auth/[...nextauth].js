@@ -21,7 +21,7 @@ export default NextAuth({
           mode: 'cors',
           credentials: 'include',
           headers: {
-            'Access-Control-Allow-Origin': 'http://test.local.com:3000',
+            'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
             'Access-Control-Allow-Credentials': 'true',
             'Access-Control-Allow-Headers': 'set-cookie'
           }
@@ -37,7 +37,7 @@ export default NextAuth({
             headers: {
               'Content-Type': 'application/json',
               'X-Requested-With': 'XMLHttpRequest',
-              'Access-Control-Allow-Origin': 'http://127.0.0.1:3000',
+              'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
               'Access-Control-Allow-Credentials': true,
               'Access-Control-Allow-Headers': 'set-cookie',
               //'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
