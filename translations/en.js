@@ -31,6 +31,11 @@ export const en = {
   'footer.organizationName': 'Digital Impact Alliance',
   'footer.reportIssue': 'Report Issue',
   'footer.privacyPolicy': 'Privacy Policy',
+  'footer.sign-up': 'Sign up for updates on the digital investment framework',
+  'footer.discuss': 'Discuss on the Open Source Center Forum',
+  'footer.view-gitlab': 'View this project on GitLab',
+  'footer.follow': 'Follow DIAL on social media',
+  'footer.icons': 'Icons provided unmodified by ',
 
   'definition.subtitle': 'A useful tool for a wide range of users',
   'definition.donors': 'Donors',

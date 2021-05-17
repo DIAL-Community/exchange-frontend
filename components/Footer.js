@@ -70,7 +70,7 @@ const Footer = () => {
               target='_blank' rel='noreferrer'
               className='border-b-2 border-transparent hover:border-dial-teal-light'
             >
-              Sign up for updates on the digital investment framework
+              {format('footer.sign-up')}
             </a>
           </div>
           <div className='py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light'>
@@ -79,7 +79,7 @@ const Footer = () => {
               target='_blank' rel='noreferrer'
               className='border-b-2 border-transparent hover:border-dial-teal-light'
             >
-              Discuss on the Open Source Center Forum
+              {format('footer.discuss')}
             </a>
           </div>
           <div className='py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light'>
@@ -88,12 +88,12 @@ const Footer = () => {
               target='_blank' rel='noreferrer'
               className='border-b-2 border-transparent hover:border-dial-teal-light'
             >
-              View this project on GitLab
+              {format('footer.view-gitlab')}
             </a>
           </div>
           <div className='flex-grow mt-4 flex flex-row'>
             <div className='py-2 px-0 lg:px-2 rounded-md flex-grow text-right'>
-              Follow DIAL on social media
+              {format('footer.follow')}
             </div>
             <div className='p-2 rounded-md bg-dial-gray-light mx-2'>
               <a
@@ -148,7 +148,7 @@ const Footer = () => {
               </a>
             </div>
             <div className='py-2 px-0 2xl:px-2 flex-auto xl:text-left 2xl:text-right'>
-              <span>Icons provided unmodified by </span>
+              <span>{format('footer.icons')} </span>
               <a
                 className='border-b-2 border-transparent hover:border-dial-teal-light'
                 href='https://fontawesome.com/' target='_blank' rel='noreferrer'
