@@ -118,7 +118,7 @@ const Product = () => {
     )
   }
   if (error) {
-    (
+    return (
       <>
         <Header />
         <Error />

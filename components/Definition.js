@@ -28,8 +28,8 @@ const Description = () => {
     <div className='hidden lg:block description-with-wizard'>
       <div className='relative pb-8 sm:pb-16 md:pb-20 xl:pb-32 2xl:max-w-full'>
         <main className='pt-6 mx-auto px-6 sm:pt-12 sm:px-12 lg:pt-16 xl:pt-16 xl:max-w-6xl 2xl:max-w-7xl'>
-          <div className='text-xl text-dial-blue-darkest md:text-2xl xl:text-3xl xl:leading-landing py-8'>
-            {format('definition.subtitle')}
+          <div className='text-lg text-dial-blue-darkest md:text-xl xl:text-2xl xl:leading-landing py-8'>
+            {format('definition.title')}
           </div>
           <div className='grid grid-cols-3'>
             <ul className='flex flex-col mb-0 list-none' role='tablist'>
@@ -127,6 +127,10 @@ const Description = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className='text-lg text-dial-blue-darkest md:text-xl xl:text-2xl xl:leading-landing py-8'>
+            <strong>{format('definition.goal')}</strong>
+            {format('definition.subtitle')}
           </div>
         </main>
       </div>
