@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react'
 
-export const convertToKey = (s) => s.replace(/\s+/g, '-').toLowerCase()
+export const convertToKey = (s) => s.replace(/\s+/g, '_').toLowerCase()
 const FilterResultContext = createContext()
 
 const initialCounts = (() => {

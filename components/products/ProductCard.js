@@ -62,8 +62,8 @@ const ProductCard = ({ product, listType }) => {
                   }
                 </div>
                 <div className='flex flex-col h-80 p-4'>
-                  <div className='text-2xl font-semibold absolute w-80'>
-                    {truncate(product.name, 40, true)}
+                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
+                    {product.name}
                   </div>
                   <div className='m-auto align-middle w-40'>
                     <img

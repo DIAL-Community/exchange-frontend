@@ -50,7 +50,7 @@ const Description = () => {
               <div className='px-4 py-5'>
                 <div className='tab-content tab-space'>
                   <div className={openTab === 0 ? 'block' : 'hidden'} id='donors'>
-                    <div className='flex flex-col flex-wrap p-8 max-h-96 text-dial-blue-darkest'>
+                    <div className='flex flex-col flex-wrap p-8 xl:max-h-96 text-dial-blue-darkest'>
                       <p className='text-lg max-w-md mr-16 tracking-wide'>
                         <span className='font-bold'>{format('definition.donors')} </span>
                         {format('definition.donor.desc1')}
@@ -58,7 +58,7 @@ const Description = () => {
                       <p className='text-base max-w-md pt-4 tracking-wide'>
                         {format('definition.donor.desc2')}
                       </p>
-                      <img className='w-56 h-56 mt-8 xl:mt-0' src='images/tiles/sdg.svg' alt='' />
+                      <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/sdg.svg' alt='' />
                       <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-dial-teal`}>
                         {format('definition.explore-sdg')}
                       </a>
@@ -73,14 +73,14 @@ const Description = () => {
                       <p className='text-base max-w-md pt-4 tracking-wide'>
                         {format('definition.policy-maker.desc2')}
                       </p>
-                      <img className='w-56 h-56 mt-8 xl:mt-0' src='images/tiles/use-case.svg' alt='' />
+                      <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/use-case.svg' alt='' />
                       <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-use-case`}>
                         {format('definition.explore-usecase')}
                       </a>
                     </div>
                   </div>
                   <div className={openTab === 2 ? 'block' : 'hidden'} id='implementing-partners'>
-                    <div className='flex flex-col flex-wrap p-8 max-h-96 text-dial-blue-darkest'>
+                    <div className='flex flex-col flex-wrap p-8 xl:max-h-96 text-dial-blue-darkest'>
                       <p className='text-lg max-w-md mr-16 tracking-wide'>
                         <span className='font-bold'>{format('definition.implementers')} </span>
                         {format('definition.implementer.desc1')}
@@ -88,14 +88,14 @@ const Description = () => {
                       <p className='text-base max-w-md pt-4 tracking-wide'>
                         {format('definition.implementer.desc2')}
                       </p>
-                      <img className='w-56 h-56 mt-8 xl:mt-0' src='images/tiles/workflow.svg' alt='' />
+                      <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/workflow.svg' alt='' />
                       <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-workflow`}>
                         {format('definition.explore-workflow')}
                       </a>
                     </div>
                   </div>
                   <div className={openTab === 3 ? 'block' : 'hidden'} id='tech-ict-partners'>
-                    <div className='flex flex-col flex-wrap p-8 max-h-96 text-dial-blue-darkest'>
+                    <div className='flex flex-col flex-wrap p-8 xl:max-h-96 text-dial-blue-darkest'>
                       <p className='text-xl max-w-md mr-16 tracking-wide'>
                         <span className='font-bold'>{format('definition.ministers')} </span>
                         {format('definition.minister.desc1')}
@@ -103,14 +103,14 @@ const Description = () => {
                       <p className='text-base max-w-md pt-4 tracking-wide'>
                         {format('definition.minister.desc2')}
                       </p>
-                      <img className='w-56 h-56 mt-8 xl:mt-0' src='images/tiles/building-block.svg' alt='' />
+                      <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/building-block.svg' alt='' />
                       <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-building-block`}>
                         {format('definition.explore-bb')}
                       </a>
                     </div>
                   </div>
                   <div className={openTab === 4 ? 'block' : 'hidden'} id='procurers'>
-                    <div className='flex flex-col flex-wrap p-8 max-h-96 text-dial-blue-darkest'>
+                    <div className='flex flex-col flex-wrap p-8 xl:max-h-96 text-dial-blue-darkest'>
                       <p className='text-xl max-w-md mr-16 tracking-wide'>
                         <span className='font-bold'>{format('definition.procurers')} </span>
                         {format('definition.procurer.desc1')}
@@ -118,7 +118,7 @@ const Description = () => {
                       <p className='text-base max-w-md pt-4 tracking-wide'>
                         {format('definition.procurer.desc2')}
                       </p>
-                      <img className='w-56 h-56 mt-8 xl:mt-0' src='images/tiles/product.svg' alt='' />
+                      <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/product.svg' alt='' />
                       <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-product`}>
                         {format('definition.explore-prod')}
                       </a>

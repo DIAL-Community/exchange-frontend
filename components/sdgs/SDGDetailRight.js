@@ -18,10 +18,10 @@ const SDGDetailRight = ({ sdg }) => {
               >
                 <div className='flex flex-row text-dial-gray-dark'>
                   <div className='flex-grow flex flex-col'>
-                    <div className='text-2xl leading-8	'>
+                    <div className='text-xl leading-8	'>
                       {`${format('sdg.target.title')}: ${sdgTarget.targetNumber}`}
                     </div>
-                    <div className='text-base whitespace-normal	'>
+                    <div className='whitespace-normal mt-2'>
                       {sdgTarget.name}
                     </div>
                   </div>
@@ -46,7 +46,7 @@ const SDGDetailRight = ({ sdg }) => {
                       </div>
                     </div>
                 }
-                <hr className='my-12' />
+                <hr className='my-6' />
               </div>
             )
           })

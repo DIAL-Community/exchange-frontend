@@ -8,20 +8,15 @@ import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 
 import { createPopper } from '@popperjs/core'
 
-const headerStyles = `
-    relative w-full z-30 sticky top-0 border-b-2 border-dial-gray-dark bg-white flex flex-wrap
-    items-center py-2 lg:py-0
-  `
-
-  const menuItemStyles = `
+const menuItemStyles = `
     lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400
   `
 
-  const dropdwonMenuStyles = `
+const dropdwonMenuStyles = `
     block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
   `
 
-  const dropdownPanelStyles = `
+const dropdownPanelStyles = `
     origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
     ring-1 ring-black ring-opacity-5 focus:outline-none
   `
@@ -49,26 +44,27 @@ const AdminMenu = () => {
   const closeDropdownPopover = () => {
     setShowAdminMenu(false)
   }
-  
+
   return (
     <>
-    <a className={`lg:mb-0 mb-2 inline`} ref={buttonRef}
-      href='admin' onClick={(e) => toggleSwitcher(e)}
-    >
-      <div className={`${menuItemStyles} inline`}>{format('header.admin')}
-        {
-          showAdminMenu ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
-        }
+      <a
+        className='lg:mb-0 mb-2 inline' ref={buttonRef}
+        href='admin' onClick={(e) => toggleSwitcher(e)}
+      >
+        <div className={`${menuItemStyles} inline`}>{format('header.admin')}
+          {
+            showAdminMenu ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
+          }
+        </div>
+      </a>
+      <div className={`${showAdminMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
+        <div className='py-1' role='none'>
+          <a href='/admin/users' role='menuitem' className={dropdwonMenuStyles}>
+            {format('header.admin.users')}
+          </a>
+        </div>
       </div>
-    </a>
-    <div className={`${showAdminMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
-      <div className='py-1' role='none'>
-        <a href='/admin/users' role='menuitem' className={dropdwonMenuStyles}>
-          {format('header.admin.users')}
-        </a>
-      </div>
-    </div>
-  </>
+    </>
   )
 }
 
@@ -104,25 +100,26 @@ const UserMenu = () => {
 
   return (
     <>
-    <a className={`lg:mb-0 mb-2 inline bg-dial-yellow-light pt-2 pr-2 pb-2 rounded`} ref={buttonRef}
-      href='signOut' onClick={(e) => toggleSwitcher(e)}
-    >
-      <img src='/icons/user.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
-      <div className='inline'>{session.user.username}
-        {
-          showUserMenu ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
-        }
+      <a
+        className='lg:mb-0 mb-2 inline bg-dial-yellow-light pt-2 pr-2 pb-2 rounded' ref={buttonRef}
+        href='signOut' onClick={(e) => toggleSwitcher(e)}
+      >
+        <img src='/icons/user.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
+        <div className='inline'>{session.user.userName}
+          {
+            showUserMenu ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
+          }
+        </div>
+      </a>
+      <div className={`${showUserMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
+        <div className='py-1' role='none'>
+          <a href='en' role='menuitem' className={dropdwonMenuStyles} onClick={signOutUser}>
+            {format('header.signOut')}
+          </a>
+        </div>
       </div>
-    </a>
-    <div className={`${showUserMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
-      <div className='py-1' role='none'>
-        <a href='en' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => signOutUser(e)}>
-          {format('header.signOut')}
-        </a>
-      </div>
-    </div>
     </>
-    )
+  )
 }
 
 const Header = () => {
@@ -153,7 +150,7 @@ const Header = () => {
   }
 
   const headerStyles = `
-    z-30 sticky top-0 border-b-2 border-dial-gray-dark bg-white flex flex-wrap
+    z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white flex flex-wrap
     items-center py-3 lg:py-0
   `
 
@@ -202,11 +199,6 @@ const Header = () => {
     signIn()
   }
 
-  const signOutUser = (e) => {
-    e.preventDefault()
-    signOut()
-  }
-
   return (
     <header className={`${headerStyles} header-min-height`}>
       <div className='flex-1 flex justify-between items-center'>
@@ -222,6 +214,17 @@ const Header = () => {
             </div>
           </a>
         </Link>
+      </div>
+
+      <label htmlFor='menu-toggle' className='pointer-cursor block lg:hidden px-8'>
+        <svg className='fill-current text-gray-900' xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'>
+          <title>Menu</title>
+          <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
+        </svg>
+      </label>
+      <input className='hidden' type='checkbox' id='menu-toggle' />
+
+      <div className='hidden lg:flex lg:items-center lg:w-auto w-full' id='menu'>
         <nav>
           <ul className='lg:flex items-center justify-between text-base text-dial-blue-darkest pt-4 lg:pt-0'>
             <li className='relative mt-2 lg:mt-0'>
@@ -250,15 +253,20 @@ const Header = () => {
             </li>
             <li><a className={`${menuItemStyles}`} href='about'>{format('header.about')}</a></li>
             {
-              session ? 
-                (<div>
-                  {session.user.can_edit && (<AdminMenu />)}
-                  <UserMenu />
-                </div>)
-              : 
-                (<li>
-                  <a className={`${menuItemStyles}`} href='sign-in' onClick={(e) => signInUser(e)}>{format('header.signIn')}</a>
-                </li>)
+              session
+                ? (
+                  <div>
+                    {session.user.can_edit && (<AdminMenu />)}
+                    <UserMenu />
+                  </div>
+                  )
+                : (
+                  <li>
+                    <a className={`${menuItemStyles}`} href='sign-in' onClick={signInUser}>
+                      {format('header.signIn')}
+                    </a>
+                  </li>
+                  )
             }
             <li>
               <Link href='/help'>

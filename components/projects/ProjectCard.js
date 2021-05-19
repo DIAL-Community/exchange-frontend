@@ -1,6 +1,11 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 
+import { truncate } from '../../lib/utilities'
+
+import { convertToKey } from '../context/FilterResultContext'
+const collectionPath = convertToKey('Use Case')
+
 const ProjectCard = ({ project, listType }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -30,7 +35,7 @@ const ProjectCard = ({ project, listType }) => {
   }
 
   return (
-    <Link className='card-link' href={`/projects/${project.slug}`}>
+    <Link className='card-link' href={`/${collectionPath}/${project.slug}`}>
       {
         listType === 'list'
           ? (
@@ -79,8 +84,8 @@ const ProjectCard = ({ project, listType }) => {
             <div className='group border-3 border-transparent hover:border-dial-yellow text-dial-purple cursor-pointer'>
               <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow shadow-lg hover:shadow-2xl'>
                 <div className='border-b text-2xl p-4 group-hover:text-dial-yellow' style={{ minHeight: '97px' }}>
-                  <div className='overflow-hidden overflow-ellipsis' style={{ maxHeight: '64px' }}>
-                    {project.name}
+                  <div className='bg-white bg-opacity-70 text-xl 2xl:text-2xl' style={{ maxHeight: '64px' }}>
+                    {truncate(project.name, 50, false)}
                   </div>
                 </div>
                 <div className='flex flex-row h-64'>

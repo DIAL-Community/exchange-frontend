@@ -4,6 +4,9 @@ import { useIntl } from 'react-intl'
 
 import { truncate } from '../../lib/utilities'
 
+import { convertToKey } from '../context/FilterResultContext'
+const collectionPath = convertToKey('SDGs')
+
 const SDGCard = ({ sdg, listType }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -47,19 +50,27 @@ const SDGCard = ({ sdg, listType }) => {
     return useCases
   })()
 
+  const nameColSpan = () => {
+    return !useCases ? 'col-span-10' : 'col-span-5 md:col-span-3 lg:col-span-2'
+  }
+
+  const useCaseColSpan = () => {
+    return !useCases ? 'hidden' : 'hidden md:block md:col-span-3 lg:col-span-4'
+  }
+
   return (
-    <Link href={`/sdgs/${sdg.slug}`}>
+    <Link href={`/${collectionPath}/${sdg.slug}`}>
       {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-1 md:grid-cols-6 gap-4 my-5 px-4'>
-                  <div className='col-span-5 md:col-span-3 lg:col-span-2 pr-3 text-base text-sdg font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                  <div className={`${nameColSpan()} pr-3 text-base text-sdg font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden`}>
                     <img className='inline pr-4' src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`} alt={sdg.imageFile} width='40' height='40' />
                     {sdg.name}
                   </div>
-                  <div className='hidden md:block md:col-span-3 lg:col-span-4 text-base text-use-case whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                  <div className={`${useCaseColSpan()} text-base text-use-case whitespace-nowrap overflow-ellipsis overflow-hidden`}>
                     {
                       useCases && useCases.length === 0 && format('general.na')
                     }
@@ -76,8 +87,8 @@ const SDGCard = ({ sdg, listType }) => {
             <div className='border-3 border-transparent hover:border-dial-yellow text-sdg hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
                 <div className='flex flex-col h-80 p-4'>
-                  <div className='text-2xl font-semibold absolute w-80'>
-                    {truncate(sdg.name, 40, true)}
+                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
+                    {sdg.name}
                   </div>
                   <div className='m-auto align-middle w-40'>
                     <img

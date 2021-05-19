@@ -1,5 +1,6 @@
+/* global fetch:false */
+
 import NextAuth from 'next-auth'
-import { getCsrfToken } from 'next-auth/client'
 import Providers from 'next-auth/providers'
 
 export default NextAuth({
@@ -12,50 +13,44 @@ export default NextAuth({
       // You can specify whatever fields you are expecting to be submitted.
       // e.g. domain, username, password, 2FA token, etc.
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "email" },
-        password: {  label: "Password", type: "password" }
+        username: { label: 'Username', type: 'text', placeholder: 'email' },
+        password: { label: 'Password', type: 'password' }
       },
-      async authorize(credentials) {
-        
-        const res = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authenticate/token', {
-          mode: 'cors',
-          credentials: 'include',
-          headers: {
-            'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
-            'Access-Control-Allow-Credentials': 'true',
-            'Access-Control-Allow-Headers': 'set-cookie'
+      async authorize (credentials) {
+        const authBody = {
+          user: {
+            email: credentials.username,
+            password: credentials.password
           }
+        }
+
+        const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authenticate/credentials.json', {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, *cors, same-origin
+          // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: 'include', // include, *same-origin, omit
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Headers': 'Set-Cookie'
+            // 'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
+          },
+          // redirect: 'follow', // manual, *follow, error
+          // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          body: JSON.stringify(authBody) // body data type must match "Content-Type" header
         })
-        const token = await getCsrfToken()//res.json()
-        console.log(token)
-        
-        const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authenticate/credentials', {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *cors, same-origin
-            //cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'include', // include, *same-origin, omit
-            headers: {
-              'Content-Type': 'application/json',
-              'X-Requested-With': 'XMLHttpRequest',
-              'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
-              'Access-Control-Allow-Credentials': true,
-              'Access-Control-Allow-Headers': 'set-cookie',
-              //'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
-            },
-            //redirect: 'follow', // manual, *follow, error
-            //referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify(credentials) // body data type must match "Content-Type" header
-          }) 
+
         const user = await response.json()
-        console.log(response.headers)
-        console.log(response.headers.get('set-cookie'))
+
         if (user) {
           // Any user object returned here will be saved in the JSON Web Token
           return user
         } else {
           return false
         }
-      },
+      }
     })
   ],
   callbacks: {
@@ -64,14 +59,14 @@ export default NextAuth({
       //  "token" is being send below to "session" callback...
       //  ...so we set "user" param of "token" to object from "authorize"...
       //  ...and return it...
-      user && (token.user = user);
-      return token  // ...here
+      user && (token.user = user)
+      return token // ...here
     },
     session: async (session, user, sessionToken) => {
-        //  "session" is current session object
-        //  below we set "user" param of "session" to value received from "jwt" callback
-        session.user = user.user;
-        return session
+      //  "session" is current session object
+      //  below we set "user" param of "session" to value received from "jwt" callback
+      session.user = user.user
+      return session
     }
   },
   pages: {
