@@ -28,7 +28,7 @@ const UseCases = () => {
       <GradientBackground />
       <Header />
       <Filter activeTab='use_cases' />
-      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder='Search for a Use Case' />
+      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('use-case.label')} />
       <UseCaseListQuery />
       <Footer />
     </>

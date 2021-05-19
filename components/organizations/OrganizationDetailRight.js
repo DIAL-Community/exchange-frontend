@@ -62,7 +62,7 @@ const OrganizationDetailRight = ({ organization }) => {
       {
         organization.sectors &&
           <div className='mt-12'>
-            <div className='card-title mb-3'>{format('sector.header')}</div>
+            <div className='card-title mb-3 text-dial-gray-dark'>{format('sector.header')}</div>
             <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
               {organization.sectors.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
             </div>
@@ -71,7 +71,7 @@ const OrganizationDetailRight = ({ organization }) => {
       {
         organization.countries &&
           <div className='mt-12'>
-            <div className='card-title mb-3'>{format('country.header')}</div>
+            <div className='card-title mb-3 text-dial-gray-dark'>{format('country.header')}</div>
             <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
               {organization.countries.map((country, i) => <CountryCard key={i} country={country} listType='list' />)}
             </div>

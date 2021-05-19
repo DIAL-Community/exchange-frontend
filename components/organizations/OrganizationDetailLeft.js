@@ -53,7 +53,7 @@ const OrganizationDetailLeft = ({ organization }) => {
           )
         }
         <div className='flex flex-col h-80 p-4'>
-          <div className='text-2xl font-semibold absolute w-80'>
+          <div className='text-2xl font-semibold absolute w-80 text-dial-purple'>
             {organization.name}
           </div>
           <div className='m-auto align-middle w-40'>
@@ -63,7 +63,7 @@ const OrganizationDetailLeft = ({ organization }) => {
             />
           </div>
         </div>
-        <div className='h4'>
+        <div className='h4 text-dial-gray-dark'>
           {organization.organizationDescriptions[0] && ReactHtmlParser(organization.organizationDescriptions[0].description)}
         </div>
       </div>

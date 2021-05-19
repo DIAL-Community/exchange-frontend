@@ -29,13 +29,13 @@ const UseCaseDetailRight = ({ useCase }) => {
   return (
     <div className=''>
       <Breadcrumb />
-      <div className='fr-view'>
+      <div className='fr-view text-dial-gray-dark'>
         {useCase.useCaseDescriptions[0] && ReactHtmlParser(useCase.useCaseDescriptions[0].description)}
       </div>
       {
         workflows && workflows.length > 0 &&
           <div className='mt-12'>
-            <div className='card-title mb-3'>{format('workflow.header')}</div>
+            <div className='card-title mb-3 text-dial-gray-dark'>{format('workflow.header')}</div>
             <div className='grid grid-cols-1'>
               {workflows.map((workflow, i) => <WorkflowCard key={i} workflow={workflow} listType='list' />)}
             </div>

@@ -1,13 +1,20 @@
+import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/client'
 import { useIntl } from 'react-intl'
 
 const SearchFilter = (props) => {
   const { search, setSearch, displayType, setDisplayType, placeholder } = props
+  const router = useRouter()
+  const [session] = useSession()
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
   const [searchTerm, setSearchTerm] = useState(search)
+
+  let linkPath = router.asPath.split('/')
+  linkPath.shift();
 
   useEffect(() => {
     const timeOutId = setTimeout(() => setSearch(searchTerm), 500)
@@ -21,11 +28,22 @@ const SearchFilter = (props) => {
     setDisplayType(displayType === 'list' ? 'card' : 'list')
   }
 
+  const generateCreateLink = () => {
+    if (!session.user) {
+      return '/create-not-available'
+    }
+
+    const { userEmail, userToken } = session.user
+    return `
+      ${process.env.NEXT_PUBLIC_RAILS_SERVER}/${linkPath[0]}/new?user_email=${userEmail}&user_token=${userToken}
+    `
+  }
+
   return (
     <div className='relative mx-2 grid grid-cols-12 gap-4 bg-transparent'>
-      <div className='col-span-12 xl:col-span-8 2xl:col-span-6'>
+      <div className='col-span-12'>
         <div className='flex flex-row mt-2'>
-          <label className='block w-8/12 my-auto'>
+          <label className='block w-4/12 my-auto'>
             <span className='sr-only'>{format('search.input.label')}</span>
             <input
               value={searchTerm} onChange={handleChange}
@@ -33,9 +51,9 @@ const SearchFilter = (props) => {
               placeholder={placeholder}
             />
           </label>
-          <div className='w-4/12'>
+          <div className='w-2/12'>
             <div className='flex flex-col md:flex-row'>
-              <div className='my-auto px-4 md:px-0 md:pl-4 pt-2 md:pt-0 text-xs md:text-base'>{format('view.switch.title')}</div>
+              <div className='my-auto px-4 md:px-0 md:pl-4 pt-2 md:pt-0 text-xs md:text-base text-dial-gray-dark'>{format('view.switch.title')}</div>
               <div className='my-auto pt-2 pb-3 px-4 flex flex-row'>
                 {
                   displayType === 'card' &&
@@ -57,6 +75,12 @@ const SearchFilter = (props) => {
                 }
               </div>
             </div>
+          </div>
+          <div className='w-6/12 grid mr-4 self-center place-self-end text-sm'>
+            { session && session.user.canEdit && (<a href={generateCreateLink()}>
+                <span className='grid justify-end text-dial-teal'>{format('app.create-new')}</span>
+              </a>)
+            }
           </div>
         </div>
       </div>

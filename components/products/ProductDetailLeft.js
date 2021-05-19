@@ -43,12 +43,12 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
       </div>
       <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 mr-6 shadow-lg'>
         <div id='header' className='mb-4'>
-          <div className='h1 p-2'>
+          <div className='h1 p-2 text-dial-purple'>
             {product.name}
           </div>
           <img alt={`${product.name} Logo`} className='p-2 m-auto' src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile} width='200px' height='200px' />
         </div>
-        <div className='h4'>
+        <div className='h4 text-dial-gray-dark'>
           {product.productDescriptions[0] && ReactHtmlParser(product.productDescriptions[0].description)}
         </div>
       </div>
