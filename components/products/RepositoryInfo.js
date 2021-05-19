@@ -8,15 +8,15 @@ const RepositoryInfo = ({product}) => {
   
   return (
   <>
-    <div className='pb-5'>
+    <div className='pb-5 pr-5 overflow-ellipsis overflow-hidden'>
       <div className='h5 pb-1'>{format('product.website')}</div>
       <a className='text-dial-blue text-sm' href={`https://${product.website}`} target='_blank'>{product.website}</a>
     </div>
-    <div className='pb-5'>
+    <div className='pb-5 pr-5 overflow-ellipsis overflow-hidden'>
       <div className='h5 pb-1'>{format('product.repository')}</div>
       <a className='text-dial-blue text-sm' href={`https://${product.repository}`} target='_blank'>{product.repository}</a>
     </div>
-    <div className='pb-5 grid grid-cols-2'>
+    <div className='pb-5 pr-5 grid grid-cols-2'>
       <div>
         <div className='h5 pb-1'>{format('product.current-version')}</div>
         <div className='text-sm'>{currVersion ? currVersion : format('product.no-version-data')}</div>
@@ -26,7 +26,7 @@ const RepositoryInfo = ({product}) => {
         <div className='text-sm'>{product.license}</div>
       </div>
     </div>
-    <div className='pb-5'>
+    <div className='pb-5 pr-5'>
       <div className='h5 pb-1'>{format('product.source')}</div>
       {product.origins.map((origin, i) => {
         return (<div key={i} className='text-sm'>{origin.name}</div>)

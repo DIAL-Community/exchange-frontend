@@ -236,5 +236,11 @@ export const en = {
   'map.endorsers.viewOrganization': 'View Organization',
   'map.projects.viewProject': 'View Project',
 
-  'useCase.label': 'Use Case'
+  'useCase.label': 'Use Case',
+  'workflow.label': 'Workflow',
+
+  'error.auth': 'Error in authentication',
+  'error.tryAgain': 'Try Again',
+  'error.goBack': 'Go Back to Catalog'
+
 }

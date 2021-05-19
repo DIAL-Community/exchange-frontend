@@ -2,7 +2,8 @@ import Link from 'next/link'
 import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 
-import { truncate } from '../../lib/utilities'
+import { convertToKey } from '../context/FilterResultContext'
+const collectionPath = convertToKey('Use Cases')
 
 const UseCaseCard = ({ useCase, listType }) => {
   const { formatMessage } = useIntl()
@@ -60,14 +61,14 @@ const UseCaseCard = ({ useCase, listType }) => {
   }
 
   return (
-    <Link href={`/use-cases/${useCase.slug}`}>
+    <Link href={`/${collectionPath}/${useCase.slug}`}>
       {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
-                  <div className={`${nameColSpan(useCase)} col-span-4 pr-3 text-base font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden`}>
+                  <div className={`${nameColSpan(useCase)} pr-3 text-base font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden`}>
                     {useCase.name}
                   </div>
                   {
@@ -110,8 +111,8 @@ const UseCaseCard = ({ useCase, listType }) => {
                   </div>
                 </div>
                 <div className='flex flex-col h-80 p-4'>
-                  <div className='text-2xl font-semibold absolute w-80'>
-                    {truncate(useCase.name, 40, true)}
+                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
+                    {useCase.name}
                   </div>
                   <div className='m-auto align-middle w-40'>
                     <img

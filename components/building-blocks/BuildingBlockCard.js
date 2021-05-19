@@ -2,7 +2,8 @@ import Link from 'next/link'
 import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 
-import { truncate } from '../../lib/utilities'
+import { convertToKey } from '../context/FilterResultContext'
+const collectionPath = convertToKey('Building Blocks')
 
 const BuildingBlockCard = ({ buildingBlock, listType }) => {
   const { formatMessage } = useIntl()
@@ -41,7 +42,7 @@ const BuildingBlockCard = ({ buildingBlock, listType }) => {
   }
 
   return (
-    <Link href={`/building-blocks/${buildingBlock.slug}`}>
+    <Link href={`/${collectionPath}/${buildingBlock.slug}`}>
       {
         listType === 'list'
           ? (
@@ -99,8 +100,8 @@ const BuildingBlockCard = ({ buildingBlock, listType }) => {
                   </div>
                 </div>
                 <div className='flex flex-col h-80 p-4'>
-                  <div className='text-2xl font-semibold absolute w-80'>
-                    {truncate(buildingBlock.name, 40, true)}
+                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
+                    {buildingBlock.name}
                   </div>
                   <div className='m-auto align-middle w-40'>
                     <img

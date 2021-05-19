@@ -8,10 +8,6 @@ const SDGDetailLeft = ({ sdg }) => {
     <>
       <div className='h-20'>
         <div className='w-full'>
-          <button className='bg-dial-blue px-2 rounded text-white mr-5'>
-            <img src='/icons/edit.svg' className='inline mr-2' alt='Edit' height='12px' width='12px' />
-            {format('app.edit')}
-          </button>
           <img src='/icons/comment.svg' className='inline mr-2' alt='Edit' height='15px' width='15px' />
           <div className='text-dial-blue inline'>{format('app.comment')}</div>
         </div>

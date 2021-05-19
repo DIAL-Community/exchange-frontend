@@ -2,7 +2,8 @@ import Link from 'next/link'
 import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 
-import { truncate } from '../../lib/utilities'
+import { convertToKey } from '../context/FilterResultContext'
+const collectionPath = convertToKey('Workflows')
 
 const WorkflowCard = ({ workflow, listType }) => {
   const { formatMessage } = useIntl()
@@ -45,7 +46,7 @@ const WorkflowCard = ({ workflow, listType }) => {
   })()
 
   return (
-    <Link href={`/workflows/${workflow.slug}`}>
+    <Link href={`/${collectionPath}/${workflow.slug}`}>
       {
         listType === 'list'
           ? (
@@ -81,8 +82,8 @@ const WorkflowCard = ({ workflow, listType }) => {
             <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
                 <div className='flex flex-col h-80 p-4'>
-                  <div className='text-2xl font-semibold absolute w-80'>
-                    {truncate(workflow.name, 40, true)}
+                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
+                    {workflow.name}
                   </div>
                   <div className='m-auto align-middle w-40'>
                     <img

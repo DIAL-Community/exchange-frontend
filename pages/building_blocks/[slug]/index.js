@@ -51,8 +51,8 @@ const BuildingBlock = () => {
       behavior: 'smooth'
     })
   }
-  const discourseElement = useRef();
-  const rightPanel = useRef();
+  const discourseElement = useRef()
+  const rightPanel = useRef()
 
   if (loading) {
     return (

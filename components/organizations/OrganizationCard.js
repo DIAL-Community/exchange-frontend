@@ -3,30 +3,41 @@ import { useIntl } from 'react-intl'
 
 import { truncate } from '../../lib/utilities'
 
+import { convertToKey } from '../context/FilterResultContext'
+const collectionPath = convertToKey('Use Case')
+
 const OrganizationCard = ({ organization, listType }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+
+  const nameColSpan = (organization) => {
+    return !organization.sectors ? 'col-span-9' : 'col-span-4'
+  }
+
   return (
     <>
       {
         listType === 'list'
           ? (
-            <Link className='card-link' href={`/organizations/${organization.slug}`}>
+            <Link className='card-link' href={`/${collectionPath}/${organization.slug}`}>
               <div className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
                 <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                   <div className='grid grid-cols-12 my-5 px-4'>
-                    <div className='col-span-4 text-base font-semibold text-dial-gray-dark whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                    <div className={`${nameColSpan(organization)} text-base font-semibold text-dial-gray-dark whitespace-nowrap overflow-ellipsis overflow-hidden`}>
                       {organization.name}
                     </div>
-                    <div className='col-span-5 px-3 text-base text-dial-gray-dark whitespace-nowrap overflow-ellipsis overflow-hidden'>
-                      {
-                        organization.sectors && organization.sectors.length === 0 && format('general.na')
-                      }
-                      {
-                        organization.sectors && organization.sectors.length > 0 &&
-                          organization.sectors.map(u => u.name).join(', ')
-                      }
-                    </div>
+                    {
+                      organization.sectors &&
+                        <div className='col-span-5 px-3 text-base text-dial-gray-dark whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                          {
+                            organization.sectors.length === 0 && format('general.na')
+                          }
+                          {
+                            organization.sectors.length > 0 &&
+                              organization.sectors.map(u => u.name).join(', ')
+                          }
+                        </div>
+                    }
                     <div className='col-span-3 text-base text-dial-purple'>
                       {
                         !organization.whenEndorsed && (
@@ -62,9 +73,9 @@ const OrganizationCard = ({ organization, listType }) => {
                     </div>
                   )
                 }
-                <Link className='card-link' href={`/organizations/${organization.slug}`}>
+                <Link className='card-link' href={`/${collectionPath}/${organization.slug}`}>
                   <div className='flex flex-col h-80 p-4'>
-                    <div className='text-2xl font-semibold absolute w-80 group-hover:text-dial-yellow '>
+                    <div className='text-2xl font-semibold absolute group-hover:text-dial-yellow w-64 2xl:w-80 bg-white bg-opacity-70'>
                       {truncate(organization.name, 40, true)}
                     </div>
                     <div className='m-auto align-middle w-40'>
