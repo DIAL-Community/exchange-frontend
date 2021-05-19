@@ -12,13 +12,13 @@ const BuildingBlockDetailRight = ({ buildingBlock, discourseRef }) => {
   return (
     <div className=''>
       <Breadcrumb />
-      <div className='fr-view'>
+      <div className='fr-view text-dial-gray-dark'>
         {buildingBlock.buildingBlockDescriptions[0] && ReactHtmlParser(buildingBlock.buildingBlockDescriptions[0].description)}
       </div>
       {
         buildingBlock.products && buildingBlock.products.length > 0 &&
           <div className='mt-12'>
-            <div className='card-title mb-3'>{format('workflow.header')}</div>
+            <div className='card-title mb-3 text-dial-gray-dark'>{format('products.header')}</div>
             <div className='grid grid-cols-1'>
               {buildingBlock.products.map((product, i) => <ProductCard key={i} product={product} listType='list' />)}
             </div>
@@ -27,7 +27,7 @@ const BuildingBlockDetailRight = ({ buildingBlock, discourseRef }) => {
       {
         buildingBlock.workflows && buildingBlock.workflows.length > 0 &&
           <div className='mt-12'>
-            <div className='card-title mb-3'>{format('workflow.header')}</div>
+            <div className='card-title mb-3 text-dial-gray-dark'>{format('workflow.header')}</div>
             <div className='grid grid-cols-1'>
               {buildingBlock.workflows.map((workflow, i) => <WorkflowCard key={i} workflow={workflow} listType='list' />)}
             </div>

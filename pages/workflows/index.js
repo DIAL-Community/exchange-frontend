@@ -28,7 +28,7 @@ const Workflows = () => {
       <GradientBackground />
       <Header />
       <Filter activeTab='workflows' />
-      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder='Search for a Workflow' />
+      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('workflow.label')} />
       <WorkflowListQuery />
       <Footer />
     </>

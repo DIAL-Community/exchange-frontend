@@ -42,10 +42,10 @@ const UseCaseDetailLeft = ({ useCase }) => {
       </div>
       <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray mr-6 shadow-lg'>
         <div className='flex flex-col h-80 p-4'>
-          <div className='text-2xl font-semibold absolute w-80'>
+          <div className='text-2xl font-semibold absolute w-80 text-use-case'>
             {useCase.name}
           </div>
-          <div className='m-auto align-middle w-40'>
+          <div className='m-auto align-middle w-40 use-case-filter'>
             <img
               alt={`Logo for ${useCase.name}`}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}

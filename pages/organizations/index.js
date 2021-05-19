@@ -28,7 +28,7 @@ const Organizations = () => {
       <GradientBackground />
       <Header />
       <Filter activeTab='organizations' />
-      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder='Search for an Organization' />
+      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('organization.label')} />
       <OrganizationListQuery />
       <Footer />
     </>

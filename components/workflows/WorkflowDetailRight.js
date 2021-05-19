@@ -27,13 +27,13 @@ const WorkflowDetailRight = ({ workflow }) => {
   return (
     <div className=''>
       <Breadcrumb />
-      <div className='fr-view'>
+      <div className='fr-view text-dial-gray-dark'>
         {workflow.workflowDescriptions[0] && ReactHtmlParser(workflow.workflowDescriptions[0].description)}
       </div>
       {
         useCases && useCases.length > 0 &&
           <div className='mt-12'>
-            <div className='card-title mb-3'>{format('useCase.header')}</div>
+            <div className='card-title mb-3 text-dial-gray-dark'>{format('useCase.header')}</div>
             <div className='grid grid-cols-1'>
               {useCases.map((useCase, i) => <UseCaseCard key={i} useCase={useCase} listType='list' />)}
             </div>
@@ -42,7 +42,7 @@ const WorkflowDetailRight = ({ workflow }) => {
       {
         workflow.buildingBlocks && workflow.buildingBlocks.length > 0 &&
           <div className='mt-12'>
-            <div className='card-title mb-3'>{format('building-block.header')}</div>
+            <div className='card-title mb-3 text-dial-gray-dark'>{format('building-block.header')}</div>
             <div className='grid grid-cols-1'>
               {workflow.buildingBlocks.map((buildingBlock, i) => <BuildingBlockCard key={i} buildingBlock={buildingBlock} listType='list' />)}
             </div>

@@ -44,7 +44,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
       })}
       {product.organizations && 
         <div className='mt-12'>
-          <div className='card-title mb-3'>{format('organization.header')}</div>
+          <div className='card-title mb-3 text-dial-gray-dark'>{format('organization.header')}</div>
           {product.organizations.map((org, i) => {
             return (<OrganizationCard key={i} organization={org} listType='list' />)
           })}
@@ -52,7 +52,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
       }
       {product.buildingBlocks && 
         <div className='mt-12'>
-          <div className='card-title mb-3'>{format('building-block.header')}</div>
+          <div className='card-title mb-3 text-dial-gray-dark'>{format('building-block.header')}</div>
           {product.buildingBlocks.map((bb, i) => {
             return (<BuildingBlockCard key={i} buildingBlock={bb} listType='list' />)
           })}
@@ -60,7 +60,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
       }
       {product.sustainableDevelopmentGoals && 
         <div className='mt-12'>
-          <div className='card-title mb-3'>{format('sdg.header')}</div>
+          <div className='card-title mb-3 text-dial-gray-dark'>{format('sdg.header')}</div>
           {product.sustainableDevelopmentGoals.map((sdg, i) => {
             return (<SDGCard key={i} sdg={sdg} listType='list' />)
           })}
@@ -68,7 +68,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
       }
       {product.sectors && 
         <div className='mt-12'>
-          <div className='card-title mb-3'>{format('sector.header')}</div>
+          <div className='card-title mb-3 text-dial-gray-dark'>{format('sector.header')}</div>
           <div className='grid grid-cols-3'>
             {product.sectors.map((sector, i) => {
               return (<SectorCard key={i} sector={sector} listType='list' />)
@@ -78,7 +78,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
       }
       {product.currProjects && 
         <div className='mt-12'>
-          <div className='card-title mb-3'>{format('project.header')}</div>
+          <div className='card-title mb-3 text-dial-gray-dark'>{format('project.header')}</div>
             {product.currProjects.map((project, i) => {
               return (<ProjectCard key={i} project={project} listType='list' />)
             })}
@@ -86,7 +86,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
       }
       {product.codeLines && 
         <div className='mt-12'>
-          <div className='card-title mb-3'>{format('product.cost-data')}</div>
+          <div className='card-title mb-3 text-dial-gray-dark'>{format('product.cost-data')}</div>
           <div className='pb-5'>
             <div className='h5 pb-1'>{format('product.code-lines')}</div>
             <div className='text-sm'>{product.codeLines}</div>
@@ -99,36 +99,36 @@ const ProductDetailRight = ({ product, discourseRef }) => {
       }
       <div className='mt-12 grid grid-cols-2'>
         <div>
-          <div className='card-title mb-3'>{format('product.interoperable')}</div>
+          <div className='card-title mb-3 text-dial-gray-dark'>{format('product.interoperable')}</div>
           { (product.interoperatesWith.length > 0) ? 
             product.interoperatesWith.map((interopProd) => {
               return (<div className='pb-5 mr-6'>
                 <ProductCard product={interopProd} listType='list' />
               </div>)}) 
             :
-            (<div className='text-sm pb-5'>{format('product.no-interop')}</div>)
+            (<div className='text-sm pb-5 text-button-gray'>{format('product.no-interop')}</div>)
           }
         </div>
         <div>
-          <div className='card-title mb-3'>{format('product.included')}</div>
+          <div className='card-title mb-3 text-dial-gray-dark'>{format('product.included')}</div>
           { (product.includes.length > 0) ? 
             product.includes.map((includeProd) => {
               return (<div className='pb-5 mr-6'>
                 <ProductCard product={includeProd} listType='list' />
               </div>)}) 
             :
-            (<div className='text-sm pb-5'>{format('product.no-include')}</div>)
+            (<div className='text-sm pb-5 text-button-gray'>{format('product.no-include')}</div>)
           }
         </div>
       </div>
       <div className='mt-12'>
-        <div className='card-title mb-3'>{format('product.maturity-scores')}</div>
+        <div className='card-title mb-3 text-dial-gray-dark'>{format('product.maturity-scores')}</div>
         { product.maturityScore ? <MaturityAccordion maturityScores={product.maturityScores} overallScore={product.maturityScore} />
-          : <div className='text-sm pb-5'>{format('product.no-maturity')}</div>
+          : <div className='text-sm pb-5 text-button-gray'>{format('product.no-maturity')}</div>
         }
       </div>
       <div className='mt-12' ref={discourseRef} >
-        <div className='card-title mb-3'>{format('product.discussion')}</div>
+        <div className='card-title mb-3 text-dial-gray-dark'>{format('product.discussion')}</div>
         <DiscourseForum topicId={product.discourseId} />
       </div>
     </div>

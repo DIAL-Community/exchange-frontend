@@ -5,6 +5,8 @@ define({
   "app.nocomment": "Start a Conversation",
   "app.home": "Home",
   "app.submit": "Submit",
+  "app.search": "Search for a ",
+  "app.create-new": "Create New",
 
   "header.signIn": "Sign Up or Log In",
   "header.signOut": "Sign Out",

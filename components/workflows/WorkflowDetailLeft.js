@@ -42,10 +42,10 @@ const WorkflowDetailLeft = ({ workflow }) => {
       </div>
       <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray mr-6 shadow-lg'>
         <div className='flex flex-col h-80 p-4'>
-          <div className='text-2xl font-semibold absolute w-80'>
+          <div className='text-2xl font-semibold absolute w-80 text-workflow'>
             {workflow.name}
           </div>
-          <div className='m-auto align-middle w-40'>
+          <div className='m-auto align-middle w-40 workflow-filter'>
             <img
               alt={`Logo for ${workflow.name}`}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
