@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import { truncate } from '../../lib/utilities'
 
 import { convertToKey } from '../context/FilterResultContext'
-const collectionPath = convertToKey('Use Case')
+const collectionPath = convertToKey('Organizations')
 
 const OrganizationCard = ({ organization, listType }) => {
   const { formatMessage } = useIntl()

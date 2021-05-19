@@ -105,7 +105,7 @@ const UserMenu = () => {
         href='signOut' onClick={(e) => toggleSwitcher(e)}
       >
         <img src='/icons/user.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
-        <div className='inline'>{session.user.userName}
+        <div className='inline text-xs'>{session.user.userName.toUpperCase()}
           {
             showUserMenu ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
           }
