@@ -37,7 +37,9 @@ export const en = {
   'footer.follow': 'Follow DIAL on social media',
   'footer.icons': 'Icons provided unmodified by ',
 
-  'definition.subtitle': 'A useful tool for a wide range of users',
+  'definition.title': 'The Catalog of Digital Solutions is an interactive online resource to support Global Development Actors in the implementation of digital strategies.',
+  'definition.goal': 'Our goal: ',
+  'definition.subtitle': 'Informed decision-making and greater coordination in digital investments, planning & implementations across sectors',
   'definition.donors': 'Donors',
   'definition.policy-makers': 'Policy Makers',
   'definition.implementers': 'Implementing Partners',

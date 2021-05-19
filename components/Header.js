@@ -251,7 +251,11 @@ const Header = () => {
                 </div>
               </div>
             </li>
-            <li><a className={`${menuItemStyles}`} href='about'>{format('header.about')}</a></li>
+            <li>
+              <Link href='/about'>
+                <a className={`${menuItemStyles}`} href='about'>{format('header.about')}</a>
+              </Link>
+            </li>
             {
               session
                 ? (

@@ -30,7 +30,6 @@ const HomePage = () => {
       <Landing />
       <Header />
       <Definition />
-      <Carousel />
       <WizardDescription />
       <CatalogTitle />
       <Filter activeTab='products' />
