@@ -63,6 +63,7 @@ query Wizard($phase: String!, $sector: String, $buildingBlocks: [String!], $tags
       name
       imageUrl
       link
+      description
     }
   }
 }
@@ -108,6 +109,7 @@ query Wizard($phase: String!, $sector: String, $buildingBlocks: [String!], $tags
       name
       imageUrl
       link
+      description
     }
   }
 }
@@ -274,7 +276,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             {phase === 'Evaluation' && format('wizard.results.resources')}
           </div>
           <div className='pb-4 text-sm'>
-            {phase === 'Ideation' && (wizardData.projects ? format('wizard.results.similarProjectsDesc') : format('wizard.results.noProjects'))}
+            {phase === 'Ideation' && (wizardData.projects && wizardData.projects.length ? format('wizard.results.similarProjectsDesc') : format('wizard.results.noProjects'))}
             {phase === 'Planning' && (wizardData.buildingBlocks && wizardData.buildingBlocks.length ? format('wizard.results.buildingBlocksDesc') : format('wizard.results.noBuildingBlocks'))}
             {phase === 'Implementation' && (wizardData.products && wizardData.products.length ? format('wizard.results.productsDesc') : format('wizard.results.noProducts'))}
             {phase === 'Evaluation' && format('wizard.results.resourcesDesc')}

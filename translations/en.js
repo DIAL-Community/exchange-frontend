@@ -156,7 +156,7 @@ export const en = {
   'wizard.results.resources': 'Additional Resources',
   'wizard.results.resourcesDesc': 'Here are some additional resources that may be helpful:',
   'wizard.results.products': 'Candidate Products',
-  'wizard.results.productsDesc': 'Here are products that are aligned with the building blocks, sector, or use case for the project',
+  'wizard.results.productsDesc': 'Here are products that are aligned with the building blocks, sector, or tags for the project',
   'wizard.results.noProducts': 'We cannot provide recommendations on specific products or tools based on the information provided.',
   'wizard.results.aggregators': 'Mobile Network Aggregators',
   'wizard.results.aggregatorsDesc': 'If your project requires mobile network services, these Aggregators may help you set up mobile solutions quickly.',
