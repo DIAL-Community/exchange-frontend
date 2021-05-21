@@ -24,7 +24,7 @@ export default NextAuth({
           }
         }
 
-        const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authenticate/credentials.json', {
+        const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authenticate/credentials', {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
           mode: 'cors', // no-cors, *cors, same-origin
           // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -72,5 +72,21 @@ export default NextAuth({
   pages: {
     signIn: '/auth/signin',
     error: '/auth/error'
+  },
+  events: {
+    async signOut (message) {
+      const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/invalidate', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-User-Email': message.user.userEmail,
+          'X-User-Token': message.user.userToken
+        }
+      })
+
+      if (response.status === 200) {
+        console.log(`User with email: ${message.user.userEmail} signed out successfully`)
+      }
+    }
   }
 })

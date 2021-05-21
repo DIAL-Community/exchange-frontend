@@ -100,15 +100,15 @@ query Product($slug: String!) {
 }
 `
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps (context) {
   return {
-    props: {}, // will be passed to the page component as props
+    props: {} // will be passed to the page component as props
   }
 }
 
 const Product = () => {
-  const discourseElement = useRef();
-  const rightPanel = useRef();
+  const discourseElement = useRef()
+  const rightPanel = useRef()
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })

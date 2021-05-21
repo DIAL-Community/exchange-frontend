@@ -228,6 +228,7 @@ export const en = {
   'country.header': 'Countries',
   'workflow.header': 'Workflows',
   'useCase.header': 'Use Cases',
+  'product.header': 'Products',
 
   'organization.detail.website': 'Website',
   'organization.detail.whenEndorsed': 'Endorsed On',
