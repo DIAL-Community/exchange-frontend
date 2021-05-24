@@ -6,7 +6,7 @@ import { truncate } from '../../lib/utilities'
 import { convertToKey } from '../context/FilterResultContext'
 const collectionPath = convertToKey('Projects')
 
-const ProjectCard = ({ project, listType }) => {
+const ProjectCard = ({ project, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -36,6 +36,7 @@ const ProjectCard = ({ project, listType }) => {
 
   return (
     <Link className='card-link' href={`/${collectionPath}/${project.slug}`}>
+      <a { ... newTab && {target: '_blank'}}>
       {
         listType === 'list'
           ? (
@@ -162,6 +163,7 @@ const ProjectCard = ({ project, listType }) => {
             </div>
             )
       }
+      </a>
     </Link>
   )
 }

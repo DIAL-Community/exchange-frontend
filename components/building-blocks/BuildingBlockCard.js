@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 import { convertToKey } from '../context/FilterResultContext'
 const collectionPath = convertToKey('Building Blocks')
 
-const BuildingBlockCard = ({ buildingBlock, listType }) => {
+const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -43,6 +43,7 @@ const BuildingBlockCard = ({ buildingBlock, listType }) => {
 
   return (
     <Link href={`/${collectionPath}/${buildingBlock.slug}`}>
+      <a { ... newTab && {target: '_blank'}}>
       {
         listType === 'list'
           ? (
@@ -186,6 +187,7 @@ const BuildingBlockCard = ({ buildingBlock, listType }) => {
             </div>
             )
       }
+      </a>
     </Link>
   )
 }

@@ -6,7 +6,7 @@ import { truncate } from '../../lib/utilities'
 import { convertToKey } from '../context/FilterResultContext'
 const collectionPath = convertToKey('Organizations')
 
-const OrganizationCard = ({ organization, listType }) => {
+const OrganizationCard = ({ organization, listType, newTab = false  }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -20,6 +20,7 @@ const OrganizationCard = ({ organization, listType }) => {
         listType === 'list'
           ? (
             <Link className='card-link' href={`/${collectionPath}/${organization.slug}`}>
+              <a { ... newTab && {target: '_blank'}}>
               <div className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
                 <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                   <div className='grid grid-cols-12 my-5 px-4'>
@@ -58,6 +59,7 @@ const OrganizationCard = ({ organization, listType }) => {
                   </div>
                 </div>
               </div>
+              </a>
             </Link>
             )
           : (

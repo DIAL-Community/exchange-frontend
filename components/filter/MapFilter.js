@@ -40,6 +40,19 @@ const MapFilter = (props) => {
               <div className='text-sm text-dial-gray-light flex flex-row flex-wrap md:flex-nowrap'>
                 <div className='text-white px-2 pb-2 w-full'>
                   <div className='flex flex-col'>
+                    <div className='text-center whitespace-normal'>Map of Projects</div>
+                    <div className='block'>
+                      <a href='set-projects-active' onClick={(e) => navigateToMap(e, 'projects')}>
+                        <img
+                          src='/images/maps/projects.png' alt='Navigate to map of projects'
+                          className={`${router.pathname.indexOf('projects') >= 0 ? 'border-4 border-dial-yellow' : ''} w-64 mt-4 mx-auto`}
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className='text-white px-2 pb-2 w-full'>
+                  <div className='flex flex-col'>
                     <div className='text-center whitespace-normal'>Map of Digital Principles Endorsers</div>
                     <div className='block'>
                       <a href='set-endorsers-active' onClick={(e) => navigateToMap(e, 'endorsers')}>
@@ -59,19 +72,6 @@ const MapFilter = (props) => {
                         <img
                           src='/images/maps/aggregators.png' alt='Navigate to map of aggregators'
                           className={`${router.pathname.indexOf('aggregators') >= 0 ? 'border-4 border-dial-yellow' : ''} w-64 mt-4 mx-auto`}
-                        />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className='text-white px-2 pb-2 w-full'>
-                  <div className='flex flex-col'>
-                    <div className='text-center whitespace-normal'>Map of Projects</div>
-                    <div className='block'>
-                      <a href='set-projects-active' onClick={(e) => navigateToMap(e, 'projects')}>
-                        <img
-                          src='/images/maps/projects.png' alt='Navigate to map of projects'
-                          className={`${router.pathname.indexOf('projects') >= 0 ? 'border-4 border-dial-yellow' : ''} w-64 mt-4 mx-auto`}
                         />
                       </a>
                     </div>

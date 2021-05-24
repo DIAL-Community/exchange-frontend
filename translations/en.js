@@ -39,7 +39,7 @@ export const en = {
   'footer.follow': 'Follow DIAL on social media',
   'footer.icons': 'Icons provided unmodified by ',
 
-  'definition.title': 'The Catalog of Digital Solutions is an interactive online resource to support Global Development Actors in the implementation of digital strategies.',
+  'definition.title': 'The Catalog of Digital Solutions is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
   'definition.goal': 'Our goal: ',
   'definition.subtitle': 'Informed decision-making and greater coordination in digital investments, planning & implementations across sectors',
   'definition.donors': 'Donors',
@@ -193,7 +193,7 @@ export const en = {
   'landing.subtitle': 'Digital Impact Alliance',
   'landing.title.firstLine': 'Catalog of',
   'landing.title.secondLine': 'Digital Solutions',
-  'landing.blurb': 'A Whole-of-Government Approach to Coordinating Investment in Digital Technologies to Achieve the SDGs.',
+  'landing.blurb': 'An interactive online resource to support Global Development Actors in the implementation of digital strategies.',
   'landing.wizard.title': 'Recommendations Wizard',
   'landing.catalog.title': 'Launch Catalog',
   'landing.wizard.whereToStart': "Don't know where to start?",

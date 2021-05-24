@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 import { convertToKey } from '../context/FilterResultContext'
 const collectionPath = convertToKey('Use Cases')
 
-const UseCaseCard = ({ useCase, listType }) => {
+const UseCaseCard = ({ useCase, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -62,6 +62,7 @@ const UseCaseCard = ({ useCase, listType }) => {
 
   return (
     <Link href={`/${collectionPath}/${useCase.slug}`}>
+      <a { ... newTab && {target: '_blank'}}>
       {
         listType === 'list'
           ? (
@@ -198,6 +199,7 @@ const UseCaseCard = ({ useCase, listType }) => {
             </div>
             )
       }
+      </a>
     </Link>
   )
 }
