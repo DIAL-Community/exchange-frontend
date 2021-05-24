@@ -28,7 +28,7 @@ const EndorserInfo = (props) => {
   }
 
   return (
-    <div className='absolute right-4' style={{ zIndex: 11, minWidth: '56ch' }}>
+    <div className='absolute right-4' style={{ zIndex: 500, minWidth: '56ch' }}>
       <div className='block mt-2 shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none max-w-prose'>
         <div className='text-sm text-dial-cyan font-semibold border-b px-4 py-2'>
           {`${city.organizations.length} ${format('organization.header')}`}

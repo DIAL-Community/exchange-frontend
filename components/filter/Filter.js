@@ -98,10 +98,10 @@ const Filter = (props) => {
               // * --> Last element: show count of activeTab - 3 for last element, show activeTab + 3 title for first element.
               filterItems.map((filterItem, index) => {
                 const normalizedFilterItem = convertToKey(filterItem)
-                // Need to default map viewing to projects (or to endorsers?)
+                // Need to default map viewing to projects 
                 let href = normalizedFilterItem
                 if (href.indexOf('map') >= 0) {
-                  href = `${href}/endorsers`
+                  href = `${href}/projects`
                 }
 
                 return (

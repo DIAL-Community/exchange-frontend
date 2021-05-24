@@ -283,13 +283,13 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
             {phase === 'Ideation' && wizardData.projects && wizardData.projects.map((project) => {
-              return (<ProjectCard key={`${project.name}`} project={project} listType='list' />)
+              return (<ProjectCard key={`${project.name}`} project={project} listType='list' newTab={true} />)
             })}
             {phase === 'Planning' && wizardData.buildingBlocks && wizardData.buildingBlocks.map((bb) => {
-              return (<BuildingBlockCard key={`${bb.name}`} buildingBlock={bb} listType='list' />)
+              return (<BuildingBlockCard key={`${bb.name}`} buildingBlock={bb} listType='list' newTab={true} />)
             })}
             {phase === 'Implementation' && wizardData.products && wizardData.products.map((product) => {
-              return (<ProductCard key={`${product.name}`} product={product} listType='list' />)
+              return (<ProductCard key={`${product.name}`} product={product} listType='list' newTab={true} />)
             })}
             {phase === 'Evaluation' && wizardData.resources && (
               <div className='pb-6 grid grid-cols-3'>
@@ -313,16 +313,16 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
             {phase === 'Ideation' && wizardData.useCases && wizardData.useCases.map((useCase) => {
-              return (<UseCaseCard key={`${useCase.name}`} useCase={useCase} listType='list' />)
+              return (<UseCaseCard key={`${useCase.name}`} useCase={useCase} listType='list' newTab={true} />)
             })}
             {phase === 'Planning' && wizardData.resources && (
               <div className='pb-6 grid grid-cols-3'>
                 {wizardData.resources.map((resource) => {
-                  return (<Resource key={`${resource.name}`} resource={resource} listType='list' />)
+                  return (<Resource key={`${resource.name}`} resource={resource} listType='list' newTab={true} />)
                 })}
               </div>)}
             {phase === 'Implementation' && wizardData.organizations && wizardData.organizations.map((org) => {
-              return (<OrganizationCard key={`${org.name}`} organization={org} listType='list' />)
+              return (<OrganizationCard key={`${org.name}`} organization={org} listType='list' newTab={true} />)
             })}
           </div>
         </div>

@@ -3,12 +3,13 @@ import { useIntl } from 'react-intl'
 
 import { truncate, ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
 
-const ProductCard = ({ product, listType }) => {
+const ProductCard = ({ product, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
   return (
     <Link href={`/products/${product.slug}`}>
+      <a { ... newTab && {target: '_blank'}}>
       {
         listType === 'list'
           ? (
@@ -175,6 +176,7 @@ const ProductCard = ({ product, listType }) => {
             </div>
             )
       }
+      </a>
     </Link>
   )
 }

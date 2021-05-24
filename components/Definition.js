@@ -1,15 +1,27 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 
 const Description = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
-  const [openTab, setOpenTab] = useState(1)
+  const [openTab, setOpenTab] = useState(0)
 
   const tabClickHandler = (e, tabNumber) => {
     e.preventDefault()
     setOpenTab(tabNumber)
   }
+
+  useEffect(() => {
+    setOpenTab(0);
+    const interval = setInterval(changeTab, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const changeTab = () => {
+    setOpenTab(openTab => {
+      return openTab === 4 ? 0 : openTab + 1;
+    });
+  };
 
   const generateAnchorStyles = (tabNumber) => `
     px-5 py-3 rounded-l-lg block leading-loose tracking-wide whitespace-nowrap xl:pr-24
@@ -25,7 +37,7 @@ const Description = () => {
   ]
 
   return (
-    <div className='hidden lg:block description-with-wizard'>
+    <div className='hidden lg:block'>
       <div className='relative pb-8 sm:pb-16 md:pb-20 xl:pb-32 2xl:max-w-full'>
         <main className='pt-6 mx-auto px-6 sm:pt-12 sm:px-12 lg:pt-16 xl:pt-16 xl:max-w-6xl 2xl:max-w-7xl'>
           <div className='text-lg text-dial-blue-darkest md:text-xl xl:text-2xl xl:leading-landing py-8'>
