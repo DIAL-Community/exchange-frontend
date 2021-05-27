@@ -38,7 +38,7 @@ export const OrganizationAutocomplete = (props) => {
   }
 
   const fetchOptions = async (input, callback, query) => {
-    if (input && input.trim().length < 4) {
+    if (input && input.trim().length < 2) {
       return []
     }
 
