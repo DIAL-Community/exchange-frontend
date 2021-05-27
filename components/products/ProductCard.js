@@ -1,11 +1,16 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-
-import { truncate, ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
+import { useEffect } from 'react'
+import ReactTooltip from 'react-tooltip'
+import { ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
 
 const ProductCard = ({ product, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
+
+  useEffect(() => {
+    ReactTooltip.rebuild()
+  })
 
   return (
     <Link href={`/products/${product.slug}`}>
@@ -68,7 +73,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                   </div>
                   <div className='m-auto align-middle w-40'>
                     <img
-                      alt={`Logo for ${product.name}`}
+                      alt={format('image.alt.logoFor', { name: product.name })}
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
                     />
                   </div>
@@ -89,7 +94,9 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                             .filter((_, index) => index <= 2)
                             .map(sdg => (
                               <img
+                                data-tip={format('tooltip.forEntity', { entity: format('sdg.label'), name: sdg.name })}
                                 key={`sdg-${sdg.slug}`} className='mr-1.5 last:mr-0 h-8'
+                                alt={format('image.alt.logoFor', { name: sdg.name })}
                                 src={`/images/sdgs/${sdg.slug}.png`}
                               />
                             ))
@@ -114,7 +121,9 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                             .filter((_, index) => index <= 2)
                             .map(bb => (
                               <img
+                                data-tip={format('tooltip.forEntity', { entity: format('buildingBlock.label'), name: bb.name })}
                                 key={`sdg-${bb.slug}`} className='mr-1.5 last:mr-0 h-8 building-block-filter'
+                                alt={format('image.alt.logoFor', { name: bb.name })}
                                 src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + bb.imageFile}
                               />
                             ))
@@ -157,15 +166,21 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                           product.origins
                             .filter((_, index) => index <= 2)
                             .map(origin => (
-                              <div key={`origin-${origin.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
+                              <div
+                                key={`origin-${origin.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
+                                data-tip={format('tooltip.forEntity', { entity: format('origin.label'), name: ORIGIN_EXPANSIONS[origin.slug.toLowerCase()]})}
+                              >
                                 {(ORIGIN_ACRONYMS[origin.slug.toLowerCase()] || origin.slug).toUpperCase()}
                               </div>
                             ))
                         }
                         {
                           product.origins.length > 3 &&
-                            <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
-                              ...
+                            <div
+                              className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
+                              data-tip={format('tooltip.ellipsisFor', { entity: format('product.label') })}
+                            >
+                              &hellip;
                             </div>
                         }
                       </div>

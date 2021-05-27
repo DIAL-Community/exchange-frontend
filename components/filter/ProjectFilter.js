@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useIntl } from 'react-intl'
 
 import { ProjectFilterContext, ProjectFilterDispatchContext } from '../context/ProjectFilterContext'
 import { CountryAutocomplete, CountryFilters } from './element/Country'
@@ -10,12 +11,14 @@ import { SectorAutocomplete, SectorFilters } from './element/Sector'
 const ProjectFilter = (props) => {
   const openFilter = props.openFilter
 
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
   const { sectors, countries, organizations, origins, sdgs } = useContext(ProjectFilterContext)
   const { setSectors, setCountries, setOrganizations, setOrigins, setSDGs } = useContext(ProjectFilterDispatchContext)
 
-  const hasFilter = () => {
-    return countries.length > 0 || organizations.length > 0 ||
-      sectors.length > 0 || origins.length > 0 || sdgs.length > 0
+  const filterCount = () => {
+    return countries.length + organizations.length + sectors.length + origins.length + sdgs.length
   }
 
   const clearFilter = (e) => {
@@ -35,12 +38,12 @@ const ProjectFilter = (props) => {
             <div className='col-span-11 md:col-span-5 border-transparent border-r lg:border-dial-purple-light'>
               <div className='text-sm text-dial-gray-light flex flex-row'>
                 <div className='text-white text-xl px-2 pb-3'>
-                  {'Framework Filters'.toUpperCase()}
+                  {format('filter.framework.title').toUpperCase()}
                 </div>
               </div>
               <div className='text-sm text-dial-gray-light flex flex-row'>
                 <div className='pl-2 pr-4 pb-2'>
-                  Use elements of the Digital Investment Framework to filter Projects
+                  {format('filter.framework.subTitle', { entity: format('project.header') })}
                 </div>
               </div>
               <div className='text-sm text-dial-gray-light flex flex-row flex-wrap'>
@@ -49,7 +52,7 @@ const ProjectFilter = (props) => {
             </div>
             <div className='col-span-11 md:col-span-6'>
               <div className='text-white text-xl px-2 pb-3'>
-                {'Project Filters'.toUpperCase()}
+                {format('filter.entity', { entity: format('project.label') }).toUpperCase()}
               </div>
               <div className='text-sm text-dial-gray-light flex flex-row'>
                 <div className='px-2 pb-2'>
@@ -65,9 +68,9 @@ const ProjectFilter = (props) => {
             </div>
           </div>
       }
-      <div className={`flex flex-row pb-4 ${hasFilter() ? 'block' : 'hidden'}`} id='link1'>
+      <div className={`flex flex-row pb-4 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
         <div className='px-2 py-1 mt-2 text-sm text-white whitespace-nowrap'>
-          Filters Applied:
+          {format('filter.general.applied', { count: filterCount() })}:
         </div>
         <div className='flex flex-row flex-wrap'>
           <OriginFilters {...{ origins, setOrigins }} />
@@ -76,9 +79,9 @@ const ProjectFilter = (props) => {
           <OrganizationFilters {...{ organizations, setOrganizations }} />
           <SDGFilters {...{ sdgs, setSDGs }} />
           {
-            hasFilter() &&
+            filterCount() > 0 &&
               <a className='px-2 py-1  mt-2 text-sm text-white' href='#clear-filter' onClick={clearFilter}>
-                Clear all
+                {format('filter.general.clearAll')}
               </a>
           }
         </div>

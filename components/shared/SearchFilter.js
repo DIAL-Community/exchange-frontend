@@ -43,7 +43,7 @@ const SearchFilter = (props) => {
     <div className='relative mx-2 grid grid-cols-12 gap-4 bg-transparent'>
       <div className='col-span-12'>
         <div className='flex flex-row mt-2'>
-          <label className='block w-4/12 my-auto'>
+          <label className='block w-7/12 md:w-4/12 my-auto'>
             <span className='sr-only'>{format('search.input.label')}</span>
             <input
               value={searchTerm} onChange={handleChange}
@@ -51,7 +51,7 @@ const SearchFilter = (props) => {
               placeholder={placeholder}
             />
           </label>
-          <div className='w-2/12'>
+          <div className='w-3/12 md:w-4/12'>
             <div className='flex flex-col md:flex-row'>
               <div className='my-auto px-4 md:px-0 md:pl-4 pt-2 md:pt-0 text-xs md:text-base text-dial-gray-dark'>{format('view.switch.title')}</div>
               <div className='my-auto pt-2 pb-3 px-4 flex flex-row'>
@@ -76,7 +76,7 @@ const SearchFilter = (props) => {
               </div>
             </div>
           </div>
-          <div className='w-6/12 grid mr-4 self-center place-self-end text-sm'>
+          <div className='w-2/12 md:w-4/12 grid mr-4 self-center place-self-end text-sm'>
             { session && session.user.canEdit && (<a href={generateCreateLink()}>
                 <span className='grid justify-end text-dial-teal'>{format('app.create-new')}</span>
               </a>)

@@ -111,7 +111,7 @@ const WorkflowListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [`${convertToKey('Workflows')}`]: data.searchWorkflows.totalCount } })
+      setResultCounts({ ...resultCounts, ...{ ['filter.entity.workflows']: data.searchWorkflows.totalCount } })
     }
   })
 

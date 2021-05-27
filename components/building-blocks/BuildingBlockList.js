@@ -112,7 +112,7 @@ const BuildingBlockListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [`${convertToKey('Building Blocks')}`]: data.searchBuildingBlocks.totalCount }})
+      setResultCounts({ ...resultCounts, ...{ ['filter.entity.buildingBlocks']: data.searchBuildingBlocks.totalCount }})
     }
   })
 

@@ -70,7 +70,7 @@ const OrganizationCard = ({ organization, listType, newTab = false  }) => {
                     <div className='flex flex-row p-1.5 border-b border-dial-gray text-sm font-semibold justify-end text-dial-cyan'>
                       <img className='mr-2 h-6' src='/icons/digiprins/digiprins.png' />
                       <div className='my-auto'>
-                        {`Endorsed on ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
+                        {`${format('organization.endorsedOn')} ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
                       </div>
                     </div>
                   )
@@ -94,7 +94,7 @@ const OrganizationCard = ({ organization, listType, newTab = false  }) => {
                       <div className='border-b border-dial-gray'>
                         <div className='py-3'>
                           <a href={`//${organization.website}`} className='flex flex-row justify-center' target='_blank' rel='noreferrer'>
-                            <div className='my-auto'>Visit website</div>
+                            <div className='my-auto'>{format('organization.visitWebsite')}</div>
                             <img className='ml-2 h-5' src='/icons/visit-light/visit-light.png' />
                           </a>
                         </div>

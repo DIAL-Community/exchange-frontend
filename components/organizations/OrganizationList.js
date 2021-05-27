@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import OrganizationCard from './OrganizationCard'
 import { OrganizationFilterContext } from '../context/OrganizationFilterContext'
-import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
+import { FilterResultContext } from '../context/FilterResultContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -14,17 +14,19 @@ const DEFAULT_PAGE_SIZE = 20
 
 const ORGANIZATIONS_QUERY = gql`
 query SearchOrganizations(
-  $first: Int,
-  $after: String,
-  $sectors: [String!],
-  $countries: [String!],
-  $search: String!
+    $first: Int,
+    $after: String,
+    $sectors: [String!],
+    $countries: [String!],
+    $years: [Int!],
+    $search: String!
   ) {
   searchOrganizations(
     first: $first,
     after: $after,
     sectors: $sectors,
     countries: $countries,
+    years: $years,
     search: $search
   ) {
     __typename
@@ -85,7 +87,7 @@ const OrganizationList = (props) => {
 
 const OrganizationListQuery = () => {
   const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { countries, sectors, search, displayType } = useContext(OrganizationFilterContext)
+  const { countries, sectors, years, search, displayType } = useContext(OrganizationFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -95,10 +97,11 @@ const OrganizationListQuery = () => {
       first: DEFAULT_PAGE_SIZE,
       countries: countries.map(country => country.value),
       sectors: sectors.map(sector => sector.value),
+      years: years.map(year => year.value),
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [`${convertToKey('Organizations')}`]: data.searchOrganizations.totalCount } })
+      setResultCounts({ ...resultCounts, ...{ [['filter.entity.organizations']]: data.searchOrganizations.totalCount } })
     }
   })
 
@@ -119,6 +122,7 @@ const OrganizationListQuery = () => {
         first: DEFAULT_PAGE_SIZE,
         countries: countries.map(country => country.value),
         sectors: sectors.map(sector => sector.value),
+        years: years.map(year => year.value),
         search: search
       }
     })

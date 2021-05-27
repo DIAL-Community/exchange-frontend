@@ -202,8 +202,8 @@ const Header = () => {
   return (
     <header className={`${headerStyles} header-min-height`}>
       <div className='flex-1 flex justify-between items-center'>
-        <Link href='/'>
-          <a href='/' className='px-6 lg:px-8'>
+        <Link href='/products'>
+          <a href='/products' className='px-6 lg:px-8'>
             <div className='text-dial-blue-darkest text-xs'>
               {format('landing.subtitle')}
             </div>

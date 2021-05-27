@@ -5,13 +5,12 @@ const FilterResultContext = createContext()
 
 const initialCounts = (() => {
   const filterItems = [
-    'SDGs', 'Use Cases', 'Workflows', 'Building Blocks', 'Products', 'Projects',
-    'Organizations', 'Maps'
+    'filter.entity.sdgs', 'filter.entity.useCases', 'filter.entity.workflows', 'filter.entity.buildingBlocks', 'filter.entity.products',
+    'filter.entity.projects', 'filter.entity.organizations', 'filter.entity.maps'
   ]
 
   return filterItems.reduce((map, item) => {
-    const key = convertToKey(item)
-    map[key] = key === 'maps' ? '3' : '--'
+    map[item] = item === 'maps' ? '3' : '--'
     return map
   }, {})
 })()

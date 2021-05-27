@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
+import { useIntl } from 'react-intl'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
@@ -31,6 +32,9 @@ export const OriginAutocomplete = (props) => {
   const client = useApolloClient()
   const [origin, setOrigin] = useState('')
   const { origins, setOrigins, containerStyles } = props
+
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectOrigin = (origin) => {
     setOrigin('')
@@ -62,15 +66,15 @@ export const OriginAutocomplete = (props) => {
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
       <label className='block mt-4'>
-        <span className='text-sm text-dial-gray-light'>Origins</span>
+        <span className='text-sm text-dial-gray-light'>{format('origin.header')}</span>
         <AsyncSelect
           className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
           cacheOptions
           defaultOptions
           loadOptions={(input, callback) => fetchOptions(input, callback, ORIGIN_SEARCH_QUERY)}
-          noOptionsMessage={() => 'Search for origins.'}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('origin.header') })}
           onChange={selectOrigin}
-          placeholder='Filter by Origin'
+          placeholder={format('filter.byEntity', { entity: format('origin.label') })}
           styles={customStyles}
           value={origin}
         />
@@ -81,6 +85,10 @@ export const OriginAutocomplete = (props) => {
 
 export const OriginFilters = (props) => {
   const { origins, setOrigins } = props
+
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
   const removeOrigin = (originId) => {
     setOrigins(origins.filter(origin => origin.value !== originId))
   }
@@ -91,7 +99,7 @@ export const OriginFilters = (props) => {
         origins &&
           origins.map(origin => (
             <div key={`filter-${origin.label}`} className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {`Origin: ${origin.label}`}
+              {`${format('origin.label')}: ${origin.label}`}
               <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeOrigin(origin.value)} />
             </div>
           ))

@@ -32,7 +32,7 @@ const HomePage = () => {
       <Definition />
       <WizardDescription />
       <CatalogTitle />
-      <Filter activeTab='products' />
+      <Filter activeTab='filter.entity.products' />
       <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('products.label')} />
       <ProductListQuery />
       <Footer />

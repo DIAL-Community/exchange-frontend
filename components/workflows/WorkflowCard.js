@@ -1,19 +1,24 @@
 import Link from 'next/link'
 import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
+import ReactTooltip from 'react-tooltip'
 
 import { convertToKey } from '../context/FilterResultContext'
 const collectionPath = convertToKey('Workflows')
 
 const WorkflowCard = ({ workflow, listType }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const buildingBlockContainer = createRef()
   const [buildingBlockOverflow, setBuildingBlockOverflow] = useState(false)
 
   const useCaseContainer = createRef()
   const [useCaseOverflow, setUseCaseOverflow] = useState(false)
+
+  useEffect(() => {
+    ReactTooltip.rebuild()
+  })
 
   useEffect(() => {
     const uc = useCaseContainer.current
@@ -87,7 +92,7 @@ const WorkflowCard = ({ workflow, listType }) => {
                   </div>
                   <div className='m-auto align-middle w-40'>
                     <img
-                      alt={`Logo for ${workflow.name}`} className='workflow-filter'
+                      alt={format('image.alt.logoFor', { name: workflow.name })} className='workflow-filter'
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
                     />
                   </div>
@@ -115,7 +120,8 @@ const WorkflowCard = ({ workflow, listType }) => {
                               .map(u => (
                                 <div key={`${workflow.id}-${u.id}`} className='bg-white rounded p-2 mr-1.5'>
                                   <img
-                                    className='m-auto h-6 use-case-filter'
+                                    data-tip={format('tooltip.forEntity', { entity: format('useCase.label'), name: u.name })}
+                                    className='m-auto h-6 use-case-filter' alt={format('image.alt.logoFor', { name: u.name })}
                                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + u.imageFile}
                                   />
                                 </div>
@@ -154,7 +160,8 @@ const WorkflowCard = ({ workflow, listType }) => {
                               .map(b => (
                                 <div key={`${workflow.id}-${b.slug}`} className='bg-white rounded p-2 mr-1'>
                                   <img
-                                    className='m-auto h-6 building-block-filter'
+                                    data-tip={format('tooltip.forEntity', { entity: format('buildingBlock.label'), name: b.name })}
+                                    className='m-auto h-6 building-block-filter' alt={format('image.alt.logoFor', { name: b.name })}
                                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + b.imageFile}
                                   />
                                 </div>
@@ -164,7 +171,12 @@ const WorkflowCard = ({ workflow, listType }) => {
                         {
                           buildingBlockOverflow && (
                             <div className='bg-white mr-3 px-2 rounded text-sm'>
-                              <span className='text-xl text-workflow bg-white leading-normal'>...</span>
+                              <span
+                                className='text-xl text-workflow bg-white leading-normal'
+                                data-tip={format('tooltip.ellipsisFor', { entity: format('workflow.label') })}
+                              >
+                                &hellip;
+                              </span>
                             </div>
                           )
                         }

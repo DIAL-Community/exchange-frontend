@@ -99,7 +99,7 @@ const SDGListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [`${convertToKey('SDGs')}`]: data.searchSdgs.totalCount } })
+      setResultCounts({ ...resultCounts, ...{ ['filter.entity.sdgs']: data.searchSdgs.totalCount } })
     }
   })
 
