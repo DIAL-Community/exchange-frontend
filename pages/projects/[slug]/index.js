@@ -27,6 +27,8 @@ query Project($slug: String!) {
       id
       slug
       name
+      website
+      whenEndorsed
       imageFile
     }
     products {

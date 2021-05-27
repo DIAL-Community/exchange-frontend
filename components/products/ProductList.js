@@ -26,6 +26,7 @@ query SearchProducts(
   $buildingBlocks: [String!],
   $productTypes: [String!],
   $productDeployable: Boolean,
+  $withMaturity: Boolean,
   $search: String!
   ) {
   searchProducts(
@@ -41,6 +42,7 @@ query SearchProducts(
     buildingBlocks: $buildingBlocks,
     productTypes: $productTypes,
     productDeployable: $productDeployable,
+    withMaturity: $withMaturity,
     search: $search
   ) {
     __typename
@@ -119,7 +121,7 @@ const ProductListQuery = () => {
   const { resultCounts, setResultCounts } = useContext(FilterResultContext)
   const {
     origins, countries, sectors, organizations, sdgs, useCases, workflows, buildingBlocks, productTypes,
-    productDeployable, search, displayType
+    productDeployable, withMaturity, search, displayType
   } = useContext(ProductFilterContext)
 
   const { formatMessage } = useIntl()
@@ -138,6 +140,7 @@ const ProductListQuery = () => {
       buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
       productTypes: productTypes.map(productType => productType.value),
       productDeployable: productDeployable,
+      withMaturity: withMaturity,
       search: search
     },
     onCompleted: (data) => {
@@ -170,6 +173,7 @@ const ProductListQuery = () => {
         buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
         productTypes: productTypes.map(productType => productType.value),
         productDeployable: productDeployable,
+        withMaturity: withMaturity,
         search: search
       }
     })

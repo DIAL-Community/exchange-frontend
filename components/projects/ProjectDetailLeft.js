@@ -41,7 +41,7 @@ const ProjectDetailLeft = ({ project }) => {
       </div>
       <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 mr-6 shadow-lg'>
         <div id='header' className='mb-4'>
-          <div className='h1 p-2 text-dial-purple'>
+          <div className='h2 p-2 text-dial-purple overflow-clip'>
             {project.name}
           </div>
         </div>

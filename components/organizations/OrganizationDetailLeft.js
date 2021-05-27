@@ -63,7 +63,7 @@ const OrganizationDetailLeft = ({ organization }) => {
             />
           </div>
         </div>
-        <div className='h4 text-dial-gray-dark'>
+        <div className='h4 text-dial-gray-dark p-3'>
           {organization.organizationDescriptions[0] && ReactHtmlParser(organization.organizationDescriptions[0].description)}
         </div>
       </div>
