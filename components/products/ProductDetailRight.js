@@ -69,7 +69,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
       {product.sectors && 
         <div className='mt-12'>
           <div className='card-title mb-3 text-dial-gray-dark'>{format('sector.header')}</div>
-          <div className='grid grid-cols-3'>
+          <div className='grid grid-cols-1 lg:grid-cols-2'>
             {product.sectors.map((sector, i) => {
               return (<SectorCard key={i} sector={sector} listType='list' />)
             })}

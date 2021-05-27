@@ -38,8 +38,8 @@ const Description = () => {
 
   return (
     <div className='hidden lg:block'>
-      <div className='relative pb-8 sm:pb-16 md:pb-20 xl:pb-32 2xl:max-w-full'>
-        <main className='pt-6 mx-auto px-6 sm:pt-12 sm:px-12 lg:pt-16 xl:pt-16 xl:max-w-6xl 2xl:max-w-7xl'>
+      <div className='relative pb-8 lg:pb-12 2xl:max-w-full'>
+        <main className='pt-8 mx-auto px-6 sm:px-12 xl:pt-12 xl:max-w-6xl 2xl:max-w-7xl'>
           <div className='text-lg text-dial-blue-darkest md:text-xl xl:text-2xl xl:leading-landing py-8'>
             {format('definition.title')}
           </div>
