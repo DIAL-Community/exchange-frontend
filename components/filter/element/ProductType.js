@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
+import { useIntl } from 'react-intl'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
@@ -21,15 +22,18 @@ export const ProductTypeSelect = (props) => {
   const [productType, setProductType] = useState('')
   const { productTypes, setProductTypes, containerStyles } = props
 
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
   const selectProductType = (productType) => {
     setProductType('')
     setProductTypes([...productTypes.filter(p => p.value !== productType.value), productType])
   }
 
   const options = [
-    { value: 'product_and_dataset', label: 'All Type' },
-    { value: 'product', label: 'Product Only' },
-    { value: 'dataset', label: 'Dataset Only' }
+    { value: 'product_and_dataset', label: format('productType.allType') },
+    { value: 'product', label: format('productType.productOnly') },
+    { value: 'dataset', label: format('productType.datasetOnly') }
   ]
 
   const fetchOptions = async (input) => {
@@ -39,14 +43,14 @@ export const ProductTypeSelect = (props) => {
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
       <label className='block mt-4'>
-        <span className='text-sm text-dial-gray-light'>Product or Dataset?</span>
+        <span className='text-sm text-dial-gray-light'>{format('productType.header')}</span>
         <AsyncSelect
           className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
           cacheOptions
           defaultOptions={options}
           loadOptions={fetchOptions}
           onChange={selectProductType}
-          placeholder='Filter by Type'
+          placeholder={format('filter.byEntity', { entity: format('productType.label') })}
           styles={customStyles}
           value={productType}
         />
@@ -57,6 +61,10 @@ export const ProductTypeSelect = (props) => {
 
 export const ProductTypeFilters = (props) => {
   const { productTypes, setProductTypes } = props
+
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
   const removeProductType = (productTypeId) => {
     setProductTypes(productTypes.filter(productType => productType.value !== productTypeId))
   }
@@ -67,7 +75,7 @@ export const ProductTypeFilters = (props) => {
         productTypes &&
           productTypes.map(productType => (
             <div key={`filter-${productType.label}`} className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {`Country: ${productType.label}`}
+              {`${format('productType.label')}: ${productType.label}`}
               <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeProductType(productType.value)} />
             </div>
           ))

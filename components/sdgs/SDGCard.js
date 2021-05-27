@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
+import ReactTooltip from 'react-tooltip'
 
 import { truncate } from '../../lib/utilities'
 
@@ -9,13 +10,17 @@ const collectionPath = convertToKey('SDGs')
 
 const SDGCard = ({ sdg, listType }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const sdgTargetContainer = createRef()
   const [sdgTargetOverflow, setSdgTargetOverflow] = useState(false)
 
   const useCaseContainer = createRef()
   const [useCaseOverflow, setUseCaseOverflow] = useState(false)
+
+  useEffect(() => {
+    ReactTooltip.rebuild()
+  })
 
   useEffect(() => {
     const uc = useCaseContainer.current
@@ -67,7 +72,10 @@ const SDGCard = ({ sdg, listType }) => {
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-1 md:grid-cols-6 gap-4 my-5 px-4'>
                   <div className={`${nameColSpan()} pr-3 text-base text-sdg font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden`}>
-                    <img className='inline pr-4' src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`} alt={sdg.imageFile} width='40' height='40' />
+                    <img
+                      className='inline pr-4' src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`}
+                      alt={format('image.alt.logoFor', { name: sdg.name })}  width='40' height='40'
+                    />
                     {sdg.name}
                   </div>
                   <div className={`${useCaseColSpan()} text-base text-use-case whitespace-nowrap overflow-ellipsis overflow-hidden`}>
@@ -92,7 +100,7 @@ const SDGCard = ({ sdg, listType }) => {
                   </div>
                   <div className='m-auto align-middle w-40'>
                     <img
-                      alt={`Logo for ${sdg.name}`}
+                      alt={format('image.alt.logoFor', { name: sdg.name })}
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}
                     />
                   </div>
@@ -116,7 +124,10 @@ const SDGCard = ({ sdg, listType }) => {
                           {
                             sdg.sdgTargets
                               .map(sdgTarget => (
-                                <div key={`${sdg.id}-${sdgTarget.id}`} className='bg-white rounded text-sdg-target p-2 mr-1.5'>
+                                <div
+                                  key={`${sdg.id}-${sdgTarget.id}`} className='bg-white rounded text-sdg-target p-2 mr-1.5'
+                                  data-tip={sdgTarget.name}
+                                >
                                   {sdgTarget.targetNumber}
                                 </div>
                               ))
@@ -125,7 +136,12 @@ const SDGCard = ({ sdg, listType }) => {
                         {
                           sdgTargetOverflow && (
                             <div className='bg-white mr-3 px-2 rounded text-sm text-sdg-target'>
-                              <span className='text-xl bg-white leading-normal'>...</span>
+                              <span
+                                className='text-xl bg-white leading-normal'
+                                data-tip={format('tooltip.ellipsisFor', { entity: format('sdg.label')})}
+                              >
+                                &hellip;
+                              </span>
                             </div>
                           )
                         }
@@ -152,7 +168,8 @@ const SDGCard = ({ sdg, listType }) => {
                               .map(useCase => (
                                 <div key={`${sdg.id}-${useCase.id}`} className='bg-white rounded p-2 mr-1'>
                                   <img
-                                    className='m-auto h-6 use-case-filter'
+                                    data-tip={format('tooltip.forEntity', { entity: format('useCase.label'), name: useCase.name })}
+                                    className='m-auto h-6 use-case-filter' alt={format('image.alt.logoFor', { name: useCase.name})}
                                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
                                   />
                                 </div>
@@ -162,7 +179,12 @@ const SDGCard = ({ sdg, listType }) => {
                         {
                           useCaseOverflow && (
                             <div className='bg-white mr-3 px-2 rounded text-sm'>
-                              <span className='text-xl bg-white leading-normal'>...</span>
+                              <span
+                                className='text-xl bg-white leading-normal'
+                                data-tip={format('tooltip.ellipsisFor', { entity: format('sdg.label') })}
+                              >
+                                &hellip;
+                              </span>
                             </div>
                           )
                         }

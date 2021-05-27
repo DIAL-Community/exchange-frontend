@@ -98,7 +98,7 @@ const EndorserMapPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <Filter activeTab='maps' />
+      <Filter activeTab='filter.entity.maps' />
       <EndorserMap organizations={nodes} />
       <Footer />
     </>

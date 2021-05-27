@@ -67,10 +67,12 @@ query SearchProducts(
       }
       buildingBlocks {
         slug
+        name
         imageFile
       }
       sustainableDevelopmentGoals {
         slug
+        name
         imageFile
       }
     }
@@ -139,7 +141,7 @@ const ProductListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [`${convertToKey('Products')}`]: data.searchProducts.totalCount } })
+      setResultCounts({ ...resultCounts, ...{ ['filter.entity.products']: data.searchProducts.totalCount } })
     }
   })
 

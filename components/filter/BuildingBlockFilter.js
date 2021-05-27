@@ -1,4 +1,6 @@
 import { useContext } from 'react'
+import { useIntl } from 'react-intl'
+
 import { MdClose } from 'react-icons/md'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext } from '../context/BuildingBlockFilterContext'
 
@@ -8,6 +10,9 @@ import { WorkflowAutocomplete, WorkflowFilters } from './element/Workflow'
 
 const BuildingBlockFilter = (props) => {
   const openFilter = props.openFilter
+
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const {
     showMature, sdgs, useCases, workflows
@@ -20,8 +25,13 @@ const BuildingBlockFilter = (props) => {
     setShowMature(!showMature)
   }
 
-  const hasFilter = () => {
-    return showMature || sdgs.length > 0 || useCases.length > 0 || workflows.length > 0
+  const filterCount = () => {
+    let count = 0
+    if (showMature) {
+      count = count + 1
+    }
+    count = count + sdgs.length + useCases.length + workflows.length
+    return count
   }
 
   const clearFilter = (e) => {
@@ -40,12 +50,12 @@ const BuildingBlockFilter = (props) => {
             <div className='col-span-11 md:col-span-5 border-transparent border-r lg:border-dial-purple-light'>
               <div className='text-sm text-dial-gray-light flex flex-row'>
                 <div className='text-white text-xl px-2 pb-3'>
-                  {'Framework Filters'.toUpperCase()}
+                  {format('filter.framework.title').toUpperCase()}
                 </div>
               </div>
               <div className='text-sm text-dial-gray-light flex flex-row'>
                 <div className='pl-2 pr-4 pb-2'>
-                  Use elements of the Digital Investment Framework to filter Building Blocks
+                  {format('filter.framework.subTitle', { entity: format('building-block.header') })}
                 </div>
               </div>
               <div className='text-sm text-dial-gray-light flex flex-row flex-wrap'>
@@ -56,7 +66,7 @@ const BuildingBlockFilter = (props) => {
             </div>
             <div className='col-span-11 md:col-span-6'>
               <div className='text-white text-xl px-2 pb-3'>
-                {'Building Block Filters'.toUpperCase()}
+                {format('filter.entity', { entity: format('buildingBlock.label') }).toUpperCase()}
               </div>
               <div className='text-sm text-dial-gray-light flex flex-row'>
                 <div className='px-2 pb-2'>
@@ -65,22 +75,22 @@ const BuildingBlockFilter = (props) => {
                       type='checkbox' className='h-4 w-4 form-checkbox text-white' name='with-maturity'
                       checked={showMature} onChange={toggleWithMaturity}
                     />
-                    <span className='ml-2'>Show only mature building blocks</span>
+                    <span className='ml-2'>{format('filter.buildingBlock.matureOnly')}</span>
                   </label>
                 </div>
               </div>
             </div>
           </div>
       }
-      <div className={`flex flex-row pb-4 ${hasFilter() ? 'block' : 'hidden'}`} id='link1'>
+      <div className={`flex flex-row pb-4 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
         <div className='px-2 py-1 mt-2 text-sm text-white whitespace-nowrap'>
-          Filters Applied:
+          {format('filter.general.applied', { count: filterCount() })}:
         </div>
         <div className='flex flex-row flex-wrap'>
           {
             showMature &&
               <div className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-                Show only mature building blocks
+                {format('filter.buildingBlock.matureOnly')}
                 <MdClose className='ml-3 inline cursor-pointer' onClick={toggleWithMaturity} />
               </div>
           }
@@ -88,9 +98,9 @@ const BuildingBlockFilter = (props) => {
           <UseCaseFilters {...{ useCases, setUseCases }} />
           <SDGFilters {...{ sdgs, setSDGs }} />
           {
-            hasFilter() &&
+            filterCount() > 0 &&
               <a className='px-2 py-1  mt-2 text-sm text-white' href='#clear-filter' onClick={clearFilter}>
-                Clear all
+                {format('filter.general.clearAll')}
               </a>
           }
         </div>

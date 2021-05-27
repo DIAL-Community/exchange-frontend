@@ -10,7 +10,9 @@ import Footer from '../../components/Footer'
 import SearchFilter from '../../components/shared/SearchFilter'
 import GradientBackground from '../../components/shared/GradientBackground'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../../components/context/ProductFilterContext'
-import { useContext } from 'react'
+
+import { useContext, useEffect } from 'react'
+import ReactTooltip from 'react-tooltip'
 
 const Products = () => {
   const { formatMessage } = useIntl()
@@ -27,7 +29,8 @@ const Products = () => {
       </Head>
       <GradientBackground />
       <Header />
-      <Filter activeTab='products' />
+      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Filter activeTab='filter.entity.products' />
       <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('products.label')} />
       <ProductListQuery />
       <Footer />

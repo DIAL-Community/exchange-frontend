@@ -11,6 +11,7 @@ import '../styles/accordion.css'
 import '../styles/view-content.css'
 import '../styles/leaflet.css'
 import '../styles/loading.css'
+import '../styles/tooltip.css'
 
 import CatalogContext from '../lib/CatalogContext'
 

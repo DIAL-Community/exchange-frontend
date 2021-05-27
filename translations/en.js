@@ -1,3 +1,6 @@
+// Translation note for plural texts:
+// Only translate texts inside curly brace after 'one', 'other', and '= 0'
+
 export const en = {
   'app.title': 'DIAL Catalog of Digital Solutions',
   'app.edit': 'Edit',
@@ -211,6 +214,7 @@ export const en = {
   'product.card.buildingBlocks': 'Building Blocks',
   'product.card.sdgs': 'SDGs',
 
+  'general.close': 'Close',
   'general.na': 'N/A',
   'general.fetchingData': 'Fetching data ...',
   'general.fetchError': 'Error fetching data. Please check your network connection.',
@@ -243,9 +247,146 @@ export const en = {
 
   'useCase.label': 'Use Case',
   'workflow.label': 'Workflow',
+  'product.label': 'Product',
+  'country.label': 'Country',
 
   'error.auth': 'Error in authentication',
   'error.tryAgain': 'Try Again',
-  'error.goBack': 'Go Back to Catalog'
+  'error.goBack': 'Go Back to Catalog',
 
+  'buildingBlock.hint.subtitle': `Building blocks are enterprise-ready, reusable software components
+    providing key functionality facilitating generic WorkFlows across multiple sectors.
+  `,
+  'buildingBlock.hint.characteristicTitle': 'Characteristics',
+  'buildingBlock.hint.descriptionTitle': 'Description',
+  'buildingBlock.hint.characteristics': `
+    <ul>
+      <li>Reusable software components</li>
+      <li>Can be open-source, commercial off-the-shelf (COTS), or freely available with open access to data</li>
+      <li>Facilitates one or more generic WorkFlows</li>
+      <li>Applicable to multiple UseCases across multiple sectors</li>
+      <li>Interoperable with other ICT Building Blocks</li>
+      <li>Designed for scalability and extensibility</li>
+      <li>Standards-based</li>
+    </ul>
+  `,
+  'buildingBlock.hint.description': `Each ICT Building Block page includes a description, key digital 
+    functionalities, sector-specific examples, example software products, and mappings to WorkFlows defined
+    in this framework. The list of ICT Building Blocks, exemplar software products, and mappings is not
+    exhaustive and more will be added in future releases. Please note that the software product examples
+    are for illustrative purposes only. Further mapping and ranking of existing products based on maturity,
+    sustainability and applicability to the ICT Building Blocks will be addressed overtime.
+  `,
+  'filter.hint.text': 'How to read the card',
+
+  'digiInvestment.title': "Digital Investment Framework",
+
+  'filter.entity.sdgs': 'SDGs',
+  'filter.entity.useCases': 'Use Cases',
+  'filter.entity.workflows': 'Workflows',
+  'filter.entity.buildingBlocks': 'Building Blocks',
+  'filter.entity.products': 'Products',
+  'filter.entity.projects': 'Projects',
+  'filter.entity.organizations': 'Organizations',
+  'filter.entity.maps': 'Maps',
+
+  'filter.byEntity': 'Filter by {entity}',
+  'filter.searchFor': 'Search for {entity}',
+
+  'filter.entity': "{entity} Filters",
+  'filter.dropdown.title': "Filter {entity} by:",
+  
+  'filter.framework.title': 'Framework Filters',
+  'filter.framework.subTitle': "Use elements of the Digital Investment Framework to filter {entity}",
+
+  'filter.buildingBlock.matureOnly': 'Show only mature building blocks',
+
+  'filter.general.applied': "{count, plural, one {Filter Applied} other {Filters Applied}}",
+  'filter.general.clearAll': 'Clear all',
+
+  'filter.organization.aggregatorOnly': 'Only Aggregators',
+  'filter.organization.endorserOnly': 'Only Endorser Organizations',
+  'filter.useCase.showBeta': 'Show Beta (non-Validated) Use Cases',
+
+  'filter.product.withMaturity': 'Product with maturity assessment',
+  'filter.product.launchable': 'Product can be deployed and launched',
+  'filter.launchWizard': 'Launch Recommendations Wizard',
+
+  'endorsingYear.label': 'Endorsing Year',
+
+  'origin.label': 'Origin',
+  'origin.header': 'Origins',
+
+  'sdg.shortLabel': 'SDG',
+  'sdg.shortHeader': 'SDGs',
+
+  'productType.label': 'Type',
+  'productType.header': 'Product or Dataset?',
+  'productType.productOnly': 'Product Only',
+  'productType.datasetOnly': 'Dataset Only',
+  'productType.allType': 'All Type',
+
+  'map.aggregator.loadingData': "Loading map's aggregator data ...",
+  'map.project.loadingData': "Loading map's project data ...",
+  'map.endorser.loadingData': "Loading map's endorser data ...",
+
+  'organization.endorsedOn': 'Endorsed On',
+  'organization.visitWebsite': 'Visit website',
+
+  'product.hint.subtitle': `
+    A Product is a specific technology offering that is designed to implement one or more Building Blocks.
+  `,
+
+  'useCase.hint.characteristicTitle': 'Characteristics',
+  'useCase.hint.descriptionTitle': 'Description',
+  'useCase.hint.subtitle': `
+    A Use Case defines the steps that an individual or system will undertake in order
+    to achieve a business objective.
+  `,
+  'useCase.hint.characteristics': `
+    <ul>
+      <li>User-centric description of the steps or user journeys required to deliver an outcome</li>
+      <li>Identifies one or more SDG Targets as its business objective</li>
+      <li>Describes the generic WorkFlows and business processes involved in each step in the Use Case</li>
+      <li>Typically sector-specific</li>
+      <li>Able to be improved through digital technology</li>
+    </ul>
+  `,
+  'useCase.hint.description': `
+    Each Use Case model describes primary actors, key steps involved in achieving a specified business
+    objective, descriptions of the WorkFlows and ICT Building Blocks involved in each step, and mappings
+    to SDG Targets. The list of Use Case models is not exhaustive and more will be added in future releases.
+  `,
+
+  'workflow.hint.characteristicTitle': 'Characteristics',
+  'workflow.hint.descriptionTitle': 'Description',
+  'workflow.hint.characteristics': `
+    <ul>
+      <li>Common business process used to help an organization carry out its overall function</li>
+      <li>Applicable to multiple Use Cases in various sectors</li>
+      <li>Powered by one or more ICT Building Blocks</li>
+    </ul>
+  `,
+  'workflow.hint.description': `
+    Each WorkFlow includes a description, sector-specific examples, and mappings to Use Cases defined
+    in this framework. The list of WorkFlows is not exhaustive, and more will be added in future releases.
+  `,
+  'workflow.hint.subtitle': `A WorkFlow is a generic business process that can be applied to SDG Use Cases
+    across multiple sectors.
+  `,
+  
+  'sdg.hint.subtitle': `
+    The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to
+    achieve sustainable development.
+  `,
+  'sdg.hint.descriptionTitle': 'Description',
+  'sdg.hint.description': `
+    The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to 
+    achieve sustainable development. The SDGs were set in 2015 by the United Nations General Assembly and
+    intended to be achieved by the year 2030.
+  `,
+
+  'image.alt.logoFor': 'Logo for: {name}.',
+  'tooltip.ellipsisFor': 'View more in the detail page of this {entity}.',
+  'tooltip.forEntity': '{entity}: {name}.'
 }

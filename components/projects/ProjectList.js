@@ -120,7 +120,7 @@ const ProjectListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [`${convertToKey('Projects')}`]: data.searchProjects.totalCount } })
+      setResultCounts({ ...resultCounts, ...{ ['filter.entity.projects']: data.searchProjects.totalCount } })
     }
   })
 

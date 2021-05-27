@@ -1,19 +1,24 @@
 import Link from 'next/link'
 import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
+import ReactTooltip from 'react-tooltip'
 
 import { convertToKey } from '../context/FilterResultContext'
 const collectionPath = convertToKey('Building Blocks')
 
 const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const productContainer = createRef()
   const [productOverflow, setProductOverflow] = useState(false)
 
   const workflowContainer = createRef()
   const [workflowOverflow, setWorkflowOverflow] = useState(false)
+
+  useEffect(() => {
+    ReactTooltip.rebuild()
+  })
 
   useEffect(() => {
     const wc = workflowContainer.current
@@ -54,7 +59,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                     {
                       buildingBlock.imageFile &&
                         <img
-                          alt={`Logo for ${buildingBlock.name}`} className='building-block-filter inline mr-2 '
+                          alt={format('image.alt.logoFor', { name: buildingBlock.name })} className='building-block-filter inline mr-2 '
                           src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
                           height='20' width='20'
                         />
@@ -106,7 +111,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                   </div>
                   <div className='m-auto align-middle w-40'>
                     <img
-                      alt={`Logo for ${buildingBlock.name}`} className='building-block-filter'
+                      alt={format('image.alt.logoFor', { name: buildingBlock.name })} className='building-block-filter'
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
                     />
                   </div>
@@ -114,7 +119,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                 <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark mt-auto'>
                   <div className='flex flex-row border-b border-dial-gray'>
                     <div className='pl-3 py-3 text-dial-teal-light flex flex-row'>
-                      <div className='text-base my-auto mr-2'>Workflows</div>
+                      <div className='text-base my-auto mr-2'>{format('workflow.header')}</div>
                       <div className='flex flex-row'>
                         <div
                           className='pl-3 flex flex-row flex-wrap font-semibold overflow-hidden'
@@ -132,7 +137,8 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                               .map(workflow => (
                                 <div key={`workflow-${workflow.slug}`} className='bg-white p-2 mr-1.5'>
                                   <img
-                                    key={`sdg-${workflow.slug}`} className='m-auto h-6 workflow-filter'
+                                    data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: workflow.name })}
+                                    alt={format('image.alt.logoFor', { name: workflow.name })} className='m-auto h-6 workflow-filter'
                                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
                                   />
                                 </div>
@@ -142,7 +148,11 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                         {
                           workflowOverflow && (
                             <div className='bg-white mr-3 px-2 rounded text-sm'>
-                              <span className='text-xl bg-white leading-normal'>...</span>
+                              <span className='text-xl bg-white leading-normal'
+                                data-tip={format('tooltip.ellipsisFor', { entity: format('buildingBlock.label') })}
+                              >
+                                &hellip;
+                              </span>
                             </div>
                           )
                         }
@@ -151,7 +161,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                   </div>
                   <div className='flex flex-row text-dial-gray-dark'>
                     <div className='py-3 text-dial-gray-dark flex-col flex'>
-                      <div className='pl-3 text-base my-auto'>Products</div>
+                      <div className='pl-3 text-base my-auto'>{format('products.header')}</div>
                       <div className='flex flex-row'>
                         <div
                           className='pl-3 pr-1.5 flex flex-row flex-wrap font-semibold overflow-hidden'
@@ -167,7 +177,10 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                           {
                             buildingBlock.products
                               .map(product => (
-                                <div key={`product-${product.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded'>
+                                <div
+                                  key={`product-${product.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded'
+                                  data-tip={format('tooltip.forEntity', { entity: format('product.label'), name: product.name })}
+                                >
                                   {product.name}
                                 </div>
                               ))
@@ -176,7 +189,12 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                         {
                           productOverflow &&
                             <div className='bg-white mt-1.5 mr-3 px-2 rounded'>
-                              <span className='text-xl bg-white leading-normal'>...</span>
+                              <span
+                                className='text-xl bg-white leading-normal'
+                                data-tip={format('tooltip.ellipsisFor', { entity: format('buildingBlock.label') })}
+                              >
+                                &hellip;
+                              </span>
                             </div>
                         }
                       </div>

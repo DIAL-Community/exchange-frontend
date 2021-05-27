@@ -2,12 +2,13 @@ import { useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 
 import CountryInfo from './CountryInfo'
+import { FormattedMessage } from 'react-intl'
 
 const CountryMarkers = (props) => {
   const CountryMarkers = useMemo(() => dynamic(
     () => import('./CountryMarkers'),
     {
-      loading: () => <div>Loading Map data ...</div>,
+      loading: () => <div><FormattedMessage id='map.aggregator.loadingData' /></div>,
       ssr: false
     }
   ), [])

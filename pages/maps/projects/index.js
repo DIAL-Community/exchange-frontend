@@ -113,7 +113,7 @@ const ProjectMapPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <Filter activeTab='maps' />
+      <Filter activeTab='filter.entity.maps' />
       <ProjectMap projects={nodes} countries={countries} />
       <Footer />
     </>

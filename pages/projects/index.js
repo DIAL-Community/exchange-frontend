@@ -27,7 +27,7 @@ const Projects = () => {
       </Head>
       <GradientBackground />
       <Header />
-      <Filter activeTab='projects' />
+      <Filter activeTab='filter.entity.projects' />
       <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('project.label')} />
       <ProjectListQuery />
       <Footer />

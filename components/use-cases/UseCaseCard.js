@@ -1,19 +1,24 @@
 import Link from 'next/link'
 import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
+import ReactTooltip from 'react-tooltip'
 
 import { convertToKey } from '../context/FilterResultContext'
 const collectionPath = convertToKey('Use Cases')
 
 const UseCaseCard = ({ useCase, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const sdgTargetContainer = createRef()
   const [sdgTargetOverflow, setSdgTargetOverflow] = useState(false)
 
   const workflowContainer = createRef()
   const [workflowOverflow, setWorkflowOverflow] = useState(false)
+
+  useEffect(() => {
+    ReactTooltip.rebuild()
+  })
 
   useEffect(() => {
     const wc = workflowContainer.current
@@ -117,7 +122,7 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                   </div>
                   <div className='m-auto align-middle w-40'>
                     <img
-                      alt={`Logo for ${useCase.name}`} className='use-case-filter'
+                      alt={format('image.alt.logoFor', { name: useCase.name })} className='use-case-filter'
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
                     />
                   </div>
@@ -141,7 +146,7 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                           {
                             useCase.sdgTargets
                               .map(s => (
-                                <div key={`${useCase.id}-${s.id}`} className='bg-white rounded text-sdg-target p-2 mr-1.5'>
+                                <div key={`${useCase.id}-${s.id}`} className='bg-white rounded text-sdg-target p-2 mr-1.5' data-tip={s.name}>
                                   {s.targetNumber}
                                 </div>
                               ))
@@ -150,7 +155,12 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                         {
                           sdgTargetOverflow && (
                             <div className='bg-white mr-3 px-2 rounded text-sm text-sdg-target'>
-                              <span className='text-xl bg-white leading-normal'>...</span>
+                              <span
+                                className='text-xl bg-white leading-normal'
+                                data-tip={format('tooltip.ellipsisFor', { entity: format('useCase.label') })}
+                              >
+                                &hellip;
+                              </span>
                             </div>
                           )
                         }
@@ -177,7 +187,8 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                               .map(w => (
                                 <div key={`${useCase.id}-${w.id}`} className='bg-white rounded p-2 mr-1'>
                                   <img
-                                    className='m-auto h-6 workflow-filter'
+                                    data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: w.name })}
+                                    className='m-auto h-6 workflow-filter' alt={format('image.alt.logoFor', { name: w.name })}
                                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + w.imageFile}
                                   />
                                 </div>
@@ -187,7 +198,12 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                         {
                           workflowOverflow && (
                             <div className='bg-white mr-3 px-2 rounded text-sm'>
-                              <span className='text-xl text-workflow bg-white leading-normal'>...</span>
+                              <span
+                                className='text-xl text-workflow bg-white leading-normal'
+                                data-tip={format('tooltip.ellipsisFor', { entity: format('useCase.label') })}
+                              >
+                                &hellip;
+                              </span>
                             </div>
                           )
                         }

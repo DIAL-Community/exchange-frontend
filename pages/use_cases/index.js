@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
+import ReactTooltip from 'react-tooltip'
 
 import apolloClient from '../../lib/apolloClient'
 
@@ -27,7 +28,8 @@ const UseCases = () => {
       </Head>
       <GradientBackground />
       <Header />
-      <Filter activeTab='use_cases' />
+      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Filter activeTab='filter.entity.useCases' />
       <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('use-case.label')} />
       <UseCaseListQuery />
       <Footer />

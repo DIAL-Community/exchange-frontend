@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { FormattedMessage } from 'react-intl'
 
 import EndorserInfo from './EndorserInfo'
 
@@ -7,7 +8,7 @@ const EndorserMarkers = (props) => {
   const EndorserMarkers = useMemo(() => dynamic(
     () => import('./EndorserMarkers'),
     {
-      loading: () => <div>Loading Map data ...</div>,
+      loading: () => <div><FormattedMessage id='map.endorser.loadingData' /></div>,
       ssr: false
     }
   ), [])
@@ -22,7 +23,6 @@ const EndorserMap = (props) => {
   // Group project into map of countries with projects
   const cities = (() => {
     const cities = {}
-    const countries = {}
     organizations.forEach(organization => {
       organization.offices.forEach(office => {
         let currentCity = cities[office.name]

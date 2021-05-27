@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
+import { useIntl } from 'react-intl'
 
 import { BuildingBlockLogo } from '../../logo'
 
@@ -33,6 +34,9 @@ export const BuildingBlockAutocomplete = (props) => {
   const client = useApolloClient()
   const [buildingBlock, setBuildingBlock] = useState('')
   const { buildingBlocks, setBuildingBlocks, containerStyles } = props
+
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectBuildingBlock = (buildingBlock) => {
     setBuildingBlock('')
@@ -67,7 +71,7 @@ export const BuildingBlockAutocomplete = (props) => {
         <div className='flex flex-row'>
           <BuildingBlockLogo fill='white' className='ml-2' />
           <div className='text-sm px-2 text-dial-gray-light my-auto'>
-            Building Blocks
+            {format('buildingBlock.label')}
           </div>
         </div>
         <AsyncSelect
@@ -77,7 +81,7 @@ export const BuildingBlockAutocomplete = (props) => {
           loadOptions={(input, callback) => fetchOptions(input, callback, BUILDING_BLOCK_SEARCH_QUERY)}
           noOptionsMessage={() => 'Search for building blocks.'}
           onChange={selectBuildingBlock}
-          placeholder='Filter by Building Block'
+          placeholder={format('filter.byEntity', { entity: format('buildingBlock.label') })}
           styles={customStyles}
           value={buildingBlock}
         />
@@ -88,6 +92,10 @@ export const BuildingBlockAutocomplete = (props) => {
 
 export const BuildingBlockFilters = (props) => {
   const { buildingBlocks, setBuildingBlocks } = props
+
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+  
   const removeBuildingBlock = (buildingBlockId) => {
     setBuildingBlocks(buildingBlocks.filter(buildingBlock => buildingBlock.value !== buildingBlockId))
   }
@@ -98,7 +106,7 @@ export const BuildingBlockFilters = (props) => {
         buildingBlocks &&
           buildingBlocks.map(buildingBlock => (
             <div key={`filter-${buildingBlock.label}`} className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {`Building Block: ${buildingBlock.label}`}
+              {`${format('buildingBlock.label')}: ${buildingBlock.label}`}
               <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeBuildingBlock(buildingBlock.value)} />
             </div>
           ))

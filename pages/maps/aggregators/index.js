@@ -125,7 +125,7 @@ const ProjectMapPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <Filter activeTab='maps' />
+      <Filter activeTab='filter.entity.maps' />
       <AggregatorMap aggregators={nodes} countries={countries} />
       <Footer />
     </>

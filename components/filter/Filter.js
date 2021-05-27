@@ -18,6 +18,9 @@ import withApollo from '../../lib/apolloClient'
 
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+import FilterHint from './FilterHint'
+
+import { useIntl } from 'react-intl'
 
 const COUNT_QUERY = gql`
   query Counts {
@@ -35,28 +38,31 @@ const COUNT_QUERY = gql`
 `
 
 const filterItems = [
-  'SDGs', 'Use Cases', 'Workflows', 'Building Blocks', 'Products', 'Projects',
-  'Organizations', 'Maps'
+  'filter.entity.sdgs', 'filter.entity.useCases', 'filter.entity.workflows', 'filter.entity.buildingBlocks', 'filter.entity.products',
+  'filter.entity.projects', 'filter.entity.organizations', 'filter.entity.maps'
 ]
 
 const Filter = (props) => {
-  const indexableFilterItems = filterItems.map(e => convertToKey(e))
-  const activeTab = indexableFilterItems.indexOf(props.activeTab)
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
+  const activeTab = filterItems.indexOf(props.activeTab)
   const [openFilter, setOpenFilter] = useState(false)
+  const [openHint, setOpenHint] = useState(false)
 
   const { resultCounts, setResultCounts } = useContext(FilterResultContext)
 
   useQuery(COUNT_QUERY, {
     onCompleted: (data) => {
       setResultCounts({
-        sdgs: data.counts.sdgCount,
-        use_cases: data.counts.useCaseCount,
-        workflows: data.counts.workflowCount,
-        building_blocks: data.counts.buildingBlockCount,
-        products: data.counts.productCount,
-        projects: data.counts.projectCount,
-        organizations: data.counts.orgCount,
-        maps: data.counts.mapCount
+        'filter.entity.sdgs': data.counts.sdgCount,
+        'filter.entity.useCases': data.counts.useCaseCount,
+        'filter.entity.workflows': data.counts.workflowCount,
+        'filter.entity.buildingBlocks': data.counts.buildingBlockCount,
+        'filter.entity.products': data.counts.productCount,
+        'filter.entity.projects': data.counts.projectCount,
+        'filter.entity.organizations': data.counts.orgCount,
+        'filter.entity.maps': data.counts.mapCount
       })
     }
   })
@@ -73,13 +79,13 @@ const Filter = (props) => {
           <div className='px-5 mt-3 py-2 border-t border-r border-l border-gray-300 rounded-t' />
           <div className='text-center -mt-7' style={{ lineHeight: 0.1 }}>
             <span className='bg-white px-3'>
-              <span className='text-sm font-bold text-gray-500'>Digital Investment Framework</span>
+              <span className='text-sm font-bold text-gray-500'>{format('digiInvestment.title')}</span>
               <HiQuestionMarkCircle className='ml-1 inline' />
             </span>
           </div>
         </div>
         <div className='text-right -mt-4'>
-          <a href='wizard' className='text-sm text-dial-yellow font-bold hover:underline'>Launch Recommendations Wizard</a>
+          <a href='wizard' className='text-sm text-dial-yellow font-bold hover:underline'>{format('filter.launchWizard')}</a>
         </div>
       </div>
       <div className='sticky bg-white mx-2 sticky-filter'>
@@ -97,7 +103,7 @@ const Filter = (props) => {
               // * md: count of the activeTab - 2 & title of the activeTab + 2
               // * --> Last element: show count of activeTab - 3 for last element, show activeTab + 3 title for first element.
               filterItems.map((filterItem, index) => {
-                const normalizedFilterItem = convertToKey(filterItem)
+                const normalizedFilterItem = convertToKey(format(filterItem))
                 // Need to default map viewing to projects 
                 let href = normalizedFilterItem
                 if (href.indexOf('map') >= 0) {
@@ -139,7 +145,7 @@ const Filter = (props) => {
                           href={`/${href}`}
                         >&nbsp;
                           <span className='float-right p-2 -my-1 text-sm font-bold leading-none rounded text-dial-gray-dark bg-white'>
-                            {resultCounts[normalizedFilterItem]}
+                            {resultCounts[filterItem]}
                           </span>
                         </a>
                       </Link>
@@ -201,14 +207,14 @@ const Filter = (props) => {
                           data-toggle='tab'
                           href={`/${href}`}
                         >
-                          {filterItem}
+                          {format(filterItem)}
                           <span
                             className={`
                               float-right p-2 -my-1 text-sm font-bold leading-none rounded
                               ${index === activeTab ? 'text-dial-gray-dark bg-dial-yellow' : 'text-dial-gray-dark bg-white'}
                             `}
                           >
-                            {resultCounts[normalizedFilterItem]}
+                            {resultCounts[filterItem]}
                           </span>
                         </a>
                       </Link>
@@ -257,7 +263,7 @@ const Filter = (props) => {
                           data-toggle='tab'
                           href={`/${href}`}
                         >
-                          <span className='gradient-text'>{filterItem}</span>
+                          <span className='gradient-text'>{format(filterItem)}</span>
                         </a>
                       </Link>
                     </li>
@@ -267,28 +273,37 @@ const Filter = (props) => {
             }
           </ul>
           <div className='relative flex flex-col min-w-0 break-words bg-white'>
-            <div className='bg-dial-gray-dark flex-auto'>
-              <div className='tab-content tab-space'>
-                {
-                  filterItems.map((filterItem, index) => (
-                    <div key={`filter-panel-${index}`} className={activeTab === index ? 'block' : 'hidden'}>
-                      <div className='px-4 pt-3 pb-2 text-sm text-white cursor-pointer' onClick={e => clickHandler(e)}>
-                        Filter {filterItem} by
-                        {openFilter ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />}
-                      </div>
-                      {activeTab === 0 && <SDGFilter openFilter={openFilter} />}
-                      {activeTab === 1 && <UseCaseFilter openFilter={openFilter} />}
-                      {activeTab === 2 && <WorkflowFilter openFilter={openFilter} />}
-                      {activeTab === 3 && <BuildingBlockFilter openFilter={openFilter} />}
-                      {activeTab === 4 && <ProductFilter openFilter={openFilter} />}
-                      {activeTab === 5 && <ProjectFilter openFilter={openFilter} />}
-                      {activeTab === 6 && <OrganizationFilter openFilter={openFilter} />}
-                      {activeTab === 7 && <MapFilter openFilter={openFilter} />}
+            {
+              !openHint &&
+                <div className='bg-dial-gray-dark flex-auto'>
+                  <div className='tab-content tab-space'>
+                    <div className='px-4 pt-3 pb-2 text-sm text-white cursor-pointer' onClick={e => clickHandler(e)}>
+                      {format('filter.dropdown.title', { entity: format(filterItems[activeTab]) }) }
+                      {openFilter ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />}
                     </div>
-                  ))
-                }
-              </div>
-            </div>
+                    {activeTab === 0 && <SDGFilter openFilter={openFilter} />}
+                    {activeTab === 1 && <UseCaseFilter openFilter={openFilter} />}
+                    {activeTab === 2 && <WorkflowFilter openFilter={openFilter} />}
+                    {activeTab === 3 && <BuildingBlockFilter openFilter={openFilter} />}
+                    {activeTab === 4 && <ProductFilter openFilter={openFilter} />}
+                    {activeTab === 5 && <ProjectFilter openFilter={openFilter} />}
+                    {activeTab === 6 && <OrganizationFilter openFilter={openFilter} />}
+                    {activeTab === 7 && <MapFilter openFilter={openFilter} />}
+                  </div>
+                  {
+                    // Map doesn't have hint.
+                    activeTab < filterItems.length - 1 &&
+                      <div className='text-white absolute top-2 right-3 cursor-pointer' onClick={() => setOpenHint(!openHint)}>
+                        <span className='text-sm'>{format('filter.hint.text')}</span>
+                        <HiQuestionMarkCircle className='text-2xl inline ml-2' />
+                      </div>
+                  }
+                </div>
+            }
+            {
+              openHint &&
+                <FilterHint activeTab={activeTab} openHint={openHint} setOpenHint={setOpenHint} />
+            }
             <div className='border-b-8 border-dial-yellow rounded-b' />
           </div>
         </div>

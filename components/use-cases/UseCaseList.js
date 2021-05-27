@@ -110,7 +110,7 @@ const UseCaseListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [`${convertToKey('Use Cases')}`]: data.searchUseCases.totalCount } })
+      setResultCounts({ ...resultCounts, ...{ ['filter.entity.useCases']: data.searchUseCases.totalCount } })
     }
   })
 

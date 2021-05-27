@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
+import { useIntl } from 'react-intl'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
@@ -31,6 +32,9 @@ export const SectorAutocomplete = (props) => {
   const client = useApolloClient()
   const [sector, setSector] = useState('')
   const { sectors, setSectors, containerStyles } = props
+
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectSector = (sector) => {
     setSector('')
@@ -62,15 +66,15 @@ export const SectorAutocomplete = (props) => {
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
       <label className='block mt-4'>
-        <span className='text-sm text-dial-gray-light'>Sectors</span>
+        <span className='text-sm text-dial-gray-light'>{format('sector.header')}</span>
         <AsyncSelect
           className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
           cacheOptions
           defaultOptions
           loadOptions={(input, callback) => fetchOptions(input, callback, SECTOR_SEARCH_QUERY)}
-          noOptionsMessage={() => 'Search for sectors.'}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('sector.header') })}
           onChange={selectSector}
-          placeholder='Filter by Sector'
+          placeholder={format('filter.byEntity', { entity: format('sector.label') })}
           styles={customStyles}
           value={sector}
         />
@@ -81,6 +85,10 @@ export const SectorAutocomplete = (props) => {
 
 export const SectorFilters = (props) => {
   const { sectors, setSectors } = props
+
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
   const removeSector = (sectorId) => {
     setSectors(sectors.filter(sector => sector.value !== sectorId))
   }
@@ -91,7 +99,7 @@ export const SectorFilters = (props) => {
         sectors &&
         sectors.map(sector => (
           <div key={`filter-${sector.label}`} className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-            {`Sector: ${sector.label}`}
+            {`${format('sector.label')}: ${sector.label}`}
             <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeSector(sector.value)} />
           </div>
         ))

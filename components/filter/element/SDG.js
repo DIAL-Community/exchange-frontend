@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { SDGLogo } from '../../logo'
+import { useIntl } from 'react-intl'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
@@ -33,6 +34,9 @@ export const SDGAutocomplete = (props) => {
   const client = useApolloClient()
   const [sdg, setSDG] = useState('')
   const { sdgs, setSDGs, containerStyles } = props
+
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectSDG = (sdg) => {
     setSDG('')
@@ -67,7 +71,7 @@ export const SDGAutocomplete = (props) => {
         <div className='flex flex-row'>
           <SDGLogo fill='white' className='ml-2' />
           <div className='text-sm px-2 text-dial-gray-light my-auto'>
-            SDGs
+            {format('sdg.shortHeader')}
           </div>
         </div>
         <AsyncSelect
@@ -75,9 +79,9 @@ export const SDGAutocomplete = (props) => {
           cacheOptions
           defaultOptions
           loadOptions={(input, callback) => fetchOptions(input, callback, SDG_SEARCH_QUERY)}
-          noOptionsMessage={() => 'Search for sdgs.'}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('sdg.shortHeader') })}
           onChange={selectSDG}
-          placeholder='Filter by SDG'
+          placeholder={format('filter.byEntity', { entity: format('sdg.shortLabel') })}
           styles={customStyles}
           value={sdg}
         />
@@ -88,6 +92,10 @@ export const SDGAutocomplete = (props) => {
 
 export const SDGFilters = (props) => {
   const { sdgs, setSDGs } = props
+
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
   const removeSDG = (sdgId) => {
     setSDGs(sdgs.filter(sdg => sdg.value !== sdgId))
   }
@@ -98,7 +106,7 @@ export const SDGFilters = (props) => {
         sdgs &&
           sdgs.map(sdg => (
             <div key={`filter-${sdg.label}`} className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {`SDG: ${sdg.label}`}
+              {`${format('sdg.shortLabel')}: ${sdg.label}`}
               <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeSDG(sdg.value)} />
             </div>
           ))
