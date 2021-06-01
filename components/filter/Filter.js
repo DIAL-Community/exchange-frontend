@@ -278,7 +278,7 @@ const Filter = (props) => {
                 <div className='bg-dial-gray-dark flex-auto'>
                   <div className='tab-content tab-space'>
                     <div className='px-4 pt-3 pb-2 text-sm text-white cursor-pointer' onClick={e => clickHandler(e)}>
-                      {format('filter.dropdown.title', { entity: format(filterItems[activeTab]) }) }
+                      {activeTab === 7 ? format('filter.dropdown.map') : format('filter.dropdown.title', { entity: format(filterItems[activeTab]) }) }
                       {openFilter ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />}
                     </div>
                     {activeTab === 0 && <SDGFilter openFilter={openFilter} />}
@@ -294,7 +294,7 @@ const Filter = (props) => {
                     // Map doesn't have hint.
                     activeTab < filterItems.length - 1 &&
                       <div className='text-white absolute top-2 right-3 cursor-pointer' onClick={() => setOpenHint(!openHint)}>
-                        <span className='text-sm'>{format('filter.hint.text')}</span>
+                        <span className='text-sm'>{format('filter.hint.text') + format(props.activeTab).slice(0,-1) }</span>
                         <HiQuestionMarkCircle className='text-2xl inline ml-2' />
                       </div>
                   }

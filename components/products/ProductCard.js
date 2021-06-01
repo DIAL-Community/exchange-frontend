@@ -8,6 +8,15 @@ const ProductCard = ({ product, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
+  const isEndorsingOrg = () => {
+
+    const endorserOrgs = product.organizations.filter((org) => {
+      return org.isEndorser == true
+    })
+
+    return endorserOrgs.length > 0
+  }
+
   useEffect(() => {
     ReactTooltip.rebuild()
   })
@@ -39,10 +48,15 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                     }
                   </div>
                   <div className='col-span-1 flex flex-row justify-end'>
-                    <img className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
+                    { product.endorsers && product.endorsers.length > 0 &&
+                      <img data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
+                    }
+                    { isEndorsingOrg() &&
+                      <img data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5' src='/icons/digiprins/digiprins.png' />
+                    }
                     {
                       product.tags && product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
-                        <img className='mr-1.5 last:mr-0 h-5' src='/icons/coronavirus/coronavirus.png' />
+                        <img data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5' src='/icons/coronavirus/coronavirus.png' />
                     }
                     {product.isLaunchable && <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />}
                   </div>
@@ -53,11 +67,16 @@ const ProductCard = ({ product, listType, newTab = false }) => {
           : (
             <div className='border-3 border-transparent hover:border-dial-yellow text-dial-purple hover:text-dial-yellow cursor-pointer'>
               <div className='h-full flex flex-col justify-between border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
-                <div className='flex flex-row p-1.5 border-b border-dial-gray'>
-                  <img className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
+                <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
+                  { product.endorsers && product.endorsers.length > 0 &&
+                    <img data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
+                  }
+                  { isEndorsingOrg() &&
+                      <img data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5' src='/icons/digiprins/digiprins.png' />
+                    }
                   {
                     product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
-                      <img className='mr-1.5 last:mr-0 h-5' src='/icons/coronavirus/coronavirus.png' />
+                      <img data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5' src='/icons/coronavirus/coronavirus.png' />
                   }
                   {product.isLaunchable && <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />}
                   {

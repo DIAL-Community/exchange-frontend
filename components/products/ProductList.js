@@ -63,6 +63,10 @@ query SearchProducts(
       maturityScore
       productType
       tags
+      endorsers {
+        name
+        slug
+      }
       origins{
         name
         slug
@@ -76,6 +80,10 @@ query SearchProducts(
         slug
         name
         imageFile
+      }
+      organizations {
+        name
+        isEndorser
       }
     }
   }

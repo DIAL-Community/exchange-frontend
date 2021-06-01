@@ -25,14 +25,14 @@ const ProductHint = (props) => {
           <div className='text-white text-lg px-8 pb-3'>
             {format('product.hint.characteristicTitle').toUpperCase()}
           </div>
-          <div className='fr-view text-white text-sm'>
-            {ReactHtmlParser(format('product.hint.characteristics'))}
+          <div className='fr-view text-white text-sm px-8 pb-3'>
+            {format('product.hint.characteristics')}
           </div>
           <div className='text-white text-lg px-8 pb-3'>
             {format('product.hint.descriptionTitle').toUpperCase()}
           </div>
-          <div className='text-white text-sm px-8 pb-3'>
-            {format('product.hint.description')}
+          <div className='fr-view text-white text-sm pb-3'>
+            {ReactHtmlParser(format('product.hint.description'))}
           </div>
         </div>
         <div className="absolute right-2 top-2">
