@@ -9,6 +9,9 @@ const ProductCard = ({ product, listType, newTab = false }) => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const isEndorsingOrg = () => {
+    if (!product.organizations) {
+      return false
+    }
 
     const endorserOrgs = product.organizations.filter((org) => {
       return org.isEndorser == true
