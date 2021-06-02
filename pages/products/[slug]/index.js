@@ -93,6 +93,7 @@ query Product($slug: String!) {
     sectors {
       name
       slug
+      isDisplayable
     }
     maturityScore
     maturityScores

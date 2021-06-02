@@ -125,6 +125,7 @@ export const en = {
   'sdg.header': 'Sustainable Development Goals',
   'sdg.label': 'Sustainable Development Goal',
 
+  'use-case.label': 'Use Case',
   'use-case.sdg-targets': 'SDG Targets',
   'use-case.workflow': 'Workflows',
 

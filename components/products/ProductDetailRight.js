@@ -71,7 +71,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
           <div className='card-title mb-3 text-dial-gray-dark'>{format('sector.header')}</div>
           <div className='grid grid-cols-1 lg:grid-cols-2'>
             {product.sectors.map((sector, i) => {
-              return (<SectorCard key={i} sector={sector} listType='list' />)
+              return sector.isDisplayable && (<SectorCard key={i} sector={sector} listType='list' />)
             })}
           </div>
         </div>
