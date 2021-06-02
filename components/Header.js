@@ -273,9 +273,7 @@ const Header = () => {
                   )
             }
             <li>
-              <Link href='/help'>
-                <a className={`${menuItemStyles} lg:mb-0 mb-2`} href='help'>{format('header.help')}</a>
-              </Link>
+                <a className={`${menuItemStyles} lg:mb-0 mb-2`} href='https://docs.osc.dial.community/projects/product-registry/en/latest/' target='_blank'>{format('header.help')}</a>
             </li>
             <li><div className='border border-gray-400 border-t-0 lg:border-l-0 lg:h-9' /></li>
             <li className='relative mt-2 lg:mt-0'>
