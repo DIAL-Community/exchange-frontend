@@ -25,14 +25,14 @@ const OrganizationHint = (props) => {
           <div className='text-white text-lg px-8 pb-3'>
             {format('organization.hint.characteristicTitle').toUpperCase()}
           </div>
-          <div className='fr-view text-white text-sm'>
-            {ReactHtmlParser(format('organization.hint.characteristics'))}
+          <div className='fr-view text-white text-sm px-8 pb-3'>
+            {format('organization.hint.characteristics')}
           </div>
           <div className='text-white text-lg px-8 pb-3'>
             {format('organization.hint.descriptionTitle').toUpperCase()}
           </div>
-          <div className='text-white text-sm px-8 pb-3'>
-            {format('organization.hint.description')}
+          <div className='fr-view text-white text-sm px-8 pb-3'>
+            {ReactHtmlParser(format('organization.hint.description'))}
           </div>
         </div>
         <div className="absolute right-2 top-2">

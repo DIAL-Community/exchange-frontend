@@ -25,7 +25,7 @@ const ProjectHint = (props) => {
           <div className='text-white text-lg px-8 pb-3'>
             {format('project.hint.characteristicTitle').toUpperCase()}
           </div>
-          <div className='fr-view text-white text-sm'>
+          <div className='fr-view text-white text-sm px-8 pb-3'>
             {ReactHtmlParser(format('project.hint.characteristics'))}
           </div>
           <div className='text-white text-lg px-8 pb-3'>

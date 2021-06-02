@@ -218,7 +218,7 @@ export const en = {
   'general.na': 'N/A',
   'general.fetchingData': 'Fetching data ...',
   'general.fetchError': 'Error fetching data. Please check your network connection.',
-  'general.loadingData': 'Loading for more data ...',
+  'general.loadingData': 'Loading more data ...',
 
   'view.switch.title': 'Switch View',
   'search.input.label': 'Enter Search Term',
@@ -277,7 +277,7 @@ export const en = {
     are for illustrative purposes only. Further mapping and ranking of existing products based on maturity,
     sustainability and applicability to the ICT Building Blocks will be addressed overtime.
   `,
-  'filter.hint.text': 'How to read the card',
+  'filter.hint.text': 'What is a ',
 
   'digiInvestment.title': "Digital Investment Framework",
 
@@ -295,6 +295,7 @@ export const en = {
 
   'filter.entity': "{entity} Filters",
   'filter.dropdown.title': "Filter {entity} by:",
+  'filter.dropdown.map': "Select map",
   
   'filter.framework.title': 'Framework Filters',
   'filter.framework.subTitle': "Use elements of the Digital Investment Framework to filter {entity}",
@@ -333,8 +334,57 @@ export const en = {
   'organization.endorsedOn': 'Endorsed On',
   'organization.visitWebsite': 'Visit website',
 
+  'product.hint.characteristicTitle': 'Reading the Product Cards',
+  'product.hint.descriptionTitle': 'Icons used on the product cards',
   'product.hint.subtitle': `
     A Product is a specific technology offering that is designed to implement one or more Building Blocks.
+  `,
+  'product.hint.characteristics': `
+    The product cards provide a quick overview of each digital tool, including information on the SDGs that the
+    product is designed to support, as well as any building blocks that may be supported by the product. The cards show
+    how the product is licensed as well as information about our sources of information for the product. 
+  `,
+  'product.hint.description': `
+    <ul>
+      <li><img class='m-1.5 h-5 inline' src='/icons/check/check.png' /><span class='inline p-2'>Indicates that the product has been endorsed by a vetting organization</span></li>
+      <li><img class='m-1.5 h-5 inline' src='/icons/digiprins/digiprins.png' /><span class='inline p-2'>Indicates that the product is maintained by a Digital Principles endorser </span></li>
+      <li><img class='m-1.5 h-5 inline' src='/icons/coronavirus/coronavirus.png' /><span class='inline p-2'>Indicates that the product can be used to support COVID-19 response</span></li>
+    </ul>
+  `,
+  
+
+  'project.hint.characteristicTitle': 'Description',
+  'project.hint.descriptionTitle': 'Project Sources',
+  'project.hint.subtitle': `
+    A Project is an implementation of a digital platform in a specific context and/or sector.
+  `,
+  'project.hint.characteristics': `
+    Projects provide insight into where specific digital technologies have been deployed. Users of the Catalog can 
+    search and filter projects by country or sector. 
+  `,
+  'project.hint.description': `
+    Project data is sourced from many different partners, including the World Health Organization's Digital Health Atlas,
+    the Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ), and New America.
+  `,
+
+  'organization.hint.characteristicTitle': 'Description',
+  'organization.hint.descriptionTitle': 'Types of Organizations',
+  'organization.hint.subtitle': `
+    An Organization supports the development and/or implementation of digital technologies to address the SDGs.
+  `,
+  'organization.hint.characteristics': `
+    The product cards provide a quick overview of each digital tool, including information on the SDGs that the
+    product is designed to support, as well as any building blocks that may be supported by the product. The cards show
+    how the product is licensed as well as information about our sources of information for the product. 
+  `,
+  'organization.hint.description': `
+    The Catalog tracks several different types of organizations:
+
+    <ul>
+      <li>Organizations that have endorsed the Principles for Digital Development</li>
+      <li>Mobile Network Aggregators</li>
+      <li>Funders and Maintainers of open source tools (products)</li>
+    </ul>
   `,
 
   'useCase.hint.characteristicTitle': 'Characteristics',
@@ -388,5 +438,8 @@ export const en = {
 
   'image.alt.logoFor': 'Logo for: {name}.',
   'tooltip.ellipsisFor': 'View more in the detail page of this {entity}.',
-  'tooltip.forEntity': '{entity}: {name}.'
+  'tooltip.forEntity': '{entity}: {name}.',
+  'tooltip.endorsed': 'This product has been endorsed by one or more vetting organizations',
+  'tooltip.covid': 'This product has been tagged as relevant for COVID response',
+  'tooltip.digiprins': 'This product is owned or maintained by a Digital Principles endorser'
 }

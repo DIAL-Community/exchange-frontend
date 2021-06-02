@@ -130,3 +130,7 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.product-card-header {
+  min-height: 33px;
+}

@@ -13,7 +13,7 @@ const Description = () => {
 
   useEffect(() => {
     setOpenTab(0);
-    const interval = setInterval(changeTab, 4000);
+    const interval = setInterval(changeTab, 5000);
     return () => clearInterval(interval);
   }, []);
 
