@@ -63,11 +63,11 @@ const OrganizationDetailLeft = ({ organization }) => {
             />
           </div>
         </div>
-        <div className='h4 text-dial-gray-dark p-3'>
+        <div className='fr-view text-dial-gray-dark p-3'>
           {organization.organizationDescriptions[0] && ReactHtmlParser(organization.organizationDescriptions[0].description)}
         </div>
       </div>
-      { 
+      {
         !organization.owner &&
           <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 mr-6 shadow-lg border-b-2 border-dial-gray'>
             {format('organization.owner')}

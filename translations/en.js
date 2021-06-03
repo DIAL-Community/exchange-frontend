@@ -442,5 +442,9 @@ export const en = {
   'tooltip.forEntity': '{entity}: {name}.',
   'tooltip.endorsed': 'This product has been endorsed by one or more vetting organizations',
   'tooltip.covid': 'This product has been tagged as relevant for COVID response',
-  'tooltip.digiprins': 'This product is owned or maintained by a Digital Principles endorser'
+  'tooltip.digiprins': 'This product is owned or maintained by a Digital Principles endorser',
+
+  'organization.no-sector': 'We do not have sector information for this organization.',
+  'organization.no-country': 'We do not have country information for this organization.',
+  'office.other.header': 'Other Office Locations'
 }
