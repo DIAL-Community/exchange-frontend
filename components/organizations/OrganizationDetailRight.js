@@ -67,6 +67,8 @@ const OrganizationDetailRight = ({ organization }) => {
             <div className='grid grid-cols-1 lg:grid-cols-2'>
               {
                 organization.offices.map((office, i) => {
+                  // Skipping the first one because it is displayed as map marker.
+                  if (i === 0) return <></>
                   return <CityCard key={i} city={office} listType='list' />
                 })
               }
