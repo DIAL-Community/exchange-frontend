@@ -85,7 +85,7 @@ const Filter = (props) => {
           </div>
         </div>
         <div className='text-right -mt-4'>
-          <a href='wizard' className='text-sm text-dial-yellow font-bold hover:underline'>{format('filter.launchWizard')}</a>
+          <a href='/wizard' className='text-sm text-dial-yellow font-bold hover:underline'>{format('filter.launchWizard')}</a>
         </div>
       </div>
       <div className='sticky bg-white mx-2 sticky-filter'>

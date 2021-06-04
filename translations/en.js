@@ -453,7 +453,7 @@ export const en = {
   'operator.header': 'Operators',
 
   'aggregator.label': 'Aggregator',
-  'map.loading.indicator': 'Updating map data',
+  'map.loading.indicator': 'Updating map data ...',
   'tooltip.endorsed': 'This product has been endorsed by one or more vetting organizations',
   'tooltip.covid': 'This product has been tagged as relevant for COVID response',
   'tooltip.digiprins': 'This product is owned or maintained by a Digital Principles endorser',

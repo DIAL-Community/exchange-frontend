@@ -39,8 +39,9 @@ const EndorserInfo = (props) => {
               <div key={`${city.name}-${organization.name}`} className='hover:bg-gray-100 hover:text-gray-900'>
                 <div className='mx-4 py-2 border-b last:border-0'>
                   <a
-                    href={`expand-${organization.slug}`} onClick={(e) => toggleExpand(e, organization)} 
-                    className={`${active === organization.slug ? 'font-semibold' : ''} text-sm text-gray-700 cursor-pointer block`}>
+                    href={`expand-${organization.slug}`} onClick={(e) => toggleExpand(e, organization)}
+                    className={`${active === organization.slug ? 'font-semibold' : ''} text-sm text-gray-700 cursor-pointer block`}
+                  >
                     {organization.name}
                   </a>
                   {
@@ -68,7 +69,8 @@ const EndorserInfo = (props) => {
                           </div>
                           <a
                             href={organization.slug} onClick={(e) => openDetailPage(e, organization.slug)}
-                            className='py-1.5 text-center text-xs text-dial-blue bg-dial-blue-light bg-opacity-20 cursor-pointer'>
+                            className='py-1.5 text-center text-xs text-dial-blue bg-dial-blue-light bg-opacity-20 cursor-pointer'
+                          >
                             {format('map.endorsers.viewOrganization')} &gt;&gt;
                           </a>
                         </div>
