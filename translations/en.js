@@ -81,7 +81,6 @@ export const en = {
   'product.star': 'Stars',
   'product.watcher': 'Watchers',
   'product.fork': 'Forks',
-  'product.current-version': 'Current Version',
   'product.no-version-data': 'No Version Data',
   'product.created': 'Created',
   'product.last-updated': 'Last Updated',
@@ -280,7 +279,7 @@ export const en = {
   `,
   'filter.hint.text': 'What is a ',
 
-  'digiInvestment.title': "Digital Investment Framework",
+  'digiInvestment.title': 'Digital Investment Framework',
 
   'filter.entity.sdgs': 'SDGs',
   'filter.entity.useCases': 'Use Cases',
@@ -294,16 +293,16 @@ export const en = {
   'filter.byEntity': 'Filter by {entity}',
   'filter.searchFor': 'Search for {entity}',
 
-  'filter.entity': "{entity} Filters",
-  'filter.dropdown.title': "Filter {entity} by:",
-  'filter.dropdown.map': "Select map",
-  
+  'filter.entity': '{entity} Filters',
+  'filter.dropdown.title': 'Filter {entity} by:',
+  'filter.dropdown.map': 'Select map',
+
   'filter.framework.title': 'Framework Filters',
-  'filter.framework.subTitle': "Use elements of the Digital Investment Framework to filter {entity}",
+  'filter.framework.subTitle': 'Use elements of the Digital Investment Framework to filter {entity}',
 
   'filter.buildingBlock.matureOnly': 'Show only mature building blocks',
 
-  'filter.general.applied': "{count, plural, one {Filter Applied} other {Filters Applied}}",
+  'filter.general.applied': '{count, plural, one {Filter Applied} other {Filters Applied}}',
   'filter.general.clearAll': 'Clear all',
 
   'filter.organization.aggregatorOnly': 'Only Aggregators',
@@ -352,7 +351,6 @@ export const en = {
       <li><img class='m-1.5 h-5 inline' src='/icons/coronavirus/coronavirus.png' /><span class='inline p-2'>Indicates that the product can be used to support COVID-19 response</span></li>
     </ul>
   `,
-  
 
   'project.hint.characteristicTitle': 'Description',
   'project.hint.descriptionTitle': 'Project Sources',
@@ -425,7 +423,7 @@ export const en = {
   'workflow.hint.subtitle': `A WorkFlow is a generic business process that can be applied to SDG Use Cases
     across multiple sectors.
   `,
-  
+
   'sdg.hint.subtitle': `
     The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to
     achieve sustainable development.
@@ -440,6 +438,22 @@ export const en = {
   'image.alt.logoFor': 'Logo for: {name}.',
   'tooltip.ellipsisFor': 'View more in the detail page of this {entity}.',
   'tooltip.forEntity': '{entity}: {name}.',
+
+  'map.project.title': 'Map of Projects',
+  'map.aggregator.title': 'Aggregator & Operator Coverage Map',
+  'map.endorser.title': 'Map of Digital Principles Endorsers',
+
+  'tag.label': 'Tag',
+  'tag.header': 'Tags',
+
+  'service.label': 'Service',
+  'service.header': 'Services',
+
+  'operator.label': 'Operator',
+  'operator.header': 'Operators',
+
+  'aggregator.label': 'Aggregator',
+  'map.loading.indicator': 'Updating map data',
   'tooltip.endorsed': 'This product has been endorsed by one or more vetting organizations',
   'tooltip.covid': 'This product has been tagged as relevant for COVID response',
   'tooltip.digiprins': 'This product is owned or maintained by a Digital Principles endorser',

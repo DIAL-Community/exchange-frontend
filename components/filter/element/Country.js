@@ -70,7 +70,7 @@ export const CountryAutocomplete = (props) => {
         <AsyncSelect
           className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
           cacheOptions
-          defaultOptions={false}
+          defaultOptions
           loadOptions={(input, callback) => fetchOptions(input, callback, COUNTRY_SEARCH_QUERY)}
           noOptionsMessage={() => format('filter.searchFor', { entity: format('country.header') })}
           onChange={selectCountry}
