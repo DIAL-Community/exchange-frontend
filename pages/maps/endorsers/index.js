@@ -10,18 +10,22 @@ import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 
 import EndorserMap from '../../../components/maps/endorsers/EndorserMap'
+import { MapFilterContext } from '../../../components/context/MapFilterContext'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
+import { useContext } from 'react'
 
 const DEFAULT_PAGE_SIZE = 1000
 
 const ORGANIZATIONS_QUERY = gql`
 query SearchOrganizations(
   $first: Int,
-  $sectors: [String!]
-  ) {
+  $sectors: [String!],
+  $years: [Int!],
+) {
   searchOrganizations(
     first: $first,
-    sectors: $sectors
+    sectors: $sectors,
+    years: $years
   ) {
     __typename
     totalCount
@@ -58,9 +62,13 @@ const EndorserMapPage = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
+  const { orgSectors, years } = useContext(MapFilterContext)
+
   const { loading, error, data } = useQuery(ORGANIZATIONS_QUERY, {
     variables: {
-      first: DEFAULT_PAGE_SIZE
+      first: DEFAULT_PAGE_SIZE,
+      sectors: orgSectors.map(sector => sector.value),
+      years: years.map(year => year.value),
     }
   })
 

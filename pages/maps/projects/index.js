@@ -11,6 +11,8 @@ import Footer from '../../../components/Footer'
 
 import ProjectMap from '../../../components/maps/projects/ProjectMap'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
+import { MapFilterContext } from '../../../components/context/MapFilterContext'
+import { useContext } from 'react'
 
 const DEFAULT_PAGE_SIZE = 10000
 
@@ -18,10 +20,12 @@ const PROJECTS_QUERY = gql`
 query SearchProjects(
   $first: Int,
   $sectors: [String!]
+  $tags: [String!]
   ) {
   searchProjects(
     first: $first,
-    sectors: $sectors
+    sectors: $sectors,
+    tags: $tags
   ) {
     __typename
     totalCount
@@ -61,10 +65,14 @@ const ProjectMapPage = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
+  const { sectors, tags } = useContext(MapFilterContext)
+
   const fetchProjectData = () => {
     const projects = useQuery(PROJECTS_QUERY, {
       variables: {
-        first: DEFAULT_PAGE_SIZE
+        first: DEFAULT_PAGE_SIZE,
+        sectors: sectors.map(sector => sector.value),
+        tags: tags.map(tag => tag.label),
       }
     })
     const countries = useQuery(COUNTRIES_QUERY)

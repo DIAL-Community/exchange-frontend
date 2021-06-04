@@ -72,7 +72,7 @@ const CountryMarkers = (props) => {
 const CountryMarkersMaps = (props) => {
   // Adding this attribute will prevent duplicating world map:  maxBounds={[[-90, -180], [90, 180]]}
   return (
-    <MapContainer center={[0, 0]} zoom={3} className='z-10 w-full' style={{ minHeight: '70vh' }}>
+    <MapContainer center={[0, 0]} zoom={3} className='w-full' style={{ minHeight: '70vh', zIndex: 18 }}>
       <TileLayer
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

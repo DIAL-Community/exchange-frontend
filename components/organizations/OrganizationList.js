@@ -16,6 +16,8 @@ const ORGANIZATIONS_QUERY = gql`
 query SearchOrganizations(
     $first: Int,
     $after: String,
+    $aggregatorOnly: Boolean,
+    $endorserOnly: Boolean,
     $sectors: [String!],
     $countries: [String!],
     $years: [Int!],
@@ -24,6 +26,8 @@ query SearchOrganizations(
   searchOrganizations(
     first: $first,
     after: $after,
+    aggregatorOnly: $aggregatorOnly,
+    endorserOnly: $endorserOnly,
     sectors: $sectors,
     countries: $countries,
     years: $years,
@@ -87,7 +91,7 @@ const OrganizationList = (props) => {
 
 const OrganizationListQuery = () => {
   const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { countries, sectors, years, search, displayType } = useContext(OrganizationFilterContext)
+  const { aggregator, endorser, countries, sectors, years, search, displayType } = useContext(OrganizationFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -98,6 +102,8 @@ const OrganizationListQuery = () => {
       countries: countries.map(country => country.value),
       sectors: sectors.map(sector => sector.value),
       years: years.map(year => year.value),
+      aggregatorOnly: aggregator,
+      endorserOnly: endorser,
       search: search
     },
     onCompleted: (data) => {
@@ -123,6 +129,8 @@ const OrganizationListQuery = () => {
         countries: countries.map(country => country.value),
         sectors: sectors.map(sector => sector.value),
         years: years.map(year => year.value),
+        aggregatorOnly: aggregator,
+        endorserOnly: endorser,
         search: search
       }
     })

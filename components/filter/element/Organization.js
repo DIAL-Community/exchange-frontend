@@ -8,8 +8,8 @@ import { useIntl } from 'react-intl'
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
 const ORGANIZATION_SEARCH_QUERY = gql`
-  query Organizations($search: String!) {
-    organizations(search: $search) {
+  query Organizations($search: String!, $aggregatorOnly: Boolean) {
+    organizations(search: $search, aggregatorOnly: $aggregatorOnly) {
       id
       name
     }
@@ -31,7 +31,7 @@ const customStyles = {
 export const OrganizationAutocomplete = (props) => {
   const client = useApolloClient()
   const [organization, setOrganization] = useState('')
-  const { organizations, setOrganizations, containerStyles } = props
+  const { aggregatorOnly, organizations, setOrganizations, containerStyles } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -41,7 +41,7 @@ export const OrganizationAutocomplete = (props) => {
     setOrganizations([...organizations.filter(o => o.value !== organization.value), organization])
   }
 
-  const fetchOptions = async (input, callback, query) => {
+  const fetchOptions = async (input, aggregatorOnly, callback, query) => {
     if (input && input.trim().length < 2) {
       return []
     }
@@ -49,7 +49,8 @@ export const OrganizationAutocomplete = (props) => {
     const response = await client.query({
       query: query,
       variables: {
-        search: input
+        search: input,
+        aggregatorOnly: aggregatorOnly
       }
     })
 
@@ -66,15 +67,17 @@ export const OrganizationAutocomplete = (props) => {
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
       <label className='block mt-4'>
-        <span className='text-sm text-dial-gray-light'>{format('organization.header')}</span>
+        <span className='text-sm text-dial-gray-light'>
+          {aggregatorOnly ? format('aggregator.label') : format('organization.header')}
+        </span>
         <AsyncSelect
           className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
           cacheOptions
-          defaultOptions={false}
-          loadOptions={(input, callback) => fetchOptions(input, callback, ORGANIZATION_SEARCH_QUERY)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('organization.header') })}
+          defaultOptions
+          loadOptions={(input, callback) => fetchOptions(input, aggregatorOnly, callback, ORGANIZATION_SEARCH_QUERY)}
+          noOptionsMessage={() => format('filter.searchFor', { entity: aggregatorOnly ? format('aggregator.header') : format('organization.header') })}
           onChange={selectOrganization}
-          placeholder={format('filter.byEntity', { entity: format('organization.label') })}
+          placeholder={format('filter.byEntity', { entity: aggregatorOnly ? format('aggregator.label') : format('organization.label') })}
           styles={customStyles}
           value={organization}
         />
@@ -84,7 +87,7 @@ export const OrganizationAutocomplete = (props) => {
 }
 
 export const OrganizationFilters = (props) => {
-  const { organizations, setOrganizations } = props
+  const { aggregatorOnly, organizations, setOrganizations } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -99,7 +102,7 @@ export const OrganizationFilters = (props) => {
         organizations &&
           organizations.map(organization => (
             <div key={`filter-${organization.label}`} className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {`${format('organization.label')}: ${organization.label}`}
+              {`${aggregatorOnly ? format('aggregator.label') : format('organization.label')}: ${organization.label}`}
               <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeOrganization(organization.value)} />
             </div>
           ))

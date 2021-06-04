@@ -11,6 +11,8 @@ import Footer from '../../../components/Footer'
 
 import AggregatorMap from '../../../components/maps/aggregators/AggregatorMap'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
+import { MapFilterContext } from '../../../components/context/MapFilterContext'
+import { useContext } from 'react'
 
 const DEFAULT_PAGE_SIZE = 10000
 
@@ -18,12 +20,12 @@ const AGGREGATORS_QUERY = gql`
 query SearchOrganizations(
   $first: Int,
   $aggregatorOnly: Boolean,
-  $sectors: [String!]
-  ) {
+  $aggregators: [String!]
+) {
   searchOrganizations(
     first: $first,
     aggregatorOnly: $aggregatorOnly,
-    sectors: $sectors
+    aggregators: $aggregators
   ) {
     __typename
     totalCount
@@ -40,6 +42,7 @@ query SearchOrganizations(
       website
       whenEndorsed
       countries {
+        id
         name
         slug
         latitude
@@ -72,16 +75,19 @@ const ProjectMapPage = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
+  const { aggregators, operators, services } = useContext(MapFilterContext)
+
   const fetchProjectData = () => {
-    const aggregators = useQuery(AGGREGATORS_QUERY, {
+    const aggregatorData = useQuery(AGGREGATORS_QUERY, {
       variables: {
         first: DEFAULT_PAGE_SIZE,
-        aggregatorOnly: true
+        aggregatorOnly: true,
+        aggregators: aggregators.map(a => a.value)
       }
     })
     const countries = useQuery(COUNTRIES_QUERY)
 
-    return [aggregators, countries]
+    return [aggregatorData, countries]
   }
 
   const [
@@ -126,7 +132,10 @@ const ProjectMapPage = () => {
       </Head>
       <Header />
       <Filter activeTab='filter.entity.maps' />
-      <AggregatorMap aggregators={nodes} countries={countries} />
+      <AggregatorMap
+        operators={operators} services={services}
+        aggregators={nodes} countries={countries}
+      />
       <Footer />
     </>
   )
