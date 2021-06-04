@@ -1,22 +1,76 @@
-import { useMemo, useState } from 'react'
+import { useContext, useMemo, useState } from 'react'
 import { useIntl, FormattedMessage } from 'react-intl'
 import dynamic from 'next/dynamic'
 
-import gql from 'graphql-tag'
-
 import CountryInfo from './CountryInfo'
-import { useQuery } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
+
+import { MapFilterContext } from '../../../components/context/MapFilterContext'
 
 const CountryMarkers = (props) => {
   const CountryMarkers = useMemo(() => dynamic(
     () => import('./CountryMarkers'),
-    {
-      loading: () => <div><FormattedMessage id='map.aggregator.loadingData' /></div>,
-      ssr: false
-    }
+    { ssr: false }
   ), [])
   return <CountryMarkers {...props} />
 }
+
+const DEFAULT_PAGE_SIZE = 10000
+
+const AGGREGATORS_QUERY = gql`
+query SearchOrganizations(
+  $first: Int,
+  $aggregatorOnly: Boolean,
+  $aggregators: [String!]
+) {
+  searchOrganizations(
+    first: $first,
+    aggregatorOnly: $aggregatorOnly,
+    aggregators: $aggregators
+  ) {
+    __typename
+    totalCount
+    pageInfo {
+      endCursor
+      startCursor
+      hasPreviousPage
+      hasNextPage
+    }
+    nodes {
+      id
+      name
+      slug
+      website
+      whenEndorsed
+      countries {
+        id
+        name
+        slug
+        latitude
+        longitude
+      }
+      offices {
+        id
+        name
+        latitude
+        longitude
+      }
+    }
+  }
+}
+`
+
+const COUNTRIES_QUERY = gql`
+  query Countries($search: String) {
+    countries(search: $search) {
+      id
+      name
+      slug
+      latitude
+      longitude
+    }
+  }
+`
 
 const CAPABILITIES_QUERY = gql`
   query Capabilities(
@@ -68,12 +122,30 @@ const skipQuery = (operators, services) => {
   return false
 }
 
-const AggregatorMap = (props) => {
+const AggregatorMap = () => {
   const [selectedCountry, setSelectedCountry] = useState('')
-  const { aggregators, countries, operators, services } = props
+  const { aggregators, operators, services } = useContext(MapFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+
+  const fetchAggregatorData = () => {
+    const aggregatorData = useQuery(AGGREGATORS_QUERY, {
+      variables: {
+        first: DEFAULT_PAGE_SIZE,
+        aggregatorOnly: true,
+        aggregators: aggregators.map(a => a.value)
+      }
+    })
+    const countries = useQuery(COUNTRIES_QUERY)
+
+    return [aggregatorData, countries]
+  }
+
+  const [
+    { loading: loadingAggregators, data: aggregatorData },
+    { loading: loadingCountries, data: countryData }
+  ] = fetchAggregatorData()
 
   const serviceNames = []
   const capabilityNames = []
@@ -101,57 +173,63 @@ const AggregatorMap = (props) => {
   // Group project into map of countries with projects
   const countriesWithAggregators = (() => {
     const countriesWithAggregators = {}
-    countries.forEach(country => {
-      countriesWithAggregators[country.id] = {
-        name: country.name,
-        latitude: country.latitude,
-        longitude: country.longitude,
-        aggregators: []
-      }
-    })
-
-    if (capabilityData && operatorServiceData) {
-      // Create map of aggregator to get the aggregator information.
-      const aggregatorData = {}
-      aggregators.forEach(aggregator => {
-        aggregatorData[aggregator.id] = aggregator
-      })
-
-      // Make sure all operator ids are unique.
-      const operatorIds = operatorServiceData.operatorServices
-        .map(operatorService => operatorService.id)
-        .filter((value, index, self) => self.indexOf(value) === index)
-
-      // This will be used as base of our markers.
-      const aggregatorCountryList = capabilityData.capabilities
-        // Filter using the operator service id above.
-        .filter(capability => {
-          return operatorIds.indexOf(capability.operatorServiceId.toString()) >= 0
-        })
-        // Create map of aggregator and country based on the filtered capabilities.
-        .map(capability => {
-          return { aggregatorId: capability.aggregatorId, countryId: capability.countryId }
-        })
-        // Remove the duplicates from above.
-        .filter((value, index, self) =>
-          index === self.findIndex((t) =>
-            t.aggregatorId === value.aggregatorId && t.countryId === value.countryId)
-        )
-
-      aggregatorCountryList.forEach(aggregatorCountry => {
-        const currentCountry = countriesWithAggregators[aggregatorCountry.countryId]
-        const currentAggregator = aggregatorData[aggregatorCountry.aggregatorId]
-        if (currentAggregator) {
-          currentCountry.aggregators.push({ name: currentAggregator.name, slug: currentAggregator.slug })
+    if (countryData) {
+      const { countries } = countryData
+      countries.forEach(country => {
+        countriesWithAggregators[country.id] = {
+          name: country.name,
+          latitude: country.latitude,
+          longitude: country.longitude,
+          aggregators: []
         }
       })
-    } else {
-      aggregators.forEach(aggregator => {
-        aggregator.countries.forEach(country => {
-          const currentCountry = countriesWithAggregators[country.id]
-          currentCountry.aggregators.push({ name: aggregator.name, slug: aggregator.slug })
+    }
+
+    if (aggregatorData) {
+      const { searchOrganizations: { nodes } } = aggregatorData
+      if (capabilityData && operatorServiceData) {
+        // Create map of aggregator to get the aggregator information.
+        const aggregatorMap = {}
+        nodes.forEach(aggregator => {
+          aggregatorMap[aggregator.id] = aggregator
         })
-      })
+
+        // Make sure all operator ids are unique.
+        const operatorIds = operatorServiceData.operatorServices
+          .map(operatorService => operatorService.id)
+          .filter((value, index, self) => self.indexOf(value) === index)
+
+        // This will be used as base of our markers.
+        const aggregatorCountryList = capabilityData.capabilities
+          // Filter using the operator service id above.
+          .filter(capability => {
+            return operatorIds.indexOf(capability.operatorServiceId.toString()) >= 0
+          })
+          // Create map of aggregator and country based on the filtered capabilities.
+          .map(capability => {
+            return { aggregatorId: capability.aggregatorId, countryId: capability.countryId }
+          })
+          // Remove the duplicates from above.
+          .filter((value, index, self) =>
+            index === self.findIndex((t) =>
+              t.aggregatorId === value.aggregatorId && t.countryId === value.countryId)
+          )
+
+        aggregatorCountryList.forEach(aggregatorCountry => {
+          const currentCountry = countriesWithAggregators[aggregatorCountry.countryId]
+          const currentAggregator = aggregatorMap[aggregatorCountry.aggregatorId]
+          if (currentAggregator) {
+            currentCountry.aggregators.push({ name: currentAggregator.name, slug: currentAggregator.slug })
+          }
+        })
+      } else {
+        nodes.forEach(aggregator => {
+          aggregator.countries.forEach(country => {
+            const currentCountry = countriesWithAggregators[country.id]
+            currentCountry.aggregators.push({ name: aggregator.name, slug: aggregator.slug })
+          })
+        })
+      }
     }
     return countriesWithAggregators
   })()
@@ -159,11 +237,11 @@ const AggregatorMap = (props) => {
   const country = countriesWithAggregators[selectedCountry]
 
   return (
-    <div className='flex flex-row mx-2 my-2'>
+    <div className='flex flex-row mx-2 my-2' style={{ minHeight: '10vh' }}>
       {
-        (loadingCapabilityData || loadingOperatorServiceData) &&
+        (loadingCapabilityData || loadingOperatorServiceData || loadingAggregators || loadingCountries) &&
           <div className='absolute right-4 text-white bg-dial-gray-dark px-3 py-2 mt-2 rounded text-sm' style={{ zIndex: 19 }}>
-            {format('map.loading.indicator')} &hellip;
+            {format('map.loading.indicator')}
           </div>
       }
       <CountryMarkers countries={countriesWithAggregators} setSelectedCountry={setSelectedCountry} />

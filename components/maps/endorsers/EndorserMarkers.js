@@ -20,7 +20,7 @@ const popupTemplate = (title, content) => {
 const EndorserMarkers = (props) => {
   const map = useMap()
 
-  const [ zooming, setZooming ] = useState(false)
+  const [zooming, setZooming] = useState(false)
   const { cities, organization, setSelectedCity, setOrganization } = props
 
   const cityMarkerGroup = createRef()
@@ -38,7 +38,7 @@ const EndorserMarkers = (props) => {
     }
     if (organization && organization.countries) {
       organization.countries.forEach(country => {
-        const marker = L.marker([country.latitude, country.longitude], {icon: ProjectMarker})
+        const marker = L.marker([country.latitude, country.longitude], { icon: ProjectMarker })
         marker.bindPopup(popupTemplate(organization.name, country.name))
         marker.on('click', (e) => e.target.openPopup())
         countryMarkerGroup.current.addLayer(marker)
@@ -52,7 +52,7 @@ const EndorserMarkers = (props) => {
       layer.setOpacity(layerOpacity)
     })
     setSelectedCity(cityName)
-    
+
     // Set the selected organization and display country where that organization have work
     const selectedOrganization = cities[cityName].organizations.length > 1
       ? cities[cityName].organizations[0]
@@ -65,7 +65,7 @@ const EndorserMarkers = (props) => {
   }
 
   useMapEvents({
-    click(e) {
+    click (e) {
       if (zooming) {
         // Return opacity of markers to default value
         cityMarkerGroup.current.eachLayer(layer => {
@@ -79,7 +79,7 @@ const EndorserMarkers = (props) => {
         map.flyTo(e.latlng, DEFAULT_ZOOM)
         setZooming(false)
       }
-    },
+    }
   })
 
   return (
@@ -94,7 +94,7 @@ const EndorserMarkers = (props) => {
                 key={cityName}
                 icon={EndorserMarker}
                 position={[city.latitude, city.longitude]}
-                riseOnHover={true}
+                riseOnHover
                 eventHandlers={{
                   click: (e) => markerClickHandler(e, cityName)
                 }}
@@ -110,8 +110,13 @@ const EndorserMarkers = (props) => {
 const EndorserMarkerMaps = (props) => {
   // Adding this attribute will prevent duplicating world map:  maxBounds={[[-90, -180], [90, 180]]}
   return (
-    <MapContainer center={[0, 0]} zoom={3} className='w-full' style={{ minHeight: '70vh', zIndex: 18 }}>
+    <MapContainer
+      className='w-full' style={{ minHeight: '70vh', zIndex: 18 }}
+      center={[0, 0]} zoom={3}
+      // maxBounds={[[-90, -180], [90, 180]]}
+    >
       <TileLayer
+        noWrap
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
