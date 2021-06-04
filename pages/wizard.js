@@ -1,5 +1,6 @@
 import { useState } from 'react'
-
+import { useIntl } from 'react-intl'
+import Head from 'next/head'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import WizardHeader from '../components/wizard/WizardHeader'
@@ -62,6 +63,8 @@ const WizardPage = () => {
     mobileServices: [],
     buildingBlocks: []
   })
+  const { formatMessage } = useIntl()
+  const format = (id) => formatMessage({ id })
 
   const { loading: sectorLoading, error: sectorError, data: sectorData } = useQuery(SECTOR_QUERY)
   const { loading: useCaseLoading, error: useCaseError, data: useCaseData } = useQuery(USE_CASE_QUERY)
@@ -85,6 +88,10 @@ const WizardPage = () => {
 
   return (
     <>
+      <Head>
+        <title>{format('app.title')}</title>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
       <Header />
       <WizardHeader stage={stage} />
       {stage < 5
