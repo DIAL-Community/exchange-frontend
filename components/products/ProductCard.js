@@ -92,6 +92,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                 <div className='flex flex-col h-80 p-4'>
                   <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
                     {product.name}
+                    <img className='inline float-right product-filter' data-tip={product.productDescriptions && product.productDescriptions[0] && product.productDescriptions[0].description} alt='Info' height='20px' width='20px' src='/icons/info.svg' />
                   </div>
                   <div className='m-auto align-middle w-40'>
                     <img

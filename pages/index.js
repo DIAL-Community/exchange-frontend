@@ -6,13 +6,13 @@ import ProductListQuery from '../components/products/ProductList'
 import withApollo from '../lib/apolloClient'
 import Landing from '../components/Landing'
 import Definition from '../components/Definition'
-import Carousel from '../components/Carousel'
 import WizardDescription from '../components/WizardDescription'
 import CatalogTitle from '../components/CatalogTitle'
 import Footer from '../components/Footer'
 import SearchFilter from '../components/shared/SearchFilter'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../components/context/ProductFilterContext'
 import { useContext } from 'react'
+import ReactTooltip from 'react-tooltip'
 
 const HomePage = () => {
   const { formatMessage } = useIntl()
@@ -32,6 +32,7 @@ const HomePage = () => {
       <Definition />
       <WizardDescription />
       <CatalogTitle />
+      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Filter activeTab='filter.entity.products' />
       <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('products.label')} />
       <ProductListQuery />

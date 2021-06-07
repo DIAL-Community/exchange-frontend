@@ -81,6 +81,9 @@ query SearchProducts(
         name
         imageFile
       }
+      productDescriptions {
+        description
+      }
       organizations {
         name
         isEndorser
