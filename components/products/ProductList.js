@@ -131,7 +131,7 @@ const ProductList = (props) => {
 const ProductListQuery = () => {
   const { resultCounts, setResultCounts } = useContext(FilterResultContext)
   const {
-    origins, countries, sectors, organizations, sdgs, useCases, workflows, buildingBlocks, productTypes,
+    origins, countries, sectors, organizations, products, sdgs, useCases, workflows, buildingBlocks, productTypes,
     productDeployable, withMaturity, search, displayType
   } = useContext(ProductFilterContext)
 

@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl'
 import { ProjectFilterContext, ProjectFilterDispatchContext } from '../context/ProjectFilterContext'
 import { CountryAutocomplete, CountryFilters } from './element/Country'
 import { OrganizationAutocomplete, OrganizationFilters } from './element/Organization'
+import { ProductAutocomplete, ProductFilters } from './element/Product'
 import { OriginAutocomplete, OriginFilters } from './element/Origin'
 import { SDGAutocomplete, SDGFilters } from './element/SDG'
 import { SectorAutocomplete, SectorFilters } from './element/Sector'
@@ -14,17 +15,18 @@ const ProjectFilter = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { sectors, countries, organizations, origins, sdgs } = useContext(ProjectFilterContext)
-  const { setSectors, setCountries, setOrganizations, setOrigins, setSDGs } = useContext(ProjectFilterDispatchContext)
+  const { sectors, countries, organizations, products, origins, sdgs } = useContext(ProjectFilterContext)
+  const { setSectors, setCountries, setOrganizations, setProducts, setOrigins, setSDGs } = useContext(ProjectFilterDispatchContext)
 
   const filterCount = () => {
-    return countries.length + organizations.length + sectors.length + origins.length + sdgs.length
+    return countries.length + organizations.length + products.length + sectors.length + origins.length + sdgs.length
   }
 
   const clearFilter = (e) => {
     e.preventDefault()
     setOrigins([])
     setCountries([])
+    setProducts([])
     setSectors([])
     setOrganizations([])
     setSDGs([])
@@ -64,6 +66,7 @@ const ProjectFilter = (props) => {
                 <CountryAutocomplete {...{ countries, setCountries }} containerStyles='px-2 pb-2' />
                 <SectorAutocomplete {...{ sectors, setSectors }} containerStyles='px-2 pb-2' />
                 <OrganizationAutocomplete {...{ organizations, setOrganizations }} containerStyles='px-2 pb-2' />
+                <ProductAutocomplete {...{ products, setProducts }} containerStyles='px-2 pb-2' />
               </div>
             </div>
           </div>
@@ -77,6 +80,7 @@ const ProjectFilter = (props) => {
           <CountryFilters {...{ countries, setCountries }} />
           <SectorFilters {...{ sectors, setSectors }} />
           <OrganizationFilters {...{ organizations, setOrganizations }} />
+          <ProductFilters {...{ products, setProducts }} />
           <SDGFilters {...{ sdgs, setSDGs }} />
           {
             filterCount() > 0 &&

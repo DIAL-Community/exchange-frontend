@@ -20,6 +20,7 @@ query SearchProjects(
   $sectors: [String!],
   $countries: [String!],
   $organizations: [String!],
+  $products: [String!],
   $sdgs: [String!],
   $search: String!
   ) {
@@ -30,6 +31,7 @@ query SearchProjects(
     sectors: $sectors,
     countries: $countries,
     organizations: $organizations,
+    products: $products,
     sdgs: $sdgs,
     search: $search
   ) {
@@ -104,7 +106,7 @@ const ProjectList = (props) => {
 
 const ProjectListQuery = () => {
   const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { origins, countries, sectors, organizations, sdgs, search, displayType } = useContext(ProjectFilterContext)
+  const { origins, countries, sectors, organizations, products, sdgs, search, displayType } = useContext(ProjectFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -116,6 +118,7 @@ const ProjectListQuery = () => {
       countries: countries.map(country => country.value),
       sectors: sectors.map(sector => sector.value),
       organizations: organizations.map(organization => organization.value),
+      products: products.map(product => product.value),
       sdgs: sdgs.map(sdg => sdg.value),
       search: search
     },
@@ -143,6 +146,7 @@ const ProjectListQuery = () => {
         countries: countries.map(country => country.value),
         sectors: sectors.map(sector => sector.value),
         organizations: organizations.map(organization => organization.value),
+        products: products.map(product => product.value),
         sdgs: sdgs.map(organization => organization.value),
         search: search
       }

@@ -6,6 +6,7 @@ const ProjectFilterDispatchContext = createContext()
 const ProjectFilterProvider = ({ children }) => {
   const [origins, setOrigins] = useState([])
   const [countries, setCountries] = useState([])
+  const [products, setProducts] = useState([])
   const [sectors, setSectors] = useState([])
   const [organizations, setOrganizations] = useState([])
   const [sdgs, setSDGs] = useState([])
@@ -16,11 +17,12 @@ const ProjectFilterProvider = ({ children }) => {
   const [sortDirection, setSortDirection] = useState('asc')
 
   const projectFilterValues = {
-    origins, countries, sectors, organizations, sdgs, search, displayType, sortColumn, sortDirection
+    origins, countries, products, sectors, organizations, sdgs, search, displayType, sortColumn, sortDirection
   }
   const projectFilterDispatchValues = {
     setOrigins,
     setCountries,
+    setProducts,
     setSectors,
     setOrganizations,
     setSDGs,
