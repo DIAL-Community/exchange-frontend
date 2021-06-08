@@ -7,6 +7,7 @@ import ProjectCard from '../projects/ProjectCard'
 import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import CityCard from '../cities/CityCard'
+import AggregatorCapability from './AggregatorCapability'
 
 const DynamicOfficeMarker = (props) => {
   const OfficeMarker = useMemo(() => dynamic(
@@ -112,6 +113,13 @@ const OrganizationDetailRight = ({ organization }) => {
             <div className='grid grid-cols-1'>
               {organization.projects.map((project, i) => <ProjectCard key={i} project={project} listType='list' />)}
             </div>
+          </div>
+      }
+      {
+        organization.isMni &&
+          <div className='mt-12'>
+            <div className='card-title mb-3'>{format('operator.header')}</div>
+            <AggregatorCapability aggregatorId={organization.id} />
           </div>
       }
     </div>
