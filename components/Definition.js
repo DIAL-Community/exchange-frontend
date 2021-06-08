@@ -86,7 +86,7 @@ const Description = () => {
                         {format('definition.policy-maker.desc2')}
                       </p>
                       <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/use-case.svg' alt='' />
-                      <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-use-case`}>
+                      <a href='use_cases' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-use-case`}>
                         {format('definition.explore-usecase')}
                       </a>
                     </div>
@@ -101,7 +101,7 @@ const Description = () => {
                         {format('definition.implementer.desc2')}
                       </p>
                       <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/workflow.svg' alt='' />
-                      <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-workflow`}>
+                      <a href='workflows' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-workflow`}>
                         {format('definition.explore-workflow')}
                       </a>
                     </div>
@@ -116,7 +116,7 @@ const Description = () => {
                         {format('definition.minister.desc2')}
                       </p>
                       <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/building-block.svg' alt='' />
-                      <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-building-block`}>
+                      <a href='building_blocks' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-building-block`}>
                         {format('definition.explore-bb')}
                       </a>
                     </div>
@@ -131,7 +131,7 @@ const Description = () => {
                         {format('definition.procurer.desc2')}
                       </p>
                       <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/product.svg' alt='' />
-                      <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-product`}>
+                      <a href='products' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-product`}>
                         {format('definition.explore-prod')}
                       </a>
                     </div>
