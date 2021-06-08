@@ -20,6 +20,7 @@ query Project($slug: String!) {
     id
     name
     slug
+    tags
     projectDescriptions {
       description
     }

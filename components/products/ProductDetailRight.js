@@ -7,6 +7,7 @@ import OrganizationCard from '../organizations/OrganizationCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import SDGCard from '../sdgs/SDGCard'
 import SectorCard from '../sectors/SectorCard'
+import TagCard from '../tags/TagCard'
 import ProjectCard from '../projects/ProjectCard'
 import ProductCard from './ProductCard'
 import RepositoryInfo from './RepositoryInfo'
@@ -83,6 +84,13 @@ const ProductDetailRight = ({ product, discourseRef }) => {
               return (<ProjectCard key={i} project={project} listType='list' />)
             })}
         </div>
+      }
+      {
+        product.tags && 
+          <div className='mt-12'>
+            <div className='card-title mb-3 text-dial-gray-dark'>{format('tag.header')}</div>
+            {product.tags.map((tag, i) => <TagCard key={i} tag={tag} listType='list' />)}
+          </div>
       }
       {product.codeLines && 
         <div className='mt-12'>
