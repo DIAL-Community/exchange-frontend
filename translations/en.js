@@ -460,5 +460,7 @@ export const en = {
 
   'organization.no-sector': 'We do not have sector information for this organization.',
   'organization.no-country': 'We do not have country information for this organization.',
-  'office.other.header': 'Other Office Locations'
+  'office.other.header': 'Other Office Locations',
+
+  'organization.aggregator.loading': 'Loading aggregator data ...'
 }

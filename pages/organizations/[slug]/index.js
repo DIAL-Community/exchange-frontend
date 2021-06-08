@@ -19,8 +19,9 @@ query Organization($slug: String!) {
     id
     name
     slug
-    imageFile
+    isMni
     website
+    imageFile
     whenEndorsed
     organizationDescriptions {
       description
@@ -36,6 +37,7 @@ query Organization($slug: String!) {
       slug
     }
     countries {
+      id
       name
       slug
     }
