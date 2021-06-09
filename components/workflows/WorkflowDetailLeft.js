@@ -47,7 +47,7 @@ const WorkflowDetailLeft = ({ workflow }) => {
           </div>
           <div className='m-auto align-middle w-40 workflow-filter'>
             <img
-              alt={`Logo for ${workflow.name}`}
+              alt={format('image.alt.logoFor', { name: workflow.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
             />
           </div>

@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import ProjectCard from './ProjectCard'
 import { ProjectFilterContext } from '../context/ProjectFilterContext'
-import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
+import { FilterResultContext } from '../context/FilterResultContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -126,7 +126,7 @@ const ProjectListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ ['filter.entity.projects']: data.searchProjects.totalCount } })
+      setResultCounts({ ...resultCounts, ...{ [['filter.entity.projects']]: data.searchProjects.totalCount } })
     }
   })
 

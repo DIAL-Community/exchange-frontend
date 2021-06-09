@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import UseCaseCard from './UseCaseCard'
 import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
-import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
+import { FilterResultContext } from '../context/FilterResultContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -110,7 +110,7 @@ const UseCaseListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ ['filter.entity.useCases']: data.searchUseCases.totalCount } })
+      setResultCounts({ ...resultCounts, ...{ [['filter.entity.useCases']]: data.searchUseCases.totalCount } })
     }
   })
 

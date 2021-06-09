@@ -47,7 +47,7 @@ const UseCaseDetailLeft = ({ useCase }) => {
           </div>
           <div className='m-auto align-middle w-40 use-case-filter'>
             <img
-              alt={`Logo for ${useCase.name}`}
+              alt={format('image.alt.logoFor', { name: useCase.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
             />
           </div>

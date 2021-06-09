@@ -25,7 +25,7 @@ const WorkflowDetailRight = ({ workflow }) => {
   })()
 
   return (
-    <div className=''>
+    <div className='px-4'>
       <Breadcrumb />
       <div className='fr-view text-dial-gray-dark'>
         {workflow.workflowDescriptions[0] && ReactHtmlParser(workflow.workflowDescriptions[0].description)}

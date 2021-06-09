@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import ProductCard from './ProductCard'
 import { ProductFilterContext } from '../context/ProductFilterContext'
-import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
+import { FilterResultContext } from '../context/FilterResultContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -158,7 +158,7 @@ const ProductListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ ['filter.entity.products']: data.searchProducts.totalCount } })
+      setResultCounts({ ...resultCounts, ...{ [['filter.entity.products']]: data.searchProducts.totalCount } })
     }
   })
 

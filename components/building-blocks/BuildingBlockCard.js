@@ -48,8 +48,8 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
 
   return (
     <Link href={`/${collectionPath}/${buildingBlock.slug}`}>
-      <a { ... newTab && {target: '_blank'}}>
-      {
+      <a {... newTab && { target: '_blank' }}>
+        {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
@@ -148,7 +148,8 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                         {
                           workflowOverflow && (
                             <div className='bg-white mr-3 px-2 rounded text-sm'>
-                              <span className='text-xl bg-white leading-normal'
+                              <span
+                                className='text-xl bg-white leading-normal'
                                 data-tip={format('tooltip.ellipsisFor', { entity: format('buildingBlock.label') })}
                               >
                                 &hellip;

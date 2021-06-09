@@ -67,8 +67,8 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
 
   return (
     <Link href={`/${collectionPath}/${useCase.slug}`}>
-      <a { ... newTab && {target: '_blank'}}>
-      {
+      <a {... newTab && { target: '_blank' }}>
+        {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
@@ -78,7 +78,7 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                     {useCase.name}
                   </div>
                   {
-                    useCase.sdgTargets && 
+                    useCase.sdgTargets &&
                       <div className='col-span-2 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
                         {
                           useCase.sdgTargets.length === 0 && format('general.na')
@@ -117,7 +117,7 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                   </div>
                 </div>
                 <div className='flex flex-col h-80 p-4'>
-                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
+                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70 z-10'>
                     {useCase.name}
                   </div>
                   <div className='m-auto align-middle w-40'>

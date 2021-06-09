@@ -36,8 +36,8 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
 
   return (
     <Link className='card-link' href={`/${collectionPath}/${project.slug}`}>
-      <a { ... newTab && {target: '_blank'}}>
-      {
+      <a {... newTab && { target: '_blank' }}>
+        {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-button-gray hover:text-dial-yellow cursor-pointer'>
@@ -59,7 +59,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                       </div>
                   }
                   {
-                    project.products && 
+                    project.products &&
                       <div className='col-span-3 md:col-span-3 lg:col-span-3 mr-4 overflow-hidden overflow-ellipsis'>
                         {
                           project.products.length === 0 && format('general.na')
@@ -111,7 +111,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                           : (
                             <img
                               className='object-cover object-center mx-auto'
-                              alt={`Logo for ${projectOrganization.name}`}
+                              alt={format('image.alt.logoFor', { name: projectOrganization.name })}
                               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + projectOrganization.imageFile}
                             />
                             )
@@ -139,7 +139,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                           : (
                             <img
                               className='object-cover object-center mx-auto'
-                              alt={`Logo for ${projectProduct.name}`}
+                              alt={format('image.alt.logoFor', { name: projectProduct.name })}
                               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + projectProduct.imageFile}
                             />
                             )

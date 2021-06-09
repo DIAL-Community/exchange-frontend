@@ -19,7 +19,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
 
 
   return (
-    <div className='pl-6'>
+    <div className='px-4'>
       <Breadcrumb />
       <div className='w-full flex'>
         <div className='w-2/5 mr-4 border-r text-dial-purple-light'>

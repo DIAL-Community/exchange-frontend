@@ -45,25 +45,6 @@ const SDG = () => {
   const router = useRouter()
   const { slug } = router.query
   const { loading, error, data } = useQuery(SDG_QUERY, { variables: { slug: slug } })
-
-  if (loading) {
-    return (
-      <>
-        <Header />
-        <Loading />
-      </>
-    )
-  }
-  if (error) {
-    return (
-      <>
-        <Header />
-        <Error />
-      </>
-    )
-  }
-
-  const sdg = data.sdg
   return (
     <>
       <Head>
@@ -71,14 +52,19 @@ const SDG = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <div className='w-full h-full flex flex-col md:flex-row p-6 page-gradient'>
-        <div className='w-full xl:w-1/4 md:w-1/3 pt-4'>
-          <SDGDetailLeft sdg={sdg} />
-        </div>
-        <div className='w-full xl:w-3/4 md:w-2/3 pt-4'>
-          <SDGDetailRight sdg={sdg} />
-        </div>
-      </div>
+      {loading && <Loading />}
+      {error && <Error />}
+      {
+        data && data.sdg &&
+          <div className='flex justify-between'>
+            <div className='relative md:sticky md:top-66px w-full md:w-1/3 xl:w-1/4 h-full py-4 px-4'>
+              <SDGDetailLeft sdg={data.sdg} />
+            </div>
+            <div className='w-full md:w-2/3 xl:w-3/4'>
+              <SDGDetailRight sdg={data.sdg} />
+            </div>
+          </div>
+      }
       <Footer />
     </>
   )

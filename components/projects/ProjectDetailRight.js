@@ -13,7 +13,7 @@ const ProjectDetailRight = ({ project }) => {
   const format = (id) => formatMessage({ id })
 
   return (
-    <div className='pl-6'>
+    <div className='px-4'>
       <Breadcrumb />
       <div className='fr-view text-dial-gray-dark'>
         {project.projectDescriptions[0] && ReactHtmlParser(project.projectDescriptions[0].description)}

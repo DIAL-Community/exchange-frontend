@@ -20,7 +20,7 @@ const SDGDetailLeft = ({ sdg }) => {
           </div>
           <div className='pt-8 m-auto align-middle w-48'>
             <img
-              alt={`Logo for ${sdg.name}`}
+              alt={format('image.alt.logoFor', { name: sdg.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}
             />
           </div>

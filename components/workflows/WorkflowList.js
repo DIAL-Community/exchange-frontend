@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import WorkflowCard from './WorkflowCard'
 import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
-import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
+import { FilterResultContext } from '../context/FilterResultContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -111,7 +111,7 @@ const WorkflowListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ ['filter.entity.workflows']: data.searchWorkflows.totalCount } })
+      setResultCounts({ ...resultCounts, ...{ [['filter.entity.workflows']]: data.searchWorkflows.totalCount } })
     }
   })
 

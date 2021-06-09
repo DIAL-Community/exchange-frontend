@@ -464,5 +464,9 @@ export const en = {
   'organization.no-country': 'We do not have country information for this organization.',
   'office.other.header': 'Other Office Locations',
 
-  'organization.aggregator.loading': 'Loading aggregator data ...'
+  'useCaseStep.header': 'Use Case Steps',
+  'organization.aggregator.loading': 'Loading aggregator data ...',
+  'steps.loading.indicator': 'Loading steps data ...',
+  'step.loading.indicator': 'Loading current step data ...',
+  'step.create-new': 'Add Use Case Step'
 }

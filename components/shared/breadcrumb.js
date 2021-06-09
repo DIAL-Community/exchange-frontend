@@ -10,7 +10,7 @@ const convertBreadcrumb = string => {
     .replace(/ae/g, 'ä')
     .replace(/ue/g, 'ü')
     .toUpperCase()
-};
+}
 
 const Breadcrumb = () => {
   const router = useRouter()
@@ -21,13 +21,13 @@ const Breadcrumb = () => {
   useEffect(() => {
     if (router) {
       const linkPath = router.asPath.split('/')
-      linkPath.shift();
+      linkPath.shift()
 
       const pathArray = linkPath.map((path, i) => {
         return { breadcrumb: path, href: '/' + linkPath.slice(0, i + 1).join('/') }
-      });
+      })
 
-      setBreadcrumbs(pathArray);
+      setBreadcrumbs(pathArray)
     }
   }, [router])
 
@@ -36,11 +36,12 @@ const Breadcrumb = () => {
   }
 
   return (
-    <div className='h-20'>
-      <a className='inline text-dial-blue h5' href="/">{format('app.home')}</a>
+    // Use this to make this sticky: <div className='bg-white sticky py-4' style={{ top: '66px', zIndex: 1 }}>
+    <div className='bg-white py-4'>
+      <a className='inline text-dial-blue h5' href='/'>{format('app.home')}</a>
       {breadcrumbs.map((breadcrumb, i) => {
         return (
-          <div key={i} className={`inline ${i === breadcrumbs.length -1 ? 'text-dial-gray-dark' : 'text-dial-blue'} h5`}>
+          <div key={i} className={`inline ${i === breadcrumbs.length - 1 ? 'text-dial-gray-dark' : 'text-dial-blue'} h5`}>
             &nbsp;&gt;&nbsp;
             <Link href={breadcrumb.href}>
               <a>

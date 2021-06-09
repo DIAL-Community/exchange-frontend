@@ -1,4 +1,4 @@
-import { FormattedDate, useIntl } from 'react-intl'
+import { useIntl } from 'react-intl'
 import Breadcrumb from '../shared/breadcrumb'
 import UseCaseCard from '../use-cases/UseCaseCard'
 
@@ -7,7 +7,7 @@ const SDGDetailRight = ({ sdg }) => {
   const format = (id) => formatMessage({ id })
 
   return (
-    <div className=''>
+    <div className='px-4'>
       <Breadcrumb />
       {
         sdg.sdgTargets &&
@@ -18,7 +18,7 @@ const SDGDetailRight = ({ sdg }) => {
               >
                 <div className='flex flex-row text-dial-gray-dark'>
                   <div className='flex-grow flex flex-col'>
-                    <div className='text-xl leading-8	'>
+                    <div className='text-xl leading-8'>
                       {`${format('sdg.target.title')}: ${sdgTarget.targetNumber}`}
                     </div>
                     <div className='whitespace-normal mt-2'>
@@ -27,7 +27,7 @@ const SDGDetailRight = ({ sdg }) => {
                   </div>
                   <img
                     className='w-12'
-                    alt={`Logo for ${sdgTarget.targetNumber}`}
+                    alt={format('image.alt.logoFor', { name: sdgTarget.name })}
                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdgTarget.imageFile}
                   />
                 </div>

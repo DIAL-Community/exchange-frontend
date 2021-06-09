@@ -32,7 +32,7 @@ const OrganizationDetailRight = ({ organization }) => {
     : undefined
 
   return (
-    <div className=''>
+    <div className='px-4'>
       <Breadcrumb />
       <div className='flex flex-col lg:flex-row flex-wrap'>
         <div className='flex flex-col flex-grow pb-4'>

@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import SDGCard from './SDGCard'
 import { SDGFilterContext } from '../context/SDGFilterContext'
-import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
+import { FilterResultContext } from '../context/FilterResultContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -99,7 +99,7 @@ const SDGListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ ['filter.entity.sdgs']: data.searchSdgs.totalCount } })
+      setResultCounts({ ...resultCounts, ...{ [['filter.entity.sdgs']]: data.searchSdgs.totalCount } })
     }
   })
 
