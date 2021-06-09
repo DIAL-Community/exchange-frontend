@@ -7,6 +7,7 @@ import { OrganizationAutocomplete, OrganizationFilters } from './element/Organiz
 import { ProductAutocomplete, ProductFilters } from './element/Product'
 import { OriginAutocomplete, OriginFilters } from './element/Origin'
 import { SDGAutocomplete, SDGFilters } from './element/SDG'
+import { TagAutocomplete, TagFilters } from './element/Tag'
 import { SectorAutocomplete, SectorFilters } from './element/Sector'
 
 const ProjectFilter = (props) => {
@@ -15,11 +16,11 @@ const ProjectFilter = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { sectors, countries, organizations, products, origins, sdgs } = useContext(ProjectFilterContext)
-  const { setSectors, setCountries, setOrganizations, setProducts, setOrigins, setSDGs } = useContext(ProjectFilterDispatchContext)
+  const { sectors, countries, organizations, products, origins, sdgs, tags} = useContext(ProjectFilterContext)
+  const { setSectors, setCountries, setOrganizations, setProducts, setOrigins, setSDGs, setTags } = useContext(ProjectFilterDispatchContext)
 
   const filterCount = () => {
-    return countries.length + organizations.length + products.length + sectors.length + origins.length + sdgs.length
+    return countries.length + organizations.length + products.length + sectors.length + origins.length + sdgs.length + tags.length
   }
 
   const clearFilter = (e) => {
@@ -30,6 +31,7 @@ const ProjectFilter = (props) => {
     setSectors([])
     setOrganizations([])
     setSDGs([])
+    setTags([])
   }
 
   return (
@@ -67,6 +69,7 @@ const ProjectFilter = (props) => {
                 <SectorAutocomplete {...{ sectors, setSectors }} containerStyles='px-2 pb-2' />
                 <OrganizationAutocomplete {...{ organizations, setOrganizations }} containerStyles='px-2 pb-2' />
                 <ProductAutocomplete {...{ products, setProducts }} containerStyles='px-2 pb-2' />
+                <TagAutocomplete {...{ tags, setTags }} containerStyles='px-2 pb-2' />
               </div>
             </div>
           </div>
@@ -82,6 +85,7 @@ const ProjectFilter = (props) => {
           <OrganizationFilters {...{ organizations, setOrganizations }} />
           <ProductFilters {...{ products, setProducts }} />
           <SDGFilters {...{ sdgs, setSDGs }} />
+          <TagFilters {...{ tags, setTags }} />
           {
             filterCount() > 0 &&
               <a className='px-2 py-1  mt-2 text-sm text-white' href='#clear-filter' onClick={clearFilter}>

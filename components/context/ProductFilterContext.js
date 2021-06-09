@@ -11,6 +11,7 @@ const ProductFilterProvider = ({ children }) => {
   const [sectors, setSectors] = useState([])
   const [organizations, setOrganizations] = useState([])
   const [sdgs, setSDGs] = useState([])
+  const [tags, setTags] = useState([])
   const [useCases, setUseCases] = useState([])
   const [workflows, setWorkflows] = useState([])
   const [buildingBlocks, setBuildingBlocks] = useState([])
@@ -29,6 +30,7 @@ const ProductFilterProvider = ({ children }) => {
     sectors,
     organizations,
     sdgs,
+    tags,
     useCases,
     workflows,
     buildingBlocks,
@@ -46,6 +48,7 @@ const ProductFilterProvider = ({ children }) => {
     setSectors,
     setOrganizations,
     setSDGs,
+    setTags,
     setUseCases,
     setWorkflows,
     setBuildingBlocks,

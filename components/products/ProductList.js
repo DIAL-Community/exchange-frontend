@@ -21,6 +21,7 @@ query SearchProducts(
   $countries: [String!],
   $organizations: [String!],
   $sdgs: [String!],
+  $tags: [String!],
   $useCases: [String!],
   $workflows: [String!],
   $buildingBlocks: [String!],
@@ -37,6 +38,7 @@ query SearchProducts(
     countries: $countries,
     organizations: $organizations,
     sdgs: $sdgs,
+    tags: $tags,
     useCases: $useCases,
     workflows: $workflows,
     buildingBlocks: $buildingBlocks,
@@ -131,7 +133,7 @@ const ProductList = (props) => {
 const ProductListQuery = () => {
   const { resultCounts, setResultCounts } = useContext(FilterResultContext)
   const {
-    origins, countries, sectors, organizations, products, sdgs, useCases, workflows, buildingBlocks, productTypes,
+    origins, countries, sectors, organizations, products, sdgs, tags, useCases, workflows, buildingBlocks, productTypes,
     productDeployable, withMaturity, search, displayType
   } = useContext(ProductFilterContext)
 
@@ -146,6 +148,7 @@ const ProductListQuery = () => {
       sectors: sectors.map(sector => sector.value),
       organizations: organizations.map(organization => organization.value),
       sdgs: sdgs.map(sdg => sdg.value),
+      tags: tags.map(tag => tag.label),
       useCases: useCases.map(useCase => useCase.value),
       workflows: workflows.map(workflow => workflow.value),
       buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
@@ -179,6 +182,7 @@ const ProductListQuery = () => {
         sectors: sectors.map(sector => sector.value),
         organizations: organizations.map(organization => organization.value),
         sdgs: sdgs.map(sdg => sdg.value),
+        tags: tags.map(tag => tag.label),
         useCases: useCases.map(useCase => useCase.value),
         workflows: workflows.map(workflow => workflow.value),
         buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),

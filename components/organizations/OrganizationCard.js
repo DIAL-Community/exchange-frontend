@@ -77,7 +77,7 @@ const OrganizationCard = ({ organization, listType, newTab = false  }) => {
                 }
                 <Link className='card-link' href={`/${collectionPath}/${organization.slug}`}>
                   <div className='flex flex-col h-80 p-4'>
-                    <div className='text-2xl font-semibold absolute group-hover:text-dial-yellow w-64 2xl:w-80 bg-white bg-opacity-70'>
+                    <div className='text-2xl font-semibold group-hover:text-dial-yellow w-64 2xl:w-80 bg-white bg-opacity-70'>
                       {truncate(organization.name, 40, true)}
                     </div>
                     <div className='m-auto align-middle w-40'>

@@ -9,6 +9,7 @@ import { OrganizationAutocomplete, OrganizationFilters } from './element/Organiz
 import { OriginAutocomplete, OriginFilters } from './element/Origin'
 import { ProductTypeFilters, ProductTypeSelect } from './element/ProductType'
 import { SDGAutocomplete, SDGFilters } from './element/SDG'
+import { TagAutocomplete, TagFilters } from './element/Tag'
 import { SectorAutocomplete, SectorFilters } from './element/Sector'
 import { UseCaseAutocomplete, UseCaseFilters } from './element/UseCase'
 import { WorkflowAutocomplete, WorkflowFilters } from './element/Workflow'
@@ -20,12 +21,12 @@ const ProductFilter = (props) => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const {
-    withMaturity, productDeployable, sectors, countries, organizations, origins, sdgs,
+    withMaturity, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
     useCases, workflows, buildingBlocks, productTypes
   } = useContext(ProductFilterContext)
   const {
     setWithMaturity, setProductDeployable, setSectors, setCountries, setOrganizations,
-    setOrigins, setSDGs, setUseCases, setWorkflows, setBuildingBlocks, setProductTypes
+    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setProductTypes
   } = useContext(ProductFilterDispatchContext)
 
   const toggleWithMaturity = () => {
@@ -40,7 +41,7 @@ const ProductFilter = (props) => {
     let count = 0
     count = withMaturity ? count + 1 : count
     count = productDeployable ? count + 1 : count
-    count = count + countries.length + organizations.length +
+    count = count + countries.length + organizations.length + tags.length +
       sectors.length + origins.length + sdgs.length + useCases.length +
       workflows.length + buildingBlocks.length + productTypes.length
     return count
@@ -56,6 +57,7 @@ const ProductFilter = (props) => {
     setOrganizations([])
     setProductTypes([])
     setSDGs([])
+    setTags([])
     setUseCases([])
     setWorkflows([])
     setBuildingBlocks([])
@@ -82,6 +84,7 @@ const ProductFilter = (props) => {
                 <UseCaseAutocomplete {...{ useCases, setUseCases }} containerStyles='px-2 pb-2' />
                 <WorkflowAutocomplete {...{ workflows, setWorkflows }} containerStyles='px-2 pb-2' />
                 <BuildingBlockAutocomplete {...{ buildingBlocks, setBuildingBlocks }} containerStyles='px-2 pb-2' />
+                <TagAutocomplete {...{ tags, setTags }} containerStyles='px-2 pb-2' />
               </div>
             </div>
             <div className='col-span-11 lg:col-span-6'>
@@ -114,6 +117,7 @@ const ProductFilter = (props) => {
                 <CountryAutocomplete {...{ countries, setCountries }} containerStyles='px-2 pb-2' />
                 <SectorAutocomplete {...{ sectors, setSectors }} containerStyles='px-2 pb-2' />
                 <OrganizationAutocomplete {...{ organizations, setOrganizations }} containerStyles='px-2 pb-2' />
+                <TagAutocomplete {...{ tags, setTags }} containerStyles='px-2 pb-2' />
               </div>
             </div>
           </div>
@@ -146,6 +150,7 @@ const ProductFilter = (props) => {
           <WorkflowFilters {...{ workflows, setWorkflows }} />
           <UseCaseFilters {...{ useCases, setUseCases }} />
           <SDGFilters {...{ sdgs, setSDGs }} />
+          <TagFilters {...{ tags, setTags }} />
           {
             filterCount() > 0 &&
               <a className='px-2 py-1  mt-2 text-sm text-white' href='#clear-filter' onClick={clearFilter}>

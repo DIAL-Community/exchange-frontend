@@ -10,6 +10,7 @@ const ProjectFilterProvider = ({ children }) => {
   const [sectors, setSectors] = useState([])
   const [organizations, setOrganizations] = useState([])
   const [sdgs, setSDGs] = useState([])
+  const [tags, setTags] = useState([])
 
   const [search, setSearch] = useState('')
   const [displayType, setDisplayType] = useState('card')
@@ -17,7 +18,7 @@ const ProjectFilterProvider = ({ children }) => {
   const [sortDirection, setSortDirection] = useState('asc')
 
   const projectFilterValues = {
-    origins, countries, products, sectors, organizations, sdgs, search, displayType, sortColumn, sortDirection
+    origins, countries, products, sectors, organizations, sdgs, tags, search, displayType, sortColumn, sortDirection
   }
   const projectFilterDispatchValues = {
     setOrigins,
@@ -26,6 +27,7 @@ const ProjectFilterProvider = ({ children }) => {
     setSectors,
     setOrganizations,
     setSDGs,
+    setTags,
     setSearch,
     setDisplayType,
     setSortColumn,
