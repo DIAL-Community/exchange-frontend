@@ -75,14 +75,19 @@ const Workflow = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <div className='w-full h-full flex flex-col md:flex-row p-6 page-gradient'>
-        <div className='w-full xl:w-1/4 md:w-1/3 pt-4'>
-          <WorkflowDetailLeft workflow={workflow} />
-        </div>
-        <div className='w-full xl:w-3/4 md:w-2/3 pt-4 h-screen overflow-y-scroll'>
-          <WorkflowDetailRight workflow={workflow} />
-        </div>
-      </div>
+      {loading && <Loading />}
+      {error && <Error />}
+      {
+        data && data.workflow &&
+          <div className='flex justify-between'>
+            <div className='relative md:sticky md:top-66px w-full md:w-1/3 xl:w-1/4 h-full py-4 px-4'>
+              <WorkflowDetailLeft workflow={workflow} />
+            </div>
+            <div className='w-full md:w-2/3 xl:w-3/4'>
+              <WorkflowDetailRight workflow={workflow} />
+            </div>
+          </div>
+      }
       <Footer />
     </>
   )

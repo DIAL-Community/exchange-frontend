@@ -82,7 +82,7 @@ const OrganizationCard = ({ organization, listType, newTab = false  }) => {
                     </div>
                     <div className='m-auto align-middle w-40'>
                       <img
-                        alt={`Logo for ${organization.name}`}
+                        alt={format('image.alt.logoFor', { name: organization.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
                       />
                     </div>

@@ -9,7 +9,7 @@ import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 import { createPopper } from '@popperjs/core'
 
 const menuItemStyles = `
-    lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400
+    lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
   `
 
 const dropdwonMenuStyles = `
@@ -155,7 +155,7 @@ const Header = () => {
   `
 
   const menuItemStyles = `
-    lg:p-4 lg:py-3 px-6 py-2 block border-b-2 border-transparent lg:hover:border-indigo-400
+    lg:p-4 lg:py-3 px-6 py-2 block border-b-2 border-transparent lg:hover:border-dial-yellow
   `
 
   const dropdwonMenuStyles = `
@@ -273,7 +273,13 @@ const Header = () => {
                   )
             }
             <li>
-                <a className={`${menuItemStyles} lg:mb-0 mb-2`} href='https://docs.osc.dial.community/projects/product-registry/en/latest/' target='_blank'>{format('header.help')}</a>
+              <a
+                className={`${menuItemStyles} lg:mb-0 mb-2`}
+                href='https://docs.osc.dial.community/projects/product-registry/en/latest/'
+                target='_blank' rel='noreferrer'
+              >
+                {format('header.help')}
+              </a>
             </li>
             <li><div className='border border-gray-400 border-t-0 lg:border-l-0 lg:h-9' /></li>
             <li className='relative mt-2 lg:mt-0'>

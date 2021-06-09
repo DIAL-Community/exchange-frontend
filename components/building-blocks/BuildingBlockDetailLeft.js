@@ -47,7 +47,7 @@ const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
           </div>
           <div className='m-auto align-middle w-40 building-block-filter'>
             <img
-              alt={`Logo for ${buildingBlock.name}`}
+              alt={format('image.alt.logoFor', { name: buildingBlock.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
             />
           </div>

@@ -28,15 +28,19 @@ const USE_CASE_QUERY = gql`
         name
         targetNumber
       }
-      useCaseSteps {
-        id
+      workflows {
         name
-        workflows {
-          id
-          name
-          slug
-          imageFile
-        }
+        slug
+        imageFile
+      }
+      buildingBlocks {
+        name
+        slug
+        maturity
+        imageFile
+      }
+      useCaseHeaders {
+        header
       }
     }
   }
@@ -49,25 +53,6 @@ const UseCase = () => {
   const router = useRouter()
   const { slug } = router.query
   const { loading, error, data } = useQuery(USE_CASE_QUERY, { variables: { slug: slug } })
-
-  if (loading) {
-    return (
-      <>
-        <Header />
-        <Loading />
-      </>
-    )
-  }
-  if (error) {
-    return (
-      <>
-        <Header />
-        <Error />
-      </>
-    )
-  }
-
-  const useCase = data.useCase
   return (
     <>
       <Head>
@@ -75,14 +60,19 @@ const UseCase = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <div className='w-full h-full flex flex-col md:flex-row p-6 page-gradient'>
-        <div className='w-full xl:w-1/4 md:w-1/3 pt-4'>
-          <UseCaseDetailLeft useCase={useCase} />
-        </div>
-        <div className='w-full xl:w-3/4 md:w-2/3 pt-4 h-screen overflow-y-scroll'>
-          <UseCaseDetailRight useCase={useCase} />
-        </div>
-      </div>
+      {loading && <Loading />}
+      {error && <Error />}
+      {
+        data && data.useCase &&
+          <div className='flex justify-between'>
+            <div className='sticky w-1/4 h-full py-4 px-4' style={{ top: '66px' }}>
+              <UseCaseDetailLeft useCase={data.useCase} />
+            </div>
+            <div className='w-3/4'>
+              <UseCaseDetailRight useCase={data.useCase} />
+            </div>
+          </div>
+      }
       <Footer />
     </>
   )

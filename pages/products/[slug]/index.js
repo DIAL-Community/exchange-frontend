@@ -116,7 +116,6 @@ export async function getServerSideProps (context) {
 
 const Product = () => {
   const discourseElement = useRef()
-  const rightPanel = useRef()
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -125,33 +124,12 @@ const Product = () => {
   const { slug } = router.query
   const { loading, error, data } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
 
-  if (loading) {
-    return (
-      <>
-        <Header />
-        <Loading />
-        <Footer />
-      </>
-    )
-  }
-  if (error) {
-    return (
-      <>
-        <Header />
-        <Error />
-        <Footer />
-      </>
-    )
-  }
-
   const scrollToDiv = (ref) => {
-    rightPanel.current.scrollTo({
-      top: ref.current.offsetTop - 100,
+    ref.current.scrollIntoView({
       behavior: 'smooth'
     })
   }
 
-  const product = data.product
   return (
     <>
       <Head>
@@ -160,14 +138,19 @@ const Product = () => {
       </Head>
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <div className='w-full h-full flex flex-col md:flex-row p-6 page-gradient'>
-        <div className='w-full xl:w-1/4 md:w-1/3 pt-4'>
-          <ProductDetailLeft product={product} discourseClick={()=> scrollToDiv(discourseElement)} />
-        </div>
-        <div className='w-full xl:w-3/4 md:w-2/3 pt-4 h-screen overflow-y-scroll'>
-          <ProductDetailRight product={product} discourseRef={discourseElement} />
-        </div>
-      </div>
+      {loading && <Loading />}
+      {error && <Error />}
+      {
+        data && data.product &&
+          <div className='flex justify-between'>
+            <div className='relative md:sticky md:top-66px w-full md:w-1/3 xl:w-1/4 h-full py-4 px-4'>
+              <ProductDetailLeft product={data.product} discourseClick={() => scrollToDiv(discourseElement)} />
+            </div>
+            <div className='w-full md:w-2/3 xl:w-3/4'>
+              <ProductDetailRight product={data.product} discourseRef={discourseElement} />
+            </div>
+          </div>
+      }
       <Footer />
     </>
   )

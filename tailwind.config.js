@@ -80,14 +80,18 @@ module.exports = {
         '1/4': '25%',
         '1/2': '50%',
         '3/4': '75%'
+      },
+      zIndex: {
+        60: '60',
+        70: '70',
+        80: '80',
+        90: '90',
+        100: '100'
+      },
+      inset: {
+        // This should be set to the value of our top bar height.
+        '66px': '66px'
       }
-    },
-    zIndex: {
-      '60': '60',
-      '70': '70',
-      '80': '80',
-      '90': '90',
-      '100': '100'
     }
   },
   variants: {

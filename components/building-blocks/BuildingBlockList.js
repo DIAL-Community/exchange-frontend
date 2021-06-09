@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import BuildingBlockCard from './BuildingBlockCard'
 import { BuildingBlockFilterContext } from '../context/BuildingBlockFilterContext'
-import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
+import { FilterResultContext } from '../context/FilterResultContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -112,7 +112,7 @@ const BuildingBlockListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ ['filter.entity.buildingBlocks']: data.searchBuildingBlocks.totalCount }})
+      setResultCounts({ ...resultCounts, ...{ [['filter.entity.buildingBlocks']]: data.searchBuildingBlocks.totalCount } })
     }
   })
 

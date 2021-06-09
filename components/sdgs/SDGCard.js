@@ -74,7 +74,7 @@ const SDGCard = ({ sdg, listType }) => {
                   <div className={`${nameColSpan()} pr-3 text-base text-sdg font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden`}>
                     <img
                       className='inline pr-4' src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`}
-                      alt={format('image.alt.logoFor', { name: sdg.name })}  width='40' height='40'
+                      alt={format('image.alt.logoFor', { name: sdg.name })} width='40' height='40'
                     />
                     {sdg.name}
                   </div>
@@ -138,7 +138,7 @@ const SDGCard = ({ sdg, listType }) => {
                             <div className='bg-white mr-3 px-2 rounded text-sm text-sdg-target'>
                               <span
                                 className='text-xl bg-white leading-normal'
-                                data-tip={format('tooltip.ellipsisFor', { entity: format('sdg.label')})}
+                                data-tip={format('tooltip.ellipsisFor', { entity: format('sdg.label') })}
                               >
                                 &hellip;
                               </span>
@@ -169,7 +169,7 @@ const SDGCard = ({ sdg, listType }) => {
                                 <div key={`${sdg.id}-${useCase.id}`} className='bg-white rounded p-2 mr-1'>
                                   <img
                                     data-tip={format('tooltip.forEntity', { entity: format('useCase.label'), name: useCase.name })}
-                                    className='m-auto h-6 use-case-filter' alt={format('image.alt.logoFor', { name: useCase.name})}
+                                    className='m-auto h-6 use-case-filter' alt={format('image.alt.logoFor', { name: useCase.name })}
                                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
                                   />
                                 </div>

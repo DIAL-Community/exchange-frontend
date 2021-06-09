@@ -1,4 +1,4 @@
-import { FormattedDate, useIntl } from 'react-intl'
+import { useIntl } from 'react-intl'
 import Breadcrumb from '../shared/breadcrumb'
 import ProductCard from '../products/ProductCard'
 import WorkflowCard from '../workflows/WorkflowCard'
@@ -10,7 +10,7 @@ const BuildingBlockDetailRight = ({ buildingBlock, discourseRef }) => {
   const format = (id) => formatMessage({ id })
 
   return (
-    <div className=''>
+    <div className='px-4'>
       <Breadcrumb />
       <div className='fr-view text-dial-gray-dark'>
         {buildingBlock.buildingBlockDescriptions[0] && ReactHtmlParser(buildingBlock.buildingBlockDescriptions[0].description)}

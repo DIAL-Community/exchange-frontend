@@ -141,7 +141,7 @@ const WorkflowCard = ({ workflow, listType }) => {
                   <div className='flex flex-row text-dial-gray-dark'>
                     <div className='py-3 text-dial-gray-dark flex flex-row'>
                       <div className='pl-3 text-base whitespace-nowrap text-building-block my-auto'>
-                        {format('workflow.buildingBlocks')}
+                        {format('building-block.header')}
                       </div>
                       <div className='flex flex-row'>
                         <div

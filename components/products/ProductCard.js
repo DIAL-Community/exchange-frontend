@@ -14,7 +14,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
     }
 
     const endorserOrgs = product.organizations.filter((org) => {
-      return org.isEndorser == true
+      return org.isEndorser === true
     })
 
     return endorserOrgs.length > 0
@@ -26,8 +26,8 @@ const ProductCard = ({ product, listType, newTab = false }) => {
 
   return (
     <Link href={`/products/${product.slug}`}>
-      <a { ... newTab && {target: '_blank'}}>
-      {
+      <a {... newTab && { target: '_blank' }}>
+        {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-dial-purple hover:text-dial-yellow cursor-pointer'>
@@ -51,11 +51,13 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                     }
                   </div>
                   <div className='col-span-1 flex flex-row justify-end'>
-                    { product.endorsers && product.endorsers.length > 0 &&
-                      <img data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
+                    {
+                      product.endorsers && product.endorsers.length > 0 &&
+                        <img data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
                     }
-                    { isEndorsingOrg() &&
-                      <img data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5' src='/icons/digiprins/digiprins.png' />
+                    {
+                      isEndorsingOrg() &&
+                        <img data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5' src='/icons/digiprins/digiprins.png' />
                     }
                     {
                       product.tags && product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
@@ -71,12 +73,14 @@ const ProductCard = ({ product, listType, newTab = false }) => {
             <div className='border-3 border-transparent hover:border-dial-yellow text-dial-purple hover:text-dial-yellow cursor-pointer'>
               <div className='h-full flex flex-col justify-between border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
-                  { product.endorsers && product.endorsers.length > 0 &&
-                    <img data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
+                  {
+                    product.endorsers && product.endorsers.length > 0 &&
+                      <img data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
                   }
-                  { isEndorsingOrg() &&
+                  {
+                    isEndorsingOrg() &&
                       <img data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5' src='/icons/digiprins/digiprins.png' />
-                    }
+                  }
                   {
                     product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
                       <img data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5' src='/icons/coronavirus/coronavirus.png' />
@@ -180,7 +184,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                       <div className='text-base text-right my-auto'>Sources</div>
                       <div className='flex flex-row justify-end font-semibold'>
                         {
-                          product.origins.length === 0 && 
+                          product.origins.length === 0 &&
                             <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
                               {format('general.na')}
                             </div>
@@ -191,7 +195,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                             .map(origin => (
                               <div
                                 key={`origin-${origin.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
-                                data-tip={format('tooltip.forEntity', { entity: format('origin.label'), name: ORIGIN_EXPANSIONS[origin.slug.toLowerCase()]})}
+                                data-tip={format('tooltip.forEntity', { entity: format('origin.label'), name: ORIGIN_EXPANSIONS[origin.slug.toLowerCase()] })}
                               >
                                 {(ORIGIN_ACRONYMS[origin.slug.toLowerCase()] || origin.slug).toUpperCase()}
                               </div>
