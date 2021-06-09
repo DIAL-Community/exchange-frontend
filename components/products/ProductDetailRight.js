@@ -89,7 +89,9 @@ const ProductDetailRight = ({ product, discourseRef }) => {
         product.tags && 
           <div className='mt-12'>
             <div className='card-title mb-3 text-dial-gray-dark'>{format('tag.header')}</div>
-            {product.tags.map((tag, i) => <TagCard key={i} tag={tag} listType='list' />)}
+            <div className='grid grid-cols-1 lg:grid-cols-2'>
+              {product.tags.map((tag, i) => <TagCard key={i} tag={tag} listType='list' />)}
+            </div>
           </div>
       }
       {product.codeLines && 

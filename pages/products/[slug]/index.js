@@ -10,6 +10,7 @@ import withApollo from '../../../lib/apolloClient'
 
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+import ReactTooltip from 'react-tooltip'
 
 import ProductDetailLeft from '../../../components/products/ProductDetailLeft'
 import ProductDetailRight from '../../../components/products/ProductDetailRight'
@@ -37,6 +38,11 @@ query Product($slug: String!) {
     }
     origins {
       name
+      slug
+    }
+    endorsers {
+      name
+      slug
     }
     childProducts {
       name
@@ -153,6 +159,7 @@ const Product = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
+      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <div className='w-full h-full flex flex-col md:flex-row p-6 page-gradient'>
         <div className='w-full xl:w-1/4 md:w-1/3 pt-4'>
           <ProductDetailLeft product={product} discourseClick={()=> scrollToDiv(discourseElement)} />
