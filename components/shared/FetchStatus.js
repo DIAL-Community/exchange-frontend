@@ -19,7 +19,7 @@ export const Loading = () => {
 export const Error = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
- 
+
   return (
     <div className='grid place-items-center bg-gradient-to-b from-dial-gray-light to-white'>
       <div className='my-20 text-button-gray text-lg'>

@@ -48,7 +48,7 @@ const Workflow = () => {
 
   const router = useRouter()
   const { slug } = router.query
-  const { loading, error, data } = useQuery(WORKFLOW_QUERY, { variables: { slug: slug } })
+  const { loading, error, data } = useQuery(WORKFLOW_QUERY, { variables: { slug: slug }, skip: !slug })
 
   if (loading) {
     return (
