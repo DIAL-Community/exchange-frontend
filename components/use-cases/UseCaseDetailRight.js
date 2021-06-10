@@ -1,10 +1,15 @@
 import { useIntl } from 'react-intl'
+
 import Breadcrumb from '../shared/breadcrumb'
 import WorkflowCard from '../workflows/WorkflowCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import ReactHtmlParser from 'react-html-parser'
 import StepList from './steps/StepList'
+
 import { useSession } from 'next-auth/client'
+import Link from 'next/link'
+
+import { convertToKey } from '../context/FilterResultContext'
 
 const UseCaseDetailRight = ({ useCase }) => {
   const { formatMessage } = useIntl()
@@ -63,18 +68,20 @@ const UseCaseDetailRight = ({ useCase }) => {
               {
                 useCase.sdgTargets.map((sdgTarget, index) => {
                   return (
-                    <div key={index} className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
-                      <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
-                        <div className='flex flex-row text-dial-gray-dark'>
-                          <div className='px-4 my-auto text-sm font-semibold text-dial-yellow w-2/12'>
-                            {`${format('sdg.target.title')}: ${sdgTarget.targetNumber}`}
-                          </div>
-                          <div className='my-2 text-sm w-10/12'>
-                            {sdgTarget.name}
+                    <Link key={index} href={`/${convertToKey('SDGs')}/${sdgTarget.sustainableDevelopmentGoal.slug}`}>
+                      <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
+                        <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+                          <div className='flex flex-row text-dial-gray-dark'>
+                            <div className='px-4 my-auto text-sm font-semibold text-dial-yellow w-2/12'>
+                              {`${format('sdg.target.title')}: ${sdgTarget.targetNumber}`}
+                            </div>
+                            <div className='my-2 text-sm w-10/12'>
+                              {sdgTarget.name}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   )
                 })
               }

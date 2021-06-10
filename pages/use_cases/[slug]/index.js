@@ -27,6 +27,9 @@ const USE_CASE_QUERY = gql`
         id
         name
         targetNumber
+        sustainableDevelopmentGoal {
+          slug
+        }
       }
       workflows {
         name
@@ -52,7 +55,8 @@ const UseCase = () => {
 
   const router = useRouter()
   const { slug } = router.query
-  const { loading, error, data } = useQuery(USE_CASE_QUERY, { variables: { slug: slug } })
+  const { loading, error, data } = useQuery(USE_CASE_QUERY, { variables: { slug: slug }, skip: !slug })
+
   return (
     <>
       <Head>
