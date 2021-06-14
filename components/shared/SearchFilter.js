@@ -45,7 +45,7 @@ const SearchFilter = (props) => {
         <div className='flex flex-row mt-2'>
           <label className='block w-7/12 md:w-4/12 my-auto'>
             <span className='sr-only'>{format('search.input.label')}</span>
-            <input
+            <input type='search'
               value={searchTerm} onChange={handleChange}
               className='form-input text-sm md:text-base py-4 md:py-3 px-4 w-full rounded-md border'
               placeholder={placeholder}
