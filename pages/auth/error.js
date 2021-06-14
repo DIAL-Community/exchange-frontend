@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { useIntl } from 'react-intl'
 
-export default function Error({ csrfToken }) {
+export default function Error ({ csrfToken }) {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 

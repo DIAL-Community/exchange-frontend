@@ -34,6 +34,7 @@ const WorkflowCard = ({ workflow, listType }) => {
     }
   }, [useCaseOverflow, buildingBlockOverflow])
 
+  // Get associated use cases through use case steps.
   const useCases = (() => {
     if (!workflow.useCaseSteps) {
       return
@@ -50,6 +51,12 @@ const WorkflowCard = ({ workflow, listType }) => {
     return useCases
   })()
 
+  const nameColSpan = () => {
+    return !workflow.buildingBlocks && !useCases
+      ? 'col-span-12'
+      : 'col-span-4'
+  }
+
   return (
     <Link href={`/${collectionPath}/${workflow.slug}`}>
       {
@@ -58,7 +65,7 @@ const WorkflowCard = ({ workflow, listType }) => {
             <div className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
-                  <div className='col-span-4 pr-3 text-base font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                  <div className={`${nameColSpan()} pr-3 text-base font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden`}>
                     {workflow.name}
                   </div>
                   <div className='col-span-4 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>

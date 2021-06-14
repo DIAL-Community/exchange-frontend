@@ -43,7 +43,7 @@ const BuildingBlock = () => {
 
   const router = useRouter()
   const { slug } = router.query
-  const { loading, error, data } = useQuery(BUILDING_BLOCK_QUERY, { variables: { slug: slug } })
+  const { loading, error, data } = useQuery(BUILDING_BLOCK_QUERY, { variables: { slug: slug }, skip: !slug })
 
   const discourseElement = useRef()
   const scrollToDiv = (ref) => {
