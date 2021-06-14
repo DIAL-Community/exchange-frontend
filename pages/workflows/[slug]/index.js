@@ -67,7 +67,6 @@ const Workflow = () => {
     )
   }
 
-  const workflow = data.workflow
   return (
     <>
       <Head>
@@ -81,10 +80,10 @@ const Workflow = () => {
         data && data.workflow &&
           <div className='flex justify-between'>
             <div className='relative md:sticky md:top-66px w-full md:w-1/3 xl:w-1/4 h-full py-4 px-4'>
-              <WorkflowDetailLeft workflow={workflow} />
+              <WorkflowDetailLeft workflow={data.workflow} />
             </div>
             <div className='w-full md:w-2/3 xl:w-3/4'>
-              <WorkflowDetailRight workflow={workflow} />
+              <WorkflowDetailRight workflow={data.workflow} />
             </div>
           </div>
       }
