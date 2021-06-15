@@ -85,7 +85,7 @@ export default NextAuth({
       })
 
       if (response.status === 200) {
-        console.log(`User with email: ${message.user.userEmail} signed out successfully`)
+        // console.log(`User with email: ${message.user.userEmail} signed out successfully`)
       }
     }
   }

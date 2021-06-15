@@ -15,6 +15,9 @@ const SearchFilter = (props) => {
 
   let linkPath = router.asPath.split('/')
   linkPath.shift();
+  if (!linkPath[0]) {
+     linkPath[0] = 'products'
+  }
 
   useEffect(() => {
     const timeOutId = setTimeout(() => setSearch(searchTerm), 500)

@@ -24,6 +24,7 @@ export const en = {
   'header.german': 'Deutsch (de)',
   'header.french': 'Francais (fr)',
   'header.admin.users': 'Users',
+  'header.admin.settings': 'Settings',
 
   'footer.text.firstLine': `
     The Digital Impact Alliance is a partnership amongst some of the world’s most active
@@ -297,7 +298,7 @@ export const en = {
 
   'filter.entity': '{entity} Filters',
   'filter.dropdown.title': 'Filter {entity} by:',
-  'filter.dropdown.map': 'Select map',
+  'filter.dropdown.map': 'Select or Filter maps',
 
   'filter.framework.title': 'Framework Filters',
   'filter.framework.subTitle': 'Use elements of the Digital Investment Framework to filter {entity}',

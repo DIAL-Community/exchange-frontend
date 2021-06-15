@@ -24,6 +24,7 @@ const dropdownPanelStyles = `
 const AdminMenu = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+  const [session] = useSession()
 
   const [showAdminMenu, setShowAdminMenu] = useState(false)
 
@@ -45,6 +46,8 @@ const AdminMenu = () => {
     setShowAdminMenu(false)
   }
 
+  const { userEmail, userToken } = session.user
+
   return (
     <>
       <a
@@ -59,8 +62,11 @@ const AdminMenu = () => {
       </a>
       <div className={`${showAdminMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
         <div className='py-1' role='none'>
-          <a href='/admin/users' role='menuitem' className={dropdwonMenuStyles}>
+          <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/users?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
             {format('header.admin.users')}
+          </a>
+          <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/settings?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
+            {format('header.admin.settings')}
           </a>
         </div>
       </div>
@@ -260,7 +266,7 @@ const Header = () => {
               session
                 ? (
                   <div>
-                    {session.user.can_edit && (<AdminMenu />)}
+                    {session.user.canEdit && (<AdminMenu />)}
                     <UserMenu />
                   </div>
                   )
