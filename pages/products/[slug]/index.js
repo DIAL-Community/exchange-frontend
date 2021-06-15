@@ -10,11 +10,13 @@ import withApollo from '../../../lib/apolloClient'
 
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
-import ReactTooltip from 'react-tooltip'
 
 import ProductDetailLeft from '../../../components/products/ProductDetailLeft'
 import ProductDetailRight from '../../../components/products/ProductDetailRight'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
+
+import dynamic from 'next/dynamic'
+const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const PRODUCT_QUERY = gql`
 query Product($slug: String!) {
@@ -142,7 +144,7 @@ const Product = () => {
       {error && <Error />}
       {
         data && data.product &&
-          <div className='flex justify-between'>
+          <div className='flex justify-between pb-8'>
             <div className='relative md:sticky md:top-66px w-full md:w-1/3 xl:w-1/4 h-full py-4 px-4'>
               <ProductDetailLeft product={data.product} discourseClick={() => scrollToDiv(discourseElement)} />
             </div>

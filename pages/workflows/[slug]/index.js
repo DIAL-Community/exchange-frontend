@@ -78,7 +78,7 @@ const Workflow = () => {
       {error && <Error />}
       {
         data && data.workflow &&
-          <div className='flex justify-between'>
+          <div className='flex justify-between pb-8'>
             <div className='relative md:sticky md:top-66px w-full md:w-1/3 xl:w-1/4 h-full py-4 px-4'>
               <WorkflowDetailLeft workflow={data.workflow} />
             </div>

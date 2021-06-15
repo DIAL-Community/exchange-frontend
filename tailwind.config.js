@@ -97,7 +97,8 @@ module.exports = {
   variants: {
     extend: {
       margin: ['last'],
-      borderWidth: ['hover']
+      borderWidth: ['hover'],
+      opacity: ['disabled']
     }
   },
   plugins: [

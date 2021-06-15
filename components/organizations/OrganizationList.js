@@ -137,7 +137,7 @@ const OrganizationListQuery = () => {
   }
   return (
     <InfiniteScroll
-      className='relative mx-2 mt-3'
+      className='relative mx-2 mt-3 pb-8'
       dataLength={nodes.length}
       next={handleLoadMore}
       hasMore={pageInfo.hasNextPage}

@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
 
 import apolloClient from '../../lib/apolloClient'
 
@@ -12,6 +11,9 @@ import BuildingBlockListQuery from '../../components/building-blocks/BuildingBlo
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext } from '../../components/context/BuildingBlockFilterContext'
 import SearchFilter from '../../components/shared/SearchFilter'
 import GradientBackground from '../../components/shared/GradientBackground'
+
+import dynamic from 'next/dynamic'
+const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const BuildingBlocks = () => {
   const { formatMessage } = useIntl()

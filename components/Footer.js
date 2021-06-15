@@ -8,7 +8,7 @@ const Footer = () => {
   const format = (id) => formatMessage({ id })
 
   return (
-    <footer className='mt-4'>
+    <footer>
       <div className='relative w-full bg-dial-gray-light text-dial-purple-light'>
         <div className='px-4 2xl:px-24 pt-8 2xl:pb-8 flex flex-row flex-wrap justify-center 2xl:justify-start mx-auto'>
           <div className='max-w-prose sm:w-full flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto md:text-center 2xl:text-left'>

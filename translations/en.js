@@ -468,5 +468,28 @@ export const en = {
   'organization.aggregator.loading': 'Loading aggregator data ...',
   'steps.loading.indicator': 'Loading steps data ...',
   'step.loading.indicator': 'Loading current step data ...',
-  'step.create-new': 'Add Use Case Step'
+  'step.create-new': 'Add Use Case Step',
+
+  'app.signIn': 'Sign In',
+  'app.signUp': 'Sign Up',
+
+  'signIn.forgetPassword': 'Forgot Password?',
+  'signIn.email': 'Email Address',
+  'signIn.email.placeholder': 'Your email address',
+  'signIn.password': 'Password',
+  'signIn.password.hint': 'Enter your password.',
+
+  'signUp.created': 'Registration successful. Please check your email for confirmation email.',
+  'signUp.redirect': 'You will be redirected to our main catalog momentarily ...',
+  'signUp.submit': 'Sign Up',
+  'signUp.email': 'Email Address',
+  'signUp.email.placeholder': 'Please enter your email address',
+  'signUp.password': 'Password',
+  'signUp.password.hint': 'Please choose a password.',
+  'signUp.passwordConfirmation': 'Password Confirmation',
+  'signUp.passwordConfirmation.hint': 'Please re-enter your password',
+  'signUp.organization': 'Owner of this organization',
+  'signUp.products': 'Owner of these products',
+  'signUp.tooltip.organizationOwner': 'Apply to be the owner for the organization which will allow you to update the organization information.',
+  'signUp.tooltip.productOwner': 'Optionally apply as a product owner. You will need to be verified by our team member to do this.'
 }
