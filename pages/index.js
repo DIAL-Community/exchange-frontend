@@ -12,7 +12,9 @@ import Footer from '../components/Footer'
 import SearchFilter from '../components/shared/SearchFilter'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../components/context/ProductFilterContext'
 import { useContext } from 'react'
-import ReactTooltip from 'react-tooltip'
+
+import dynamic from 'next/dynamic'
+const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const HomePage = () => {
   const { formatMessage } = useIntl()

@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
 
 import apolloClient from '../../lib/apolloClient'
 
@@ -12,6 +11,9 @@ import WorkflowListQuery from '../../components/workflows/WorkflowList'
 import { WorkflowFilterContext, WorkflowFilterDispatchContext } from '../../components/context/WorkflowFilterContext'
 import GradientBackground from '../../components/shared/GradientBackground'
 import SearchFilter from '../../components/shared/SearchFilter'
+
+import dynamic from 'next/dynamic'
+const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const Workflows = () => {
   const { formatMessage } = useIntl()

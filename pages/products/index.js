@@ -11,8 +11,10 @@ import SearchFilter from '../../components/shared/SearchFilter'
 import GradientBackground from '../../components/shared/GradientBackground'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../../components/context/ProductFilterContext'
 
-import { useContext, useEffect } from 'react'
-import ReactTooltip from 'react-tooltip'
+import { useContext } from 'react'
+
+import dynamic from 'next/dynamic'
+const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const Products = () => {
   const { formatMessage } = useIntl()

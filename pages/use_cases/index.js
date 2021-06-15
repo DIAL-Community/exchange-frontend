@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
 
 import apolloClient from '../../lib/apolloClient'
 
@@ -12,6 +11,9 @@ import UseCaseListQuery from '../../components/use-cases/UseCaseList'
 import { UseCaseFilterContext, UseCaseFilterDispatchContext } from '../../components/context/UseCaseFilterContext'
 import GradientBackground from '../../components/shared/GradientBackground'
 import SearchFilter from '../../components/shared/SearchFilter'
+
+import dynamic from 'next/dynamic'
+const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const UseCases = () => {
   const { formatMessage } = useIntl()

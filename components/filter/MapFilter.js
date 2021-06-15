@@ -129,7 +129,7 @@ const MapFilter = (props) => {
                   router.pathname.indexOf('aggregators') >= 0 &&
                     <>
                       <OrganizationAutocomplete
-                        aggregatorOnly={true} organizations={aggregators} setOrganizations={setAggregators}
+                        aggregatorOnly organizations={aggregators} setOrganizations={setAggregators}
                         containerStyles='px-2 pb-2'
                       />
                       <OperatorAutocomplete operators={operators} setOperators={setOperators} containerStyles='px-2 pb-2' />
@@ -162,7 +162,7 @@ const MapFilter = (props) => {
           {
             router.pathname.indexOf('aggregators') >= 0 &&
               <>
-                <OrganizationFilters aggregatorOnly={true} organizations={aggregators} setOrganizations={setAggregators} />
+                <OrganizationFilters aggregatorOnly organizations={aggregators} setOrganizations={setAggregators} />
                 <OperatorFilters operators={operators} setOperators={setOperators} />
                 <CapabilityFilters services={services} setServices={setServices} />
               </>
