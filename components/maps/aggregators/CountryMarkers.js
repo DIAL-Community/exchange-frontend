@@ -47,10 +47,10 @@ const CountryMarkers = (props) => {
   return (
     <LayerGroup ref={countryMarkerGroup}>
       {
-        Object.keys(countries).map(countryId => {
+        Object.keys(countries).map((countryId, index) => {
           const country = countries[countryId]
           if (country.aggregators.length === 0) {
-            return <></>
+            return <div key={countryId} />
           }
 
           return (

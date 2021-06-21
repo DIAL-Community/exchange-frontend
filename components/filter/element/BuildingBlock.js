@@ -95,7 +95,7 @@ export const BuildingBlockFilters = (props) => {
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
-  
+
   const removeBuildingBlock = (buildingBlockId) => {
     setBuildingBlocks(buildingBlocks.filter(buildingBlock => buildingBlock.value !== buildingBlockId))
   }

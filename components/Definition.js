@@ -12,16 +12,16 @@ const Description = () => {
   }
 
   useEffect(() => {
-    setOpenTab(0);
-    const interval = setInterval(changeTab, 5000);
-    return () => clearInterval(interval);
-  }, []);
+    setOpenTab(0)
+    const interval = setInterval(changeTab, 5000)
+    return () => clearInterval(interval)
+  }, [])
 
   const changeTab = () => {
     setOpenTab(openTab => {
-      return openTab === 4 ? 0 : openTab + 1;
-    });
-  };
+      return openTab === 4 ? 0 : openTab + 1
+    })
+  }
 
   const generateAnchorStyles = (tabNumber) => `
     px-5 py-3 rounded-l-lg block leading-loose tracking-wide whitespace-nowrap xl:pr-24
@@ -32,7 +32,7 @@ const Description = () => {
   `
 
   const actorList = [
-    format('definition.donors'), format('definition.policy-makers'), format('definition.implementers'), 
+    format('definition.donors'), format('definition.policy-makers'), format('definition.implementers'),
     format('definition.ministers'), format('definition.procurers')
   ]
 

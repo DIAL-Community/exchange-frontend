@@ -53,7 +53,7 @@ const ProjectDetailRight = ({ project }) => {
           </div>
       }
       {
-        project.tags && 
+        project.tags &&
           <div className='mt-12'>
             <div className='card-title mb-3 text-dial-gray-dark'>{format('tag.header')}</div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>

@@ -12,7 +12,7 @@ import OrganizationFilter from './OrganizationFilter'
 import MapFilter from './MapFilter'
 import SDGFilter from './SDGFilter'
 
-import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
+import { FilterResultContext } from '../context/FilterResultContext'
 
 import withApollo from '../../lib/apolloClient'
 
@@ -41,6 +41,17 @@ const filterItems = [
   'filter.entity.sdgs', 'filter.entity.useCases', 'filter.entity.workflows', 'filter.entity.buildingBlocks', 'filter.entity.products',
   'filter.entity.projects', 'filter.entity.organizations', 'filter.entity.maps'
 ]
+
+const mappedUrls = {
+  'filter.entity.sdgs': 'sdgs',
+  'filter.entity.useCases': 'use_cases',
+  'filter.entity.workflows': 'workflows',
+  'filter.entity.buildingBlocks': 'building_blocks',
+  'filter.entity.products': 'products',
+  'filter.entity.projects': 'projects',
+  'filter.entity.organizations': 'organizations',
+  'filter.entity.maps': 'maps'
+}
 
 const Filter = (props) => {
   const { formatMessage } = useIntl()
@@ -103,9 +114,7 @@ const Filter = (props) => {
               // * md: count of the activeTab - 2 & title of the activeTab + 2
               // * --> Last element: show count of activeTab - 3 for last element, show activeTab + 3 title for first element.
               filterItems.map((filterItem, index) => {
-                const normalizedFilterItem = convertToKey(format(filterItem))
-                // Need to default map viewing to projects 
-                let href = normalizedFilterItem
+                let href = mappedUrls[filterItem]
                 if (href.indexOf('map') >= 0) {
                   href = `${href}/projects`
                 }
@@ -278,7 +287,7 @@ const Filter = (props) => {
                 <div className='bg-dial-gray-dark flex-auto'>
                   <div className='tab-content tab-space'>
                     <div className='px-4 pt-3 pb-2 text-sm text-white cursor-pointer' onClick={e => clickHandler(e)}>
-                      {activeTab === 7 ? format('filter.dropdown.map') : format('filter.dropdown.title', { entity: format(filterItems[activeTab]) }) }
+                      {activeTab === 7 ? format('filter.dropdown.map') : format('filter.dropdown.title', { entity: format(filterItems[activeTab]) })}
                       {openFilter ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />}
                     </div>
                     {activeTab === 0 && <SDGFilter openFilter={openFilter} />}
@@ -294,7 +303,7 @@ const Filter = (props) => {
                     // Map doesn't have hint.
                     activeTab < filterItems.length - 1 &&
                       <div className='text-white absolute top-2 right-3 cursor-pointer' onClick={() => setOpenHint(!openHint)}>
-                        <span className='text-sm'>{format('filter.hint.text') + format(props.activeTab).slice(0,-1) }</span>
+                        <span className='text-sm'>{format('filter.hint.text') + format(props.activeTab).slice(0, -1)}</span>
                         <HiQuestionMarkCircle className='text-2xl inline ml-2' />
                       </div>
                   }

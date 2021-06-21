@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
-import ReactHtmlParser from 'react-html-parser'
 
 const ProjectDetailLeft = ({ project }) => {
   const { formatMessage } = useIntl()

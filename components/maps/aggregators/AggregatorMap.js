@@ -1,5 +1,5 @@
 import { useContext, useMemo, useState } from 'react'
-import { useIntl, FormattedMessage } from 'react-intl'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 
 import CountryInfo from './CountryInfo'
@@ -7,12 +7,12 @@ import { gql, useQuery } from '@apollo/client'
 
 import { MapFilterContext } from '../../../components/context/MapFilterContext'
 
-const CountryMarkers = (props) => {
-  const CountryMarkers = useMemo(() => dynamic(
+const CountryMarkersMaps = (props) => {
+  const CountryMarkersMaps = useMemo(() => dynamic(
     () => import('./CountryMarkers'),
     { ssr: false }
   ), [])
-  return <CountryMarkers {...props} />
+  return <CountryMarkersMaps {...props} />
 }
 
 const DEFAULT_PAGE_SIZE = 10000
@@ -244,7 +244,7 @@ const AggregatorMap = () => {
             {format('map.loading.indicator')}
           </div>
       }
-      <CountryMarkers countries={countriesWithAggregators} setSelectedCountry={setSelectedCountry} />
+      <CountryMarkersMaps countries={countriesWithAggregators} setSelectedCountry={setSelectedCountry} />
       <CountryInfo country={country} />
     </div>
   )

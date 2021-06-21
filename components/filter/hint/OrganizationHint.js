@@ -6,7 +6,7 @@ const OrganizationHint = (props) => {
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
-  
+
   return (
     <>
       <div className='grid grid-cols-11 gap-4 pb-4 pt-8'>
@@ -35,9 +35,9 @@ const OrganizationHint = (props) => {
             {ReactHtmlParser(format('organization.hint.description'))}
           </div>
         </div>
-        <div className="absolute right-2 top-2">
-          <button className="bg-button-gray p-4 float-right rounded text-button-gray-light" onClick={() => setOpenHint(!openHint)}>
-            <img src="/icons/close.svg" class="inline mr-2" alt="Close" height="20px" width="20px" />
+        <div className='absolute right-2 top-2'>
+          <button className='bg-button-gray p-4 float-right rounded text-button-gray-light' onClick={() => setOpenHint(!openHint)}>
+            <img src='/icons/close.svg' class='inline mr-2' alt='Close' height='20px' width='20px' />
             {format('general.close')}
           </button>
         </div>

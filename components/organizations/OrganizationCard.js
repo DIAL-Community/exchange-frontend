@@ -6,7 +6,7 @@ import { truncate } from '../../lib/utilities'
 import { convertToKey } from '../context/FilterResultContext'
 const collectionPath = convertToKey('Organizations')
 
-const OrganizationCard = ({ organization, listType, newTab = false  }) => {
+const OrganizationCard = ({ organization, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -20,45 +20,45 @@ const OrganizationCard = ({ organization, listType, newTab = false  }) => {
         listType === 'list'
           ? (
             <Link className='card-link' href={`/${collectionPath}/${organization.slug}`}>
-              <a { ... newTab && {target: '_blank'}}>
-              <div className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
-                <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
-                  <div className='grid grid-cols-12 my-5 px-4'>
-                    <div className={`${nameColSpan(organization)} text-base font-semibold text-dial-gray-dark whitespace-nowrap overflow-ellipsis overflow-hidden`}>
-                      {organization.name}
-                    </div>
-                    {
-                      organization.sectors &&
-                        <div className='col-span-5 px-3 text-base text-dial-gray-dark whitespace-nowrap overflow-ellipsis overflow-hidden'>
-                          {
-                            organization.sectors.length === 0 && format('general.na')
-                          }
-                          {
-                            organization.sectors.length > 0 &&
-                              organization.sectors.map(u => u.name).join(', ')
-                          }
-                        </div>
-                    }
-                    <div className='col-span-3 text-base text-dial-purple'>
+              <a {... newTab && { target: '_blank' }}>
+                <div className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
+                  <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+                    <div className='grid grid-cols-12 my-5 px-4'>
+                      <div className={`${nameColSpan(organization)} text-base font-semibold text-dial-gray-dark whitespace-nowrap overflow-ellipsis overflow-hidden`}>
+                        {organization.name}
+                      </div>
                       {
-                        !organization.whenEndorsed && (
-                          <div className='flex flex-row text-sm font-semibold justify-end text-dial-cyan'>
-                            {format('general.na')}
+                        organization.sectors &&
+                          <div className='col-span-5 px-3 text-base text-dial-gray-dark whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                            {
+                              organization.sectors.length === 0 && format('general.na')
+                            }
+                            {
+                              organization.sectors.length > 0 &&
+                                organization.sectors.map(u => u.name).join(', ')
+                            }
                           </div>
-                        )
                       }
-                      {
-                        organization.whenEndorsed && (
-                          <div className='flex flex-row text-sm font-semibold justify-end text-dial-cyan'>
-                            <img className='mr-2 h-6' src='/icons/digiprins/digiprins.png' />
-                            {`Endorsed on ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
-                          </div>
-                        )
-                      }
+                      <div className='col-span-3 text-base text-dial-purple'>
+                        {
+                          !organization.whenEndorsed && (
+                            <div className='flex flex-row text-sm font-semibold justify-end text-dial-cyan'>
+                              {format('general.na')}
+                            </div>
+                          )
+                        }
+                        {
+                          organization.whenEndorsed && (
+                            <div className='flex flex-row text-sm font-semibold justify-end text-dial-cyan'>
+                              <img className='mr-2 h-6' src='/icons/digiprins/digiprins.png' />
+                              {`Endorsed on ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
+                            </div>
+                          )
+                        }
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
               </a>
             </Link>
             )
