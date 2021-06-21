@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa'
 
 import { useIntl } from 'react-intl'
+import Consent from './Consent'
 
 const Footer = () => {
   const { formatMessage } = useIntl()
@@ -9,6 +10,7 @@ const Footer = () => {
 
   return (
     <footer>
+      <Consent />
       <div className='relative w-full bg-dial-gray-light text-dial-purple-light'>
         <div className='px-4 2xl:px-24 pt-8 2xl:pb-8 flex flex-row flex-wrap justify-center 2xl:justify-start mx-auto'>
           <div className='max-w-prose sm:w-full flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto md:text-center 2xl:text-left'>
@@ -68,7 +70,7 @@ const Footer = () => {
             <a
               href='https://digitalimpactalliance.org/contact-us/ict4sdg/'
               target='_blank' rel='noreferrer'
-              className='border-b-2 border-transparent hover:border-dial-teal-light'
+              className='border-b-2 border-transparent hover:border-dial-yellow'
             >
               {format('footer.sign-up')}
             </a>
@@ -77,7 +79,7 @@ const Footer = () => {
             <a
               href='https://forum.osc.dial.community/'
               target='_blank' rel='noreferrer'
-              className='border-b-2 border-transparent hover:border-dial-teal-light'
+              className='border-b-2 border-transparent hover:border-dial-yellow'
             >
               {format('footer.discuss')}
             </a>
@@ -86,7 +88,7 @@ const Footer = () => {
             <a
               href='https://gitlab.com/dial/osc/eng/t4d-online-catalog/product-registry'
               target='_blank' rel='noreferrer'
-              className='border-b-2 border-transparent hover:border-dial-teal-light'
+              className='border-b-2 border-transparent hover:border-dial-yellow'
             >
               {format('footer.view-gitlab')}
             </a>
@@ -97,7 +99,7 @@ const Footer = () => {
             </div>
             <div className='p-2 rounded-md bg-dial-gray-light mx-2'>
               <a
-                className='border-b-2 border-transparent hover:border-dial-teal-light'
+                className='border-b-2 border-transparent hover:border-dial-yellow'
                 href='https://facebook.com/DigitalImpactAlliance' target='_blank' rel='noreferrer'
               >
                 <FaFacebookF className='inline' />
@@ -106,7 +108,7 @@ const Footer = () => {
             <div className='p-2 rounded-md bg-dial-gray-light'>
               <a
                 href='https://twitter.com/DIAL_Community' target='_blank' rel='noreferrer'
-                className='border-b-2 border-transparent hover:border-dial-teal-light'
+                className='border-b-2 border-transparent hover:border-dial-yellow'
               >
                 <FaTwitter className='inline' />
               </a>
@@ -114,7 +116,7 @@ const Footer = () => {
             <div className='p-2 rounded-md bg-dial-gray-light mx-2'>
               <a
                 href='https://www.instagram.com/dial_community' target='_blank' rel='noreferrer'
-                className='border-b-2 border-transparent hover:border-dial-teal-light'
+                className='border-b-2 border-transparent hover:border-dial-yellow'
               >
                 <FaInstagram className='inline' />
               </a>
@@ -133,7 +135,7 @@ const Footer = () => {
               <a
                 href='https://gitlab.com/dial/osc/eng/t4d-online-catalog/product-registry'
                 target='_blank' rel='noreferrer'
-                className='border-b-2 border-transparent hover:border-dial-teal-light'
+                className='border-b-2 border-transparent hover:border-dial-yellow'
               >
                 {format('footer.privacyPolicy').toUpperCase()}
               </a>
@@ -142,7 +144,7 @@ const Footer = () => {
               <a
                 href='https://gitlab.com/dial/osc/eng/t4d-online-catalog/product-registry'
                 target='_blank' rel='noreferrer'
-                className='border-b-2 border-transparent hover:border-dial-teal-light'
+                className='border-b-2 border-transparent hover:border-dial-yellow'
               >
                 {format('footer.reportIssue').toUpperCase()}
               </a>
@@ -150,14 +152,14 @@ const Footer = () => {
             <div className='py-2 px-0 2xl:px-2 flex-auto xl:text-left 2xl:text-right'>
               <span>{format('footer.icons')} </span>
               <a
-                className='border-b-2 border-transparent hover:border-dial-teal-light'
+                className='border-b-2 border-transparent hover:border-dial-yellow'
                 href='https://fontawesome.com/' target='_blank' rel='noreferrer'
               >
                 FontAwesome
               </a>
               <span> and </span>
               <a
-                className='border-b-2 border-transparent hover:border-dial-teal-light'
+                className='border-b-2 border-transparent hover:border-dial-yellow'
                 href='https://www.globalgoals.org/' target='_blank' rel='noreferrer'
               >
                 The Global Goals for Sustainable Development
