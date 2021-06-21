@@ -1,17 +1,17 @@
 import { useContext, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { FormattedMessage, useIntl } from 'react-intl'
+import { useIntl } from 'react-intl'
 
 import CountryInfo from './CountryInfo'
 import { gql, useQuery } from '@apollo/client'
 import { MapFilterContext } from '../../context/MapFilterContext'
 
-const CountryMarkers = (props) => {
-  const CountryMarkers = useMemo(() => dynamic(
+const CountryMarkersMaps = (props) => {
+  const CountryMarkersMaps = useMemo(() => dynamic(
     () => import('./CountryMarkers'),
     { ssr: false }
   ), [])
-  return <CountryMarkers {...props} />
+  return <CountryMarkersMaps {...props} />
 }
 
 const DEFAULT_PAGE_SIZE = 10000
@@ -72,7 +72,7 @@ const ProjectMap = () => {
       variables: {
         first: DEFAULT_PAGE_SIZE,
         sectors: sectors.map(sector => sector.value),
-        tags: tags.map(tag => tag.label),
+        tags: tags.map(tag => tag.label)
       }
     })
     const countries = useQuery(COUNTRIES_QUERY)
@@ -122,7 +122,7 @@ const ProjectMap = () => {
             {format('map.loading.indicator')}
           </div>
       }
-      <CountryMarkers countries={countriesWithProjects} setSelectedCountry={setSelectedCountry} />
+      <CountryMarkersMaps countries={countriesWithProjects} setSelectedCountry={setSelectedCountry} />
       <CountryInfo country={country} />
     </div>
   )

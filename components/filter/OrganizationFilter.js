@@ -48,7 +48,7 @@ const OrganizationFilter = (props) => {
           <div className='grid grid-cols-11 gap-4 pb-4 pt-2'>
             <div className='col-span-11 md:col-span-6'>
               <div className='text-white text-xl px-2 pb-3'>
-                {format('filter.entity', { entity: format('organization.label')}).toUpperCase()}
+                {format('filter.entity', { entity: format('organization.label') }).toUpperCase()}
               </div>
               <div className='text-sm text-dial-gray-light flex flex-row'>
                 <div className='px-2 pb-2 mr-32'>

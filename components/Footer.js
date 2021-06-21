@@ -2,7 +2,9 @@ import Image from 'next/image'
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa'
 
 import { useIntl } from 'react-intl'
-import Consent from './Consent'
+import dynamic from 'next/dynamic'
+
+const Consent = dynamic(() => import('./Consent'), { ssr: false })
 
 const Footer = () => {
   const { formatMessage } = useIntl()

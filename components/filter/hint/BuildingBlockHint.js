@@ -6,7 +6,7 @@ const BuildingBlockHint = (props) => {
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
-  
+
   return (
     <>
       <div className='grid grid-cols-11 gap-4 pb-4 pt-8'>
@@ -35,9 +35,9 @@ const BuildingBlockHint = (props) => {
             {format('buildingBlock.hint.description')}
           </div>
         </div>
-        <div className="absolute right-4 top-4">
-          <button className="bg-button-gray p-4 float-right rounded text-button-gray-light" onClick={() => setOpenHint(!openHint)}>
-            <img src="/icons/close.svg" class="inline mr-2" alt="Close" height="20px" width="20px" />
+        <div className='absolute right-4 top-4'>
+          <button className='bg-button-gray p-4 float-right rounded text-button-gray-light' onClick={() => setOpenHint(!openHint)}>
+            <img src='/icons/close.svg' class='inline mr-2' alt='Close' height='20px' width='20px' />
             {format('general.close')}
           </button>
         </div>

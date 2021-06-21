@@ -5,7 +5,6 @@ import apolloClient from '../../lib/apolloClient'
 
 import Filter from '../../components/filter/Filter'
 import Header from '../../components/Header'
-import ProductListQuery from '../../components/products/ProductList'
 import Footer from '../../components/Footer'
 import SearchFilter from '../../components/shared/SearchFilter'
 import GradientBackground from '../../components/shared/GradientBackground'
@@ -15,6 +14,7 @@ import { useContext } from 'react'
 
 import dynamic from 'next/dynamic'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const ProductListQuery = dynamic(() => import('../../components/products/ProductList'), { ssr: false })
 
 const Products = () => {
   const { formatMessage } = useIntl()

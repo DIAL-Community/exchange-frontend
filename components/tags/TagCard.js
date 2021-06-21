@@ -17,10 +17,7 @@ const TagCard = ({ tag, listType }) => {
             </div>
           </div>
           )
-        : (
-          <div>Card View</div>
-          )
-        }
+        : <div>{format('tag.label')}</div>}
     </>
   )
 }

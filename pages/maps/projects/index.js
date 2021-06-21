@@ -6,7 +6,6 @@ import apolloClient from '../../../lib/apolloClient'
 import Filter from '../../../components/filter/Filter'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
-
 import ProjectMap from '../../../components/maps/projects/ProjectMap'
 
 const ProjectMapPage = () => {

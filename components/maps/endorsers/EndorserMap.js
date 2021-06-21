@@ -1,17 +1,17 @@
 import { useContext, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { FormattedMessage, useIntl } from 'react-intl'
+import { useIntl } from 'react-intl'
 
 import EndorserInfo from './EndorserInfo'
 import { MapFilterContext } from '../../context/MapFilterContext'
 import { gql, useQuery } from '@apollo/client'
 
-const EndorserMarkers = (props) => {
-  const EndorserMarkers = useMemo(() => dynamic(
+const EndorserMarkerMaps = (props) => {
+  const EndorserMarkerMaps = useMemo(() => dynamic(
     () => import('./EndorserMarkers'),
     { ssr: false }
   ), [])
-  return <EndorserMarkers {...props} />
+  return <EndorserMarkerMaps {...props} />
 }
 
 const DEFAULT_PAGE_SIZE = 1000
@@ -113,7 +113,7 @@ const EndorserMap = () => {
             {format('map.loading.indicator')}
           </div>
       }
-      <EndorserMarkers {...{ cities, organization, setSelectedCity, setOrganization }} />
+      <EndorserMarkerMaps {...{ cities, organization, setSelectedCity, setOrganization }} />
       <EndorserInfo {...{ city, setOrganization }} />
     </div>
   )

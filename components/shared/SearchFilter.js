@@ -13,10 +13,10 @@ const SearchFilter = (props) => {
 
   const [searchTerm, setSearchTerm] = useState(search)
 
-  let linkPath = router.asPath.split('/')
-  linkPath.shift();
+  const linkPath = router.asPath.split('/')
+  linkPath.shift()
   if (!linkPath[0]) {
-     linkPath[0] = 'products'
+    linkPath[0] = 'products'
   }
 
   useEffect(() => {
@@ -48,7 +48,8 @@ const SearchFilter = (props) => {
         <div className='flex flex-row mt-2'>
           <label className='block w-7/12 md:w-4/12 my-auto'>
             <span className='sr-only'>{format('search.input.label')}</span>
-            <input type='search'
+            <input
+              type='search'
               value={searchTerm} onChange={handleChange}
               className='form-input text-sm md:text-base py-4 md:py-3 px-4 w-full rounded-md border'
               placeholder={placeholder}
@@ -80,9 +81,12 @@ const SearchFilter = (props) => {
             </div>
           </div>
           <div className='w-2/12 md:w-4/12 grid mr-4 self-center place-self-end text-sm'>
-            { session && session.user.canEdit && (<a href={generateCreateLink()}>
-                <span className='grid justify-end text-dial-teal'>{format('app.create-new')}</span>
-              </a>)
+            {
+              session && session.user.canEdit && (
+                <a href={generateCreateLink()}>
+                  <span className='grid justify-end text-dial-teal'>{format('app.create-new')}</span>
+                </a>
+              )
             }
           </div>
         </div>
