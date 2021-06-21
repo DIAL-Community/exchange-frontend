@@ -1,6 +1,7 @@
 import { Provider } from 'next-auth/client'
 import { IntlProvider } from 'react-intl'
 import { useRouter } from 'next/router'
+import { CookiesProvider } from 'react-cookie'
 
 import * as translations from '../translations'
 import * as gtag from '../lib/gtag'
@@ -50,9 +51,11 @@ const App = ({ Component, pageProps }) => {
   return (
     <IntlProvider locale={locale} defaultLocale={defaultLocale} messages={messages}>
       <Provider session={pageProps.session}>
-        <CatalogContext>
-          <Component {...pageProps} />
-        </CatalogContext>
+        <CookiesProvider>
+          <CatalogContext>
+            <Component {...pageProps} />
+          </CatalogContext>
+        </CookiesProvider>
       </Provider>
     </IntlProvider>
   )
