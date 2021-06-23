@@ -1,7 +1,9 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { MdClose } from 'react-icons/md'
+import { useRouter } from 'next/router'
 
+import { QueryParamContext } from '../context/QueryParamContext'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../context/ProductFilterContext'
 import { BuildingBlockAutocomplete, BuildingBlockFilters } from './element/BuildingBlock'
 import { CountryAutocomplete, CountryFilters } from './element/Country'
@@ -13,6 +15,10 @@ import { TagAutocomplete, TagFilters } from './element/Tag'
 import { SectorAutocomplete, SectorFilters } from './element/Sector'
 import { UseCaseAutocomplete, UseCaseFilters } from './element/UseCase'
 import { WorkflowAutocomplete, WorkflowFilters } from './element/Workflow'
+import { parseQuery } from '../shared/SharableLink'
+
+import dynamic from 'next/dynamic'
+const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const ProductFilter = (props) => {
   const openFilter = props.openFilter
@@ -20,10 +26,14 @@ const ProductFilter = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
+  const { query } = useRouter()
+  const { interactionDetected } = useContext(QueryParamContext)
+
   const {
     withMaturity, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
     useCases, workflows, buildingBlocks, productTypes
   } = useContext(ProductFilterContext)
+
   const {
     setWithMaturity, setProductDeployable, setSectors, setCountries, setOrganizations,
     setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setProductTypes
@@ -61,7 +71,53 @@ const ProductFilter = (props) => {
     setUseCases([])
     setWorkflows([])
     setBuildingBlocks([])
+
+    // router.push(router.pathname)
   }
+
+  const sharableLink = () => {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL
+    const basePath = 'products'
+
+    const maturityFilter = withMaturity ? 'withMaturity=true' : ''
+    const deployableFilter = productDeployable ? 'productDeployable=true' : ''
+    const originFilters = origins.map(origin => `origins=${origin.value}--${origin.label}`)
+    const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
+    const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
+    const organizationFilters = organizations.map(organization => `organizations=${organization.value}--${organization.label}`)
+    const productTypeFilters = productTypes.map(productType => `productTypes=${productType.value}--${productType.label}`)
+    const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
+    const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
+    const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
+    const workflowFilters = workflows.map(workflow => `workflows=${workflow.value}--${workflow.label}`)
+    const buildingBlockFilters = buildingBlocks.map(buildingBlock => `buildingBlocks=${buildingBlock.value}--${buildingBlock.label}`)
+
+    const activeFilter = 'shareCatalog=true'
+    const filterParameters = [
+      activeFilter, maturityFilter, deployableFilter, ...originFilters, ...countryFilters, ...productTypeFilters,
+      ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters, ...useCaseFilters,
+      ...workflowFilters, ...buildingBlockFilters
+    ].filter(f => f).join('&')
+    return `${baseUrl}/${basePath}?${filterParameters}`
+  }
+
+  useEffect(() => {
+    // Only apply this if the use have not interact with the UI and the url is a sharable link
+    if (query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog && !interactionDetected) {
+      setWithMaturity(query.withMaturity === 'true')
+      setProductDeployable(query.productDeployable === 'true')
+      parseQuery(query, 'origins', origins, setOrigins)
+      parseQuery(query, 'countries', countries, setCountries)
+      parseQuery(query, 'sectors', sectors, setSectors)
+      parseQuery(query, 'organizations', organizations, setOrganizations)
+      parseQuery(query, 'productTypes', productTypes, setProductTypes)
+      parseQuery(query, 'sdgs', sdgs, setSDGs)
+      parseQuery(query, 'tags', tags, setTags)
+      parseQuery(query, 'useCases', useCases, setUseCases)
+      parseQuery(query, 'workflows', workflows, setWorkflows)
+      parseQuery(query, 'buildingBlocks', buildingBlocks, setBuildingBlocks)
+    }
+  })
 
   return (
     <div className='px-2'>
@@ -117,7 +173,6 @@ const ProductFilter = (props) => {
                 <CountryAutocomplete {...{ countries, setCountries }} containerStyles='px-2 pb-2' />
                 <SectorAutocomplete {...{ sectors, setSectors }} containerStyles='px-2 pb-2' />
                 <OrganizationAutocomplete {...{ organizations, setOrganizations }} containerStyles='px-2 pb-2' />
-                <TagAutocomplete {...{ tags, setTags }} containerStyles='px-2 pb-2' />
               </div>
             </div>
           </div>
@@ -141,22 +196,24 @@ const ProductFilter = (props) => {
                 <MdClose className='ml-3 inline cursor-pointer' onClick={toggleProductDeployable} />
               </div>
           }
+          <SDGFilters {...{ sdgs, setSDGs }} />
+          <UseCaseFilters {...{ useCases, setUseCases }} />
+          <WorkflowFilters {...{ workflows, setWorkflows }} />
+          <BuildingBlockFilters {...{ buildingBlocks, setBuildingBlocks }} />
+          <TagFilters {...{ tags, setTags }} />
           <OriginFilters {...{ origins, setOrigins }} />
           <ProductTypeFilters {...{ productTypes, setProductTypes }} />
           <CountryFilters {...{ countries, setCountries }} />
           <SectorFilters {...{ sectors, setSectors }} />
           <OrganizationFilters {...{ organizations, setOrganizations }} />
-          <BuildingBlockFilters {...{ buildingBlocks, setBuildingBlocks }} />
-          <WorkflowFilters {...{ workflows, setWorkflows }} />
-          <UseCaseFilters {...{ useCases, setUseCases }} />
-          <SDGFilters {...{ sdgs, setSDGs }} />
-          <TagFilters {...{ tags, setTags }} />
-          {
-            filterCount() > 0 &&
-              <a className='px-2 py-1  mt-2 text-sm text-white' href='#clear-filter' onClick={clearFilter}>
-                {format('filter.general.clearAll')}
-              </a>
-          }
+
+          <div className='flex px-2 py-1 mt-2 text-sm text-white'>
+            <a className='border-b-2 border-transparent hover:border-dial-yellow my-auto' href='#clear-filter' onClick={clearFilter}>
+              {format('filter.general.clearAll')}
+            </a>
+            <div className='border-r border-white mx-2 opacity-50' />
+            <SharableLink sharableLink={sharableLink} />
+          </div>
         </div>
       </div>
     </div>

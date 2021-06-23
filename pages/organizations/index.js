@@ -9,6 +9,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import OrganizationListQuery from '../../components/organizations/OrganizationList'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../../components/context/OrganizationFilterContext'
+import QueryNotification from '../../components/shared/QueryNotification'
 import GradientBackground from '../../components/shared/GradientBackground'
 import SearchFilter from '../../components/shared/SearchFilter'
 
@@ -25,6 +26,7 @@ const Organizations = () => {
         <title>{format('app.title')}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
+      <QueryNotification />
       <GradientBackground />
       <Header />
       <Filter activeTab='filter.entity.organizations' />

@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
@@ -32,14 +31,12 @@ const customStyles = {
 
 export const WorkflowAutocomplete = (props) => {
   const client = useApolloClient()
-  const [workflow, setWorkflow] = useState('')
   const { workflows, setWorkflows, containerStyles } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectWorkflow = (workflow) => {
-    setWorkflow('')
     setWorkflows([...workflows.filter(w => w.value !== workflow.value), workflow])
   }
 
@@ -83,7 +80,6 @@ export const WorkflowAutocomplete = (props) => {
           onChange={selectWorkflow}
           placeholder={format('filter.byEntity', { entity: format('workflow.label') })}
           styles={customStyles}
-          value={workflow}
         />
       </label>
     </div>

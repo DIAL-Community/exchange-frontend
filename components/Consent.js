@@ -15,7 +15,7 @@ const Consent = () => {
     <div className='block'>
       {
         !cookies.consentAccepted &&
-          <div className='w-full bg-dial-gray-dark fixed bottom-0 right-0 left-0 z-30'>
+          <div className='w-full bg-dial-gray-dark fixed bottom-0 right-0 left-0 z-80'>
             <div className='flex justify-center py-4'>
               <div className='text-dial-gray-light my-auto'>
                 {format('consent.text')}

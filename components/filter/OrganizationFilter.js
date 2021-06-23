@@ -1,14 +1,23 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { MdClose } from 'react-icons/md'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 
+import { QueryParamContext } from '../context/QueryParamContext'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../context/OrganizationFilterContext'
 import { CountryAutocomplete, CountryFilters } from './element/Country'
 import { EndorsingYearFilters, EndorsingYearSelect } from './element/EndorsingYear'
 import { SectorAutocomplete, SectorFilters } from './element/Sector'
+import { parseQuery } from '../shared/SharableLink'
+
+import dynamic from 'next/dynamic'
+const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const OrganizationFilter = (props) => {
   const openFilter = props.openFilter
+
+  const { query } = useRouter()
+  const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -40,6 +49,34 @@ const OrganizationFilter = (props) => {
     setSectors([])
     setYears([])
   }
+
+  const sharableLink = () => {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL
+    const basePath = 'organizations'
+
+    const aggregatorFilter = aggregator ? 'aggregator=true' : ''
+    const endorserFilter = endorser ? 'endorser=true' : ''
+    const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
+    const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
+    const yearFilters = years.map(year => `years=${year.value}--${year.label}`)
+
+    const activeFilter = 'shareCatalog=true'
+    const filterParameters = [
+      activeFilter, aggregatorFilter, endorserFilter, ...countryFilters, ...sectorFilters, ...yearFilters
+    ].filter(f => f).join('&')
+    return `${baseUrl}/${basePath}?${filterParameters}`
+  }
+
+  useEffect(() => {
+    // Only apply this if the use have not interact with the UI and the url is a sharable link
+    if (query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog && !interactionDetected) {
+      setAggregator(query.aggregator === 'true')
+      setEndorser(query.endorser === 'true')
+      parseQuery(query, 'countries', countries, setCountries)
+      parseQuery(query, 'sectors', sectors, setSectors)
+      parseQuery(query, 'years', years, setYears)
+    }
+  })
 
   return (
     <div className='px-2'>
@@ -93,19 +130,21 @@ const OrganizationFilter = (props) => {
           {
             endorser &&
               <div className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-                {format('filter.organization.aggregatorOnly')}
+                {format('filter.organization.endorserOnly')}
                 <MdClose className='ml-3 inline cursor-pointer' onClick={toggleEndorser} />
               </div>
           }
           <EndorsingYearFilters {...{ years, setYears }} />
           <CountryFilters {...{ countries, setCountries }} />
           <SectorFilters {...{ sectors, setSectors }} />
-          {
-            filterCount() > 0 &&
-              <a className='px-2 py-1  mt-2 text-sm text-white' href='#clear-filter' onClick={clearFilter}>
-                {format('filter.general.clearAll')}
-              </a>
-          }
+
+          <div className='flex px-2 py-1 mt-2 text-sm text-white'>
+            <a className='border-b-2 border-transparent hover:border-dial-yellow my-auto' href='#clear-filter' onClick={clearFilter}>
+              {format('filter.general.clearAll')}
+            </a>
+            <div className='border-r border-white mx-2 opacity-50' />
+            <SharableLink sharableLink={sharableLink} />
+          </div>
         </div>
       </div>
     </div>

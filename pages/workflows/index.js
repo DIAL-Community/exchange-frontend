@@ -9,6 +9,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import WorkflowListQuery from '../../components/workflows/WorkflowList'
 import { WorkflowFilterContext, WorkflowFilterDispatchContext } from '../../components/context/WorkflowFilterContext'
+import QueryNotification from '../../components/shared/QueryNotification'
 import GradientBackground from '../../components/shared/GradientBackground'
 import SearchFilter from '../../components/shared/SearchFilter'
 
@@ -28,6 +29,7 @@ const Workflows = () => {
         <title>{format('app.title')}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
+      <QueryNotification />
       <GradientBackground />
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />

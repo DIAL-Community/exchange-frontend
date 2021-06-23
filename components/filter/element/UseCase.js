@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
@@ -32,14 +31,12 @@ const customStyles = {
 
 export const UseCaseAutocomplete = (props) => {
   const client = useApolloClient()
-  const [useCase, setUseCase] = useState('')
   const { useCases, setUseCases, containerStyles } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectUseCase = (useCase) => {
-    setUseCase('')
     setUseCases([...useCases.filter(u => u.value !== useCase.value), useCase])
   }
 
@@ -83,7 +80,6 @@ export const UseCaseAutocomplete = (props) => {
           onChange={selectUseCase}
           placeholder={format('filter.byEntity', { entity: format('useCase.label') })}
           styles={customStyles}
-          value={useCase}
         />
       </label>
     </div>

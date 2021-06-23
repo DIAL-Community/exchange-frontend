@@ -1,15 +1,26 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 
 import { MdClose } from 'react-icons/md'
+
+import { QueryParamContext } from '../context/QueryParamContext'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext } from '../context/BuildingBlockFilterContext'
 
 import { SDGAutocomplete, SDGFilters } from './element/SDG'
 import { UseCaseAutocomplete, UseCaseFilters } from './element/UseCase'
 import { WorkflowAutocomplete, WorkflowFilters } from './element/Workflow'
 
+import { parseQuery } from '../shared/SharableLink'
+
+import dynamic from 'next/dynamic'
+const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
+
 const BuildingBlockFilter = (props) => {
   const openFilter = props.openFilter
+
+  const { query } = useRouter()
+  const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -41,6 +52,30 @@ const BuildingBlockFilter = (props) => {
     setUseCases([])
     setWorkflows([])
   }
+
+  const sharableLink = () => {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL
+    const basePath = 'building_blocks'
+
+    const showMatureFilter = showMature ? 'showMature=true' : ''
+    const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
+    const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
+    const workflowFilters = workflows.map(workflow => `workflows=${workflow.value}--${workflow.label}`)
+
+    const activeFilter = 'shareCatalog=true'
+    const filterParameters = [activeFilter, showMatureFilter, ...sdgFilters, ...useCaseFilters, ...workflowFilters].filter(f => f).join('&')
+    return `${baseUrl}/${basePath}?${filterParameters}`
+  }
+
+  useEffect(() => {
+    // Only apply this if the use have not interact with the UI and the url is a sharable link
+    if (query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog && !interactionDetected) {
+      setShowMature(query.showMature === 'true')
+      parseQuery(query, 'sdgs', sdgs, setSDGs)
+      parseQuery(query, 'useCases', useCases, setUseCases)
+      parseQuery(query, 'workflows', workflows, setWorkflows)
+    }
+  })
 
   return (
     <div className='px-2'>
@@ -94,15 +129,17 @@ const BuildingBlockFilter = (props) => {
                 <MdClose className='ml-3 inline cursor-pointer' onClick={toggleWithMaturity} />
               </div>
           }
-          <WorkflowFilters {...{ workflows, setWorkflows }} />
-          <UseCaseFilters {...{ useCases, setUseCases }} />
           <SDGFilters {...{ sdgs, setSDGs }} />
-          {
-            filterCount() > 0 &&
-              <a className='px-2 py-1  mt-2 text-sm text-white' href='#clear-filter' onClick={clearFilter}>
-                {format('filter.general.clearAll')}
-              </a>
-          }
+          <UseCaseFilters {...{ useCases, setUseCases }} />
+          <WorkflowFilters {...{ workflows, setWorkflows }} />
+
+          <div className='flex px-2 py-1 mt-2 text-sm text-white'>
+            <a className='border-b-2 border-transparent hover:border-dial-yellow my-auto' href='#clear-filter' onClick={clearFilter}>
+              {format('filter.general.clearAll')}
+            </a>
+            <div className='border-r border-white mx-2 opacity-50' />
+            <SharableLink sharableLink={sharableLink} />
+          </div>
         </div>
       </div>
     </div>

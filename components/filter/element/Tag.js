@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import dynamic from 'next/dynamic'
 
 import { MdClose } from 'react-icons/md'
@@ -32,14 +31,12 @@ const customStyles = {
 
 export const TagAutocomplete = (props) => {
   const client = useApolloClient()
-  const [tag, setTag] = useState('')
   const { tags, setTags, containerStyles } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectTag = (tag) => {
-    setTag('')
     setTags([...tags.filter(s => s.value !== tag.value), tag])
   }
 
@@ -82,7 +79,6 @@ export const TagAutocomplete = (props) => {
           onChange={selectTag}
           placeholder={format('filter.byEntity', { entity: format('tag.label') })}
           styles={customStyles}
-          value={tag}
         />
       </label>
     </div>

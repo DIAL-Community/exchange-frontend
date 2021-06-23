@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
@@ -30,14 +29,12 @@ const customStyles = {
 
 export const OrganizationAutocomplete = (props) => {
   const client = useApolloClient()
-  const [organization, setOrganization] = useState('')
   const { aggregatorOnly, organizations, setOrganizations, containerStyles } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectOrganization = (organization) => {
-    setOrganization('')
     setOrganizations([...organizations.filter(o => o.value !== organization.value), organization])
   }
 
@@ -79,7 +76,6 @@ export const OrganizationAutocomplete = (props) => {
           onChange={selectOrganization}
           placeholder={format('filter.byEntity', { entity: aggregatorOnly ? format('aggregator.label') : format('organization.label') })}
           styles={customStyles}
-          value={organization}
         />
       </label>
     </div>

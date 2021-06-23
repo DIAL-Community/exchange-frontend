@@ -1,12 +1,21 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 
+import { QueryParamContext } from '../context/QueryParamContext'
 import { SDGFilterContext, SDGFilterDispatchContext } from '../context/SDGFilterContext'
-
 import { SDGAutocomplete, SDGFilters } from './element/SDG'
+
+import { parseQuery } from '../shared/SharableLink'
+
+import dynamic from 'next/dynamic'
+const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const SDGFilter = (props) => {
   const openFilter = props.openFilter
+
+  const { query } = useRouter()
+  const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -22,6 +31,24 @@ const SDGFilter = (props) => {
     e.preventDefault()
     setSDGs([])
   }
+
+  const sharableLink = () => {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL
+    const basePath = 'sdgs'
+
+    const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
+
+    const activeFilter = 'shareCatalog=true'
+    const filterParameters = [activeFilter, ...sdgFilters].filter(f => f).join('&')
+    return `${baseUrl}/${basePath}?${filterParameters}`
+  }
+
+  useEffect(() => {
+    // Only apply this if the use have not interact with the UI and the url is a sharable link
+    if (query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog && !interactionDetected) {
+      parseQuery(query, 'sdgs', sdgs, setSDGs)
+    }
+  })
 
   return (
     <div className='px-2'>
@@ -51,12 +78,14 @@ const SDGFilter = (props) => {
         </div>
         <div className='flex flex-row flex-wrap'>
           <SDGFilters {...{ sdgs, setSDGs }} />
-          {
-            filterCount() > 0 &&
-              <a className='px-2 py-1  mt-2 text-sm text-white' href='#clear-filter' onClick={clearFilter}>
-                {format('filter.general.clearAll')}
-              </a>
-          }
+
+          <div className='flex px-2 py-1 mt-2 text-sm text-white'>
+            <a className='border-b-2 border-transparent hover:border-dial-yellow my-auto' href='#clear-filter' onClick={clearFilter}>
+              {format('filter.general.clearAll')}
+            </a>
+            <div className='border-r border-white mx-2 opacity-50' />
+            <SharableLink sharableLink={sharableLink} />
+          </div>
         </div>
       </div>
     </div>
