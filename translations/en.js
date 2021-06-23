@@ -601,5 +601,11 @@ export const en = {
         <li>Select "Enable cookies."</li>
       </ol>    
     </div>
-  `
+  `,
+  'app.shareLink': 'Create sharable link',
+  'app.shareSuccess': 'Sharable link copied to your clipboard. Use Ctrl+V to paste it from your clipboard.',
+  'app.shareFailed': 'Unable to copy sharable link to your clipboard.',
+
+  'overlay.close': 'Dismiss Notification',
+  'overlay.message': 'Filter data from your URL have been applied.'
 }

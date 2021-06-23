@@ -1,6 +1,8 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 
+import { QueryParamContext } from '../context/QueryParamContext'
 import { ProjectFilterContext, ProjectFilterDispatchContext } from '../context/ProjectFilterContext'
 import { CountryAutocomplete, CountryFilters } from './element/Country'
 import { OrganizationAutocomplete, OrganizationFilters } from './element/Organization'
@@ -10,8 +12,16 @@ import { SDGAutocomplete, SDGFilters } from './element/SDG'
 import { TagAutocomplete, TagFilters } from './element/Tag'
 import { SectorAutocomplete, SectorFilters } from './element/Sector'
 
+import { parseQuery } from '../shared/SharableLink'
+
+import dynamic from 'next/dynamic'
+const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
+
 const ProjectFilter = (props) => {
   const openFilter = props.openFilter
+
+  const { query } = useRouter()
+  const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -33,6 +43,39 @@ const ProjectFilter = (props) => {
     setSDGs([])
     setTags([])
   }
+
+  const sharableLink = () => {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL
+    const basePath = 'projects'
+
+    const originFilters = origins.map(origin => `origins=${origin.value}--${origin.label}`)
+    const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
+    const productFilters = products.map(product => `products=${product.value}--${product.label}`)
+    const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
+    const organizationFilters = organizations.map(organization => `organizations=${organization.value}--${organization.label}`)
+    const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
+    const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
+
+    const activeFilter = 'shareCatalog=true'
+    const filterParameters = [
+      activeFilter, ...originFilters, ...countryFilters, ...productFilters, ...sectorFilters, ...organizationFilters,
+      ...sdgFilters, ...tagFilters
+    ].filter(f => f).join('&')
+    return `${baseUrl}/${basePath}?${filterParameters}`
+  }
+
+  useEffect(() => {
+    // Only apply this if the use have not interact with the UI and the url is a sharable link
+    if (query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog && !interactionDetected) {
+      parseQuery(query, 'origins', origins, setOrigins)
+      parseQuery(query, 'countries', countries, setCountries)
+      parseQuery(query, 'products', products, setProducts)
+      parseQuery(query, 'sectors', sectors, setSectors)
+      parseQuery(query, 'organizations', organizations, setOrganizations)
+      parseQuery(query, 'sdgs', sdgs, setSDGs)
+      parseQuery(query, 'tags', tags, setTags)
+    }
+  })
 
   return (
     <div className='px-2'>
@@ -79,19 +122,21 @@ const ProjectFilter = (props) => {
           {format('filter.general.applied', { count: filterCount() })}:
         </div>
         <div className='flex flex-row flex-wrap'>
+          <SDGFilters {...{ sdgs, setSDGs }} />
           <OriginFilters {...{ origins, setOrigins }} />
           <CountryFilters {...{ countries, setCountries }} />
           <SectorFilters {...{ sectors, setSectors }} />
           <OrganizationFilters {...{ organizations, setOrganizations }} />
           <ProductFilters {...{ products, setProducts }} />
-          <SDGFilters {...{ sdgs, setSDGs }} />
           <TagFilters {...{ tags, setTags }} />
-          {
-            filterCount() > 0 &&
-              <a className='px-2 py-1  mt-2 text-sm text-white' href='#clear-filter' onClick={clearFilter}>
-                {format('filter.general.clearAll')}
-              </a>
-          }
+
+          <div className='flex px-2 py-1 mt-2 text-sm text-white'>
+            <a className='border-b-2 border-transparent hover:border-dial-yellow my-auto' href='#clear-filter' onClick={clearFilter}>
+              {format('filter.general.clearAll')}
+            </a>
+            <div className='border-r border-white mx-2 opacity-50' />
+            <SharableLink sharableLink={sharableLink} />
+          </div>
         </div>
       </div>
     </div>

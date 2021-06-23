@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { useIntl } from 'react-intl'
 
@@ -19,14 +18,12 @@ const customStyles = {
 }
 
 export const ProductTypeSelect = (props) => {
-  const [productType, setProductType] = useState('')
   const { productTypes, setProductTypes, containerStyles } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectProductType = (productType) => {
-    setProductType('')
     setProductTypes([...productTypes.filter(p => p.value !== productType.value), productType])
   }
 
@@ -52,7 +49,6 @@ export const ProductTypeSelect = (props) => {
           onChange={selectProductType}
           placeholder={format('filter.byEntity', { entity: format('productType.label') })}
           styles={customStyles}
-          value={productType}
         />
       </label>
     </div>

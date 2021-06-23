@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
@@ -30,14 +29,12 @@ const customStyles = {
 
 export const ProductAutocomplete = (props) => {
   const client = useApolloClient()
-  const [product, setProduct] = useState('')
   const { products, setProducts, containerStyles } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectProduct = (product) => {
-    setProduct('')
     setProducts([...products.filter(p => p.value !== product.value), product])
   }
 
@@ -78,7 +75,6 @@ export const ProductAutocomplete = (props) => {
           onChange={selectProduct}
           placeholder={format('filter.byEntity', { entity: format('product.label') })}
           styles={customStyles}
-          value={product}
         />
       </label>
     </div>

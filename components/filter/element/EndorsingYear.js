@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { useIntl } from 'react-intl'
 
@@ -19,14 +18,12 @@ const customStyles = {
 }
 
 export const EndorsingYearSelect = (props) => {
-  const [year, setYear] = useState('')
   const { years, setYears, containerStyles } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectYear = (year) => {
-    setYear('')
     setYears([...years.filter(p => p.value !== year.value), year])
   }
 
@@ -59,7 +56,6 @@ export const EndorsingYearSelect = (props) => {
           onChange={selectYear}
           placeholder={format('filter.byEntity', { entity: format('endorsingYear.label') })}
           styles={customStyles}
-          value={year}
         />
       </label>
     </div>

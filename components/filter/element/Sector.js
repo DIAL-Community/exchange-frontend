@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
@@ -30,14 +29,12 @@ const customStyles = {
 
 export const SectorAutocomplete = (props) => {
   const client = useApolloClient()
-  const [sector, setSector] = useState('')
   const { sectors, setSectors, containerStyles } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectSector = (sector) => {
-    setSector('')
     setSectors([...sectors.filter(s => s.value !== sector.value), sector])
   }
 
@@ -76,7 +73,6 @@ export const SectorAutocomplete = (props) => {
           onChange={selectSector}
           placeholder={format('filter.byEntity', { entity: format('sector.label') })}
           styles={customStyles}
-          value={sector}
         />
       </label>
     </div>

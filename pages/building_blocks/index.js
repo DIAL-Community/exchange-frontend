@@ -10,6 +10,7 @@ import Footer from '../../components/Footer'
 import BuildingBlockListQuery from '../../components/building-blocks/BuildingBlockList'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext } from '../../components/context/BuildingBlockFilterContext'
 import SearchFilter from '../../components/shared/SearchFilter'
+import QueryNotification from '../../components/shared/QueryNotification'
 import GradientBackground from '../../components/shared/GradientBackground'
 
 import dynamic from 'next/dynamic'
@@ -28,6 +29,7 @@ const BuildingBlocks = () => {
         <title>{format('app.title')}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
+      <QueryNotification />
       <GradientBackground />
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />

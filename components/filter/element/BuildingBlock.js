@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
@@ -32,18 +31,17 @@ const customStyles = {
 
 export const BuildingBlockAutocomplete = (props) => {
   const client = useApolloClient()
-  const [buildingBlock, setBuildingBlock] = useState('')
+
   const { buildingBlocks, setBuildingBlocks, containerStyles } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectBuildingBlock = (buildingBlock) => {
-    setBuildingBlock('')
     setBuildingBlocks([...buildingBlocks.filter(b => b.value !== buildingBlock.value), buildingBlock])
   }
 
-  const fetchOptions = async (input, callback, query) => {
+  const fetchOptions = async (input, _, query) => {
     if (input && input.trim().length < 2) {
       return []
     }
@@ -83,7 +81,6 @@ export const BuildingBlockAutocomplete = (props) => {
           onChange={selectBuildingBlock}
           placeholder={format('filter.byEntity', { entity: format('buildingBlock.label') })}
           styles={customStyles}
-          value={buildingBlock}
         />
       </label>
     </div>

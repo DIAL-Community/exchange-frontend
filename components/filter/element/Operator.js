@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
@@ -29,14 +28,12 @@ const customStyles = {
 
 export const OperatorAutocomplete = (props) => {
   const client = useApolloClient()
-  const [operator, setOperator] = useState('')
   const { operators, setOperators, containerStyles } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectOperator = (operator) => {
-    setOperator('')
     setOperators([...operators.filter(c => c.value !== operator.value), operator])
   }
 
@@ -87,7 +84,6 @@ export const OperatorAutocomplete = (props) => {
           onChange={selectOperator}
           placeholder={format('filter.byEntity', { entity: format('operator.label') })}
           styles={customStyles}
-          value={operator}
         />
       </label>
     </div>

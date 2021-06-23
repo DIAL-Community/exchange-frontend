@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
@@ -30,14 +29,12 @@ const customStyles = {
 
 export const OriginAutocomplete = (props) => {
   const client = useApolloClient()
-  const [origin, setOrigin] = useState('')
   const { origins, setOrigins, containerStyles } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectOrigin = (origin) => {
-    setOrigin('')
     setOrigins([...origins.filter(o => o.value !== origin.value), origin])
   }
 
@@ -76,7 +73,6 @@ export const OriginAutocomplete = (props) => {
           onChange={selectOrigin}
           placeholder={format('filter.byEntity', { entity: format('origin.label') })}
           styles={customStyles}
-          value={origin}
         />
       </label>
     </div>

@@ -8,6 +8,7 @@ import Filter from '../../components/filter/Filter'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { ProjectFilterContext, ProjectFilterDispatchContext } from '../../components/context/ProjectFilterContext'
+import QueryNotification from '../../components/shared/QueryNotification'
 import GradientBackground from '../../components/shared/GradientBackground'
 import SearchFilter from '../../components/shared/SearchFilter'
 import ProjectListQuery from '../../components/projects/ProjectList'
@@ -25,6 +26,7 @@ const Projects = () => {
         <title>{format('app.title')}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
+      <QueryNotification />
       <GradientBackground />
       <Header />
       <Filter activeTab='filter.entity.projects' />

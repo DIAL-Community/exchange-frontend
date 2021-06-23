@@ -21,6 +21,7 @@ import gql from 'graphql-tag'
 import FilterHint from './FilterHint'
 
 import { useIntl } from 'react-intl'
+import { QueryParamContext } from '../context/QueryParamContext'
 
 const COUNT_QUERY = gql`
   query Counts {
@@ -61,6 +62,7 @@ const Filter = (props) => {
   const [openFilter, setOpenFilter] = useState(false)
   const [openHint, setOpenHint] = useState(false)
 
+  const { setInteractionDetected } = useContext(QueryParamContext)
   const { resultCounts, setResultCounts } = useContext(FilterResultContext)
 
   useQuery(COUNT_QUERY, {
@@ -78,9 +80,10 @@ const Filter = (props) => {
     }
   })
 
-  const clickHandler = (e) => {
+  const openFilterPanel = (e) => {
     e.preventDefault()
     setOpenFilter(!openFilter)
+    setInteractionDetected(true)
   }
 
   return (
@@ -286,7 +289,7 @@ const Filter = (props) => {
               !openHint &&
                 <div className='bg-dial-gray-dark flex-auto'>
                   <div className='tab-content tab-space'>
-                    <div className='px-4 pt-3 pb-2 text-sm text-white cursor-pointer' onClick={e => clickHandler(e)}>
+                    <div className='px-4 pt-3 pb-2 text-sm text-white cursor-pointer' onClick={e => openFilterPanel(e)}>
                       {activeTab === 7 ? format('filter.dropdown.map') : format('filter.dropdown.title', { entity: format(filterItems[activeTab]) })}
                       {openFilter ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />}
                     </div>

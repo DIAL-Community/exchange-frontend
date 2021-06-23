@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { SDGLogo } from '../../logo'
@@ -32,14 +31,12 @@ const customStyles = {
 
 export const SDGAutocomplete = (props) => {
   const client = useApolloClient()
-  const [sdg, setSDG] = useState('')
   const { sdgs, setSDGs, containerStyles } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const selectSDG = (sdg) => {
-    setSDG('')
     setSDGs([...sdgs.filter(s => s.value !== sdg.value), sdg])
   }
 
@@ -83,7 +80,6 @@ export const SDGAutocomplete = (props) => {
           onChange={selectSDG}
           placeholder={format('filter.byEntity', { entity: format('sdg.shortLabel') })}
           styles={customStyles}
-          value={sdg}
         />
       </label>
     </div>
