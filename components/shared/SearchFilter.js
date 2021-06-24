@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/client'
 import { useIntl } from 'react-intl'
 
+import { FaPlusCircle } from 'react-icons/fa'
+
 const SearchFilter = (props) => {
   const { search, setSearch, displayType, setDisplayType, placeholder } = props
   const router = useRouter()
@@ -43,10 +45,10 @@ const SearchFilter = (props) => {
   }
 
   return (
-    <div className='relative mx-2 grid grid-cols-12 gap-4 bg-transparent'>
+    <div className='relative px-2 grid grid-cols-12 gap-4 bg-transparent max-w-catalog mx-auto'>
       <div className='col-span-12'>
         <div className='flex flex-row mt-2'>
-          <label className='block w-7/12 md:w-4/12 my-auto'>
+          <label className='flex-grow block w-6/12 md:w-4/12 my-auto'>
             <span className='sr-only'>{format('search.input.label')}</span>
             <input
               type='search'
@@ -57,12 +59,12 @@ const SearchFilter = (props) => {
           </label>
           <div className='w-3/12 md:w-4/12'>
             <div className='flex flex-col md:flex-row'>
-              <div className='my-auto px-4 md:px-0 md:pl-4 pt-2 md:pt-0 text-xs md:text-base text-dial-gray-dark'>{format('view.switch.title')}</div>
-              <div className='my-auto pt-2 pb-3 px-4 flex flex-row'>
+              <div className='my-auto px-2 md:px-0 md:pl-4 pt-2 md:pt-0 text-xs md:text-base text-dial-gray-dark'>{format('view.switch.title')}</div>
+              <div className='my-auto pt-2 pb-3 px-2 flex flex-row'>
                 {
                   displayType === 'card' &&
                     <>
-                      <img className='mr-2 h-6 md:h-8' src='/icons/card-active/card-active.png' />
+                      <img className='flex-grow mr-2 h-6 md:h-8' src='/icons/card-active/card-active.png' />
                       <a href='toggle-display' onClick={toggleDisplayType}>
                         <img className='h-6 md:h-8 cursor-pointer' src='/icons/list-inactive/list-inactive.png' />
                       </a>
@@ -71,8 +73,8 @@ const SearchFilter = (props) => {
                 {
                   displayType === 'list' &&
                     <>
-                      <a href='toggle-display' onClick={toggleDisplayType}>
-                        <img className='mr-2 h-6 md:h-8 cursor-pointer' src='/icons/card-inactive/card-inactive.png' />
+                      <a className='flex-grow mr-2' href='toggle-display' onClick={toggleDisplayType}>
+                        <img className='h-6 md:h-8 cursor-pointer' src='/icons/card-inactive/card-inactive.png' />
                       </a>
                       <img className='h-6 md:h-8' src='/icons/list-active/list-active.png' />
                     </>
@@ -80,11 +82,11 @@ const SearchFilter = (props) => {
               </div>
             </div>
           </div>
-          <div className='w-2/12 md:w-4/12 grid mr-4 self-center place-self-end text-sm'>
+          <div className='w-3/12 md:w-4/12 mr-2 self-center text-xs md:text-base text-right'>
             {
               session && session.user.canEdit && (
-                <a href={generateCreateLink()}>
-                  <span className='grid justify-end text-dial-teal'>{format('app.create-new')}</span>
+                <a className='border-b-2 border-transparent hover:border-dial-yellow' href={generateCreateLink()}>
+                  <span className='text-dial-teal'>{format('app.create-new')}</span>
                 </a>
               )
             }

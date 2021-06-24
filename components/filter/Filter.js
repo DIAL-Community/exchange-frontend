@@ -88,7 +88,7 @@ const Filter = (props) => {
 
   return (
     <>
-      <div className='sticky mx-2 py-1 bg-white sticky-under-header'>
+      <div className='sticky px-2 py-1 bg-white sticky-under-header max-w-catalog mx-auto'>
         <div className='invisible 2xl:visible' style={{ maxWidth: 'calc(62.5% - 4px)' }}>
           <div className='px-5 mt-3 py-2 border-t border-r border-l border-gray-300 rounded-t' />
           <div className='text-center -mt-7' style={{ lineHeight: 0.1 }}>
@@ -102,7 +102,7 @@ const Filter = (props) => {
           <a href='/wizard' className='text-sm text-dial-yellow font-bold hover:underline'>{format('filter.launchWizard')}</a>
         </div>
       </div>
-      <div className='sticky bg-white mx-2 sticky-filter'>
+      <div className='sticky bg-white px-2 sticky-filter max-w-catalog mx-auto'>
         <div className='w-full'>
           <ul className='flex flex-row mb-0 list-none pt-2' role='tablist'>
             {
@@ -306,7 +306,7 @@ const Filter = (props) => {
                     // Map doesn't have hint.
                     activeTab < filterItems.length - 1 &&
                       <div className='text-white absolute top-2 right-3 cursor-pointer' onClick={() => setOpenHint(!openHint)}>
-                        <span className='text-sm'>{format('filter.hint.text') + format(props.activeTab).slice(0, -1)}</span>
+                        <span className='hidden md:inline text-sm'>{format('filter.hint.text') + format(props.activeTab).slice(0, -1)}</span>
                         <HiQuestionMarkCircle className='text-2xl inline ml-2' />
                       </div>
                   }

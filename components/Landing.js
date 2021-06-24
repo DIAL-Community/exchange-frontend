@@ -20,7 +20,7 @@ const Landing = () => {
         <div className='absolute top-0 right-0 w-6/12 h-screen' style={{ backgroundColor: '#646375' }}>&nbsp;</div>
       </div>
       <div className='relative overflow-hidden landing-with-menu'>
-        <div className='mx-auto'>
+        <div className='max-w-catalog mx-auto'>
           <div className='relative h-full z-70 pb-8'>
             <main className='grid grid-cols-5'>
               <div className='col-span-5 md:col-span-4 lg:col-span-3 h-screen text-left grid place-content-center'>

@@ -4,7 +4,7 @@
     This is to prevent the menu from looking like dropping when transitioning from mobile to desktop menu.
   */
 
-  min-height: 66px;
+  min-height: 64px;
 }
 
 .sticky-under-header {
