@@ -68,7 +68,7 @@ const UseCase = () => {
       {error && <Error />}
       {
         data && data.useCase &&
-          <div className='flex justify-between pb-8'>
+          <div className='flex justify-between pb-8 max-w-catalog mx-auto'>
             <div className='sticky w-1/4 h-full py-4 px-4' style={{ top: '66px' }}>
               <UseCaseDetailLeft useCase={data.useCase} />
             </div>

@@ -155,11 +155,6 @@ const Header = () => {
     closeCallback(false)
   }
 
-  const headerStyles = `
-    z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white flex flex-wrap
-    items-center py-3 lg:py-0
-  `
-
   const menuItemStyles = `
     lg:p-4 lg:py-3 px-6 py-2 block border-b-2 border-transparent lg:hover:border-dial-yellow
   `
@@ -206,114 +201,116 @@ const Header = () => {
   }
 
   return (
-    <header className={`${headerStyles} header-min-height`}>
-      <div className='flex-1 flex justify-between items-center'>
-        <Link href='/products'>
-          <a href='/products' className='px-6 lg:px-8'>
-            <div className='text-dial-blue-darkest text-xs'>
-              {format('landing.subtitle')}
-            </div>
-            <div className='font-bold text-base text-dial-blue-darkest'>
-              <span className='block'>
-                {format('landing.title.firstLine')} {format('landing.title.secondLine')}
-              </span>
-            </div>
-          </a>
-        </Link>
-      </div>
-
-      <label htmlFor='menu-toggle' className='pointer-cursor block lg:hidden px-8'>
-        <svg className='fill-current text-gray-900' xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'>
-          <title>Menu</title>
-          <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
-        </svg>
-      </label>
-      <input className='hidden' type='checkbox' id='menu-toggle' />
-
-      <div className='hidden lg:flex lg:items-center lg:w-auto w-full' id='menu'>
-        <nav>
-          <ul className='lg:flex items-center justify-between text-base text-dial-blue-darkest pt-4 lg:pt-0'>
-            <li className='relative mt-2 lg:mt-0'>
-              <a
-                className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={resourcePopoverButton}
-                href='switchLanguage' onClick={(e) => toggleResourceSwitcher(e)}
-              >
-                {format('header.resources')}
-                {
-                  showResources ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
-                }
-              </a>
-              <div className={`${showResources ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={resourcePopover} role='menu'>
-                <div className='py-1' role='none'>
-                  <a href='/covid-19-resources' onClick={navigateToCovidResource} role='menuitem' className={dropdwonMenuStyles}>
-                    {format('header.covidResources')}
-                  </a>
-                  <a
-                    href='//resources.dial.community/' target='_blank' rel='noreferrer'
-                    role='menuitem' className={dropdwonMenuStyles} onClick={() => setShowResources(false)}
-                  >
-                    {format('header.dialResourcesPortal')}
-                  </a>
-                </div>
+    <header className='z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white'>
+      <div className='flex flex-wrap justify-center items-center py-3 lg:py-0 max-w-catalog header-min-height mx-auto'>
+        <div className='flex-1 flex my-auto'>
+          <Link href='/products'>
+            <a href='/products' className='px-6 lg:px-8'>
+              <div className='text-dial-blue-darkest text-xs'>
+                {format('landing.subtitle')}
               </div>
-            </li>
-            <li>
-              <Link href='/about'>
-                <a className={`${menuItemStyles}`} href='about'>{format('header.about')}</a>
-              </Link>
-            </li>
-            {
-              session
-                ? (
-                  <div>
-                    {session.user.canEdit && (<AdminMenu />)}
-                    <UserMenu />
-                  </div>
-                  )
-                : (
-                  <li>
-                    <a className={`${menuItemStyles}`} href='sign-in' onClick={signInUser}>
-                      {format('header.signIn')}
+              <div className='font-bold text-base text-dial-blue-darkest'>
+                <span className='block'>
+                  {format('landing.title.firstLine')} {format('landing.title.secondLine')}
+                </span>
+              </div>
+            </a>
+          </Link>
+        </div>
+
+        <label htmlFor='menu-toggle' className='pointer-cursor block lg:hidden px-8'>
+          <svg className='fill-current text-gray-900' xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'>
+            <title>Menu</title>
+            <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
+          </svg>
+        </label>
+        <input className='hidden' type='checkbox' id='menu-toggle' />
+
+        <div className='hidden lg:flex lg:items-center lg:w-auto w-full' id='menu'>
+          <nav>
+            <ul className='lg:flex items-center justify-between text-base text-dial-blue-darkest pt-4 lg:pt-0'>
+              <li className='relative mt-2 lg:mt-0'>
+                <a
+                  className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={resourcePopoverButton}
+                  href='switchLanguage' onClick={(e) => toggleResourceSwitcher(e)}
+                >
+                  {format('header.resources')}
+                  {
+                    showResources ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
+                  }
+                </a>
+                <div className={`${showResources ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={resourcePopover} role='menu'>
+                  <div className='py-1' role='none'>
+                    <a href='/covid-19-resources' onClick={navigateToCovidResource} role='menuitem' className={dropdwonMenuStyles}>
+                      {format('header.covidResources')}
                     </a>
-                  </li>
-                  )
-            }
-            <li>
-              <a
-                className={`${menuItemStyles} lg:mb-0 mb-2`}
-                href='https://docs.osc.dial.community/projects/product-registry/en/latest/'
-                target='_blank' rel='noreferrer'
-              >
-                {format('header.help')}
-              </a>
-            </li>
-            <li><div className='border border-gray-400 border-t-0 lg:border-l-0 lg:h-9' /></li>
-            <li className='relative mt-2 lg:mt-0'>
-              <a
-                className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={languagePopoverButton}
-                href='switchLanguage' onClick={(e) => toggleLanguageSwitcher(e)}
-              >
-                {format('header.selectLanguage')}
-                {
-                  showLanguages ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
-                }
-              </a>
-              <div className={`${showLanguages ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={languagePopover} role='menu'>
-                <div className='py-1' role='none'>
-                  <a href='en' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'en')}>
-                    {format('header.english')}
-                  </a>
-                  <a href='de' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'de')}>
-                    {format('header.german')}
-                  </a>
-                  <a href='fr' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'fr')}>
-                    {format('header.french')}
-                  </a>
+                    <a
+                      href='//resources.dial.community/' target='_blank' rel='noreferrer'
+                      role='menuitem' className={dropdwonMenuStyles} onClick={() => setShowResources(false)}
+                    >
+                      {format('header.dialResourcesPortal')}
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </li>
-          </ul>
-        </nav>
+              </li>
+              <li>
+                <Link href='/about'>
+                  <a className={`${menuItemStyles}`} href='about'>{format('header.about')}</a>
+                </Link>
+              </li>
+              {
+                session
+                  ? (
+                    <div>
+                      {session.user.canEdit && (<AdminMenu />)}
+                      <UserMenu />
+                    </div>
+                    )
+                  : (
+                    <li>
+                      <a className={`${menuItemStyles}`} href='sign-in' onClick={signInUser}>
+                        {format('header.signIn')}
+                      </a>
+                    </li>
+                    )
+              }
+              <li>
+                <a
+                  className={`${menuItemStyles} lg:mb-0 mb-2`}
+                  href='https://docs.osc.dial.community/projects/product-registry/en/latest/'
+                  target='_blank' rel='noreferrer'
+                >
+                  {format('header.help')}
+                </a>
+              </li>
+              <li><div className='border border-gray-400 border-t-0 lg:border-l-0 lg:h-9' /></li>
+              <li className='relative mt-2 lg:mt-0'>
+                <a
+                  className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={languagePopoverButton}
+                  href='switchLanguage' onClick={(e) => toggleLanguageSwitcher(e)}
+                >
+                  {format('header.selectLanguage')}
+                  {
+                    showLanguages ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
+                  }
+                </a>
+                <div className={`${showLanguages ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={languagePopover} role='menu'>
+                  <div className='py-1' role='none'>
+                    <a href='en' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'en')}>
+                      {format('header.english')}
+                    </a>
+                    <a href='de' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'de')}>
+                      {format('header.german')}
+                    </a>
+                    <a href='fr' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'fr')}>
+                      {format('header.french')}
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
   )

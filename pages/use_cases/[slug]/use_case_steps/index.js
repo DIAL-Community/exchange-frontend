@@ -35,7 +35,7 @@ const UseCaseStep = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <div className='flex flex-wrap justify-between pb-8'>
+      <div className='flex flex-wrap justify-between pb-8 max-w-catalog mx-auto'>
         <div className='relative md:sticky md:top-66px w-full md:w-1/3 xl:w-1/4 h-full py-4 px-4'>
           {
             data && data.useCase &&

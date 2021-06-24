@@ -14,7 +14,7 @@ const Footer = () => {
     <footer>
       <Consent />
       <div className='relative w-full bg-dial-gray-light text-dial-purple-light'>
-        <div className='px-4 2xl:px-24 pt-8 2xl:pb-8 flex flex-row flex-wrap justify-center 2xl:justify-start mx-auto'>
+        <div className='px-4 2xl:px-24 pt-8 2xl:pb-8 flex flex-row flex-wrap justify-center 2xl:justify-start mx-auto max-w-catalog'>
           <div className='max-w-prose sm:w-full flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto md:text-center 2xl:text-left'>
             {format('footer.text.firstLine')}
           </div>
@@ -48,7 +48,7 @@ const Footer = () => {
         <div className='2xl:px-24 my-3 xl:my-0'>
           <div className='border border-t-0 border-dial-gray' />
         </div>
-        <div className='px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap justify-center 2xl:justify-start'>
+        <div className='px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap justify-center 2xl:justify-start mx-auto max-w-catalog'>
           <div className='w-full lg:max-w-2/4 2xl:max-w-prose flex-auto my-auto md:text-center 2xl:text-left'>
             {format('footer.text.secondLine')}
           </div>
@@ -67,7 +67,7 @@ const Footer = () => {
         </div>
       </div>
       <div className='relative w-full bg-dial-gray text-dial-purple-light leading-none text-base'>
-        <div className='px-4 pb-4 pt-8 lg:px-10 2xl:pt-12 2xl:pb-8 2xl:px-24 flex flex-row flex-wrap mx-auto'>
+        <div className='px-4 pb-4 pt-8 lg:px-10 2xl:pt-12 2xl:pb-8 2xl:px-24 flex flex-row flex-wrap mx-auto max-w-catalog'>
           <div className='py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light'>
             <a
               href='https://digitalimpactalliance.org/contact-us/ict4sdg/'
@@ -128,7 +128,7 @@ const Footer = () => {
         <div className='2xl:px-24'>
           <div className='border border-t-0 border-dial-gray-light' />
         </div>
-        <div className='px-4 pt-4 pb-8 lg:px-10 2xl:px-24 2xl:pt-8 2xl:pb-12 flex flex-row flex-wrap mx-auto'>
+        <div className='px-4 pt-4 pb-8 lg:px-10 2xl:px-24 2xl:pt-8 2xl:pb-12 flex flex-row flex-wrap mx-auto max-w-catalog'>
           <div className='w-full flex flex-row flex-wrap leading-none text-base'>
             <div className='py-2 px-0 2xl:px-2 order-last xl:order-first mr-4'>
               &copy; {new Date().getFullYear()} {format('footer.organizationName').toUpperCase()}
