@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -14,8 +15,8 @@ import gql from 'graphql-tag'
 import { Loading, Error } from '../components/shared/FetchStatus'
 
 const SECTOR_QUERY = gql`
-query Sector {
-  sectors {
+query Sector($locale: String) {
+  sectors(locale: $locale) {
     id
     name
     slug
@@ -65,8 +66,10 @@ const WizardPage = () => {
   })
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+  const router = useRouter()
+  const { locale } = router
 
-  const { loading: sectorLoading, error: sectorError, data: sectorData } = useQuery(SECTOR_QUERY)
+  const { loading: sectorLoading, error: sectorError, data: sectorData } = useQuery(SECTOR_QUERY, { variables: { locale } })
   const { loading: useCaseLoading, error: useCaseError, data: useCaseData } = useQuery(USE_CASE_QUERY)
   const { loading: countryLoading, error: countryError, data: countryData } = useQuery(COUNTRY_QUERY)
   const { loading: tagLoading, error: tagError, data: tagData } = useQuery(TAG_QUERY)

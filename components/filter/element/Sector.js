@@ -2,13 +2,14 @@ import dynamic from 'next/dynamic'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
 const SECTOR_SEARCH_QUERY = gql`
-  query Sectors($search: String!) {
-    sectors(search: $search) {
+  query Sectors($search: String!, $locale: String) {
+    sectors(search: $search, locale: $locale) {
       id
       name
     }
@@ -29,6 +30,8 @@ const customStyles = {
 
 export const SectorAutocomplete = (props) => {
   const client = useApolloClient()
+  const router = useRouter()
+  const { locale } = router
   const { sectors, setSectors, containerStyles } = props
 
   const { formatMessage } = useIntl()
@@ -46,7 +49,8 @@ export const SectorAutocomplete = (props) => {
     const response = await client.query({
       query: query,
       variables: {
-        search: input
+        search: input,
+        locale: locale
       }
     })
 

@@ -2,11 +2,14 @@ import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import ReactHtmlParser from 'react-html-parser'
 import { DiscourseCount } from '../shared/discourse'
+import { useRouter } from 'next/router'
 
 const ProductDetailLeft = ({ product, discourseClick }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   const [session] = useSession()
+  const router = useRouter()
+  const { locale } = router
 
   const generateEditLink = () => {
     if (!session.user) {
@@ -49,7 +52,13 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
           <img alt={`${product.name} Logo`} className='p-2 m-auto' src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile} width='200px' height='200px' />
         </div>
         <div className='fr-view text-dial-gray-dark'>
-          {product.productDescriptions[0] && ReactHtmlParser(product.productDescriptions[0].description)}
+          {product.productDescriptions && product.productDescriptions.map(desc => {
+            if (desc.locale === locale) {
+              return ReactHtmlParser(desc.description)
+            } else {
+              return ''
+            }
+          })}
         </div>
       </div>
       {

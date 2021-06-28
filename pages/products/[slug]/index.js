@@ -19,7 +19,7 @@ import dynamic from 'next/dynamic'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const PRODUCT_QUERY = gql`
-query Product($slug: String!) {
+query Product($slug: String!, $locale: String!) {
   product(slug: $slug) {
     id
     name
@@ -37,6 +37,7 @@ query Product($slug: String!) {
     discourseId
     productDescriptions {
       description
+      locale
     }
     origins {
       name
@@ -99,7 +100,7 @@ query Product($slug: String!) {
       slug
       imageFile
     }
-    sectors {
+    sectorsWithLocale(locale: $locale) {
       name
       slug
       isDisplayable
@@ -123,8 +124,10 @@ const Product = () => {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
+  const { locale } = router
+
   const { slug } = router.query
-  const { loading, error, data } = useQuery(PRODUCT_QUERY, { variables: { slug: slug }, skip: !slug })
+  const { loading, error, data } = useQuery(PRODUCT_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
 
   const scrollToDiv = (ref) => {
     ref.current.scrollIntoView({

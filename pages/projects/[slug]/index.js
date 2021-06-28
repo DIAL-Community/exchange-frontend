@@ -15,7 +15,7 @@ import ProjectDetailRight from '../../../components/projects/ProjectDetailRight'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
 
 const PROJECT_QUERY = gql`
-query Project($slug: String!) {
+query Project($slug: String!, $locale: String!) {
   project(slug: $slug) {
     id
     name
@@ -23,6 +23,7 @@ query Project($slug: String!) {
     tags
     projectDescriptions {
       description
+      locale
     }
     organizations {
       id
@@ -38,7 +39,7 @@ query Project($slug: String!) {
       name
       imageFile
     }
-    sectors {
+    sectorsWithLocale(locale: $locale) {
       name
       slug
     }
@@ -48,6 +49,7 @@ query Project($slug: String!) {
     }
     origin {
       slug
+      name
     }
   }
 }
@@ -64,8 +66,9 @@ const Project = () => {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
+  const { locale } = router
   const { slug } = router.query
-  const { loading, error, data } = useQuery(PROJECT_QUERY, { variables: { slug: slug }, skip: !slug })
+  const { loading, error, data } = useQuery(PROJECT_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
   return (
     <>
       <Head>

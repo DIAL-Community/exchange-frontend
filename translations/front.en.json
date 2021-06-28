@@ -5,6 +5,8 @@
   "app.nocomment": "Start a Conversation",
   "app.home": "Home",
   "app.submit": "Submit",
+  "app.search": "Search for a ",
+  "app.create-new": "Create New",
 
   "header.signIn": "Sign Up or Log In",
   "header.signOut": "Sign Out",
@@ -19,6 +21,7 @@
   "header.german": "Deutsch (de)",
   "header.french": "Francais (fr)",
   "header.admin.users": "Users",
+  "header.admin.settings": "Settings",
 
   "footer.text.firstLine": "The Digital Impact Alliance is a partnership amongst some of the world’s most active digital development champions. We are grateful for the support of our Founding Partners.",
   "footer.text.secondLine": "We are also thankful for direct support for this Catalog of Digital Solutions provided by the following partners:",
@@ -31,7 +34,9 @@
   "footer.follow": "Follow DIAL on social media",
   "footer.icons": "Icons provided unmodified by ",
 
-  "definition.subtitle": "A useful tool for a wide range of users",
+  "definition.title": "The Catalog of Digital Solutions is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.",
+  "definition.goal": "Our goal: ",
+  "definition.subtitle": "Informed decision-making and greater coordination in digital investments, planning & implementations across sectors",
   "definition.donors": "Donors",
   "definition.policy-makers": "Policy Makers",
   "definition.implementers": "Implementing Partners",
@@ -60,7 +65,9 @@
   "product.repository": "Code Repository",
   "product.current-version": "Current Version",
   "product.license": "License",
-  "product.source": "Source",
+  "product.source": "Sources",
+  "product.endorsers": "Endorsers",
+  "product.endorsed-by": "This product has been screened as a Digital Public Good by ",
   "product.repository-info": "Repository Information",
   "product.very-active": "Very Active",
   "product.not-very-active": "Not Very Active",
@@ -96,6 +103,8 @@
 
   "project.header": "Projects",
   "project.label": "Project",
+  "project.url": "Project URL",
+  "project.source": "Origin",
 
   "organization.header": "Organizations",
   "organization.label": "Organization",
@@ -111,6 +120,7 @@
   "sdg.header": "Sustainable Development Goals",
   "sdg.label": "Sustainable Development Goal",
 
+  "use-case.label": "Use Case",
   "use-case.sdg-targets": "SDG Targets",
   "use-case.workflow": "Workflows",
 
@@ -145,7 +155,7 @@
   "wizard.results.resources": "Additional Resources",
   "wizard.results.resourcesDesc": "Here are some additional resources that may be helpful:",
   "wizard.results.products": "Candidate Products",
-  "wizard.results.productsDesc": "Here are products that are aligned with the building blocks, sector, or use case for the project",
+  "wizard.results.productsDesc": "Here are products that are aligned with the building blocks, sector, or tags for the project",
   "wizard.results.noProducts": "We cannot provide recommendations on specific products or tools based on the information provided.",
   "wizard.results.aggregators": "Mobile Network Aggregators",
   "wizard.results.aggregatorsDesc": "If your project requires mobile network services, these Aggregators may help you set up mobile solutions quickly.",
@@ -182,7 +192,7 @@
   "landing.subtitle": "Digital Impact Alliance",
   "landing.title.firstLine": "Catalog of",
   "landing.title.secondLine": "Digital Solutions",
-  "landing.blurb": "A Whole-of-Government Approach to Coordinating Investment in Digital Technologies to Achieve the SDGs.",
+  "landing.blurb": "An interactive online resource to support Global Development Actors in the implementation of digital strategies.",
   "landing.wizard.title": "Recommendations Wizard",
   "landing.catalog.title": "Launch Catalog",
   "landing.wizard.whereToStart": "Don't know where to start?",
@@ -197,10 +207,11 @@
   "product.card.buildingBlocks": "Building Blocks",
   "product.card.sdgs": "SDGs",
 
+  "general.close": "Close",
   "general.na": "N/A",
   "general.fetchingData": "Fetching data ...",
   "general.fetchError": "Error fetching data. Please check your network connection.",
-  "general.loadingData": "Loading for more data ...",
+  "general.loadingData": "Loading more data ...",
 
   "view.switch.title": "Switch View",
   "search.input.label": "Enter Search Term",
@@ -214,6 +225,7 @@
   "country.header": "Countries",
   "workflow.header": "Workflows",
   "useCase.header": "Use Cases",
+  "product.header": "Products",
 
   "organization.detail.website": "Website",
   "organization.detail.whenEndorsed": "Endorsed On",
@@ -228,9 +240,173 @@
 
   "useCase.label": "Use Case",
   "workflow.label": "Workflow",
+  "product.label": "Product",
+  "country.label": "Country",
 
   "error.auth": "Error in authentication",
   "error.tryAgain": "Try Again",
-  "error.goBack": "Go Back to Catalog"
+  "error.goBack": "Go Back to Catalog",
 
+  "buildingBlock.hint.subtitle": "Building blocks are enterprise-ready, reusable software components providing key functionality facilitating generic WorkFlows across multiple sectors.",
+  "buildingBlock.hint.characteristicTitle": "Characteristics",
+  "buildingBlock.hint.descriptionTitle": "Description",
+  "buildingBlock.hint.characteristics": "<ul><li>Reusable software components</li><li>Can be open-source, commercial off-the-shelf (COTS), or freely available with open access to data</li><li>Facilitates one or more generic WorkFlows</li><li>Applicable to multiple UseCases across multiple sectors</li><li>Interoperable with other ICT Building Blocks</li><li>Designed for scalability and extensibility</li><li>Standards-based</li></ul>",
+  "buildingBlock.hint.description": "Each ICT Building Block page includes a description, key digital functionalities, sector-specific examples, example software products, and mappings to WorkFlows defined in this framework. The list of ICT Building Blocks, exemplar software products, and mappings is not exhaustive and more will be added in future releases. Please note that the software product examples are for illustrative purposes only. Further mapping and ranking of existing products based on maturity, sustainability and applicability to the ICT Building Blocks will be addressed overtime.",
+  "filter.hint.text": "What is a ",
+
+  "digiInvestment.title": "Digital Investment Framework",
+
+  "filter.entity.sdgs": "SDGs",
+  "filter.entity.useCases": "Use Cases",
+  "filter.entity.workflows": "Workflows",
+  "filter.entity.buildingBlocks": "Building Blocks",
+  "filter.entity.products": "Products",
+  "filter.entity.projects": "Projects",
+  "filter.entity.organizations": "Organizations",
+  "filter.entity.maps": "Maps",
+
+  "filter.byEntity": "Filter by {entity}",
+  "filter.searchFor": "Search for {entity}",
+
+  "filter.entity": "{entity} Filters",
+  "filter.dropdown.title": "Filter {entity} by:",
+  "filter.dropdown.map": "Select or Filter maps",
+
+  "filter.framework.title": "Framework Filters",
+  "filter.framework.subTitle": "Use elements of the Digital Investment Framework to filter {entity}",
+
+  "filter.buildingBlock.matureOnly": "Show only mature building blocks",
+
+  "filter.general.applied": "{count, plural, one {Filter Applied} other {Filters Applied}}",
+  "filter.general.clearAll": "Clear all",
+
+  "filter.organization.aggregatorOnly": "Only Aggregators",
+  "filter.organization.endorserOnly": "Only Endorser Organizations",
+  "filter.useCase.showBeta": "Show Beta (non-Validated) Use Cases",
+
+  "filter.product.withMaturity": "Product with maturity assessment",
+  "filter.product.launchable": "Product can be deployed and launched",
+  "filter.launchWizard": "Launch Recommendations Wizard",
+
+  "endorsingYear.label": "Endorsing Year",
+
+  "origin.label": "Origin",
+  "origin.header": "Origins",
+
+  "sdg.shortLabel": "SDG",
+  "sdg.shortHeader": "SDGs",
+
+  "productType.label": "Type",
+  "productType.header": "Product or Dataset?",
+  "productType.productOnly": "Product Only",
+  "productType.datasetOnly": "Dataset Only",
+  "productType.allType": "All Type",
+
+  "map.aggregator.loadingData": "Loading map aggregator data ...",
+  "map.project.loadingData": "Loading map project data ...",
+  "map.endorser.loadingData": "Loading map endorser data ...",
+
+  "organization.endorsedOn": "Endorsed On",
+  "organization.visitWebsite": "Visit website",
+
+  "product.hint.characteristicTitle": "Reading the Product Cards",
+  "product.hint.descriptionTitle": "Icons used on the product cards",
+  "product.hint.subtitle": "A Product is a specific technology offering that is designed to implement one or more Building Blocks.",
+  "product.hint.characteristics": "The product cards provide a quick overview of each digital tool, including information on the SDGs that the product is designed to support, as well as any building blocks that may be supported by the product. The cards show how the product is licensed as well as information about our sources of information for the product. ",
+  "product.hint.description": "<ul><li><img class='m-1.5 h-5 inline' src='/icons/check/check.png' /><span class='inline p-2'>Indicates that the product has been endorsed by a vetting organization</span></li><li><img class='m-1.5 h-5 inline' src='/icons/digiprins/digiprins.png' /><span class='inline p-2'>Indicates that the product is maintained by a Digital Principles endorser </span></li><li><img class='m-1.5 h-5 inline' src='/icons/coronavirus/coronavirus.png' /><span class='inline p-2'>Indicates that the product can be used to support COVID-19 response</span></li></ul>",
+
+  "project.hint.characteristicTitle": "Description",
+  "project.hint.descriptionTitle": "Project Sources",
+  "project.hint.subtitle": "A Project is an implementation of a digital platform in a specific context and/or sector.",
+  "project.hint.characteristics": "Projects provide insight into where specific digital technologies have been deployed. Users of the Catalog can search and filter projects by country or sector. ",
+  "project.hint.description": "Project data is sourced from many different partners, including the World Health Organization's Digital Health Atlas the Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ), and New America.",
+
+  "organization.hint.characteristicTitle": "Description",
+  "organization.hint.descriptionTitle": "Types of Organizations",
+  "organization.hint.subtitle": "An Organization supports the development and/or implementation of digital technologies to address the SDGs.",
+  "organization.hint.characteristics": "The product cards provide a quick overview of each digital tool, including information on the SDGs that the product is designed to support, as well as any building blocks that may be supported by the product. The cards show how the product is licensed as well as information about our sources of information for the product. ",
+  "organization.hint.description": "The Catalog tracks several different types of organizations:<ul><li>Organizations that have endorsed the Principles for Digital Development</li><li>Mobile Network Aggregators</li><li>Funders and Maintainers of open source tools (products)</li></ul>",
+
+  "useCase.hint.characteristicTitle": "Characteristics",
+  "useCase.hint.descriptionTitle": "Description",
+  "useCase.hint.subtitle": "A Use Case defines the steps that an individual or system will undertake in order to achieve a business objective.",
+  "useCase.hint.characteristics": "<ul><li>User-centric description of the steps or user journeys required to deliver an outcome</li><li>Identifies one or more SDG Targets as its business objective</li><li>Describes the generic WorkFlows and business processes involved in each step in the Use Case</li><li>Typically sector-specific</li><li>Able to be improved through digital technology</li></ul>",
+  "useCase.hint.description": "Each Use Case model describes primary actors, key steps involved in achieving a specified business objective, descriptions of the WorkFlows and ICT Building Blocks involved in each step, and mappings to SDG Targets. The list of Use Case models is not exhaustive and more will be added in future releases.",
+
+  "workflow.hint.characteristicTitle": "Characteristics",
+  "workflow.hint.descriptionTitle": "Description",
+  "workflow.hint.characteristics": "<ul><li>Common business process used to help an organization carry out its overall function</li><li>Applicable to multiple Use Cases in various sectors</li><li>Powered by one or more ICT Building Blocks</li></ul>",
+  "workflow.hint.description": "Each WorkFlow includes a description, sector-specific examples, and mappings to Use Cases defined in this framework. The list of WorkFlows is not exhaustive, and more will be added in future releases.",
+  "workflow.hint.subtitle": "A WorkFlow is a generic business process that can be applied to SDG Use Cases across multiple sectors.",
+
+  "sdg.hint.subtitle": "The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to achieve sustainable development.",
+  "sdg.hint.descriptionTitle": "Description",
+  "sdg.hint.description": "The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to achieve sustainable development. The SDGs were set in 2015 by the United Nations General Assembly and intended to be achieved by the year 2030.",
+
+  "image.alt.logoFor": "Logo for: {name}.",
+  "tooltip.ellipsisFor": "View more in the detail page of this {entity}.",
+  "tooltip.forEntity": "{entity}: {name}.",
+
+  "map.project.title": "Map of Projects",
+  "map.aggregator.title": "Aggregator & Operator Coverage Map",
+  "map.endorser.title": "Map of Digital Principles Endorsers",
+
+  "tag.label": "Tag",
+  "tag.header": "Tags",
+
+  "service.label": "Service",
+  "service.header": "Services",
+
+  "operator.label": "Operator",
+  "operator.header": "Operators",
+
+  "aggregator.label": "Aggregator",
+  "map.loading.indicator": "Updating map data ...",
+  "tooltip.endorsed": "This product has been endorsed by one or more vetting organizations",
+  "tooltip.covid": "This product has been tagged as relevant for COVID response",
+  "tooltip.digiprins": "This product is owned or maintained by a Digital Principles endorser",
+
+  "organization.no-sector": "We do not have sector information for this organization.",
+  "organization.no-country": "We do not have country information for this organization.",
+  "office.other.header": "Other Office Locations",
+
+  "useCaseStep.header": "Use Case Steps",
+  "organization.aggregator.loading": "Loading aggregator data ...",
+  "steps.loading.indicator": "Loading steps data ...",
+  "step.loading.indicator": "Loading current step data ...",
+  "step.create-new": "Add Use Case Step",
+
+  "app.signIn": "Sign In",
+  "app.signUp": "Sign Up",
+
+  "signIn.forgetPassword": "Forgot Password?",
+  "signIn.email": "Email Address",
+  "signIn.email.placeholder": "Your email address",
+  "signIn.password": "Password",
+  "signIn.password.hint": "Enter your password.",
+
+  "signUp.created": "Registration successful. Please check your email for confirmation email.",
+  "signUp.redirect": "You will be redirected to our main catalog momentarily ...",
+  "signUp.submit": "Sign Up",
+  "signUp.email": "Email Address",
+  "signUp.email.placeholder": "Please enter your email address",
+  "signUp.password": "Password",
+  "signUp.password.hint": "Please choose a password.",
+  "signUp.passwordConfirmation": "Password Confirmation",
+  "signUp.passwordConfirmation.hint": "Please re-enter your password",
+  "signUp.organization": "Owner of this organization",
+  "signUp.products": "Owner of these products",
+  "signUp.tooltip.organizationOwner": "Apply to be the owner for the organization which will allow you to update the organization information.",
+  "signUp.tooltip.productOwner": "Optionally apply as a product owner. You will need to be verified by our team member to do this.",
+
+  "consent.text": "Cookies help us deliver our services. By using our services, you agree to our use of cookies.",
+  "consent.learnMore": "Learn More",
+  "consent.dismiss": "Dismiss",
+  "consent.whatIsCookie": "Cookies. Cookies are small text files which are downloaded to your computer, tablet or mobile phone when you visit a website or application. The website or application may retrieve these cookies from your web browser (eg Internet Explorer, Mozilla Firefox or Google Chrome) each time you visit, so they can recognise you, remember your preferences and provide you with a more secure online experience. Generally, cookies are very useful and are a common method used by almost every website you visit because they help to make your online experience as smooth as possible. For security reasons, many websites will not function at all without the use of cookies (or other similar technologies, such as 'web beacons' or 'tags'). Cookies generally do not hold any information to identify an individual person, but are instead used to identify a browser on an individual machine. If you prefer, you can restrict, block or delete cookies by changing your browser settings but that may mean that the website won't work properly. For more information about cookies and their impact on you and your browsing visit http://www.aboutcookies.org. Types of Cookies  Necessary cookies  These cookies are essential in helping you to make use of the features and services we offer on the DIAL product registry website. Without these cookies, the services you want to use cannot be provided. These cookies do not gather information about you that could be used to identify you, and they do not monitor or remember where you have been on the internet.    Functional cookies  These cookies allow us to provide you with a better online experience when you use our website. They do not gather or store any information which would allow us to identify you personally.    Performance cookies  Performance cookies help us to understand how our customers use our site, so we can keep our products and services relevant, easy to use and up to date. For example, we can see which products and services are most popular, identify when and where errors occur, and test different versions of a page in order to provide an improved online experience.    Sometimes, the services we use to collect this information may be operated by other companies on our behalf. They may use similar technologies to cookies, known as 'web beacons' or 'tags'. These are anonymous and, as they are only used for statistical purposes, they do not contain or collect any information that identifies you.    Targeting cookies  We have relationships with carefully selected and monitored suppliers (third parties) who may also set cookies during your visit. The purpose of these cookies is 'behavioural advertising' (also known as 'behavioural targeting' or 'remarketing'), which is a means of showing you relevant products and services based on what you appear to be interested in. Although these cookies can track your visits around the web they don't know who you are. Without these cookies, online advertisements you encounter will be less relevant to you and your interests.    Managing Cookies  Most internet browsers allow you to erase cookies from your computer hard drive, block all cookies (or just third-party cookies) or warn you before a cookie is stored on your device.    Please note, if you choose to block all cookies, our site will not function as intended and you will not be able to use or access many of the services we provide. If you have blocked all cookies and wish to make full use of the features and services we offer, you will need to enable your cookies. You can do this in your browser (see below).    Rather than blocking all cookies, you can choose to only block third-party cookies which will still allow our website to function as intended.    How to manage cookies on your PC  To enable cookies on our website, follow the steps below.    Google Chrome  Click 'Tools' at the top of your browser and select 'Settings'.  Click 'Show advanced settings', scroll down to the section 'Privacy' and click 'Content Settings.'  Select 'Allow local data to be set'. To only acept first-party cookies, check the box next to 'Block all third-party cookies without exception'  Microsoft Internet Explorer 6.0, 7.0, 8.0, 9.0  Click 'Tools' at the top of your browser and select 'Internet Options', then click the 'Privacy' tab.  Check that the level of your privacy is set to Medium or lower, which will allow the use of cookies in your browser.  If set above medium level it will prevent the use of cookies.  Mozilla Firefox  Click 'Tools' at the top of your browser and select 'Options'.  Then select the 'Privacy' icon.  Click the 'Cookies' and select 'Allow pages to create a cookie.'  Safari  Click the gear icon at the top of your browser and select 'Settings'.  Click the 'Privacy' tab, then select the option 'Disable the use of cookies by third parties and advertising cookies.'  Click 'Save'.  How to manage cookies on your Mac  To enable cookies on our website, follow the steps below.    Microsoft Internet Explorer 5.0 on OSX  Click on 'Explorer' at the top of your browser and select 'Settings'.  Scroll down to the 'Cookies' section in the 'Received Files'.  Select 'Do not ask.'  Safari on OSX  Click 'Safari' on the top of your browser and select 'Settings'.  Click the 'Privacy' and then 'Enable cookies.'  Select 'only the pages you have visited.'  Mozilla and Netscape on OSX  Click 'Mozilla' or 'Netscape' at the top of your browser and select 'Settings'.  Scroll down to the 'Cookies' under 'Privacy & Security'.  Select 'Allow cookies only to the original site.'  Opera  Click 'Menu' on the top of your browser and select 'Settings'.  Then select 'Options' tab and the 'Advanced'.  Select 'Enable cookies.'",
+  "app.shareLink": "Create sharable link",
+  "app.shareSuccess": "Sharable link copied to your clipboard. Use Ctrl+V to paste it from your clipboard.",
+  "app.shareFailed": "Unable to copy sharable link to your clipboard.",
+
+  "overlay.close": "Dismiss Notification",
+  "overlay.message": "Filter data from your URL have been applied."
 }

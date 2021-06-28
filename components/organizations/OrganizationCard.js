@@ -21,10 +21,10 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
           ? (
             <Link className='card-link' href={`/${collectionPath}/${organization.slug}`}>
               <a {... newTab && { target: '_blank' }}>
-                <div className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
-                  <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+                <div className='border-3 border-transparent hover:border-dial-yellow text-workflow cursor-pointer'>
+                  <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg hover:text-dial-yellow'>
                     <div className='grid grid-cols-12 my-5 px-4'>
-                      <div className={`${nameColSpan(organization)} text-base font-semibold text-dial-gray-dark whitespace-nowrap overflow-ellipsis overflow-hidden`}>
+                      <div className={`${nameColSpan(organization)} text-base font-semibold text-dial-gray-darkwhitespace-nowrap overflow-ellipsis overflow-hidden`}>
                         {organization.name}
                       </div>
                       {

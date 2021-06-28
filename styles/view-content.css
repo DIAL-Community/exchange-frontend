@@ -541,3 +541,11 @@ span.fr-img-caption.fr-view.fr-dii.fr-fir {
   margin: 5px 0 5px 5px;
   max-width: calc(100% - 5px);
 }
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+.text-body {
+  color: #212529 !important;
+}

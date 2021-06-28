@@ -112,6 +112,8 @@ export const en = {
 
   'project.header': 'Projects',
   'project.label': 'Project',
+  'project.url': 'Project URL',
+  'project.source': 'Origin',
 
   'organization.header': 'Organizations',
   'organization.label': 'Organization',
