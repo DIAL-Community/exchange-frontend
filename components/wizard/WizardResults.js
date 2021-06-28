@@ -121,13 +121,13 @@ const LeftMenu = ({ currentSection, phase, clickHandler }) => {
   return (
     <div className='block py-3 float-right w-2/3'>
       <div
-        className={`${(currentSection === 0) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4`}
+        className={`${(currentSection === 0) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4 cursor-pointer hover:font-bold`}
         onClick={() => { clickHandler(0) }}
       >
         {format('wizard.results.principles')}
       </div>
       <div
-        className={`${(currentSection === 1) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4`}
+        className={`${(currentSection === 1) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4 cursor-pointer hover:font-bold`}
         onClick={() => { clickHandler(1) }}
       >
         {phase === 'Ideation' && format('wizard.results.similarProjects')}
@@ -136,7 +136,7 @@ const LeftMenu = ({ currentSection, phase, clickHandler }) => {
         {phase === 'Evaluation' && format('wizard.results.resources')}
       </div>
       <div
-        className={`${(currentSection === 2) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4`}
+        className={`${(currentSection === 2) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4 cursor-pointer hover:font-bold`}
         onClick={() => { clickHandler(2) }}
       >
         {phase === 'Ideation' && format('wizard.results.useCases')}
@@ -144,7 +144,7 @@ const LeftMenu = ({ currentSection, phase, clickHandler }) => {
         {phase === 'Implementation' && format('wizard.results.aggregators')}
       </div>
       <div
-        className={`${(currentSection === 3) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4`}
+        className={`${(currentSection === 3) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4 cursor-pointer hover:font-bold`}
         onClick={() => { clickHandler(3) }}
       >
         {format('wizard.results.phases')}

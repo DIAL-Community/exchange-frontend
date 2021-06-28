@@ -1,3 +1,5 @@
+
+import { useEffect } from 'react'
 import { useIntl, FormattedMessage } from 'react-intl'
 import { useRouter } from 'next/router'
 
@@ -7,6 +9,12 @@ const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) =
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   const router = useRouter()
+
+  useEffect(() => {
+    if (stage === 1 && allValues.projectPhase !== '') {
+      setStage(2)
+    }
+  })
 
   const getTitle = () => {
     switch (stage) {
@@ -76,7 +84,7 @@ const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) =
                 ? format('wizard.seeResults')
                 : <div>{format('wizard.next')}<img src='/icons/right-arrow.svg' className='inline ml-2' alt='Next' height='20px' width='20px' /></div>}
             </button>
-            <button onClick={() => { stage > 0 && setStage(stage - 1) }} className={`${hideBack() === true && 'hidden'} bg-button-gray border border-dial-yellow rounded p-4 my-4 mr-4 text-button-gray-light`}>
+            <button onClick={() => { stage === 2 && setAllValues(prevValues => { return { ...prevValues, projectPhase: '' } }); stage > 0 && setStage(stage - 1) }} className={`${hideBack() === true && 'hidden'} bg-button-gray border border-dial-yellow rounded p-4 my-4 mr-4 text-button-gray-light`}>
               <img src='/icons/left-arrow.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
               {format('wizard.back')}
             </button>

@@ -14,7 +14,7 @@ import OrganizationDetailRight from '../../../components/organizations/Organizat
 import { Loading, Error } from '../../../components/shared/FetchStatus'
 
 const ORGANIZATION_QUERY = gql`
-query Organization($slug: String!) {
+query Organization($slug: String!, $locale: String!) {
   organization(slug: $slug) {
     id
     name
@@ -25,6 +25,7 @@ query Organization($slug: String!) {
     whenEndorsed
     organizationDescriptions {
       description
+      locale
     }
     offices {
       id
@@ -32,7 +33,7 @@ query Organization($slug: String!) {
       latitude
       longitude
     }
-    sectors {
+    sectorsWithLocale(locale: $locale) {
       name
       slug
     }
@@ -57,8 +58,9 @@ const Organization = () => {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
+  const { locale } = router
   const { slug } = router.query
-  const { loading, error, data } = useQuery(ORGANIZATION_QUERY, { variables: { slug: slug }, skip: !slug })
+  const { loading, error, data } = useQuery(ORGANIZATION_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
   return (
     <>
       <Head>

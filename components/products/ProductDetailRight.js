@@ -69,11 +69,11 @@ const ProductDetailRight = ({ product, discourseRef }) => {
           </div>
       }
       {
-        product.sectors &&
+        product.sectorsWithLocale &&
           <div className='mt-12'>
             <div className='card-title mb-3 text-dial-gray-dark'>{format('sector.header')}</div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
-              {product.sectors.map((sector, i) => {
+              {product.sectorsWithLocale.map((sector, i) => {
                 return sector.isDisplayable && (<SectorCard key={i} sector={sector} listType='list' />)
               })}
             </div>

@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl'
 import ReactHtmlParser from 'react-html-parser'
+import { useRouter } from 'next/router'
 
 import Breadcrumb from '../shared/breadcrumb'
 import CountryCard from '../countries/CountryCard'
@@ -11,12 +12,28 @@ import TagCard from '../tags/TagCard'
 const ProjectDetailRight = ({ project }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+  const router = useRouter()
+  const { locale } = router
 
   return (
     <div className='px-4'>
       <Breadcrumb />
-      <div className='fr-view text-dial-gray-dark'>
-        {project.projectDescriptions[0] && ReactHtmlParser(project.projectDescriptions[0].description)}
+      <div className='fr-view text-dial-gray-dark text-sm'>
+        {project.projectDescriptions && project.projectDescriptions.map(desc => {
+          if (desc.locale === locale) {
+            return ReactHtmlParser(desc.description)
+          } else {
+            return ''
+          }
+        })}
+      </div>
+      <div className='pb-5 pr-5 pt-4 overflow-ellipsis overflow-hidden'>
+        <div className='h5 pb-1'>{format('project.url')}</div>
+        <a className='text-dial-blue text-sm' href={`https://${project.url}`} target='_blank' rel='noreferrer'>{project.url}</a>
+      </div>
+      <div className='pb-5 pr-5'>
+        <div className='h5 pb-1'>{format('project.source')}</div>
+        <div className='inline text-sm'>{project.origin.name}</div>
       </div>
       {
         project.organizations &&
@@ -44,11 +61,11 @@ const ProjectDetailRight = ({ project }) => {
           </div>
       }
       {
-        project.sectors &&
+        project.sectorsWithLocale &&
           <div className='mt-12'>
             <div className='card-title mb-3 text-dial-gray-dark'>{format('sector.header')}</div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
-              {project.sectors.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
+              {project.sectorsWithLocale.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
             </div>
           </div>
       }

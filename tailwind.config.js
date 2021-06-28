@@ -99,7 +99,8 @@ module.exports = {
     extend: {
       margin: ['last'],
       borderWidth: ['hover'],
-      opacity: ['disabled']
+      opacity: ['disabled'],
+      fontWeight: ['hover']
     }
   },
   plugins: [

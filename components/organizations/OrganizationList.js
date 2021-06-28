@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -21,7 +22,8 @@ query SearchOrganizations(
     $sectors: [String!],
     $countries: [String!],
     $years: [Int!],
-    $search: String!
+    $search: String!,
+    $locale: String!
   ) {
   searchOrganizations(
     first: $first,
@@ -48,7 +50,7 @@ query SearchOrganizations(
       imageFile
       whenEndorsed
       website
-      sectors {
+      sectorsWithLocale(locale: $locale) {
         id
         slug
         name
@@ -95,6 +97,8 @@ const OrganizationListQuery = () => {
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+  const router = useRouter()
+  const { locale } = router
 
   const { loading, error, data, fetchMore } = useQuery(ORGANIZATIONS_QUERY, {
     variables: {
@@ -104,7 +108,8 @@ const OrganizationListQuery = () => {
       years: years.map(year => year.value),
       aggregatorOnly: aggregator,
       endorserOnly: endorser,
-      search: search
+      search: search,
+      locale: locale
     },
     onCompleted: (data) => {
       setResultCounts({ ...resultCounts, ...{ [['filter.entity.organizations']]: data.searchOrganizations.totalCount } })
@@ -116,6 +121,7 @@ const OrganizationListQuery = () => {
   }
 
   if (error) {
+    console.log(error)
     return <Error />
   }
 

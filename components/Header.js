@@ -192,7 +192,7 @@ const Header = () => {
     e.preventDefault()
     setShowResources(false)
     // TODO: Replace this with the eventual url of the covid resources.
-    router.push('/products')
+    router.push('/')
   }
 
   const signInUser = (e) => {
@@ -204,8 +204,8 @@ const Header = () => {
     <header className='z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white'>
       <div className='flex flex-wrap justify-center items-center py-3 lg:py-0 max-w-catalog header-min-height mx-auto'>
         <div className='flex-1 flex my-auto'>
-          <Link href='/products'>
-            <a href='/products' className='px-6 lg:px-8'>
+          <Link href='/'>
+            <a href='/' className='px-6 lg:px-8'>
               <div className='text-dial-blue-darkest text-xs'>
                 {format('landing.subtitle')}
               </div>
