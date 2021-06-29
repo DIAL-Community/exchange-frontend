@@ -134,3 +134,9 @@ body {
 .product-card-header {
   min-height: 33px;
 }
+
+@media(max-width: 880px) {
+  .wizard-scroll {
+    overflow-y: scroll;
+  }
+}

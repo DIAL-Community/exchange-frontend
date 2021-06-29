@@ -5,7 +5,7 @@ const ProgressBar = ({ stage }) => {
   const format = (id) => formatMessage({ id })
 
   return (
-    <div className='w-1/2 pt-3 float-right'>
+    <div className='w-full lg:w-1/2 pt-3 lg:float-right'>
       <style global jsx>{`
         .progress-line {
           width: calc(100% - 1.5rem - 1rem);
@@ -111,8 +111,8 @@ const WizardHeader = ({ stage }) => {
 
   return (
     <>
-      <header className='bg-dial-yellow p-5 w-full sticky z-40 flex items-center' style={{ top: '60px' }}>
-        <div className='px-6 h1 inline py-3 w-1/2'>{format('wizard.title')}</div>
+      <header className='bg-dial-yellow p-5 w-full sticky z-40 lg:flex lg:items-center' style={{ top: '60px' }}>
+        <div className='px-6 h1 lg:inline py-3 lg:w-1/2'>{format('wizard.title')}</div>
         <ProgressBar stage={stage} />
       </header>
     </>

@@ -5,10 +5,10 @@ const Phases = ({ currPhase, setAllValues }) => {
   const format = (id) => formatMessage({ id })
 
   return (
-    <div className='flex'>
+    <div className='lg:flex'>
       {currPhase !== 'Ideation' && (
         <div
-          className='w-1/4 h-40 border-4 border-dial-teal mr-2 py-4 px-3 hover:border-dial-yellow'
+          className='lg:w-1/4 lg:h-40 border-4 border-dial-teal m-2 py-4 px-3 hover:border-dial-yellow'
           onClick={() => setAllValues(prevValues => { return { ...prevValues, projectPhase: 'Ideation' } })}
         >
           <div className='text-xl font-bold'>
@@ -21,7 +21,7 @@ const Phases = ({ currPhase, setAllValues }) => {
       )}
       {currPhase !== 'Planning' && (
         <div
-          className='w-1/4 border-4 border-dial-teal mx-2 py-4 px-3 hover:border-dial-yellow'
+          className='lg:w-1/4 border-4 border-dial-teal m-2 py-4 px-3 hover:border-dial-yellow'
           onClick={() => setAllValues(prevValues => { return { ...prevValues, projectPhase: 'Planning' } })}
         >
           <div className='text-xl font-bold'>
@@ -34,7 +34,7 @@ const Phases = ({ currPhase, setAllValues }) => {
       )}
       {currPhase !== 'Implementation' && (
         <div
-          className='w-1/4 border-4 border-dial-teal mx-2 py-4 px-3 hover:border-dial-yellow'
+          className='lg:w-1/4 border-4 border-dial-teal m-2 py-4 px-3 hover:border-dial-yellow'
           onClick={() => setAllValues(prevValues => { return { ...prevValues, projectPhase: 'Implementation' } })}
         >
           <div className='text-xl font-bold'>
@@ -47,7 +47,7 @@ const Phases = ({ currPhase, setAllValues }) => {
       )}
       {currPhase !== 'Evaluation' && (
         <div
-          className='w-1/4 border-4 border-dial-teal mx-2 py-4 px-3 hover:border-dial-yellow'
+          className='lg:w-1/4 border-4 border-dial-teal m-2 py-4 px-3 hover:border-dial-yellow'
           onClick={() => setAllValues(prevValues => { return { ...prevValues, projectPhase: 'Evaluation' } })}
         >
           <div className='text-xl font-bold'>
