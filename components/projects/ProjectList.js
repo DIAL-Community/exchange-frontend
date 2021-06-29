@@ -66,6 +66,7 @@ query SearchProjects(
       }
       origin {
         slug
+        name
       }
     }
   }
@@ -73,6 +74,9 @@ query SearchProjects(
 `
 
 const ProjectList = (props) => {
+  const { formatMessage } = useIntl()
+  const format = (id) => formatMessage({ id })
+
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
 
@@ -82,17 +86,17 @@ const ProjectList = (props) => {
         {
           displayType === 'list' &&
             <div className='grid grid-cols-12 my-3 text-dial-gray-dark px-4 font-semibold '>
-              <div className='col-span-3 md:col-span-4 lg:col-span-4 mr-4 text-sm opacity-80'>
-                {'Organizations'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='col-span-3 lg:col-span-5 xl:col-span-4  mr-4 text-sm opacity-80'>
+                {format('project.header').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-3 md:col-span-3 lg:col-span-3 mr-4 text-sm opacity-50'>
-                {'Organizations'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='hidden lg:block col-span-3 md:col-span-3 lg:col-span-3 mr-4 text-sm opacity-50'>
+                {format('organization.header').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-3 md:col-span-3 lg:col-span-3 mr-4 text-sm opacity-50'>
-                {'Products'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='hidden lg:block col-span-3 md:col-span-3 lg:col-span-3 mr-4 text-sm opacity-50'>
+                {format('product.header').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
             </div>
         }

@@ -1,17 +1,19 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 
-import { truncate } from '../../lib/utilities'
-
 import { convertToKey } from '../context/FilterResultContext'
 const collectionPath = convertToKey('Organizations')
+
+const ellipsisTextStyle = `
+  whitespace-nowrap overflow-ellipsis overflow-hidden
+`
 
 const OrganizationCard = ({ organization, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
   const nameColSpan = (organization) => {
-    return !organization.sectors ? 'col-span-9' : 'col-span-4'
+    return !organization.sectors ? 'col-span-8' : 'col-span-8 lg:col-span-4'
   }
 
   return (
@@ -26,10 +28,27 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                     <div className='grid grid-cols-12 my-5 px-4'>
                       <div className={`${nameColSpan(organization)} text-base font-semibold text-dial-gray-darkwhitespace-nowrap overflow-ellipsis overflow-hidden`}>
                         {organization.name}
+                        {
+                          organization.sectors &&
+                            <div className='block lg:hidden flex flex-row mt-1'>
+                              <div className='text-sm font-normal'>
+                                {format('sector.header')}:
+                              </div>
+                              <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
+                                {
+                                  organization.sectors.length === 0 && format('general.na')
+                                }
+                                {
+                                  organization.sectors.length > 0 &&
+                                  organization.sectors.map(u => u.name).join(', ')
+                                }
+                              </div>
+                            </div>
+                        }
                       </div>
                       {
                         organization.sectors &&
-                          <div className='col-span-5 px-3 text-base text-dial-gray-dark whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                          <div className={`hidden lg:block col-span-5 px-3 text-base text-dial-gray-dark ${ellipsisTextStyle}`}>
                             {
                               organization.sectors.length === 0 && format('general.na')
                             }
@@ -39,7 +58,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                             }
                           </div>
                       }
-                      <div className='col-span-3 text-base text-dial-purple'>
+                      <div className='col-span-4 lg:col-span-3 text-base text-dial-purple'>
                         {
                           !organization.whenEndorsed && (
                             <div className='flex flex-row text-sm font-semibold justify-end text-dial-cyan'>
@@ -77,8 +96,13 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                 }
                 <Link className='card-link' href={`/${collectionPath}/${organization.slug}`}>
                   <div className='flex flex-col h-80 p-4'>
-                    <div className='text-2xl font-semibold group-hover:text-dial-yellow w-64 2xl:w-80 bg-white bg-opacity-70'>
-                      {truncate(organization.name, 40, true)}
+                    <div
+                      className={`
+                        text-2xl font-semibold group-hover:text-dial-yellow w-64 2xl:w-80 bg-white bg-opacity-70
+                        overflow-ellipsis overflow-hidden
+                      `}
+                    >
+                      {organization.name}
                     </div>
                     <div className='m-auto align-middle w-40'>
                       <img

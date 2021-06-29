@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl'
+import { useIntl, FormattedDate } from 'react-intl'
 import { FaStar, FaEye, FaFile, FaCalendar, FaCalendarAlt, FaCode, FaCheck } from 'react-icons/fa'
 import { CgGitFork } from 'react-icons/cg'
 
@@ -36,7 +36,7 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
             }
           </div>
           <div className='card-body pt-4'>
-            <div className='grid grid-cols-4 text-dial-gray-dark text-sm'>
+            <div className='grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 text-dial-gray-dark text-sm'>
               <div className='pb-4'>
                 <div><FaStar className='inline mr-2' />{format('product.star')}</div>
                 <div>{repositoryData.stargazers && repositoryData.stargazers.totalCount}</div>
@@ -57,11 +57,11 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
               </div>
               <div className='pb-4'>
                 <div><FaCalendar className='inline mr-2' />{format('product.created')}</div>
-                <div>{new Date(repositoryData.createdAt).toDateString()}</div>
+                <div><FormattedDate value={new Date(repositoryData.createdAt)} year='numeric' month='long' day='2-digit' /></div>
               </div>
               <div className='pb-4'>
                 <div><FaCalendarAlt className='inline mr-2' />{format('product.last-updated')}</div>
-                <div>{new Date(repositoryData.updatedAt).toDateString()}</div>
+                <div><FormattedDate value={new Date(repositoryData.updatedAt)} year='numeric' month='long' day='2-digit' /></div>
               </div>
               <div className='pb-4'>
                 <div><FaCode className='inline mr-2' />{format('product.open-pr')}</div>
@@ -113,7 +113,7 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
                       }
                     </div>
                   </div>
-                  <div className='grid grid-cols-2'>
+                  <div className='grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4'>
                     {legends.map((legend, i) => {
                       const styles = {
                         color: `${legend.bg}`,

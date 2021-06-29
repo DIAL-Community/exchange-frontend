@@ -23,18 +23,20 @@ const Landing = () => {
         <div className='max-w-catalog mx-auto'>
           <div className='relative h-full z-70 pb-8'>
             <main className='grid grid-cols-5'>
-              <div className='col-span-5 md:col-span-4 lg:col-span-3 h-screen text-left grid place-content-center'>
-                <div className='px-4 text-lg text-dial-blue-darkest md:text-xl xl:text-2xl xl:leading-landing'>
-                  {format('landing.subtitle')}
+              <div className='col-span-5 md:col-span-4 lg:col-span-3 h-screen text-left grid lg:place-content-center mt-24 lg:mt-0 md:ml-12 lg:ml-0'>
+                <div>
+                  <div className='px-4 text-lg text-dial-blue-darkest md:text-xl xl:text-2xl xl:leading-landing'>
+                    {format('landing.subtitle')}
+                  </div>
+                  <div className='px-4 font-bold text-dial-blue-darkest text-2xl md:text-3xl xl:text-4xl'>
+                    <span className='block'>{format('landing.title.firstLine')}</span>
+                    <span className='block'>{format('landing.title.secondLine')}</span>
+                  </div>
+                  <p className={blurbStyle}>
+                    {format('landing.blurb')}
+                  </p>
                 </div>
-                <div className='px-4 font-bold text-dial-blue-darkest text-2xl md:text-3xl xl:text-4xl'>
-                  <span className='block'>{format('landing.title.firstLine')}</span>
-                  <span className='block'>{format('landing.title.secondLine')}</span>
-                </div>
-                <p className={blurbStyle}>
-                  {format('landing.blurb')}
-                </p>
-                <div className='px-4 mt-8 sm:mt-12 sm:flex lg:justify-start sm:text-xs md:text-sm lg:text-lg'>
+                <div className='px-4 mt-8 sm:mt-20 md:mt-20 sm:flex lg:justify-start sm:text-xs md:text-sm lg:text-lg'>
                   <div className='text-white lg:py-1'>
                     <a href='products' className={`${buttonAnchorStyle} shadow-2xl px-10 text-white bg-dial-blue`}>
                       {format('landing.catalog.title')}

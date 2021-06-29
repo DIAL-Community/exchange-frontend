@@ -2,6 +2,7 @@ import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import ReactHtmlParser from 'react-html-parser'
 import { DiscourseCount } from '../shared/discourse'
+import Breadcrumb from '../shared/breadcrumb'
 import { useRouter } from 'next/router'
 
 const ProductDetailLeft = ({ product, discourseClick }) => {
@@ -24,6 +25,9 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
 
   return (
     <>
+      <div className='block lg:hidden'>
+        <Breadcrumb />
+      </div>
       <div className='h-20'>
         <div className='w-full'>
           {
@@ -44,7 +48,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
         </div>
         <div className='h4 font-bold py-4'>{format('products.label')}</div>
       </div>
-      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 mr-6 shadow-lg'>
+      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 lg:mr-6 shadow-lg'>
         <div id='header' className='mb-4'>
           <div className='h1 p-2 text-dial-purple'>
             {product.name}
@@ -63,7 +67,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
       </div>
       {
         !product.owner &&
-          <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 mr-6 shadow-lg border-b-2 border-dial-gray'>
+          <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 lg:mr-6 shadow-lg border-b-2 border-dial-gray'>
             {format('product.owner')}
             <a className='text-dial-yellow block mt-2' href='https://docs.osc.dial.community/projects/product-registry/en/latest/product_owner.html' target='_blank' rel='noreferrer'>
               {format('product.owner-link')}

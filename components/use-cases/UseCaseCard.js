@@ -6,6 +6,10 @@ import ReactTooltip from 'react-tooltip'
 import { convertToKey } from '../context/FilterResultContext'
 const collectionPath = convertToKey('Use Cases')
 
+const ellipsisTextStyle = `
+   whitespace-nowrap overflow-ellipsis overflow-hidden
+`
+
 const UseCaseCard = ({ useCase, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
@@ -55,14 +59,8 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
 
   const nameColSpan = (useCase) => {
     return !useCase.sdgTargets && !workflows
-      ? 'col-span-10'
-      : 'col-span-4'
-  }
-
-  const maturityColSpan = (useCase) => {
-    return !useCase.sdgTargets && !workflows
-      ? 'col-span-2'
-      : 'col-span-1'
+      ? 'col-span-9 md:col-span-10 lg:col-span-11'
+      : 'col-span-9 md:col-span-10 lg:col-span-4'
   }
 
   return (
@@ -74,12 +72,46 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
             <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
-                  <div className={`${nameColSpan(useCase)} pr-3 text-base font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden`}>
+                  <div className={`${nameColSpan(useCase)} pr-3 text-base font-semibold ${ellipsisTextStyle}`}>
                     {useCase.name}
+                    {
+                      useCase.sdgTargets &&
+                        <div className='block lg:hidden flex flex-row mt-1'>
+                          <div className='text-sm font-normal'>
+                            {format('sdg.sdgTargets')}:
+                          </div>
+                          <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
+                            {
+                              useCase.sdgTargets.length === 0 && format('general.na')
+                            }
+                            {
+                              useCase.sdgTargets.length > 0 &&
+                                useCase.sdgTargets.map(u => u.targetNumber).join(', ')
+                            }
+                          </div>
+                        </div>
+                    }
+                    {
+                      workflows &&
+                        <div className='block lg:hidden text-workflow flex flex-row mt-1'>
+                          <div className='text-sm font-normal'>
+                            {format('workflow.header')}:
+                          </div>
+                          <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
+                            {
+                              workflows.length === 0 && format('general.na')
+                            }
+                            {
+                              workflows.length > 0 &&
+                                workflows.map(b => b.name).join(', ')
+                            }
+                          </div>
+                        </div>
+                    }
                   </div>
                   {
                     useCase.sdgTargets &&
-                      <div className='col-span-2 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                      <div className={`hidden lg:block lg:col-span-2 pr-3 text-base text-dial-purple ${ellipsisTextStyle}`}>
                         {
                           useCase.sdgTargets.length === 0 && format('general.na')
                         }
@@ -91,7 +123,7 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                   }
                   {
                     workflows &&
-                      <div className='col-span-5 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                      <div className={`hidden lg:block lg:col-span-5 pr-3 text-base text-workflow ${ellipsisTextStyle}`}>
                         {
                           workflows.length === 0 && format('general.na')
                         }
@@ -101,7 +133,7 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                         }
                       </div>
                   }
-                  <div className={`${maturityColSpan(useCase)} flex flex-row font-semibold opacity-50 text-button-gray-light justify-end`}>
+                  <div className='col-span-3 md:col-span-2 lg:col-span-1 px-2 text-right font-semibold opacity-50 justify-end'>
                     {useCase.maturity}
                   </div>
                 </div>

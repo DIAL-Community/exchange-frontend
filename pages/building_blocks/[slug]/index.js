@@ -62,11 +62,11 @@ const BuildingBlock = () => {
       {error && <Error />}
       {
         data && data.buildingBlock &&
-          <div className='flex justify-between pb-8 max-w-catalog mx-auto max-w-catalog mx-auto'>
-            <div className='relative md:sticky md:top-66px w-full md:w-1/3 xl:w-1/4 h-full py-4 px-4'>
+          <div className='flex flex-col lg:flex-row justify-between pb-8 max-w-catalog mx-auto max-w-catalog mx-auto'>
+            <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
               <BuildingBlockDetailLeft buildingBlock={data.buildingBlock} discourseClick={() => scrollToDiv(discourseElement)} />
             </div>
-            <div className='w-full md:w-2/3 xl:w-3/4'>
+            <div className='w-full lg:w-2/3 xl:w-3/4'>
               <BuildingBlockDetailRight buildingBlock={data.buildingBlock} discourseRef={discourseElement} />
             </div>
           </div>

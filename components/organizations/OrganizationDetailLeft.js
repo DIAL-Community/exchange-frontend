@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import ReactHtmlParser from 'react-html-parser'
+import Breadcrumb from '../shared/breadcrumb'
 
 const OrganizationDetailLeft = ({ organization }) => {
   const { formatMessage } = useIntl()
@@ -20,6 +21,9 @@ const OrganizationDetailLeft = ({ organization }) => {
 
   return (
     <>
+      <div className='block lg:hidden'>
+        <Breadcrumb />
+      </div>
       <div className='h-20'>
         <div className='w-full'>
           {
@@ -41,7 +45,7 @@ const OrganizationDetailLeft = ({ organization }) => {
         </div>
         <div className='h4 font-bold py-4'>{format('organization.label')}</div>
       </div>
-      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray mr-6 shadow-lg'>
+      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray lg:mr-6 shadow-lg'>
         {
           organization.whenEndorsed && (
             <div className='flex flex-row p-1.5 border-b border-dial-gray text-xs font-semibold text-dial-cyan'>
@@ -53,7 +57,7 @@ const OrganizationDetailLeft = ({ organization }) => {
           )
         }
         <div className='flex flex-col h-80 p-4'>
-          <div className='text-2xl font-semibold absolute w-80 text-dial-purple'>
+          <div className='text-2xl font-semibold absolute w-4/5 md:w-auto lg:w-64 2xl:w-80 text-dial-purple'>
             {organization.name}
           </div>
           <div className='m-auto align-middle w-40'>
@@ -69,7 +73,7 @@ const OrganizationDetailLeft = ({ organization }) => {
       </div>
       {
         !organization.owner &&
-          <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 mr-6 shadow-lg border-b-2 border-dial-gray'>
+          <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 lg:mr-6 shadow-lg border-b-2 border-dial-gray'>
             {format('organization.owner')}
             <a
               className='text-dial-yellow block mt-2'

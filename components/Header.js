@@ -9,7 +9,7 @@ import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 import { createPopper } from '@popperjs/core'
 
 const menuItemStyles = `
-    lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
+    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
   `
 
 const dropdwonMenuStyles = `
@@ -18,7 +18,7 @@ const dropdwonMenuStyles = `
 
 const dropdownPanelStyles = `
     origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
-    ring-1 ring-black ring-opacity-5 focus:outline-none
+    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
   `
 
 const AdminMenu = () => {
@@ -51,7 +51,7 @@ const AdminMenu = () => {
   return (
     <>
       <a
-        className='lg:mb-0 mb-2 inline' ref={buttonRef}
+        className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={buttonRef}
         href='admin' onClick={(e) => toggleSwitcher(e)}
       >
         <div className={`${menuItemStyles} inline`}>{format('header.admin')}
@@ -107,7 +107,7 @@ const UserMenu = () => {
   return (
     <>
       <a
-        className='lg:mb-0 mb-2 inline bg-dial-yellow-light pt-2 pr-2 pb-2 rounded' ref={buttonRef}
+        className={`${menuItemStyles} lg:mb-0 mb-2 inline bg-dial-yellow-light pt-2 pb-2 rounded`} ref={buttonRef}
         href='signOut' onClick={(e) => toggleSwitcher(e)}
       >
         <img src='/icons/user.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
@@ -154,19 +154,6 @@ const Header = () => {
   const closeDropdownPopover = (closeCallback) => {
     closeCallback(false)
   }
-
-  const menuItemStyles = `
-    lg:p-4 lg:py-3 px-6 py-2 block border-b-2 border-transparent lg:hover:border-dial-yellow
-  `
-
-  const dropdwonMenuStyles = `
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  `
-
-  const dropdownPanelStyles = `
-    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
-    ring-1 ring-black ring-opacity-5 focus:outline-none
-  `
 
   const switchLanguage = (e, localeCode) => {
     e.preventDefault()
@@ -229,7 +216,7 @@ const Header = () => {
         <div className='hidden lg:flex lg:items-center lg:w-auto w-full' id='menu'>
           <nav>
             <ul className='lg:flex items-center justify-between text-base text-dial-blue-darkest pt-4 lg:pt-0'>
-              <li className='relative mt-2 lg:mt-0'>
+              <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
                 <a
                   className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={resourcePopoverButton}
                   href='switchLanguage' onClick={(e) => toggleResourceSwitcher(e)}
@@ -253,7 +240,7 @@ const Header = () => {
                   </div>
                 </div>
               </li>
-              <li>
+              <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
                 <Link href='/about'>
                   <a className={`${menuItemStyles}`} href='about'>{format('header.about')}</a>
                 </Link>
@@ -261,20 +248,24 @@ const Header = () => {
               {
                 session
                   ? (
-                    <div>
-                      {session.user.canEdit && (<AdminMenu />)}
-                      <UserMenu />
-                    </div>
+                    <>
+                      <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
+                        {session.user.canEdit && (<AdminMenu />)}
+                      </li>
+                      <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
+                        <UserMenu />
+                      </li>
+                    </>
                     )
                   : (
-                    <li>
+                    <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
                       <a className={`${menuItemStyles}`} href='sign-in' onClick={signInUser}>
                         {format('header.signIn')}
                       </a>
                     </li>
                     )
               }
-              <li>
+              <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
                 <a
                   className={`${menuItemStyles} lg:mb-0 mb-2`}
                   href='https://docs.osc.dial.community/projects/product-registry/en/latest/'
@@ -284,7 +275,7 @@ const Header = () => {
                 </a>
               </li>
               <li><div className='border border-gray-400 border-t-0 lg:border-l-0 lg:h-9' /></li>
-              <li className='relative mt-2 lg:mt-0'>
+              <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
                 <a
                   className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={languagePopoverButton}
                   href='switchLanguage' onClick={(e) => toggleLanguageSwitcher(e)}

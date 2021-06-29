@@ -22,6 +22,7 @@ import FilterHint from './FilterHint'
 
 import { useIntl } from 'react-intl'
 import { QueryParamContext } from '../context/QueryParamContext'
+import { truncate } from '../../lib/utilities'
 
 const COUNT_QUERY = gql`
   query Counts {
@@ -102,7 +103,7 @@ const Filter = (props) => {
           <a href='/wizard' className='text-sm text-dial-yellow font-bold hover:underline'>{format('filter.launchWizard')}</a>
         </div>
       </div>
-      <div className='sticky bg-white px-2 sticky-filter max-w-catalog mx-auto'>
+      <div className='relative md:sticky bg-white px-2 md:sticky-filter max-w-catalog mx-auto'>
         <div className='w-full'>
           <ul className='flex flex-row mb-0 list-none pt-2' role='tablist'>
             {
@@ -275,7 +276,7 @@ const Filter = (props) => {
                           data-toggle='tab'
                           href={`/${href}`}
                         >
-                          <span className='gradient-text'>{format(filterItem)}</span>
+                          <span className='gradient-text'>{truncate(format(filterItem), 5, false, false)}</span>
                         </a>
                       </Link>
                     </li>

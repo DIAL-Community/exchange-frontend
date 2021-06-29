@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import { DiscourseCount } from '../shared/discourse'
+import Breadcrumb from '../shared/breadcrumb'
 
 const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
   const { formatMessage } = useIntl()
@@ -20,6 +21,9 @@ const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
 
   return (
     <>
+      <div className='block lg:hidden'>
+        <Breadcrumb />
+      </div>
       <div className='h-20'>
         <div className='w-full'>
           {
@@ -40,9 +44,9 @@ const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
         </div>
         <div className='h4 font-bold py-4'>{format('buildingBlock.label')}</div>
       </div>
-      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray mr-6 shadow-lg'>
+      <div className='bg-white border-2 border-dial-gray lg:mr-6 shadow-lg'>
         <div className='flex flex-col h-80 p-4'>
-          <div className='text-2xl font-semibold absolute w-80 text-building-block'>
+          <div className='text-2xl font-semibold absolute w-4/5 md:w-auto lg:w-64 2xl:w-80 text-building-block'>
             {buildingBlock.name}
           </div>
           <div className='m-auto align-middle w-40 building-block-filter'>

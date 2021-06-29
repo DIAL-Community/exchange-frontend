@@ -11,7 +11,9 @@ const BuildingBlockDetailRight = ({ buildingBlock, discourseRef }) => {
 
   return (
     <div className='px-4'>
-      <Breadcrumb />
+      <div className='hidden lg:block'>
+        <Breadcrumb />
+      </div>
       <div className='fr-view text-dial-gray-dark'>
         {buildingBlock.buildingBlockDescriptions[0] && ReactHtmlParser(buildingBlock.buildingBlockDescriptions[0].description)}
       </div>

@@ -4,6 +4,7 @@ import Footer from '../../components/Footer'
 
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
+import Carousel from '../../components/Carousel'
 
 const AboutPage = () => {
   const { formatMessage } = useIntl()
@@ -16,6 +17,7 @@ const AboutPage = () => {
       </Head>
       <Header />
       <Definition />
+      <Carousel />
       <Footer />
     </>
   )

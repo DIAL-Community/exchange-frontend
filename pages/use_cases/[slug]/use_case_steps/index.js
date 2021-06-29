@@ -36,7 +36,10 @@ const UseCaseStep = () => {
       </Head>
       <Header />
       <div className='flex flex-wrap justify-between pb-8 max-w-catalog mx-auto'>
-        <div className='relative md:sticky md:top-66px w-full md:w-1/3 xl:w-1/4 h-full py-4 px-4'>
+        <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
+          <div className='block lg:hidden'>
+            <Breadcrumb />
+          </div>
           {
             data && data.useCase &&
               <div className='border'>
@@ -53,7 +56,7 @@ const UseCaseStep = () => {
           }
           <StepList useCaseSlug={slug} stepSlug={stepSlug} listStyle='compact' shadowOnContainer />
         </div>
-        <div className='w-full md:w-2/3 xl:w-3/4'>
+        <div className='w-full lg:w-2/3 xl:w-3/4'>
           <Breadcrumb />
         </div>
       </div>

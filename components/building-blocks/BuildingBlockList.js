@@ -61,6 +61,9 @@ query SearchBuildingBlocks(
 `
 
 const BuildingBlockList = (props) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id }, { ...values })
+
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
 
@@ -70,19 +73,18 @@ const BuildingBlockList = (props) => {
         {
           displayType === 'list' &&
             <div className='grid grid-cols-12 my-3 px-4 text-building-block'>
-              <div className='col-span-4 ml-2 text-sm font-semibold opacity-80'>
-                {'Building Blocks'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='col-span-10 lg:col-span-4 ml-2 text-sm font-semibold opacity-80'>
+                {format('building-block.header').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-3 text-sm font-semibold opacity-50'>
-                {'Example Products'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='hidden lg:block col-span-3 text-sm text-product font-semibold opacity-50'>
+                {format('exampleOf.entity', { entity: format('product.header') }).toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-4 text-sm font-semibold opacity-50'>
-                {'Example Workflows'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='hidden lg:block col-span-3 text-sm font-semibold text-workflow opacity-50'>
+                {format('exampleOf.entity', { entity: format('workflow.header') }).toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-1' />
             </div>
         }
         {

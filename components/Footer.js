@@ -15,10 +15,10 @@ const Footer = () => {
       <Consent />
       <div className='relative w-full bg-dial-gray-light text-dial-purple-light'>
         <div className='px-4 2xl:px-24 pt-8 2xl:pb-8 flex flex-row flex-wrap justify-center 2xl:justify-start mx-auto max-w-catalog'>
-          <div className='max-w-prose sm:w-full flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto md:text-center 2xl:text-left'>
+          <div className='max-w-prose sm:w-full flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto text-center 2xl:text-left'>
             {format('footer.text.firstLine')}
           </div>
-          <div className='flex-grow flex flex-row flex-wrap'>
+          <div className='flex-grow flex flex-row flex-wrap place-content-center'>
             <div className='relative p-2 lg:my-auto'>
               <Image
                 src='/images/footer/unf-logo.png' width={246} height={59}
