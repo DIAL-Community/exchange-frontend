@@ -8,7 +8,9 @@ const SDGDetailRight = ({ sdg }) => {
 
   return (
     <div className='px-4'>
-      <Breadcrumb />
+      <div className='hidden lg:block'>
+        <Breadcrumb />
+      </div>
       {
         sdg.sdgTargets &&
           sdg.sdgTargets.map(sdgTarget => {
@@ -26,7 +28,7 @@ const SDGDetailRight = ({ sdg }) => {
                     </div>
                   </div>
                   <img
-                    className='w-12'
+                    className='h-24 my-auto'
                     alt={format('image.alt.logoFor', { name: sdgTarget.name })}
                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdgTarget.imageFile}
                   />

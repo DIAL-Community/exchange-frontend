@@ -56,6 +56,9 @@ query SearchSDGs(
 `
 
 const SDGList = (props) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id }, { ...values })
+
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
 
@@ -66,12 +69,12 @@ const SDGList = (props) => {
           displayType === 'list' &&
             <div className='grid grid-cols-1 md:grid-cols-6 gap-4 my-3 px-4'>
               <div className='col-span-5 md:col-span-3 lg:col-span-2 ml-2 whitespace-nowrap text-sm font-semibold text-sdg opacity-80'>
-                {'Sustainable Development Goals'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+                {format('sdg.header').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
               <div className='hidden md:block md:col-span-3 lg:col-span-4 text-sm font-semibold text-use-case opacity-50'>
-                {'Example Use Cases'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+                {format('exampleOf.entity', { entity: format('useCase.header') }).toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
             </div>
         }

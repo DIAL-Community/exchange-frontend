@@ -61,6 +61,9 @@ query SearchOrganizations(
 `
 
 const OrganizationList = (props) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id }, { ...values })
+
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
 
@@ -70,15 +73,14 @@ const OrganizationList = (props) => {
         {
           displayType === 'list' &&
             <div className='grid grid-cols-12 my-3 text-dial-gray-dark px-4'>
-              <div className='col-span-4 ml-2 text-sm font-semibold opacity-80'>
-                {'Organizations'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='col-span-10 lg:col-span-4 ml-2 text-sm font-semibold opacity-80'>
+                {format('organization.header').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-6 text-sm font-semibold opacity-50'>
-                {'Sectors'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='hidden lg:block lg:col-span-6 text-sm font-semibold opacity-50'>
+                {format('sector.header').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-2 text-sm font-semibold opacity-50' />
             </div>
         }
         {

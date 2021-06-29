@@ -63,6 +63,9 @@ query SearchWorkflows(
 `
 
 const WorkflowList = (props) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id }, { ...values })
+
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
 
@@ -72,17 +75,17 @@ const WorkflowList = (props) => {
         {
           displayType === 'list' &&
             <div className='grid grid-cols-12 my-3 px-4'>
-              <div className='col-span-4 ml-2 text-sm font-semibold text-workflow opacity-80'>
-                {'Workflows'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='col-span-12 lg:col-span-4 ml-2 text-sm font-semibold text-workflow opacity-80'>
+                {format('workflow.header').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-4 text-sm font-semibold text-use-case opacity-80'>
-                {'Example Use Cases'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='hidden lg:block col-span-4 text-sm font-semibold text-use-case opacity-80'>
+                {format('exampleOf.entity', { entity: format('useCase.header') }).toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-4 text-sm font-semibold text-building-block'>
-                {'Example Building Blocks'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='hidden lg:block col-span-4 text-sm font-semibold text-building-block'>
+                {format('exampleOf.entity', { entity: format('building-block.header') }).toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
             </div>
         }

@@ -13,6 +13,9 @@ import GradientBackground from '../../components/shared/GradientBackground'
 import SearchFilter from '../../components/shared/SearchFilter'
 import ProjectListQuery from '../../components/projects/ProjectList'
 
+import dynamic from 'next/dynamic'
+const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+
 const Projects = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -29,6 +32,7 @@ const Projects = () => {
       <QueryNotification />
       <GradientBackground />
       <Header />
+      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Filter activeTab='filter.entity.projects' />
       <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('project.label')} />
       <ProjectListQuery />

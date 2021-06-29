@@ -64,7 +64,7 @@ const SearchFilter = (props) => {
                 {
                   displayType === 'card' &&
                     <>
-                      <img className='flex-grow mr-2 h-6 md:h-8' src='/icons/card-active/card-active.png' />
+                      <img className='mr-2 h-6 md:h-8' src='/icons/card-active/card-active.png' />
                       <a href='toggle-display' onClick={toggleDisplayType}>
                         <img className='h-6 md:h-8 cursor-pointer' src='/icons/list-inactive/list-inactive.png' />
                       </a>
@@ -73,7 +73,7 @@ const SearchFilter = (props) => {
                 {
                   displayType === 'list' &&
                     <>
-                      <a className='flex-grow mr-2' href='toggle-display' onClick={toggleDisplayType}>
+                      <a className='mr-2' href='toggle-display' onClick={toggleDisplayType}>
                         <img className='h-6 md:h-8 cursor-pointer' src='/icons/card-inactive/card-inactive.png' />
                       </a>
                       <img className='h-6 md:h-8' src='/icons/list-active/list-active.png' />

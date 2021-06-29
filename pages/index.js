@@ -7,6 +7,7 @@ import withApollo from '../lib/apolloClient'
 import Landing from '../components/Landing'
 import Definition from '../components/Definition'
 import WizardDescription from '../components/WizardDescription'
+import Carousel from '../components/Carousel'
 import CatalogTitle from '../components/CatalogTitle'
 import Footer from '../components/Footer'
 import SearchFilter from '../components/shared/SearchFilter'
@@ -32,6 +33,7 @@ const HomePage = () => {
       <Landing />
       <Header />
       <Definition />
+      <Carousel />
       <WizardDescription />
       <CatalogTitle />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />

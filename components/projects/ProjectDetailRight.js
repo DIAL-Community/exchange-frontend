@@ -17,7 +17,9 @@ const ProjectDetailRight = ({ project }) => {
 
   return (
     <div className='px-4'>
-      <Breadcrumb />
+      <div className='hidden lg:block'>
+        <Breadcrumb />
+      </div>
       <div className='fr-view text-dial-gray-dark text-sm'>
         {project.projectDescriptions && project.projectDescriptions.map(desc => {
           if (desc.locale === locale) {

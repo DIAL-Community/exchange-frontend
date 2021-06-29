@@ -33,7 +33,9 @@ const OrganizationDetailRight = ({ organization }) => {
 
   return (
     <div className='px-4'>
-      <Breadcrumb />
+      <div className='hidden lg:block'>
+        <Breadcrumb />
+      </div>
       <div className='flex flex-col lg:flex-row flex-wrap'>
         <div className='flex flex-col flex-grow pb-4'>
           <div className='text-sm text-dial-purple-light leading-6 tracking-wide'>

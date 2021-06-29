@@ -445,7 +445,7 @@ export const en = {
   'tooltip.forEntity': '{entity}: {name}.',
 
   'map.project.title': 'Map of Projects',
-  'map.aggregator.title': 'Aggregator & Operator Coverage Map',
+  'map.aggregator.title': 'Aggregator & Operator Map',
   'map.endorser.title': 'Map of Digital Principles Endorsers',
 
   'tag.label': 'Tag',
@@ -609,5 +609,7 @@ export const en = {
   'app.shareFailed': 'Unable to copy sharable link to your clipboard.',
 
   'overlay.close': 'Dismiss Notification',
-  'overlay.message': 'Filter data from your URL have been applied.'
+  'overlay.message': 'Filter data from your URL have been applied.',
+
+  'exampleOf.entity': 'Example of {entity}'
 }

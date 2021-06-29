@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl'
+import Breadcrumb from '../shared/breadcrumb'
 
 const SDGDetailLeft = ({ sdg }) => {
   const { formatMessage } = useIntl()
@@ -6,6 +7,9 @@ const SDGDetailLeft = ({ sdg }) => {
 
   return (
     <>
+      <div className='block lg:hidden'>
+        <Breadcrumb />
+      </div>
       <div className='h-20'>
         <div className='w-full'>
           <img src='/icons/comment.svg' className='inline mr-2' alt='Edit' height='15px' width='15px' />
@@ -13,9 +17,9 @@ const SDGDetailLeft = ({ sdg }) => {
         </div>
         <div className='h4 font-bold py-4'>{format('sdg.label')}</div>
       </div>
-      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray mr-6 shadow-lg'>
+      <div className='bg-white border-2 border-dial-gray lg:mr-6 shadow-lg'>
         <div className='flex flex-col h-80 p-4'>
-          <div className='text-2xl font-semibold absolute w-80 bg-white bg-opacity-80 text-dial-purple'>
+          <div className='text-2xl font-semibold absolute w-4/5 md:w-auto lg:w-64 2xl:w-80 bg-white bg-opacity-80 text-dial-purple'>
             {sdg.name}
           </div>
           <div className='pt-8 m-auto align-middle w-48'>

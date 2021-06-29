@@ -33,13 +33,31 @@ const ProductCard = ({ product, listType, newTab = false }) => {
             <div className='border-3 border-transparent hover:border-dial-yellow text-dial-purple hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
-                  <div className='col-span-5 text-base font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                  <div className='col-span-12 md:col-span-5 md:mr-4 my-auto whitespace-nowrap overflow-hidden overflow-ellipsis'>
                     {product.name}
+                    <div className='block md:hidden text-dial-cyan font-semibold text-sm float-right'>
+                      {product.productType === 'dataset' ? format('product.card.dataset').toUpperCase() : ''}
+                    </div>
+                    <div className='block md:hidden flex flex-row justify-end float-right'>
+                      {
+                        product.endorsers && product.endorsers.length > 0 &&
+                          <img data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
+                      }
+                      {
+                        isEndorsingOrg() &&
+                          <img data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5' src='/icons/digiprins/digiprins.png' />
+                      }
+                      {
+                        product.tags && product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
+                          <img data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5' src='/icons/coronavirus/coronavirus.png' />
+                      }
+                      {product.isLaunchable && <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />}
+                    </div>
                   </div>
-                  <div className='col-span-2 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
-                    {product.productType === 'dataset' ? 'Dataset' : 'Product'}
+                  <div className='hidden md:block md:col-span-2 mr-3 font-semibold text-dial-cyan'>
+                    {product.productType === 'dataset' ? format('product.card.dataset').toUpperCase() : ''}
                   </div>
-                  <div className='col-span-4 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                  <div className='hidden md:block md:col-span-4 pr-3 text-base text-dial-purple overflow-hidden overflow-ellipsis'>
                     {
                       product.origins && product.origins.length === 0 && format('general.na')
                     }
@@ -50,7 +68,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                           .join(', ')
                     }
                   </div>
-                  <div className='col-span-1 flex flex-row justify-end'>
+                  <div className='hidden md:col-span-1 md:flex flex-row justify-end'>
                     {
                       product.endorsers && product.endorsers.length > 0 &&
                         <img data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />

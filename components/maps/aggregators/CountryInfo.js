@@ -26,7 +26,7 @@ const CountryInfo = (props) => {
   }
 
   return (
-    <div className='absolute right-4' style={{ zIndex: 19, minWidth: '56ch' }}>
+    <div className='absolute left-4 md:left-auto right-4' style={{ zIndex: 19, minWidth: '20ch' }}>
       <div className='block mt-2 shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none max-w-prose overflow-auto max-h-96'>
         <div className='text-sm text-dial-cyan font-semibold border-b px-4 py-2'>
           {`${country.aggregators.length} ${format('aggregator.header')} in ${country.name}`}

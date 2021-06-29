@@ -82,7 +82,7 @@ const BuildingBlockFilter = (props) => {
       {
         openFilter &&
           <div className='grid grid-cols-11 gap-4 pb-4 pt-2'>
-            <div className='col-span-11 md:col-span-5 border-transparent border-r lg:border-dial-purple-light'>
+            <div className='col-span-11 lg:col-span-5 border-transparent border-r lg:border-dial-purple-light'>
               <div className='text-sm text-dial-gray-light flex flex-row'>
                 <div className='text-white text-xl px-2 pb-3'>
                   {format('filter.framework.title').toUpperCase()}
@@ -99,7 +99,7 @@ const BuildingBlockFilter = (props) => {
                 <WorkflowAutocomplete {...{ workflows, setWorkflows }} containerStyles='px-2 pb-2' />
               </div>
             </div>
-            <div className='col-span-11 md:col-span-6'>
+            <div className='col-span-11 lg:col-span-6'>
               <div className='text-white text-xl px-2 pb-3'>
                 {format('filter.entity', { entity: format('buildingBlock.label') }).toUpperCase()}
               </div>

@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
+import Breadcrumb from '../shared/breadcrumb'
 
 const WorkflowDetailLeft = ({ workflow }) => {
   const { formatMessage } = useIntl()
@@ -19,6 +20,9 @@ const WorkflowDetailLeft = ({ workflow }) => {
 
   return (
     <>
+      <div className='block lg:hidden'>
+        <Breadcrumb />
+      </div>
       <div className='h-20'>
         <div className='w-full'>
           {
@@ -40,9 +44,9 @@ const WorkflowDetailLeft = ({ workflow }) => {
         </div>
         <div className='h4 font-bold py-4'>{format('workflow.label')}</div>
       </div>
-      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray mr-6 shadow-lg'>
+      <div className='bg-white border-2 border-dial-gray lg:mr-6 shadow-lg'>
         <div className='flex flex-col h-80 p-4'>
-          <div className='text-2xl font-semibold absolute w-80 text-workflow'>
+          <div className='text-2xl font-semibold absolute w-4/5 md:w-auto lg:w-64 2xl:w-80 text-workflow'>
             {workflow.name}
           </div>
           <div className='m-auto align-middle w-40 workflow-filter'>

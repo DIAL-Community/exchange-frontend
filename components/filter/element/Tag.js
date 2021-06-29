@@ -20,7 +20,7 @@ const TAG_SEARCH_QUERY = gql`
 const customStyles = {
   control: (provided) => ({
     ...provided,
-    width: '11rem',
+    width: '12rem',
     cursor: 'pointer'
   }),
   option: (provided) => ({

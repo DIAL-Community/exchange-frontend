@@ -3,8 +3,6 @@ import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 
-import { truncate } from '../../lib/utilities'
-
 import { convertToKey } from '../context/FilterResultContext'
 const collectionPath = convertToKey('SDGs')
 
@@ -60,7 +58,7 @@ const SDGCard = ({ sdg, listType }) => {
   }
 
   const useCaseColSpan = () => {
-    return !useCases ? 'hidden' : 'hidden md:block md:col-span-3 lg:col-span-4'
+    return !useCases ? 'hidden' : 'hidden lg:block lg:col-span-3 lg:col-span-4'
   }
 
   return (
@@ -70,13 +68,30 @@ const SDGCard = ({ sdg, listType }) => {
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
-                <div className='grid grid-cols-1 md:grid-cols-6 gap-4 my-5 px-4'>
+                <div className='grid grid-cols-1 lg:grid-cols-6 gap-4 my-5 px-4'>
                   <div className={`${nameColSpan()} pr-3 text-base text-sdg font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden`}>
                     <img
                       className='inline pr-4' src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`}
                       alt={format('image.alt.logoFor', { name: sdg.name })} width='40' height='40'
                     />
                     {sdg.name}
+                    {
+                      useCases &&
+                        <div className='block lg:hidden text-use-case text-sm font-normal flex flex-row mt-1'>
+                          <div className='inline'>
+                            {format('useCase.header')}:
+                          </div>
+                          <div className='mx-1 whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                            {
+                              useCases.length === 0 && format('general.na')
+                            }
+                            {
+                              useCases.length > 0 &&
+                                useCases.map(u => u.name).join(', ')
+                            }
+                          </div>
+                        </div>
+                    }
                   </div>
                   <div className={`${useCaseColSpan()} text-base text-use-case whitespace-nowrap overflow-ellipsis overflow-hidden`}>
                     {
@@ -84,7 +99,7 @@ const SDGCard = ({ sdg, listType }) => {
                     }
                     {
                       useCases && useCases.length > 0 &&
-                        truncate(useCases.map(u => u.name).join(', '), 120, true)
+                        useCases.map(u => u.name).join(', ')
                     }
                   </div>
                 </div>

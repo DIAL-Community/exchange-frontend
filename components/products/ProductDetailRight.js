@@ -18,14 +18,19 @@ const ProductDetailRight = ({ product, discourseRef }) => {
 
   return (
     <div className='px-4'>
-      <Breadcrumb />
-      <div className='w-full flex'>
-        <div className='w-2/5 mr-4 border-r text-dial-purple-light'>
+      <div className='hidden lg:block'>
+        <Breadcrumb />
+      </div>
+      <div className='w-full flex flex-col xl:flex-row'>
+        <div className='w-full xl:w-2/5 mr-4 border-b xl:border-r text-dial-purple-light'>
           {(product.childProducts.length > 0) && <div className='mb-2'>{product.name}</div>}
           <RepositoryInfo product={product} />
         </div>
-        <div className='w-3/5 ml-4'>
-          <RepositoryDetail repositoryData={product.statistics.data && product.statistics.data.repository} languageData={product.languageData.data && product.languageData.data.repository} />
+        <div className='w-full xl:w-3/5 mt-4 xl:ml-4'>
+          <RepositoryDetail
+            repositoryData={product.statistics.data && product.statistics.data.repository}
+            languageData={product.languageData.data && product.languageData.data.repository}
+          />
         </div>
       </div>
       {product.childProducts && product.childProducts.map((childProd, i) => {
@@ -36,7 +41,10 @@ const ProductDetailRight = ({ product, discourseRef }) => {
               <RepositoryInfo product={childProd} />
             </div>
             <div className='w-3/5 ml-4'>
-              <RepositoryDetail repositoryData={childProd.statistics.data && childProd.statistics.data.repository} languageData={childProd.languageData.data && childProd.languageData.data.repository} />
+              <RepositoryDetail
+                repositoryData={childProd.statistics.data && childProd.statistics.data.repository}
+                languageData={childProd.languageData.data && childProd.languageData.data.repository}
+              />
             </div>
           </div>
         )
@@ -111,7 +119,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
             </div>
           </div>
       }
-      <div className='mt-12 grid grid-cols-2'>
+      <div className='mt-12 grid grid-cols-1 xl:grid-cols-2 gap-y-12 xl:gap-y-0'>
         <div>
           <div className='card-title mb-3 text-dial-gray-dark'>{format('product.interoperable')}</div>
           {
