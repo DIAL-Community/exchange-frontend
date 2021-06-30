@@ -20,8 +20,8 @@ const Workflows = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { search, displayType } = useContext(WorkflowFilterContext)
-  const { setSearch, setDisplayType } = useContext(WorkflowFilterDispatchContext)
+  const { search } = useContext(WorkflowFilterContext)
+  const { setSearch } = useContext(WorkflowFilterDispatchContext)
 
   return (
     <>
@@ -34,7 +34,7 @@ const Workflows = () => {
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Filter activeTab='filter.entity.workflows' />
-      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('workflow.label')} />
+      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('workflow.label')} />
       <WorkflowListQuery />
       <Footer />
     </>

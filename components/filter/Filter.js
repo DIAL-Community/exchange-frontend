@@ -12,7 +12,7 @@ import OrganizationFilter from './OrganizationFilter'
 import MapFilter from './MapFilter'
 import SDGFilter from './SDGFilter'
 
-import { FilterResultContext } from '../context/FilterResultContext'
+import { FilterContext } from '../context/FilterContext'
 
 import withApollo from '../../lib/apolloClient'
 
@@ -60,11 +60,10 @@ const Filter = (props) => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const activeTab = filterItems.indexOf(props.activeTab)
-  const [openFilter, setOpenFilter] = useState(false)
   const [openHint, setOpenHint] = useState(false)
 
   const { setInteractionDetected } = useContext(QueryParamContext)
-  const { resultCounts, setResultCounts } = useContext(FilterResultContext)
+  const { resultCounts, openFilter, setResultCounts, setOpenFilter } = useContext(FilterContext)
 
   useQuery(COUNT_QUERY, {
     onCompleted: (data) => {

@@ -9,7 +9,7 @@ import StepList from './steps/StepList'
 import { useSession } from 'next-auth/client'
 import Link from 'next/link'
 
-import { convertToKey } from '../context/FilterResultContext'
+import { convertToKey } from '../context/FilterContext'
 
 const UseCaseDetailRight = ({ useCase }) => {
   const { formatMessage } = useIntl()

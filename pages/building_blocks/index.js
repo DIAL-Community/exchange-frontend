@@ -20,8 +20,8 @@ const BuildingBlocks = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { search, displayType } = useContext(BuildingBlockFilterContext)
-  const { setSearch, setDisplayType } = useContext(BuildingBlockFilterDispatchContext)
+  const { search } = useContext(BuildingBlockFilterContext)
+  const { setSearch } = useContext(BuildingBlockFilterDispatchContext)
 
   return (
     <>
@@ -34,7 +34,7 @@ const BuildingBlocks = () => {
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Filter activeTab='filter.entity.buildingBlocks' />
-      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('building-block.label')} />
+      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('building-block.label')} />
       <BuildingBlockListQuery />
       <Footer />
     </>

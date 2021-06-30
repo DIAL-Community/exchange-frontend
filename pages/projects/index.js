@@ -20,8 +20,8 @@ const Projects = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { search, displayType } = useContext(ProjectFilterContext)
-  const { setSearch, setDisplayType } = useContext(ProjectFilterDispatchContext)
+  const { search } = useContext(ProjectFilterContext)
+  const { setSearch } = useContext(ProjectFilterDispatchContext)
 
   return (
     <>
@@ -34,7 +34,7 @@ const Projects = () => {
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Filter activeTab='filter.entity.projects' />
-      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('project.label')} />
+      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('project.label')} />
       <ProjectListQuery />
       <Footer />
     </>

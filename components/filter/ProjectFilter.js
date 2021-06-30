@@ -98,13 +98,8 @@ const ProjectFilter = (props) => {
               </div>
             </div>
             <div className='col-span-11 lg:col-span-6'>
-              <div className='text-white text-xl px-2 pb-3'>
+              <div className='text-white text-xl px-2'>
                 {format('filter.entity', { entity: format('project.label') }).toUpperCase()}
-              </div>
-              <div className='text-sm text-dial-gray-light flex flex-row'>
-                <div className='px-2 pb-2'>
-                  <span style={{ height: '1.875rem' }}>&nbsp;</span>
-                </div>
               </div>
               <div className='text-sm text-dial-gray-light flex flex-row flex-wrap'>
                 <OriginAutocomplete {...{ origins, setOrigins }} containerStyles='px-2 pb-2' />

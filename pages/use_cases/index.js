@@ -20,8 +20,8 @@ const UseCases = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { search, displayType } = useContext(UseCaseFilterContext)
-  const { setSearch, setDisplayType } = useContext(UseCaseFilterDispatchContext)
+  const { search } = useContext(UseCaseFilterContext)
+  const { setSearch } = useContext(UseCaseFilterDispatchContext)
 
   return (
     <>
@@ -34,7 +34,7 @@ const UseCases = () => {
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Filter activeTab='filter.entity.useCases' />
-      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('use-case.label')} />
+      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('use-case.label')} />
       <UseCaseListQuery />
       <Footer />
     </>

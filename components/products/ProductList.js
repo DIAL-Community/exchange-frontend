@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import ProductCard from './ProductCard'
 import { ProductFilterContext } from '../context/ProductFilterContext'
-import { FilterResultContext } from '../context/FilterResultContext'
+import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -133,10 +133,10 @@ const ProductList = (props) => {
 }
 
 const ProductListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterResultContext)
+  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
   const {
     origins, countries, sectors, organizations, sdgs, tags, useCases, workflows, buildingBlocks, productTypes,
-    productDeployable, withMaturity, search, displayType
+    productDeployable, withMaturity, search
   } = useContext(ProductFilterContext)
 
   const { formatMessage } = useIntl()

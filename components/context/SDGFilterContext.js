@@ -7,15 +7,13 @@ const SDGFilterProvider = ({ children }) => {
   const [sdgs, setSDGs] = useState([])
 
   const [search, setSearch] = useState('')
-  const [displayType, setDisplayType] = useState('card')
   const [sortColumn, setSortColumn] = useState('name')
   const [sortDirection, setSortDirection] = useState('asc')
 
-  const sdgFilterValues = { sdgs, search, displayType, sortColumn, sortDirection }
+  const sdgFilterValues = { sdgs, search, sortColumn, sortDirection }
   const sdgFilterDispatchValues = {
     setSDGs,
     setSearch,
-    setDisplayType,
     setSortColumn,
     setSortDirection
   }

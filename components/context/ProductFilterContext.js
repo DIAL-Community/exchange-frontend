@@ -18,7 +18,6 @@ const ProductFilterProvider = ({ children }) => {
   const [productTypes, setProductTypes] = useState([])
 
   const [search, setSearch] = useState('')
-  const [displayType, setDisplayType] = useState('card')
   const [sortColumn, setSortColumn] = useState('name')
   const [sortDirection, setSortDirection] = useState('asc')
 
@@ -36,7 +35,6 @@ const ProductFilterProvider = ({ children }) => {
     buildingBlocks,
     productTypes,
     search,
-    displayType,
     sortColumn,
     sortDirection
   }
@@ -54,7 +52,6 @@ const ProductFilterProvider = ({ children }) => {
     setBuildingBlocks,
     setProductTypes,
     setSearch,
-    setDisplayType,
     setSortColumn,
     setSortDirection
   }

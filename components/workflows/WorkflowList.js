@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import WorkflowCard from './WorkflowCard'
 import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
-import { FilterResultContext } from '../context/FilterResultContext'
+import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -100,8 +100,8 @@ const WorkflowList = (props) => {
 }
 
 const WorkflowListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { sdgs, useCases, search, displayType } = useContext(WorkflowFilterContext)
+  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { sdgs, useCases, search } = useContext(WorkflowFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })

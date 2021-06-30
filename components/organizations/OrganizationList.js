@@ -7,7 +7,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import OrganizationCard from './OrganizationCard'
 import { OrganizationFilterContext } from '../context/OrganizationFilterContext'
-import { FilterResultContext } from '../context/FilterResultContext'
+import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -94,8 +94,8 @@ const OrganizationList = (props) => {
 }
 
 const OrganizationListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { aggregator, endorser, countries, sectors, years, search, displayType } = useContext(OrganizationFilterContext)
+  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { aggregator, endorser, countries, sectors, years, search } = useContext(OrganizationFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })

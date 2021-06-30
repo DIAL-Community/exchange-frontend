@@ -20,8 +20,8 @@ const SDGs = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { search, displayType } = useContext(SDGFilterContext)
-  const { setSearch, setDisplayType } = useContext(SDGFilterDispatchContext)
+  const { search } = useContext(SDGFilterContext)
+  const { setSearch } = useContext(SDGFilterDispatchContext)
 
   return (
     <>
@@ -34,7 +34,7 @@ const SDGs = () => {
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Filter activeTab='filter.entity.sdgs' />
-      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('sdg.label')} />
+      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('sdg.label')} />
       <SDGListQuery />
       <Footer />
     </>

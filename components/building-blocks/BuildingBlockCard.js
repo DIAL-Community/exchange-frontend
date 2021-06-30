@@ -3,7 +3,7 @@ import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 
-import { convertToKey } from '../context/FilterResultContext'
+import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Building Blocks')
 
 const ellipsisTextStyle = `
