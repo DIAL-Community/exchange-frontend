@@ -5,6 +5,7 @@ import Header from '../../components/Header'
 
 import { useIntl } from 'react-intl'
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 import { FaSpinner } from 'react-icons/fa'
 import Link from 'next/link'
 import Footer from '../../components/Footer'
@@ -14,6 +15,9 @@ export default function SignIn ({ csrfToken }) {
   const format = (id) => formatMessage({ id })
 
   const [loading, setLoading] = useState(false)
+
+  const { NEXT_PUBLIC_URL } = process.env
+  const router = useRouter()
 
   const handleSubmit = () => {
     setLoading(true)
@@ -28,7 +32,7 @@ export default function SignIn ({ csrfToken }) {
       <Header />
       <div className='bg-dial-gray-dark pt-40' style={{ minHeight: '70vh' }}>
         <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto container-fluid with-header'>
-          <form method='post' onSubmit={handleSubmit} action='/api/auth/callback/credentials'>
+          <form method='post' onSubmit={handleSubmit} action={`/api/auth/callback/credentials?callbackUrl=${NEXT_PUBLIC_URL}/${router.locale}/`}>
             <input name='csrfToken' type='hidden' defaultValue={csrfToken} />
             <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
               <div className='mb-4'>
@@ -81,8 +85,24 @@ export default function SignIn ({ csrfToken }) {
   )
 }
 
-SignIn.getInitialProps = async (context) => {
+export async function getServerSideProps (ctx) {
+  const { resolvedUrl, query, locale } = ctx
+
+  if (query && query.callbackUrl) {
+    const url = new URL(query.callbackUrl)
+    const [, cbLang] = url.pathname.split('/')
+
+    if (cbLang && cbLang !== locale) {
+      return {
+        redirect: {
+          destination: `/${cbLang}${resolvedUrl}`
+        }
+      }
+    }
+  }
   return {
-    csrfToken: await csrfToken(context)
+    props: {
+      csrfToken: await csrfToken(ctx)
+    }
   }
 }
