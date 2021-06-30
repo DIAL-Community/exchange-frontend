@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import UseCaseCard from './UseCaseCard'
 import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
-import { FilterResultContext } from '../context/FilterResultContext'
+import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -99,8 +99,8 @@ const UseCaseList = (props) => {
 }
 
 const UseCaseListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { sdgs, showBeta, search, displayType } = useContext(UseCaseFilterContext)
+  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { sdgs, showBeta, search } = useContext(UseCaseFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })

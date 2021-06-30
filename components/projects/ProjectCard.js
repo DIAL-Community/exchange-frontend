@@ -5,7 +5,7 @@ import ReactTooltip from 'react-tooltip'
 
 import { ORIGIN_ACRONYMS, truncate } from '../../lib/utilities'
 
-import { convertToKey } from '../context/FilterResultContext'
+import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Projects')
 
 const ProjectCard = ({ project, listType, newTab = false }) => {

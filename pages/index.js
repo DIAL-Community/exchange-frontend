@@ -21,8 +21,8 @@ const HomePage = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { search, displayType } = useContext(ProductFilterContext)
-  const { setSearch, setDisplayType } = useContext(ProductFilterDispatchContext)
+  const { search } = useContext(ProductFilterContext)
+  const { setSearch } = useContext(ProductFilterDispatchContext)
 
   return (
     <>
@@ -38,7 +38,7 @@ const HomePage = () => {
       <CatalogTitle />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Filter activeTab='filter.entity.products' />
-      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('products.label')} />
+      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('products.label')} />
       <ProductListQuery />
       <Footer />
     </>

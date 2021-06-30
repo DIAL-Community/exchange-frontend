@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useSession } from 'next-auth/client'
 import { useIntl } from 'react-intl'
-
-import { FaPlusCircle } from 'react-icons/fa'
+import { FilterContext } from '../context/FilterContext'
 
 const SearchFilter = (props) => {
-  const { search, setSearch, displayType, setDisplayType, placeholder } = props
+  const { search, setSearch, placeholder } = props
+  const { displayType, setDisplayType } = useContext(FilterContext)
+
   const router = useRouter()
   const [session] = useSession()
 

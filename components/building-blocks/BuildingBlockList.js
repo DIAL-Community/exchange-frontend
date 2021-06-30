@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import BuildingBlockCard from './BuildingBlockCard'
 import { BuildingBlockFilterContext } from '../context/BuildingBlockFilterContext'
-import { FilterResultContext } from '../context/FilterResultContext'
+import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -98,8 +98,8 @@ const BuildingBlockList = (props) => {
 }
 
 const BuildingBlockListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { sdgs, useCases, workflows, showMature, search, displayType } = useContext(BuildingBlockFilterContext)
+  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { sdgs, useCases, workflows, showMature, search } = useContext(BuildingBlockFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })

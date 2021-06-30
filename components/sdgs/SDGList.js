@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import SDGCard from './SDGCard'
 import { SDGFilterContext } from '../context/SDGFilterContext'
-import { FilterResultContext } from '../context/FilterResultContext'
+import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -89,8 +89,8 @@ const SDGList = (props) => {
 }
 
 const SDGListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { sdgs, search, displayType } = useContext(SDGFilterContext)
+  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { sdgs, search } = useContext(SDGFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })

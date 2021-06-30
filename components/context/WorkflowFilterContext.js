@@ -8,18 +8,16 @@ const WorkflowFilterProvider = ({ children }) => {
   const [useCases, setUseCases] = useState([])
 
   const [search, setSearch] = useState('')
-  const [displayType, setDisplayType] = useState('card')
   const [sortColumn, setSortColumn] = useState('name')
   const [sortDirection, setSortDirection] = useState('asc')
 
   const workflowFilterValues = {
-    sdgs, useCases, search, displayType, sortColumn, sortDirection
+    sdgs, useCases, search, sortColumn, sortDirection
   }
   const workflowFilterDispatchValues = {
     setSDGs,
     setUseCases,
     setSearch,
-    setDisplayType,
     setSortColumn,
     setSortDirection
   }

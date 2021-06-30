@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import ProjectCard from './ProjectCard'
 import { ProjectFilterContext } from '../context/ProjectFilterContext'
-import { FilterResultContext } from '../context/FilterResultContext'
+import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -111,8 +111,8 @@ const ProjectList = (props) => {
 }
 
 const ProjectListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { origins, countries, sectors, organizations, products, sdgs, tags, search, displayType } = useContext(ProjectFilterContext)
+  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { origins, countries, sectors, organizations, products, sdgs, tags, search } = useContext(ProjectFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 
-import { convertToKey } from '../../context/FilterResultContext'
+import { convertToKey } from '../../context/FilterContext'
 const useCasesPath = convertToKey('Use Cases')
 const stepsPath = convertToKey('Use Case Steps')
 

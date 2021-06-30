@@ -17,8 +17,8 @@ const Organizations = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { search, displayType } = useContext(OrganizationFilterContext)
-  const { setSearch, setDisplayType } = useContext(OrganizationFilterDispatchContext)
+  const { search } = useContext(OrganizationFilterContext)
+  const { setSearch } = useContext(OrganizationFilterDispatchContext)
 
   return (
     <>
@@ -30,7 +30,7 @@ const Organizations = () => {
       <GradientBackground />
       <Header />
       <Filter activeTab='filter.entity.organizations' />
-      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder={format('app.search') + format('organization.label')} />
+      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('organization.label')} />
       <OrganizationListQuery />
       <Footer />
     </>
