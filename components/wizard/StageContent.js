@@ -17,8 +17,8 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   return (
-    <div className='flex'>
-      <div className='w-1/4 px-5'>
+    <div className='lg:flex'>
+      <div className='lg:w-1/4 lg:px-5'>
         <div className='text-sm pt-6 pb-2'>
           {format('wizard.selectSector')}
         </div>
@@ -29,8 +29,8 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
           placeholder={format('wizard.sectorPlaceholder')}
         />
       </div>
-      <div className='w-1/4 px-5'>
-        <div className='text-sm pt-1 pb-2'>
+      <div className='lg:w-1/4 lg:px-5'>
+        <div className='text-sm pt-6 lg:pt-1 pb-2'>
           {format('wizard.selectUseCase')}
         </div>
         <Select
@@ -40,8 +40,8 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
           placeholder={format('wizard.useCasePlaceholder')}
         />
       </div>
-      <div className='w-1/4 px-5'>
-        <div className='text-sm pt-1 pb-2'>
+      <div className='lg:w-1/4 lg:px-5'>
+        <div className='text-sm pt-6 lg:pt-1 pb-2'>
           {format('wizard.selectCountry')}
         </div>
         <Select
@@ -59,8 +59,8 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   return (
-    <div className='flex'>
-      <div className='w-1/4 px-5 mx-5'>
+    <div className='lg:flex'>
+      <div className='lg:w-1/4 lg:px-5 lg:mx-5'>
         <div className='text-sm pt-6 pb-2'>
           {format('wizard.selectTags')}
         </div>
@@ -83,11 +83,11 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
           )
         })}
       </div>
-      <div className='w-1/3 px-5 mx-5'>
+      <div className='lg:w-1/3 lg:px-5 lg:mx-5'>
         <div className='text-sm pt-6 pb-2'>
           {format('wizard.selectMobile')}
         </div>
-        <div className='grid grid-cols-2'>
+        <div className='lg:grid lg:grid-cols-2'>
           {projData.mobileServices.map((service) => {
             return (
               <div key={service.value} className='text-sm pt-1'>
@@ -115,16 +115,16 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
 export const WizardStage4 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
-  const classNameSelected = 'bg-white border border-white rounded px-6 py-4 my-2 mr-4 text-button-gray inline'
-  const classNameNotSelected = 'bg-dial-gray-dark border border-white rounded px-6 py-4 my-2 mr-4 text-white inline'
+  const classNameSelected = 'bg-white border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-button-gray inline'
+  const classNameNotSelected = 'bg-dial-gray-dark border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-white inline'
   return (
-    <div className='flex'>
-      <div className='w-1/4 px-5 mx-5'>
+    <div className='lg:flex'>
+      <div className='lg:w-1/4 lg:px-5 lg:mx-5'>
         <div className='text-sm pt-6 pb-2'>
           {format('wizard.buildingBlocks')}
         </div>
       </div>
-      <div className='w-2/3 px-5 mx-5'>
+      <div className='lg:w-2/3 lg:px-5 lg:mx-5'>
         <div className='text-sm pt-2 pb-2 overflow-y-scroll bb-content'>
           {projData.buildingBlocks.map((bb) => {
             return (
@@ -144,7 +144,7 @@ export const WizardStage4 = ({ projData, allValues, setAllValues }) => {
                 >
                   {format('wizard.no')}
                 </button>
-                <div className='inline-block'>
+                <div className='inline-block my-2'>
                   {bb.toUpperCase()}
                   <br />
                   {format('wizard.bb.' + bb.replace(/\s+/g, '').toLowerCase())}

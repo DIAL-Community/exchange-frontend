@@ -119,7 +119,7 @@ const LeftMenu = ({ currentSection, phase, clickHandler }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   return (
-    <div className='block py-3 float-right w-2/3'>
+    <div className='block py-3 float-right w-2/3 hidden lg:block'>
       <div
         className={`${(currentSection === 0) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4 cursor-pointer hover:font-bold`}
         onClick={() => { clickHandler(0) }}
@@ -237,19 +237,19 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   }
 
   return (
-    <div className='flex w-full relative wizard-content'>
-      <div className='bg-dial-gray-dark text-dial-gray-light p-6 w-1/4'>
+    <div className='lg:flex w-full relative wizard-content'>
+      <div className='bg-dial-gray-dark text-dial-gray-light p-6 lg:w-1/4'>
         <div className='block text-2xl px-6 py-3'>{format('wizard.results')}</div>
         <div className='block py-3 px-6'>{format('wizard.resultsDesc')}</div>
         <LeftMenu currentSection={currentSection} phase={phase} clickHandler={clickHandler} />
-        <div className='float-left w-full py-4 px-6'>
+        <div className='float-left w-full py-4 px-6 hidden lg:block'>
           <button onClick={() => { stage > 0 && setStage(stage - 1) }} className='bg-button-gray border border-dial-yellow rounded p-4 my-4 mr-4 text-button-gray-light'>
             <img src='/icons/left-arrow.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
             {format('wizard.back')}
           </button>
         </div>
       </div>
-      <div ref={parentRef} className='bg-dial-gray-light text-button-gray-light p-6 w-3/4 h-screen overflow-y-scroll wizard-content'>
+      <div ref={parentRef} className='bg-dial-gray-light text-button-gray-light p-6 lg:w-3/4 h-screen overflow-y-scroll wizard-content'>
         <button
           className='bg-dial-gray p-4 float-right rounded text-button-gray-light'
           onClick={() => { router.push('/') }}
@@ -260,7 +260,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
         <div ref={section1Ref}>
           <div className='text-2xl font-bold py-4'>{format('wizard.results.principles')}</div>
           <div className='pb-4 text-sm'>{format('wizard.results.principlesDesc')}</div>
-          <div className='pb-6 grid grid-cols-5'>
+          <div className='pb-6 grid lg:grid-cols-5'>
             {wizardData.digitalPrinciples.map((principle) => {
               return (
                 <DigitalPrinciple key={`${principle.name}`} principle={principle} />
@@ -292,7 +292,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
               return (<ProductCard key={`${product.name}`} product={product} listType='list' newTab={true} />)
             })}
             {phase === 'Evaluation' && wizardData.resources && (
-              <div className='pb-6 grid grid-cols-3'>
+              <div className='pb-6 grid lg:grid-cols-3'>
                 {wizardData.resources.map((resource) => {
                   return (<Resource key={`${resource.name}`} resource={resource} listType='list' />)
                 })}
@@ -316,7 +316,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
               return (<UseCaseCard key={`${useCase.name}`} useCase={useCase} listType='list' newTab={true} />)
             })}
             {phase === 'Planning' && wizardData.resources && (
-              <div className='pb-6 grid grid-cols-3'>
+              <div className='pb-6 grid lg:grid-cols-3'>
                 {wizardData.resources.map((resource) => {
                   return (<Resource key={`${resource.name}`} resource={resource} listType='list' newTab={true} />)
                 })}
