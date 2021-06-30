@@ -94,7 +94,7 @@ const Filter = (props) => {
           <div className='text-center -mt-7' style={{ lineHeight: 0.1 }}>
             <span className='bg-white px-3'>
               <span className='text-sm font-bold text-gray-500'>{format('digiInvestment.title')}</span>
-              <HiQuestionMarkCircle className='ml-1 inline' />
+              <HiQuestionMarkCircle className='ml-1 inline' data-tip={format('digiInvestment.tooltip')} data-html />
             </span>
           </div>
         </div>

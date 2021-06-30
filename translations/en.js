@@ -285,6 +285,7 @@ export const en = {
   'filter.hint.text': 'What is a ',
 
   'digiInvestment.title': 'Digital Investment Framework',
+  'digiInvestment.tooltip': 'The SDG Digital Investment Framework developed by DIAL and ITU advocates for re-usable, cross-sectoral building blocks. The Catalog illustrates how use cases are composed of generic workflows which can by implemented by building blocks. Users can also explore existing products that may provide necessary functionality for each building block.',
 
   'filter.entity.sdgs': 'SDGs',
   'filter.entity.useCases': 'Use Cases',
