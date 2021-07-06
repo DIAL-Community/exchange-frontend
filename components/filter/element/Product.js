@@ -75,6 +75,7 @@ export const ProductAutocomplete = (props) => {
           onChange={selectProduct}
           placeholder={format('filter.byEntity', { entity: format('product.label') })}
           styles={customStyles}
+          value=''
         />
       </label>
     </div>

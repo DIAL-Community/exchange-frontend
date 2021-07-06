@@ -82,6 +82,11 @@ module.exports = {
         '3/4': '75%',
         catalog: '120rem'
       },
+      maxHeight: {
+        lg: '28rem',
+        xl: '32rem'
+
+      },
       zIndex: {
         60: '60',
         70: '70',

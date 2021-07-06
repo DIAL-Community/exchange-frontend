@@ -1,5 +1,7 @@
 import { useIntl } from 'react-intl'
 
+import Link from 'next/link'
+
 const WizardDescription = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -14,10 +16,12 @@ const WizardDescription = () => {
           {format('landing.wizard.description')}
         </p>
         <div className='text-center mt-12'>
-          <a href='wizard' className='rounded-full shadow-2xl text-base md:text-xl py-4 pl-4 pr-12 text-button-gray bg-dial-yellow'>
-            <img src='/icons/wizard.svg' className='inline mx-2 pr-2' alt='Back' height='30px' width='30px' />
-            {format('landing.wizard.buttonText')}
-          </a>
+          <Link href='/wizard'>
+            <a href='/wizard' className='rounded-full shadow-2xl text-base md:text-xl py-4 pl-4 pr-12 text-button-gray bg-dial-yellow'>
+              <img src='/icons/wizard.svg' className='inline mx-2 pr-2' alt='Back' height='30px' width='30px' />
+              {format('landing.wizard.buttonText')}
+            </a>
+          </Link>
         </div>
       </div>
     </div>

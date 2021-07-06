@@ -80,6 +80,7 @@ export const UseCaseAutocomplete = (props) => {
           onChange={selectUseCase}
           placeholder={format('filter.byEntity', { entity: format('useCase.label') })}
           styles={customStyles}
+          value=''
         />
       </label>
     </div>

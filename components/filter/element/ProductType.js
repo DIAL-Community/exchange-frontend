@@ -49,6 +49,7 @@ export const ProductTypeSelect = (props) => {
           onChange={selectProductType}
           placeholder={format('filter.byEntity', { entity: format('productType.label') })}
           styles={customStyles}
+          value=''
         />
       </label>
     </div>

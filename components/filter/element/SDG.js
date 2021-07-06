@@ -80,6 +80,7 @@ export const SDGAutocomplete = (props) => {
           onChange={selectSDG}
           placeholder={format('filter.byEntity', { entity: format('sdg.shortLabel') })}
           styles={customStyles}
+          value=''
         />
       </label>
     </div>

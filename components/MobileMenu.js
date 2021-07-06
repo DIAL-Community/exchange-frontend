@@ -169,7 +169,7 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
             </li>
             <li className='py-3'>
               <div className='mx-8 font-semibold'>
-                { parent === 'current.user' ? session.user && session.user.userName && session.user.userName.toUpperCase() : format(parent)}
+                {parent === 'current.user' ? session.user && session.user.userName && session.user.userName.toUpperCase() : format(parent)}
               </div>
             </li>
             {

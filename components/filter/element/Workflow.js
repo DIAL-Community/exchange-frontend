@@ -80,6 +80,7 @@ export const WorkflowAutocomplete = (props) => {
           onChange={selectWorkflow}
           placeholder={format('filter.byEntity', { entity: format('workflow.label') })}
           styles={customStyles}
+          value=''
         />
       </label>
     </div>

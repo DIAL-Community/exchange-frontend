@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 
+import Link from 'next/link'
+
 const buttonAnchorStyle = `
   rounded-full flex items-center justify-center py-2 mt-4 leading-8 lg:py-2
 `
@@ -49,9 +51,11 @@ const Carousel = () => {
               <p className='text-base tracking-wide pt-4'>
                 {format('definition.donor.desc2')}
               </p>
-              <a href='sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-dial-teal`}>
-                {format('definition.explore-sdg')}
-              </a>
+              <Link href='/sdgs'>
+                <a href='/sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-dial-teal`}>
+                  {format('definition.explore-sdg')}
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -68,9 +72,11 @@ const Carousel = () => {
               <p className='text-base tracking-wide pt-4'>
                 {format('definition.policy-maker.desc2')}
               </p>
-              <a href='use_cases' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-use-case`}>
-                {format('definition.explore-usecase')}
-              </a>
+              <Link href='/use_cases'>
+                <a href='/use_cases' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-use-case`}>
+                  {format('definition.explore-usecase')}
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -87,9 +93,11 @@ const Carousel = () => {
               <p className='text-base tracking-wide pt-4'>
                 {format('definition.implementer.desc2')}
               </p>
-              <a href='workflows' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-workflow`}>
-                {format('definition.explore-workflow')}
-              </a>
+              <Link href='/workflows'>
+                <a href='/workflows' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-workflow`}>
+                  {format('definition.explore-workflow')}
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -106,9 +114,11 @@ const Carousel = () => {
               <p className='text-base tracking-wide pt-4'>
                 {format('definition.minister.desc2')}
               </p>
-              <a href='building_blocks' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-building-block`}>
-                {format('definition.explore-bb')}
-              </a>
+              <Link href='/building_blocks'>
+                <a href='/building_blocks' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-building-block`}>
+                  {format('definition.explore-bb')}
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -125,9 +135,11 @@ const Carousel = () => {
               <p className='text-base tracking-wide pt-4'>
                 {format('definition.procurer.desc2')}
               </p>
-              <a href='products' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-product`}>
-                {format('definition.explore-prod')}
-              </a>
+              <Link href='/products'>
+                <a href='/products' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-product`}>
+                  {format('definition.explore-prod')}
+                </a>
+              </Link>
             </div>
           </div>
         </div>

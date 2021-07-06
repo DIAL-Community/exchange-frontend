@@ -73,6 +73,7 @@ export const CountryAutocomplete = (props) => {
           onChange={selectCountry}
           placeholder={format('filter.byEntity', { entity: format('country.label') })}
           styles={customStyles}
+          value=''
         />
       </label>
     </div>

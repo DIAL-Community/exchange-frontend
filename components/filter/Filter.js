@@ -99,7 +99,11 @@ const Filter = (props) => {
           </div>
         </div>
         <div className='text-right -mt-4'>
-          <a href='/wizard' className='text-sm text-dial-yellow font-bold hover:underline'>{format('filter.launchWizard')}</a>
+          <Link href='/wizard'>
+            <a href='/wizard' className='text-sm text-dial-yellow font-bold hover:underline'>
+              {format('filter.launchWizard')}
+            </a>
+          </Link>
         </div>
       </div>
       <div className='relative md:sticky bg-white px-2 md:sticky-filter max-w-catalog mx-auto'>

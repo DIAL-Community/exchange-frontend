@@ -77,6 +77,7 @@ export const SectorAutocomplete = (props) => {
           onChange={selectSector}
           placeholder={format('filter.byEntity', { entity: format('sector.label') })}
           styles={customStyles}
+          value=''
         />
       </label>
     </div>
