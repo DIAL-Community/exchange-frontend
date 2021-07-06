@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 
-import Link from 'next/link'
-
 const Landing = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
