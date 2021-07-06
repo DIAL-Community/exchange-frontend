@@ -23,10 +23,16 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
     `
   }
 
+  const slugNameMapping = (() => {
+    const map = {}
+    map[product.slug] = product.name
+    return map
+  })()
+
   return (
     <>
       <div className='block lg:hidden'>
-        <Breadcrumb />
+        <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-20'>
         <div className='w-full'>

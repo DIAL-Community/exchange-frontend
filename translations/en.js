@@ -612,5 +612,11 @@ export const en = {
   'overlay.close': 'Dismiss Notification',
   'overlay.message': 'Filter data from your URL have been applied.',
 
-  'exampleOf.entity': 'Example of {entity}'
+  'exampleOf.entity': 'Example of {entity}',
+
+  'header.catalog': 'Catalog',
+  'header.wizard': 'Recommendation Wizard',
+  'header.mainMenu': 'Main Menu',
+  'map.header': 'Maps',
+  'admin.links': 'Admin Links'
 }

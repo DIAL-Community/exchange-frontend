@@ -7,7 +7,6 @@ import apolloClient from '../../lib/apolloClient'
 import Filter from '../../components/filter/Filter'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import UseCaseListQuery from '../../components/use-cases/UseCaseList'
 import { UseCaseFilterContext, UseCaseFilterDispatchContext } from '../../components/context/UseCaseFilterContext'
 import QueryNotification from '../../components/shared/QueryNotification'
 import GradientBackground from '../../components/shared/GradientBackground'
@@ -15,6 +14,7 @@ import SearchFilter from '../../components/shared/SearchFilter'
 
 import dynamic from 'next/dynamic'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const UseCaseListQuery = dynamic(() => import('../../components/use-cases/UseCaseList'), { ssr: false })
 
 const UseCases = () => {
   const { formatMessage } = useIntl()

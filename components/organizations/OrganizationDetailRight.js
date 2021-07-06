@@ -31,10 +31,16 @@ const OrganizationDetailRight = ({ organization }) => {
       }
     : undefined
 
+  const slugNameMapping = (() => {
+    const map = {}
+    map[organization.slug] = organization.name
+    return map
+  })()
+
   return (
     <div className='px-4'>
       <div className='hidden lg:block'>
-        <Breadcrumb />
+        <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='flex flex-col lg:flex-row flex-wrap'>
         <div className='flex flex-col flex-grow pb-4'>

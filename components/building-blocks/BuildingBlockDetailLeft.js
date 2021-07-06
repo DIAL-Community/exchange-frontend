@@ -19,10 +19,16 @@ const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
     `
   }
 
+  const slugNameMapping = (() => {
+    const map = {}
+    map[buildingBlock.slug] = buildingBlock.name
+    return map
+  })()
+
   return (
     <>
       <div className='block lg:hidden'>
-        <Breadcrumb />
+        <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-20'>
         <div className='w-full'>

@@ -16,10 +16,16 @@ const ProductDetailRight = ({ product, discourseRef }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
+  const slugNameMapping = (() => {
+    const map = {}
+    map[product.slug] = product.name
+    return map
+  })()
+
   return (
     <div className='px-4'>
       <div className='hidden lg:block'>
-        <Breadcrumb />
+        <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='w-full flex flex-col xl:flex-row'>
         <div className='w-full xl:w-2/5 mr-4 border-b xl:border-r text-dial-purple-light'>

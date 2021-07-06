@@ -18,10 +18,16 @@ const WorkflowDetailLeft = ({ workflow }) => {
     `
   }
 
+  const slugNameMapping = (() => {
+    const map = {}
+    map[workflow.slug] = workflow.name
+    return map
+  })()
+
   return (
     <>
       <div className='block lg:hidden'>
-        <Breadcrumb />
+        <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-20'>
         <div className='w-full'>
