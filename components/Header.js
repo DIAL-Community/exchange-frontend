@@ -8,6 +8,8 @@ import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 
 import { createPopper } from '@popperjs/core'
 
+import MobileMenu from './MobileMenu'
+
 const menuItemStyles = `
     lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
   `
@@ -133,6 +135,7 @@ const Header = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
+  const [menuExpanded, setMenuExpanded] = useState(false)
   const [showLanguages, setShowLanguages] = useState(false)
   const [showResources, setShowResources] = useState(false)
 
@@ -187,6 +190,10 @@ const Header = () => {
     signIn()
   }
 
+  const toggleMenu = (e) => {
+    setMenuExpanded(!menuExpanded)
+  }
+
   return (
     <header className='z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white'>
       <div className='flex flex-wrap justify-center items-center py-3 lg:py-0 max-w-catalog header-min-height mx-auto'>
@@ -211,11 +218,12 @@ const Header = () => {
             <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
           </svg>
         </label>
-        <input className='hidden' type='checkbox' id='menu-toggle' />
+        <input className='hidden' type='checkbox' id='menu-toggle' checked={menuExpanded} onChange={toggleMenu} />
 
         <div className='hidden lg:flex lg:items-center lg:w-auto w-full' id='menu'>
           <nav>
-            <ul className='lg:flex items-center justify-between text-base text-dial-blue-darkest pt-4 lg:pt-0'>
+            <MobileMenu menuExpanded={menuExpanded} setMenuExpanded={setMenuExpanded} />
+            <ul className='hidden lg:flex items-center justify-between text-base text-dial-blue-darkest pt-4 lg:pt-0'>
               <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
                 <a
                   className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={resourcePopoverButton}

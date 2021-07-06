@@ -15,10 +15,16 @@ const ProjectDetailRight = ({ project }) => {
   const router = useRouter()
   const { locale } = router
 
+  const slugNameMapping = (() => {
+    const map = {}
+    map[project.slug] = project.name
+    return map
+  })()
+
   return (
     <div className='px-4'>
       <div className='hidden lg:block'>
-        <Breadcrumb />
+        <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='fr-view text-dial-gray-dark text-sm'>
         {project.projectDescriptions && project.projectDescriptions.map(desc => {

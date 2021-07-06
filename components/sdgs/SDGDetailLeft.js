@@ -5,10 +5,16 @@ const SDGDetailLeft = ({ sdg }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
+  const slugNameMapping = (() => {
+    const map = {}
+    map[sdg.slug] = sdg.name
+    return map
+  })()
+
   return (
     <>
       <div className='block lg:hidden'>
-        <Breadcrumb />
+        <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-20'>
         <div className='w-full'>

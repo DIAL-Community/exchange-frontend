@@ -17,6 +17,7 @@ const USE_CASE_QUERY = gql`
   query UseCase($slug: String!) {
     useCase(slug: $slug) {
       name
+      slug
       maturity
       imageFile
     }
@@ -43,6 +44,14 @@ const UseCaseStep = () => {
     `
   }
 
+  const slugNameMapping = (() => {
+    const map = {}
+    if (data) {
+      map[data.useCase.slug] = data.useCase.name
+    }
+    return map
+  })()
+
   return (
     <>
       <Head>
@@ -53,7 +62,7 @@ const UseCaseStep = () => {
       <div className='flex flex-wrap justify-between pb-8 max-w-catalog mx-auto'>
         <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
           <div className='block lg:hidden'>
-            <Breadcrumb />
+            <Breadcrumb slugNameMapping={slugNameMapping} />
           </div>
           <div className='w-full mb-2'>
             {

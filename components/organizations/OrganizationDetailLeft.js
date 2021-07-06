@@ -19,10 +19,16 @@ const OrganizationDetailLeft = ({ organization }) => {
     `
   }
 
+  const slugNameMapping = (() => {
+    const map = {}
+    map[organization.slug] = organization.name
+    return map
+  })()
+
   return (
     <>
       <div className='block lg:hidden'>
-        <Breadcrumb />
+        <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-20'>
         <div className='w-full'>

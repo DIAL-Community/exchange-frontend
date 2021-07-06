@@ -24,10 +24,16 @@ const WorkflowDetailRight = ({ workflow }) => {
     return useCases
   })()
 
+  const slugNameMapping = (() => {
+    const map = {}
+    map[workflow.slug] = workflow.name
+    return map
+  })()
+
   return (
     <div className='px-4'>
       <div className='hidden lg:block'>
-        <Breadcrumb />
+        <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='fr-view text-dial-gray-dark'>
         {workflow.workflowDescriptions[0] && ReactHtmlParser(workflow.workflowDescriptions[0].description)}

@@ -27,10 +27,16 @@ const UseCaseDetailRight = ({ useCase }) => {
     `
   }
 
+  const slugNameMapping = (() => {
+    const map = {}
+    map[useCase.slug] = useCase.name
+    return map
+  })()
+
   return (
     <div className='px-4'>
       <div className='hidden lg:block'>
-        <Breadcrumb />
+        <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='self-center place-self-end text-sm'>
         {

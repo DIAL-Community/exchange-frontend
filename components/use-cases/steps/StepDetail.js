@@ -16,6 +16,7 @@ const USE_CASE_STEP_QUERY = gql`
       }
       useCase {
         slug
+        name
       }
       workflows {
         name
@@ -35,9 +36,16 @@ const UseCaseStepInformation = ({ useCaseStep }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
+  const slugNameMapping = (() => {
+    const map = {}
+    map[useCaseStep.useCase.slug] = useCaseStep.useCase.name
+    map[useCaseStep.slug] = useCaseStep.name
+    return map
+  })()
+
   return (
     <div className='px-4'>
-      <Breadcrumb />
+      <Breadcrumb slugNameMapping={slugNameMapping} />
       <div className='fr-view text-dial-gray-dark'>
         {useCaseStep.useCaseStepDescriptions[0] && ReactHtmlParser(useCaseStep.useCaseStepDescriptions[0].description)}
       </div>
