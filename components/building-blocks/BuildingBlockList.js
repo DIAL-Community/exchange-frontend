@@ -88,9 +88,16 @@ const BuildingBlockList = (props) => {
             </div>
         }
         {
-          props.buildingBlockList.map((buildingBlock) => (
-            <BuildingBlockCard key={buildingBlock.id} buildingBlock={buildingBlock} listType={displayType} />
-          ))
+          props.buildingBlockList.length > 0
+            ? props.buildingBlockList.map((buildingBlock) => (
+              <BuildingBlockCard key={buildingBlock.id} buildingBlock={buildingBlock} listType={displayType} />
+              ))
+            : (
+              <div className='flex justify-self-center text-dial-gray-dark'>{
+                format('noResults.entity', { entity: format('building-block.header') })
+                }
+              </div>
+              )
         }
       </div>
     </>

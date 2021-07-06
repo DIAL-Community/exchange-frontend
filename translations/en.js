@@ -51,6 +51,7 @@ export const en = {
   'definition.implementers': 'Implementing Partners',
   'definition.ministers': 'Technology and ICT Ministers',
   'definition.procurers': 'Procurers',
+  'definition.product-owners': 'Product Owners',
   'definition.donor.desc1': 'can use this tool to coordinate investments with other donors. Using the lens of the SDG target, a donor can navigate to a priority SDG target to see what use cases, workflows, and ICT building blocks map support the progression of that target.',
   'definition.donor.desc2': 'Understanding those associations set the groundwork for donors to see the overlap they have with other donors supporting other SDG targets. The tool demonstrates that a handful of work flows and building blocks can deliver a wide range of SDG targets and corresponding use cases.',
   'definition.policy-maker.desc1': 'at any level, can use this tool to explore the different use cases they are interested in implementing to achieve various development outcomes. ',
@@ -61,9 +62,12 @@ export const en = {
   'definition.minister.desc2': 'Mapping systems to the ICT Building Blocks can also provides a better understanding of what gaps currently exist or opportunities for consolidation.',
   'definition.procurer.desc1': 'can use this tool to identify what ICT Building Blocks and Products deliver various needed workflows, or business process, to deliver development programming or various digital initiatives.',
   'definition.procurer.desc2': 'Also, discover existing products that can meet the use cases and workflows for specific programmatic needs, providing insights to the “build or buy” questions for project implementation.',
+  'definition.product-owner.desc1': 'can use this tool provide detailed information about their product. They can also contribute to the online forums connected to the catalog, sharing best practices and tips for using their platform.',
+  'definition.product-owner.desc2': 'Product Owners can also provide information about sectors or use cases the product is designed to address, and can create and update Projects - providing information about where the product has been deployed and by whom.',
   'definition.explore-sdg': 'Explore SDGs',
   'definition.explore-bb': 'Explore Building Blocks',
   'definition.explore-prod': 'Explore Products',
+  'definition.explore-proj': 'Explore Projects',
   'definition.explore-usecase': 'Explore Use Cases',
   'definition.explore-workflow': 'Explore Workflows',
 
@@ -114,6 +118,7 @@ export const en = {
   'project.label': 'Project',
   'project.url': 'Project URL',
   'project.source': 'Origin',
+  'project.description': 'Description',
 
   'organization.header': 'Organizations',
   'organization.label': 'Organization',
@@ -141,7 +146,7 @@ export const en = {
   'wizard.yes': 'Yes',
   'wizard.no': 'No',
   'wizard.seeResults': 'See Results',
-  'wizard.intro': 'The Requirements and Recommendation Wizard is a part of the DIAL Catalog of Digital Solutions. It is a tool designed to provide information and resources to individuals and teams working on development projects that leverage digital tools and technologies.{linebreak}{linebreak}The Wizard can be used at different times during the project lifecycle - ideation, planning, or implementation. The output of this tool will be tailored to provide the resources and information that are applicable to the current project phase.{linebreak}{linebreak}We will first ask a series of brief questions about your project and then generate a report that links to data within the DIAL Catalog as well as to other helpful resources.',
+  'wizard.intro': 'The Requirements and Recommendation Wizard is a part of the DIAL Catalog of Digital Solutions. It is a tool designed to provide information and resources to individuals and teams working on development projects that leverage digital tools and technologies.{linebreak}{linebreak}The Wizard can be used at different times during the project lifecycle - ideation, planning, implementation, or monitoring/evaluation. The output of this tool will be tailored to provide the resources and information that are applicable to the current project phase.{linebreak}{linebreak}We will first ask a series of brief questions about your project and then generate a report that links to data within the DIAL Catalog as well as to other helpful resources.',
   'wizard.introStep': 'Introduction',
   'wizard.stepOne': 'Step 1: Project Phase',
   'wizard.stepTwo': 'Step 2: Project Information',
@@ -207,7 +212,7 @@ export const en = {
   'landing.wizard.whereToStart': "Don't know where to start?",
   'landing.wizard.description': `
     Use the Requirements and Recommendation Wizard to help guide you to a curated list of resources,
-    tailored to wherever you are in a project lifecycle — ideation, planning, or implementation.
+    tailored to wherever you are in a project lifecycle — ideation, planning, implementation, or monitoring/evaluation.
   `,
   'landing.wizard.buttonText': 'Launch Recommendations Wizard',
 
@@ -251,6 +256,7 @@ export const en = {
   'map.projects.viewProject': 'View Project',
 
   'useCase.label': 'Use Case',
+  'useCase.description': 'Description',
   'workflow.label': 'Workflow',
   'product.label': 'Product',
   'country.label': 'Country',
@@ -441,9 +447,9 @@ export const en = {
     intended to be achieved by the year 2030.
   `,
 
-  'image.alt.logoFor': 'Logo for: {name}.',
+  'image.alt.logoFor': 'Logo for: {name}',
   'tooltip.ellipsisFor': 'View more in the detail page of this {entity}.',
-  'tooltip.forEntity': '{entity}: {name}.',
+  'tooltip.forEntity': '{entity}: {name}',
 
   'map.project.title': 'Map of Projects',
   'map.aggregator.title': 'Aggregator & Operator Map',
@@ -613,6 +619,7 @@ export const en = {
   'overlay.message': 'Filter data from your URL have been applied.',
 
   'exampleOf.entity': 'Example of {entity}',
+  'noResults.entity': 'No {entity} results found',
 
   'header.catalog': 'Catalog',
   'header.wizard': 'Recommendation Wizard',

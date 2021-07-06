@@ -28,6 +28,7 @@ query BuildingBlock($slug: String!) {
     workflows {
       name
       slug
+      imageFile
     }
     products {
       name

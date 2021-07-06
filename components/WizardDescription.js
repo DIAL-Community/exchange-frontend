@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 
 import Link from 'next/link'
@@ -8,7 +9,7 @@ const WizardDescription = () => {
 
   return (
     <div className='relative w-full bg-gradient-to-r text-white from-dial-purple to-dial-purple-light'>
-      <div className='max-w-3xl mx-auto py-12'>
+      <div className='max-w-4xl mx-auto py-12'>
         <div className='text-4xl font-semibold text-center px-2'>
           {format('landing.wizard.whereToStart')}
         </div>

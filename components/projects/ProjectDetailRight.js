@@ -27,6 +27,7 @@ const ProjectDetailRight = ({ project }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='fr-view text-dial-gray-dark text-sm'>
+        <div className='card-title mb-3 text-dial-gray-dark'>{format('project.description')}</div>
         {project.projectDescriptions && project.projectDescriptions.map(desc => {
           if (desc.locale === locale) {
             return ReactHtmlParser(desc.description)

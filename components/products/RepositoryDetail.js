@@ -20,7 +20,7 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
     repositoryData
       ? (
         <>
-          <div className='h4'>
+          <div className='h5'>
             {format('product.repository-info')}
             {
               lastUpdated >= lastThreeMonths &&
@@ -75,8 +75,8 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
             {
               languageData &&
                 <div>
-                  <div className='h4 mt-2 mb-2'>
-                    <strong>{format('product.languages')}</strong>
+                  <div className='h5 mt-2 mb-2'>
+                    {format('product.languages')}
                   </div>
                   <div className='mb-2'>
                     <div className='progress flex'>

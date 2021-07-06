@@ -15,13 +15,13 @@ const Description = () => {
 
   useEffect(() => {
     setOpenTab(0)
-    const interval = setInterval(changeTab, 5000)
+    const interval = setInterval(changeTab, 6000)
     return () => clearInterval(interval)
   }, [])
 
   const changeTab = () => {
     setOpenTab(openTab => {
-      return openTab === 4 ? 0 : openTab + 1
+      return openTab === 5 ? 0 : openTab + 1
     })
   }
 
@@ -35,7 +35,7 @@ const Description = () => {
 
   const actorList = [
     format('definition.donors'), format('definition.policy-makers'), format('definition.implementers'),
-    format('definition.ministers'), format('definition.procurers')
+    format('definition.ministers'), format('definition.procurers'), format('definition.product-owners')
   ]
 
   return (
@@ -146,6 +146,21 @@ const Description = () => {
                           {format('definition.explore-prod')}
                         </a>
                       </Link>
+                    </div>
+                  </div>
+                  <div className={openTab === 5 ? 'block' : 'hidden'} id='procurers'>
+                    <div className='flex flex-col flex-wrap p-8 xl:max-h-96 text-dial-blue-darkest'>
+                      <p className='text-xl max-w-md mr-16 tracking-wide'>
+                        <span className='font-bold'>{format('definition.product-owners')} </span>
+                        {format('definition.product-owner.desc1')}
+                      </p>
+                      <p className='text-base max-w-md pt-4 tracking-wide'>
+                        {format('definition.product-owner.desc2')}
+                      </p>
+                      <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/project.svg' alt='' />
+                      <a href='projects' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-product`}>
+                        {format('definition.explore-proj')}
+                      </a>
                     </div>
                   </div>
                 </div>

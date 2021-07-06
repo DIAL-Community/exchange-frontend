@@ -120,7 +120,7 @@ const SDGCard = ({ sdg, listType }) => {
                     />
                   </div>
                 </div>
-                <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark '>
+                <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark cursor-default'>
                   <div className='flex flex-row border-b border-dial-gray'>
                     <div className='pl-3 py-3 text-dial-teal-light flex flex-row'>
                       <div className='text-base whitespace-nowrap my-auto text-sdg-target mr-2'>{format('sdg.sdgTargets')}</div>
@@ -141,7 +141,7 @@ const SDGCard = ({ sdg, listType }) => {
                               .map(sdgTarget => (
                                 <div
                                   key={`${sdg.id}-${sdgTarget.id}`} className='bg-white rounded text-sdg-target p-2 mr-1.5'
-                                  data-tip={sdgTarget.name}
+                                  data-tip={`${sdgTarget.name}.`}
                                 >
                                   {sdgTarget.targetNumber}
                                 </div>

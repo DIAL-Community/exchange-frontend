@@ -13,6 +13,9 @@ import UseCaseDetailLeft from '../../../components/use-cases/UseCaseDetailLeft'
 import UseCaseDetailRight from '../../../components/use-cases/UseCaseDetailRight'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
 
+import dynamic from 'next/dynamic'
+const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+
 const USE_CASE_QUERY = gql`
   query UseCase($slug: String!) {
     useCase(slug: $slug) {
@@ -64,6 +67,7 @@ const UseCase = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
+      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       {loading && <Loading />}
       {error && <Error />}
       {

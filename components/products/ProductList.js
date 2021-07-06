@@ -123,9 +123,16 @@ const ProductList = (props) => {
             </div>
         }
         {
-          props.productList.map((product) => (
-            <ProductCard key={product.id} product={product} listType={displayType} />
-          ))
+          props.productList.length > 0
+            ? props.productList.map((product) => (
+              <ProductCard key={product.id} product={product} listType={displayType} />
+              ))
+            : (
+              <div className='flex justify-self-center text-dial-gray-dark'>{
+                format('noResults.entity', { entity: format('products.label') })
+                }
+              </div>
+              )
         }
       </div>
     </>

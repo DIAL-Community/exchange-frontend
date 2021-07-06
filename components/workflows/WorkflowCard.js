@@ -70,6 +70,11 @@ const WorkflowCard = ({ workflow, listType }) => {
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
                   <div className={`${nameColSpan()} ${ellipsisTextStyle} pr-3 text-base font-semibold`}>
+                    <img
+                      data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: workflow.name })}
+                      alt={format('image.alt.logoFor', { name: workflow.name })} className='m-auto h-6 workflow-filter inline mr-3'
+                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
+                    />
                     {workflow.name}
                     {
                       useCases &&
@@ -163,7 +168,7 @@ const WorkflowCard = ({ workflow, listType }) => {
                           {
                             useCases
                               .map(u => (
-                                <div key={`${workflow.id}-${u.id}`} className='bg-white rounded p-2 mr-1.5'>
+                                <div key={`${workflow.id}-${u.id}`} className='bg-white rounded p-2 mr-1.5 cursor-default'>
                                   <img
                                     data-tip={format('tooltip.forEntity', { entity: format('useCase.label'), name: u.name })}
                                     className='m-auto h-6 use-case-filter' alt={format('image.alt.logoFor', { name: u.name })}
@@ -203,7 +208,7 @@ const WorkflowCard = ({ workflow, listType }) => {
                           {
                             workflow.buildingBlocks
                               .map(b => (
-                                <div key={`${workflow.id}-${b.slug}`} className='bg-white rounded p-2 mr-1'>
+                                <div key={`${workflow.id}-${b.slug}`} className='bg-white rounded p-2 mr-1 cursor-default'>
                                   <img
                                     data-tip={format('tooltip.forEntity', { entity: format('buildingBlock.label'), name: b.name })}
                                     className='m-auto h-6 building-block-filter' alt={format('image.alt.logoFor', { name: b.name })}

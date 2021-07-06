@@ -25,6 +25,11 @@ const SDGDetailRight = ({ sdg }) => {
                 key={`${sdg.number}-${sdgTarget.targetNumber}`}
               >
                 <div className='flex flex-row text-dial-gray-dark'>
+                  <img
+                    className='h-40 my-auto mr-4'
+                    alt={format('image.alt.logoFor', { name: sdgTarget.name })}
+                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdgTarget.imageFile}
+                  />
                   <div className='flex-grow flex flex-col'>
                     <div className='text-xl leading-8'>
                       {`${format('sdg.target.title')}: ${sdgTarget.targetNumber}`}
@@ -33,11 +38,6 @@ const SDGDetailRight = ({ sdg }) => {
                       {sdgTarget.name}
                     </div>
                   </div>
-                  <img
-                    className='h-24 my-auto'
-                    alt={format('image.alt.logoFor', { name: sdgTarget.name })}
-                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdgTarget.imageFile}
-                  />
                 </div>
                 {
                   sdgTarget.useCases && sdgTarget.useCases.length > 0 &&

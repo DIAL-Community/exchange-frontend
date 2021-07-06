@@ -8,10 +8,10 @@ const SectorCard = ({ sector, listType }) => {
       {
         listType === 'list'
           ? (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-button-gray hover:text-dial-yellow cursor-pointer'>
-              <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+            <div className='border-3 border-transparent text-button-gray'>
+              <div className='border border-dial-gray shadow-sm hover:shadow-lg'>
                 <div className='flex justify-between my-4 px-4'>
-                  <div className='inline-block card-title card-link-text text-button-gray'>
+                  <div className='inline-block card-title text-button-gray'>
                     {sector.name}
                   </div>
                 </div>

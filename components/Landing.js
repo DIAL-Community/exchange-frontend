@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 
 import Link from 'next/link'

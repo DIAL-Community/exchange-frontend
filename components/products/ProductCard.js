@@ -33,7 +33,12 @@ const ProductCard = ({ product, listType, newTab = false }) => {
             <div className='border-3 border-transparent hover:border-dial-yellow text-dial-purple hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
-                  <div className='col-span-12 md:col-span-5 md:mr-4 my-auto whitespace-nowrap overflow-hidden overflow-ellipsis'>
+                  <img
+                    className='m-auto w-12'
+                    alt={format('image.alt.logoFor', { name: product.name })}
+                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+                  />
+                  <div className='col-span-12 md:col-span-4 md:mr-4 my-auto whitespace-nowrap overflow-hidden overflow-ellipsis'>
                     {product.name}
                     <div className='block md:hidden text-dial-cyan font-semibold text-sm float-right'>
                       {product.productType === 'dataset' ? format('product.card.dataset').toUpperCase() : ''}
@@ -145,7 +150,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                             .map(sdg => (
                               <img
                                 data-tip={format('tooltip.forEntity', { entity: format('sdg.label'), name: sdg.name })}
-                                key={`sdg-${sdg.slug}`} className='mr-1.5 last:mr-0 h-8'
+                                key={`sdg-${sdg.slug}`} className='mr-1.5 last:mr-0 h-8 cursor-default'
                                 alt={format('image.alt.logoFor', { name: sdg.name })}
                                 src={`/images/sdgs/${sdg.slug}.png`}
                               />
@@ -172,7 +177,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                             .map(bb => (
                               <img
                                 data-tip={format('tooltip.forEntity', { entity: format('buildingBlock.label'), name: bb.name })}
-                                key={`sdg-${bb.slug}`} className='mr-1.5 last:mr-0 h-8 building-block-filter'
+                                key={`sdg-${bb.slug}`} className='mr-1.5 last:mr-0 h-8 building-block-filter cursor-default'
                                 alt={format('image.alt.logoFor', { name: bb.name })}
                                 src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + bb.imageFile}
                               />

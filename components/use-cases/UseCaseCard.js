@@ -59,8 +59,8 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
 
   const nameColSpan = (useCase) => {
     return !useCase.sdgTargets && !workflows
-      ? 'col-span-9 md:col-span-10 lg:col-span-11'
-      : 'col-span-9 md:col-span-10 lg:col-span-4'
+      ? 'col-span-8 md:col-span-9 lg:col-span-10'
+      : 'col-span-8 md:col-span-9 lg:col-span-4'
   }
 
   return (
@@ -73,6 +73,10 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
                   <div className={`${nameColSpan(useCase)} pr-3 text-base font-semibold ${ellipsisTextStyle}`}>
+                    <img
+                      alt={format('image.alt.logoFor', { name: useCase.name })} className='m-auto h-6 use-case-filter inline mr-3'
+                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+                    />
                     {useCase.name}
                     {
                       useCase.sdgTargets &&
@@ -178,7 +182,7 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                           {
                             useCase.sdgTargets
                               .map(s => (
-                                <div key={`${useCase.id}-${s.id}`} className='bg-white rounded text-sdg-target p-2 mr-1.5' data-tip={s.name}>
+                                <div key={`${useCase.id}-${s.id}`} className='bg-white rounded text-sdg-target p-2 mr-1.5 cursor-default' data-tip={`${s.name}.`}>
                                   {s.targetNumber}
                                 </div>
                               ))
@@ -217,7 +221,7 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                           {
                             workflows
                               .map(w => (
-                                <div key={`${useCase.id}-${w.id}`} className='bg-white rounded p-2 mr-1'>
+                                <div key={`${useCase.id}-${w.id}`} className='bg-white rounded p-2 mr-1 cursor-default'>
                                   <img
                                     data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: w.name })}
                                     className='m-auto h-6 workflow-filter' alt={format('image.alt.logoFor', { name: w.name })}
