@@ -45,7 +45,9 @@ const UseCaseStepInformation = ({ useCaseStep }) => {
 
   return (
     <div className='px-4'>
-      <Breadcrumb slugNameMapping={slugNameMapping} />
+      <div className='hidden lg:block'>
+        <Breadcrumb slugNameMapping={slugNameMapping} />
+      </div>
       <div className='fr-view text-dial-gray-dark'>
         {useCaseStep.useCaseStepDescriptions[0] && ReactHtmlParser(useCaseStep.useCaseStepDescriptions[0].description)}
       </div>

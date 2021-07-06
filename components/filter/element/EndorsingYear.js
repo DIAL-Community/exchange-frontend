@@ -56,6 +56,7 @@ export const EndorsingYearSelect = (props) => {
           onChange={selectYear}
           placeholder={format('filter.byEntity', { entity: format('endorsingYear.label') })}
           styles={customStyles}
+          value=''
         />
       </label>
     </div>

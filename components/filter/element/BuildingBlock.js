@@ -77,10 +77,11 @@ export const BuildingBlockAutocomplete = (props) => {
           cacheOptions
           defaultOptions
           loadOptions={(input, callback) => fetchOptions(input, callback, BUILDING_BLOCK_SEARCH_QUERY)}
-          noOptionsMessage={() => 'Search for building blocks.'}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('building-block.header') })}
           onChange={selectBuildingBlock}
           placeholder={format('filter.byEntity', { entity: format('buildingBlock.label') })}
           styles={customStyles}
+          value=''
         />
       </label>
     </div>

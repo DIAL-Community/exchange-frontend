@@ -79,6 +79,7 @@ export const TagAutocomplete = (props) => {
           onChange={selectTag}
           placeholder={format('filter.byEntity', { entity: format('tag.label') })}
           styles={customStyles}
+          value=''
         />
       </label>
     </div>

@@ -84,6 +84,7 @@ export const OperatorAutocomplete = (props) => {
           onChange={selectOperator}
           placeholder={format('filter.byEntity', { entity: format('operator.label') })}
           styles={customStyles}
+          value=''
         />
       </label>
     </div>

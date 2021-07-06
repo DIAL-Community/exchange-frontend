@@ -72,10 +72,17 @@ export const OrganizationAutocomplete = (props) => {
           cacheOptions
           defaultOptions
           loadOptions={(input, callback) => fetchOptions(input, aggregatorOnly, callback, ORGANIZATION_SEARCH_QUERY)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: aggregatorOnly ? format('aggregator.header') : format('organization.header') })}
+          noOptionsMessage={() => {
+            return format('filter.searchFor', {
+              entity: aggregatorOnly ? format('aggregator.header') : format('organization.header')
+            })
+          }}
           onChange={selectOrganization}
-          placeholder={format('filter.byEntity', { entity: aggregatorOnly ? format('aggregator.label') : format('organization.label') })}
+          placeholder={format('filter.byEntity', {
+            entity: aggregatorOnly ? format('aggregator.label') : format('organization.label')
+          })}
           styles={customStyles}
+          value=''
         />
       </label>
     </div>

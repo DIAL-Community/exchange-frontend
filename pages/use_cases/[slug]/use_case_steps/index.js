@@ -53,9 +53,9 @@ const UseCaseStep = () => {
             data && data.useCase &&
               <div className='border'>
                 <div className='text-xs text-right text-dial-cyan font-semibold p-1.5 border-b uppercase'>{data.useCase.maturity}</div>
-                <div className=' px-4 py-6 flex'>
+                <div className=' px-4 py-6 flex items-center'>
                   <img
-                    className='use-case-filter w-8'
+                    className='use-case-filter w-8 h-full'
                     alt={format('image.alt.logoFor', { name: data.useCase.name })}
                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.useCase.imageFile}
                   />
@@ -66,7 +66,9 @@ const UseCaseStep = () => {
           <StepList useCaseSlug={slug} stepSlug={stepSlug} listStyle='compact' shadowOnContainer />
         </div>
         <div className='w-full lg:w-2/3 xl:w-3/4'>
-          <Breadcrumb slugNameMapping={slugNameMapping} />
+          <div className='hidden lg:block'>
+            <Breadcrumb slugNameMapping={slugNameMapping} />
+          </div>
         </div>
       </div>
       <Footer />

@@ -85,6 +85,7 @@ export const CapabilityAutocomplete = (props) => {
           onChange={selectCapability}
           placeholder={format('filter.byEntity', { entity: format('service.label') })}
           styles={customStyles}
+          value=''
         />
       </label>
     </div>
