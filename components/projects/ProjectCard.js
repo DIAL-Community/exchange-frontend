@@ -48,7 +48,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-button-gray hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
-                <div className='grid grid-cols-12 my-5 px-4 text-base font-semibold text-dial-gray-dark whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                <div className='grid grid-cols-12 my-5 px-4 text-base font-semibold hover:text-dial-yellow whitespace-nowrap overflow-ellipsis overflow-hidden'>
                   <div className={`${nameColSpan(project)} lg:mr-4 my-auto overflow-hidden overflow-ellipsis`}>
                     <div className='block lg:hidden font-normal float-right'>
                       <div
@@ -204,7 +204,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                 <div className='mt-auto bg-dial-gray-light border-t border-dial-gray p-4'>
                   <div className='flex flex-row'>
                     <div className='my-auto'>Source</div>
-                    <div className='mx-6 bg-white p-2 rounded'>
+                    <div className='mx-6 p-2 rounded'>
                       <img
                         className='h-6 md:h-8'
                         src={`/images/origins/${project.origin.slug}.png`}

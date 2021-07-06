@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
+import { useEffect } from 'react'
+import ReactTooltip from 'react-tooltip'
 
 import { convertToKey } from '../../context/FilterContext'
 const useCasesPath = convertToKey('Use Cases')
@@ -8,6 +10,10 @@ const stepsPath = convertToKey('Use Case Steps')
 const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
+
+  useEffect(() => {
+    ReactTooltip.rebuild()
+  })
 
   // Style the card based on the list style
   const cardContainerStyles = () => {
@@ -55,7 +61,7 @@ const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
                   {
                     useCaseStep.workflows
                       .map(workflow => (
-                        <div key={`workflow-${workflow.slug}`} className='bg-white p-2 mr-1.5'>
+                        <div key={`workflow-${workflow.slug}`} className='bg-white p-2 mr-1.5 cursor-default'>
                           <img
                             data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: workflow.name })}
                             alt={format('image.alt.logoFor', { name: workflow.name })} className='m-auto h-6 workflow-filter'

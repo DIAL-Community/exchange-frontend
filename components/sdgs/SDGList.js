@@ -79,9 +79,16 @@ const SDGList = (props) => {
             </div>
         }
         {
-          props.sdgList.map((sdg) => (
-            <SDGCard key={sdg.id} sdg={sdg} listType={displayType} />
-          ))
+          props.sdgList.length > 0
+            ? props.sdgList.map((sdg) => (
+              <SDGCard key={sdg.id} sdg={sdg} listType={displayType} />
+              ))
+            : (
+              <div className='flex justify-self-center text-dial-gray-dark'>{
+                format('noResults.entity', { entity: format('sdg.header') })
+                }
+              </div>
+              )
         }
       </div>
     </>

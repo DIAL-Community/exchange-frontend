@@ -78,6 +78,7 @@ query Product($slug: String!, $locale: String!) {
     organizations {
       name
       slug
+      imageFile
       isEndorser
       whenEndorsed
     }

@@ -267,7 +267,7 @@ const Header = () => {
                     )
                   : (
                     <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
-                      <a className={`${menuItemStyles}`} href='sign-in' onClick={signInUser}>
+                      <a className={`${menuItemStyles}`} href='/sign-in' onClick={signInUser}>
                         {format('header.signIn')}
                       </a>
                     </li>

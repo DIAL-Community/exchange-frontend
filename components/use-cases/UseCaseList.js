@@ -89,9 +89,16 @@ const UseCaseList = (props) => {
             </div>
         }
         {
-          props.useCaseList.map((useCase) => (
-            <UseCaseCard key={useCase.id} useCase={useCase} listType={displayType} />
-          ))
+          props.useCaseList.length > 0
+            ? props.useCaseList.map((useCase) => (
+              <UseCaseCard key={useCase.id} useCase={useCase} listType={displayType} />
+              ))
+            : (
+              <div className='flex justify-self-center text-dial-gray-dark'>{
+                format('noResults.entity', { entity: format('use-case.label') })
+                }
+              </div>
+              )
         }
       </div>
     </>

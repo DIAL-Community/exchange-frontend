@@ -173,7 +173,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                           {
                             buildingBlock.workflows
                               .map(workflow => (
-                                <div key={`workflow-${workflow.slug}`} className='bg-white p-2 mr-1.5'>
+                                <div key={`workflow-${workflow.slug}`} className='bg-white p-2 mr-1.5 cursor-default'>
                                   <img
                                     data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: workflow.name })}
                                     alt={format('image.alt.logoFor', { name: workflow.name })} className='m-auto h-6 workflow-filter'
@@ -217,7 +217,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                             buildingBlock.products
                               .map(product => (
                                 <div
-                                  key={`product-${product.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded'
+                                  key={`product-${product.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded cursor-default'
                                   data-tip={format('tooltip.forEntity', { entity: format('product.label'), name: product.name })}
                                 >
                                   {product.name}

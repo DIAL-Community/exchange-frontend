@@ -90,9 +90,16 @@ const WorkflowList = (props) => {
             </div>
         }
         {
-          props.workflowList.map((workflow) => (
-            <WorkflowCard key={workflow.id} workflow={workflow} listType={displayType} />
-          ))
+          props.workflowList.length > 0
+            ? props.workflowList.map((workflow) => (
+              <WorkflowCard key={workflow.id} workflow={workflow} listType={displayType} />
+              ))
+            : (
+              <div className='flex justify-self-center text-dial-gray-dark'>{
+                format('noResults.entity', { entity: format('workflow.header') })
+                }
+              </div>
+              )
         }
       </div>
     </>

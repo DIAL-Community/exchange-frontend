@@ -270,7 +270,7 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
               </a>
             </li>
             <li className='py-4 border-b'>
-              <Link href='/wizard'>
+              <Link href='wizard'>
                 <a className='mx-6 font-semibold' href='about'>{format('header.wizard')}</a>
               </Link>
             </li>
@@ -284,7 +284,7 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
               </a>
             </li>
             <li className='py-4 border-b'>
-              <Link href='/about'>
+              <Link href='about'>
                 <a className='mx-6 font-semibold' href='about'>{format('header.about')}</a>
               </Link>
             </li>

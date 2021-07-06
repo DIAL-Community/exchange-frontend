@@ -13,7 +13,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
   const format = (id) => formatMessage({ id })
 
   const nameColSpan = (organization) => {
-    return !organization.sectors ? 'col-span-8' : 'col-span-8 lg:col-span-4'
+    return !organization.sectors ? 'col-span-7' : 'col-span-7 lg:col-span-4'
   }
 
   return (
@@ -26,6 +26,11 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                 <div className='border-3 border-transparent hover:border-dial-yellow text-workflow cursor-pointer'>
                   <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg hover:text-dial-yellow'>
                     <div className='grid grid-cols-12 my-5 px-4'>
+                      <img
+                        className='m-auto w-12'
+                        alt={format('image.alt.logoFor', { name: organization.name })}
+                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
+                      />
                       <div className={`${nameColSpan(organization)} text-base font-semibold text-dial-gray-darkwhitespace-nowrap overflow-ellipsis overflow-hidden`}>
                         {organization.name}
                         {
