@@ -625,5 +625,7 @@ export const en = {
   'header.wizard': 'Recommendation Wizard',
   'header.mainMenu': 'Main Menu',
   'map.header': 'Maps',
-  'admin.links': 'Admin Links'
+  'admin.links': 'Admin Links',
+
+  'footer.contactUs': 'Contact Us'
 }

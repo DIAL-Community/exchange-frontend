@@ -87,7 +87,7 @@ const SearchFilter = (props) => {
             {
               session && session.user.canEdit && (
                 <a className='border-b-2 border-transparent hover:border-dial-yellow' href={generateCreateLink()}>
-                  <span className='text-dial-teal'>{format('app.create-new')}</span>
+                  <span className='text-dial-yellow'>{format('app.create-new')}</span>
                 </a>
               )
             }

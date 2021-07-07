@@ -20,28 +20,39 @@ const Footer = () => {
           </div>
           <div className='flex-grow flex flex-row flex-wrap place-content-center'>
             <div className='relative p-2 lg:my-auto'>
-              <Image
-                src='/images/footer/unf-logo.png' width={246} height={59}
-                alt='The United Nations Foundation Logo'
-              />
+              <a href='https://unfoundation.org/' target='_blank' rel='noreferrer'>
+                <Image
+                  src='/images/footer/unf-logo.png' width={246} height={59}
+                  alt='The United Nations Foundation Logo'
+                />
+              </a>
             </div>
             <div className='relative p-2 m-auto'>
-              <Image
-                src='/images/footer/bill-n-melinda-logo.png' width={244} height={50}
-                alt='The Bill & Melinda Gates Foundation'
-              />
+              <a href='https://www.gatesfoundation.org/' target='_blank' rel='noreferrer'>
+                <Image
+                  src='/images/footer/bill-n-melinda-logo.png' width={244} height={50}
+                  alt='The Bill & Melinda Gates Foundation'
+                />
+              </a>
             </div>
             <div className='relative p-2 m-auto'>
-              <Image
-                src='/images/footer/sida-logo.png' width={102} height={100}
-                alt='The Swedish International Development Cooperation Agency Logo'
-              />
+              <a href='https://www.sida.se/' target='_blank' rel='noreferrer'>
+                <Image
+                  src='/images/footer/sida-logo.png' width={102} height={100}
+                  alt='The Swedish International Development Cooperation Agency Logo'
+                />
+              </a>
             </div>
             <div className='h-20 w-24 relative p-2 m-auto'>
-              <Image
-                src='/images/footer/fcdo-logo.png' layout='fill' objectFit='scale-down'
-                alt='The Foreign, Commonwealth & Development Office Logo'
-              />
+              <a
+                href='https://www.gov.uk/government/organisations/foreign-commonwealth-development-office'
+                target='_blank' rel='noreferrer'
+              >
+                <Image
+                  src='/images/footer/fcdo-logo.png' layout='fill' objectFit='scale-down'
+                  alt='The Foreign, Commonwealth & Development Office Logo'
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -53,16 +64,20 @@ const Footer = () => {
             {format('footer.text.secondLine')}
           </div>
           <div className='h-auto w-72 relative p-2 my-auto'>
-            <Image
-              src='/images/footer/giz-logo.png' width={1744} height={977}
-              alt='The German Corporation for International Cooperation GmbH Logo'
-            />
+            <a href='https://www.giz.de/' target='_blank' rel='noreferrer'>
+              <Image
+                src='/images/footer/giz-logo.png' width={1744} height={977}
+                alt='The German Corporation for International Cooperation GmbH Logo'
+              />
+            </a>
           </div>
           <div className='h-auto w-72 relative p-2 my-auto'>
-            <Image
-              src='/images/footer/bmz-logo.png' width={1280} height={596}
-              alt='The Federal Ministry for Economic Cooperation and Development Logo'
-            />
+            <a href='https://www.bmz.de/' target='_blank' rel='noreferrer'>
+              <Image
+                src='/images/footer/bmz-logo.png' width={1280} height={596}
+                alt='The Federal Ministry for Economic Cooperation and Development Logo'
+              />
+            </a>
           </div>
         </div>
       </div>
@@ -129,11 +144,11 @@ const Footer = () => {
           <div className='border border-t-0 border-dial-gray-light' />
         </div>
         <div className='px-4 pt-4 pb-8 lg:px-10 2xl:px-24 2xl:pt-8 2xl:pb-12 flex flex-row flex-wrap mx-auto max-w-catalog'>
-          <div className='w-full flex flex-row flex-wrap leading-none text-base'>
-            <div className='py-2 px-0 2xl:px-2 order-last xl:order-first mr-4'>
+          <div className='w-full flex flex-row flex-wrap gap-3 leading-none text-base'>
+            <div className='py-2 order-last xl:order-first'>
               &copy; {new Date().getFullYear()} {format('footer.organizationName').toUpperCase()}
             </div>
-            <div className='py-2 px-3 rounded-md bg-dial-gray-light mr-4 '>
+            <div className='py-2 px-3 rounded-md bg-dial-gray-light'>
               <a
                 href='https://gitlab.com/dial/osc/eng/t4d-online-catalog/product-registry'
                 target='_blank' rel='noreferrer'
@@ -142,13 +157,22 @@ const Footer = () => {
                 {format('footer.privacyPolicy').toUpperCase()}
               </a>
             </div>
-            <div className='py-2 px-3 rounded-md bg-dial-gray-light mr-4'>
+            <div className='py-2 px-3 rounded-md bg-dial-gray-light'>
               <a
                 href='https://gitlab.com/dial/osc/eng/t4d-online-catalog/product-registry'
                 target='_blank' rel='noreferrer'
                 className='border-b-2 border-transparent hover:border-dial-yellow'
               >
                 {format('footer.reportIssue').toUpperCase()}
+              </a>
+            </div>
+            <div className='py-2 px-3 rounded-md bg-dial-gray-light'>
+              <a
+                href='mailto:catalog-support@dial.community'
+                target='_blank' rel='noreferrer'
+                className='border-b-2 border-transparent hover:border-dial-yellow'
+              >
+                {format('footer.contactUs').toUpperCase()}
               </a>
             </div>
             <div className='py-2 px-0 2xl:px-2 flex-auto xl:text-left 2xl:text-right'>
