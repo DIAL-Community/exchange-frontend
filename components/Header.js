@@ -178,13 +178,6 @@ const Header = () => {
       : openDropdownPopover(resourcePopoverButton, resourcePopover, setShowResources)
   }
 
-  const navigateToCovidResource = (e) => {
-    e.preventDefault()
-    setShowResources(false)
-    // TODO: Replace this with the eventual url of the covid resources.
-    router.push('/')
-  }
-
   const signInUser = (e) => {
     e.preventDefault()
     signIn()
@@ -236,9 +229,11 @@ const Header = () => {
                 </a>
                 <div className={`${showResources ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={resourcePopover} role='menu'>
                   <div className='py-1' role='none'>
-                    <a href='/covid-19-resources' onClick={navigateToCovidResource} role='menuitem' className={dropdwonMenuStyles}>
-                      {format('header.covidResources')}
-                    </a>
+                    <Link href='/covid-19-resources'>
+                      <a href='/covid-19-resources' role='menuitem' className={dropdwonMenuStyles}>
+                        {format('header.covidResources')}
+                      </a>
+                    </Link>
                     <a
                       href='//resources.dial.community/' target='_blank' rel='noreferrer'
                       role='menuitem' className={dropdwonMenuStyles} onClick={() => setShowResources(false)}

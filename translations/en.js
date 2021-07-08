@@ -452,7 +452,7 @@ export const en = {
   'tooltip.forEntity': '{entity}: {name}',
 
   'map.project.title': 'Map of Projects',
-  'map.aggregator.title': 'Aggregator & Operator Map',
+  'map.aggregator.title': 'Map of Aggregator & Operator',
   'map.endorser.title': 'Map of Digital Principles Endorsers',
 
   'tag.label': 'Tag',
@@ -627,5 +627,164 @@ export const en = {
   'map.header': 'Maps',
   'admin.links': 'Admin Links',
 
-  'footer.contactUs': 'Contact Us'
+  'footer.contactUs': 'Contact Us',
+
+  'covid.title': 'DIAL Support for COVID-19',
+  'covid.description': `
+    COVID-19 has become the greatest public health crisis of our time. The Digital Impact Alliance
+    (DIAL) has developed this online resource to support organizations and governments in their
+    COVID-19 response. Though this tool was originally developed for the evaluation and deployment
+    of open source digital tools, it can also be leveraged specifically to respond to COVID-19 in
+    three areas:
+  `,
+  'covid.description.firstArea': `
+    Quickly identify software platforms that can be used to support frontline health workers
+    and organizations who are tracking COVID-19 outbreaks.
+  `,
+  'covid.description.secondArea': 'Provide tools to quickly set up messaging platforms.',
+  'covid.description.thirdArea': 'Link to other resources developed by partner organizations.',
+
+  'covid.exploreCatalog': 'Explore the Catalog',
+
+  'covid.firstArea.title': 'Using the Online Catalog for Product Discovery',
+  'covid.firstArea.firstText': `
+    <p>
+      Governments and organizations are looking for digital tools to help with COVID-19 surveillance, diagnosis,
+      prevention and treatment.
+    </p>
+    <p>
+      However, they may not know that there are mature open source solutions that are ready to be deployed to
+      support these needs.
+    </p>
+    <p>
+      <firstLink>The Online Catalog</firstLink> contains a list of open source products that support the SDGs.
+    </p>
+    <p>
+      Users can filter products by the SDGs that they are designed to address, the use cases that they are connected
+      to, or the building blocks that they support.
+    </p>
+  `,
+  'covid.firstArea.secondText': `
+    <p>
+      Several of the products in the catalog have been tagged as supporting specific functionality needed for
+      COVID-19 response.
+    </p>
+    <p>
+      To see these products, use the "<b>COVID-19</b>" tag in the filter section.
+    </p>
+    <p>
+      Click on a specific product to get detailed information about the product.
+    </p>
+  `,
+  'covid.firstArea.thirdText': `
+    <p>
+      The product details page will provide a description of the product, links to the product website and code
+      repository, as well as other relevant data about the product.
+    </p>
+  `,
+
+  'covid.secondArea.title': 'Using the Online Catalog for Mobile Messaging Response',
+  'covid.secondArea.firstText': `
+    <p>
+      Governments and organizations need to provide regular information to their constituents.
+      Mobile messaging channels are extremely effective, but can be time-consuming and expensive
+      to set up.
+    </p>
+    <p>
+      But DIAL can help. We have developed relationships with several mobile network aggregators
+      around the world. These aggregators have established relationships with mobile network
+      operators and can configure mobile services very quickly and easily. A mobile messaging
+      solution can be established in a matter of hours.
+    </p>
+    <p>
+      The DIAL online catalog lists mobile network service integrators that provide mobile
+      service delivery around the world and services offered.
+    </p>
+    <p>
+      Click on this link to see the <firstLink>aggregator map</firstLink>.
+    </p>
+    <p>
+      You can also navigate to <secondLink>the main product page</secondLink>, click the "<b>Maps</b>"
+      section on the filter tab and click on"<b>Map of Aggregator & Operator</b>".
+    </p>
+  `,
+  'covid.secondArea.secondText': `
+    <p>
+      On the map page, click on a country to show which aggregators work in that country. Click
+      on an aggregator in that list to see detailed information about the services that they
+      offer and which network operators they partner with.
+    </p>
+  `,
+  'covid.secondArea.thirdText': `
+    <p>
+      Select an aggregator to view the details for that provider. The Operators section
+      shows which services are available by country and which network operators provide those
+      services.
+    </p>
+    <p>
+      For example, if you are looking for Bulk SMS services in Kenya, you can expand the SMS
+      menu and see that these services are offered by this aggregator through Safaricom.
+    </p>
+  `,
+  'covid.secondArea.fourthText': `
+    <p>
+      Alternatively, <firstLink>this link</firstLink> will display a page that shows all of the
+      mobile aggregators in the catalog. Select any aggregator to see which countries they work
+      in, which mobile network operators they partner with, and the specific service offerings they provide.
+    </p>
+  `,
+
+  'covid.thirdArea.title': 'Other COVID- 19 Resources',
+  'covid.thirdArea.firstText': `
+    <div>
+      Johns Hopkins Researchers have published an assessment of Digital Tools for COVID-19
+      response that can be used by low- and middle-income countries
+    </div>
+    <ul>
+      <li>
+        <jsphLink>View the report here</jsphLink>
+      </li>
+    </ul>
+    <div>
+      The CDC has created a Guide to Digital Tools for COVID-19 response
+    </div>
+    <ul>
+      <li>
+        <cdcLink>View the guide here</cdcLink>
+      </li>
+    </ul>
+    <div>
+      Digital Square has a number of resources available to support organizations in their COVID response.
+    </div>
+    <ul>
+      <li>
+        <pathLink>Watch webinar on global goods that have been adapted for COVID-19 response.</pathLink>
+      </li>
+      <li>
+        <deckLink>View slide deck from webinar.</deckLink>
+      </li>
+      <li>
+        <digiSquareLink>
+          See the global goods supported by Digital Square and how they have been adapted for COVID-19.
+        </digiSquareLink>
+      </li>
+    </ul>
+    <div>
+      The New America Foundation has created a Pandemic Response Repository listing digital
+      resources to support governments in COVID response
+    </div>
+    <ul>
+      <li>
+        <newAmericaLink>View the repository here</newAmericaLink>
+      </li>
+    </ul>
+    <div>
+      UNDESA has created a Compendium of Digital Government Initiatives in response to the COVID-19 Pandemic
+    </div>
+    <ul>
+      <li>
+        <unPandemicLink>View the document here</unPandemicLink>
+      </li>
+    </ul>
+  `
 }
