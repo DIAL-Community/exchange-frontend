@@ -22,6 +22,7 @@ const WORKFLOW_QUERY = gql`
       imageFile
       workflowDescriptions {
         description
+        locale
       }
       useCaseSteps {
         slug

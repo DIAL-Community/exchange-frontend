@@ -39,9 +39,8 @@ const UseCaseStep = () => {
     }
 
     const { userEmail, userToken } = session.user
-    return `
-      ${process.env.NEXT_PUBLIC_RAILS_SERVER}/use_cases/${slug}/use_case_steps/${stepSlug}/edit?user_email=${userEmail}&user_token=${userToken}
-    `
+    return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/use_cases/${slug}/use_case_steps/${stepSlug}/` +
+        `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
 
   const slugNameMapping = (() => {

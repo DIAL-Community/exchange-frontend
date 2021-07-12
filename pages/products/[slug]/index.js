@@ -56,6 +56,7 @@ query Product($slug: String!, $locale: String!) {
       languageData
       productDescriptions {
         description
+        locale
       }
       origins {
         name

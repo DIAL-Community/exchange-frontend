@@ -2,11 +2,13 @@ import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import { DiscourseCount } from '../shared/discourse'
 import Breadcrumb from '../shared/breadcrumb'
+import { useRouter } from 'next/router'
 
 const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   const [session] = useSession()
+  const { locale } = useRouter()
 
   const generateEditLink = () => {
     if (!session.user) {
@@ -14,9 +16,8 @@ const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
     }
 
     const { userEmail, userToken } = session.user
-    return `
-      ${process.env.NEXT_PUBLIC_RAILS_SERVER}/building_blocks/${buildingBlock.slug}/edit?user_email=${userEmail}&user_token=${userToken}
-    `
+    return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/building_blocks/${buildingBlock.slug}/` +
+      `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
 
   const slugNameMapping = (() => {

@@ -85,6 +85,7 @@ query SearchProducts(
       }
       productDescriptions {
         description
+        locale
       }
       organizations {
         name
