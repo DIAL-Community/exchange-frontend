@@ -42,19 +42,19 @@ const UseCaseDetailRight = ({ useCase }) => {
       <div className='hidden lg:block'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
-      <div className='self-center place-self-end text-sm'>
-        {
-          session && session.user.canEdit &&
-            <a href={generateCreateStepLink()}>
-              <span className='grid justify-end text-dial-teal'>{format('step.create-new')}</span>
-            </a>
-        }
-      </div>
       <div className='card-title mb-3 text-dial-gray-dark'>{format('useCase.description')}</div>
       <div className='fr-view text-dial-gray-dark'>
         {ReactHtmlParser(descriptionByLocale(useCase.useCaseDescriptions, locale))}
       </div>
       <div className='mt-12'>
+        <div className='self-center place-self-end text-sm'>
+          {
+            session && session.user.canEdit &&
+              <a href={generateCreateStepLink()}>
+                <span className='grid justify-end text-dial-teal'>{format('step.create-new')}</span>
+              </a>
+          }
+        </div>
         <div className='card-title mb-3 text-dial-gray-dark'>{format('useCaseStep.header')}</div>
         {
           useCase.useCaseHeaders && useCase.useCaseHeaders.length > 0 &&
