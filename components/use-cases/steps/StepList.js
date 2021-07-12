@@ -21,6 +21,11 @@ query UseCaseSteps(
         name
         imageFile
       }
+      products {
+        name
+        slug
+        imageFile
+      }
   }
 }
 `

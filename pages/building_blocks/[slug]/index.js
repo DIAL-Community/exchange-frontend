@@ -33,6 +33,7 @@ query BuildingBlock($slug: String!) {
     products {
       name
       slug
+      imageFile
     }
   }
 }
