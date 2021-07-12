@@ -51,6 +51,7 @@ query SearchProjects(
       slug
       projectDescriptions {
         description
+        locale
       }
       organizations {
         id

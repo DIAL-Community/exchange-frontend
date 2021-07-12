@@ -9,6 +9,7 @@ const SearchFilter = (props) => {
   const { displayType, setDisplayType } = useContext(FilterContext)
 
   const router = useRouter()
+  const { locale } = useRouter()
   const [session] = useSession()
 
   const { formatMessage } = useIntl()
@@ -40,9 +41,8 @@ const SearchFilter = (props) => {
     }
 
     const { userEmail, userToken } = session.user
-    return `
-      ${process.env.NEXT_PUBLIC_RAILS_SERVER}/${linkPath[0]}/new?user_email=${userEmail}&user_token=${userToken}
-    `
+    return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/${linkPath[0]}/` +
+        `new?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
 
   return (

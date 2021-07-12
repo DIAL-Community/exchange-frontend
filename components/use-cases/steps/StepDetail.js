@@ -5,6 +5,9 @@ import WorkflowCard from '../../workflows/WorkflowCard'
 import BuildingBlockCard from '../../building-blocks/BuildingBlockCard'
 import ReactHtmlParser from 'react-html-parser'
 
+import { descriptionByLocale } from '../../lib/utilities'
+import { useRouter } from 'next/router'
+
 const USE_CASE_STEP_QUERY = gql`
   query UseCaseStep($slug: String!) {
     useCaseStep(slug: $slug) {
@@ -13,6 +16,7 @@ const USE_CASE_STEP_QUERY = gql`
       slug
       useCaseStepDescriptions {
         description
+        locale
       }
       useCase {
         slug
@@ -35,6 +39,7 @@ const USE_CASE_STEP_QUERY = gql`
 const UseCaseStepInformation = ({ useCaseStep }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
+  const { locale } = useRouter()
 
   const slugNameMapping = (() => {
     const map = {}
@@ -49,7 +54,7 @@ const UseCaseStepInformation = ({ useCaseStep }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='fr-view text-dial-gray-dark'>
-        {useCaseStep.useCaseStepDescriptions[0] && ReactHtmlParser(useCaseStep.useCaseStepDescriptions[0].description)}
+        {ReactHtmlParser(descriptionByLocale(useCaseStep.useCaseStepDescriptions, locale))}
       </div>
       {
         useCaseStep.workflows && useCaseStep.workflows.length > 0 &&

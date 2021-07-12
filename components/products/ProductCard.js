@@ -2,11 +2,13 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
-import { ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
+import { descriptionByLocale, ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
+import { useRouter } from 'next/router'
 
 const ProductCard = ({ product, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+  const { locale } = useRouter()
 
   const isEndorsingOrg = () => {
     if (!product.organizations) {
@@ -120,12 +122,15 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                   <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
                     {product.name}
                   </div>
-                  <img
-                    className='ml-auto opacity-20 hover:opacity-100 product-filter'
-                    data-tip={product.productDescriptions && product.productDescriptions[0] && product.productDescriptions[0].description}
-                    data-html
-                    alt='Info' height='20px' width='20px' src='/icons/info.svg'
-                  />
+                  {
+                    product.productDescriptions && product.productDescriptions.length > 0 &&
+                      <img
+                        className='ml-auto opacity-20 hover:opacity-100 product-filter'
+                        data-tip={descriptionByLocale(product.productDescriptions, locale)}
+                        data-html
+                        alt='Info' height='20px' width='20px' src='/icons/info.svg'
+                      />
+                  }
                   <div className='m-auto align-middle w-40'>
                     <img
                       alt={format('image.alt.logoFor', { name: product.name })}

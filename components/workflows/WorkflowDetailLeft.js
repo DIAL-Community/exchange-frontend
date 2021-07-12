@@ -1,11 +1,13 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import Breadcrumb from '../shared/breadcrumb'
+import { useRouter } from 'next/router'
 
 const WorkflowDetailLeft = ({ workflow }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   const [session] = useSession()
+  const { locale } = useRouter()
 
   const generateEditLink = () => {
     if (!session.user) {
@@ -13,9 +15,8 @@ const WorkflowDetailLeft = ({ workflow }) => {
     }
 
     const { userEmail, userToken } = session.user
-    return `
-      ${process.env.NEXT_PUBLIC_RAILS_SERVER}/workflows/${workflow.slug}/edit?user_email=${userEmail}&user_token=${userToken}
-    `
+    return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/workflows/${workflow.slug}/` +
+        `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
 
   const slugNameMapping = (() => {

@@ -24,6 +24,7 @@ query BuildingBlock($slug: String!) {
     discourseId
     buildingBlockDescriptions {
       description
+      locale
     }
     workflows {
       name
@@ -33,6 +34,7 @@ query BuildingBlock($slug: String!) {
     products {
       name
       slug
+      imageFile
     }
   }
 }

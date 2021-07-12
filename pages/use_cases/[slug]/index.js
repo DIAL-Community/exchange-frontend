@@ -25,6 +25,7 @@ const USE_CASE_QUERY = gql`
       imageFile
       useCaseDescriptions {
         description
+        locale
       }
       sdgTargets {
         id

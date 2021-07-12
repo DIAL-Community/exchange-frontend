@@ -5,6 +5,8 @@ import { DiscourseCount } from '../shared/discourse'
 import Breadcrumb from '../shared/breadcrumb'
 import { useRouter } from 'next/router'
 
+import { descriptionByLocale } from '../../lib/utilities'
+
 const ProductDetailLeft = ({ product, discourseClick }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -18,9 +20,8 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
     }
 
     const { userEmail, userToken } = session.user
-    return `
-      ${process.env.NEXT_PUBLIC_RAILS_SERVER}/products/${product.slug}/edit?user_email=${userEmail}&user_token=${userToken}
-    `
+    return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/products/${product.slug}/` +
+        `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
 
   const slugNameMapping = (() => {
@@ -62,13 +63,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
           <img alt={`${product.name} Logo`} className='p-2 m-auto' src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile} width='200px' height='200px' />
         </div>
         <div className='fr-view text-dial-gray-dark'>
-          {product.productDescriptions && product.productDescriptions.map(desc => {
-            if (desc.locale === locale) {
-              return ReactHtmlParser(desc.description)
-            } else {
-              return ''
-            }
-          })}
+          {ReactHtmlParser(descriptionByLocale(product.productDescriptions, locale))}
         </div>
       </div>
       {

@@ -4,9 +4,13 @@ import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import UseCaseCard from '../use-cases/UseCaseCard'
 import ReactHtmlParser from 'react-html-parser'
 
+import { descriptionByLocale } from '../../lib/utilities'
+import { useRouter } from 'next/router'
+
 const WorkflowDetailRight = ({ workflow }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+  const { locale } = useRouter()
 
   const useCases = (() => {
     if (!workflow.useCaseSteps) {
@@ -36,7 +40,7 @@ const WorkflowDetailRight = ({ workflow }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='fr-view text-dial-gray-dark'>
-        {workflow.workflowDescriptions[0] && ReactHtmlParser(workflow.workflowDescriptions[0].description)}
+        {ReactHtmlParser(descriptionByLocale(workflow.workflowDescriptions, locale))}
       </div>
       {
         useCases && useCases.length > 0 &&
