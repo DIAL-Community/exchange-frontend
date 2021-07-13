@@ -6,7 +6,7 @@ import BuildingBlockCard from '../../building-blocks/BuildingBlockCard'
 import ProductCard from '../../products/ProductCard'
 import ReactHtmlParser from 'react-html-parser'
 
-import { descriptionByLocale } from '../../lib/utilities'
+import { descriptionByLocale } from '../../../lib/utilities'
 import { useRouter } from 'next/router'
 
 const USE_CASE_STEP_QUERY = gql`
