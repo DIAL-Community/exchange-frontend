@@ -10,7 +10,7 @@ const SectorCard = ({ sector, listType }) => {
           ? (
             <div className='border-3 border-transparent text-button-gray'>
               <div className='border border-dial-gray shadow-sm hover:shadow-lg'>
-                <div className='flex justify-between my-4 px-4'>
+                <div className='flex justify-between my-5 px-4'>
                   <div className='inline-block card-title text-button-gray'>
                     {sector.name}
                   </div>

@@ -5,7 +5,7 @@ import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Organizations')
 
 const ellipsisTextStyle = `
-  whitespace-nowrap overflow-ellipsis overflow-hidden
+  whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
 
 const OrganizationCard = ({ organization, listType, newTab = false }) => {
@@ -27,11 +27,15 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                   <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg hover:text-dial-yellow'>
                     <div className='grid grid-cols-12 my-5 px-4'>
                       <img
-                        className='m-auto w-12'
+                        className='m-auto h-8'
                         alt={format('image.alt.logoFor', { name: organization.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
                       />
-                      <div className={`${nameColSpan(organization)} text-base font-semibold text-dial-gray-darkwhitespace-nowrap overflow-ellipsis overflow-hidden`}>
+                      <div className={`
+                          ${nameColSpan(organization)} text-base font-semibold text-dial-gray-dark
+                          my-auto whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+                        `}
+                      >
                         {organization.name}
                         {
                           organization.sectors &&
@@ -63,7 +67,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                             }
                           </div>
                       }
-                      <div className='col-span-4 lg:col-span-3 text-base text-dial-purple'>
+                      <div className='col-span-4 lg:col-span-3 text-base text-dial-purple my-auto'>
                         {
                           !organization.whenEndorsed && (
                             <div className='flex flex-row text-sm font-semibold justify-end text-dial-cyan'>

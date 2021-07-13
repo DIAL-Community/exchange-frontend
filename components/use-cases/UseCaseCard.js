@@ -7,7 +7,7 @@ import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Use Cases')
 
 const ellipsisTextStyle = `
-   whitespace-nowrap overflow-ellipsis overflow-hidden
+   whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
 
 const UseCaseCard = ({ useCase, listType, newTab = false }) => {
