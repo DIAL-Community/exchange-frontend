@@ -159,7 +159,10 @@ const ProductDetailRight = ({ product, discourseRef }) => {
         <div className='card-title mb-3 text-dial-gray-dark'>{format('product.maturity-scores')}</div>
         {
           product.maturityScore
-            ? <MaturityAccordion maturityScores={product.maturityScores} overallScore={product.maturityScore} />
+            ? <>
+              <div className='text-sm mb-3 text-dial-gray-dark' dangerouslySetInnerHTML={{ __html: format('product.maturity-desc') }} />
+              <MaturityAccordion maturityScores={product.maturityScores} overallScore={product.maturityScore} />
+            </>
             : <div className='text-sm pb-5 text-button-gray'>{format('product.no-maturity')}</div>
         }
       </div>

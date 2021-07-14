@@ -18,8 +18,8 @@ import Phases from './Phases'
 import { Loading, Error } from '../shared/FetchStatus'
 
 const IDEATION_QUERY = gql`
-query Wizard($phase: String!, $sector: String, $buildingBlocks: [String!], $tags: [String!], $country: String, $mobileServices: [String!]) {
-  wizard(phase: $phase, sector: $sector, buildingBlocks: $buildingBlocks, tags: $tags, country: $country, mobileServices: $mobileServices) {
+query Wizard($phase: String!, $sector: String, $subsector: String, $sdg: String, $buildingBlocks: [String!], $tags: [String!], $country: String, $mobileServices: [String!]) {
+  wizard(phase: $phase, sector: $sector, subsector: $subsector, sdg: $sdg, buildingBlocks: $buildingBlocks, tags: $tags, country: $country, mobileServices: $mobileServices) {
     digitalPrinciples {
       name
       slug
@@ -46,8 +46,8 @@ query Wizard($phase: String!, $sector: String, $buildingBlocks: [String!], $tags
 `
 
 const PLANNING_QUERY = gql`
-query Wizard($phase: String!, $sector: String, $buildingBlocks: [String!], $tags: [String!], $country: String, $mobileServices: [String!]) {
-  wizard(phase: $phase, sector: $sector, buildingBlocks: $buildingBlocks, tags: $tags, country: $country, mobileServices: $mobileServices) {
+query Wizard($phase: String!, $sector: String, $subsector: String, $sdg: String, $buildingBlocks: [String!], $tags: [String!], $country: String, $mobileServices: [String!]) {
+  wizard(phase: $phase, sector: $sector, subsector: $subsector, sdg: $sdg, buildingBlocks: $buildingBlocks, tags: $tags, country: $country, mobileServices: $mobileServices) {
     digitalPrinciples {
       name
       slug
@@ -70,8 +70,8 @@ query Wizard($phase: String!, $sector: String, $buildingBlocks: [String!], $tags
 `
 
 const IMPLEMENTATION_QUERY = gql`
-query Wizard($phase: String!, $sector: String, $buildingBlocks: [String!], $tags: [String!], $country: String, $mobileServices: [String!]) {
-  wizard(phase: $phase, sector: $sector, buildingBlocks: $buildingBlocks, tags: $tags, country: $country, mobileServices: $mobileServices) {
+query Wizard($phase: String!, $sector: String, $subsector: String, $sdg: String, $buildingBlocks: [String!], $tags: [String!], $country: String, $mobileServices: [String!]) {
+  wizard(phase: $phase, sector: $sector, subsector: $subsector, sdg: $sdg, buildingBlocks: $buildingBlocks, tags: $tags, country: $country, mobileServices: $mobileServices) {
     digitalPrinciples {
       name
       slug
@@ -98,8 +98,8 @@ query Wizard($phase: String!, $sector: String, $buildingBlocks: [String!], $tags
 `
 
 const EVALUATION_QUERY = gql`
-query Wizard($phase: String!, $sector: String, $buildingBlocks: [String!], $tags: [String!], $country: String, $mobileServices: [String!]) {
-  wizard(phase: $phase, sector: $sector, buildingBlocks: $buildingBlocks, tags: $tags, country: $country, mobileServices: $mobileServices) {
+query Wizard($phase: String!, $sector: String, $subsector: String, $sdg: String, $buildingBlocks: [String!], $tags: [String!], $country: String, $mobileServices: [String!]) {
+  wizard(phase: $phase, sector: $sector, subsector: $subsector, sdg: $sdg, buildingBlocks: $buildingBlocks, tags: $tags, country: $country, mobileServices: $mobileServices) {
     digitalPrinciples {
       name
       slug
@@ -160,7 +160,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const [currentSection, setCurrentSection] = useState(0)
   const [wizardData, setWizardData] = useState()
 
-  const vars = { phase: allValues.projectPhase, sector: allValues.sector, buildingBlocks: allValues.buildingBlocks, tags: allValues.tags, country: allValues.country, mobileServices: allValues.mobileServices }
+  const vars = { phase: allValues.projectPhase, sector: allValues.sector, subsector: allValues.subsector, sdg: allValues.sdg, buildingBlocks: allValues.buildingBlocks, tags: allValues.tags, country: allValues.country, mobileServices: allValues.mobileServices }
   const [runIdeationQuery, { error: ideationErrors }] = useLazyQuery(IDEATION_QUERY, {
     variables: vars,
     fetchPolicy: 'no-cache',

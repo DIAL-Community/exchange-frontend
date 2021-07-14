@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl'
 import Select from 'react-select'
+import { useState } from 'react'
 
 import Phases from './Phases'
 
@@ -16,6 +17,15 @@ export const WizardStage1 = ({ setAllValues }) => {
 export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+
+  const [subSectors, setSubsectors] = useState()
+
+  const updateSubsectors = (val) => {
+    const currSector = projData.sectors.find(sector => sector.value === val.value)
+    setSubsectors(currSector.subSectors.map((sector) => { return { label: sector.name.split(':')[1], value: sector.name.split(':')[1] } }))
+    setAllValues(prevValues => { return { ...prevValues, sector: val.value } })
+  }
+
   return (
     <div className='lg:flex'>
       <div className='lg:w-1/4 lg:px-5'>
@@ -25,30 +35,30 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
         <Select
           className='text-button-gray' options={projData.sectors}
           value={allValues.sector && { value: allValues.sector, label: allValues.sector }}
-          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, sector: val.value } })}
+          onChange={(val) => updateSubsectors(val)}
           placeholder={format('wizard.sectorPlaceholder')}
         />
       </div>
       <div className='lg:w-1/4 lg:px-5'>
-        <div className='text-sm pt-6 lg:pt-1 pb-2'>
-          {format('wizard.selectUseCase')}
+        <div className='text-sm pt-6 pb-2'>
+          {format('wizard.selectSubsector')}
         </div>
         <Select
-          className='text-button-gray' options={projData.useCases}
-          value={allValues.useCase && { value: allValues.useCase, label: allValues.useCase }}
-          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, useCase: val.value } })}
-          placeholder={format('wizard.useCasePlaceholder')}
+          className='text-button-gray' options={subSectors}
+          value={allValues.subsector && { value: allValues.subsector, label: allValues.subsector }}
+          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, subsector: val.value } })}
+          placeholder={format('wizard.subsectorPlaceholder')}
         />
       </div>
       <div className='lg:w-1/4 lg:px-5'>
-        <div className='text-sm pt-6 lg:pt-1 pb-2'>
-          {format('wizard.selectCountry')}
+        <div className='text-sm pt-6 pb-2'>
+          {format('wizard.selectSDG')}
         </div>
         <Select
-          className='text-button-gray' options={projData.countries}
-          value={allValues.country && { value: allValues.country, label: allValues.country }}
-          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, country: val.value } })}
-          placeholder={format('wizard.countryPlaceholder')}
+          className='text-button-gray' options={projData.sdgs}
+          value={allValues.sdg && { value: allValues.sdg, label: allValues.sdg }}
+          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, sdg: val.value } })}
+          placeholder={format('wizard.sdgPlaceholder')}
         />
       </div>
     </div>
@@ -82,6 +92,17 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
             </div>
           )
         })}
+      </div>
+      <div className='lg:w-1/4 lg:px-5'>
+        <div className='text-sm pt-6 lg:pt-1 pb-2'>
+          {format('wizard.selectCountry')}
+        </div>
+        <Select
+          className='text-button-gray' options={projData.countries}
+          value={allValues.country && { value: allValues.country, label: allValues.country }}
+          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, country: val.value } })}
+          placeholder={format('wizard.countryPlaceholder')}
+        />
       </div>
       <div className='lg:w-1/3 lg:px-5 lg:mx-5'>
         <div className='text-sm pt-6 pb-2'>
