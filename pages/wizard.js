@@ -15,17 +15,22 @@ import gql from 'graphql-tag'
 import { Loading, Error } from '../components/shared/FetchStatus'
 
 const SECTOR_QUERY = gql`
-query Sector($locale: String) {
-  sectors(locale: $locale) {
+query SectorsWithSubs($locale: String) {
+  sectorsWithSubs(locale: $locale) {
     id
     name
     slug
+    subSectors {
+      id
+      name
+      slug
+    }
   }
 }
 `
-const USE_CASE_QUERY = gql`
-query UseCases {
-  useCases {
+const SDG_QUERY = gql`
+query SDGs {
+  sdgs {
     id
     name
     slug
@@ -58,6 +63,8 @@ const WizardPage = () => {
   const [allValues, setAllValues] = useState({
     projectPhase: '',
     sector: '',
+    subsector: '',
+    sdg: '',
     useCase: '',
     country: '',
     tags: [],
@@ -70,20 +77,20 @@ const WizardPage = () => {
   const { locale } = router
 
   const { loading: sectorLoading, error: sectorError, data: sectorData } = useQuery(SECTOR_QUERY, { variables: { locale } })
-  const { loading: useCaseLoading, error: useCaseError, data: useCaseData } = useQuery(USE_CASE_QUERY)
+  const { loading: sdgLoading, error: sdgError, data: sdgData } = useQuery(SDG_QUERY)
   const { loading: countryLoading, error: countryError, data: countryData } = useQuery(COUNTRY_QUERY)
   const { loading: tagLoading, error: tagError, data: tagData } = useQuery(TAG_QUERY)
-  if (sectorLoading || useCaseLoading || countryLoading || tagLoading) {
+  if (sectorLoading || sdgLoading || countryLoading || tagLoading) {
     return <><Header /><div><Loading /></div><Footer /></>
   }
-  if (sectorError || useCaseError || countryError || tagError) {
+  if (sectorError || sdgError || countryError || tagError) {
     return <div><Error /></div>
   }
 
   const mobileServices = ['Airtime', 'API', 'HS', 'Mobile-Internet', 'Mobile-Money', 'Ops-Maintenance', 'OTT', 'SLA', 'SMS', 'User-Interface', 'USSD', 'Voice']
   const projData = { sectors: [], useCases: [], countries: [], mobileServices: [], tags: [], buildingBlocks: [] }
-  projData.sectors = sectorData.sectors.map((sector) => { return { label: sector.name, value: sector.name } })
-  projData.useCases = useCaseData.useCases.map((useCase) => { return { label: useCase.name, value: useCase.name } })
+  projData.sectors = sectorData.sectorsWithSubs.map((sector) => { return { label: sector.name, value: sector.name, subSectors: sector.subSectors } })
+  projData.sdgs = sdgData.sdgs.map((sdg) => { return { label: sdg.name, value: sdg.name } })
   projData.countries = countryData.countries.map((country) => { return { label: country.name, value: country.name } })
   projData.tags = tagData.tags.map((tag) => { return { label: tag.name, value: tag.name } })
   projData.mobileServices = mobileServices.map((service) => { return { label: service, value: service } })

@@ -30,12 +30,12 @@ const ProductFilter = (props) => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const {
-    withMaturity, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
+    withMaturity, productDeployable, forCovid, sectors, countries, organizations, origins, sdgs, tags,
     useCases, workflows, buildingBlocks, productTypes
   } = useContext(ProductFilterContext)
 
   const {
-    setWithMaturity, setProductDeployable, setSectors, setCountries, setOrganizations,
+    setWithMaturity, setProductDeployable, setForCovid, setSectors, setCountries, setOrganizations,
     setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setProductTypes
   } = useContext(ProductFilterDispatchContext)
 
@@ -45,6 +45,14 @@ const ProductFilter = (props) => {
 
   const toggleProductDeployable = () => {
     setProductDeployable(!productDeployable)
+  }
+
+  const toggleForCovid = () => {
+    !forCovid
+      ? setTags([...tags.filter(s => s.value !== 'COVID-19'), { label: 'COVID-19', value: 'COVID-19' }])
+      : setTags(tags.filter(tag => tag.value !== 'COVID-19'))
+
+    setForCovid(!forCovid)
   }
 
   const filterCount = () => {
@@ -61,6 +69,7 @@ const ProductFilter = (props) => {
     e.preventDefault()
     setWithMaturity(false)
     setProductDeployable(false)
+    setForCovid(false)
     setOrigins([])
     setCountries([])
     setSectors([])
@@ -148,6 +157,15 @@ const ProductFilter = (props) => {
                 {format('filter.entity', { entity: format('product.label') }).toUpperCase()}
               </div>
               <div className='text-sm text-dial-gray-light flex flex-row'>
+                <div className='px-2 pb-2'>
+                  <label className='inline-flex items-center'>
+                    <input
+                      type='checkbox' className='h-4 w-4 form-checkbox text-white' name='with-maturity'
+                      checked={forCovid} onChange={toggleForCovid}
+                    />
+                    <span className='ml-2'>{format('filter.product.forCovid')}</span>
+                  </label>
+                </div>
                 <div className='px-2 pb-2'>
                   <label className='inline-flex items-center'>
                     <input
