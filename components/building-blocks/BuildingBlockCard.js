@@ -7,7 +7,7 @@ import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Building Blocks')
 
 const ellipsisTextStyle = `
-   whitespace-nowrap overflow-ellipsis overflow-hidden
+   whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
 
 const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {

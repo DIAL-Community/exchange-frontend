@@ -6,6 +6,10 @@ import ReactTooltip from 'react-tooltip'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('SDGs')
 
+const ellipsisTextStyle = `
+  whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+`
+
 const SDGCard = ({ sdg, listType }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -69,7 +73,7 @@ const SDGCard = ({ sdg, listType }) => {
             <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-1 lg:grid-cols-6 gap-4 my-5 px-4'>
-                  <div className={`${nameColSpan()} pr-3 text-base text-sdg font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden`}>
+                  <div className={`${nameColSpan()} pr-3 text-base text-sdg font-semibold ${ellipsisTextStyle}`}>
                     <img
                       className='inline pr-4' src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`}
                       alt={format('image.alt.logoFor', { name: sdg.name })} width='40' height='40'
@@ -93,7 +97,7 @@ const SDGCard = ({ sdg, listType }) => {
                         </div>
                     }
                   </div>
-                  <div className={`${useCaseColSpan()} text-base text-use-case whitespace-nowrap overflow-ellipsis overflow-hidden`}>
+                  <div className={`${useCaseColSpan()} text-base text-use-case ${ellipsisTextStyle}`}>
                     {
                       useCases && useCases.length === 0 && format('general.na')
                     }

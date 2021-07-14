@@ -8,6 +8,10 @@ import { ORIGIN_ACRONYMS, truncate } from '../../lib/utilities'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Projects')
 
+const ellipsisTextStyle = `
+  whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+`
+
 const ProjectCard = ({ project, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
@@ -48,8 +52,8 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-button-gray hover:text-dial-yellow cursor-pointer'>
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
-                <div className='grid grid-cols-12 my-5 px-4 text-base font-semibold hover:text-dial-yellow whitespace-nowrap overflow-ellipsis overflow-hidden'>
-                  <div className={`${nameColSpan(project)} lg:mr-4 my-auto overflow-hidden overflow-ellipsis`}>
+                <div className='grid grid-cols-12 my-4 px-4 text-base font-semibold hover:text-dial-yellow'>
+                  <div className={`${nameColSpan(project)} lg:mr-4 my-auto ${ellipsisTextStyle}`}>
                     <div className='block lg:hidden font-normal float-right'>
                       <div
                         className='block xl:hidden text-right'
@@ -65,7 +69,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                           <div className='text-sm font-normal'>
                             {format('organization.header')}:
                           </div>
-                          <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
+                          <div className={`mx-1 text-sm font-normal ${ellipsisTextStyle}`}>
                             {
                               project.organizations.length === 0 && format('general.na')
                             }
@@ -96,7 +100,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                   </div>
                   {
                     project.organizations &&
-                      <div className='hidden lg:block lg:col-span-3 mr-4 font-normal overflow-hidden overflow-ellipsis'>
+                      <div className={`hidden lg:block lg:col-span-3 mr-4 font-normal ${ellipsisTextStyle}`}>
                         {
                           project.organizations.length === 0 && format('general.na')
                         }
@@ -108,7 +112,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                   }
                   {
                     project.products &&
-                      <div className='hidden lg:block lg:col-span-3 mr-4 font-normal overflow-hidden overflow-ellipsis'>
+                      <div className={`hidden lg:block lg:col-span-3 mr-4 font-normal ${ellipsisTextStyle}`}>
                         {
                           project.products.length === 0 && format('general.na')
                         }
@@ -120,7 +124,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                   }
                   <div className={`${originColSpan(project)} font-normal`}>
                     <img
-                      className='hidden xl:block h-6 md:h-8 ml-auto'
+                      className='hidden xl:block h-6 ml-auto'
                       src={`/images/origins/${project.origin.slug}.png`}
                       alt={project.origin.slug}
                     />

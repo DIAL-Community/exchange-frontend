@@ -35,7 +35,7 @@ const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) =
   const getContent = () => {
     switch (stage) {
       case 0:
-        return (<div className='lg:w-1/2 text-sm'><FormattedMessage id='wizard.intro' values={{ linebreak: <br /> }} /></div>)
+        return (<div className='w-2/3 xl:w-1/2 text-sm'><FormattedMessage id='wizard.intro' values={{ linebreak: <br /> }} /></div>)
       case 1:
         return (<WizardStage1 setAllValues={setAllValues} />)
       case 2:

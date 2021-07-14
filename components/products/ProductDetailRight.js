@@ -28,7 +28,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='w-full flex flex-col xl:flex-row'>
-        <div className='w-full xl:w-2/5 mr-4 border-b xl:border-r text-dial-purple-light'>
+        <div className='w-full xl:w-2/5 mr-4 border-b xl:border-b-0 xl:border-r text-dial-purple-light'>
           {(product.childProducts.length > 0) && <div className='mb-2'>{product.name}</div>}
           <RepositoryInfo product={product} />
         </div>

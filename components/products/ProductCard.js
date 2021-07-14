@@ -5,6 +5,10 @@ import ReactTooltip from 'react-tooltip'
 import { descriptionByLocale, ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
 import { useRouter } from 'next/router'
 
+const ellipsisTextStyle = `
+  whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+`
+
 const ProductCard = ({ product, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -36,11 +40,11 @@ const ProductCard = ({ product, listType, newTab = false }) => {
               <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
                   <img
-                    className='m-auto w-12'
+                    className='mx-auto h-8'
                     alt={format('image.alt.logoFor', { name: product.name })}
                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
                   />
-                  <div className='col-span-12 md:col-span-4 md:mr-4 my-auto whitespace-nowrap overflow-hidden overflow-ellipsis'>
+                  <div className={`col-span-12 md:col-span-4 md:mr-4 my-auto ${ellipsisTextStyle}`}>
                     {product.name}
                     <div className='block md:hidden text-dial-cyan font-semibold text-sm float-right'>
                       {product.productType === 'dataset' ? format('product.card.dataset').toUpperCase() : ''}
@@ -48,23 +52,35 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                     <div className='block md:hidden flex flex-row justify-end float-right'>
                       {
                         product.endorsers && product.endorsers.length > 0 &&
-                          <img data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
+                          <img
+                            data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5'
+                            src='/icons/check/check.png'
+                          />
                       }
                       {
                         isEndorsingOrg() &&
-                          <img data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5' src='/icons/digiprins/digiprins.png' />
+                          <img
+                            data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5'
+                            src='/icons/digiprins/digiprins.png'
+                          />
                       }
                       {
                         product.tags && product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
-                          <img data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5' src='/icons/coronavirus/coronavirus.png' />
+                          <img
+                            data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5'
+                            src='/icons/coronavirus/coronavirus.png'
+                          />
                       }
-                      {product.isLaunchable && <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />}
+                      {
+                        product.isLaunchable &&
+                          <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />
+                      }
                     </div>
                   </div>
-                  <div className='hidden md:block md:col-span-2 mr-3 font-semibold text-dial-cyan'>
+                  <div className='hidden md:block md:col-span-2 mr-3 font-semibold text-dial-cyan my-auto'>
                     {product.productType === 'dataset' ? format('product.card.dataset').toUpperCase() : ''}
                   </div>
-                  <div className='hidden md:block md:col-span-4 pr-3 text-base text-dial-purple overflow-hidden overflow-ellipsis'>
+                  <div className={`hidden md:block md:col-span-4 pr-3 text-base text-dial-purple ${ellipsisTextStyle}`}>
                     {
                       product.origins && product.origins.length === 0 && format('general.na')
                     }
@@ -75,18 +91,27 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                           .join(', ')
                     }
                   </div>
-                  <div className='hidden md:col-span-1 md:flex flex-row justify-end'>
+                  <div className='hidden md:col-span-1 md:flex flex-row justify-end my-auto'>
                     {
                       product.endorsers && product.endorsers.length > 0 &&
-                        <img data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
+                        <img
+                          data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5'
+                          src='/icons/check/check.png'
+                        />
                     }
                     {
                       isEndorsingOrg() &&
-                        <img data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5' src='/icons/digiprins/digiprins.png' />
+                        <img
+                          data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5'
+                          src='/icons/digiprins/digiprins.png'
+                        />
                     }
                     {
                       product.tags && product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
-                        <img data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5' src='/icons/coronavirus/coronavirus.png' />
+                        <img
+                          data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5'
+                          src='/icons/coronavirus/coronavirus.png'
+                        />
                     }
                     {product.isLaunchable && <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />}
                   </div>
@@ -96,19 +121,28 @@ const ProductCard = ({ product, listType, newTab = false }) => {
             )
           : (
             <div className='border-3 border-transparent hover:border-dial-yellow text-dial-purple hover:text-dial-yellow cursor-pointer h-full'>
-              <div className='h-full flex flex-col justify-between border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
+              <div className='h-full flex flex-col border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
                   {
                     product.endorsers && product.endorsers.length > 0 &&
-                      <img data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
+                      <img
+                        data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5'
+                        src='/icons/check/check.png'
+                      />
                   }
                   {
                     isEndorsingOrg() &&
-                      <img data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5' src='/icons/digiprins/digiprins.png' />
+                      <img
+                        data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5'
+                        src='/icons/digiprins/digiprins.png'
+                      />
                   }
                   {
                     product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
-                      <img data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5' src='/icons/coronavirus/coronavirus.png' />
+                      <img
+                        data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5'
+                        src='/icons/coronavirus/coronavirus.png'
+                      />
                   }
                   {product.isLaunchable && <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />}
                   {
@@ -138,7 +172,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                     />
                   </div>
                 </div>
-                <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark '>
+                <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark mt-auto'>
                   <div className='pb-3 flex flex-row flex-wrap justify-between border-b border-dial-gray'>
                     <div className='pl-3 pt-3 flex flex-row flex-wrap'>
                       <div className='text-base my-auto mr-2'>{format('product.card.sdgs')}</div>
@@ -228,7 +262,10 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                             .map(origin => (
                               <div
                                 key={`origin-${origin.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
-                                data-tip={format('tooltip.forEntity', { entity: format('origin.label'), name: ORIGIN_EXPANSIONS[origin.slug.toLowerCase()] })}
+                                data-tip={format('tooltip.forEntity', {
+                                  entity: format('origin.label'),
+                                  name: ORIGIN_EXPANSIONS[origin.slug.toLowerCase()]
+                                })}
                               >
                                 {(ORIGIN_ACRONYMS[origin.slug.toLowerCase()] || origin.slug).toUpperCase()}
                               </div>
