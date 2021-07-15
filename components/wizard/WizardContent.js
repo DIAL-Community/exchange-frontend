@@ -68,7 +68,7 @@ const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) =
           <div className='float-right lg:block'>
             <button
               onClick={() => {
-                router.push('/')
+                router.push('/products')
               }}
               className='bg-button-gray p-4 float-right rounded text-button-gray-light'
             >

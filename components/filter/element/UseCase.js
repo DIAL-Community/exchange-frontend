@@ -9,8 +9,8 @@ import { UseCaseLogo } from '../../logo'
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
 const USE_CASE_SEARCH_QUERY = gql`
-  query UseCases($search: String!) {
-    useCases(search: $search) {
+  query UseCases($search: String!, $mature: Boolean!) {
+    useCases(search: $search, mature: $mature) {
       id
       name
     }
@@ -48,7 +48,8 @@ export const UseCaseAutocomplete = (props) => {
     const response = await client.query({
       query: query,
       variables: {
-        search: input
+        search: input,
+        mature: true
       }
     })
 

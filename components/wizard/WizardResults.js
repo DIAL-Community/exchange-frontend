@@ -252,7 +252,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
       <div ref={parentRef} className='bg-dial-gray-light text-button-gray-light p-6 lg:w-3/4 h-screen overflow-y-scroll wizard-content'>
         <button
           className='bg-dial-gray p-4 float-right rounded text-button-gray-light'
-          onClick={() => { router.push('/') }}
+          onClick={() => { router.push('/products') }}
         >
           <img src='/icons/close.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
           {format('wizard.close')}
