@@ -168,7 +168,7 @@ const Footer = () => {
             </div>
             <div className='py-2 px-3 rounded-md bg-dial-gray-light'>
               <a
-                href='mailto:catalog-support@dial.community'
+                href='mailto:issues@solutions.dial.community'
                 target='_blank' rel='noreferrer'
                 className='border-b-2 border-transparent hover:border-dial-yellow'
               >

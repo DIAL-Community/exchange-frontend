@@ -29,8 +29,8 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
   return (
     <div className='lg:flex'>
       <div className='lg:w-1/4 lg:px-5'>
-        <div className='text-sm pt-6 pb-2'>
-          {format('wizard.selectSector')}
+        <div className='text-sm pb-2 h-12 grid content-end'>
+          <div>{format('wizard.selectSector')}</div>
         </div>
         <Select
           className='text-button-gray' options={projData.sectors}
@@ -40,7 +40,7 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
         />
       </div>
       <div className='lg:w-1/4 lg:px-5'>
-        <div className='text-sm pt-6 pb-2'>
+        <div className='text-sm pb-2 h-12 grid content-end'>
           {format('wizard.selectSubsector')}
         </div>
         <Select
@@ -51,7 +51,7 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
         />
       </div>
       <div className='lg:w-1/4 lg:px-5'>
-        <div className='text-sm pt-6 pb-2'>
+        <div className='text-sm pb-2 h-12 grid content-end'>
           {format('wizard.selectSDG')}
         </div>
         <Select
@@ -71,7 +71,7 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
   return (
     <div className='lg:flex'>
       <div className='lg:w-1/4 lg:px-5 lg:mx-5'>
-        <div className='text-sm pt-6 pb-2'>
+        <div className='text-sm h-12 pt-6 pb-2'>
           {format('wizard.selectTags')}
         </div>
         <Select
@@ -94,7 +94,7 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
         })}
       </div>
       <div className='lg:w-1/4 lg:px-5'>
-        <div className='text-sm pt-6 lg:pt-1 pb-2'>
+        <div className='text-sm pb-2 h-12 grid content-end'>
           {format('wizard.selectCountry')}
         </div>
         <Select
@@ -105,7 +105,7 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
         />
       </div>
       <div className='lg:w-1/3 lg:px-5 lg:mx-5'>
-        <div className='text-sm pt-6 pb-2'>
+        <div className='text-sm pb-2'>
           {format('wizard.selectMobile')}
         </div>
         <div className='lg:grid lg:grid-cols-2'>
