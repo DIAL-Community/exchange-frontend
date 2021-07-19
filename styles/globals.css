@@ -140,3 +140,7 @@ body {
     overflow-y: scroll;
   }
 }
+
+.highlight-link a {
+  color: #fab230;
+}

@@ -65,15 +65,6 @@ const ProductDetailRight = ({ product, discourseRef }) => {
           </div>
       }
       {
-        product.buildingBlocks &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('building-block.header')}</div>
-            {product.buildingBlocks.map((bb, i) => {
-              return (<BuildingBlockCard key={i} buildingBlock={bb} listType='list' />)
-            })}
-          </div>
-      }
-      {
         product.sustainableDevelopmentGoals &&
           <div className='mt-12'>
             <div className='card-title mb-3 text-dial-gray-dark'>{format('sdg.header')}</div>
@@ -91,6 +82,16 @@ const ProductDetailRight = ({ product, discourseRef }) => {
                 return sector.isDisplayable && (<SectorCard key={i} sector={sector} listType='list' />)
               })}
             </div>
+          </div>
+      }
+      {
+        product.buildingBlocks &&
+          <div className='mt-12'>
+            <div className='card-title mb-3 text-dial-gray-dark'>{format('building-block.header')}</div>
+            <div className='text-sm text-dial-gray-dark pb-2 highlight-link' dangerouslySetInnerHTML={{ __html: format('building-block.disclaimer') }} />
+            {product.buildingBlocks.map((bb, i) => {
+              return (<BuildingBlockCard key={i} buildingBlock={bb} listType='list' />)
+            })}
           </div>
       }
       {
@@ -160,7 +161,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
         {
           product.maturityScore
             ? <>
-              <div className='text-sm mb-3 text-dial-gray-dark' dangerouslySetInnerHTML={{ __html: format('product.maturity-desc') }} />
+              <div className='text-sm mb-3 text-dial-gray-dark highlight-link' dangerouslySetInnerHTML={{ __html: format('product.maturity-desc') }} />
               <MaturityAccordion maturityScores={product.maturityScores} overallScore={product.maturityScore} />
             </>
             : <div className='text-sm pb-5 text-button-gray'>{format('product.no-maturity')}</div>
@@ -168,7 +169,8 @@ const ProductDetailRight = ({ product, discourseRef }) => {
       </div>
       <div className='mt-12' ref={discourseRef}>
         <div className='card-title mb-3 text-dial-gray-dark'>{format('product.discussion')}</div>
-        <DiscourseForum topicId={product.discourseId} />
+        <div className='text-sm text-dial-gray-dark pb-2 highlight-link' dangerouslySetInnerHTML={{ __html: format('product.forum-desc-prod') }} />
+        <DiscourseForum topicId={product.discourseId} objType='prod' />
       </div>
     </div>
   )

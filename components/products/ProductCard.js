@@ -44,7 +44,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                     alt={format('image.alt.logoFor', { name: product.name })}
                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
                   />
-                  <div className={`col-span-12 md:col-span-4 md:mr-4 my-auto ${ellipsisTextStyle}`}>
+                  <div className={`col-span-12 md:col-span-4 md:mr-4 ml-2 my-auto ${ellipsisTextStyle}`}>
                     {product.name}
                     <div className='block md:hidden text-dial-cyan font-semibold text-sm float-right'>
                       {product.productType === 'dataset' ? format('product.card.dataset').toUpperCase() : ''}
