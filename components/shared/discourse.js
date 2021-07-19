@@ -30,7 +30,7 @@ export const DiscourseCount = () => {
   )
 }
 
-export const DiscourseForum = ({ topicId }) => {
+export const DiscourseForum = ({ topicId, objType }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -42,7 +42,8 @@ export const DiscourseForum = ({ topicId }) => {
 
   const { setPostCount } = useContext(DiscourseDispatchContext)
 
-  const url = 'https://discourse.govstack.global/'
+  const url = objType === 'prod' ? process.env.NEXT_PUBLIC_DISCOURSE_PROD_URL : process.env.NEXT_PUBLIC_DISCOURSE_BB_URL
+
   useEffect(() => {
     if (topicId) {
       fetch(url + '/t/' + topicId + '.json', {
@@ -76,7 +77,8 @@ export const DiscourseForum = ({ topicId }) => {
     const postURL = new URL(process.env.NEXT_PUBLIC_API_URL + '/api/discourse')
     postURL.search = new URLSearchParams({
       topicId: topicId,
-      username: session.user.username,
+      username: session.user.userName,
+      objType: objType,
       raw: newPost
     })
     fetch(postURL).then(res => {
@@ -99,7 +101,7 @@ export const DiscourseForum = ({ topicId }) => {
       ? (
         <div>
           <div className='mb-2'>
-            <a href={url + 't/' + topicId} target='_blank' rel='noreferrer' className='py-2 px-2 my-2 h5 text-white bg-dial-teal rounded'>
+            <a href={url + '/t/' + topicId} target='_blank' rel='noreferrer' className='py-2 px-2 my-2 h5 text-white bg-dial-teal rounded'>
               {format('product.discourse')}
             </a>
           </div>
@@ -150,12 +152,12 @@ export const DiscourseForum = ({ topicId }) => {
           }
           {showUser && (
             <div className='mt-2'>
-              <div className='text-dial-purple-light'>{format('product.forum.createAccount')} '{session.user.username}'</div>
+              <div className='text-dial-purple-light'>{format('product.forum.createAccount')} '{session.user.userName}'</div>
               <a href={`${url}/signup`} target='_blank' rel='noreferrer' className='py-1 px-2 h5 text-white bg-dial-teal rounded'>Sign Up</a>
             </div>
           )}
         </div>
         )
-      : <div className='text-sm'>{format('product.noforum')}</div>
+      : <div className='text-sm text-dial-gray-dark'>{format('product.noforum')}<br />{objType === 'prod' ? <div className='text-sm mb-3 text-dial-gray-dark highlight-link' dangerouslySetInnerHTML={{ __html: format('product.create-prod-topic') }} /> : <div className='text-sm mb-3 text-dial-gray-dark highlight-link' dangerouslySetInnerHTML={{ __html: format('product.create-bb-topic') }} />}</div>
   )
 }

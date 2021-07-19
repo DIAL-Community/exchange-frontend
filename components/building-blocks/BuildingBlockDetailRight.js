@@ -31,6 +31,7 @@ const BuildingBlockDetailRight = ({ buildingBlock, discourseRef }) => {
         buildingBlock.products && buildingBlock.products.length > 0 &&
           <div className='mt-12'>
             <div className='card-title mb-3 text-dial-gray-dark'>{format('products.header')}</div>
+            <div className='text-sm text-dial-gray-dark pb-2 highlight-link' dangerouslySetInnerHTML={{ __html: format('building-block.disclaimer') }} />
             <div className='grid grid-cols-1'>
               {buildingBlock.products.map((product, i) => <ProductCard key={i} product={product} listType='list' />)}
             </div>
@@ -47,7 +48,8 @@ const BuildingBlockDetailRight = ({ buildingBlock, discourseRef }) => {
       }
       <div className='mt-12' ref={discourseRef}>
         <div className='card-title mb-3'>{format('product.discussion')}</div>
-        <DiscourseForum topicId={buildingBlock.discourseId} />
+        <div className='text-sm text-dial-gray-dark pb-2 highlight-link' dangerouslySetInnerHTML={{ __html: format('product.forum-desc-bb') }} />
+        <DiscourseForum topicId={buildingBlock.discourseId} objType='bb' />
       </div>
     </div>
   )
