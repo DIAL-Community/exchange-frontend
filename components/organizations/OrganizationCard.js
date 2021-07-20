@@ -32,7 +32,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
                       />
                       <div className={`
-                          ${nameColSpan(organization)} text-base font-semibold text-dial-gray-dark
+                          ${nameColSpan(organization)} ml-4 text-base font-semibold text-dial-gray-dark
                           my-auto whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
                         `}
                       >

@@ -2,19 +2,11 @@ import { useIntl } from 'react-intl'
 import Select from 'react-select'
 import { useState } from 'react'
 
-import Phases from './Phases'
-
 const Checkbox = props => (
   <input type='checkbox' {...props} />
 )
 
-export const WizardStage1 = ({ setAllValues }) => {
-  return (
-    <Phases currPhase='' setAllValues={setAllValues} />
-  )
-}
-
-export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
+export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -65,7 +57,7 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
   )
 }
 
-export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
+export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   return (
@@ -133,7 +125,7 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
   )
 }
 
-export const WizardStage4 = ({ projData, allValues, setAllValues }) => {
+export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   const classNameSelected = 'bg-white border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-button-gray inline'

@@ -94,7 +94,7 @@ const WizardPage = () => {
   projData.countries = countryData.countries.map((country) => { return { label: country.name, value: country.name } })
   projData.tags = tagData.tags.map((tag) => { return { label: tag.name, value: tag.name } })
   projData.mobileServices = mobileServices.map((service) => { return { label: service, value: service } })
-  projData.buildingBlocks = ['Data collection', 'Registration', 'Payments', 'Identification', 'Information mediator', 'Messaging', 'Scheduling', 'Content Management', 'eMarketplace']
+  projData.buildingBlocks = ['Data collection', 'Registration', 'Payments', 'Identification and authentication', 'Information mediator', 'Messaging', 'Scheduling', 'Content Management', 'eMarketplace']
 
   return (
     <>
@@ -104,7 +104,7 @@ const WizardPage = () => {
       </Head>
       <Header />
       <WizardHeader stage={stage} />
-      {stage < 5
+      {stage < 4
         ? <WizardContent stage={stage} setStage={setStage} projData={projData} allValues={allValues} setAllValues={setAllValues} />
         : <WizardResults stage={stage} setStage={setStage} allValues={allValues} setAllValues={setAllValues} />}
       <Footer />
