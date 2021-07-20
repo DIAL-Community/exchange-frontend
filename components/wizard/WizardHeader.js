@@ -23,7 +23,7 @@ const ProgressBar = ({ stage }) => {
       `}
       </style>
       <div className='flex'>
-        <div className='w-1/5'>
+        <div className='w-1/4'>
           <div className='relative mb-2'>
             <div className={`w-10 h-10 mx-auto ${stage > 0 && 'bg-button-gray'} border border-button-gray rounded-full text-lg flex items-center`}>
               <span className={`text-center ${stage > 0 ? 'text-dial-gray-light' : 'text-button-gray'} w-full`}>
@@ -34,7 +34,7 @@ const ProgressBar = ({ stage }) => {
           {(stage === 0 || stage === 1) && <div className='text-xs uppercase text-center'>0% {format('wizard.complete')}</div>}
         </div>
 
-        <div className='w-1/5'>
+        <div className='w-1/4'>
           <div className='relative mb-2'>
             <div className='absolute flex align-center items-center align-middle content-center progress-line'>
               <div className='w-full rounded items-center align-middle align-center flex-1'>
@@ -48,10 +48,10 @@ const ProgressBar = ({ stage }) => {
               </span>
             </div>
           </div>
-          {(stage === 2) && <div className='text-xs uppercase text-center'>25% {format('wizard.complete')}</div>}
+          {(stage === 2) && <div className='text-xs uppercase text-center'>33% {format('wizard.complete')}</div>}
         </div>
 
-        <div className='w-1/5'>
+        <div className='w-1/4'>
           <div className='relative mb-2'>
             <div className='absolute flex align-center items-center align-middle content-center progress-line'>
               <div className='w-full bg-gray-200 rounded items-center align-middle align-center flex-1'>
@@ -65,10 +65,9 @@ const ProgressBar = ({ stage }) => {
               </span>
             </div>
           </div>
-          {(stage === 3) && <div className='text-xs uppercase text-center'>50% {format('wizard.complete')}</div>}
+          {(stage === 3) && <div className='text-xs uppercase text-center'>67% {format('wizard.complete')}</div>}
         </div>
-
-        <div className='w-1/5'>
+        <div className='w-1/4'>
           <div className='relative mb-2'>
             <div className='absolute flex align-center items-center align-middle content-center progress-line'>
               <div className='w-full bg-gray-200 rounded items-center align-middle align-center flex-1'>
@@ -82,23 +81,7 @@ const ProgressBar = ({ stage }) => {
               </span>
             </div>
           </div>
-          {(stage === 4) && <div className='text-xs uppercase text-center'>75% {format('wizard.complete')}</div>}
-        </div>
-        <div className='w-1/5'>
-          <div className='relative mb-2'>
-            <div className='absolute flex align-center items-center align-middle content-center progress-line'>
-              <div className='w-full bg-gray-200 rounded items-center align-middle align-center flex-1'>
-                <div className={`w-0 bg-button-gray ${stage > 4 ? 'progress-padding-complete' : 'progress-padding'}`} style={{ width: '100%' }} />
-              </div>
-            </div>
-
-            <div className={`w-10 h-10 mx-auto ${stage > 4 && 'bg-button-gray'} border border-button-gray rounded-full text-lg flex items-center`}>
-              <span className={`text-center ${stage > 4 ? 'text-dial-gray-light' : 'text-button-gray'} w-full`}>
-                5
-              </span>
-            </div>
-          </div>
-          {(stage === 5) && <div className='text-xs uppercase text-center'>100% {format('wizard.complete')}</div>}
+          {(stage === 4) && <div className='text-xs uppercase text-center'>100% {format('wizard.complete')}</div>}
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useIntl, FormattedMessage } from 'react-intl'
 import { useRouter } from 'next/router'
 
-import { WizardStage1, WizardStage2, WizardStage3, WizardStage4 } from './StageContent'
+import { WizardStage1, WizardStage2, WizardStage3 } from './StageContent'
 
 const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
@@ -37,20 +37,15 @@ const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) =
       case 0:
         return (<div className='w-2/3 xl:w-1/2 text-sm'><FormattedMessage id='wizard.intro' values={{ linebreak: <br /> }} /></div>)
       case 1:
-        return (<WizardStage1 setAllValues={setAllValues} />)
+        return (<WizardStage1 projData={projData} allValues={allValues} setAllValues={setAllValues} />)
       case 2:
         return (<WizardStage2 projData={projData} allValues={allValues} setAllValues={setAllValues} />)
       case 3:
         return (<WizardStage3 projData={projData} allValues={allValues} setAllValues={setAllValues} />)
-      case 4:
-        return (<WizardStage4 projData={projData} allValues={allValues} setAllValues={setAllValues} />)
     }
   }
   const hideNext = () => {
-    if (stage === 1 && allValues.projectPhase === '') {
-      return true
-    }
-    if (stage > 4) {
+    if (stage > 3) {
       return true
     }
     return false
@@ -80,12 +75,12 @@ const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) =
           <div className='wizard-scroll'>
             <div className='h-2/3'>{getContent()}</div>
             <div className='float-left py-4 lg:absolute lg:bottom-32'>
-              <button onClick={() => { stage < 5 && setStage(stage + 1) }} className={`${hideNext() === true && 'hidden'} bg-button-gray border border-dial-yellow rounded p-4 my-4 lg:mr-4 float-right text-button-gray-light`}>
-                {stage === 4
+              <button onClick={() => { stage < 4 && setStage(stage + 1) }} className={`${hideNext() === true && 'hidden'} bg-button-gray border border-dial-yellow rounded p-4 my-4 lg:mr-4 float-right text-button-gray-light`}>
+                {stage === 3
                   ? format('wizard.seeResults')
                   : <div>{format('wizard.next')}<img src='/icons/right-arrow.svg' className='inline ml-2' alt='Next' height='20px' width='20px' /></div>}
               </button>
-              <button onClick={() => { stage === 2 && setAllValues(prevValues => { return { ...prevValues, projectPhase: '' } }); stage > 0 && setStage(stage - 1) }} className={`${hideBack() === true && 'hidden'} bg-button-gray border border-dial-yellow rounded p-4 my-4 mr-4 text-button-gray-light`}>
+              <button onClick={() => { stage > 0 && setStage(stage - 1) }} className={`${hideBack() === true && 'hidden'} bg-button-gray border border-dial-yellow rounded p-4 my-4 mr-4 text-button-gray-light`}>
                 <img src='/icons/left-arrow.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
                 {format('wizard.back')}
               </button>
