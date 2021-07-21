@@ -234,7 +234,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           <Lifecycle wizardData={wizardData} objType='principles' />
         </div>
         <div ref={projectsRef}>
-          <div className='text-2xl font-bold py-4'>
+          <div className='text-2xl font-bold pb-4'>
             {format('wizard.results.similarProjects')}
           </div>
           <div className='pb-4 text-sm'>

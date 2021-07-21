@@ -44,12 +44,12 @@ const Lifecycle = ({ wizardData, objType }) => {
               }
             </ul>
             <div className='col-span-2 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded-b bg-gradient-to-r from-carousel-light'>
-              <div className='px-4 py-5'>
+              <div className='px-4 py-2'>
                 <div className='tab-content tab-space'>
                   {['Ideation', 'Planning', 'Implementation', 'Evaluation'].map((phase, index) => {
                     return objType === 'principles' ? (
                       <div key={phase} className={openTab === index ? 'block' : 'hidden'} id={'principle-phase-' + index }>
-                        <div className='pb-6 grid lg:grid-cols-3'>
+                        <div className='pb-2 grid lg:grid-cols-3'>
                           {wizardData.digitalPrinciples.map((principle) => {
                             if (principle.phase.includes(phase)) {
                               return (<DigitalPrinciple key={`${principle.name}`} principle={principle} />)

@@ -21,7 +21,7 @@ const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) =
       case 0:
         return <div className='py-6'>{format('wizard.introStep')}</div>
       case 1:
-        return <div className='py-6'>{format('wizard.stepOne')}</div>
+        return <><div className='pt-6'>{format('wizard.stepOne')}</div><div className='text-sm ml-5'>{format('wizard.optional')}</div></>
       case 2:
         return <div className='py-6'>{format('wizard.stepTwo')}</div>
       case 3:

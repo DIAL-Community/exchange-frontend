@@ -20,8 +20,8 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
 
   return (
     <div className='lg:flex'>
-      <div className='lg:w-1/4 lg:px-5'>
-        <div className='text-sm pb-2 h-12 grid content-end'>
+      <div className='lg:w-1/4 lg:px-5 lg:mx-5'>
+        <div className='text-sm pt-6 pb-2 h-12 grid content-end'>
           <div>{format('wizard.selectSector')}</div>
         </div>
         <Select
