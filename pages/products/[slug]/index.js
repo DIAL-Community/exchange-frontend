@@ -13,10 +13,11 @@ import gql from 'graphql-tag'
 
 import ProductDetailLeft from '../../../components/products/ProductDetailLeft'
 import ProductDetailRight from '../../../components/products/ProductDetailRight'
-import { Loading, Error } from '../../../components/shared/FetchStatus'
 
 import dynamic from 'next/dynamic'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Loading = dynamic(() => import('../../../components/shared/FetchStatus').then(x => x.Loading), { ssr: false })
+const Error = dynamic(() => import('../../../components/shared/FetchStatus').then(x => x.Error), { ssr: false })
 
 const PRODUCT_QUERY = gql`
 query Product($slug: String!, $locale: String!) {

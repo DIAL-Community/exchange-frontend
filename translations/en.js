@@ -794,5 +794,8 @@ export const en = {
         <unPandemicLink>View the document here</unPandemicLink>
       </li>
     </ul>
-  `
+  `,
+  'ownership.apply': 'Apply',
+  'ownership.applied': 'Applied to Own',
+  'ownership.owned': 'Owner'
 }
