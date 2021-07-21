@@ -3,6 +3,9 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 
+// Session expiration in millis
+const TOKEN_EXPIRATION = 24 * 60 * 60 * 60
+
 export default NextAuth({
   // Configure one or more authentication providers
   providers: [
@@ -54,19 +57,36 @@ export default NextAuth({
     })
   ],
   callbacks: {
-    jwt: async (token, user, account, profile, isNewUser) => {
+    jwt: async (token, user) => {
       //  "user" parameter is the object received from "authorize"
       //  "token" is being send below to "session" callback...
       //  ...so we set "user" param of "token" to object from "authorize"...
       //  ...and return it...
       user && (token.user = user)
+
+      if (!token.expiration) {
+        token.expiration = Date.now() + TOKEN_EXPIRATION
+      }
+
       return token // ...here
     },
-    session: async (session, user, sessionToken) => {
+    session: async (session, user) => {
       //  "session" is current session object
       //  below we set "user" param of "session" to value received from "jwt" callback
       session.user = user.user
-      return session
+      if (user.expiration && Date.now() < user.expiration) {
+        return session
+      } else {
+        await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/invalidate', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-User-Email': user.user.userEmail,
+            'X-User-Token': user.user.userToken
+          }
+        })
+        return {}
+      }
     }
   },
   pages: {
