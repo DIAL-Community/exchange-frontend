@@ -31,6 +31,7 @@ const WORKFLOW_QUERY = gql`
           slug
           name
           maturity
+          imageFile
         }
       }
       buildingBlocks {

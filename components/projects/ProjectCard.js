@@ -51,7 +51,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-button-gray hover:text-dial-yellow cursor-pointer'>
-              <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+              <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-4 px-4 text-base font-semibold hover:text-dial-yellow'>
                   <div className={`${nameColSpan(project)} lg:mr-4 my-auto ${ellipsisTextStyle}`}>
                     <div className='block lg:hidden font-normal float-right'>

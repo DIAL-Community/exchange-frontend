@@ -15,8 +15,8 @@ const Lifecycle = ({ wizardData, objType }) => {
   }
 
   const generateAnchorStyles = (tabNumber) => `
-    px-5 py-3 rounded-l-lg block leading-loose tracking-wide whitespace-nowrap xl:pr-24
-    ${openTab === tabNumber ? 'font-bold text-carousel bg-carousel-light' : 'text-dial-gray-dark bg-white'}
+    block px-5 py-3 leading-loose tracking-wide whitespace-nowrap xl:pr-24
+    ${openTab === tabNumber ? 'rounded-l-lg font-bold text-dial-gray-dark bg-dial-gray' : 'text-dial-gray-dark bg-white'}
   `
 
   const actorList = [
@@ -43,7 +43,7 @@ const Lifecycle = ({ wizardData, objType }) => {
                 ))
               }
             </ul>
-            <div className='col-span-2 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded-b bg-gradient-to-r from-carousel-light'>
+            <div className='col-span-2 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded-b bg-gradient-to-r from-dial-gray to-dial-gray-light'>
               <div className='px-4 py-2'>
                 <div className='tab-content tab-space'>
                   {['Ideation', 'Planning', 'Implementation', 'Evaluation'].map((phase, index) => {

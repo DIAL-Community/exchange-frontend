@@ -57,7 +57,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
-              <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+              <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-4 px-4'>
                   <div className={`${nameColSpan(buildingBlock)} pr-3 text-base font-semibold ${ellipsisTextStyle}`}>
                     {

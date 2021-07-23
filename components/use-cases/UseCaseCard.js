@@ -70,7 +70,7 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
-              <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+              <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
                   <div className={`${nameColSpan(useCase)} pr-3 text-base font-semibold ${ellipsisTextStyle}`}>
                     <img
