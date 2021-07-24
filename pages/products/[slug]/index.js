@@ -66,6 +66,7 @@ query Product($slug: String!, $locale: String!) {
     interoperatesWith {
       name
       slug
+      imageFile
       origins {
         name
       }
@@ -73,6 +74,7 @@ query Product($slug: String!, $locale: String!) {
     includes {
       name 
       slug
+      imageFile
       origins {
         name
       }
