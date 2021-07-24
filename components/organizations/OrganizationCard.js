@@ -24,7 +24,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
             <Link className='card-link' href={`/${collectionPath}/${organization.slug}`}>
               <a {... newTab && { target: '_blank' }}>
                 <div className='border-3 border-transparent hover:border-dial-yellow text-workflow cursor-pointer'>
-                  <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg hover:text-dial-yellow'>
+                  <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg hover:text-dial-yellow'>
                     <div className='grid grid-cols-12 my-5 px-4'>
                       <img
                         className='m-auto h-8'

@@ -228,12 +228,12 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           <img src='/icons/close.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
           {format('wizard.close')}
         </button>
-        <div ref={principlesRef}>
+        <div className='text-dial-gray-dark' ref={principlesRef}>
           <div className='text-2xl font-bold py-4'>{format('wizard.results.principles')}</div>
           <div className='pb-4 text-sm'>{format('wizard.results.principlesDesc')}</div>
           <Lifecycle wizardData={wizardData} objType='principles' />
         </div>
-        <div ref={projectsRef}>
+        <div className='text-dial-gray-dark' ref={projectsRef}>
           <div className='text-2xl font-bold pb-4'>
             {format('wizard.results.similarProjects')}
           </div>
@@ -246,7 +246,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             })}
           </div>
         </div>
-        <div ref={productsRef}>
+        <div className='text-dial-gray-dark' ref={productsRef}>
           <div className='text-2xl font-bold py-4'>
             {format('wizard.results.products')}
           </div>
@@ -259,7 +259,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             })}
           </div>
         </div>
-        <div ref={useCasesRef}>
+        <div className='text-dial-gray-dark' ref={useCasesRef}>
           <div className='text-2xl font-bold py-4'>
             {format('wizard.results.useCases')}
           </div>
@@ -273,7 +273,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             })}
           </div>
         </div>
-        <div ref={buildingBlocksRef}>
+        <div className='text-dial-gray-dark' ref={buildingBlocksRef}>
           <div className='text-2xl font-bold py-4'>
             {format('wizard.results.buildingBlocks')}
           </div>
@@ -286,7 +286,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             })}
           </div>
         </div>
-        <div ref={resourcesRef}>
+        <div className='text-dial-gray-dark' ref={resourcesRef}>
           <div className='text-2xl font-bold py-4'>
             {format('wizard.results.resources')}
           </div>
@@ -295,7 +295,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           </div>
           <Lifecycle wizardData={wizardData} objType='resources' />
         </div>
-        <div ref={aggregatorsRef}>
+        <div className='text-dial-gray-dark' ref={aggregatorsRef}>
           <div className='text-2xl font-bold py-4'>
             {format('wizard.results.aggregators')}
           </div>
