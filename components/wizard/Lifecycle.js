@@ -61,7 +61,7 @@ const Lifecycle = ({ wizardData, objType }) => {
                       </div>
                     ) : (
                       <div key={phase} className={openTab === index ? 'block' : 'hidden'} id={'resource-phase-' + index }>
-                        <div className='pb-6 grid lg:grid-cols-3 h-64'>
+                        <div className='pb-6 grid lg:grid-cols-3'>
                           {wizardData.resources.map((resource) => {
                             if (resource.phase.includes(phase)) {
                               return (<Resource key={`${resource.name}`} resource={resource} listType='list' />)

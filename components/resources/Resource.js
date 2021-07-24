@@ -6,7 +6,7 @@ const Resource = ({ resource }) => {
         {
           resource.imageUrl === ''
             ? <div className='text-2xl font-bold'>{resource.name}</div>
-            : <img className='inline pr-4' src={`${resource.imageUrl}`} alt={resource.imageUrl} width='200' height='200' />
+            : <img className='inline mx-auto h-28' src={`${resource.imageUrl}`} alt={resource.imageUrl} />
         }
       </div>
       <div className='text-xs pt-3'>{resource.description}</div>
