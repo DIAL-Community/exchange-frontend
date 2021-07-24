@@ -40,7 +40,7 @@ const AdminMenu = () => {
 
   const openDropdownPopover = () => {
     createPopper(buttonRef.current, popoverRef.current, {
-      placement: 'bottom'
+      placement: 'bottom-end'
     })
     setShowAdminMenu(true)
   }
@@ -98,7 +98,7 @@ const UserMenu = () => {
 
   const openDropdownPopover = () => {
     createPopper(buttonRef.current, popoverRef.current, {
-      placement: 'bottom'
+      placement: 'bottom-end'
     })
     setShowUserMenu(true)
   }
@@ -150,7 +150,7 @@ const Header = () => {
 
   const openDropdownPopover = (buttonRef, popoverRef, openCallback) => {
     createPopper(buttonRef.current, popoverRef.current, {
-      placement: 'bottom'
+      placement: 'bottom-end'
     })
     openCallback(true)
   }
