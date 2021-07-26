@@ -25,7 +25,7 @@ const Lifecycle = ({ wizardData, objType }) => {
   ]
 
   return (
-    <div className='hidden lg:block'>
+    <div className='block'>
       <div className='relative pb-4 lg:pb-6 2xl:max-w-full'>
         <main className='pt-4 mx-auto px-6 sm:px-12 xl:pt-6 xl:max-w-6xl 2xl:max-w-7xl'>
           <div className='grid grid-cols-3'>
@@ -52,7 +52,7 @@ const Lifecycle = ({ wizardData, objType }) => {
                         <div className='pb-2 grid lg:grid-cols-3'>
                           {wizardData.digitalPrinciples.map((principle) => {
                             if (principle.phase.includes(phase)) {
-                              return (<DigitalPrinciple key={`${principle.name}`} principle={principle} />)
+                              return (<div key={`${principle.name}`}><DigitalPrinciple principle={principle} /></div>)
                             } else {
                               return <></>
                             }
@@ -64,7 +64,7 @@ const Lifecycle = ({ wizardData, objType }) => {
                         <div className='pb-6 grid lg:grid-cols-3'>
                           {wizardData.resources.map((resource) => {
                             if (resource.phase.includes(phase)) {
-                              return (<Resource key={`${resource.name}`} resource={resource} listType='list' />)
+                              return (<div key={`${resource.name}`}><Resource resource={resource} listType='list' /></div>)
                             } else {
                               return <></>
                             }
