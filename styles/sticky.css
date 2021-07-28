@@ -23,4 +23,10 @@
     /* Header have z-index of 30. This will prevent this part clipping the language dropdown. */
     z-index: 20;
   }
+
+  .simple-form-height {
+    /* Set the sign up to be 80% of height on tablet and above */
+    /* Full height on phones. */
+    height: 70vh;
+  }
 }

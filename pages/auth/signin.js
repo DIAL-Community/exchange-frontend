@@ -26,7 +26,7 @@ export default function SignIn ({ csrfToken }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <div className='bg-dial-gray-dark pt-40' style={{ minHeight: '70vh' }}>
+      <div className='bg-dial-gray-dark pt-40 simple-form-height'>
         <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto container-fluid with-header'>
           <form method='post' onSubmit={handleSubmit} action='/api/auth/callback/credentials'>
             <input name='csrfToken' type='hidden' defaultValue={csrfToken} />
@@ -65,8 +65,8 @@ export default function SignIn ({ csrfToken }) {
                     </a>
                   </Link>
                   <span className='border-r-2 border-dial-gray-dark mx-2' />
-                  <Link href='/auth/resetpassword'>
-                    <a className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow' href='/auth/resetpassword'>
+                  <Link href='/auth/reset-password'>
+                    <a className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow' href='/auth/reset-password'>
                       {format('signIn.forgetPassword')}
                     </a>
                   </Link>
