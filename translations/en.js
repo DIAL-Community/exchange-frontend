@@ -498,8 +498,7 @@ export const en = {
   'signIn.password': 'Password',
   'signIn.password.hint': 'Enter your password.',
 
-  'signUp.created': 'Registration successful. Please check your email for confirmation email.',
-  'signUp.redirect': 'You will be redirected to our main catalog momentarily ...',
+  'signUp.created': 'Registration successful. Please check your email for confirmation. Redirecting ...',
   'signUp.submit': 'Sign Up',
   'signUp.email': 'Email Address',
   'signUp.email.placeholder': 'Please enter your email address',
@@ -798,5 +797,18 @@ export const en = {
   `,
   'ownership.apply': 'Apply',
   'ownership.applied': 'Applied to Own',
-  'ownership.owned': 'Owner'
+  'ownership.owned': 'Owner',
+
+  'app.resetPassword': 'Reset Password',
+  'reset.email': 'Email Address',
+  'reset.email.placeholder': 'Account email address',
+  'reset.created': 'Instruction to reset your password have been sent to your email address. Redirecting ...',
+
+  'app.updatePassword': 'Update Password',
+  'reset.password': 'Password',
+  'reset.password.placeholder': 'Your new password',
+  'reset.passwordConfirmation': 'Confirm Password',
+  'reset.passwordConfirmation.placeholder': 'Confirm your new password',
+  'reset.tokenInvalid': 'Reset token is invalid.',
+  'reset.applied': 'Password updated successfully. Redirecting ...'
 }

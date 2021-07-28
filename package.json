@@ -35,7 +35,8 @@
     "react-leaflet": "^3.1.0",
     "react-select": "^4.3.0",
     "react-tooltip": "^4.2.19",
-    "subscriptions-transport-ws": "^0.9.18"
+    "subscriptions-transport-ws": "^0.9.18",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@tailwindcss/custom-forms": "^0.2.1",
