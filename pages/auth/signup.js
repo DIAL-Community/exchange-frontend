@@ -270,7 +270,7 @@ const SignUp = () => {
                     })
                 }
               </div>
-              <ReCAPTCHA sitekey='6LcJcbcUAAAAAJIfKD5RFtSmO-7oI4J7GVDV-r9-' onChange={setCaptcha} />
+              <ReCAPTCHA sitekey='6LfAGscbAAAAAFW_hQyW5OxXPhI7v6X8Ul3FJrsa' onChange={setCaptcha} />
               <div className='flex items-center justify-between font-semibold text-sm mt-2'>
                 <div className='flex'>
                   <button
