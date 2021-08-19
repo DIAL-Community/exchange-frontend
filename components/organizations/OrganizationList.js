@@ -123,7 +123,6 @@ const OrganizationListQuery = () => {
   }
 
   if (error) {
-    console.log(error)
     return <Error />
   }
 

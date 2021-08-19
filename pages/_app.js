@@ -19,6 +19,7 @@ import '../styles/password.css'
 
 import CatalogContext from '../lib/CatalogContext'
 import { useEffect } from 'react'
+import CandidateContext from '../lib/CandidateContext'
 
 export function reportWebVitals (metric) {
   // https://nextjs.org/docs/advanced-features/measuring-performance
@@ -54,7 +55,9 @@ const App = ({ Component, pageProps }) => {
       <Provider session={pageProps.session}>
         <CookiesProvider>
           <CatalogContext>
-            <Component {...pageProps} />
+            <CandidateContext>
+              <Component {...pageProps} />
+            </CandidateContext>
           </CatalogContext>
         </CookiesProvider>
       </Provider>
