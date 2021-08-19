@@ -235,6 +235,10 @@ const SignUp = () => {
                   />
                   <div className='strength-meter my-2'>
                     <div className={`strength-meter-fill ${strengthColor(fieldValidations.password)}`} />
+                    { fieldValidations.password > 0 && fieldValidations.password <= 3 && (
+                      <div className='p-1 text-sm text-use-case'>{format('signUp.moreSecure')}</div>
+                    )
+                    }
                   </div>
                 </div>
                 <div className='mb-4'>
@@ -314,7 +318,7 @@ const SignUp = () => {
                   <div className='flex'>
                     <button
                       className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                      type='submit' disabled={loading || fieldValidations.password < 3 || !fieldValidations.passwordConfirmation}
+                      type='submit' disabled={loading || fieldValidations.password <= 3 || !fieldValidations.passwordConfirmation}
                     >
                       {format('app.signUp')}
                       {loading && <FaSpinner className='spinner ml-3' />}

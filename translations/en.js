@@ -507,6 +507,7 @@ export const en = {
   'signUp.password.hint': 'Please choose a password.',
   'signUp.passwordConfirmation': 'Password Confirmation',
   'signUp.passwordConfirmation.hint': 'Please re-enter your password',
+  'signUp.moreSecure': 'Please enter a more secure password',
   'signUp.organization': 'Owner of this organization',
   'signUp.products': 'Owner of these products',
   'signUp.tooltip.organizationOwner': 'Apply to be the owner for the organization which will allow you to update the organization information.',
