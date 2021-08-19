@@ -40,44 +40,14 @@ const ProductCard = ({ product, listType, newTab = false }) => {
               <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
                   <img
-                    className='mx-auto h-8'
+                    className='m-auto w-8'
                     alt={format('image.alt.logoFor', { name: product.name })}
                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
                   />
-                  <div className={`col-span-12 md:col-span-4 md:mr-4 ml-2 my-auto ${ellipsisTextStyle}`}>
+                  <div className={`col-span-7 md:col-span-4 mr-2 md:mr-4 ml-2 my-auto ${ellipsisTextStyle}`}>
                     {product.name}
-                    <div className='block md:hidden text-dial-cyan font-semibold text-sm float-right'>
-                      {product.productType === 'dataset' ? format('product.card.dataset').toUpperCase() : ''}
-                    </div>
-                    <div className='block md:hidden flex flex-row justify-end float-right'>
-                      {
-                        product.endorsers && product.endorsers.length > 0 &&
-                          <img
-                            data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5'
-                            src='/icons/check/check.png'
-                          />
-                      }
-                      {
-                        isEndorsingOrg() &&
-                          <img
-                            data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5'
-                            src='/icons/digiprins/digiprins.png'
-                          />
-                      }
-                      {
-                        product.tags && product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
-                          <img
-                            data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5'
-                            src='/icons/coronavirus/coronavirus.png'
-                          />
-                      }
-                      {
-                        product.isLaunchable &&
-                          <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />
-                      }
-                    </div>
                   </div>
-                  <div className='hidden md:block md:col-span-2 mr-3 font-semibold text-dial-cyan my-auto'>
+                  <div className='col-span-2 mr-3 font-semibold text-dial-cyan my-auto'>
                     {product.productType === 'dataset' ? format('product.card.dataset').toUpperCase() : ''}
                   </div>
                   <div className={`hidden md:block md:col-span-4 pr-3 text-base text-dial-purple ${ellipsisTextStyle}`}>
@@ -91,7 +61,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                           .join(', ')
                     }
                   </div>
-                  <div className='hidden md:col-span-1 md:flex flex-row justify-end my-auto'>
+                  <div className='col-span-2 md:col-span-1 flex flex-row justify-end my-auto'>
                     {
                       product.endorsers && product.endorsers.length > 0 &&
                         <img

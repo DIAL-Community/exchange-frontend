@@ -810,5 +810,42 @@ export const en = {
   'reset.passwordConfirmation': 'Confirm Password',
   'reset.passwordConfirmation.placeholder': 'Confirm your new password',
   'reset.tokenInvalid': 'Reset token is invalid.',
-  'reset.applied': 'Password updated successfully. Redirecting ...'
+  'reset.applied': 'Password updated successfully. Redirecting ...',
+
+  'candidateProduct.label': 'Candidate Product',
+  'candidateOrganization.label': 'Candidate Organization',
+
+  'candidateProduct.name': 'Name',
+  'candidateProduct.name.placeholder': 'Name of the candidate product.',
+  'candidateProduct.website': 'Website',
+  'candidateProduct.website.placeholder': 'Website of the candidate product.',
+  'candidateProduct.repository': 'Code Repository',
+  'candidateProduct.repository.placeholder': 'Code repository of the candidate product',
+  'candidateProduct.email': 'Your Email Address',
+  'candidateProduct.email.placeholder': 'Email address of submitter.',
+  'candidateProduct.submit': 'Submit Candidate Product',
+  'candidateProduct.created': 'Candidate product submitted successfully. Redirecting ...',
+  'candidateProduct.website.hint': 'Website of the candidate product.',
+  'candidateProduct.repository.hint': 'Code repository of the candidate product.',
+
+  'candidateOrganization.organizationName': 'Organization Name',
+  'candidateOrganization.organizationName.placeholder': 'Name of the candidate organization.',
+  'candidateOrganization.website': 'Organization Website',
+  'candidateOrganization.website.placeholder': 'Website of the candidate organization.',
+  'candidateOrganization.name': 'Your Name',
+  'candidateOrganization.name.placeholder': 'Your name, submitter of the candidate organization.',
+  'candidateOrganization.email': 'Your Email',
+  'candidateOrganization.email.placeholder': 'Your email, submitter of the candidate organization.',
+  'candidateOrganization.title': 'Your Title',
+  'candidateOrganization.title.placeholder': 'Your title, submitter of the candidate organization.',
+  'candidateOrganization.submit': 'Submit Candidate Organization',
+
+  'candidate.rejected': 'Declined',
+  'candidate.approved': 'Approved',
+  'candidate.reject': 'Decline',
+  'candidate.approve': 'Approve',
+
+  'candidate.feedback': 'Feedback',
+  'candidate.feedback.placeholder': 'Reason for approval / rejection.',
+  'candidate.cancel': 'Cancel'
 }
