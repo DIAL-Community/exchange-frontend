@@ -88,7 +88,7 @@ export async function getServerSideProps (ctx) {
     const callbackUrl = new URL(query.callbackUrl)
     const [, cbLang] = callbackUrl.pathname.split('/')
 
-    if (cbLang && cbLang !== locale && ['en', 'de', 'fr'].includes(cbLang)) {
+    if (cbLang && cbLang !== locale && ['en', 'de', 'fr', 'cs'].includes(cbLang)) {
       const [path] = resolvedUrl.split('?')
       return {
         redirect: {

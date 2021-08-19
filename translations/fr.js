@@ -20,6 +20,7 @@ export const fr = {
   'header.english': 'English (en)',
   'header.german': 'Deutsch (de)',
   'header.french': 'Français (fr)',
+  'header.czech': 'Czech (cs)',
   'header.admin.users': 'Utilisateurs',
   'header.admin.settings': 'Paramètres',
 

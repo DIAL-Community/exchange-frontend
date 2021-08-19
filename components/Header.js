@@ -134,6 +134,7 @@ const Header = () => {
   const [session] = useSession()
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+  const { locale } = useRouter()
 
   const [menuExpanded, setMenuExpanded] = useState(false)
   const [showLanguages, setShowLanguages] = useState(false)
@@ -271,7 +272,7 @@ const Header = () => {
               <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
                 <a
                   className={`${menuItemStyles} lg:mb-0 mb-2`}
-                  href='https://docs.osc.dial.community/projects/product-registry/en/latest/'
+                  href={`https://docs.osc.dial.community/projects/product-registry/${locale}/latest/`}
                   target='_blank' rel='noreferrer'
                 >
                   {format('header.help')}
@@ -298,6 +299,9 @@ const Header = () => {
                     </a>
                     <a href='fr' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'fr')}>
                       {format('header.french')}
+                    </a>
+                    <a href='fr' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'cs')}>
+                      {format('header.czech')}
                     </a>
                   </div>
                 </div>
