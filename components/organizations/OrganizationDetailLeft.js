@@ -84,12 +84,10 @@ const OrganizationDetailLeft = ({ organization }) => {
     const user = session.user
     if (`${user.own.organization}` === `${organization.id}`) {
       // Already owning this organization, display user already owning.
-      console.log('Here!')
       return 'owner'
     }
 
     if (appliedToBeOwner || (data && `${data.candidateRole.organizationId}` === `${organization.id}`)) {
-      console.log('Not here!')
       // Applying to be the owner of the organization
       return 'applied-to-own'
     }
@@ -199,7 +197,7 @@ const OrganizationDetailLeft = ({ organization }) => {
         <div className='flex flex-row gap-3'>
           <a
             className='text-dial-yellow block mt-2'
-            href='https://docs.osc.dial.community/projects/product-registry/en/latest/org_owner.html'
+            href={`https://docs.osc.dial.community/projects/product-registry/${locale}/latest/org_owner.html`}
             target='_blank' rel='noreferrer'
           >
             {format('organization.owner-link')}

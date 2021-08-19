@@ -37,6 +37,10 @@ const subMenus = {
       {
         label: 'header.french',
         locale: 'fr'
+      },
+      {
+        label: 'header.czech',
+        locale: 'cs'
       }
     ]
   },
@@ -232,6 +236,7 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
 const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+  const { locale } = useRouter()
 
   const [session] = useSession()
 
@@ -323,7 +328,7 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
             <li className='py-4'>
               <a
                 className='mx-6 font-semibold'
-                href='https://docs.osc.dial.community/projects/product-registry/en/latest/'
+                href={`https://docs.osc.dial.community/projects/product-registry/${locale}/latest/`}
                 target='_blank' rel='noreferrer'
               >
                 {format('header.help')}
