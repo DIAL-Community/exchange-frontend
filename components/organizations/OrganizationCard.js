@@ -27,7 +27,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                   <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg hover:text-dial-yellow'>
                     <div className='grid grid-cols-12 my-5 px-4'>
                       <img
-                        className='m-auto h-8'
+                        className='m-auto w-8'
                         alt={format('image.alt.logoFor', { name: organization.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
                       />
