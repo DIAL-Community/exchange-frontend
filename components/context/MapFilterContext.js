@@ -12,11 +12,12 @@ const MapFilterContextProvider = ({ children }) => {
   const [years, setYears] = useState([])
 
   const [sectors, setSectors] = useState([])
+  const [products, setProducts] = useState([])
   const [tags, setTags] = useState([])
   const [search, setSearch] = useState('')
 
   const mapFilterValues = {
-    aggregators, operators, services, orgSectors, years, sectors, tags, search
+    aggregators, operators, services, orgSectors, years, sectors, products, tags, search
   }
 
   const mapFilterDispatchValues = {
@@ -26,6 +27,7 @@ const MapFilterContextProvider = ({ children }) => {
     setOrgSectors,
     setYears,
     setSectors,
+    setProducts,
     setTags,
     setSearch
   }

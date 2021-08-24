@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl'
 
 import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
 import { SectorAutocomplete, SectorFilters } from './element/Sector'
+import { ProductAutocomplete, ProductFilters } from './element/Product'
 import { TagAutocomplete, TagFilters } from './element/Tag'
 import { EndorsingYearFilters, EndorsingYearSelect } from './element/EndorsingYear'
 import { CapabilityAutocomplete, CapabilityFilters } from './element/Capability'
@@ -19,16 +20,16 @@ const MapFilter = (props) => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const {
-    aggregators, operators, services, orgSectors, years, sectors, tags
+    aggregators, operators, services, orgSectors, years, sectors, products, tags
   } = useContext(MapFilterContext)
 
   const {
-    setAggregators, setOperators, setServices, setOrgSectors, setYears, setSectors, setTags
+    setAggregators, setOperators, setServices, setOrgSectors, setYears, setSectors, setProducts, setTags
   } = useContext(MapFilterDispatchContext)
 
   const filterCount = () => {
     if (router.pathname.indexOf('projects') >= 0) {
-      return sectors.length + tags.length
+      return sectors.length + tags.length + products.length
     } else if (router.pathname.indexOf('endorsers') >= 0) {
       return orgSectors.length + years.length
     } else if (router.pathname.indexOf('aggregators') >= 0) {
@@ -43,6 +44,7 @@ const MapFilter = (props) => {
     if (router.pathname.indexOf('projects') >= 0) {
       setSectors([])
       setTags([])
+      setProducts([])
     } else if (router.pathname.indexOf('endorsers') >= 0) {
       setOrgSectors([])
       setYears([])
@@ -116,6 +118,7 @@ const MapFilter = (props) => {
                     <>
                       <SectorAutocomplete {...{ sectors, setSectors }} containerStyles='px-2 pb-2' />
                       <TagAutocomplete {...{ tags, setTags }} containerStyles='px-2 pb-2' />
+                      <ProductAutocomplete {...{ products, setProducts }} containerStyles='px-2 pb-2' />
                     </>
                 }
                 {
@@ -150,6 +153,7 @@ const MapFilter = (props) => {
               <>
                 <SectorFilters {...{ sectors, setSectors }} />
                 <TagFilters {...{ tags, setTags }} />
+                <ProductFilters {...{ products, setProducts }} />
               </>
           }
           {
