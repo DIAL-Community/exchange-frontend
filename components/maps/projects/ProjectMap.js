@@ -20,11 +20,13 @@ query SearchProjects(
   $first: Int,
   $sectors: [String!]
   $tags: [String!]
+  $products: [String!]
   ) {
   searchProjects(
     first: $first,
     sectors: $sectors,
-    tags: $tags
+    tags: $tags,
+    products: $products
   ) {
     __typename
     totalCount
@@ -62,7 +64,7 @@ const COUNTRIES_QUERY = gql`
 
 const ProjectMap = () => {
   const [selectedCountry, setSelectedCountry] = useState('')
-  const { sectors, tags } = useContext(MapFilterContext)
+  const { sectors, tags, products } = useContext(MapFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -72,7 +74,8 @@ const ProjectMap = () => {
       variables: {
         first: DEFAULT_PAGE_SIZE,
         sectors: sectors.map(sector => sector.value),
-        tags: tags.map(tag => tag.label)
+        tags: tags.map(tag => tag.label),
+        products: products.map(product => product.value)
       }
     })
     const countries = useQuery(COUNTRIES_QUERY)
