@@ -27,6 +27,7 @@ const USE_CASE_QUERY = gql`
 const UseCaseStep = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+  const { locale } = useRouter()
 
   const router = useRouter()
   const [session] = useSession()
