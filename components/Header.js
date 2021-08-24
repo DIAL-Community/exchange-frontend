@@ -272,7 +272,7 @@ const Header = () => {
               <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
                 <a
                   className={`${menuItemStyles} lg:mb-0 mb-2`}
-                  href={`https://docs.osc.dial.community/projects/product-registry/${locale}/latest/`}
+                  href={`https://docs.osc.dial.community/projects/product-registry/en/latest/`}  //https://docs.osc.dial.community/projects/product-registry/${locale}/latest/
                   target='_blank' rel='noreferrer'
                 >
                   {format('header.help')}
