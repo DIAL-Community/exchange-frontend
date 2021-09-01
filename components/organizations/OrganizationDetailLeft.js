@@ -111,7 +111,7 @@ const OrganizationDetailLeft = ({ organization }) => {
       user_token: userToken
     }
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_AUTH_SERVER}/candidate_roles`,
+      `${process.env.NEXT_PUBLIC_RAILS_SERVER}/candidate_roles`,
       {
         method: 'POST',
         mode: 'cors',
@@ -120,7 +120,7 @@ const OrganizationDetailLeft = ({ organization }) => {
           Accept: 'application/json',
           'Content-Type': 'application/json',
           'X-Requested-With': 'XMLHttpRequest',
-          'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
+          'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_RAILS_SERVER,
           'Access-Control-Allow-Credentials': true,
           'Access-Control-Allow-Headers': 'Set-Cookie'
         },

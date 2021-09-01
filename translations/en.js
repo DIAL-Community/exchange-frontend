@@ -26,6 +26,13 @@ export const en = {
   'header.czech': 'Czech (cs)',
   'header.admin.users': 'Users',
   'header.admin.settings': 'Settings',
+  'header.admin.sectors': 'Sectors',
+  'header.admin.tags': 'Tags',
+  'header.admin.candidate_orgs': 'Candidate Orgs',
+  'header.admin.candidate_products': 'Candidate Products',
+  'header.admin.deploys': 'Deploys',
+  'header.admin.portal_views': 'Portal Views',
+  'header.admin.maturity_rubrics': 'Maturity Rubrics',
 
   'footer.text.firstLine': `
     The Digital Impact Alliance is a partnership amongst some of the world’s most active
