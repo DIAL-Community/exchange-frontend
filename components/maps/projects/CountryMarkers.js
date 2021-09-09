@@ -1,4 +1,4 @@
-import { MapContainer, Marker, TileLayer, LayerGroup, useMap, useMapEvents} from 'react-leaflet'
+import { MapContainer, Marker, TileLayer, LayerGroup, useMap, useMapEvents } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { createCountryMarkerIcon } from './CountryMarker'
 import { createRef, useState } from 'react'
@@ -30,7 +30,7 @@ const CountryMarkers = (props) => {
   }
 
   useMapEvents({
-    click(e) {
+    click (e) {
       if (zooming) {
         // Return opacity of markers to default value
         countryMarkerGroup.current.eachLayer(layer => {
@@ -41,16 +41,16 @@ const CountryMarkers = (props) => {
         map.flyTo(e.latlng, DEFAULT_ZOOM)
         setZooming(false)
       }
-    },
+    }
   })
 
   return (
     <LayerGroup ref={countryMarkerGroup}>
       {
-        Object.keys(countries).map(countryName => {
+        Object.keys(countries).map((countryName, index) => {
           const country = countries[countryName]
           if (country.projects.length === 0) {
-            return
+            return <div key={countryName} />
           }
 
           return (
@@ -72,8 +72,13 @@ const CountryMarkers = (props) => {
 const CountryMarkersMaps = (props) => {
   // Adding this attribute will prevent duplicating world map:  maxBounds={[[-90, -180], [90, 180]]}
   return (
-    <MapContainer center={[0, 0]} zoom={3} className='z-10 w-full' style={{ minHeight: '70vh' }}>
+    <MapContainer
+      className='w-full' style={{ minHeight: '70vh', zIndex: 18 }}
+      center={[0, 0]} zoom={3}
+      // maxBounds={[[-90, -180], [90, 180]]}
+    >
       <TileLayer
+        noWrap
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />

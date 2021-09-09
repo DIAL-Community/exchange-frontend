@@ -1,11 +1,17 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
-import { icon } from 'leaflet'
+import { divIcon } from 'leaflet'
 
-const Icon = icon({
-  iconUrl: '/icons/digiprins/digiprins.png',
-  iconSize: [18, 18]
+const Icon = divIcon({
+  className: 'custom-div-icon',
+  html: `
+    <div style='background-color:#3F9EDD;' class='marker-pin'>
+    </div>
+    <img src='/icons/digiprins/digiprins.png'/>
+  `,
+  iconSize: [30, 42],
+  iconAnchor: [15, 42]
 })
 
 const OfficeMarker = (props) => {

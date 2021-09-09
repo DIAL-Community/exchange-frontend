@@ -1,4 +1,4 @@
-import { MapContainer, Marker, TileLayer, LayerGroup, useMap, useMapEvents} from 'react-leaflet'
+import { MapContainer, Marker, TileLayer, LayerGroup, useMap, useMapEvents } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { createCountryMarkerIcon } from './CountryMarker'
 import { createRef, useState } from 'react'
@@ -17,12 +17,12 @@ const CountryMarkers = (props) => {
   const MARKER_ZOOM = 5
   const DEFAULT_ZOOM = 3
 
-  const markerClickHandler = (e, countryName) => {
+  const markerClickHandler = (e, countryId) => {
     countryMarkerGroup.current.eachLayer(layer => {
       const layerOpacity = layer._leaflet_id === e.target._leaflet_id ? SELECTED_OPACITY : NON_SELECTED_OPACITY
       layer.setOpacity(layerOpacity)
     })
-    setSelectedCountry(countryName)
+    setSelectedCountry(countryId)
 
     // Zoom to the selected marker
     map.flyTo(e.latlng, MARKER_ZOOM)
@@ -47,19 +47,19 @@ const CountryMarkers = (props) => {
   return (
     <LayerGroup ref={countryMarkerGroup}>
       {
-        Object.keys(countries).map(countryName => {
-          const country = countries[countryName]
+        Object.keys(countries).map((countryId, index) => {
+          const country = countries[countryId]
           if (country.aggregators.length === 0) {
-            return <></>
+            return <div key={countryId} />
           }
 
           return (
             <Marker
-              key={countryName}
+              key={countryId}
               icon={createCountryMarkerIcon(country)}
               position={[country.latitude, country.longitude]}
               eventHandlers={{
-                click: (e) => markerClickHandler(e, countryName)
+                click: (e) => markerClickHandler(e, countryId)
               }}
             />
           )
@@ -72,8 +72,13 @@ const CountryMarkers = (props) => {
 const CountryMarkersMaps = (props) => {
   // Adding this attribute will prevent duplicating world map:  maxBounds={[[-90, -180], [90, 180]]}
   return (
-    <MapContainer center={[0, 0]} zoom={3} className='z-10 w-full' style={{ minHeight: '70vh' }}>
+    <MapContainer
+      className='w-full' style={{ minHeight: '70vh', zIndex: 18 }}
+      center={[0, 0]} zoom={3}
+      // maxBounds={[[-90, -180], [90, 180]]}
+    >
       <TileLayer
+        noWrap
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />

@@ -1,6 +1,6 @@
-import { MapContainer, Marker, TileLayer } from "react-leaflet"
-import EndorserMarker from "../../maps/endorsers/EndorserMarker"
-import ProjectMarker from "../../maps/endorsers/ProjectMarker"
+import { MapContainer, Marker, TileLayer } from 'react-leaflet'
+import EndorserMarker from '../../maps/endorsers/EndorserMarker'
+import ProjectMarker from '../../maps/endorsers/ProjectMarker'
 
 const latitudeBoundary = [-88, 88]
 const longitudeBoundary = [-88, 88]
@@ -15,7 +15,6 @@ const randomLocations = (() => {
   }
   return randomLocations
 })()
-
 
 const MapInset = (props) => {
   const { insetFor } = props

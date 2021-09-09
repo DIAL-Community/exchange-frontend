@@ -10,12 +10,11 @@ const BuildingBlockFilterProvider = ({ children }) => {
   const [workflows, setWorkflows] = useState([])
 
   const [search, setSearch] = useState('')
-  const [displayType, setDisplayType] = useState('card')
   const [sortColumn, setSortColumn] = useState('name')
   const [sortDirection, setSortDirection] = useState('asc')
 
   const buildingBlockFilterValues = {
-    showMature, sdgs, useCases, workflows, search, displayType, sortColumn, sortDirection
+    showMature, sdgs, useCases, workflows, search, sortColumn, sortDirection
   }
   const buildingBlockFilterDispatchValues = {
     setShowMature,
@@ -23,7 +22,6 @@ const BuildingBlockFilterProvider = ({ children }) => {
     setUseCases,
     setWorkflows,
     setSearch,
-    setDisplayType,
     setSortColumn,
     setSortDirection
   }

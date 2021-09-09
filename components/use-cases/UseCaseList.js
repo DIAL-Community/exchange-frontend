@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import UseCaseCard from './UseCaseCard'
 import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
-import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
+import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -61,6 +61,9 @@ query SearchUseCases(
 }
 `
 const UseCaseList = (props) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id }, { ...values })
+
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
 
@@ -70,25 +73,32 @@ const UseCaseList = (props) => {
         {
           displayType === 'list' &&
             <div className='grid grid-cols-12 my-3 px-4 text-use-case'>
-              <div className='col-span-4 ml-2 text-sm font-semibold opacity-80'>
-                {'Use Cases'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='col-span-9 md:col-span-10 lg:col-span-4 ml-2 text-sm font-semibold opacity-80'>
+                {format('useCase.header').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-2 text-sm font-semibold opacity-50'>
-                {'SDG Targets'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='hidden lg:block col-span-2 text-sm font-semibold opacity-50'>
+                {format('sdg.sdgTargets').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-5 text-sm font-semibold opacity-50'>
-                {'Example Workflows'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='hidden lg:block col-span-5 text-sm text-workflow font-semibold opacity-50'>
+                {format('exampleOf.entity', { entity: format('workflow.header') }).toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
               <div className='col-span-1' />
             </div>
         }
         {
-          props.useCaseList.map((useCase) => (
-            <UseCaseCard key={useCase.id} useCase={useCase} listType={displayType} />
-          ))
+          props.useCaseList.length > 0
+            ? props.useCaseList.map((useCase) => (
+              <UseCaseCard key={useCase.id} useCase={useCase} listType={displayType} />
+              ))
+            : (
+              <div className='flex justify-self-center text-dial-gray-dark'>{
+                format('noResults.entity', { entity: format('use-case.label') })
+                }
+              </div>
+              )
         }
       </div>
     </>
@@ -96,8 +106,8 @@ const UseCaseList = (props) => {
 }
 
 const UseCaseListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { sdgs, showBeta, search, displayType } = useContext(UseCaseFilterContext)
+  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { sdgs, showBeta, search } = useContext(UseCaseFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -110,7 +120,7 @@ const UseCaseListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [`${convertToKey('Use Cases')}`]: data.searchUseCases.totalCount } })
+      setResultCounts({ ...resultCounts, ...{ [['filter.entity.useCases']]: data.searchUseCases.totalCount } })
     }
   })
 
@@ -136,7 +146,7 @@ const UseCaseListQuery = () => {
   }
   return (
     <InfiniteScroll
-      className='relative mx-2 mt-3'
+      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'
       dataLength={nodes.length}
       next={handleLoadMore}
       hasMore={pageInfo.hasNextPage}

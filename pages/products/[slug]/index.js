@@ -1,16 +1,26 @@
 import { useRouter } from 'next/router'
+import Head from 'next/head'
+
 import { useRef } from 'react'
+import { useIntl } from 'react-intl'
+
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import withApollo from '../../../lib/apolloClient'
+
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+
 import ProductDetailLeft from '../../../components/products/ProductDetailLeft'
 import ProductDetailRight from '../../../components/products/ProductDetailRight'
-import { Loading, Error } from '../../../components/shared/FetchStatus'
+
+import dynamic from 'next/dynamic'
+const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Loading = dynamic(() => import('../../../components/shared/FetchStatus').then(x => x.Loading), { ssr: false })
+const Error = dynamic(() => import('../../../components/shared/FetchStatus').then(x => x.Error), { ssr: false })
 
 const PRODUCT_QUERY = gql`
-query Product($slug: String!) {
+query Product($slug: String!, $locale: String!) {
   product(slug: $slug) {
     id
     name
@@ -24,12 +34,19 @@ query Product($slug: String!) {
     owner
     codeLines
     cocomo
+    tags
     discourseId
     productDescriptions {
       description
+      locale
     }
     origins {
       name
+      slug
+    }
+    endorsers {
+      name
+      slug
     }
     childProducts {
       name
@@ -40,6 +57,7 @@ query Product($slug: String!) {
       languageData
       productDescriptions {
         description
+        locale
       }
       origins {
         name
@@ -48,6 +66,7 @@ query Product($slug: String!) {
     interoperatesWith {
       name
       slug
+      imageFile
       origins {
         name
       }
@@ -55,6 +74,7 @@ query Product($slug: String!) {
     includes {
       name 
       slug
+      imageFile
       origins {
         name
       }
@@ -62,6 +82,7 @@ query Product($slug: String!) {
     organizations {
       name
       slug
+      imageFile
       isEndorser
       whenEndorsed
     }
@@ -84,9 +105,10 @@ query Product($slug: String!) {
       slug
       imageFile
     }
-    sectors {
+    sectorsWithLocale(locale: $locale) {
       name
       slug
+      isDisplayable
     }
     maturityScore
     maturityScores
@@ -94,51 +116,51 @@ query Product($slug: String!) {
 }
 `
 
+export async function getServerSideProps (context) {
+  return {
+    props: {} // will be passed to the page component as props
+  }
+}
+
 const Product = () => {
+  const discourseElement = useRef()
+
+  const { formatMessage } = useIntl()
+  const format = (id) => formatMessage({ id })
+
   const router = useRouter()
+  const { locale } = router
+
   const { slug } = router.query
-  const { loading, error, data } = useQuery(PRODUCT_QUERY, { variables: {slug: slug}})
+  const { loading, error, data } = useQuery(PRODUCT_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
 
   const scrollToDiv = (ref) => {
-    rightPanel.current.scrollTo({
-      top: ref.current.offsetTop - 100,
+    ref.current.scrollIntoView({
       behavior: 'smooth'
     })
   }
-  const discourseElement = useRef();
-  const rightPanel = useRef();
 
-  if (loading) {
-    return (
-      <>
-        <Header />
-        <Loading />
-        <Footer />
-      </>
-    )
-  }
-  if (error) {
-    (
-      <>
-        <Header />
-        <Error />
-        <Footer />
-      </>
-    )
-  }
-
-  const product = data.product
   return (
-    <>  
+    <>
+      <Head>
+        <title>{format('app.title')}</title>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
       <Header />
-      <div className='w-full h-full flex p-6 page-gradient'>
-        <div className='w-1/4 pl-12 pt-4'>
-          <ProductDetailLeft product={product} discourseClick={()=> scrollToDiv(discourseElement)} />
-        </div>
-        <div className='w-3/4 pt-4 h-screen overflow-y-scroll' ref={rightPanel}>
-          <ProductDetailRight product={product} discourseRef={discourseElement} />
-        </div>
-      </div>
+      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      {loading && <Loading />}
+      {error && <Error />}
+      {
+        data && data.product &&
+          <div className='flex flex-col lg:flex-row justify-between pb-8 max-w-catalog mx-auto'>
+            <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
+              <ProductDetailLeft product={data.product} discourseClick={() => scrollToDiv(discourseElement)} />
+            </div>
+            <div className='w-full lg:w-2/3 xl:w-3/4'>
+              <ProductDetailRight product={data.product} discourseRef={discourseElement} />
+            </div>
+          </div>
+      }
       <Footer />
     </>
   )

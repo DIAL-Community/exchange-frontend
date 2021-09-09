@@ -1,27 +1,56 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
+import { useEffect } from 'react'
+import ReactTooltip from 'react-tooltip'
+import { descriptionByLocale, ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
+import { useRouter } from 'next/router'
 
-import { truncate, ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
+const ellipsisTextStyle = `
+  whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+`
 
-const ProductCard = ({ product, listType }) => {
+const ProductCard = ({ product, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
+  const { locale } = useRouter()
+
+  const isEndorsingOrg = () => {
+    if (!product.organizations) {
+      return false
+    }
+
+    const endorserOrgs = product.organizations.filter((org) => {
+      return org.isEndorser === true
+    })
+
+    return endorserOrgs.length > 0
+  }
+
+  useEffect(() => {
+    ReactTooltip.rebuild()
+  })
 
   return (
     <Link href={`/products/${product.slug}`}>
-      {
+      <a {... newTab && { target: '_blank' }}>
+        {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-dial-purple hover:text-dial-yellow cursor-pointer'>
-              <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+              <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
-                  <div className='col-span-5 text-base font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                  <img
+                    className='m-auto w-8'
+                    alt={format('image.alt.logoFor', { name: product.name })}
+                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+                  />
+                  <div className={`col-span-7 md:col-span-4 mr-2 md:mr-4 ml-2 my-auto ${ellipsisTextStyle}`}>
                     {product.name}
                   </div>
-                  <div className='col-span-2 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
-                    {product.productType === 'dataset' ? 'Dataset' : 'Product'}
+                  <div className='col-span-2 mr-3 font-semibold text-dial-cyan my-auto'>
+                    {product.productType === 'dataset' ? format('product.card.dataset').toUpperCase() : ''}
                   </div>
-                  <div className='col-span-4 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                  <div className={`hidden md:block md:col-span-4 pr-3 text-base text-dial-purple ${ellipsisTextStyle}`}>
                     {
                       product.origins && product.origins.length === 0 && format('general.na')
                     }
@@ -32,11 +61,27 @@ const ProductCard = ({ product, listType }) => {
                           .join(', ')
                     }
                   </div>
-                  <div className='col-span-1 flex flex-row justify-end'>
-                    <img className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
+                  <div className='col-span-2 md:col-span-1 flex flex-row justify-end my-auto'>
+                    {
+                      product.endorsers && product.endorsers.length > 0 &&
+                        <img
+                          data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5'
+                          src='/icons/check/check.png'
+                        />
+                    }
+                    {
+                      isEndorsingOrg() &&
+                        <img
+                          data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5'
+                          src='/icons/digiprins/digiprins.png'
+                        />
+                    }
                     {
                       product.tags && product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
-                        <img className='mr-1.5 last:mr-0 h-5' src='/icons/coronavirus/coronavirus.png' />
+                        <img
+                          data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5'
+                          src='/icons/coronavirus/coronavirus.png'
+                        />
                     }
                     {product.isLaunchable && <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />}
                   </div>
@@ -45,13 +90,29 @@ const ProductCard = ({ product, listType }) => {
             </div>
             )
           : (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-dial-purple hover:text-dial-yellow cursor-pointer'>
-              <div className='h-full flex flex-col justify-between border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
-                <div className='flex flex-row p-1.5 border-b border-dial-gray'>
-                  <img className='mr-1.5 last:mr-0 h-5' src='/icons/check/check.png' />
+            <div className='border-3 border-transparent hover:border-dial-yellow text-dial-purple hover:text-dial-yellow cursor-pointer h-full'>
+              <div className='h-full flex flex-col border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
+                <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
+                  {
+                    product.endorsers && product.endorsers.length > 0 &&
+                      <img
+                        data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5'
+                        src='/icons/check/check.png'
+                      />
+                  }
+                  {
+                    isEndorsingOrg() &&
+                      <img
+                        data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5'
+                        src='/icons/digiprins/digiprins.png'
+                      />
+                  }
                   {
                     product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
-                      <img className='mr-1.5 last:mr-0 h-5' src='/icons/coronavirus/coronavirus.png' />
+                      <img
+                        data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5'
+                        src='/icons/coronavirus/coronavirus.png'
+                      />
                   }
                   {product.isLaunchable && <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />}
                   {
@@ -62,17 +123,26 @@ const ProductCard = ({ product, listType }) => {
                   }
                 </div>
                 <div className='flex flex-col h-80 p-4'>
-                  <div className='text-2xl font-semibold absolute w-80'>
-                    {truncate(product.name, 40, true)}
+                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
+                    {product.name}
                   </div>
+                  {
+                    product.productDescriptions && product.productDescriptions.length > 0 &&
+                      <img
+                        className='ml-auto opacity-20 hover:opacity-100 product-filter'
+                        data-tip={descriptionByLocale(product.productDescriptions, locale)}
+                        data-html
+                        alt='Info' height='20px' width='20px' src='/icons/info.svg'
+                      />
+                  }
                   <div className='m-auto align-middle w-40'>
                     <img
-                      alt={`Logo for ${product.name}`}
+                      alt={format('image.alt.logoFor', { name: product.name })}
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
                     />
                   </div>
                 </div>
-                <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark '>
+                <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark mt-auto'>
                   <div className='pb-3 flex flex-row flex-wrap justify-between border-b border-dial-gray'>
                     <div className='pl-3 pt-3 flex flex-row flex-wrap'>
                       <div className='text-base my-auto mr-2'>{format('product.card.sdgs')}</div>
@@ -88,7 +158,9 @@ const ProductCard = ({ product, listType }) => {
                             .filter((_, index) => index <= 2)
                             .map(sdg => (
                               <img
-                                key={`sdg-${sdg.slug}`} className='mr-1.5 last:mr-0 h-8'
+                                data-tip={format('tooltip.forEntity', { entity: format('sdg.label'), name: sdg.name })}
+                                key={`sdg-${sdg.slug}`} className='mr-1.5 last:mr-0 h-8 cursor-default'
+                                alt={format('image.alt.logoFor', { name: sdg.name })}
                                 src={`/images/sdgs/${sdg.slug}.png`}
                               />
                             ))
@@ -113,7 +185,9 @@ const ProductCard = ({ product, listType }) => {
                             .filter((_, index) => index <= 2)
                             .map(bb => (
                               <img
-                                key={`sdg-${bb.slug}`} className='mr-1.5 last:mr-0 h-8 building-block-filter'
+                                data-tip={format('tooltip.forEntity', { entity: format('buildingBlock.label'), name: bb.name })}
+                                key={`sdg-${bb.slug}`} className='mr-1.5 last:mr-0 h-8 building-block-filter cursor-default'
+                                alt={format('image.alt.logoFor', { name: bb.name })}
                                 src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + bb.imageFile}
                               />
                             ))
@@ -147,7 +221,7 @@ const ProductCard = ({ product, listType }) => {
                       <div className='text-base text-right my-auto'>Sources</div>
                       <div className='flex flex-row justify-end font-semibold'>
                         {
-                          product.origins.length === 0 && 
+                          product.origins.length === 0 &&
                             <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
                               {format('general.na')}
                             </div>
@@ -156,15 +230,24 @@ const ProductCard = ({ product, listType }) => {
                           product.origins
                             .filter((_, index) => index <= 2)
                             .map(origin => (
-                              <div key={`origin-${origin.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
+                              <div
+                                key={`origin-${origin.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
+                                data-tip={format('tooltip.forEntity', {
+                                  entity: format('origin.label'),
+                                  name: ORIGIN_EXPANSIONS[origin.slug.toLowerCase()]
+                                })}
+                              >
                                 {(ORIGIN_ACRONYMS[origin.slug.toLowerCase()] || origin.slug).toUpperCase()}
                               </div>
                             ))
                         }
                         {
                           product.origins.length > 3 &&
-                            <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
-                              ...
+                            <div
+                              className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
+                              data-tip={format('tooltip.ellipsisFor', { entity: format('product.label') })}
+                            >
+                              &hellip;
                             </div>
                         }
                       </div>
@@ -175,6 +258,7 @@ const ProductCard = ({ product, listType }) => {
             </div>
             )
       }
+      </a>
     </Link>
   )
 }

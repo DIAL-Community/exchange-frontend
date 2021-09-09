@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import SDGCard from './SDGCard'
 import { SDGFilterContext } from '../context/SDGFilterContext'
-import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
+import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -56,6 +56,9 @@ query SearchSDGs(
 `
 
 const SDGList = (props) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id }, { ...values })
+
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
 
@@ -66,19 +69,26 @@ const SDGList = (props) => {
           displayType === 'list' &&
             <div className='grid grid-cols-1 md:grid-cols-6 gap-4 my-3 px-4'>
               <div className='col-span-5 md:col-span-3 lg:col-span-2 ml-2 whitespace-nowrap text-sm font-semibold text-sdg opacity-80'>
-                {'Sustainable Development Goals'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+                {format('sdg.header').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
               <div className='hidden md:block md:col-span-3 lg:col-span-4 text-sm font-semibold text-use-case opacity-50'>
-                {'Example Use Cases'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+                {format('exampleOf.entity', { entity: format('useCase.header') }).toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
             </div>
         }
         {
-          props.sdgList.map((sdg) => (
-            <SDGCard key={sdg.id} sdg={sdg} listType={displayType} />
-          ))
+          props.sdgList.length > 0
+            ? props.sdgList.map((sdg) => (
+              <SDGCard key={sdg.id} sdg={sdg} listType={displayType} />
+              ))
+            : (
+              <div className='flex justify-self-center text-dial-gray-dark'>{
+                format('noResults.entity', { entity: format('sdg.header') })
+                }
+              </div>
+              )
         }
       </div>
     </>
@@ -86,8 +96,8 @@ const SDGList = (props) => {
 }
 
 const SDGListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { sdgs, search, displayType } = useContext(SDGFilterContext)
+  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { sdgs, search } = useContext(SDGFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -99,7 +109,7 @@ const SDGListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [`${convertToKey('SDGs')}`]: data.searchSdgs.totalCount } })
+      setResultCounts({ ...resultCounts, ...{ [['filter.entity.sdgs']]: data.searchSdgs.totalCount } })
     }
   })
 
@@ -125,7 +135,7 @@ const SDGListQuery = () => {
   }
   return (
     <InfiniteScroll
-      className='relative mx-2 mt-3'
+      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'
       dataLength={nodes.length}
       next={handleLoadMore}
       hasMore={pageInfo.hasNextPage}

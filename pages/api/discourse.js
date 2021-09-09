@@ -1,10 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default (req, res) => {
-  const apiKey = process.env.NEXT_PUBLIC_DISCOURSE_KEY
-  const url = 'https://discourse.govstack.global/'
-  
-  const userResponse = fetch(url+'u/'+req.query.username, {
+  const apiKey = req.query.objType === 'prod' ? process.env.NEXT_PUBLIC_DISCOURSE_PROD_KEY : process.env.NEXT_PUBLIC_DISCOURSE_BB_KEY
+  const url = req.query.objType === 'prod' ? process.env.NEXT_PUBLIC_DISCOURSE_PROD_URL : process.env.NEXT_PUBLIC_DISCOURSE_BB_URL
+
+  fetch(url + '/u/' + req.query.username, {
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
@@ -13,15 +13,15 @@ export default (req, res) => {
       'Api-Username': 'system'
     }
   }).then(userRes => {
-    if (userRes.status == 404) {
+    if (userRes.status === 404) {
       return res.status(404).json({})
     }
     const postData = {
-      'topic_id': req.query.topicId,
-      'raw': req.query.raw
+      topic_id: req.query.topicId,
+      raw: req.query.raw
     }
-    const response = fetch(url+'posts.json', {
-      method: 'POST', 
+    fetch(url + '/posts.json', {
+      method: 'POST',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
@@ -29,12 +29,11 @@ export default (req, res) => {
         'Api-Key': apiKey,
         'Api-Username': req.query.username
       },
-        body: JSON.stringify(postData) 
-      }).then(response => response.json()
-        .then(data => {
-          return res.status(response.status).json(data)
-        })
-      )
-    }
-  )
+      body: JSON.stringify(postData)
+    }).then(response => response.json()
+      .then(data => {
+        return res.status(response.status).json(data)
+      })
+    )
+  })
 }

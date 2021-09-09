@@ -9,15 +9,19 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import SDGListQuery from '../../components/sdgs/SDGList'
 import { SDGFilterContext, SDGFilterDispatchContext } from '../../components/context/SDGFilterContext'
+import QueryNotification from '../../components/shared/QueryNotification'
 import GradientBackground from '../../components/shared/GradientBackground'
 import SearchFilter from '../../components/shared/SearchFilter'
+
+import dynamic from 'next/dynamic'
+const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const SDGs = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { search, displayType } = useContext(SDGFilterContext)
-  const { setSearch, setDisplayType } = useContext(SDGFilterDispatchContext)
+  const { search } = useContext(SDGFilterContext)
+  const { setSearch } = useContext(SDGFilterDispatchContext)
 
   return (
     <>
@@ -25,10 +29,12 @@ const SDGs = () => {
         <title>{format('app.title')}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
+      <QueryNotification />
       <GradientBackground />
       <Header />
-      <Filter activeTab='sdgs' />
-      <SearchFilter {...{ search, setSearch, displayType, setDisplayType }} placeholder='Search for a Sustainable Development Goal' />
+      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Filter activeTab='filter.entity.sdgs' />
+      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('sdg.label')} />
       <SDGListQuery />
       <Footer />
     </>

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
+import { useIntl } from 'react-intl'
 
 import { UseCaseLogo } from '../../logo'
 
@@ -9,8 +9,8 @@ import { UseCaseLogo } from '../../logo'
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
 const USE_CASE_SEARCH_QUERY = gql`
-  query UseCases($search: String!) {
-    useCases(search: $search) {
+  query UseCases($search: String!, $mature: Boolean!) {
+    useCases(search: $search, mature: $mature) {
       id
       name
     }
@@ -31,11 +31,12 @@ const customStyles = {
 
 export const UseCaseAutocomplete = (props) => {
   const client = useApolloClient()
-  const [useCase, setUseCase] = useState('')
   const { useCases, setUseCases, containerStyles } = props
 
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
   const selectUseCase = (useCase) => {
-    setUseCase('')
     setUseCases([...useCases.filter(u => u.value !== useCase.value), useCase])
   }
 
@@ -47,7 +48,8 @@ export const UseCaseAutocomplete = (props) => {
     const response = await client.query({
       query: query,
       variables: {
-        search: input
+        search: input,
+        mature: true
       }
     })
 
@@ -67,7 +69,7 @@ export const UseCaseAutocomplete = (props) => {
         <div className='flex flex-row'>
           <UseCaseLogo fill='white' className='ml-2' />
           <div className='text-sm px-2 text-dial-gray-light my-auto'>
-            Use Cases
+            {format('useCase.header')}
           </div>
         </div>
         <AsyncSelect
@@ -75,11 +77,11 @@ export const UseCaseAutocomplete = (props) => {
           cacheOptions
           defaultOptions
           loadOptions={(input, callback) => fetchOptions(input, callback, USE_CASE_SEARCH_QUERY)}
-          noOptionsMessage={() => 'Search for use cases.'}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('useCase.header') })}
           onChange={selectUseCase}
-          placeholder='Filter by Use Case'
+          placeholder={format('filter.byEntity', { entity: format('useCase.label') })}
           styles={customStyles}
-          value={useCase}
+          value=''
         />
       </label>
     </div>
@@ -88,6 +90,10 @@ export const UseCaseAutocomplete = (props) => {
 
 export const UseCaseFilters = (props) => {
   const { useCases, setUseCases } = props
+
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
   const removeUseCase = (useCaseId) => {
     setUseCases(useCases.filter(useCase => useCase.value !== useCaseId))
   }
@@ -98,7 +104,7 @@ export const UseCaseFilters = (props) => {
         useCases &&
           useCases.map(useCase => (
             <div key={`filter-${useCase.label}`} className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {`Use Case: ${useCase.label}`}
+              {`${format('useCase.label')}: ${useCase.label}`}
               <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeUseCase(useCase.value)} />
             </div>
           ))

@@ -1,7 +1,8 @@
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
+import { useIntl } from 'react-intl'
+
 import { WorkflowLogo } from '../../logo'
 
 // https://github.com/JedWatson/react-select/issues/3590
@@ -30,11 +31,12 @@ const customStyles = {
 
 export const WorkflowAutocomplete = (props) => {
   const client = useApolloClient()
-  const [workflow, setWorkflow] = useState('')
   const { workflows, setWorkflows, containerStyles } = props
 
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
   const selectWorkflow = (workflow) => {
-    setWorkflow('')
     setWorkflows([...workflows.filter(w => w.value !== workflow.value), workflow])
   }
 
@@ -66,7 +68,7 @@ export const WorkflowAutocomplete = (props) => {
         <div className='flex flex-row'>
           <WorkflowLogo fill='white' className='ml-2' />
           <div className='text-sm px-2 text-dial-gray-light my-auto'>
-            Workflows
+            {format('workflow.header')}
           </div>
         </div>
         <AsyncSelect
@@ -74,11 +76,11 @@ export const WorkflowAutocomplete = (props) => {
           cacheOptions
           defaultOptions
           loadOptions={(input, callback) => fetchOptions(input, callback, WORKFLOW_SEARCH_QUERY)}
-          noOptionsMessage={() => 'Search for workflows.'}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('workflow.header') })}
           onChange={selectWorkflow}
-          placeholder='Filter by Workflow'
+          placeholder={format('filter.byEntity', { entity: format('workflow.label') })}
           styles={customStyles}
-          value={workflow}
+          value=''
         />
       </label>
     </div>
@@ -87,6 +89,10 @@ export const WorkflowAutocomplete = (props) => {
 
 export const WorkflowFilters = (props) => {
   const { workflows, setWorkflows } = props
+
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
   const removeWorkflow = (workflowId) => {
     setWorkflows(workflows.filter(workflow => workflow.value !== workflowId))
   }
@@ -97,7 +103,7 @@ export const WorkflowFilters = (props) => {
         workflows &&
           workflows.map(workflow => (
             <div key={`filter-${workflow.label}`} className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {`Workflow: ${workflow.label}`}
+              {`${format('workflow.label')}: ${workflow.label}`}
               <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeWorkflow(workflow.value)} />
             </div>
           ))

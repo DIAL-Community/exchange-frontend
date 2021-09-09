@@ -1,18 +1,28 @@
 import Link from 'next/link'
 import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
+import ReactTooltip from 'react-tooltip'
 
-import { truncate } from '../../lib/utilities'
+import { convertToKey } from '../context/FilterContext'
+const collectionPath = convertToKey('Use Cases')
 
-const UseCaseCard = ({ useCase, listType }) => {
+const ellipsisTextStyle = `
+   whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+`
+
+const UseCaseCard = ({ useCase, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const sdgTargetContainer = createRef()
   const [sdgTargetOverflow, setSdgTargetOverflow] = useState(false)
 
   const workflowContainer = createRef()
   const [workflowOverflow, setWorkflowOverflow] = useState(false)
+
+  useEffect(() => {
+    ReactTooltip.rebuild()
+  })
 
   useEffect(() => {
     const wc = workflowContainer.current
@@ -49,30 +59,63 @@ const UseCaseCard = ({ useCase, listType }) => {
 
   const nameColSpan = (useCase) => {
     return !useCase.sdgTargets && !workflows
-      ? 'col-span-10'
-      : 'col-span-4'
-  }
-
-  const maturityColSpan = (useCase) => {
-    return !useCase.sdgTargets && !workflows
-      ? 'col-span-2'
-      : 'col-span-1'
+      ? 'col-span-8 md:col-span-9 lg:col-span-10'
+      : 'col-span-8 md:col-span-9 lg:col-span-4'
   }
 
   return (
-    <Link href={`/use-cases/${useCase.slug}`}>
-      {
+    <Link href={`/${collectionPath}/${useCase.slug}`}>
+      <a {... newTab && { target: '_blank' }}>
+        {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
-              <div className='border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+              <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
-                  <div className={`${nameColSpan(useCase)} col-span-4 pr-3 text-base font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden`}>
+                  <div className={`${nameColSpan(useCase)} pr-3 text-base font-semibold ${ellipsisTextStyle}`}>
+                    <img
+                      alt={format('image.alt.logoFor', { name: useCase.name })} className='m-auto h-6 use-case-filter inline mr-3'
+                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+                    />
                     {useCase.name}
+                    {
+                      useCase.sdgTargets &&
+                        <div className='block lg:hidden flex flex-row mt-1'>
+                          <div className='text-sm font-normal'>
+                            {format('sdg.sdgTargets')}:
+                          </div>
+                          <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
+                            {
+                              useCase.sdgTargets.length === 0 && format('general.na')
+                            }
+                            {
+                              useCase.sdgTargets.length > 0 &&
+                                useCase.sdgTargets.map(u => u.targetNumber).join(', ')
+                            }
+                          </div>
+                        </div>
+                    }
+                    {
+                      workflows &&
+                        <div className='block lg:hidden text-workflow flex flex-row mt-1'>
+                          <div className='text-sm font-normal'>
+                            {format('workflow.header')}:
+                          </div>
+                          <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
+                            {
+                              workflows.length === 0 && format('general.na')
+                            }
+                            {
+                              workflows.length > 0 &&
+                                workflows.map(b => b.name).join(', ')
+                            }
+                          </div>
+                        </div>
+                    }
                   </div>
                   {
-                    useCase.sdgTargets && 
-                      <div className='col-span-2 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                    useCase.sdgTargets &&
+                      <div className={`hidden lg:block lg:col-span-2 pr-3 text-base text-dial-purple ${ellipsisTextStyle}`}>
                         {
                           useCase.sdgTargets.length === 0 && format('general.na')
                         }
@@ -84,7 +127,7 @@ const UseCaseCard = ({ useCase, listType }) => {
                   }
                   {
                     workflows &&
-                      <div className='col-span-5 pr-3 text-base text-dial-purple whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                      <div className={`hidden lg:block lg:col-span-5 pr-3 text-base text-workflow ${ellipsisTextStyle}`}>
                         {
                           workflows.length === 0 && format('general.na')
                         }
@@ -94,7 +137,7 @@ const UseCaseCard = ({ useCase, listType }) => {
                         }
                       </div>
                   }
-                  <div className={`${maturityColSpan(useCase)} flex flex-row font-semibold opacity-50 text-button-gray-light justify-end`}>
+                  <div className='col-span-3 md:col-span-2 lg:col-span-1 px-2 text-right font-semibold opacity-50 justify-end'>
                     {useCase.maturity}
                   </div>
                 </div>
@@ -110,12 +153,12 @@ const UseCaseCard = ({ useCase, listType }) => {
                   </div>
                 </div>
                 <div className='flex flex-col h-80 p-4'>
-                  <div className='text-2xl font-semibold absolute w-80'>
-                    {truncate(useCase.name, 40, true)}
+                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70 z-10'>
+                    {useCase.name}
                   </div>
                   <div className='m-auto align-middle w-40'>
                     <img
-                      alt={`Logo for ${useCase.name}`} className='use-case-filter'
+                      alt={format('image.alt.logoFor', { name: useCase.name })} className='use-case-filter'
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
                     />
                   </div>
@@ -139,7 +182,7 @@ const UseCaseCard = ({ useCase, listType }) => {
                           {
                             useCase.sdgTargets
                               .map(s => (
-                                <div key={`${useCase.id}-${s.id}`} className='bg-white rounded text-sdg-target p-2 mr-1.5'>
+                                <div key={`${useCase.id}-${s.id}`} className='bg-white rounded text-sdg-target p-2 mr-1.5 cursor-default' data-tip={`${s.name}.`}>
                                   {s.targetNumber}
                                 </div>
                               ))
@@ -148,7 +191,12 @@ const UseCaseCard = ({ useCase, listType }) => {
                         {
                           sdgTargetOverflow && (
                             <div className='bg-white mr-3 px-2 rounded text-sm text-sdg-target'>
-                              <span className='text-xl bg-white leading-normal'>...</span>
+                              <span
+                                className='text-xl bg-white leading-normal'
+                                data-tip={format('tooltip.ellipsisFor', { entity: format('useCase.label') })}
+                              >
+                                &hellip;
+                              </span>
                             </div>
                           )
                         }
@@ -173,9 +221,10 @@ const UseCaseCard = ({ useCase, listType }) => {
                           {
                             workflows
                               .map(w => (
-                                <div key={`${useCase.id}-${w.id}`} className='bg-white rounded p-2 mr-1'>
+                                <div key={`${useCase.id}-${w.id}`} className='bg-white rounded p-2 mr-1 cursor-default'>
                                   <img
-                                    className='m-auto h-6 workflow-filter'
+                                    data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: w.name })}
+                                    className='m-auto h-6 workflow-filter' alt={format('image.alt.logoFor', { name: w.name })}
                                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + w.imageFile}
                                   />
                                 </div>
@@ -185,7 +234,12 @@ const UseCaseCard = ({ useCase, listType }) => {
                         {
                           workflowOverflow && (
                             <div className='bg-white mr-3 px-2 rounded text-sm'>
-                              <span className='text-xl text-workflow bg-white leading-normal'>...</span>
+                              <span
+                                className='text-xl text-workflow bg-white leading-normal'
+                                data-tip={format('tooltip.ellipsisFor', { entity: format('useCase.label') })}
+                              >
+                                &hellip;
+                              </span>
                             </div>
                           )
                         }
@@ -197,6 +251,7 @@ const UseCaseCard = ({ useCase, listType }) => {
             </div>
             )
       }
+      </a>
     </Link>
   )
 }

@@ -130,3 +130,17 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.product-card-header {
+  min-height: 33px;
+}
+
+@media(max-width: 880px) {
+  .wizard-scroll {
+    overflow-y: scroll;
+  }
+}
+
+.highlight-link a {
+  color: #fab230;
+}

@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import BuildingBlockCard from './BuildingBlockCard'
 import { BuildingBlockFilterContext } from '../context/BuildingBlockFilterContext'
-import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
+import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -61,6 +61,9 @@ query SearchBuildingBlocks(
 `
 
 const BuildingBlockList = (props) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id }, { ...values })
+
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
 
@@ -70,25 +73,31 @@ const BuildingBlockList = (props) => {
         {
           displayType === 'list' &&
             <div className='grid grid-cols-12 my-3 px-4 text-building-block'>
-              <div className='col-span-4 ml-2 text-sm font-semibold opacity-80'>
-                {'Building Blocks'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='col-span-10 lg:col-span-4 ml-2 text-sm font-semibold opacity-80'>
+                {format('building-block.header').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-3 text-sm font-semibold opacity-50'>
-                {'Example Products'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='hidden lg:block col-span-3 text-sm text-product font-semibold opacity-50'>
+                {format('exampleOf.entity', { entity: format('product.header') }).toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-4 text-sm font-semibold opacity-50'>
-                {'Example Workflows'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='hidden lg:block col-span-3 text-sm font-semibold text-workflow opacity-50'>
+                {format('exampleOf.entity', { entity: format('workflow.header') }).toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-1' />
             </div>
         }
         {
-          props.buildingBlockList.map((buildingBlock) => (
-            <BuildingBlockCard key={buildingBlock.id} buildingBlock={buildingBlock} listType={displayType} />
-          ))
+          props.buildingBlockList.length > 0
+            ? props.buildingBlockList.map((buildingBlock) => (
+              <BuildingBlockCard key={buildingBlock.id} buildingBlock={buildingBlock} listType={displayType} />
+              ))
+            : (
+              <div className='flex justify-self-center text-dial-gray-dark'>{
+                format('noResults.entity', { entity: format('building-block.header') })
+                }
+              </div>
+              )
         }
       </div>
     </>
@@ -96,8 +105,8 @@ const BuildingBlockList = (props) => {
 }
 
 const BuildingBlockListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { sdgs, useCases, workflows, showMature, search, displayType } = useContext(BuildingBlockFilterContext)
+  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { sdgs, useCases, workflows, showMature, search } = useContext(BuildingBlockFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -112,7 +121,7 @@ const BuildingBlockListQuery = () => {
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [`${convertToKey('Building Blocks')}`]: data.searchBuildingBlocks.totalCount }})
+      setResultCounts({ ...resultCounts, ...{ [['filter.entity.buildingBlocks']]: data.searchBuildingBlocks.totalCount } })
     }
   })
 
@@ -142,7 +151,7 @@ const BuildingBlockListQuery = () => {
   return (
     <>
       <InfiniteScroll
-        className='relative mx-2 mt-3'
+        className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'
         dataLength={nodes.length}
         next={handleLoadMore}
         hasMore={pageInfo.hasNextPage}

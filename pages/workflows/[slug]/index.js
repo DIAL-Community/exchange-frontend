@@ -11,7 +11,7 @@ import gql from 'graphql-tag'
 
 import WorkflowDetailLeft from '../../../components/workflows/WorkflowDetailLeft'
 import WorkflowDetailRight from '../../../components/workflows/WorkflowDetailRight'
-import { Loading, Error } from '../shared/FetchStatus'
+import { Loading, Error } from '../../../components/shared/FetchStatus'
 
 const WORKFLOW_QUERY = gql`
   query Workflow($slug: String!) {
@@ -22,6 +22,7 @@ const WORKFLOW_QUERY = gql`
       imageFile
       workflowDescriptions {
         description
+        locale
       }
       useCaseSteps {
         slug
@@ -30,6 +31,7 @@ const WORKFLOW_QUERY = gql`
           slug
           name
           maturity
+          imageFile
         }
       }
       buildingBlocks {
@@ -48,7 +50,7 @@ const Workflow = () => {
 
   const router = useRouter()
   const { slug } = router.query
-  const { loading, error, data } = useQuery(WORKFLOW_QUERY, { variables: { slug: slug } })
+  const { loading, error, data } = useQuery(WORKFLOW_QUERY, { variables: { slug: slug }, skip: !slug })
 
   if (loading) {
     return (
@@ -67,7 +69,6 @@ const Workflow = () => {
     )
   }
 
-  const workflow = data.workflow
   return (
     <>
       <Head>
@@ -75,14 +76,19 @@ const Workflow = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <div className='w-full h-full flex flex-col md:flex-row p-6 page-gradient'>
-        <div className='w-full xl:w-1/4 md:w-1/3 pt-4'>
-          <WorkflowDetailLeft workflow={workflow} />
-        </div>
-        <div className='w-full xl:w-3/4 md:w-2/3 pt-4 h-screen overflow-y-scroll'>
-          <WorkflowDetailRight workflow={workflow} />
-        </div>
-      </div>
+      {loading && <Loading />}
+      {error && <Error />}
+      {
+        data && data.workflow &&
+          <div className='flex flex-col lg:flex-row justify-between pb-8 max-w-catalog mx-auto'>
+            <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
+              <WorkflowDetailLeft workflow={data.workflow} />
+            </div>
+            <div className='w-full lg:w-2/3 xl:w-3/4'>
+              <WorkflowDetailRight workflow={data.workflow} />
+            </div>
+          </div>
+      }
       <Footer />
     </>
   )

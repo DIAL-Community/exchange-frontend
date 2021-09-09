@@ -4,9 +4,13 @@ import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import UseCaseCard from '../use-cases/UseCaseCard'
 import ReactHtmlParser from 'react-html-parser'
 
+import { descriptionByLocale } from '../../lib/utilities'
+import { useRouter } from 'next/router'
+
 const WorkflowDetailRight = ({ workflow }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+  const { locale } = useRouter()
 
   const useCases = (() => {
     if (!workflow.useCaseSteps) {
@@ -24,16 +28,24 @@ const WorkflowDetailRight = ({ workflow }) => {
     return useCases
   })()
 
+  const slugNameMapping = (() => {
+    const map = {}
+    map[workflow.slug] = workflow.name
+    return map
+  })()
+
   return (
-    <div className=''>
-      <Breadcrumb />
-      <div className='fr-view'>
-        {workflow.workflowDescriptions[0] && ReactHtmlParser(workflow.workflowDescriptions[0].description)}
+    <div className='px-4'>
+      <div className='hidden lg:block'>
+        <Breadcrumb slugNameMapping={slugNameMapping} />
+      </div>
+      <div className='fr-view text-dial-gray-dark'>
+        {ReactHtmlParser(descriptionByLocale(workflow.workflowDescriptions, locale))}
       </div>
       {
         useCases && useCases.length > 0 &&
           <div className='mt-12'>
-            <div className='card-title mb-3'>{format('useCase.header')}</div>
+            <div className='card-title mb-3 text-dial-gray-dark'>{format('useCase.header')}</div>
             <div className='grid grid-cols-1'>
               {useCases.map((useCase, i) => <UseCaseCard key={i} useCase={useCase} listType='list' />)}
             </div>
@@ -42,7 +54,7 @@ const WorkflowDetailRight = ({ workflow }) => {
       {
         workflow.buildingBlocks && workflow.buildingBlocks.length > 0 &&
           <div className='mt-12'>
-            <div className='card-title mb-3'>{format('building-block.header')}</div>
+            <div className='card-title mb-3 text-dial-gray-dark'>{format('building-block.header')}</div>
             <div className='grid grid-cols-1'>
               {workflow.buildingBlocks.map((buildingBlock, i) => <BuildingBlockCard key={i} buildingBlock={buildingBlock} listType='list' />)}
             </div>

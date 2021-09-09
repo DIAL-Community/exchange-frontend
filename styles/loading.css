@@ -10,3 +10,52 @@
     transform: rotate(360deg);
   }
 }
+
+.card {
+  perspective: 600px;
+}
+
+.card-body {
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.card.flip-vertical .card-body {
+  transform: rotateY(-180deg);
+}
+
+.card.flip-horizontal .card-body {
+  transform: rotateX(-180deg);
+}
+
+.card.flip-vertical .card-front,
+.card.flip-horizontal .card-front {
+  visibility: hidden;
+}
+
+.card-front,
+.card-back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition-delay: 0.3s;
+}
+
+.card-back.flip-vertical {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: rotateY(-180deg);
+}
+
+.card-back.flip-horizontal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: rotateX(-180deg);
+}
+
+

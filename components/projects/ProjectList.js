@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import ProjectCard from './ProjectCard'
 import { ProjectFilterContext } from '../context/ProjectFilterContext'
-import { FilterResultContext, convertToKey } from '../context/FilterResultContext'
+import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
 
@@ -20,7 +20,9 @@ query SearchProjects(
   $sectors: [String!],
   $countries: [String!],
   $organizations: [String!],
+  $products: [String!],
   $sdgs: [String!],
+  $tags: [String!],
   $search: String!
   ) {
   searchProjects(
@@ -30,7 +32,9 @@ query SearchProjects(
     sectors: $sectors,
     countries: $countries,
     organizations: $organizations,
+    products: $products,
     sdgs: $sdgs,
+    tags: $tags,
     search: $search
   ) {
     __typename
@@ -47,6 +51,7 @@ query SearchProjects(
       slug
       projectDescriptions {
         description
+        locale
       }
       organizations {
         id
@@ -62,6 +67,7 @@ query SearchProjects(
       }
       origin {
         slug
+        name
       }
     }
   }
@@ -69,6 +75,9 @@ query SearchProjects(
 `
 
 const ProjectList = (props) => {
+  const { formatMessage } = useIntl()
+  const format = (id) => formatMessage({ id })
+
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
 
@@ -78,17 +87,17 @@ const ProjectList = (props) => {
         {
           displayType === 'list' &&
             <div className='grid grid-cols-12 my-3 text-dial-gray-dark px-4 font-semibold '>
-              <div className='col-span-3 md:col-span-4 lg:col-span-4 mr-4 text-sm opacity-80'>
-                {'Organizations'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='col-span-3 lg:col-span-5 xl:col-span-4  mr-4 text-sm opacity-80'>
+                {format('project.header').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-3 md:col-span-3 lg:col-span-3 mr-4 text-sm opacity-50'>
-                {'Organizations'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='hidden lg:block col-span-3 md:col-span-3 lg:col-span-3 mr-4 text-sm opacity-50'>
+                {format('organization.header').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-3 md:col-span-3 lg:col-span-3 mr-4 text-sm opacity-50'>
-                {'Products'.toUpperCase()}
-                <HiSortAscending className='ml-1 inline text-2xl' />
+              <div className='hidden lg:block col-span-3 md:col-span-3 lg:col-span-3 mr-4 text-sm opacity-50'>
+                {format('product.header').toUpperCase()}
+                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
             </div>
         }
@@ -103,8 +112,8 @@ const ProjectList = (props) => {
 }
 
 const ProjectListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterResultContext)
-  const { origins, countries, sectors, organizations, sdgs, search, displayType } = useContext(ProjectFilterContext)
+  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { origins, countries, sectors, organizations, products, sdgs, tags, search } = useContext(ProjectFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -116,11 +125,13 @@ const ProjectListQuery = () => {
       countries: countries.map(country => country.value),
       sectors: sectors.map(sector => sector.value),
       organizations: organizations.map(organization => organization.value),
+      products: products.map(product => product.value),
       sdgs: sdgs.map(sdg => sdg.value),
+      tags: tags.map(tag => tag.label),
       search: search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [`${convertToKey('Projects')}`]: data.searchProjects.totalCount } })
+      setResultCounts({ ...resultCounts, ...{ [['filter.entity.projects']]: data.searchProjects.totalCount } })
     }
   })
 
@@ -143,14 +154,16 @@ const ProjectListQuery = () => {
         countries: countries.map(country => country.value),
         sectors: sectors.map(sector => sector.value),
         organizations: organizations.map(organization => organization.value),
-        sdgs: sdgs.map(organization => organization.value),
+        products: products.map(product => product.value),
+        sdgs: sdgs.map(sdg => sdg.value),
+        tags: tags.map(tag => tag.label),
         search: search
       }
     })
   }
   return (
     <InfiniteScroll
-      className='relative mx-2 mt-3'
+      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'
       dataLength={nodes.length}
       next={handleLoadMore}
       hasMore={pageInfo.hasNextPage}

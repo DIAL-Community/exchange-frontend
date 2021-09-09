@@ -11,19 +11,21 @@ import gql from 'graphql-tag'
 
 import OrganizationDetailLeft from '../../../components/organizations/OrganizationDetailLeft'
 import OrganizationDetailRight from '../../../components/organizations/OrganizationDetailRight'
-import { Loading, Error } from '../shared/FetchStatus'
+import { Loading, Error } from '../../../components/shared/FetchStatus'
 
 const ORGANIZATION_QUERY = gql`
-query Organization($slug: String!) {
+query Organization($slug: String!, $locale: String!) {
   organization(slug: $slug) {
     id
     name
     slug
-    imageFile
+    isMni
     website
+    imageFile
     whenEndorsed
     organizationDescriptions {
       description
+      locale
     }
     offices {
       id
@@ -31,11 +33,12 @@ query Organization($slug: String!) {
       latitude
       longitude
     }
-    sectors {
+    sectorsWithLocale(locale: $locale) {
       name
       slug
     }
     countries {
+      id
       name
       slug
     }
@@ -55,27 +58,9 @@ const Organization = () => {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
+  const { locale } = router
   const { slug } = router.query
-  const { loading, error, data } = useQuery(ORGANIZATION_QUERY, { variables: { slug: slug } })
-
-  if (loading) {
-    return (
-      <>
-        <Header />
-        <Loading />
-      </>
-    )
-  }
-  if (error) {
-    return (
-      <>
-        <Header />
-        <Error />
-      </>
-    )
-  }
-
-  const organization = data.organization
+  const { loading, error, data } = useQuery(ORGANIZATION_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
   return (
     <>
       <Head>
@@ -83,14 +68,19 @@ const Organization = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <div className='w-full h-full flex flex-col md:flex-row p-6 page-gradient'>
-        <div className='w-full xl:w-1/4 md:w-1/3 pt-4'>
-          <OrganizationDetailLeft organization={organization} />
-        </div>
-        <div className='w-full xl:w-3/4 md:w-2/3 pt-4 h-screen overflow-y-scroll'>
-          <OrganizationDetailRight organization={organization} />
-        </div>
-      </div>
+      {loading && <Loading />}
+      {error && <Error />}
+      {
+        data && data.organization &&
+          <div className='flex flex-col lg:flex-row justify-between pb-8 max-w-catalog mx-auto'>
+            <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
+              <OrganizationDetailLeft organization={data.organization} />
+            </div>
+            <div className='w-full lg:w-2/3 xl:w-3/4'>
+              <OrganizationDetailRight organization={data.organization} />
+            </div>
+          </div>
+      }
       <Footer />
     </>
   )

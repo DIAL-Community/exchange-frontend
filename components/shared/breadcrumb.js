@@ -5,29 +5,46 @@ import { useIntl } from 'react-intl'
 
 const convertBreadcrumb = string => {
   return string
-    .replace(/-/g, ' ')
-    .replace(/oe/g, 'ö')
-    .replace(/ae/g, 'ä')
-    .replace(/ue/g, 'ü')
-    .toUpperCase()
-};
+    ? string
+        .replace(/-/g, ' ')
+        .replace(/oe/g, 'ö')
+        .replace(/ae/g, 'ä')
+        .replace(/ue/g, 'ü')
+        .toUpperCase()
+    : string
+}
 
-const Breadcrumb = () => {
+const basePathMappings = {
+  sdgs: 'sdg.header',
+  use_cases: 'useCase.header',
+  use_case_steps: 'useCaseStep.header',
+  workflows: 'workflow.header',
+  building_blocks: 'building-block.header',
+  products: 'product.header',
+  projects: 'project.header',
+  organizations: 'organization.header'
+}
+
+const Breadcrumb = (props) => {
+  const { slugNameMapping } = props
+
   const router = useRouter()
   const [breadcrumbs, setBreadcrumbs] = useState(null)
+
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
   useEffect(() => {
     if (router) {
       const linkPath = router.asPath.split('/')
-      linkPath.shift();
+      linkPath.shift()
 
       const pathArray = linkPath.map((path, i) => {
-        return { breadcrumb: path, href: '/' + linkPath.slice(0, i + 1).join('/') }
-      });
+        const userFriendlyPath = basePathMappings[path] ? format(basePathMappings[path]) : slugNameMapping[path]
+        return { breadcrumb: userFriendlyPath, href: '/' + linkPath.slice(0, i + 1).join('/') }
+      })
 
-      setBreadcrumbs(pathArray);
+      setBreadcrumbs(pathArray)
     }
   }, [router])
 
@@ -36,11 +53,12 @@ const Breadcrumb = () => {
   }
 
   return (
-    <div className='h-20'>
-      <a className='inline text-dial-blue h5' href="/">{format('app.home')}</a>
+    // Use this to make this sticky: <div className='bg-white sticky py-4' style={{ top: '66px', zIndex: 1 }}>
+    <div className='bg-white pb-3 lg:py-4 whitespace-nowrap overflow-ellipsis overflow-hidden'>
+      <a className='inline text-dial-blue h5' href='/'>{format('app.home')}</a>
       {breadcrumbs.map((breadcrumb, i) => {
         return (
-          <div key={i} className={`inline ${i === breadcrumbs.length -1 ? 'text-dial-gray-dark' : 'text-dial-blue'} h5`}>
+          <div key={i} className={`inline ${i === breadcrumbs.length - 1 ? 'text-dial-gray-dark' : 'text-dial-blue'} h5`}>
             &nbsp;&gt;&nbsp;
             <Link href={breadcrumb.href}>
               <a>

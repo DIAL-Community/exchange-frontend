@@ -1,15 +1,59 @@
 import { useIntl } from 'react-intl'
 import Select from 'react-select'
-
-import Phases from './Phases'
+import { useState } from 'react'
 
 const Checkbox = props => (
   <input type='checkbox' {...props} />
 )
 
-export const WizardStage1 = ({ setAllValues }) => {
+export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
+  const { formatMessage } = useIntl()
+  const format = (id) => formatMessage({ id })
+
+  const [subSectors, setSubsectors] = useState()
+
+  const updateSubsectors = (val) => {
+    const currSector = projData.sectors.find(sector => sector.value === val.value)
+    setSubsectors(currSector.subSectors.map((sector) => { return { label: sector.name.split(':')[1], value: sector.name.split(':')[1] } }))
+    setAllValues(prevValues => { return { ...prevValues, sector: val.value } })
+  }
+
   return (
-    <Phases currPhase='' setAllValues={setAllValues} />
+    <div className='lg:flex'>
+      <div className='lg:w-1/4 lg:px-5 lg:mx-5'>
+        <div className='text-sm pt-6 pb-2 h-12 grid content-end'>
+          <div>{format('wizard.selectSector')}</div>
+        </div>
+        <Select
+          className='text-button-gray' options={projData.sectors}
+          value={allValues.sector && { value: allValues.sector, label: allValues.sector }}
+          onChange={(val) => updateSubsectors(val)}
+          placeholder={format('wizard.sectorPlaceholder')}
+        />
+      </div>
+      <div className='lg:w-1/4 lg:px-5'>
+        <div className='text-sm pb-2 h-12 grid content-end'>
+          {format('wizard.selectSubsector')}
+        </div>
+        <Select
+          className='text-button-gray' options={subSectors}
+          value={allValues.subsector && { value: allValues.subsector, label: allValues.subsector }}
+          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, subsector: val.value } })}
+          placeholder={format('wizard.subsectorPlaceholder')}
+        />
+      </div>
+      <div className='lg:w-1/4 lg:px-5'>
+        <div className='text-sm pb-2 h-12 grid content-end'>
+          {format('wizard.selectSDG')}
+        </div>
+        <Select
+          className='text-button-gray' options={projData.sdgs}
+          value={allValues.sdg && { value: allValues.sdg, label: allValues.sdg }}
+          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, sdg: val.value } })}
+          placeholder={format('wizard.sdgPlaceholder')}
+        />
+      </div>
+    </div>
   )
 }
 
@@ -17,51 +61,9 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   return (
-    <div className='flex'>
-      <div className='w-1/4 px-5'>
-        <div className='text-sm pt-6 pb-2'>
-          {format('wizard.selectSector')}
-        </div>
-        <Select
-          className='text-button-gray' options={projData.sectors}
-          value={allValues.sector && { value: allValues.sector, label: allValues.sector }}
-          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, sector: val.value } })}
-          placeholder={format('wizard.sectorPlaceholder')}
-        />
-      </div>
-      <div className='w-1/4 px-5'>
-        <div className='text-sm pt-1 pb-2'>
-          {format('wizard.selectUseCase')}
-        </div>
-        <Select
-          className='text-button-gray' options={projData.useCases}
-          value={allValues.useCase && { value: allValues.useCase, label: allValues.useCase }}
-          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, useCase: val.value } })}
-          placeholder={format('wizard.useCasePlaceholder')}
-        />
-      </div>
-      <div className='w-1/4 px-5'>
-        <div className='text-sm pt-1 pb-2'>
-          {format('wizard.selectCountry')}
-        </div>
-        <Select
-          className='text-button-gray' options={projData.countries}
-          value={allValues.country && { value: allValues.country, label: allValues.country }}
-          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, country: val.value } })}
-          placeholder={format('wizard.countryPlaceholder')}
-        />
-      </div>
-    </div>
-  )
-}
-
-export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-  return (
-    <div className='flex'>
-      <div className='w-1/4 px-5 mx-5'>
-        <div className='text-sm pt-6 pb-2'>
+    <div className='lg:flex'>
+      <div className='lg:w-1/4 lg:px-5 lg:mx-5'>
+        <div className='text-sm h-12 pt-6 pb-2'>
           {format('wizard.selectTags')}
         </div>
         <Select
@@ -83,11 +85,22 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
           )
         })}
       </div>
-      <div className='w-1/3 px-5 mx-5'>
-        <div className='text-sm pt-6 pb-2'>
+      <div className='lg:w-1/4 lg:px-5'>
+        <div className='text-sm pb-2 h-12 grid content-end'>
+          {format('wizard.selectCountry')}
+        </div>
+        <Select
+          className='text-button-gray' options={projData.countries}
+          value={allValues.country && { value: allValues.country, label: allValues.country }}
+          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, country: val.value } })}
+          placeholder={format('wizard.countryPlaceholder')}
+        />
+      </div>
+      <div className='lg:w-1/3 lg:px-5 lg:mx-5'>
+        <div className='text-sm pb-2'>
           {format('wizard.selectMobile')}
         </div>
-        <div className='grid grid-cols-2'>
+        <div className='lg:grid lg:grid-cols-2'>
           {projData.mobileServices.map((service) => {
             return (
               <div key={service.value} className='text-sm pt-1'>
@@ -112,19 +125,19 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
   )
 }
 
-export const WizardStage4 = ({ projData, allValues, setAllValues }) => {
+export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
-  const classNameSelected = 'bg-white border border-white rounded px-6 py-4 my-2 mr-4 text-button-gray inline'
-  const classNameNotSelected = 'bg-dial-gray-dark border border-white rounded px-6 py-4 my-2 mr-4 text-white inline'
+  const classNameSelected = 'bg-white border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-button-gray inline'
+  const classNameNotSelected = 'bg-dial-gray-dark border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-white inline'
   return (
-    <div className='flex'>
-      <div className='w-1/4 px-5 mx-5'>
+    <div className='lg:flex'>
+      <div className='lg:w-1/4 lg:px-5 lg:mx-5'>
         <div className='text-sm pt-6 pb-2'>
           {format('wizard.buildingBlocks')}
         </div>
       </div>
-      <div className='w-2/3 px-5 mx-5'>
+      <div className='lg:w-2/3 lg:px-5 lg:mx-5'>
         <div className='text-sm pt-2 pb-2 overflow-y-scroll bb-content'>
           {projData.buildingBlocks.map((bb) => {
             return (
@@ -144,7 +157,7 @@ export const WizardStage4 = ({ projData, allValues, setAllValues }) => {
                 >
                   {format('wizard.no')}
                 </button>
-                <div className='inline-block'>
+                <div className='inline-block my-2'>
                   {bb.toUpperCase()}
                   <br />
                   {format('wizard.bb.' + bb.replace(/\s+/g, '').toLowerCase())}
