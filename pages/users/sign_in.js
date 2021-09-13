@@ -1,6 +1,7 @@
 import Head from 'next/head'
-import { useContext } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useEffect } from 'react'
 
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -10,6 +11,13 @@ import GradientBackground from '../../components/shared/GradientBackground'
 const SignIn = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+  const router = useRouter()
+
+  useEffect(() => {
+    setTimeout(() => {
+      router.push('/products')
+    }, 5000)
+  }, [])
 
   return (
     <>
@@ -19,7 +27,7 @@ const SignIn = () => {
       </Head>
       <GradientBackground />
       <Header />
-      <div className='m-8'>Your account has been confirmed. You may now sign in.</div>
+      <div className='m-8'>Your account has been confirmed. You may now sign in. Redirecting...</div>
       <Footer />
     </>
   )

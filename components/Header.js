@@ -70,6 +70,27 @@ const AdminMenu = () => {
           <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/settings?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
             {format('header.admin.settings')}
           </a>
+          <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/sectors?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
+            {format('header.admin.sectors')}
+          </a>
+          <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/tags?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
+            {format('header.admin.tags')}
+          </a>
+          <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/candidate_organizations?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
+            {format('header.admin.candidate_orgs')}
+          </a>
+          <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/candidate_products?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
+            {format('header.admin.candidate_products')}
+          </a>
+          <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/deploys?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
+            {format('header.admin.deploys')}
+          </a>
+          <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/portal_views?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
+            {format('header.admin.portal_views')}
+          </a>
+          <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/maturity_rubrics?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
+            {format('header.admin.maturity_rubrics')}
+          </a>
         </div>
       </div>
     </>

@@ -267,15 +267,15 @@ export const fr = {
   'filter.entity.organizations': 'Organisations',
   'filter.entity.maps': 'Cartes',
 
-  'filter.byEntity': 'Filtrer par {entité}',
-  'filter.searchFor': 'Rechercher {entité}',
+  'filter.byEntity': 'Filtrer par {entity}',
+  'filter.searchFor': 'Rechercher {entity}',
 
-  'filter.entity': 'Filtres {entité}',
-  'filter.dropdown.title': 'Filtre {entité} par :',
+  'filter.entity': 'Filtres {entity}',
+  'filter.dropdown.title': 'Filtre {entity} par :',
   'filter.dropdown.map': 'Sélectionner ou filtrer les cartes',
 
   'filter.framework.title': 'Filtres du plan',
-  'filter.framework.subTitle': 'Utiliser les éléments du Plan d’investissement numérique pour filtrer {entité}',
+  'filter.framework.subTitle': 'Utiliser les éléments du Plan d’investissement numérique pour filtrer {entity}',
 
   'filter.buildingBlock.matureOnly': 'Afficher uniquement les modules de base matures',
 
@@ -346,8 +346,8 @@ export const fr = {
   'sdg.hint.description': 'Les ODD comprennent 17 objectifs et 169 cibles qui représentent les priorités mondiales en matière d’investissement afin d’arriver à un développement durable. Les ODD ont été définis en 2015 par l’Assemblée générale des Nations unies et visent à être atteints d’ici à 2030.',
 
   'image.alt.logoFor': 'Logo pour : {nom}.',
-  'tooltip.ellipsisFor': 'Pour en savoir plus, consultez la page de détail de {entité}.',
-  'tooltip.forEntity': '{entité} : {nom}.',
+  'tooltip.ellipsisFor': 'Pour en savoir plus, consultez la page de détail de {entity}.',
+  'tooltip.forEntity': '{entity} : {nom}.',
 
   'map.project.title': 'Carte des projets',
   'map.aggregator.title': 'Carte de couverture des agrégateurs et opérateurs',
