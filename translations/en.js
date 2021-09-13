@@ -856,5 +856,10 @@ export const en = {
 
   'candidate.feedback': 'Feedback',
   'candidate.feedback.placeholder': 'Reason for approval / rejection.',
-  'candidate.cancel': 'Cancel'
+  'candidate.cancel': 'Cancel',
+
+  'entity.file': 'File to Process',
+  'entity.process': 'Start Processing File',
+  'entity.filename': 'File Name',
+  'entity.uploaded': 'File uploaded and processed successfully.'
 }
