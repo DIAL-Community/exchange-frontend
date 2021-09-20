@@ -42,14 +42,24 @@ const SearchFilter = (props) => {
 
     const { userEmail, userToken } = session.user
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/${linkPath[0]}/` +
-        `new?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
+      `new?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
+  }
+
+  const generateExportLink = (type) => {
+    if (!session.user) {
+      return '/export-not-available'
+    }
+
+    const { userEmail, userToken } = session.user
+    return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/${linkPath[0]}/` +
+      `export_data.${type}?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
 
   return (
     <div className='relative px-2 grid grid-cols-12 gap-4 bg-transparent max-w-catalog mx-auto'>
       <div className='col-span-12'>
-        <div className='flex flex-row mt-2'>
-          <label className='flex-grow block w-6/12 md:w-4/12 my-auto'>
+        <div className='flex flex-row flex-wrap mt-2 mr-2'>
+          <label className='w-9/12 lg:w-4/12 my-auto'>
             <span className='sr-only'>{format('search.input.label')}</span>
             <input
               type='search'
@@ -58,9 +68,9 @@ const SearchFilter = (props) => {
               placeholder={placeholder}
             />
           </label>
-          <div className='w-3/12 md:w-4/12'>
+          <div className='w-3/12 lg:w-3/12'>
             <div className='flex flex-col md:flex-row'>
-              <div className='my-auto px-2 md:px-0 md:pl-4 pt-2 md:pt-0 text-xs md:text-base text-dial-gray-dark'>{format('view.switch.title')}</div>
+              <div className='my-auto px-2 md:px-0 md:pl-2 pt-2 md:pt-0 text-xs md:text-sm lg:text-base text-dial-gray-dark'>{format('view.switch.title')}</div>
               <div className='my-auto pt-2 pb-3 px-2 flex flex-row'>
                 {
                   displayType === 'card' &&
@@ -83,12 +93,22 @@ const SearchFilter = (props) => {
               </div>
             </div>
           </div>
-          <div className='w-3/12 md:w-4/12 mr-2 self-center text-xs md:text-base text-right'>
+          <div className='w-full lg:w-5/12 mt-2 md:mt-4 text-xs md:text-base text-right'>
             {
               session && session.user.canEdit && (
-                <a className='border-b-2 border-transparent hover:border-dial-yellow' href={generateCreateLink()}>
-                  <span className='text-dial-yellow'>{format('app.create-new')}</span>
-                </a>
+                <div className='flex justify-end'>
+                  <a className='border-b-2 border-transparent hover:border-dial-yellow' href={generateCreateLink()}>
+                    <span className='text-dial-yellow'>{format('app.create-new')}</span>
+                  </a>
+                  <div className='border-r mx-2 border-gray-400' />
+                  <a target='_blank' className='border-b-2 border-transparent hover:border-dial-yellow' href={generateExportLink('json')}>
+                    <span className='text-dial-yellow'>{format('app.exportAsJson')}</span>
+                  </a>
+                  <div className='border-r mx-2 border-gray-400' />
+                  <a className='border-b-2 border-transparent hover:border-dial-yellow' href={generateExportLink('csv')}>
+                    <span className='text-dial-yellow'>{format('app.exportAsCSV')}</span>
+                  </a>
+                </div>
               )
             }
           </div>

@@ -12,6 +12,7 @@ import gql from 'graphql-tag'
 import OrganizationDetailLeft from '../../../components/organizations/OrganizationDetailLeft'
 import OrganizationDetailRight from '../../../components/organizations/OrganizationDetailRight'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
+import { useEffect } from 'react'
 
 const ORGANIZATION_QUERY = gql`
 query Organization($slug: String!, $locale: String!) {
@@ -58,9 +59,18 @@ const Organization = () => {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
+  const { pathname, asPath, query } = useRouter()
+
   const { locale } = router
   const { slug } = router.query
   const { loading, error, data } = useQuery(ORGANIZATION_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
+
+  useEffect(() => {
+    if (query.locale) {
+      router.replace({ pathname }, asPath, { locale: query.locale })
+    }
+  })
+  
   return (
     <>
       <Head>
