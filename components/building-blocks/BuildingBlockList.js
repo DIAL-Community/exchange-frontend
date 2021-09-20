@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { useIntl } from 'react-intl'
+import { useIntl, FormattedMessage } from 'react-intl'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -108,8 +108,7 @@ const BuildingBlockListQuery = () => {
   const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
   const { sdgs, useCases, workflows, showMature, search } = useContext(BuildingBlockFilterContext)
 
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, value = {}) => <FormattedMessage id={id} values={{ ...value }} />
 
   const { loading, error, data, fetchMore } = useQuery(BUILDING_BLOCKS_QUERY, {
     variables: {

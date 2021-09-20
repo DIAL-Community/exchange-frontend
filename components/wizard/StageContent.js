@@ -38,8 +38,9 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
         <Select
           className='text-button-gray' options={subSectors}
           value={allValues.subsector && { value: allValues.subsector, label: allValues.subsector }}
-          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, subsector: val.value } })}
+          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, subsector: val && val.value } })}
           placeholder={format('wizard.subsectorPlaceholder')}
+          isClearable
         />
       </div>
       <div className='lg:w-1/4 lg:px-5'>
