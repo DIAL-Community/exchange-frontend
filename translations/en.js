@@ -861,5 +861,8 @@ export const en = {
   'entity.file': 'File to Process',
   'entity.process': 'Start Processing File',
   'entity.filename': 'File Name',
-  'entity.uploaded': 'File uploaded and processed successfully.'
+  'entity.uploaded': 'File uploaded and processed successfully.',
+
+  'app.exportAsJson': 'Export Data (JSON)',
+  'app.exportAsCSV': 'Export Data (CSV)'
 }

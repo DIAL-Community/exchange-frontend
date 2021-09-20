@@ -12,6 +12,7 @@ import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
 import { gql, useQuery } from '@apollo/client'
 import { useSession } from 'next-auth/client'
+import { useEffect } from 'react'
 
 const USE_CASE_QUERY = gql`
   query UseCase($slug: String!) {
@@ -27,12 +28,13 @@ const USE_CASE_QUERY = gql`
 const UseCaseStep = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
-  const { locale } = useRouter()
 
   const router = useRouter()
+  const { locale, pathname, asPath, query } = useRouter()
+
   const [session] = useSession()
   const { slug, stepSlug } = router.query
-  const { loading, data } = useQuery(USE_CASE_QUERY, { variables: { slug: slug } })
+  const { data } = useQuery(USE_CASE_QUERY, { variables: { slug: slug } })
 
   const generateEditLink = () => {
     if (!session.user) {
@@ -51,6 +53,12 @@ const UseCaseStep = () => {
     }
     return map
   })()
+
+  useEffect(() => {
+    if (query.locale) {
+      router.replace({ pathname }, asPath, { locale: query.locale })
+    }
+  })
 
   return (
     <>

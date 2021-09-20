@@ -55,7 +55,9 @@ const Breadcrumb = (props) => {
   return (
     // Use this to make this sticky: <div className='bg-white sticky py-4' style={{ top: '66px', zIndex: 1 }}>
     <div className='bg-white pb-3 lg:py-4 whitespace-nowrap overflow-ellipsis overflow-hidden'>
-      <a className='inline text-dial-blue h5' href='/'>{format('app.home')}</a>
+      <Link href='/'>
+        <a className='inline text-dial-blue h5'>{format('app.home')}</a>
+      </Link>
       {breadcrumbs.map((breadcrumb, i) => {
         return (
           <div key={i} className={`inline ${i === breadcrumbs.length - 1 ? 'text-dial-gray-dark' : 'text-dial-blue'} h5`}>

@@ -155,7 +155,6 @@ const Header = () => {
   const [session] = useSession()
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
-  const { locale } = useRouter()
 
   const [menuExpanded, setMenuExpanded] = useState(false)
   const [showLanguages, setShowLanguages] = useState(false)
