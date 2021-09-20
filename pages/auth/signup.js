@@ -274,6 +274,7 @@ const SignUp = () => {
                       placeholder={format('signUp.organization')}
                       styles={customStyles}
                       value={organization}
+                      isClearable
                     />
                   </label>
                 </div>
