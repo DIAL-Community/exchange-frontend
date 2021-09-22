@@ -20,7 +20,7 @@ const RepositoryInfo = ({ product }) => {
       </div>
       <div className='pb-5 pr-5 overflow-ellipsis overflow-hidden'>
         <div className='h5 pb-1'>{format('product.repository')}</div>
-        <a className='text-dial-blue text-sm' href={`https://${product.repository}`} target='_blank' rel='noreferrer'>{product.repository}</a>
+        <a className='text-dial-blue text-sm' href={`${product.repository}`} target='_blank' rel='noreferrer'>{product.repository}</a>
       </div>
       <div className='pb-5 pr-5 grid grid-cols-2'>
         <div>
