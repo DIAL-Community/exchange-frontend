@@ -9,6 +9,7 @@ import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
 import { gql, useQuery } from '@apollo/client'
 import Breadcrumb from '../../../../components/shared/breadcrumb'
+import { useEffect } from 'react'
 
 const USE_CASE_QUERY = gql`
   query UseCase($slug: String!) {
@@ -26,6 +27,8 @@ const UseCaseStep = () => {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
+  const { pathname, asPath, query } = useRouter()
+  
   const { slug, stepSlug } = router.query
   const { data } = useQuery(USE_CASE_QUERY, { variables: { slug: slug } })
 
@@ -36,6 +39,12 @@ const UseCaseStep = () => {
     }
     return map
   })()
+
+  useEffect(() => {
+    if (query.locale) {
+      router.replace({ pathname }, asPath, { locale: query.locale })
+    }
+  })
 
   return (
     <>

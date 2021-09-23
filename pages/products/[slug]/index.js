@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useIntl } from 'react-intl'
 
 import Header from '../../../components/Header'
@@ -129,7 +129,7 @@ const Product = () => {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
-  const { locale } = router
+  const { locale, pathname, asPath, query } = useRouter()
 
   const { slug } = router.query
   const { loading, error, data } = useQuery(PRODUCT_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
@@ -139,6 +139,12 @@ const Product = () => {
       behavior: 'smooth'
     })
   }
+  
+  useEffect(() => {
+    if (query.locale) {
+      router.replace({ pathname }, asPath, { locale: query.locale })
+    }
+  })
 
   return (
     <>

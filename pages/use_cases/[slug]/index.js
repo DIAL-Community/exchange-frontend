@@ -14,6 +14,7 @@ import UseCaseDetailRight from '../../../components/use-cases/UseCaseDetailRight
 import { Loading, Error } from '../../../components/shared/FetchStatus'
 
 import dynamic from 'next/dynamic'
+import { useEffect } from 'react'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const USE_CASE_QUERY = gql`
@@ -58,8 +59,16 @@ const UseCase = () => {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
+  const { pathname, asPath, query } = useRouter()
+
   const { slug } = router.query
   const { loading, error, data } = useQuery(USE_CASE_QUERY, { variables: { slug: slug }, skip: !slug })
+
+  useEffect(() => {
+    if (query.locale) {
+      router.replace({ pathname }, asPath, { locale: query.locale })
+    }
+  })
 
   return (
     <>

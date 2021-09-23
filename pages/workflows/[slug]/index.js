@@ -12,6 +12,7 @@ import gql from 'graphql-tag'
 import WorkflowDetailLeft from '../../../components/workflows/WorkflowDetailLeft'
 import WorkflowDetailRight from '../../../components/workflows/WorkflowDetailRight'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
+import { useEffect } from 'react'
 
 const WORKFLOW_QUERY = gql`
   query Workflow($slug: String!) {
@@ -49,25 +50,16 @@ const Workflow = () => {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
+  const { pathname, asPath, query } = useRouter()
+
   const { slug } = router.query
   const { loading, error, data } = useQuery(WORKFLOW_QUERY, { variables: { slug: slug }, skip: !slug })
 
-  if (loading) {
-    return (
-      <>
-        <Header />
-        <Loading />
-      </>
-    )
-  }
-  if (error) {
-    return (
-      <>
-        <Header />
-        <Error />
-      </>
-    )
-  }
+  useEffect(() => {
+    if (query.locale) {
+      router.replace({ pathname }, asPath, { locale: query.locale })
+    }
+  })
 
   return (
     <>

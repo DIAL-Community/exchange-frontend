@@ -13,6 +13,7 @@ import gql from 'graphql-tag'
 import ProjectDetailLeft from '../../../components/projects/ProjectDetailLeft'
 import ProjectDetailRight from '../../../components/projects/ProjectDetailRight'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
+import { useEffect } from 'react'
 
 const PROJECT_QUERY = gql`
 query Project($slug: String!, $locale: String!) {
@@ -66,9 +67,17 @@ const Project = () => {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
-  const { locale } = router
+  const { locale, pathname, asPath, query } = useRouter()
+
   const { slug } = router.query
   const { loading, error, data } = useQuery(PROJECT_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
+
+  useEffect(() => {
+    if (query.locale) {
+      router.replace({ pathname }, asPath, { locale: query.locale })
+    }
+  })
+
   return (
     <>
       <Head>

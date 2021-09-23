@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import Head from 'next/head'
 
@@ -45,6 +45,8 @@ const BuildingBlock = () => {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
+  const { pathname, asPath, query } = useRouter()
+
   const { slug } = router.query
   const { loading, error, data } = useQuery(BUILDING_BLOCK_QUERY, { variables: { slug: slug }, skip: !slug })
 
@@ -54,6 +56,13 @@ const BuildingBlock = () => {
       behavior: 'smooth'
     })
   }
+
+  useEffect(() => {
+    if (query.locale) {
+      router.replace({ pathname }, asPath, { locale: query.locale })
+    }
+  })
+
   return (
     <>
       <Head>
