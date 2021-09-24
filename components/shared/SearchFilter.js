@@ -95,7 +95,7 @@ const SearchFilter = (props) => {
           </div>
           <div className='w-full lg:w-5/12 mt-2 md:mt-4 text-xs md:text-base text-right'>
             {
-              session && session.user.canEdit && (
+              session && session.user && (
                 <div className='flex justify-end'>
                   <a className='border-b-2 border-transparent hover:border-dial-yellow' href={generateCreateLink()}>
                     <span className='text-dial-yellow'>{format('app.create-new')}</span>
