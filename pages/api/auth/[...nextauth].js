@@ -4,7 +4,7 @@ import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 
 // Session expiration in millis
-const TOKEN_EXPIRATION = 24 * 60 * 60 * 60
+const TOKEN_EXPIRATION = 24 * 60 * 60 * 1000
 
 export default NextAuth({
   // Configure one or more authentication providers

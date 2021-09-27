@@ -53,7 +53,7 @@ const WorkflowDetailLeft = ({ workflow }) => {
       </div>
       <div className='bg-white border-2 border-dial-gray lg:mr-6 shadow-lg'>
         <div className='flex flex-col h-80 p-4'>
-          <div className='text-2xl font-semibold absolute w-4/5 md:w-auto lg:w-64 2xl:w-80 text-workflow'>
+          <div className='text-2xl font-semibold absolute w-4/5 md:w-auto lg:w-64 2xl:w-80 pr-2 text-workflow'>
             {workflow.name}
           </div>
           <div className='m-auto align-middle w-40 workflow-filter'>
