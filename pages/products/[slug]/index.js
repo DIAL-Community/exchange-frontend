@@ -6,6 +6,7 @@ import { useIntl } from 'react-intl'
 
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
+import NotFound from '../../../components/shared/NotFound'
 import withApollo from '../../../lib/apolloClient'
 
 import { useQuery } from '@apollo/react-hooks'
@@ -155,7 +156,8 @@ const Product = () => {
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       {loading && <Loading />}
-      {error && <Error />}
+      {error && error.networkError && <Error />}
+      {error && !error.networkError && <NotFound />}
       {
         data && data.product &&
           <div className='flex flex-col lg:flex-row justify-between pb-8 max-w-catalog mx-auto'>
