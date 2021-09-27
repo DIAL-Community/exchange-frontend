@@ -864,5 +864,6 @@ export const en = {
   'entity.uploaded': 'File uploaded and processed successfully.',
 
   'app.exportAsJson': 'Export Data (JSON)',
-  'app.exportAsCSV': 'Export Data (CSV)'
+  'app.exportAsCSV': 'Export Data (CSV)',
+  'app.notFound': '404 - Page Not Found'
 }
