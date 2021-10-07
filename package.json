@@ -10,6 +10,7 @@
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
     "@popperjs/core": "^2.9.1",
+    "@tinymce/tinymce-react": "^3.12.6",
     "apollo-boost": "^0.4.9",
     "apollo-link-context": "^1.0.20",
     "apollo-link-http": "^1.5.17",
