@@ -11,6 +11,7 @@ const ORIGIN_SEARCH_QUERY = gql`
     origins(search: $search) {
       id
       name
+      slug
     }
   }
 `
@@ -53,7 +54,8 @@ export const OriginAutocomplete = (props) => {
     if (response.data && response.data.origins) {
       return response.data.origins.map((origin) => ({
         label: origin.name,
-        value: origin.id
+        value: origin.id,
+        slug: origin.slug
       }))
     }
 

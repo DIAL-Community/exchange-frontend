@@ -13,6 +13,7 @@ const USE_CASE_SEARCH_QUERY = gql`
     useCases(search: $search, mature: $mature) {
       id
       name
+      slug
     }
   }
 `
@@ -56,7 +57,8 @@ export const UseCaseAutocomplete = (props) => {
     if (response.data && response.data.useCases) {
       return response.data.useCases.map((useCase) => ({
         label: useCase.name,
-        value: useCase.id
+        value: useCase.id,
+        slug: useCase.slug
       }))
     }
 

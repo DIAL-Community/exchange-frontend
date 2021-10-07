@@ -13,6 +13,7 @@ const WORKFLOW_SEARCH_QUERY = gql`
     workflows(search: $search) {
       id
       name
+      slug
     }
   }
 `
@@ -55,7 +56,8 @@ export const WorkflowAutocomplete = (props) => {
     if (response.data && response.data.workflows) {
       return response.data.workflows.map((workflow) => ({
         label: workflow.name,
-        value: workflow.id
+        value: workflow.id,
+        slug: workflow.slug
       }))
     }
 
