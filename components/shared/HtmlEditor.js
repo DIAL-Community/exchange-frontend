@@ -4,7 +4,7 @@ import { Editor } from '@tinymce/tinymce-react'
 export const HtmlEditor = ({ updateText, initialContent }) => {
 
   const editorRef = useRef(null)
-  const saveContents = () => {
+  const setContents = () => {
     if (editorRef.current) {
       updateText(editorRef.current.getContent())
     }
@@ -15,7 +15,8 @@ export const HtmlEditor = ({ updateText, initialContent }) => {
       <Editor
         apiKey={process.env.NEXT_PUBLIC_EDITOR_KEY}
         onInit={(evt, editor) => editorRef.current = editor}
-        initialValue={initialContent}
+        value={initialContent}
+        onEditorChange={setContents}
         init={{
           menubar: false,
           plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
@@ -25,7 +26,6 @@ export const HtmlEditor = ({ updateText, initialContent }) => {
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
-      <button onClick={saveContents}>Save editor content</button>
     </>
   )
 }

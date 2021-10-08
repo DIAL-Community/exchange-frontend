@@ -20,7 +20,7 @@ function CreatePlaybook() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <PlaybookForm playbook={null} />
+      <PlaybookForm playbook={null} action='create' />
       <Footer />
     </>
   )

@@ -22,7 +22,8 @@ const basePathMappings = {
   building_blocks: 'building-block.header',
   products: 'product.header',
   projects: 'project.header',
-  organizations: 'organization.header'
+  organizations: 'organization.header',
+  playbooks: 'playbook.header'
 }
 
 const Breadcrumb = (props) => {

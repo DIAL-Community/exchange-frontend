@@ -40,6 +40,11 @@ const SearchFilter = (props) => {
       return '/create-not-available'
     }
 
+    if (linkPath.includes('playbooks')) {
+      // These create functions are in React, not Rails
+      return `/${linkPath[0]}/create`
+    }
+
     const { userEmail, userToken } = session.user
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/${linkPath[0]}/` +
       `new?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
