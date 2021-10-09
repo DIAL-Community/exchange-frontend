@@ -866,5 +866,8 @@ export const en = {
   'app.exporting': 'Exporting Data ...',
   'app.exportAsJson': 'Export Data (JSON)',
   'app.exportAsCSV': 'Export Data (CSV)',
-  'app.notFound': '404 - Page Not Found'
+  'app.notFound': '404 - Page Not Found',
+
+  'endorser.label': 'Endorsing Organization',
+  'endorser.header': 'Endorsing Organizations'
 }
