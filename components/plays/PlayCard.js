@@ -4,13 +4,13 @@ import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 
 import { convertToKey } from '../context/FilterContext'
-const collectionPath = convertToKey('Playbooks')
+const collectionPath = convertToKey('Plays')
 
 const ellipsisTextStyle = `
    whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
 
-const PlaybookCard = ({ playbook, listType }) => {
+const PlayCard = ({ play, listType }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
@@ -19,7 +19,7 @@ const PlaybookCard = ({ playbook, listType }) => {
   })
 
   return (
-    <Link href={`/${collectionPath}/${playbook.slug}`}>
+    <Link href={`/${collectionPath}/${play.slug}`}>
       {
         listType === 'list'
           ? (
@@ -28,11 +28,11 @@ const PlaybookCard = ({ playbook, listType }) => {
                 <div className='grid grid-cols-12 my-5 px-4'>
                   <div className={`${nameColSpan()} ${ellipsisTextStyle} pr-3 text-base font-semibold`}>
                     <img
-                      data-tip={format('tooltip.forEntity', { entity: format('playbook.label'), name: playbook.name })}
-                      alt={format('image.alt.logoFor', { name: playbook.name })} className='m-auto h-6 workflow-filter inline mr-3'
-                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
+                      data-tip={format('tooltip.forEntity', { entity: format('play.label'), name: play.name })}
+                      alt={format('image.alt.logoFor', { name: play.name })} className='m-auto h-6 workflow-filter inline mr-3'
+                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + play.imageFile}
                     />
-                    {playbook.name}
+                    {play.name}
                   </div>
                 </div>
               </div>
@@ -43,12 +43,12 @@ const PlaybookCard = ({ playbook, listType }) => {
               <div className='border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
                 <div className='flex flex-col h-80 p-4'>
                   <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
-                    {playbook.name}
+                    {play.name}
                   </div>
                   <div className='m-auto align-middle w-40'>
                     <img
-                      alt={format('image.alt.logoFor', { name: playbook.name })} className='workflow-filter'
-                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
+                      alt={format('image.alt.logoFor', { name: play.name })} className='workflow-filter'
+                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + play.imageFile}
                     />
                   </div>
                 </div>
@@ -64,4 +64,4 @@ const PlaybookCard = ({ playbook, listType }) => {
   )
 }
 
-export default PlaybookCard
+export default PlayCard

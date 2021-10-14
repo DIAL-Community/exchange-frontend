@@ -10,6 +10,7 @@ export const en = {
   'app.submit': 'Submit',
   'app.search': 'Search for a ',
   'app.create-new': 'Create New',
+  'app.edit-entity': 'Edit {entity}',
 
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
@@ -349,6 +350,29 @@ export const en = {
 
   'sdg.shortLabel': 'SDG',
   'sdg.shortHeader': 'SDGs',
+
+  'playbook.header': 'Playbooks',
+  'playbooks.label': 'Playbook',
+  'playbooks.name': 'Name',
+  'playbooks.overview': 'Overview',
+  'playbooks.audience': 'Audience',
+  'playbooks.outcomes': 'Outcomes',
+  'playbooks.phases': 'Phases',
+  'playbooks.submit': 'Submit',
+  'playbook.created': 'Created',
+  'playbook.updated': 'Updated',
+  'playbooks.name.placeholder': 'Playbook Name',
+  'playbooks.addPhase': 'Add Phase',
+  'playbooks.deletePhase': 'Delete',
+  'playbooks.phase.name': 'Phase Name',
+  'playbooks.phase.description': 'Phase Description',
+
+  'play.header': 'Plays',
+  'plays.label': 'Play',
+  'plays.name': 'Name',
+  'plays.description': 'Description',
+  'play.created': 'Created',
+  'play.updated': 'Updated',
 
   'productType.label': 'Type',
   'productType.header': 'Product or Dataset?',

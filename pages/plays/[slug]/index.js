@@ -10,32 +10,26 @@ import withApollo from '../../../lib/apolloClient'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import PlaybookDetail from '../../../components/playbooks/PlaybookDetail'
+import PlayDetail from '../../../components/plays/PlayDetail'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
 import { useEffect } from 'react'
 
-const PLAYBOOK_QUERY = gql`
-  query Playbook($slug: String!) {
-    playbook(slug: $slug) {
+const PLAY_QUERY = gql`
+  query Play($slug: String!) {
+    play(slug: $slug) {
       id
       name
       slug
-      phases
       imageFile
-      playbookDescriptions {
-        overview
-        audience
-        outcomes
+      playDescriptions {
+        description
         locale
-      }
-      plays {
-        name
       }
     }
   }
 `
 
-const Playbook = () => {
+const Play = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -43,7 +37,7 @@ const Playbook = () => {
   const { pathname, asPath, query } = useRouter()
 
   const { slug } = router.query
-  const { loading, error, data } = useQuery(PLAYBOOK_QUERY, { variables: { slug: slug }, skip: !slug })
+  const { loading, error, data } = useQuery(PLAY_QUERY, { variables: { slug: slug }, skip: !slug })
 
   useEffect(() => {
     if (query.locale) {
@@ -62,10 +56,10 @@ const Playbook = () => {
       {error && error.networkError && <Error />}
       {error && !error.networkError && <NotFound />}
       {
-        data && data.playbook &&
+        data && data.play &&
           <div className='flex flex-col lg:flex-row justify-between pb-8 max-w-catalog mx-auto'>
             <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
-              <PlaybookDetail playbook={data.playbook} />
+              <PlayDetail play={data.play} />
             </div>
           </div>
       }
@@ -74,4 +68,4 @@ const Playbook = () => {
   )
 }
 
-export default withApollo()(Playbook)
+export default withApollo()(Play)

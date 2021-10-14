@@ -5,20 +5,20 @@ import gql from 'graphql-tag'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { HiSortAscending } from 'react-icons/hi'
 
-import PlaybookCard from './PlaybookCard'
-import { PlaybookFilterContext } from '../context/PlaybookFilterContext'
+import PlayCard from './PlayCard'
+import { PlayFilterContext } from '../context/PlayFilterContext'
 import { FilterContext } from '../context/FilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
 
 const DEFAULT_PAGE_SIZE = 20
 
-const PLAYBOOKS_QUERY = gql`
-query SearchPlaybooks(
+const PLAYS_QUERY = gql`
+query SearchPlays(
   $first: Int,
   $after: String,
   $search: String!
   ) {
-  searchPlaybooks(
+  searchPlays(
     first: $first,
     after: $after,
     search: $search
@@ -36,15 +36,15 @@ query SearchPlaybooks(
       slug
       name
       imageFile
-      playbookDescriptions {
-        overview
+      playDescriptions {
+        description
       }
     }
   }
 }
 `
 
-const PlaybookList = (props) => {
+const PlayList = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -58,23 +58,23 @@ const PlaybookList = (props) => {
           displayType === 'list' &&
             <div className='grid grid-cols-12 my-3 px-4'>
               <div className='col-span-5 ml-2 text-sm font-semibold opacity-70'>
-                {format('playbook.header').toUpperCase()}
+                {format('play.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
               <div className='hidden md:block col-span-3 text-sm font-semibold opacity-50'>
-                {format('playbook.website').toUpperCase()}
+                {format('play.website').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
             </div>
         }
         {
-          props.playbookList.length > 0
-            ? props.playbookList.map((playbook) => (
-              <PlaybookCard key={playbook.id} playbook={playbook} listType={displayType} />
+          props.playList.length > 0
+            ? props.playList.map((play) => (
+              <PlayCard key={play.id} play={play} listType={displayType} />
               ))
             : (
               <div className='flex justify-self-center text-dial-gray-dark'>{
-                format('noResults.entity', { entity: format('playbooks.label') })
+                format('noResults.entity', { entity: format('plays.label') })
               }
               </div>
               )
@@ -84,13 +84,13 @@ const PlaybookList = (props) => {
   )
 }
 
-const PlaybookListQuery = () => {
+const PlayListQuery = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
   const { displayType } = useContext(FilterContext)
-  const { search } = useContext(PlaybookFilterContext)
-  const { loading, error, data, fetchMore } = useQuery(PLAYBOOKS_QUERY, {
+  const { search } = useContext(PlayFilterContext)
+  const { loading, error, data, fetchMore } = useQuery(PLAYS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       search: search
@@ -105,7 +105,7 @@ const PlaybookListQuery = () => {
     return <Error />
   }
 
-  const { searchPlaybooks: { nodes, pageInfo } } = data
+  const { searchPlays: { nodes, pageInfo } } = data
 
   function handleLoadMore () {
     fetchMore({
@@ -124,9 +124,9 @@ const PlaybookListQuery = () => {
       hasMore={pageInfo.hasNextPage}
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
-      <PlaybookList playbookList={nodes} displayType={displayType} />
+      <PlayList playList={nodes} displayType={displayType} />
     </InfiniteScroll>
   )
 }
 
-export default PlaybookListQuery
+export default PlayListQuery

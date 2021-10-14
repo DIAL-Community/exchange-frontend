@@ -60,6 +60,29 @@ const PlaybookDetail = ({ playbook }) => {
       <div className='fr-view text-dial-gray-dark'>
         {ReactHtmlParser(descriptionByLocale(playbook.playbookDescriptions, locale, 'outcomes'))}
       </div>
+      <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
+        {format('playbooks.phases')}
+      </label>
+      { playbook.phases && playbook.phases.map((phase, i) => {
+          return (<div key={i} className='inline w-full'>
+            <div className='inline w-1/3 shadow appearance-none border rounded py-2 px-3 text-grey-darker'>
+              {phase.name}
+            </div>
+            <div className='inline w-1/3 shadow appearance-none border rounded py-2 px-3 text-grey-darker'>
+              {phase.description}
+            </div>
+          </div> 
+        )
+      })}
+      <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
+        {format('playbooks.plays')}
+      </label>
+      { playbook.plays && playbook.plays.map((play, i) => {
+          return (<div key={i} className='inline w-full'>
+            {play.name}
+          </div>
+        )
+      })}
     </div>
   )
 }

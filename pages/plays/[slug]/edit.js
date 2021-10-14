@@ -12,29 +12,23 @@ import { Loading, Error } from '../../../components/shared/FetchStatus'
 
 import { useIntl } from 'react-intl'
 
-import { PlaybookForm } from '../../../components/playbooks/PlaybookForm'
+import { PlayForm } from '../../../components/plays/PlayForm'
 
-const PLAYBOOK_QUERY = gql`
-query Playbook($slug: String!) {
-  playbook(slug: $slug) {
+const PLAY_QUERY = gql`
+query Play($slug: String!) {
+  play(slug: $slug) {
     id
     name
     slug
-    phases
-    playbookDescriptions {
-      overview
-      audience
-      outcomes
+    playDescriptions {
+      description
       locale
-    }
-    plays {
-      name
     }
   }
 }
 `
 
-function EditPlaybook() {
+function EditPlay() {
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -44,7 +38,7 @@ function EditPlaybook() {
 
   const { locale } = router
   const { slug } = router.query
-  const { loading, error, data } = useQuery(PLAYBOOK_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
+  const { loading, error, data } = useQuery(PLAY_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
 
   if (loading) {
     return <Loading />
@@ -61,12 +55,12 @@ function EditPlaybook() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      {data && data.playbook &&
-        <PlaybookForm playbook={data.playbook} action='update' />
+      {data && data.play &&
+        <PlayForm play={data.play} action='update' />
       }
       <Footer />
     </>
   )
 }
 
-export default withApollo()(EditPlaybook)
+export default withApollo()(EditPlay)
