@@ -15,6 +15,7 @@ import { TagAutocomplete, TagFilters } from './element/Tag'
 import { SectorAutocomplete, SectorFilters } from './element/Sector'
 import { UseCaseAutocomplete, UseCaseFilters } from './element/UseCase'
 import { WorkflowAutocomplete, WorkflowFilters } from './element/Workflow'
+import { EndorserAutocomplete, EndorserFilters } from './element/Endorser'
 import { parseQuery } from '../shared/SharableLink'
 
 import dynamic from 'next/dynamic'
@@ -31,12 +32,12 @@ const ProductFilter = (props) => {
 
   const {
     withMaturity, productDeployable, forCovid, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, productTypes
+    useCases, workflows, buildingBlocks, productTypes, endorsers
   } = useContext(ProductFilterContext)
 
   const {
     setWithMaturity, setProductDeployable, setForCovid, setSectors, setCountries, setOrganizations,
-    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setProductTypes
+    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setProductTypes, setEndorsers
   } = useContext(ProductFilterDispatchContext)
 
   const toggleWithMaturity = () => {
@@ -61,7 +62,7 @@ const ProductFilter = (props) => {
     count = productDeployable ? count + 1 : count
     count = count + countries.length + organizations.length + tags.length +
       sectors.length + origins.length + sdgs.length + useCases.length +
-      workflows.length + buildingBlocks.length + productTypes.length
+      workflows.length + buildingBlocks.length + productTypes.length + endorsers.length
     return count
   }
 
@@ -80,6 +81,7 @@ const ProductFilter = (props) => {
     setUseCases([])
     setWorkflows([])
     setBuildingBlocks([])
+    setEndorsers([])
 
     // router.push(router.pathname)
   }
@@ -100,12 +102,13 @@ const ProductFilter = (props) => {
     const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
     const workflowFilters = workflows.map(workflow => `workflows=${workflow.value}--${workflow.label}`)
     const buildingBlockFilters = buildingBlocks.map(buildingBlock => `buildingBlocks=${buildingBlock.value}--${buildingBlock.label}`)
+    const endorserFilters = endorsers.map(endorser => `endorsers=${endorser.value}--${endorser.label}`)
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
       activeFilter, maturityFilter, deployableFilter, ...originFilters, ...countryFilters, ...productTypeFilters,
       ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters, ...useCaseFilters,
-      ...workflowFilters, ...buildingBlockFilters
+      ...workflowFilters, ...buildingBlockFilters, ...endorserFilters
     ].filter(f => f).join('&')
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
@@ -125,6 +128,7 @@ const ProductFilter = (props) => {
       parseQuery(query, 'useCases', useCases, setUseCases)
       parseQuery(query, 'workflows', workflows, setWorkflows)
       parseQuery(query, 'buildingBlocks', buildingBlocks, setBuildingBlocks)
+      parseQuery(query, 'endorsers', endorsers, setEndorsers)
     }
   })
 
@@ -187,6 +191,7 @@ const ProductFilter = (props) => {
               </div>
               <div className='text-sm text-dial-gray-light flex flex-row flex-wrap'>
                 <OriginAutocomplete {...{ origins, setOrigins }} containerStyles='px-2 pb-2' />
+                <EndorserAutocomplete {...{ endorsers, setEndorsers }} containerStyles='px-2 pb-2' />
                 <ProductTypeSelect {...{ productTypes, setProductTypes }} containerStyles='px-2 pb-2' />
                 <CountryAutocomplete {...{ countries, setCountries }} containerStyles='px-2 pb-2' />
                 <SectorAutocomplete {...{ sectors, setSectors }} containerStyles='px-2 pb-2' />
@@ -220,6 +225,7 @@ const ProductFilter = (props) => {
           <BuildingBlockFilters {...{ buildingBlocks, setBuildingBlocks }} />
           <TagFilters {...{ tags, setTags }} />
           <OriginFilters {...{ origins, setOrigins }} />
+          <EndorserFilters {...{ endorsers, setEndorsers }} />
           <ProductTypeFilters {...{ productTypes, setProductTypes }} />
           <CountryFilters {...{ countries, setCountries }} />
           <SectorFilters {...{ sectors, setSectors }} />

@@ -11,6 +11,7 @@ const PRODUCT_SEARCH_QUERY = gql`
     products(search: $search) {
       id
       name
+      slug
     }
   }
 `
@@ -53,7 +54,8 @@ export const ProductAutocomplete = (props) => {
     if (response.data && response.data.products) {
       return response.data.products.map((product) => ({
         label: product.name,
-        value: product.id
+        value: product.id,
+        slug: product.slug
       }))
     }
 

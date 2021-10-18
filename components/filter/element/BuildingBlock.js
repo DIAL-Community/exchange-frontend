@@ -13,6 +13,7 @@ const BUILDING_BLOCK_SEARCH_QUERY = gql`
     buildingBlocks(search: $search) {
       id
       name
+      slug
     }
   }
 `
@@ -56,7 +57,8 @@ export const BuildingBlockAutocomplete = (props) => {
     if (response.data && response.data.buildingBlocks) {
       return response.data.buildingBlocks.map((buildingBlock) => ({
         label: buildingBlock.name,
-        value: buildingBlock.id
+        value: buildingBlock.id,
+        slug: buildingBlock.slug
       }))
     }
 

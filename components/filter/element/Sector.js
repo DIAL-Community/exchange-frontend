@@ -12,6 +12,7 @@ const SECTOR_SEARCH_QUERY = gql`
     sectors(search: $search, locale: $locale) {
       id
       name
+      slug
     }
   }
 `
@@ -57,7 +58,8 @@ export const SectorAutocomplete = (props) => {
     if (response.data && response.data.sectors) {
       return response.data.sectors.map((sector) => ({
         label: sector.name,
-        value: sector.id
+        value: sector.id,
+        slug: sector.slug
       }))
     }
 

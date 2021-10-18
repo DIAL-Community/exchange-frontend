@@ -13,6 +13,7 @@ const TAG_SEARCH_QUERY = gql`
     tags(search: $search) {
       id
       name
+      slug
     }
   }
 `
@@ -55,7 +56,8 @@ export const TagAutocomplete = (props) => {
     if (response.data && response.data.tags) {
       return response.data.tags.map((tag) => ({
         label: tag.name,
-        value: tag.id
+        value: tag.id,
+        slug: tag.slug
       }))
     }
 

@@ -863,7 +863,11 @@ export const en = {
   'entity.filename': 'File Name',
   'entity.uploaded': 'File uploaded and processed successfully.',
 
+  'app.exporting': 'Exporting Data ...',
   'app.exportAsJson': 'Export Data (JSON)',
   'app.exportAsCSV': 'Export Data (CSV)',
-  'app.notFound': '404 - Page Not Found'
+  'app.notFound': '404 - Page Not Found',
+
+  'endorser.label': 'Endorsing Organization',
+  'endorser.header': 'Endorsing Organizations'
 }
