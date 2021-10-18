@@ -83,28 +83,28 @@ const SearchFilter = (props) => {
   }
 
   const buildExportParameters = (path) => {
-    let exportParameters = {}
+    let exportParameters = { pageSize: -1 }
     switch (String(path).toLowerCase()) {
       case 'products':
-        exportParameters = { ...productFilters }
+        exportParameters = { ...exportParameters, ...productFilters }
         break;
       case 'organizations':
-        exportParameters = { ...organizationFilters }
+        exportParameters = { ...exportParameters, ...organizationFilters }
         break;
       case 'building_blocks':
-        exportParameters = { ...buildingBlockFilters }
+        exportParameters = { ...exportParameters, ...buildingBlockFilters }
         break;
       case 'workflows':
-        exportParameters = { ...workflowFilters }
+        exportParameters = { ...exportParameters, ...workflowFilters }
         break;
       case 'use_cases':
-        exportParameters = { ...useCaseFilters }
+        exportParameters = { ...exportParameters, ...useCaseFilters }
         break;
       case 'projects':
-        exportParameters = { ...projectFilters }
+        exportParameters = { ...exportParameters, ...projectFilters }
         break;
       case 'sdgs':
-        exportParameters = { ...sdgFilters }
+        exportParameters = { ...exportParameters, ...sdgFilters }
         break;
       default:
         break;
@@ -159,7 +159,6 @@ const SearchFilter = (props) => {
     .then(stream => new Response(stream))
     .then(response => response.blob())
     .then(blob => {
-      console.log('File extension: ', fileExtension)
       saveAs(blob, `${linkPath[0]}-data.${fileExtension}`)
       setLoading(false)
     })

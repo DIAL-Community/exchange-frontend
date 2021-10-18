@@ -17,6 +17,7 @@ const ProductFilterProvider = ({ children }) => {
   const [workflows, setWorkflows] = useState([])
   const [buildingBlocks, setBuildingBlocks] = useState([])
   const [productTypes, setProductTypes] = useState([])
+  const [endorsers, setEndorsers] = useState([])
 
   const [search, setSearch] = useState('')
   const [sortColumn, setSortColumn] = useState('name')
@@ -36,6 +37,7 @@ const ProductFilterProvider = ({ children }) => {
     workflows,
     buildingBlocks,
     productTypes,
+    endorsers,
     search,
     sortColumn,
     sortDirection
@@ -54,6 +56,7 @@ const ProductFilterProvider = ({ children }) => {
     setWorkflows,
     setBuildingBlocks,
     setProductTypes,
+    setEndorsers,
     setSearch,
     setSortColumn,
     setSortDirection
