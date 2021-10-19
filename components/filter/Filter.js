@@ -293,9 +293,19 @@ const Filter = (props) => {
               !openHint &&
                 <div className='bg-dial-gray-dark flex-auto'>
                   <div className='tab-content tab-space'>
-                    <div className='px-4 pt-3 pb-2 text-sm text-white cursor-pointer' onClick={e => openFilterPanel(e)}>
-                      {activeTab === 7 ? format('filter.dropdown.map') : format('filter.dropdown.title', { entity: format(filterItems[activeTab]) })}
-                      {openFilter ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />}
+                    <div className='flex flex-row'>
+                      <div className='px-4 pt-3 pb-2 text-sm text-white cursor-pointer flex-grow' onClick={e => openFilterPanel(e)}>
+                        {activeTab === 7 ? format('filter.dropdown.map') : format('filter.dropdown.title', { entity: format(filterItems[activeTab]) })}
+                        {openFilter ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />}
+                      </div>
+                      {
+                        // Map doesn't have hint.
+                        activeTab < filterItems.length - 1 &&
+                          <div className='px-4 pt-3 pb-2 text-white cursor-pointer' onClick={() => setOpenHint(!openHint)}>
+                            <span className='hidden md:inline text-sm'>{format('filter.hint.text') + format(props.activeTab).slice(0, -1)}</span>
+                            <HiQuestionMarkCircle className='text-2xl inline ml-2' />
+                          </div>
+                      }
                     </div>
                     {activeTab === 0 && <SDGFilter openFilter={openFilter} />}
                     {activeTab === 1 && <UseCaseFilter openFilter={openFilter} />}
@@ -306,14 +316,6 @@ const Filter = (props) => {
                     {activeTab === 6 && <OrganizationFilter openFilter={openFilter} />}
                     {activeTab === 7 && <MapFilter openFilter={openFilter} />}
                   </div>
-                  {
-                    // Map doesn't have hint.
-                    activeTab < filterItems.length - 1 &&
-                      <div className='text-white absolute top-2 right-3 cursor-pointer' onClick={() => setOpenHint(!openHint)}>
-                        <span className='hidden md:inline text-sm'>{format('filter.hint.text') + format(props.activeTab).slice(0, -1)}</span>
-                        <HiQuestionMarkCircle className='text-2xl inline ml-2' />
-                      </div>
-                  }
                 </div>
             }
             {
