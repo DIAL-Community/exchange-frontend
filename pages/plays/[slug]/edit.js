@@ -24,6 +24,13 @@ query Play($slug: String!) {
       description
       locale
     }
+    playTasks {
+      name
+      taskDescriptions {
+        description
+        locale
+      }
+    }
   }
 }
 `
@@ -34,7 +41,6 @@ function EditPlay() {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
-  const { pathname, asPath, query } = useRouter()
 
   const { locale } = router
   const { slug } = router.query

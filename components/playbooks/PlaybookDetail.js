@@ -69,7 +69,7 @@ const PlaybookDetail = ({ playbook }) => {
               {phase.name}
             </div>
             <div className='inline w-1/3 shadow appearance-none border rounded py-2 px-3 text-grey-darker'>
-              {phase.description}
+              {ReactHtmlParser(descriptionByLocale(phase.description, locale))}
             </div>
           </div> 
         )

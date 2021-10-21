@@ -160,38 +160,6 @@ export const PlaybookForm = ({playbook, action}) => {
                 {format('playbooks.addPhase')}
               </button>
             </div>
-            <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-              {format('playbooks.phases')}
-            </label>
-            { phases && phases.map((phase, i) => {
-              return (<div key={i} className='inline'>
-                <input
-                  id={'phaseName'+i} name='phaseName' type='text' placeholder={format('playbooks.phase.name')}
-                  className='inline w-1/3 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
-                  value={phase.name} onChange={(e) => handlePhaseChange(e, i)}
-                />
-                <input
-                  id={'phaseDesc'+i} name='phaseDesc' type='text' placeholder={format('playbooks.phase.description')}
-                  className='inline w-1/3 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
-                  value={phase.description} onChange={(e) => handlePhaseChange(e, i)}
-                />
-                <button 
-                  className='inline bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                  onClick={(e) => deletePhase(e, i)} disabled={loading}
-                >
-                  {format('playbooks.deletePhase')}
-                </button>
-              </div>)
-              })
-            }
-            <div className='flex items-center justify-between font-semibold text-sm mt-2'>
-              <button
-                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                onClick={addPhase} disabled={loading}
-              >
-                {format('playbooks.addPhase')}
-              </button>
-            </div>
             <div className='flex items-center justify-between font-semibold text-sm mt-2'>
               <button
                 className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'

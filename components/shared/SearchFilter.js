@@ -40,7 +40,9 @@ const SearchFilter = (props) => {
       return '/create-not-available'
     }
 
-    if (linkPath.includes('playbooks')) {
+    const reactEditPaths = ["playbooks", "plays"];
+
+    if (reactEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails
       return `/${linkPath[0]}/create`
     }

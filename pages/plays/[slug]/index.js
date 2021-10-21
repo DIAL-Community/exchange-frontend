@@ -25,6 +25,13 @@ const PLAY_QUERY = gql`
         description
         locale
       }
+      playTasks {
+        name
+        taskDescriptions {
+          description
+          locale
+        }
+      }
     }
   }
 `
@@ -37,6 +44,7 @@ const Play = () => {
   const { pathname, asPath, query } = useRouter()
 
   const { slug } = router.query
+  console.log("SLUG: " + slug)
   const { loading, error, data } = useQuery(PLAY_QUERY, { variables: { slug: slug }, skip: !slug })
 
   useEffect(() => {

@@ -52,6 +52,17 @@ const PlayDetail = ({ play }) => {
       <div className='fr-view text-dial-gray-dark'>
         {ReactHtmlParser(descriptionByLocale(play.playDescriptions, locale))}
       </div>
+      <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
+        {format('plays.tasks')}
+      </label>
+      {console.log(play.playTasks)}
+      { play.playTasks && play.playTasks.map((task, i) => {
+          return (<div key={i} className='inline w-full'>
+            {task.name}
+            {ReactHtmlParser(descriptionByLocale(task.taskDescriptions, locale))}
+          </div>
+        )
+      })}
     </div>
   )
 }
