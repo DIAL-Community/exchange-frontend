@@ -9,6 +9,8 @@ import { FaSpinner } from 'react-icons/fa'
 
 import { HtmlEditor } from '../../components/shared/HtmlEditor'
 import { descriptionByLocale } from '../../lib/utilities'
+import dynamic from 'next/dynamic'
+const PlayListQuery = dynamic(() => import('../../components/plays/PlayList'), { ssr: false })
 
 const CREATE_PLAYBOOK = gql`
 mutation ($name: String!, $slug: String!, $overview: String!, $audience: String, $outcomes: String, $phases: JSON!, $locale: String!) {
@@ -24,6 +26,7 @@ mutation ($name: String!, $slug: String!, $overview: String!, $audience: String,
         outcomes
       }
       plays {
+        id
         name
       }
     }
@@ -39,19 +42,21 @@ export const PlaybookForm = ({playbook, action}) => {
 
   const [createPlaybook, { data, loading }] = useMutation(CREATE_PLAYBOOK)  // {update: updateCache}
 
+  const [showPlayForm, setShowPlayForm] = useState(false)
   const [name, setName] = useState(playbook ? playbook.name : '')
   const [slug, setSlug] = useState(playbook ? playbook.slug : '')
   const [phases, setPhases] = useState(playbook ? playbook.phases.map((phase,i)=> ({ ...phase, i: i })) : [])
   const [overview, setOverview] = useState(playbook ? descriptionByLocale(playbook.playbookDescriptions, locale, 'overview') : '')
   const [audience, setAudience] = useState(playbook ? descriptionByLocale(playbook.playbookDescriptions, locale, 'audience') : '')
   const [outcomes, setOutcomes] = useState(playbook ? descriptionByLocale(playbook.playbookDescriptions, locale, 'outcomes') : '')
+  const [plays, setPlays] = useState(playbook ? playbook.plays : [])
 
   const router = useRouter()
 
   useEffect(() => {
     if (data) {
       setTimeout(() => {
-        router.push(`/${locale}/playbooks`)
+        router.push(`/${locale}/playbooks/${playbook.slug}`)
       }, 2000)
     }
   }, [data])
@@ -79,9 +84,10 @@ export const PlaybookForm = ({playbook, action}) => {
     setPhases(phases.map(phase => phase.i == i ? {name: '', description: ''} : phase ))
   }
 
-  const addPlay = (e) => {
+  const assignPlay = (e) => {
     e.preventDefault()
     setPlays([...plays, {name: '', description: '', i: plays.length}])
+    setShowPlayForm(false)
   }
 
   const deletePlay = (e, i) => {
@@ -160,6 +166,30 @@ export const PlaybookForm = ({playbook, action}) => {
                 {format('playbooks.addPhase')}
               </button>
             </div>
+            <div className='flex items-center justify-between font-semibold text-sm mt-2'>
+              <button
+                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+                onClick={(e) => { e.preventDefault(); setShowPlayForm(true) }}
+              >
+                {format('playbooks.assignPlay')}
+              </button>
+            </div>
+            <div className={`${!showPlayForm && 'hidden'}`}>
+              Assign Play Form
+              <PlayListQuery />
+              <button
+                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+                onClick={assignPlay} disabled={loading}
+              >
+                {format('playbooks.assign')}
+              </button>
+            </div>
+            { playbook.plays && playbook.plays.map((play, i) => {
+              return (<div key={i} className='inline'>
+                {play.name}
+                </div>
+              )}
+            )}
             <div className='flex items-center justify-between font-semibold text-sm mt-2'>
               <button
                 className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'

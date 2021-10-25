@@ -69,12 +69,12 @@ const PlaybookDetail = ({ playbook }) => {
               {phase.name}
             </div>
             <div className='inline w-1/3 shadow appearance-none border rounded py-2 px-3 text-grey-darker'>
-              {ReactHtmlParser(descriptionByLocale(phase.description, locale))}
+              {phase.description}
             </div>
           </div> 
         )
       })}
-      <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
+      <label className='block text-grey-darker text-sm font-bold my-2'>
         {format('playbooks.plays')}
       </label>
       { playbook.plays && playbook.plays.map((play, i) => {

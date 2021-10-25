@@ -33,7 +33,7 @@ const Products = () => {
       <GradientBackground />
       <Header />
       <Filter activeTab='filter.entity.products' />
-      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('products.label')} />
+      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('playbooks.label')} />
       <PlaybookListQuery />
       <Footer />
     </>
