@@ -804,7 +804,7 @@ export const en = {
       </li>
     </ul>
   `,
-  'ownership.apply': 'Apply',
+  'ownership.apply': 'Apply as Owner',
   'ownership.applied': 'Applied to Own',
   'ownership.owned': 'Owner',
 
@@ -868,6 +868,8 @@ export const en = {
   'app.exportAsCSV': 'Export Data (CSV)',
   'app.notFound': '404 - Page Not Found',
 
+  'ownership.reveal': 'Contact Owner',
+  'ownership.label': "Owner Email",
   'endorser.label': 'Endorsing Organization',
   'endorser.header': 'Endorsing Organizations'
 }
