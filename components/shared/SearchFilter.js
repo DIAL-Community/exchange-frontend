@@ -50,6 +50,18 @@ const SearchFilter = (props) => {
       return '/create-not-available'
     }
 
+    const candidatePaths = ["products", "organizations"]
+    if (!session.user.canEdit && candidatePaths.some(el => linkPath.includes(el))) {
+      return `/candidate/${linkPath[0]}/create`
+    }
+
+    const reactEditPaths = ["playbooks", "plays"];
+
+    if (reactEditPaths.some(el => linkPath.includes(el))) {
+      // These create functions are in React, not Rails
+      return `/${linkPath[0]}/create`
+    }
+
     const { userEmail, userToken } = session.user
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/${linkPath[0]}/` +
       `new?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
