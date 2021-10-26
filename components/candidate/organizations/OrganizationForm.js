@@ -11,6 +11,7 @@ const CREATE_CANDIDATE_ORGANIZATION = gql`
     $organizationName: String!,
     $website: String!,
     $name: String!,
+    $description: String!,
     $email: String!,
     $title: String!,
     $captcha: String!
@@ -19,6 +20,7 @@ const CREATE_CANDIDATE_ORGANIZATION = gql`
       organizationName: $organizationName,
       website: $website,
       name: $name,
+      description: $description,
       email: $email,
       title: $title,
       captcha: $captcha
@@ -33,6 +35,7 @@ const OrganizationForm = () => {
   const [organizationName, setOrganizationName] = useState('')
   const [website, setWebsite] = useState('')
   const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
   const [email, setEmail] = useState('')
   const [title, setTitle] = useState('')
   const [captcha, setCaptcha] = useState('')
@@ -51,6 +54,7 @@ const OrganizationForm = () => {
       setOrganizationName('')
       setEmail('')
       setName('')
+      setDescription('')
       setTitle('')
       setWebsite('')
       captchaRef.current.reset()
@@ -67,6 +71,7 @@ const OrganizationForm = () => {
         organizationName,
         website,
         name,
+        description,
         email,
         title,
         captcha
@@ -103,6 +108,16 @@ const OrganizationForm = () => {
                 value={website} onChange={(e) => handleTextFieldChange(e, setWebsite)}
               />
             </div>
+            <div className='mb-4'>
+              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
+                {format('candidateOrganization.description')}
+              </label>
+              <input
+                id='website' name='website' type='text' placeholder={format('candidateProduct.description.placeholder')}
+                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
+                value={description} onChange={(e) => handleTextFieldChange(e, setDescription)}
+              />
+            </div>
             <div className='border-b border-dial-gray my-4' />
             <div className='mb-4'>
               <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='repository'>
@@ -129,7 +144,7 @@ const OrganizationForm = () => {
                 {format('candidateOrganization.title')}
               </label>
               <input
-                id='title' name='website' type='text' placeholder={format('candidateProduct.title.placeholder')}
+                id='title' name='website' type='text' placeholder={format('candidateOrganization.title.placeholder')}
                 className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
                 value={title} onChange={(e) => handleTextFieldChange(e, setTitle)}
               />
