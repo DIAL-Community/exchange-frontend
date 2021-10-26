@@ -12,6 +12,7 @@ const SDG_SEARCH_QUERY = gql`
     sdgs(search: $search) {
       id
       name
+      slug
       number
     }
   }
@@ -55,7 +56,8 @@ export const SDGAutocomplete = (props) => {
     if (response.data && response.data.sdgs) {
       return response.data.sdgs.map((sdg) => ({
         label: `${sdg.number}. ${sdg.name}`,
-        value: sdg.id
+        value: sdg.id,
+        slug: sdg.slug
       }))
     }
 

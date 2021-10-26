@@ -89,11 +89,11 @@ const OrganizationCard = ({ organization, listType }) => {
               `}
               >
                 <div className='grid grid-cols-12 my-3 lg:my-5 px-4 text-product'>
-                  <img
-                    className='m-auto w-8'
-                    alt={format('image.alt.logoFor', { name: organization.name })}
-                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + '/assets/organizations/org_placeholder.png'}
-                  />
+                  <div className={`col-span-11 lg:col-span-4 lg:mr-4 ml-2 my-auto ${ellipsisTextStyle}`}>
+                    <div className='block lg:hidden font-semibold text-sm'>
+                      {organization.description}
+                    </div>
+                  </div>
                   <div className={`col-span-11 lg:col-span-4 lg:mr-4 ml-2 my-auto ${ellipsisTextStyle}`}>
                     {organization.name}
                     <div className='block lg:hidden font-semibold text-sm'>
@@ -195,17 +195,14 @@ const OrganizationCard = ({ organization, listType }) => {
                     {organization.name}
                   </div>
                   <div className='m-auto w-40'>
-                    <img
-                      alt={format('image.alt.logoFor', { name: organization.name })} className='mx-auto'
-                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + '/assets/organizations/org_placeholder.png'}
-                    />
+                    {organization.description}
                   </div>
                 </div>
                 <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark mt-auto'>
                   <div className='flex flex-col border-b border-dial-gray'>
                     <div className='pl-3 py-2 flex flex-row border-b'>
                       <div className='w-6 my-auto'>
-                        <FaHome className='text-xl' data-tip={format('candidateProduct.website.hint')} />
+                        <FaHome className='text-xl' data-tip={format('candidateOrganization.website.hint')} />
                       </div>
                       <div className={`mx-2 my-auto px-2 py-1 bg-white ${ellipsisTextStyle} ${hoverEffectTextStyle}`}>
                         {

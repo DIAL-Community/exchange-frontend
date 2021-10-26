@@ -11,6 +11,7 @@ const ORGANIZATION_SEARCH_QUERY = gql`
     organizations(search: $search, aggregatorOnly: $aggregatorOnly) {
       id
       name
+      slug
     }
   }
 `
@@ -54,7 +55,8 @@ export const OrganizationAutocomplete = (props) => {
     if (response.data && response.data.organizations) {
       return response.data.organizations.map((organization) => ({
         label: organization.name,
-        value: organization.id
+        value: organization.id,
+        slug: organization.slug
       }))
     }
 

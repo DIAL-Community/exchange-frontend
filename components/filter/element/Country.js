@@ -11,6 +11,7 @@ const COUNTRY_SEARCH_QUERY = gql`
     countries(search: $search) {
       id
       name
+      slug
     }
   }
 `
@@ -53,7 +54,8 @@ export const CountryAutocomplete = (props) => {
     if (response.data && response.data.countries) {
       return response.data.countries.map((country) => ({
         label: country.name,
-        value: country.id
+        value: country.id,
+        slug: country.slug
       }))
     }
 

@@ -834,7 +834,7 @@ export const en = {
       </li>
     </ul>
   `,
-  'ownership.apply': 'Apply',
+  'ownership.apply': 'Apply as Owner',
   'ownership.applied': 'Applied to Own',
   'ownership.owned': 'Owner',
 
@@ -858,6 +858,8 @@ export const en = {
   'candidateProduct.name.placeholder': 'Name of the candidate product.',
   'candidateProduct.website': 'Website',
   'candidateProduct.website.placeholder': 'Website of the candidate product.',
+  'candidateProduct.description': 'Description',
+  'candidateProduct.description.placeholder': 'Description of the candidate product.',
   'candidateProduct.repository': 'Code Repository',
   'candidateProduct.repository.placeholder': 'Code repository of the candidate product',
   'candidateProduct.email': 'Your Email Address',
@@ -871,6 +873,8 @@ export const en = {
   'candidateOrganization.organizationName.placeholder': 'Name of the candidate organization.',
   'candidateOrganization.website': 'Organization Website',
   'candidateOrganization.website.placeholder': 'Website of the candidate organization.',
+  'candidateOrganization.description': 'Description',
+  'candidateOrganization.description.placeholder': 'Description of the candidate organization.',
   'candidateOrganization.name': 'Your Name',
   'candidateOrganization.name.placeholder': 'Your name, submitter of the candidate organization.',
   'candidateOrganization.email': 'Your Email',
@@ -893,7 +897,13 @@ export const en = {
   'entity.filename': 'File Name',
   'entity.uploaded': 'File uploaded and processed successfully.',
 
+  'app.exporting': 'Exporting Data ...',
   'app.exportAsJson': 'Export Data (JSON)',
   'app.exportAsCSV': 'Export Data (CSV)',
-  'app.notFound': '404 - Page Not Found'
+  'app.notFound': '404 - Page Not Found',
+
+  'ownership.reveal': 'Contact Owner',
+  'ownership.label': "Owner Email",
+  'endorser.label': 'Endorsing Organization',
+  'endorser.header': 'Endorsing Organizations'
 }

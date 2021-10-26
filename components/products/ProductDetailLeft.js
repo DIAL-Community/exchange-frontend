@@ -10,8 +10,10 @@ import { useRouter } from 'next/router'
 import { descriptionByLocale } from '../../lib/utilities'
 import gql from 'graphql-tag'
 
+import ReCAPTCHA from 'react-google-recaptcha'
+
 import { FaSpinner } from 'react-icons/fa'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLazyQuery } from '@apollo/react-hooks'
 
 const CANDIDATE_ROLE_QUERY = gql`
@@ -24,6 +26,8 @@ const CANDIDATE_ROLE_QUERY = gql`
   }
 `
 
+const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
+
 const ProductDetailLeft = ({ product, discourseClick }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -31,6 +35,10 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
   const [session] = useSession()
   const router = useRouter()
   const { locale } = router
+
+  const captchaRef = useRef()
+  const [contactState, setContactState] = useState(CONTACT_STATES[0])
+  const [emailAddress, setEmailAddress] = useState('')
 
   const [loading, setLoading] = useState(false)
   const [appliedToBeOwner, setAppliedToBeOwner] = useState(false)
@@ -105,6 +113,43 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
     setShowApplyLink(displayApplyOwnershipLink(session, error, appliedToBeOwner))
     setOwnershipText(staticOwnershipTextSelection(session, data, appliedToBeOwner))
   }, [session, data, error, appliedToBeOwner])
+
+  const updateContactInfo = async (captchaValue) => {
+    const { userEmail, userToken } = session.user
+    const requestBody = {
+      user_email: userEmail,
+      user_token: userToken,
+      captcha: captchaValue,
+      product: product.slug
+    }
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_RAILS_SERVER}/api/v1/products/owners`,
+      {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'omit',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_RAILS_SERVER,
+          'Access-Control-Allow-Credentials': true,
+          'Access-Control-Allow-Headers': 'Set-Cookie'
+        },
+        body: JSON.stringify(requestBody)
+      }
+    )
+
+    if (response) {
+      setContactState(CONTACT_STATES[2])
+      if (response.status === 200) {
+        const ownerData = await response.json();
+        setEmailAddress(ownerData['owner']['email'])
+      } else {
+        setContactState(CONTACT_STATES[3])
+      }
+    }
+  }
 
   const applyToBeProductOwner = async () => {
     setLoading(true)
@@ -216,7 +261,43 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
                 </div>
               </>
           }
+          {
+            session && session.user && product.owner && contactState === CONTACT_STATES[0] &&
+              <>
+                <div className='border-l border-dial-gray-light mt-2' />
+                <button
+                  className='text-dial-yellow block mt-2 border-b border-transparent hover:border-dial-yellow'
+                  href='/apply-product-owner' onClick={() => setContactState(CONTACT_STATES[1])}
+                >
+                  {format('ownership.reveal')}
+                </button>
+              </>
+          }
         </div>
+        {
+          session && session.user && product.owner &&
+            <>
+              {
+                contactState === CONTACT_STATES[1] &&
+                  <div className='mt-2'>
+                    <ReCAPTCHA sitekey='6LfAGscbAAAAAFW_hQyW5OxXPhI7v6X8Ul3FJrsa' onChange={updateContactInfo} ref={captchaRef} />
+                  </div>
+              }
+              {
+                contactState === CONTACT_STATES[2] &&
+                  <div className='mt-2'>
+                    {format('ownership.label')}:
+                    <a
+                      class='text-dial-yellow mx-2 mt-2 border-b border-transparent hover:border-dial-yellow'
+                      href={`mailto:${emailAddress}`} target='_blank' rel='noreferrer'
+                    >
+                      {emailAddress}
+                    </a>
+                  </div>
+              }
+
+            </>
+        }
       </div>
     </>
   )
