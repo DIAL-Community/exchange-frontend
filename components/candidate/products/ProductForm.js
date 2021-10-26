@@ -11,6 +11,7 @@ const CREATE_CANDIDATE_PRODUCT = gql`
     $name: String!,
     $website: String!,
     $repository: String!,
+    $description: String!,
     $email: String!,
     $captcha: String!
   ) {
@@ -18,6 +19,7 @@ const CREATE_CANDIDATE_PRODUCT = gql`
       name: $name,
       website: $website,
       repository: $repository,
+      description: $description,
       email: $email,
       captcha: $captcha
     ) { slug }
@@ -31,6 +33,7 @@ const ProductForm = () => {
   const [name, setName] = useState('')
   const [website, setWebsite] = useState('')
   const [repository, setRepository] = useState('')
+  const [description, setDescription] = useState('')
   const [email, setEmail] = useState('')
   const [captcha, setCaptcha] = useState('')
 
@@ -49,6 +52,7 @@ const ProductForm = () => {
       setEmail('')
       setWebsite('')
       setRepository('')
+      setDescription('')
       captchaRef.current.reset()
       setTimeout(() => {
         router.push('/candidate/products')
@@ -63,6 +67,7 @@ const ProductForm = () => {
         name,
         website,
         repository,
+        description,
         email,
         captcha
       }
@@ -105,6 +110,16 @@ const ProductForm = () => {
                 id='repository' name='repository' type='text' placeholder={format('candidateProduct.repository.placeholder')}
                 className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
                 value={repository} onChange={(e) => handleTextFieldChange(e, setRepository)}
+              />
+            </div>
+            <div className='mb-4'>
+              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='description'>
+                {format('candidateProduct.description')}
+              </label>
+              <input
+                id='description' name='description' type='text' placeholder={format('candidateProduct.description.placeholder')}
+                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
+                value={description} onChange={(e) => handleTextFieldChange(e, setDescription)}
               />
             </div>
             <div className='mb-4'>

@@ -36,6 +36,8 @@ query SearchCandidateProducts(
       slug
       name
       website
+      description
+      submitterEmail
       repository
       rejected
     }
@@ -84,7 +86,7 @@ const ProductList = (props) => {
 
 const ProductListQuery = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const { displayType } = useContext(FilterContext)
   const { search } = useContext(ProductFilterContext)

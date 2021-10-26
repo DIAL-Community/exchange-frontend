@@ -40,11 +40,7 @@ const ProductCard = ({ product, listType }) => {
                 >
                   <div className='grid grid-cols-12 my-3 lg:my-5 px-4 text-product'>
                     <div className='col-span-1 my-auto row-span-3'>
-                      <img
-                        className='m-auto w-8'
-                        alt={format('image.alt.logoFor', { name: product.name })}
-                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + '/assets/products/prod_placeholder.png'}
-                      />
+                      {product.description}
                     </div>
                     <div className={`col-span-11 lg:col-span-4 lg:mr-4 ml-2 my-auto ${ellipsisTextStyle}`}>
                       {product.name}
@@ -143,10 +139,12 @@ const ProductCard = ({ product, listType }) => {
                       {product.name}
                     </div>
                     <div className='m-auto w-40'>
-                      <img
-                        alt={format('image.alt.logoFor', { name: product.name })} className='mx-auto'
-                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + '/assets/products/prod_placeholder.png'}
-                      />
+                      {product.description}
+                    </div>
+                  </div>
+                  <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark mt-auto'>
+                    <div className='flex flex-col border-b border-dial-gray px-3'>
+                      {product.submitterEmail}
                     </div>
                   </div>
                   <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark mt-auto'>
