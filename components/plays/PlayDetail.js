@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 const PlayDetail = ({ play }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+  const router = useRouter()
   const { locale } = useRouter()
   const [session] = useSession()
 
@@ -25,6 +26,14 @@ const PlayDetail = ({ play }) => {
     map[play.slug] = play.name
     return map
   })()
+
+  const addTask = () => {
+    router.push(`/${locale}/plays/${play.slug}/tasks/create`)
+  }
+
+  const editTask = (e, taskSlug) => {
+    router.push(`/${locale}/plays/${play.slug}/tasks/${taskSlug}/edit`)
+  }
 
   return (
     <div className='px-4'>
@@ -55,14 +64,27 @@ const PlayDetail = ({ play }) => {
       <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
         {format('plays.tasks')}
       </label>
-      {console.log(play.playTasks)}
       { play.playTasks && play.playTasks.map((task, i) => {
           return (<div key={i} className='inline w-full'>
             {task.name}
             {ReactHtmlParser(descriptionByLocale(task.taskDescriptions, locale))}
+            <button 
+              className='flex-auto h-8 bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+              onClick={(e) => editTask(e, task.slug)}
+            >
+              {format('plays.editTask')}
+            </button>
           </div>
         )
       })}
+      <div className='flex items-center justify-between font-semibold text-sm mt-2'>
+        <button
+          className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+          onClick={addTask}
+        >
+          {format('plays.addTask')}
+        </button>
+      </div>
     </div>
   )
 }

@@ -43,6 +43,7 @@ export const HtmlEditor = ({ updateText, initialContent, initInstanceCallback })
   return (
     <>
       <Editor
+        id='TinyMCE-Editor'
         apiKey={process.env.NEXT_PUBLIC_EDITOR_KEY}
         onInit={(evt, editor) => editorRef.current = editor}
         value={initialContent}

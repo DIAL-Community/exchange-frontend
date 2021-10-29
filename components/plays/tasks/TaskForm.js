@@ -8,52 +8,53 @@ import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
 import ReactHtmlParser from 'react-html-parser'
 
-import { HtmlEditor } from '../shared/HtmlEditor'
-import { descriptionByLocale } from '../../lib/utilities'
+import { HtmlEditor } from '../../shared/HtmlEditor'
+import { descriptionByLocale } from '../../../lib/utilities'
 
-const CREATE_PLAY = gql`
-mutation ($name: String!, $description: String!, $locale: String!) {
-  createPlay(name: $name, description: $description, locale: $locale) {
-    play {
+const CREATE_TASK = gql`
+mutation ($playSlug: String!, $name: String!, $description: String!, $order: Int!, $locale: String!) {
+  createTask(play: $playSlug, name: $name, description: $description, order: $order, locale: $locale) {
+    task {
       id
       name
       slug
-      playDescriptions {
+      taskDescriptions {
         description
         locale
       }
-      playTasks {
-        name
-        taskDescriptions {
-          description
-          locale
-        }
-      }
+      playName
+      playSlug
     }
   }
 }
 `
 
-export const PlayForm = ({play, action}) => {
+export const TaskForm = ({task, action}) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const { locale } = useRouter()
 
-  const [createPlay, { data, loading }] = useMutation(CREATE_PLAY)  // {update: updateCache}
+  const [createTask, { data, loading }] = useMutation(CREATE_TASK)  // {update: updateCache}
 
-  const [name, setName] = useState(play ? play.name : '')
-  const [description, setDescription] = useState(play ? descriptionByLocale(play.playDescriptions, locale) : '')
+  const [playSlug, setPlaySlug] = useState(task ? task.playSlug : '' )
+  const [name, setName] = useState(task ? task.name : '')
+  const [description, setDescription] = useState(task ? descriptionByLocale(task.taskDescriptions, locale) : '')
 
   const router = useRouter()
 
   useEffect(() => {
     if (data) {
       setTimeout(() => {
-        router.push(`/${locale}/plays/${data.createPlay.play.slug}`)
+        router.push(`/${locale}/plays/${task.playSlug}`)
       }, 2000)
     }
   }, [data])
+
+  useEffect(() => {
+    const { slug } = router.query
+    setPlaySlug(slug)
+  }, [router.query])
 
   const handleTextFieldChange = (e, callback) => {
     callback(e.target.value)
@@ -61,7 +62,7 @@ export const PlayForm = ({play, action}) => {
 
   const doUpsert = async e => {
     e.preventDefault()
-    createPlay({variables: {name, description, locale }});
+    createTask({variables: {playSlug, name, description, order: 1, locale }});
   }
 
   return (
@@ -69,27 +70,27 @@ export const PlayForm = ({play, action}) => {
       <div className={`mx-4 ${data ? 'visible' : 'invisible'} text-center pt-4`}>
         <div className='my-auto text-green-500'>{action == 'create' ? format('play.created') : format('play.updated')}</div>
       </div>
-      {action == 'update' && format('app.edit-entity', { entity: play.name }) }
+      <div className='p-3'>
+        {format('tasks.forPlay')} : { playSlug }
+      </div>
+      {action == 'update' && format('app.edit-entity', { entity: task.name }) }
       <div id='content' className='px-4 sm:px-0 max-w-full mx-auto'>
         <form onSubmit={doUpsert}>
           <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
             <div className='mb-4'>
               <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('plays.name')}
+                {format('tasks.name')}
               </label>
               <input
-                id='name' name='name' type='text' placeholder={format('plays.name.placeholder')}
+                id='name' name='name' type='text' placeholder={format('tasks.name.placeholder')}
                 className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
                 value={name} onChange={(e) => handleTextFieldChange(e, setName)}
               />
             </div>
             <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('plays.description')}
+                {format('tasks.description')}
             </label>
             <HtmlEditor updateText={setDescription} initialContent={description} />
-            <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('plays.tasks')}
-            </label>
             <div className='flex items-center justify-between font-semibold text-sm mt-2'>
               <button
                 className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'

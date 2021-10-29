@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { useMutation } from "@apollo/react-hooks"
+import { useMutation, useQuery } from "@apollo/react-hooks"
 import gql from 'graphql-tag'
 
 import { useIntl } from 'react-intl'
@@ -9,12 +9,13 @@ import { FaSpinner } from 'react-icons/fa'
 
 import { HtmlEditor } from '../../components/shared/HtmlEditor'
 import { descriptionByLocale } from '../../lib/utilities'
+
 import dynamic from 'next/dynamic'
 const PlayListQuery = dynamic(() => import('../../components/plays/PlayList'), { ssr: false })
 
 const CREATE_PLAYBOOK = gql`
-mutation ($name: String!, $slug: String!, $overview: String!, $audience: String, $outcomes: String, $phases: JSON!, $locale: String!) {
-  createPlaybook(name: $name, slug: $slug, overview: $overview, audience: $audience, outcomes: $outcomes, phases: $phases, locale: $locale) {
+mutation ($name: String!, $slug: String!, $overview: String!, $audience: String, $outcomes: String, $phases: JSON!, $plays: JSON!, $locale: String!) {
+  createPlaybook(name: $name, slug: $slug, overview: $overview, audience: $audience, outcomes: $outcomes, phases: $phases, plays: $plays, locale: $locale) {
     playbook {
       id
       name
@@ -34,15 +35,49 @@ mutation ($name: String!, $slug: String!, $overview: String!, $audience: String,
 }
 `
 
+const PLAYS_QUERY = gql`
+query SearchPlays(
+  $first: Int,
+  $after: String,
+  $search: String!
+  ) {
+  searchPlays(
+    first: $first,
+    after: $after,
+    search: $search
+  ) {
+    __typename
+    totalCount
+    pageInfo {
+      endCursor
+      startCursor
+      hasPreviousPage
+      hasNextPage
+    }
+    nodes {
+      id
+      slug
+      name
+      imageFile
+      playDescriptions {
+        description
+      }
+    }
+  }
+}
+`
+
 export const PlaybookForm = ({playbook, action}) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const { locale } = useRouter()
 
+  const DEFAULT_PAGE_SIZE = 20
   const [createPlaybook, { data, loading }] = useMutation(CREATE_PLAYBOOK)  // {update: updateCache}
 
   const [showPlayForm, setShowPlayForm] = useState(false)
+  const [search, setSearch] = useState()
   const [name, setName] = useState(playbook ? playbook.name : '')
   const [slug, setSlug] = useState(playbook ? playbook.slug : '')
   const [phases, setPhases] = useState(playbook ? playbook.phases.map((phase,i)=> ({ ...phase, i: i })) : [])
@@ -84,23 +119,23 @@ export const PlaybookForm = ({playbook, action}) => {
     setPhases(phases.map(phase => phase.i == i ? {name: '', description: ''} : phase ))
   }
 
-  const assignPlay = (e) => {
+  const assignPlay = (e, play) => {
     e.preventDefault()
-    setPlays([...plays, {name: '', description: '', i: plays.length}])
+    setPlays([...plays, play])
     setShowPlayForm(false)
   }
 
-  const deletePlay = (e, i) => {
+  const unassignPlay = (e, removePlay) => {
     e.preventDefault()
-    setPlays(plays.map(play => play.i == i ? {name: '', description: ''} : play ))
+    setPlays(plays.map(play => play.name == removePlay.name ? {name: '', description: ''} : play ))
   }
 
   const doUpsert = async e => {
     e.preventDefault()
     setPhases(phases.map(phase => { delete phase.i; return phase }))
     const submitPhases = phases.map(phase => phase.name == '' ? null : phase)
-    console.log("PHASES: " + JSON.stringify(submitPhases))
-    createPlaybook({variables: {name, slug, overview, audience, outcomes, phases: submitPhases, locale }});
+    const submitPlays = plays.map(play => play.name == '' ? null : play)
+    createPlaybook({variables: {name, slug, overview, audience, outcomes, phases: submitPhases, submitPlays, locale }});
   }
 
   return (
@@ -175,19 +210,20 @@ export const PlaybookForm = ({playbook, action}) => {
               </button>
             </div>
             <div className={`${!showPlayForm && 'hidden'}`}>
-              Assign Play Form
-              <PlayListQuery />
-              <button
-                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                onClick={assignPlay} disabled={loading}
-              >
-                {format('playbooks.assign')}
-              </button>
+              <PlayListQuery displayType='assign' assignCallback={assignPlay} />
             </div>
-            { playbook.plays && playbook.plays.map((play, i) => {
+            { plays && plays.map((play, i) => {
               return (<div key={i} className='inline'>
-                {play.name}
+                <div className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
+                  {play.name}
+                  <button
+                    className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+                    onClick={(e) => { unassignPlay(e, play) }}
+                  >
+                    {format('playbooks.unassignPlay')}
+                  </button>
                 </div>
+              </div>
               )}
             )}
             <div className='flex items-center justify-between font-semibold text-sm mt-2'>

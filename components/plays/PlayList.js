@@ -38,39 +38,39 @@ query SearchPlays(
       imageFile
       playDescriptions {
         description
+        locale
       }
     }
   }
 }
 `
 
-const PlayList = (props) => {
+const PlayList = ({ playList, displayType, assignCallback }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
 
   return (
     <>
       <div className={gridStyles}>
         {
-          displayType === 'list' &&
+          displayType === 'assign' &&
             <div className='grid grid-cols-12 my-3 px-4'>
               <div className='col-span-5 ml-2 text-sm font-semibold opacity-70'>
                 {format('play.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
               <div className='hidden md:block col-span-3 text-sm font-semibold opacity-50'>
-                {format('play.website').toUpperCase()}
+                {format('plays.description').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
             </div>
         }
         {
-          props.playList.length > 0
-            ? props.playList.map((play) => (
-              <PlayCard key={play.id} play={play} listType={displayType} />
+          playList.length > 0
+            ? playList.map((play) => (
+              <PlayCard key={play.id} play={play} listType={displayType} assignCallback={assignCallback} />
               ))
             : (
               <div className='flex justify-self-center text-dial-gray-dark'>{
@@ -84,11 +84,11 @@ const PlayList = (props) => {
   )
 }
 
-const PlayListQuery = () => {
+const PlayListQuery = (props) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { displayType } = useContext(FilterContext)
+  const { displayType } = props.displayType ? props : useContext(FilterContext)
   const { search } = useContext(PlayFilterContext)
   const { loading, error, data, fetchMore } = useQuery(PLAYS_QUERY, {
     variables: {
@@ -97,6 +97,7 @@ const PlayListQuery = () => {
     }
   })
 
+  
   if (loading) {
     return <Loading />
   }
@@ -124,7 +125,7 @@ const PlayListQuery = () => {
       hasMore={pageInfo.hasNextPage}
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
-      <PlayList playList={nodes} displayType={displayType} />
+      <PlayList playList={nodes} displayType={displayType} assignCallback={props.assignCallback} />
     </InfiniteScroll>
   )
 }
