@@ -135,7 +135,7 @@ export const PlaybookForm = ({playbook, action}) => {
     setPhases(phases.map(phase => { delete phase.i; return phase }))
     const submitPhases = phases.map(phase => phase.name == '' ? null : phase)
     const submitPlays = plays.map(play => play.name == '' ? null : play)
-    createPlaybook({variables: {name, slug, overview, audience, outcomes, phases: submitPhases, submitPlays, locale }});
+    createPlaybook({variables: {name, slug, overview, audience, outcomes, phases: submitPhases, plays: submitPlays, locale }});
   }
 
   return (
