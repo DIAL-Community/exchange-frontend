@@ -150,7 +150,7 @@ const ProductListQuery = () => {
   } = useContext(ProductFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const { loading, error, data, fetchMore } = useQuery(PRODUCTS_QUERY, {
     variables: {

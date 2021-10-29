@@ -48,7 +48,7 @@ const WORKFLOW_QUERY = gql`
 
 const Workflow = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const router = useRouter()
   const { pathname, asPath, query } = useRouter()

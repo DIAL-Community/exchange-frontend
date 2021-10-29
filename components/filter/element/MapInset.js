@@ -1,6 +1,7 @@
+import { useIntl } from 'react-intl'
 import { MapContainer, Marker, TileLayer } from 'react-leaflet'
-import EndorserMarker from '../../maps/endorsers/EndorserMarker'
-import ProjectMarker from '../../maps/endorsers/ProjectMarker'
+import { createEndorserMarker } from '../../maps/endorsers/EndorserMarker'
+import { createProjectMarker } from '../../maps/endorsers/ProjectMarker'
 
 const latitudeBoundary = [-88, 88]
 const longitudeBoundary = [-88, 88]
@@ -17,8 +18,15 @@ const randomLocations = (() => {
 })()
 
 const MapInset = (props) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id }, { ...values })
+
   const { insetFor } = props
-  const icon = insetFor === 'endorsers' ? EndorserMarker : insetFor === 'projects' ? ProjectMarker : EndorserMarker
+  const icon = insetFor === 'endorsers'
+    ? createEndorserMarker(format('image.alt.logoFor', { name: format('digitalPrinciple.title') }))
+    : insetFor === 'projects'
+      ? createProjectMarker(format('image.alt.logoFor', { name: format('marker.project.title') }))
+      : createEndorserMarker(format('image.alt.logoFor', { name: format('digitalPrinciple.title') }))
 
   return (
     <MapContainer center={[0, 0]} zoom={3} className='z-10 w-full' style={{ minHeight: '10vh' }}>

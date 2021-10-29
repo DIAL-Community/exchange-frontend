@@ -110,7 +110,7 @@ const UseCaseListQuery = () => {
   const { sdgs, showBeta, search } = useContext(UseCaseFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const { loading, error, data, fetchMore } = useQuery(USE_CASES_QUERY, {
     variables: {

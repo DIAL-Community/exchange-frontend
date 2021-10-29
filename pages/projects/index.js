@@ -18,7 +18,7 @@ const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const Projects = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const { search } = useContext(ProjectFilterContext)
   const { setSearch } = useContext(ProjectFilterDispatchContext)

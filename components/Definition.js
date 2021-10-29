@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const Description = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
   const [openTab, setOpenTab] = useState(0)
 
   const tabClickHandler = (e, tabNumber) => {
@@ -46,12 +46,12 @@ const Description = () => {
             {format('definition.title')}
           </div>
           <div className='grid grid-cols-3'>
-            <ul className='flex flex-col mb-0 list-none' role='tablist'>
+            <ul className='flex flex-col mb-0 list-none'>
               {
                 actorList.map((actor, index) => (
                   <li key={`actor-${index}`} className='-mb-px'>
                     <a
-                      data-toggle='tab' href={`#${actor.replace(/\s+/g, '-').toLowerCase()}`} role='tablist'
+                      data-toggle='tab' href={`#${actor.replace(/\s+/g, '-').toLowerCase()}`}
                       className={generateAnchorStyles(index)} onClick={e => tabClickHandler(e, index)}
                     >
                       {actor}
@@ -148,7 +148,7 @@ const Description = () => {
                       </Link>
                     </div>
                   </div>
-                  <div className={openTab === 5 ? 'block' : 'hidden'} id='procurers'>
+                  <div className={openTab === 5 ? 'block' : 'hidden'} id='product-owners'>
                     <div className='flex flex-col flex-wrap p-8 xl:max-h-96 text-dial-blue-darkest'>
                       <p className='text-xl max-w-md mr-16 tracking-wide'>
                         <span className='font-bold'>{format('definition.product-owners')} </span>

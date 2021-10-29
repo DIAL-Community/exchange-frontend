@@ -30,7 +30,7 @@ const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
 
 const ProductDetailLeft = ({ product, discourseClick }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const [session] = useSession()
   const router = useRouter()

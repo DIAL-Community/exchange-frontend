@@ -65,6 +65,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                     {
                       product.endorsers && product.endorsers.length > 0 &&
                         <img
+                          alt={format('image.alt.logoFor', { name: format('endorsed.title') })}
                           data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5'
                           src='/icons/check/check.png'
                         />
@@ -72,6 +73,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                     {
                       isEndorsingOrg() &&
                         <img
+                          alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
                           data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5'
                           src='/icons/digiprins/digiprins.png'
                         />
@@ -79,6 +81,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                     {
                       product.tags && product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
                         <img
+                          alt={format('image.alt.logoFor', { name: format('coronavirus.title') })}
                           data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5'
                           src='/icons/coronavirus/coronavirus.png'
                         />
@@ -96,6 +99,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                   {
                     product.endorsers && product.endorsers.length > 0 &&
                       <img
+                        alt={format('image.alt.logoFor', { name: format('endorsed.title') })}
                         data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5'
                         src='/icons/check/check.png'
                       />
@@ -103,6 +107,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                   {
                     isEndorsingOrg() &&
                       <img
+                        alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
                         data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5'
                         src='/icons/digiprins/digiprins.png'
                       />
@@ -110,6 +115,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                   {
                     product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
                       <img
+                        alt={format('image.alt.logoFor', { name: format('coronavirus.title') })}
                         data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5'
                         src='/icons/coronavirus/coronavirus.png'
                       />

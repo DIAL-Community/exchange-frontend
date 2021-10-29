@@ -3,10 +3,11 @@ import { createRef, useEffect, useState } from 'react'
 import 'leaflet/dist/leaflet.css'
 import { MapContainer, Marker, TileLayer, LayerGroup, useMap, useMapEvents } from 'react-leaflet'
 
-import EndorserMarker from './EndorserMarker'
-import ProjectMarker from './ProjectMarker'
+import { createEndorserMarker } from './EndorserMarker'
+import { createProjectMarker } from './ProjectMarker'
 
 import L from 'leaflet'
+import { useIntl } from 'react-intl'
 
 const popupTemplate = (title, content) => {
   return `
@@ -18,6 +19,8 @@ const popupTemplate = (title, content) => {
 }
 
 const EndorserMarkers = (props) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id }, { ...values })
   const map = useMap()
 
   const [zooming, setZooming] = useState(false)
@@ -38,7 +41,9 @@ const EndorserMarkers = (props) => {
     }
     if (organization && organization.countries) {
       organization.countries.forEach(country => {
-        const marker = L.marker([country.latitude, country.longitude], { icon: ProjectMarker })
+        const marker = L.marker([country.latitude, country.longitude],
+          { icon: createProjectMarker(format('image.alt.logoFor', { name: format('marker.project.title') })) }
+        )
         marker.bindPopup(popupTemplate(organization.name, country.name))
         marker.on('click', (e) => e.target.openPopup())
         countryMarkerGroup.current.addLayer(marker)
@@ -92,7 +97,7 @@ const EndorserMarkers = (props) => {
             return (
               <Marker
                 key={cityName}
-                icon={EndorserMarker}
+                icon={createEndorserMarker(format('image.alt.logoFor', { name: format('digitalPrinciple.title') }))}
                 position={[city.latitude, city.longitude]}
                 riseOnHover
                 eventHandlers={{

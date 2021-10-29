@@ -11,7 +11,7 @@ const EndorserInfo = (props) => {
   }
 
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const [active, setActive] = useState(city.organizations[0].slug)
   const router = useRouter()
@@ -60,9 +60,12 @@ const EndorserInfo = (props) => {
                             {
                               organization.whenEndorsed &&
                                 <div className='flex flex-row p-1.5 text-xs font-semibold justify-end text-dial-cyan'>
-                                  <img className='mr-2 h-6' src='/icons/digiprins/digiprins.png' />
+                                  <img
+                                    alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
+                                    className='mr-2 h-6' src='/icons/digiprins/digiprins.png'
+                                  />
                                   <div className='my-auto'>
-                                    {`Endorsed on ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
+                                    {`${format('endorsement.year.text')} ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
                                   </div>
                                 </div>
                             }

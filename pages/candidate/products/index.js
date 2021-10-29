@@ -17,7 +17,7 @@ const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const Products = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const { search } = useContext(ProductFilterContext)
   const { setSearch } = useContext(ProductFilterDispatchContext)

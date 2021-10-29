@@ -34,7 +34,7 @@ const Breadcrumb = (props) => {
   const [breadcrumbs, setBreadcrumbs] = useState(null)
 
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   useEffect(() => {
     if (router) {

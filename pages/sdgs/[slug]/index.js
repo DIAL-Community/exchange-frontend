@@ -41,7 +41,7 @@ const SDG_QUERY = gql`
 
 const SDG = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const router = useRouter()
   const { slug } = router.query

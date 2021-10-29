@@ -98,7 +98,7 @@ const OrganizationListQuery = () => {
   const { aggregator, endorser, countries, sectors, years, search } = useContext(OrganizationFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
   const router = useRouter()
   const { locale } = router
 

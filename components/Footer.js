@@ -8,7 +8,7 @@ const Consent = dynamic(() => import('./Consent'), { ssr: false })
 
 const Footer = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   return (
     <footer>

@@ -13,7 +13,7 @@ const CountryInfo = (props) => {
   const [active, setActive] = useState(country.projects[0].slug)
 
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const openDetailPage = (e, slug) => {
     e.preventDefault()

@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 
 const MaturityCategory = ({ category }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
   const numIndicators = category.indicator_scores.length
   return (
     <AccordionItem>
@@ -42,7 +42,7 @@ const MaturityCategory = ({ category }) => {
 
 const RubricAccordion = ({ maturityScores, overallScore }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
   return (
     <>
       <div className='pb-5 mr-6 h4'>{format('product.overall-score')}: {overallScore} / 100</div>

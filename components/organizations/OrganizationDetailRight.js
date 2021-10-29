@@ -22,7 +22,7 @@ const DynamicOfficeMarker = (props) => {
 
 const OrganizationDetailRight = ({ organization }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
   const marker = organization.offices.length > 0
     ? {
         position: [parseFloat(organization.offices[0].latitude), parseFloat(organization.offices[0].longitude)],

@@ -4,7 +4,7 @@ import { CgGitFork } from 'react-icons/cg'
 
 const RepositoryDetail = ({ repositoryData, languageData }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const lastUpdated = repositoryData && new Date(repositoryData.updatedAt)
   const lastThreeMonths = new Date()
