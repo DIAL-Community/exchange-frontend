@@ -3,7 +3,7 @@ import { FaExclamationCircle } from 'react-icons/fa'
 
 const NotFound = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   return (
     <div className='grid place-items-center bg-gradient-to-b from-dial-gray-light to-white'>

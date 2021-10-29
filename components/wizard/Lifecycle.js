@@ -6,7 +6,7 @@ import Resource from '../resources/Resource'
 
 const Lifecycle = ({ wizardData, objType }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
   const [openTab, setOpenTab] = useState(objType === 'principles' ? 0 : 1)
 
   const tabClickHandler = (e, tabNumber) => {
@@ -29,12 +29,12 @@ const Lifecycle = ({ wizardData, objType }) => {
       <div className='relative pb-4 lg:pb-6 2xl:max-w-full'>
         <main className='pt-4 mx-auto px-6 sm:px-12 xl:pt-6 xl:max-w-6xl 2xl:max-w-7xl'>
           <div className='grid grid-cols-3'>
-            <ul className='flex flex-col mb-0 list-none' role='tablist'>
+            <ul className='flex flex-col mb-0 list-none'>
               {
                 actorList.map((actor, index) => (
                   <li key={`actor-${index}`} className='-mb-px'>
                     <a
-                      data-toggle='tab' href={`#${actor.replace(/\s+/g, '-').toLowerCase()}`} role='tablist'
+                      data-toggle='tab' href={`#${actor.replace(/\s+/g, '-').toLowerCase()}`}
                       className={generateAnchorStyles(index)} onClick={e => tabClickHandler(e, index)}
                     >
                       {actor}

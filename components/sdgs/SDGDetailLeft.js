@@ -3,7 +3,7 @@ import Breadcrumb from '../shared/breadcrumb'
 
 const SDGDetailLeft = ({ sdg }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const slugNameMapping = (() => {
     const map = {}

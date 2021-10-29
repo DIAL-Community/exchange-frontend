@@ -873,7 +873,21 @@ export const en = {
   'app.notFound': '404 - Page Not Found',
 
   'ownership.reveal': 'Contact Owner',
-  'ownership.label': "Owner Email",
+  'ownership.label': 'Owner Email',
   'endorser.label': 'Endorsing Organization',
-  'endorser.header': 'Endorsing Organizations'
+  'endorser.header': 'Endorsing Organizations',
+
+  'view.active.card': 'Card View Active',
+  'view.active.list': 'List View Active',
+  'view.inactive.card': 'Card View Inactive',
+  'view.inactive.list': 'List View Inactive',
+  'endorsement.year.text': 'Endorsed on',
+
+  'digitalPrinciple.title': 'Principles for Digital Development',
+  'coronavirus.title': 'COVID-19',
+  'endorsed.title': 'Endorsed by Organizations',
+  'visitWebsite.title': 'Visit Site',
+
+  'marker.project.title': 'Project Marker'
+
 }

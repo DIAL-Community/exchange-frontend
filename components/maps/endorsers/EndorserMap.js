@@ -63,7 +63,7 @@ const EndorserMap = () => {
   const { orgSectors, years } = useContext(MapFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const { loading, data } = useQuery(ORGANIZATIONS_QUERY, {
     variables: {

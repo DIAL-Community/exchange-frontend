@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 
 const BuildingBlockDetailRight = ({ buildingBlock, discourseRef }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
   const { locale } = useRouter()
 
   const slugNameMapping = (() => {

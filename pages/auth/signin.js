@@ -11,7 +11,7 @@ import Footer from '../../components/Footer'
 
 export default function SignIn ({ csrfToken }) {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const [loading, setLoading] = useState(false)
 

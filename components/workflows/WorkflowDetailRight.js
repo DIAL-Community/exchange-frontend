@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 
 const WorkflowDetailRight = ({ workflow }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
   const { locale } = useRouter()
 
   const useCases = (() => {

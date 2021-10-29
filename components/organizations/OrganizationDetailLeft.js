@@ -25,7 +25,7 @@ const CANDIDATE_ROLE_QUERY = gql`
 
 const OrganizationDetailLeft = ({ organization }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const [session] = useSession()
   const { locale } = useRouter()
@@ -170,7 +170,10 @@ const OrganizationDetailLeft = ({ organization }) => {
         {
           organization.whenEndorsed && (
             <div className='flex flex-row p-1.5 border-b border-dial-gray text-xs font-semibold text-dial-cyan'>
-              <img className='mr-2 h-6' src='/icons/digiprins/digiprins.png' />
+              <img
+                alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
+                className='mr-2 h-6' src='/icons/digiprins/digiprins.png'
+              />
               <div className='my-auto'>
                 {`Endorsed on ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
               </div>

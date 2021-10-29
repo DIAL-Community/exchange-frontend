@@ -5,7 +5,7 @@ const WorkflowHint = (props) => {
   const { openHint, setOpenHint } = props
 
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   return (
     <>

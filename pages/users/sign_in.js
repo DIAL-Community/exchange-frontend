@@ -10,7 +10,7 @@ import GradientBackground from '../../components/shared/GradientBackground'
 
 const SignIn = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
   const router = useRouter()
 
   useEffect(() => {

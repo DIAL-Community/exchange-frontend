@@ -31,7 +31,7 @@ const SharableLink = ({ sharableLink }) => {
   const [shareStatus, setShareStatus] = useState('')
 
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const isFunction = (maybeFunc) => {
     return maybeFunc && {}.toString.call(maybeFunc) === '[object Function]'

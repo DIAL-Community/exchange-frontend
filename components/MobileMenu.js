@@ -95,7 +95,7 @@ const subMenus = {
 
 const ExternalLink = ({ menuExpanded, setMenuExpanded, link, label }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const closeMenu = () => {
     setMenuExpanded(!menuExpanded)
@@ -114,7 +114,7 @@ const ExternalLink = ({ menuExpanded, setMenuExpanded, link, label }) => {
 
 const InternalLink = ({ menuExpanded, setMenuExpanded, link, label }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const closeMenu = () => {
     setMenuExpanded(!menuExpanded)
@@ -133,7 +133,7 @@ const InternalLink = ({ menuExpanded, setMenuExpanded, link, label }) => {
 
 const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const [session] = useSession()
   const { pathname, asPath, query } = useRouter()
@@ -235,7 +235,7 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
 
 const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
   const { locale } = useRouter()
 
   const [session] = useSession()

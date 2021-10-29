@@ -244,7 +244,7 @@ const Content = () => {
 
 const Covid19Resources = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
   return (
     <>
       <Head>

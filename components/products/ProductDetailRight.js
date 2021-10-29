@@ -14,7 +14,7 @@ import MaturityAccordion from './Maturity'
 
 const ProductDetailRight = ({ product, discourseRef }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const slugNameMapping = (() => {
     const map = {}

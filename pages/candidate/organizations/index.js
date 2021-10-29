@@ -16,7 +16,7 @@ const OrganizationListQuery = dynamic(() => import('../../../components/candidat
 
 const Organizations = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const { search } = useContext(OrganizationFilterContext)
   const { setSearch } = useContext(OrganizationFilterDispatchContext)

@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie'
 
 const Consent = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const [cookies, setCookie] = useCookies(['consentAccepted'])
 
