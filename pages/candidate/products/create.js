@@ -11,7 +11,7 @@ import ProductForm from '../../../components/candidate/products/ProductForm'
 
 const CreateProduct = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   return (
     <>

@@ -28,7 +28,7 @@ const CREATE_CANDIDATE_PRODUCT = gql`
 
 const ProductForm = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const [name, setName] = useState('')
   const [website, setWebsite] = useState('')

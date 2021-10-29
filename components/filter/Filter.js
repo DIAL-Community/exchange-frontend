@@ -108,7 +108,7 @@ const Filter = (props) => {
       </div>
       <div className='relative md:sticky bg-white px-2 md:sticky-filter max-w-catalog mx-auto'>
         <div className='w-full'>
-          <ul className='flex flex-row mb-0 list-none pt-2' role='tablist'>
+          <ul className='flex flex-row mb-0 list-none pt-2'>
             {
               // Logic to display filter elements navs:
               // * sm will have single item in the filter --> hide all li that is not the current active tab.
@@ -156,7 +156,6 @@ const Filter = (props) => {
                             text-base font-bold px-3 py-3 block leading-normal rounded
                             bg-gradient-to-r from-white to-dial-gray
                           `}
-                          role='tablist'
                           data-toggle='tab'
                           href={`/${href}`}
                         >&nbsp;
@@ -219,7 +218,6 @@ const Filter = (props) => {
                             text-base font-bold px-3 py-3 block leading-normal
                             ${index === activeTab ? 'text-white' : 'rounded text-dial-gray-dark bg-dial-gray'}
                           `}
-                          role='tablist'
                           data-toggle='tab'
                           href={`/${href}`}
                         >
@@ -275,7 +273,6 @@ const Filter = (props) => {
                             text-base font-bold px-3 py-3 block leading-normal rounded text-dial-gray-dark
                             bg-gradient-to-r from-dial-gray to-white
                           `}
-                          role='tablist'
                           data-toggle='tab'
                           href={`/${href}`}
                         >

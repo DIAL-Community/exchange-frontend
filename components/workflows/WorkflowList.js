@@ -111,7 +111,7 @@ const WorkflowListQuery = () => {
   const { sdgs, useCases, search } = useContext(WorkflowFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const { loading, error, data, fetchMore } = useQuery(WORKFLOWS_QUERY, {
     variables: {

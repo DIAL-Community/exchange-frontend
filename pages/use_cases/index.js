@@ -18,7 +18,7 @@ const UseCaseListQuery = dynamic(() => import('../../components/use-cases/UseCas
 
 const UseCases = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const { search } = useContext(UseCaseFilterContext)
   const { setSearch } = useContext(UseCaseFilterDispatchContext)

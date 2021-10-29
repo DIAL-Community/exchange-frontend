@@ -8,7 +8,7 @@ const Checkbox = props => (
 
 export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const [subSectors, setSubsectors] = useState()
 
@@ -60,7 +60,7 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
 
 export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
   return (
     <div className='lg:flex'>
       <div className='lg:w-1/4 lg:px-5 lg:mx-5'>
@@ -128,7 +128,7 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
 
 export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
   const classNameSelected = 'bg-white border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-button-gray inline'
   const classNameNotSelected = 'bg-dial-gray-dark border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-white inline'
   return (

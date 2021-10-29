@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 
 const Landing = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const buttonAnchorStyle = `
     w-full rounded-full flex items-center justify-center py-2 leading-8 tracking-wide lg:py-2
@@ -23,7 +23,7 @@ const Landing = () => {
       <div className='relative overflow-hidden landing-with-menu'>
         <div className='max-w-catalog mx-auto'>
           <div className='relative h-full z-70 pb-8'>
-            <main className='grid grid-cols-5'>
+            <div className='grid grid-cols-5'>
               <div className='col-span-5 md:col-span-4 lg:col-span-3 h-screen text-left grid lg:place-content-center mt-24 lg:mt-0 md:ml-12 lg:ml-0'>
                 <div>
                   <div className='px-4 text-lg text-dial-blue-darkest md:text-xl xl:text-2xl xl:leading-landing'>
@@ -55,7 +55,7 @@ const Landing = () => {
                   </div>
                 </div>
               </div>
-            </main>
+            </div>
           </div>
         </div>
         <div className='absolute inset-y-0 right-0'>

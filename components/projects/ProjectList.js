@@ -76,7 +76,7 @@ query SearchProjects(
 
 const ProjectList = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
@@ -116,7 +116,7 @@ const ProjectListQuery = () => {
   const { origins, countries, sectors, organizations, products, sdgs, tags, search } = useContext(ProjectFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const { loading, error, data, fetchMore } = useQuery(PROJECTS_QUERY, {
     variables: {

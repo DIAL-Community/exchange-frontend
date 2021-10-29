@@ -3,7 +3,7 @@ import { FaSpinner, FaExclamationCircle } from 'react-icons/fa'
 
 export const Loading = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   return (
     <div className='grid place-items-center bg-gradient-to-b from-dial-gray-light to-white'>
@@ -17,7 +17,7 @@ export const Loading = () => {
 
 export const Error = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   return (
     <div className='grid place-items-center bg-gradient-to-b from-dial-gray-light to-white'>

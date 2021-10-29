@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 const WorkflowDetailLeft = ({ workflow }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
   const [session] = useSession()
   const { locale } = useRouter()
 

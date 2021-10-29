@@ -22,7 +22,7 @@ const SearchFilter = (props) => {
   const [session] = useSession()
 
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const [searchTerm, setSearchTerm] = useState(search)
   const [loading, setLoading] = useState(false)
@@ -206,9 +206,15 @@ const SearchFilter = (props) => {
                 {
                   displayType === 'card' &&
                     <>
-                      <img className='mr-2 h-6 md:h-8' src='/icons/card-active/card-active.png' />
+                      <img
+                        alt={format('image.alt.logoFor', { name: format('view.active.card') })}
+                        className='mr-2 h-6 md:h-8' src='/icons/card-active/card-active.png'
+                      />
                       <a href='toggle-display' onClick={toggleDisplayType}>
-                        <img className='h-6 md:h-8 cursor-pointer' src='/icons/list-inactive/list-inactive.png' />
+                        <img
+                          alt={format('image.alt.logoFor', { name: format('view.inactive.list') })}
+                          className='h-6 md:h-8 cursor-pointer' src='/icons/list-inactive/list-inactive.png'
+                        />
                       </a>
                     </>
                 }
@@ -216,9 +222,15 @@ const SearchFilter = (props) => {
                   displayType === 'list' &&
                     <>
                       <a className='mr-2' href='toggle-display' onClick={toggleDisplayType}>
-                        <img className='h-6 md:h-8 cursor-pointer' src='/icons/card-inactive/card-inactive.png' />
+                      <img
+                        alt={format('image.alt.logoFor', { name: format('view.inactive.card') })}
+                        className='h-6 md:h-8 cursor-pointer' src='/icons/card-inactive/card-inactive.png'
+                      />
                       </a>
-                      <img className='h-6 md:h-8' src='/icons/list-active/list-active.png' />
+                    <img
+                      alt={format('image.alt.logoFor', { name: format('view.active.list') })}
+                      className='h-6 md:h-8' src='/icons/list-active/list-active.png'
+                    />
                     </>
                 }
               </div>

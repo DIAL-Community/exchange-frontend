@@ -10,7 +10,7 @@ import AggregatorMap from '../../../components/maps/aggregators/AggregatorMap'
 
 const ProjectMapPage = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   return (
     <>

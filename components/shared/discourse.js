@@ -10,7 +10,7 @@ import { DiscourseContext, DiscourseDispatchContext } from '../context/Discourse
 
 export const DiscourseCount = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
   const { postCount } = useContext(DiscourseContext)
 
   return (
@@ -32,7 +32,7 @@ export const DiscourseCount = () => {
 
 export const DiscourseForum = ({ topicId, objType }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const [posts, setPosts] = useState()
   const [showPost, setShowPost] = useState(false)

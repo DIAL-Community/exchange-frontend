@@ -43,7 +43,7 @@ query BuildingBlock($slug: String!) {
 
 const BuildingBlock = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const router = useRouter()
   const { pathname, asPath, query } = useRouter()

@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 
 const WizardDescription = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   return (
     <div className='relative w-full bg-gradient-to-r text-white from-dial-purple to-dial-purple-light'>
