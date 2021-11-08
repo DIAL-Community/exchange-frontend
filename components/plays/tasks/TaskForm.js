@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { useMutation } from "@apollo/react-hooks"
+import { useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
-import ReactHtmlParser from 'react-html-parser'
 
 import { HtmlEditor } from '../../shared/HtmlEditor'
 import { descriptionByLocale } from '../../../lib/utilities'
@@ -18,6 +17,7 @@ mutation ($playSlug: String!, $name: String!, $description: String!, $order: Int
       id
       name
       slug
+      resources
       taskDescriptions {
         description
         locale
@@ -29,17 +29,18 @@ mutation ($playSlug: String!, $name: String!, $description: String!, $order: Int
 }
 `
 
-export const TaskForm = ({task, action}) => {
+export const TaskForm = ({ task, action }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const { locale } = useRouter()
 
-  const [createTask, { data, loading }] = useMutation(CREATE_TASK)  // {update: updateCache}
+  const [createTask, { data, loading }] = useMutation(CREATE_TASK) // {update: updateCache}
 
-  const [playSlug, setPlaySlug] = useState(task ? task.playSlug : '' )
+  const [playSlug, setPlaySlug] = useState(task ? task.playSlug : '')
   const [name, setName] = useState(task ? task.name : '')
   const [description, setDescription] = useState(task ? descriptionByLocale(task.taskDescriptions, locale) : '')
+  const [resources, setResources] = useState(task ? task.resources.map((resource, i) => ({ ...resource, i: i })) : [])
 
   const router = useRouter()
 
@@ -60,20 +61,38 @@ export const TaskForm = ({task, action}) => {
     callback(e.target.value)
   }
 
+  const handleResourceChange = (e, i) => {
+    if (e.target.getAttribute('name') === 'phaseName') {
+      setResources(resources.map(resource => resource.i === i ? { ...resource, name: e.target.value } : resource))
+    } else {
+      setResources(resources.map(resource => resource.i === i ? { ...resource, description: e.target.value } : resource))
+    }
+  }
+
+  const addResource = (e) => {
+    e.preventDefault()
+    setResources([...resources, { name: '', description: '', i: resources.length }])
+  }
+
+  const deleteResource = (e, i) => {
+    e.preventDefault()
+    setResources(resources.map(phase => phase.i === i ? { name: '', description: '' } : phase))
+  }
+
   const doUpsert = async e => {
     e.preventDefault()
-    createTask({variables: {playSlug, name, description, order: 1, locale }});
+    createTask({ variables: { playSlug, name, description, order: 1, resources: resources, locale } })
   }
 
   return (
     <div className='pt-4'>
       <div className={`mx-4 ${data ? 'visible' : 'invisible'} text-center pt-4`}>
-        <div className='my-auto text-green-500'>{action == 'create' ? format('play.created') : format('play.updated')}</div>
+        <div className='my-auto text-green-500'>{action === 'create' ? format('play.created') : format('play.updated')}</div>
       </div>
       <div className='p-3'>
-        {format('tasks.forPlay')} : { playSlug }
+        {format('tasks.forPlay')} : {playSlug}
       </div>
-      {action == 'update' && format('app.edit-entity', { entity: task.name }) }
+      {action === 'update' && format('app.edit-entity', { entity: task.name })}
       <div id='content' className='px-4 sm:px-0 max-w-full mx-auto'>
         <form onSubmit={doUpsert}>
           <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
@@ -88,9 +107,39 @@ export const TaskForm = ({task, action}) => {
               />
             </div>
             <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('tasks.description')}
+              {format('tasks.description')}
             </label>
             <HtmlEditor updateText={setDescription} initialContent={description} />
+            {resources && resources.map((resource, i) => {
+              return (
+                <div key={i} className='inline'>
+                  <input
+                    id={'resourceName' + i} name='resourceName' type='text' placeholder={format('tasks.resource.name')}
+                    className='inline w-1/3 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
+                    value={resource.name} onChange={(e) => handleResourceChange(e, i)}
+                  />
+                  <input
+                    id={'phaseDesc' + i} name='phaseDesc' type='text' placeholder={format('tasks.resource.description')}
+                    className='inline w-1/3 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
+                    value={resource.description} onChange={(e) => handleResourceChange(e, i)}
+                  />
+                  <button
+                    className='inline bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+                    onClick={(e) => deleteResource(e, i)} disabled={loading}
+                  >
+                    {format('playbooks.deletePhase')}
+                  </button>
+                </div>
+              )
+            })}
+            <div className='flex items-center justify-between font-semibold text-sm mt-2'>
+              <button
+                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+                onClick={addResource} disabled={loading}
+              >
+                {format('tasks.addResource')}
+              </button>
+            </div>
             <div className='flex items-center justify-between font-semibold text-sm mt-2'>
               <button
                 className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'

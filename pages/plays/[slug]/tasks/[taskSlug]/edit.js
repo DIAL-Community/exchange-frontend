@@ -20,6 +20,7 @@ query Task($slug: String!) {
     id
     name
     slug
+    resources
     taskDescriptions {
       description
       locale
