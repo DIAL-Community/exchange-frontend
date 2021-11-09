@@ -11,8 +11,8 @@ import { HtmlEditor } from '../../shared/HtmlEditor'
 import { descriptionByLocale } from '../../../lib/utilities'
 
 const CREATE_TASK = gql`
-mutation ($playSlug: String!, $name: String!, $description: String!, $order: Int!, $locale: String!) {
-  createTask(play: $playSlug, name: $name, description: $description, order: $order, locale: $locale) {
+mutation ($playSlug: String!, $name: String!, $description: String!, $resources: JSON!, $order: Int!, $locale: String!) {
+  createTask(play: $playSlug, name: $name, description: $description, resources: $resources, order: $order, locale: $locale) {
     task {
       id
       name
@@ -62,10 +62,12 @@ export const TaskForm = ({ task, action }) => {
   }
 
   const handleResourceChange = (e, i) => {
-    if (e.target.getAttribute('name') === 'phaseName') {
+    if (e.target.getAttribute('name') === 'resourceName') {
       setResources(resources.map(resource => resource.i === i ? { ...resource, name: e.target.value } : resource))
-    } else {
+    } else if (e.target.getAttribute('name') === 'resourceDesc') {
       setResources(resources.map(resource => resource.i === i ? { ...resource, description: e.target.value } : resource))
+    } else {
+      setResources(resources.map(resource => resource.i === i ? { ...resource, url: e.target.value } : resource))
     }
   }
 
@@ -81,7 +83,8 @@ export const TaskForm = ({ task, action }) => {
 
   const doUpsert = async e => {
     e.preventDefault()
-    createTask({ variables: { playSlug, name, description, order: 1, resources: resources, locale } })
+    const submitResources = resources.map(resource => resource.name === '' ? null : resource)
+    createTask({ variables: { playSlug, name, description, resources: submitResources, order: 1, locale } })
   }
 
   return (
@@ -115,19 +118,24 @@ export const TaskForm = ({ task, action }) => {
                 <div key={i} className='inline'>
                   <input
                     id={'resourceName' + i} name='resourceName' type='text' placeholder={format('tasks.resource.name')}
-                    className='inline w-1/3 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
+                    className='inline w-1/4 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
                     value={resource.name} onChange={(e) => handleResourceChange(e, i)}
                   />
                   <input
-                    id={'phaseDesc' + i} name='phaseDesc' type='text' placeholder={format('tasks.resource.description')}
-                    className='inline w-1/3 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
+                    id={'resourceDesc' + i} name='resourceDesc' type='text' placeholder={format('tasks.resource.description')}
+                    className='inline w-1/4 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
                     value={resource.description} onChange={(e) => handleResourceChange(e, i)}
+                  />
+                  <input
+                    id={'resourceUrl' + i} name='resourceUrl' type='text' placeholder={format('tasks.resource.url')}
+                    className='inline w-1/4 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
+                    value={resource.url} onChange={(e) => handleResourceChange(e, i)}
                   />
                   <button
                     className='inline bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
                     onClick={(e) => deleteResource(e, i)} disabled={loading}
                   >
-                    {format('playbooks.deletePhase')}
+                    {format('tasks.deleteResource')}
                   </button>
                 </div>
               )

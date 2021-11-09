@@ -76,10 +76,10 @@ const AdminMenu = () => {
           <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/tags?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
             {format('header.admin.tags')}
           </a>
-          <a href={'/candidate/organizations'} role='menuitem' className={dropdwonMenuStyles}>
+          <a href='/candidate/organizations' role='menuitem' className={dropdwonMenuStyles}>
             {format('header.admin.candidate_orgs')}
           </a>
-          <a href={'/candidate/products'} role='menuitem' className={dropdwonMenuStyles}>
+          <a href='/candidate/products' role='menuitem' className={dropdwonMenuStyles}>
             {format('header.admin.candidate_products')}
           </a>
           <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/deploys?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>

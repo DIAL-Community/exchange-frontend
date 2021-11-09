@@ -41,22 +41,22 @@ const PlayDetail = ({ play }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='w-full'>
-          {
-            session && (
-              <div className='inline'>
-                {
-                  session.user.canEdit && (
-                    <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
-                      <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-                      <span className='text-sm px-2'>{format('app.edit')}</span>
-                    </a>
-                  )
-                }
-              </div>
-            )
-          }
-        </div>
-        <div className='h4 font-bold py-4'>{format('plays.label')}</div>
+        {
+          session && (
+            <div className='inline'>
+              {
+                session.user.canEdit && (
+                  <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
+                    <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
+                    <span className='text-sm px-2'>{format('app.edit')}</span>
+                  </a>
+                )
+              }
+            </div>
+          )
+        }
+      </div>
+      <div className='h4 font-bold py-4'>{format('plays.label')}</div>
       {format('plays.description')}
       <div className='fr-view text-dial-gray-dark'>
         {ReactHtmlParser(descriptionByLocale(play.playDescriptions, locale))}
@@ -64,20 +64,34 @@ const PlayDetail = ({ play }) => {
       <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
         {format('plays.tasks')}
       </label>
-      { play.playTasks && play.playTasks.map((task, i) => {
-          return (<div key={i} className='inline w-full'>
-            {task.name}
-            {ReactHtmlParser(descriptionByLocale(task.taskDescriptions, locale))}
-            <button 
-              className='flex-auto h-8 bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-              onClick={(e) => editTask(e, task.slug)}
-            >
-              {format('plays.editTask')}
-            </button>
+      {play.playTasks && play.playTasks.map((task, i) => {
+        return (
+          <div key={i} className='px-4 py-2'>
+            <div className='inline w-full'>
+              {task.name}
+              <div className='px-3'>{ReactHtmlParser(descriptionByLocale(task.taskDescriptions, locale))}</div>
+              <div className='px-3 py-2'>{format('tasks.resources')}
+                {task.resources && task.resources.map((resource, i) => {
+                  return (
+                    <div key={i} className='px-2 w-full'>
+                      <div>{format('resource.name')}: {resource.name}</div>
+                      <div>{format('resource.description')}: {resource.description}</div>
+                      <div>{format('resource.url')}: {resource.url}</div>
+                    </div>
+                  )
+                })}
+              </div>
+              <button
+                className='bg-dial-gray-dark text-dial-gray-light text-sm py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+                onClick={(e) => editTask(e, task.slug)}
+              >
+                {format('plays.editTask')}
+              </button>
+            </div>
           </div>
         )
       })}
-      <div className='flex items-center justify-between font-semibold text-sm mt-2'>
+      <div className='flex items-center justify-between text-sm mt-2'>
         <button
           className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
           onClick={addTask}

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { createRef, useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 
