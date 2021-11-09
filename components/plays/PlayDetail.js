@@ -56,12 +56,14 @@ const PlayDetail = ({ play }) => {
           )
         }
       </div>
-      <div className='h4 font-bold py-4'>{format('plays.label')}</div>
-      {format('plays.description')}
-      <div className='fr-view text-dial-gray-dark'>
+      <div className='h4 font-bold py-4'>{play.name}</div>
+      <div className='h4'>
+        {format('plays.description')}
+      </div>
+      <div className='fr-view text-dial-gray-dark px-4 py-2'>
         {ReactHtmlParser(descriptionByLocale(play.playDescriptions, locale))}
       </div>
-      <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
+      <label className='block h4'>
         {format('plays.tasks')}
       </label>
       {play.playTasks && play.playTasks.map((task, i) => {

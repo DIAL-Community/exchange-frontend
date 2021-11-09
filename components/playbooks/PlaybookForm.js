@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { useMutation } from '@apollo/react-hooks'
@@ -35,13 +35,13 @@ mutation ($name: String!, $slug: String!, $overview: String!, $audience: String,
 }
 `
 
-export const PlaybookForm = ({ playbook, action }) => {
+export const PlaybookForm = React.memo(({ playbook, action }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const { locale } = useRouter()
 
-  const [createPlaybook, { data, loading }] = useMutation(CREATE_PLAYBOOK) // {update: updateCache}
+  const [createPlaybook, { data, loading }] = useMutation(CREATE_PLAYBOOK)
 
   const [showPlayForm, setShowPlayForm] = useState(false)
   const [name, setName] = useState(playbook ? playbook.name : '')
@@ -108,12 +108,14 @@ export const PlaybookForm = ({ playbook, action }) => {
       <div className={`mx-4 ${data ? 'visible' : 'invisible'} text-center pt-4`}>
         <div className='my-auto text-green-500'>{action === 'create' ? format('playbook.created') : format('playbook.updated')}</div>
       </div>
-      {action === 'update' && format('app.edit-entity', { entity: name })}
+      <div className='px-4 h4'>
+        {action === 'update' && format('app.edit-entity', { entity: name })}
+      </div>
       <div id='content' className='px-4 sm:px-0 max-w-full mx-auto'>
         <form onSubmit={doUpsert}>
           <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
             <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
+              <label className='block text-grey-darker h4 mb-2' htmlFor='name'>
                 {format('playbooks.name')}
               </label>
               <input
@@ -122,19 +124,19 @@ export const PlaybookForm = ({ playbook, action }) => {
                 value={name} onChange={(e) => handleTextFieldChange(e, setName)}
               />
             </div>
-            <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
+            <label className='block text-grey-darker h4 my-2' htmlFor='name'>
               {format('playbooks.overview')}
             </label>
-            <HtmlEditor updateText={setOverview} initialContent={overview} />
-            <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
+            <HtmlEditor editorId='overviewEditor' updateText={setOverview} initialContent={overview} />
+            <label className='block text-grey-darker h4 my-2' htmlFor='name'>
               {format('playbooks.audience')}
             </label>
-            <HtmlEditor updateText={setAudience} initialContent={audience} />
-            <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
+            <HtmlEditor editorId='audienceEditor' updateText={setAudience} initialContent={audience} />
+            <label className='block text-grey-darker h4 my-2' htmlFor='name'>
               {format('playbooks.outcomes')}
             </label>
-            <HtmlEditor updateText={setOutcomes} initialContent={outcomes} />
-            <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
+            <HtmlEditor editorId='outcomesEditor' updateText={setOutcomes} initialContent={outcomes} />
+            <label className='block text-grey-darker h4 my-2' htmlFor='name'>
               {format('playbooks.phases')}
             </label>
             {phases && phases.map((phase, i) => {
@@ -167,24 +169,17 @@ export const PlaybookForm = ({ playbook, action }) => {
                 {format('playbooks.addPhase')}
               </button>
             </div>
-            <div className='flex items-center justify-between font-semibold text-sm mt-2'>
-              <button
-                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                onClick={(e) => { e.preventDefault(); setShowPlayForm(true) }}
-              >
-                {format('playbooks.assignPlay')}
-              </button>
+            <div className='flex items-center justify-between h4 mt-2'>
+              {format('playbooks.assignedPlays')}
             </div>
-            <div className={`${!showPlayForm && 'hidden'}`}>
-              <PlayListQuery displayType='assign' assignCallback={assignPlay} />
-            </div>
+            {showPlayForm && <PlayListQuery displayType='assign' assignCallback={assignPlay} />}
             {plays && plays.map((play, i) => {
               return (
-                <div key={i} className='inline'>
-                  <div className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
+                <div key={i} className='inline border-2 p-1 m-2'>
+                  <div className='grid grid-cols-3 border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
                     {play.name}
                     <button
-                      className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+                      className='grid bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
                       onClick={(e) => { unassignPlay(e, play) }}
                     >
                       {format('playbooks.unassignPlay')}
@@ -194,6 +189,14 @@ export const PlaybookForm = ({ playbook, action }) => {
               )
             }
             )}
+            <div className='flex items-center justify-between font-semibold text-sm mt-2'>
+              <button
+                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+                onClick={(e) => { e.preventDefault(); setShowPlayForm(true) }}
+              >
+                {format('playbooks.assignPlay')}
+              </button>
+            </div>
             <div className='flex items-center justify-between font-semibold text-sm mt-2'>
               <button
                 className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
@@ -208,4 +211,4 @@ export const PlaybookForm = ({ playbook, action }) => {
       </div>
     </div>
   )
-}
+})

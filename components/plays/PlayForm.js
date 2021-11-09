@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { useMutation } from "@apollo/react-hooks"
+import { useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
-import ReactHtmlParser from 'react-html-parser'
 
 import { HtmlEditor } from '../shared/HtmlEditor'
 import { descriptionByLocale } from '../../lib/utilities'
+import Breadcrumb from '../shared/breadcrumb'
 
 const CREATE_PLAY = gql`
 mutation ($name: String!, $description: String!, $locale: String!) {
@@ -34,18 +34,24 @@ mutation ($name: String!, $description: String!, $locale: String!) {
 }
 `
 
-export const PlayForm = ({play, action}) => {
+export const PlayForm = ({ play, action }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const { locale } = useRouter()
 
-  const [createPlay, { data, loading }] = useMutation(CREATE_PLAY)  // {update: updateCache}
+  const [createPlay, { data, loading }] = useMutation(CREATE_PLAY)
 
   const [name, setName] = useState(play ? play.name : '')
   const [description, setDescription] = useState(play ? descriptionByLocale(play.playDescriptions, locale) : '')
 
   const router = useRouter()
+
+  const slugNameMapping = (() => {
+    const map = {}
+    map[play.slug] = play.name
+    return map
+  })()
 
   useEffect(() => {
     if (data) {
@@ -61,15 +67,20 @@ export const PlayForm = ({play, action}) => {
 
   const doUpsert = async e => {
     e.preventDefault()
-    createPlay({variables: {name, description, locale }});
+    createPlay({ variables: { name, description, locale } })
   }
 
   return (
     <div className='pt-4'>
       <div className={`mx-4 ${data ? 'visible' : 'invisible'} text-center pt-4`}>
-        <div className='my-auto text-green-500'>{action == 'create' ? format('play.created') : format('play.updated')}</div>
+        <div className='my-auto text-green-500'>{action === 'create' ? format('play.created') : format('play.updated')}</div>
       </div>
-      {action == 'update' && format('app.edit-entity', { entity: play.name }) }
+      <div className='px-4 font-bold'>
+        <div className='hidden lg:block'>
+          <Breadcrumb slugNameMapping={slugNameMapping} />
+        </div>
+        {action === 'update' && format('app.edit-entity', { entity: play.name })}
+      </div>
       <div id='content' className='px-4 sm:px-0 max-w-full mx-auto'>
         <form onSubmit={doUpsert}>
           <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
@@ -84,13 +95,10 @@ export const PlayForm = ({play, action}) => {
               />
             </div>
             <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('plays.description')}
+              {format('plays.description')}
             </label>
             <HtmlEditor updateText={setDescription} initialContent={description} />
-            <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('plays.tasks')}
-            </label>
-            <div className='flex items-center justify-between font-semibold text-sm mt-2'>
+            <div className='flex items-center justify-between font-semibold text-sm mt-3'>
               <button
                 className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
                 type='submit' disabled={loading}

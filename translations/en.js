@@ -368,7 +368,9 @@ export const en = {
   'playbooks.phase.name': 'Phase Name',
   'playbooks.phase.description': 'Phase Description',
   'playbooks.assignPlay': 'Assign Play',
+  'playbooks.unassignPlay': 'Unassign Play',
   'playbooks.assign': 'Assign',
+  'playbooks.assignedPlays': 'Plays Currently Assigned',
 
   'play.header': 'Plays',
   'plays.label': 'Play',
@@ -388,7 +390,14 @@ export const en = {
   'tasks.name.placeholder': 'Task Name',
   'tasks.description': 'Description',
   'tasks.description.placeholder': 'Task Description',
-  'tasks.forPlay': 'Tasks for Play',
+  'tasks.resources': 'Resources',
+  'tasks.forPlay': 'Task for Play',
+  'tasks.addResource': 'Add Resource',
+  'tasks.deleteResource': 'Delete Resource',
+
+  'resource.name': 'Resource Name',
+  'resource.description': 'Resource Description',
+  'resource.url': 'Resource URL',
 
   'productType.label': 'Type',
   'productType.header': 'Product or Dataset?',

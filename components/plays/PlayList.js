@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { useIntl, FormattedMessage } from 'react-intl'
+import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -97,7 +97,6 @@ const PlayListQuery = (props) => {
     }
   })
 
-  
   if (loading) {
     return <Loading />
   }
@@ -107,7 +106,6 @@ const PlayListQuery = (props) => {
   }
 
   const { searchPlays: { nodes, pageInfo } } = data
-
   function handleLoadMore () {
     fetchMore({
       variables: {

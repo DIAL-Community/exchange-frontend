@@ -47,40 +47,40 @@ const PlaybookDetail = ({ playbook }) => {
           )
         }
       </div>
-      <div className='h4 font-bold py-4'>{format('playbooks.label')}</div>
-      {format('playbooks.overview')}
-      <div className='fr-view text-dial-gray-dark'>
+      <div className='h4 font-bold py-4'>{format('playbooks.label')}: {playbook.name}</div>
+      <div className='p-3 h4'>{format('playbooks.overview')}</div>
+      <div className='fr-view text-dial-gray-dark px-4'>
         {ReactHtmlParser(descriptionByLocale(playbook.playbookDescriptions, locale, 'overview'))}
       </div>
-      {format('playbooks.audience')}
-      <div className='fr-view text-dial-gray-dark'>
+      <div className='p-3 h4'>{format('playbooks.audience')}</div>
+      <div className='fr-view text-dial-gray-dark px-4'>
         {ReactHtmlParser(descriptionByLocale(playbook.playbookDescriptions, locale, 'audience'))}
       </div>
-      {format('playbooks.outcomes')}
-      <div className='fr-view text-dial-gray-dark'>
+      <div className='p-3 h4'>{format('playbooks.outcomes')}</div>
+      <div className='fr-view text-dial-gray-dark px-4'>
         {ReactHtmlParser(descriptionByLocale(playbook.playbookDescriptions, locale, 'outcomes'))}
       </div>
-      <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
+      <div className='block text-grey-darker text-sm h4 p-3'>
         {format('playbooks.phases')}
-      </label>
+      </div>
       {playbook.phases && playbook.phases.map((phase, i) => {
         return (
-          <div key={i} className='inline w-full'>
-            <div className='inline w-1/3 shadow appearance-none border rounded py-2 px-3 text-grey-darker'>
+          <div key={i} className='inline px-4'>
+            <div className='inline w-1/4 shadow appearance-none border rounded py-2 px-3 text-grey-darker'>
               {phase.name}
             </div>
-            <div className='inline w-1/3 shadow appearance-none border rounded py-2 px-3 text-grey-darker'>
+            <div className='inline w-1/4 shadow appearance-none border rounded py-2 px-3 text-grey-darker'>
               {phase.description}
             </div>
           </div>
         )
       })}
-      <label className='block text-grey-darker text-sm font-bold my-2'>
+      <div className='block text-grey-darker text-sm h4 p-3'>
         {format('playbooks.plays')}
-      </label>
+      </div>
       {playbook.plays && playbook.plays.map((play, i) => {
         return (
-          <div key={i} className='inline w-full'>
+          <div key={i} className='inline w-full px-4'>
             {play.name}
           </div>
         )

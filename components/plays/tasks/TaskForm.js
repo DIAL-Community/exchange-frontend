@@ -9,6 +9,7 @@ import { FaSpinner } from 'react-icons/fa'
 
 import { HtmlEditor } from '../../shared/HtmlEditor'
 import { descriptionByLocale } from '../../../lib/utilities'
+import Breadcrumb from '../../shared/breadcrumb'
 
 const CREATE_TASK = gql`
 mutation ($playSlug: String!, $name: String!, $description: String!, $resources: JSON!, $order: Int!, $locale: String!) {
@@ -43,6 +44,13 @@ export const TaskForm = ({ task, action }) => {
   const [resources, setResources] = useState(task ? task.resources.map((resource, i) => ({ ...resource, i: i })) : [])
 
   const router = useRouter()
+
+  const slugNameMapping = (() => {
+    const map = {}
+    map[task.playSlug] = task.playName
+    map[task.slug] = task.name
+    return map
+  })()
 
   useEffect(() => {
     if (data) {
@@ -92,10 +100,13 @@ export const TaskForm = ({ task, action }) => {
       <div className={`mx-4 ${data ? 'visible' : 'invisible'} text-center pt-4`}>
         <div className='my-auto text-green-500'>{action === 'create' ? format('play.created') : format('play.updated')}</div>
       </div>
-      <div className='p-3'>
-        {format('tasks.forPlay')} : {playSlug}
+      <div className='p-3 font-semibold text-gray'>
+        {format('tasks.forPlay')}: {playSlug}
       </div>
-      {action === 'update' && format('app.edit-entity', { entity: task.name })}
+      <div className='px-4'>
+        <Breadcrumb slugNameMapping={slugNameMapping} />
+        {action === 'update' && format('app.edit-entity', { entity: task.name })}
+      </div>
       <div id='content' className='px-4 sm:px-0 max-w-full mx-auto'>
         <form onSubmit={doUpsert}>
           <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
@@ -117,17 +128,17 @@ export const TaskForm = ({ task, action }) => {
               return (
                 <div key={i} className='inline'>
                   <input
-                    id={'resourceName' + i} name='resourceName' type='text' placeholder={format('tasks.resource.name')}
+                    id={'resourceName' + i} name='resourceName' type='text' placeholder={format('resource.name')}
                     className='inline w-1/4 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
                     value={resource.name} onChange={(e) => handleResourceChange(e, i)}
                   />
                   <input
-                    id={'resourceDesc' + i} name='resourceDesc' type='text' placeholder={format('tasks.resource.description')}
+                    id={'resourceDesc' + i} name='resourceDesc' type='text' placeholder={format('resource.description')}
                     className='inline w-1/4 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
                     value={resource.description} onChange={(e) => handleResourceChange(e, i)}
                   />
                   <input
-                    id={'resourceUrl' + i} name='resourceUrl' type='text' placeholder={format('tasks.resource.url')}
+                    id={'resourceUrl' + i} name='resourceUrl' type='text' placeholder={format('resource.url')}
                     className='inline w-1/4 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
                     value={resource.url} onChange={(e) => handleResourceChange(e, i)}
                   />
