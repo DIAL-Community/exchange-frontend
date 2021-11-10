@@ -17,6 +17,7 @@ export const en = {
   'header.covidResources': 'COVID-19 Resources',
   'header.resources': 'Resources',
   'header.dialResourcesPortal': 'DIAL Resources Portal',
+  'header.SDGFramework': 'SDG Framework',
   'header.help': 'Help',
   'header.about': 'About',
   'header.admin': 'Admin Menu',

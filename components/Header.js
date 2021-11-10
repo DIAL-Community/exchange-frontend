@@ -262,6 +262,12 @@ const Header = () => {
                     >
                       {format('header.dialResourcesPortal')}
                     </a>
+                    <a
+                      href='//digitalimpactalliance.org/research/sdg-digital-investment-framework/' target='_blank' rel='noreferrer'
+                      role='menuitem' className={dropdwonMenuStyles} onClick={() => setShowResources(false)}
+                    >
+                      {format('header.SDGFramework')}
+                    </a>
                   </div>
                 </div>
               </li>
