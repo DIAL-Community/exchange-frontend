@@ -25,7 +25,7 @@ const dropdownPanelStyles = `
 
 const AdminMenu = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
   const [session] = useSession()
 
   const [showAdminMenu, setShowAdminMenu] = useState(false)
@@ -99,7 +99,7 @@ const AdminMenu = () => {
 
 const UserMenu = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const [session] = useSession()
   const [showUserMenu, setShowUserMenu] = useState(false)
@@ -154,7 +154,7 @@ const UserMenu = () => {
 const Header = () => {
   const [session] = useSession()
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const [menuExpanded, setMenuExpanded] = useState(false)
   const [showLanguages, setShowLanguages] = useState(false)
@@ -261,6 +261,12 @@ const Header = () => {
                       role='menuitem' className={dropdwonMenuStyles} onClick={() => setShowResources(false)}
                     >
                       {format('header.dialResourcesPortal')}
+                    </a>
+                    <a
+                      href='//digitalimpactalliance.org/research/sdg-digital-investment-framework/' target='_blank' rel='noreferrer'
+                      role='menuitem' className={dropdwonMenuStyles} onClick={() => setShowResources(false)}
+                    >
+                      {format('header.SDGFramework')}
                     </a>
                   </div>
                 </div>

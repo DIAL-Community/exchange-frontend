@@ -3,8 +3,5 @@ module.exports = {
     locales: ['en', 'fr', 'de', 'cs'],
     defaultLocale: 'en',
     localeDetection: false
-  },
-  future: {
-    webpack5: true
   }
 }

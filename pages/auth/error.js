@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl'
 
 export default function Error ({ csrfToken }) {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   return (
     <>

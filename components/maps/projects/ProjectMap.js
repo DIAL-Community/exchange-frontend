@@ -67,7 +67,7 @@ const ProjectMap = () => {
   const { sectors, tags, products } = useContext(MapFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const fetchProjectData = () => {
     const projects = useQuery(PROJECTS_QUERY, {

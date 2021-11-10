@@ -1,14 +1,12 @@
-import { divIcon } from 'leaflet'
+import { DivIcon } from 'leaflet'
 
-const ProjectMarker = divIcon({
+export const createProjectMarker = (altText) => new DivIcon({
   className: 'custom-div-icon',
   html: `
     <div style='background-color:#607D8B;' class='marker-pin'>
     </div>
-    <img src='/images/main/project-logo.svg'/>
+    <img alt='${altText}' src='/images/main/project-logo.svg'/>
   `,
   iconSize: [30, 42],
   iconAnchor: [15, 42]
 })
-
-export default ProjectMarker

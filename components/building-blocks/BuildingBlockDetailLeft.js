@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
   const [session] = useSession()
   const { locale } = useRouter()
 

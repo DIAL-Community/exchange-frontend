@@ -9,7 +9,7 @@ const buttonAnchorStyle = `
 
 const Carousel = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
   const [openTab, setOpenTab] = useState(0)
 
   const clickHandler = (e, tabNumber) => {

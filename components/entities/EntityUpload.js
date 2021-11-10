@@ -10,7 +10,7 @@ import { useSession } from 'next-auth/client'
 
 const EntityUpload = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const [file, setFile] = useState('')
   const [captcha, setCaptcha] = useState('')

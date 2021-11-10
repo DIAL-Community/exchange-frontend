@@ -85,7 +85,7 @@ const OrganizationList = (props) => {
 
 const OrganizationListQuery = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const { displayType } = useContext(FilterContext)
   const { search } = useContext(OrganizationFilterContext)

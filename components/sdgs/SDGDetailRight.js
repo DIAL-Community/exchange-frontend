@@ -4,7 +4,7 @@ import UseCaseCard from '../use-cases/UseCaseCard'
 
 const SDGDetailRight = ({ sdg }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const slugNameMapping = (() => {
     const map = {}

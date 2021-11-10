@@ -30,7 +30,7 @@ const CREATE_CANDIDATE_ORGANIZATION = gql`
 
 const OrganizationForm = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const [organizationName, setOrganizationName] = useState('')
   const [website, setWebsite] = useState('')

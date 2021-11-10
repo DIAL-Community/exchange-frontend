@@ -8,7 +8,7 @@ import Carousel from '../../components/Carousel'
 
 const AboutPage = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
   return (
     <>
       <Head>

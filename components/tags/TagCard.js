@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 
 const TagCard = ({ tag, listType }) => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
   return (
     <>
       {listType === 'list'

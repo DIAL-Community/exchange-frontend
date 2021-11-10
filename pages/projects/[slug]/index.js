@@ -65,7 +65,7 @@ export async function getServerSideProps (context) {
 
 const Project = () => {
   const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
+  const format = (id, values) => formatMessage({ id: id }, values)
 
   const router = useRouter()
   const { locale, pathname, asPath, query } = useRouter()
