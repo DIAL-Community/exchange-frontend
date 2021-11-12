@@ -143,7 +143,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
     if (response) {
       setContactState(CONTACT_STATES[2])
       if (response.status === 200) {
-        const ownerData = await response.json();
+        const ownerData = await response.json()
         setEmailAddress(ownerData['owner']['email'])
       } else {
         setContactState(CONTACT_STATES[3])
@@ -225,7 +225,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
           </div>
           <img alt={`${product.name} Logo`} className='p-2 m-auto' src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile} width='200px' height='200px' />
         </div>
-        <div className='fr-view text-dial-gray-dark'>
+        <div className='fr-view text-dial-gray-dark max-h-40 overflow-hidden'>
           {ReactHtmlParser(descriptionByLocale(product.productDescriptions, locale))}
         </div>
       </div>
