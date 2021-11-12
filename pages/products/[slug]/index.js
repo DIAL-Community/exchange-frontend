@@ -113,6 +113,7 @@ query Product($slug: String!, $locale: String!) {
     }
     maturityScore
     maturityScores
+    manualUpdate
   }
 }
 `

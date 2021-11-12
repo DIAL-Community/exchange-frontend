@@ -45,7 +45,7 @@ const ResetPassword = () => {
       setCreated(true)
       setTimeout(() => {
         router.push('/products')
-      }, 5000)
+      }, 3000)
     }
     setLoading(false)
   }
