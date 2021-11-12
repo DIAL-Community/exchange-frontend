@@ -159,6 +159,7 @@ const Header = () => {
   const [menuExpanded, setMenuExpanded] = useState(false)
   const [showLanguages, setShowLanguages] = useState(false)
   const [showResources, setShowResources] = useState(false)
+  const [showAbout, setShowAbout] = useState(false)
 
   const { pathname, asPath, query } = useRouter()
   const router = useRouter()
@@ -169,6 +170,9 @@ const Header = () => {
 
   const resourcePopoverButton = createRef()
   const resourcePopover = createRef()
+
+  const aboutPopoverButton = createRef()
+  const aboutPopover = createRef()
 
   const openDropdownPopover = (buttonRef, popoverRef, openCallback) => {
     createPopper(buttonRef.current, popoverRef.current, {
@@ -198,6 +202,13 @@ const Header = () => {
     showResources
       ? closeDropdownPopover(setShowResources)
       : openDropdownPopover(resourcePopoverButton, resourcePopover, setShowResources)
+  }
+
+  const toggleAboutSwitcher = (e) => {
+    e.preventDefault()
+    showAbout
+      ? closeDropdownPopover(setShowAbout)
+      : openDropdownPopover(aboutPopoverButton, aboutPopover, setShowAbout)
   }
 
   const signInUser = (e) => {
@@ -272,9 +283,30 @@ const Header = () => {
                 </div>
               </li>
               <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
-                <Link href='/about'>
-                  <a className={`${menuItemStyles}`} href='about'>{format('header.about')}</a>
-                </Link>
+                <a
+                  className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={resourcePopoverButton}
+                  href='aboutMenu' onClick={(e) => toggleAboutSwitcher(e)}
+                >
+                  {format('header.about')}
+                  {
+                    showAbout ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
+                  }
+                </a>
+                <div className={`${showAbout ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={resourcePopover} role='menu'>
+                  <div className='py-1' role='none'>
+                    <Link href='/about'>
+                      <a href='/about' role='menuitem' className={dropdwonMenuStyles}>
+                        {format('header.about')}
+                      </a>
+                    </Link>
+                    <a
+                      href='//solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/overview' target='_blank' rel='noreferrer'
+                      role='menuitem' className={dropdwonMenuStyles} onClick={() => setShowAbout(false)}
+                    >
+                      {format('header.confluence')}
+                    </a>
+                  </div>
+                </div>
               </li>
               {
                 session
