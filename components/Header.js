@@ -142,6 +142,11 @@ const UserMenu = () => {
       </a>
       <div className={`${showUserMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
         <div className='py-1' role='none'>
+          <Link href='/auth/reset-password'>
+            <a href='/auth/reset-password' role='menuitem' className={dropdwonMenuStyles}>
+              {format('header.resetPassword')}
+            </a>
+          </Link>
           <a href='en' role='menuitem' className={dropdwonMenuStyles} onClick={signOutUser}>
             {format('header.signOut')}
           </a>
