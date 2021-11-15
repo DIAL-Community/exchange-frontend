@@ -30,6 +30,21 @@ const PLAYBOOK_QUERY = gql`
       }
       plays {
         name
+        slug
+        imageFile
+        playDescriptions {
+          description
+          locale
+        }
+        playTasks {
+          name
+          slug
+          resources
+          taskDescriptions {
+            description
+            locale
+          }
+        }
       }
     }
   }

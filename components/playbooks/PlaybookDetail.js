@@ -2,9 +2,10 @@ import { useIntl } from 'react-intl'
 import Breadcrumb from '../shared/breadcrumb'
 import { useSession } from 'next-auth/client'
 import ReactHtmlParser from 'react-html-parser'
+import { useRouter } from 'next/router'
 
 import { descriptionByLocale } from '../../lib/utilities'
-import { useRouter } from 'next/router'
+import PlayNavigator from './PlayNavigator'
 
 const PlaybookDetail = ({ playbook }) => {
   const { formatMessage } = useIntl()
@@ -65,11 +66,11 @@ const PlaybookDetail = ({ playbook }) => {
       </div>
       {playbook.phases && playbook.phases.map((phase, i) => {
         return (
-          <div key={i} className='inline px-4'>
-            <div className='inline w-1/4 shadow appearance-none border rounded py-2 px-3 text-grey-darker'>
+          <div key={i} className='grid grid-cols-3 px-4'>
+            <div className='shadow appearance-none border rounded py-2 px-3 text-grey-darker'>
               {phase.name}
             </div>
-            <div className='inline w-1/4 shadow appearance-none border rounded py-2 px-3 text-grey-darker'>
+            <div className='shadow appearance-none border rounded py-2 px-3 text-grey-darker'>
               {phase.description}
             </div>
           </div>
@@ -78,13 +79,10 @@ const PlaybookDetail = ({ playbook }) => {
       <div className='block text-grey-darker text-sm h4 p-3'>
         {format('playbooks.plays')}
       </div>
-      {playbook.plays && playbook.plays.map((play, i) => {
-        return (
-          <div key={i} className='inline w-full px-4'>
-            {play.name}
-          </div>
-        )
-      })}
+      {playbook.plays &&
+        (
+          <PlayNavigator playList={playbook.plays} />
+        )}
     </div>
   )
 }
