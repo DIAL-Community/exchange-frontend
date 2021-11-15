@@ -79,10 +79,12 @@ const PlaybookDetail = ({ playbook }) => {
       <div className='block text-grey-darker text-sm h4 p-3'>
         {format('playbooks.plays')}
       </div>
-      {playbook.plays &&
-        (
-          <PlayNavigator playList={playbook.plays} />
-        )}
+      <div className='px-4'>
+        {playbook.plays &&
+          (
+            <PlayNavigator playList={playbook.plays} />
+          )}
+      </div>
     </div>
   )
 }
