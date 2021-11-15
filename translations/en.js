@@ -19,6 +19,7 @@ export const en = {
   'header.SDGFramework': 'SDG Framework',
   'header.help': 'Help',
   'header.about': 'About',
+  'header.confluence': 'Catalog Confluence Page',
   'header.admin': 'Admin Menu',
   'header.selectLanguage': 'Select Language',
   'header.english': 'English (en)',
@@ -84,6 +85,7 @@ export const en = {
   'products.label': 'Product',
   'product.languages': 'Languages',
   'product.website': 'Website',
+  'product.description': 'Description',
   'product.repository': 'Code Repository',
   'product.current-version': 'Current Version',
   'product.license': 'License',
@@ -127,6 +129,7 @@ export const en = {
   'product.post': 'Post',
   'product.forum.login': 'You must be logged in to post',
   'product.forum.createAccount': 'In order to create a new post, you must first create an account on our forum. Click the button below and register an account with the username',
+  'product.manualUpdate': '(Note: this data has been manually updated by the product owner)',
 
   'project.header': 'Projects',
   'project.label': 'Project',

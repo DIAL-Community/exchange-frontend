@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev -p 3002",
     "build": "next build",
-    "start": "next start -p 3002"
+    "start": "next start -p 3002",
+    "test": "jest ./tests"
   },
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
@@ -41,8 +42,27 @@
   },
   "devDependencies": {
     "@tailwindcss/custom-forms": "^0.2.1",
+    "@testing-library/dom": "^8.1.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
     "autoprefixer": "^10.2.5",
+    "babel-jest": "^27.0.6",
+    "dotenv": "^10.0.0",
+    "jest": "^27.0.6",
     "postcss": "^8.2.8",
     "tailwindcss": "^2.0.3"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "before",
+      "after",
+      "beforeEach",
+      "afterEach",
+      "it",
+      "test",
+      "assert",
+      "expect"
+    ]
   }
 }

@@ -71,7 +71,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                     {buildingBlock.name}
                     {
                       buildingBlock.products &&
-                        <div className='block lg:hidden flex flex-row mt-1 text-product'>
+                        <div className='lg:hidden flex flex-row mt-1 text-product'>
                           <div className='text-sm font-normal'>
                             {format('product.header')}:
                           </div>
@@ -88,7 +88,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                     }
                     {
                       buildingBlock.workflows &&
-                        <div className='block lg:hidden flex flex-row mt-1 text-workflow'>
+                        <div className='lg:hidden flex flex-row mt-1 text-workflow'>
                           <div className='text-sm font-normal'>
                             {format('workflow.header')}:
                           </div>

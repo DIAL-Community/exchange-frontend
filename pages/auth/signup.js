@@ -181,8 +181,8 @@ const SignUp = () => {
       resetTextFields()
       setCreated(true)
       setTimeout(() => {
-        router.push('/products')
-      }, 5000)
+        router.push('/')
+      }, 3000)
     }
     setLoading(false)
   }
@@ -235,10 +235,9 @@ const SignUp = () => {
                   />
                   <div className='strength-meter my-2'>
                     <div className={`strength-meter-fill ${strengthColor(fieldValidations.password)}`} />
-                    { fieldValidations.password > 0 && fieldValidations.password < 2 && (
+                    {fieldValidations.password > 0 && fieldValidations.password < 2 && (
                       <div className='p-1 text-sm text-use-case'>{format('signUp.moreSecure')}</div>
-                    )
-                    }
+                    )}
                   </div>
                 </div>
                 <div className='mb-4'>
