@@ -13,6 +13,7 @@ export const en = {
 
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
+  'header.resetPassword': 'Reset Password',
   'header.covidResources': 'COVID-19 Resources',
   'header.resources': 'Resources',
   'header.dialResourcesPortal': 'DIAL Resources Portal',
