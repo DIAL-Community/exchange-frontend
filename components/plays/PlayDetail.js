@@ -60,9 +60,10 @@ const PlayDetail = ({ play }) => {
       <div className='h4'>
         {format('plays.description')}
       </div>
-      <div className='fr-view text-dial-gray-dark px-4 py-2'>
+      <div className='fr-view tinyEditor text-dial-gray-dark px-4 py-2'>
         {ReactHtmlParser(descriptionByLocale(play.playDescriptions, locale))}
       </div>
+      <div className='pb-4 h4'>{format('plays.tags')}: {play.tags}</div>
       <label className='block h4'>
         {format('plays.tasks')}
       </label>
@@ -70,15 +71,16 @@ const PlayDetail = ({ play }) => {
         return (
           <div key={i} className='px-4 py-2'>
             <div className='inline w-full'>
-              {task.name}
-              <div className='px-3'>{ReactHtmlParser(descriptionByLocale(task.taskDescriptions, locale))}</div>
-              <div className='px-3 py-2'>{format('tasks.resources')}
+              <div className='h4 inline'>{format('tasks.name')}:</div> {task.name}
+              <div className='tinyEditor px-3'>{ReactHtmlParser(descriptionByLocale(task.taskDescriptions, locale))}</div>
+              <div className='px-3 py-2'><div className='h4'>{format('tasks.resources')}</div>
                 {task.resources && task.resources.map((resource, i) => {
                   return (
-                    <div key={i} className='px-2 w-full'>
-                      <div>{format('resource.name')}: {resource.name}</div>
-                      <div>{format('resource.description')}: {resource.description}</div>
-                      <div>{format('resource.url')}: {resource.url}</div>
+                    <div key={i} className='p-3 w-full'>
+                      <a className='text-dial-yellow' href={resource.url} target='_blank' rel='noreferrer'>
+                        {resource.name}
+                      </a>
+                      <div className='px-2'>{resource.description}</div>
                     </div>
                   )
                 })}

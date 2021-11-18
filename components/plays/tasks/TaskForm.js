@@ -47,15 +47,17 @@ export const TaskForm = ({ task, action }) => {
 
   const slugNameMapping = (() => {
     const map = {}
-    map[task.playSlug] = task.playName
-    map[task.slug] = task.name
+    if (task) {
+      map[task.playSlug] = task.playName
+      map[task.slug] = task.name
+    }
     return map
   })()
 
   useEffect(() => {
     if (data) {
       setTimeout(() => {
-        router.push(`/${locale}/plays/${task.playSlug}`)
+        router.push(`/${locale}/plays/${data.createTask.task.playSlug}`)
       }, 2000)
     }
   }, [data])

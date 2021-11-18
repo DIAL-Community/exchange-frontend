@@ -50,20 +50,22 @@ const PlaybookDetail = ({ playbook }) => {
       </div>
       <div className='h4 font-bold py-4'>{format('playbooks.label')}: {playbook.name}</div>
       <div className='p-3 h4'>{format('playbooks.overview')}</div>
-      <div className='fr-view text-dial-gray-dark px-4'>
+      <div className='fr-view tinyEditor text-dial-gray-dark px-4'>
         {ReactHtmlParser(descriptionByLocale(playbook.playbookDescriptions, locale, 'overview'))}
       </div>
       <div className='p-3 h4'>{format('playbooks.audience')}</div>
-      <div className='fr-view text-dial-gray-dark px-4'>
+      <div className='fr-view tinyEditor text-dial-gray-dark px-4'>
         {ReactHtmlParser(descriptionByLocale(playbook.playbookDescriptions, locale, 'audience'))}
       </div>
       <div className='p-3 h4'>{format('playbooks.outcomes')}</div>
-      <div className='fr-view text-dial-gray-dark px-4'>
+      <div className='fr-view tinyEditor text-dial-gray-dark px-4'>
         {ReactHtmlParser(descriptionByLocale(playbook.playbookDescriptions, locale, 'outcomes'))}
       </div>
-      <div className='block text-grey-darker text-sm h4 p-3'>
-        {format('playbooks.phases')}
-      </div>
+      <div className='p-3 h4'>{format('playbooks.tags')}: {playbook.tags}</div>
+      {playbook.phases && playbook.phases.length > 0 &&
+        <div className='block text-grey-darker text-sm h4 p-3'>
+          {format('playbooks.phases')}
+        </div>}
       {playbook.phases && playbook.phases.map((phase, i) => {
         return (
           <div key={i} className='grid grid-cols-3 px-4'>
@@ -76,7 +78,7 @@ const PlaybookDetail = ({ playbook }) => {
           </div>
         )
       })}
-      <div className='block text-grey-darker text-sm h4 p-3'>
+      <div className='block text-grey-darker text-sm h4 p-3 mt-4'>
         {format('playbooks.plays')}
       </div>
       <div className='px-4'>

@@ -50,12 +50,12 @@ const SearchFilter = (props) => {
       return '/create-not-available'
     }
 
-    const candidatePaths = ["products", "organizations"]
+    const candidatePaths = ['products', 'organizations']
     if (!session.user.canEdit && candidatePaths.some(el => linkPath.includes(el))) {
       return `/candidate/${linkPath[0]}/create`
     }
 
-    const reactEditPaths = ["playbooks", "plays"];
+    const reactEditPaths = ['playbooks', 'plays']
 
     if (reactEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails
@@ -87,8 +87,8 @@ const SearchFilter = (props) => {
       const snakeCaseKey = key.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)
       if (key !== snakeCaseKey) {
         Object.defineProperty(object, snakeCaseKey,
-          Object.getOwnPropertyDescriptor(object, key));
-        delete object[key];
+          Object.getOwnPropertyDescriptor(object, key))
+        delete object[key]
       }
     })
     return object
@@ -99,27 +99,27 @@ const SearchFilter = (props) => {
     switch (String(path).toLowerCase()) {
       case 'products':
         exportParameters = { ...exportParameters, ...productFilters }
-        break;
+        break
       case 'organizations':
         exportParameters = { ...exportParameters, ...organizationFilters }
-        break;
+        break
       case 'building_blocks':
         exportParameters = { ...exportParameters, ...buildingBlockFilters }
-        break;
+        break
       case 'workflows':
         exportParameters = { ...exportParameters, ...workflowFilters }
-        break;
+        break
       case 'use_cases':
         exportParameters = { ...exportParameters, ...useCaseFilters }
-        break;
+        break
       case 'projects':
         exportParameters = { ...exportParameters, ...projectFilters }
-        break;
+        break
       case 'sdgs':
         exportParameters = { ...exportParameters, ...sdgFilters }
-        break;
+        break
       default:
-        break;
+        break
     }
     return convertKeys(exportParameters)
   }
@@ -129,7 +129,7 @@ const SearchFilter = (props) => {
     setLoading(true)
 
     const { userEmail } = session.user
-    const fileExtension = acceptType === 'application/json' ? 'json': 'csv'
+    const fileExtension = acceptType === 'application/json' ? 'json' : 'csv'
     const exportPath = process.env.NEXT_PUBLIC_AUTH_SERVER + `/api/v1/${linkPath[0]}`
     fetch(
       exportPath,
@@ -148,32 +148,32 @@ const SearchFilter = (props) => {
         body: JSON.stringify(buildExportParameters(linkPath[0]))
       }
     )
-    .then(response => response.body)
-    .then(body => {
-      const reader = body.getReader();
-      return new ReadableStream({
-        start(controller) {
-          return pump();
-          async function pump() {
-            const { done, value } = await reader.read()
-            // When no more data needs to be consumed, close the stream
-            if (done) {
-              controller.close()
-              return
-            }
-            // Enqueue the next data chunk into our target stream
-            controller.enqueue(value)
+      .then(response => response.body)
+      .then(body => {
+        const reader = body.getReader()
+        return new ReadableStream({
+          start (controller) {
             return pump()
+            async function pump () {
+              const { done, value } = await reader.read()
+              // When no more data needs to be consumed, close the stream
+              if (done) {
+                controller.close()
+                return
+              }
+              // Enqueue the next data chunk into our target stream
+              controller.enqueue(value)
+              return pump()
+            }
           }
-        }
+        })
       })
-    })
-    .then(stream => new Response(stream))
-    .then(response => response.blob())
-    .then(blob => {
-      saveAs(blob, `${linkPath[0]}-data.${fileExtension}`)
-      setLoading(false)
-    })
+      .then(stream => new Response(stream))
+      .then(response => response.blob())
+      .then(blob => {
+        saveAs(blob, `${linkPath[0]}-data.${fileExtension}`)
+        setLoading(false)
+      })
   }
 
   const exportAsJson = async (e) => {
@@ -222,15 +222,15 @@ const SearchFilter = (props) => {
                   displayType === 'list' &&
                     <>
                       <a className='mr-2' href='toggle-display' onClick={toggleDisplayType}>
-                      <img
-                        alt={format('image.alt.logoFor', { name: format('view.inactive.card') })}
-                        className='h-6 md:h-8 cursor-pointer' src='/icons/card-inactive/card-inactive.png'
-                      />
+                        <img
+                          alt={format('image.alt.logoFor', { name: format('view.inactive.card') })}
+                          className='h-6 md:h-8 cursor-pointer' src='/icons/card-inactive/card-inactive.png'
+                        />
                       </a>
-                    <img
-                      alt={format('image.alt.logoFor', { name: format('view.active.list') })}
-                      className='h-6 md:h-8' src='/icons/list-active/list-active.png'
-                    />
+                      <img
+                        alt={format('image.alt.logoFor', { name: format('view.active.list') })}
+                        className='h-6 md:h-8' src='/icons/list-active/list-active.png'
+                      />
                     </>
                 }
               </div>

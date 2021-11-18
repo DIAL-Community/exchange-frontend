@@ -20,6 +20,7 @@ const PLAY_QUERY = gql`
       id
       name
       slug
+      tags
       imageFile
       playDescriptions {
         description

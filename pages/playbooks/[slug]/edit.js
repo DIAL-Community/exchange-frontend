@@ -20,6 +20,7 @@ query Playbook($slug: String!) {
     id
     name
     slug
+    tags
     phases
     playbookDescriptions {
       overview
@@ -28,6 +29,7 @@ query Playbook($slug: String!) {
       locale
     }
     plays {
+      id
       name
     }
   }

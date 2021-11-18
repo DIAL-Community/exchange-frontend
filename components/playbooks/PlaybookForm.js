@@ -14,12 +14,13 @@ import dynamic from 'next/dynamic'
 const PlayListQuery = dynamic(() => import('../../components/plays/PlayList'), { ssr: false })
 
 const CREATE_PLAYBOOK = gql`
-mutation ($name: String!, $slug: String!, $overview: String!, $audience: String, $outcomes: String, $phases: JSON!, $plays: JSON!, $locale: String!) {
-  createPlaybook(name: $name, slug: $slug, overview: $overview, audience: $audience, outcomes: $outcomes, phases: $phases, plays: $plays, locale: $locale) {
+mutation ($name: String!, $slug: String!, $overview: String!, $audience: String, $outcomes: String, $tags: JSON!, $phases: JSON!, $plays: JSON!, $locale: String!) {
+  createPlaybook(name: $name, slug: $slug, overview: $overview, audience: $audience, outcomes: $outcomes, tags: $tags, phases: $phases, plays: $plays, locale: $locale) {
     playbook {
       id
       name
       slug
+      tags
       phases
       playbookDescriptions {
         overview
@@ -47,6 +48,7 @@ export const PlaybookForm = React.memo(({ playbook, action }) => {
   const [name, setName] = useState(playbook ? playbook.name : '')
   const [slug] = useState(playbook ? playbook.slug : '')
   const [phases, setPhases] = useState(playbook ? playbook.phases.map((phase, i) => ({ ...phase, i: i })) : [])
+  const [tags, setTags] = useState(playbook ? playbook.tags : [])
   const [overview, setOverview] = useState(playbook ? descriptionByLocale(playbook.playbookDescriptions, locale, 'overview') : '')
   const [audience, setAudience] = useState(playbook ? descriptionByLocale(playbook.playbookDescriptions, locale, 'audience') : '')
   const [outcomes, setOutcomes] = useState(playbook ? descriptionByLocale(playbook.playbookDescriptions, locale, 'outcomes') : '')
@@ -57,7 +59,7 @@ export const PlaybookForm = React.memo(({ playbook, action }) => {
   useEffect(() => {
     if (data) {
       setTimeout(() => {
-        router.push(`/${locale}/playbooks/${playbook.slug}`)
+        router.push(`/${locale}/playbooks/${data.createPlaybook.playbook.slug}`)
       }, 2000)
     }
   }, [data])
@@ -100,7 +102,7 @@ export const PlaybookForm = React.memo(({ playbook, action }) => {
     setPhases(phases.map(phase => { delete phase.i; return phase }))
     const submitPhases = phases.map(phase => phase.name === '' ? null : phase)
     const submitPlays = plays.map(play => play.name === '' ? null : play)
-    createPlaybook({ variables: { name, slug, overview, audience, outcomes, phases: submitPhases, plays: submitPlays, locale } })
+    createPlaybook({ variables: { name, slug, overview, audience, outcomes, tags, phases: submitPhases, plays: submitPlays, locale } })
   }
 
   return (
@@ -136,6 +138,16 @@ export const PlaybookForm = React.memo(({ playbook, action }) => {
               {format('playbooks.outcomes')}
             </label>
             <HtmlEditor editorId='outcomesEditor' updateText={setOutcomes} initialContent={outcomes} />
+            <div className='mb-4'>
+              <label className='block text-grey-darker h4 mb-2' htmlFor='name'>
+                {format('playbooks.tags')}
+              </label>
+              <input
+                id='tags' name='tags' type='text' placeholder={format('playbooks.tags.placeholder')}
+                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
+                value={tags} onChange={(e) => setTags(e.target.value.split(','))}
+              />
+            </div>
             <label className='block text-grey-darker h4 my-2' htmlFor='name'>
               {format('playbooks.phases')}
             </label>
@@ -172,9 +184,9 @@ export const PlaybookForm = React.memo(({ playbook, action }) => {
             <div className='flex items-center justify-between h4 mt-2'>
               {format('playbooks.assignedPlays')}
             </div>
-            {showPlayForm && <PlayListQuery displayType='assign' assignCallback={assignPlay} />}
+            {showPlayForm && <PlayListQuery displayType='assign' assignCallback={assignPlay} currentPlays={plays} />}
             {plays && plays.map((play, i) => {
-              return (
+              return play.name !== '' && (
                 <div key={i} className='inline border-2 p-1 m-2'>
                   <div className='grid grid-cols-3 border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
                     {play.name}

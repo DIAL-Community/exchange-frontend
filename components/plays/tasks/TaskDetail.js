@@ -48,7 +48,7 @@ const TaskDetail = ({ task }) => {
       </div>
       <div className='h4 font-bold py-4'>{format('plays.label')}</div>
       {format('tasks.description')}
-      <div className='fr-view text-dial-gray-dark'>
+      <div className='fr-view tinyEditor text-dial-gray-dark'>
         {ReactHtmlParser(descriptionByLocale(task.taskDescriptions, locale))}
       </div>
     </div>

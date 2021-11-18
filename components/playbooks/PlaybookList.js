@@ -1,14 +1,15 @@
 import { useContext } from 'react'
-import { useIntl, FormattedMessage } from 'react-intl'
+import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { HiSortAscending } from 'react-icons/hi'
 
 import PlaybookCard from './PlaybookCard'
-import { PlaybookFilterContext } from '../context/PlaybookFilterContext'
+import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../context/PlaybookFilterContext'
 import { FilterContext } from '../context/FilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
+import { TagAutocomplete } from '../filter/element/Tag'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -88,6 +89,9 @@ const PlaybookListQuery = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
+  const { tags } = useContext(PlaybookFilterContext)
+  const { setTags } = useContext(PlaybookFilterDispatchContext)
+
   const { displayType } = useContext(FilterContext)
   const { search } = useContext(PlaybookFilterContext)
   const { loading, error, data, fetchMore } = useQuery(PLAYBOOKS_QUERY, {
@@ -117,15 +121,18 @@ const PlaybookListQuery = () => {
     })
   }
   return (
-    <InfiniteScroll
-      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'
-      dataLength={nodes.length}
-      next={handleLoadMore}
-      hasMore={pageInfo.hasNextPage}
-      loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
-    >
-      <PlaybookList playbookList={nodes} displayType={displayType} />
-    </InfiniteScroll>
+    <>
+      <TagAutocomplete {...{ tags, setTags }} containerStyles='px-2 pb-2' />
+      <InfiniteScroll
+        className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'
+        dataLength={nodes.length}
+        next={handleLoadMore}
+        hasMore={pageInfo.hasNextPage}
+        loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
+      >
+        <PlaybookList playbookList={nodes} displayType={displayType} />
+      </InfiniteScroll>
+    </>
   )
 }
 

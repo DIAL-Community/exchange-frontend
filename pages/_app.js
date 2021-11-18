@@ -8,6 +8,7 @@ import * as gtag from '../lib/gtag'
 import * as matomo from '../lib/matomo'
 
 import '../styles/globals.css'
+import '../styles/editor.css'
 import '../styles/filter.css'
 import '../styles/sticky.css'
 import '../styles/accordion.css'

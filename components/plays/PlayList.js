@@ -6,9 +6,10 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { HiSortAscending } from 'react-icons/hi'
 
 import PlayCard from './PlayCard'
-import { PlayFilterContext } from '../context/PlayFilterContext'
+import { PlayFilterContext, PlayFilterDispatchContext } from '../context/PlayFilterContext'
 import { FilterContext } from '../context/FilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
+import { TagAutocomplete } from '../filter/element/Tag'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -45,7 +46,7 @@ query SearchPlays(
 }
 `
 
-const PlayList = ({ playList, displayType, assignCallback }) => {
+const PlayList = ({ playList, displayType, assignCallback, currentPlays }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -69,9 +70,11 @@ const PlayList = ({ playList, displayType, assignCallback }) => {
         }
         {
           playList.length > 0
-            ? playList.map((play) => (
-              <PlayCard key={play.id} play={play} listType={displayType} assignCallback={assignCallback} />
-              ))
+            ? playList.map((play) => {
+                return (!currentPlays || !currentPlays.filter(e => e.id === play.id).length > 0) && (
+                  <PlayCard key={play.id} play={play} listType={displayType} assignCallback={assignCallback} />
+                )
+              })
             : (
               <div className='flex justify-self-center text-dial-gray-dark'>{
                 format('noResults.entity', { entity: format('plays.label') })
@@ -87,6 +90,8 @@ const PlayList = ({ playList, displayType, assignCallback }) => {
 const PlayListQuery = (props) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
+  const { tags } = useContext(PlayFilterContext)
+  const { setTags } = useContext(PlayFilterDispatchContext)
 
   const { displayType } = props.displayType ? props : useContext(FilterContext)
   const { search } = useContext(PlayFilterContext)
@@ -116,15 +121,18 @@ const PlayListQuery = (props) => {
     })
   }
   return (
-    <InfiniteScroll
-      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'
-      dataLength={nodes.length}
-      next={handleLoadMore}
-      hasMore={pageInfo.hasNextPage}
-      loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
-    >
-      <PlayList playList={nodes} displayType={displayType} assignCallback={props.assignCallback} />
-    </InfiniteScroll>
+    <>
+      <TagAutocomplete {...{ tags, setTags }} containerStyles='px-2 pb-2' />
+      <InfiniteScroll
+        className='relative px-2 pb-8 max-w-catalog mx-auto'
+        dataLength={nodes.length}
+        next={handleLoadMore}
+        hasMore={pageInfo.hasNextPage}
+        loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
+      >
+        <PlayList playList={nodes} displayType={displayType} assignCallback={props.assignCallback} currentPlays={props.currentPlays} />
+      </InfiniteScroll>
+    </>
   )
 }
 

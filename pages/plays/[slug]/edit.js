@@ -20,6 +20,7 @@ query Play($slug: String!) {
     id
     name
     slug
+    tags
     playDescriptions {
       description
       locale

@@ -12,12 +12,13 @@ import { descriptionByLocale } from '../../lib/utilities'
 import Breadcrumb from '../shared/breadcrumb'
 
 const CREATE_PLAY = gql`
-mutation ($name: String!, $description: String!, $locale: String!) {
-  createPlay(name: $name, description: $description, locale: $locale) {
+mutation ($name: String!, $description: String!, $tags: JSON!, $locale: String!) {
+  createPlay(name: $name, description: $description, tags: $tags, locale: $locale) {
     play {
       id
       name
       slug
+      tags
       playDescriptions {
         description
         locale
@@ -43,13 +44,16 @@ export const PlayForm = ({ play, action }) => {
   const [createPlay, { data, loading }] = useMutation(CREATE_PLAY)
 
   const [name, setName] = useState(play ? play.name : '')
+  const [tags, setTags] = useState(play ? play.tags : [])
   const [description, setDescription] = useState(play ? descriptionByLocale(play.playDescriptions, locale) : '')
 
   const router = useRouter()
 
   const slugNameMapping = (() => {
     const map = {}
-    map[play.slug] = play.name
+    if (play) {
+      map[play.slug] = play.name
+    }
     return map
   })()
 
@@ -67,7 +71,7 @@ export const PlayForm = ({ play, action }) => {
 
   const doUpsert = async e => {
     e.preventDefault()
-    createPlay({ variables: { name, description, locale } })
+    createPlay({ variables: { name, description, tags, locale } })
   }
 
   return (
@@ -92,6 +96,16 @@ export const PlayForm = ({ play, action }) => {
                 id='name' name='name' type='text' placeholder={format('plays.name.placeholder')}
                 className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
                 value={name} onChange={(e) => handleTextFieldChange(e, setName)}
+              />
+            </div>
+            <div className='mb-4'>
+              <label className='block text-grey-darker h4 mb-2' htmlFor='name'>
+                {format('plays.tags')}
+              </label>
+              <input
+                id='tags' name='tags' type='text' placeholder={format('plays.tags.placeholder')}
+                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
+                value={tags} onChange={(e) => setTags(e.target.value.split(','))}
               />
             </div>
             <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>

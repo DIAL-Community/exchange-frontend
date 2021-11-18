@@ -20,6 +20,7 @@ const PLAYBOOK_QUERY = gql`
       id
       name
       slug
+      tags
       phases
       imageFile
       playbookDescriptions {
