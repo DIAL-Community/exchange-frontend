@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 
 import apolloClient from '../../../../lib/apolloClient'
 
@@ -13,6 +14,9 @@ const CreateRepository = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
+  const router = useRouter()
+  const { slug, stepSlug } = router.query
+
   return (
     <>
       <Head>
@@ -22,7 +26,7 @@ const CreateRepository = () => {
       <QueryNotification />
       <GradientBackground />
       <Header />
-      <RepositoryForm />
+      <RepositoryForm productSlug={slug} />
       <Footer />
     </>
   )

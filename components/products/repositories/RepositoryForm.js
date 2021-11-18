@@ -23,7 +23,7 @@ const CREATE_PRODUCT_REPOSITORY = gql`
   }
 `
 
-const RepositoryForm = ({ product, productRepository }) => {
+const RepositoryForm = ({ productSlug, productRepositorySlug }) => {
   const { formatMessage } = useIntl()
   const [session] = useSession()
   const format = (id, values) => formatMessage({ id }, { ...values })
@@ -54,7 +54,7 @@ const RepositoryForm = ({ product, productRepository }) => {
       setDescription('')
       setMainRepository(false)
       setTimeout(() => {
-        router.push(`/products/${product.slug}/repositories`)
+        router.push(`/products/${productSlug}/repositories`)
       }, 5000)
     }
   }, [data])
@@ -65,7 +65,7 @@ const RepositoryForm = ({ product, productRepository }) => {
 
       const { userEmail, userToken } = session.user
       createProductRepository({
-        context: { headers: { 'X-User-Email': userEmail, 'X-User-Token': userToken } },
+        context: { headers: { 'Authorization': `${userEmail} ${userToken}` } },
         variables: {
           name,
           absoluteUrl,
