@@ -235,17 +235,23 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                         {
                           product.origins
                             .filter((_, index) => index <= 2)
-                            .map(origin => (
-                              <div
-                                key={`origin-${origin.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
-                                data-tip={format('tooltip.forEntity', {
+                            .map(origin => {
+                              const nominee = origin.slug === 'dpga' && product.endorsers.length === 0 ? ' ' + format('product.nominee') : ''
+                              const toolTip = (product.endorsers && product.endorsers.filter(endorser => endorser.slug === origin.slug).length > 0) 
+                                ? format('product.endorsed-by') + origin.name
+                                : format('tooltip.forEntity', {
                                   entity: format('origin.label'),
                                   name: ORIGIN_EXPANSIONS[origin.slug.toLowerCase()]
-                                })}
-                              >
-                                {(ORIGIN_ACRONYMS[origin.slug.toLowerCase()] || origin.slug).toUpperCase()}
-                              </div>
-                            ))
+                                }) + nominee
+                              return (
+                                <div
+                                  key={`origin-${origin.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
+                                  data-tip={toolTip}
+                                >
+                                  {(ORIGIN_ACRONYMS[origin.slug.toLowerCase()] || origin.slug).toUpperCase()}
+                                </div>
+                              )
+                            })
                         }
                         {
                           product.origins.length > 3 &&
