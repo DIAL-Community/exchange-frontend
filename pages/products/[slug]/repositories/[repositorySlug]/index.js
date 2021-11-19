@@ -1,16 +1,64 @@
-import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import Link from 'next/link'
+import Head from 'next/head'
 
-import apolloClient from '../../../../../lib/apolloClient'
+import withApollo from '../../../../../lib/apolloClient'
 
+import RepositoryList from '../../../../../components/products/repositories/RepositoryList'
+import StepDetail from '../../../../../components/products/repositories/StepDetail'
+import Breadcrumb from '../../../../../components/shared/breadcrumb'
 import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
-import QueryNotification from '../../../../../components/shared/QueryNotification'
-import GradientBackground from '../../../../../components/shared/GradientBackground'
+import { gql, useQuery } from '@apollo/client'
+import { useSession } from 'next-auth/client'
+import { useEffect } from 'react'
 
-const ProductRepository = () => {
+const USE_CASE_QUERY = gql`
+  query UseCase($slug: String!) {
+    product(slug: $slug) {
+      name
+      slug
+      maturity
+      imageFile
+    }
+  }
+`
+
+const UseCaseStep = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
+  const router = useRouter()
+  const { locale, pathname, asPath, query } = useRouter()
+
+  const [session] = useSession()
+  const { slug, repositorySlug } = router.query
+  const { data } = useQuery(USE_CASE_QUERY, { variables: { slug: slug } })
+
+  const generateEditLink = () => {
+    if (!session.user) {
+      return '/edit-not-available'
+    }
+
+    const { userEmail, userToken } = session.user
+    return `products/${slug}/repositories/${repositorySlug}/` +
+        `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
+  }
+
+  const slugNameMapping = (() => {
+    const map = {}
+    if (data) {
+      map[data.product.slug] = data.product.name
+    }
+    return map
+  })()
+
+  useEffect(() => {
+    if (query.locale) {
+      router.replace({ pathname }, asPath, { locale: query.locale })
+    }
+  })
 
   return (
     <>
@@ -18,12 +66,55 @@ const ProductRepository = () => {
         <title>{format('app.title')}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <QueryNotification />
-      <GradientBackground />
       <Header />
+      <div className='flex flex-wrap justify-between pb-8 max-w-catalog mx-auto'>
+        <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
+          <div className='block lg:hidden'>
+            <Breadcrumb slugNameMapping={slugNameMapping} />
+          </div>
+          <div className='w-full mb-2'>
+            {
+              session && (
+                <div className='inline'>
+                  {
+                    session.user.canEdit && (
+                      <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
+                        <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
+                        <span className='text-sm px-2'>{format('app.edit')}</span>
+                      </a>
+                    )
+                  }
+                </div>
+              )
+            }
+          </div>
+          {
+            data && data.product &&
+              <>
+                <div className='border'>
+                  <div className='text-xs text-right text-dial-cyan font-semibold p-1.5 border-b uppercase'>{data.product.maturity}</div>
+                  <Link href={`/products/${slug}`}>
+                    <div className='cursor-pointer px-4 py-6 flex items-center'>
+                      <img
+                        className='product-filter w-8 h-full'
+                        alt={format('image.alt.logoFor', { name: data.product.name })}
+                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.product.imageFile}
+                      />
+                      <div className='text-xl text-product font-semibold px-4'>{data.product.name}</div>
+                    </div>
+                  </Link>
+                </div>
+              </>
+          }
+          <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer/>
+        </div>
+        <div className='w-full lg:w-2/3 xl:w-3/4'>
+          <StepDetail repositorySlug={repositorySlug} />
+        </div>
+      </div>
       <Footer />
     </>
   )
 }
 
-export default apolloClient()(ProductRepository)
+export default withApollo()(UseCaseStep)

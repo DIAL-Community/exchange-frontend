@@ -1,16 +1,49 @@
-import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import Head from 'next/head'
 
-import apolloClient from '../../../../lib/apolloClient'
+import withApollo from '../../../../lib/apolloClient'
 
+import RepositoryList from '../../../../components/products/repositories/RepositoryList'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
-import QueryNotification from '../../../../components/shared/QueryNotification'
-import GradientBackground from '../../../../components/shared/GradientBackground'
+import { gql, useQuery } from '@apollo/client'
+import Breadcrumb from '../../../../components/shared/breadcrumb'
+import { useEffect } from 'react'
 
-const ProductRepositories = () => {
+const PRODUCT_QUERY = gql`
+  query Product($slug: String!) {
+    product(slug: $slug) {
+      name
+      slug
+      imageFile
+    }
+  }
+`
+
+const ProductStep = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
+  const router = useRouter()
+  const { pathname, asPath, query } = useRouter()
+  
+  const { slug, repositorySlug } = router.query
+  const { data } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
+
+  const slugNameMapping = (() => {
+    const map = {}
+    if (data) {
+      map[data.product.slug] = data.product.name
+    }
+    return map
+  })()
+
+  useEffect(() => {
+    if (query.locale) {
+      router.replace({ pathname }, asPath, { locale: query.locale })
+    }
+  })
 
   return (
     <>
@@ -18,12 +51,37 @@ const ProductRepositories = () => {
         <title>{format('app.title')}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <QueryNotification />
-      <GradientBackground />
       <Header />
+      <div className='flex flex-wrap justify-between pb-8 max-w-catalog mx-auto'>
+        <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
+          <div className='block lg:hidden'>
+            <Breadcrumb slugNameMapping={slugNameMapping} />
+          </div>
+          {
+            data && data.product &&
+              <div className='border'>
+                <div className='text-xs text-right text-dial-cyan font-semibold p-1.5 border-b uppercase'>{data.product.maturity}</div>
+                <div className=' px-4 py-6 flex items-center'>
+                  <img
+                    className='product-filter w-8 h-full'
+                    alt={format('image.alt.logoFor', { name: data.product.name })}
+                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.product.imageFile}
+                  />
+                  <div className='text-xl text-product font-semibold px-4'>{data.product.name}</div>
+                </div>
+              </div>
+          }
+          <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer />
+        </div>
+        <div className='w-full lg:w-2/3 xl:w-3/4'>
+          <div className='hidden lg:block'>
+            <Breadcrumb slugNameMapping={slugNameMapping} />
+          </div>
+        </div>
+      </div>
       <Footer />
     </>
   )
 }
 
-export default apolloClient()(ProductRepositories)
+export default withApollo()(ProductStep)
