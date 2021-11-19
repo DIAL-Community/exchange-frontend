@@ -52,7 +52,7 @@ export const PlaybookForm = React.memo(({ playbook, action }) => {
   const [overview, setOverview] = useState(playbook ? descriptionByLocale(playbook.playbookDescriptions, locale, 'overview') : '')
   const [audience, setAudience] = useState(playbook ? descriptionByLocale(playbook.playbookDescriptions, locale, 'audience') : '')
   const [outcomes, setOutcomes] = useState(playbook ? descriptionByLocale(playbook.playbookDescriptions, locale, 'outcomes') : '')
-  const [plays, setPlays] = useState(playbook ? playbook.plays : [])
+  const [plays, setPlays] = useState(playbook ? playbook.plays.map((play, i) => ({ ...play, order: i })) : [])
 
   const router = useRouter()
 
@@ -88,7 +88,7 @@ export const PlaybookForm = React.memo(({ playbook, action }) => {
 
   const assignPlay = (e, play) => {
     e.preventDefault()
-    setPlays([...plays, play])
+    setPlays([...plays, { ...play, order: plays.length }])
     setShowPlayForm(false)
   }
 
