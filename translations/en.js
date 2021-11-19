@@ -893,6 +893,9 @@ export const en = {
   'endorsed.title': 'Endorsed by Organizations',
   'visitWebsite.title': 'Visit Site',
 
-  'marker.project.title': 'Project Marker'
+  'marker.project.title': 'Project Marker',
+
+  'productRepository.header': 'Product Repositories',
+  'productRepository.label': 'Product Repository'
 
 }

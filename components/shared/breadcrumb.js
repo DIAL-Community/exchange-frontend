@@ -21,6 +21,7 @@ const basePathMappings = {
   workflows: 'workflow.header',
   building_blocks: 'building-block.header',
   products: 'product.header',
+  repositories: 'productRepository.header',
   projects: 'project.header',
   organizations: 'organization.header'
 }
