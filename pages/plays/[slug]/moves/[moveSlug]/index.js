@@ -10,17 +10,17 @@ import withApollo from '../../../../lib/apolloClient'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import TaskDetail from '../../../../components/plays/tasks/TaskDetail'
+import MoveDetail from '../../../../components/plays/moves/MoveDetail'
 import { Loading, Error } from '../../../../components/shared/FetchStatus'
 import { useEffect } from 'react'
 
-const TASK_QUERY = gql`
-  query Task($slug: String!) {
-    task(slug: $slug) {
+const MOVE_QUERY = gql`
+  query Move($slug: String!) {
+    move(slug: $slug) {
       id
       name
       slug
-      taskDescriptions {
+      moveDescriptions {
         description
         locale
       }
@@ -32,7 +32,7 @@ const TASK_QUERY = gql`
   }
 `
 
-const Task = () => {
+const Move = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -40,7 +40,7 @@ const Task = () => {
   const { pathname, asPath, query } = useRouter()
 
   const { slug } = router.query
-  const { loading, error, data } = useQuery(TASK_QUERY, { variables: { slug: slug }, skip: !slug })
+  const { loading, error, data } = useQuery(MOVE_QUERY, { variables: { slug: slug }, skip: !slug })
 
   useEffect(() => {
     if (query.locale) {
@@ -59,10 +59,10 @@ const Task = () => {
       {error && error.networkError && <Error />}
       {error && !error.networkError && <NotFound />}
       {
-        data && data.task &&
+        data && data.move &&
           <div className='flex flex-col lg:flex-row justify-between pb-8 max-w-catalog mx-auto'>
             <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
-              <TaskDetail play={data.task} />
+              <MoveDetail play={data.move} />
             </div>
           </div>
       }
@@ -71,4 +71,4 @@ const Task = () => {
   )
 }
 
-export default withApollo()(Task)
+export default withApollo()(Move)

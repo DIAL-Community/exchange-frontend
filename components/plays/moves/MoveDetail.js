@@ -6,7 +6,7 @@ import ReactHtmlParser from 'react-html-parser'
 import { descriptionByLocale } from '../../../lib/utilities'
 import { useRouter } from 'next/router'
 
-const TaskDetail = ({ task }) => {
+const MoveDetail = ({ move }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   const { locale } = useRouter()
@@ -17,13 +17,13 @@ const TaskDetail = ({ task }) => {
       return '/edit-not-available'
     }
 
-    return `/${locale}/plays/${task.playSlug}/tasks/${task.slug}/edit`
+    return `/${locale}/plays/${move.playSlug}/moves/${move.slug}/edit`
   }
 
   const slugNameMapping = (() => {
     const map = {}
-    map[task.playSlug] = task.playName
-    map[task.slug] = task.name
+    map[move.playSlug] = move.playName
+    map[move.slug] = move.name
     return map
   })()
 
@@ -47,12 +47,12 @@ const TaskDetail = ({ task }) => {
         }
       </div>
       <div className='h4 font-bold py-4'>{format('plays.label')}</div>
-      {format('tasks.description')}
+      {format('moves.description')}
       <div className='fr-view tinyEditor text-dial-gray-dark'>
-        {ReactHtmlParser(descriptionByLocale(task.taskDescriptions, locale))}
+        {ReactHtmlParser(descriptionByLocale(move.moveDescriptions, locale))}
       </div>
     </div>
   )
 }
 
-export default TaskDetail
+export default MoveDetail

@@ -13,13 +13,13 @@ import Breadcrumb from '../../shared/breadcrumb'
 
 const CREATE_TASK = gql`
 mutation ($playSlug: String!, $name: String!, $description: String!, $resources: JSON!, $order: Int!, $locale: String!) {
-  createTask(play: $playSlug, name: $name, description: $description, resources: $resources, order: $order, locale: $locale) {
-    task {
+  createMove(play: $playSlug, name: $name, description: $description, resources: $resources, order: $order, locale: $locale) {
+    move {
       id
       name
       slug
       resources
-      taskDescriptions {
+      moveDescriptions {
         description
         locale
       }
@@ -30,26 +30,26 @@ mutation ($playSlug: String!, $name: String!, $description: String!, $resources:
 }
 `
 
-export const TaskForm = ({ task, action }) => {
+export const MoveForm = ({ move, action }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const { locale } = useRouter()
 
-  const [createTask, { data, loading }] = useMutation(CREATE_TASK) // {update: updateCache}
+  const [createMove, { data, loading }] = useMutation(CREATE_TASK) // {update: updateCache}
 
-  const [playSlug, setPlaySlug] = useState(task ? task.playSlug : '')
-  const [name, setName] = useState(task ? task.name : '')
-  const [description, setDescription] = useState(task ? descriptionByLocale(task.taskDescriptions, locale) : '')
-  const [resources, setResources] = useState(task ? task.resources.map((resource, i) => ({ ...resource, i: i })) : [])
+  const [playSlug, setPlaySlug] = useState(move ? move.playSlug : '')
+  const [name, setName] = useState(move ? move.name : '')
+  const [description, setDescription] = useState(move ? descriptionByLocale(move.moveDescriptions, locale) : '')
+  const [resources, setResources] = useState(move ? move.resources.map((resource, i) => ({ ...resource, i: i })) : [])
 
   const router = useRouter()
 
   const slugNameMapping = (() => {
     const map = {}
-    if (task) {
-      map[task.playSlug] = task.playName
-      map[task.slug] = task.name
+    if (move) {
+      map[move.playSlug] = move.playName
+      map[move.slug] = move.name
     }
     return map
   })()
@@ -57,7 +57,7 @@ export const TaskForm = ({ task, action }) => {
   useEffect(() => {
     if (data) {
       setTimeout(() => {
-        router.push(`/${locale}/plays/${data.createTask.task.playSlug}`)
+        router.push(`/${locale}/plays/${data.createMove.move.playSlug}`)
       }, 2000)
     }
   }, [data])
@@ -94,7 +94,7 @@ export const TaskForm = ({ task, action }) => {
   const doUpsert = async e => {
     e.preventDefault()
     const submitResources = resources.map(resource => resource.name === '' ? null : resource)
-    createTask({ variables: { playSlug, name, description, resources: submitResources, order: 1, locale } })
+    createMove({ variables: { playSlug, name, description, resources: submitResources, order: 1, locale } })
   }
 
   return (
@@ -103,27 +103,27 @@ export const TaskForm = ({ task, action }) => {
         <div className='my-auto text-green-500'>{action === 'create' ? format('play.created') : format('play.updated')}</div>
       </div>
       <div className='p-3 font-semibold text-gray'>
-        {format('tasks.forPlay')}: {playSlug}
+        {format('moves.forPlay')}: {playSlug}
       </div>
       <div className='px-4'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
-        {action === 'update' && format('app.edit-entity', { entity: task.name })}
+        {action === 'update' && format('app.edit-entity', { entity: move.name })}
       </div>
       <div id='content' className='px-4 sm:px-0 max-w-full mx-auto'>
         <form onSubmit={doUpsert}>
           <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
             <div className='mb-4'>
               <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('tasks.name')}
+                {format('moves.name')}
               </label>
               <input
-                id='name' name='name' type='text' placeholder={format('tasks.name.placeholder')}
+                id='name' name='name' type='text' placeholder={format('moves.name.placeholder')}
                 className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
                 value={name} onChange={(e) => handleTextFieldChange(e, setName)}
               />
             </div>
             <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-              {format('tasks.description')}
+              {format('moves.description')}
             </label>
             <HtmlEditor updateText={setDescription} initialContent={description} />
             {resources && resources.map((resource, i) => {
@@ -148,7 +148,7 @@ export const TaskForm = ({ task, action }) => {
                     className='inline bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
                     onClick={(e) => deleteResource(e, i)} disabled={loading}
                   >
-                    {format('tasks.deleteResource')}
+                    {format('moves.deleteResource')}
                   </button>
                 </div>
               )
@@ -158,7 +158,7 @@ export const TaskForm = ({ task, action }) => {
                 className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
                 onClick={addResource} disabled={loading}
               >
-                {format('tasks.addResource')}
+                {format('moves.addResource')}
               </button>
             </div>
             <div className='flex items-center justify-between font-semibold text-sm mt-2'>

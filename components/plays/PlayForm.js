@@ -23,9 +23,9 @@ mutation ($name: String!, $description: String!, $tags: JSON!, $locale: String!)
         description
         locale
       }
-      playTasks {
+      playMoves {
         name
-        taskDescriptions {
+        moveDescriptions {
           description
           locale
         }

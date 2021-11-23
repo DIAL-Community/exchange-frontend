@@ -27,12 +27,12 @@ const PlayDetail = ({ play }) => {
     return map
   })()
 
-  const addTask = () => {
-    router.push(`/${locale}/plays/${play.slug}/tasks/create`)
+  const addMove = () => {
+    router.push(`/${locale}/plays/${play.slug}/moves/create`)
   }
 
-  const editTask = (e, taskSlug) => {
-    router.push(`/${locale}/plays/${play.slug}/tasks/${taskSlug}/edit`)
+  const editMove = (e, moveSlug) => {
+    router.push(`/${locale}/plays/${play.slug}/moves/${moveSlug}/edit`)
   }
 
   return (
@@ -65,16 +65,16 @@ const PlayDetail = ({ play }) => {
       </div>
       <div className='pb-4 h4'>{format('plays.tags')}: {play.tags}</div>
       <label className='block h4'>
-        {format('plays.tasks')}
+        {format('plays.moves')}
       </label>
-      {play.playTasks && play.playTasks.map((task, i) => {
+      {play.playMoves && play.playMoves.map((move, i) => {
         return (
           <div key={i} className='px-4 py-2'>
             <div className='inline w-full'>
-              <div className='h4 inline'>{format('tasks.name')}:</div> {task.name}
-              <div className='tinyEditor px-3'>{ReactHtmlParser(descriptionByLocale(task.taskDescriptions, locale))}</div>
-              <div className='px-3 py-2'><div className='h4'>{format('tasks.resources')}</div>
-                {task.resources && task.resources.map((resource, i) => {
+              <div className='h4 inline'>{format('moves.name')}:</div> {move.name}
+              <div className='tinyEditor px-3'>{ReactHtmlParser(descriptionByLocale(move.moveDescriptions, locale))}</div>
+              <div className='px-3 py-2'><div className='h4'>{format('moves.resources')}</div>
+                {move.resources && move.resources.map((resource, i) => {
                   return (
                     <div key={i} className='p-3 w-full'>
                       <a className='text-dial-yellow' href={resource.url} target='_blank' rel='noreferrer'>
@@ -87,9 +87,9 @@ const PlayDetail = ({ play }) => {
               </div>
               <button
                 className='bg-dial-gray-dark text-dial-gray-light text-sm py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                onClick={(e) => editTask(e, task.slug)}
+                onClick={(e) => editMove(e, move.slug)}
               >
-                {format('plays.editTask')}
+                {format('plays.editMove')}
               </button>
             </div>
           </div>
@@ -98,9 +98,9 @@ const PlayDetail = ({ play }) => {
       <div className='flex items-center justify-between text-sm mt-2'>
         <button
           className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-          onClick={addTask}
+          onClick={addMove}
         >
-          {format('plays.addTask')}
+          {format('plays.addMove')}
         </button>
       </div>
     </div>

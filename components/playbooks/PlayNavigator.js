@@ -59,20 +59,20 @@ const PlayDetail = ({ play }) => {
         This Play is associated with these products
       </div>
       <label className='block h4 pb-3'>
-        {format('plays.tasks')}
+        {format('plays.moves')}
       </label>
-      {play.playTasks && play.playTasks.length > 0 && (
+      {play.playMoves && play.playMoves.length > 0 && (
         <Accordion allowMultipleExpanded allowZeroExpanded>
-          {play.playTasks && play.playTasks.map((task, i) => {
+          {play.playMoves && play.playMoves.map((move, i) => {
             return (
               <AccordionItem key={i}>
                 <AccordionItemHeading>
                   <AccordionItemButton>
-                    {task.name}
+                    {move.name}
                     <AccordionItemPanel>
-                      <div className='tinyEditor px-3'>{ReactHtmlParser(descriptionByLocale(task.taskDescriptions, locale))}</div>
-                      <div className='px-3 py-2'><div className='h4'>{format('tasks.resources')}</div>
-                        {task.resources && task.resources.map((resource, i) => {
+                      <div className='tinyEditor px-3'>{ReactHtmlParser(descriptionByLocale(move.moveDescriptions, locale))}</div>
+                      <div className='px-3 py-2'><div className='h4'>{format('moves.resources')}</div>
+                        {move.resources && move.resources.map((resource, i) => {
                           return (
                             <div key={i} className='p-3 w-full'>
                               <a className='text-dial-yellow' href={resource.url} target='_blank' rel='noreferrer'>

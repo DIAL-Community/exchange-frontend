@@ -25,9 +25,9 @@ query Play($slug: String!) {
       description
       locale
     }
-    playTasks {
+    playMoves {
       name
-      taskDescriptions {
+      moveDescriptions {
         description
         locale
       }

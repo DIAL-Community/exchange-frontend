@@ -12,16 +12,16 @@ import { Loading, Error } from '../../../../../components/shared/FetchStatus'
 
 import { useIntl } from 'react-intl'
 
-import { TaskForm } from '../../../../../components/plays/tasks/TaskForm'
+import { MoveForm } from '../../../../../components/plays/moves/MoveForm'
 
-const TASK_QUERY = gql`
-query Task($slug: String!) {
-  task(slug: $slug) {
+const MOVE_QUERY = gql`
+query Move($slug: String!) {
+  move(slug: $slug) {
     id
     name
     slug
     resources
-    taskDescriptions {
+    moveDescriptions {
       description
       locale
     }
@@ -31,7 +31,7 @@ query Task($slug: String!) {
 }
 `
 
-function EditTask() {
+function EditMove() {
 
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -39,8 +39,8 @@ function EditTask() {
   const router = useRouter()
 
   const { locale } = router
-  const { taskSlug } = router.query
-  const { loading, error, data } = useQuery(TASK_QUERY, { variables: { slug: taskSlug, locale: locale }, skip: !taskSlug })
+  const { moveSlug } = router.query
+  const { loading, error, data } = useQuery(MOVE_QUERY, { variables: { slug: moveSlug, locale: locale }, skip: !moveSlug })
 
   if (loading) {
     return <Loading />
@@ -57,12 +57,12 @@ function EditTask() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      {data && data.task &&
-        <TaskForm task={data.task} action='update' />
+      {data && data.move &&
+        <MoveForm move={data.move} action='update' />
       }
       <Footer />
     </>
   )
 }
 
-export default withApollo()(EditTask)
+export default withApollo()(EditMove)

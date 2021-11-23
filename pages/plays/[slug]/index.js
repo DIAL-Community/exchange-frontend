@@ -26,11 +26,11 @@ const PLAY_QUERY = gql`
         description
         locale
       }
-      playTasks {
+      playMoves {
         name
         slug
         resources
-        taskDescriptions {
+        moveDescriptions {
           description
           locale
         }

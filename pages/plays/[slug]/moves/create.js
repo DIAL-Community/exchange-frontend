@@ -6,9 +6,9 @@ import Footer from '../../../../components/Footer'
 
 import { useIntl } from 'react-intl'
 
-import { TaskForm } from '../../../../components/plays/tasks/TaskForm'
+import { MoveForm } from '../../../../components/plays/moves/MoveForm'
 
-function CreateTask() {
+function CreateMove() {
   
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
@@ -20,10 +20,10 @@ function CreateTask() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <TaskForm task={null} action='create' />
+      <MoveForm move={null} action='create' />
       <Footer />
     </>
   )
 }
 
-export default withApollo()(CreateTask)
+export default withApollo()(CreateMove)
