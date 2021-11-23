@@ -91,6 +91,7 @@ query Product($slug: String!, $locale: String!) {
       name
       slug
       origin {
+        name
         slug
       }
     }
