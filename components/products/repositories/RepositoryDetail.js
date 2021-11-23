@@ -18,11 +18,18 @@ const USE_CASE_STEP_QUERY = gql`
       description
       absoluteUrl
       mainRepository
+
+      product {
+        id
+        name
+        slug
+      }
     }
   }
 `
 
 const ProductRepositoryInformation = ({ productRepository }) => {
+  console.log('Product Repo: ', productRepository)
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
   const { locale } = useRouter()

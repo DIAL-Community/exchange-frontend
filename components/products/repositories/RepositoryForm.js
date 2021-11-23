@@ -1,20 +1,21 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 
 import { FaSpinner } from 'react-icons/fa'
-import ReCAPTCHA from 'react-google-recaptcha'
 import { gql, useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 
 const CREATE_PRODUCT_REPOSITORY = gql`
   mutation CreateProductRepository(
+    $slug: String!,
     $name: String!,
     $absoluteUrl: String!,
     $description: String!,
     $mainRepository: Boolean!,
   ) {
     createProductRepository(
+      slug: $slug,
       name: $name,
       absoluteUrl: $absoluteUrl,
       description: $description,
@@ -23,7 +24,7 @@ const CREATE_PRODUCT_REPOSITORY = gql`
   }
 `
 
-const RepositoryForm = ({ productSlug, productRepositorySlug }) => {
+const RepositoryForm = ({ productSlug }) => {
   const { formatMessage } = useIntl()
   const [session] = useSession()
   const format = (id, values) => formatMessage({ id }, { ...values })
@@ -45,7 +46,6 @@ const RepositoryForm = ({ productSlug, productRepositorySlug }) => {
   }
 
   const router = useRouter()
-  const captchaRef = useRef()
 
   useEffect(() => {
     if (data) {
@@ -67,6 +67,7 @@ const RepositoryForm = ({ productSlug, productRepositorySlug }) => {
       createProductRepository({
         context: { headers: { 'Authorization': `${userEmail} ${userToken}` } },
         variables: {
+          slug: productSlug,
           name,
           absoluteUrl,
           description,
@@ -96,7 +97,7 @@ const RepositoryForm = ({ productSlug, productRepositorySlug }) => {
                 />
               </div>
               <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='absoluteUrl'>
-                {format('productRepository.organizationName')}
+                {format('productRepository.aboluteUrl')}
               </label>
               <input
                 id='absoluteUrl' name='absoluteUrl' type='text'
@@ -115,11 +116,10 @@ const RepositoryForm = ({ productSlug, productRepositorySlug }) => {
                 value={description} onChange={(e) => handleTextFieldChange(e, setDescription)}
               />
             </div>
-            <div className='border-b border-dial-gray my-4' />
-            <div className='px-2 pb-2 flex'>
+            <div className='flex'>
               <label className='inline-flex items-center'>
                 <input
-                  type='checkbox' className='h-4 w-4 form-checkbox text-white' name='main-repository'
+                  type='checkbox' className='h-4 w-4' name='main-repository'
                   checked={mainRepository} onChange={toggleMainRepository}
                 />
                 <span className='ml-2'>{format('productRepository.mainRepository.label')}</span>

@@ -19,12 +19,12 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
   const cardContainerStyles = () => {
     if (listStyle === 'compact') {
       return [
-        'text-use-case cursor-pointer border-transparent hover:border-r-2 hover:border-dial-yellow',
+        'text-product cursor-pointer border-transparent hover:border-r-2 hover:border-dial-yellow',
         'border border-t-0'
       ]
     } else {
       return [
-        'text-use-case border-3 border-transparent hover:border-dial-yellow hover:text-dial-yellow cursor-pointer',
+        'text-product border-3 border-transparent hover:border-dial-yellow hover:text-dial-yellow cursor-pointer',
         'border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'
       ]
     }
@@ -33,11 +33,11 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
   const [hoverStyle, containerStyle] = cardContainerStyles()
 
   return (
-    <Link href={`/${productsPath}/${productRepository.useCase.slug}/${repositoriesPath}/${productRepository.slug}`}>
+    <Link href={`/${productsPath}/${productRepository.product.slug}/${repositoriesPath}/${productRepository.slug}`}>
       <div className={hoverStyle}>
         <div className={containerStyle}>
           <div className='flex flex-row'>
-            <div className={`py-4 ${repositorySlug && repositorySlug === productRepository.slug ? 'bg-use-case' : 'bg-transparent'}`} style={{ width: '4px' }}>
+            <div className={`py-4 ${repositorySlug && repositorySlug === productRepository.slug ? 'bg-product' : 'bg-transparent'}`} style={{ width: '4px' }}>
               &nbsp;
             </div>
             <div className='py-4 px-4'>

@@ -3,20 +3,22 @@ import { useIntl } from 'react-intl'
 import RepositoryCard from './RepositoryCard'
 
 const USE_CASE_STEPS_QUERY = gql`
-query ProductRepositories(
-  $slug: String!
-  ) {
-  productRepositories(
-    slug: $slug
-  ) {
+  query ProductRepositories($slug: String!) {
+    productRepositories(slug: $slug) {
       id
       name
       slug
       description
       mainRepository
       absoluteUrl
+
+      product {
+        id
+        name
+        slug
+      }
+    }
   }
-}
 `
 
 const RepositoryList = ({ productSlug, repositorySlug, listStyle, shadowOnContainer }) => {

@@ -31,13 +31,13 @@ const ProductStep = () => {
   const { slug, repositorySlug } = router.query
   const { data } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
 
-  const slugNameMapping = (() => {
-    const map = {}
+  const slugNameMapping = {}
+  useEffect(() => {
     if (data) {
-      map[data.product.slug] = data.product.name
+      slugNameMapping.timeStamp = Date.now()
+      slugNameMapping[data.product.slug] = data.product.name
     }
-    return map
-  })()
+  }, [data])
 
   useEffect(() => {
     if (query.locale) {
@@ -60,10 +60,9 @@ const ProductStep = () => {
           {
             data && data.product &&
               <div className='border'>
-                <div className='text-xs text-right text-dial-cyan font-semibold p-1.5 border-b uppercase'>{data.product.maturity}</div>
                 <div className=' px-4 py-6 flex items-center'>
                   <img
-                    className='product-filter w-8 h-full'
+                    className='w-8 h-full'
                     alt={format('image.alt.logoFor', { name: data.product.name })}
                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.product.imageFile}
                   />

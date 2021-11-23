@@ -34,20 +34,20 @@ const Breadcrumb = (props) => {
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+  console.log('Outside: ', slugNameMapping.timeStamp)
 
   useEffect(() => {
-    if (router) {
-      const linkPath = router.asPath.split('/')
-      linkPath.shift()
+    console.log('Use Effect: ', slugNameMapping.timeStamp)
+    const linkPath = router.asPath.split('/')
+    linkPath.shift()
 
-      const pathArray = linkPath.map((path, i) => {
-        const userFriendlyPath = basePathMappings[path] ? format(basePathMappings[path]) : slugNameMapping[path]
-        return { breadcrumb: userFriendlyPath, href: '/' + linkPath.slice(0, i + 1).join('/') }
-      })
-
-      setBreadcrumbs(pathArray)
-    }
-  }, [router])
+    const pathArray = linkPath.map((path, i) => {
+      const userFriendlyPath = basePathMappings[path] ? format(basePathMappings[path]) : slugNameMapping[path]
+      return { breadcrumb: userFriendlyPath, href: '/' + linkPath.slice(0, i + 1).join('/') }
+    })
+    
+    setBreadcrumbs(pathArray)
+  }, [router, slugNameMapping.timeStamp])
 
   if (!breadcrumbs) {
     return null

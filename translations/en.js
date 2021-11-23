@@ -896,6 +896,16 @@ export const en = {
   'marker.project.title': 'Project Marker',
 
   'productRepository.header': 'Product Repositories',
-  'productRepository.label': 'Product Repository'
+  'productRepository.label': 'Product Repository',
+
+  'productRepository.name': 'Repository Name',
+  'productRepository.name.placeholder': 'Name of this repository.',
+  'productRepository.aboluteUrl': 'Repository Location',
+  'productRepository.absoluteUrl.placeholder': 'Abolute path / url of the repository.',
+  'productRepository.description': 'Repository Description',
+  'productRepository.description.placeholder': 'Short description of this repository.',
+  'productRepository.mainRepository.label': 'This is main repository.',
+  'productRepository.submit': 'Create Repository',
+  'productRepository.created': 'Product repository added.'
 
 }

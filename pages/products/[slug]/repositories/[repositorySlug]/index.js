@@ -6,7 +6,7 @@ import Head from 'next/head'
 import withApollo from '../../../../../lib/apolloClient'
 
 import RepositoryList from '../../../../../components/products/repositories/RepositoryList'
-import StepDetail from '../../../../../components/products/repositories/StepDetail'
+import RepositoryDetail from '../../../../../components/products/repositories/RepositoryDetail'
 import Breadcrumb from '../../../../../components/shared/breadcrumb'
 import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
@@ -14,8 +14,8 @@ import { gql, useQuery } from '@apollo/client'
 import { useSession } from 'next-auth/client'
 import { useEffect } from 'react'
 
-const USE_CASE_QUERY = gql`
-  query UseCase($slug: String!) {
+const PRODUCT_QUERY = gql`
+  query Product($slug: String!) {
     product(slug: $slug) {
       name
       slug
@@ -25,7 +25,7 @@ const USE_CASE_QUERY = gql`
   }
 `
 
-const UseCaseStep = () => {
+const ProductStep = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -34,7 +34,7 @@ const UseCaseStep = () => {
 
   const [session] = useSession()
   const { slug, repositorySlug } = router.query
-  const { data } = useQuery(USE_CASE_QUERY, { variables: { slug: slug } })
+  const { data } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
 
   const generateEditLink = () => {
     if (!session.user) {
@@ -92,11 +92,10 @@ const UseCaseStep = () => {
             data && data.product &&
               <>
                 <div className='border'>
-                  <div className='text-xs text-right text-dial-cyan font-semibold p-1.5 border-b uppercase'>{data.product.maturity}</div>
                   <Link href={`/products/${slug}`}>
                     <div className='cursor-pointer px-4 py-6 flex items-center'>
                       <img
-                        className='product-filter w-8 h-full'
+                        className='w-8 h-full'
                         alt={format('image.alt.logoFor', { name: data.product.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.product.imageFile}
                       />
@@ -109,7 +108,7 @@ const UseCaseStep = () => {
           <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer/>
         </div>
         <div className='w-full lg:w-2/3 xl:w-3/4'>
-          <StepDetail repositorySlug={repositorySlug} />
+          <RepositoryDetail repositorySlug={repositorySlug} />
         </div>
       </div>
       <Footer />
@@ -117,4 +116,4 @@ const UseCaseStep = () => {
   )
 }
 
-export default withApollo()(UseCaseStep)
+export default withApollo()(ProductStep)
