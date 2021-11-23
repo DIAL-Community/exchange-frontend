@@ -2,16 +2,16 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import Head from 'next/head'
 
-import Header from '../../../../components/Header'
-import Footer from '../../../../components/Footer'
-import NotFound from '../../../../components/shared/NotFound'
+import Header from '../../../../../components/Header'
+import Footer from '../../../../../components/Footer'
+import NotFound from '../../../../../components/shared/NotFound'
 
-import withApollo from '../../../../lib/apolloClient'
+import withApollo from '../../../../../lib/apolloClient'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import MoveDetail from '../../../../components/plays/moves/MoveDetail'
-import { Loading, Error } from '../../../../components/shared/FetchStatus'
+import MoveDetail from '../../../../../components/plays/moves/MoveDetail'
+import { Loading, Error } from '../../../../../components/shared/FetchStatus'
 import { useEffect } from 'react'
 
 const MOVE_QUERY = gql`
