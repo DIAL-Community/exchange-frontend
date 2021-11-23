@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import Breadcrumb from '../shared/breadcrumb'
+import Breadcrumb from '../../shared/breadcrumb'
 import { useSession } from 'next-auth/client'
 import ReactHtmlParser from 'react-html-parser'
 
