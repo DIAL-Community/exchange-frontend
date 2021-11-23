@@ -20,7 +20,7 @@ export const en = {
   'header.SDGFramework': 'SDG Framework',
   'header.help': 'Help',
   'header.about': 'About',
-  'header.confluence': 'Catalog Confluence Page',
+  'header.confluence': 'Catalog Wiki Page',
   'header.admin': 'Admin Menu',
   'header.selectLanguage': 'Select Language',
   'header.english': 'English (en)',
