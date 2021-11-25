@@ -34,7 +34,6 @@ const REPOSITORY_QUERY = gql`
 `
 
 const ProductRepositoryInformation = ({ productRepository }) => {
-  console.log('Product Repo: ', productRepository)
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
   const { locale } = useRouter()
@@ -74,7 +73,7 @@ const RepositoryDetail = ({ repositorySlug }) => {
       {
         loading &&
           <div className='absolute right-4 text-white bg-dial-gray-dark px-3 py-2 mt-2 rounded text-sm'>
-            {format('step.loading.indicator')}
+            {format('repository.loading.indicator')}
           </div>
       }
       {

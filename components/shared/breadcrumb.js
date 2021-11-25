@@ -34,10 +34,8 @@ const Breadcrumb = (props) => {
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
-  console.log('Outside: ', slugNameMapping.timeStamp)
 
   useEffect(() => {
-    console.log('Use Effect: ', slugNameMapping.timeStamp)
     const linkPath = router.asPath.split('/')
     linkPath.shift()
 
