@@ -19,7 +19,6 @@ const PRODUCT_QUERY = gql`
     product(slug: $slug) {
       name
       slug
-      maturity
       imageFile
     }
   }
@@ -41,9 +40,7 @@ const ProductStep = () => {
       return '/edit-not-available'
     }
 
-    const { userEmail, userToken } = session.user
-    return `products/${slug}/repositories/${repositorySlug}/` +
-        `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
+    return `${repositorySlug}/edit`
   }
 
   const slugNameMapping = (() => {
@@ -77,7 +74,7 @@ const ProductStep = () => {
               session && (
                 <div className='inline'>
                   {
-                    session.user.canEdit && (
+                    session.user && session.user.canEdit && (
                       <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
                         <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
                         <span className='text-sm px-2'>{format('app.edit')}</span>

@@ -74,7 +74,9 @@ const ProductStep = () => {
         </div>
         <div className='w-full lg:w-2/3 xl:w-3/4'>
           <div className='hidden lg:block'>
-            <Breadcrumb slugNameMapping={slugNameMapping} />
+            <div className='px-4'>
+              <Breadcrumb slugNameMapping={slugNameMapping} />
+            </div>
           </div>
         </div>
       </div>
