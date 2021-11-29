@@ -2,11 +2,12 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import Head from 'next/head'
+import WizardDescription from '../../../../../components/WizardDescription'
 
 import withApollo from '../../../../../lib/apolloClient'
 
 import RepositoryList from '../../../../../components/products/repositories/RepositoryList'
-import RepositoryDetail from '../../../../../components/products/repositories/RepositoryDetail'
+import RepositoryData from '../../../../../components/products/repositories/RepositoryData'
 import Breadcrumb from '../../../../../components/shared/breadcrumb'
 import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
@@ -105,7 +106,7 @@ const ProductStep = () => {
           <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer/>
         </div>
         <div className='w-full lg:w-2/3 xl:w-3/4'>
-          <RepositoryDetail repositorySlug={repositorySlug} />
+          <RepositoryData repositorySlug={repositorySlug} autoLoadData={true} />
         </div>
       </div>
       <Footer />

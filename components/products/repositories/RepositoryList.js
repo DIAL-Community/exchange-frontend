@@ -36,7 +36,7 @@ const RepositoryList = ({ productSlug, repositorySlug, listStyle, shadowOnContai
       {
         loading &&
           <div className='absolute right-4 text-white bg-dial-gray-dark px-3 py-2 mt-2 rounded text-sm'>
-            {format('steps.loading.indicator')}
+            {format('repositories.loading.indicator')}
           </div>
       }
       {

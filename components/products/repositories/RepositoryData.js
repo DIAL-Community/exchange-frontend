@@ -1,15 +1,9 @@
 import { gql, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import Breadcrumb from '../../shared/breadcrumb'
-import WorkflowCard from '../../workflows/WorkflowCard'
-import BuildingBlockCard from '../../building-blocks/BuildingBlockCard'
-import ProductCard from '../../products/ProductCard'
 import ReactHtmlParser from 'react-html-parser'
 
-import RepositoryData from '../RepositoryDetail'
-
-import { descriptionByLocale } from '../../../lib/utilities'
-import { useRouter } from 'next/router'
+import RepositoryDetail from '../RepositoryDetail'
 
 const REPOSITORY_QUERY = gql`
   query ProductRepository($slug: String!) {
@@ -33,10 +27,9 @@ const REPOSITORY_QUERY = gql`
   }
 `
 
-const ProductRepositoryInformation = ({ productRepository }) => {
+const RepositoryInformation = ({ productRepository }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
-  const { locale } = useRouter()
 
   const slugNameMapping = (() => {
     const map = {}
@@ -50,11 +43,14 @@ const ProductRepositoryInformation = ({ productRepository }) => {
       <div className='hidden lg:block'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
-      <div className='fr-view text-dial-gray-dark'>
+      <div className='text-sm font-semibold'>
+        {format('productRepository.description')}
+      </div>
+      <div className='text-sm text-dial-gray-dark'>
         {ReactHtmlParser(productRepository.description)}
       </div>
-      <div className='w-full xl:w-3/5 mt-4'>
-        <RepositoryData
+      <div className='w-full xl:w-4/5 mt-3 py-3 border-b border-gray-300'>
+        <RepositoryDetail
           repositoryData={productRepository.statisticalData.data.repository}
           languageData={productRepository.languageData.data.repository}
         />
@@ -63,11 +59,15 @@ const ProductRepositoryInformation = ({ productRepository }) => {
   )
 }
 
-const RepositoryDetail = ({ repositorySlug }) => {
+const RepositoryData = ({ repositorySlug, autoLoadData }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const { loading, data } = useQuery(REPOSITORY_QUERY, { variables: { slug: repositorySlug } })
+  const { loading, data } = useQuery(REPOSITORY_QUERY, {
+    variables: { slug: repositorySlug },
+    skip: !autoLoadData
+  })
+
   return (
     <>
       {
@@ -78,10 +78,10 @@ const RepositoryDetail = ({ repositorySlug }) => {
       }
       {
         data && data.productRepository &&
-          <ProductRepositoryInformation productRepository={data.productRepository} />
+          <RepositoryInformation productRepository={data.productRepository} />
       }
     </>
   )
 }
 
-export default RepositoryDetail
+export default RepositoryData

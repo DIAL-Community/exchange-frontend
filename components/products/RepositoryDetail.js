@@ -20,22 +20,22 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
     repositoryData
       ? (
         <>
-          <div className='h5'>
+          <div className='text-sm font-semibold'>
             {format('product.repository-info')}
             {
               lastUpdated >= lastThreeMonths &&
-                (<button className='py-1 px-2 ml-4 h5 text-white bg-dial-teal rounded'>{format('product.very-active')}</button>)
+                (<div className='inline py-1 px-2 ml-4 h5 text-white bg-dial-teal rounded'>{format('product.very-active')}</div>)
             }
             {
               (lastUpdated > lastYear && lastUpdated < lastThreeMonths) &&
-                (<button className='py-1 px-2 ml-4 h5 text-white bg-not-active rounded'>{format('product.not-very-active')}</button>)
+                (<div className='inline py-1 px-2 ml-4 h5 text-white bg-not-active rounded'>{format('product.not-very-active')}</div>)
             }
             {
               lastUpdated < lastYear &&
-                (<button className='py-1 px-2 ml-4 h5 text-white bg-button-gray-light rounded'>{format('product.inactive')}</button>)
+                (<div className='inline py-1 px-2 ml-4 h5 text-white bg-button-gray-light rounded'>{format('product.inactive')}</div>)
             }
           </div>
-          <div className='card-body pt-4'>
+          <div className='card-body pt-3'>
             <div className='grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 text-dial-gray-dark text-sm'>
               <div className='pb-4'>
                 <div><FaStar className='inline mr-2' />{format('product.star')}</div>
@@ -75,7 +75,7 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
             {
               languageData &&
                 <div>
-                  <div className='h5 mt-2 mb-2'>
+                  <div className='text-sm font-semibold my-2'>
                     {format('product.languages')}
                   </div>
                   <div className='mb-2'>
