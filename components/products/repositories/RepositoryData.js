@@ -51,8 +51,8 @@ const RepositoryInformation = ({ productRepository }) => {
       </div>
       <div className='w-full xl:w-4/5 mt-3 py-3 border-b border-gray-300'>
         <RepositoryDetail
-          repositoryData={productRepository.statisticalData.data.repository}
-          languageData={productRepository.languageData.data.repository}
+          repositoryData={productRepository.statisticalData.data?.repository}
+          languageData={productRepository.languageData.data?.repository}
         />
       </div>
     </div>
