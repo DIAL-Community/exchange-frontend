@@ -1,10 +1,15 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
+
 import ReactHtmlParser from 'react-html-parser'
+
 import { descriptionByLocale } from '../../lib/utilities'
+
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseForum } from '../shared/discourse'
 import RepositoryDetail from './RepositoryDetail'
+
 import OrganizationCard from '../organizations/OrganizationCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import SDGCard from '../sdgs/SDGCard'
@@ -12,6 +17,7 @@ import SectorCard from '../sectors/SectorCard'
 import TagCard from '../tags/TagCard'
 import ProjectCard from '../projects/ProjectCard'
 import ProductCard from './ProductCard'
+
 import RepositoryInfo from './RepositoryInfo'
 import MaturityAccordion from './Maturity'
 
@@ -98,7 +104,13 @@ const ProductDetailRight = ({ product, discourseRef }) => {
             </div>
           </div>
       }
-      <div className='card-title mt-12 mb-3 text-dial-gray-dark'>{format('product.repository')}</div>
+      <div className='card-title mt-12 mb-3'>
+        <Link href={`${product.slug}/repositories`}>
+          <a href={`${product.slug}/repositories`} className='text-dial-yellow border-b border-transparent hover:border-dial-yellow'>
+            {format('product.repository')}
+          </a>
+        </Link>
+      </div>
       <div className='w-full flex flex-col xl:flex-row'>
         <div className='w-full xl:w-2/5 mr-4 border-b xl:border-b-0 xl:border-r text-dial-purple-light'>
           {(product.childProducts.length > 0) && <div className='mb-2'>{product.name}</div>}
