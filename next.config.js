@@ -1,7 +1,7 @@
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  assetPrefix: isProd ? 'https://cdn.solutions.dial.community' : '',
+  assetPrefix: isProd ? 'https://fra1.digitaloceanspaces.com' : '',
   i18n: {
     locales: ['en', 'fr', 'de', 'cs'],
     defaultLocale: 'en',
