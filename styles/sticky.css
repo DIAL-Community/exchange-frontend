@@ -28,8 +28,9 @@
     /*
       This is sticking under the above. So the top value will be minHeight + height of the above element.
     */
-    top: 218px;
+    top: 210px;
     /* Header have z-index of 30. This will prevent this part clipping the language dropdown. */
+    z-index: 20;
   }
 
   .simple-form-height {

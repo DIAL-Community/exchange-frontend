@@ -325,7 +325,9 @@ const Filter = (props) => {
           {activeTab === 6 && <OrganizationFilter openFilter={openFilter} />}
           {activeTab === 7 && <MapFilter openFilter={openFilter} />}
         </div>
-        <div className='mx-2 md:sticky md:sticky-under-filter border-b-8 border-dial-yellow rounded-b' />
+      </div>
+      <div className='max-w-catalog mx-auto md:sticky md:sticky-under-filter'>
+        <div className='mx-2 border-b-8 border-dial-yellow rounded-b' />
       </div>
     </>
   )
