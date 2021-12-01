@@ -1,8 +1,13 @@
-import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import Link from 'next/link'
+import { useEffect } from 'react'
+
+import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/client'
+
 import Head from 'next/head'
-import WizardDescription from '../../../../../components/WizardDescription'
+import Link from 'next/link'
+
+import { gql, useQuery } from '@apollo/client'
 
 import withApollo from '../../../../../lib/apolloClient'
 
@@ -11,9 +16,6 @@ import RepositoryData from '../../../../../components/products/repositories/Repo
 import Breadcrumb from '../../../../../components/shared/breadcrumb'
 import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
-import { gql, useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/client'
-import { useEffect } from 'react'
 
 const PRODUCT_QUERY = gql`
   query Product($slug: String!) {
@@ -30,7 +32,7 @@ const ProductStep = () => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const router = useRouter()
-  const { locale, pathname, asPath, query } = useRouter()
+  const { pathname, asPath, query } = useRouter()
 
   const [session] = useSession()
   const { slug, repositorySlug } = router.query

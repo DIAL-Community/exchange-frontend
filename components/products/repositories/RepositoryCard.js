@@ -40,8 +40,9 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
             <div className={`py-4 ${repositorySlug && repositorySlug === productRepository.slug ? 'bg-product' : 'bg-transparent'}`} style={{ width: '4px' }}>
               &nbsp;
             </div>
-            <div className='py-4 px-4'>
+            <div className='py-4 px-4 flex flex-col'>
               <div className='text-base font-semibold'>{`${productRepository.name}`}</div>
+              <div className='text-sm'>{`${productRepository.absoluteUrl}`}</div>
             </div>
             <div className='bg-transparent' style={{ width: '4px' }}>
               &nbsp;

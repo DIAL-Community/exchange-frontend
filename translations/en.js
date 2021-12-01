@@ -906,6 +906,10 @@ export const en = {
   'productRepository.description.placeholder': 'Short description of this repository.',
   'productRepository.mainRepository.label': 'This is main repository.',
   'productRepository.submit': 'Create Repository',
-  'productRepository.created': 'Product repository added.'
+  'productRepository.created': 'Product repository added.',
+  'productRepositories.loading.indicator': 'Loading list of product\'s repository information ...',
+  'productRepository.loading.indicator': 'Loading current product repository information ...',
+  'productRepository.delete': 'Delete Repository',
+  'productRepository.edit': 'Edit Repository'
 
 }

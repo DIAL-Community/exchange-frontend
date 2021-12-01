@@ -46,7 +46,6 @@ const RepositoryForm = ({ productSlug }) => {
   }
 
   const router = useRouter()
-
   useEffect(() => {
     if (data) {
       setName('')
@@ -65,7 +64,7 @@ const RepositoryForm = ({ productSlug }) => {
 
       const { userEmail, userToken } = session.user
       createProductRepository({
-        context: { headers: { 'Authorization': `${userEmail} ${userToken}` } },
+        context: { headers: { Authorization: `${userEmail} ${userToken}` } },
         variables: {
           slug: productSlug,
           name,
