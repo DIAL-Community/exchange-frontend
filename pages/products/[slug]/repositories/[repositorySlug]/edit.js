@@ -15,12 +15,26 @@ import Breadcrumb from '../../../../../components/shared/breadcrumb'
 import RepositoryList from '../../../../../components/products/repositories/RepositoryList'
 import RepositoryForm from '../../../../../components/products/repositories/RepositoryForm'
 
-const PRODUCT_QUERY = gql`
-  query Product($slug: String!) {
-    product(slug: $slug) {
+
+const REPOSITORY_QUERY = gql`
+  query ProductRepository($slug: String!) {
+    productRepository(slug: $slug) {
+      id
       name
       slug
-      imageFile
+      description
+      absoluteUrl
+      mainRepository
+
+      languageData
+      statisticalData
+
+      product {
+        id
+        name
+        slug
+        imageFile
+      }
     }
   }
 `
@@ -32,12 +46,13 @@ const EditRepository = () => {
 
   const router = useRouter()
   const { slug, repositorySlug } = router.query
-  const { data } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
+  const { data } = useQuery(REPOSITORY_QUERY, { variables: { slug: repositorySlug } })
 
   const slugNameMapping = (() => {
     const map = {}
     if (data) {
-      map[data.product.slug] = data.product.name
+      map[data.productRepository.product.slug] = data.productRepository.product.name
+      map[data.productRepository.slug] = data.productRepository.name
     }
     return map
   })()
@@ -55,17 +70,17 @@ const EditRepository = () => {
             <Breadcrumb slugNameMapping={slugNameMapping} />
           </div>
           {
-            data && data.product &&
+            data && data.productRepository &&
               <>
                 <div className='border'>
                   <Link href={`/products/${slug}`}>
                     <div className='cursor-pointer px-4 py-6 flex items-center'>
                       <img
                         className='w-8 h-full'
-                        alt={format('image.alt.logoFor', { name: data.product.name })}
-                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.product.imageFile}
+                        alt={format('image.alt.logoFor', { name: data.productRepository.product.name })}
+                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.productRepository.product.imageFile}
                       />
-                      <div className='text-xl text-product font-semibold px-4'>{data.product.name}</div>
+                      <div className='text-xl text-product font-semibold px-4'>{data.productRepository.product.name}</div>
                     </div>
                   </Link>
                 </div>
@@ -74,7 +89,7 @@ const EditRepository = () => {
           <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer/>
         </div>
         <div className='w-full lg:w-2/3 xl:w-3/4'>
-          <RepositoryForm productSlug={slug} />
+          <RepositoryForm productRepository={data?.productRepository} productSlug={slug} />
         </div>
       </div>
       <Footer />

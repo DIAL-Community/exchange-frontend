@@ -24,18 +24,36 @@ const CREATE_PRODUCT_REPOSITORY = gql`
   }
 `
 
-const RepositoryForm = ({ productSlug }) => {
-  const { formatMessage } = useIntl()
+const UPDATE_PRODUCT_REPOSITORY = gql`
+  mutation CreateProductRepository(
+    $slug: String!,
+    $name: String!,
+    $absoluteUrl: String!,
+    $description: String!,
+    $mainRepository: Boolean!,
+  ) {
+    updateProductRepository(
+      slug: $slug,
+      name: $name,
+      absoluteUrl: $absoluteUrl,
+      description: $description,
+      mainRepository: $mainRepository,
+    ) { slug }
+  }
+`
+
+const RepositoryForm = ({ productRepository, productSlug }) => {
   const [session] = useSession()
+  const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const [name, setName] = useState('')
-  const [absoluteUrl, setAbsoluteUrl] = useState('')
-  const [description, setDescription] = useState('')
+  const [name, setName] = useState(productRepository ? productRepository.name : '')
+  const [absoluteUrl, setAbsoluteUrl] = useState(productRepository ? productRepository.absoluteUrl : '')
+  const [description, setDescription] = useState(productRepository ? productRepository.description : '')
   const [mainRepository, setMainRepository] = useState(false)
 
-  const [createProductRepository, { data, loading }] =
-    useMutation(CREATE_PRODUCT_REPOSITORY)
+  const [createProductRepository, { data: createData, loading: loadingCreate }] = useMutation(CREATE_PRODUCT_REPOSITORY)
+  const [updateProductRepository, { data: updateData, loading: loadingUpdate }] = useMutation(UPDATE_PRODUCT_REPOSITORY)
 
   const handleTextFieldChange = (e, callback) => {
     callback(e.target.value)
@@ -47,7 +65,7 @@ const RepositoryForm = ({ productSlug }) => {
 
   const router = useRouter()
   useEffect(() => {
-    if (data) {
+    if (createData || updateData) {
       setName('')
       setAbsoluteUrl('')
       setDescription('')
@@ -56,30 +74,35 @@ const RepositoryForm = ({ productSlug }) => {
         router.push(`/products/${productSlug}/repositories`)
       }, 5000)
     }
-  }, [data])
+  }, [createData, updateData])
 
   const handleSubmit = async (e) => {
     if (session.user) {
       e.preventDefault()
 
       const { userEmail, userToken } = session.user
-      createProductRepository({
+      const graphParameters = {
         context: { headers: { Authorization: `${userEmail} ${userToken}` } },
         variables: {
-          slug: productSlug,
+          slug: productRepository ? productRepository.slug : productSlug,
           name,
           absoluteUrl,
           description,
           mainRepository
         }
-      })
+      }
+
+      productRepository ? updateProductRepository(graphParameters) : createProductRepository(graphParameters)
     }
   }
 
   return (
     <div className='pt-4'>
-      <div className={`mx-4 ${data ? 'visible' : 'invisible'} text-center pt-4`}>
+      <div className={`mx-4 ${createData ? 'visible' : 'invisible'} text-center pt-4`}>
         <div className='my-auto text-green-500'>{format('productRepository.created')}</div>
+      </div>
+      <div className={`mx-4 ${updateData ? 'visible' : 'invisible'} text-center pt-4`}>
+        <div className='my-auto text-green-500'>{format('productRepository.updated')}</div>
       </div>
       <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
         <form method='post' onSubmit={handleSubmit}>
@@ -127,10 +150,10 @@ const RepositoryForm = ({ productSlug }) => {
             <div className='flex items-center justify-between font-semibold text-sm mt-2'>
               <button
                 className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                type='submit' disabled={loading}
+                type='submit' disabled={loadingCreate || loadingUpdate}
               >
                 {format('productRepository.submit')}
-                {loading && <FaSpinner className='spinner ml-3' />}
+                {(loadingCreate || loadingUpdate) && <FaSpinner className='spinner ml-3' />}
               </button>
             </div>
           </div>

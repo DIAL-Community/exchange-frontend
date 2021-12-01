@@ -41,8 +41,8 @@ const RepositoryInformation = ({ productRepository }) => {
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const [session] = useSession()
-  const { pathname, asPath} = useRouter()
-  const [deleteProductRepository, { data, loading }] = useMutation(DELETE_PRODUCT_REPOSITORY)
+  const { asPath} = useRouter()
+  const [deleteProductRepository, { data }] = useMutation(DELETE_PRODUCT_REPOSITORY)
 
   const router = useRouter()
   useEffect(() => {
