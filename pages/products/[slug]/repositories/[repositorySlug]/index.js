@@ -91,7 +91,7 @@ const ProductStep = () => {
           {
             data && data.product &&
               <>
-                <div className='border'>
+                <div className='border-t border-l border-r'>
                   <Link href={`/products/${slug}`}>
                     <div className='cursor-pointer px-4 py-6 flex items-center'>
                       <img

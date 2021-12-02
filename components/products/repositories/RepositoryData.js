@@ -81,19 +81,18 @@ const RepositoryInformation = ({ productRepository }) => {
     ? productRepository.statisticalData.data.repository.releases.edges[0].node.name
     : null
 
-
   return (
     <div className='px-4'>
       <div className='hidden lg:block'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='pb-5 pr-5 grid grid-cols-2'>
-        <div>
-          <div className='h5 pb-1'>{format('product.current-version')}</div>
+        <div className='text-sm'>
+          <div className='font-semibold'>{format('product.current-version')}</div>
           <div className='text-sm'>{currVersion || format('product.no-version-data')}</div>
         </div>
         <div>
-          <div className='h5 pb-1'>{format('product.license')}</div>
+          <div className='font-semibold'>{format('product.license')}</div>
           <div className='text-sm'>{productRepository.license}</div>
         </div>
       </div>
