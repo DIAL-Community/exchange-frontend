@@ -63,6 +63,11 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
     setMainRepository(!mainRepository)
   }
 
+  const goBack = () => {
+    const slug = productRepository ? productRepository.slug : ''
+    router.push(`/products/${productSlug}/repositories/${slug}`)
+  }
+
   const router = useRouter()
   useEffect(() => {
     if (createData || updateData) {
@@ -109,7 +114,7 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
   return (
     <div className='pt-4'>
       <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mr-auto'>
-        <form method='post' onSubmit={handleSubmit}>
+        <form method='post'>
           <div className='bg-white border-t shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
             <div className='mb-4'>
               <div className='mb-4'>
@@ -151,16 +156,23 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
                 <span className='ml-2'>{format('productRepository.mainRepository.label')}</span>
               </label>
             </div>
-            <div className='flex items-center justify-between text-sm mt-2'>
+            <div className='flex flex-row gap-2 text-sm mt-2'>
               <button
                 className='font-semibold bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                type='submit' disabled={loadingCreate || loadingUpdate}
+                disabled={loadingCreate || loadingUpdate}
+                onClick={handleSubmit}
               >
                 {format('productRepository.submit')}
                 {(loadingCreate || loadingUpdate) && <FaSpinner className='spinner ml-3' />}
               </button>
-              {updateData && <div className='my-auto text-green-500'>{format('productRepository.updated')}</div>}
-              {createData && <div className='my-auto text-green-500'>{format('productRepository.created')}</div>}
+              <button
+                className='font-semibold border border-dial-gray-dark text-dial-gray-dark py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+                onClick={goBack}
+              >
+                {format('productRepository.cancel')}
+              </button>
+              {updateData && <div className='ml-auto my-auto text-green-500'>{format('productRepository.updated')}</div>}
+              {createData && <div className='ml-auto my-auto text-green-500'>{format('productRepository.created')}</div>}
             </div>
           </div>
         </form>

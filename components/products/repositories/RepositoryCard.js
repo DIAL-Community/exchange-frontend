@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { useIntl } from 'react-intl'
 import { useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
 
@@ -8,9 +7,6 @@ const productsPath = convertToKey('Products')
 const repositoriesPath = convertToKey('Repositories')
 
 const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, { ...values })
-
   useEffect(() => {
     ReactTooltip.rebuild()
   })

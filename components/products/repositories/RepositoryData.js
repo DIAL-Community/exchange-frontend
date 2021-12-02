@@ -41,15 +41,15 @@ const RepositoryInformation = ({ productRepository }) => {
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const [session] = useSession()
-  const { asPath} = useRouter()
+  const { asPath } = useRouter()
   const [deleteProductRepository, { data }] = useMutation(DELETE_PRODUCT_REPOSITORY)
 
   const router = useRouter()
   useEffect(() => {
     if (data) {
-      setTimeout(() => {
-        router.push(`/products/${productRepository.product.slug}/repositories`)
-      }, 2000)
+      // setTimeout(() => {
+      //   router.push(`/products/${productRepository.product.slug}/repositories`)
+      // }, 2000)
     }
   }, [data])
 
@@ -81,9 +81,6 @@ const RepositoryInformation = ({ productRepository }) => {
       <div className='hidden lg:block'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
-      <div className={`mx-4 ${data ? 'visible' : 'invisible'} text-center pt-4`}>
-        <div className='my-auto text-green-500'>{format('productRepository.deleted')}</div>
-      </div>
       <div className='text-sm font-semibold'>
         {format('productRepository.description')}
       </div>
@@ -98,19 +95,20 @@ const RepositoryInformation = ({ productRepository }) => {
       </div>
       {
         (session?.user.canEdit || session?.user.own.products.filter(p => `${p}` === `${productRepository.product.id}`).length > 0) &&
-          <div className='my-2 flex flex-row gap-2'>
-            <button
-              className='text-black border-2 border-blue-400 hover:border-blue-500 rounded inline-flex items-center py-1 px-4'
-              onClick={handleDelete}
-            >
-              {format('productRepository.delete')}
-            </button>
+          <div className='w-full xl:w-4/5 my-2 flex flex-row gap-2'>
             <button
               className='text-white bg-blue-400 hover:bg-blue-500 rounded inline-flex items-center py-2 px-4'
               onClick={handleEdit}
             >
               {format('productRepository.edit')}
             </button>
+            <button
+              className='text-black border-2 border-blue-400 hover:border-blue-500 rounded inline-flex items-center py-1 px-4'
+              onClick={handleDelete}
+            >
+              {format('productRepository.delete')}
+            </button>
+            {data && <div className='my-auto text-green-500 ml-auto'>{format('productRepository.deleted')}</div>}
           </div>
       }
     </div>

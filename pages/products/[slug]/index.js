@@ -142,7 +142,7 @@ const Product = () => {
       behavior: 'smooth'
     })
   }
-  
+
   useEffect(() => {
     if (query.locale) {
       router.replace({ pathname }, asPath, { locale: query.locale })

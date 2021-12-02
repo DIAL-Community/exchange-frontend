@@ -27,7 +27,7 @@ const ProductStep = () => {
 
   const router = useRouter()
   const { pathname, asPath, query } = useRouter()
-  
+
   const { slug, repositorySlug } = router.query
   const { data } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
 

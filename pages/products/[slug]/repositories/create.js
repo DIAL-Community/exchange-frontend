@@ -15,7 +15,7 @@ const CreateRepository = () => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const router = useRouter()
-  const { slug, stepSlug } = router.query
+  const { slug } = router.query
 
   return (
     <>
