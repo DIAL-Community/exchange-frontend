@@ -18,6 +18,8 @@ const REPOSITORY_QUERY = gql`
       absoluteUrl
       mainRepository
 
+      license
+
       languageData
       statisticalData
 
@@ -40,16 +42,15 @@ const RepositoryInformation = ({ productRepository }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
+  const router = useRouter()
   const [session] = useSession()
-  const { asPath } = useRouter()
   const [deleteProductRepository, { data }] = useMutation(DELETE_PRODUCT_REPOSITORY)
 
-  const router = useRouter()
   useEffect(() => {
     if (data) {
-      // setTimeout(() => {
-      //   router.push(`/products/${productRepository.product.slug}/repositories`)
-      // }, 2000)
+      setTimeout(() => {
+        router.push(`/products/${productRepository.product.slug}/repositories`)
+      }, 2000)
     }
   }, [data])
 
@@ -61,7 +62,7 @@ const RepositoryInformation = ({ productRepository }) => {
   })()
 
   const handleEdit = () => {
-    router.push(`${asPath}/edit`)
+    router.push(`${router.asPath}/edit`)
   }
 
   const handleDelete = () => {
@@ -76,10 +77,25 @@ const RepositoryInformation = ({ productRepository }) => {
     }
   }
 
+  const currVersion = productRepository?.statisticalData?.data?.repository?.releases?.edges[0]
+    ? productRepository.statisticalData.data.repository.releases.edges[0].node.name
+    : null
+
+
   return (
     <div className='px-4'>
       <div className='hidden lg:block'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
+      </div>
+      <div className='pb-5 pr-5 grid grid-cols-2'>
+        <div>
+          <div className='h5 pb-1'>{format('product.current-version')}</div>
+          <div className='text-sm'>{currVersion || format('product.no-version-data')}</div>
+        </div>
+        <div>
+          <div className='h5 pb-1'>{format('product.license')}</div>
+          <div className='text-sm'>{productRepository.license}</div>
+        </div>
       </div>
       <div className='text-sm font-semibold'>
         {format('productRepository.description')}
