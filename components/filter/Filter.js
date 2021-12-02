@@ -304,14 +304,6 @@ const Filter = (props) => {
                           </div>
                       }
                     </div>
-                    {activeTab === 0 && <SDGFilter openFilter={openFilter} />}
-                    {activeTab === 1 && <UseCaseFilter openFilter={openFilter} />}
-                    {activeTab === 2 && <WorkflowFilter openFilter={openFilter} />}
-                    {activeTab === 3 && <BuildingBlockFilter openFilter={openFilter} />}
-                    {activeTab === 4 && <ProductFilter openFilter={openFilter} />}
-                    {activeTab === 5 && <ProjectFilter openFilter={openFilter} />}
-                    {activeTab === 6 && <OrganizationFilter openFilter={openFilter} />}
-                    {activeTab === 7 && <MapFilter openFilter={openFilter} />}
                   </div>
                 </div>
             }
@@ -319,9 +311,23 @@ const Filter = (props) => {
               openHint &&
                 <FilterHint activeTab={activeTab} openHint={openHint} setOpenHint={setOpenHint} />
             }
-            <div className='border-b-8 border-dial-yellow rounded-b' />
           </div>
         </div>
+      </div>
+      <div className='max-w-catalog mx-auto'>
+        <div className='mx-2 bg-dial-gray-dark flex-auto tab-content tab-space'>
+          {activeTab === 0 && <SDGFilter openFilter={openFilter} />}
+          {activeTab === 1 && <UseCaseFilter openFilter={openFilter} />}
+          {activeTab === 2 && <WorkflowFilter openFilter={openFilter} />}
+          {activeTab === 3 && <BuildingBlockFilter openFilter={openFilter} />}
+          {activeTab === 4 && <ProductFilter openFilter={openFilter} />}
+          {activeTab === 5 && <ProjectFilter openFilter={openFilter} />}
+          {activeTab === 6 && <OrganizationFilter openFilter={openFilter} />}
+          {activeTab === 7 && <MapFilter openFilter={openFilter} />}
+        </div>
+      </div>
+      <div className='max-w-catalog mx-auto md:sticky md:sticky-under-filter'>
+        <div className='mx-2 border-b-8 border-dial-yellow rounded-b' />
       </div>
     </>
   )

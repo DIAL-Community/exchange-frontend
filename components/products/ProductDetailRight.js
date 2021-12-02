@@ -104,13 +104,36 @@ const ProductDetailRight = ({ product, discourseRef }) => {
             </div>
           </div>
       }
-      <div className='card-title mt-12 mb-3'>
-        <Link href={`${product.slug}/repositories`}>
-          <a href={`${product.slug}/repositories`} className='text-dial-yellow border-b border-transparent hover:border-dial-yellow'>
-            {format('product.repository')}
-          </a>
-        </Link>
+      <div className='mt-12 card-title mb-3 text-dial-gray-dark'>{format('product.source')}</div>
+      <div className='grid grid-cols-3'>
+        <div className='pb-5 pr-5'>
+          {product.origins.map((origin, i) => {
+            return (
+              <div key={i}>
+                <img src={'/images/origins/' + origin.slug + '.png'} height='20px' width='20px' className='inline' />
+                <div key={i} className='inline ml-2 text-sm'>{origin.name}</div>
+                {origin.slug === 'dpga' && product.endorsers.length === 0 && (
+                  <div className='inline ml-2 h5'>{format('product.nominee')}</div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+        <div className='pb-5 pr-5 col-span-2'>
+          {product.endorsers.length > 0 && product.endorsers.map((endorser, i) => {
+            return (
+              <div key={i}>
+                <div className='h5 pb-1'>{format('product.endorsers')}</div>
+                <div>
+                  <img data-tip={format('product.endorsed-by')} src={'/images/origins/' + endorser.slug + '.png'} height='20px' width='20px' className='inline' />
+                  <div key={i} className='text-sm inline ml-2'>{format('product.endorsed-by') + endorser.name}</div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
+      <div className='card-title mt-12 mb-3 text-dial-gray-dark'>{format('product.repository')}</div>
       <div className='w-full flex flex-col xl:flex-row'>
         <div className='w-full xl:w-2/5 mr-4 border-b xl:border-b-0 xl:border-r text-dial-purple-light'>
           {(product.childProducts.length > 0) && <div className='mb-2'>{product.name}</div>}

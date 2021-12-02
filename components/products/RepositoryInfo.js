@@ -32,28 +32,6 @@ const RepositoryInfo = ({ product }) => {
           <div className='text-sm'>{product.license}</div>
         </div>
       </div>
-      <div className='pb-5 pr-5'>
-        <div className='h5 pb-1'>{format('product.source')}</div>
-        {product.origins.map((origin, i) => {
-          return (
-            <div key={i}>
-              <img src={'/images/origins/' + origin.slug + '.png'} height='20px' width='20px' className='inline' />
-              <div key={i} className='inline ml-2 text-sm'>{origin.name}</div>
-            </div>
-          )
-        })}
-      </div>
-      <div className='pb-5 pr-5'>
-        <div className='h5 pb-1'>{format('product.endorsers')}</div>
-        {product.endorsers && product.endorsers.map((endorser, i) => {
-          return (
-            <div key={i}>
-              <img data-tip={format('product.endorsed-by')} src={'/images/origins/' + endorser.slug + '.png'} height='20px' width='20px' className='inline' />
-              <div key={i} data-tip={format('product.endorsed-by') + endorser.name} className='text-sm inline ml-2'>{endorser.name}</div>
-            </div>
-          )
-        })}
-      </div>
     </>
   )
 }
