@@ -1,18 +1,16 @@
 import dynamic from 'next/dynamic'
 import { MdClose } from 'react-icons/md'
 import { useIntl } from 'react-intl'
+import { asyncSelectStyles } from '../../../lib/utilities'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
 const customStyles = {
+  ...asyncSelectStyles,
   control: (provided) => ({
     ...provided,
     width: '14rem',
-    cursor: 'pointer'
-  }),
-  option: (provided) => ({
-    ...provided,
     cursor: 'pointer'
   })
 }

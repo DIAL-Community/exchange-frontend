@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { asyncSelectStyles } from '../../../lib/utilities'
 
 import { BuildingBlockLogo } from '../../logo'
 
@@ -19,13 +20,10 @@ const BUILDING_BLOCK_SEARCH_QUERY = gql`
 `
 
 const customStyles = {
+  ...asyncSelectStyles,
   control: (provided) => ({
     ...provided,
     width: '14rem',
-    cursor: 'pointer'
-  }),
-  option: (provided) => ({
-    ...provided,
     cursor: 'pointer'
   })
 }

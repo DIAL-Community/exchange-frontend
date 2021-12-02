@@ -3,6 +3,7 @@ import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
+import { asyncSelectStyles } from '../../../lib/utilities'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
@@ -18,13 +19,10 @@ const SECTOR_SEARCH_QUERY = gql`
 `
 
 const customStyles = {
+  ...asyncSelectStyles,
   control: (provided) => ({
     ...provided,
     width: '12rem',
-    cursor: 'pointer'
-  }),
-  option: (provided) => ({
-    ...provided,
     cursor: 'pointer'
   })
 }

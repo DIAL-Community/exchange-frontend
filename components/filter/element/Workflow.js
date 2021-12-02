@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { asyncSelectStyles } from '../../../lib/utilities'
 
 import { WorkflowLogo } from '../../logo'
 
@@ -19,13 +20,10 @@ const WORKFLOW_SEARCH_QUERY = gql`
 `
 
 const customStyles = {
+  ...asyncSelectStyles,
   control: (provided) => ({
     ...provided,
     width: '11rem',
-    cursor: 'pointer'
-  }),
-  option: (provided) => ({
-    ...provided,
     cursor: 'pointer'
   })
 }
