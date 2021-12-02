@@ -98,13 +98,13 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
 
   return (
     <div className='pt-4'>
-      <div className={`mx-4 ${createData ? 'visible' : 'invisible'} text-center pt-4`}>
+      <div className={`mx-4 ${createData ? 'show' : 'hidden'} text-center pt-4`}>
         <div className='my-auto text-green-500'>{format('productRepository.created')}</div>
       </div>
-      <div className={`mx-4 ${updateData ? 'visible' : 'invisible'} text-center pt-4`}>
+      <div className={`mx-4 ${updateData ? 'show' : 'hidden'} text-center pt-4`}>
         <div className='my-auto text-green-500'>{format('productRepository.updated')}</div>
       </div>
-      <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
+      <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mr-auto'>
         <form method='post' onSubmit={handleSubmit}>
           <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
             <div className='mb-4'>
