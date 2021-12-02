@@ -47,9 +47,9 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const [name, setName] = useState(productRepository ? productRepository.name : '')
-  const [absoluteUrl, setAbsoluteUrl] = useState(productRepository ? productRepository.absoluteUrl : '')
-  const [description, setDescription] = useState(productRepository ? productRepository.description : '')
+  const [name, setName] = useState('')
+  const [absoluteUrl, setAbsoluteUrl] = useState('')
+  const [description, setDescription] = useState('')
   const [mainRepository, setMainRepository] = useState(false)
 
   const [createProductRepository, { data: createData, loading: loadingCreate }] = useMutation(CREATE_PRODUCT_REPOSITORY)
@@ -71,10 +71,20 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
       setDescription('')
       setMainRepository(false)
       setTimeout(() => {
-        router.push(`/products/${productSlug}/repositories`)
-      }, 5000)
+        const slug = createData ? createData.createProductRepository.slug : updateData.updateProductRepository.slug
+        router.push(`/products/${productSlug}/repositories/${slug}`)
+      }, 2000)
     }
   }, [createData, updateData])
+
+  useEffect(() => {
+    if (productRepository) {
+      setName(productRepository.name)
+      setAbsoluteUrl(productRepository.absoluteUrl)
+      setDescription(productRepository.description)
+      setMainRepository(toString(productRepository.mainRepository) === 'true')
+    }
+  }, [productRepository])
 
   const handleSubmit = async (e) => {
     if (session.user) {
@@ -98,15 +108,9 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
 
   return (
     <div className='pt-4'>
-      <div className={`mx-4 ${createData ? 'show' : 'hidden'} text-center pt-4`}>
-        <div className='my-auto text-green-500'>{format('productRepository.created')}</div>
-      </div>
-      <div className={`mx-4 ${updateData ? 'show' : 'hidden'} text-center pt-4`}>
-        <div className='my-auto text-green-500'>{format('productRepository.updated')}</div>
-      </div>
       <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mr-auto'>
         <form method='post' onSubmit={handleSubmit}>
-          <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
+          <div className='bg-white border-t shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
             <div className='mb-4'>
               <div className='mb-4'>
                 <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
@@ -147,14 +151,16 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
                 <span className='ml-2'>{format('productRepository.mainRepository.label')}</span>
               </label>
             </div>
-            <div className='flex items-center justify-between font-semibold text-sm mt-2'>
+            <div className='flex items-center justify-between text-sm mt-2'>
               <button
-                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+                className='font-semibold bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
                 type='submit' disabled={loadingCreate || loadingUpdate}
               >
                 {format('productRepository.submit')}
                 {(loadingCreate || loadingUpdate) && <FaSpinner className='spinner ml-3' />}
               </button>
+              {updateData && <div className='my-auto text-green-500'>{format('productRepository.updated')}</div>}
+              {createData && <div className='my-auto text-green-500'>{format('productRepository.created')}</div>}
             </div>
           </div>
         </form>

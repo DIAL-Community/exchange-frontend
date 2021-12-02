@@ -906,11 +906,13 @@ export const en = {
   'productRepository.description': 'Repository Description',
   'productRepository.description.placeholder': 'Short description of this repository.',
   'productRepository.mainRepository.label': 'This is main repository.',
-  'productRepository.submit': 'Create Repository',
+  'productRepository.submit': 'Submit',
   'productRepository.created': 'Product repository added.',
   'productRepositories.loading.indicator': 'Loading list of product\'s repository information ...',
   'productRepository.loading.indicator': 'Loading current product repository information ...',
   'productRepository.delete': 'Delete Repository',
-  'productRepository.edit': 'Edit Repository'
+  'productRepository.edit': 'Edit Repository',
+  'productRepository.created': 'Product repository created.',
+  'productRepository.updated': 'Product repository updated.'
 
 }

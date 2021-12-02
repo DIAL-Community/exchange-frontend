@@ -19,18 +19,13 @@ import RepositoryForm from '../../../../../components/products/repositories/Repo
 const REPOSITORY_QUERY = gql`
   query ProductRepository($slug: String!) {
     productRepository(slug: $slug) {
-      id
       name
       slug
       description
       absoluteUrl
       mainRepository
 
-      languageData
-      statisticalData
-
       product {
-        id
         name
         slug
         imageFile
