@@ -114,10 +114,10 @@ const ProductDetailRight = ({ product, discourseRef }) => {
           })}
         </div>
         <div className='pb-5 pr-5 col-span-2'>
+          {product.endorsers.length > 0 && <div className='h5 pb-1'>{format('product.endorsers')}</div>}
           {product.endorsers.length > 0 && product.endorsers.map((endorser, i) => {
             return (
               <div key={i}>
-                <div className='h5 pb-1'>{format('product.endorsers')}</div>
                 <div>
                   <img data-tip={format('product.endorsed-by')} src={'/images/origins/' + endorser.slug + '.png'} height='20px' width='20px' className='inline' />
                   <div key={i} className='text-sm inline ml-2'>{format('product.endorsed-by') + endorser.name}</div>
