@@ -124,21 +124,19 @@ const SearchFilter = (props) => {
     return convertKeys(exportParameters)
   }
 
-  const asyncExport = (e, acceptType, contentType) => {
+  const asyncExport = (e, fileType) => {
     e.preventDefault()
     setLoading(true)
 
     const { userEmail } = session.user
-    const fileExtension = acceptType === 'application/json' ? 'json': 'csv'
-    const exportPath = process.env.NEXT_PUBLIC_AUTH_SERVER + `/api/v1/${linkPath[0]}`
+    const exportPath = process.env.NEXT_PUBLIC_AUTH_SERVER + `/api/v1/${linkPath[0]}.${fileType}`
     fetch(
       exportPath,
       {
         method: 'POST',
         mode: 'cors',
         headers: {
-          Accept: acceptType,
-          'Content-Type': contentType,
+          'Content-Type': 'application/json',
           'X-Requested-With': 'XMLHttpRequest',
           'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
           'Access-Control-Allow-Credentials': true,
@@ -171,19 +169,17 @@ const SearchFilter = (props) => {
     .then(stream => new Response(stream))
     .then(response => response.blob())
     .then(blob => {
-      saveAs(blob, `${linkPath[0]}-data.${fileExtension}`)
+      saveAs(blob, `${linkPath[0]}-data.${fileType}`)
       setLoading(false)
     })
   }
 
   const exportAsJson = async (e) => {
-    const mimeType = 'application/json'
-    asyncExport(e, mimeType, mimeType)
+    asyncExport(e, 'json')
   }
 
   const exportAsCsv = async (e) => {
-    const mimeType = 'text/csv; charset=utf-8'
-    asyncExport(e, mimeType, mimeType)
+    asyncExport(e, 'csv')
   }
 
   return (
@@ -245,22 +241,22 @@ const SearchFilter = (props) => {
                       <span className='text-dial-yellow'>{format('app.create-new')}</span>
                     </a>
                     <div className='border-r mx-2 border-gray-400' />
+                    <a
+                      className='border-b-2 border-transparent hover:border-dial-yellow'
+                      href='/export-as-json' onClick={(e) => exportAsJson(e)}
+                    >
+                      <span className='text-dial-yellow'>{format('app.exportAsJson')}</span>
+                    </a>
+                    <div className='border-r mx-2 border-gray-400' />
+                    <a
+                      className='border-b-2 border-transparent hover:border-dial-yellow'
+                      href='/export-as-csv' onClick={(e) => exportAsCsv(e)}
+                    >
+                      <span className='text-dial-yellow'>{format('app.exportAsCSV')}</span>
+                    </a>
                   </>
                 )
               }
-              <a
-                className='border-b-2 border-transparent hover:border-dial-yellow'
-                href='/export-as-json' onClick={(e) => exportAsJson(e)}
-              >
-                <span className='text-dial-yellow'>{format('app.exportAsJson')}</span>
-              </a>
-              <div className='border-r mx-2 border-gray-400' />
-              <a
-                className='border-b-2 border-transparent hover:border-dial-yellow'
-                href='/export-as-csv' onClick={(e) => exportAsCsv(e)}
-              >
-                <span className='text-dial-yellow'>{format('app.exportAsCSV')}</span>
-              </a>
             </div>
           </div>
         </div>

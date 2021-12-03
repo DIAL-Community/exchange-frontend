@@ -21,9 +21,15 @@ const customStyles = {
   ...asyncSelectStyles,
   control: (provided) => ({
     ...provided,
-    width: '12rem',
+    width: '16rem',
     cursor: 'pointer'
-  })
+  }),
+  option: (provided) => ({
+    ...provided,
+    cursor: 'pointer'
+  }),
+  menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
+  menu: (provided) => ({ ...provided, zIndex: 30 })
 }
 
 export const OrganizationAutocomplete = (props) => {
