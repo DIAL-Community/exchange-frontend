@@ -62,7 +62,6 @@ query SearchProducts(
       name
       slug
       imageFile
-      license
       isLaunchable
       maturityScore
       productType
@@ -92,6 +91,9 @@ query SearchProducts(
       organizations {
         name
         isEndorser
+      }
+      mainRepository {
+        id
       }
     }
   }

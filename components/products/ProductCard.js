@@ -209,7 +209,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                     <div className='pl-3 py-3 flex-auto flex flex-col'>
                       <div className='text-base my-auto'>{format('product.card.license')}</div>
                       <div className='bg-white mt-1.5 mr-auto p-2 rounded text-sm font-semibold'>
-                        {(product.license || format('general.na')).toUpperCase()}
+                        {(product.mainRepository?.license || format('general.na')).toUpperCase()}
                       </div>
                     </div>
                     {
