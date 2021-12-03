@@ -50,7 +50,7 @@ const ProductFilter = (props) => {
 
   const toggleForCovid = () => {
     !forCovid
-      ? setTags([...tags.filter(s => s.value !== 'COVID-19'), { label: 'COVID-19', value: 'COVID-19' }])
+      ? setTags([...tags.filter(s => s.value !== 'COVID-19'), { label: 'COVID-19', value: 'COVID-19', slug: 'COVID-19' }])
       : setTags(tags.filter(tag => tag.value !== 'COVID-19'))
 
     setForCovid(!forCovid)

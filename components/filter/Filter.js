@@ -315,7 +315,7 @@ const Filter = (props) => {
         </div>
       </div>
       <div className='max-w-catalog mx-auto'>
-        <div className='mx-2 bg-dial-gray-dark flex-auto tab-content tab-space'>
+        <div className='mx-2 bg-dial-gray-dark flex-auto tab-content tab-space non-sticky-filter'>
           {activeTab === 0 && <SDGFilter openFilter={openFilter} />}
           {activeTab === 1 && <UseCaseFilter openFilter={openFilter} />}
           {activeTab === 2 && <WorkflowFilter openFilter={openFilter} />}

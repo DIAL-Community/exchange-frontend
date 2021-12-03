@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { asyncSelectStyles } from '../../../lib/utilities'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
@@ -17,15 +18,19 @@ const COUNTRY_SEARCH_QUERY = gql`
 `
 
 const customStyles = {
+  ...asyncSelectStyles,
   control: (provided) => ({
     ...provided,
-    width: '10rem',
+    width: '12rem',
     cursor: 'pointer'
   }),
   option: (provided) => ({
     ...provided,
-    cursor: 'pointer'
-  })
+    cursor: 'pointer',
+    zIndex: '100'
+  }),
+  menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
+  menu: (provided) => ({ ...provided, zIndex: 30 })
 }
 
 export const CountryAutocomplete = (props) => {

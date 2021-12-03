@@ -1,9 +1,8 @@
 import dynamic from 'next/dynamic'
-
 import { MdClose } from 'react-icons/md'
-
 import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { asyncSelectStyles } from '../../../lib/utilities'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
@@ -19,6 +18,7 @@ const TAG_SEARCH_QUERY = gql`
 `
 
 const customStyles = {
+  ...asyncSelectStyles,
   control: (provided) => ({
     ...provided,
     width: '12rem',
@@ -27,7 +27,9 @@ const customStyles = {
   option: (provided) => ({
     ...provided,
     cursor: 'pointer'
-  })
+  }),
+  menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
+  menu: (provided) => ({ ...provided, zIndex: 30 })
 }
 
 export const TagAutocomplete = (props) => {
@@ -57,7 +59,7 @@ export const TagAutocomplete = (props) => {
       return response.data.tags.map((tag) => ({
         label: tag.name,
         value: tag.id,
-        slug: tag.slug
+        slug: tag.name
       }))
     }
 
