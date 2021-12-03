@@ -23,7 +23,13 @@ const customStyles = {
     ...provided,
     width: '12rem',
     cursor: 'pointer'
-  })
+  }),
+  option: (provided) => ({
+    ...provided,
+    cursor: 'pointer'
+  }),
+  menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
+  menu: (provided) => ({ ...provided, zIndex: 30 })
 }
 
 export const TagAutocomplete = (props) => {
@@ -53,7 +59,7 @@ export const TagAutocomplete = (props) => {
       return response.data.tags.map((tag) => ({
         label: tag.name,
         value: tag.id,
-        slug: tag.slug
+        slug: tag.name
       }))
     }
 
