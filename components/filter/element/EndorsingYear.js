@@ -12,7 +12,13 @@ const customStyles = {
     ...provided,
     width: '14rem',
     cursor: 'pointer'
-  })
+  }),
+  option: (provided) => ({
+    ...provided,
+    cursor: 'pointer'
+  }),
+  menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
+  menu: (provided) => ({ ...provided, zIndex: 30 })
 }
 
 export const EndorsingYearSelect = (props) => {
