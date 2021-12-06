@@ -35,12 +35,13 @@ const ProductRepositories = () => {
   const { slug, repositorySlug } = router.query
   const { data } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
 
-  const slugNameMapping = {}
-  useEffect(() => {
-    if (data?.product) {
-      slugNameMapping[data.product.slug] = data.product.name
+  const slugNameMapping = (() => {
+    const map = {}
+    if (data) {
+      map[data.product.slug] = data.product.name
     }
-  }, [data?.product])
+    return map
+  })()
 
   useEffect(() => {
     if (query.locale) {

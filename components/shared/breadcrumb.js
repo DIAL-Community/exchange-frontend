@@ -30,7 +30,7 @@ const Breadcrumb = (props) => {
   const { slugNameMapping } = props
 
   const router = useRouter()
-  const [breadcrumbs, setBreadcrumbs] = useState(null)
+  const [breadcrumbs, setBreadcrumbs] = useState([])
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
