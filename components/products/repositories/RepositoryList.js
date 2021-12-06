@@ -28,7 +28,8 @@ const RepositoryList = ({ productSlug, repositorySlug, listStyle, shadowOnContai
   const { loading, data } = useQuery(REPOSITORIES_QUERY, {
     variables: {
       slug: productSlug
-    }
+    },
+    nextFetchPolicy: 'cache-and-network'
   })
 
   return (
