@@ -87,7 +87,7 @@ export const en = {
   'product.languages': 'Languages',
   'product.website': 'Website',
   'product.description': 'Description',
-  'product.repository': 'Code Repository',
+  'product.repository': 'Code Repositories',
   'product.current-version': 'Current Version',
   'product.license': 'License',
   'product.source': 'Data Sources',

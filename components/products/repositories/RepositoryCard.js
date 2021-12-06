@@ -1,12 +1,17 @@
 import Link from 'next/link'
 import { useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
+import { useIntl, FormattedDate } from 'react-intl'
+import { FaStar, FaCalendar, FaCalendarAlt } from 'react-icons/fa'
 
 import { convertToKey } from '../../context/FilterContext'
 const productsPath = convertToKey('Products')
 const repositoriesPath = convertToKey('Repositories')
 
 const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
   useEffect(() => {
     ReactTooltip.rebuild()
   })
@@ -32,17 +37,35 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
     <Link href={`/${productsPath}/${productRepository.product.slug}/${repositoriesPath}/${productRepository.slug}`}>
       <div className={hoverStyle}>
         <div className={containerStyle}>
-          <div className='flex flex-row'>
-            <div className={`py-4 ${repositorySlug && repositorySlug === productRepository.slug ? 'bg-product' : 'bg-transparent'}`} style={{ width: '4px' }}>
-              &nbsp;
+          <div className='flex flex-row justify-between'>
+            <div className='flex justify-self-start'>
+              <div className={`py-4 ${repositorySlug && repositorySlug === productRepository.slug ? 'bg-product' : 'bg-transparent'}`} style={{ width: '4px' }}>
+                &nbsp;
+              </div>
+              <div className='py-4 px-4 flex flex-col'>
+                <div className='text-base font-semibold'>{`${productRepository.name}`}</div>
+                <div className='text-sm'>{`${productRepository.absoluteUrl}`}</div>
+              </div>
+              <div className='bg-transparent' style={{ width: '4px' }}>
+                &nbsp;
+              </div>
             </div>
-            <div className='py-4 px-4 flex flex-col'>
-              <div className='text-base font-semibold'>{`${productRepository.name}`}</div>
-              <div className='text-sm'>{`${productRepository.absoluteUrl}`}</div>
-            </div>
-            <div className='bg-transparent' style={{ width: '4px' }}>
-              &nbsp;
-            </div>
+            {listStyle !== 'compact' && (
+              <div className='w-1/2 grid grid-cols-3 text-sm py-3'>
+                <div className='pb-4'>
+                  <div><FaStar className='inline mr-2' />{format('product.star')}</div>
+                  <div>{productRepository.statisticalData.data && productRepository.statisticalData.data.repository.stargazers.totalCount}</div>
+                </div>
+                <div className='pb-4'>
+                  <div><FaCalendar className='inline mr-2' />{format('product.created')}</div>
+                  <div><FormattedDate value={new Date(productRepository.statisticalData.data.repository.createdAt)} year='numeric' month='long' day='2-digit' /></div>
+                </div>
+                <div className='pb-4'>
+                  <div><FaCalendarAlt className='inline mr-2' />{format('product.last-updated')}</div>
+                  <div><FormattedDate value={new Date(productRepository.statisticalData.data.repository.updatedAt)} year='numeric' month='long' day='2-digit' /></div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
