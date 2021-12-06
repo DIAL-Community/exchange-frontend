@@ -93,7 +93,7 @@ query SearchProducts(
         isEndorser
       }
       mainRepository {
-        id
+        license
       }
     }
   }

@@ -136,11 +136,7 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
           </div>
         </>
         )
-      : (
-        <div className='h4'>
-          {format('product.repository-info')}
-        </div>
-        )
+      : (<></>)
   )
 }
 

@@ -132,7 +132,13 @@ const ProductDetailRight = ({ product, discourseRef }) => {
           })}
         </div>
       </div>
-      <div className='card-title mt-12 mb-3 text-dial-gray-dark'>{format('product.repository')}</div>
+      <Link href={`${product.slug}/repositories`}>
+        <div className='card-title mt-12 mb-3'>
+          <span className='cursor-pointer text-dial-gray-dark border-b-2 border-transparent hover:border-dial-yellow inline'>
+            {format('product.repository')}
+          </span>
+        </div>
+      </Link>
       <RepositoryList productSlug={product.slug} />
       <div className='mt-12 grid grid-cols-1 xl:grid-cols-2 gap-y-12 xl:gap-y-0'>
         <div>

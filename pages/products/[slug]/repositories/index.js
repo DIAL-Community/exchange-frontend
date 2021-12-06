@@ -1,15 +1,18 @@
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useEffect } from 'react'
+import { useSession } from 'next-auth/client'
+
+import Link from 'next/link'
 import Head from 'next/head'
 
+import { gql, useQuery } from '@apollo/client'
 import withApollo from '../../../../lib/apolloClient'
 
-import RepositoryList from '../../../../components/products/repositories/RepositoryList'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
-import { gql, useQuery } from '@apollo/client'
+import RepositoryList from '../../../../components/products/repositories/RepositoryList'
 import Breadcrumb from '../../../../components/shared/breadcrumb'
-import { useEffect } from 'react'
 
 const PRODUCT_QUERY = gql`
   query Product($slug: String!) {
@@ -21,7 +24,8 @@ const PRODUCT_QUERY = gql`
   }
 `
 
-const ProductStep = () => {
+const ProductRepositories = () => {
+  const [session] = useSession()
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -33,11 +37,10 @@ const ProductStep = () => {
 
   const slugNameMapping = {}
   useEffect(() => {
-    if (data) {
-      slugNameMapping.timeStamp = Date.now()
+    if (data?.product) {
       slugNameMapping[data.product.slug] = data.product.name
     }
-  }, [data])
+  }, [data?.product])
 
   useEffect(() => {
     if (query.locale) {
@@ -57,17 +60,31 @@ const ProductStep = () => {
           <div className='block lg:hidden'>
             <Breadcrumb slugNameMapping={slugNameMapping} />
           </div>
+          <div className='w-full mb-2'>
+            <div className='inline'>
+              {
+                session?.user && session?.user.canEdit && (
+                  <a href='repositories/create' className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
+                    <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
+                    <span className='text-sm px-2'>{format('app.create-new')}</span>
+                  </a>
+                )
+              }
+            </div>
+          </div>
           {
             data && data.product &&
               <div className='border'>
-                <div className=' px-4 py-6 flex items-center'>
-                  <img
-                    className='w-8 h-full'
-                    alt={format('image.alt.logoFor', { name: data.product.name })}
-                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.product.imageFile}
-                  />
-                  <div className='text-xl text-product font-semibold px-4'>{data.product.name}</div>
-                </div>
+                <Link href={`/products/${slug}`}>
+                  <div className='cursor-pointer px-4 py-6 flex items-center'>
+                    <img
+                      className='w-8 h-full'
+                      alt={format('image.alt.logoFor', { name: data.product.name })}
+                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.product.imageFile}
+                    />
+                    <div className='text-xl text-product font-semibold px-4'>{data.product.name}</div>
+                  </div>
+                </Link>
               </div>
           }
           <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer />
@@ -85,4 +102,4 @@ const ProductStep = () => {
   )
 }
 
-export default withApollo()(ProductStep)
+export default withApollo()(ProductRepositories)

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 
+import Link from 'next/link'
+
 import { FaSpinner } from 'react-icons/fa'
 import { gql, useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
@@ -43,7 +45,9 @@ const UPDATE_PRODUCT_REPOSITORY = gql`
 `
 
 const RepositoryForm = ({ productRepository, productSlug }) => {
+  const router = useRouter()
   const [session] = useSession()
+
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
@@ -63,12 +67,11 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
     setMainRepository(!mainRepository)
   }
 
-  const goBack = () => {
+  const goBackPath = () => {
     const slug = productRepository ? productRepository.slug : ''
-    router.push(`/products/${productSlug}/repositories/${slug}`)
+    return `/products/${productSlug}/repositories/${slug}`
   }
 
-  const router = useRouter()
   useEffect(() => {
     if (createData || updateData) {
       setName('')
@@ -112,7 +115,7 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
   }
 
   return (
-    <div className='pt-4'>
+    <div className='block'>
       <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mr-auto'>
         <form method='post'>
           <div className='bg-white border-t shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
@@ -165,12 +168,13 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
                 {format('productRepository.submit')}
                 {(loadingCreate || loadingUpdate) && <FaSpinner className='spinner ml-3' />}
               </button>
-              <button
-                className='font-semibold border border-dial-gray-dark text-dial-gray-dark py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                onClick={goBack}
-              >
-                {format('productRepository.cancel')}
-              </button>
+              <Link href={goBackPath()}>
+                <a
+                  className='font-semibold border border-dial-gray-dark text-dial-gray-dark py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+                >
+                  {format('productRepository.cancel')}
+                </a>
+              </Link>
               {updateData && <div className='ml-auto my-auto text-green-500'>{format('productRepository.updated')}</div>}
               {createData && <div className='ml-auto my-auto text-green-500'>{format('productRepository.created')}</div>}
             </div>

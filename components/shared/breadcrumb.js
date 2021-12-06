@@ -43,9 +43,9 @@ const Breadcrumb = (props) => {
       const userFriendlyPath = basePathMappings[path] ? format(basePathMappings[path]) : slugNameMapping[path]
       return { breadcrumb: userFriendlyPath, href: '/' + linkPath.slice(0, i + 1).join('/') }
     })
-    
+
     setBreadcrumbs(pathArray)
-  }, [router, slugNameMapping.timeStamp])
+  }, [slugNameMapping])
 
   if (!breadcrumbs) {
     return null
@@ -59,10 +59,10 @@ const Breadcrumb = (props) => {
       </Link>
       {breadcrumbs.map((breadcrumb, i) => {
         return (
-          <div key={i} className={`inline ${i === breadcrumbs.length - 1 ? 'text-dial-gray-dark' : 'text-dial-blue'} h5`}>
+          <div key={i} className='inline h5'>
             &nbsp;&gt;&nbsp;
             <Link href={breadcrumb.href}>
-              <a>
+              <a className={`${i === breadcrumbs.length - 1 ? 'text-dial-gray-dark' : 'text-dial-blue'}`}>
                 {convertBreadcrumb(breadcrumb.breadcrumb)}
               </a>
             </Link>

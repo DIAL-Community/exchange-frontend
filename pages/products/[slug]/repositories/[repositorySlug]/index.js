@@ -38,14 +38,6 @@ const ProductStep = () => {
   const { slug, repositorySlug } = router.query
   const { data } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
 
-  const generateEditLink = () => {
-    if (!session.user) {
-      return '/edit-not-available'
-    }
-
-    return `${repositorySlug}/edit`
-  }
-
   const slugNameMapping = (() => {
     const map = {}
     if (data) {
@@ -78,9 +70,9 @@ const ProductStep = () => {
                 <div className='inline'>
                   {
                     session.user && session.user.canEdit && (
-                      <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
+                      <a href={`/products/${data?.product.slug}/repositories/create`} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
                         <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-                        <span className='text-sm px-2'>{format('app.edit')}</span>
+                        <span className='text-sm px-2'>{format('app.create-new')}</span>
                       </a>
                     )
                   }

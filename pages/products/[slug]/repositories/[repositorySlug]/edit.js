@@ -15,7 +15,6 @@ import Breadcrumb from '../../../../../components/shared/breadcrumb'
 import RepositoryList from '../../../../../components/products/repositories/RepositoryList'
 import RepositoryForm from '../../../../../components/products/repositories/RepositoryForm'
 
-
 const REPOSITORY_QUERY = gql`
   query ProductRepository($slug: String!) {
     productRepository(slug: $slug) {
@@ -84,7 +83,14 @@ const EditRepository = () => {
           <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer/>
         </div>
         <div className='w-full lg:w-2/3 xl:w-3/4'>
-          <RepositoryForm productRepository={data?.productRepository} productSlug={slug} />
+          <div className='hidden lg:block'>
+            <div className='px-4'>
+              <Breadcrumb slugNameMapping={slugNameMapping} />
+            </div>
+          </div>
+          <div className='w-full lg:w-2/3 xl:w-3/4'>
+            <RepositoryForm productRepository={data?.productRepository} productSlug={slug} />
+          </div>
         </div>
       </div>
       <Footer />
