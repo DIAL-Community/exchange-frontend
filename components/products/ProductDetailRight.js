@@ -40,7 +40,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
       </div>
       <div className='card-title mb-3 text-dial-gray-dark'>{format('product.description')}
         {product.manualUpdate && (
-          <div class='inline ml-5 h5'>{format('product.manualUpdate')}</div>
+          <div className='inline ml-5 h5'>{format('product.manualUpdate')}</div>
         )}
       </div>
       <div className='fr-view text-dial-gray-dark'>
