@@ -21,6 +21,7 @@ const basePathMappings = {
   workflows: 'workflow.header',
   building_blocks: 'building-block.header',
   products: 'product.header',
+  repositories: 'productRepository.header',
   projects: 'project.header',
   organizations: 'organization.header'
 }
@@ -29,24 +30,22 @@ const Breadcrumb = (props) => {
   const { slugNameMapping } = props
 
   const router = useRouter()
-  const [breadcrumbs, setBreadcrumbs] = useState(null)
+  const [breadcrumbs, setBreadcrumbs] = useState([])
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   useEffect(() => {
-    if (router) {
-      const linkPath = router.asPath.split('/')
-      linkPath.shift()
+    const linkPath = router.asPath.split('/')
+    linkPath.shift()
 
-      const pathArray = linkPath.map((path, i) => {
-        const userFriendlyPath = basePathMappings[path] ? format(basePathMappings[path]) : slugNameMapping[path]
-        return { breadcrumb: userFriendlyPath, href: '/' + linkPath.slice(0, i + 1).join('/') }
-      })
+    const pathArray = linkPath.map((path, i) => {
+      const userFriendlyPath = basePathMappings[path] ? format(basePathMappings[path]) : slugNameMapping[path]
+      return { breadcrumb: userFriendlyPath, href: '/' + linkPath.slice(0, i + 1).join('/') }
+    })
 
-      setBreadcrumbs(pathArray)
-    }
-  }, [router])
+    setBreadcrumbs(pathArray)
+  }, [slugNameMapping])
 
   if (!breadcrumbs) {
     return null
@@ -60,10 +59,10 @@ const Breadcrumb = (props) => {
       </Link>
       {breadcrumbs.map((breadcrumb, i) => {
         return (
-          <div key={i} className={`inline ${i === breadcrumbs.length - 1 ? 'text-dial-gray-dark' : 'text-dial-blue'} h5`}>
+          <div key={i} className='inline h5'>
             &nbsp;&gt;&nbsp;
             <Link href={breadcrumb.href}>
-              <a>
+              <a className={`${i === breadcrumbs.length - 1 ? 'text-dial-gray-dark' : 'text-dial-blue'}`}>
                 {convertBreadcrumb(breadcrumb.breadcrumb)}
               </a>
             </Link>

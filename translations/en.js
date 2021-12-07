@@ -87,7 +87,7 @@ export const en = {
   'product.languages': 'Languages',
   'product.website': 'Website',
   'product.description': 'Description',
-  'product.repository': 'Code Repository',
+  'product.repository': 'Code Repositories',
   'product.current-version': 'Current Version',
   'product.license': 'License',
   'product.source': 'Data Sources',
@@ -894,6 +894,26 @@ export const en = {
   'endorsed.title': 'Endorsed by Organizations',
   'visitWebsite.title': 'Visit Site',
 
-  'marker.project.title': 'Project Marker'
+  'marker.project.title': 'Project Marker',
 
+  'productRepository.header': 'Product Repositories',
+  'productRepository.label': 'Product Repository',
+
+  'productRepository.name': 'Repository Name',
+  'productRepository.name.placeholder': 'Name of this repository.',
+  'productRepository.aboluteUrl': 'Repository Location',
+  'productRepository.absoluteUrl.placeholder': 'Abolute path / url of the repository.',
+  'productRepository.description': 'Repository Description',
+  'productRepository.description.placeholder': 'Short description of this repository.',
+  'productRepository.mainRepository.label': 'This is main repository.',
+  'productRepository.submit': 'Submit',
+  'productRepository.cancel': 'Cancel',
+  'productRepository.created': 'Product repository added.',
+  'productRepositories.loading.indicator': 'Loading list of product\'s repository information ...',
+  'productRepository.loading.indicator': 'Loading current product repository information ...',
+  'productRepository.delete': 'Delete Repository',
+  'productRepository.edit': 'Edit Repository',
+  'productRepository.created': 'Product repository created.',
+  'productRepository.updated': 'Product repository updated.',
+  'productRepository.deleted': 'Product repository deleted.'
 }

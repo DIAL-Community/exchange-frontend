@@ -28,13 +28,7 @@ query Product($slug: String!, $locale: String!) {
     slug
     imageFile
     website
-    repository
-    license
-    statistics
-    languageData
     owner
-    codeLines
-    cocomo
     tags
     discourseId
     productDescriptions {
@@ -48,21 +42,6 @@ query Product($slug: String!, $locale: String!) {
     endorsers {
       name
       slug
-    }
-    childProducts {
-      name
-      slug
-      repository
-      license
-      statistics
-      languageData
-      productDescriptions {
-        description
-        locale
-      }
-      origins {
-        name
-      }
     }
     interoperatesWith {
       name
@@ -87,7 +66,7 @@ query Product($slug: String!, $locale: String!) {
       isEndorser
       whenEndorsed
     }
-    currProjects(first:10) {
+    currentProjects(first:10) {
       name
       slug
       origin {
@@ -142,7 +121,7 @@ const Product = () => {
       behavior: 'smooth'
     })
   }
-  
+
   useEffect(() => {
     if (query.locale) {
       router.replace({ pathname }, asPath, { locale: query.locale })
