@@ -297,7 +297,7 @@ const Header = () => {
                     showAbout ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
                   }
                 </a>
-                <div className={`${showAbout ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={resourcePopover} role='menu'>
+                <div className={`${showAbout ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={aboutPopover} role='menu'>
                   <div className='py-1' role='none'>
                     <Link href='/about'>
                       <a href='/about' role='menuitem' className={dropdwonMenuStyles}>
