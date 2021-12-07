@@ -33,7 +33,7 @@ const RepositoryList = ({ productSlug, repositorySlug, listStyle, shadowOnContai
   })
 
   return (
-    <div className={`${shadowOnContainer ? 'shadow-xl' : ''} h-60 overflow-y-scroll`}>
+    <div className={`${shadowOnContainer ? 'shadow-xl' : 'h-60 overflow-y-scroll'}`}>
       {
         loading &&
           <div className='absolute right-4 text-white bg-dial-gray-dark px-3 py-2 mt-2 rounded text-sm'>

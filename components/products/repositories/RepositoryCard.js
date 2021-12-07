@@ -54,15 +54,39 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
               <div className='w-1/2 grid grid-cols-3 text-sm py-3'>
                 <div className='pb-4'>
                   <div><FaStar className='inline mr-2' />{format('product.star')}</div>
-                  <div>{productRepository.statisticalData.data && productRepository.statisticalData.data.repository.stargazers.totalCount}</div>
+                  <div>
+                    {
+                      productRepository.statisticalData.data
+                        ? productRepository.statisticalData.data.repository.stargazers.totalCount
+                        : format('general.na')
+                    }
+                  </div>
                 </div>
                 <div className='pb-4'>
                   <div><FaCalendar className='inline mr-2' />{format('product.created')}</div>
-                  <div><FormattedDate value={new Date(productRepository.statisticalData.data.repository.createdAt)} year='numeric' month='long' day='2-digit' /></div>
+                  <div>
+                    {
+                      productRepository.statisticalData.data
+                        ? <FormattedDate
+                            value={new Date(productRepository.statisticalData.data.repository.createdAt)}
+                            year='numeric' month='long' day='2-digit'
+                          />
+                        : format('general.na')
+                    }
+                  </div>
                 </div>
                 <div className='pb-4'>
                   <div><FaCalendarAlt className='inline mr-2' />{format('product.last-updated')}</div>
-                  <div><FormattedDate value={new Date(productRepository.statisticalData.data.repository.updatedAt)} year='numeric' month='long' day='2-digit' /></div>
+                  <div>
+                    {
+                      productRepository.statisticalData.data
+                        ? <FormattedDate 
+                            value={new Date(productRepository.statisticalData.data?.repository.updatedAt)}
+                            year='numeric' month='long' day='2-digit'
+                          />
+                        : format('general.na')
+                    }
+                  </div>
                 </div>
               </div>
             )}
