@@ -1,10 +1,14 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
+
 import ReactHtmlParser from 'react-html-parser'
+
 import { descriptionByLocale } from '../../lib/utilities'
+
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseForum } from '../shared/discourse'
-import RepositoryDetail from './RepositoryDetail'
+
 import OrganizationCard from '../organizations/OrganizationCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import SDGCard from '../sdgs/SDGCard'
@@ -12,8 +16,9 @@ import SectorCard from '../sectors/SectorCard'
 import TagCard from '../tags/TagCard'
 import ProjectCard from '../projects/ProjectCard'
 import ProductCard from './ProductCard'
-import RepositoryInfo from './RepositoryInfo'
+
 import MaturityAccordion from './Maturity'
+import RepositoryList from './repositories/RepositoryList'
 
 const ProductDetailRight = ({ product, discourseRef }) => {
   const { formatMessage } = useIntl()
@@ -127,49 +132,14 @@ const ProductDetailRight = ({ product, discourseRef }) => {
           })}
         </div>
       </div>
-      <div className='card-title mt-12 mb-3 text-dial-gray-dark'>{format('product.repository')}</div>
-      <div className='w-full flex flex-col xl:flex-row'>
-        <div className='w-full xl:w-2/5 mr-4 border-b xl:border-b-0 xl:border-r text-dial-purple-light'>
-          {(product.childProducts.length > 0) && <div className='mb-2'>{product.name}</div>}
-          <RepositoryInfo product={product} />
+      <Link href={`${product.slug}/repositories`}>
+        <div className='card-title mt-12 mb-3'>
+          <span className='cursor-pointer text-dial-gray-dark border-b-2 border-transparent hover:border-dial-yellow inline'>
+            {format('product.repository')}
+          </span>
         </div>
-        <div className='w-full xl:w-3/5 mt-4 xl:ml-4'>
-          <RepositoryDetail
-            repositoryData={product.statistics.data && product.statistics.data.repository}
-            languageData={product.languageData.data && product.languageData.data.repository}
-          />
-        </div>
-      </div>
-      {product.childProducts && product.childProducts.map((childProd, i) => {
-        return (
-          <div key={i} className='w-full flex mt-10'>
-            <div className='w-2/5 mr-4 border-r text-dial-purple-light'>
-              <div className='mb-2'>{childProd.name}</div>
-              <RepositoryInfo product={childProd} />
-            </div>
-            <div className='w-3/5 ml-4'>
-              <RepositoryDetail
-                repositoryData={childProd.statistics.data && childProd.statistics.data.repository}
-                languageData={childProd.languageData.data && childProd.languageData.data.repository}
-              />
-            </div>
-          </div>
-        )
-      })}
-      {
-        product.codeLines &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('product.cost-data')}</div>
-            <div className='pb-5'>
-              <div className='h5 pb-1'>{format('product.code-lines')}</div>
-              <div className='text-sm'>{product.codeLines}</div>
-            </div>
-            <div className='pb-5'>
-              <div className='h5 pb-1'>{format('product.est-effort')}</div>
-              <div className='text-sm'>{product.cocomo}</div>
-            </div>
-          </div>
-      }
+      </Link>
+      <RepositoryList productSlug={product.slug} />
       <div className='mt-12 grid grid-cols-1 xl:grid-cols-2 gap-y-12 xl:gap-y-0'>
         <div>
           <div className='card-title mb-3 text-dial-gray-dark'>{format('product.interoperable')}</div>

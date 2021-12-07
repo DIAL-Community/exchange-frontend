@@ -28,7 +28,7 @@ const UseCaseStep = () => {
 
   const router = useRouter()
   const { pathname, asPath, query } = useRouter()
-  
+
   const { slug, stepSlug } = router.query
   const { data } = useQuery(USE_CASE_QUERY, { variables: { slug: slug } })
 
