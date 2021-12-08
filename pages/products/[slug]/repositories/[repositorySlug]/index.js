@@ -20,6 +20,7 @@ import Footer from '../../../../../components/Footer'
 const PRODUCT_QUERY = gql`
   query Product($slug: String!) {
     product(slug: $slug) {
+      id
       name
       slug
       imageFile
