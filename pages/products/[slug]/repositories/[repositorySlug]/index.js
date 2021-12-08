@@ -66,10 +66,10 @@ const ProductStep = () => {
           </div>
           <div className='w-full mb-2'>
             {
-              session && (
+              session && data && (
                 <div className='inline'>
                   {
-                    session.user && session.user.canEdit && (
+                    session.user && (session?.user.canEdit || session?.user.own.products.filter(p => `${p}` === `${data.product.id}`).length > 0) && (
                       <a href={`/products/${data?.product.slug}/repositories/create`} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
                         <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
                         <span className='text-sm px-2'>{format('app.create-new')}</span>
