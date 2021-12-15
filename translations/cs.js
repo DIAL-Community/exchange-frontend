@@ -21,6 +21,9 @@ export const cs = {
   "header.german": "Němčina (de)",
   "header.french": "Francouzština (fr)",
   'header.czech': 'Czech (cs)',
+  'header.spanish': 'Español (es)',
+  'header.portuguese': 'Português (pt)',
+  'header.swahili': 'Kiswahili (sw)',
   "header.admin.users": "Uživatelé",
   "header.admin.settings": "Nastavení",
 

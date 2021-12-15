@@ -21,6 +21,9 @@ export const de = {
   'header.german': 'Deutsch (de)',
   'header.french': 'Francais (fr)',
   'header.czech': 'Czech (cs)',
+  'header.spanish': 'Español (es)',
+  'header.portuguese': 'Português (pt)',
+  'header.swahili': 'Kiswahili (sw)',
   'header.admin.users': 'Nutzer',
   'header.admin.settings': 'Einstellungen',
 
