@@ -361,10 +361,19 @@ const Header = () => {
                     <a href='de' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'de')}>
                       {format('header.german')}
                     </a>
+                    <a href='es' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'es')}>
+                      {format('header.spanish')}
+                    </a>
                     <a href='fr' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'fr')}>
                       {format('header.french')}
                     </a>
-                    <a href='fr' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'cs')}>
+                    <a href='pt' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'pt')}>
+                      {format('header.portuguese')}
+                    </a>
+                    <a href='sw' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'sw')}>
+                      {format('header.swahili')}
+                    </a>
+                    <a href='cs' role='menuitem' className={dropdwonMenuStyles} onClick={(e) => switchLanguage(e, 'cs')}>
                       {format('header.czech')}
                     </a>
                   </div>

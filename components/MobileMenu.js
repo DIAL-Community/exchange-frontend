@@ -39,6 +39,18 @@ const subMenus = {
         locale: 'fr'
       },
       {
+        label: 'header.portuguese',
+        locale: 'pt'
+      },
+      {
+        label: 'header.spanish',
+        locale: 'es'
+      },
+      {
+        label: 'header.swahili',
+        locale: 'sw'
+      },
+      {
         label: 'header.czech',
         locale: 'cs'
       }

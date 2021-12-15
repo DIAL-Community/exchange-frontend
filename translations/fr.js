@@ -21,6 +21,9 @@ export const fr = {
   'header.german': 'Deutsch (de)',
   'header.french': 'Français (fr)',
   'header.czech': 'Czech (cs)',
+  'header.spanish': 'Español (es)',
+  'header.portuguese': 'Português (pt)',
+  'header.swahili': 'Kiswahili (sw)',
   'header.admin.users': 'Utilisateurs',
   'header.admin.settings': 'Paramètres',
 
@@ -412,4 +415,3 @@ export const fr = {
   'overlay.close': 'Notification de rejet',
   'overlay.message': 'Application des données du filtre de votre URL.'
 }
-
