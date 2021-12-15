@@ -26,6 +26,9 @@ export const en = {
   'header.english': 'English (en)',
   'header.german': 'Deutsch (de)',
   'header.french': 'Francais (fr)',
+  'header.spanish': 'Español (es)',
+  'header.portuguese': 'Português (pt)',
+  'header.swahili': 'Kiswahili (sw)',
   'header.czech': 'Czech (cs)',
   'header.admin.users': 'Users',
   'header.admin.settings': 'Settings',
@@ -913,7 +916,6 @@ export const en = {
   'productRepository.loading.indicator': 'Loading current product repository information ...',
   'productRepository.delete': 'Delete Repository',
   'productRepository.edit': 'Edit Repository',
-  'productRepository.created': 'Product repository created.',
   'productRepository.updated': 'Product repository updated.',
   'productRepository.deleted': 'Product repository deleted.'
 }
