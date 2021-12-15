@@ -215,7 +215,7 @@ const Filter = (props) => {
                       <Link href={`/${href}`}>
                         <a
                           className={`
-                            text-base font-bold px-3 py-3 block leading-normal
+                            text-base font-bold px-3 py-3 block leading-normal flex flex-row justify-between max-w-sm truncate
                             ${index === activeTab ? 'text-white' : 'rounded text-dial-gray-dark bg-dial-gray'}
                           `}
                           data-toggle='tab'
@@ -224,7 +224,7 @@ const Filter = (props) => {
                           {format(filterItem)}
                           <span
                             className={`
-                              float-right p-2 -my-1 text-sm font-bold leading-none rounded
+                              p-2 -my-1 text-sm font-bold leading-none rounded
                               ${index === activeTab ? 'text-dial-gray-dark bg-dial-yellow' : 'text-dial-gray-dark bg-white'}
                             `}
                           >
