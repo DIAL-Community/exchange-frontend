@@ -66,10 +66,12 @@ const WizardPage = () => {
     subsector: '',
     sdg: '',
     useCase: '',
-    country: '',
+    countries: [],
     tags: [],
     mobileServices: [],
-    buildingBlocks: []
+    buildingBlocks: [],
+    productSortHint: '',
+    projectSortHint: ''
   })
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)

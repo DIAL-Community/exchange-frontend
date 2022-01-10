@@ -40,7 +40,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
               <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
                   <img
-                    className='m-auto w-8'
+                    className='m-auto h-6'
                     alt={format('image.alt.logoFor', { name: product.name })}
                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
                   />

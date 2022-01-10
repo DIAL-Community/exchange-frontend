@@ -91,11 +91,23 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
           {format('wizard.selectCountry')}
         </div>
         <Select
-          className='text-button-gray' options={projData.countries}
-          value={allValues.country && { value: allValues.country, label: allValues.country }}
-          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, country: val.value } })}
+          className='text-button-gray pb-2' options={projData.countries}
+          onChange={(val) => allValues.countries.push(val.value) && setAllValues(prevValues => { return { ...prevValues, countries: allValues.countries } })}
           placeholder={format('wizard.countryPlaceholder')}
         />
+        {allValues.countries.map((country) => {
+          return (
+            <div className='text-button-gray-light w-1/2 flex justify-between bg-button-gray pl-2 p-1 rounded m-1' key={country}>{country}
+              <div
+                className='text-white' onClick={() => {
+                  setAllValues(prevValues => { return { ...prevValues, countries: allValues.countries.filter(val => val !== country) } })
+                }}
+              >
+                <img src='/icons/close.svg' className='inline mr-2' alt='Back' height='10px' width='10px' />
+              </div>
+            </div>
+          )
+        })}
       </div>
       <div className='lg:w-1/3 lg:px-5 lg:mx-5'>
         <div className='text-sm pb-2'>

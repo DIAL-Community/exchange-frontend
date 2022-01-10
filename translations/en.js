@@ -917,5 +917,8 @@ export const en = {
   'productRepository.delete': 'Delete Repository',
   'productRepository.edit': 'Edit Repository',
   'productRepository.updated': 'Product repository updated.',
-  'productRepository.deleted': 'Product repository deleted.'
+  'productRepository.deleted': 'Product repository deleted.',
+
+  'wizard.project.sortHint': 'Sort Projects',
+  'wizard.product.sortHint': 'Sort Products'
 }
