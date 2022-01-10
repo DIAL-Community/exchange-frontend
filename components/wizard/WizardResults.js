@@ -180,7 +180,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const [runWizardQuery, { error: wizardErrors }] = useLazyQuery(WIZARD_QUERY, {
     variables: vars,
     fetchPolicy: 'no-cache',
-    onCompleted: (data) => { setWizardData(data.wizard); if (wizardData !== undefined) { clickHandler(0) } }
+    onCompleted: (data) => { setWizardData(data.wizard) }
   })
 
   const parentRef = useRef(null)
@@ -300,7 +300,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             {
               wizardData.projects && wizardData.projects.length <= 5 &&
                 wizardData.projects.map((project) => {
-                  return (<ProjectCard key={`${project.name}`} product={project} listType='list' newTab />)
+                  return (<ProjectCard key={`${project.name}`} project={project} listType='list' newTab />)
                 })
             }
           </div>
