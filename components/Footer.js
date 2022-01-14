@@ -30,7 +30,7 @@ const Footer = () => {
             <div className='relative p-2 m-auto'>
               <a href='https://www.gatesfoundation.org/' target='_blank' rel='noreferrer'>
                 <Image
-                  src='/images/footer/bill-n-melinda-logo.png' width={244} height={50}
+                  src='/images/footer/bill-n-melinda-logo.png' width={222} height={45}
                   alt='The Bill & Melinda Gates Foundation'
                 />
               </a>
@@ -66,7 +66,7 @@ const Footer = () => {
           <div className='h-auto w-72 relative p-2 my-auto'>
             <a href='https://www.giz.de/' target='_blank' rel='noreferrer'>
               <Image
-                src='/images/footer/giz-logo.png' width={1744} height={977}
+                src='/images/footer/giz-logo.png' width={1570} height={879}
                 alt='The German Corporation for International Cooperation GmbH Logo'
               />
             </a>
@@ -74,8 +74,16 @@ const Footer = () => {
           <div className='h-auto w-72 relative p-2 my-auto'>
             <a href='https://www.bmz.de/' target='_blank' rel='noreferrer'>
               <Image
-                src='/images/footer/bmz-logo.png' width={1280} height={596}
+                src='/images/footer/bmz-logo.png' width={1152} height={536}
                 alt='The Federal Ministry for Economic Cooperation and Development Logo'
+              />
+            </a>
+          </div>
+          <div className='relative p-2 m-auto'>
+            <a href='https://www.gatesfoundation.org/' target='_blank' rel='noreferrer'>
+              <Image
+                src='/images/footer/bill-n-melinda-logo.png' width={204} height={40}
+                alt='The Bill & Melinda Gates Foundation'
               />
             </a>
           </div>
