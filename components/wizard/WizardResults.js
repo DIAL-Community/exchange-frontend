@@ -14,10 +14,43 @@ import UseCaseCard from '../use-cases/UseCaseCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 
 import { Loading, Error } from '../shared/FetchStatus'
+import PaginatedBuildingBlockList from '../building-blocks/PaginatedBuildingBlockList'
+import PaginatedOrganizationList from '../organizations/PaginatedOrganizationList'
+import PaginatedProductList from '../products/PaginatedProductList'
+import PaginatedProjectList from '../projects/PaginatedProjectList'
+import PaginatedUseCaseList from '../use-cases/PaginatedUseCaseList'
+
+import Select from 'react-select'
+
+const sortHintOptions = [
+  { value: 'country', label: 'Sort by Country' },
+  { value: 'sector', label: 'Sort by Sector' },
+  { value: 'tag', label: 'Sort by Tag' }
+]
 
 const WIZARD_QUERY = gql`
-query Wizard($sector: String, $subsector: String, $sdg: String, $buildingBlocks: [String!], $tags: [String!], $country: String, $mobileServices: [String!]) {
-  wizard(sector: $sector, subsector: $subsector, sdg: $sdg, buildingBlocks: $buildingBlocks, tags: $tags, country: $country, mobileServices: $mobileServices) {
+query Wizard(
+  $sector: String,
+  $subsector: String,
+  $sdg: String,
+  $buildingBlocks: [String!],
+  $tags: [String!],
+  $countries: [String!],
+  $mobileServices: [String!],
+  $productSortHint: String,
+  $projectSortHint: String
+) {
+  wizard(
+    sector: $sector,
+    subsector: $subsector,
+    sdg: $sdg,
+    buildingBlocks: $buildingBlocks,
+    tags: $tags,
+    countries: $countries,
+    mobileServices: $mobileServices,
+    productSortHint: $productSortHint,
+    projectSortHint: $projectSortHint
+  ) {
     digitalPrinciples {
       phase
       name
@@ -131,11 +164,23 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const [currentSection, setCurrentSection] = useState(0)
   const [wizardData, setWizardData] = useState()
 
-  const vars = { phase: allValues.projectPhase, sector: allValues.sector, subsector: allValues.subsector, sdg: allValues.sdg, buildingBlocks: allValues.buildingBlocks, tags: allValues.tags, country: allValues.country, mobileServices: allValues.mobileServices }
+  const vars = {
+    phase: allValues.projectPhase,
+    sector: allValues.sector,
+    subsector: allValues.subsector,
+    sdg: allValues.sdg,
+    buildingBlocks: allValues.buildingBlocks,
+    tags: allValues.tags,
+    countries: allValues.countries,
+    mobileServices: allValues.mobileServices,
+    productSortHint: allValues.productSortHint,
+    projectSortHint: allValues.projectSortHint
+  }
+
   const [runWizardQuery, { error: wizardErrors }] = useLazyQuery(WIZARD_QUERY, {
     variables: vars,
     fetchPolicy: 'no-cache',
-    onCompleted: (data) => { setWizardData(data.wizard); if (wizardData !== undefined) { clickHandler(0) } }
+    onCompleted: (data) => { setWizardData(data.wizard) }
   })
 
   const parentRef = useRef(null)
@@ -234,29 +279,57 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           <Lifecycle wizardData={wizardData} objType='principles' />
         </div>
         <div className='text-dial-gray-dark' ref={projectsRef}>
-          <div className='text-2xl font-bold pb-4'>
-            {format('wizard.results.similarProjects')}
+          <div className='flex w-3/4'>
+            <div className='text-2xl font-bold'>
+              {format('wizard.results.similarProjects')}
+            </div>
+            <Select
+              onChange={(val) => setAllValues(prevValues => { return { ...prevValues, projectSortHint: val && val.value } })}
+              className='ml-auto text-button-gray' options={sortHintOptions}
+              placeholder={format('wizard.project.sortHint')}
+            />
           </div>
           <div className='pb-4 text-sm'>
             {wizardData.projects && wizardData.projects.length ? format('wizard.results.similarProjectsDesc') : format('wizard.results.noProjects')}
           </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
-            {wizardData.projects && wizardData.projects.map((project) => {
-              return (<ProjectCard key={`${project.name}`} project={project} listType='list' newTab={true} />)
-            })}
+            {
+              wizardData.projects && wizardData.projects.length > 5 &&
+                <PaginatedProjectList itemsPerPage={5} items={wizardData.projects} />
+            }
+            {
+              wizardData.projects && wizardData.projects.length <= 5 &&
+                wizardData.projects.map((project) => {
+                  return (<ProjectCard key={`${project.name}`} project={project} listType='list' newTab />)
+                })
+            }
           </div>
         </div>
         <div className='text-dial-gray-dark' ref={productsRef}>
-          <div className='text-2xl font-bold py-4'>
-            {format('wizard.results.products')}
+          <div className='flex w-3/4'>
+            <div className='text-2xl font-bold'>
+              {format('wizard.results.products')}
+            </div>
+            <Select
+              onChange={(val) => setAllValues(prevValues => { return { ...prevValues, productSortHint: val && val.value } })}
+              className='ml-auto text-button-gray' options={sortHintOptions.filter(x => x.value != 'country')}
+              placeholder={format('wizard.product.sortHint')}
+            />
           </div>
           <div className='pb-4 text-sm'>
             {wizardData.products && wizardData.products.length ? format('wizard.results.productsDesc') : format('wizard.results.noProducts')}
           </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
-            {wizardData.products && wizardData.products.map((product) => {
-              return (<ProductCard key={`${product.name}`} product={product} listType='list' newTab={true} />)
-            })}
+            {
+              wizardData.products && wizardData.products.length > 5 &&
+                <PaginatedProductList itemsPerPage={5} items={wizardData.products} />
+            }
+            {
+              wizardData.products && wizardData.products.length <= 5 &&
+                wizardData.products.map((product) => {
+                  return (<ProductCard key={`${product.name}`} product={product} listType='list' newTab />)
+                })
+            }
           </div>
         </div>
         <div className='text-dial-gray-dark' ref={useCasesRef}>
@@ -265,12 +338,27 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           </div>
           <div className='pb-4 text-sm'>
             {(wizardData.useCases && wizardData.useCases.length ? format('wizard.results.useCasesDesc') : format('wizard.results.noUseCases'))}
-            {wizardData.useCases && !wizardData.useCases.length && <a className='text-dial-teal' href='https://solutions.dial.community/use_cases' target='_blank' rel='noreferrer'>{format('wizard.results.clickHere')}</a>}
+            {
+              wizardData.useCases && !wizardData.useCases.length &&
+                <a
+                  className='text-dial-teal'
+                  href='https://solutions.dial.community/use_cases' target='_blank' rel='noreferrer'
+                >
+                  {format('wizard.results.clickHere')}
+                </a>
+            }
           </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
-            {wizardData.useCases && wizardData.useCases.map((useCase) => {
-              return (<UseCaseCard key={`${useCase.name}`} useCase={useCase} listType='list' newTab={true} />)
-            })}
+            {
+              wizardData.useCases && wizardData.useCases.length > 5 &&
+                <PaginatedUseCaseList itemsPerPage={5} items={wizardData.useCases} />
+            }
+            {
+              wizardData.useCases && wizardData.useCases.length <= 5 &&
+                wizardData.useCases.map((useCase) => {
+                  return (<UseCaseCard key={`${useCase.name}`} useCase={useCase} listType='list' newTab />)
+                })
+            }
           </div>
         </div>
         <div className='text-dial-gray-dark' ref={buildingBlocksRef}>
@@ -281,9 +369,16 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             {wizardData.buildingBlocks && wizardData.buildingBlocks.length ? format('wizard.results.buildingBlocksDesc') : format('wizard.results.noBuildingBlocks')}
           </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
-            {wizardData.buildingBlocks && wizardData.buildingBlocks.map((bb) => {
-              return (<BuildingBlockCard key={`${bb.name}`} buildingBlock={bb} listType='list' newTab={true} />)
-            })}
+            {
+              wizardData.buildingBlocks && wizardData.buildingBlocks.length > 5 &&
+                <PaginatedBuildingBlockList itemsPerPage={5} items={wizardData.buildingBlocks} />
+            }
+            {
+              wizardData.buildingBlocks && wizardData.buildingBlocks.length <= 5 &&
+                wizardData.buildingBlocks.map((bb) => {
+                  return (<BuildingBlockCard key={`${bb.name}`} buildingBlock={bb} listType='list' newTab />)
+                })
+            }
           </div>
         </div>
         <div className='text-dial-gray-dark' ref={resourcesRef}>
@@ -303,9 +398,16 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             {format('wizard.results.aggregatorsDesc')}
           </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
-            {wizardData.organizations && wizardData.organizations.map((org) => {
-              return (<OrganizationCard key={`${org.name}`} organization={org} listType='list' newTab={true} />)
-            })}
+            {
+              wizardData.organizations && wizardData.organizations.length > 5 &&
+                <PaginatedOrganizationList itemsPerPage={5} items={wizardData.organizations} />
+            }
+            {
+              wizardData.organizations && wizardData.organizations.length <= 5 &&
+                wizardData.organizations.map((org) => {
+                  return (<OrganizationCard key={`${org.name}`} organization={org} listType='list' newTab />)
+                })
+            }
           </div>
         </div>
       </div>
