@@ -98,13 +98,26 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
               <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow shadow-lg hover:shadow-2xl'>
                 {
                   organization.whenEndorsed && (
-                    <div className='flex flex-row p-1.5 border-b border-dial-gray text-sm font-semibold justify-end text-dial-cyan'>
-                      <img
-                        alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
-                        className='mr-2 h-6' src='/icons/digiprins/digiprins.png'
-                      />
-                      <div className='my-auto'>
-                        {`${format('organization.endorsedOn')} ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
+                    <div>
+                      <div className='flex justify-between p-1.5 border-b border-dial-gray text-sm font-semibold text-dial-cyan'>
+                        <div className='flex flex-col'>
+                          <div className='flex flex-row'>
+                            <img
+                              alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
+                              className='mr-2 h-6' src='/icons/digiprins/digiprins.png'
+                            />
+                            <div className='my-auto'>
+                              {`${format('organization.endorsedOn')} ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
+                            </div>
+                          </div>
+                        </div>
+                        <div className='flex flex-col'>
+                          {organization.endorserLevel === 'gold' && (
+                            <div className='ml-auto bg-dial-yellow rounded px-2 py-1 text-white text-sm font-semibold'>
+                              {organization.endorserLevel.toUpperCase()}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   )
@@ -135,7 +148,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                           <a href={`//${organization.website}`} className='flex flex-row justify-center' target='_blank' rel='noreferrer'>
                             <div className='my-auto'>{format('organization.visitWebsite')}</div>
                             <img
-                              alt={format('image.alt.logoFor', { name: format('visitWebsite.title') })} 
+                              alt={format('image.alt.logoFor', { name: format('visitWebsite.title') })}
                               className='ml-2 h-5' src='/icons/visit-light/visit-light.png'
                             />
                           </a>

@@ -57,7 +57,7 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
                   <div>
                     {
                       productRepository.statisticalData.data
-                        ? productRepository.statisticalData.data.repository.stargazers.totalCount
+                        ? productRepository.statisticalData.data.repository?.stargazers.totalCount
                         : format('general.na')
                     }
                   </div>
@@ -68,7 +68,7 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
                     {
                       productRepository.statisticalData.data
                         ? <FormattedDate
-                            value={new Date(productRepository.statisticalData.data.repository.createdAt)}
+                            value={new Date(productRepository.statisticalData.data.repository?.createdAt)}
                             year='numeric' month='long' day='2-digit'
                           />
                         : format('general.na')
@@ -80,8 +80,8 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
                   <div>
                     {
                       productRepository.statisticalData.data
-                        ? <FormattedDate 
-                            value={new Date(productRepository.statisticalData.data?.repository.updatedAt)}
+                        ? <FormattedDate
+                            value={new Date(productRepository.statisticalData.data?.repository?.updatedAt)}
                             year='numeric' month='long' day='2-digit'
                           />
                         : format('general.na')

@@ -113,7 +113,7 @@ const EndorserMap = () => {
             {format('map.loading.indicator')}
           </div>
       }
-      <EndorserMarkerMaps {...{ cities, organization, setSelectedCity, setOrganization }} />
+      <EndorserMarkerMaps {...{ cities, organization, setSelectedCity, setOrganization, height: '70vh' }} />
       <EndorserInfo {...{ city, setOrganization }} />
     </div>
   )

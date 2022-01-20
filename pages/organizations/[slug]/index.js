@@ -25,6 +25,7 @@ query Organization($slug: String!, $locale: String!) {
     website
     imageFile
     whenEndorsed
+    endorserLevel
     organizationDescriptions {
       description
       locale
@@ -43,6 +44,12 @@ query Organization($slug: String!, $locale: String!) {
       id
       name
       slug
+    }
+    products {
+      id
+      slug
+      name
+      imageFile
     }
     projects {
       name
