@@ -116,7 +116,7 @@ const EndorserMarkerMaps = (props) => {
   // Adding this attribute will prevent duplicating world map:  maxBounds={[[-90, -180], [90, 180]]}
   return (
     <MapContainer
-      className='w-full' style={{ minHeight: '70vh', zIndex: 18 }}
+      className='w-full' style={{ minHeight: props.height, zIndex: 18 }}
       center={[0, 0]} zoom={3}
       // maxBounds={[[-90, -180], [90, 180]]}
     >

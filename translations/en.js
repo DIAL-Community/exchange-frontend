@@ -271,6 +271,7 @@ export const en = {
 
   'organization.detail.website': 'Website',
   'organization.detail.whenEndorsed': 'Endorsed On',
+  'organization.detail.endorserLevel': 'Endorser Level',
   'organization.owner': 'If you are the owner of this organization, you can update this organization information.',
   'organization.owner-link': 'Find more information here',
 

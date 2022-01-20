@@ -2,11 +2,9 @@
 
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
-import ReactHtmlParser from 'react-html-parser'
 import Breadcrumb from '../shared/breadcrumb'
 import { useRouter } from 'next/router'
 
-import { descriptionByLocale } from '../../lib/utilities'
 import gql from 'graphql-tag'
 
 import { FaSpinner } from 'react-icons/fa'
@@ -190,9 +188,6 @@ const OrganizationDetailLeft = ({ organization }) => {
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
             />
           </div>
-        </div>
-        <div className='fr-view text-dial-gray-dark p-3'>
-          {ReactHtmlParser(descriptionByLocale(organization.organizationDescriptions, locale))}
         </div>
       </div>
       <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 lg:mr-6 shadow-lg border-b-2 border-dial-gray'>
