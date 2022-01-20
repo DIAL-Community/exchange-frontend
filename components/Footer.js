@@ -30,7 +30,7 @@ const Footer = () => {
             <div className='relative p-2 m-auto'>
               <a href='https://www.gatesfoundation.org/' target='_blank' rel='noreferrer'>
                 <Image
-                  src='/images/footer/bill-n-melinda-logo.png' width={222} height={45}
+                  src='/images/footer/bill-n-melinda-logo.png' width={204} height={40}
                   alt='The Bill & Melinda Gates Foundation'
                 />
               </a>
@@ -76,14 +76,6 @@ const Footer = () => {
               <Image
                 src='/images/footer/bmz-logo.png' width={1152} height={536}
                 alt='The Federal Ministry for Economic Cooperation and Development Logo'
-              />
-            </a>
-          </div>
-          <div className='relative p-2 m-auto'>
-            <a href='https://www.gatesfoundation.org/' target='_blank' rel='noreferrer'>
-              <Image
-                src='/images/footer/bill-n-melinda-logo.png' width={204} height={40}
-                alt='The Bill & Melinda Gates Foundation'
               />
             </a>
           </div>

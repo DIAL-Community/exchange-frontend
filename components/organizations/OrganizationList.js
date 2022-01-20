@@ -19,6 +19,7 @@ query SearchOrganizations(
     $after: String,
     $aggregatorOnly: Boolean,
     $endorserOnly: Boolean,
+    $endorserLevel: String!,
     $sectors: [String!],
     $countries: [String!],
     $years: [Int!],
@@ -30,6 +31,7 @@ query SearchOrganizations(
     after: $after,
     aggregatorOnly: $aggregatorOnly,
     endorserOnly: $endorserOnly,
+    endorserLevel: $endorserLevel,
     sectors: $sectors,
     countries: $countries,
     years: $years,
@@ -95,7 +97,7 @@ const OrganizationList = (props) => {
 
 const OrganizationListQuery = () => {
   const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
-  const { aggregator, endorser, countries, sectors, years, search } = useContext(OrganizationFilterContext)
+  const { aggregator, endorser, endorserLevel, countries, sectors, years, search } = useContext(OrganizationFilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -110,6 +112,7 @@ const OrganizationListQuery = () => {
       years: years.map(year => year.value),
       aggregatorOnly: aggregator,
       endorserOnly: endorser,
+      endorserLevel: endorserLevel,
       search: search,
       locale: locale
     },
@@ -138,6 +141,7 @@ const OrganizationListQuery = () => {
         years: years.map(year => year.value),
         aggregatorOnly: aggregator,
         endorserOnly: endorser,
+        endorserLevel: endorserLevel,
         search: search
       }
     })

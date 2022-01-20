@@ -3,8 +3,13 @@ import Breadcrumb from '../shared/breadcrumb'
 import SectorCard from '../sectors/SectorCard'
 import CountryCard from '../countries/CountryCard'
 import ProjectCard from '../projects/ProjectCard'
+import ProductCard from '../products/ProductCard'
+
+import ReactHtmlParser from 'react-html-parser'
+import { descriptionByLocale } from '../../lib/utilities'
 
 import { useMemo } from 'react'
+import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import CityCard from '../cities/CityCard'
 import AggregatorCapability from './AggregatorCapability'
@@ -23,6 +28,9 @@ const DynamicOfficeMarker = (props) => {
 const OrganizationDetailRight = ({ organization }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
+  const { locale } = useRouter()
+
   const marker = organization.offices.length > 0
     ? {
         position: [parseFloat(organization.offices[0].latitude), parseFloat(organization.offices[0].longitude)],
@@ -63,11 +71,26 @@ const OrganizationDetailRight = ({ organization }) => {
                 </div>
               </>
           }
+          {
+            organization.endorserLevel && organization.endorserLevel !== 'none' &&
+              <>
+                <div className='text-sm leading-6 text-dial-purple-light pt-6 leading-6 tracking-wide'>
+                  {format('organization.detail.endorserLevel').toUpperCase()}
+                </div>
+                <div className='text-base text-dial-yellow pb-2'>
+                  {organization.endorserLevel.toUpperCase()}
+                </div>
+              </>
+          }
         </div>
         {
           marker &&
             <DynamicOfficeMarker {...marker} />
         }
+      </div>
+      <div className='mt-8 card-title mb-3 text-dial-gray-dark'>{format('product.description')}</div>
+      <div className='fr-view text-dial-gray-dark p-3'>
+        {ReactHtmlParser(descriptionByLocale(organization.organizationDescriptions, locale))}
       </div>
       {
         organization.offices.length > 1 &&
@@ -112,6 +135,13 @@ const OrganizationDetailRight = ({ organization }) => {
                   )
                 : <div className='text-sm pb-5 text-button-gray'>{format('organization.no-country')}</div>
             }
+          </div>
+      }
+      {
+        organization.products && organization.products.length > 0 &&
+          <div className='mt-12'>
+            <div className='card-title mb-3 text-dial-gray-dark'>{format('product.header')}</div>
+            {organization.products.map((product, i) => <ProductCard key={i} product={product} listType='list' />)}
           </div>
       }
       {
