@@ -181,7 +181,7 @@ export const en = {
   'wizard.results.principlesDesc': 'The following Digital Principles are particularly important at each phase of your project. Click on the links below to learn more.',
   'wizard.results.similarProjects': 'Similar Projects',
   'wizard.results.similarProjectsDesc': 'Here are projects that have been implemented in the same Sector or have similar tags. Click on a project to learn more.',
-  'wizard.results.noProjects': 'We could not find any use cases that connect to the sector or tags that you selected. Please provide additional information if possible.',
+  'wizard.results.noProjects': 'We could not find any projects that connect to the sector or tags that you selected. Please provide additional information if possible.',
   'wizard.results.useCases': 'Use Cases',
   'wizard.results.useCasesDesc': 'The following use cases may be applicable to your project. A use case provides a breakdown of all of the steps that may be required as well as the workflows or business processes that will be needed at each step.',
   'wizard.results.noUseCases': 'We do not have any uses cases that are applicable to this project. We encourage you to create a new use case in the Catalog of Digital Solutions.',

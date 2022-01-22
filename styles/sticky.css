@@ -40,4 +40,16 @@
     /* Full height on phones. */
     height: 70vh;
   }
+
+  .wizard-content-xl {
+    min-height: 60vh;
+  }
+
+  .wizard-content {
+    min-height: 40vh;
+  }
+
+  .bb-content {
+    max-height: 40vh;
+  }
 }
