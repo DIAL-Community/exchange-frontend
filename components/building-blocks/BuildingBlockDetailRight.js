@@ -5,13 +5,9 @@ import WorkflowCard from '../workflows/WorkflowCard'
 import ReactHtmlParser from 'react-html-parser'
 import { DiscourseForum } from '../shared/discourse'
 
-import { descriptionByLocale } from '../../lib/utilities'
-import { useRouter } from 'next/router'
-
 const BuildingBlockDetailRight = ({ buildingBlock, discourseRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
-  const { locale } = useRouter()
 
   const slugNameMapping = (() => {
     const map = {}
@@ -25,7 +21,7 @@ const BuildingBlockDetailRight = ({ buildingBlock, discourseRef }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='fr-view text-dial-gray-dark'>
-        {ReactHtmlParser(descriptionByLocale(buildingBlock.buildingBlockDescriptions, locale))}
+        {buildingBlock.buildingBlockDescription && ReactHtmlParser(buildingBlock.buildingBlockDescription.description)}
       </div>
       {
         buildingBlock.products && buildingBlock.products.length > 0 &&

@@ -19,9 +19,9 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
   }
 
   return (
-    <div className='lg:flex'>
-      <div className='lg:w-1/4 lg:px-5 lg:mx-5'>
-        <div className='text-sm pt-6 pb-2 h-12 grid content-end'>
+    <div className='lg:flex gap-12'>
+      <div className='lg:w-1/4 lg:mt-auto'>
+        <div className='text-sm my-2 grid content-end'>
           <div>{format('wizard.selectSector')}</div>
         </div>
         <Select
@@ -31,8 +31,8 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
           placeholder={format('wizard.sectorPlaceholder')}
         />
       </div>
-      <div className='lg:w-1/4 lg:px-5'>
-        <div className='text-sm pb-2 h-12 grid content-end'>
+      <div className='lg:w-1/4 mt-6 lg:mt-auto'>
+        <div className='text-sm my-2 grid content-end'>
           {format('wizard.selectSubsector')}
         </div>
         <Select
@@ -43,8 +43,8 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
           isClearable
         />
       </div>
-      <div className='lg:w-1/4 lg:px-5'>
-        <div className='text-sm pb-2 h-12 grid content-end'>
+      <div className='lg:w-1/4 mt-6 lg:mt-auto'>
+        <div className='text-sm my-2 grid content-end'>
           {format('wizard.selectSDG')}
         </div>
         <Select
@@ -61,65 +61,84 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
 export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
+  const addSelectedTagValue = (selectedTagValue) => {
+    if (allValues.tags.indexOf(selectedTagValue) < 0) {
+      allValues.tags.push(selectedTagValue)
+      setAllValues(prevValues => { return { ...prevValues, tags: allValues.tags } })
+    }
+  }
+
+  const addSelectedCountryName = (selectedCountryName) => {
+    if (allValues.countries.indexOf(selectedCountryName) < 0) {
+      allValues.countries.push(selectedCountryName)
+      setAllValues(prevValues => { return { ...prevValues, countries: allValues.countries } })
+    }
+  }
+
   return (
-    <div className='lg:flex'>
-      <div className='lg:w-1/4 lg:px-5 lg:mx-5'>
-        <div className='text-sm h-12 pt-6 pb-2'>
+    <div className='lg:grid lg:grid-cols-3 gap-12 '>
+      <div className='mt-6 lg:mt-0'>
+        <div className='text-sm pb-2'>
           {format('wizard.selectTags')}
         </div>
         <Select
           className='text-button-gray pb-2' options={projData.tags}
-          onChange={(val) => allValues.tags.push(val.value) && setAllValues(prevValues => { return { ...prevValues, tags: allValues.tags } })}
+          onChange={(tag) => addSelectedTagValue(tag.value)}
           placeholder={format('wizard.tagPlaceholder')}
         />
-        {allValues.tags.map((tag) => {
-          return (
-            <div className='text-button-gray-light w-1/2 flex justify-between bg-button-gray pl-2 p-1 rounded m-1' key={tag}>{tag}
-              <div
-                className='text-white' onClick={() => {
-                  setAllValues(prevValues => { return { ...prevValues, tags: allValues.tags.filter(val => val !== tag) } })
-                }}
-              >
-                <img src='/icons/close.svg' className='inline mr-2' alt='Back' height='10px' width='10px' />
+        <div className=''>
+          {allValues.tags.map((tag) => {
+            return (
+              <div className='text-button-gray-light flex justify-between bg-button-gray pl-2 p-1 rounded my-1' key={tag}>{tag}
+                <div
+                  className='text-white' onClick={() => {
+                    setAllValues(prevValues => { return { ...prevValues, tags: allValues.tags.filter(val => val !== tag) } })
+                  }}
+                >
+                  <img src='/icons/close.svg' className='cursor-pointer inline mr-2' alt='Back' height='10px' width='10px' />
+                </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
-      <div className='lg:w-1/4 lg:px-5'>
-        <div className='text-sm pb-2 h-12 grid content-end'>
+      <div className='mt-6 lg:mt-0'>
+        <div className='text-sm pb-2'>
           {format('wizard.selectCountry')}
         </div>
         <Select
           className='text-button-gray pb-2' options={projData.countries}
-          onChange={(val) => allValues.countries.push(val.value) && setAllValues(prevValues => { return { ...prevValues, countries: allValues.countries } })}
+          onChange={(country) => addSelectedCountryName(country.value)}
           placeholder={format('wizard.countryPlaceholder')}
         />
-        {allValues.countries.map((country) => {
-          return (
-            <div className='text-button-gray-light w-1/2 flex justify-between bg-button-gray pl-2 p-1 rounded m-1' key={country}>{country}
-              <div
-                className='text-white' onClick={() => {
-                  setAllValues(prevValues => { return { ...prevValues, countries: allValues.countries.filter(val => val !== country) } })
-                }}
-              >
-                <img src='/icons/close.svg' className='inline mr-2' alt='Back' height='10px' width='10px' />
+        <div className=''>
+          {allValues.countries.map((country) => {
+            return (
+              <div className='text-button-gray-light flex justify-between bg-button-gray pl-2 p-1 rounded my-1' key={country}>{country}
+                <div
+                  className='text-white' onClick={() => {
+                    setAllValues(prevValues => { return { ...prevValues, countries: allValues.countries.filter(val => val !== country) } })
+                  }}
+                >
+                  <img src='/icons/close.svg' className='cursor-pointer inline mr-2' alt='Back' height='10px' width='10px' />
+                </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
-      <div className='lg:w-1/3 lg:px-5 lg:mx-5'>
+      <div className='mt-6 lg:mt-0'>
         <div className='text-sm pb-2'>
           {format('wizard.selectMobile')}
         </div>
-        <div className='lg:grid lg:grid-cols-2'>
+        <div className='xl:grid xl:grid-cols-2'>
           {projData.mobileServices.map((service) => {
             return (
-              <div key={service.value} className='text-sm pt-1'>
-                <div>
+              <div key={service.value} className='text-sm pt-2'>
+                <label>
                   <Checkbox
-                    className='form-checkbox bg-dial-gray-dark border rounded text-white color-dial-gray-dark'
+                    className='h-5 w-5 form-checkbox bg-dial-gray-dark border rounded text-white color-dial-gray-dark'
                     onChange={(e) => e.currentTarget.checked
                       ? allValues.mobileServices.push(service.value) &&
                         setAllValues(prevValues => { return { ...prevValues, mobileServices: allValues.mobileServices } })
@@ -128,7 +147,7 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
                   <span className='pl-2'>
                     {service.label}
                   </span>
-                </div>
+                </label>
               </div>
             )
           })}
@@ -144,14 +163,14 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
   const classNameSelected = 'bg-white border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-button-gray inline'
   const classNameNotSelected = 'bg-dial-gray-dark border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-white inline'
   return (
-    <div className='lg:flex'>
-      <div className='lg:w-1/4 lg:px-5 lg:mx-5'>
+    <div className='lg:flex gap-12 -mb-12'>
+      <div className='lg:w-1/4'>
         <div className='text-sm pt-6 pb-2'>
           {format('wizard.buildingBlocks')}
         </div>
       </div>
-      <div className='lg:w-2/3 lg:px-5 lg:mx-5'>
-        <div className='text-sm pt-2 pb-2 overflow-y-scroll bb-content'>
+      <div className='lg:w-2/3'>
+        <div className='text-sm pt-2 pb-2 bb-content overflow-y-auto'>
           {projData.buildingBlocks.map((bb) => {
             return (
               <div key={bb} className='flex flex-row items-center'>

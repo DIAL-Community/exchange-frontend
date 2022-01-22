@@ -105,7 +105,7 @@ const WizardPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <WizardHeader stage={stage} />
+      <WizardHeader stage={stage} setStage={setStage} />
       {stage < 4
         ? <WizardContent stage={stage} setStage={setStage} projData={projData} allValues={allValues} setAllValues={setAllValues} />
         : <WizardResults stage={stage} setStage={setStage} allValues={allValues} setAllValues={setAllValues} />}
