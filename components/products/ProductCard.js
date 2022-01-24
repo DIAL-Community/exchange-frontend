@@ -237,7 +237,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                             .filter((_, index) => index <= 2)
                             .map(origin => {
                               const nominee = origin.slug === 'dpga' && product.endorsers.length === 0 ? ' ' + format('product.nominee') : ''
-                              const toolTip = (product.endorsers && product.endorsers.filter(endorser => endorser.slug === origin.slug).length > 0) 
+                              const toolTip = (product.endorsers && product.endorsers.filter(endorser => endorser.slug === origin.slug).length > 0)
                                 ? format('product.endorsed-by') + origin.name
                                 : format('tooltip.forEntity', {
                                   entity: format('origin.label'),

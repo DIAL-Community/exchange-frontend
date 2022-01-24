@@ -144,7 +144,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
       setContactState(CONTACT_STATES[2])
       if (response.status === 200) {
         const ownerData = await response.json()
-        setEmailAddress(ownerData['owner']['email'])
+        setEmailAddress(ownerData.owner.email)
       } else {
         setContactState(CONTACT_STATES[3])
       }

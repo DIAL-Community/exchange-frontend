@@ -22,7 +22,7 @@ const WORKFLOW_QUERY = gql`
       name
       slug
       imageFile
-      workflowDescriptions {
+      workflowDescription {
         description
         locale
       }
@@ -51,16 +51,24 @@ const Workflow = () => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const router = useRouter()
-  const { pathname, asPath, query } = useRouter()
+  const { pathname, asPath, query, locale } = useRouter()
 
   const { slug } = router.query
-  const { loading, error, data } = useQuery(WORKFLOW_QUERY, { variables: { slug: slug }, skip: !slug })
+  const { loading, error, data, refetch } = useQuery(WORKFLOW_QUERY, {
+    variables: { slug: slug },
+    context: { headers: { 'Accept-Language': locale } },
+    skip: !slug
+  })
 
   useEffect(() => {
     if (query.locale) {
       router.replace({ pathname }, asPath, { locale: query.locale })
     }
   })
+
+  useEffect(() => {
+    refetch()
+  }, [locale])
 
   return (
     <>

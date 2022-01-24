@@ -21,6 +21,7 @@ import PagedProjectList from './paginated/PagedProjectList'
 import Select from 'react-select'
 
 const sortHintOptions = [
+  { value: 'name', label: 'Sort by Name' },
   { value: 'country', label: 'Sort by Country' },
   { value: 'sector', label: 'Sort by Sector' },
   { value: 'tag', label: 'Sort by Tag' }
@@ -287,6 +288,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           <div className='pb-6 grid grid-cols-1 w-3/4'>
             <PagedProductList
               buildingBlocks={allValues.buildingBlocks}
+              countries={allValues.countries}
               sectors={[allValues.sector]}
               subSectors={[allValues.subsector]}
               tags={allValues.tags}

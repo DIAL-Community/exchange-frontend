@@ -11,14 +11,10 @@ import Link from 'next/link'
 
 import { convertToKey } from '../context/FilterContext'
 
-import { descriptionByLocale } from '../../lib/utilities'
-import { useRouter } from 'next/router'
-
 const UseCaseDetailRight = ({ useCase }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
   const [session] = useSession()
-  const { locale } = useRouter()
 
   const generateCreateStepLink = () => {
     if (!session.user) {
@@ -44,7 +40,7 @@ const UseCaseDetailRight = ({ useCase }) => {
       </div>
       <div className='card-title mb-3 text-dial-gray-dark'>{format('useCase.description')}</div>
       <div className='fr-view text-dial-gray-dark'>
-        {ReactHtmlParser(descriptionByLocale(useCase.useCaseDescriptions, locale))}
+        {useCase.useCaseDescription && ReactHtmlParser(useCase.useCaseDescription.description)}
       </div>
       <div className='mt-12'>
         <div className='self-center place-self-end text-sm'>

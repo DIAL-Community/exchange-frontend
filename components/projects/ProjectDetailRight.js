@@ -70,11 +70,11 @@ const ProjectDetailRight = ({ project }) => {
           </div>
       }
       {
-        project.sectorsWithLocale &&
+        project.sectors &&
           <div className='mt-12'>
             <div className='card-title mb-3 text-dial-gray-dark'>{format('sector.header')}</div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
-              {project.sectorsWithLocale.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
+              {project.sectors.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
             </div>
           </div>
       }
