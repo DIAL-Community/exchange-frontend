@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const ProgressBar = ({ stage }) => {
+const ProgressBar = ({ stage, setStage }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -23,7 +23,7 @@ const ProgressBar = ({ stage }) => {
       `}
       </style>
       <div className='flex'>
-        <div className='w-1/4'>
+        <div className='w-1/4 cursor-pointer' onClick={() => setStage(1)}>
           <div className='relative mb-2'>
             <div className={`w-10 h-10 mx-auto ${stage > 0 && 'bg-button-gray'} border border-button-gray rounded-full text-lg flex items-center`}>
               <span className={`text-center ${stage > 0 ? 'text-dial-gray-light' : 'text-button-gray'} w-full`}>
@@ -34,7 +34,7 @@ const ProgressBar = ({ stage }) => {
           {(stage === 0 || stage === 1) && <div className='text-xs uppercase text-center'>0% {format('wizard.complete')}</div>}
         </div>
 
-        <div className='w-1/4'>
+        <div className='w-1/4 cursor-pointer' onClick={() => setStage(2)}>
           <div className='relative mb-2'>
             <div className='absolute flex align-center items-center align-middle content-center progress-line'>
               <div className='w-full rounded items-center align-middle align-center flex-1'>
@@ -51,7 +51,7 @@ const ProgressBar = ({ stage }) => {
           {(stage === 2) && <div className='text-xs uppercase text-center'>33% {format('wizard.complete')}</div>}
         </div>
 
-        <div className='w-1/4'>
+        <div className='w-1/4 cursor-pointer' onClick={() => setStage(3)}>
           <div className='relative mb-2'>
             <div className='absolute flex align-center items-center align-middle content-center progress-line'>
               <div className='w-full bg-gray-200 rounded items-center align-middle align-center flex-1'>
@@ -67,7 +67,7 @@ const ProgressBar = ({ stage }) => {
           </div>
           {(stage === 3) && <div className='text-xs uppercase text-center'>67% {format('wizard.complete')}</div>}
         </div>
-        <div className='w-1/4'>
+        <div className='w-1/4 cursor-pointer' onClick={() => setStage(4)}>
           <div className='relative mb-2'>
             <div className='absolute flex align-center items-center align-middle content-center progress-line'>
               <div className='w-full bg-gray-200 rounded items-center align-middle align-center flex-1'>
@@ -88,7 +88,7 @@ const ProgressBar = ({ stage }) => {
   )
 }
 
-const WizardHeader = ({ stage }) => {
+const WizardHeader = ({ stage, setStage }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -96,7 +96,7 @@ const WizardHeader = ({ stage }) => {
     <>
       <header className='bg-dial-yellow p-5 w-full sticky lg:flex lg:items-center sticky-under-header'>
         <div className='px-6 h1 lg:inline py-3 lg:w-1/2'>{format('wizard.title')}</div>
-        <ProgressBar stage={stage} />
+        <ProgressBar stage={stage} setStage={setStage} />
       </header>
     </>
   )

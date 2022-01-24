@@ -98,10 +98,10 @@ const ProductStep = () => {
                 </div>
               </>
           }
-          <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer/>
+          <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer />
         </div>
         <div className='w-full lg:w-2/3 xl:w-3/4'>
-          <RepositoryData repositorySlug={repositorySlug} autoLoadData={true} />
+          <RepositoryData repositorySlug={repositorySlug} autoLoadData />
         </div>
       </div>
       <Footer />

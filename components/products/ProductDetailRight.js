@@ -1,10 +1,7 @@
 import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 import ReactHtmlParser from 'react-html-parser'
-
-import { descriptionByLocale } from '../../lib/utilities'
 
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseForum } from '../shared/discourse'
@@ -23,9 +20,6 @@ import RepositoryList from './repositories/RepositoryList'
 const ProductDetailRight = ({ product, discourseRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
-
-  const router = useRouter()
-  const { locale } = router
 
   const slugNameMapping = (() => {
     const map = {}
@@ -55,7 +49,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
         )}
       </div>
       <div className='fr-view text-dial-gray-dark'>
-        {ReactHtmlParser(descriptionByLocale(product.productDescriptions, locale))}
+        {product.productDescription && ReactHtmlParser(product.productDescription.description)}
       </div>
       {
         product.sustainableDevelopmentGoals &&
@@ -77,11 +71,11 @@ const ProductDetailRight = ({ product, discourseRef }) => {
           </div>
       }
       {
-        product.sectorsWithLocale &&
+        product.sectors &&
           <div className='mt-12'>
             <div className='card-title mb-3 text-dial-gray-dark'>{format('sector.header')}</div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
-              {product.sectorsWithLocale.map((sector, i) => {
+              {product.sectors.map((sector, i) => {
                 return sector.isDisplayable && (<SectorCard key={i} sector={sector} listType='list' />)
               })}
             </div>
@@ -185,10 +179,12 @@ const ProductDetailRight = ({ product, discourseRef }) => {
         <div className='card-title mb-3 text-dial-gray-dark'>{format('product.maturity-scores')}</div>
         {
           product.maturityScore
-            ? <>
-              <div className='text-sm mb-3 text-dial-gray-dark highlight-link' dangerouslySetInnerHTML={{ __html: format('product.maturity-desc') }} />
-              <MaturityAccordion maturityScores={product.maturityScores} overallScore={product.maturityScore} />
-            </>
+            ? (
+              <>
+                <div className='text-sm mb-3 text-dial-gray-dark highlight-link' dangerouslySetInnerHTML={{ __html: format('product.maturity-desc') }} />
+                <MaturityAccordion maturityScores={product.maturityScores} overallScore={product.maturityScore} />
+              </>
+              )
             : <div className='text-sm pb-5 text-button-gray'>{format('product.no-maturity')}</div>
         }
       </div>

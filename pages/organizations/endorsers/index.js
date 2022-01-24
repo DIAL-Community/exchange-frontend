@@ -142,7 +142,7 @@ const EndorserPage = () => {
     <>
       <GradientBackground />
       <div className='flex flex-row mx-2 my-2' style={{ minHeight: '10vh' }}>
-        <EndorserMarkerMaps {...{ cities, organization, setSelectedCity, setOrganization, height: '30vh' }} />
+        <EndorserMarkerMaps {...{ cities, organization, setSelectedCity, setOrganization, height: '30vh', defaultMap: 'principles' }} />
         <EndorserInfo {...{ city, setOrganization }} />
       </div>
       <div className='flex flex-row bg-dial-gray-dark'>

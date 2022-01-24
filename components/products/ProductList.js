@@ -1,6 +1,8 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/react-hooks'
+import { useRouter } from 'next/router'
+
 import gql from 'graphql-tag'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
@@ -84,7 +86,7 @@ query SearchProducts(
         name
         imageFile
       }
-      productDescriptions {
+      productDescription {
         description
         locale
       }
@@ -151,10 +153,11 @@ const ProductListQuery = () => {
     endorsers, productDeployable, withMaturity, search
   } = useContext(ProductFilterContext)
 
+  const { locale } = useRouter()
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { loading, error, data, fetchMore } = useQuery(PRODUCTS_QUERY, {
+  const { loading, error, data, fetchMore, refetch } = useQuery(PRODUCTS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       origins: origins.map(origin => origin.value),
@@ -172,10 +175,15 @@ const ProductListQuery = () => {
       withMaturity: withMaturity,
       search: search
     },
+    context: { headers: { 'Accept-Language': locale } },
     onCompleted: (data) => {
       setResultCounts({ ...resultCounts, ...{ [['filter.entity.products']]: data.searchProducts.totalCount } })
     }
   })
+
+  useEffect(() => {
+    refetch()
+  }, [locale])
 
   if (loading) {
     return <Loading />

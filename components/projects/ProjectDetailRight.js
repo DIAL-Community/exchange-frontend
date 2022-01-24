@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl'
 import ReactHtmlParser from 'react-html-parser'
-import { useRouter } from 'next/router'
 
 import Breadcrumb from '../shared/breadcrumb'
 import CountryCard from '../countries/CountryCard'
@@ -12,8 +11,6 @@ import TagCard from '../tags/TagCard'
 const ProjectDetailRight = ({ project }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
-  const router = useRouter()
-  const { locale } = router
 
   const slugNameMapping = (() => {
     const map = {}
@@ -28,13 +25,7 @@ const ProjectDetailRight = ({ project }) => {
       </div>
       <div className='fr-view text-dial-gray-dark text-sm'>
         <div className='card-title mb-3 text-dial-gray-dark'>{format('project.description')}</div>
-        {project.projectDescriptions && project.projectDescriptions.map(desc => {
-          if (desc.locale === locale) {
-            return ReactHtmlParser(desc.description)
-          } else {
-            return ''
-          }
-        })}
+        {project.projectDescription && ReactHtmlParser(project.projectDescription.description)}
       </div>
       <div className='pb-5 pr-5 pt-4 overflow-ellipsis overflow-hidden'>
         <div className='h5 pb-1'>{format('project.url')}</div>
@@ -70,11 +61,11 @@ const ProjectDetailRight = ({ project }) => {
           </div>
       }
       {
-        project.sectorsWithLocale &&
+        project.sectors &&
           <div className='mt-12'>
             <div className='card-title mb-3 text-dial-gray-dark'>{format('sector.header')}</div>
             <div className='grid grid-cols-1 lg:grid-cols-2'>
-              {project.sectorsWithLocale.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
+              {project.sectors.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
             </div>
           </div>
       }

@@ -6,10 +6,8 @@ import ProjectCard from '../projects/ProjectCard'
 import ProductCard from '../products/ProductCard'
 
 import ReactHtmlParser from 'react-html-parser'
-import { descriptionByLocale } from '../../lib/utilities'
 
 import { useMemo } from 'react'
-import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import CityCard from '../cities/CityCard'
 import AggregatorCapability from './AggregatorCapability'
@@ -28,8 +26,6 @@ const DynamicOfficeMarker = (props) => {
 const OrganizationDetailRight = ({ organization }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
-
-  const { locale } = useRouter()
 
   const marker = organization.offices.length > 0
     ? {
@@ -90,7 +86,7 @@ const OrganizationDetailRight = ({ organization }) => {
       </div>
       <div className='mt-8 card-title mb-3 text-dial-gray-dark'>{format('product.description')}</div>
       <div className='fr-view text-dial-gray-dark p-3'>
-        {ReactHtmlParser(descriptionByLocale(organization.organizationDescriptions, locale))}
+        {organization.organizationDescription && ReactHtmlParser(organization.organizationDescription.description)}
       </div>
       {
         organization.offices.length > 1 &&
@@ -108,14 +104,14 @@ const OrganizationDetailRight = ({ organization }) => {
           </div>
       }
       {
-        organization.sectorsWithLocale &&
+        organization.sectors &&
           <div className='mt-12'>
             <div className='card-title mb-3 text-dial-gray-dark'>{format('sector.header')}</div>
             {
-              organization.sectorsWithLocale.length > 0
+              organization.sectors.length > 0
                 ? (
                   <div className='grid grid-cols-1 lg:grid-cols-2'>
-                    {organization.sectorsWithLocale.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
+                    {organization.sectors.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
                   </div>
                   )
                 : <div className='text-sm pb-5 text-button-gray'>{format('organization.no-sector')}</div>

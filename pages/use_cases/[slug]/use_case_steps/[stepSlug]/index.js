@@ -106,10 +106,10 @@ const UseCaseStep = () => {
                 </div>
               </>
           }
-          <StepList useCaseSlug={slug} stepSlug={stepSlug} listStyle='compact' shadowOnContainer/>
+          <StepList useCaseSlug={slug} stepSlug={stepSlug} listStyle='compact' shadowOnContainer />
         </div>
         <div className='w-full lg:w-2/3 xl:w-3/4'>
-          <StepDetail stepSlug={stepSlug} />
+          <StepDetail stepSlug={stepSlug} locale={locale} />
         </div>
       </div>
       <Footer />

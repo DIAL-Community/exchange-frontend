@@ -7,7 +7,6 @@ import { DiscourseCount } from '../shared/discourse'
 import Breadcrumb from '../shared/breadcrumb'
 import { useRouter } from 'next/router'
 
-import { descriptionByLocale } from '../../lib/utilities'
 import gql from 'graphql-tag'
 
 import ReCAPTCHA from 'react-google-recaptcha'
@@ -144,7 +143,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
       setContactState(CONTACT_STATES[2])
       if (response.status === 200) {
         const ownerData = await response.json()
-        setEmailAddress(ownerData['owner']['email'])
+        setEmailAddress(ownerData.owner.email)
       } else {
         setContactState(CONTACT_STATES[3])
       }
@@ -226,7 +225,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
           <img alt={`${product.name} Logo`} className='p-2 m-auto' src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile} width='200px' height='200px' />
         </div>
         <div className='fr-view text-dial-gray-dark max-h-40 overflow-hidden'>
-          {ReactHtmlParser(descriptionByLocale(product.productDescriptions, locale))}
+          {product.productDescription && ReactHtmlParser(product.productDescription.description)}
         </div>
       </div>
       <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 lg:mr-6 shadow-lg border-b-2 border-dial-gray'>

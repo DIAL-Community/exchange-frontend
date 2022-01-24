@@ -25,7 +25,7 @@ const USE_CASE_QUERY = gql`
       name
       slug
       imageFile
-      useCaseDescriptions {
+      useCaseDescription {
         description
         locale
       }
@@ -60,16 +60,24 @@ const UseCase = () => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const router = useRouter()
-  const { pathname, asPath, query } = useRouter()
+  const { pathname, asPath, query, locale } = useRouter()
 
   const { slug } = router.query
-  const { loading, error, data } = useQuery(USE_CASE_QUERY, { variables: { slug: slug }, skip: !slug })
+  const { loading, error, data, refetch } = useQuery(USE_CASE_QUERY, {
+    variables: { slug: slug },
+    context: { headers: { 'Accept-Language': locale } },
+    skip: !slug
+  })
 
   useEffect(() => {
     if (query.locale) {
       router.replace({ pathname }, asPath, { locale: query.locale })
     }
   })
+
+  useEffect(() => {
+    refetch()
+  }, [locale])
 
   return (
     <>

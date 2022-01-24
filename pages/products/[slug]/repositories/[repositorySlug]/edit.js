@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
 
 import { gql, useQuery } from '@apollo/client'
 
@@ -34,7 +33,6 @@ const REPOSITORY_QUERY = gql`
 `
 
 const EditRepository = () => {
-  const [session] = useSession()
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -80,7 +78,7 @@ const EditRepository = () => {
                 </div>
               </>
           }
-          <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer/>
+          <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer />
         </div>
         <div className='w-full lg:w-2/3 xl:w-3/4'>
           <div className='hidden lg:block'>
