@@ -13,29 +13,19 @@ const PRODUCTS_QUERY = gql`
   query PaginatedProjects(
     $first: Int,
     $offset: Int,
-    $origins: [String!],
     $sectors: [String!],
     $subSectors: [String!],
     $countries: [String!],
-    $organizations: [String!],
-    $products: [String!],
-    $sdgs: [String!],
     $tags: [String!],
-    $search: String!,
     $projectSortHint: String!
   ) {
     paginatedProjects(
       first: $first,
       offsetAttributes: { offset: $offset},
-      origins: $origins,
       sectors: $sectors,
       subSectors: $subSectors,
       countries: $countries,
-      organizations: $organizations,
-      products: $products,
-      sdgs: $sdgs,
       tags: $tags,
-      search: $search,
       projectSortHint: $projectSortHint
     ) {
       __typename
@@ -85,8 +75,7 @@ const PagedProjectList = ({ countries, sectors, subSectors, tags, projectSortHin
       sectors: sectors,
       subSectors: subSectors,
       tags: tags,
-      projectSortHint: projectSortHint,
-      search: ''
+      projectSortHint: projectSortHint
     }
   })
 
@@ -101,8 +90,7 @@ const PagedProjectList = ({ countries, sectors, subSectors, tags, projectSortHin
           sectors: sectors,
           subSectors: subSectors,
           tags: tags,
-          projectSortHint: projectSortHint,
-          search: ''
+          projectSortHint: projectSortHint
         }
       })
     }

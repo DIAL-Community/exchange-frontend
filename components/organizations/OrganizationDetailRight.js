@@ -108,14 +108,14 @@ const OrganizationDetailRight = ({ organization }) => {
           </div>
       }
       {
-        organization.sectorsWithLocale &&
+        organization.sectors &&
           <div className='mt-12'>
             <div className='card-title mb-3 text-dial-gray-dark'>{format('sector.header')}</div>
             {
-              organization.sectorsWithLocale.length > 0
+              organization.sectors.length > 0
                 ? (
                   <div className='grid grid-cols-1 lg:grid-cols-2'>
-                    {organization.sectorsWithLocale.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
+                    {organization.sectors.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
                   </div>
                   )
                 : <div className='text-sm pb-5 text-button-gray'>{format('organization.no-sector')}</div>

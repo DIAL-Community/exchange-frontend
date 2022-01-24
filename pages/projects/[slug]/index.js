@@ -41,7 +41,7 @@ query Project($slug: String!, $locale: String!) {
       name
       imageFile
     }
-    sectorsWithLocale(locale: $locale) {
+    sectors {
       name
       slug
     }

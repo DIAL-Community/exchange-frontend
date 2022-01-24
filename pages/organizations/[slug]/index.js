@@ -36,7 +36,7 @@ query Organization($slug: String!, $locale: String!) {
       latitude
       longitude
     }
-    sectorsWithLocale(locale: $locale) {
+    sectors {
       name
       slug
     }
@@ -78,7 +78,7 @@ const Organization = () => {
       router.replace({ pathname }, asPath, { locale: query.locale })
     }
   })
-  
+
   return (
     <>
       <Head>

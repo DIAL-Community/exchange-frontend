@@ -14,22 +14,20 @@ const PRODUCTS_QUERY = gql`
     $first: Int,
     $offset: Int,
     $buildingBlocks: [String!],
-    $sdgs: [String!],
+    $countries: [String!],
     $sectors: [String!],
     $subSectors: [String!],
     $tags: [String!],
-    $search: String!,
     $productSortHint: String!
   ) {
     paginatedProducts(
       first: $first,
       offsetAttributes: { offset: $offset},
       buildingBlocks: $buildingBlocks,
-      sdgs: $sdgs,
+      countries: $countries,
       sectors: $sectors,
       subSectors: $subSectors,
       tags: $tags,
-      search: $search,
       productSortHint: $productSortHint
     ) {
       __typename
@@ -51,7 +49,7 @@ const PRODUCTS_QUERY = gql`
   }
 `
 
-const PagedProductList = ({ buildingBlocks, sectors, subSectors, tags, productSortHint }) => {
+const PagedProductList = ({ buildingBlocks, countries, sectors, subSectors, tags, productSortHint }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -62,11 +60,11 @@ const PagedProductList = ({ buildingBlocks, sectors, subSectors, tags, productSo
       first: DEFAULT_PAGE_SIZE,
       offset: itemOffset,
       buildingBlocks: buildingBlocks,
+      countries: countries,
       sectors: sectors,
       subSectors: subSectors,
       tags: tags,
-      productSortHint: productSortHint,
-      search: ''
+      productSortHint: productSortHint
     }
   })
 
@@ -77,11 +75,11 @@ const PagedProductList = ({ buildingBlocks, sectors, subSectors, tags, productSo
           first: DEFAULT_PAGE_SIZE,
           offset: itemOffset,
           buildingBlocks: buildingBlocks,
+          countries: countries,
           sectors: sectors,
           subSectors: subSectors,
           tags: tags,
-          productSortHint: productSortHint,
-          search: ''
+          productSortHint: productSortHint
         }
       })
     }

@@ -7,7 +7,6 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import GradientBackground from '../../components/shared/GradientBackground'
 
-
 const SignIn = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)

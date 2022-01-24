@@ -1,13 +1,13 @@
+import { useEffect } from 'react'
 import { gql, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
+
 import Breadcrumb from '../../shared/breadcrumb'
 import WorkflowCard from '../../workflows/WorkflowCard'
 import BuildingBlockCard from '../../building-blocks/BuildingBlockCard'
 import ProductCard from '../../products/ProductCard'
-import ReactHtmlParser from 'react-html-parser'
 
-import { descriptionByLocale } from '../../../lib/utilities'
-import { useRouter } from 'next/router'
+import ReactHtmlParser from 'react-html-parser'
 
 const USE_CASE_STEP_QUERY = gql`
   query UseCaseStep($slug: String!) {
@@ -15,7 +15,7 @@ const USE_CASE_STEP_QUERY = gql`
       id
       name
       slug
-      useCaseStepDescriptions {
+      useCaseStepDescription {
         description
         locale
       }
@@ -45,7 +45,6 @@ const USE_CASE_STEP_QUERY = gql`
 const UseCaseStepInformation = ({ useCaseStep }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
-  const { locale } = useRouter()
 
   const slugNameMapping = (() => {
     const map = {}
@@ -60,7 +59,7 @@ const UseCaseStepInformation = ({ useCaseStep }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='fr-view text-dial-gray-dark'>
-        {ReactHtmlParser(descriptionByLocale(useCaseStep.useCaseStepDescriptions, locale))}
+        {useCaseStep.useCaseStepDescription && ReactHtmlParser(useCaseStep.useCaseStepDescription.description)}
       </div>
       {
         useCaseStep.workflows && useCaseStep.workflows.length > 0 &&
@@ -93,11 +92,19 @@ const UseCaseStepInformation = ({ useCaseStep }) => {
   )
 }
 
-const StepDetail = ({ stepSlug }) => {
+const StepDetail = ({ stepSlug, locale }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const { loading, data } = useQuery(USE_CASE_STEP_QUERY, { variables: { slug: stepSlug } })
+  const { loading, data, refetch } = useQuery(USE_CASE_STEP_QUERY, {
+    variables: { slug: stepSlug },
+    context: { headers: { 'Accept-Language': locale } }
+  })
+
+  useEffect(() => {
+    refetch()
+  }, [locale])
+
   return (
     <>
       {
