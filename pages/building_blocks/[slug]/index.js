@@ -23,7 +23,7 @@ query BuildingBlock($slug: String!) {
     slug
     imageFile
     discourseId
-    buildingBlockDescriptions {
+    buildingBlockDescription {
       description
       locale
     }
@@ -46,10 +46,14 @@ const BuildingBlock = () => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const router = useRouter()
-  const { pathname, asPath, query } = useRouter()
+  const { pathname, asPath, query, locale } = useRouter()
 
   const { slug } = router.query
-  const { loading, error, data } = useQuery(BUILDING_BLOCK_QUERY, { variables: { slug: slug }, skip: !slug })
+  const { loading, error, data, refetch } = useQuery(BUILDING_BLOCK_QUERY, {
+    variables: { slug: slug },
+    context: { headers: { 'Accept-Language': locale } },
+    skip: !slug
+  })
 
   const discourseElement = useRef()
   const scrollToDiv = (ref) => {
@@ -63,6 +67,10 @@ const BuildingBlock = () => {
       router.replace({ pathname }, asPath, { locale: query.locale })
     }
   })
+
+  useEffect(() => {
+    refetch()
+  }, [locale])
 
   return (
     <>

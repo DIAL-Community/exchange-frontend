@@ -47,31 +47,29 @@ const Lifecycle = ({ wizardData, objType }) => {
               <div className='px-4 py-2'>
                 <div className='tab-content tab-space'>
                   {['Ideation', 'Planning', 'Implementation', 'Evaluation'].map((phase, index) => {
-                    return objType === 'principles' ? (
-                      <div key={phase} className={openTab === index ? 'block' : 'hidden'} id={'principle-phase-' + index }>
-                        <div className='pb-2 grid lg:grid-cols-3'>
-                          {wizardData.digitalPrinciples.map((principle) => {
-                            if (principle.phase.includes(phase)) {
-                              return (<div key={`${principle.name}`}><DigitalPrinciple principle={principle} /></div>)
-                            } else {
-                              return <></>
-                            }
-                          })}
+                    return objType === 'principles'
+                      ? (
+                        <div key={phase} className={openTab === index ? 'block' : 'hidden'} id={'principle-phase-' + index}>
+                          <div className='pb-2 grid lg:grid-cols-3'>
+                            {wizardData.digitalPrinciples.map((principle) => {
+                              if (principle.phase.includes(phase)) {
+                                return (<div key={`${principle.name}`}><DigitalPrinciple principle={principle} /></div>)
+                              }
+                            })}
+                          </div>
                         </div>
-                      </div>
-                    ) : (
-                      <div key={phase} className={openTab === index ? 'block' : 'hidden'} id={'resource-phase-' + index }>
-                        <div className='pb-6 grid lg:grid-cols-3'>
-                          {wizardData.resources.map((resource) => {
-                            if (resource.phase.includes(phase)) {
-                              return (<div key={`${resource.name}`}><Resource resource={resource} listType='list' /></div>)
-                            } else {
-                              return <></>
-                            }
-                          })}
+                        )
+                      : (
+                        <div key={phase} className={openTab === index ? 'block' : 'hidden'} id={'resource-phase-' + index}>
+                          <div className='pb-6 grid lg:grid-cols-3'>
+                            {wizardData.resources.map((resource) => {
+                              if (resource.phase.includes(phase)) {
+                                return (<div key={`${resource.name}`}><Resource resource={resource} listType='list' /></div>)
+                              }
+                            })}
+                          </div>
                         </div>
-                      </div>
-                    )
+                        )
                   })}
                 </div>
               </div>

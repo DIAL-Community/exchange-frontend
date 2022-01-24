@@ -7,22 +7,21 @@ import gql from 'graphql-tag'
 import withApollo from '../../lib/apolloClient'
 
 import Lifecycle from './Lifecycle'
-import ProjectCard from '../projects/ProjectCard'
-import ProductCard from '../products/ProductCard'
-import OrganizationCard from '../organizations/OrganizationCard'
 import UseCaseCard from '../use-cases/UseCaseCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 
 import { Loading, Error } from '../shared/FetchStatus'
 import PaginatedBuildingBlockList from '../building-blocks/PaginatedBuildingBlockList'
-import PaginatedOrganizationList from '../organizations/PaginatedOrganizationList'
-import PaginatedProductList from '../products/PaginatedProductList'
-import PaginatedProjectList from '../projects/PaginatedProjectList'
 import PaginatedUseCaseList from '../use-cases/PaginatedUseCaseList'
+
+import PagedAggregatorsList from './paginated/PagedAggregatorsList'
+import PagedProductList from './paginated/PagedProductList'
+import PagedProjectList from './paginated/PagedProjectList'
 
 import Select from 'react-select'
 
 const sortHintOptions = [
+  { value: 'name', label: 'Sort by Name' },
   { value: 'country', label: 'Sort by Country' },
   { value: 'sector', label: 'Sort by Sector' },
   { value: 'tag', label: 'Sort by Tag' }
@@ -33,23 +32,13 @@ query Wizard(
   $sector: String,
   $subsector: String,
   $sdg: String,
-  $buildingBlocks: [String!],
-  $tags: [String!],
-  $countries: [String!],
-  $mobileServices: [String!],
-  $productSortHint: String,
-  $projectSortHint: String
+  $buildingBlocks: [String!]
 ) {
   wizard(
     sector: $sector,
     subsector: $subsector,
     sdg: $sdg,
-    buildingBlocks: $buildingBlocks,
-    tags: $tags,
-    countries: $countries,
-    mobileServices: $mobileServices,
-    productSortHint: $productSortHint,
-    projectSortHint: $projectSortHint
+    buildingBlocks: $buildingBlocks
   ) {
     digitalPrinciples {
       phase
@@ -57,35 +46,12 @@ query Wizard(
       slug
       url
     }
-    projects {
-      name
-      slug
-      origin {
-        slug
-      }
-    }
-    products {
-      name
-      imageFile
-      slug
-      origins {
-        name
-      }
-      endorsers {
-        slug
-      }
-    }
-    organizations {
-      name
-      imageFile
-      slug
-    }
     useCases {
       name
       imageFile
       maturity
       slug
-      useCaseDescriptions {
+      useCaseDescription {
         description
       }
     }
@@ -112,46 +78,60 @@ const LeftMenu = ({ currentSection, phase, clickHandler }) => {
   return (
     <div className='block py-3 float-right w-3/4 hidden lg:block'>
       <div
-        className={`${(currentSection === 0) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4 cursor-pointer hover:font-bold`}
+        className={`${(currentSection === 0) && 'bg-button-gray border-l-2 border-dial-gray-light'} cursor-pointer`}
         onClick={() => { clickHandler(0) }}
       >
-        {format('wizard.results.principles')}
+        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+          {format('wizard.results.principles')}
+        </div>
       </div>
       <div
-        className={`${(currentSection === 1) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4 cursor-pointer hover:font-bold`}
+        className={`${(currentSection === 1) && 'bg-button-gray border-l-2 border-dial-gray-light'} cursor-pointer`}
         onClick={() => { clickHandler(1) }}
       >
-        {format('wizard.results.similarProjects')}
+        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+          {format('wizard.results.similarProjects')}
+        </div>
       </div>
       <div
-        className={`${(currentSection === 2) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4 cursor-pointer hover:font-bold`}
+        className={`${(currentSection === 2) && 'bg-button-gray border-l-2 border-dial-gray-light'} cursor-pointer`}
         onClick={() => { clickHandler(2) }}
       >
-        {format('wizard.results.products')}
+        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+          {format('wizard.results.products')}
+        </div>
       </div>
       <div
-        className={`${(currentSection === 3) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4 cursor-pointer hover:font-bold`}
+        className={`${(currentSection === 3) && 'bg-button-gray border-l-2 border-dial-gray-light'} cursor-pointer`}
         onClick={() => { clickHandler(3) }}
       >
-        {format('wizard.results.useCases')}
+        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+          {format('wizard.results.useCases')}
+        </div>
       </div>
       <div
-        className={`${(currentSection === 4) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4 cursor-pointer hover:font-bold`}
+        className={`${(currentSection === 4) && 'bg-button-gray border-l-2 border-dial-gray-light'} cursor-pointer`}
         onClick={() => { clickHandler(4) }}
       >
-        {format('wizard.results.buildingBlocks')}
+        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+          {format('wizard.results.buildingBlocks')}
+        </div>
       </div>
       <div
-        className={`${(currentSection === 5) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4 cursor-pointer hover:font-bold`}
+        className={`${(currentSection === 5) && 'bg-button-gray border-l-2 border-dial-gray-light'} cursor-pointer`}
         onClick={() => { clickHandler(5) }}
       >
-        {format('wizard.results.resources')}
+        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+          {format('wizard.results.resources')}
+        </div>
       </div>
       <div
-        className={`${(currentSection === 6) && 'bg-button-gray border-l-2 border-dial-gray-light'} p-4 cursor-pointer hover:font-bold`}
+        className={`${(currentSection === 6) && 'bg-button-gray border-l-2 border-dial-gray-light'} cursor-pointer`}
         onClick={() => { clickHandler(6) }}
       >
-        {format('wizard.results.aggregators')}
+        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+          {format('wizard.results.aggregators')}
+        </div>
       </div>
     </div>
   )
@@ -169,17 +149,13 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
     sector: allValues.sector,
     subsector: allValues.subsector,
     sdg: allValues.sdg,
-    buildingBlocks: allValues.buildingBlocks,
-    tags: allValues.tags,
-    countries: allValues.countries,
-    mobileServices: allValues.mobileServices,
-    productSortHint: allValues.productSortHint,
-    projectSortHint: allValues.projectSortHint
+    buildingBlocks: allValues.buildingBlocks
   }
 
   const [runWizardQuery, { error: wizardErrors }] = useLazyQuery(WIZARD_QUERY, {
     variables: vars,
     fetchPolicy: 'no-cache',
+    context: { headers: { 'Accept-Language': router.locale } },
     onCompleted: (data) => { setWizardData(data.wizard) }
   })
 
@@ -289,20 +265,14 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
               placeholder={format('wizard.project.sortHint')}
             />
           </div>
-          <div className='pb-4 text-sm'>
-            {wizardData.projects && wizardData.projects.length ? format('wizard.results.similarProjectsDesc') : format('wizard.results.noProjects')}
-          </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
-            {
-              wizardData.projects && wizardData.projects.length > 5 &&
-                <PaginatedProjectList itemsPerPage={5} items={wizardData.projects} />
-            }
-            {
-              wizardData.projects && wizardData.projects.length <= 5 &&
-                wizardData.projects.map((project) => {
-                  return (<ProjectCard key={`${project.name}`} project={project} listType='list' newTab />)
-                })
-            }
+            <PagedProjectList
+              countries={allValues.countries}
+              sectors={[allValues.sector]}
+              subSectors={[allValues.subsector]}
+              tags={allValues.tags}
+              projectSortHint={allValues.projectSortHint}
+            />
           </div>
         </div>
         <div className='text-dial-gray-dark' ref={productsRef}>
@@ -312,31 +282,26 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             </div>
             <Select
               onChange={(val) => setAllValues(prevValues => { return { ...prevValues, productSortHint: val && val.value } })}
-              className='ml-auto text-button-gray' options={sortHintOptions.filter(x => x.value != 'country')}
+              className='ml-auto text-button-gray' options={sortHintOptions.filter(x => x.value !== 'country')}
               placeholder={format('wizard.product.sortHint')}
             />
           </div>
-          <div className='pb-4 text-sm'>
-            {wizardData.products && wizardData.products.length ? format('wizard.results.productsDesc') : format('wizard.results.noProducts')}
-          </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
-            {
-              wizardData.products && wizardData.products.length > 5 &&
-                <PaginatedProductList itemsPerPage={5} items={wizardData.products} />
-            }
-            {
-              wizardData.products && wizardData.products.length <= 5 &&
-                wizardData.products.map((product) => {
-                  return (<ProductCard key={`${product.name}`} product={product} listType='list' newTab />)
-                })
-            }
+            <PagedProductList
+              buildingBlocks={allValues.buildingBlocks}
+              countries={allValues.countries}
+              sectors={[allValues.sector]}
+              subSectors={[allValues.subsector]}
+              tags={allValues.tags}
+              productSortHint={allValues.productSortHint}
+            />
           </div>
         </div>
         <div className='text-dial-gray-dark' ref={useCasesRef}>
           <div className='text-2xl font-bold py-4'>
             {format('wizard.results.useCases')}
           </div>
-          <div className='pb-4 text-sm'>
+          <div className='pb-6 w-3/4 text-sm'>
             {(wizardData.useCases && wizardData.useCases.length ? format('wizard.results.useCasesDesc') : format('wizard.results.noUseCases'))}
             {
               wizardData.useCases && !wizardData.useCases.length &&
@@ -398,16 +363,12 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             {format('wizard.results.aggregatorsDesc')}
           </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
-            {
-              wizardData.organizations && wizardData.organizations.length > 5 &&
-                <PaginatedOrganizationList itemsPerPage={5} items={wizardData.organizations} />
-            }
-            {
-              wizardData.organizations && wizardData.organizations.length <= 5 &&
-                wizardData.organizations.map((org) => {
-                  return (<OrganizationCard key={`${org.name}`} organization={org} listType='list' newTab />)
-                })
-            }
+            <PagedAggregatorsList
+              sectors={[allValues.sectors]}
+              subSectors={[allValues.subSectors]}
+              countries={allValues.countries}
+              services={allValues.mobileServices}
+            />
           </div>
         </div>
       </div>

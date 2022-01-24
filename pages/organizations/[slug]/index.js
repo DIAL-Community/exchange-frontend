@@ -16,7 +16,7 @@ import { Loading, Error } from '../../../components/shared/FetchStatus'
 import { useEffect } from 'react'
 
 const ORGANIZATION_QUERY = gql`
-query Organization($slug: String!, $locale: String!) {
+query Organization($slug: String!) {
   organization(slug: $slug) {
     id
     name
@@ -26,7 +26,7 @@ query Organization($slug: String!, $locale: String!) {
     imageFile
     whenEndorsed
     endorserLevel
-    organizationDescriptions {
+    organizationDescription {
       description
       locale
     }
@@ -36,7 +36,7 @@ query Organization($slug: String!, $locale: String!) {
       latitude
       longitude
     }
-    sectorsWithLocale(locale: $locale) {
+    sectors {
       name
       slug
     }
@@ -71,14 +71,22 @@ const Organization = () => {
 
   const { locale } = router
   const { slug } = router.query
-  const { loading, error, data } = useQuery(ORGANIZATION_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
+  const { loading, error, data, refetch } = useQuery(ORGANIZATION_QUERY, {
+    variables: { slug: slug },
+    context: { headers: { 'Accept-Language': locale } },
+    skip: !slug
+  })
 
   useEffect(() => {
     if (query.locale) {
       router.replace({ pathname }, asPath, { locale: query.locale })
     }
   })
-  
+
+  useEffect(() => {
+    refetch()
+  }, [locale])
+
   return (
     <>
       <Head>

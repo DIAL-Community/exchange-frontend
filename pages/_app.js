@@ -37,7 +37,7 @@ export function reportWebVitals (metric) {
 const App = ({ Component, pageProps }) => {
   const router = useRouter()
   const { locale } = router
-  const messages = { ...translations['en'], ...translations[locale] }
+  const messages = { ...translations.en, ...translations[locale] }
 
   useEffect(() => {
     const handleRouteChange = (url) => {

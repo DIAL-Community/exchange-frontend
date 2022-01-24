@@ -21,7 +21,7 @@ const Loading = dynamic(() => import('../../../components/shared/FetchStatus').t
 const Error = dynamic(() => import('../../../components/shared/FetchStatus').then(x => x.Error), { ssr: false })
 
 const PRODUCT_QUERY = gql`
-query Product($slug: String!, $locale: String!) {
+query Product($slug: String!) {
   product(slug: $slug) {
     id
     name
@@ -31,7 +31,7 @@ query Product($slug: String!, $locale: String!) {
     owner
     tags
     discourseId
-    productDescriptions {
+    productDescription {
       description
       locale
     }
@@ -86,7 +86,7 @@ query Product($slug: String!, $locale: String!) {
       slug
       imageFile
     }
-    sectorsWithLocale(locale: $locale) {
+    sectors {
       name
       slug
       isDisplayable
@@ -114,7 +114,11 @@ const Product = () => {
   const { locale, pathname, asPath, query } = useRouter()
 
   const { slug } = router.query
-  const { loading, error, data } = useQuery(PRODUCT_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
+  const { loading, error, data, refetch } = useQuery(PRODUCT_QUERY, {
+    variables: { slug: slug },
+    context: { headers: { 'Accept-Language': locale } },
+    skip: !slug
+  })
 
   const scrollToDiv = (ref) => {
     ref.current.scrollIntoView({
@@ -127,6 +131,10 @@ const Product = () => {
       router.replace({ pathname }, asPath, { locale: query.locale })
     }
   })
+
+  useEffect(() => {
+    refetch()
+  }, [locale])
 
   return (
     <>

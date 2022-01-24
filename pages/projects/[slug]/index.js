@@ -17,13 +17,13 @@ import { Loading, Error } from '../../../components/shared/FetchStatus'
 import { useEffect } from 'react'
 
 const PROJECT_QUERY = gql`
-query Project($slug: String!, $locale: String!) {
+query Project($slug: String!) {
   project(slug: $slug) {
     id
     name
     slug
     tags
-    projectDescriptions {
+    projectDescription {
       description
       locale
     }
@@ -41,7 +41,7 @@ query Project($slug: String!, $locale: String!) {
       name
       imageFile
     }
-    sectorsWithLocale(locale: $locale) {
+    sectors {
       name
       slug
     }
@@ -71,13 +71,21 @@ const Project = () => {
   const { locale, pathname, asPath, query } = useRouter()
 
   const { slug } = router.query
-  const { loading, error, data } = useQuery(PROJECT_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
+  const { loading, error, data, refetch } = useQuery(PROJECT_QUERY, {
+    variables: { slug: slug },
+    context: { headers: { 'Accept-Language': locale } },
+    skip: !slug
+  })
 
   useEffect(() => {
     if (query.locale) {
       router.replace({ pathname }, asPath, { locale: query.locale })
     }
   })
+
+  useEffect(() => {
+    refetch()
+  }, [locale])
 
   return (
     <>

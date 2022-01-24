@@ -114,6 +114,12 @@ const EndorserMarkers = (props) => {
 
 const EndorserMarkerMaps = (props) => {
   // Adding this attribute will prevent duplicating world map:  maxBounds={[[-90, -180], [90, 180]]}
+  let url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+  let attribution = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  if (props.defaultMap && props.defaultMap === 'principles') {
+    url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
+    attribution = 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+  }
   return (
     <MapContainer
       className='w-full' style={{ minHeight: props.height, zIndex: 18 }}
@@ -122,8 +128,8 @@ const EndorserMarkerMaps = (props) => {
     >
       <TileLayer
         noWrap
-        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url={url}
+        attribution={attribution}
       />
       <EndorserMarkers {...props} />
     </MapContainer>

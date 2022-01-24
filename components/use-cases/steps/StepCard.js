@@ -37,13 +37,13 @@ const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
       <div className={hoverStyle}>
         <div className={containerStyle}>
           <div className='flex flex-row'>
-            <div className={`py-4 ${stepSlug && stepSlug === useCaseStep.slug ? 'bg-use-case' : 'bg-transparent'}`} style={{ width: '4px' }}>
+            <div className={`py-4 ${stepSlug && stepSlug === useCaseStep.slug ? 'bg-use-case' : 'bg-transparent'} w-1`}>
               &nbsp;
             </div>
-            <div className='py-4 px-4'>
+            <div className='py-4 px-6'>
               <div className='text-base font-semibold'>{`${useCaseStep.stepNumber}. ${useCaseStep.name}`}</div>
             </div>
-            <div className='bg-transparent' style={{ width: '4px' }}>
+            <div className='bg-transparent w-1'>
               &nbsp;
             </div>
           </div>

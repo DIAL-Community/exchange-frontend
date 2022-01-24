@@ -95,9 +95,9 @@ const EntityUpload = () => {
           </form>
           {
             file && fileRef.current.value !== '' &&
-            <div className='px-8 pb-4 text-sm font-semibold'>
-              <span>{format('entity.filename')}: {file.name}</span>
-            </div>
+              <div className='px-8 pb-4 text-sm font-semibold'>
+                <span>{format('entity.filename')}: {file.name}</span>
+              </div>
           }
         </div>
       </div>

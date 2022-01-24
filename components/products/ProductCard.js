@@ -2,8 +2,7 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
-import { descriptionByLocale, ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
-import { useRouter } from 'next/router'
+import { ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
 
 const ellipsisTextStyle = `
   whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
@@ -12,7 +11,6 @@ const ellipsisTextStyle = `
 const ProductCard = ({ product, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
-  const { locale } = useRouter()
 
   const isEndorsingOrg = () => {
     if (!product.organizations) {
@@ -133,10 +131,10 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                     {product.name}
                   </div>
                   {
-                    product.productDescriptions && product.productDescriptions.length > 0 &&
+                    product.productDescription &&
                       <img
                         className='ml-auto opacity-20 hover:opacity-100 product-filter'
-                        data-tip={descriptionByLocale(product.productDescriptions, locale)}
+                        data-tip={product.productDescription.description}
                         data-html
                         alt='Info' height='20px' width='20px' src='/icons/info.svg'
                       />
@@ -237,7 +235,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                             .filter((_, index) => index <= 2)
                             .map(origin => {
                               const nominee = origin.slug === 'dpga' && product.endorsers.length === 0 ? ' ' + format('product.nominee') : ''
-                              const toolTip = (product.endorsers && product.endorsers.filter(endorser => endorser.slug === origin.slug).length > 0) 
+                              const toolTip = (product.endorsers && product.endorsers.filter(endorser => endorser.slug === origin.slug).length > 0)
                                 ? format('product.endorsed-by') + origin.name
                                 : format('tooltip.forEntity', {
                                   entity: format('origin.label'),
