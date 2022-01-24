@@ -6,10 +6,8 @@ import ProjectCard from '../projects/ProjectCard'
 import ProductCard from '../products/ProductCard'
 
 import ReactHtmlParser from 'react-html-parser'
-import { descriptionByLocale } from '../../lib/utilities'
 
 import { useMemo } from 'react'
-import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import CityCard from '../cities/CityCard'
 import AggregatorCapability from './AggregatorCapability'
@@ -28,8 +26,6 @@ const DynamicOfficeMarker = (props) => {
 const OrganizationDetailRight = ({ organization }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
-
-  const { locale } = useRouter()
 
   const marker = organization.offices.length > 0
     ? {
@@ -90,7 +86,7 @@ const OrganizationDetailRight = ({ organization }) => {
       </div>
       <div className='mt-8 card-title mb-3 text-dial-gray-dark'>{format('product.description')}</div>
       <div className='fr-view text-dial-gray-dark p-3'>
-        {ReactHtmlParser(descriptionByLocale(organization.organizationDescriptions, locale))}
+        {organization.organizationDescription && ReactHtmlParser(organization.organizationDescription.description)}
       </div>
       {
         organization.offices.length > 1 &&

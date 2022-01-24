@@ -51,7 +51,7 @@ query Wizard(
       imageFile
       maturity
       slug
-      useCaseDescriptions {
+      useCaseDescription {
         description
       }
     }
@@ -155,6 +155,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const [runWizardQuery, { error: wizardErrors }] = useLazyQuery(WIZARD_QUERY, {
     variables: vars,
     fetchPolicy: 'no-cache',
+    context: { headers: { 'Accept-Language': router.locale } },
     onCompleted: (data) => { setWizardData(data.wizard) }
   })
 

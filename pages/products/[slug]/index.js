@@ -115,7 +115,7 @@ const Product = () => {
 
   const { slug } = router.query
   const { loading, error, data, refetch } = useQuery(PRODUCT_QUERY, {
-    variables: { slug: slug, locale: locale },
+    variables: { slug: slug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !slug
   })
