@@ -80,7 +80,6 @@ const PagedProjectList = ({ countries, sectors, subSectors, tags, projectSortHin
   })
 
   useEffect(() => {
-    console.log(`Loading items from ${itemOffset}`)
     if (itemOffset) {
       fetchMore({
         variables: {
