@@ -84,7 +84,6 @@ query SearchProducts(
       sustainableDevelopmentGoals {
         slug
         name
-        imageFile
       }
       productDescription {
         description
