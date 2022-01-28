@@ -21,12 +21,14 @@ query SearchProjects(
   $sectors: [String!]
   $tags: [String!]
   $products: [String!]
+  $mapView: Boolean
   ) {
   searchProjects(
     first: $first,
     sectors: $sectors,
     tags: $tags,
     products: $products
+    mapView: $mapView
   ) {
     __typename
     totalCount
@@ -75,7 +77,8 @@ const ProjectMap = () => {
         first: DEFAULT_PAGE_SIZE,
         sectors: sectors.map(sector => sector.value),
         tags: tags.map(tag => tag.label),
-        products: products.map(product => product.value)
+        products: products.map(product => product.value),
+        mapView: true
       }
     })
     const countries = useQuery(COUNTRIES_QUERY)

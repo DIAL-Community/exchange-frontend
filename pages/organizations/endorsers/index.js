@@ -32,7 +32,8 @@ query SearchOrganizations(
   $endorserOnly: Boolean!,
   $endorserLevel: String!,
   $years: [Int!],
-  $search: String!
+  $search: String!,
+  $mapView: Boolean,
 ) {
   searchOrganizations(
     sectors: $sectors,
@@ -40,7 +41,8 @@ query SearchOrganizations(
     endorserOnly: $endorserOnly,
     endorserLevel: $endorserLevel,
     years: $years,
-    search: $search
+    search: $search,
+    mapView: $mapView
   ) {
     __typename
     totalCount
@@ -100,7 +102,8 @@ const EndorserPage = () => {
       years: years.map(year => year.value),
       countries: countries.map(country => country.value),
       endorserLevel: endorserLevel,
-      search: search
+      search: search,
+      mapView: true
     }
   })
 

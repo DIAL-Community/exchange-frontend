@@ -20,11 +20,13 @@ query SearchOrganizations(
   $first: Int,
   $sectors: [String!],
   $years: [Int!],
+  $mapView: Boolean,
 ) {
   searchOrganizations(
     first: $first,
     sectors: $sectors,
-    years: $years
+    years: $years,
+    mapView: $mapView
   ) {
     __typename
     totalCount
@@ -69,7 +71,8 @@ const EndorserMap = () => {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       sectors: orgSectors.map(sector => sector.value),
-      years: years.map(year => year.value)
+      years: years.map(year => year.value),
+      mapView: true
     }
   })
 
