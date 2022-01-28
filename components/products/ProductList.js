@@ -89,10 +89,6 @@ query SearchProducts(
         description
         locale
       }
-      organizations {
-        name
-        isEndorser
-      }
       mainRepository {
         license
       }
