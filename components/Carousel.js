@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useIntl } from 'react-intl'
+import ReactHtmlParser from 'react-html-parser'
 
 import Link from 'next/link'
 
@@ -9,137 +10,133 @@ const buttonAnchorStyle = `
 
 const Carousel = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, { ...values })
+  const format = (id, values) => formatMessage({ id: id }, values)
   const [openTab, setOpenTab] = useState(0)
 
   const clickHandler = (e, tabNumber) => {
     e.preventDefault()
     if (tabNumber < 0) {
-      setOpenTab(4)
-    } else if (tabNumber > 4) {
+      setOpenTab(5)
+    } else if (tabNumber > 5) {
       setOpenTab(0)
     } else {
       setOpenTab(tabNumber)
     }
   }
 
-  useEffect(() => {
-    setOpenTab(0)
-    const interval = setInterval(changeTab, 5000)
-    return () => clearInterval(interval)
-  }, [])
-
-  const changeTab = () => {
-    setOpenTab(openTab => {
-      return openTab === 4 ? 0 : openTab + 1
-    })
-  }
-
   return (
     <div className='block lg:hidden mx-auto p-6 sm:p-12 lg:p-48 bg-gray-200'>
       <div className='relative rounded-lg block md:flex items-center bg-gray-100 shadow-xl' style={{ minHeight: '19rem' }}>
         <div className={openTab === 0 ? 'block md:flex' : 'hidden'}>
-          <div className='relative w-full md:w-2/5 h-full overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg' style={{ minHeight: '19rem' }}>
-            <img className='w-56 h-56 mt-8 md:px-4 md:my-auto mx-auto xl:mt-0' src='images/tiles/sdg.svg' alt='' />
+          <div className='relative w-full md:w-2/5 px-5 py-3 rounded-l-lg block text-center leading-loose tracking-wide whitespace-nowrap font-bold text-lg text-carousel bg-carousel-light'>
+            {format('definition.sections.what')}
           </div>
           <div className='w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg'>
-            <div className='p-6 md:py-12'>
-              <p className='text-lg tracking-wide'>
-                <span className='font-bold'>{format('definition.donors')} </span>
-                {format('definition.donor.desc1')}
-              </p>
-              <p className='text-base tracking-wide pt-4'>
-                {format('definition.donor.desc2')}
-              </p>
-              <Link href='/sdgs'>
-                <a href='/sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-dial-teal`}>
-                  {format('definition.explore-sdg')}
-                </a>
-              </Link>
+            <div className='p-6 md:py-12' style={{ zIndex: 20 }}>
+              <iframe loading='lazy' title='The DIAL Catalog of Digital Solutions: Overview' src='https://www.youtube.com/embed/K-4j3kvT6aE' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen='' />
             </div>
           </div>
         </div>
         <div className={openTab === 1 ? 'block md:flex' : 'hidden'}>
-          <div className='relative w-full md:w-2/5 h-full overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg' style={{ minHeight: '19rem' }}>
-            <img className='w-56 h-56 mt-8 md:px-4 md:my-auto mx-auto xl:mt-0' src='images/tiles/use-case.svg' alt='' />
+          <div className='relative w-full md:w-2/5 px-5 py-3 rounded-l-lg block text-center leading-loose tracking-wide whitespace-nowrap font-bold text-lg text-carousel bg-carousel-light'>
+            {format('definition.sections.who')}
           </div>
           <div className='w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg'>
             <div className='p-6 md:py-12'>
-              <p className='text-lg tracking-wide'>
-                <span className='font-bold'>{format('definition.policy-makers')} </span>
-                {format('definition.policy-maker.desc1')}
-              </p>
-              <p className='text-base tracking-wide pt-4'>
-                {format('definition.policy-maker.desc2')}
-              </p>
-              <Link href='/use_cases'>
-                <a href='/use_cases' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-use-case`}>
-                  {format('definition.explore-usecase')}
-                </a>
-              </Link>
+              <div className='text-lg tracking-wide'>
+                {ReactHtmlParser(format('definition.who'))}
+              </div>
             </div>
           </div>
         </div>
         <div className={openTab === 2 ? 'block md:flex' : 'hidden'}>
-          <div className='relative w-full md:w-2/5 h-full overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg' style={{ minHeight: '19rem' }}>
-            <img className='w-56 h-56 mt-8 md:px-4 md:my-auto mx-auto xl:mt-0' src='images/tiles/workflow.svg' alt='' />
+          <div className='relative w-full md:w-2/5 px-5 py-3 rounded-l-lg block text-center leading-loose tracking-wide whitespace-nowrap font-bold text-lg text-carousel bg-carousel-light'>
+            {format('definition.sections.how')}
           </div>
           <div className='w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg'>
             <div className='p-6 md:py-12'>
-              <p className='text-lg tracking-wide'>
-                <span className='font-bold'>{format('definition.implementers')} </span>
-                {format('definition.implementer.desc1')}
+              <p className='text-lg tracking-wide pb-3'>
+                {format('definition.how')}
               </p>
-              <p className='text-base tracking-wide pt-4'>
-                {format('definition.implementer.desc2')}
-              </p>
-              <Link href='/workflows'>
-                <a href='/workflows' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-workflow`}>
-                  {format('definition.explore-workflow')}
+              <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191791105/Introduction+to+this+tutorial+series' target='_blank' rel='noreferrer'>{format('definition.tutorial.intro')}</a>
+              <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191889422/Tutorial+Getting+Started+with+the+Catalog' target='_blank' rel='noreferrer'>{format('definition.tutorial.started')}</a>
+              <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191791118/Tutorial+SDG+Digital+Investment+Framework' target='_blank' rel='noreferrer'>{format('definition.tutorial.framework')}</a>
+              <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191791140/Tutorial+How+to+use+the+Products+Tab' target='_blank' rel='noreferrer'>{format('definition.tutorial.products')}</a>
+              <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191856647/Tutorial+Using+Filters' target='_blank' rel='noreferrer'>{format('definition.tutorial.filters')}</a>
+              <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191889475/Tutorial+Use+Cases+Tab' target='_blank' rel='noreferrer'>{format('definition.tutorial.use-cases')}</a>
+              <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191823921/Tutorial+Product+Recommendation+Wizard' target='_blank' rel='noreferrer'>{format('definition.tutorial.wizard')}</a>
+              <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191856657/Tutorial+Community' target='_blank' rel='noreferrer'>{format('definition.tutorial.community')}</a>
+              <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191856664/Conclusion+to+the+tutorial+series' target='_blank' rel='noreferrer'>{format('definition.tutorial.conclusion')}</a>
+              <div className='pt-3 text-center'>
+                <a className='py-3' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191627338/Catalog+Tutorials' target='_blank' rel='noreferrer'>
+                  <button
+                    className={`
+                            my-auto px-3 py-3 my-3 font-semibold ml-auto
+                            text-white bg-dial-blue rounded
+                          `}
+                  >{format('definition.buttons.tutorials')}
+                  </button>
                 </a>
-              </Link>
+              </div>
             </div>
           </div>
         </div>
         <div className={openTab === 3 ? 'block md:flex' : 'hidden'}>
-          <div className='relative w-full md:w-2/5 h-full overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg' style={{ minHeight: '19rem' }}>
-            <img className='w-56 h-56 mt-8 md:px-4 md:my-auto mx-auto xl:mt-0' src='images/tiles/building-block.svg' alt='' />
+          <div className='relative w-full md:w-2/5 px-5 py-3 rounded-l-lg block text-center leading-loose tracking-wide whitespace-nowrap font-bold text-lg text-carousel bg-carousel-light'>
+            {format('definition.sections.approach')}
           </div>
           <div className='w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg'>
             <div className='p-6 md:py-12'>
-              <p className='text-lg tracking-wide'>
-                <span className='font-bold'>{format('definition.ministers')} </span>
-                {format('definition.minister.desc1')}
+              <p className='text-lg tracking-wide pb-6'>
+                {ReactHtmlParser(format('definition.approach'))}
               </p>
-              <p className='text-base tracking-wide pt-4'>
-                {format('definition.minister.desc2')}
-              </p>
-              <Link href='/building_blocks'>
-                <a href='/building_blocks' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-building-block`}>
-                  {format('definition.explore-bb')}
+              <div className='text-center'>
+                <a href='https://digitalimpactalliance.org/research/sdg-digital-investment-framework/' target='_blank' rel='noreferrer'>
+                  <button
+                    className={`
+                            my-auto px-3 py-3 my-3 font-semibold ml-auto
+                            text-white bg-dial-blue rounded
+                          `}
+                  >{format('definition.buttons.learn')}
+                  </button>
                 </a>
-              </Link>
+              </div>
             </div>
           </div>
         </div>
         <div className={openTab === 4 ? 'block md:flex' : 'hidden'}>
-          <div className='relative w-full md:w-2/5 h-full overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg' style={{ minHeight: '19rem' }}>
-            <img className='w-56 h-56 mt-8 md:px-4 md:my-auto mx-auto xl:mt-0' src='images/tiles/product.svg' alt='' />
+          <div className='relative w-full md:w-2/5 px-5 py-3 rounded-l-lg block text-center leading-loose tracking-wide whitespace-nowrap font-bold text-lg text-carousel bg-carousel-light'>
+            {format('definition.sections.featured')}
           </div>
           <div className='w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg'>
             <div className='p-6 md:py-12'>
               <p className='text-lg tracking-wide'>
-                <span className='font-bold'>{format('definition.procurers')} </span>
-                {format('definition.procurer.desc1')}
+                {ReactHtmlParser(format('definition.featured'))}
               </p>
-              <p className='text-base tracking-wide pt-4'>
-                {format('definition.procurer.desc2')}
+            </div>
+          </div>
+        </div>
+        <div className={openTab === 5 ? 'block md:flex' : 'hidden'}>
+          <div className='relative w-full md:w-2/5 px-5 py-3 rounded-l-lg block text-center leading-loose tracking-wide whitespace-nowrap font-bold text-lg text-carousel bg-carousel-light'>
+            {format('definition.sections.contact')}
+          </div>
+          <div className='w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg'>
+            <div className='p-6 md:py-12'>
+              <p className='text-lg tracking-wide pb-6'>
+                {format('definition.contact')}
               </p>
-              <Link href='/products'>
-                <a href='/products' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-product`}>
-                  {format('definition.explore-prod')}
+              <div className='text-center'>
+                <a href='mailto:issues@solutions.dial.community' target='_blank' rel='noreferrer'>
+                  <button
+                    className={`
+                            my-auto px-3 py-4 my-3 font-semibold ml-auto
+                            text-white bg-dial-blue rounded
+                          `}
+                  >
+                    {format('definition.buttons.contact')}
+                  </button>
                 </a>
-              </Link>
+              </div>
             </div>
           </div>
         </div>

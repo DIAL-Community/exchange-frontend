@@ -66,6 +66,49 @@ export const en = {
   'definition.ministers': 'Technology and ICT Ministers',
   'definition.procurers': 'Procurers',
   'definition.product-owners': 'Product Owners',
+  'definition.sections.what': 'What is the Catalog',
+  'definition.sections.who': 'Who is it For?',
+  'definition.sections.how': 'How can I use it?',
+  'definition.sections.approach': 'The Catalog\'s approach',
+  'definition.sections.featured': 'Featured this month',
+  'definition.sections.contact': 'Contact us',
+  'definition.buttons.learn': 'Learn More',
+  'definition.buttons.tutorials': 'View All Tutorials',
+  'definition.buttons.contact': 'Contact Us',
+  'definition.who': `
+      <p>
+      <strong>Implementers and policy makers</strong> who need quality digital tools and guidance to support their development programming or improve development outcomes.
+      <br /><br />
+      <strong>Donors</strong> that need to coordinate and measure their investments.
+      <br /><br />
+      <strong>Technology and ICT ministers</strong> that need to map their tech stack to ICT building blocks to understand what other use cases can be supported or where critical gaps exist.
+      <br /><br />
+      <strong>Product owners</strong> of Digital Public Goods that want connect to potential users and supply the development ecosystem with innovative products.
+      </p>
+      `,
+  'definition.how': 'Watch our demo and tutorial videos to learn how to use the Catalog',
+  'definition.approach': `
+      The Catalog promotes a Whole-of-Government approach to investing in digital technologies to achieve the SDGs.
+      <br /><br />
+      This approach is rooted in the SDG Digital Investment Framework, developed by DIAL and ITU.
+      `,
+  'definition.featured': `
+      We are excited to announce the launch of our new dialog and commenting features. For many of the products and building blocks in the Catalog, you can join online conversations with other users.
+      <br /><br />
+      We invite you to share your questions, experiences, best practices and recommendations with the community of Catalog users.
+      <br /><br />
+      Look for the 'Comments' section on the Product and Building Block pages.
+      `,
+  'definition.contact': 'We welcome questions or feedback on the Catalog of Digital Solutions. Please feel free to reach out to us.',
+  'definition.tutorial.intro': 'Tutorial: Introduction',
+  'definition.tutorial.started': 'Tutorial: Getting Started with the Catalog',
+  'definition.tutorial.framework': 'Tutorial: SDG Digital Investment Framework',
+  'definition.tutorial.products': 'Tutorial: How to use the "Products" Tab',
+  'definition.tutorial.filters': 'Tutorial: Using Filters',
+  'definition.tutorial.use-cases': 'Tutorial: Use Cases Tab',
+  'definition.tutorial.wizard': 'Tutorial: Product Recommendation Wizard',
+  'definition.tutorial.community': 'Tutorial: Community',
+  'definition.tutorial.conclusion': 'Tutorial: Conclusion',
   'definition.donor.desc1': 'can use this tool to coordinate investments with other donors. Using the lens of the SDG target, a donor can navigate to a priority SDG target to see what use cases, workflows, and ICT building blocks may support the progression of that target.',
   'definition.donor.desc2': 'Understanding those associations set the groundwork for donors to see the overlap they have with other donors supporting other SDG targets. The tool demonstrates that a handful of work flows and building blocks can deliver a wide range of SDG targets and corresponding use cases.',
   'definition.policy-maker.desc1': 'at any level, can use this tool to explore the different use cases they are interested in implementing to achieve various development outcomes. ',
