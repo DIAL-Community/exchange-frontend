@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useIntl } from 'react-intl'
-
-import Link from 'next/link'
+import ReactHtmlParser from 'react-html-parser'
 
 const Description = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, { ...values })
+  const format = (id, values) => formatMessage({ id: id }, values)
   const [openTab, setOpenTab] = useState(0)
 
   const tabClickHandler = (e, tabNumber) => {
@@ -13,29 +12,14 @@ const Description = () => {
     setOpenTab(tabNumber)
   }
 
-  useEffect(() => {
-    setOpenTab(0)
-    const interval = setInterval(changeTab, 10000)
-    return () => clearInterval(interval)
-  }, [])
-
-  const changeTab = () => {
-    setOpenTab(openTab => {
-      return openTab === 5 ? 0 : openTab + 1
-    })
-  }
-
   const generateAnchorStyles = (tabNumber) => `
     px-5 py-3 rounded-l-lg block leading-loose tracking-wide whitespace-nowrap xl:pr-24
     ${openTab === tabNumber ? 'font-bold text-carousel bg-carousel-light' : 'text-dial-gray-dark bg-white'}
   `
-  const buttonAnchorStyle = `
-    rounded-full flex items-center justify-center py-2 leading-8 lg:py-2
-  `
 
-  const actorList = [
-    format('definition.donors'), format('definition.policy-makers'), format('definition.implementers'),
-    format('definition.ministers'), format('definition.procurers'), format('definition.product-owners')
+  const sectionList = [
+    format('definition.sections.what'), format('definition.sections.who'), format('definition.sections.how'),
+    format('definition.sections.approach'), format('definition.sections.featured'), format('definition.sections.contact')
   ]
 
   return (
@@ -48,13 +32,13 @@ const Description = () => {
           <div className='grid grid-cols-3'>
             <ul className='flex flex-col mb-0 list-none'>
               {
-                actorList.map((actor, index) => (
+                sectionList.map((section, index) => (
                   <li key={`actor-${index}`} className='-mb-px'>
                     <a
-                      data-toggle='tab' href={`#${actor.replace(/\s+/g, '-').toLowerCase()}`}
+                      data-toggle='tab' href={`#${section.replace(/\s+/g, '-').toLowerCase()}`}
                       className={generateAnchorStyles(index)} onClick={e => tabClickHandler(e, index)}
                     >
-                      {actor}
+                      {section}
                     </a>
                   </li>
                 ))
@@ -64,102 +48,83 @@ const Description = () => {
               <div className='px-4 py-5'>
                 <div className='tab-content tab-space'>
                   <div className={openTab === 0 ? 'block' : 'hidden'} id='donors'>
-                    <div className='flex flex-col flex-wrap p-8 xl:max-h-xl text-dial-blue-darkest'>
-                      <p className='text-lg max-w-md mr-16 tracking-wide'>
-                        <span className='font-bold'>{format('definition.donors')} </span>
-                        {format('definition.donor.desc1')}
-                      </p>
-                      <p className='text-base max-w-md pt-4 tracking-wide'>
-                        {format('definition.donor.desc2')}
-                      </p>
-                      <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/sdg.svg' alt='' />
-                      <Link href='/sdgs'>
-                        <a href='/sdgs' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-dial-teal`}>
-                          {format('definition.explore-sdg')}
-                        </a>
-                      </Link>
+                    <div className='flex flex-col flex-wrap px-8 py-4 xl:max-h-xl text-dial-blue-darkest'>
+                      <iframe loading='lazy' title='The DIAL Catalog of Digital Solutions: Overview' width='640' height='360' src='https://www.youtube.com/embed/K-4j3kvT6aE' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen='' />
                     </div>
                   </div>
                   <div className={openTab === 1 ? 'block' : 'hidden'} id='policy-makers'>
-                    <div className='flex flex-col flex-wrap p-8 xl:max-h-lg text-dial-blue-darkest'>
-                      <p className='text-lg max-w-md mr-16 tracking-wide'>
-                        <span className='font-bold'>{format('definition.policy-makers')} </span>
-                        {format('definition.policy-maker.desc1')}
-                      </p>
-                      <p className='text-base max-w-md pt-4 tracking-wide'>
-                        {format('definition.policy-maker.desc2')}
-                      </p>
-                      <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/use-case.svg' alt='' />
-                      <Link href='/use_cases'>
-                        <a href='/use_cases' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-use-case`}>
-                          {format('definition.explore-usecase')}
-                        </a>
-                      </Link>
+                    <div className='flex flex-col col-span-2 flex-wrap p-8 xl:max-h-lg text-dial-blue-darkest'>
+                      <div className='text-lg tracking-wide'>
+                        {ReactHtmlParser(format('definition.who'))}
+                      </div>
                     </div>
                   </div>
                   <div className={openTab === 2 ? 'block' : 'hidden'} id='implementing-partners'>
-                    <div className='flex flex-col flex-wrap p-8 xl:max-h-lg text-dial-blue-darkest'>
-                      <p className='text-lg max-w-md mr-16 tracking-wide'>
-                        <span className='font-bold'>{format('definition.implementers')} </span>
-                        {format('definition.implementer.desc1')}
+                    <div className='flex flex-col px-8 xl:max-h-lg text-dial-blue-darkest'>
+                      <p className='text-lg tracking-wide pb-3'>
+                        {format('definition.how')}
                       </p>
-                      <p className='text-base max-w-md pt-4 tracking-wide'>
-                        {format('definition.implementer.desc2')}
-                      </p>
-                      <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/workflow.svg' alt='' />
-                      <Link href='/workflows'>
-                        <a href='/workflows' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-workflow`}>
-                          {format('definition.explore-workflow')}
+                      <div className='grid grid-cols-3'>
+                        <a className='py-3' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191627338/Catalog+Tutorials' target='_blank' rel='noreferrer'>
+                          <button
+                            className={`
+                                    my-auto px-3 py-3 my-3 font-semibold ml-auto
+                                    text-white bg-dial-blue rounded
+                                  `}
+                          >{format('definition.buttons.tutorials')}
+                          </button>
                         </a>
-                      </Link>
+                        <div className='py-1 col-span-2'>
+                          <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191791105/Introduction+to+this+tutorial+series' target='_blank' rel='noreferrer'>{format('definition.tutorial.intro')}</a>
+                          <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191889422/Tutorial+Getting+Started+with+the+Catalog' target='_blank' rel='noreferrer'>{format('definition.tutorial.started')}</a>
+                          <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191791118/Tutorial+SDG+Digital+Investment+Framework' target='_blank' rel='noreferrer'>{format('definition.tutorial.framework')}</a>
+                          <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191791140/Tutorial+How+to+use+the+Products+Tab' target='_blank' rel='noreferrer'>{format('definition.tutorial.products')}</a>
+                          <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191856647/Tutorial+Using+Filters' target='_blank' rel='noreferrer'>{format('definition.tutorial.filters')}</a>
+                          <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191889475/Tutorial+Use+Cases+Tab' target='_blank' rel='noreferrer'>{format('definition.tutorial.use-cases')}</a>
+                          <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191823921/Tutorial+Product+Recommendation+Wizard' target='_blank' rel='noreferrer'>{format('definition.tutorial.wizard')}</a>
+                          <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191856657/Tutorial+Community' target='_blank' rel='noreferrer'>{format('definition.tutorial.community')}</a>
+                          <a className='block px-3 py-1 text-dial-teal' href='https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/191856664/Conclusion+to+the+tutorial+series' target='_blank' rel='noreferrer'>{format('definition.tutorial.conclusion')}</a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div className={openTab === 3 ? 'block' : 'hidden'} id='tech-ict-partners'>
                     <div className='flex flex-col flex-wrap p-8 xl:max-h-lg text-dial-blue-darkest'>
-                      <p className='text-xl max-w-md mr-16 tracking-wide'>
-                        <span className='font-bold'>{format('definition.ministers')} </span>
-                        {format('definition.minister.desc1')}
+                      <p className='text-lg tracking-wide pb-6'>
+                        {ReactHtmlParser(format('definition.approach'))}
                       </p>
-                      <p className='text-base max-w-md pt-4 tracking-wide'>
-                        {format('definition.minister.desc2')}
-                      </p>
-                      <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/building-block.svg' alt='' />
-                      <Link href='/building_blocks'>
-                        <a href='/building_blocks' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-building-block`}>
-                          {format('definition.explore-bb')}
-                        </a>
-                      </Link>
+                      <a href='https://digitalimpactalliance.org/research/sdg-digital-investment-framework/' target='_blank' rel='noreferrer'>
+                        <button
+                          className={`
+                                  my-auto px-3 py-3 my-3 font-semibold ml-auto
+                                  text-white bg-dial-blue rounded
+                                `}
+                        >{format('definition.buttons.learn')}
+                        </button>
+                      </a>
                     </div>
                   </div>
                   <div className={openTab === 4 ? 'block' : 'hidden'} id='procurers'>
                     <div className='flex flex-col flex-wrap p-8 xl:max-h-lg text-dial-blue-darkest'>
-                      <p className='text-xl max-w-md mr-16 tracking-wide'>
-                        <span className='font-bold'>{format('definition.procurers')} </span>
-                        {format('definition.procurer.desc1')}
+                      <p className='text-lg tracking-wide'>
+                        {ReactHtmlParser(format('definition.featured'))}
                       </p>
-                      <p className='text-base max-w-md pt-4 tracking-wide'>
-                        {format('definition.procurer.desc2')}
-                      </p>
-                      <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/product.svg' alt='' />
-                      <Link href='/products'>
-                        <a href='/products' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-product`}>
-                          {format('definition.explore-prod')}
-                        </a>
-                      </Link>
                     </div>
                   </div>
                   <div className={openTab === 5 ? 'block' : 'hidden'} id='product-owners'>
-                    <div className='flex flex-col flex-wrap p-8 xl:max-h-96 text-dial-blue-darkest'>
-                      <p className='text-xl max-w-md mr-16 tracking-wide'>
-                        <span className='font-bold'>{format('definition.product-owners')} </span>
-                        {format('definition.product-owner.desc1')}
+                    <div className='flex flex-col flex-wrap p-8 h-72 text-dial-blue-darkest'>
+                      <p className='text-lg tracking-wide pb-6'>
+                        {format('definition.contact')}
                       </p>
-                      <p className='text-base max-w-md pt-4 tracking-wide'>
-                        {format('definition.product-owner.desc2')}
-                      </p>
-                      <img className='w-56 h-56 mt-8 mx-auto xl:mt-0' src='images/tiles/project.svg' alt='' />
-                      <a href='projects' className={`${buttonAnchorStyle} shadow-2xl px-8 text-white bg-product`}>
-                        {format('definition.explore-proj')}
+                      <a href='mailto:issues@solutions.dial.community' target='_blank' rel='noreferrer'>
+                        <button
+                          className={`
+                                  my-auto px-3 py-4 my-3 font-semibold ml-auto
+                                  text-white bg-dial-blue rounded
+                                `}
+                        >
+                          {format('definition.buttons.contact')}
+                        </button>
                       </a>
                     </div>
                   </div>
