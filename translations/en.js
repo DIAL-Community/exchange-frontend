@@ -139,6 +139,7 @@ export const en = {
   'product.source': 'Data Sources',
   'product.endorsers': 'Endorsers',
   'product.nominee': '(Nominee)',
+  'product.view-DPGA-data': 'View information submitted to DPGA',
   'product.endorsed-by': 'This product has been screened as a Digital Public Good by ',
   'product.repository-info': 'Repository Information',
   'product.very-active': 'Very Active',
