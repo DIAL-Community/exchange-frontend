@@ -8,12 +8,14 @@ const ellipsisTextStyle = `
   whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
 
-const OrganizationCard = ({ organization, listType, newTab = false }) => {
+const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const nameColSpan = (organization) => {
-    return !organization.sectors ? 'col-span-7' : 'col-span-7 lg:col-span-4'
+    return !organization.sectors
+      ? 'col-span-8'
+      : filterDisplayed ? 'col-span-8 md:col-span-6 xl:col-span-3' : 'col-span-8 md:col-span-7 lg:col-span-3'
   }
 
   return (
@@ -25,28 +27,27 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
               <a {... newTab && { target: '_blank' }}>
                 <div className='border-3 border-transparent hover:border-dial-yellow text-workflow cursor-pointer'>
                   <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg hover:text-dial-yellow'>
-                    <div className='grid grid-cols-12 my-5 px-4'>
+                    <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                       <img
                         className='m-auto w-8'
                         alt={format('image.alt.logoFor', { name: organization.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
                       />
-                      <div className={`
-                          ${nameColSpan(organization)} ml-4 text-base font-semibold text-dial-gray-dark
+                      <div
+                        className={`
+                          ${nameColSpan(organization)} text-base font-semibold text-dial-gray-dark
                           my-auto whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
                         `}
                       >
                         {organization.name}
                         {
                           organization.sectors &&
-                            <div className='block lg:hidden flex flex-row mt-1'>
+                            <div className={`block ${filterDisplayed ? ' xl:hidden' : 'lg:hidden'} flex flex-row mt-1`}>
                               <div className='text-sm font-normal'>
                                 {format('sector.header')}:
                               </div>
-                              <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
-                                {
-                                  organization.sectors.length === 0 && format('general.na')
-                                }
+                              <div className='text-sm font-normal overflow-hidden overflow-ellipsis'>
+                                {organization.sectors.length === 0 && format('general.na')}
                                 {
                                   organization.sectors.length > 0 &&
                                   organization.sectors.map(u => u.name).join(', ')
@@ -57,10 +58,11 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                       </div>
                       {
                         organization.sectors &&
-                          <div className={`hidden lg:block col-span-5 px-3 text-base text-dial-gray-dark ${ellipsisTextStyle}`}>
-                            {
-                              organization.sectors.length === 0 && format('general.na')
-                            }
+                          <div className={`
+                            hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                            col-span-5 text-base text-dial-gray-dark ${ellipsisTextStyle}`}
+                          >
+                            {organization.sectors.length === 0 && format('general.na')}
                             {
                               organization.sectors.length > 0 &&
                                 organization.sectors.map(u => u.name).join(', ')
@@ -70,17 +72,17 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                       <div className='col-span-4 lg:col-span-3 text-base text-dial-purple my-auto'>
                         {
                           !organization.whenEndorsed && (
-                            <div className='flex flex-row text-sm font-semibold justify-end text-dial-cyan'>
+                            <div className='text-sm font-semibold text-dial-cyan text-right'>
                               {format('general.na')}
                             </div>
                           )
                         }
                         {
                           organization.whenEndorsed && (
-                            <div className='flex flex-row text-sm font-semibold justify-end text-dial-cyan'>
+                            <div className='flex flex-row text-sm font-semibold text-dial-cyan text-right'>
                               <img
                                 alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
-                                className='mr-2 h-6' src='/icons/digiprins/digiprins.png'
+                                className='mr-2 h-6 ml-auto' src='/icons/digiprins/digiprins.png'
                               />
                               {`Endorsed on ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
                             </div>
@@ -95,7 +97,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
             )
           : (
             <div className='group border-3 border-transparent hover:border-dial-yellow text-dial-purple cursor-pointer'>
-              <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow shadow-lg hover:shadow-2xl'>
+              <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow drop-shadow'>
                 {
                   organization.whenEndorsed && (
                     <div>
@@ -132,8 +134,9 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                     >
                       {organization.name}
                     </div>
-                    <div className='m-auto align-middle w-40'>
+                    <div className='m-auto'>
                       <img
+                        className='w-40'
                         alt={format('image.alt.logoFor', { name: organization.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
                       />

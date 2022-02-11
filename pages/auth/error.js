@@ -17,7 +17,7 @@ export default function Error ({ csrfToken }) {
       </Head>
       <Header />
       <div className='bg-dial-gray-dark pt-40 h-screen'>
-        <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto container-fluid with-header'>
+        <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
           <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
             <h1 className='block mb-3 mx-2'>{format('error.auth')}</h1>
             <div className='flex items-center'>

@@ -64,39 +64,52 @@ const UseCaseList = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
+  const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
+  const gridStyles = `grid ${displayType === 'card'
+    ? `grid-cols-1 gap-4
+       ${filterDisplayed ? 'lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3' : 'md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'}`
+    : 'grid-cols-1'
+    }`
 
   return (
     <>
       <div className={gridStyles}>
         {
           displayType === 'list' &&
-            <div className='grid grid-cols-12 my-3 px-4 text-use-case'>
+            <div className='grid grid-cols-12 gap-4 my-3 px-4 text-use-case'>
               <div className='col-span-9 md:col-span-10 lg:col-span-4 ml-2 text-sm font-semibold opacity-80'>
                 {format('useCase.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='hidden lg:block col-span-2 text-sm font-semibold opacity-50'>
+              <div
+                className={`
+                  hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                  col-span-2 text-sm font-semibold opacity-50'
+                `}
+              >
                 {format('sdg.sdgTargets').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='hidden lg:block col-span-5 text-sm text-workflow font-semibold opacity-50'>
+              <div
+                className={`
+                  hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                  col-span-5 text-sm text-workflow font-semibold opacity-50
+                `}
+              >
                 {format('exampleOf.entity', { entity: format('workflow.header') }).toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='col-span-1' />
             </div>
         }
         {
           props.useCaseList.length > 0
             ? props.useCaseList.map((useCase) => (
-              <UseCaseCard key={useCase.id} useCase={useCase} listType={displayType} />
+              <UseCaseCard key={useCase.id} listType={displayType} {...{ useCase, filterDisplayed }} />
               ))
             : (
-              <div className='flex justify-self-center text-dial-gray-dark'>{
-                format('noResults.entity', { entity: format('use-case.label') })
-                }
+              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
+                {format('noResults.entity', { entity: format('useCase.label').toLowerCase() })}
               </div>
               )
         }
@@ -106,7 +119,7 @@ const UseCaseList = (props) => {
 }
 
 const UseCaseListQuery = () => {
-  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const { sdgs, showBeta, search } = useContext(UseCaseFilterContext)
 
   const { formatMessage } = useIntl()
@@ -152,7 +165,7 @@ const UseCaseListQuery = () => {
       hasMore={pageInfo.hasNextPage}
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
-      <UseCaseList useCaseList={nodes} displayType={displayType} />
+      <UseCaseList useCaseList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
     </InfiniteScroll>
   )
 }

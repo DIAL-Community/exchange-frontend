@@ -88,13 +88,8 @@ const OrganizationCard = ({ organization, listType }) => {
                 border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg
               `}
               >
-                <div className='grid grid-cols-12 my-3 lg:my-5 px-4 text-product'>
-                  <div className={`col-span-11 lg:col-span-4 lg:mr-4 ml-2 my-auto ${ellipsisTextStyle}`}>
-                    <div className='block lg:hidden font-semibold text-sm'>
-                      {organization.description}
-                    </div>
-                  </div>
-                  <div className={`col-span-11 lg:col-span-4 lg:mr-4 ml-2 my-auto ${ellipsisTextStyle}`}>
+                <div className='grid grid-cols-12 gap-4 py-4 px-4 text-organization'>
+                  <div className={`col-span-12 lg:col-span-4 my-auto ${ellipsisTextStyle}`}>
                     {organization.name}
                     <div className='block lg:hidden font-semibold text-sm'>
                       {organization.website}
@@ -133,12 +128,12 @@ const OrganizationCard = ({ organization, listType }) => {
                         </div>
                     }
                   </div>
-                  <div className='hidden lg:block lg:col-span-4 mr-3 my-auto'>
+                  <div className='hidden lg:block lg:col-span-4'>
                     {organization.website}
                   </div>
                   {
                     String(organization.rejected) === 'null' && session && session.user && status === '' &&
-                      <div className='hidden lg:flex lg:col-span-3 flex-row'>
+                      <div className='hidden lg:flex lg:col-span-4 flex-row'>
                         <button
                           className={`
                                 my-auto px-3 py-1 text-sm font-semibold ml-auto

@@ -17,24 +17,26 @@ const PRODUCT_SEARCH_QUERY = gql`
   }
 `
 
-const customStyles = {
-  ...asyncSelectStyles,
-  control: (provided) => ({
-    ...provided,
-    width: '12rem',
-    cursor: 'pointer'
-  }),
-  option: (provided) => ({
-    ...provided,
-    cursor: 'pointer'
-  }),
-  menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-  menu: (provided) => ({ ...provided, zIndex: 30 })
+const customStyles = (controlSize = '12rem') => {
+  return {
+    ...asyncSelectStyles,
+    control: (provided) => ({
+      ...provided,
+      width: controlSize,
+      cursor: 'pointer'
+    }),
+    option: (provided) => ({
+      ...provided,
+      cursor: 'pointer'
+    }),
+    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
+    menu: (provided) => ({ ...provided, zIndex: 30 })
+  }
 }
 
 export const ProductAutocomplete = (props) => {
   const client = useApolloClient()
-  const { products, setProducts, containerStyles } = props
+  const { products, setProducts, containerStyles, controlSize } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -68,22 +70,18 @@ export const ProductAutocomplete = (props) => {
 
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
-      <label className='block mt-4'>
-        <span className='text-sm text-dial-gray-light'>
-          {format('product.header')}
-        </span>
-        <AsyncSelect
-          className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
-          cacheOptions
-          defaultOptions
-          loadOptions={(input, callback) => fetchOptions(input, callback, PRODUCT_SEARCH_QUERY)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('product.header') })}
-          onChange={selectProduct}
-          placeholder={format('filter.byEntity', { entity: format('product.label') })}
-          styles={customStyles}
-          value=''
-        />
-      </label>
+      <AsyncSelect
+        aria-label={format('filter.byEntity', { entity: format('product.label') })}
+        className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
+        cacheOptions
+        defaultOptions
+        loadOptions={(input, callback) => fetchOptions(input, callback, PRODUCT_SEARCH_QUERY)}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('product.header') })}
+        onChange={selectProduct}
+        placeholder={format('filter.byEntity', { entity: format('product.label') })}
+        styles={customStyles(controlSize)}
+        value=''
+      />
     </div>
   )
 }

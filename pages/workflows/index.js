@@ -1,17 +1,26 @@
 import Head from 'next/head'
-import { useContext } from 'react'
 import { useIntl } from 'react-intl'
+import { useContext } from 'react'
 
 import apolloClient from '../../lib/apolloClient'
 
-import Filter from '../../components/filter/Filter'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import WorkflowListQuery from '../../components/workflows/WorkflowList'
-import { WorkflowFilterContext, WorkflowFilterDispatchContext } from '../../components/context/WorkflowFilterContext'
 import QueryNotification from '../../components/shared/QueryNotification'
 import GradientBackground from '../../components/shared/GradientBackground'
+
+import MobileNav from '../../components/main/MobileNav'
+import PageContent from '../../components/main/PageContent'
+import TabNav from '../../components/main/TabNav'
+
+import WorkflowHint from '../../components/filter/hint/WorkflowHint'
+
+import WorkflowFilter from '../../components/workflows/WorkflowFilter'
+import WorkflowListQuery from '../../components/workflows/WorkflowList'
+import WorkflowActiveFilter from '../../components/workflows/WorkflowActiveFilter'
+
 import SearchFilter from '../../components/shared/SearchFilter'
+import { WorkflowFilterContext, WorkflowFilterDispatchContext } from '../../components/context/WorkflowFilterContext'
 
 import dynamic from 'next/dynamic'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
@@ -33,9 +42,16 @@ const Workflows = () => {
       <GradientBackground />
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <Filter activeTab='filter.entity.workflows' />
-      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('workflow.label')} />
-      <WorkflowListQuery />
+      <TabNav activeTab='filter.entity.workflows' />
+      <MobileNav activeTab='filter.entity.workflows' />
+      <PageContent
+        activeTab='filter.entity.products'
+        filter={<WorkflowFilter />}
+        content={<WorkflowListQuery />}
+        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.workflows' />}
+        activeFilter={<WorkflowActiveFilter />}
+        hint={<WorkflowHint />}
+      />
       <Footer />
     </>
   )

@@ -10,7 +10,7 @@ const ellipsisTextStyle = `
    whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
 
-const UseCaseCard = ({ useCase, listType, newTab = false }) => {
+const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
@@ -59,8 +59,8 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
 
   const nameColSpan = (useCase) => {
     return !useCase.sdgTargets && !workflows
-      ? 'col-span-8 md:col-span-9 lg:col-span-10'
-      : 'col-span-8 md:col-span-9 lg:col-span-4'
+      ? 'col-span-9 lg:col-span-10'
+      : filterDisplayed ? 'col-span-9 lg:col-span-10 xl:col-span-4' : 'col-span-9 md:col-span-10 lg:col-span-4'
   }
 
   return (
@@ -71,8 +71,8 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
               <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
-                <div className='grid grid-cols-12 my-5 px-4'>
-                  <div className={`${nameColSpan(useCase)} pr-3 text-base font-semibold ${ellipsisTextStyle}`}>
+                <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
+                  <div className={`${nameColSpan(useCase)} text-base font-semibold ${ellipsisTextStyle}`}>
                     <img
                       alt={format('image.alt.logoFor', { name: useCase.name })} className='m-auto h-6 use-case-filter inline mr-3'
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
@@ -80,14 +80,12 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                     {useCase.name}
                     {
                       useCase.sdgTargets &&
-                        <div className='block lg:hidden flex flex-row mt-1'>
+                        <div className={`block ${filterDisplayed ? 'xl:hidden' : 'lg:hidden'} flex flex-row mt-1`}>
                           <div className='text-sm font-normal'>
                             {format('sdg.sdgTargets')}:
                           </div>
                           <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
-                            {
-                              useCase.sdgTargets.length === 0 && format('general.na')
-                            }
+                            {useCase.sdgTargets.length === 0 && format('general.na')}
                             {
                               useCase.sdgTargets.length > 0 &&
                                 useCase.sdgTargets.map(u => u.targetNumber).join(', ')
@@ -97,14 +95,12 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                     }
                     {
                       workflows &&
-                        <div className='block lg:hidden text-workflow flex flex-row mt-1'>
+                        <div className={`block ${filterDisplayed ? 'xl:hidden' : 'lg:hidden'} text-workflow flex flex-row mt-1`}>
                           <div className='text-sm font-normal'>
                             {format('workflow.header')}:
                           </div>
                           <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
-                            {
-                              workflows.length === 0 && format('general.na')
-                            }
+                            {workflows.length === 0 && format('general.na')}
                             {
                               workflows.length > 0 &&
                                 workflows.map(b => b.name).join(', ')
@@ -115,10 +111,13 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                   </div>
                   {
                     useCase.sdgTargets &&
-                      <div className={`hidden lg:block lg:col-span-2 pr-3 text-base text-dial-purple ${ellipsisTextStyle}`}>
-                        {
-                          useCase.sdgTargets.length === 0 && format('general.na')
-                        }
+                      <div
+                        className={`
+                          hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                          lg:col-span-2 text-base text-dial-purple ${ellipsisTextStyle}
+                        `}
+                      >
+                        {useCase.sdgTargets.length === 0 && format('general.na')}
                         {
                           useCase.sdgTargets.length > 0 &&
                             useCase.sdgTargets.map(u => u.targetNumber).join(', ')
@@ -127,17 +126,20 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                   }
                   {
                     workflows &&
-                      <div className={`hidden lg:block lg:col-span-5 pr-3 text-base text-workflow ${ellipsisTextStyle}`}>
-                        {
-                          workflows.length === 0 && format('general.na')
-                        }
+                      <div
+                        className={`
+                          hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                          lg:col-span-5 text-base text-workflow ${ellipsisTextStyle}
+                        `}
+                      >
+                        {workflows.length === 0 && format('general.na')}
                         {
                           workflows.length > 0 &&
                             workflows.map(b => b.name).join(', ')
                         }
                       </div>
                   }
-                  <div className='col-span-3 md:col-span-2 lg:col-span-1 px-2 text-right font-semibold opacity-50 justify-end'>
+                  <div className='col-span-2 lg:col-span-1 text-right font-semibold opacity-50 justify-end'>
                     {useCase.maturity}
                   </div>
                 </div>
@@ -146,7 +148,7 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
             )
           : (
             <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
-              <div className='border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
+              <div className='border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray'>
                   <div className='ml-auto text-button-gray-light text-sm font-semibold'>
                     {useCase.maturity.toUpperCase()}

@@ -10,7 +10,7 @@ const ellipsisTextStyle = `
   whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
 
-const SDGCard = ({ sdg, listType }) => {
+const SDGCard = ({ sdg, listType, filterDisplayed }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -58,11 +58,15 @@ const SDGCard = ({ sdg, listType }) => {
   })()
 
   const nameColSpan = () => {
-    return !useCases ? 'col-span-10' : 'col-span-5 md:col-span-3 lg:col-span-2'
+    return !useCases
+      ? 'col-span-6'
+      : filterDisplayed ? 'col-span-6 xl:col-span-2' : 'col-span-5 md:col-span-3 lg:col-span-2'
   }
 
   const useCaseColSpan = () => {
-    return !useCases ? 'hidden' : 'hidden lg:block lg:col-span-3 lg:col-span-4'
+    return !useCases
+      ? 'hidden'
+      : filterDisplayed ? 'hidden xl:block 2xl:col-span-4' : 'hidden lg:block lg:col-span-3 lg:col-span-4'
   }
 
   return (
@@ -71,9 +75,9 @@ const SDGCard = ({ sdg, listType }) => {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
-              <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
-                <div className='grid grid-cols-1 lg:grid-cols-6 gap-4 my-5 px-4'>
-                  <div className={`${nameColSpan()} pr-3 text-base text-sdg font-semibold ${ellipsisTextStyle}`}>
+              <div className='bg-white border border-dial-gray hover:border-transparent'>
+                <div className='grid grid-cols-1 lg:grid-cols-6 gap-x-4 py-4 px-4'>
+                  <div className={`${nameColSpan()} text-base text-sdg font-semibold ${ellipsisTextStyle}`}>
                     <img
                       className='inline pr-4' src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`}
                       alt={format('image.alt.logoFor', { name: sdg.name })} width='40' height='40'
@@ -81,7 +85,12 @@ const SDGCard = ({ sdg, listType }) => {
                     {sdg.name}
                     {
                       useCases &&
-                        <div className='block lg:hidden text-use-case text-sm font-normal flex flex-row mt-1'>
+                        <div
+                          className={`
+                            block ${filterDisplayed ? ' xl:hidden' : 'lg:hidden'}
+                            text-use-case text-sm font-normal flex flex-row mt-1
+                          `}
+                        >
                           <div className='inline'>
                             {format('useCase.header')}:
                           </div>
@@ -112,7 +121,7 @@ const SDGCard = ({ sdg, listType }) => {
             )
           : (
             <div className='border-3 border-transparent hover:border-dial-yellow text-sdg hover:text-dial-yellow cursor-pointer'>
-              <div className='border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
+              <div className='border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='flex flex-col h-80 p-4'>
                   <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
                     {sdg.name}

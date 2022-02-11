@@ -64,8 +64,13 @@ const BuildingBlockList = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
+  const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
+  const gridStyles = `grid ${displayType === 'card'
+    ? `grid-cols-1 gap-4
+       ${filterDisplayed ? 'lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3' : 'md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'}`
+    : 'grid-cols-1'
+    }`
 
   return (
     <>
@@ -73,15 +78,25 @@ const BuildingBlockList = (props) => {
         {
           displayType === 'list' &&
             <div className='grid grid-cols-12 my-3 px-4 text-building-block'>
-              <div className='col-span-10 lg:col-span-4 ml-2 text-sm font-semibold opacity-80'>
+              <div className='col-span-10 lg:col-span-4 text-sm font-semibold opacity-80'>
                 {format('building-block.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='hidden lg:block col-span-3 text-sm text-product font-semibold opacity-50'>
+              <div
+                className={`
+                  hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                  col-span-3 text-sm text-product font-semibold opacity-50
+                `}
+              >
                 {format('exampleOf.entity', { entity: format('product.header') }).toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='hidden lg:block col-span-3 text-sm font-semibold text-workflow opacity-50'>
+              <div
+                className={`
+                  hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                  col-span-3 text-sm font-semibold text-workflow opacity-50
+                `}
+              >
                 {format('exampleOf.entity', { entity: format('workflow.header') }).toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
@@ -90,12 +105,11 @@ const BuildingBlockList = (props) => {
         {
           props.buildingBlockList.length > 0
             ? props.buildingBlockList.map((buildingBlock) => (
-              <BuildingBlockCard key={buildingBlock.id} buildingBlock={buildingBlock} listType={displayType} />
+              <BuildingBlockCard key={buildingBlock.id} listType={displayType} {...{ buildingBlock, filterDisplayed }} />
               ))
             : (
-              <div className='flex justify-self-center text-dial-gray-dark'>{
-                format('noResults.entity', { entity: format('building-block.header') })
-                }
+              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
+                {format('noResults.entity', { entity: format('building-block.label').toLowerCase() })}
               </div>
               )
         }
@@ -105,7 +119,7 @@ const BuildingBlockList = (props) => {
 }
 
 const BuildingBlockListQuery = () => {
-  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const { sdgs, useCases, workflows, showMature, search } = useContext(BuildingBlockFilterContext)
 
   const format = (id, value = {}) => <FormattedMessage id={id} values={{ ...value }} />
@@ -156,7 +170,7 @@ const BuildingBlockListQuery = () => {
         hasMore={pageInfo.hasNextPage}
         loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
       >
-        <BuildingBlockList buildingBlockList={nodes} displayType={displayType} />
+        <BuildingBlockList buildingBlockList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
       </InfiniteScroll>
     </>
   )
