@@ -119,6 +119,11 @@ const ProductDetailRight = ({ product, discourseRef }) => {
                 {origin.slug === 'dpga' && product.endorsers.length === 0 && (
                   <div className='inline ml-2 h5'>{format('product.nominee')}</div>
                 )}
+                {origin.slug === 'dpga' && (
+                  <a className='block ml-3' href={'https://digitalpublicgoods.net/registry/' + product.slug.replaceAll('_', '-')} target='_blank' rel='noreferrer'>
+                    <div className='inline ml-4 text-dial-teal text-sm'>{format('product.view-DPGA-data')}</div>
+                  </a>
+                )}
               </div>
             )
           })}
