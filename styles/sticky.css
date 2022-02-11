@@ -7,6 +7,7 @@
   
     min-height: 64px;
   }
+  
   .sticky-under-header {
     /*
       This should be set with the same value as above, because we want to make this stick under the header.
@@ -15,6 +16,7 @@
     /* Header have z-index of 30. This will prevent this part clipping the language dropdown. */
     z-index: 20;
   }
+
   .sticky-filter {
     /*
       This is sticking under the above. So the top value will be minHeight + height of the above element.
@@ -23,9 +25,20 @@
     /* Header have z-index of 30. This will prevent this part clipping the language dropdown. */
     z-index: 20;
   }
+
+  .sticky-bar {
+    /*
+      This is sticking under the above. So the top value will be minHeight + height of the above element.
+    */
+    top: 166px;
+    /* Header have z-index of 30. This will prevent this part clipping the language dropdown. */
+    z-index: 20;
+  }
+
   .non-sticky-filter {
     z-index: 10;
   }
+  
   .sticky-under-filter {
     /*
       This is sticking under the above. So the top value will be minHeight + height of the above element.

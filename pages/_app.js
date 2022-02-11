@@ -17,6 +17,9 @@ import '../styles/loading.css'
 import '../styles/tooltip.css'
 import '../styles/password.css'
 
+import '../styles/drawer.css'
+import '../styles/card.css'
+
 import CatalogContext from '../lib/CatalogContext'
 import { useEffect } from 'react'
 import CandidateContext from '../lib/CandidateContext'

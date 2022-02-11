@@ -1,17 +1,25 @@
 import Head from 'next/head'
-import { useContext } from 'react'
 import { useIntl } from 'react-intl'
+import { useContext } from 'react'
 
 import apolloClient from '../../lib/apolloClient'
 
-import Filter from '../../components/filter/Filter'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import OrganizationListQuery from '../../components/organizations/OrganizationList'
-import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../../components/context/OrganizationFilterContext'
 import QueryNotification from '../../components/shared/QueryNotification'
 import GradientBackground from '../../components/shared/GradientBackground'
+
+import TabNav from '../../components/main/TabNav'
+import PageContent from '../../components/main/PageContent'
+import OrganizationFilter from '../../components/organizations/OrganizationFilter'
+import OrganizationActiveFilter from '../../components/organizations/OrganizationActiveFilter'
+
+import OrganizationHint from '../../components/filter/hint/OrganizationHint'
+
 import SearchFilter from '../../components/shared/SearchFilter'
+import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../../components/context/OrganizationFilterContext'
+import MobileNav from '../../components/main/MobileNav'
 
 const Organizations = () => {
   const { formatMessage } = useIntl()
@@ -29,9 +37,16 @@ const Organizations = () => {
       <QueryNotification />
       <GradientBackground />
       <Header />
-      <Filter activeTab='filter.entity.organizations' />
-      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('organization.label')} />
-      <OrganizationListQuery />
+      <TabNav activeTab='filter.entity.organizations' />
+      <MobileNav activeTab='filter.entity.organizations' />
+      <PageContent
+        activeTab='filter.entity.products'
+        filter={<OrganizationFilter />}
+        content={<OrganizationListQuery />}
+        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.organizations' />}
+        activeFilter={<OrganizationActiveFilter />}
+        hint={<OrganizationHint />}
+      />
       <Footer />
     </>
   )

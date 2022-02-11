@@ -10,7 +10,7 @@ const ellipsisTextStyle = `
    whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
 
-const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
+const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
@@ -41,13 +41,13 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
   const nameColSpan = (buildingBlock) => {
     return !buildingBlock.products && !buildingBlock.workflows
       ? 'col-span-10'
-      : 'col-span-10 lg:col-span-4'
+      : filterDisplayed ? 'col-span-10 xl:col-span-4' : 'col-span-10 lg:col-span-4'
   }
 
   const maturityColSpan = (buildingBlock) => {
     return !buildingBlock.products && !buildingBlock.workflows
       ? 'col-span-2'
-      : 'col-span-2 lg:col-span-1'
+      : filterDisplayed ? 'col-span-2 xl:col-span-1' : 'col-span-2 lg:col-span-1'
   }
 
   return (
@@ -58,7 +58,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
               <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
-                <div className='grid grid-cols-12 my-4 px-4'>
+                <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                   <div className={`${nameColSpan(buildingBlock)} pr-3 text-base font-semibold ${ellipsisTextStyle}`}>
                     {
                       buildingBlock.imageFile &&
@@ -71,14 +71,12 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                     {buildingBlock.name}
                     {
                       buildingBlock.products &&
-                        <div className='lg:hidden flex flex-row mt-1 text-product'>
+                        <div className={`${filterDisplayed ? ' xl:hidden' : 'lg:hidden'} flex flex-row mt-1 text-product`}>
                           <div className='text-sm font-normal'>
                             {format('product.header')}:
                           </div>
                           <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
-                            {
-                              buildingBlock.products.length === 0 && format('general.na')
-                            }
+                            {buildingBlock.products.length === 0 && format('general.na')}
                             {
                               buildingBlock.products.length > 0 &&
                                 buildingBlock.products.map(p => p.name).join(', ')
@@ -88,14 +86,12 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                     }
                     {
                       buildingBlock.workflows &&
-                        <div className='lg:hidden flex flex-row mt-1 text-workflow'>
+                        <div className={`${filterDisplayed ? 'xl:hidden' : 'lg:hidden'} flex flex-row mt-1 text-workflow`}>
                           <div className='text-sm font-normal'>
                             {format('workflow.header')}:
                           </div>
                           <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
-                            {
-                              buildingBlock.workflows.length === 0 && format('general.na')
-                            }
+                            {buildingBlock.workflows.length === 0 && format('general.na')}
                             {
                               buildingBlock.workflows.length > 0 &&
                                 buildingBlock.workflows.map(w => w.name).join(', ')
@@ -106,10 +102,13 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                   </div>
                   {
                     buildingBlock.products &&
-                      <div className={`hidden lg:block col-span-3 pr-3 text-base text-product ${ellipsisTextStyle}`}>
-                        {
-                          buildingBlock.products.length === 0 && format('general.na')
-                        }
+                      <div
+                        className={`
+                          hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                          col-span-3 pr-3 text-base text-product ${ellipsisTextStyle}
+                        `}
+                      >
+                        {buildingBlock.products.length === 0 && format('general.na')}
                         {
                           buildingBlock.products.length > 0 &&
                             buildingBlock.products.map(p => p.name).join(', ')
@@ -118,10 +117,13 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                   }
                   {
                     buildingBlock.workflows &&
-                      <div className={`hidden lg:block col-span-4 text-base text-workflow ${ellipsisTextStyle}`}>
-                        {
-                          buildingBlock.workflows && buildingBlock.workflows.length === 0 && format('general.na')
-                        }
+                      <div
+                        className={`
+                          hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                          col-span-4 text-base text-workflow ${ellipsisTextStyle}
+                        `}
+                      >
+                        {buildingBlock.workflows && buildingBlock.workflows.length === 0 && format('general.na')}
                         {
                           buildingBlock.workflows && buildingBlock.workflows.length > 0 &&
                             buildingBlock.workflows.map(w => w.name).join(', ')
@@ -137,7 +139,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
             )
           : (
             <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
-              <div className='h-full flex flex-col border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
+              <div className='h-full flex flex-col border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray'>
                   <div className='ml-auto text-button-gray-light text-sm font-semibold'>
                     {buildingBlock.maturity.toUpperCase()}

@@ -1,0 +1,19 @@
+.animated-drawer {
+  transition: all 0.6s;
+}
+
+.drawer-expanded {
+  width: 24rem;
+}
+
+.drawer-collapsed {
+  width: 2rem;
+}
+
+.hide-element {
+  opacity: 0;
+}
+
+.show-element {
+  opacity: 1;
+}

@@ -89,7 +89,7 @@ const EndorserPage = () => {
   const [years, setYears] = useState([])
   const [sectors, setSectors] = useState([])
 
-  const { displayType } = useContext(FilterContext)
+  const { resultCounts, setResultCounts, displayType } = useContext(FilterContext)
 
   const toggleEndorserLevel = () => {
     setEndorserLevel(endorserLevel === 'gold' ? '' : 'gold')
@@ -104,6 +104,9 @@ const EndorserPage = () => {
       endorserLevel: endorserLevel,
       search: search,
       mapView: true
+    },
+    onCompleted: (data) => {
+      setResultCounts({ ...resultCounts, ...{ [['filter.entity.organizations']]: data.searchOrganizations.totalCount } })
     }
   })
 
@@ -148,13 +151,15 @@ const EndorserPage = () => {
         <EndorserMarkerMaps {...{ cities, organization, setSelectedCity, setOrganization, height: '30vh', defaultMap: 'principles' }} />
         <EndorserInfo {...{ city, setOrganization }} />
       </div>
-      <div className='flex flex-row bg-dial-gray-dark'>
-        <div className='text-white text-xl flex justify-center items-center mx-5'><div>Filter Endorsers</div></div>
+      <div className='flex flex-row bg-dial-gray-dark pt-2 pb-2'>
+        <div className='text-white text-xl flex justify-center items-center mx-5'>
+          <div className='whitespace-nowrap'>Filter Endorsers</div>
+        </div>
         <div className='text-sm text-dial-gray-light flex flex-row flex-wrap w-full'>
           <EndorsingYearSelect {...{ years, setYears }} containerStyles='px-2 pb-2' />
           <CountryAutocomplete {...{ countries, setCountries }} containerStyles='px-2 pb-2' />
           <SectorAutocomplete {...{ sectors, setSectors }} containerStyles='px-2 pb-2' />
-          <div className='flex justify-center items-center mx-5 pt-4'>
+          <div className='flex justify-center items-center mx-5'>
             <label className='inline-flex items-center'>
               <input
                 type='checkbox' className='h-4 w-4 form-checkbox text-white' name='endorser-level'
@@ -165,17 +170,28 @@ const EndorserPage = () => {
           </div>
         </div>
       </div>
-      <div className='flex flex-row bg-dial-gray-dark py-2 px-5'>
-        <EndorsingYearFilters {...{ years, setYears }} />
-        <CountryFilters {...{ countries, setCountries }} />
-        <SectorFilters {...{ sectors, setSectors }} />
+      {
+        (years.length > 0 || countries.length > 0 || sectors.length > 0) &&
+          <div className='flex flex-row bg-dial-gray-dark pb-2 px-5 -mt-3 '>
+            <EndorsingYearFilters {...{ years, setYears }} />
+            <CountryFilters {...{ countries, setCountries }} />
+            <SectorFilters {...{ sectors, setSectors }} />
+          </div>
+      }
+      <div className='mb-2'>
+        <SearchFilter {...{ search, setSearch }} hint='filter.entity.organizations' />
       </div>
-      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('organization.label')} />
       <div className={gridStyles}>
         {
-          data && data.searchOrganizations && data.searchOrganizations.nodes && data.searchOrganizations.nodes.map((organization) => (
-            <OrganizationCard key={organization.id} organization={organization} listType={displayType} />
-          ))
+          data && data.searchOrganizations && data.searchOrganizations.nodes && data.searchOrganizations.nodes.length > 0
+            ? data.searchOrganizations.nodes.map((organization) => (
+              <OrganizationCard key={organization.id} organization={organization} listType={displayType} />
+              ))
+            : (
+              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-3'>
+                {format('noResults.entity', { entity: format('organization.label').toLowerCase() })}
+              </div>
+              )
         }
       </div>
     </>

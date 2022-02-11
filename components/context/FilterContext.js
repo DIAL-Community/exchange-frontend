@@ -3,14 +3,25 @@ import { createContext, useState } from 'react'
 export const convertToKey = (s) => s.replace(/\s+/g, '_').toLowerCase()
 const FilterContext = createContext()
 
-const initialCounts = (() => {
-  const filterItems = [
-    'filter.entity.sdgs', 'filter.entity.useCases', 'filter.entity.workflows', 'filter.entity.buildingBlocks',
-    'filter.entity.products', 'filter.entity.projects', 'filter.entity.organizations', 'filter.entity.maps'
-  ]
+export const FILTER_ITEMS = [
+  'filter.entity.sdgs', 'filter.entity.useCases', 'filter.entity.workflows', 'filter.entity.buildingBlocks',
+  'filter.entity.products', 'filter.entity.projects', 'filter.entity.organizations', 'filter.entity.maps'
+]
 
-  return filterItems.reduce((map, item) => {
-    map[item] = item === 'maps' ? '3' : '--'
+export const MAPPED_FILTER_ITEMS_URL = {
+  'filter.entity.sdgs': 'sdgs',
+  'filter.entity.useCases': 'use_cases',
+  'filter.entity.workflows': 'workflows',
+  'filter.entity.buildingBlocks': 'building_blocks',
+  'filter.entity.products': 'products',
+  'filter.entity.projects': 'projects',
+  'filter.entity.organizations': 'organizations',
+  'filter.entity.maps': 'maps'
+}
+
+const initialCounts = (() => {
+  return FILTER_ITEMS.reduce((map, item) => {
+    map[item] = item === 'filter.entity.maps' ? '3' : '--'
     return map
   }, {})
 })()
@@ -18,9 +29,19 @@ const initialCounts = (() => {
 const FilterContextProvider = ({ children }) => {
   const [resultCounts, setResultCounts] = useState(initialCounts)
   const [displayType, setDisplayType] = useState('card')
-  const [openFilter, setOpenFilter] = useState(false)
+  const [filterDisplayed, setFilterDisplayed] = useState(true)
+  const [openHint, setOpenHint] = useState(false)
 
-  const props = { resultCounts, displayType, openFilter, setResultCounts, setDisplayType, setOpenFilter }
+  const props = {
+    resultCounts,
+    displayType,
+    filterDisplayed,
+    openHint,
+    setResultCounts,
+    setDisplayType,
+    setFilterDisplayed,
+    setOpenHint
+  }
 
   return (
     <FilterContext.Provider value={{ ...props }}>

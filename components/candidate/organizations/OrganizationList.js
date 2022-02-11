@@ -48,19 +48,24 @@ const OrganizationList = (props) => {
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
+  const filterDisplayed = props.filterDisplayed
+  const gridStyles = `grid ${displayType === 'card'
+    ? `grid-cols-1 gap-4
+       ${filterDisplayed ? 'lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3' : 'md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'}`
+    : 'grid-cols-1'
+    }`
 
   return (
     <>
       <div className={gridStyles}>
         {
           displayType === 'list' &&
-            <div className='grid grid-cols-12 my-3 px-4'>
-              <div className='col-span-5 ml-2 text-sm font-semibold opacity-70'>
+            <div className='grid grid-cols-12 gap-4 my-3 px-4'>
+              <div className='col-span-4 ml-2 text-sm font-semibold opacity-70'>
                 {format('organization.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='hidden md:block col-span-3 text-sm font-semibold opacity-50'>
+              <div className='hidden md:block col-span-4 text-sm font-semibold opacity-50'>
                 {format('candidateOrganization.website').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
@@ -87,12 +92,16 @@ const OrganizationListQuery = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const { displayType } = useContext(FilterContext)
   const { search } = useContext(OrganizationFilterContext)
+  const { filterDisplayed, resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+
   const { loading, error, data, fetchMore } = useQuery(ORGANIZATIONS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       search: search
+    },
+    onCompleted: (data) => {
+      setResultCounts({ ...resultCounts, ...{ [['filter.entity.candidateOrganizations']]: data.searchCandidateOrganizations.totalCount } })
     }
   })
 
@@ -123,7 +132,7 @@ const OrganizationListQuery = () => {
       hasMore={pageInfo.hasNextPage}
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
-      <OrganizationList organizationList={nodes} displayType={displayType} />
+      <OrganizationList organizationList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
     </InfiniteScroll>
   )
 }

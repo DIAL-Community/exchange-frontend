@@ -64,8 +64,13 @@ const OrganizationList = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
+  const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
+  const gridStyles = `grid ${displayType === 'card'
+    ? `grid-cols-1 gap-4
+       ${filterDisplayed ? 'lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3' : 'md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'}`
+    : 'grid-cols-1'
+    }`
 
   return (
     <>
@@ -77,16 +82,27 @@ const OrganizationList = (props) => {
                 {format('organization.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='hidden lg:block lg:col-span-6 text-sm font-semibold opacity-50'>
+              <div
+                className={`
+                  hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                  lg:col-span-6 text-sm font-semibold opacity-50
+                `}
+              >
                 {format('sector.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
             </div>
         }
         {
-          props.organizationList.map((organization) => (
-            <OrganizationCard key={organization.id} organization={organization} listType={displayType} />
-          ))
+          props.organizationList.length > 0
+            ? props.organizationList.map((organization) => (
+              <OrganizationCard key={organization.id} listType={displayType} {...{ organization, filterDisplayed }} />
+              ))
+            : (
+              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
+                {format('noResults.entity', { entity: format('organization.label').toLowerCase() })}
+              </div>
+              )
         }
       </div>
     </>
@@ -94,7 +110,7 @@ const OrganizationList = (props) => {
 }
 
 const OrganizationListQuery = () => {
-  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const { aggregator, endorser, endorserLevel, countries, sectors, years, search } = useContext(OrganizationFilterContext)
 
   const { formatMessage } = useIntl()
@@ -149,7 +165,7 @@ const OrganizationListQuery = () => {
       hasMore={pageInfo.hasNextPage}
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
-      <OrganizationList organizationList={nodes} displayType={displayType} />
+      <OrganizationList organizationList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
     </InfiniteScroll>
   )
 }

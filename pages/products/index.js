@@ -1,17 +1,25 @@
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
+import { useContext } from 'react'
 
 import apolloClient from '../../lib/apolloClient'
 
-import Filter from '../../components/filter/Filter'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import SearchFilter from '../../components/shared/SearchFilter'
 import GradientBackground from '../../components/shared/GradientBackground'
 import QueryNotification from '../../components/shared/QueryNotification'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../components/context/ProductFilterContext'
 
-import { useContext } from 'react'
+import TabNav from '../../components/main/TabNav'
+import MobileNav from '../../components/main/MobileNav'
+import PageContent from '../../components/main/PageContent'
+
+import ProductHint from '../../components/filter/hint/ProductHint'
+
+import ProductFilter from '../../components/products/ProductFilter'
+import ProductActiveFilter from '../../components/products/ProductActiveFilter'
+
+import SearchFilter from '../../components/shared/SearchFilter'
+import { ProductFilterContext, ProductFilterDispatchContext } from '../../components/context/ProductFilterContext'
 
 import dynamic from 'next/dynamic'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
@@ -34,9 +42,16 @@ const Products = () => {
       <GradientBackground />
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <Filter activeTab='filter.entity.products' />
-      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('products.label')} />
-      <ProductListQuery />
+      <TabNav activeTab='filter.entity.products' />
+      <MobileNav activeTab='filter.entity.products' />
+      <PageContent
+        activeTab='filter.entity.products'
+        filter={<ProductFilter />}
+        content={<ProductListQuery />}
+        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.products' />}
+        activeFilter={<ProductActiveFilter />}
+        hint={<ProductHint />}
+      />
       <Footer />
     </>
   )

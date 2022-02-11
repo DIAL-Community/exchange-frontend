@@ -141,7 +141,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
             )
           : (
             <div className='group border-3 border-transparent hover:border-dial-yellow text-dial-purple cursor-pointer'>
-              <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow shadow-lg hover:shadow-2xl'>
+              <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow drop-shadow'>
                 <div className='border-b text-2xl p-4 group-hover:text-dial-yellow' style={{ minHeight: '97px' }}>
                   <div className='bg-white bg-opacity-70 text-xl 2xl:text-2xl' style={{ maxHeight: '64px' }}>
                     {truncate(project.name, 50, true, true)}

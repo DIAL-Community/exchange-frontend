@@ -1,18 +1,30 @@
 import Head from 'next/head'
+
 import { useIntl } from 'react-intl'
-import Header from '../components/Header'
-import Filter from '../components/filter/Filter'
-import ProductListQuery from '../components/products/ProductList'
+import { useContext } from 'react'
+
 import withApollo from '../lib/apolloClient'
+
+import Header from '../components/Header'
 import Landing from '../components/Landing'
 import Definition from '../components/Definition'
 import WizardDescription from '../components/WizardDescription'
 import Carousel from '../components/Carousel'
 import CatalogTitle from '../components/CatalogTitle'
 import Footer from '../components/Footer'
+
+import TabNav from '../components/main/TabNav'
+import MobileNav from '../components/main/MobileNav'
+import PageContent from '../components/main/PageContent'
+
+import ProductHint from '../components/filter/hint/ProductHint'
+
+import ProductFilter from '../components/products/ProductFilter'
+import ProductActiveFilter from '../components/products/ProductActiveFilter'
+import ProductListQuery from '../components/products/ProductList'
 import SearchFilter from '../components/shared/SearchFilter'
+
 import { ProductFilterContext, ProductFilterDispatchContext } from '../components/context/ProductFilterContext'
-import { useContext } from 'react'
 
 import dynamic from 'next/dynamic'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
@@ -37,9 +49,16 @@ const HomePage = () => {
       <WizardDescription />
       <CatalogTitle />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <Filter activeTab='filter.entity.products' />
-      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('products.label')} />
-      <ProductListQuery />
+      <TabNav activeTab='filter.entity.products' />
+      <MobileNav activeTab='filter.entity.products' />
+      <PageContent
+        activeTab='filter.entity.products'
+        filter={<ProductFilter />}
+        content={<ProductListQuery />}
+        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.products' />}
+        activeFilter={<ProductActiveFilter />}
+        hint={<ProductHint />}
+      />
       <Footer />
     </>
   )

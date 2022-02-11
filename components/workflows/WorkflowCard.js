@@ -10,7 +10,7 @@ const ellipsisTextStyle = `
    whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
 
-const WorkflowCard = ({ workflow, listType }) => {
+const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
@@ -58,7 +58,7 @@ const WorkflowCard = ({ workflow, listType }) => {
   const nameColSpan = () => {
     return !workflow.buildingBlocks && !useCases
       ? 'col-span-12'
-      : 'col-span-12 lg:col-span-4'
+      : filterDisplayed ? 'col-span-12 xl:col-span-4' : 'col-span-12 lg:col-span-4'
   }
 
   return (
@@ -67,9 +67,9 @@ const WorkflowCard = ({ workflow, listType }) => {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
-              <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
-                <div className='grid grid-cols-12 my-5 px-4'>
-                  <div className={`${nameColSpan()} ${ellipsisTextStyle} pr-3 text-base font-semibold`}>
+              <div className='bg-white border border-dial-gray hover:border-transparent drop-shadow'>
+                <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
+                  <div className={`${nameColSpan()} ${ellipsisTextStyle} text-base font-semibold`}>
                     <img
                       data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: workflow.name })}
                       alt={format('image.alt.logoFor', { name: workflow.name })} className='m-auto h-6 workflow-filter inline mr-3'
@@ -78,14 +78,17 @@ const WorkflowCard = ({ workflow, listType }) => {
                     {workflow.name}
                     {
                       useCases &&
-                        <div className='block lg:hidden text-use-case flex flex-row mt-1 text-use-case'>
+                        <div
+                          className={`
+                            block ${filterDisplayed ? ' xl:hidden' : 'lg:hidden'}
+                            text-use-case flex flex-row mt-1
+                          `}
+                        >
                           <div className='text-sm font-normal'>
                             {format('useCase.header')}:
                           </div>
                           <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
-                            {
-                              useCases.length === 0 && format('general.na')
-                            }
+                            {useCases.length === 0 && format('general.na')}
                             {
                               useCases.length > 0 &&
                                 useCases.map(u => u.name).join(', ')
@@ -95,14 +98,17 @@ const WorkflowCard = ({ workflow, listType }) => {
                     }
                     {
                       workflow.buildingBlocks &&
-                        <div className='block lg:hidden flex flex-row mt-1 text-building-block'>
+                        <div
+                          className={`
+                            block ${filterDisplayed ? 'xl:hidden' : 'lg:hidden'}
+                            flex flex-row mt-1 text-building-block
+                          `}
+                        >
                           <div className='text-sm font-normal'>
                             {format('building-block.header')}:
                           </div>
                           <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
-                            {
-                              workflow.buildingBlocks.length === 0 && format('general.na')
-                            }
+                            {workflow.buildingBlocks.length === 0 && format('general.na')}
                             {
                               workflow.buildingBlocks.length > 0 &&
                               workflow.buildingBlocks.map(b => b.name).join(', ')
@@ -111,19 +117,25 @@ const WorkflowCard = ({ workflow, listType }) => {
                         </div>
                     }
                   </div>
-                  <div className={`hidden lg:block lg:col-span-4 pr-3 text-base text-use-case ${ellipsisTextStyle}`}>
-                    {
-                      useCases && useCases.length === 0 && format('general.na')
-                    }
+                  <div
+                    className={`
+                      hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                      lg:col-span-4 text-base text-use-case ${ellipsisTextStyle}
+                    `}
+                  >
+                    {useCases && useCases.length === 0 && format('general.na')}
                     {
                       useCases && useCases.length > 0 &&
                         useCases.map(u => u.name).join(', ')
                     }
                   </div>
-                  <div className={`hidden lg:block lg:col-span-4 pr-3 text-base text-building-block ${ellipsisTextStyle}`}>
-                    {
-                      workflow.buildingBlocks && workflow.buildingBlocks.length === 0 && format('general.na')
-                    }
+                  <div
+                    className={`
+                      hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                      lg:col-span-4 text-base text-building-block ${ellipsisTextStyle}
+                    `}
+                  >
+                    {workflow.buildingBlocks && workflow.buildingBlocks.length === 0 && format('general.na')}
                     {
                       workflow.buildingBlocks && workflow.buildingBlocks.length > 0 &&
                         workflow.buildingBlocks.map(b => b.name).join(', ')

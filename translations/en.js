@@ -358,6 +358,7 @@ export const en = {
     sustainability and applicability to the ICT Building Blocks will be addressed overtime.
   `,
   'filter.hint.text': 'What is a ',
+  'filter.hint.text.an': 'What is an ',
 
   'digiInvestment.title': 'Digital Investment Framework',
   'digiInvestment.tooltip': 'The SDG Digital Investment Framework developed by DIAL and ITU advocates for re-usable, cross-sectoral building blocks. The Catalog illustrates how use cases are composed of generic workflows which can by implemented by building blocks. Users can also explore existing products that may provide necessary functionality for each building block.',
@@ -370,6 +371,8 @@ export const en = {
   'filter.entity.projects': 'Projects',
   'filter.entity.organizations': 'Organizations',
   'filter.entity.maps': 'Maps',
+  'filter.entity.candidateOrganizations': 'Candidate Organizations',
+  'filter.entity.candidateProducts': 'Candidate Products',
 
   'filter.byEntity': 'Filter by {entity}',
   'filter.searchFor': 'Search for {entity}',

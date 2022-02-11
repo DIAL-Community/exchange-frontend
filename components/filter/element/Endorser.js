@@ -17,24 +17,26 @@ const ENDORSER_SEARCH_QUERY = gql`
   }
 `
 
-const customStyles = {
-  ...asyncSelectStyles,
-  control: (provided) => ({
-    ...provided,
-    width: '20rem',
-    cursor: 'pointer'
-  }),
-  option: (provided) => ({
-    ...provided,
-    cursor: 'pointer'
-  }),
-  menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-  menu: (provided) => ({ ...provided, zIndex: 30 })
+const customStyles = (controlSize = '20rem') => {
+  return {
+    ...asyncSelectStyles,
+    control: (provided) => ({
+      ...provided,
+      width: controlSize,
+      cursor: 'pointer'
+    }),
+    option: (provided) => ({
+      ...provided,
+      cursor: 'pointer'
+    }),
+    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
+    menu: (provided) => ({ ...provided, zIndex: 30 })
+  }
 }
 
 export const EndorserAutocomplete = (props) => {
   const client = useApolloClient()
-  const { endorsers, setEndorsers, containerStyles } = props
+  const { endorsers, setEndorsers, containerStyles, controlSize } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -68,20 +70,18 @@ export const EndorserAutocomplete = (props) => {
 
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
-      <label className='block mt-4'>
-        <span className='text-sm text-dial-gray-light'>{format('endorser.header')}</span>
-        <AsyncSelect
-          className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
-          cacheOptions
-          defaultOptions
-          loadOptions={(input, callback) => fetchOptions(input, callback, ENDORSER_SEARCH_QUERY)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('endorser.header') })}
-          onChange={selectEndorser}
-          placeholder={format('filter.byEntity', { entity: format('endorser.label') })}
-          styles={customStyles}
-          value=''
-        />
-      </label>
+      <AsyncSelect
+        aria-label={format('filter.byEntity', { entity: format('endorser.label') })}
+        className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
+        cacheOptions
+        defaultOptions
+        loadOptions={(input, callback) => fetchOptions(input, callback, ENDORSER_SEARCH_QUERY)}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('endorser.header') })}
+        onChange={selectEndorser}
+        placeholder={format('filter.byEntity', { entity: format('endorser.label') })}
+        styles={customStyles(controlSize)}
+        value=''
+      />
     </div>
   )
 }
