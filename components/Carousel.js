@@ -2,12 +2,6 @@ import { useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactHtmlParser from 'react-html-parser'
 
-import Link from 'next/link'
-
-const buttonAnchorStyle = `
-  rounded-full flex items-center justify-center py-2 mt-4 leading-8 lg:py-2
-`
-
 const Carousel = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)

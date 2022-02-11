@@ -575,111 +575,102 @@ export const en = {
   'signUp.tooltip.productOwner': 'Optionally apply as a product owner. You will need to be verified by our team member to do this.',
 
   'consent.text': 'Cookies help us deliver our services. By using our services, you agree to our use of cookies.',
-  'consent.learnMore': 'Learn More',
-  'consent.dismiss': 'Dismiss',
-  'consent.whatIsCookie': `
+  'consent.privacyPolicy': 'Privacy Policy',
+  'consent.acceptAll': 'Accept All',
+  'consent.cookieDetails': 'Cookie Details',
+  'consent.essential': 'Essential Cookies',
+  'consent.statistics': 'Statistics Cookies',
+  'consent.save': 'Save',
+  'consent.privacyPolicy.content': `
     <div class='mx-4 py-8'>
-      <div class='mx-4 my-2 text-xl font-semibold heading-h2'>Cookies</div>
-      <p class='mx-4 my-2 text-sm'>Cookies are small text files which are downloaded to your computer, tablet or mobile phone when you visit a website
-        or application. The website or application may retrieve these cookies from your web browser (eg Internet Explorer,
-        Mozilla Firefox or Google Chrome) each time you visit, so they can recognise you, remember your preferences and
-        provide you with a more secure online experience.</p>
-      <p class='mx-4 my-2 text-sm'>Generally, cookies are very useful and are a common method used by almost every website you visit because they help
-        to make your online experience as smooth as possible. For security reasons, many websites will not function at all
-        without the use of cookies (or other similar technologies, such as "web beacons" or "tags").</p>
-      <p class='mx-4 my-2 text-sm'>Cookies generally do not hold any information to identify an individual person, but are instead used to identify a
-        browser on an individual machine.</p>
-      <p class='mx-4 my-2 text-sm'>If you prefer, you can restrict, block or delete cookies by changing your browser settings but that may mean that
-        the website won't work properly</p>
-      <p class='mx-4 my-2 text-sm'>For more information about cookies and their impact on you and your browsing visit <a
-          href="www.aboutcookies.org">http://www.aboutcookies.org</a>.</p>
-      <div class='mx-4 my-2 text-xl font-semibold heading-h2'>Types of Cookies</div>
-      <div class='mx-4 my-2 text-md font-semibold heading-h3'>Necessary cookies</div>
-      <p class='mx-4 my-2 text-sm'>These cookies are essential in helping you to make use of the features and services we offer on the DIAL product
-        registry website. Without these cookies, the services you want to use cannot be provided. These cookies do not
-        gather information about you that could be used to identify you, and they do not monitor or remember where you have
-        been on the internet.</p>
-      <div class='mx-4 my-2 text-md font-semibold heading-h3'>Functional cookies</div>
-      <p class='mx-4 my-2 text-sm'>These cookies allow us to provide you with a better online experience when you use our website. They do not gather
-        or store any information which would allow us to identify you personally.</p>
-      <div class='mx-4 my-2 text-md font-semibold heading-h3'>Performance cookies</div>
-      <p class='mx-4 my-2 text-sm'>Performance cookies help us to understand how our customers use our site, so we can keep our products and services
-        relevant, easy to use and up to date. For example, we can see which products and services are most popular, identify
-        when and where errors occur, and test different versions of a page in order to provide an improved online
-        experience.</p>
-      <p class='mx-4 my-2 text-sm'>Sometimes, the services we use to collect this information may be operated by other companies on our behalf. They
-        may use similar technologies to cookies, known as "web beacons" or "tags". These are anonymous and, as they are only
-        used for statistical purposes, they do not contain or collect any information that identifies you.</p>
-      <div class='mx-4 my-2 text-md font-semibold heading-h3'>Targeting cookies</div>
-      <p class='mx-4 my-2 text-sm'>We have relationships with carefully selected and monitored suppliers (third parties) who may also set cookies
-        during your visit. The purpose of these cookies is "behavioural advertising" (also known as "behavioural targeting"
-        or "remarketing"), which is a means of showing you relevant products and services based on what you appear to be
-        interested in. Although these cookies can track your visits around the web they don't know who you are. Without
-        these cookies, online advertisements you encounter will be less relevant to you and your interests.</p>
-      <div class='mx-4 my-2 text-xl font-semibold heading-h2'>Managing Cookies</div>
-      <p class='mx-4 my-2 text-sm'>Most internet browsers allow you to erase cookies from your computer hard drive, block all cookies (or just
-        third-party cookies) or warn you before a cookie is stored on your device.</p>
-      <p class='mx-4 my-2 text-sm'>Please note, if you choose to block all cookies, our site will not function as intended and you will not be able to
-        use or access many of the services we provide. If you have blocked all cookies and wish to make full use of the
-        features and services we offer, you will need to enable your cookies. You can do this in your browser (see below).
-      </p>
-      <p class='mx-4 my-2 text-sm'>Rather than blocking all cookies, you can choose to only block third-party cookies which will still allow our
-        website to function as intended.</p>
-      <div class='mx-4 my-2 text-md font-semibold heading-h3'>How to manage cookies on your PC</div>
-      <p class='mx-4 my-2 text-sm'>To enable cookies on our website, follow the steps below.</p>
-      <div class='mx-4 my-2 text-sm font-semibold heading-h4'>Google Chrome</div>
-      <ol class='list-disc mx-4 text-sm'>
-        <li>Click "Tools" at the top of your browser and select "Settings".</li>
-        <li>Click "Show advanced settings", scroll down to the section "Privacy" and click "Content Settings."</li>
-        <li>Select "Allow local data to be set". To only acept first-party cookies, check the box next to "Block all
-          third-party cookies without exception"</li>
-      </ol>
-      <div class='mx-4 my-2 text-sm font-semibold heading-h4'>Microsoft Internet Explorer 6.0, 7.0, 8.0, 9.0</div>
-      <ol class='list-disc mx-4 text-sm'>
-        <li>Click "Tools" at the top of your browser and select "Internet Options", then click the "Privacy" tab.</li>
-        <li>Check that the level of your privacy is set to Medium or lower, which will allow the use of cookies in your
-          browser.</li>
-        <li>If set above medium level it will prevent the use of cookies.</li>
-      </ol>
-      <div class='mx-4 my-2 text-sm font-semibold heading-h4'>Mozilla Firefox</div>
-      <ol class='list-disc mx-4 text-sm'>
-        <li>Click "Tools" at the top of your browser and select "Options".</li>
-        <li>Then select the "Privacy" icon.</li>
-        <li>Click the "Cookies" and select "Allow pages to create a cookie."</li>
-      </ol>
-      <div class='mx-4 my-2 text-sm font-semibold heading-h4'>Safari</div>
-      <ol class='list-disc mx-4 text-sm'>
-        <li>Click the gear icon at the top of your browser and select "Settings".</li>
-        <li>Click the "Privacy" tab, then select the option "Disable the use of cookies by third parties and advertising
-          cookies."</li>
-        <li>Click "Save".</li>
-      </ol>
-      <div class='mx-4 my-2 text-md font-semibold heading-h3'>How to manage cookies on your Mac</div>
-      <p class='mx-4 my-2 text-sm'>To enable cookies on our website, follow the steps below.</p>
-      <div class='mx-4 my-2 text-sm font-semibold heading-h4'>Microsoft Internet Explorer 5.0 on OSX</div>
-      <ol class='list-disc mx-4 text-sm'>
-        <li>Click on "Explorer" at the top of your browser and select "Settings".</li>
-        <li>Scroll down to the "Cookies" section in the "Received Files".</li>
-        <li>Select "Do not ask."</li>
-      </ol>
-      <div class='mx-4 my-2 text-sm font-semibold heading-h4'>Safari on OSX</div>
-      <ol class='list-disc mx-4 text-sm'>
-        <li>Click "Safari" on the top of your browser and select "Settings".</li>
-        <li>Click the "Privacy" and then "Enable cookies."</li>
-        <li>Select "only the pages you have visited."</li>
-      </ol>
-      <div class='mx-4 my-2 text-sm font-semibold heading-h4'>Mozilla and Netscape on OSX</div>
-      <ol class='list-disc mx-4 text-sm'>
-        <li>Click "Mozilla" or "Netscape" at the top of your browser and select "Settings".</li>
-        <li>Scroll down to the "Cookies" under "Privacy &amp; Security".</li>
-        <li>Select "Allow cookies only to the original site."</li>
-      </ol>
-      <div class='mx-4 my-2 text-sm font-semibold heading-h4'>Opera</div>
-      <ol class='list-disc mx-4 text-sm'>
-        <li>Click "Menu" on the top of your browser and select "Settings".</li>
-        <li>Then select "Options" tab and the "Advanced".</li>
-        <li>Select "Enable cookies."</li>
-      </ol>    
+      <div class='content centerContentMaxWidth'>
+      <div class='h1 py-4'>Privacy &amp; Legal</div>
+      <p>The United Nations Foundation is the legal fiduciary and host organization of the Digital Impact Alliance. The Digital Impact Alliance follows all regulations and responsibilities of our host organization <a href='https://unfoundation.org/privacy-policy/' target='_blank' rel='noopener'>https://unfoundation.org/privacy-policy/</a></p>
+      <p>The Digital Impact Alliance is committed to the privacy of those individuals who visit and interact with <a href='http://www.govstack.global/' target='_blank' rel='noopener'>http://www.govstack.global/</a> (website). This Privacy Policy is meant to help you understand what information we collect, why we collect it and how you can update, retrieve and request removal of your information.</p>
+      <p>By visiting our website, you are accepting the practices described in this Privacy Policy. If you do not agree to the terms of this Privacy Policy, please do not use the website.</p>
+      <p>Please note that the practices described in this Privacy Policy apply only to information gathered online on our website. They do not apply to information that you may submit to other <a href='https://unfoundation.org/what-we-do/initiatives/' target='_blank' rel='noopener'>websites owned and managed by the UN Foundation</a>, to us offline, to websites maintained by other companies or organizations to which we may link.</p>
+      <p>The Digital Impact Alliance is the sole owner of the information collected on govstack.global. We do not share your personal information with companies, organizations or individuals outside of the organization.</p>
+      <div class='h2 py-3'>Personal information we collect</div>
+      <p>Generally, you are free to visit the <a href='https://solutions.dial.community' target='_blank' rel='noopener'>solutions.dial.community</a> website without submitting data that identifies you personally. However, we do ask you to provide some personal data for certain interactions within our website. This data varies depending on the interaction, but may include name, address, email address and other similar information (“Personal Information”). We do not request sensitive information such as social security numbers.</p>
+      <div class='h2 py-3'>Cookies</div>
+      <p>Like many websites, we use 'cookies', which are small text files that are stored on your computer or equipment when you visit certain online pages that record your preferences. We use cookies to track use of our website and online services. We may also use cookies to monitor traffic, improve the website and make it easier and/or relevant for your use. This website is functional without the retention of cookies. You have the ability to accept or decline cookies. Most web browsers automatically accept cookies, but, if you prefer, you can usually modify your browser setting to decline cookies.</p>
+      <div class='h2 py-3'>When we collect Personal Information</div>
+      <p>Below are the ways in which we collect your Personal Information through specific actions and circumstances. <strong>By choosing to participate in any of the following activities, you consent to our collection and use of your Personal Information.</strong></p>
+      <ul>
+      <li>When you sign up to receive email newsletters from us;</li>
+      <li>When you participate in surveys;</li>
+      <li>When you complete an advocacy activity or survey online;</li>
+      <li>When you register for and participate in our programs, activities, initiatives and events;</li>
+      <li>When you request information or assistance;</li>
+      <li>In conjunction with processing your grant applications;</li>
+      <li>In conjunction with your employment inquiries or applications;</li>
+      <li>When you participate with social media and peer to peer accounts involving the Digital Impact Alliance</li>
+      <li>When you participate in online communities;</li><li>In conjunction with any verification of your account information;</li>
+      <li>In conjunction with investigations into any activity that may violate the law or the website's terms and conditions;</li>
+      <li>When you communicate with us through the website;</li>
+      <li>When you provide user-generated content on any part of the website that permits it; and</li>
+      <li>In conjunction with any other place on the website where you knowingly volunteer personal information</li>
+      </ul>
+      <div class='h2 py-3'>Non-Identifying Information</div>
+      <p>In addition, when you interact with the website, our servers may keep an activity log that does not identify you individually (“Non-Personal Information”). Generally, we collect the following categories of Non-Personal Information:</p>
+      <ul>
+      <li>We may collect certain demographic data such as age, gender and postal code as part of collecting personal information;</li>
+      <li>We collect and store certain device information about your computer, mobile device or other device that you use to access the website. This information may include IP address, geolocation information, unique device identifiers, browser type, browser language and other transactional information;</li>
+      <li>We automatically log certain usage information about your use of the website. This information includes a reading history of the pages you view. We use this information to provide you with a more customized experience on the website;</li>
+      <li>We collect and store additional 'traffic data' such as time of access, date of access, software crash reports, session identification number, access times and referring website addresses; and</li><li>We collect and store your search terms and search results.</li></ul>
+      <div class='h2 py-3'>How we use your data</div>
+      <p>We use the information we learn from you to help us personalize and continually improve your experience on the website. With your consent we may use your Personal and Non-Personal Information in the following ways:</p>
+      <p><strong>General Uses</strong></p>
+      <ul><li>For editorial purposes;</li>
+      <li>Responding to your inquiries;</li>
+      <li>Communicating with you about your interactions and sending you information about features on our website or about the organization;</li>
+      <li>Communicating with you about changes to our policies;</li>
+      <li>Sending you newsletters, mailings, and information about programs, initiatives, activities and events by e-mail or another medium;</li>
+      <li>Processing your employment application;</li>
+      <li>Event or program registration;</li>
+      <li>Optimizing or improving our programs, services and operations;</li>
+      <li>Research and development;</li>
+      <li>Detecting, investigating, and preventing activities that may violate our policies or be illegal;</li>
+      <li>Advocating to decision makers on specific issues;</li>
+      <li>Performing statistical, demographic and marketing analyses of users of the website and their usage patterns; and</li>
+      <li>Managing our organization.</li>
+      </ul>
+      <div class='h2 py-3'>How we protect your data</div>
+      <p>The Digital Impact Alliance intends to protect the quality and integrity of your personally identifiable information. We have implemented appropriate physical, technical and organizational measures, including industry-standard encryption for transmission of credit card information, to help keep your information secure, accurate, current and complete.</p>
+      <p>If you have any concerns about the security and confidentiality of your Personal Information, please contact <a href='mailto:info@digitalimpactalliance.org'><strong>info@digitalimpactalliance.org</strong></a></p>
+      <div class='h2 py-3'>Compliance with the EU GDPR data regulations</div>
+      <p>The General Data Protection Regulation (GDPR) (EU) 2016/679 is a regulation in EU law on data protection and privacy for all individuals within the European Union. It also addresses the export of personal data outside the EU.</p>
+      <p>We will use reasonable efforts to securely process all personal information in line with the rights specified under the GDPR, in particular those related to the following requests:</p>
+      <ul><li>Access to your Personal Information;</li>
+      <li>Correction of the Personal Information we hold;</li>
+      <li>Deletion of your Personal Information;</li>
+      <li>A restriction of processing of your Personal Information;</li>
+      <li>Transfer of your Personal Information to another party; or,</li>
+      <li>Objection to processing of your Personal Information based on the Digital Impact Alliance's legitimate interests (or those of a third party) to use it.</li>
+      </ul>
+      <p>Please send an email to <a href='mailto:info@digitalimpactalliance.org'><strong>info@digitalimpactalliance.org</strong></a> if any of the following apply:</p>
+      <ul><li>You have any questions or requests regarding this policy;</li>
+      <li>You would like to remove all Personal Information from our database;</li>
+      <li>You would like to view Personal Information you shared with us;</li>
+      <li>You would like to change your account preferences;</li>
+      <li>You no longer wish to receive email updates from the Digital Impact Alliance;</li>
+      <li>You believe the Digital Impact Alliance has erroneous or incomplete information about you; or,</li>
+      <li>You believe a child below the age of 16 years may have submitted Personal Information without the consent of a parent or guardian.</li>
+      </ul>
+      <p>For more information about your rights under the GDPR, please visit <a href='https://gdpr-info.eu'><strong>https://gdpr-info.eu</strong></a>.</p>
+      <div class='h2 py-3'>How we communicate updates to this Privacy Policy with you</div>
+      <p>If the Digital Impact Alliance decides to change our privacy policy, we will post those changes to this page, so you are always aware of what information we collect and how we use it. You will have a choice as to whether we use your information in this different manner.</p>
+      <p>Your continued use of our website following the posting of changes to this Privacy Policy will mean you accept those changes. Our most up-to-date privacy policy will always be available here.</p>
+      <p>Questions and comments should be directed to <a href='mailto:info@digitalimpactalliance.org'><strong>info@digitalimpactalliance.org</strong></a></p>
+      <div class='h2 py-3'>Advisories</div>
+      <p><strong>Email Scams</strong></p>
+      <p>Several deceptive emails claiming to be from or associated with the Digital Impact Alliance or United Nations Foundation, Kathy Calvin, Rick Parnell, Ted Turner and Timothy Wirth are circulating on the Internet. These emails often include our logo, photos, links or other information from our Web site.</p>
+      <p>Some emails claim the recipient has won a lottery or other prize and request detailed personal information or a payment of some kind in order to receive the winnings. Some mention other foundations and organizations based in the United Kingdom none of which are a part of these scams. Other emails direct recipients to Web sites that promise large returns on investments and claim a portion of returns will be donated to the foundation.</p>
+      <p>The sources and contents of these emails, websites, and accompanying materials are in no way associated with the Digital Impact Alliance or United Nations Foundation, Kathy Calvin, Rick Parnell, Ted Turner and Timothy Wirth. For your own protection, we strongly recommend not responding to emails making such claims.</p>
+      <p>The UN Foundation has reported, and will continue to report, these deceptive spam emails to the Federal Trade Commission (FTC), the Internet Crime Complaint Center (IC3) and the Federal Bureau of Investigation (FBI). For more information about the FTC’s efforts against deceptive spam, please visit <a href="https://www.consumer.ftc.gov/articles/0038-spam"><strong>https://www.consumer.ftc.gov/articles/0038-spam</strong></a>. For more information about the IC3, please visit <a href="http://www.ic3.gov/"><strong>www.ic3.gov</strong></a>. For information on the FBI, please visit <a href="http://www.fbi.gov/"><strong>www.fbi.gov</strong></a>, or contact your local FBI office.</p>
+      <p>You can also email your inquiries about scam email, letters, and phone calls to <a href="mailto:action@unfoundation.org"><strong>action@unfoundation.org</strong></a> or <a href="mailto:info@digitalimpactalliance.org"><strong>info@digitalimpactalliance.org</strong></a></p>
+      <p><strong>Webmaster</strong><br> <strong>Digital Impact Alliance</strong><br> <strong>1750 Pennsylvania Avenue NW, Suite 300</strong><br> <strong>Washington, D.C. 20006</strong><br> <strong>202.887.9040 phone</strong><br> <strong>202.887.9021 fax</strong><br> <a href="mailto:info@digitalimpactalliance.org"><strong>info@digitalimpactalliance.org</strong></a></p>
+      </div>
     </div>
   `,
   'app.shareLink': 'Create sharable link',
