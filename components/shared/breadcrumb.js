@@ -23,7 +23,9 @@ const basePathMappings = {
   products: 'product.header',
   repositories: 'productRepository.header',
   projects: 'project.header',
-  organizations: 'organization.header'
+  organizations: 'organization.header',
+  playbooks: 'playbook.header',
+  plays: 'play.header'
 }
 
 const Breadcrumb = (props) => {
