@@ -1,4 +1,6 @@
 /* global fetch:false */
+/* global Response:false */
+/* global ReadableStream:false */
 
 import { useRouter } from 'next/router'
 import { useState, useEffect, useContext } from 'react'
@@ -15,9 +17,11 @@ import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
 import { ProjectFilterContext } from '../context/ProjectFilterContext'
 import { SDGFilterContext } from '../context/SDGFilterContext'
 
+import { FaSearch } from 'react-icons/fa'
+
 const SearchFilter = (props) => {
-  const { search, setSearch, placeholder } = props
-  const { displayType, setDisplayType } = useContext(FilterContext)
+  const { search, setSearch, hint } = props
+  const { resultCounts, displayType, setDisplayType } = useContext(FilterContext)
 
   const router = useRouter()
   const { locale } = useRouter()
@@ -182,85 +186,107 @@ const SearchFilter = (props) => {
   }
 
   return (
-    <div className='relative px-2 grid grid-cols-12 gap-4 bg-transparent max-w-catalog mx-auto'>
-      <div className='col-span-12'>
-        <div className='flex flex-row flex-wrap mt-2 mr-2'>
-          <label className='w-9/12 lg:w-4/12 my-auto'>
-            <span className='sr-only'>{format('search.input.label')}</span>
-            <input
-              type='search'
-              value={searchTerm} onChange={handleChange}
-              className='form-input text-sm md:text-base py-4 md:py-3 px-4 w-full rounded-md border'
-              placeholder={placeholder}
-            />
-          </label>
-          <div className='w-3/12 lg:w-3/12'>
-            <div className='flex flex-col md:flex-row'>
-              <div className='my-auto px-2 md:px-0 md:pl-2 pt-2 md:pt-0 text-xs md:text-sm lg:text-base text-dial-gray-dark'>{format('view.switch.title')}</div>
-              <div className='my-auto pt-2 pb-3 px-2 flex flex-row'>
-                {
-                  displayType === 'card' &&
-                    <>
-                      <img
-                        alt={format('image.alt.logoFor', { name: format('view.active.card') })}
-                        className='mr-2 h-6 md:h-8' src='/icons/card-active/card-active.png'
-                      />
-                      <a href='toggle-display' onClick={toggleDisplayType}>
-                        <img
-                          alt={format('image.alt.logoFor', { name: format('view.inactive.list') })}
-                          className='h-6 md:h-8 cursor-pointer' src='/icons/list-inactive/list-inactive.png'
-                        />
-                      </a>
-                    </>
-                }
-                {
-                  displayType === 'list' &&
-                    <>
-                      <a className='mr-2' href='toggle-display' onClick={toggleDisplayType}>
-                        <img
-                          alt={format('image.alt.logoFor', { name: format('view.inactive.card') })}
-                          className='h-6 md:h-8 cursor-pointer' src='/icons/card-inactive/card-inactive.png'
-                        />
-                      </a>
-                      <img
-                        alt={format('image.alt.logoFor', { name: format('view.active.list') })}
-                        className='h-6 md:h-8' src='/icons/list-active/list-active.png'
-                      />
-                    </>
-                }
-              </div>
-            </div>
+    <div className='bg-dial-gray-light md:bg-transparent w-full pt-1 md:pt-2'>
+      <div className='flex flex-wrap gap-x-4 px-3'>
+        <div className='flex flex-wrap gap-x-4 gap-y-4 lg:gap-x-8 xl:gap-20'>
+          <div className='hidden md:block ml-auto text-xl font-semibold my-auto animated-drawer'>
+            {format(hint)}
+            <span className='ml-2 px-2 py-1.5 text-base rounded text-dial-gray-dark bg-dial-yellow'>
+              {resultCounts[hint]}
+            </span>
           </div>
-          <div className='w-full lg:w-5/12 mt-2 md:mt-4 text-xs md:text-base text-right'>
-            <div className='flex justify-end'>
+          <div className='ml-auto flex gap-x-3'>
+            <label className='my-auto'>
+              <span className='sr-only'>{format('search.input.label')}</span>
+              <input
+                type='search'
+                value={searchTerm} onChange={handleChange}
+                className={`
+                  form-input py-2 px-3 text-sm text-dial-gray-light bg-dial-gray-dark rounded-md w-56 2xl:w-96
+                  placeholder-dial-gray-light placeholder-opacity-40 border border-dial-gray-dark focus:border-dial-yellow
+                `}
+                placeholder={`${format('app.search')} ${format(hint).toString().toLowerCase()}`}
+              />
+            </label>
+            <button
+              className={`
+                hidden form-input px-4 bg-dial-gray-dark rounded-md border border-dial-gray-dark focus:border-dial-yellow
+                hover:border-dial-yellow
+              `}
+            >
+              <FaSearch className='text-dial-gray-light' />
+            </button>
+          </div>
+        </div>
+        <div className='ml-auto my-auto'>
+          <div className='flex flex-col md:flex-row'>
+            <div className='text-xs my-auto font-semibold text-dial-gray-dark opacity-50'>
+              {format('view.switch.title')}
+            </div>
+            <div className='my-auto pt-2 pb-3 px-2 flex flex-row'>
               {
-                session && session.user && (
+                displayType === 'card' &&
                   <>
-                    <a className='border-b-2 border-transparent hover:border-dial-yellow' href={generateCreateLink()}>
-                      <span className='text-dial-yellow'>{format('app.create-new')}</span>
-                    </a>
-                    <div className='border-r mx-2 border-gray-400' />
-                    <a
-                      className='border-b-2 border-transparent hover:border-dial-yellow'
-                      href='/export-as-json' onClick={(e) => exportAsJson(e)}
-                    >
-                      <span className='text-dial-yellow'>{format('app.exportAsJson')}</span>
-                    </a>
-                    <div className='border-r mx-2 border-gray-400' />
-                    <a
-                      className='border-b-2 border-transparent hover:border-dial-yellow'
-                      href='/export-as-csv' onClick={(e) => exportAsCsv(e)}
-                    >
-                      <span className='text-dial-yellow'>{format('app.exportAsCSV')}</span>
+                    <img
+                      alt={format('image.alt.logoFor', { name: format('view.active.card') })}
+                      className='mr-2 h-6' src='/icons/card-active/card-active.png'
+                    />
+                    <a href='toggle-display' onClick={toggleDisplayType}>
+                      <img
+                        alt={format('image.alt.logoFor', { name: format('view.inactive.list') })}
+                        className='h-6 cursor-pointer' src='/icons/list-inactive/list-inactive.png'
+                      />
                     </a>
                   </>
-                )
+              }
+              {
+                displayType === 'list' &&
+                  <>
+                    <a className='mr-2' href='toggle-display' onClick={toggleDisplayType}>
+                      <img
+                        alt={format('image.alt.logoFor', { name: format('view.inactive.card') })}
+                        className='h-6 cursor-pointer' src='/icons/card-inactive/card-inactive.png'
+                      />
+                    </a>
+                    <img
+                      alt={format('image.alt.logoFor', { name: format('view.active.list') })}
+                      className='h-6' src='/icons/list-active/list-active.png'
+                    />
+                  </>
               }
             </div>
           </div>
         </div>
       </div>
-
+      <div>
+        {
+          session && session.user && (
+            <div className='text-xs mt-2'>
+              <div className='flex justify-end px-3'>
+                <>
+                  <a className='border-b-2 border-transparent hover:border-dial-yellow' href={generateCreateLink()}>
+                    <span className='text-dial-yellow'>{format('app.create-new')}</span>
+                  </a>
+                  <div className='border-r mx-2 border-gray-400' />
+                  <a
+                    className='border-b-2 border-transparent hover:border-dial-yellow'
+                    href='/export-as-json' onClick={(e) => exportAsJson(e)}
+                  >
+                    <span className='text-dial-yellow'>{format('app.exportAsJson')}</span>
+                  </a>
+                  <div className='border-r mx-2 border-gray-400' />
+                  <a
+                    className='border-b-2 border-transparent hover:border-dial-yellow'
+                    href='/export-as-csv' onClick={(e) => exportAsCsv(e)}
+                  >
+                    <span className='text-dial-yellow'>{format('app.exportAsCSV')}</span>
+                  </a>
+                </>
+              </div>
+            </div>
+          )
+        }
+      </div>
     </div>
   )
 }

@@ -6,23 +6,25 @@ import { asyncSelectStyles } from '../../../lib/utilities'
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
-const customStyles = {
-  ...asyncSelectStyles,
-  control: (provided) => ({
-    ...provided,
-    width: '14rem',
-    cursor: 'pointer'
-  }),
-  option: (provided) => ({
-    ...provided,
-    cursor: 'pointer'
-  }),
-  menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-  menu: (provided) => ({ ...provided, zIndex: 30 })
+const customStyles = (controlSize = '14rem') => {
+  return {
+    ...asyncSelectStyles,
+    control: (provided) => ({
+      ...provided,
+      width: controlSize,
+      cursor: 'pointer'
+    }),
+    option: (provided) => ({
+      ...provided,
+      cursor: 'pointer'
+    }),
+    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
+    menu: (provided) => ({ ...provided, zIndex: 30 })
+  }
 }
 
 export const EndorsingYearSelect = (props) => {
-  const { years, setYears, containerStyles } = props
+  const { years, setYears, containerStyles, controlSize } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -50,19 +52,17 @@ export const EndorsingYearSelect = (props) => {
 
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
-      <label className='block mt-4'>
-        <span className='text-sm text-dial-gray-light'>{format('endorsingYear.label')}</span>
-        <AsyncSelect
-          className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
-          cacheOptions
-          defaultOptions={options}
-          loadOptions={fetchOptions}
-          onChange={selectYear}
-          placeholder={format('filter.byEntity', { entity: format('endorsingYear.label') })}
-          styles={customStyles}
-          value=''
-        />
-      </label>
+      <AsyncSelect
+        aria-label={format('filter.byEntity', { entity: format('endorsingYear.label') })}
+        className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
+        cacheOptions
+        defaultOptions={options}
+        loadOptions={fetchOptions}
+        onChange={selectYear}
+        placeholder={format('filter.byEntity', { entity: format('endorsingYear.label') })}
+        styles={customStyles(controlSize)}
+        value=''
+      />
     </div>
   )
 }

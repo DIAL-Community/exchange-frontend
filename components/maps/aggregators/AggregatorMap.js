@@ -21,12 +21,14 @@ const AGGREGATORS_QUERY = gql`
 query SearchOrganizations(
   $first: Int,
   $aggregatorOnly: Boolean,
-  $aggregators: [String!]
+  $aggregators: [String!],
+  $mapView: Boolean
 ) {
   searchOrganizations(
     first: $first,
     aggregatorOnly: $aggregatorOnly,
-    aggregators: $aggregators
+    aggregators: $aggregators,
+    mapView: $mapView
   ) {
     __typename
     totalCount
@@ -133,6 +135,7 @@ const AggregatorMap = () => {
     const aggregatorData = useQuery(AGGREGATORS_QUERY, {
       variables: {
         first: DEFAULT_PAGE_SIZE,
+        mapView: true,
         aggregatorOnly: true,
         aggregators: aggregators.map(a => a.value)
       }

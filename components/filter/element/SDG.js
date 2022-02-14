@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 import { MdClose } from 'react-icons/md'
 import { gql, useApolloClient } from '@apollo/client'
-import { SDGLogo } from '../../logo'
 import { useIntl } from 'react-intl'
 import { asyncSelectStyles } from '../../../lib/utilities'
 
@@ -19,24 +18,26 @@ const SDG_SEARCH_QUERY = gql`
   }
 `
 
-const customStyles = {
-  ...asyncSelectStyles,
-  control: (provided) => ({
-    ...provided,
-    width: '12rem',
-    cursor: 'pointer'
-  }),
-  option: (provided) => ({
-    ...provided,
-    cursor: 'pointer'
-  }),
-  menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-  menu: (provided) => ({ ...provided, zIndex: 30 })
+const customStyles = (controlSize = '12rem') => {
+  return {
+    ...asyncSelectStyles,
+    control: (provided) => ({
+      ...provided,
+      width: controlSize,
+      cursor: 'pointer'
+    }),
+    option: (provided) => ({
+      ...provided,
+      cursor: 'pointer'
+    }),
+    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
+    menu: (provided) => ({ ...provided, zIndex: 30 })
+  }
 }
 
 export const SDGAutocomplete = (props) => {
   const client = useApolloClient()
-  const { sdgs, setSDGs, containerStyles } = props
+  const { sdgs, setSDGs, containerStyles, controlSize } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -70,25 +71,18 @@ export const SDGAutocomplete = (props) => {
 
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
-      <label className='block mt-4'>
-        <div className='flex flex-row'>
-          <SDGLogo fill='white' className='ml-2' />
-          <div className='text-sm px-2 text-dial-gray-light my-auto'>
-            {format('sdg.shortHeader')}
-          </div>
-        </div>
-        <AsyncSelect
-          className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
-          cacheOptions
-          defaultOptions
-          loadOptions={(input, callback) => fetchOptions(input, callback, SDG_SEARCH_QUERY)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('sdg.shortHeader') })}
-          onChange={selectSDG}
-          placeholder={format('filter.byEntity', { entity: format('sdg.shortLabel') })}
-          styles={customStyles}
-          value=''
-        />
-      </label>
+      <AsyncSelect
+        aria-label={format('filter.byEntity', { entity: format('sdg.shortLabel') })}
+        className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
+        cacheOptions
+        defaultOptions
+        loadOptions={(input, callback) => fetchOptions(input, callback, SDG_SEARCH_QUERY)}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('sdg.shortHeader') })}
+        onChange={selectSDG}
+        placeholder={format('filter.byEntity', { entity: format('sdg.shortLabel') })}
+        styles={customStyles(controlSize)}
+        value=''
+      />
     </div>
   )
 }

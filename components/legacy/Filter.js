@@ -12,7 +12,7 @@ import OrganizationFilter from './OrganizationFilter'
 import MapFilter from './MapFilter'
 import SDGFilter from './SDGFilter'
 
-import { FilterContext } from '../context/FilterContext'
+import { FilterContext, FILTER_ITEMS, MAPPED_FILTER_ITEMS_URL } from '../context/FilterContext'
 
 import withApollo from '../../lib/apolloClient'
 
@@ -39,21 +39,8 @@ const COUNT_QUERY = gql`
   }
 `
 
-const filterItems = [
-  'filter.entity.sdgs', 'filter.entity.useCases', 'filter.entity.workflows', 'filter.entity.buildingBlocks', 'filter.entity.products',
-  'filter.entity.projects', 'filter.entity.organizations', 'filter.entity.maps'
-]
-
-const mappedUrls = {
-  'filter.entity.sdgs': 'sdgs',
-  'filter.entity.useCases': 'use_cases',
-  'filter.entity.workflows': 'workflows',
-  'filter.entity.buildingBlocks': 'building_blocks',
-  'filter.entity.products': 'products',
-  'filter.entity.projects': 'projects',
-  'filter.entity.organizations': 'organizations',
-  'filter.entity.maps': 'maps'
-}
+const filterItems = FILTER_ITEMS
+const mappedUrls = MAPPED_FILTER_ITEMS_URL
 
 const Filter = (props) => {
   const { formatMessage } = useIntl()
@@ -63,7 +50,7 @@ const Filter = (props) => {
   const [openHint, setOpenHint] = useState(false)
 
   const { setInteractionDetected } = useContext(QueryParamContext)
-  const { resultCounts, openFilter, setResultCounts, setOpenFilter } = useContext(FilterContext)
+  const { resultCounts, openingFilter, setResultCounts, setOpeningFilter } = useContext(FilterContext)
 
   useQuery(COUNT_QUERY, {
     onCompleted: (data) => {
@@ -80,9 +67,9 @@ const Filter = (props) => {
     }
   })
 
-  const openFilterPanel = (e) => {
+  const openingFilterPanel = (e) => {
     e.preventDefault()
-    setOpenFilter(!openFilter)
+    setOpeningFilter(!openingFilter)
     setInteractionDetected(true)
   }
 
@@ -291,9 +278,9 @@ const Filter = (props) => {
                 <div className='bg-dial-gray-dark flex-auto'>
                   <div className='tab-content tab-space'>
                     <div className='flex flex-row'>
-                      <div className='px-4 pt-3 pb-2 text-sm text-white cursor-pointer flex-grow' onClick={e => openFilterPanel(e)}>
+                      <div className='px-4 pt-3 pb-2 text-sm text-white cursor-pointer flex-grow' onClick={e => openingFilterPanel(e)}>
                         {activeTab === 7 ? format('filter.dropdown.map') : format('filter.dropdown.title', { entity: format(filterItems[activeTab]) })}
-                        {openFilter ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />}
+                        {openingFilter ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />}
                       </div>
                       {
                         // Map doesn't have hint.
@@ -316,14 +303,14 @@ const Filter = (props) => {
       </div>
       <div className='max-w-catalog mx-auto'>
         <div className='mx-2 bg-dial-gray-dark flex-auto tab-content tab-space non-sticky-filter'>
-          {activeTab === 0 && <SDGFilter openFilter={openFilter} />}
-          {activeTab === 1 && <UseCaseFilter openFilter={openFilter} />}
-          {activeTab === 2 && <WorkflowFilter openFilter={openFilter} />}
-          {activeTab === 3 && <BuildingBlockFilter openFilter={openFilter} />}
-          {activeTab === 4 && <ProductFilter openFilter={openFilter} />}
-          {activeTab === 5 && <ProjectFilter openFilter={openFilter} />}
-          {activeTab === 6 && <OrganizationFilter openFilter={openFilter} />}
-          {activeTab === 7 && <MapFilter openFilter={openFilter} />}
+          {activeTab === 0 && <SDGFilter openingFilter={openingFilter} />}
+          {activeTab === 1 && <UseCaseFilter openingFilter={openingFilter} />}
+          {activeTab === 2 && <WorkflowFilter openingFilter={openingFilter} />}
+          {activeTab === 3 && <BuildingBlockFilter openingFilter={openingFilter} />}
+          {activeTab === 4 && <ProductFilter openingFilter={openingFilter} />}
+          {activeTab === 5 && <ProjectFilter openingFilter={openingFilter} />}
+          {activeTab === 6 && <OrganizationFilter openingFilter={openingFilter} />}
+          {activeTab === 7 && <MapFilter openingFilter={openingFilter} />}
         </div>
       </div>
       <div className='max-w-catalog mx-auto md:sticky md:sticky-under-filter'>

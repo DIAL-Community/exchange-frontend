@@ -1,7 +1,6 @@
 import { Provider } from 'next-auth/client'
 import { IntlProvider } from 'react-intl'
 import { useRouter } from 'next/router'
-import { CookiesProvider } from 'react-cookie'
 
 import * as translations from '../translations'
 import * as gtag from '../lib/gtag'
@@ -16,6 +15,9 @@ import '../styles/leaflet.css'
 import '../styles/loading.css'
 import '../styles/tooltip.css'
 import '../styles/password.css'
+
+import '../styles/drawer.css'
+import '../styles/card.css'
 
 import CatalogContext from '../lib/CatalogContext'
 import { useEffect } from 'react'
@@ -53,13 +55,11 @@ const App = ({ Component, pageProps }) => {
   return (
     <IntlProvider locale={locale} defaultLocale='en' messages={messages}>
       <Provider session={pageProps.session}>
-        <CookiesProvider>
-          <CatalogContext>
-            <CandidateContext>
-              <Component {...pageProps} />
-            </CandidateContext>
-          </CatalogContext>
-        </CookiesProvider>
+        <CatalogContext>
+          <CandidateContext>
+            <Component {...pageProps} />
+          </CandidateContext>
+        </CatalogContext>
       </Provider>
     </IntlProvider>
   )

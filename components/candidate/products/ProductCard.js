@@ -8,7 +8,7 @@ import ReactTooltip from 'react-tooltip'
 const ellipsisTextStyle = 'my-auto'
 const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
 
-const ProductCard = ({ product, listType }) => {
+const ProductCard = ({ product, listType, filterDisplayed }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -28,7 +28,7 @@ const ProductCard = ({ product, listType }) => {
         listType === 'list'
           ? (
             <div className={`card ${status === 'rejection' || status === 'approval' ? 'flip-horizontal' : ''}`}>
-              <div className='card-body h-full border-3 border-transparent hover:border-dial-gray text-workflow cursor-pointer'>
+              <div className='card-body border-3 border-transparent hover:border-dial-gray text-workflow cursor-pointer'>
                 <div className={`
                   ${String(product.rejected) === 'true' || status === 'rejected'
                     ? 'bg-red-50'
@@ -38,24 +38,25 @@ const ProductCard = ({ product, listType }) => {
                   card-front border border-dial-gray hover:border-transparent shadow-sm
                 `}
                 >
-                  <div className='grid grid-cols-12 my-3 lg:my-5 px-4 text-product'>
-                    <div className='col-span-1 my-auto row-span-3'>
-                      {product.description}
+                  <div className='grid grid-cols-12 gap-x-4 gap-y-2 my-4 px-4 text-product'>
+                    <div className={`col-span-12 ${filterDisplayed ? 'lg:col-span-8' : 'md:col-span-8'}`}>
+                      <div className={`col-span-12 lg:col-span-3 my-auto ${ellipsisTextStyle}`}>
+                        {product.name}
+                      </div>
+                      <div className={`col-span-12 lg:col-span-3 my-auto ${ellipsisTextStyle}`}>
+                        {product.website}
+                      </div>
+                      <div className={`col-span-12 lg:col-span-3 my-auto ${ellipsisTextStyle}`}>
+                        {product.submitterEmail}
+                      </div>
                     </div>
-                    <div className={`col-span-11 lg:col-span-4 lg:mr-4 ml-2 my-auto ${ellipsisTextStyle}`}>
-                      {product.name}
-                    </div>
-                    <div className={`col-start-2 col-span-11 lg:col-span-4 mx-2 my-auto ${ellipsisTextStyle}`}>
-                      {product.website}
-                    </div>
-                    <div className='col-start-2 col-span-11 lg:col-span-3'>
+                    <div className='col-span-12 lg:col-span-4 my-auto'>
                       {
                         String(product.rejected) === 'null' && session && session.user &&
                           <div className='lg:col-span-3 flex flex-row'>
                             <ToggleRejectionButton
                               {...{ setStatus, loading }}
                               style={`
-                                
                                 my-auto px-3 py-1 text-sm font-semibold ml-auto
                                 border border-dial-gray-dark text-dial-gray-dark rounded
                                 hover:bg-opacity-20 hover:bg-dial-gray-dark
@@ -80,29 +81,22 @@ const ProductCard = ({ product, listType }) => {
                     : String(product.rejected) === 'false' || status === 'approved'
                       ? 'bg-green-50'
                       : 'bg-dial-gray'}
-                  card-back h-full flip-horizontal border border-dial-gray hover:border-transparent shadow-sm
+                  card-back flip-horizontal border border-dial-gray hover:border-transparent shadow-sm
                 `}
                 >
-                  <div className='grid grid-cols-12 py-3 lg:py-5 px-4 text-product'>
-                    <div className='col-span-1 my-auto row-span-3'>
-                      <img
-                        className='m-auto w-8'
-                        alt={format('image.alt.logoFor', { name: product.name })}
-                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + '/assets/products/prod_placeholder.png'}
-                      />
-                    </div>
-                    <div className='col-start-2 col-span-11 lg:col-span-8'>
+                  <div className='grid grid-cols-12 gap-x-4 gap-y-2 px-4 h-full text-product'>
+                    <div className='col-span-12 lg:col-span-8 my-auto'>
                       <label className='block'>
                         <span className='sr-only text-gray-700'>{format('candidate.feedback')}</span>
                         <input
-                          className='form-textarea mt-1 block w-full' type='text'
+                          className='form-textarea w-full' type='text'
                           placeholder={format('candidate.feedback.placeholder')} value={comment}
                           onChange={(e) => setComment(e.target.value)}
                         />
                       </label>
                     </div>
-                    <div className='col-start-2 col-span-11 lg:col-span-3'>
-                      <div className='py-2 flex flex-row'>
+                    <div className='col-span-12 lg:col-span-4 my-auto'>
+                      <div className='flex flex-row'>
                         <CancelButton {...{ status, setStatus, loading }} />
                         <DeclineButton {...{ status, setStatus, loading, setLoading, product }} />
                         <ApproveButton {...{ status, setStatus, loading, setLoading, product }} />
@@ -116,7 +110,7 @@ const ProductCard = ({ product, listType }) => {
           : (
             <div className={`card ${status === 'rejection' || status === 'approval' ? 'flip-vertical' : ''}`}>
               <div className='card-body border-3 border-transparent hover:border-dial-gray text-dial-purple cursor-pointer h-full'>
-                <div className='card-front h-full flex flex-col border border-dial-gray shadow-lg'>
+                <div className='card-front h-full flex flex-col border border-dial-gray drop-shadow'>
                   <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
                     {
                       (String(product.rejected) === 'true' || status === 'rejected') &&

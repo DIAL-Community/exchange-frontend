@@ -18,7 +18,7 @@ import dynamic from 'next/dynamic'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const ProjectFilter = (props) => {
-  const openFilter = props.openFilter
+  const filterDisplayed = props.filterDisplayed
 
   const { query } = useRouter()
   const { interactionDetected } = useContext(QueryParamContext)
@@ -80,7 +80,7 @@ const ProjectFilter = (props) => {
   return (
     <div className='px-2'>
       {
-        openFilter &&
+        filterDisplayed &&
           <div className='grid grid-cols-11 gap-4 pb-4 pt-2'>
             <div className='col-span-11 lg:col-span-5 border-transparent border-r lg:border-dial-purple-light'>
               <div className='text-sm text-dial-gray-light flex flex-row'>

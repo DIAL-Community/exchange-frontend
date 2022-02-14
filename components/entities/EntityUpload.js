@@ -67,7 +67,7 @@ const EntityUpload = () => {
         <div className='my-auto text-green-500'>{format('entity.uploaded')}</div>
       </div>
       <div className='pt-4'>
-        <div className='bg-white shadow-md rounded px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto with-header'>
+        <div className='bg-white shadow-md rounded px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
           <form method='post' onSubmit={handleSubmit}>
             <div className='px-8 pt-6 pb-4 flex flex-col'>
               <div className='mb-4'>

@@ -59,8 +59,13 @@ const SDGList = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
+  const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
+  const gridStyles = `grid ${displayType === 'card'
+    ? `grid-cols-1 gap-4
+       ${filterDisplayed ? 'lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3' : 'md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'}`
+    : 'grid-cols-1'
+    }`
 
   return (
     <>
@@ -68,11 +73,16 @@ const SDGList = (props) => {
         {
           displayType === 'list' &&
             <div className='grid grid-cols-1 md:grid-cols-6 gap-4 my-3 px-4'>
-              <div className='col-span-5 md:col-span-3 lg:col-span-2 ml-2 whitespace-nowrap text-sm font-semibold text-sdg opacity-80'>
+              <div className='col-span-5 md:col-span-3 lg:col-span-2 whitespace-nowrap text-sm font-semibold text-sdg opacity-80'>
                 {format('sdg.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='hidden md:block md:col-span-3 lg:col-span-4 text-sm font-semibold text-use-case opacity-50'>
+              <div
+                className={`
+                  hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                  md:col-span-3 lg:col-span-4 text-sm font-semibold text-use-case opacity-50
+                `}
+              >
                 {format('exampleOf.entity', { entity: format('useCase.header') }).toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
@@ -81,12 +91,11 @@ const SDGList = (props) => {
         {
           props.sdgList.length > 0
             ? props.sdgList.map((sdg) => (
-              <SDGCard key={sdg.id} sdg={sdg} listType={displayType} />
+              <SDGCard key={sdg.id} listType={displayType} {...{ sdg, filterDisplayed }} />
               ))
             : (
-              <div className='flex justify-self-center text-dial-gray-dark'>{
-                format('noResults.entity', { entity: format('sdg.header') })
-                }
+              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
+                {format('noResults.entity', { entity: format('sdg.label').toLowerCase() })}
               </div>
               )
         }
@@ -96,7 +105,7 @@ const SDGList = (props) => {
 }
 
 const SDGListQuery = () => {
-  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { displayType, filterDisplayed, resultCounts, setResultCounts } = useContext(FilterContext)
   const { sdgs, search } = useContext(SDGFilterContext)
 
   const { formatMessage } = useIntl()
@@ -141,7 +150,7 @@ const SDGListQuery = () => {
       hasMore={pageInfo.hasNextPage}
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
-      <SDGList sdgList={nodes} displayType={displayType} />
+      <SDGList sdgList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
     </InfiniteScroll>
   )
 }

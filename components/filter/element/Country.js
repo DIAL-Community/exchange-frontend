@@ -17,25 +17,26 @@ const COUNTRY_SEARCH_QUERY = gql`
   }
 `
 
-const customStyles = {
-  ...asyncSelectStyles,
-  control: (provided) => ({
-    ...provided,
-    width: '12rem',
-    cursor: 'pointer'
-  }),
-  option: (provided) => ({
-    ...provided,
-    cursor: 'pointer',
-    zIndex: '100'
-  }),
-  menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-  menu: (provided) => ({ ...provided, zIndex: 30 })
+const customStyles = (controlSize = '12rem') => {
+  return {
+    ...asyncSelectStyles,
+    control: (provided) => ({
+      ...provided,
+      width: controlSize,
+      cursor: 'pointer'
+    }),
+    option: (provided) => ({
+      ...provided,
+      cursor: 'pointer'
+    }),
+    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
+    menu: (provided) => ({ ...provided, zIndex: 30 })
+  }
 }
 
 export const CountryAutocomplete = (props) => {
   const client = useApolloClient()
-  const { countries, setCountries, containerStyles } = props
+  const { countries, setCountries, containerStyles, controlSize } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -69,20 +70,18 @@ export const CountryAutocomplete = (props) => {
 
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
-      <label className='block mt-4'>
-        <span className='text-sm text-dial-gray-light'>{format('country.header')}</span>
-        <AsyncSelect
-          className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
-          cacheOptions
-          defaultOptions
-          loadOptions={(input, callback) => fetchOptions(input, callback, COUNTRY_SEARCH_QUERY)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('country.header') })}
-          onChange={selectCountry}
-          placeholder={format('filter.byEntity', { entity: format('country.label') })}
-          styles={customStyles}
-          value=''
-        />
-      </label>
+      <AsyncSelect
+        aria-label={format('filter.byEntity', { entity: format('country.label') })}
+        className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
+        cacheOptions
+        defaultOptions
+        loadOptions={(input, callback) => fetchOptions(input, callback, COUNTRY_SEARCH_QUERY)}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('country.header') })}
+        onChange={selectCountry}
+        placeholder={format('filter.byEntity', { entity: format('country.label') })}
+        styles={customStyles(controlSize)}
+        value=''
+      />
     </div>
   )
 }

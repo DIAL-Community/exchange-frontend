@@ -53,16 +53,19 @@ const SharableLink = ({ sharableLink }) => {
     <>
       {
         navigator.clipboard &&
-          <>
-            <a href='/generate-sharable-link' className='border-b-2 border-transparent hover:border-dial-yellow my-auto' onClick={copyToClipboard}>
+          <div className='opacity-50'>
+            <a
+              href='/generate-sharable-link' onClick={copyToClipboard}
+              className='border-b-2 border-transparent hover:border-dial-yellow my-auto'
+            >
               {format('app.shareLink')}
             </a>
             {
               shareStatus === 'success'
-                ? <div className='px-2 text-green-500 mx-2'>{format('app.shareSuccess')}</div>
-                : shareStatus === 'failed' && <div className='px-2 text-red-500 mx-2'>{format('app.shareSuccess')}</div>
+                ? <div className='text-green-500'>{format('app.shareSuccess')}</div>
+                : shareStatus === 'failed' && <div className='text-red-500'>{format('app.shareFailed')}</div>
             }
-          </>
+          </div>
       }
     </>
   )

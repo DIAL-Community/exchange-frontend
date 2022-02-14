@@ -8,8 +8,13 @@ import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import GradientBackground from '../../../components/shared/GradientBackground'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../../components/context/candidate/ProductFilterContext'
+
 import SearchFilter from '../../../components/shared/SearchFilter'
+import { ProductFilterContext, ProductFilterDispatchContext } from '../../../components/context/candidate/ProductFilterContext'
+
+import MobileNav from '../../../components/main/MobileNav'
+import PageContent from '../../../components/main/PageContent'
+import TabNav from '../../../components/main/TabNav'
 
 import dynamic from 'next/dynamic'
 const ProductListQuery = dynamic(() => import('../../../components/candidate/products/ProductList'), { ssr: false })
@@ -30,10 +35,15 @@ const Products = () => {
       </Head>
       <QueryNotification />
       <GradientBackground />
-      <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <SearchFilter {...{ search, setSearch }} placeholder={`${format('app.search')}${format('candidateProduct.label')}`} />
-      <ProductListQuery />
+      <Header />
+      <TabNav activeTab='filter.entity.candidateProducts' />
+      <MobileNav activeTab='filter.entity.candidateProducts' />
+      <PageContent
+        activeTab='filter.entity.candidateProducts'
+        content={<ProductListQuery />}
+        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.candidateProducts' />}
+      />
       <Footer />
     </>
   )
