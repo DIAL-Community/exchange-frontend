@@ -205,7 +205,7 @@ const SearchFilter = (props) => {
                   form-input py-2 px-3 text-sm text-dial-gray-light bg-dial-gray-dark rounded-md w-56 2xl:w-96
                   placeholder-dial-gray-light placeholder-opacity-40 border border-dial-gray-dark focus:border-dial-yellow
                 `}
-                placeholder={`${format('app.search')} ${format(hint)}`}
+                placeholder={`${format('app.search')} ${format(hint).toString().toLowerCase()}`}
               />
             </label>
             <button

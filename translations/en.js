@@ -8,7 +8,7 @@ export const en = {
   'app.nocomment': 'Start a Conversation',
   'app.home': 'Home',
   'app.submit': 'Submit',
-  'app.search': 'Search for a ',
+  'app.search': 'Search',
   'app.create-new': 'Create New',
 
   'header.signIn': 'Sign Up or Log In',
