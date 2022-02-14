@@ -101,24 +101,39 @@ const ProductList = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
+  const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
+  const gridStyles = `grid ${displayType === 'card'
+    ? `grid-cols-1 gap-4
+       ${filterDisplayed ? 'lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3' : 'md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'}`
+    : 'grid-cols-1'
+    }`
 
   return (
     <>
       <div className={gridStyles}>
         {
           displayType === 'list' &&
-            <div className='grid grid-cols-12 my-3 px-4'>
-              <div className='col-span-5 ml-2 text-sm font-semibold opacity-70'>
+            <div className='grid grid-cols-12 my-3 px-4 gap-x-4'>
+              <div className='col-span-4 ml-2 text-sm font-semibold opacity-70'>
                 {format('product.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='hidden md:block col-span-2 text-sm font-semibold opacity-50'>
-                {format('product.card.dataset').toUpperCase()}?
+              <div
+                className={`
+                  hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                  col-span-2 text-sm font-semibold opacity-50
+                `}
+              >
+                {format('product.card.dataset').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='hidden md:block col-span-4 text-sm font-semibold opacity-50'>
+              <div
+                className={`
+                  hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
+                  col-span-4 text-sm font-semibold opacity-50
+                `}
+              >
                 {format('origin.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
@@ -127,12 +142,11 @@ const ProductList = (props) => {
         {
           props.productList.length > 0
             ? props.productList.map((product) => (
-              <ProductCard key={product.id} product={product} listType={displayType} />
+              <ProductCard key={product.id} listType={displayType} {...{ product, filterDisplayed }} />
               ))
             : (
-              <div className='flex justify-self-center text-dial-gray-dark'>{
-                format('noResults.entity', { entity: format('products.label') })
-                }
+              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
+                {format('noResults.entity', { entity: format('products.label').toLowerCase() })}
               </div>
               )
         }
@@ -142,7 +156,7 @@ const ProductList = (props) => {
 }
 
 const ProductListQuery = () => {
-  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const {
     origins, countries, sectors, organizations, sdgs, tags, useCases, workflows, buildingBlocks, productTypes,
     endorsers, productDeployable, withMaturity, search
@@ -220,7 +234,7 @@ const ProductListQuery = () => {
       hasMore={pageInfo.hasNextPage}
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
-      <ProductList productList={nodes} displayType={displayType} />
+      <ProductList productList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
     </InfiniteScroll>
   )
 }

@@ -12,7 +12,7 @@ const DescribeCookies = () => {
       </Head>
       <div
         dangerouslySetInnerHTML={{
-          __html: format('consent.whatIsCookie')
+          __html: format('consent.privacyPolicy.content')
         }}
       />
     </>

@@ -18,26 +18,28 @@ const SECTOR_SEARCH_QUERY = gql`
   }
 `
 
-const customStyles = {
-  ...asyncSelectStyles,
-  control: (provided) => ({
-    ...provided,
-    width: '12rem',
-    cursor: 'pointer'
-  }),
-  option: (provided) => ({
-    ...provided,
-    cursor: 'pointer'
-  }),
-  menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-  menu: (provided) => ({ ...provided, zIndex: 30 })
+const customStyles = (controlSize = '12rem') => {
+  return {
+    ...asyncSelectStyles,
+    control: (provided) => ({
+      ...provided,
+      width: controlSize,
+      cursor: 'pointer'
+    }),
+    option: (provided) => ({
+      ...provided,
+      cursor: 'pointer'
+    }),
+    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
+    menu: (provided) => ({ ...provided, zIndex: 30 })
+  }
 }
 
 export const SectorAutocomplete = (props) => {
   const client = useApolloClient()
   const router = useRouter()
   const { locale } = router
-  const { sectors, setSectors, containerStyles } = props
+  const { sectors, setSectors, containerStyles, controlSize } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -72,20 +74,18 @@ export const SectorAutocomplete = (props) => {
 
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
-      <label className='block mt-4'>
-        <span className='text-sm text-dial-gray-light'>{format('sector.header')}</span>
-        <AsyncSelect
-          className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
-          cacheOptions
-          defaultOptions
-          loadOptions={(input, callback) => fetchOptions(input, callback, SECTOR_SEARCH_QUERY)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('sector.header') })}
-          onChange={selectSector}
-          placeholder={format('filter.byEntity', { entity: format('sector.label') })}
-          styles={customStyles}
-          value=''
-        />
-      </label>
+      <AsyncSelect
+        aria-label={format('filter.byEntity', { entity: format('sector.label') })}
+        className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
+        cacheOptions
+        defaultOptions
+        loadOptions={(input, callback) => fetchOptions(input, callback, SECTOR_SEARCH_QUERY)}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('sector.header') })}
+        onChange={selectSector}
+        placeholder={format('filter.byEntity', { entity: format('sector.label') })}
+        styles={customStyles(controlSize)}
+        value=''
+      />
     </div>
   )
 }

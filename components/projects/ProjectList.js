@@ -74,8 +74,13 @@ const ProjectList = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
+  const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
+  const gridStyles = `grid ${displayType === 'card'
+    ? `grid-cols-1 gap-4
+       ${filterDisplayed ? 'lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3' : 'md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'}`
+    : 'grid-cols-1'
+    }`
 
   return (
     <>
@@ -98,9 +103,15 @@ const ProjectList = (props) => {
             </div>
         }
         {
-          props.projectList.map((project) => (
-            <ProjectCard key={project.id} project={project} listType={displayType} />
-          ))
+          props.projectList.length > 0
+            ? props.projectList.map((project) => (
+              <ProjectCard key={project.id} project={project} listType={displayType} />
+              ))
+            : (
+              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
+                {format('noResults.entity', { entity: format('project.label').toLowerCase() })}
+              </div>
+              )
         }
       </div>
     </>
@@ -108,7 +119,7 @@ const ProjectList = (props) => {
 }
 
 const ProjectListQuery = () => {
-  const { resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const { origins, countries, sectors, organizations, products, sdgs, tags, search } = useContext(ProjectFilterContext)
 
   const { formatMessage } = useIntl()
@@ -165,7 +176,7 @@ const ProjectListQuery = () => {
       hasMore={pageInfo.hasNextPage}
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
-      <ProjectList projectList={nodes} displayType={displayType} />
+      <ProjectList projectList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
     </InfiniteScroll>
   )
 }

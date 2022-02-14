@@ -8,11 +8,17 @@ import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import GradientBackground from '../../../components/shared/GradientBackground'
-import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../../../components/context/candidate/OrganizationFilterContext'
+
+import TabNav from '../../../components/main/TabNav'
+import MobileNav from '../../../components/main/MobileNav'
+import PageContent from '../../../components/main/PageContent'
+
 import SearchFilter from '../../../components/shared/SearchFilter'
+import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../../../components/context/candidate/OrganizationFilterContext'
 
 import dynamic from 'next/dynamic'
 const OrganizationListQuery = dynamic(() => import('../../../components/candidate/organizations/OrganizationList'), { ssr: false })
+const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const Organizations = () => {
   const { formatMessage } = useIntl()
@@ -29,9 +35,15 @@ const Organizations = () => {
       </Head>
       <QueryNotification />
       <GradientBackground />
+      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Header />
-      <SearchFilter {...{ search, setSearch }} placeholder={`${format('app.search')}${format('candidateOrganization.label')}`} />
-      <OrganizationListQuery />
+      <TabNav activeTab='filter.entity.candidateOrganizations' />
+      <MobileNav activeTab='filter.entity.candidateOrganizations' />
+      <PageContent
+        activeTab='filter.entity.candidateOrganizations'
+        content={<OrganizationListQuery />}
+        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.candidateOrganizations' />}
+      />
       <Footer />
     </>
   )

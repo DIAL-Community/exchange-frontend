@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { useIntl, FormattedMessage } from 'react-intl'
+import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -46,22 +46,28 @@ query SearchCandidateProducts(
 `
 
 const ProductList = (props) => {
-  const format = (id, value = {}) => <FormattedMessage id={id} values={{ ...value }} />
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id }, { ...values })
 
   const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
+  const filterDisplayed = props.filterDisplayed
+  const gridStyles = `grid ${displayType === 'card'
+    ? `grid-cols-1 gap-4
+       ${filterDisplayed ? 'lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3' : 'md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'}`
+    : 'grid-cols-1'
+    }`
 
   return (
     <>
       <div className={gridStyles}>
         {
           displayType === 'list' &&
-            <div className='grid grid-cols-12 my-3 px-4'>
-              <div className='col-span-5 ml-2 text-sm font-semibold opacity-70'>
+            <div className='grid grid-cols-12 gap-x-4 my-3 px-4'>
+              <div className='col-span-3 ml-2 text-sm font-semibold opacity-70'>
                 {format('product.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='hidden md:block col-span-3 text-sm font-semibold opacity-50'>
+              <div className='hidden xl:blockcol-span-3 text-sm font-semibold opacity-50'>
                 {format('product.website').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
@@ -70,7 +76,7 @@ const ProductList = (props) => {
         {
           props.productList.length > 0
             ? props.productList.map((product) => (
-              <ProductCard key={product.id} product={product} listType={displayType} />
+              <ProductCard key={product.id} listType={displayType} {...{ filterDisplayed, product }} />
               ))
             : (
               <div className='flex justify-self-center text-dial-gray-dark'>{
@@ -88,12 +94,16 @@ const ProductListQuery = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const { displayType } = useContext(FilterContext)
   const { search } = useContext(ProductFilterContext)
+  const { filterDisplayed, resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+
   const { loading, error, data, fetchMore } = useQuery(PRODUCTS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       search: search
+    },
+    onCompleted: (data) => {
+      setResultCounts({ ...resultCounts, ...{ [['filter.entity.candidateProducts']]: data.searchCandidateProducts.totalCount } })
     }
   })
 
@@ -124,7 +134,7 @@ const ProductListQuery = () => {
       hasMore={pageInfo.hasNextPage}
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
-      <ProductList productList={nodes} displayType={displayType} />
+      <ProductList productList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
     </InfiniteScroll>
   )
 }

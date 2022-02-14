@@ -27,7 +27,7 @@ export default function SignIn ({ csrfToken }) {
       </Head>
       <Header />
       <div className='bg-dial-gray-dark pt-40 simple-form-height'>
-        <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto container-fluid with-header'>
+        <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
           <form method='post' onSubmit={handleSubmit} action='/api/auth/callback/credentials'>
             <input name='csrfToken' type='hidden' defaultValue={csrfToken} />
             <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>

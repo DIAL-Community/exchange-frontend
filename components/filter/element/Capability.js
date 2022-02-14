@@ -16,24 +16,26 @@ const CAPABILITY_SEARCH_QUERY = gql`
   }
 `
 
-const customStyles = {
-  ...asyncSelectStyles,
-  control: (provided) => ({
-    ...provided,
-    width: '18rem',
-    cursor: 'pointer'
-  }),
-  option: (provided) => ({
-    ...provided,
-    cursor: 'pointer'
-  }),
-  menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-  menu: (provided) => ({ ...provided, zIndex: 30 })
+const customStyles = (controlSize = '18rem') => {
+  return {
+    ...asyncSelectStyles,
+    control: (provided) => ({
+      ...provided,
+      width: controlSize,
+      cursor: 'pointer'
+    }),
+    option: (provided) => ({
+      ...provided,
+      cursor: 'pointer'
+    }),
+    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
+    menu: (provided) => ({ ...provided, zIndex: 30 })
+  }
 }
 
 export const CapabilityAutocomplete = (props) => {
   const client = useApolloClient()
-  const { services, setServices, containerStyles } = props
+  const { services, setServices, containerStyles, controlSize } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -78,20 +80,18 @@ export const CapabilityAutocomplete = (props) => {
 
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
-      <label className='block mt-4'>
-        <span className='text-sm text-dial-gray-light'>{format('service.header')}</span>
-        <AsyncSelect
-          className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
-          cacheOptions
-          defaultOptions
-          loadOptions={(input, callback) => fetchOptions(input, callback, CAPABILITY_SEARCH_QUERY)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('service.header') })}
-          onChange={selectCapability}
-          placeholder={format('filter.byEntity', { entity: format('service.label') })}
-          styles={customStyles}
-          value=''
-        />
-      </label>
+      <AsyncSelect
+        aria-label={format('filter.byEntity', { entity: format('service.label') })}
+        className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
+        cacheOptions
+        defaultOptions
+        loadOptions={(input, callback) => fetchOptions(input, callback, CAPABILITY_SEARCH_QUERY)}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('service.header') })}
+        onChange={selectCapability}
+        placeholder={format('filter.byEntity', { entity: format('service.label') })}
+        styles={customStyles(controlSize)}
+        value=''
+      />
     </div>
   )
 }

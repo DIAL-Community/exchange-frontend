@@ -4,8 +4,6 @@ import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { asyncSelectStyles } from '../../../lib/utilities'
 
-import { UseCaseLogo } from '../../logo'
-
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
@@ -19,24 +17,26 @@ const USE_CASE_SEARCH_QUERY = gql`
   }
 `
 
-const customStyles = {
-  ...asyncSelectStyles,
-  control: (provided) => ({
-    ...provided,
-    width: '11rem',
-    cursor: 'pointer'
-  }),
-  option: (provided) => ({
-    ...provided,
-    cursor: 'pointer'
-  }),
-  menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-  menu: (provided) => ({ ...provided, zIndex: 30 })
+const customStyles = (controlSize = '11rem') => {
+  return {
+    ...asyncSelectStyles,
+    control: (provided) => ({
+      ...provided,
+      width: controlSize,
+      cursor: 'pointer'
+    }),
+    option: (provided) => ({
+      ...provided,
+      cursor: 'pointer'
+    }),
+    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
+    menu: (provided) => ({ ...provided, zIndex: 30 })
+  }
 }
 
 export const UseCaseAutocomplete = (props) => {
   const client = useApolloClient()
-  const { useCases, setUseCases, containerStyles } = props
+  const { useCases, setUseCases, containerStyles, controlSize } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -71,25 +71,18 @@ export const UseCaseAutocomplete = (props) => {
 
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
-      <label className='block mt-4'>
-        <div className='flex flex-row'>
-          <UseCaseLogo fill='white' className='ml-2' />
-          <div className='text-sm px-2 text-dial-gray-light my-auto'>
-            {format('useCase.header')}
-          </div>
-        </div>
-        <AsyncSelect
-          className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
-          cacheOptions
-          defaultOptions
-          loadOptions={(input, callback) => fetchOptions(input, callback, USE_CASE_SEARCH_QUERY)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('useCase.header') })}
-          onChange={selectUseCase}
-          placeholder={format('filter.byEntity', { entity: format('useCase.label') })}
-          styles={customStyles}
-          value=''
-        />
-      </label>
+      <AsyncSelect
+        aria-label={format('filter.byEntity', { entity: format('useCase.label') })}
+        className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
+        cacheOptions
+        defaultOptions
+        loadOptions={(input, callback) => fetchOptions(input, callback, USE_CASE_SEARCH_QUERY)}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('useCase.header') })}
+        onChange={selectUseCase}
+        placeholder={format('filter.byEntity', { entity: format('useCase.label') })}
+        styles={customStyles(controlSize)}
+        value=''
+      />
     </div>
   )
 }

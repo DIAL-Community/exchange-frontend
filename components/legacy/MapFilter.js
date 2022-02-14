@@ -13,7 +13,7 @@ import { OperatorAutocomplete, OperatorFilters } from './element/Operator'
 import { OrganizationAutocomplete, OrganizationFilters } from './element/Organization'
 
 const MapFilter = (props) => {
-  const openFilter = props.openFilter
+  const filterDisplayed = props.filterDisplayed
   const router = useRouter()
 
   const { formatMessage } = useIntl()
@@ -63,7 +63,7 @@ const MapFilter = (props) => {
   return (
     <div className='px-2'>
       {
-        openFilter &&
+        filterDisplayed &&
           <div className='grid grid-cols-11 gap-4 pb-4 pt-2'>
             <div className='col-span-11 xl:col-span-6 border-transparent border-r lg:border-dial-purple-light'>
               <div className='text-sm text-dial-gray-light flex flex-row flex-wrap md:flex-nowrap'>

@@ -17,24 +17,26 @@ const TAG_SEARCH_QUERY = gql`
   }
 `
 
-const customStyles = {
-  ...asyncSelectStyles,
-  control: (provided) => ({
-    ...provided,
-    width: '12rem',
-    cursor: 'pointer'
-  }),
-  option: (provided) => ({
-    ...provided,
-    cursor: 'pointer'
-  }),
-  menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-  menu: (provided) => ({ ...provided, zIndex: 30 })
+const customStyles = (controlSize = '12rem') => {
+  return {
+    ...asyncSelectStyles,
+    control: (provided) => ({
+      ...provided,
+      width: controlSize,
+      cursor: 'pointer'
+    }),
+    option: (provided) => ({
+      ...provided,
+      cursor: 'pointer'
+    }),
+    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
+    menu: (provided) => ({ ...provided, zIndex: 30 })
+  }
 }
 
 export const TagAutocomplete = (props) => {
   const client = useApolloClient()
-  const { tags, setTags, containerStyles } = props
+  const { tags, setTags, containerStyles, controlSize } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -68,24 +70,18 @@ export const TagAutocomplete = (props) => {
 
   return (
     <div className={`${containerStyles} text-dial-gray-dark flex`}>
-      <label className='block mt-4'>
-        <div className='flex flex-row'>
-          <div className='text-sm px-2 text-dial-gray-light my-auto'>
-            {format('tag.header')}
-          </div>
-        </div>
-        <AsyncSelect
-          className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
-          cacheOptions
-          defaultOptions
-          loadOptions={(input, callback) => fetchOptions(input, callback, TAG_SEARCH_QUERY)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('tag.header') })}
-          onChange={selectTag}
-          placeholder={format('filter.byEntity', { entity: format('tag.label') })}
-          styles={customStyles}
-          value=''
-        />
-      </label>
+      <AsyncSelect
+        aria-label={format('filter.byEntity', { entity: format('tag.label') })}
+        className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
+        cacheOptions
+        defaultOptions
+        loadOptions={(input, callback) => fetchOptions(input, callback, TAG_SEARCH_QUERY)}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('tag.header') })}
+        onChange={selectTag}
+        placeholder={format('filter.byEntity', { entity: format('tag.label') })}
+        styles={customStyles(controlSize)}
+        value=''
+      />
     </div>
   )
 }
