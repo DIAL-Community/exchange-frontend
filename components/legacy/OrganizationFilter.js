@@ -5,9 +5,9 @@ import { useRouter } from 'next/router'
 
 import { QueryParamContext } from '../context/QueryParamContext'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../context/OrganizationFilterContext'
-import { CountryAutocomplete, CountryFilters } from './element/Country'
-import { EndorsingYearFilters, EndorsingYearSelect } from './element/EndorsingYear'
-import { SectorAutocomplete, SectorFilters } from './element/Sector'
+import { CountryAutocomplete, CountryFilters } from '../filter/element/Country'
+import { EndorsingYearFilters, EndorsingYearSelect } from '../filter/element/EndorsingYear'
+import { SectorAutocomplete, SectorFilters } from '../filter/element/Sector'
 import { parseQuery } from '../shared/SharableLink'
 
 import dynamic from 'next/dynamic'

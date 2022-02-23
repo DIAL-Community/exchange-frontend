@@ -7,8 +7,7 @@ import Footer from '../../../components/Footer'
 import NotFound from '../../../components/shared/NotFound'
 
 import withApollo from '../../../lib/apolloClient'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { gql, useQuery } from '@apollo/client'
 
 import PlayDetail from '../../../components/plays/PlayDetail'
 import { Loading, Error } from '../../../components/shared/FetchStatus'

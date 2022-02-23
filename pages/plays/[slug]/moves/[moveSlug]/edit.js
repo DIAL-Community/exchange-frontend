@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 
 import withApollo from '../../../../../lib/apolloClient'
-import { useQuery } from "@apollo/react-hooks"
-import gql from 'graphql-tag'
+import { useQuery } from "@apollo/client"
 
 import Head from 'next/head'
 import Header from '../../../../../components/Header'

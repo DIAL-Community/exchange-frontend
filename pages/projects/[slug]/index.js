@@ -8,8 +8,7 @@ import Footer from '../../../components/Footer'
 import NotFound from '../../../components/shared/NotFound'
 import withApollo from '../../../lib/apolloClient'
 
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { gql, useQuery } from '@apollo/client'
 
 import ProjectDetailLeft from '../../../components/projects/ProjectDetailLeft'
 import ProjectDetailRight from '../../../components/projects/ProjectDetailRight'

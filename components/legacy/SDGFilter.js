@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import { QueryParamContext } from '../context/QueryParamContext'
 import { SDGFilterContext, SDGFilterDispatchContext } from '../context/SDGFilterContext'
-import { SDGAutocomplete, SDGFilters } from './element/SDG'
+import { SDGAutocomplete, SDGFilters } from '../filter/element/SDG'
 
 import { parseQuery } from '../shared/SharableLink'
 

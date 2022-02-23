@@ -8,7 +8,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 import { FaRegQuestionCircle, FaSpinner } from 'react-icons/fa'
-import { useApolloClient } from '@apollo/react-hooks'
+import { useApolloClient } from '@apollo/client'
 import dynamic from 'next/dynamic'
 
 import withApollo from '../../lib/apolloClient'

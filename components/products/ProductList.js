@@ -1,9 +1,8 @@
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { useQuery } from '@apollo/react-hooks'
+import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 
-import gql from 'graphql-tag'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import ProductCard from './ProductCard'

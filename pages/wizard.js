@@ -9,8 +9,7 @@ import WizardContent from '../components/wizard/WizardContent'
 import WizardResults from '../components/wizard/WizardResults'
 import withApollo from '../lib/apolloClient'
 
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { gql, useQuery } from '@apollo/client'
 
 import { Loading, Error } from '../components/shared/FetchStatus'
 

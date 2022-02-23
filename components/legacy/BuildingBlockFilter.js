@@ -7,9 +7,9 @@ import { MdClose } from 'react-icons/md'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext } from '../context/BuildingBlockFilterContext'
 
-import { SDGAutocomplete, SDGFilters } from './element/SDG'
-import { UseCaseAutocomplete, UseCaseFilters } from './element/UseCase'
-import { WorkflowAutocomplete, WorkflowFilters } from './element/Workflow'
+import { SDGAutocomplete, SDGFilters } from '../filter/element/SDG'
+import { UseCaseAutocomplete, UseCaseFilters } from '../filter/element/UseCase'
+import { WorkflowAutocomplete, WorkflowFilters } from '../filter/element/Workflow'
 
 import { parseQuery } from '../shared/SharableLink'
 
