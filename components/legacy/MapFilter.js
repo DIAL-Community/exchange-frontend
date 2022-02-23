@@ -4,13 +4,13 @@ import { useContext } from 'react'
 import { useIntl } from 'react-intl'
 
 import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
-import { SectorAutocomplete, SectorFilters } from './element/Sector'
-import { ProductAutocomplete, ProductFilters } from './element/Product'
-import { TagAutocomplete, TagFilters } from './element/Tag'
-import { EndorsingYearFilters, EndorsingYearSelect } from './element/EndorsingYear'
-import { CapabilityAutocomplete, CapabilityFilters } from './element/Capability'
-import { OperatorAutocomplete, OperatorFilters } from './element/Operator'
-import { OrganizationAutocomplete, OrganizationFilters } from './element/Organization'
+import { SectorAutocomplete, SectorFilters } from '../filter/element/Sector'
+import { ProductAutocomplete, ProductFilters } from '../filter/element/Product'
+import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
+import { EndorsingYearFilters, EndorsingYearSelect } from '../filter/element/EndorsingYear'
+import { CapabilityAutocomplete, CapabilityFilters } from '../filter/element/Capability'
+import { OperatorAutocomplete, OperatorFilters } from '../filter/element/Operator'
+import { OrganizationAutocomplete, OrganizationFilters } from '../filter/element/Organization'
 
 const MapFilter = (props) => {
   const filterDisplayed = props.filterDisplayed

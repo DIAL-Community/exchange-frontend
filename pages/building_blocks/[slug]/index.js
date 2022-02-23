@@ -8,8 +8,7 @@ import Footer from '../../../components/Footer'
 import NotFound from '../../../components/shared/NotFound'
 
 import withApollo from '../../../lib/apolloClient'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { gql, useQuery } from '@apollo/client'
 
 import BuildingBlockDetailLeft from '../../../components/building-blocks/BuildingBlockDetailLeft'
 import BuildingBlockDetailRight from '../../../components/building-blocks/BuildingBlockDetailRight'
