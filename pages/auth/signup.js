@@ -149,7 +149,7 @@ const SignUp = () => {
     const signUpBody = {
       user: {
         email: textFields.email,
-        username: textFields.email,
+        username: textFields.email.split('@')[0],
         password: textFields.password,
         password_confirmation: textFields.passwordConfirmation
       },
