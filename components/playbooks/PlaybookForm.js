@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { useMutation } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { gql, useMutation } from '@apollo/client'
 
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'

@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 
 import apolloClient from '../../lib/apolloClient'
 
-import Filter from '../../components/filter/Filter'
+import Filter from '../../components/legacy/Filter'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import SearchFilter from '../../components/shared/SearchFilter'
@@ -33,7 +33,7 @@ const Products = () => {
       <GradientBackground />
       <Header />
       <Filter activeTab='filter.entity.products' />
-      <SearchFilter {...{ search, setSearch }} placeholder={format('app.search') + format('playbooks.label')} />
+      <SearchFilter {...{ search, setSearch }} hint='playbooks.label' />
       <PlaybookListQuery />
       <Footer />
     </>

@@ -5,11 +5,9 @@ import { useSession } from 'next-auth/client'
 import Breadcrumb from '../shared/breadcrumb'
 import { useRouter } from 'next/router'
 
-import gql from 'graphql-tag'
-
 import { FaSpinner } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
-import { useLazyQuery } from '@apollo/react-hooks'
+import { gql, useLazyQuery } from '@apollo/client'
 
 const CANDIDATE_ROLE_QUERY = gql`
   query CandidateRole($email: String!, $productId: String!, $organizationId: String!) {

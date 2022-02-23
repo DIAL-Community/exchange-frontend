@@ -5,8 +5,8 @@ import { useRouter } from 'next/router'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { WorkflowFilterContext, WorkflowFilterDispatchContext } from '../context/WorkflowFilterContext'
 
-import { SDGAutocomplete, SDGFilters } from './element/SDG'
-import { UseCaseAutocomplete, UseCaseFilters } from './element/UseCase'
+import { SDGAutocomplete, SDGFilters } from '../filter/element/SDG'
+import { UseCaseAutocomplete, UseCaseFilters } from '../filter/element/UseCase'
 
 import { parseQuery } from '../shared/SharableLink'
 
