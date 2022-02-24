@@ -75,9 +75,8 @@ const PlayList = ({ playList, displayType, assignCallback, currentPlays }) => {
                 )
               })
             : (
-              <div className='flex justify-self-center text-dial-gray-dark'>{
-                format('noResults.entity', { entity: format('plays.label') })
-              }
+              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
+                {format('noResults.entity', { entity: format('plays.label') })}
               </div>
               )
         }

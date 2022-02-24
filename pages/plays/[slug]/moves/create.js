@@ -8,8 +8,7 @@ import { useIntl } from 'react-intl'
 
 import { MoveForm } from '../../../../components/plays/moves/MoveForm'
 
-function CreateMove() {
-  
+function CreateMove () {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 

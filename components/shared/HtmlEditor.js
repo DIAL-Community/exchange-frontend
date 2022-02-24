@@ -1,5 +1,7 @@
+/* global FileReader:false */
+
 import React, { useRef } from 'react'
-import { Editor } from '@tinymce/tinymce-react'
+import { Editor, tinymce } from '@tinymce/tinymce-react'
 
 export const HtmlEditor = ({ updateText, initialContent, initInstanceCallback, editorId }) => {
   const editorRef = useRef(null)
@@ -42,9 +44,9 @@ export const HtmlEditor = ({ updateText, initialContent, initInstanceCallback, e
   return (
     <>
       <Editor
-        id={editorId ? editorId : 'TinyMCE-Editor'}
+        id={editorId || 'TinyMCE-Editor'}
         apiKey={process.env.NEXT_PUBLIC_EDITOR_KEY}
-        onInit={(evt, editor) => editorRef.current = editor}
+        onInit={(_evt, editor) => { editorRef.current = editor }}
         value={initialContent}
         onEditorChange={(newValue, editor) => setContents(newValue, editor)}
         init={{
