@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 
 import withApollo from '../../../../../lib/apolloClient'
-import { useQuery } from "@apollo/client"
+import { gql, useQuery } from '@apollo/client'
 
 import Head from 'next/head'
 import Header from '../../../../../components/Header'
@@ -30,8 +29,7 @@ query Move($slug: String!) {
 }
 `
 
-function EditMove() {
-
+function EditMove () {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -56,8 +54,9 @@ function EditMove() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      {data && data.move &&
-        <MoveForm move={data.move} action='update' />
+      {
+        data && data.move &&
+          <MoveForm move={data.move} action='update' />
       }
       <Footer />
     </>

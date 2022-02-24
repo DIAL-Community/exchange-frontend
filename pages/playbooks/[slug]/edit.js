@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 
 import withApollo from '../../../lib/apolloClient'
-import { useQuery } from "@apollo/client"
+import { gql, useQuery } from '@apollo/client'
 
 import Head from 'next/head'
 import Header from '../../../components/Header'
@@ -35,13 +34,11 @@ query Playbook($slug: String!) {
 }
 `
 
-function EditPlaybook() {
-
+function EditPlaybook () {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
-  const { pathname, asPath, query } = useRouter()
 
   const { locale } = router
   const { slug } = router.query
@@ -62,8 +59,9 @@ function EditPlaybook() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      {data && data.playbook &&
-        <PlaybookForm playbook={data.playbook} action='update' />
+      {
+        data && data.playbook &&
+          <PlaybookForm playbook={data.playbook} action='update' />
       }
       <Footer />
     </>

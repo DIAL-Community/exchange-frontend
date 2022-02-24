@@ -8,8 +8,7 @@ import { useIntl } from 'react-intl'
 
 import { PlayForm } from '../../../components/plays/PlayForm'
 
-function CreatePlay() {
-  
+function CreatePlay () {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 

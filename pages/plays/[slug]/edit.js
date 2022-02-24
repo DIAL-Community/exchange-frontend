@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 
 import withApollo from '../../../lib/apolloClient'
-import { useQuery } from "@apollo/client"
+import { gql, useQuery } from '@apollo/client'
 
 import Head from 'next/head'
 import Header from '../../../components/Header'
@@ -35,8 +34,7 @@ query Play($slug: String!) {
 }
 `
 
-function EditPlay() {
-
+function EditPlay () {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -61,8 +59,9 @@ function EditPlay() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      {data && data.play &&
-        <PlayForm play={data.play} action='update' />
+      {
+        data && data.play &&
+          <PlayForm play={data.play} action='update' />
       }
       <Footer />
     </>

@@ -372,6 +372,8 @@ export const en = {
   'filter.entity.products': 'Products',
   'filter.entity.projects': 'Projects',
   'filter.entity.organizations': 'Organizations',
+  'filter.entity.playbooks': 'Playbooks',
+  'filter.entity.plays': 'Plays',
   'filter.entity.maps': 'Maps',
   'filter.entity.candidateOrganizations': 'Candidate Organizations',
   'filter.entity.candidateProducts': 'Candidate Products',
