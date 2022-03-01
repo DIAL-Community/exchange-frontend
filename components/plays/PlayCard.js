@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { createRef, useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 import ReactHtmlParser from 'react-html-parser'
@@ -63,8 +63,7 @@ const PlayCard = ({ play, listType, assignCallback }) => {
                     </div>
                   </div>
                   <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark '>
-                    <div className='flex flex-row border-b border-dial-gray'>
-                    </div>
+                    <div className='flex flex-row border-b border-dial-gray' />
                   </div>
                 </div>
               </div>

@@ -3,12 +3,16 @@ import { useIntl } from 'react-intl'
 
 import apolloClient from '../../lib/apolloClient'
 
-import Filter from '../../components/legacy/Filter'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import SearchFilter from '../../components/shared/SearchFilter'
+
 import GradientBackground from '../../components/shared/GradientBackground'
 import QueryNotification from '../../components/shared/QueryNotification'
+
+import MobileNav from '../../components/main/MobileNav'
+import TabNav from '../../components/main/TabNav'
+import PageContent from '../../components/main/PageContent'
+import SearchFilter from '../../components/shared/SearchFilter'
 
 import { useContext } from 'react'
 import dynamic from 'next/dynamic'
@@ -32,9 +36,13 @@ const Products = () => {
       <QueryNotification />
       <GradientBackground />
       <Header />
-      <Filter activeTab='filter.entity.products' />
-      <SearchFilter {...{ search, setSearch }} hint='playbooks.label' />
-      <PlaybookListQuery />
+      <TabNav activeTab='filter.entity.playbooks' />
+      <MobileNav activeTab='filter.entity.playbooks' />
+      <PageContent
+        activeTab='filter.entity.playbooks'
+        content={<PlaybookListQuery />}
+        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.playbooks' />}
+      />
       <Footer />
     </>
   )

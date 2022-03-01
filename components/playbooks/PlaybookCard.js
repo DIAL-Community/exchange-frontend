@@ -10,13 +10,19 @@ const ellipsisTextStyle = `
    whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
 
-const PlaybookCard = ({ playbook, listType }) => {
+const PlaybookCard = ({ playbook, listType, filterDisplayed }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   useEffect(() => {
     ReactTooltip.rebuild()
   })
+
+  const nameColSpan = (organization) => {
+    return !organization.sectors
+      ? 'col-span-8'
+      : filterDisplayed ? 'col-span-8 md:col-span-6 xl:col-span-3' : 'col-span-8 md:col-span-7 lg:col-span-3'
+  }
 
   return (
     <Link href={`/${collectionPath}/${playbook.slug}`}>
@@ -53,8 +59,7 @@ const PlaybookCard = ({ playbook, listType }) => {
                   </div>
                 </div>
                 <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark '>
-                  <div className='flex flex-row border-b border-dial-gray'>
-                  </div>
+                  <div className='flex flex-row border-b border-dial-gray' />
                 </div>
               </div>
             </div>

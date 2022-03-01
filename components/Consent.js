@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { useCookieConsent } from '@use-cookie-consent/core';
+import { useCookieConsent } from '@use-cookie-consent/core'
 import { useState } from 'react'
 import cookie from 'react-cookies'
 

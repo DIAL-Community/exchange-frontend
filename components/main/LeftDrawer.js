@@ -19,6 +19,15 @@ const LeftDrawer = ({ filter, hint }) => {
     }
   }
 
+  const divToggleDrawer = () => {
+    if (!filterDisplayed) {
+      setOpeningFilter(!openingFilter)
+      if (openingFilter) {
+        setFilterDisplayed(false)
+      }
+    }
+  }
+
   useEffect(() => {
     if (openingFilter) {
       setFilterDisplayed(true)
@@ -27,7 +36,8 @@ const LeftDrawer = ({ filter, hint }) => {
 
   return (
     <div
-      className='hidden md:flex sticky h-full'
+      onClick={divToggleDrawer}
+      className={`hidden md:flex sticky h-full ${!filterDisplayed && 'cursor-pointer'}`}
       style={{ left: 0, top: '174px', height: 'calc(100vh - 174px)' }}
     >
       <div
