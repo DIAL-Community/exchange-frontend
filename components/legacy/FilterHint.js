@@ -1,10 +1,10 @@
-import UseCaseHint from './hint/UseCaseHint'
-import WorkflowHint from './hint/WorkflowHint'
-import BuildingBlockHint from './hint/BuildingBlockHint'
-import ProductHint from './hint/ProductHint'
-import ProjectHint from './hint/ProjectHint'
-import OrganizationHint from './hint/OrganizationHint'
-import SDGHint from './hint/SDGHint'
+import UseCaseHint from '../filter/hint/UseCaseHint'
+import WorkflowHint from '../filter/hint/WorkflowHint'
+import BuildingBlockHint from '../filter/hint/BuildingBlockHint'
+import ProductHint from '../filter/hint/ProductHint'
+import ProjectHint from '../filter/hint/ProjectHint'
+import OrganizationHint from '../filter/hint/OrganizationHint'
+import SDGHint from '../filter/hint/SDGHint'
 
 const FilterHint = (props) => {
   const { activeTab } = props

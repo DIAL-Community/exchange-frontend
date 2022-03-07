@@ -5,7 +5,8 @@ const FilterContext = createContext()
 
 export const FILTER_ITEMS = [
   'filter.entity.sdgs', 'filter.entity.useCases', 'filter.entity.workflows', 'filter.entity.buildingBlocks',
-  'filter.entity.products', 'filter.entity.projects', 'filter.entity.organizations', 'filter.entity.maps'
+  'filter.entity.products', 'filter.entity.projects', 'filter.entity.organizations', // 'filter.entity.playbooks',
+  'filter.entity.maps'
 ]
 
 export const MAPPED_FILTER_ITEMS_URL = {
@@ -16,6 +17,7 @@ export const MAPPED_FILTER_ITEMS_URL = {
   'filter.entity.products': 'products',
   'filter.entity.projects': 'projects',
   'filter.entity.organizations': 'organizations',
+  'filter.entity.playbooks': 'playbooks',
   'filter.entity.maps': 'maps'
 }
 

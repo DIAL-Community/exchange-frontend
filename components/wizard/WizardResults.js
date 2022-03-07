@@ -1,8 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useState, useRef, useEffect } from 'react'
-import { useLazyQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { gql, useLazyQuery } from '@apollo/client'
 
 import withApollo from '../../lib/apolloClient'
 

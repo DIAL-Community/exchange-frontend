@@ -8,11 +8,10 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 import { FaRegQuestionCircle, FaSpinner } from 'react-icons/fa'
-import { useApolloClient } from '@apollo/react-hooks'
+import { gql, useApolloClient } from '@apollo/client'
 import dynamic from 'next/dynamic'
 
 import withApollo from '../../lib/apolloClient'
-import { gql } from '@apollo/client'
 import Footer from '../../components/Footer'
 import { MdClose } from 'react-icons/md'
 import { useRouter } from 'next/router'
@@ -149,7 +148,7 @@ const SignUp = () => {
     const signUpBody = {
       user: {
         email: textFields.email,
-        username: textFields.email,
+        username: textFields.email.split('@')[0],
         password: textFields.password,
         password_confirmation: textFields.passwordConfirmation
       },

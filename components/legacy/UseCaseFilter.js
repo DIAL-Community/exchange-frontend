@@ -6,7 +6,7 @@ import { MdClose } from 'react-icons/md'
 
 import { QueryParamContext } from '../context/QueryParamContext'
 import { UseCaseFilterContext, UseCaseFilterDispatchContext } from '../context/UseCaseFilterContext'
-import { SDGAutocomplete, SDGFilters } from './element/SDG'
+import { SDGAutocomplete, SDGFilters } from '../filter/element/SDG'
 
 import { parseQuery } from '../shared/SharableLink'
 
