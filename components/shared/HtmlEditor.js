@@ -1,7 +1,7 @@
 /* global FileReader:false */
 
 import React, { useRef } from 'react'
-import { Editor, tinymce } from '@tinymce/tinymce-react'
+import { Editor } from '@tinymce/tinymce-react'
 
 export const HtmlEditor = ({ updateText, initialContent, initInstanceCallback, editorId }) => {
   const editorRef = useRef(null)
