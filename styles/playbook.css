@@ -1,0 +1,169 @@
+.playbook-description > * {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Styling for the play navigation progress. */
+.play-progress {
+  position: relative;
+}
+
+.play-progress-bar {
+  position: absolute;
+  background: #46465a;
+  height: 8px;
+  top: calc(50% - 4px);
+  left: 0;
+}
+
+.play-progress-bar-base {
+  position: absolute;
+  background: #46465a;
+  height: 2px;
+  width: 100%;
+  top: calc(50% - 3px);
+  left: 0;
+}
+
+.play-progress-number {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  column-gap: 2rem;
+  justify-content: space-between;
+}
+
+.play-progress-number::before {
+  content: "";
+  background-color: #46465a;
+  position: absolute;
+  top: calc(50% - 2px);
+  left: 0;
+  height: 4px;
+  width: 100%;
+  z-index: -1;
+}
+
+.play-progress-number .step {
+  border: 3px solid #46465a;
+  border-radius: 100%;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.2rem;
+  text-align: center;
+  background-color: #fff;
+  font-family: sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+.play-progress-number .step.active {
+  border-color: #46465a;
+  background-color: #46465a;
+  color: #fff;
+}
+
+/* Styling for the move section and animation. */
+.move-header {
+  position: relative;
+}
+
+.move-animation-base {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.move-animation {
+  position: absolute;
+  width: 5px;
+  top: 0;
+  left: 0;
+}
+
+.move-header .step {
+  font-family: sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+.move-header .title {
+  position: relative;
+  z-index: 1;
+}
+
+.animated-move {
+  transition: all 0.6s;
+}
+
+.move-header-expanded {
+  width: 100%;
+}
+
+.move-header-collapsed {
+  width: 5px;
+}
+
+.move-body {
+  display: none;
+}
+
+.slide-down {
+  animation-name: fade-in;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  display: block;
+}
+
+.slide-up {
+  animation-name: fade-out;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  display: none;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/* List styling for description object coming from tiny mce editor. */
+.tiny-editor > ol {
+  display: block;
+  list-style-type: decimal;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.tiny-editor > ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}

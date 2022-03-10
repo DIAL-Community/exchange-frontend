@@ -64,6 +64,10 @@ module.exports = {
         carousel: {
           DEFAULT: '#3f9edd',
           light: '#eef6fc'
+        },
+        'dial-orange': {
+          DEFAULT: '',
+          light: '#ffc862'
         }
       },
       fontSize: {

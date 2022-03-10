@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -115,11 +115,28 @@ const SDGListQuery = () => {
       first: DEFAULT_PAGE_SIZE,
       sdgs: sdgs.map(organization => organization.value),
       search: search
-    },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.sdgs']]: data.searchSdgs.totalCount } })
     }
   })
+
+  const handleLoadMore = () => {
+    fetchMore({
+      variables: {
+        after: pageInfo.endCursor,
+        first: DEFAULT_PAGE_SIZE,
+        sdgs: sdgs.map(sdg => sdg.value),
+        search: search
+      }
+    })
+  }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts({
+        ...resultCounts,
+        ...{ [['filter.entity.sdgs']]: data.searchSdgs.totalCount }
+      })
+    }
+  }, [data])
 
   if (loading) {
     return <Loading />
@@ -130,17 +147,6 @@ const SDGListQuery = () => {
   }
 
   const { searchSdgs: { nodes, pageInfo } } = data
-
-  function handleLoadMore () {
-    fetchMore({
-      variables: {
-        after: pageInfo.endCursor,
-        first: DEFAULT_PAGE_SIZE,
-        sdgs: sdgs.map(sdg => sdg.value),
-        search: search
-      }
-    })
-  }
   return (
     <InfiniteScroll
       className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'

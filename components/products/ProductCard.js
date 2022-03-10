@@ -127,7 +127,7 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
             )
           : (
             <div className='border-3 border-transparent hover:border-dial-yellow text-dial-purple hover:text-dial-yellow cursor-pointer h-full'>
-              <div className='h-full flex flex-col border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
+              <div className='h-full flex flex-col border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
                   {
                     product.endorsers && product.endorsers.length > 0 &&

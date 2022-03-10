@@ -12,7 +12,7 @@ const TabNav = (props) => {
   return (
     <>
       <div className='hidden md:block sticky px-2 py-1 bg-white sticky-under-header max-w-catalog mx-auto'>
-        <div className='invisible xl:visible' style={{ maxWidth: 'calc(62.5% - 4px)' }}>
+        <div className='invisible xl:visible' style={{ maxWidth: 'calc(55.6% - 4px)' }}>
           <div className='px-5 mt-3 py-2 border-t border-r border-l border-gray-300 rounded-t' />
           <div className='text-center -mt-7' style={{ lineHeight: 0.1 }}>
             <span className='bg-white px-3'>
