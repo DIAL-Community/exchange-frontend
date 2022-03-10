@@ -51,7 +51,7 @@ export const PlaybookForm = React.memo(({ playbook, action }) => {
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
-      name: playbook.name,
+      name: playbook && playbook.name,
       overview: playbook && descriptionByLocale(playbook.playbookDescriptions, locale, 'overview'),
       audience: playbook && descriptionByLocale(playbook.playbookDescriptions, locale, 'audience'),
       outcomes: playbook && descriptionByLocale(playbook.playbookDescriptions, locale, 'outcomes')
