@@ -186,7 +186,7 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                   <div className='pb-3 flex flex-row flex-wrap justify-between border-b border-dial-gray'>
                     <div className='pl-3 pt-3 flex flex-row flex-wrap'>
                       <div className='text-base my-auto mr-2'>{format('product.card.sdgs')}</div>
-                      <div className='bg-white rounded p-2 flex flex-row'>
+                      <div className='bg-white rounded p-1.5 flex flex-row'>
                         {
                           product.sustainableDevelopmentGoals.length === 0 &&
                             <span className='text-base my-1 mx-auto font-semibold'>
@@ -195,7 +195,7 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                         }
                         {
                           product.sustainableDevelopmentGoals
-                            .filter((_, index) => index <= 2)
+                            .filter((_, index) => index <= 1)
                             .map(sdg => (
                               <img
                                 data-tip={format('tooltip.forEntity', { entity: format('sdg.label'), name: sdg.name })}
@@ -206,14 +206,14 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                             ))
                         }
                         {
-                          product.sustainableDevelopmentGoals.length > 3 &&
+                          product.sustainableDevelopmentGoals.length > 2 &&
                             <span className='text-xl leading-none'>...</span>
                         }
                       </div>
                     </div>
                     <div className='px-3 pt-3 flex flex-row flex-wrap'>
                       <div className='text-base my-auto mr-2'>{format('product.card.buildingBlocks')}</div>
-                      <div className='bg-white rounded p-2 flex flex-row'>
+                      <div className='bg-white rounded p-1.5 flex flex-row'>
                         {
                           product.buildingBlocks.length === 0 &&
                             <span className='text-base my-1 mx-auto font-semibold'>
@@ -222,18 +222,18 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                         }
                         {
                           product.buildingBlocks
-                            .filter((_, index) => index <= 2)
+                            .filter((_, index) => index <= 1)
                             .map(bb => (
                               <img
                                 data-tip={format('tooltip.forEntity', { entity: format('buildingBlock.label'), name: bb.name })}
-                                key={`sdg-${bb.slug}`} className='mr-1.5 last:mr-0 h-8 building-block-filter cursor-default'
+                                key={`sdg-${bb.slug}`} className='mr-1 last:mr-0 w-8 building-block-filter cursor-default'
                                 alt={format('image.alt.logoFor', { name: bb.name })}
                                 src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + bb.imageFile}
                               />
                             ))
                         }
                         {
-                          product.buildingBlocks.length > 3 &&
+                          product.buildingBlocks.length > 2 &&
                             <span className='text-xl leading-none'>...</span>
                         }
                       </div>
