@@ -43,32 +43,31 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
   const [ownershipText, setOwnershipText] = useState('')
 
   const generateEditLink = () => {
-    if (!session.user) {
+    if (!session) {
       return '/edit-not-available'
     }
 
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = session
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/products/${product.slug}/` +
         `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
 
   const [fetchCandidateRole, { data, error }] = useLazyQuery(CANDIDATE_ROLE_QUERY)
   useEffect(() => {
-    if (session && session.user) {
+    if (session) {
       fetchCandidateRole({
         variables:
-          { email: session.user.userEmail, productId: product.id, organizationId: '' }
+          { email: session.userEmail, productId: product.id, organizationId: '' }
       })
     }
   }, [session])
 
-  const displayApplyOwnershipLink = (session, error, appliedToBeOwner) => {
-    if (!session || !session.user) {
+  const displayApplyOwnershipLink = (user, error, appliedToBeOwner) => {
+    if (!user) {
       // Not logged in, don't display the link.
       return false
     }
 
-    const user = session.user
     const filteredProducts = user.own && user.own.products.filter(item => {
       return `${item}` === `${product.id}`
     })
@@ -85,13 +84,12 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
     return false
   }
 
-  const staticOwnershipTextSelection = (session, data, appliedToBeOwner) => {
-    if (!session || !session.user) {
+  const staticOwnershipTextSelection = (user, data, appliedToBeOwner) => {
+    if (!user) {
       // Not logged in, don't display anything.
       return ''
     }
 
-    const user = session.user
     const filteredProducts = user.own && user.own.products.filter(item => {
       return `${item}` === `${product.id}`
     })
@@ -112,7 +110,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
   }, [session, data, error, appliedToBeOwner])
 
   const updateContactInfo = async (captchaValue) => {
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = session
     const requestBody = {
       user_email: userEmail,
       user_token: userToken,
@@ -150,7 +148,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
 
   const applyToBeProductOwner = async () => {
     setLoading(true)
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = session
     const requestBody = {
       candidate_role: {
         email: userEmail,
@@ -201,7 +199,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
             session && (
               <div className='inline'>
                 {
-                  (session.user.canEdit || session.user.own.products.filter(p => `${p}` === `${product.id}`).length > 0) && (
+                  (session.canEdit || session.own.products.filter(p => `${p}` === `${product.id}`).length > 0) && (
                     <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
                       <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
                       <span className='text-sm px-2'>{format('app.edit')}</span>
@@ -259,7 +257,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
               </>
           }
           {
-            session && session.user && product.owner && contactState === CONTACT_STATES[0] &&
+            session && product.owner && contactState === CONTACT_STATES[0] &&
               <>
                 <div className='border-l border-dial-gray-light mt-2' />
                 <button
@@ -272,7 +270,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
           }
         </div>
         {
-          session && session.user && product.owner &&
+          session && product.owner &&
             <>
               {
                 contactState === CONTACT_STATES[1] &&

@@ -1,7 +1,6 @@
-/* global fetch:false */
-
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
+import Auth0Provider from "next-auth/providers/auth0"
 
 // Session expiration in millis
 const TOKEN_EXPIRATION = 24 * 60 * 60 * 1000
@@ -9,6 +8,11 @@ const TOKEN_EXPIRATION = 24 * 60 * 60 * 1000
 export default NextAuth({
   // Configure one or more authentication providers
   providers: [
+    Auth0Provider({
+      clientId: process.env.AUTH0_CLIENT_ID,
+      clientSecret: process.env.AUTH0_CLIENT_SECRET,
+      domain: process.env.AUTH0_ISSUER_BASE_URL
+    }),
     Providers.Credentials({
       // The name to display on the sign in form (e.g. 'Sign in with...')
       name: 'Credentials',
@@ -74,6 +78,32 @@ export default NextAuth({
       //  "session" is current session object
       //  below we set "user" param of "session" to value received from "jwt" callback
       session.user = user.user
+      const authBody = {
+        user: {
+          email: session.user.email
+        }
+      }
+    
+      const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authenticate/auth0', {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'include', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
+          'Access-Control-Allow-Credentials': true,
+          'Access-Control-Allow-Headers': 'Set-Cookie'
+          // 'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
+        },
+        // redirect: 'follow', // manual, *follow, error
+        // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(authBody) // body data type must match "Content-Type" header
+      })
+    
+      const railsUser = await response.json()
+      session = { ...session, user: {...session.user, canEdit: railsUser.canEdit}, userEmail: railsUser.userEmail, userToken: railsUser.userToken, own: railsUser.own, canEdit: railsUser.canEdit, roles: railsUser.roles}
       if (user.expiration && Date.now() < user.expiration) {
         return session
       } else {
@@ -81,8 +111,8 @@ export default NextAuth({
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-            'X-User-Email': user.user.userEmail,
-            'X-User-Token': user.user.userToken
+            'X-User-Email': session.user.userEmail,
+            'X-User-Token': session.user.userToken
           }
         })
         return {}
