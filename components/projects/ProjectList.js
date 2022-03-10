@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -135,23 +135,10 @@ const ProjectListQuery = () => {
       sdgs: sdgs.map(sdg => sdg.value),
       tags: tags.map(tag => tag.label),
       search: search
-    },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.projects']]: data.searchProjects.totalCount } })
     }
   })
 
-  if (loading) {
-    return <Loading />
-  }
-
-  if (error) {
-    return <Error />
-  }
-
-  const { searchProjects: { nodes, pageInfo } } = data
-
-  function handleLoadMore () {
+  const handleLoadMore = () => {
     fetchMore({
       variables: {
         after: pageInfo.endCursor,
@@ -167,6 +154,25 @@ const ProjectListQuery = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts({
+        ...resultCounts,
+        ...{ [['filter.entity.projects']]: data.searchProjects.totalCount }
+      })
+    }
+  }, [data])
+
+  if (loading) {
+    return <Loading />
+  }
+
+  if (error) {
+    return <Error />
+  }
+
+  const { searchProjects: { nodes, pageInfo } } = data
   return (
     <InfiniteScroll
       className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'

@@ -183,27 +183,10 @@ const ProductListQuery = () => {
       withMaturity: withMaturity,
       search: search
     },
-    context: { headers: { 'Accept-Language': locale } },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.products']]: data.searchProducts.totalCount } })
-    }
+    context: { headers: { 'Accept-Language': locale } }
   })
 
-  useEffect(() => {
-    refetch()
-  }, [locale])
-
-  if (loading) {
-    return <Loading />
-  }
-
-  if (error) {
-    return <Error />
-  }
-
-  const { searchProducts: { nodes, pageInfo } } = data
-
-  function handleLoadMore () {
+  const handleLoadMore = () => {
     fetchMore({
       variables: {
         after: pageInfo.endCursor,
@@ -225,6 +208,29 @@ const ProductListQuery = () => {
       }
     })
   }
+
+  useEffect(() => {
+    refetch()
+  }, [locale])
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts({
+        ...resultCounts,
+        ...{ [['filter.entity.products']]: data.searchProducts.totalCount }
+      })
+    }
+  }, [data])
+
+  if (loading) {
+    return <Loading />
+  }
+
+  if (error) {
+    return <Error />
+  }
+
+  const { searchProducts: { nodes, pageInfo } } = data
   return (
     <InfiniteScroll
       className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'

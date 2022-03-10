@@ -431,7 +431,7 @@ export const en = {
   'playbooks.assignPlay': 'Assign Play',
   'playbooks.unassignPlay': 'Unassign Play',
   'playbooks.assign': 'Assign',
-  'playbooks.assignedPlays': 'Plays Currently Assigned',
+  'playbooks.assignedPlays': 'Plays currently assigned. You can preview, re-order, unnassign Plays, or add new Plays.',
 
   'play.header': 'Plays',
   'plays.label': 'Play',
@@ -1016,5 +1016,12 @@ export const en = {
   'productRepository.deleted': 'Product repository deleted.',
 
   'wizard.project.sortHint': 'Sort Projects',
-  'wizard.product.sortHint': 'Sort Products'
+  'wizard.product.sortHint': 'Sort Products',
+
+  'move.resources.label': 'Resource',
+  'move.resources.header': 'Resources',
+
+  'play.buildingBlocks.subtitle': 'This Play is associated with these building blocks.',
+  'play.products.subtitle': 'This Play is associated with these products.'
+
 }

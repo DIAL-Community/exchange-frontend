@@ -19,7 +19,6 @@ query Playbook($slug: String!) {
     name
     slug
     tags
-    phases
     playbookDescriptions {
       overview
       audience

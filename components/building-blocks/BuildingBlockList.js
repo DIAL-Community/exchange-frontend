@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl, FormattedMessage } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -131,23 +131,10 @@ const BuildingBlockListQuery = () => {
       workflows: workflows.map(workflow => workflow.value),
       showMature: showMature,
       search: search
-    },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.buildingBlocks']]: data.searchBuildingBlocks.totalCount } })
     }
   })
 
-  if (loading) {
-    return <Loading />
-  }
-
-  if (error) {
-    return <Error />
-  }
-
-  const { searchBuildingBlocks: { nodes, pageInfo } } = data
-
-  function handleLoadMore () {
+  const handleLoadMore = () => {
     fetchMore({
       variables: {
         after: pageInfo.endCursor,
@@ -160,6 +147,25 @@ const BuildingBlockListQuery = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts({
+        ...resultCounts,
+        ...{ [['filter.entity.buildingBlocks']]: data.searchBuildingBlocks.totalCount }
+      })
+    }
+  }, [data])
+
+  if (loading) {
+    return <Loading />
+  }
+
+  if (error) {
+    return <Error />
+  }
+
+  const { searchBuildingBlocks: { nodes, pageInfo } } = data
   return (
     <>
       <InfiniteScroll

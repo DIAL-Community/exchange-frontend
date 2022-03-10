@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
+import ReactHtmlParser from 'react-html-parser'
 
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Playbooks')
@@ -18,36 +19,37 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed }) => {
     ReactTooltip.rebuild()
   })
 
-  const nameColSpan = (organization) => {
-    return !organization.sectors
-      ? 'col-span-8'
-      : filterDisplayed ? 'col-span-8 md:col-span-6 xl:col-span-3' : 'col-span-8 md:col-span-7 lg:col-span-3'
-  }
-
   return (
     <Link href={`/${collectionPath}/${playbook.slug}`}>
       {
         listType === 'list'
           ? (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
+            <div className='group border-3 border-transparent hover:border-dial-yellow cursor-pointer'>
               <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
-                <div className='grid grid-cols-12 my-5 px-4'>
-                  <div className={`${nameColSpan()} ${ellipsisTextStyle} pr-3 text-base font-semibold`}>
+                <div className='flex flex-col md:flex-row flex-wrap my-5 px-4 gap-2'>
+                  <div className={` ${ellipsisTextStyle} pr-3 text-base font-semibold group-hover:text-dial-yellow`}>
                     <img
-                      data-tip={format('tooltip.forEntity', { entity: format('playbook.label'), name: playbook.name })}
+                      data-tip={format('tooltip.forEntity', { entity: format('playbooks.label'), name: playbook.name })}
                       alt={format('image.alt.logoFor', { name: playbook.name })} className='m-auto h-6 workflow-filter inline mr-3'
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
                     />
                     {playbook.name}
+                  </div>
+                  <div className={`${filterDisplayed ? 'flex gap-1.5 text-sm lg:ml-auto' : 'md:ml-auto'}`}>
+                    {
+                      playbook.tags.map((tag, index) => {
+                        return (<div key={index} className='bg-dial-gray-light px-2 py-1.5 rounded'>{tag}</div>)
+                      })
+                    }
                   </div>
                 </div>
               </div>
             </div>
             )
           : (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
-              <div className='border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
-                <div className='flex flex-col h-80 p-4'>
+            <div className='group border-3 border-transparent hover:border-dial-yellow cursor-pointer'>
+              <div className='border border-dial-gray hover:border-transparent drop-shadow'>
+                <div className='flex flex-col h-80 p-4 group-hover:text-dial-yellow'>
                   <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
                     {playbook.name}
                   </div>
@@ -58,8 +60,22 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed }) => {
                     />
                   </div>
                 </div>
-                <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark '>
-                  <div className='flex flex-row border-b border-dial-gray' />
+                <div className='bg-dial-gray-light'>
+                  <div className='px-3 py-3 text-sm'>
+                    <div className='max-h-16 playbook-description overflow-hidden'>
+                      {playbook.playbookDescription && ReactHtmlParser(playbook.playbookDescription.overview)}
+                    </div>
+                  </div>
+                </div>
+                <div className='flex flex-col bg-dial-gray-light px-3 py-3 text-sm gap-1'>
+                  <div className='font-semibold'>{format('tag.header')}</div>
+                  <div className='flex flex-row gap-1'>
+                    {
+                      playbook.tags.map((tag, index) => {
+                        return (<div key={index} className='bg-white px-2 py-1.5 rounded'>{tag}</div>)
+                      })
+                    }
+                  </div>
                 </div>
               </div>
             </div>
