@@ -189,7 +189,7 @@ const Header = () => {
   const aboutPopoverButton = createRef()
   const aboutPopover = createRef()
 
-  const isAdmin = session && session.roles.includes('admin')
+  const isAdmin = session.roles?.includes('admin')
 
   const openDropdownPopover = (buttonRef, popoverRef, openCallback) => {
     createPopper(buttonRef.current, popoverRef.current, {
