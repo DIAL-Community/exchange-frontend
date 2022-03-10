@@ -1,4 +1,4 @@
-// import { Provider } from 'next-auth/client'
+import { Provider } from 'next-auth/client'
 import { IntlProvider } from 'react-intl'
 import { useRouter } from 'next/router'
 import { DndProvider } from 'react-dnd'
