@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 
 import withApollo from '../../../lib/apolloClient'
-import { gql, useQuery } from '@apollo/client'
+import { gql, useQuery } from "@apollo/client"
 
 import Head from 'next/head'
 import Header from '../../../components/Header'
