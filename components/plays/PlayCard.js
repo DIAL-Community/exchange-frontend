@@ -29,7 +29,7 @@ const PlayCard = ({ play, listType, assignCallback }) => {
       {
         listType === 'assign'
           ? (
-            <div onClick={(e) => { assignCallback(e, play) }} className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
+            <div className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
               <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                 <div className='grid grid-cols-12 my-5 px-4'>
                   <div className={`${ellipsisTextStyle} col-span-4 lg:col-span-4 pr-3 text-base font-semibold`}>
@@ -50,7 +50,7 @@ const PlayCard = ({ play, listType, assignCallback }) => {
           : (
             <Link href={`/${collectionPath}/${play.slug}`}>
               <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
-                <div className='border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
+                <div className='border border-dial-gray hover:border-transparent drop-shadow'>
                   <div className='flex flex-col h-80 p-4'>
                     <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
                       {play.name}

@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -132,23 +132,10 @@ const WorkflowListQuery = () => {
       sdgs: sdgs.map(sdg => sdg.value),
       useCases: useCases.map(useCase => useCase.value),
       search: search
-    },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.workflows']]: data.searchWorkflows.totalCount } })
     }
   })
 
-  if (loading) {
-    return <Loading />
-  }
-
-  if (error) {
-    return <Error />
-  }
-
-  const { searchWorkflows: { nodes, pageInfo } } = data
-
-  function handleLoadMore () {
+  const handleLoadMore = () => {
     fetchMore({
       variables: {
         after: pageInfo.endCursor,
@@ -159,6 +146,25 @@ const WorkflowListQuery = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts({
+        ...resultCounts,
+        ...{ [['filter.entity.workflows']]: data.searchWorkflows.totalCount }
+      })
+    }
+  }, [data])
+
+  if (loading) {
+    return <Loading />
+  }
+
+  if (error) {
+    return <Error />
+  }
+
+  const { searchWorkflows: { nodes, pageInfo } } = data
   return (
     <InfiniteScroll
       className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'

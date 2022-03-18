@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -130,11 +130,28 @@ const UseCaseListQuery = () => {
       sdgs: sdgs.map(sdg => sdg.value),
       showBeta: showBeta,
       search: search
-    },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.useCases']]: data.searchUseCases.totalCount } })
     }
   })
+
+  const handleLoadMore = () => {
+    fetchMore({
+      variables: {
+        after: pageInfo.endCursor,
+        first: DEFAULT_PAGE_SIZE,
+        sdgs: sdgs.map(sdg => sdg.value),
+        showBeta: showBeta
+      }
+    })
+  }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts({
+        ...resultCounts,
+        ...{ [['filter.entity.useCases']]: data.searchUseCases.totalCount }
+      })
+    }
+  }, [data])
 
   if (loading) {
     return <Loading />
@@ -145,17 +162,6 @@ const UseCaseListQuery = () => {
   }
 
   const { searchUseCases: { nodes, pageInfo } } = data
-
-  function handleLoadMore () {
-    fetchMore({
-      variables: {
-        after: pageInfo.endCursor,
-        first: DEFAULT_PAGE_SIZE,
-        sdgs: sdgs.map(sdg => sdg.value),
-        showBeta: showBeta
-      }
-    })
-  }
   return (
     <InfiniteScroll
       className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'

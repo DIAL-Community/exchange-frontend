@@ -10,6 +10,7 @@ export const FILTER_ITEMS = [
 ]
 
 export const MAPPED_FILTER_ITEMS_URL = {
+  'filter.entity.playbooks': 'playbooks',
   'filter.entity.sdgs': 'sdgs',
   'filter.entity.useCases': 'use_cases',
   'filter.entity.workflows': 'workflows',
@@ -17,7 +18,6 @@ export const MAPPED_FILTER_ITEMS_URL = {
   'filter.entity.products': 'products',
   'filter.entity.projects': 'projects',
   'filter.entity.organizations': 'organizations',
-  'filter.entity.playbooks': 'playbooks',
   'filter.entity.maps': 'maps'
 }
 

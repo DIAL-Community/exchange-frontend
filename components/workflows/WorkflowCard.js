@@ -147,7 +147,7 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
             )
           : (
             <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
-              <div className='border border-dial-gray hover:border-transparent shadow-lg hover:shadow-2xl'>
+              <div className='border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='flex flex-col h-80 p-4'>
                   <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
                     {workflow.name}

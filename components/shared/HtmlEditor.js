@@ -1,45 +1,9 @@
-/* global FileReader:false */
-
 import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
-export const HtmlEditor = ({ updateText, initialContent, initInstanceCallback, editorId }) => {
+export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, editorId }) => {
   const editorRef = useRef(null)
-  const setContents = (newValue, editor) => {
-    if (editorRef.current) {
-      updateText(newValue, editor)
-    }
-  }
-
-  const uploadImage = (cb, value, meta) => {
-    const input = document.createElement('input')
-    input.setAttribute('type', 'file')
-    input.setAttribute('accept', 'image/*')
-
-    input.onchange = function () {
-      const file = this.files[0]
-
-      const reader = new FileReader()
-      reader.onload = function () {
-        /*
-          Note: Now we need to register the blob in TinyMCEs image blob
-          registry. In the next release this part hopefully won't be
-          necessary, as we are looking to handle it internally.
-        */
-        const id = 'blobid' + (new Date()).getTime()
-        const blobCache = tinymce.activeEditor.editorUpload.blobCache
-        const base64 = reader.result.split(',')[1]
-        const blobInfo = blobCache.create(id, file, base64)
-        blobCache.add(blobInfo)
-
-        /* call the callback and populate the Title field with the file name */
-        cb(blobInfo.blobUri(), { title: file.name })
-      }
-      reader.readAsDataURL(file)
-    }
-
-    input.click()
-  }
+  const handleEditorChange = (editor) => onChange(editor)
 
   return (
     <>
@@ -48,7 +12,7 @@ export const HtmlEditor = ({ updateText, initialContent, initInstanceCallback, e
         apiKey={process.env.NEXT_PUBLIC_EDITOR_KEY}
         onInit={(_evt, editor) => { editorRef.current = editor }}
         value={initialContent}
-        onEditorChange={(newValue, editor) => setContents(newValue, editor)}
+        onEditorChange={handleEditorChange}
         init={{
           selector: '#' + editorId ? editorId : 'TinyMCE-Editor',
           menubar: false,
@@ -60,7 +24,7 @@ export const HtmlEditor = ({ updateText, initialContent, initInstanceCallback, e
           image_title: true,
           automatic_uploads: true,
           file_picker_types: 'image',
-          file_picker_callback: uploadImage
+          images_upload_url: process.env.NEXT_PUBLIC_RAILS_SERVER + '/images/upload'
         }}
       />
     </>

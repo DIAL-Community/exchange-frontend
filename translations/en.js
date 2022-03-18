@@ -12,9 +12,29 @@ export const en = {
   'app.create-new': 'Create New',
   'app.edit-entity': 'Edit {entity}',
 
+  'profile.profile': 'User Profile for ',
+  'profile.username': 'Username',
+  'profile.email': 'Email',
+  'profile.roles': 'Roles: ',
+  'profile.products': 'Products: ',
+  'profile.organization': 'Organization: ',
+
+  'user.header': 'Users',
+  'user.label': 'User',
+  'user.email': 'Email',
+  'user.email.placeholder': 'Enter email address',
+  'user.username': 'Username',
+  'user.roles': 'Roles',
+  'user.roles.placeholder': 'Select user roles',
+  'user.organization': 'Organization',
+  'user.organization.placeholder': 'Enter user organization',
+  'user.products': 'Products',
+  'user.products.placeholder': 'Enter products owned by user',
+
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
   'header.resetPassword': 'Reset Password',
+  'header.profile': 'My Profile',
   'header.covidResources': 'COVID-19 Resources',
   'header.resources': 'Resources',
   'header.dialResourcesPortal': 'DIAL Resources Portal',
@@ -299,6 +319,7 @@ export const en = {
   'general.fetchingData': 'Fetching data ...',
   'general.fetchError': 'Error fetching data. Please check your network connection.',
   'general.loadingData': 'Loading more data ...',
+  'general.unauthorized': 'You are not authorized to view this page',
 
   'view.switch.title': 'Switch View',
   'search.input.label': 'Enter Search Term',
@@ -375,6 +396,7 @@ export const en = {
   'filter.entity.playbooks': 'Playbooks',
   'filter.entity.plays': 'Plays',
   'filter.entity.maps': 'Maps',
+  'filter.entity.users': 'Users',
   'filter.entity.candidateOrganizations': 'Candidate Organizations',
   'filter.entity.candidateProducts': 'Candidate Products',
 
@@ -431,7 +453,7 @@ export const en = {
   'playbooks.assignPlay': 'Assign Play',
   'playbooks.unassignPlay': 'Unassign Play',
   'playbooks.assign': 'Assign',
-  'playbooks.assignedPlays': 'Plays Currently Assigned',
+  'playbooks.assignedPlays': 'Plays currently assigned. You can preview, re-order, unnassign Plays, or add new Plays.',
 
   'play.header': 'Plays',
   'plays.label': 'Play',
@@ -1016,5 +1038,12 @@ export const en = {
   'productRepository.deleted': 'Product repository deleted.',
 
   'wizard.project.sortHint': 'Sort Projects',
-  'wizard.product.sortHint': 'Sort Products'
+  'wizard.product.sortHint': 'Sort Products',
+
+  'move.resources.label': 'Resource',
+  'move.resources.header': 'Resources',
+
+  'play.buildingBlocks.subtitle': 'This Play is associated with these building blocks.',
+  'play.products.subtitle': 'This Play is associated with these products.'
+
 }

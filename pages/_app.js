@@ -1,6 +1,8 @@
 import { Provider } from 'next-auth/client'
 import { IntlProvider } from 'react-intl'
 import { useRouter } from 'next/router'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 import * as translations from '../translations'
 import * as gtag from '../lib/gtag'
@@ -19,6 +21,8 @@ import '../styles/password.css'
 
 import '../styles/drawer.css'
 import '../styles/card.css'
+
+import '../styles/playbook.css'
 
 import CatalogContext from '../lib/CatalogContext'
 import { useEffect } from 'react'
@@ -56,11 +60,13 @@ const App = ({ Component, pageProps }) => {
   return (
     <IntlProvider locale={locale} defaultLocale='en' messages={messages}>
       <Provider session={pageProps.session}>
-        <CatalogContext>
-          <CandidateContext>
-            <Component {...pageProps} />
-          </CandidateContext>
-        </CatalogContext>
+        <DndProvider backend={HTML5Backend}>
+          <CatalogContext>
+            <CandidateContext>
+              <Component {...pageProps} />
+            </CandidateContext>
+          </CatalogContext>
+        </DndProvider>
       </Provider>
     </IntlProvider>
   )

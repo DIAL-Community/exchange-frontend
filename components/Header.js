@@ -48,7 +48,7 @@ const AdminMenu = () => {
     setShowAdminMenu(false)
   }
 
-  const { userEmail, userToken } = session.user
+  const { userEmail, userToken } = session
 
   return (
     <>
@@ -64,9 +64,11 @@ const AdminMenu = () => {
       </a>
       <div className={`${showAdminMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
         <div className='py-1' role='none'>
-          <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/users?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
-            {format('header.admin.users')}
-          </a>
+          <Link href='/users'>
+            <a href='/users' role='menuitem' className={dropdwonMenuStyles}>
+              {format('header.admin.users')}
+            </a>
+          </Link>
           <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/settings?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
             {format('header.admin.settings')}
           </a>
@@ -102,6 +104,9 @@ const UserMenu = () => {
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const [session] = useSession()
+
+  const userName = session.user && session.user.name && session.user.name.toUpperCase()
+
   const [showUserMenu, setShowUserMenu] = useState(false)
 
   const buttonRef = createRef()
@@ -134,7 +139,7 @@ const UserMenu = () => {
         href='signOut' onClick={(e) => toggleSwitcher(e)}
       >
         <img src='/icons/user.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
-        <div className='inline text-xs'>{session.user && session.user.userName && session.user.userName.toUpperCase()}
+        <div className='inline text-xs'>{userName}
           {
             showUserMenu ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
           }
@@ -142,9 +147,9 @@ const UserMenu = () => {
       </a>
       <div className={`${showUserMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
         <div className='py-1' role='none'>
-          <Link href='/auth/reset-password'>
-            <a href='/auth/reset-password' role='menuitem' className={dropdwonMenuStyles}>
-              {format('header.resetPassword')}
+          <Link href='/auth/profile'>
+            <a href='/auth/profile' role='menuitem' className={dropdwonMenuStyles}>
+              {format('header.profile')}
             </a>
           </Link>
           <a href='en' role='menuitem' className={dropdwonMenuStyles} onClick={signOutUser}>
@@ -160,6 +165,11 @@ const Header = () => {
   const [session] = useSession()
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
+
+  const signInUser = (e) => {
+    e.preventDefault()
+    process.env.NEXT_PUBLIC_AUTH_TYPE === 'auth0' ? signIn('Auth0', { callbackUrl: process.env.NEXT_PUBLIC_API_URL }) : signIn()
+  }
 
   const [menuExpanded, setMenuExpanded] = useState(false)
   const [showLanguages, setShowLanguages] = useState(false)
@@ -178,6 +188,8 @@ const Header = () => {
 
   const aboutPopoverButton = createRef()
   const aboutPopover = createRef()
+
+  const isAdmin = session?.roles?.includes('admin')
 
   const openDropdownPopover = (buttonRef, popoverRef, openCallback) => {
     createPopper(buttonRef.current, popoverRef.current, {
@@ -214,11 +226,6 @@ const Header = () => {
     showAbout
       ? closeDropdownPopover(setShowAbout)
       : openDropdownPopover(aboutPopoverButton, aboutPopover, setShowAbout)
-  }
-
-  const signInUser = (e) => {
-    e.preventDefault()
-    signIn()
   }
 
   const toggleMenu = (e) => {
@@ -318,7 +325,7 @@ const Header = () => {
                   ? (
                     <>
                       <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
-                        {session.user.canEdit && (<AdminMenu />)}
+                        {isAdmin && (<AdminMenu />)}
                       </li>
                       <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
                         <UserMenu />
@@ -327,7 +334,7 @@ const Header = () => {
                     )
                   : (
                     <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
-                      <a className={`${menuItemStyles}`} href='/sign-in' onClick={signInUser}>
+                      <a href='signin' role='menuitem' className={dropdwonMenuStyles} onClick={signInUser}>
                         {format('header.signIn')}
                       </a>
                     </li>
