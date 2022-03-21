@@ -9,7 +9,7 @@ const PageContent = ({ activeTab, filter, content, searchFilter, activeFilter, h
         // This will be hidden on phone.
       }
       <LeftDrawer filter={filter} hint={hint} />
-      <div className='md:pl-4 w-full h-full'>
+      <div className='w-full h-full'>
         {
           // searchFilter: SearchFilter, search bar section. Pages will pass hint of the active nav.
           // activeFilter: Each component ActiveFilter (OrganizationActiveFilter, ProductActiveFilter, etc).
