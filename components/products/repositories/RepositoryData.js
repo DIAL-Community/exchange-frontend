@@ -67,7 +67,7 @@ const RepositoryInformation = ({ productRepository }) => {
 
   const handleDelete = () => {
     if (session?.user) {
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = session
       deleteProductRepository({
         context: { headers: { Authorization: `${userEmail} ${userToken}` } },
         variables: {

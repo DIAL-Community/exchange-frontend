@@ -111,8 +111,8 @@ export default NextAuth({
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-            'X-User-Email': session.user.userEmail,
-            'X-User-Token': session.user.userToken
+            'X-User-Email': session.userEmail,
+            'X-User-Token': session.userToken
           }
         })
         return {}

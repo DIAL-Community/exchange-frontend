@@ -262,7 +262,7 @@ const ApproveButton = ({ product, status, setStatus, loading, setLoading }) => {
   const [session] = useSession()
 
   const approveCandidateProduct = async (e) => {
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = session
 
     e.preventDefault()
     setLoading(true)
@@ -324,7 +324,7 @@ const DeclineButton = ({ product, status, setStatus, loading, setLoading }) => {
   const [session] = useSession()
 
   const rejectCandidateProduct = async (e) => {
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = session
 
     e.preventDefault()
     setLoading(true)
