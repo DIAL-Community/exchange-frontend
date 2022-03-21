@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.8",
+    "@headlessui/react": "^1.5.0",
     "@popperjs/core": "^2.9.1",
     "@tinymce/tinymce-react": "^3.12.6",
     "@use-cookie-consent/core": "^0.3.3",

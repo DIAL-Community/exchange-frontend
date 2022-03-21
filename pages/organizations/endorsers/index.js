@@ -8,6 +8,7 @@ import GradientBackground from '../../../components/shared/GradientBackground'
 import OrganizationCard from '../../../components/organizations/OrganizationCard'
 import { FilterContext } from '../../../components/context/FilterContext'
 import SearchFilter from '../../../components/shared/SearchFilter'
+import PoweredBy from '../../../components/shared/PoweredBy'
 import { CountryAutocomplete, CountryFilters } from '../../../components/filter/element/Country'
 import { EndorsingYearFilters, EndorsingYearSelect } from '../../../components/filter/element/EndorsingYear'
 import { SectorAutocomplete, SectorFilters } from '../../../components/filter/element/Sector'
@@ -178,8 +179,13 @@ const EndorserPage = () => {
             <SectorFilters {...{ sectors, setSectors }} />
           </div>
       }
-      <div className='mb-2'>
-        <SearchFilter {...{ search, setSearch }} hint='filter.entity.organizations' />
+      <div className='grid grid-cols-4'>
+        <div className='grid col-span-3 mb-2'>
+          <SearchFilter {...{ search, setSearch }} hint='filter.entity.organizations' />
+        </div>
+        <div className='grid items-center justify-self-end mr-2'>
+          <PoweredBy />
+        </div>
       </div>
       <div className={gridStyles}>
         {
