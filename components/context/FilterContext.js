@@ -5,7 +5,7 @@ const FilterContext = createContext()
 
 export const FILTER_ITEMS = [
   'filter.entity.sdgs', 'filter.entity.useCases', 'filter.entity.workflows', 'filter.entity.buildingBlocks',
-  'filter.entity.products', 'filter.entity.projects', 'filter.entity.organizations', // 'filter.entity.playbooks',
+  'filter.entity.products', 'filter.entity.projects', 'filter.entity.organizations', 'filter.entity.playbooks',
   'filter.entity.maps'
 ]
 

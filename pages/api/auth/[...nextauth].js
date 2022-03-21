@@ -53,7 +53,7 @@ export default NextAuth({
 
         if (user) {
           // Any user object returned here will be saved in the JSON Web Token
-          return user
+          return { ...user, railsAuth: false }
         } else {
           return false
         }
@@ -78,44 +78,47 @@ export default NextAuth({
       //  "session" is current session object
       //  below we set "user" param of "session" to value received from "jwt" callback
       session.user = user.user
-      const authBody = {
-        user: {
-          email: session.user.email
+
+      if (!session.user.railsAuth) {
+        const authBody = {
+          user: {
+            email: session.user.email
+          }
         }
-      }
-    
-      const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authenticate/auth0', {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'include', // include, *same-origin, omit
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-          'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
-          'Access-Control-Allow-Credentials': true,
-          'Access-Control-Allow-Headers': 'Set-Cookie'
-          // 'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
-        },
-        // redirect: 'follow', // manual, *follow, error
-        // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(authBody) // body data type must match "Content-Type" header
-      })
-    
-      const railsUser = await response.json()
-      session = { ...session, user: {...session.user, canEdit: railsUser.canEdit}, userEmail: railsUser.userEmail, userToken: railsUser.userToken, own: railsUser.own, canEdit: railsUser.canEdit, roles: railsUser.roles}
-      if (user.expiration && Date.now() < user.expiration) {
-        return session
-      } else {
-        await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/invalidate', {
-          method: 'DELETE',
+      
+        const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authenticate/auth0', {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, *cors, same-origin
+          // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: 'include', // include, *same-origin, omit
           headers: {
             'Content-Type': 'application/json',
-            'X-User-Email': session.userEmail,
-            'X-User-Token': session.userToken
-          }
+            'X-Requested-With': 'XMLHttpRequest',
+            'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Headers': 'Set-Cookie'
+            // 'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
+          },
+          // redirect: 'follow', // manual, *follow, error
+          // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          body: JSON.stringify(authBody) // body data type must match "Content-Type" header
         })
-        return {}
+      
+        const railsUser = await response.json()
+        session = { ...session, user: {...session.user, canEdit: railsUser.canEdit}, userEmail: railsUser.userEmail, userToken: railsUser.userToken, own: railsUser.own, canEdit: railsUser.canEdit, roles: railsUser.roles, railsAuth: true}
+        if (user.expiration && Date.now() < user.expiration) {
+          return session
+        } else {
+          await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/invalidate', {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-User-Email': session.userEmail,
+              'X-User-Token': session.userToken
+            }
+          })
+          return {}
+        }
       }
     }
   },
