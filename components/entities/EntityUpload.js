@@ -25,7 +25,7 @@ const EntityUpload = () => {
     setLoading(true)
 
     event.preventDefault()
-    const { userEmail, userToken } = session
+    const { userEmail, userToken } = session.user
 
     const formData = new FormData()
     formData.append('entity_file', file, file.name)

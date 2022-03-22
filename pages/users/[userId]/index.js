@@ -46,7 +46,7 @@ const User = () => {
 
   const [session] = useSession()
 
-  if (session && !session.roles.includes('admin')) {
+  if (session && !session.user.roles.includes('admin')) {
     return (
       <Unauthorized />
     )

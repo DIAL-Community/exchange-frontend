@@ -48,13 +48,13 @@ const UserProfile = () => {
               {format('profile.profile')}{session.user.name}
             </div>
             <div className='my-3 h4'>
-              {format('profile.roles')} {session.roles}
+              {format('profile.roles')} {session.user.roles}
             </div>
             <div className='my-3 h4'>
-              {format('profile.products')} {session.own && session.own.products}
+              {format('profile.products')} {session?.user?.own && session.user.own.products}
             </div>
             <div className='my-3 h4'>
-              {format('profile.organization')} {session.own && session.own.organization && session.own.organization.name}
+              {format('profile.organization')} {session?.user?.own && session.user.own.organization && session.user.own.organization.name}
             </div>
           </div>
         </div>}

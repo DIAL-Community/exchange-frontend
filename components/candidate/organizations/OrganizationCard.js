@@ -22,7 +22,7 @@ const OrganizationCard = ({ organization, listType }) => {
   })
 
   const approveCandidateOrganization = async (e) => {
-    const { userEmail, userToken } = session
+    const { userEmail, userToken } = session.user
 
     e.preventDefault()
     setLoading(true)
@@ -48,7 +48,7 @@ const OrganizationCard = ({ organization, listType }) => {
   }
 
   const rejectCandidateOrganization = async (e) => {
-    const { userEmail, userToken } = session
+    const { userEmail, userToken } = session.user
 
     e.preventDefault()
     setLoading(true)

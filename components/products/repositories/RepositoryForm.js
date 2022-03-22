@@ -98,7 +98,7 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
     if (session.user) {
       e.preventDefault()
 
-      const { userEmail, userToken } = session
+      const { userEmail, userToken } = session.user
       const graphParameters = {
         context: { headers: { Authorization: `${userEmail} ${userToken}` } },
         variables: {

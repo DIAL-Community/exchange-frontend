@@ -49,7 +49,7 @@ const AdminMenu = () => {
     setShowAdminMenu(false)
   }
 
-  const { userEmail, userToken } = session
+  const { userEmail, userToken } = session.user
 
   return (
     <>
@@ -195,7 +195,7 @@ const Header = () => {
   const helpPopoverButton = createRef()
   const helpPopover = createRef()
 
-  const isAdmin = session?.roles?.includes('admin')
+  const isAdmin = session?.user?.roles?.includes('admin')
 
   const showFeedbackForm = () => {
     setShowForm(true)

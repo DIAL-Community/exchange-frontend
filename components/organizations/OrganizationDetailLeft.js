@@ -36,7 +36,7 @@ const OrganizationDetailLeft = ({ organization }) => {
       return '/edit-not-available'
     }
 
-    const { userEmail, userToken } = session
+    const { userEmail, userToken } = session.user
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/organizations/${organization.slug}/` +
       `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
@@ -96,7 +96,7 @@ const OrganizationDetailLeft = ({ organization }) => {
 
   const applyToBeOrganizationOwner = async () => {
     setLoading(true)
-    const { userEmail, userToken } = session
+    const { userEmail, userToken } = session.user
     const requestBody = {
       candidate_role: {
         email: userEmail,
@@ -147,7 +147,7 @@ const OrganizationDetailLeft = ({ organization }) => {
             session && (
               <div className='inline'>
                 {
-                  (session.user.canEdit || `${session.own.organization}` === `${organization.id}`) && (
+                  (session.user.canEdit || `${session.user.own.organization}` === `${organization.id}`) && (
                     <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
                       <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
                       <span className='text-sm px-2'>{format('app.edit')}</span>

@@ -53,7 +53,7 @@ export default NextAuth({
 
         if (user) {
           // Any user object returned here will be saved in the JSON Web Token
-          return { ...user, railsAuth: false }
+          return user
         } else {
           return false
         }
@@ -68,21 +68,11 @@ export default NextAuth({
       //  ...and return it...
       user && (token.user = user)
 
-      if (!token.expiration) {
-        token.expiration = Date.now() + TOKEN_EXPIRATION
-      }
-
-      return token // ...here
-    },
-    session: async (session, user) => {
-      //  "session" is current session object
-      //  below we set "user" param of "session" to value received from "jwt" callback
-      session.user = user.user
-
-      if (!session.user.railsAuth) {
+      if (!token.railsAuth) {
+        token.railsAuth = true
         const authBody = {
           user: {
-            email: session.user.email
+            email: token.user.email
           }
         }
       
@@ -105,20 +95,33 @@ export default NextAuth({
         })
       
         const railsUser = await response.json()
-        session = { ...session, user: {...session.user, canEdit: railsUser.canEdit}, userEmail: railsUser.userEmail, userToken: railsUser.userToken, own: railsUser.own, canEdit: railsUser.canEdit, roles: railsUser.roles, railsAuth: true}
-        if (user.expiration && Date.now() < user.expiration) {
-          return session
-        } else {
-          await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/invalidate', {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json',
-              'X-User-Email': session.userEmail,
-              'X-User-Token': session.userToken
-            }
-          })
-          return {}
+        token = {...token, user: {...token.user, canEdit: railsUser.canEdit, userEmail: railsUser.userEmail, userToken: railsUser.userToken, own: railsUser.own, canEdit: railsUser.canEdit, roles: railsUser.roles}, railsAuth: true}
+        return token
+      } else {
+        if (!token.expiration) {
+          token.expiration = Date.now() + TOKEN_EXPIRATION
         }
+  
+        return token // ...here
+      }
+    },
+    session: async (session, user) => {
+      //  "session" is current session object
+      //  below we set "user" param of "session" to value received from "jwt" callback
+      session.user = user.user
+      
+      if (user.expiration && Date.now() < user.expiration) {
+        return session
+      } else {
+        await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/invalidate', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-User-Email': session.userEmail,
+            'X-User-Token': session.userToken
+          }
+        })
+        return {}
       }
     }
   },
