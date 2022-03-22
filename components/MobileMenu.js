@@ -214,7 +214,7 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
                     </li>
                   )
                 } else if (subMenus[parent].type === 'admin' && session.user) {
-                  const { userEmail, userToken } = session.user
+                  const { userEmail, userToken } = session.user.user
                   return (
                     <>
                       <li key={index} className='py-4 border-b'>

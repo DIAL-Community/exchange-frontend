@@ -21,7 +21,7 @@ const UseCaseDetailRight = ({ useCase }) => {
       return '/edit-not-available'
     }
 
-    const { userEmail, userToken } = session
+    const { userEmail, userToken } = session.user
     return `
       ${process.env.NEXT_PUBLIC_RAILS_SERVER}/use_cases/${useCase.slug}/use_case_steps/new?user_email=${userEmail}&user_token=${userToken}
     `

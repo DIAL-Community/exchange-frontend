@@ -14,7 +14,7 @@ const WorkflowDetailLeft = ({ workflow }) => {
       return '/edit-not-available'
     }
 
-    const { userEmail, userToken } = session
+    const { userEmail, userToken } = session.user
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/workflows/${workflow.slug}/` +
         `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
