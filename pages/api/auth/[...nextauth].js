@@ -68,42 +68,48 @@ export default NextAuth({
       //  ...and return it...
       user && (token.user = user)
 
-      if (!token.expiration) {
-        token.expiration = Date.now() + TOKEN_EXPIRATION
+      if (!token.railsAuth) {
+        token.railsAuth = true
+        const authBody = {
+          user: {
+            email: token.user.email
+          }
+        }
+      
+        const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authenticate/auth0', {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, *cors, same-origin
+          // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: 'include', // include, *same-origin, omit
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Headers': 'Set-Cookie'
+            // 'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
+          },
+          // redirect: 'follow', // manual, *follow, error
+          // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          body: JSON.stringify(authBody) // body data type must match "Content-Type" header
+        })
+      
+        const railsUser = await response.json()
+        token = {...token, user: {...token.user, canEdit: railsUser.canEdit, userEmail: railsUser.userEmail, userToken: railsUser.userToken, own: railsUser.own, canEdit: railsUser.canEdit, roles: railsUser.roles}, railsAuth: true}
+        return token
+      } else {
+        if (!token.expiration) {
+          token.expiration = Date.now() + TOKEN_EXPIRATION
+        }
+  
+        return token // ...here
       }
-
-      return token // ...here
     },
     session: async (session, user) => {
       //  "session" is current session object
       //  below we set "user" param of "session" to value received from "jwt" callback
       session.user = user.user
-      const authBody = {
-        user: {
-          email: session.user.email
-        }
-      }
-    
-      const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authenticate/auth0', {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'include', // include, *same-origin, omit
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-          'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_AUTH_SERVER,
-          'Access-Control-Allow-Credentials': true,
-          'Access-Control-Allow-Headers': 'Set-Cookie'
-          // 'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
-        },
-        // redirect: 'follow', // manual, *follow, error
-        // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(authBody) // body data type must match "Content-Type" header
-      })
-    
-      const railsUser = await response.json()
-      session = { ...session, user: {...session.user, canEdit: railsUser.canEdit}, userEmail: railsUser.userEmail, userToken: railsUser.userToken, own: railsUser.own, canEdit: railsUser.canEdit, roles: railsUser.roles}
+      
       if (user.expiration && Date.now() < user.expiration) {
         return session
       } else {
@@ -111,8 +117,8 @@ export default NextAuth({
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-            'X-User-Email': session.user.userEmail,
-            'X-User-Token': session.user.userToken
+            'X-User-Email': session.userEmail,
+            'X-User-Token': session.userToken
           }
         })
         return {}

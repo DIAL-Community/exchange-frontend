@@ -46,7 +46,7 @@ const OrganizationDetailLeft = ({ organization }) => {
     if (session && session.user) {
       fetchCandidateRole({
         variables:
-          { email: session.user.userEmail, productId: '', organizationId: organization.id }
+          { email: session.user.email, productId: '', organizationId: organization.id }
       })
     }
   }, [session])

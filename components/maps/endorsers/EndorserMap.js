@@ -109,7 +109,7 @@ const EndorserMap = () => {
   const city = cities[selectedCity]
 
   return (
-    <div className='flex flex-row mx-2 my-2' style={{ minHeight: '10vh' }}>
+    <div className='flex flex-row' style={{ minHeight: '10vh' }}>
       {
         loading &&
           <div className='absolute right-4 text-white bg-dial-gray-dark px-3 py-2 mt-2 rounded text-sm' style={{ zIndex: 19 }}>

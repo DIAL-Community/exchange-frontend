@@ -77,7 +77,7 @@ export const DiscourseForum = ({ topicId, objType }) => {
     const postURL = new URL(process.env.NEXT_PUBLIC_API_URL + '/api/discourse')
     postURL.search = new URLSearchParams({
       topicId: topicId,
-      username: session.user.userName,
+      username: session.user.name,
       objType: objType,
       raw: newPost
     })
@@ -152,7 +152,7 @@ export const DiscourseForum = ({ topicId, objType }) => {
           }
           {showUser && (
             <div className='mt-2'>
-              <div className='text-dial-purple-light'>{format('product.forum.createAccount')} '{session.user.userName}'</div>
+              <div className='text-dial-purple-light'>{format('product.forum.createAccount')} '{session.user.name}'</div>
               <a href={`${url}/signup`} target='_blank' rel='noreferrer' className='py-1 px-2 h5 text-white bg-dial-teal rounded'>Sign Up</a>
             </div>
           )}

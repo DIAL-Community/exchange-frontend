@@ -1,14 +1,18 @@
+import { useState } from 'react'
 import Image from 'next/image'
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa'
 
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
+import ReportIssue from './shared/ReportIssue'
 
 const Consent = dynamic(() => import('./Consent'), { ssr: false })
 
 const Footer = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
+
+  const [showForm, setShowForm] = useState(false)
 
   return (
     <footer>
@@ -157,18 +161,13 @@ const Footer = () => {
                 {format('footer.privacyPolicy').toUpperCase()}
               </a>
             </div>
-            <div className='py-2 px-3 rounded-md bg-dial-gray-light'>
-              <a
-                href='https://gitlab.com/dial/osc/eng/t4d-online-catalog/product-registry'
-                target='_blank' rel='noreferrer'
-                className='border-b-2 border-transparent hover:border-dial-yellow'
-              >
-                {format('footer.reportIssue').toUpperCase()}
-              </a>
+            <div className='py-2 px-3 rounded-md bg-dial-gray-light' onClick={() => setShowForm(true)}>
+              {format('app.reportIssue').toUpperCase()}
+              {showForm && <ReportIssue showForm={showForm} setShowForm={setShowForm} />}
             </div>
             <div className='py-2 px-3 rounded-md bg-dial-gray-light'>
               <a
-                href='mailto:issues@solutions.dial.community'
+                href='mailto:info@solutions.dial.community'
                 target='_blank' rel='noreferrer'
                 className='border-b-2 border-transparent hover:border-dial-yellow'
               >

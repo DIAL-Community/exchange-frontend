@@ -11,6 +11,8 @@ export const en = {
   'app.search': 'Search',
   'app.create-new': 'Create New',
   'app.edit-entity': 'Edit {entity}',
+  'app.powered': 'Powered by DIAL\'s Catalog of Digital Solutions',
+  'app.reportIssue': 'Report Issue',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -41,6 +43,7 @@ export const en = {
   'header.SDGFramework': 'SDG Framework',
   'header.help': 'Help',
   'header.about': 'About',
+  'header.documentation': 'Documentation Portal',
   'header.confluence': 'Catalog Wiki Page',
   'header.admin': 'Admin Menu',
   'header.selectLanguage': 'Select Language',
@@ -70,7 +73,6 @@ export const en = {
     by the following partners:
   `,
   'footer.organizationName': 'Digital Impact Alliance',
-  'footer.reportIssue': 'Report Issue',
   'footer.privacyPolicy': 'Privacy Policy',
   'footer.sign-up': 'Sign up for updates on the digital investment framework',
   'footer.discuss': 'Discuss on the Open Source Center Forum',
@@ -1044,6 +1046,16 @@ export const en = {
   'move.resources.header': 'Resources',
 
   'play.buildingBlocks.subtitle': 'This Play is associated with these building blocks.',
-  'play.products.subtitle': 'This Play is associated with these products.'
+  'play.products.subtitle': 'This Play is associated with these products.',
+
+  'report.reportIssue': 'Report an Issue',
+  'report.name': 'Your Name',
+  'report.email': 'Email Address',
+  'report.issue': 'Describe the issue',
+  'report.thankyou': 'Thank you for submitting an issue.',
+  'report.issueType': 'What kind of feedback are you providing',
+  'report.positive': 'Comment on something I liked',
+  'report.bug': 'Report a problem or issue',
+  'report.suggest': 'Make a suggestion'
 
 }

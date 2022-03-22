@@ -9,6 +9,7 @@ import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 import { createPopper } from '@popperjs/core'
 
 import MobileMenu from './MobileMenu'
+import ReportIssue from './shared/ReportIssue'
 
 const menuItemStyles = `
     lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
@@ -48,7 +49,7 @@ const AdminMenu = () => {
     setShowAdminMenu(false)
   }
 
-  const { userEmail, userToken } = session
+  const { userEmail, userToken } = session.user
 
   return (
     <>
@@ -175,6 +176,8 @@ const Header = () => {
   const [showLanguages, setShowLanguages] = useState(false)
   const [showResources, setShowResources] = useState(false)
   const [showAbout, setShowAbout] = useState(false)
+  const [showHelp, setShowHelp] = useState(false)
+  const [showForm, setShowForm] = useState(false)
 
   const { pathname, asPath, query } = useRouter()
   const router = useRouter()
@@ -189,7 +192,14 @@ const Header = () => {
   const aboutPopoverButton = createRef()
   const aboutPopover = createRef()
 
-  const isAdmin = session?.roles?.includes('admin')
+  const helpPopoverButton = createRef()
+  const helpPopover = createRef()
+
+  const isAdmin = session?.user?.roles?.includes('admin')
+
+  const showFeedbackForm = () => {
+    setShowForm(true)
+  }
 
   const openDropdownPopover = (buttonRef, popoverRef, openCallback) => {
     createPopper(buttonRef.current, popoverRef.current, {
@@ -226,6 +236,13 @@ const Header = () => {
     showAbout
       ? closeDropdownPopover(setShowAbout)
       : openDropdownPopover(aboutPopoverButton, aboutPopover, setShowAbout)
+  }
+
+  const toggleHelpSwitcher = (e) => {
+    e.preventDefault()
+    showHelp
+      ? closeDropdownPopover(setShowHelp)
+      : openDropdownPopover(helpPopoverButton, helpPopover, setShowHelp)
   }
 
   const toggleMenu = (e) => {
@@ -296,7 +313,7 @@ const Header = () => {
               </li>
               <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
                 <a
-                  className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={resourcePopoverButton}
+                  className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={aboutPopoverButton}
                   href='aboutMenu' onClick={(e) => toggleAboutSwitcher(e)}
                 >
                   {format('header.about')}
@@ -342,12 +359,27 @@ const Header = () => {
               }
               <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
                 <a
-                  className={`${menuItemStyles} lg:mb-0 mb-2`}
-                  href={`https://docs.osc.dial.community/projects/product-registry/${locale}/latest/`}
-                  target='_blank' rel='noreferrer'
+                  className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={helpPopoverButton}
+                  href='helpMenu' onClick={(e) => toggleHelpSwitcher(e)}
                 >
                   {format('header.help')}
+                  {
+                    showHelp ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
+                  }
                 </a>
+                <div className={`${showHelp ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={helpPopover} role='menu'>
+                  <a
+                    className={`${menuItemStyles} lg:mb-0 mb-2`}
+                    href={`https://docs.osc.dial.community/projects/product-registry/${locale}/latest/`}
+                    target='_blank' rel='noreferrer'
+                  >
+                    {format('header.documentation')}
+                  </a>
+                  <a href='#' className={`${menuItemStyles} lg:mb-0 mb-2`} onClick={showFeedbackForm}>
+                    {format('app.reportIssue')}
+                    {showForm && <ReportIssue showForm={showForm} setShowForm={setShowForm} />}
+                  </a>
+                </div>
               </li>
               <li><div className='border border-gray-400 border-t-0 lg:border-l-0 lg:h-9' /></li>
               <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
