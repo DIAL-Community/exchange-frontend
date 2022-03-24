@@ -11,16 +11,15 @@ import { descriptionByLocale } from '../../../lib/utilities'
 import Breadcrumb from '../../shared/breadcrumb'
 
 const CREATE_TASK = gql`
-mutation ($playSlug: String!, $name: String!, $description: String!, $resources: JSON!, $order: Int!, $locale: String!) {
-  createMove(play: $playSlug, name: $name, description: $description, resources: $resources, order: $order, locale: $locale) {
+mutation ($playSlug: String!, $name: String!, $description: String!, $resources: JSON!, $order: Int!) {
+  createMove(play: $playSlug, name: $name, description: $description, resources: $resources, order: $order) {
     move {
       id
       name
       slug
       resources
-      moveDescriptions {
+      moveDescription {
         description
-        locale
       }
       playName
       playSlug

@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import { createRef, useEffect, useState } from 'react'
+import { createRef, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
+import { ToastContext } from '../../lib/ToastContext'
 
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('SDGs')
@@ -9,10 +10,17 @@ const collectionPath = convertToKey('SDGs')
 const ellipsisTextStyle = `
   whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
+const containerElementStyle = `
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+  text-sdg hover:text-dial-yellow
+`
 
 const SDGCard = ({ sdg, listType, filterDisplayed }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
+  const { showToast } = useContext(ToastContext)
 
   const sdgTargetContainer = createRef()
   const [sdgTargetOverflow, setSdgTargetOverflow] = useState(false)
@@ -57,6 +65,10 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
     return useCases
   })()
 
+  const navClickHandler = (target) => {
+    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  }
+
   const nameColSpan = () => {
     return !useCases
       ? 'col-span-6'
@@ -74,7 +86,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
       {
         listType === 'list'
           ? (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
+            <div onClick={() => navClickHandler()} className={containerElementStyle}>
               <div className='bg-white border border-dial-gray hover:border-transparent'>
                 <div className='grid grid-cols-1 lg:grid-cols-6 gap-x-4 py-4 px-4'>
                   <div className={`${nameColSpan()} text-base text-sdg font-semibold ${ellipsisTextStyle}`}>
@@ -120,7 +132,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
             </div>
             )
           : (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-sdg hover:text-dial-yellow cursor-pointer'>
+            <div onClick={() => navClickHandler()} className={containerElementStyle}>
               <div className='border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='flex flex-col h-80 p-4'>
                   <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>

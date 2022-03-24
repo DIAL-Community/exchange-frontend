@@ -1,8 +1,9 @@
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 
+import { ToastContext } from '../../lib/ToastContext'
 import { ORIGIN_ACRONYMS, truncate } from '../../lib/utilities'
 
 import { convertToKey } from '../context/FilterContext'
@@ -11,10 +12,17 @@ const collectionPath = convertToKey('Projects')
 const ellipsisTextStyle = `
   whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
+const containerElementStyle = `
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+  text-project hover:text-dial-yellow
+`
 
 const ProjectCard = ({ project, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
+
+  const { showToast } = useContext(ToastContext)
 
   const projectOrganization = (() => {
     if (project.organizations && project.organizations.length > 0) {
@@ -44,14 +52,18 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
     ReactTooltip.rebuild()
   })
 
+  const navClickHandler = (target) => {
+    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  }
+
   return (
     <Link className='card-link' href={`/${collectionPath}/${project.slug}`}>
       <a {... newTab && { target: '_blank' }}>
         {
         listType === 'list'
           ? (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-button-gray hover:text-dial-yellow cursor-pointer'>
-              <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+            <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className='bg-white border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='grid grid-cols-12 my-4 px-4 text-base font-semibold hover:text-dial-yellow'>
                   <div className={`${nameColSpan(project)} lg:mr-4 my-auto ${ellipsisTextStyle}`}>
                     <div className='block lg:hidden font-normal float-right'>
@@ -140,7 +152,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
             </div>
             )
           : (
-            <div className='group border-3 border-transparent hover:border-dial-yellow text-dial-purple cursor-pointer'>
+            <div onClick={() => navClickHandler()} className={`group ${containerElementStyle}`}>
               <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow drop-shadow'>
                 <div className='border-b text-2xl p-4 group-hover:text-dial-yellow' style={{ minHeight: '97px' }}>
                   <div className='bg-white bg-opacity-70 text-xl 2xl:text-2xl' style={{ maxHeight: '64px' }}>

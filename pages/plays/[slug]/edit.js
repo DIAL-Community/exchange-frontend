@@ -19,15 +19,13 @@ query Play($slug: String!) {
     name
     slug
     tags
-    playDescriptions {
+    playDescription {
       description
-      locale
     }
     playMoves {
       name
-      moveDescriptions {
+      moveDescription {
         description
-        locale
       }
     }
   }
@@ -42,7 +40,11 @@ function EditPlay () {
 
   const { locale } = router
   const { slug } = router.query
-  const { loading, error, data } = useQuery(PLAY_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
+  const { loading, error, data } = useQuery(PLAY_QUERY, {
+    variables: { slug: slug, locale: locale },
+    skip: !slug,
+    context: { headers: { 'Accept-Language': locale } }
+  })
 
   if (loading) {
     return <Loading />
@@ -61,7 +63,7 @@ function EditPlay () {
       <Header />
       {
         data && data.play &&
-          <PlayForm play={data.play} action='update' />
+          <PlayForm play={data.play} />
       }
       <Footer />
     </>

@@ -44,9 +44,10 @@ const OrganizationDetailLeft = ({ organization }) => {
   const [fetchCandidateRole, { data, error }] = useLazyQuery(CANDIDATE_ROLE_QUERY)
   useEffect(() => {
     if (session && session.user) {
+      const { userEmail } = session.user
       fetchCandidateRole({
         variables:
-          { email: session.user.email, productId: '', organizationId: organization.id }
+          { email: userEmail, productId: '', organizationId: organization.id }
       })
     }
   }, [session])
@@ -83,7 +84,7 @@ const OrganizationDetailLeft = ({ organization }) => {
       return 'owner'
     }
 
-    if (appliedToBeOwner || (data && `${data.candidateRole.organizationId}` === `${organization.id}`)) {
+    if (appliedToBeOwner || (data && `${data.candidateRole?.organizationId}` === `${organization.id}`)) {
       // Applying to be the owner of the organization
       return 'applied-to-own'
     }

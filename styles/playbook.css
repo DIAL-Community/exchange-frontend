@@ -5,6 +5,13 @@
   overflow: hidden;
 }
 
+.playbook-list-description > * {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* Styling for the play navigation progress. */
 .play-progress {
   position: relative;
@@ -144,6 +151,10 @@
   100% {
     opacity: 0;
   }
+}
+
+#overview-editor, #outcomes-editor, #audience-editor {
+  min-height: 18rem;
 }
 
 

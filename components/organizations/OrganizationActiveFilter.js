@@ -80,17 +80,17 @@ const OrganizationActiveFilter = () => {
 
   return (
     <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
-      <div className='flex flex-row flex-wrap px-3'>
+      <div className='flex flex-row flex-wrap px-3 gap-2'>
         {
           aggregator &&
-            <div className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
+            <div className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
               {format('filter.organization.aggregatorOnly')}
               <MdClose className='ml-3 inline cursor-pointer' onClick={toggleAggregator} />
             </div>
         }
         {
           endorser &&
-            <div className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
+            <div className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
               {format('filter.organization.endorserOnly')}
               <MdClose className='ml-3 inline cursor-pointer' onClick={toggleEndorser} />
             </div>

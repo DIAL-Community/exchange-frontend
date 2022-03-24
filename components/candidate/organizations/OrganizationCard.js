@@ -85,7 +85,7 @@ const OrganizationCard = ({ organization, listType }) => {
                   : String(organization.rejected) === 'false' || status === 'approved'
                     ? 'bg-green-50'
                     : 'bg-white'}
-                border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg
+                border border-dial-gray hover:border-transparent drop-shadow
               `}
               >
                 <div className='grid grid-cols-12 gap-4 py-4 px-4 text-organization'>

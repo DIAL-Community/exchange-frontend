@@ -1,16 +1,29 @@
 import Link from 'next/link'
+import { useContext } from 'react'
 import { useIntl } from 'react-intl'
 
+import { ToastContext } from '../../lib/ToastContext'
 import { convertToKey } from '../context/FilterContext'
+
 const collectionPath = convertToKey('Organizations')
 
 const ellipsisTextStyle = `
   whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
+const containerElementStyle = `
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+  text-organization hover:text-dial-yellow
+`
 
 const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
+  const { showToast } = useContext(ToastContext)
+  const navClickHandler = (target) => {
+    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  }
 
   const nameColSpan = (organization) => {
     return !organization.sectors
@@ -24,9 +37,9 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
         listType === 'list'
           ? (
             <Link className='card-link' href={`/${collectionPath}/${organization.slug}`}>
-              <a {... newTab && { target: '_blank' }}>
-                <div className='border-3 border-transparent hover:border-dial-yellow text-workflow cursor-pointer'>
-                  <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg hover:text-dial-yellow'>
+              <a {...newTab && { target: '_blank' }}>
+                <div onClick={() => navClickHandler()} className={containerElementStyle}>
+                  <div className='bg-white border border-dial-gray hover:border-transparent drop-shadow'>
                     <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                       <img
                         className='m-auto w-8'
@@ -96,7 +109,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
             </Link>
             )
           : (
-            <div className='group border-3 border-transparent hover:border-dial-yellow text-dial-purple cursor-pointer'>
+            <div onClick={() => navClickHandler()} className={`group ${containerElementStyle}`}>
               <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow drop-shadow'>
                 {
                   organization.whenEndorsed && (

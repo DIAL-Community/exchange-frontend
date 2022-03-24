@@ -25,7 +25,7 @@ const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
     } else {
       return [
         'text-use-case border-3 border-transparent hover:border-dial-yellow hover:text-dial-yellow cursor-pointer',
-        'border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'
+        'border border-dial-gray hover:border-transparent drop-shadow'
       ]
     }
   }

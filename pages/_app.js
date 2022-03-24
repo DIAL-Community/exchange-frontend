@@ -1,3 +1,5 @@
+
+import { useEffect } from 'react'
 import { Provider } from 'next-auth/client'
 import { IntlProvider } from 'react-intl'
 import { useRouter } from 'next/router'
@@ -23,10 +25,11 @@ import '../styles/drawer.css'
 import '../styles/card.css'
 
 import '../styles/playbook.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 import CatalogContext from '../lib/CatalogContext'
-import { useEffect } from 'react'
 import CandidateContext from '../lib/CandidateContext'
+import { ToastContextProvider } from '../lib/ToastContext'
 
 export function reportWebVitals (metric) {
   // https://nextjs.org/docs/advanced-features/measuring-performance
@@ -39,6 +42,18 @@ export function reportWebVitals (metric) {
       value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value)
     })
   }
+}
+
+const ApplicationDefaultContexts = ({ children }) => {
+  return (
+    <CatalogContext>
+      <CandidateContext>
+        <ToastContextProvider>
+          {children}
+        </ToastContextProvider>
+      </CandidateContext>
+    </CatalogContext>
+  )
 }
 
 const App = ({ Component, pageProps }) => {
@@ -61,11 +76,9 @@ const App = ({ Component, pageProps }) => {
     <IntlProvider locale={locale} defaultLocale='en' messages={messages}>
       <Provider session={pageProps.session}>
         <DndProvider backend={HTML5Backend}>
-          <CatalogContext>
-            <CandidateContext>
-              <Component {...pageProps} />
-            </CandidateContext>
-          </CatalogContext>
+          <ApplicationDefaultContexts>
+            <Component {...pageProps} />
+          </ApplicationDefaultContexts>
         </DndProvider>
       </Provider>
     </IntlProvider>

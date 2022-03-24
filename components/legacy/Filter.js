@@ -46,7 +46,7 @@ const Filter = (props) => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const activeTab = filterItems.indexOf(props.activeTab)
-  const [openHint, setOpenHint] = useState(false)
+  const [hintDisplayed, setHintDisplayed] = useState(false)
 
   const { setInteractionDetected } = useContext(QueryParamContext)
   const { resultCounts, filterDisplayed, setResultCounts, setFilterDisplayed } = useContext(FilterContext)
@@ -273,7 +273,7 @@ const Filter = (props) => {
           </ul>
           <div className='relative flex flex-col min-w-0 break-words bg-white'>
             {
-              !openHint &&
+              !hintDisplayed &&
                 <div className='bg-dial-gray-dark flex-auto'>
                   <div className='tab-content tab-space'>
                     <div className='flex flex-row'>
@@ -284,7 +284,7 @@ const Filter = (props) => {
                       {
                         // Map doesn't have hint.
                         activeTab < filterItems.length - 1 &&
-                          <div className='px-4 pt-3 pb-2 text-white cursor-pointer' onClick={() => setOpenHint(!openHint)}>
+                          <div className='px-4 pt-3 pb-2 text-white cursor-pointer' onClick={() => setHintDisplayed(!hintDisplayed)}>
                             <span className='hidden md:inline text-sm'>{format('filter.hint.text') + format(props.activeTab).slice(0, -1)}</span>
                             <HiQuestionMarkCircle className='text-2xl inline ml-2' />
                           </div>
@@ -294,8 +294,8 @@ const Filter = (props) => {
                 </div>
             }
             {
-              openHint &&
-                <FilterHint activeTab={activeTab} openHint={openHint} setOpenHint={setOpenHint} />
+              hintDisplayed &&
+                <FilterHint activeTab={activeTab} hintDisplayed={hintDisplayed} setHintDisplayed={setHintDisplayed} />
             }
           </div>
         </div>

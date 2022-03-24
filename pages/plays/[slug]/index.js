@@ -21,7 +21,7 @@ const PLAY_QUERY = gql`
       slug
       tags
       imageFile
-      playDescriptions {
+      playDescription {
         description
         locale
       }
@@ -29,7 +29,7 @@ const PLAY_QUERY = gql`
         name
         slug
         resources
-        moveDescriptions {
+        moveDescription {
           description
           locale
         }
@@ -43,10 +43,14 @@ const Play = () => {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
-  const { pathname, asPath, query } = useRouter()
+  const { pathname, asPath, query, locale } = useRouter()
 
   const { slug } = router.query
-  const { loading, error, data } = useQuery(PLAY_QUERY, { variables: { slug: slug }, skip: !slug })
+  const { loading, error, data } = useQuery(PLAY_QUERY, {
+    variables: { slug: slug },
+    skip: !slug,
+    context: { headers: { 'Accept-Language': locale } }
+  })
 
   useEffect(() => {
     if (query.locale) {
@@ -66,10 +70,8 @@ const Play = () => {
       {error && !error.networkError && <NotFound />}
       {
         data && data.play &&
-          <div className='flex flex-col lg:flex-row justify-between pb-8 max-w-catalog mx-auto'>
-            <div className='relative lg:sticky lg:top-66px w-full h-full py-4 px-4'>
-              <PlayDetail play={data.play} />
-            </div>
+          <div className='px-8'>
+            <PlayDetail play={data.play} />
           </div>
       }
       <Footer />

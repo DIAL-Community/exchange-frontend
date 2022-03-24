@@ -101,7 +101,7 @@ export const TagFilters = (props) => {
       {
         tags &&
           tags.map(tag => (
-            <div key={`filter-${tag.label}`} className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
+            <div key={`filter-${tag.label}`} className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
               {`${format('tag.label')}: ${tag.label}`}
               <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeTag(tag.value)} />
             </div>

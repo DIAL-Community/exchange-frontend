@@ -1,13 +1,19 @@
 import Link from 'next/link'
-import { createRef, useEffect, useState } from 'react'
+import { createRef, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 
+import { ToastContext } from '../../lib/ToastContext'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Building Blocks')
 
 const ellipsisTextStyle = `
    whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+`
+const containerElementStyle = `
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+  text-building-block hover:text-dial-yellow
 `
 
 const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = false }) => {
@@ -19,6 +25,8 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
 
   const workflowContainer = createRef()
   const [workflowOverflow, setWorkflowOverflow] = useState(false)
+
+  const { showToast } = useContext(ToastContext)
 
   useEffect(() => {
     ReactTooltip.rebuild()
@@ -50,14 +58,18 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
       : filterDisplayed ? 'col-span-2 xl:col-span-1' : 'col-span-2 lg:col-span-1'
   }
 
+  const navClickHandler = (target) => {
+    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  }
+
   return (
     <Link href={`/${collectionPath}/${buildingBlock.slug}`}>
       <a {... newTab && { target: '_blank' }}>
         {
         listType === 'list'
           ? (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
-              <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+            <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className='bg-white border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                   <div className={`${nameColSpan(buildingBlock)} pr-3 text-base font-semibold ${ellipsisTextStyle}`}>
                     {
@@ -138,7 +150,13 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
             </div>
             )
           : (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
+            <div
+              onClick={() => navClickHandler()}
+              className={`
+                border-3 border-transparent hover:border-dial-yellow
+                text-building-block hover:text-dial-yellow cursor-pointer
+              `}
+            >
               <div className='h-full flex flex-col border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray'>
                   <div className='ml-auto text-button-gray-light text-sm font-semibold'>
@@ -177,8 +195,9 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
                               .map(workflow => (
                                 <div key={`workflow-${workflow.slug}`} className='bg-white p-2 mr-1.5 cursor-default'>
                                   <img
+                                    className='m-auto h-6 workflow-filter'
                                     data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: workflow.name })}
-                                    alt={format('image.alt.logoFor', { name: workflow.name })} className='m-auto h-6 workflow-filter'
+                                    alt={format('image.alt.logoFor', { name: workflow.name })}
                                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
                                   />
                                 </div>
@@ -219,7 +238,8 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
                             buildingBlock.products
                               .map(product => (
                                 <div
-                                  key={`product-${product.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded cursor-default'
+                                  key={`product-${product.slug}`}
+                                  className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded cursor-default'
                                   data-tip={format('tooltip.forEntity', { entity: format('product.label'), name: product.name })}
                                 >
                                   {product.name}

@@ -15,6 +15,7 @@ const MOVE_QUERY = gql`
       resources
       order
       moveDescription {
+        id
         description
       }
     }

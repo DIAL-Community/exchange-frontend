@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import { createRef, useEffect, useState } from 'react'
+import { createRef, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
+import { ToastContext } from '../../lib/ToastContext'
 
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Use Cases')
@@ -9,10 +10,17 @@ const collectionPath = convertToKey('Use Cases')
 const ellipsisTextStyle = `
    whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
+const containerElementStyle = `
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+  text-use-case hover:text-dial-yellow
+`
 
 const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
+
+  const { showToast } = useContext(ToastContext)
 
   const sdgTargetContainer = createRef()
   const [sdgTargetOverflow, setSdgTargetOverflow] = useState(false)
@@ -63,14 +71,18 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
       : filterDisplayed ? 'col-span-9 lg:col-span-10 xl:col-span-4' : 'col-span-9 md:col-span-10 lg:col-span-4'
   }
 
+  const navClickHandler = (target) => {
+    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  }
+
   return (
     <Link href={`/${collectionPath}/${useCase.slug}`}>
       <a {... newTab && { target: '_blank' }}>
         {
         listType === 'list'
           ? (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
-              <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+            <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className='bg-white border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                   <div className={`${nameColSpan(useCase)} text-base font-semibold ${ellipsisTextStyle}`}>
                     <img
@@ -147,7 +159,7 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
             </div>
             )
           : (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
+            <div onClick={() => navClickHandler()} className={containerElementStyle}>
               <div className='border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray'>
                   <div className='ml-auto text-button-gray-light text-sm font-semibold'>

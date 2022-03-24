@@ -13,6 +13,7 @@ const PLAYBOOK_QUERY = gql`
       name
       imageFile
       playbookPlays {
+        id
         playSlug
         order
       }
@@ -106,13 +107,11 @@ const PlaybookDetailHeader = ({ slug }) => {
               {
                 data.playbook.playbookPlays.map((playbookPlay, index) => {
                   return (
-                    <div key={playbookPlay.order}>
-                      <a href='#navigate-to-play' onClick={(e) => navigateToPlay(e, playbookPlay.playSlug)}>
-                        <div className={`step ${index <= currentSlugIndex && 'active'}`}>
-                          {playbookPlay.order + 1}
-                        </div>
-                      </a>
-                    </div>
+                    <a key={index} href='#navigate-to-play' onClick={(e) => navigateToPlay(e, playbookPlay.playSlug)}>
+                      <div className={`step ${index <= currentSlugIndex && 'active'}`}>
+                        {index + 1}
+                      </div>
+                    </a>
                   )
                 })
               }

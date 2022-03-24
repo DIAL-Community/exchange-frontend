@@ -10,7 +10,7 @@ const MobileDrawer = ({ filter, hint, activeTab }) => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const [showFilters, setShowFilters] = useState(false)
-  const { openHint } = useContext(FilterContext)
+  const { hintDisplayed } = useContext(FilterContext)
 
   const filterPopoverButton = createRef()
   const filterPopover = createRef()
@@ -57,13 +57,13 @@ const MobileDrawer = ({ filter, hint, activeTab }) => {
         className={`${showFilters ? 'block md:hidden' : 'hidden'} border-b-2 border-dial-gray z-20 bg-dial-gray-light h-full`}
         ref={filterPopover} role='menu'
       >
-        <div className={`card ${openHint ? 'flip-vertical' : ''}`}>
+        <div className={`card ${hintDisplayed ? 'flip-vertical' : ''}`}>
           <div className='card-body'>
             <div className='card-front'>
               {filter}
             </div>
             <div className='card-back flip-vertical'>
-              {openHint && hint}
+              {hintDisplayed && hint}
             </div>
           </div>
         </div>

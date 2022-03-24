@@ -5,7 +5,7 @@ import ReactHtmlParser from 'react-html-parser'
 import { FilterContext } from '../../context/FilterContext'
 
 const OrganizationHint = () => {
-  const { setOpenHint } = useContext(FilterContext)
+  const { setHintDisplayed } = useContext(FilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -41,7 +41,7 @@ const OrganizationHint = () => {
         <div className='absolute right-2 top-2'>
           <button
             className='bg-button-gray p-3 float-right rounded text-button-gray-light'
-            onClick={() => setOpenHint(false)}
+            onClick={() => setHintDisplayed(false)}
           >
             {format('general.close')}
           </button>

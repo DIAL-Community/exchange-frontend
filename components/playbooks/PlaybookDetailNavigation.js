@@ -16,13 +16,16 @@ const PLAYBOOK_QUERY = gql`
       name
       imageFile
       playbookPlays {
+        id
         playSlug
         playName
         order
       }
       plays {
+        id
         slug
         playMoves {
+          id
           name
         }
       }
@@ -148,7 +151,10 @@ const PlaybookDetailNavigation = ({ slug }) => {
   }
 
   return (
-    <div className='bg-dial-gray-dark sticky h-full overflow-y-auto border-t-8 border-dial-gray-dark' style={{ left: 0, top: '150px', height: 'calc(100vh - 150px)' }}>
+    <div
+      className='bg-dial-gray-dark sticky h-full overflow-y-auto border-dial-gray-dark'
+      style={{ left: 0, top: '150px', height: 'calc(100vh - 150px)' }}
+    >
       <div className='flex flex-col text-white'>
         <div
           className={`
@@ -167,7 +173,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
           data.playbook.playbookPlays.map((playbookPlay, index) => {
             return (
               <div
-                key={playbookPlay.order}
+                key={index}
                 className={`
                   border-r-4 border-dial-gray-dark
                   hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
