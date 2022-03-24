@@ -200,7 +200,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
             session && (
               <div className='inline'>
                 {
-                  (session.canEdit || session.user.own.products.filter(p => `${p}` === `${product.id}`).length > 0) && (
+                  (session.user.canEdit || session.user.own.products.filter(p => `${p}` === `${product.id}`).length > 0) && (
                     <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
                       <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
                       <span className='text-sm px-2'>{format('app.edit')}</span>
