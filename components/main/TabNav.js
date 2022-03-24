@@ -1,14 +1,23 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
+import { useContext } from 'react'
 import { HiQuestionMarkCircle } from 'react-icons/hi'
 
+import { ToastContext } from '../../lib/ToastContext'
 import { FILTER_ITEMS, MAPPED_FILTER_ITEMS_URL } from '../context/FilterContext'
 
 const TabNav = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
+  const { showToast } = useContext(ToastContext)
+
   const activeTab = FILTER_ITEMS.indexOf(props.activeTab)
+
+  const navClickHandler = (target) => {
+    showToast(`${format('app.navigatingTo')} ${target.toLowerCase()} ...`, 'default', 'bottom-right', false)
+  }
+
   return (
     <>
       <div className='hidden md:block sticky px-2 py-1 bg-white sticky-under-header max-w-catalog mx-auto'>
@@ -57,14 +66,20 @@ const TabNav = (props) => {
                         `}
                         data-toggle='tab' href={`/${href}`}
                       >
-                        <div
-                          className={`
-                            ${index === activeTab ? '' : 'truncate'}
-                            font-semibold my-2 mx-1 text-dial-gray-dark
-                          `}
-                        >
-                          {format(filterItem)}
-                        </div>
+                        {
+                          // Adding click handler to NextJS Link tag.
+                          // https://github.com/vercel/next.js/issues/1490#issuecomment-360227918
+                        }
+                        <span onClick={() => navClickHandler(format(filterItem))}>
+                          <div
+                            className={`
+                              ${index === activeTab ? '' : 'truncate'}
+                              font-semibold my-2 mx-1 text-dial-gray-dark
+                            `}
+                          >
+                            {format(filterItem)}
+                          </div>
+                        </span>
                       </a>
                     </Link>
                   </li>

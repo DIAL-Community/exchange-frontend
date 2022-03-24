@@ -1,18 +1,34 @@
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
+import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 
+import { ToastContext } from '../../lib/ToastContext'
 import { convertToKey } from '../context/FilterContext'
+
 const collectionPath = convertToKey('Users')
 
 const ellipsisTextStyle = `
    whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
+const containerElementStyle = `
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+  text-button-gray hover:text-dial-yellow
+`
 
 const UserCard = ({ user, listType, filterDisplayed, newTab = false }) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
   useEffect(() => {
     ReactTooltip.rebuild()
   })
+
+  const { showToast } = useContext(ToastContext)
+  const navClickHandler = (target) => {
+    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  }
 
   return (
     <Link href={`/${collectionPath}/${user.id}`}>
@@ -20,8 +36,8 @@ const UserCard = ({ user, listType, filterDisplayed, newTab = false }) => {
         {
         listType === 'list'
           ? (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
-              <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
+            <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className='bg-white border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                   <div className={`col-span-8 text-base font-semibold ${ellipsisTextStyle}`}>
                     <img src='/icons/user.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
@@ -37,7 +53,7 @@ const UserCard = ({ user, listType, filterDisplayed, newTab = false }) => {
             </div>
             )
           : (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
+            <div onClick={() => navClickHandler()} className={containerElementStyle}>
               <div className='border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray'>
                   <div className='ml-auto text-button-gray-light text-sm font-semibold'>

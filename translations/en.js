@@ -11,6 +11,10 @@ export const en = {
   'app.search': 'Search',
   'app.create-new': 'Create New',
   'app.edit-entity': 'Edit {entity}',
+  'app.create': 'Create',
+  'app.cancel': 'Cancel',
+  'app.duplicate': 'Duplicate',
+  'app.close': 'Close',
   'app.powered': 'Powered by DIAL\'s Catalog of Digital Solutions',
   'app.reportIssue': 'Report Issue',
 
@@ -1048,6 +1052,16 @@ export const en = {
   'play.buildingBlocks.subtitle': 'This Play is associated with these building blocks.',
   'play.products.subtitle': 'This Play is associated with these products.',
 
+  'play.view': 'View',
+  'play.assign': 'Assign',
+  'play.preview': 'Preview',
+  'play.unassign': 'Unassign',
+  'play.error': 'Play err!',
+
+  'playbooks.assignAnotherPlay': 'Assign another play',
+  'move.reOrder': 'Move Order.',
+
+  'playbook.error': 'Playbook err!',
   'report.reportIssue': 'Report an Issue',
   'report.name': 'Your Name',
   'report.email': 'Email Address',
@@ -1056,6 +1070,11 @@ export const en = {
   'report.issueType': 'What kind of feedback are you providing',
   'report.positive': 'Comment on something I liked',
   'report.bug': 'Report a problem or issue',
-  'report.suggest': 'Make a suggestion'
+  'report.suggest': 'Make a suggestion',
+
+  'breadcrumbs.navigating': 'Opening',
+
+  'app.navigatingTo': 'Navigating to',
+  'app.openingDetails': 'Opening details page'
 
 }

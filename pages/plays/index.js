@@ -18,6 +18,8 @@ import { useContext } from 'react'
 import dynamic from 'next/dynamic'
 
 import { PlayFilterContext, PlayFilterDispatchContext } from '../../components/context/PlayFilterContext'
+import { PlayListProvider } from '../../components/plays/PlayListContext'
+import { PlayPreviewProvider } from '../../components/plays/PlayPreviewContext'
 const PlayListQuery = dynamic(() => import('../../components/plays/PlayList'), { ssr: false })
 
 const Products = () => {
@@ -38,11 +40,15 @@ const Products = () => {
       <Header />
       <TabNav activeTab='filter.entity.plays' />
       <MobileNav activeTab='filter.entity.plays' />
-      <PageContent
-        activeTab='filter.entity.plays'
-        content={<PlayListQuery />}
-        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.plays' />}
-      />
+      <PlayListProvider>
+        <PlayPreviewProvider>
+          <PageContent
+            activeTab='filter.entity.plays'
+            content={<PlayListQuery />}
+            searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.plays' />}
+          />
+        </PlayPreviewProvider>
+      </PlayListProvider>
       <Footer />
     </>
   )

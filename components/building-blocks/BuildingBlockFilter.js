@@ -13,7 +13,7 @@ const BuildingBlockFilter = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { setOpenHint } = useContext(FilterContext)
+  const { setHintDisplayed } = useContext(FilterContext)
 
   const { showMature, sdgs, useCases, workflows } = useContext(BuildingBlockFilterContext)
   const { setShowMature, setSDGs, setUseCases, setWorkflows } = useContext(BuildingBlockFilterDispatchContext)
@@ -26,7 +26,7 @@ const BuildingBlockFilter = () => {
     <div className='px-4 py-4'>
       <div className='text-dial-gray-dark'>
         <div className='px-2 mb-4 text-xs'>
-          <button href='openHint' className='font-semibold flex gap-1' onClick={() => setOpenHint(true)}>
+          <button className='font-semibold flex gap-1' onClick={() => setHintDisplayed(true)}>
             {format('filter.hint.text')} {format('building-block.label')}
             <BsQuestionCircleFill className='inline text-sm mb-1' />
           </button>

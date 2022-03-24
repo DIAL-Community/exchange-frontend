@@ -1,3 +1,5 @@
+/* global fetch: false */
+
 import { Fragment, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { Controller, useForm } from 'react-hook-form'

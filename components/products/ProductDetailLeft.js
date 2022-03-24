@@ -55,9 +55,10 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
   const [fetchCandidateRole, { data, error }] = useLazyQuery(CANDIDATE_ROLE_QUERY)
   useEffect(() => {
     if (session) {
+      const { userEmail } = session.user
       fetchCandidateRole({
         variables:
-          { email: session.userEmail, productId: product.id, organizationId: '' }
+          { email: userEmail, productId: product.id, organizationId: '' }
       })
     }
   }, [session])
@@ -98,7 +99,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
       return 'owner'
     }
 
-    if (appliedToBeOwner || (data && `${data.candidateRole.productId}` === `${product.id}`)) {
+    if (appliedToBeOwner || (data && `${data.candidateRole?.productId}` === `${product.id}`)) {
       // Applying to be the owner of the organization
       return 'applied-to-own'
     }
@@ -218,7 +219,11 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
           <div className='h1 p-2 text-dial-purple'>
             {product.name}
           </div>
-          <img alt={`${product.name} Logo`} className='p-2 m-auto' src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile} width='200px' height='200px' />
+          <img
+            alt={`${product.name} Logo`} className='p-2 m-auto'
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+            width='200px' height='200px'
+          />
         </div>
         <div className='fr-view text-dial-gray-dark max-h-40 overflow-hidden'>
           {product.productDescription && ReactHtmlParser(product.productDescription.description)}

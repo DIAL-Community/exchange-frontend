@@ -1,14 +1,15 @@
 import { useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { HiSortAscending } from 'react-icons/hi'
 
-import PlaybookCard from './PlaybookCard'
-import { PlaybookFilterContext } from '../context/PlaybookFilterContext'
-import { FilterContext } from '../context/FilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
+import PlaybookCard from './PlaybookCard'
+
+import { FilterContext } from '../context/FilterContext'
+import { PlaybookFilterContext } from '../context/PlaybookFilterContext'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -38,6 +39,7 @@ query SearchPlaybooks(
       imageFile
       tags
       playbookDescription {
+        id
         overview
       }
     }
@@ -58,34 +60,30 @@ const PlaybookList = (props) => {
     }`
 
   return (
-    <>
-      <div className={gridStyles}>
-        {
-          displayType === 'list' &&
-            <div className='flex flex-col md:flex-row flex-wrap my-3 px-4 gap-x-4'>
-              <div className='ml-2 text-sm font-semibold opacity-70'>
-                {format('playbook.header').toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
-              </div>
-              <div className='hidden md:block ml-auto text-sm font-semibold opacity-50'>
-                {format('playbooks.tags').toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
-              </div>
+    <div className={gridStyles}>
+      {
+        displayType === 'list' &&
+          <div className='flex flex-col md:flex-row flex-wrap my-3 px-4 gap-x-4'>
+            <div className='ml-2 text-sm font-semibold opacity-70'>
+              {format('playbook.header').toUpperCase()}
             </div>
-        }
-        {
-          props.playbookList.length > 0
-            ? props.playbookList.map((playbook) => (
-              <PlaybookCard key={playbook.id} listType={displayType} {...{ playbook, filterDisplayed }} />
-              ))
-            : (
-              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
-                {format('noResults.entity', { entity: format('playbooks.label') })}
-              </div>
-              )
-        }
-      </div>
-    </>
+            <div className='hidden md:block ml-auto text-sm font-semibold opacity-50'>
+              {format('playbooks.tags').toUpperCase()}
+            </div>
+          </div>
+      }
+      {
+        props.playbookList.length > 0
+          ? props.playbookList.map((playbook) => (
+            <PlaybookCard key={playbook.id} listType={displayType} {...{ playbook, filterDisplayed }} />
+            ))
+          : (
+            <div className='text-sm font-medium opacity-80'>
+              {format('noResults.entity', { entity: format('playbooks.label').toString().toLowerCase() })}
+            </div>
+            )
+      }
+    </div>
   )
 }
 
@@ -141,7 +139,7 @@ const PlaybookListQuery = () => {
   return (
     <>
       <InfiniteScroll
-        className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'
+        className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height'
         dataLength={nodes.length}
         next={handleLoadMore}
         hasMore={pageInfo.hasNextPage}

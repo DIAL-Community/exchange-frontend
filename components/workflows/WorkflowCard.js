@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import { createRef, useEffect, useState } from 'react'
+import { createRef, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
+import { ToastContext } from '../../lib/ToastContext'
 
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Workflows')
@@ -9,10 +10,17 @@ const collectionPath = convertToKey('Workflows')
 const ellipsisTextStyle = `
    whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
 `
+const containerElementStyle = `
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+  text-workflow hover:text-dial-yellow
+`
 
 const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
+
+  const { showToast } = useContext(ToastContext)
 
   const buildingBlockContainer = createRef()
   const [buildingBlockOverflow, setBuildingBlockOverflow] = useState(false)
@@ -61,12 +69,16 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
       : filterDisplayed ? 'col-span-12 xl:col-span-4' : 'col-span-12 lg:col-span-4'
   }
 
+  const navClickHandler = (target) => {
+    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  }
+
   return (
     <Link href={`/${collectionPath}/${workflow.slug}`}>
       {
         listType === 'list'
           ? (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
+            <div onClick={() => navClickHandler()} className={containerElementStyle}>
               <div className='bg-white border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                   <div className={`${nameColSpan()} ${ellipsisTextStyle} text-base font-semibold`}>
@@ -146,7 +158,7 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
             </div>
             )
           : (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
+            <div onClick={() => navClickHandler()} className={containerElementStyle}>
               <div className='border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='flex flex-col h-80 p-4'>
                   <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>

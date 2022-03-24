@@ -76,7 +76,7 @@ const SDGFilter = (props) => {
         <div className='px-2 py-1 mt-2 text-sm text-white whitespace-nowrap'>
           {format('filter.general.applied', { count: filterCount() })}:
         </div>
-        <div className='flex flex-row flex-wrap'>
+        <div className='flex flex-row flex-wrap gap-2'>
           <SDGFilters {...{ sdgs, setSDGs }} />
 
           <div className='flex px-2 py-1 mt-2 text-sm text-white'>

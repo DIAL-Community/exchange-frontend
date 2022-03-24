@@ -77,7 +77,7 @@ const ProjectActiveFilter = () => {
 
   return (
     <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
-      <div className='flex flex-row flex-wrap px-3'>
+      <div className='flex flex-row flex-wrap px-3 gap-2'>
         <SDGFilters {...{ sdgs, setSDGs }} />
         <OriginFilters {...{ origins, setOrigins }} />
         <CountryFilters {...{ countries, setCountries }} />

@@ -82,9 +82,7 @@ const User = () => {
       {error && !error.networkError && <NotFound />}
       {
         data && data.user &&
-        
-            <UserDetail user={data.user} />
-
+          <UserDetail user={data.user} />
       }
       <Footer />
     </>

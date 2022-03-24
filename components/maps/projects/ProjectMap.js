@@ -111,7 +111,7 @@ const ProjectMap = () => {
       nodes.forEach(project => {
         project.countries.forEach(country => {
           const currentCountry = countriesWithProjects[country.name]
-          currentCountry.projects.push({ name: project.name, slug: project.slug })
+          currentCountry?.projects.push({ name: project.name, slug: project.slug })
         })
       })
     }

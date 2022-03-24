@@ -32,17 +32,17 @@ const FilterContextProvider = ({ children }) => {
   const [resultCounts, setResultCounts] = useState(initialCounts)
   const [displayType, setDisplayType] = useState('card')
   const [filterDisplayed, setFilterDisplayed] = useState(true)
-  const [openHint, setOpenHint] = useState(false)
+  const [hintDisplayed, setHintDisplayed] = useState(false)
 
   const props = {
     resultCounts,
     displayType,
     filterDisplayed,
-    openHint,
+    hintDisplayed,
     setResultCounts,
     setDisplayType,
     setFilterDisplayed,
-    setOpenHint
+    setHintDisplayed
   }
 
   return (

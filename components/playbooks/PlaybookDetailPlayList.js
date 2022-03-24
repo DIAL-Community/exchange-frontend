@@ -15,7 +15,7 @@ import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import ProductCard from '../products/ProductCard'
 import { PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 
-const DEFAULT_PAGE_SIZE = 2
+const DEFAULT_PAGE_SIZE = 10
 const PLAYBOOK_PLAYS_QUERY = gql`
   query SearchPlaybookPlays($first: Int, $after: String, $slug: String!) {
     searchPlaybookPlays(first: $first, after: $after, slug: $slug) {
@@ -33,18 +33,22 @@ const PLAYBOOK_PLAYS_QUERY = gql`
         name
         imageFile
         playDescription {
+          id
           description
         }
         playMoves {
+          id
           slug
           name
         }
         products {
+          id
           name
           slug
           imageFile
         }
         buildingBlocks {
+          id
           name
           slug
           imageFile
