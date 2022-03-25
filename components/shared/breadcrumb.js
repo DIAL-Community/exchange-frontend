@@ -6,11 +6,11 @@ import { useIntl } from 'react-intl'
 const convertBreadcrumb = string => {
   return string
     ? string
-        .replace(/-/g, ' ')
-        .replace(/oe/g, 'ö')
-        .replace(/ae/g, 'ä')
-        .replace(/ue/g, 'ü')
-        .toUpperCase()
+      .replace(/-/g, ' ')
+      .replace(/oe/g, 'ö')
+      .replace(/ae/g, 'ä')
+      .replace(/ue/g, 'ü')
+      .toUpperCase()
     : string
 }
 
@@ -44,6 +44,7 @@ const Breadcrumb = (props) => {
 
     const pathArray = linkPath.map((path, i) => {
       const userFriendlyPath = basePathMappings[path] ? format(basePathMappings[path]) : slugNameMapping[path]
+
       return { breadcrumb: userFriendlyPath, href: '/' + linkPath.slice(0, i + 1).join('/') }
     })
 
@@ -56,7 +57,7 @@ const Breadcrumb = (props) => {
 
   return (
     // Use this to make this sticky: <div className='bg-white sticky py-4' style={{ top: '66px', zIndex: 1 }}>
-    <div className='bg-white pb-3 lg:py-4 whitespace-nowrap overflow-ellipsis overflow-hidden'>
+    <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
       <Link href='/'>
         <a className='inline text-dial-blue h5'>{format('app.home')}</a>
       </Link>

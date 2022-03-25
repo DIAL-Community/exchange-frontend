@@ -1,11 +1,8 @@
-import withApollo from '../../../../lib/apolloClient'
-
 import Head from 'next/head'
+import { useIntl } from 'react-intl'
+import withApollo from '../../../../lib/apolloClient'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
-
-import { useIntl } from 'react-intl'
-
 import { MoveForm } from '../../../../components/plays/moves/MoveForm'
 
 function CreateMove () {

@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useEffect } from 'react'
-
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import GradientBackground from '../../components/shared/GradientBackground'

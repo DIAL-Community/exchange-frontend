@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
+import { useRouter } from 'next/router'
 import { DiscourseCount } from '../shared/discourse'
 import Breadcrumb from '../shared/breadcrumb'
-import { useRouter } from 'next/router'
 
 const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
   const { formatMessage } = useIntl()
@@ -16,6 +16,7 @@ const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
     }
 
     const { userEmail, userToken } = session.user
+
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/building_blocks/${buildingBlock.slug}/` +
       `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
@@ -23,6 +24,7 @@ const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[buildingBlock.slug] = buildingBlock.name
+    
     return map
   })()
 

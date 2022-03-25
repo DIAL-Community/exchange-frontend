@@ -1,20 +1,15 @@
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-
 import { useEffect, useRef } from 'react'
 import { useIntl } from 'react-intl'
-
+import { gql, useQuery } from '@apollo/client'
+import dynamic from 'next/dynamic'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import NotFound from '../../../components/shared/NotFound'
 import withApollo from '../../../lib/apolloClient'
-
-import { gql, useQuery } from '@apollo/client'
-
 import ProductDetailLeft from '../../../components/products/ProductDetailLeft'
 import ProductDetailRight from '../../../components/products/ProductDetailRight'
-
-import dynamic from 'next/dynamic'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 const Loading = dynamic(() => import('../../../components/shared/FetchStatus').then(x => x.Loading), { ssr: false })
 const Error = dynamic(() => import('../../../components/shared/FetchStatus').then(x => x.Error), { ssr: false })

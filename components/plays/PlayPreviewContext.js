@@ -9,6 +9,7 @@ const PlayPreviewProvider = ({ children }) => {
 
   const values = { previewSlug, previewDisplayed }
   const dispatchValues = { setPreviewSlug, setPreviewDisplayed }
+
   return (
     <PlayPreviewContext.Provider value={values}>
       <PlayPreviewDispatchContext.Provider value={dispatchValues}>

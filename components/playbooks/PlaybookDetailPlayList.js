@@ -4,15 +4,12 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
-
 import InfiniteScroll from 'react-infinite-scroll-component'
-import ReactHtmlParser from 'react-html-parser'
-
-import MoveDetail from './MoveDetail'
+import parse from 'html-react-parser'
 import { Loading, Error } from '../shared/FetchStatus'
-
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import ProductCard from '../products/ProductCard'
+import MoveDetail from './MoveDetail'
 import { PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 
 const DEFAULT_PAGE_SIZE = 10
@@ -98,6 +95,7 @@ const Play = ({ play, index }) => {
     })
 
     observer.observe(ref.current)
+
     // Remove the observer as soon as the component is unmounted.
     return () => { observer.disconnect() }
   }, [])
@@ -109,7 +107,7 @@ const Play = ({ play, index }) => {
         {`${format('plays.label')} ${index + 1}. ${play.name}`}
       </div>
       <div className='fr-view tinyEditor text-dial-gray-dark'>
-        {ReactHtmlParser(play.playDescription.description)}
+        {parse(play.playDescription.description)}
       </div>
       <div className='flex flex-col gap-3'>
         {

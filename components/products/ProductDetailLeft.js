@@ -2,16 +2,14 @@
 
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
-import ReactHtmlParser from 'react-html-parser'
-import { DiscourseCount } from '../shared/discourse'
-import Breadcrumb from '../shared/breadcrumb'
+import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
-
 import ReCAPTCHA from 'react-google-recaptcha'
-
 import { FaSpinner } from 'react-icons/fa'
 import { useEffect, useRef, useState } from 'react'
 import { gql, useLazyQuery } from '@apollo/client'
+import { DiscourseCount } from '../shared/discourse'
+import Breadcrumb from '../shared/breadcrumb'
 
 const CANDIDATE_ROLE_QUERY = gql`
   query CandidateRole($email: String!, $productId: String!, $organizationId: String!) {
@@ -48,6 +46,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
     }
 
     const { userEmail, userToken } = session.user
+
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/products/${product.slug}/` +
         `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
@@ -186,6 +185,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[product.slug] = product.name
+
     return map
   })()
 
@@ -226,7 +226,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
           />
         </div>
         <div className='fr-view text-dial-gray-dark max-h-40 overflow-hidden'>
-          {product.productDescription && ReactHtmlParser(product.productDescription.description)}
+          {product.productDescription && parse(product.productDescription.description)}
         </div>
       </div>
       <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 lg:mr-6 shadow-lg border-b-2 border-dial-gray'>
@@ -288,7 +288,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
                   <div className='mt-2'>
                     {format('ownership.label')}:
                     <a
-                      class='text-dial-yellow mx-2 mt-2 border-b border-transparent hover:border-dial-yellow'
+                      className='text-dial-yellow mx-2 mt-2 border-b border-transparent hover:border-dial-yellow'
                       href={`mailto:${emailAddress}`} target='_blank' rel='noreferrer'
                     >
                       {emailAddress}

@@ -1,15 +1,13 @@
 import { useIntl } from 'react-intl'
-
+import parse from 'html-react-parser'
+import { useSession } from 'next-auth/client'
+import Link from 'next/link'
 import Breadcrumb from '../shared/breadcrumb'
 import WorkflowCard from '../workflows/WorkflowCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
-import ReactHtmlParser from 'react-html-parser'
+import { convertToKey } from '../context/FilterContext'
 import StepList from './steps/StepList'
 
-import { useSession } from 'next-auth/client'
-import Link from 'next/link'
-
-import { convertToKey } from '../context/FilterContext'
 
 const UseCaseDetailRight = ({ useCase }) => {
   const { formatMessage } = useIntl()
@@ -22,6 +20,7 @@ const UseCaseDetailRight = ({ useCase }) => {
     }
 
     const { userEmail, userToken } = session.user
+
     return `
       ${process.env.NEXT_PUBLIC_RAILS_SERVER}/use_cases/${useCase.slug}/use_case_steps/new?user_email=${userEmail}&user_token=${userToken}
     `
@@ -30,6 +29,7 @@ const UseCaseDetailRight = ({ useCase }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[useCase.slug] = useCase.name
+
     return map
   })()
 
@@ -40,7 +40,7 @@ const UseCaseDetailRight = ({ useCase }) => {
       </div>
       <div className='card-title mb-3 text-dial-gray-dark'>{format('useCase.description')}</div>
       <div className='fr-view text-dial-gray-dark'>
-        {useCase.useCaseDescription && ReactHtmlParser(useCase.useCaseDescription.description)}
+        {useCase.useCaseDescription && parse(useCase.useCaseDescription.description)}
       </div>
       <div className='mt-12'>
         <div className='self-center place-self-end text-sm'>
@@ -55,7 +55,7 @@ const UseCaseDetailRight = ({ useCase }) => {
         {
           useCase.useCaseHeaders && useCase.useCaseHeaders.length > 0 &&
             <div className='fr-view'>
-              {useCase.useCaseHeaders[0] && ReactHtmlParser(useCase.useCaseHeaders[0].header)}
+              {useCase.useCaseHeaders[0] && parse(useCase.useCaseHeaders[0].header)}
             </div>
         }
         <StepList useCaseSlug={useCase.slug} />

@@ -1,14 +1,11 @@
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import Head from 'next/head'
-
+import { gql, useQuery } from '@apollo/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import NotFound from '../../../components/shared/NotFound'
-
 import withApollo from '../../../lib/apolloClient'
-import { gql, useQuery } from '@apollo/client'
-
 import SDGDetailLeft from '../../../components/sdgs/SDGDetailLeft'
 import SDGDetailRight from '../../../components/sdgs/SDGDetailRight'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
@@ -45,6 +42,7 @@ const SDG = () => {
   const router = useRouter()
   const { slug } = router.query
   const { loading, error, data } = useQuery(SDG_QUERY, { variables: { slug: slug }, skip: !slug })
+
   return (
     <>
       <Head>

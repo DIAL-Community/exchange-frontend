@@ -1,9 +1,7 @@
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-
 import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
-
 import { SectorFilters } from '../filter/element/Sector'
 import { TagFilters } from '../filter/element/Tag'
 import { ProductFilters } from '../filter/element/Product'

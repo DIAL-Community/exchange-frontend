@@ -9,6 +9,7 @@ const PlayListProvider = ({ children }) => {
 
   const values = { currentPlays, tags }
   const dispatchValues = { setCurrentPlays, setTags }
+
   return (
     <PlayListContext.Provider value={values}>
       <PlayListDispatchContext.Provider value={dispatchValues}>

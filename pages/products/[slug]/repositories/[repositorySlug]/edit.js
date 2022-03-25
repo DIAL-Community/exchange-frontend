@@ -1,13 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-
 import { useRouter } from 'next/router'
-
 import { gql, useQuery } from '@apollo/client'
-
 import apolloClient from '../../../../../lib/apolloClient'
-
 import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
 import Breadcrumb from '../../../../../components/shared/breadcrumb'
@@ -46,6 +42,7 @@ const EditRepository = () => {
       map[data.productRepository.product.slug] = data.productRepository.product.name
       map[data.productRepository.slug] = data.productRepository.name
     }
+
     return map
   })()
 

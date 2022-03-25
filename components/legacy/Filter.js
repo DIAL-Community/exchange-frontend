@@ -1,8 +1,12 @@
 import React, { useContext, useState } from 'react'
 import Link from 'next/link'
-
 import { HiChevronDown, HiChevronUp, HiQuestionMarkCircle } from 'react-icons/hi'
-
+import { gql, useQuery } from '@apollo/client'
+import { useIntl } from 'react-intl'
+import { FilterContext, FILTER_ITEMS, MAPPED_FILTER_ITEMS_URL } from '../context/FilterContext'
+import withApollo from '../../lib/apolloClient'
+import { QueryParamContext } from '../context/QueryParamContext'
+import { truncate } from '../../lib/utilities'
 import ProductFilter from './ProductFilter'
 import BuildingBlockFilter from './BuildingBlockFilter'
 import WorkflowFilter from './WorkflowFilter'
@@ -11,17 +15,7 @@ import ProjectFilter from './ProjectFilter'
 import OrganizationFilter from './OrganizationFilter'
 import MapFilter from './MapFilter'
 import SDGFilter from './SDGFilter'
-
-import { FilterContext, FILTER_ITEMS, MAPPED_FILTER_ITEMS_URL } from '../context/FilterContext'
-
-import withApollo from '../../lib/apolloClient'
-
-import { gql, useQuery } from '@apollo/client'
 import FilterHint from './FilterHint'
-
-import { useIntl } from 'react-intl'
-import { QueryParamContext } from '../context/QueryParamContext'
-import { truncate } from '../../lib/utilities'
 
 const COUNT_QUERY = gql`
   query Counts {

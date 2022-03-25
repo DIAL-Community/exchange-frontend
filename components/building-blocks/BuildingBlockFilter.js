@@ -1,10 +1,8 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { BsQuestionCircleFill } from 'react-icons/bs'
-
 import { FilterContext } from '../context/FilterContext'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext } from '../context/BuildingBlockFilterContext'
-
 import { SDGAutocomplete } from '../filter/element/SDG'
 import { UseCaseAutocomplete } from '../filter/element/UseCase'
 import { WorkflowAutocomplete } from '../filter/element/Workflow'

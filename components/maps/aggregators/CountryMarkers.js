@@ -1,7 +1,7 @@
 import { MapContainer, Marker, TileLayer, LayerGroup, useMap, useMapEvents } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import { createCountryMarkerIcon } from './CountryMarker'
 import { createRef, useState } from 'react'
+import { createCountryMarkerIcon } from './CountryMarker'
 
 const CountryMarkers = (props) => {
   const [zooming, setZooming] = useState(false)

@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl'
 const SectorCard = ({ sector, listType }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
   return (
     <>
       {
@@ -17,7 +18,7 @@ const SectorCard = ({ sector, listType }) => {
                 </div>
               </div>
             </div>
-            )
+          )
           : <div>{format('sector.label')}</div>
       }
     </>

@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
-
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import { useState } from 'react'
@@ -215,6 +214,7 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
                   )
                 } else if (subMenus[parent].type === 'admin' && session.user) {
                   const { userEmail, userToken } = session.user.user
+
                   return (
                     <>
                       <li key={index} className='py-4 border-b'>
@@ -236,6 +236,7 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
                     </>
                   )
                 }
+
                 return null
               })
             }
@@ -328,14 +329,14 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
                       </a>
                     </li>
                   </>
-                  )
+                )
                 : (
                   <li className='py-4 border-b font-semibold'>
                     <a className='mx-6 font-semibold' href='/sign-in' onClick={signInUser}>
                       {format('header.signIn')}
                     </a>
                   </li>
-                  )
+                )
             }
             <li className='py-4'>
               <a

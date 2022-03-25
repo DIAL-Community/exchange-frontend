@@ -3,11 +3,10 @@ import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { HiSortAscending } from 'react-icons/hi'
-
-import OrganizationCard from './OrganizationCard'
 import { OrganizationFilterContext } from '../../context/candidate/OrganizationFilterContext'
 import { FilterContext } from '../../context/FilterContext'
 import { Loading, Error } from '../../shared/FetchStatus'
+import OrganizationCard from './OrganizationCard'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -74,13 +73,13 @@ const OrganizationList = (props) => {
           props.organizationList.length > 0
             ? props.organizationList.map((organization) => (
               <OrganizationCard key={organization.id} organization={organization} listType={displayType} />
-              ))
+            ))
             : (
               <div className='flex justify-self-center text-dial-gray-dark'>{
                 format('noResults.entity', { entity: format('organizations.label') })
               }
               </div>
-              )
+            )
         }
       </div>
     </>
@@ -123,6 +122,7 @@ const OrganizationListQuery = () => {
       }
     })
   }
+  
   return (
     <InfiniteScroll
       className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height'

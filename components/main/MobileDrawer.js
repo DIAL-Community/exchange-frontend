@@ -1,7 +1,6 @@
 import { createRef, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { createPopper } from '@popperjs/core'
-
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { FilterContext } from '../context/FilterContext'
 
@@ -21,6 +20,7 @@ const MobileDrawer = ({ filter, hint, activeTab }) => {
     })
     openCallback(true)
   }
+
   const closeDropdownPopover = (closeCallback) => {
     closeCallback(false)
   }

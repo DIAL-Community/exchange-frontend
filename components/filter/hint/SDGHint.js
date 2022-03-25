@@ -1,6 +1,5 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-
 import { FilterContext } from '../../context/FilterContext'
 
 const SDGHint = () => {

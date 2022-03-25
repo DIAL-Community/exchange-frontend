@@ -1,15 +1,12 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-
+import { MdClose } from 'react-icons/md'
+import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../context/ProductFilterContext'
 import { SDGFilters } from '../filter/element/SDG'
 import { parseQuery } from '../shared/SharableLink'
-
-import { MdClose } from 'react-icons/md'
-
-import dynamic from 'next/dynamic'
 import { UseCaseFilters } from '../filter/element/UseCase'
 import { WorkflowFilters } from '../filter/element/Workflow'
 import { BuildingBlockFilters } from '../filter/element/BuildingBlock'
@@ -55,6 +52,7 @@ const ProductActiveFilter = () => {
     count = count + countries.length + organizations.length + tags.length +
       sectors.length + origins.length + sdgs.length + useCases.length +
       workflows.length + buildingBlocks.length + productTypes.length + endorsers.length
+
     return count
   }
 
@@ -102,6 +100,7 @@ const ProductActiveFilter = () => {
       ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters, ...useCaseFilters,
       ...workflowFilters, ...buildingBlockFilters, ...endorserFilters
     ].filter(f => f).join('&')
+
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
 

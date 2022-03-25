@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
-
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { gql, useMutation } from '@apollo/client'
@@ -82,7 +81,7 @@ const OrganizationForm = () => {
   return (
     <div className='pt-4'>
       <div className={`mx-4 ${data ? 'visible' : 'invisible'} text-center pt-4`}>
-        <div className='my-auto text-green-500'>{format('candidateProduct.created')}</div>
+        <div className='my-auto text-emerald-500'>{format('candidateProduct.created')}</div>
       </div>
       <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
         <form method='post' onSubmit={handleSubmit}>

@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl'
+import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import UseCaseCard from '../use-cases/UseCaseCard'
-import ReactHtmlParser from 'react-html-parser'
 
 const WorkflowDetailRight = ({ workflow }) => {
   const { formatMessage } = useIntl()
@@ -19,14 +19,17 @@ const WorkflowDetailRight = ({ workflow }) => {
       if (useCaseSlugs.indexOf(useCaseStep.useCase.slug) === -1) {
         useCases.push(useCaseStep.useCase)
       }
+
       return useCaseStep
     })
+
     return useCases
   })()
 
   const slugNameMapping = (() => {
     const map = {}
     map[workflow.slug] = workflow.name
+
     return map
   })()
 
@@ -36,7 +39,7 @@ const WorkflowDetailRight = ({ workflow }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='fr-view text-dial-gray-dark'>
-        {workflow.workflowDescription && ReactHtmlParser(workflow.workflowDescription.description)}
+        {workflow.workflowDescription && parse(workflow.workflowDescription.description)}
       </div>
       {
         useCases && useCases.length > 0 &&

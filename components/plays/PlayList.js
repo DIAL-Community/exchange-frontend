@@ -1,15 +1,12 @@
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-
 import { Loading, Error } from '../shared/FetchStatus'
-import PlayCard from './PlayCard'
-
 import { FilterContext } from '../context/FilterContext'
 import { PlayFilterContext } from '../context/PlayFilterContext'
+import PlayCard from './PlayCard'
 import { PlayListContext } from './PlayListContext'
 
 export const SOURCE_TYPE_ASSIGNING = 'source.type.assign'
@@ -76,15 +73,15 @@ const PlayList = ({ playbook, playList, currentPlays, displayType, filterDisplay
       {
         playList.length > 0
           ? playList.map((play) => {
-              return (!currentPlays || !currentPlays.filter(e => e.id === play.id).length > 0) && (
-                <PlayCard key={play.id} {...{ playbook, play, displayType, filterDisplayed, sourceType }} />
-              )
-            })
+            return (!currentPlays || !currentPlays.filter(e => e.id === play.id).length > 0) && (
+              <PlayCard key={play.id} {...{ playbook, play, displayType, filterDisplayed, sourceType }} />
+            )
+          })
           : (
             <div className='text-sm font-medium opacity-80'>
               {format('noResults.entity', { entity: format('plays.label').toString().toLowerCase() })}
             </div>
-            )
+          )
       }
     </div>
   )
@@ -142,6 +139,7 @@ const PlayListQuery = ({ playbook, sourceType }) => {
 
   const viewType = 'list'
   const { searchPlays: { nodes, pageInfo } } = data
+
   return (
     <>
       <InfiniteScroll

@@ -14,11 +14,11 @@ const RepositoryInfo = ({ product }) => {
 
   return (
     <>
-      <div className='pb-5 pr-5 overflow-ellipsis overflow-hidden'>
+      <div className='pb-5 pr-5 text-ellipsis overflow-hidden'>
         <div className='h5 pb-1'>{format('product.website')}</div>
         <a className='text-dial-blue text-sm' href={`https://${product.website}`} target='_blank' rel='noreferrer'>{product.website}</a>
       </div>
-      <div className='pb-5 pr-5 overflow-ellipsis overflow-hidden'>
+      <div className='pb-5 pr-5 text-ellipsis overflow-hidden'>
         <div className='h5 pb-1'>{format('product.repository')}</div>
         <a className='text-dial-blue text-sm' href={`${product.repository}`} target='_blank' rel='noreferrer'>{product.repository}</a>
       </div>

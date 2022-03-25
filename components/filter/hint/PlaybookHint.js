@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import { FilterContext } from '../../context/FilterContext'
 
 const PlaybookHint = () => {
@@ -29,7 +28,7 @@ const PlaybookHint = () => {
             {format('playbook.hint.characteristicTitle').toUpperCase()}
           </div>
           <div className='fr-view text-sm px-8 pb-3'>
-            {ReactHtmlParser(format('playbook.hint.characteristics'))}
+            {parse(format('playbook.hint.characteristics'))}
           </div>
           <div className='text-lg px-8 pb-3'>
             {format('playbook.hint.descriptionTitle').toUpperCase()}

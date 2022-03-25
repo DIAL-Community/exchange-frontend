@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
-
 import { convertToKey } from '../../context/FilterContext'
 const useCasesPath = convertToKey('Use Cases')
 const stepsPath = convertToKey('Use Case Steps')
@@ -77,7 +76,7 @@ const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
                   <div className='flex flex-row px-4 py-2 bg-dial-gray-light'>
                     <div className='text-sm text-workflow my-auto mr-2'>{format('product.header')}</div>
                     <div className='flex flex-row flex-wrap font-semibold overflow-hidden'>
-                      <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
+                      <div className='mx-1 text-sm font-normal overflow-hidden text-ellipsis'>
                         {useCaseStep.products.map(p => p.name).join(', ')}
                       </div>
                     </div>

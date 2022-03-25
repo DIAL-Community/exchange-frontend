@@ -2,12 +2,9 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import Head from 'next/head'
-
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
-
 import withApollo from '../../../lib/apolloClient'
-
 import { PlaybookDetailProvider } from '../../../components/playbooks/PlaybookDetailContext'
 import PlaybookDetail from '../../../components/playbooks/PlaybookDetail'
 

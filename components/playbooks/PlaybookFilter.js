@@ -1,10 +1,8 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { BsQuestionCircleFill } from 'react-icons/bs'
-
 import { FilterContext } from '../context/FilterContext'
 import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../context/PlaybookFilterContext'
-
 import { ProductAutocomplete } from '../filter/element/Product'
 import { TagAutocomplete } from '../filter/element/Tag'
 

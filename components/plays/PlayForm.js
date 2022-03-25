@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-
 import { gql, useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
-
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
-
+import { useSession } from 'next-auth/client'
 import { HtmlEditor } from '../shared/HtmlEditor'
 import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
 import Breadcrumb from '../shared/breadcrumb'
-import { useSession } from 'next-auth/client'
 
 const CREATE_PLAY = gql`
 mutation ($name: String!, $slug: String!, $description: String!, $tags: JSON!) {
@@ -130,6 +127,7 @@ export const PlayForm = ({ play }) => {
     if (play) {
       route = `${route}/${play.slug}`
     }
+
     router.push(route)
   }
 
@@ -138,8 +136,10 @@ export const PlayForm = ({ play }) => {
     if (play) {
       map[play.slug] = play.name
     }
+
     map.edit = format('app.edit')
     map.create = format('app.create')
+
     return map
   })()
 
@@ -153,7 +153,7 @@ export const PlayForm = ({ play }) => {
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
               <div className={`mx-4 ${(data && data.createPlay.play) ? 'visible' : 'hidden'} text-center pt-4`}>
-                <div className='my-auto text-green-500'>
+                <div className='my-auto text-emerald-500'>
                   {play ? format('play.created') : format('play.updated')}
                 </div>
               </div>

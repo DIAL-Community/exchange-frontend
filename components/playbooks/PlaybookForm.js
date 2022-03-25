@@ -2,22 +2,17 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 import { gql, useMutation } from '@apollo/client'
-
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
 import { Controller, useForm } from 'react-hook-form'
-
+import dynamic from 'next/dynamic'
 import Breadcrumb from '../shared/breadcrumb'
 import { HtmlEditor } from '../shared/HtmlEditor'
-
 import { SOURCE_TYPE_ASSIGNING } from '../plays/PlayList'
 import { PlayListContext } from '../plays/PlayListContext'
 import PlayListDraggable from '../plays/PlayListDraggable'
-
 import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
 import { PlayFilterContext, PlayFilterDispatchContext } from '../context/PlayFilterContext'
-
-import dynamic from 'next/dynamic'
 import { ToastContext } from '../../lib/ToastContext'
 const PlayListQuery = dynamic(() => import('../plays/PlayList'), { ssr: false })
 
@@ -149,6 +144,7 @@ export const FormTextEditor = ({ control, name }) => {
   )
 }
 
+// eslint-disable-next-line react/display-name
 export const PlaybookForm = React.memo(({ playbook }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -192,7 +188,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
         router.push(`/${locale}/playbooks/${data.createPlaybook.playbook.slug}`)
       }, 500)
     }
-  }, [data])
+  }, [data, locale, router, showToast])
 
   const doUpsert = async (data) => {
     if (session) {
@@ -229,6 +225,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
     if (playbook) {
       route = `${route}/${playbook.slug}`
     }
+
     router.push(route)
   }
 
@@ -237,8 +234,10 @@ export const PlaybookForm = React.memo(({ playbook }) => {
     if (playbook) {
       map[playbook.slug] = playbook.name
     }
+
     map.edit = format('app.edit')
     map.create = format('app.create')
+
     return map
   })()
 

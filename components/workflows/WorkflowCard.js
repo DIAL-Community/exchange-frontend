@@ -3,12 +3,11 @@ import { createRef, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 import { ToastContext } from '../../lib/ToastContext'
-
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Workflows')
 
 const ellipsisTextStyle = `
-   whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+   whitespace-nowrap text-ellipsis overflow-hidden my-auto
 `
 const containerElementStyle = `
   border-3 cursor-pointer
@@ -58,8 +57,10 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
       if (useCaseSlugs.indexOf(useCaseStep.useCase.slug) === -1) {
         useCases.push(useCaseStep.useCase)
       }
+
       return useCaseStep
     })
+
     return useCases
   })()
 
@@ -99,7 +100,7 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
                           <div className='text-sm font-normal'>
                             {format('useCase.header')}:
                           </div>
-                          <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
+                          <div className='mx-1 text-sm font-normal overflow-hidden text-ellipsis'>
                             {useCases.length === 0 && format('general.na')}
                             {
                               useCases.length > 0 &&
@@ -119,7 +120,7 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
                           <div className='text-sm font-normal'>
                             {format('building-block.header')}:
                           </div>
-                          <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
+                          <div className='mx-1 text-sm font-normal overflow-hidden text-ellipsis'>
                             {workflow.buildingBlocks.length === 0 && format('general.na')}
                             {
                               workflow.buildingBlocks.length > 0 &&
@@ -156,7 +157,7 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
                 </div>
               </div>
             </div>
-            )
+          )
           : (
             <div onClick={() => navClickHandler()} className={containerElementStyle}>
               <div className='border border-dial-gray hover:border-transparent drop-shadow'>
@@ -260,7 +261,7 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
                 </div>
               </div>
             </div>
-            )
+          )
       }
     </Link>
   )

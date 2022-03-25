@@ -14,6 +14,7 @@ const randomLocations = (() => {
       longitude: Math.random() * (longitudeBoundary[1] - longitudeBoundary[0] + 1) + longitudeBoundary[0]
     })
   }
+
   return randomLocations
 })()
 

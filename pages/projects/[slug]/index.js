@@ -1,19 +1,15 @@
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-
 import { useIntl } from 'react-intl'
-
+import { gql, useQuery } from '@apollo/client'
+import { useEffect } from 'react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import NotFound from '../../../components/shared/NotFound'
 import withApollo from '../../../lib/apolloClient'
-
-import { gql, useQuery } from '@apollo/client'
-
 import ProjectDetailLeft from '../../../components/projects/ProjectDetailLeft'
 import ProjectDetailRight from '../../../components/projects/ProjectDetailRight'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
-import { useEffect } from 'react'
 
 const PROJECT_QUERY = gql`
 query Project($slug: String!) {

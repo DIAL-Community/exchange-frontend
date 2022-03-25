@@ -106,6 +106,7 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
                             width: `${percentage}%`,
                             backgroundColor: `${bg}`
                           }
+
                           return (
                             <div key={i} className='progress-padding' style={styles} />
                           )
@@ -120,6 +121,7 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
                         fill: 'currentColor',
                         display: 'inline'
                       }
+
                       return (
                         <div key={i} className='inline'>
                           <svg style={styles} viewBox='0 0 16 16' version='1.1' width='16' height='16' aria-hidden='true'>
@@ -132,10 +134,10 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
                     })}
                   </div>
                 </div>
-          }
+            }
           </div>
         </>
-        )
+      )
       : (<></>)
   )
 }

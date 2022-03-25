@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
 import CountryCard from '../countries/CountryCard'
 import OrganizationCard from '../organizations/OrganizationCard'
@@ -15,6 +14,7 @@ const ProjectDetailRight = ({ project }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[project.slug] = project.name
+
     return map
   })()
 
@@ -25,9 +25,9 @@ const ProjectDetailRight = ({ project }) => {
       </div>
       <div className='fr-view text-dial-gray-dark text-sm'>
         <div className='card-title mb-3 text-dial-gray-dark'>{format('project.description')}</div>
-        {project.projectDescription && ReactHtmlParser(project.projectDescription.description)}
+        {project.projectDescription && parse(project.projectDescription.description)}
       </div>
-      <div className='pb-5 pr-5 pt-4 overflow-ellipsis overflow-hidden'>
+      <div className='pb-5 pr-5 pt-4 text-ellipsis overflow-hidden'>
         <div className='h5 pb-1'>{format('project.url')}</div>
         <a className='text-dial-blue text-sm' href={`https://${project.url}`} target='_blank' rel='noreferrer'>{project.url}</a>
       </div>

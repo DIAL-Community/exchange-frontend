@@ -1,13 +1,10 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { signIn, signOut, useSession } from 'next-auth/client'
-
 import { useState, createRef } from 'react'
 import { useIntl } from 'react-intl'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
-
 import { createPopper } from '@popperjs/core'
-
 import MobileMenu from './MobileMenu'
 import ReportIssue from './shared/ReportIssue'
 
@@ -45,6 +42,7 @@ const AdminMenu = () => {
     })
     setShowAdminMenu(true)
   }
+
   const closeDropdownPopover = () => {
     setShowAdminMenu(false)
   }
@@ -129,6 +127,7 @@ const UserMenu = () => {
     })
     setShowUserMenu(true)
   }
+
   const closeDropdownPopover = () => {
     setShowUserMenu(false)
   }
@@ -207,6 +206,7 @@ const Header = () => {
     })
     openCallback(true)
   }
+
   const closeDropdownPopover = (closeCallback) => {
     closeCallback(false)
   }
@@ -348,14 +348,14 @@ const Header = () => {
                         <UserMenu />
                       </li>
                     </>
-                    )
+                  )
                   : (
                     <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
                       <a href='signin' role='menuitem' className={dropdwonMenuStyles} onClick={signInUser}>
                         {format('header.signIn')}
                       </a>
                     </li>
-                    )
+                  )
               }
               <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
                 <a

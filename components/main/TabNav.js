@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useContext } from 'react'
 import { HiQuestionMarkCircle } from 'react-icons/hi'
-
 import { ToastContext } from '../../lib/ToastContext'
 import { FILTER_ITEMS, MAPPED_FILTER_ITEMS_URL } from '../context/FilterContext'
 

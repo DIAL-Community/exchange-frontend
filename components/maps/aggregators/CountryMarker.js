@@ -30,6 +30,7 @@ const findIndex = (aggregatorCount) => {
   }
 
   const filteredIndex = keys.filter(size => parseInt(size) > aggregatorCount)
+
   return filteredIndex.shift()
 }
 

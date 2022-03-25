@@ -2,15 +2,13 @@ import { useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+import { gql, useQuery } from '@apollo/client'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import WizardHeader from '../components/wizard/WizardHeader'
 import WizardContent from '../components/wizard/WizardContent'
 import WizardResults from '../components/wizard/WizardResults'
 import withApollo from '../lib/apolloClient'
-
-import { gql, useQuery } from '@apollo/client'
-
 import { Loading, Error } from '../components/shared/FetchStatus'
 
 const SECTOR_QUERY = gql`
@@ -84,6 +82,7 @@ const WizardPage = () => {
   if (sectorLoading || sdgLoading || countryLoading || tagLoading) {
     return <><Header /><div><Loading /></div><Footer /></>
   }
+
   if (sectorError || sdgError || countryError || tagError) {
     return <div><Error /></div>
   }

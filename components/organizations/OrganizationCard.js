@@ -1,14 +1,13 @@
 import Link from 'next/link'
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-
 import { ToastContext } from '../../lib/ToastContext'
 import { convertToKey } from '../context/FilterContext'
 
 const collectionPath = convertToKey('Organizations')
 
 const ellipsisTextStyle = `
-  whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+  whitespace-nowrap text-ellipsis overflow-hidden my-auto
 `
 const containerElementStyle = `
   border-3 cursor-pointer
@@ -49,7 +48,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                       <div
                         className={`
                           ${nameColSpan(organization)} text-base font-semibold text-dial-gray-dark
-                          my-auto whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+                          my-auto whitespace-nowrap text-ellipsis overflow-hidden my-auto
                         `}
                       >
                         {organization.name}
@@ -59,7 +58,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                               <div className='text-sm font-normal'>
                                 {format('sector.header')}:
                               </div>
-                              <div className='text-sm font-normal overflow-hidden overflow-ellipsis'>
+                              <div className='text-sm font-normal overflow-hidden text-ellipsis'>
                                 {organization.sectors.length === 0 && format('general.na')}
                                 {
                                   organization.sectors.length > 0 &&
@@ -107,7 +106,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                 </div>
               </a>
             </Link>
-            )
+          )
           : (
             <div onClick={() => navClickHandler()} className={`group ${containerElementStyle}`}>
               <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow drop-shadow'>
@@ -142,7 +141,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                     <div
                       className={`
                         text-2xl font-semibold group-hover:text-dial-yellow w-64 2xl:w-80 bg-white bg-opacity-70
-                        overflow-ellipsis overflow-hidden
+                        text-ellipsis overflow-hidden
                       `}
                     >
                       {organization.name}
@@ -174,7 +173,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                 }
               </div>
             </div>
-            )
+          )
       }
     </>
   )

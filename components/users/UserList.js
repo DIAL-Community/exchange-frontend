@@ -2,12 +2,11 @@ import { useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-
-import UserCard from './UserCard'
-import { UserFilterContext } from '../context/UserFilterContext'
-import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
+import { FilterContext } from '../context/FilterContext'
+import { UserFilterContext } from '../context/UserFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
+import UserCard from './UserCard'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -67,12 +66,12 @@ const UserList = (props) => {
           props.userList.length > 0
             ? props.userList.map((user) => (
               <UserCard key={user.id} listType={displayType} {...{ user, filterDisplayed }} />
-              ))
+            ))
             : (
               <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
                 {format('noResults.entity', { entity: format('user.label').toLowerCase() })}
               </div>
-              )
+            )
         }
       </div>
     </>
@@ -115,6 +114,7 @@ const UserListQuery = () => {
       }
     })
   }
+
   return (
     <InfiniteScroll
       className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'

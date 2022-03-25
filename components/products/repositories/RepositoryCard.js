@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
 import { useIntl, FormattedDate } from 'react-intl'
 import { FaStar, FaCalendar, FaCalendarAlt } from 'react-icons/fa'
-
 import { convertToKey } from '../../context/FilterContext'
 const productsPath = convertToKey('Products')
 const repositoriesPath = convertToKey('Repositories')
@@ -68,9 +67,9 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
                     {
                       productRepository.statisticalData.data
                         ? <FormattedDate
-                            value={new Date(productRepository.statisticalData.data.repository?.createdAt)}
-                            year='numeric' month='long' day='2-digit'
-                          />
+                          value={new Date(productRepository.statisticalData.data.repository?.createdAt)}
+                          year='numeric' month='long' day='2-digit'
+                        />
                         : format('general.na')
                     }
                   </div>
@@ -81,9 +80,9 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
                     {
                       productRepository.statisticalData.data
                         ? <FormattedDate
-                            value={new Date(productRepository.statisticalData.data?.repository?.updatedAt)}
-                            year='numeric' month='long' day='2-digit'
-                          />
+                          value={new Date(productRepository.statisticalData.data?.repository?.updatedAt)}
+                          year='numeric' month='long' day='2-digit'
+                        />
                         : format('general.na')
                     }
                   </div>

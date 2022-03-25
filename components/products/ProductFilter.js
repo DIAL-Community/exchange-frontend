@@ -1,10 +1,8 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { BsQuestionCircleFill } from 'react-icons/bs'
-
 import { FilterContext } from '../context/FilterContext'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../context/ProductFilterContext'
-
 import { BuildingBlockAutocomplete } from '../filter/element/BuildingBlock'
 import { CountryAutocomplete } from '../filter/element/Country'
 import { EndorserAutocomplete } from '../filter/element/Endorser'

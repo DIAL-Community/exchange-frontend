@@ -1,23 +1,19 @@
 /* global fetch:false */
 
 import Head from 'next/head'
-import Header from '../../components/Header'
-
 import { useIntl } from 'react-intl'
 import { useState } from 'react'
 import Link from 'next/link'
-
 import { FaRegQuestionCircle, FaSpinner } from 'react-icons/fa'
 import { gql, useApolloClient } from '@apollo/client'
 import dynamic from 'next/dynamic'
-
-import withApollo from '../../lib/apolloClient'
-import Footer from '../../components/Footer'
 import { MdClose } from 'react-icons/md'
 import { useRouter } from 'next/router'
-
 import ReCAPTCHA from 'react-google-recaptcha'
 import zxcvbn from 'zxcvbn'
+import withApollo from '../../lib/apolloClient'
+import Footer from '../../components/Footer'
+import Header from '../../components/Header'
 
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
@@ -183,6 +179,7 @@ const SignUp = () => {
         router.push('/')
       }, 3000)
     }
+
     setLoading(false)
   }
 
@@ -194,6 +191,7 @@ const SignUp = () => {
     if (textFields.password.length === 0) {
       return ''
     }
+
     return strengthClasses[strength]
   }
 
@@ -207,7 +205,7 @@ const SignUp = () => {
       <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <div className='bg-dial-gray-dark h-screen'>
         <div className={`mx-4 ${created ? 'visible' : 'invisible'} text-center pt-4`}>
-          <div className='my-auto text-green-500'>{format('signUp.created')}</div>
+          <div className='my-auto text-emerald-500'>{format('signUp.created')}</div>
         </div>
         <div className='pt-4'>
           <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>

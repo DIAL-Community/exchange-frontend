@@ -17,6 +17,7 @@ export default (req, res) => {
     if (userRes.status === 404) {
       return res.status(404).json({})
     }
+
     const postData = {
       topic_id: req.query.topicId,
       raw: req.query.raw

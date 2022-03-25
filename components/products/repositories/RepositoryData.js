@@ -1,12 +1,11 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import Breadcrumb from '../../shared/breadcrumb'
-import ReactHtmlParser from 'react-html-parser'
-
-import RepositoryDetail from '../RepositoryDetail'
+import parse from 'html-react-parser'
 import { useSession } from 'next-auth/client'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import RepositoryDetail from '../RepositoryDetail'
+import Breadcrumb from '../../shared/breadcrumb'
 
 const REPOSITORY_QUERY = gql`
   query ProductRepository($slug: String!) {
@@ -58,6 +57,7 @@ const RepositoryInformation = ({ productRepository }) => {
     const map = {}
     map[productRepository.product.slug] = productRepository.product.name
     map[productRepository.slug] = productRepository.name
+
     return map
   })()
 
@@ -100,7 +100,7 @@ const RepositoryInformation = ({ productRepository }) => {
         {format('productRepository.description')}
       </div>
       <div className='text-sm text-dial-gray-dark'>
-        {ReactHtmlParser(productRepository.description)}
+        {parse(productRepository.description)}
       </div>
       <div className='w-full xl:w-4/5 mt-3 py-3 border-b border-gray-300'>
         <RepositoryDetail
@@ -123,7 +123,7 @@ const RepositoryInformation = ({ productRepository }) => {
             >
               {format('productRepository.delete')}
             </button>
-            {data && <div className='my-auto text-green-500 ml-auto'>{format('productRepository.deleted')}</div>}
+            {data && <div className='my-auto text-emerald-500 ml-auto'>{format('productRepository.deleted')}</div>}
           </div>
       }
     </div>

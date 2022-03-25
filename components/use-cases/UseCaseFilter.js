@@ -1,10 +1,8 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { BsQuestionCircleFill } from 'react-icons/bs'
-
 import { FilterContext } from '../context/FilterContext'
 import { UseCaseFilterContext, UseCaseFilterDispatchContext } from '../context/UseCaseFilterContext'
-
 import { SDGAutocomplete } from '../filter/element/SDG'
 
 const UseCaseFilter = () => {

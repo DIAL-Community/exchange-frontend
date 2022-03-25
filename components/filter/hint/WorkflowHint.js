@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import { FilterContext } from '../../context/FilterContext'
 
 const WorkflowHint = () => {
@@ -29,7 +28,7 @@ const WorkflowHint = () => {
             {format('workflow.hint.characteristicTitle').toUpperCase()}
           </div>
           <div className='fr-view text-sm'>
-            {ReactHtmlParser(format('workflow.hint.characteristics'))}
+            {parse(format('workflow.hint.characteristics'))}
           </div>
           <div className='text-lg px-8 pb-3'>
             {format('workflow.hint.descriptionTitle').toUpperCase()}

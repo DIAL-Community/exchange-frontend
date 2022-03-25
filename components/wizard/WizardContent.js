@@ -2,7 +2,6 @@
 import { useEffect } from 'react'
 import { useIntl, FormattedMessage } from 'react-intl'
 import { useRouter } from 'next/router'
-
 import { WizardStage1, WizardStage2, WizardStage3 } from './StageContent'
 
 const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) => {
@@ -18,49 +17,55 @@ const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) =
 
   const getTitle = () => {
     switch (stage) {
-      case 0:
-        return <div className='lg:py-6'>{format('wizard.introStep')}</div>
-      case 1:
-        return (
-          <>
-            <div className='lg:pt-6 pb-2'>{format('wizard.stepOne')}</div>
-            <div className='text-sm'>{format('wizard.optional')}</div>
-          </>
-        )
-      case 2:
-        return <div className='lg:py-6'>{format('wizard.stepTwo')}</div>
-      case 3:
-        return <div className='py-6'>{format('wizard.stepThree')}</div>
-      case 4:
-        return <div className='py-6'>{format('wizard.stepFour')}</div>
-      case 5:
-        return <div className='py-6'>{format('wizard.results')}</div>
+    case 0:
+      return <div className='lg:py-6'>{format('wizard.introStep')}</div>
+    case 1:
+      return (
+        <>
+          <div className='lg:pt-6 pb-2'>{format('wizard.stepOne')}</div>
+          <div className='text-sm'>{format('wizard.optional')}</div>
+        </>
+      )
+    case 2:
+      return <div className='lg:py-6'>{format('wizard.stepTwo')}</div>
+    case 3:
+      return <div className='py-6'>{format('wizard.stepThree')}</div>
+    case 4:
+      return <div className='py-6'>{format('wizard.stepFour')}</div>
+    case 5:
+      return <div className='py-6'>{format('wizard.results')}</div>
     }
   }
+
   const getContent = () => {
     switch (stage) {
-      case 0:
-        return (<div className='xl:w-1/2 text-sm'><FormattedMessage id='wizard.intro' values={{ linebreak: <br /> }} /></div>)
-      case 1:
-        return (<WizardStage1 projData={projData} allValues={allValues} setAllValues={setAllValues} />)
-      case 2:
-        return (<WizardStage2 projData={projData} allValues={allValues} setAllValues={setAllValues} />)
-      case 3:
-        return (<WizardStage3 projData={projData} allValues={allValues} setAllValues={setAllValues} />)
+    case 0:
+      return (<div className='xl:w-1/2 text-sm'><FormattedMessage id='wizard.intro' values={{ linebreak: <br /> }} /></div>)
+    case 1:
+      return (<WizardStage1 projData={projData} allValues={allValues} setAllValues={setAllValues} />)
+    case 2:
+      return (<WizardStage2 projData={projData} allValues={allValues} setAllValues={setAllValues} />)
+    case 3:
+      return (<WizardStage3 projData={projData} allValues={allValues} setAllValues={setAllValues} />)
     }
   }
+
   const hideNext = () => {
     if (stage > 3) {
       return true
     }
+
     return false
   }
+
   const hideBack = () => {
     if (stage < 1) {
       return true
     }
+
     return false
   }
+
   return (
     <>
       <div className='bg-dial-gray-dark text-dial-gray-light p-5 w-full relative wizard-content xl:wizard-content-xl'>

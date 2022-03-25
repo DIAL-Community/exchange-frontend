@@ -2,12 +2,11 @@ import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-
-import UseCaseCard from './UseCaseCard'
-import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
-import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
+import { FilterContext } from '../context/FilterContext'
+import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
+import UseCaseCard from './UseCaseCard'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -105,12 +104,12 @@ const UseCaseList = (props) => {
           props.useCaseList.length > 0
             ? props.useCaseList.map((useCase) => (
               <UseCaseCard key={useCase.id} listType={displayType} {...{ useCase, filterDisplayed }} />
-              ))
+            ))
             : (
               <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
                 {format('noResults.entity', { entity: format('useCase.label').toLowerCase() })}
               </div>
-              )
+            )
         }
       </div>
     </>
@@ -162,6 +161,7 @@ const UseCaseListQuery = () => {
   }
 
   const { searchUseCases: { nodes, pageInfo } } = data
+
   return (
     <InfiniteScroll
       className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height'

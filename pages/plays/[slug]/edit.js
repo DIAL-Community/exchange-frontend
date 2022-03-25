@@ -1,15 +1,11 @@
 import { useRouter } from 'next/router'
-
-import withApollo from '../../../lib/apolloClient'
 import { gql, useQuery } from '@apollo/client'
-
 import Head from 'next/head'
+import { useIntl } from 'react-intl'
+import withApollo from '../../../lib/apolloClient'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
-
-import { useIntl } from 'react-intl'
-
 import { PlayForm } from '../../../components/plays/PlayForm'
 
 const PLAY_QUERY = gql`

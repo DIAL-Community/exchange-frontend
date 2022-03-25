@@ -5,11 +5,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useIntl } from 'react-intl'
-
 import { FaSpinner } from 'react-icons/fa'
-import Header from '../../components/Header'
-
 import dynamic from 'next/dynamic'
+import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
@@ -47,6 +45,7 @@ const ResetPassword = () => {
         router.push('/products')
       }, 3000)
     }
+
     setLoading(false)
   }
 
@@ -60,7 +59,7 @@ const ResetPassword = () => {
       <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <div className='bg-dial-gray-dark pt-28 simple-form-height'>
         <div className={`mx-4 ${created ? 'visible' : 'invisible'} text-center bg-dial-gray-dark`}>
-          <div className='my-auto text-green-500'>{format('reset.created')}</div>
+          <div className='my-auto text-emerald-500'>{format('reset.created')}</div>
         </div>
         <div className='pt-4'>
           <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>

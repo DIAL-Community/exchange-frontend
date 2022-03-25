@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { gql, useMutation } from '@apollo/client'
-
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
-
 import { Controller, useForm } from 'react-hook-form'
 import Select from 'react-select'
-
 import { OrganizationAutocomplete, OrganizationFilters } from '../filter/element/Organization'
 import { ProductAutocomplete, ProductFilters } from '../filter/element/Product'
 import Breadcrumb from '../shared/breadcrumb'
@@ -61,6 +58,7 @@ export const UserForm = ({ user, action }) => {
     if (user) {
       map[user.id] = user.username
     }
+
     return map
   })()
 
@@ -84,7 +82,7 @@ export const UserForm = ({ user, action }) => {
   return (
     <div className='pt-4'>
       <div className={`mx-4 ${data ? 'visible' : 'invisible'} text-center pt-4`}>
-        <div className='my-auto text-green-500'>{action === 'create' ? format('play.created') : format('play.updated')}</div>
+        <div className='my-auto text-emerald-500'>{action === 'create' ? format('play.created') : format('play.updated')}</div>
       </div>
       <div className='px-4 font-bold text-xl text-dial-blue'>
         <div className='hidden lg:block'>

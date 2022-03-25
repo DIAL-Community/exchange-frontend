@@ -1,15 +1,12 @@
 import { useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-
 import { Loading, Error } from '../shared/FetchStatus'
-import PlaybookCard from './PlaybookCard'
-
 import { FilterContext } from '../context/FilterContext'
 import { PlaybookFilterContext } from '../context/PlaybookFilterContext'
+import PlaybookCard from './PlaybookCard'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -76,12 +73,12 @@ const PlaybookList = (props) => {
         props.playbookList.length > 0
           ? props.playbookList.map((playbook) => (
             <PlaybookCard key={playbook.id} listType={displayType} {...{ playbook, filterDisplayed }} />
-            ))
+          ))
           : (
             <div className='text-sm font-medium opacity-80'>
               {format('noResults.entity', { entity: format('playbooks.label').toString().toLowerCase() })}
             </div>
-            )
+          )
       }
     </div>
   )

@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import { FilterContext } from '../../context/FilterContext'
 
 const OrganizationHint = () => {
@@ -35,7 +34,7 @@ const OrganizationHint = () => {
             {format('organization.hint.descriptionTitle').toUpperCase()}
           </div>
           <div className='fr-view text-sm px-8 pb-3'>
-            {ReactHtmlParser(format('organization.hint.description'))}
+            {parse(format('organization.hint.description'))}
           </div>
         </div>
         <div className='absolute right-2 top-2'>

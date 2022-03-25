@@ -1,15 +1,12 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-
 import { MdClose } from 'react-icons/md'
-
+import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { UseCaseFilterContext, UseCaseFilterDispatchContext } from '../context/UseCaseFilterContext'
 import { SDGFilters } from '../filter/element/SDG'
 import { parseQuery } from '../shared/SharableLink'
-
-import dynamic from 'next/dynamic'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const UseCaseActiveFilter = () => {
@@ -25,6 +22,7 @@ const UseCaseActiveFilter = () => {
   const filterCount = () => {
     let count = sdgs.length
     count = showBeta ? count + 1 : count
+
     return count
   }
 
@@ -47,6 +45,7 @@ const UseCaseActiveFilter = () => {
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [activeFilter, showBetaFilter, ...sdgFilters].filter(f => f).join('&')
+
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
 

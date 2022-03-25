@@ -305,7 +305,7 @@ export const en = {
   'landing.blurb': 'An interactive online resource to support Global Development Actors in the implementation of digital strategies.',
   'landing.wizard.title': 'Recommendations Wizard',
   'landing.catalog.title': 'Launch Catalog',
-  'landing.wizard.whereToStart': "Don't know where to start?",
+  'landing.wizard.whereToStart': 'Don\'t know where to start?',
   'landing.wizard.description': `
     Use the Requirements and Recommendation Wizard to help guide you to a curated list of resources,
     tailored to wherever you are in a project lifecycle — ideation, planning, implementation, or monitoring/evaluation.
@@ -498,9 +498,9 @@ export const en = {
   'productType.datasetOnly': 'Dataset Only',
   'productType.allType': 'All Type',
 
-  'map.aggregator.loadingData': "Loading map's aggregator data ...",
-  'map.project.loadingData': "Loading map's project data ...",
-  'map.endorser.loadingData': "Loading map's endorser data ...",
+  'map.aggregator.loadingData': 'Loading map\'s aggregator data ...',
+  'map.project.loadingData': 'Loading map\'s project data ...',
+  'map.endorser.loadingData': 'Loading map\'s endorser data ...',
 
   'organization.endorsedOn': 'Endorsed On',
   'organization.visitWebsite': 'Visit website',

@@ -2,10 +2,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-
-import apolloClient from '../../../../lib/apolloClient'
 import { gql, useQuery } from '@apollo/client'
-
+import apolloClient from '../../../../lib/apolloClient'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
 import RepositoryForm from '../../../../components/products/repositories/RepositoryForm'
@@ -34,6 +32,7 @@ const CreateRepository = () => {
   const slugNameMapping = (() => {
     const map = {}
     map[data?.product.slug] = data?.product.name
+
     return map
   })()
 
