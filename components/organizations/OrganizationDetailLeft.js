@@ -2,12 +2,11 @@
 
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
-import Breadcrumb from '../shared/breadcrumb'
 import { useRouter } from 'next/router'
-
 import { FaSpinner } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import { gql, useLazyQuery } from '@apollo/client'
+import Breadcrumb from '../shared/breadcrumb'
 
 const CANDIDATE_ROLE_QUERY = gql`
   query CandidateRole($email: String!, $productId: String!, $organizationId: String!) {
@@ -37,6 +36,7 @@ const OrganizationDetailLeft = ({ organization }) => {
     }
 
     const { userEmail, userToken } = session.user
+
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/organizations/${organization.slug}/` +
       `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
@@ -134,6 +134,7 @@ const OrganizationDetailLeft = ({ organization }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[organization.slug] = organization.name
+
     return map
   })()
 

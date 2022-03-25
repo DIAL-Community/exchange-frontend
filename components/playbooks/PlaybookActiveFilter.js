@@ -1,15 +1,12 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-
+import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../context/PlaybookFilterContext'
 import { parseQuery } from '../shared/SharableLink'
-
 import { ProductFilters } from '../filter/element/Product'
 import { TagFilters } from '../filter/element/Tag'
-
-import dynamic from 'next/dynamic'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const PlaybookActiveFilter = () => {
@@ -25,6 +22,7 @@ const PlaybookActiveFilter = () => {
   const filterCount = () => {
     let count = 0
     count = count + tags.length + products.length
+
     return count
   }
 
@@ -45,6 +43,7 @@ const PlaybookActiveFilter = () => {
     const filterParameters = [
       activeFilter, ...productFilters, ...tagFilters
     ].filter(f => f).join('&')
+
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
 

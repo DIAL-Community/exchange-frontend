@@ -1,11 +1,9 @@
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
+import dynamic from 'next/dynamic'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
-
 import withApollo from '../../lib/apolloClient'
-
-import dynamic from 'next/dynamic'
 import EntityUpload from '../../components/entities/EntityUpload'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 

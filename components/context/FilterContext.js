@@ -24,6 +24,7 @@ export const MAPPED_FILTER_ITEMS_URL = {
 const initialCounts = (() => {
   return FILTER_ITEMS.reduce((map, item) => {
     map[item] = item === 'filter.entity.maps' ? '3' : '--'
+
     return map
   }, {})
 })()

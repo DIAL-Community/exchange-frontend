@@ -5,6 +5,7 @@ const MaturityCategory = ({ category }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
   const numIndicators = category.indicator_scores.length
+
   return (
     <AccordionItem>
       <AccordionItemHeading>
@@ -17,6 +18,7 @@ const MaturityCategory = ({ category }) => {
         {category.indicator_scores.map((indicator, i) => {
           let indicatorScore = Math.round(indicator.score * numIndicators * 10)
           indicatorScore = indicatorScore > 100 ? 100 : indicatorScore
+
           return (
             <Accordion key={i} allowMultipleExpanded allowZeroExpanded>
               <AccordionItem>
@@ -43,6 +45,7 @@ const MaturityCategory = ({ category }) => {
 const RubricAccordion = ({ maturityScores, overallScore }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
   return (
     <>
       <div className='pb-5 mr-6 h4'>{format('product.overall-score')}: {overallScore} / 100</div>
@@ -51,6 +54,7 @@ const RubricAccordion = ({ maturityScores, overallScore }) => {
           if (category.overall_score > 0) {
             return (<MaturityCategory key={i} category={category} />)
           }
+
           return <div key={i} />
         })}
       </Accordion>

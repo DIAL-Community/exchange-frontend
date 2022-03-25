@@ -2,14 +2,13 @@ import Link from 'next/link'
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import { convertToKey } from '../context/FilterContext'
 import { ToastContext } from '../../lib/ToastContext'
 const collectionPath = convertToKey('Playbooks')
 
 const ellipsisTextStyle = `
-   whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+   whitespace-nowrap text-ellipsis overflow-hidden my-auto
 `
 const containerElementStyle = `
   border-3 cursor-pointer
@@ -56,7 +55,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed }) => {
                 </div>
               </div>
             </div>
-            )
+          )
           : (
             <div onClick={() => navClickHandler()} className={`group ${containerElementStyle}`}>
               <div className='border border-dial-gray hover:border-transparent drop-shadow h-full'>
@@ -75,7 +74,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed }) => {
                   <div className='bg-dial-gray-light flex flex-col h-full'>
                     <div className='px-3 py-3 text-sm'>
                       <div className='max-h-16 playbook-description overflow-hidden'>
-                        {playbook.playbookDescription && ReactHtmlParser(playbook.playbookDescription.overview)}
+                        {playbook.playbookDescription && parse(playbook.playbookDescription.overview)}
                       </div>
                     </div>
                     {
@@ -95,7 +94,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed }) => {
                 </div>
               </div>
             </div>
-            )
+          )
       }
     </Link>
   )

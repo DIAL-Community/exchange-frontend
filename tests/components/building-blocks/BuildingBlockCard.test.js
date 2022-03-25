@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import BuildingBlockCard from '../../../components/building-blocks/BuildingBlockCard'
-
 import { render } from '../../test-utils'
+
 const completeBuildingBlock = {
   name: 'Fake Building Block',
   slug: 'fake_bb',

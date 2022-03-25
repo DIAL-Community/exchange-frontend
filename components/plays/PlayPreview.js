@@ -2,16 +2,13 @@ import { Fragment, useContext, useEffect, useState } from 'react'
 import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 import { Dialog, Transition } from '@headlessui/react'
-
-import { PlayPreviewContext, PlayPreviewDispatchContext } from './PlayPreviewContext'
-
+import { FaSpinner } from 'react-icons/fa'
 import MoveDetail from '../playbooks/MoveDetail'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import ProductCard from '../products/ProductCard'
-import { FaSpinner } from 'react-icons/fa'
+import { PlayPreviewContext, PlayPreviewDispatchContext } from './PlayPreviewContext'
 
 const PLAY_QUERY = gql`
   query Play($slug: String!) {
@@ -175,7 +172,7 @@ const PlayPreview = () => {
 
                     <div className='flex flex-col gap-4 w-5/6 px-4'>
                       <div className='fr-view tinyEditor text-dial-gray-dark'>
-                        {ReactHtmlParser(data.play.playDescription?.description)}
+                        {parse(data.play.playDescription?.description)}
                       </div>
                       <div className='flex flex-col gap-3'>
                         {
@@ -220,7 +217,7 @@ const PlayPreview = () => {
               </div>
             </Dialog>
           </Transition>
-        }
+      }
     </>
   )
 }

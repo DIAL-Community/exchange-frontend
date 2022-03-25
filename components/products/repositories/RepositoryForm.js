@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
-
 import Link from 'next/link'
-
 import { FaSpinner } from 'react-icons/fa'
 import { gql, useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
@@ -69,6 +67,7 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
 
   const goBackPath = () => {
     const slug = productRepository ? productRepository.slug : ''
+
     return `/products/${productSlug}/repositories/${slug}`
   }
 
@@ -175,8 +174,8 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
                   {format('productRepository.cancel')}
                 </a>
               </Link>
-              {updateData && <div className='ml-auto my-auto text-green-500'>{format('productRepository.updated')}</div>}
-              {createData && <div className='ml-auto my-auto text-green-500'>{format('productRepository.created')}</div>}
+              {updateData && <div className='ml-auto my-auto text-emerald-500'>{format('productRepository.updated')}</div>}
+              {createData && <div className='ml-auto my-auto text-emerald-500'>{format('productRepository.created')}</div>}
             </div>
           </div>
         </form>

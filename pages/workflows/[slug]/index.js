@@ -1,18 +1,15 @@
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import Head from 'next/head'
-
+import { gql, useQuery } from '@apollo/client'
+import { useEffect } from 'react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import NotFound from '../../../components/shared/NotFound'
-
 import withApollo from '../../../lib/apolloClient'
-import { gql, useQuery } from '@apollo/client'
-
 import WorkflowDetailLeft from '../../../components/workflows/WorkflowDetailLeft'
 import WorkflowDetailRight from '../../../components/workflows/WorkflowDetailRight'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
-import { useEffect } from 'react'
 
 const WORKFLOW_QUERY = gql`
   query Workflow($slug: String!) {

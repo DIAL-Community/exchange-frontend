@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { useIntl } from 'react-intl'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion'
-
-import { descriptionByLocale } from '../../lib/utilities'
 import { useRouter } from 'next/router'
+import { descriptionByLocale } from '../../lib/utilities'
 
 const PlayNavigator = ({ playList }) => {
   const [currPlay, setCurrPlay] = useState(0)
@@ -12,6 +11,7 @@ const PlayNavigator = ({ playList }) => {
   const changePlay = (i) => {
     setCurrPlay(i)
   }
+
   return (
     <div className='grid grid-cols-4'>
       <div>
@@ -44,7 +44,7 @@ const PlayDetail = ({ play }) => {
         {format('plays.description')}
       </div>
       <div className='fr-view tinyEditor text-dial-gray-dark px-4 py-2'>
-        {ReactHtmlParser(descriptionByLocale(play.playDescriptions, locale))}
+        {parse(descriptionByLocale(play.playDescriptions, locale))}
       </div>
       <label className='block h4 pb-3'>
         {format('plays.buildingBlocks')}
@@ -70,7 +70,7 @@ const PlayDetail = ({ play }) => {
                   <AccordionItemButton>
                     {move.name}
                     <AccordionItemPanel>
-                      <div className='tinyEditor px-3'>{ReactHtmlParser(descriptionByLocale(move.moveDescriptions, locale))}</div>
+                      <div className='tinyEditor px-3'>{parse(descriptionByLocale(move.moveDescriptions, locale))}</div>
                       <div className='px-3 py-2'><div className='h4'>{format('moves.resources')}</div>
                         {move.resources && move.resources.map((resource, i) => {
                           return (

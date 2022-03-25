@@ -31,10 +31,10 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
               <div className='card-body border-3 border-transparent hover:border-dial-gray text-workflow cursor-pointer'>
                 <div className={`
                   ${String(product.rejected) === 'true' || status === 'rejected'
-                    ? 'bg-red-50'
-                    : String(product.rejected) === 'false' || status === 'approved'
-                      ? 'bg-green-50'
-                      : 'bg-white'}
+                  ? 'bg-red-50'
+                  : String(product.rejected) === 'false' || status === 'approved'
+                    ? 'bg-emerald-50'
+                    : 'bg-white'}
                   card-front border border-dial-gray hover:border-transparent shadow-sm
                 `}
                 >
@@ -77,10 +77,10 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                 </div>
                 <div className={`
                   ${String(product.rejected) === 'true' || status === 'rejected'
-                    ? 'bg-red-50'
-                    : String(product.rejected) === 'false' || status === 'approved'
-                      ? 'bg-green-50'
-                      : 'bg-dial-gray'}
+                  ? 'bg-red-50'
+                  : String(product.rejected) === 'false' || status === 'approved'
+                    ? 'bg-emerald-50'
+                    : 'bg-dial-gray'}
                   card-back flip-horizontal border border-dial-gray hover:border-transparent shadow-sm
                 `}
                 >
@@ -106,7 +106,7 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                 </div>
               </div>
             </div>
-            )
+          )
           : (
             <div className={`card ${status === 'rejection' || status === 'approval' ? 'flip-vertical' : ''}`}>
               <div className='card-body border-3 border-transparent hover:border-dial-gray text-dial-purple cursor-pointer h-full'>
@@ -120,7 +120,7 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                     }
                     {
                       (String(product.rejected) === 'false' || status === 'approved') &&
-                        <div className='bg-green-500 py-1 px-2 rounded text-white text-sm font-semibold'>
+                        <div className='bg-emerald-500 py-1 px-2 rounded text-white text-sm font-semibold'>
                           {format('candidate.approved').toUpperCase()}
                         </div>
                     }
@@ -215,7 +215,7 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                 </div>
               </div>
             </div>
-            )
+          )
       }
     </>
   )
@@ -244,13 +244,14 @@ const CancelButton = ({ status, setStatus, loading }) => {
 const ToggleApprovalButton = ({ style, setStatus, loading }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
   return (
     <button
       className={style}
       onClick={() => setStatus('approval')}
       disabled={loading}
     >
-      {format('candidate.approve')} <FaRegCheckCircle className='ml-1 inline text-xl text-green-500' />
+      {format('candidate.approve')} <FaRegCheckCircle className='ml-1 inline text-xl text-emerald-500' />
     </button>
   )
 }
@@ -284,6 +285,7 @@ const ApproveButton = ({ product, status, setStatus, loading, setLoading }) => {
     if (response.status === 200) {
       setStatus('approved')
     }
+
     setLoading(false)
   }
 
@@ -298,7 +300,7 @@ const ApproveButton = ({ product, status, setStatus, loading, setLoading }) => {
       onClick={approveCandidateProduct}
       disabled={loading}
     >
-      {format('candidate.approve')} <FaRegCheckCircle className='ml-1 inline text-xl text-green-500' />
+      {format('candidate.approve')} <FaRegCheckCircle className='ml-1 inline text-xl text-emerald-500' />
     </button>
   )
 }
@@ -306,6 +308,7 @@ const ApproveButton = ({ product, status, setStatus, loading, setLoading }) => {
 const ToggleRejectionButton = ({ style, setStatus, loading }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
   return (
     <button
       className={style}
@@ -346,6 +349,7 @@ const DeclineButton = ({ product, status, setStatus, loading, setLoading }) => {
     if (response.status === 200) {
       setStatus('rejected')
     }
+
     setLoading(false)
   }
 

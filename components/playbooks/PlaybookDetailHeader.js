@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { useContext, useEffect, useState } from 'react'
-import { PlaybookDetailContext } from './PlaybookDetailContext'
 import { Error, Loading } from '../shared/FetchStatus'
+import { PlaybookDetailContext } from './PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
 
 const PLAYBOOK_QUERY = gql`

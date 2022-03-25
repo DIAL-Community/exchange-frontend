@@ -1,16 +1,12 @@
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-
+import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { WorkflowFilterContext, WorkflowFilterDispatchContext } from '../context/WorkflowFilterContext'
-
 import { SDGAutocomplete, SDGFilters } from '../filter/element/SDG'
 import { UseCaseAutocomplete, UseCaseFilters } from '../filter/element/UseCase'
-
 import { parseQuery } from '../shared/SharableLink'
-
-import dynamic from 'next/dynamic'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const WorfklowFilter = (props) => {
@@ -44,6 +40,7 @@ const WorfklowFilter = (props) => {
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [activeFilter, ...sdgFilters, ...useCaseFilters].filter(f => f).join('&')
+
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
 

@@ -1,9 +1,8 @@
 import { useIntl } from 'react-intl'
-import Breadcrumb from '../shared/breadcrumb'
 import { useSession } from 'next-auth/client'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
+import Breadcrumb from '../shared/breadcrumb'
 import MoveDetail from '../playbooks/MoveDetail'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import ProductCard from '../products/ProductCard'
@@ -26,6 +25,7 @@ const PlayDetail = ({ play }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[play.slug] = play.name
+
     return map
   })()
 
@@ -57,7 +57,7 @@ const PlayDetail = ({ play }) => {
           {`${format('plays.label')}. ${play.name}`}
         </div>
         <div className='fr-view tinyEditor text-dial-gray-dark'>
-          {ReactHtmlParser(play.playDescription?.description)}
+          {parse(play.playDescription?.description)}
         </div>
         <div className='flex flex-col gap-3'>
           {

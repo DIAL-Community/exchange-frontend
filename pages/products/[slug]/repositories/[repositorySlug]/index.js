@@ -1,16 +1,11 @@
 import { useIntl } from 'react-intl'
 import { useEffect } from 'react'
-
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
-
 import Head from 'next/head'
 import Link from 'next/link'
-
 import { gql, useQuery } from '@apollo/client'
-
 import withApollo from '../../../../../lib/apolloClient'
-
 import RepositoryList from '../../../../../components/products/repositories/RepositoryList'
 import RepositoryData from '../../../../../components/products/repositories/RepositoryData'
 import Breadcrumb from '../../../../../components/shared/breadcrumb'
@@ -44,6 +39,7 @@ const ProductStep = () => {
     if (data) {
       map[data.product.slug] = data.product.name
     }
+
     return map
   })()
 

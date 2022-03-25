@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-
+import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { ProjectFilterContext, ProjectFilterDispatchContext } from '../context/ProjectFilterContext'
 import { CountryAutocomplete, CountryFilters } from '../filter/element/Country'
@@ -11,10 +11,7 @@ import { OriginAutocomplete, OriginFilters } from '../filter/element/Origin'
 import { SDGAutocomplete, SDGFilters } from '../filter/element/SDG'
 import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
 import { SectorAutocomplete, SectorFilters } from '../filter/element/Sector'
-
 import { parseQuery } from '../shared/SharableLink'
-
-import dynamic from 'next/dynamic'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const ProjectFilter = (props) => {
@@ -61,6 +58,7 @@ const ProjectFilter = (props) => {
       activeFilter, ...originFilters, ...countryFilters, ...productFilters, ...sectorFilters, ...organizationFilters,
       ...sdgFilters, ...tagFilters
     ].filter(f => f).join('&')
+
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
 

@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
-
 import { useIntl } from 'react-intl'
-
 import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
 import { SectorAutocomplete, SectorFilters } from '../filter/element/Sector'
 import { ProductAutocomplete, ProductFilters } from '../filter/element/Product'

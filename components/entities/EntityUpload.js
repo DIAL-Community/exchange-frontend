@@ -3,7 +3,6 @@
 
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
-
 import { useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
@@ -64,7 +63,7 @@ const EntityUpload = () => {
   return (
     <div className='bg-dial-gray-dark pt-8' style={{ minHeight: '70vh' }}>
       <div className={`mx-4 ${submitted ? 'visible' : 'invisible'} text-center pt-4`}>
-        <div className='my-auto text-green-500'>{format('entity.uploaded')}</div>
+        <div className='my-auto text-emerald-500'>{format('entity.uploaded')}</div>
       </div>
       <div className='pt-4'>
         <div className='bg-white shadow-md rounded px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>

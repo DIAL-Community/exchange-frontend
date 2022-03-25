@@ -117,6 +117,7 @@ export default NextAuth({
           },
           railsAuth: true
         }
+
         return token
       } else {
         if (!token.expiration) {
@@ -142,6 +143,7 @@ export default NextAuth({
             'X-User-Token': session.userToken
           }
         })
+
         return {}
       }
     }

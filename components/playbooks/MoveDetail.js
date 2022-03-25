@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 import { HiDownload } from 'react-icons/hi'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 
@@ -63,7 +63,7 @@ const MoveDetail = ({ moveName, moveSlug }) => {
             <div className={`move-body ${openingDetail ? 'slide-down' : 'slide-up'}`}>
               <div className='px-4 py-4'>
                 <div className='fr-view text-dial-gray-dark'>
-                  {ReactHtmlParser(data.move.moveDescription.description)}
+                  {parse(data.move.moveDescription.description)}
                 </div>
                 {
                   data.move.resources && data.move.resources.length > 0 &&

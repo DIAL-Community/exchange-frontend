@@ -2,13 +2,10 @@
 
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
-
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
-
 import { gql, useQuery } from '@apollo/client'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
 import { Error, Loading } from '../shared/FetchStatus'
 import { PlaybookDetailDispatchContext } from './PlaybookDetailContext'
@@ -70,6 +67,7 @@ const PlaybookDetailOverview = ({ slug }) => {
         // Skip if we don't have observer data ready yet.
         return
       }
+
       setHeight(observerData.boundingClientRect.height)
     }
 
@@ -78,6 +76,7 @@ const PlaybookDetailOverview = ({ slug }) => {
     })
 
     observer.observe(ref.current)
+
     // Remove the observer as soon as the component is unmounted.
     return () => { observer.disconnect() }
   }, [ref.current])
@@ -121,15 +120,15 @@ const PlaybookDetailOverview = ({ slug }) => {
       </div>
       <div className='h4'>{format('playbooks.overview')}</div>
       <div className='fr-view tiny-editor text-dial-gray-dark'>
-        {ReactHtmlParser(data.playbook.playbookDescription.overview)}
+        {parse(data.playbook.playbookDescription.overview)}
       </div>
       <div className='h4'>{format('playbooks.audience')}</div>
       <div className='fr-view tiny-editor text-dial-gray-dark'>
-        {ReactHtmlParser(data.playbook.playbookDescription.audience)}
+        {parse(data.playbook.playbookDescription.audience)}
       </div>
       <div className='h4'>{format('playbooks.outcomes')}</div>
       <div className='fr-view tiny-editor text-dial-gray-dark'>
-        {ReactHtmlParser(data.playbook.playbookDescription.outcomes)}
+        {parse(data.playbook.playbookDescription.outcomes)}
       </div>
     </div>
   )

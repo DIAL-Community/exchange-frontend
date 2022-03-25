@@ -1,18 +1,14 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-
 import { MdClose } from 'react-icons/md'
-
+import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../context/OrganizationFilterContext'
 import { parseQuery } from '../shared/SharableLink'
-
 import { EndorsingYearFilters } from '../filter/element/EndorsingYear'
 import { CountryFilters } from '../filter/element/Country'
 import { SectorFilters } from '../filter/element/Sector'
-
-import dynamic from 'next/dynamic'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const OrganizationActiveFilter = () => {
@@ -38,6 +34,7 @@ const OrganizationActiveFilter = () => {
     count = endorser ? count + 1 : count
     count = aggregator ? count + 1 : count
     count = count + countries.length + years.length + sectors.length
+
     return count
   }
 
@@ -64,6 +61,7 @@ const OrganizationActiveFilter = () => {
     const filterParameters = [
       activeFilter, aggregatorFilter, endorserFilter, ...countryFilters, ...sectorFilters, ...yearFilters
     ].filter(f => f).join('&')
+
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
 

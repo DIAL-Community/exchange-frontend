@@ -3,11 +3,10 @@ import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { HiSortAscending } from 'react-icons/hi'
-
-import ProductCard from './ProductCard'
 import { ProductFilterContext } from '../../context/candidate/ProductFilterContext'
 import { FilterContext } from '../../context/FilterContext'
 import { Loading, Error } from '../../shared/FetchStatus'
+import ProductCard from './ProductCard'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -76,13 +75,13 @@ const ProductList = (props) => {
           props.productList.length > 0
             ? props.productList.map((product) => (
               <ProductCard key={product.id} listType={displayType} {...{ filterDisplayed, product }} />
-              ))
+            ))
             : (
               <div className='flex justify-self-center text-dial-gray-dark'>{
                 format('noResults.entity', { entity: format('products.label') })
               }
               </div>
-              )
+            )
         }
       </div>
     </>
@@ -125,6 +124,7 @@ const ProductListQuery = () => {
       }
     })
   }
+
   return (
     <InfiniteScroll
       className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height'

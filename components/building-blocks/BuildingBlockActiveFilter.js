@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-
+import { MdClose } from 'react-icons/md'
+import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext } from '../context/BuildingBlockFilterContext'
 import { SDGFilters } from '../filter/element/SDG'
@@ -9,9 +10,6 @@ import { UseCaseFilters } from '../filter/element/UseCase'
 import { WorkflowFilters } from '../filter/element/Workflow'
 import { parseQuery } from '../shared/SharableLink'
 
-import { MdClose } from 'react-icons/md'
-
-import dynamic from 'next/dynamic'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const BuildingBlockActiveFilter = () => {
@@ -29,7 +27,9 @@ const BuildingBlockActiveFilter = () => {
     if (showMature) {
       count = count + 1
     }
+
     count = count + sdgs.length + useCases.length + workflows.length
+    
     return count
   }
 
@@ -52,6 +52,7 @@ const BuildingBlockActiveFilter = () => {
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [activeFilter, showMatureFilter, ...sdgFilters, ...useCaseFilters, ...workflowFilters].filter(f => f).join('&')
+
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
 

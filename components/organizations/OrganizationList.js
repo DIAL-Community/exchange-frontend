@@ -2,12 +2,11 @@ import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-
-import OrganizationCard from './OrganizationCard'
-import { OrganizationFilterContext } from '../context/OrganizationFilterContext'
-import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
+import { FilterContext } from '../context/FilterContext'
+import { OrganizationFilterContext } from '../context/OrganizationFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
+import OrganizationCard from './OrganizationCard'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -96,12 +95,12 @@ const OrganizationList = (props) => {
           props.organizationList.length > 0
             ? props.organizationList.map((organization) => (
               <OrganizationCard key={organization.id} listType={displayType} {...{ organization, filterDisplayed }} />
-              ))
+            ))
             : (
               <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
                 {format('noResults.entity', { entity: format('organization.label').toLowerCase() })}
               </div>
-              )
+            )
         }
       </div>
     </>
@@ -162,6 +161,7 @@ const OrganizationListQuery = () => {
   }
 
   const { searchOrganizations: { nodes, pageInfo } } = data
+
   return (
     <InfiniteScroll
       className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height'

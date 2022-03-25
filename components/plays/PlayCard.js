@@ -1,17 +1,14 @@
 import Link from 'next/link'
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-
 import ReactTooltip from 'react-tooltip'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
+import { gql, useMutation } from '@apollo/client'
+import { useRouter } from 'next/router'
+import { convertToKey } from '../context/FilterContext'
 import { PlayPreviewDispatchContext } from './PlayPreviewContext'
 import { PlayListContext, PlayListDispatchContext } from './PlayListContext'
 import { SOURCE_TYPE_ASSIGNING } from './PlayList'
-
-import { convertToKey } from '../context/FilterContext'
-import { gql, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
 const collectionPath = convertToKey('Plays')
 
 const UPDATE_PLAY_ORDER = gql`
@@ -60,7 +57,7 @@ const PlayAsCard = ({ play }) => {
                 play.playDescription &&
                   <div className='px-3 py-3 text-sm'>
                     <div className='max-h-16 playbook-description overflow-hidden'>
-                      {ReactHtmlParser(play.playDescription?.description)}
+                      {parse(play.playDescription?.description)}
                     </div>
                   </div>
               }
@@ -110,11 +107,11 @@ const PlayAsList = ({ playbook, play, sourceType }) => {
   return (
     <div className='bg-white border border-dial-gray border-opacity-50 drop-shadow'>
       <div className='flex flex-row gap-4 px-3 py-4 h-16 w-full'>
-        <div className='w-2/6 font-semibold my-auto whitespace-nowrap overflow-hidden overflow-ellipsis'>
+        <div className='w-2/6 font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
           {play.name}
         </div>
         <div className='w-full playbook-list-description overflow-hidden fr-view my-1'>
-          {ReactHtmlParser(play.playDescription?.description)}
+          {parse(play.playDescription?.description)}
         </div>
         {
           sourceType !== SOURCE_TYPE_ASSIGNING &&

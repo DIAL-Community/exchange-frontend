@@ -2,12 +2,11 @@ import { useContext, useEffect } from 'react'
 import { useIntl, FormattedMessage } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-
-import BuildingBlockCard from './BuildingBlockCard'
+import { HiSortAscending } from 'react-icons/hi'
 import { BuildingBlockFilterContext } from '../context/BuildingBlockFilterContext'
 import { FilterContext } from '../context/FilterContext'
-import { HiSortAscending } from 'react-icons/hi'
 import { Loading, Error } from '../shared/FetchStatus'
+import BuildingBlockCard from './BuildingBlockCard'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -105,12 +104,12 @@ const BuildingBlockList = (props) => {
           props.buildingBlockList.length > 0
             ? props.buildingBlockList.map((buildingBlock) => (
               <BuildingBlockCard key={buildingBlock.id} listType={displayType} {...{ buildingBlock, filterDisplayed }} />
-              ))
+            ))
             : (
               <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
                 {format('noResults.entity', { entity: format('building-block.label').toLowerCase() })}
               </div>
-              )
+            )
         }
       </div>
     </>
@@ -166,6 +165,7 @@ const BuildingBlockListQuery = () => {
   }
 
   const { searchBuildingBlocks: { nodes, pageInfo } } = data
+  
   return (
     <>
       <InfiniteScroll

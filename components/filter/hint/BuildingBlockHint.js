@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import { FilterContext } from '../../context/FilterContext'
 
 const BuildingBlockHint = () => {
@@ -29,7 +28,7 @@ const BuildingBlockHint = () => {
             {format('buildingBlock.hint.characteristicTitle').toUpperCase()}
           </div>
           <div className='fr-view text-sm pr-1 pb-3'>
-            {ReactHtmlParser(format('buildingBlock.hint.characteristics'))}
+            {parse(format('buildingBlock.hint.characteristics'))}
           </div>
           <div className='text-lg px-8 pb-3'>
             {format('buildingBlock.hint.descriptionTitle').toUpperCase()}

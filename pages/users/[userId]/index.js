@@ -2,19 +2,15 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import Head from 'next/head'
 import { useSession } from 'next-auth/client'
-
+import { gql, useQuery } from '@apollo/client'
+import dynamic from 'next/dynamic'
+import { useEffect } from 'react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import NotFound from '../../../components/shared/NotFound'
-
 import withApollo from '../../../lib/apolloClient'
-import { gql, useQuery } from '@apollo/client'
-
 import UserDetail from '../../../components/users/UserDetail'
 import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
-
-import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const USER_QUERY = gql`

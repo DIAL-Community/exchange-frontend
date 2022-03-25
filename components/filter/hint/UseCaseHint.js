@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import { FilterContext } from '../../context/FilterContext'
 
 const UseCaseHint = () => {
@@ -29,7 +28,7 @@ const UseCaseHint = () => {
             {format('useCase.hint.characteristicTitle').toUpperCase()}
           </div>
           <div className='fr-view text-sm'>
-            {ReactHtmlParser(format('useCase.hint.characteristics'))}
+            {parse(format('useCase.hint.characteristics'))}
           </div>
           <div className='text-lg px-8 pb-3'>
             {format('useCase.hint.descriptionTitle').toUpperCase()}

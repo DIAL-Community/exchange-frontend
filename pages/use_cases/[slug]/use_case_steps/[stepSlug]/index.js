@@ -2,17 +2,15 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import Head from 'next/head'
-
+import { gql, useQuery } from '@apollo/client'
+import { useSession } from 'next-auth/client'
+import { useEffect } from 'react'
 import withApollo from '../../../../../lib/apolloClient'
-
 import StepList from '../../../../../components/use-cases/steps/StepList'
 import StepDetail from '../../../../../components/use-cases/steps/StepDetail'
 import Breadcrumb from '../../../../../components/shared/breadcrumb'
 import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
-import { gql, useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/client'
-import { useEffect } from 'react'
 
 const USE_CASE_QUERY = gql`
   query UseCase($slug: String!) {
@@ -42,6 +40,7 @@ const UseCaseStep = () => {
     }
 
     const { userEmail, userToken } = session.user
+
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/use_cases/${slug}/use_case_steps/${stepSlug}/` +
         `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
@@ -51,6 +50,7 @@ const UseCaseStep = () => {
     if (data) {
       map[data.useCase.slug] = data.useCase.name
     }
+
     return map
   })()
 

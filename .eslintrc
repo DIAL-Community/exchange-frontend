@@ -1,12 +1,13 @@
 {
-	"extends": "airbnb-base",
+	"extends": ["next"],
 	"ignorePatterns": ["build/"],
-	"plugins": ["sort-exports"],
 	"rules": {
+    "template-curly-spacing": "off",
+    "quotes": [2, "single"],
 		"semi": [2, "never"],
-		"indent": [2, "tab"],
-		"no-tabs": 0,
-		"object-property-newline": [2, { "allowAllPropertiesOnSameLine": false}],
+		"indent": ["error", 2, { 
+      "ignoredNodes": ["TemplateLiteral"] 
+    }],
 		"import/order": [2, {
 			"groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
 			"newlines-between": "never"
@@ -14,9 +15,10 @@
 		"padding-line-between-statements": [2,
 			{ "blankLine": "always", "prev": "*", "next": "return" },
 			{ "blankLine": "always", "prev": "block-like", "next": "*" }
-		]
-	},
-	"env": {
-		"jest": true
+		],
+    "@next/next/no-img-element": "off",
+    "react-hooks/rules-of-hooks": "warn",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off"
 	}
 }

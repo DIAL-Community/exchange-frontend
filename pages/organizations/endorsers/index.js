@@ -1,10 +1,9 @@
 import { useContext, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
-
+import dynamic from 'next/dynamic'
+import { gql, useQuery } from '@apollo/client'
 import apolloClient from '../../../lib/apolloClient'
-
 import GradientBackground from '../../../components/shared/GradientBackground'
-
 import OrganizationCard from '../../../components/organizations/OrganizationCard'
 import { FilterContext } from '../../../components/context/FilterContext'
 import SearchFilter from '../../../components/shared/SearchFilter'
@@ -12,17 +11,14 @@ import PoweredBy from '../../../components/shared/PoweredBy'
 import { CountryAutocomplete, CountryFilters } from '../../../components/filter/element/Country'
 import { EndorsingYearFilters, EndorsingYearSelect } from '../../../components/filter/element/EndorsingYear'
 import { SectorAutocomplete, SectorFilters } from '../../../components/filter/element/Sector'
-
-import dynamic from 'next/dynamic'
-
 import EndorserInfo from '../../../components/maps/endorsers/EndorserInfo'
-import { gql, useQuery } from '@apollo/client'
 
 const EndorserMarkerMaps = (props) => {
   const EndorserMarkerMaps = useMemo(() => dynamic(
     () => import('../../../components/maps/endorsers/EndorserMarkers'),
     { ssr: false }
   ), [])
+
   return <EndorserMarkerMaps {...props} />
 }
 
@@ -138,6 +134,7 @@ const EndorserPage = () => {
         })
       })
     }
+
     return cities
   })()
 
@@ -192,12 +189,12 @@ const EndorserPage = () => {
           data && data.searchOrganizations && data.searchOrganizations.nodes && data.searchOrganizations.nodes.length > 0
             ? data.searchOrganizations.nodes.map((organization) => (
               <OrganizationCard key={organization.id} organization={organization} listType={displayType} />
-              ))
+            ))
             : (
               <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-3'>
                 {format('noResults.entity', { entity: format('organization.label').toLowerCase() })}
               </div>
-              )
+            )
         }
       </div>
     </>

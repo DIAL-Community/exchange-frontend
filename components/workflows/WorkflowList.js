@@ -2,12 +2,11 @@ import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-
-import WorkflowCard from './WorkflowCard'
-import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
-import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
+import { FilterContext } from '../context/FilterContext'
+import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
+import WorkflowCard from './WorkflowCard'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -107,12 +106,12 @@ const WorkflowList = (props) => {
           props.workflowList.length > 0
             ? props.workflowList.map((workflow) => (
               <WorkflowCard key={workflow.id} listType={displayType} {...{ workflow, filterDisplayed }} />
-              ))
+            ))
             : (
               <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
                 {format('noResults.entity', { entity: format('workflow.label').toLowerCase() })}
               </div>
-              )
+            )
         }
       </div>
     </>
@@ -165,6 +164,7 @@ const WorkflowListQuery = () => {
   }
 
   const { searchWorkflows: { nodes, pageInfo } } = data
+
   return (
     <InfiniteScroll
       className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height'

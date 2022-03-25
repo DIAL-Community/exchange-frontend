@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useIntl } from 'react-intl'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 
 const Description = () => {
   const { formatMessage } = useIntl()
@@ -55,7 +55,7 @@ const Description = () => {
                   <div className={openTab === 1 ? 'block' : 'hidden'} id='policy-makers'>
                     <div className='flex flex-col col-span-2 flex-wrap p-8 xl:max-h-lg text-dial-blue-darkest'>
                       <div className='text-lg tracking-wide'>
-                        {ReactHtmlParser(format('definition.who'))}
+                        {parse(format('definition.who'))}
                       </div>
                     </div>
                   </div>
@@ -91,7 +91,7 @@ const Description = () => {
                   <div className={openTab === 3 ? 'block' : 'hidden'} id='tech-ict-partners'>
                     <div className='flex flex-col flex-wrap p-8 xl:max-h-lg text-dial-blue-darkest'>
                       <p className='text-lg tracking-wide pb-6'>
-                        {ReactHtmlParser(format('definition.approach'))}
+                        {parse(format('definition.approach'))}
                       </p>
                       <a href='https://digitalimpactalliance.org/research/sdg-digital-investment-framework/' target='_blank' rel='noreferrer'>
                         <button
@@ -107,7 +107,7 @@ const Description = () => {
                   <div className={openTab === 4 ? 'block' : 'hidden'} id='procurers'>
                     <div className='flex flex-col flex-wrap p-8 xl:max-h-lg text-dial-blue-darkest'>
                       <p className='text-lg tracking-wide'>
-                        {ReactHtmlParser(format('definition.featured'))}
+                        {parse(format('definition.featured'))}
                       </p>
                     </div>
                   </div>

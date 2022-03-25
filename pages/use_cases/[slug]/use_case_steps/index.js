@@ -1,15 +1,13 @@
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import Head from 'next/head'
-
+import { gql, useQuery } from '@apollo/client'
+import { useEffect } from 'react'
 import withApollo from '../../../../lib/apolloClient'
-
 import StepList from '../../../../components/use-cases/steps/StepList'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
-import { gql, useQuery } from '@apollo/client'
 import Breadcrumb from '../../../../components/shared/breadcrumb'
-import { useEffect } from 'react'
 
 const USE_CASE_QUERY = gql`
   query UseCase($slug: String!) {
@@ -37,6 +35,7 @@ const UseCaseStep = () => {
     if (data) {
       map[data.useCase.slug] = data.useCase.name
     }
+
     return map
   })()
 

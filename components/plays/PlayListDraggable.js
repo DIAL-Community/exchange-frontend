@@ -1,11 +1,9 @@
 import { useRef, useCallback, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useMutation } from '@apollo/client'
-
 import { useDrag, useDrop } from 'react-dnd'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 import update from 'immutability-helper'
-
 import { PlayPreviewDispatchContext } from './PlayPreviewContext'
 import { PlayListContext, PlayListDispatchContext } from './PlayListContext'
 
@@ -53,12 +51,14 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay }) => {
       if (!ref.current) {
         return
       }
+
       const dragIndex = item.index
       const hoverIndex = index
       // Don't replace items with themselves
       if (dragIndex === hoverIndex) {
         return
       }
+
       // Determine rectangle on screen
       const hoverBoundingRect = ref.current?.getBoundingClientRect()
       // Get vertical middle
@@ -74,10 +74,12 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay }) => {
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
         return
       }
+
       // Dragging upwards
       if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return
       }
+
       // Time to actually perform the action
       movePlay(dragIndex, hoverIndex)
       // Note: we're mutating the monitor item here!
@@ -111,7 +113,7 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay }) => {
         <div className='py-4 font-semibold text-lg'>{index + 1})</div>
         <div ref={preview} className='w-full'>
           <div ref={ref} className={`${dndBorderStyles} flex flex-row gap-3 px-3 py-4 h-16`}>
-            <div className='w-2/6 font-semibold my-auto whitespace-nowrap overflow-hidden overflow-ellipsis'>
+            <div className='w-2/6 font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
               {play.name}
             </div>
             {
@@ -119,7 +121,7 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay }) => {
               // The original text is large and we're using playbook-list-description to force it to become 1 line.
             }
             <div className='w-full playbook-list-description fr-view my-1'>
-              {play.playDescription && ReactHtmlParser(play.playDescription.description.slice(0, 300))}
+              {play.playDescription && parse(play.playDescription.description.slice(0, 300))}
             </div>
             <div className='w-2/6 my-auto flex gap-2 text-sm'>
               <button
@@ -229,7 +231,7 @@ const PlayListDraggable = ({ playbook }) => {
             <div className='text-sm font-medium opacity-80'>
               {format('noResults.entity', { entity: format('plays.label').toString().toLowerCase() })}
             </div>
-            )
+          )
       }
     </div>
   )

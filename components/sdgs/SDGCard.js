@@ -3,12 +3,11 @@ import { createRef, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 import { ToastContext } from '../../lib/ToastContext'
-
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('SDGs')
 
 const ellipsisTextStyle = `
-  whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+  whitespace-nowrap text-ellipsis overflow-hidden my-auto
 `
 const containerElementStyle = `
   border-3 cursor-pointer
@@ -58,10 +57,13 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
         if (workflowSlugs.indexOf(useCase.slug) === -1) {
           useCases.push(useCase)
         }
+
         return useCase
       })
+
       return sdgTarget
     })
+
     return useCases
   })()
 
@@ -106,7 +108,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                           <div className='inline'>
                             {format('useCase.header')}:
                           </div>
-                          <div className='mx-1 whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                          <div className='mx-1 whitespace-nowrap text-ellipsis overflow-hidden'>
                             {
                               useCases.length === 0 && format('general.na')
                             }
@@ -130,7 +132,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                 </div>
               </div>
             </div>
-            )
+          )
           : (
             <div onClick={() => navClickHandler()} className={containerElementStyle}>
               <div className='border border-dial-gray hover:border-transparent drop-shadow'>
@@ -234,7 +236,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                 </div>
               </div>
             </div>
-            )
+          )
       }
     </Link>
   )

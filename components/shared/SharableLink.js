@@ -23,6 +23,7 @@ export const parseQuery = (query, fieldName, contextValues, contextSetter) => {
         label: label
       })
     }
+
     contextSetter(contextValues)
   }
 }
@@ -49,6 +50,7 @@ const SharableLink = ({ sharableLink }) => {
         })
     }
   }
+
   return (
     <>
       {
@@ -62,7 +64,7 @@ const SharableLink = ({ sharableLink }) => {
             </a>
             {
               shareStatus === 'success'
-                ? <div className='text-green-500'>{format('app.shareSuccess')}</div>
+                ? <div className='text-emerald-500'>{format('app.shareSuccess')}</div>
                 : shareStatus === 'failed' && <div className='text-red-500'>{format('app.shareFailed')}</div>
             }
           </div>

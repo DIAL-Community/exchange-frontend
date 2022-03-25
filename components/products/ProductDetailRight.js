@@ -1,11 +1,8 @@
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
-
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseForum } from '../shared/discourse'
-
 import OrganizationCard from '../organizations/OrganizationCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import SDGCard from '../sdgs/SDGCard'
@@ -13,7 +10,6 @@ import SectorCard from '../sectors/SectorCard'
 import TagCard from '../tags/TagCard'
 import ProjectCard from '../projects/ProjectCard'
 import ProductCard from './ProductCard'
-
 import MaturityAccordion from './Maturity'
 import RepositoryList from './repositories/RepositoryList'
 
@@ -24,6 +20,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[product.slug] = product.name
+
     return map
   })()
 
@@ -49,7 +46,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
         )}
       </div>
       <div className='fr-view text-dial-gray-dark'>
-        {product.productDescription && ReactHtmlParser(product.productDescription.description)}
+        {product.productDescription && parse(product.productDescription.description)}
       </div>
       {
         product.sustainableDevelopmentGoals &&
@@ -156,12 +153,12 @@ const ProductDetailRight = ({ product, discourseRef }) => {
           {
             (product.interoperatesWith.length > 0)
               ? product.interoperatesWith.map((interopProd, index) => {
-                  return (
-                    <div key={index} className='pb-5 mr-6'>
-                      <ProductCard product={interopProd} listType='list' />
-                    </div>
-                  )
-                })
+                return (
+                  <div key={index} className='pb-5 mr-6'>
+                    <ProductCard product={interopProd} listType='list' />
+                  </div>
+                )
+              })
               : (<div className='text-sm pb-5 text-button-gray'>{format('product.no-interop')}</div>)
           }
         </div>
@@ -170,12 +167,12 @@ const ProductDetailRight = ({ product, discourseRef }) => {
           {
             (product.includes.length > 0)
               ? product.includes.map((includeProd, index) => {
-                  return (
-                    <div key={index} className='pb-5 mr-6'>
-                      <ProductCard product={includeProd} listType='list' />
-                    </div>
-                  )
-                })
+                return (
+                  <div key={index} className='pb-5 mr-6'>
+                    <ProductCard product={includeProd} listType='list' />
+                  </div>
+                )
+              })
               : (<div className='text-sm pb-5 text-button-gray'>{format('product.no-include')}</div>)
           }
         </div>
@@ -189,7 +186,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
                 <div className='text-sm mb-3 text-dial-gray-dark highlight-link' dangerouslySetInnerHTML={{ __html: format('product.maturity-desc') }} />
                 <MaturityAccordion maturityScores={product.maturityScores} overallScore={product.maturityScore} />
               </>
-              )
+            )
             : <div className='text-sm pb-5 text-button-gray'>{format('product.no-maturity')}</div>
         }
       </div>

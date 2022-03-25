@@ -1,11 +1,9 @@
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { useContext, useEffect, useState } from 'react'
-
 import { MdPlayArrow } from 'react-icons/md'
-
-import { PlaybookDetailContext, PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 import { Error, Loading } from '../shared/FetchStatus'
+import { PlaybookDetailContext, PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
 
 const PLAYBOOK_QUERY = gql`
@@ -97,11 +95,13 @@ const PlaybookDetailNavigation = ({ slug }) => {
         setActiveSlug(currentSlug)
         found = true
       }
+
       if (!found && slugIntersectionRatio === 1) {
         // Use slug with full intersection if we don't find any with the above condition.
         setActiveSlug(currentSlug)
         found = true
       }
+
       index = index + 1
     }
 

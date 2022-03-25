@@ -87,7 +87,7 @@ const ReportIssue = ({ showForm, setShowForm }) => {
                     </div>
                   </Dialog.Title>
                   <Dialog.Description>
-                    <div id='thankyou' className={`${!thanks && 'hidden'} text-lg text-green-500 px-2`}>{format('report.thankyou')}</div>
+                    <div id='thankyou' className={`${!thanks && 'hidden'} text-lg text-emerald-500 px-2`}>{format('report.thankyou')}</div>
                     <div className='ml-auto grid grid-cols-1 gap-3 py-3 px-2'>
                       <div className='grid'>
                         <label className='block text-lg text-dial-blue mb-2' htmlFor='name'>

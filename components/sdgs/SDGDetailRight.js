@@ -9,6 +9,7 @@ const SDGDetailRight = ({ sdg }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[sdg.slug] = sdg.name
+
     return map
   })()
 

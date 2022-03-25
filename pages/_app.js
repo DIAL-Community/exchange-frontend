@@ -5,11 +5,9 @@ import { IntlProvider } from 'react-intl'
 import { useRouter } from 'next/router'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-
 import * as translations from '../translations'
 import * as gtag from '../lib/gtag'
 import * as matomo from '../lib/matomo'
-
 import '../styles/globals.css'
 import '../styles/editor.css'
 import '../styles/filter.css'
@@ -20,13 +18,10 @@ import '../styles/leaflet.css'
 import '../styles/loading.css'
 import '../styles/tooltip.css'
 import '../styles/password.css'
-
 import '../styles/drawer.css'
 import '../styles/card.css'
-
 import '../styles/playbook.css'
 import 'react-toastify/dist/ReactToastify.css'
-
 import CatalogContext from '../lib/CatalogContext'
 import CandidateContext from '../lib/CandidateContext'
 import { ToastContextProvider } from '../lib/ToastContext'
@@ -66,7 +61,9 @@ const App = ({ Component, pageProps }) => {
       gtag.pageview(url)
       matomo.pageview(url)
     }
+
     router.events.on('routeChangeComplete', handleRouteChange)
+
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }

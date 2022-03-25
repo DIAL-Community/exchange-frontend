@@ -1,12 +1,10 @@
 import { csrfToken } from 'next-auth/client'
-
 import Head from 'next/head'
-import Header from '../../components/Header'
-
 import { useIntl } from 'react-intl'
 import { useState, useRef, useEffect } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import Link from 'next/link'
+import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
 export default function SignIn ({ csrfToken }) {
@@ -99,6 +97,7 @@ export async function getServerSideProps (ctx) {
 
     if (cbLang && cbLang !== locale && ['en', 'de', 'fr', 'cs', 'pt', 'es', 'sw'].includes(cbLang)) {
       const [path] = resolvedUrl.split('?')
+
       return {
         redirect: {
           destination: `/${cbLang}${path}?callbackUrl=${callbackUrl}`
@@ -106,6 +105,7 @@ export async function getServerSideProps (ctx) {
       }
     }
   }
+
   return {
     props: {
       csrfToken: await csrfToken(ctx)
