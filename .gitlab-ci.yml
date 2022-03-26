@@ -2,7 +2,6 @@ image: node
 
 stages:
   - lint
-  - build
   - test
 
 eslint:
@@ -19,18 +18,6 @@ eslint:
       eslint-plugin-react
     # Run eslint
     - node_modules/eslint/bin/eslint.js .
-
-build:
-  stage: build
-  script:
-    - |
-      yarn install
-      yarn build
-  artifacts:
-    expire_in: 1 hour
-    paths:
-      - build
-      - node_modules/
 
 test:
   stage: test
