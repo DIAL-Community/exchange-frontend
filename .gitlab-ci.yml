@@ -19,6 +19,20 @@ eslint:
     # Run eslint
     - node_modules/eslint/bin/eslint.js .
 
+cache:
+  paths:
+    - node_modules/
+
+build_react:
+  stage: build
+  script:
+    - yarn install
+    - yarn build
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - build
+
 test:
   stage: test
   script:
