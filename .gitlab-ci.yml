@@ -2,6 +2,7 @@ image: node
 
 stages:
   - lint
+  - build
   - test
 
 eslint:
