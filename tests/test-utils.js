@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react'
 import { IntlProvider } from 'react-intl'
 import * as translations from '../translations'
+import { ToastContextProvider } from '../lib/ToastContext'
 
 const Providers = ({ children }) => {
   const locale = 'en'
@@ -8,7 +9,9 @@ const Providers = ({ children }) => {
   
   return (
     <IntlProvider locale={locale} defaultLocale='en' messages={messages}>
-      {children}
+      <ToastContextProvider>
+        {children}
+      </ToastContextProvider>
     </IntlProvider>
   )
 }
