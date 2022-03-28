@@ -3,7 +3,6 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import parse from 'html-react-parser'
 import { Loading, Error } from '../shared/FetchStatus'
@@ -140,8 +139,7 @@ const Play = ({ play, index }) => {
   )
 }
 
-const PlaybookDetailPlayList = ({ slug }) => {
-  const { locale } = useRouter()
+const PlaybookDetailPlayList = ({ slug, locale }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 

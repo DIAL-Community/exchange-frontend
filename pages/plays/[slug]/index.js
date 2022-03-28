@@ -40,20 +40,18 @@ const Play = () => {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
-  const { pathname, asPath, query, locale } = useRouter()
+  const { locale, query } = router
+  const { slug } = query
 
-  const { slug } = router.query
-  const { loading, error, data } = useQuery(PLAY_QUERY, {
+  const { loading, error, data, refetch } = useQuery(PLAY_QUERY, {
     variables: { slug: slug },
     skip: !slug,
     context: { headers: { 'Accept-Language': locale } }
   })
 
   useEffect(() => {
-    if (query.locale) {
-      router.replace({ pathname }, asPath, { locale: query.locale })
-    }
-  })
+    refetch()
+  }, [locale])
 
   return (
     <>

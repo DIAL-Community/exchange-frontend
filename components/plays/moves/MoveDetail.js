@@ -1,14 +1,12 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import parse from 'html-react-parser'
-import { useRouter } from 'next/router'
 import { descriptionByLocale } from '../../../lib/utilities'
 import Breadcrumb from '../../shared/breadcrumb'
 
-const MoveDetail = ({ move }) => {
+const MoveDetail = ({ move, locale }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
-  const { locale } = useRouter()
   const [session] = useSession()
 
   const generateEditLink = () => {

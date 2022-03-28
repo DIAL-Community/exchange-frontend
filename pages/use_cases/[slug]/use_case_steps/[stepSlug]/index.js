@@ -1,10 +1,9 @@
-import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/client'
+import { gql, useQuery } from '@apollo/client'
 import Link from 'next/link'
 import Head from 'next/head'
-import { gql, useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/client'
-import { useEffect } from 'react'
 import withApollo from '../../../../../lib/apolloClient'
 import StepList from '../../../../../components/use-cases/steps/StepList'
 import StepDetail from '../../../../../components/use-cases/steps/StepDetail'
@@ -23,15 +22,57 @@ const USE_CASE_QUERY = gql`
   }
 `
 
+// Generate the edit link to edit this step data.
+const EditLink = ({ linkHref }) => {
+  const [session] = useSession()
+
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
+  return (
+    <div className='inline'>
+      {
+        session.user.canEdit && (
+          <a href={linkHref} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
+            <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
+            <span className='text-sm px-2'>{format('app.edit')}</span>
+          </a>
+        )
+      }
+    </div>
+  )
+}
+
+// Create the top left header of the step list.
+const UseCaseHeader = ({ useCase }) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
+  return (
+    <div className='border'>
+      <div className='text-xs text-right text-dial-cyan font-semibold p-1.5 border-b uppercase'>{useCase.maturity}</div>
+      <Link href={`/use_cases/${useCase.slug}`}>
+        <div className='cursor-pointer px-4 py-6 flex items-center'>
+          <img
+            className='use-case-filter w-8 h-full'
+            alt={format('image.alt.logoFor', { name: useCase.name })}
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+          />
+          <div className='text-xl text-use-case font-semibold px-4'>{useCase.name}</div>
+        </div>
+      </Link>
+    </div>
+  )
+}
+
 const UseCaseStep = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const router = useRouter()
-  const { locale, pathname, asPath, query } = useRouter()
+  const { locale, query } = useRouter()
+  const { slug, stepSlug } = query
 
   const [session] = useSession()
-  const { slug, stepSlug } = router.query
   const { data } = useQuery(USE_CASE_QUERY, { variables: { slug: slug } })
 
   const generateEditLink = () => {
@@ -54,12 +95,6 @@ const UseCaseStep = () => {
     return map
   })()
 
-  useEffect(() => {
-    if (query.locale) {
-      router.replace({ pathname }, asPath, { locale: query.locale })
-    }
-  })
-
   return (
     <>
       <Head>
@@ -73,39 +108,9 @@ const UseCaseStep = () => {
             <Breadcrumb slugNameMapping={slugNameMapping} />
           </div>
           <div className='w-full mb-2'>
-            {
-              session && (
-                <div className='inline'>
-                  {
-                    session.user.canEdit && (
-                      <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
-                        <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-                        <span className='text-sm px-2'>{format('app.edit')}</span>
-                      </a>
-                    )
-                  }
-                </div>
-              )
-            }
+            {session?.user && <EditLink linkHref={generateEditLink()} />}
           </div>
-          {
-            data && data.useCase &&
-              <>
-                <div className='border'>
-                  <div className='text-xs text-right text-dial-cyan font-semibold p-1.5 border-b uppercase'>{data.useCase.maturity}</div>
-                  <Link href={`/use_cases/${slug}`}>
-                    <div className='cursor-pointer px-4 py-6 flex items-center'>
-                      <img
-                        className='use-case-filter w-8 h-full'
-                        alt={format('image.alt.logoFor', { name: data.useCase.name })}
-                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.useCase.imageFile}
-                      />
-                      <div className='text-xl text-use-case font-semibold px-4'>{data.useCase.name}</div>
-                    </div>
-                  </Link>
-                </div>
-              </>
-          }
+          {data?.useCase && <UseCaseHeader useCase={data.useCase} />}
           <StepList useCaseSlug={slug} stepSlug={stepSlug} listStyle='compact' shadowOnContainer />
         </div>
         <div className='w-full lg:w-2/3 xl:w-3/4'>

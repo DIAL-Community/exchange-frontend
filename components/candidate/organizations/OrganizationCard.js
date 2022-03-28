@@ -134,7 +134,7 @@ const OrganizationCard = ({ organization, listType }) => {
                     {organization.website}
                   </div>
                   {
-                    String(organization.rejected) === 'null' && session && session.user && status === '' &&
+                    String(organization.rejected) === 'null' && status === '' && session?.user?.canEdit &&
                       <div className='hidden lg:flex lg:col-span-4 flex-row'>
                         <button
                           className={`
@@ -210,7 +210,7 @@ const OrganizationCard = ({ organization, listType }) => {
                       </div>
                     </div>
                     {
-                      String(organization.rejected) === 'null' && session && session.user && status === '' &&
+                      String(organization.rejected) === 'null' && status === '' && session?.user?.canEdit &&
                         <div className='pl-3 py-2 flex flex-row'>
                           <button
                             className={`

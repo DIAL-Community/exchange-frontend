@@ -14,7 +14,7 @@ const SignIn = () => {
   useEffect(() => {
     setTimeout(() => {
       router.push('/products')
-    }, 5000)
+    }, 1000)
   }, [])
 
   return (
