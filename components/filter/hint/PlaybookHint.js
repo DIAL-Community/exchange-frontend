@@ -21,7 +21,7 @@ const PlaybookHint = () => {
             <div className='text-base px-8'>
               {format('playbook.hint.subtitle')}
             </div>
-            <img className='w-48 h-48 mt-8 mx-auto xl:mt-0' src='images/tiles/playbook.svg' alt='' />
+            <img className='w-48 h-48 mt-8 mx-auto xl:mt-0' src='images/tiles/use-case.svg' alt='' />
           </div>
         </div>
         <div className='col-span-11'>
