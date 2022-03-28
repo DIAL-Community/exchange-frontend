@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import { createRef, useContext, useEffect, useState } from 'react'
+import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
-import { ToastContext } from '../../lib/ToastContext'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('SDGs')
 
@@ -18,8 +17,6 @@ const containerElementStyle = `
 const SDGCard = ({ sdg, listType, filterDisplayed }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
-
-  const { showToast } = useContext(ToastContext)
 
   const sdgTargetContainer = createRef()
   const [sdgTargetOverflow, setSdgTargetOverflow] = useState(false)
@@ -67,8 +64,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
     return useCases
   })()
 
-  const navClickHandler = (target) => {
-    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  const navClickHandler = () => {
   }
 
   const nameColSpan = () => {
@@ -137,7 +133,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
             <div onClick={() => navClickHandler()} className={containerElementStyle}>
               <div className='border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='flex flex-col h-80 p-4'>
-                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
+                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
                     {sdg.name}
                   </div>
                   <div className='m-auto align-middle w-40'>

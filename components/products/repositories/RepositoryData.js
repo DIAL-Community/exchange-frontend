@@ -109,16 +109,19 @@ const RepositoryInformation = ({ productRepository }) => {
         />
       </div>
       {
-        (session?.user.canEdit || session?.user.own.products.filter(p => `${p}` === `${productRepository.product.id}`).length > 0) &&
+        (
+          session?.user.canEdit ||
+          session?.user.own.products.filter(p => `${p}` === `${productRepository.product.id}`).length > 0
+        ) &&
           <div className='w-full xl:w-4/5 my-2 flex flex-row gap-2'>
             <button
-              className='text-white bg-blue-400 hover:bg-blue-500 rounded inline-flex items-center py-2 px-4'
+              className='text-white bg-blue-400 hover:bg-blue-500 rounded py-2 px-4'
               onClick={handleEdit}
             >
               {format('productRepository.edit')}
             </button>
             <button
-              className='text-black border-2 border-blue-400 hover:border-blue-500 rounded inline-flex items-center py-1 px-4'
+              className='text-dial-blue border-2 border-dial-blue-light rounded py-1 px-4'
               onClick={handleDelete}
             >
               {format('productRepository.delete')}

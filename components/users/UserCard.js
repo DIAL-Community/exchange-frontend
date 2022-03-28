@@ -1,8 +1,6 @@
 import Link from 'next/link'
-import { useContext, useEffect } from 'react'
-import { useIntl } from 'react-intl'
+import { useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
-import { ToastContext } from '../../lib/ToastContext'
 import { convertToKey } from '../context/FilterContext'
 
 const collectionPath = convertToKey('Users')
@@ -17,16 +15,11 @@ const containerElementStyle = `
 `
 
 const UserCard = ({ user, listType, filterDisplayed, newTab = false }) => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-
   useEffect(() => {
     ReactTooltip.rebuild()
   })
 
-  const { showToast } = useContext(ToastContext)
-  const navClickHandler = (target) => {
-    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  const navClickHandler = () => {
   }
 
   return (
@@ -60,7 +53,7 @@ const UserCard = ({ user, listType, filterDisplayed, newTab = false }) => {
                     </div>
                   </div>
                   <div className='flex flex-col h-80 p-4'>
-                    <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70 z-10'>
+                    <div className='text-2xl font-semibold absolute w-64 2xl:w-80 z-10'>
                       {user.name}
                     </div>
                     <div className='m-auto align-middle w-40'>

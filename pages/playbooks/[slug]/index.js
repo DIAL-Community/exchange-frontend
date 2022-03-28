@@ -1,6 +1,5 @@
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
@@ -13,15 +12,8 @@ const Playbook = () => {
   const format = (id) => formatMessage({ id })
 
   const router = useRouter()
-  const { pathname, asPath, query } = useRouter()
-
-  const { slug } = router.query
-
-  useEffect(() => {
-    if (query.locale) {
-      router.replace({ pathname }, asPath, { locale: query.locale })
-    }
-  })
+  const { locale, query } = router
+  const { slug } = query
 
   return (
     <>
@@ -31,7 +23,7 @@ const Playbook = () => {
       </Head>
       <Header />
       <PlaybookDetailProvider>
-        <PlaybookDetail slug={slug} />
+        <PlaybookDetail slug={slug} locale={locale} />
       </PlaybookDetailProvider>
       <Footer />
     </>

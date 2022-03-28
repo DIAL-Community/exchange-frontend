@@ -1,10 +1,9 @@
 import Link from 'next/link'
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 import parse from 'html-react-parser'
 import { convertToKey } from '../context/FilterContext'
-import { ToastContext } from '../../lib/ToastContext'
 const collectionPath = convertToKey('Playbooks')
 
 const ellipsisTextStyle = `
@@ -13,7 +12,6 @@ const ellipsisTextStyle = `
 const containerElementStyle = `
   border-3 cursor-pointer
   border-transparent hover:border-dial-yellow
-  text-playbook hover:text-dial-yellow
 `
 
 const PlaybookCard = ({ playbook, listType, filterDisplayed }) => {
@@ -24,9 +22,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed }) => {
     ReactTooltip.rebuild()
   })
 
-  const { showToast } = useContext(ToastContext)
-  const navClickHandler = (target) => {
-    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  const navClickHandler = () => {
   }
 
   return (
@@ -61,7 +57,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed }) => {
               <div className='border border-dial-gray hover:border-transparent drop-shadow h-full'>
                 <div className='flex flex-col h-full'>
                   <div className='flex flex-col p-4 group-hover:text-dial-yellow'>
-                    <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
+                    <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
                       {playbook.name}
                     </div>
                     <div className='mx-auto mt-5 pt-20 w-40 h-60'>

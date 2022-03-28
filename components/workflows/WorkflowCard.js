@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import { createRef, useContext, useEffect, useState } from 'react'
+import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
-import { ToastContext } from '../../lib/ToastContext'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Workflows')
 
@@ -18,8 +17,6 @@ const containerElementStyle = `
 const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
-
-  const { showToast } = useContext(ToastContext)
 
   const buildingBlockContainer = createRef()
   const [buildingBlockOverflow, setBuildingBlockOverflow] = useState(false)
@@ -70,8 +67,7 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
       : filterDisplayed ? 'col-span-12 xl:col-span-4' : 'col-span-12 lg:col-span-4'
   }
 
-  const navClickHandler = (target) => {
-    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  const navClickHandler = () => {
   }
 
   return (
@@ -162,7 +158,7 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
             <div onClick={() => navClickHandler()} className={containerElementStyle}>
               <div className='border border-dial-gray hover:border-transparent drop-shadow'>
                 <div className='flex flex-col h-80 p-4'>
-                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
+                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
                     {workflow.name}
                   </div>
                   <div className='m-auto align-middle w-40'>

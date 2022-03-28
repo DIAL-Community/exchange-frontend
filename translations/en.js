@@ -537,6 +537,24 @@ export const en = {
     the Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ), and New America.
   `,
 
+  'playbook.hint.subtitle': `
+  Playbooks are tactical guides that  help different actors approach common digital initiatives. They provide step-by-step instructions and highlight key technical and operational considerations.
+  `,
+  'playbook.hint.characteristicTitle': 'Description',
+  'playbook.hint.descriptionTitle': 'Sources',
+  'playbook.hint.characteristics': `
+      Playbooks help answer common questions such as how to address a use case, apply a workflow, deploy a product, work with a partner, or even build capacity within a team. They have several components:
+      <ul>
+        <li>Audience: the intended user of the guidance material</li>
+        <li>Outcomes: the intended outcome of the playbook</li>
+        <li>Plays: the combination of tasks (moves) that a group must do to carry out an action. Each playbook can have a series of plays. Plays are reusable and can be added to multiple playbooks.</li>
+        <li>Moves: the individual tasks that comprise a play. Each play can have multiple moves, and moves can also link to external sources.</li>
+    </ul>
+  `,
+  'playbook.hint.description': `
+    Each playbook has a unique source, as listed. If you have content you would like to turn into a playbook, contact our team at issues@solutions.dial.community
+  `,
+
   'organization.hint.characteristicTitle': 'Description',
   'organization.hint.descriptionTitle': 'Types of Organizations',
   'organization.hint.subtitle': `
@@ -1058,7 +1076,9 @@ export const en = {
   'play.unassign': 'Unassign',
   'play.error': 'Play err!',
 
-  'playbooks.assignAnotherPlay': 'Assign another play',
+  'playbook.assignAnotherPlay': 'Assign another play',
+  'playbook.submitted': 'Playbook submitted.',
+
   'move.reOrder': 'Move Order.',
 
   'playbook.error': 'Playbook err!',

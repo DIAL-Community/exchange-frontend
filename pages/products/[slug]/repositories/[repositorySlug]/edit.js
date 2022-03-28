@@ -28,6 +28,26 @@ const REPOSITORY_QUERY = gql`
   }
 `
 
+const ProductHeader = ({ product }) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
+  return (
+    <div className='border'>
+      <Link href={`/products/${product.slug}`}>
+        <div className='cursor-pointer px-4 py-6 flex items-center'>
+          <img
+            className='w-8 h-full'
+            alt={format('image.alt.logoFor', { name: product.name })}
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+          />
+          <div className='text-xl text-product font-semibold px-4'>{product.name}</div>
+        </div>
+      </Link>
+    </div>
+  )
+}
+
 const EditRepository = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -58,23 +78,7 @@ const EditRepository = () => {
           <div className='block lg:hidden'>
             <Breadcrumb slugNameMapping={slugNameMapping} />
           </div>
-          {
-            data && data.productRepository &&
-              <>
-                <div className='border'>
-                  <Link href={`/products/${slug}`}>
-                    <div className='cursor-pointer px-4 py-6 flex items-center'>
-                      <img
-                        className='w-8 h-full'
-                        alt={format('image.alt.logoFor', { name: data.productRepository.product.name })}
-                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.productRepository.product.imageFile}
-                      />
-                      <div className='text-xl text-product font-semibold px-4'>{data.productRepository.product.name}</div>
-                    </div>
-                  </Link>
-                </div>
-              </>
-          }
+          {data?.productRepository && <ProductHeader product={data.productRepository.product} />}
           <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer />
         </div>
         <div className='w-full lg:w-2/3 xl:w-3/4'>

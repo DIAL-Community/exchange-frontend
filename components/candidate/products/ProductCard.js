@@ -52,7 +52,7 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                     </div>
                     <div className='col-span-12 lg:col-span-4 my-auto'>
                       {
-                        String(product.rejected) === 'null' && session && session.user &&
+                        String(product.rejected) === 'null' && session?.user?.canEdit &&
                           <div className='lg:col-span-3 flex flex-row'>
                             <ToggleRejectionButton
                               {...{ setStatus, loading }}
@@ -97,9 +97,14 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                     </div>
                     <div className='col-span-12 lg:col-span-4 my-auto'>
                       <div className='flex flex-row'>
-                        <CancelButton {...{ status, setStatus, loading }} />
-                        <DeclineButton {...{ status, setStatus, loading, setLoading, product }} />
-                        <ApproveButton {...{ status, setStatus, loading, setLoading, product }} />
+                        {
+                          session?.user?.canEdit &&
+                            <>
+                              <CancelButton {...{ status, setStatus, loading }} />
+                              <DeclineButton {...{ status, setStatus, loading, setLoading, product }} />
+                              <ApproveButton {...{ status, setStatus, loading, setLoading, product }} />
+                            </>
+                        }
                       </div>
                     </div>
                   </div>
@@ -168,7 +173,7 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                         </div>
                       </div>
                       {
-                        String(product.rejected) === 'null' && session && session.user && status === '' &&
+                        String(product.rejected) === 'null' && session?.user?.canEdit && status === '' &&
                           <div className='pl-3 py-2 flex flex-row'>
                             <ToggleRejectionButton
                               {...{ setStatus, loading }}
@@ -207,9 +212,14 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                       />
                     </label>
                     <div className='py-2 flex flex-row'>
-                      <CancelButton {...{ status, setStatus, loading }} />
-                      <DeclineButton {...{ status, setStatus, loading, setLoading, product }} />
-                      <ApproveButton {...{ status, setStatus, loading, setLoading, product }} />
+                      {
+                        session?.user && session?.user.canEdit &&
+                          <>
+                            <CancelButton {...{ status, setStatus, loading }} />
+                            <DeclineButton {...{ status, setStatus, loading, setLoading, product }} />
+                            <ApproveButton {...{ status, setStatus, loading, setLoading, product }} />
+                          </>
+                      }
                     </div>
                   </div>
                 </div>

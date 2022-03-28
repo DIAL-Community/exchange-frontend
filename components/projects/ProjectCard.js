@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
-import { ToastContext } from '../../lib/ToastContext'
 import { ORIGIN_ACRONYMS, truncate } from '../../lib/utilities'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Projects')
@@ -13,14 +12,11 @@ const ellipsisTextStyle = `
 const containerElementStyle = `
   border-3 cursor-pointer
   border-transparent hover:border-dial-yellow
-  text-project hover:text-dial-yellow
 `
 
 const ProjectCard = ({ project, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
-
-  const { showToast } = useContext(ToastContext)
 
   const projectOrganization = (() => {
     if (project.organizations && project.organizations.length > 0) {
@@ -50,8 +46,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
     ReactTooltip.rebuild()
   })
 
-  const navClickHandler = (target) => {
-    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  const navClickHandler = () => {
   }
 
   return (
@@ -153,7 +148,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
               <div onClick={() => navClickHandler()} className={`group ${containerElementStyle}`}>
                 <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow drop-shadow'>
                   <div className='border-b text-2xl p-4 group-hover:text-dial-yellow' style={{ minHeight: '97px' }}>
-                    <div className='bg-white bg-opacity-70 text-xl 2xl:text-2xl' style={{ maxHeight: '64px' }}>
+                    <div className='text-xl 2xl:text-2xl' style={{ maxHeight: '64px' }}>
                       {truncate(project.name, 50, true, true)}
                     </div>
                   </div>
@@ -161,7 +156,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                     <div className='flex-grow flex flex-col p-4'>
                       <div className='flex flex-col absolute w-40'>
                         <div className='text-base'>{format('organization.header')}</div>
-                        <div className={`font-semibold whitespace-wrap bg-white bg-opacity-70 ${!projectOrganization ? 'opacity-30' : ''}`}>
+                        <div className={`font-semibold whitespace-wrap ${!projectOrganization ? 'opacity-30' : ''}`}>
                           {
                             !projectOrganization ? format('general.na') : projectOrganization.name
                           }
@@ -189,7 +184,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                     <div className='flex-grow flex flex-col border-l p-4'>
                       <div className='flex flex-col absolute w-40 px-4'>
                         <div className='text-base'>{format('product.header')}</div>
-                        <div className={`font-semibold whitespace-wrap bg-white bg-opacity-70 ${!projectProduct ? 'opacity-30' : ''}`}>
+                        <div className={`font-semibold whitespace-wrap ${!projectProduct ? 'opacity-30' : ''}`}>
                           {
                             !projectProduct ? format('general.na') : projectProduct.name
                           }

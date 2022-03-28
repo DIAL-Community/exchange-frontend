@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import { createRef, useContext, useEffect, useState } from 'react'
+import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
-import { ToastContext } from '../../lib/ToastContext'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Building Blocks')
 
@@ -24,8 +23,6 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
 
   const workflowContainer = createRef()
   const [workflowOverflow, setWorkflowOverflow] = useState(false)
-
-  const { showToast } = useContext(ToastContext)
 
   useEffect(() => {
     ReactTooltip.rebuild()
@@ -57,8 +54,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
       : filterDisplayed ? 'col-span-2 xl:col-span-1' : 'col-span-2 lg:col-span-1'
   }
 
-  const navClickHandler = (target) => {
-    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  const navClickHandler = () => {
   }
 
   return (
@@ -163,7 +159,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
                     </div>
                   </div>
                   <div className='flex flex-col h-80 p-4'>
-                    <div className='text-2xl font-semibold absolute w-72 2xl:w-80 bg-white bg-opacity-70'>
+                    <div className='text-2xl font-semibold absolute w-72 2xl:w-80'>
                       {buildingBlock.name}
                     </div>
                     <div className='m-auto align-middle w-40'>

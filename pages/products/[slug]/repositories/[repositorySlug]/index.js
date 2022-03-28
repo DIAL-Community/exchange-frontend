@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl'
-import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 import Head from 'next/head'
@@ -23,15 +22,49 @@ const PRODUCT_QUERY = gql`
   }
 `
 
+const CreateLink = ({ product }) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
+  return (
+    <div className='inline'>
+      <a href={`/products/${product.slug}/repositories/create`} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
+        <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
+        <span className='text-sm px-2'>{format('app.create-new')}</span>
+      </a>
+    </div>
+  )
+}
+
+const ProductHeader = ({ product }) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
+  return (
+    <div className='border-t border-l border-r'>
+      <Link href={`/products/${product.slug}`}>
+        <div className='cursor-pointer px-4 py-6 flex items-center'>
+          <img
+            className='w-8 h-full'
+            alt={format('image.alt.logoFor', { name: product.name })}
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+          />
+          <div className='text-xl text-product font-semibold px-4'>{product.name}</div>
+        </div>
+      </Link>
+    </div>
+  )
+}
+
 const ProductStep = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const router = useRouter()
-  const { pathname, asPath, query } = useRouter()
+  const { query } = router
+  const { slug, repositorySlug } = query
 
   const [session] = useSession()
-  const { slug, repositorySlug } = router.query
   const { data } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
 
   const slugNameMapping = (() => {
@@ -42,12 +75,6 @@ const ProductStep = () => {
 
     return map
   })()
-
-  useEffect(() => {
-    if (query.locale) {
-      router.replace({ pathname }, asPath, { locale: query.locale })
-    }
-  })
 
   return (
     <>
@@ -63,37 +90,14 @@ const ProductStep = () => {
           </div>
           <div className='w-full mb-2'>
             {
-              session && data && (
-                <div className='inline'>
-                  {
-                    session.user && (session?.user.canEdit || session?.user.own.products.filter(p => `${p}` === `${data.product.id}`).length > 0) && (
-                      <a href={`/products/${data?.product.slug}/repositories/create`} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
-                        <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-                        <span className='text-sm px-2'>{format('app.create-new')}</span>
-                      </a>
-                    )
-                  }
-                </div>
-              )
+              session?.user && data?.product && 
+              (
+                session?.user.canEdit ||
+                session?.user.own.products.filter(p => `${p}` === `${data.product.id}`).length > 0
+              ) && <CreateLink product={data.product} />
             }
           </div>
-          {
-            data && data.product &&
-              <>
-                <div className='border-t border-l border-r'>
-                  <Link href={`/products/${slug}`}>
-                    <div className='cursor-pointer px-4 py-6 flex items-center'>
-                      <img
-                        className='w-8 h-full'
-                        alt={format('image.alt.logoFor', { name: data.product.name })}
-                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.product.imageFile}
-                      />
-                      <div className='text-xl text-product font-semibold px-4'>{data.product.name}</div>
-                    </div>
-                  </Link>
-                </div>
-              </>
-          }
+          {data?.product && <ProductHeader product={data.product} />}
           <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer />
         </div>
         <div className='w-full lg:w-2/3 xl:w-3/4'>

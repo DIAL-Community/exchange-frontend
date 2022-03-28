@@ -1,7 +1,5 @@
 import Link from 'next/link'
-import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { ToastContext } from '../../lib/ToastContext'
 import { convertToKey } from '../context/FilterContext'
 
 const collectionPath = convertToKey('Organizations')
@@ -19,9 +17,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { showToast } = useContext(ToastContext)
-  const navClickHandler = (target) => {
-    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  const navClickHandler = () => {
   }
 
   const nameColSpan = (organization) => {
@@ -140,7 +136,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                   <div className='flex flex-col h-80 p-4'>
                     <div
                       className={`
-                        text-2xl font-semibold group-hover:text-dial-yellow w-64 2xl:w-80 bg-white bg-opacity-70
+                        text-2xl font-semibold group-hover:text-dial-yellow w-64 2xl:w-80
                         text-ellipsis overflow-hidden
                       `}
                     >

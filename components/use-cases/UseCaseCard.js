@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import { createRef, useContext, useEffect, useState } from 'react'
+import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
-import { ToastContext } from '../../lib/ToastContext'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Use Cases')
 
@@ -18,8 +17,6 @@ const containerElementStyle = `
 const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
-
-  const { showToast } = useContext(ToastContext)
 
   const sdgTargetContainer = createRef()
   const [sdgTargetOverflow, setSdgTargetOverflow] = useState(false)
@@ -73,8 +70,7 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
       : filterDisplayed ? 'col-span-9 lg:col-span-10 xl:col-span-4' : 'col-span-9 md:col-span-10 lg:col-span-4'
   }
 
-  const navClickHandler = (target) => {
-    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  const navClickHandler = () => {
   }
 
   return (
@@ -169,7 +165,7 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
                     </div>
                   </div>
                   <div className='flex flex-col h-80 p-4'>
-                    <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70 z-10'>
+                    <div className='text-2xl font-semibold absolute w-64 2xl:w-80 z-10'>
                       {useCase.name}
                     </div>
                     <div className='m-auto align-middle w-40'>

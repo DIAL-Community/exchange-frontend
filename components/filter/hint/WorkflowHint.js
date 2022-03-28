@@ -20,7 +20,7 @@ const WorkflowHint = () => {
             <div className='text-base px-8'>
               {format('workflow.hint.subtitle')}
             </div>
-            <img className='w-48 h-48 mt-8 mx-auto xl:mt-0' src='images/tiles/building-block.svg' alt='' />
+            <img className='w-48 h-48 mt-8 mx-auto xl:mt-0' src='images/tiles/workflow.svg' alt='' />
           </div>
         </div>
         <div className='col-span-11'>
