@@ -42,7 +42,7 @@ const PlayAsCard = ({ play }) => {
         <div className='border border-dial-gray hover:border-transparent drop-shadow h-full'>
           <div className='flex flex-col h-full'>
             <div className='flex flex-col h-80 p-4 group-hover:text-dial-yellow'>
-              <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
+              <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
                 {play.name}
               </div>
               <div className='mx-auto mt-5 pt-20 w-40 h-60'>

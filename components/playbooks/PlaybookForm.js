@@ -83,7 +83,7 @@ const FormPlayList = ({ playbook }) => {
             <div className='flex flex-col gap-y-2'>
               <div className='flex gap-x-2'>
                 <div className='text-sm text-dial-blue my-auto'>
-                  {format('playbooks.assignAnotherPlay')}
+                  {format('playbook.assignAnotherPlay')}
                 </div>
                 <TagAutocomplete {...{ tags, setTags }} />
               </div>
@@ -183,7 +183,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   useEffect(() => {
     if (data && data.createPlaybook.errors.length === 0 && data.createPlaybook.playbook) {
       setMutating(false)
-      showToast('Playbook submitted.', 'success', 'top-center')
+      showToast(format('playbook.submitted'), 'success', 'top-center')
       setTimeout(() => {
         router.push(`/${locale}/playbooks/${data.createPlaybook.playbook.slug}`)
       }, 500)

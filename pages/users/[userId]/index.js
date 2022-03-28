@@ -38,7 +38,8 @@ const User = () => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const router = useRouter()
-  const { pathname, asPath, query, locale } = useRouter()
+  const { locale, query } = router
+  const { userId } = query
 
   const [session] = useSession()
 
@@ -48,17 +49,10 @@ const User = () => {
     )
   }
 
-  const { userId } = router.query
   const { loading, error, data, refetch } = useQuery(USER_QUERY, {
     variables: { userId: userId },
-    context: { headers: { 'Accept-Language': locale } },
+    context: { headers: { 'Accept-Language': query.locale } },
     skip: !userId
-  })
-
-  useEffect(() => {
-    if (query.locale) {
-      router.replace({ pathname }, asPath, { locale: query.locale })
-    }
   })
 
   useEffect(() => {

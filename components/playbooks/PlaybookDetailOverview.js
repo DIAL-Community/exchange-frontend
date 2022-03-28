@@ -2,7 +2,6 @@
 
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 import { gql, useQuery } from '@apollo/client'
 import parse from 'html-react-parser'
@@ -28,7 +27,7 @@ const PLAYBOOK_QUERY = gql`
 
 export const OVERVIEW_SLUG_NAME = 'base-slug-overview-information'
 
-const PlaybookDetailOverview = ({ slug }) => {
+const PlaybookDetailOverview = ({ slug, locale }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -37,20 +36,15 @@ const PlaybookDetailOverview = ({ slug }) => {
   const { updateSlugInformation } = useContext(PlaybookDetailDispatchContext)
 
   const ref = useRef()
-  const router = useRouter()
-  const { locale } = useRouter()
-  const { pathname, asPath, query } = useRouter()
 
-  const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
+  const { loading, error, data, refetch } = useQuery(PLAYBOOK_QUERY, {
     variables: { slug: slug },
-    context: { headers: { 'Accept-Language': query.locale } }
+    context: { headers: { 'Accept-Language': locale } }
   })
 
   useEffect(() => {
-    if (query.locale) {
-      router.replace({ pathname }, asPath, { locale: query.locale })
-    }
-  })
+    refetch()
+  }, [locale])
 
   useEffect(() => {
     // Update context for this overview. We're using fake slug data for this.

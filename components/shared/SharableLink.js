@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { ToastContext } from '../../lib/ToastContext'
 
 const isArray = (o) => {
   return Object.prototype.toString.call(o) === '[object Array]'
@@ -34,6 +35,8 @@ const SharableLink = ({ sharableLink }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
+  const { showToast } = useContext(ToastContext)
+
   const isFunction = (maybeFunc) => {
     return maybeFunc && {}.toString.call(maybeFunc) === '[object Function]'
   }
@@ -51,6 +54,14 @@ const SharableLink = ({ sharableLink }) => {
     }
   }
 
+  useEffect(() => {
+    if (shareStatus === 'success') {
+      showToast(format('app.shareSuccess'), 'success', 'top-center', 2000)
+    } else if (shareStatus === 'failed') {
+      showToast(format('app.shareFailed'), 'error', 'top-center', 2000)
+    }
+  }, [shareStatus])
+
   return (
     <>
       {
@@ -62,11 +73,6 @@ const SharableLink = ({ sharableLink }) => {
             >
               {format('app.shareLink')}
             </a>
-            {
-              shareStatus === 'success'
-                ? <div className='text-emerald-500'>{format('app.shareSuccess')}</div>
-                : shareStatus === 'failed' && <div className='text-red-500'>{format('app.shareFailed')}</div>
-            }
           </div>
       }
     </>

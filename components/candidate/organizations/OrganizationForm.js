@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
+import { gql, useMutation } from '@apollo/client'
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { gql, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
+import { ToastContext } from '../../../lib/ToastContext'
 
 const CREATE_CANDIDATE_ORGANIZATION = gql`
   mutation CreateCandidateOrganization(
@@ -39,6 +40,8 @@ const OrganizationForm = () => {
   const [title, setTitle] = useState('')
   const [captcha, setCaptcha] = useState('')
 
+  const { showToast } = useContext(ToastContext)
+
   const [createCandidateOrganization, { data, loading }] = useMutation(CREATE_CANDIDATE_ORGANIZATION)
 
   const handleTextFieldChange = (e, callback) => {
@@ -57,9 +60,10 @@ const OrganizationForm = () => {
       setTitle('')
       setWebsite('')
       captchaRef.current.reset()
+      showToast(format('candidateOrganization.created'), 'success', 'top-center')
       setTimeout(() => {
         router.push('/candidate/organizations')
-      }, 5000)
+      }, 1000)
     }
   }, [data])
 
@@ -80,9 +84,6 @@ const OrganizationForm = () => {
 
   return (
     <div className='pt-4'>
-      <div className={`mx-4 ${data ? 'visible' : 'invisible'} text-center pt-4`}>
-        <div className='my-auto text-emerald-500'>{format('candidateProduct.created')}</div>
-      </div>
       <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
         <form method='post' onSubmit={handleSubmit}>
           <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
@@ -102,7 +103,8 @@ const OrganizationForm = () => {
                 {format('candidateOrganization.website')}
               </label>
               <input
-                id='website' name='website' type='text' placeholder={format('candidateProduct.website.placeholder')}
+                id='website' name='website' type='text'
+                placeholder={format('candidateOrganization.website.placeholder')}
                 className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
                 value={website} onChange={(e) => handleTextFieldChange(e, setWebsite)}
               />
@@ -112,7 +114,8 @@ const OrganizationForm = () => {
                 {format('candidateOrganization.description')}
               </label>
               <input
-                id='website' name='website' type='text' placeholder={format('candidateProduct.description.placeholder')}
+                id='website' name='website' type='text'
+                placeholder={format('candidateOrganization.description.placeholder')}
                 className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
                 value={description} onChange={(e) => handleTextFieldChange(e, setDescription)}
               />

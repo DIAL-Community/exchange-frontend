@@ -1,9 +1,8 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
 import { ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
-import { ToastContext } from '../../lib/ToastContext'
 
 const ellipsisTextStyle = `
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
@@ -18,9 +17,7 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { showToast } = useContext(ToastContext)
-  const navClickHandler = (target) => {
-    showToast(`${format('app.openingDetails')} ...`, 'default', 'bottom-right', false)
+  const navClickHandler = () => {
   }
 
   const isEndorsingOrg = () => {
@@ -173,7 +170,7 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                     }
                   </div>
                   <div className='flex flex-col h-80 p-4'>
-                    <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
+                    <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
                       {product.name}
                     </div>
                     {

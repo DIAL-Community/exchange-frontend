@@ -3,7 +3,7 @@ import PlaybookDetailNavigation from './PlaybookDetailNavigation'
 import PlaybookDetailHeader from './PlaybookDetailHeader'
 import PlaybookDetailPlayList from './PlaybookDetailPlayList'
 
-const PlaybookDetail = ({ slug }) => {
+const PlaybookDetail = ({ slug, locale }) => {
   return (
     <div className='flex flex-col max-w-catalog mx-auto'>
       <PlaybookDetailHeader slug={slug} />
@@ -12,8 +12,8 @@ const PlaybookDetail = ({ slug }) => {
           <PlaybookDetailNavigation slug={slug} />
         </div>
         <div className='flex flex-col gap-3 w-full max-w-screen-lg'>
-          <PlaybookDetailOverview slug={slug} />
-          <PlaybookDetailPlayList slug={slug} />
+          <PlaybookDetailOverview slug={slug} locale={locale} />
+          <PlaybookDetailPlayList slug={slug} locale={locale} />
         </div>
       </div>
     </div>

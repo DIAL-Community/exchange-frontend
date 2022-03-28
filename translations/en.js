@@ -1058,7 +1058,9 @@ export const en = {
   'play.unassign': 'Unassign',
   'play.error': 'Play err!',
 
-  'playbooks.assignAnotherPlay': 'Assign another play',
+  'playbook.assignAnotherPlay': 'Assign another play',
+  'playbook.submitted': 'Playbook submitted.',
+
   'move.reOrder': 'Move Order.',
 
   'playbook.error': 'Playbook err!',

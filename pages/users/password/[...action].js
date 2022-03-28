@@ -90,7 +90,7 @@ const PasswordAction = () => {
       setPasswordConfirmation('')
       setTimeout(() => {
         router.push('/auth/signin')
-      }, 5000)
+      }, 1000)
     }
 
     setLoading(false)
