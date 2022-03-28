@@ -56,7 +56,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
           listType === 'list'
             ? (
               <div onClick={() => navClickHandler()} className={containerElementStyle}>
-                <div className='bg-white border border-dial-gray hover:border-transparent drop-shadow'>
+                <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='grid grid-cols-12 my-4 px-4 text-base font-semibold hover:text-dial-yellow'>
                     <div className={`${nameColSpan(project)} lg:mr-4 my-auto ${ellipsisTextStyle}`}>
                       <div className='block lg:hidden font-normal float-right'>
@@ -146,7 +146,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
             )
             : (
               <div onClick={() => navClickHandler()} className={`group ${containerElementStyle}`}>
-                <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow drop-shadow'>
+                <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow card-drop-shadow'>
                   <div className='border-b text-2xl p-4 group-hover:text-dial-yellow' style={{ minHeight: '97px' }}>
                     <div className='text-xl 2xl:text-2xl' style={{ maxHeight: '64px' }}>
                       {truncate(project.name, 50, true, true)}

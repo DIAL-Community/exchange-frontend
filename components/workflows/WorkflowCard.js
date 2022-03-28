@@ -76,7 +76,7 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
         listType === 'list'
           ? (
             <div onClick={() => navClickHandler()} className={containerElementStyle}>
-              <div className='bg-white border border-dial-gray hover:border-transparent drop-shadow'>
+              <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                 <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                   <div className={`${nameColSpan()} ${ellipsisTextStyle} text-base font-semibold`}>
                     <img
@@ -156,7 +156,7 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
           )
           : (
             <div onClick={() => navClickHandler()} className={containerElementStyle}>
-              <div className='border border-dial-gray hover:border-transparent drop-shadow'>
+              <div className='border border-dial-gray hover:border-transparent card-drop-shadow'>
                 <div className='flex flex-col h-80 p-4'>
                   <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
                     {workflow.name}

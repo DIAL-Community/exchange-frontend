@@ -31,7 +31,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed }) => {
         listType === 'list'
           ? (
             <div onClick={() => navClickHandler()} className={`group ${containerElementStyle}`}>
-              <div className='bg-white border border-dial-gray hover:border-transparent drop-shadow'>
+              <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                 <div className='flex flex-col md:flex-row flex-wrap my-5 px-4 gap-2'>
                   <div className={` ${ellipsisTextStyle} pr-3 text-base font-semibold group-hover:text-dial-yellow`}>
                     <img
@@ -54,7 +54,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed }) => {
           )
           : (
             <div onClick={() => navClickHandler()} className={`group ${containerElementStyle}`}>
-              <div className='border border-dial-gray hover:border-transparent drop-shadow h-full'>
+              <div className='border border-dial-gray hover:border-transparent card-drop-shadow h-full'>
                 <div className='flex flex-col h-full'>
                   <div className='flex flex-col p-4 group-hover:text-dial-yellow'>
                     <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>

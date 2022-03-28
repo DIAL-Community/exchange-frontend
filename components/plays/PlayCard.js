@@ -39,7 +39,7 @@ const PlayAsCard = ({ play }) => {
   return (
     <Link href={`/${collectionPath}/${play.slug}`}>
       <div className='group border-3 border-transparent hover:border-dial-yellow cursor-pointer'>
-        <div className='border border-dial-gray hover:border-transparent drop-shadow h-full'>
+        <div className='border border-dial-gray hover:border-transparent card-drop-shadow h-full'>
           <div className='flex flex-col h-full'>
             <div className='flex flex-col h-80 p-4 group-hover:text-dial-yellow'>
               <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
@@ -105,7 +105,7 @@ const PlayAsList = ({ playbook, play, sourceType }) => {
   }
 
   return (
-    <div className='bg-white border border-dial-gray border-opacity-50 drop-shadow'>
+    <div className='bg-white border border-dial-gray border-opacity-50 card-drop-shadow'>
       <div className='flex flex-row gap-4 px-3 py-4 h-16 w-full'>
         <div className='w-2/6 font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
           {play.name}

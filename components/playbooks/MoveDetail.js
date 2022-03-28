@@ -73,7 +73,7 @@ const MoveDetail = ({ moveName, moveSlug }) => {
                         {
                           data.move.resources.map(resource => {
                             return (
-                              <div key={resource.i} className='group border-2 border-gray-300 hover:border-dial-yellow drop-shadow'>
+                              <div key={resource.i} className='group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow'>
                                 <div className='flex'>
                                   <div className='flex flex-col gap-2 px-3 py-4'>
                                     <div className='font-semibold'>{resource.name}</div>

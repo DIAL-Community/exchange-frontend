@@ -87,7 +87,7 @@ const OrganizationCard = ({ organization, listType }) => {
                 : String(organization.rejected) === 'false' || status === 'approved'
                   ? 'bg-emerald-50'
                   : 'bg-white'}
-                border border-dial-gray hover:border-transparent drop-shadow
+                border border-dial-gray hover:border-transparent card-drop-shadow
               `}
               >
                 <div className='grid grid-cols-12 gap-4 py-4 px-4 text-organization'>
@@ -172,7 +172,7 @@ const OrganizationCard = ({ organization, listType }) => {
           )
           : (
             <div className='border-3 border-transparent hover:border-dial-gray text-dial-purple cursor-pointer h-full'>
-              <div className='h-full flex flex-col border border-dial-gray drop-shadow'>
+              <div className='h-full flex flex-col border border-dial-gray card-drop-shadow'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
                   {
                     (String(organization.rejected) === 'true' || status === 'rejected') &&

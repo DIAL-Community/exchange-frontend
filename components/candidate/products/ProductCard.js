@@ -115,7 +115,7 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
           : (
             <div className={`card ${status === 'rejection' || status === 'approval' ? 'flip-vertical' : ''}`}>
               <div className='card-body border-3 border-transparent hover:border-dial-gray text-dial-purple cursor-pointer h-full'>
-                <div className='card-front h-full flex flex-col border border-dial-gray drop-shadow'>
+                <div className='card-front h-full flex flex-col border border-dial-gray card-drop-shadow'>
                   <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
                     {
                       (String(product.rejected) === 'true' || status === 'rejected') &&

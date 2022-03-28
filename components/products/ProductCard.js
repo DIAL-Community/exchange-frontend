@@ -49,7 +49,7 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
           listType === 'list'
             ? (
               <div onClick={() => navClickHandler()} className={containerElementStyle}>
-                <div className='bg-white border border-dial-gray hover:border-transparent drop-shadow'>
+                <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                     <div className={`${nameColSpan()} font-semibold my-auto ${ellipsisTextStyle}`}>
                       <img
@@ -135,7 +135,7 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
             )
             : (
               <div onClick={() => navClickHandler()} className={containerElementStyle}>
-                <div className='h-full flex flex-col border border-dial-gray hover:border-transparent drop-shadow'>
+                <div className='h-full flex flex-col border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
                     {
                       product.endorsers && product.endorsers.length > 0 &&

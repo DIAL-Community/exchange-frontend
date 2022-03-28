@@ -103,7 +103,7 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay }) => {
   drag(drop(ref))
 
   const dndBorderStyles = `
-    bg-white cursor-move drop-shadow overflow-hidden
+    bg-white cursor-move card-drop-shadow overflow-hidden
     border border-dial-gray border-transparent hover:border-dial-purple-light border-opacity-80
   `
 

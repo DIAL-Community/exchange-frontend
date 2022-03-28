@@ -131,7 +131,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
           )
           : (
             <div onClick={() => navClickHandler()} className={containerElementStyle}>
-              <div className='border border-dial-gray hover:border-transparent drop-shadow'>
+              <div className='border border-dial-gray hover:border-transparent card-drop-shadow'>
                 <div className='flex flex-col h-80 p-4'>
                   <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
                     {sdg.name}

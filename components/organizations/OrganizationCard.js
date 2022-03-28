@@ -34,7 +34,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
             <Link className='card-link' href={`/${collectionPath}/${organization.slug}`}>
               <a {...newTab && { target: '_blank' }}>
                 <div onClick={() => navClickHandler()} className={containerElementStyle}>
-                  <div className='bg-white border border-dial-gray hover:border-transparent drop-shadow'>
+                  <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                     <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                       <img
                         className='m-auto w-8'
@@ -105,7 +105,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
           )
           : (
             <div onClick={() => navClickHandler()} className={`group ${containerElementStyle}`}>
-              <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow drop-shadow'>
+              <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow card-drop-shadow'>
                 {
                   organization.whenEndorsed && (
                     <div>
