@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
-import Breadcrumb from '../shared/breadcrumb'
 import { useRouter } from 'next/router'
+import Breadcrumb from '../shared/breadcrumb'
 
 const UseCaseDetailLeft = ({ useCase }) => {
   const { formatMessage } = useIntl()
@@ -15,6 +15,7 @@ const UseCaseDetailLeft = ({ useCase }) => {
     }
 
     const { userEmail, userToken } = session.user
+
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/use_cases/${useCase.slug}/` +
         `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
@@ -22,6 +23,7 @@ const UseCaseDetailLeft = ({ useCase }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[useCase.slug] = useCase.name
+
     return map
   })()
 

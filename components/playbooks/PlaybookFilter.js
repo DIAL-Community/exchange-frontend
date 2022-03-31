@@ -1,10 +1,8 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { BsQuestionCircleFill } from 'react-icons/bs'
-
 import { FilterContext } from '../context/FilterContext'
 import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../context/PlaybookFilterContext'
-
 import { ProductAutocomplete } from '../filter/element/Product'
 import { TagAutocomplete } from '../filter/element/Tag'
 
@@ -12,7 +10,7 @@ const PlaybookFilter = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { setOpenHint } = useContext(FilterContext)
+  const { setHintDisplayed } = useContext(FilterContext)
 
   const { tags, products } = useContext(PlaybookFilterContext)
   const { setTags, setProducts } = useContext(PlaybookFilterDispatchContext)
@@ -21,7 +19,7 @@ const PlaybookFilter = () => {
     <div className='px-4 py-4'>
       <div className='text-dial-gray-dark'>
         <div className='px-2 mb-4 text-xs'>
-          <button href='openHint' className='font-semibold flex gap-1' onClick={() => setOpenHint(true)}>
+          <button className='font-semibold flex gap-1' onClick={() => setHintDisplayed(true)}>
             {format('filter.hint.text')} {format('playbooks.label')}
             <BsQuestionCircleFill className='inline text-sm mb-1' />
           </button>

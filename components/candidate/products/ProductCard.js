@@ -31,10 +31,10 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
               <div className='card-body border-3 border-transparent hover:border-dial-gray text-workflow cursor-pointer'>
                 <div className={`
                   ${String(product.rejected) === 'true' || status === 'rejected'
-                    ? 'bg-red-50'
-                    : String(product.rejected) === 'false' || status === 'approved'
-                      ? 'bg-green-50'
-                      : 'bg-white'}
+                  ? 'bg-red-50'
+                  : String(product.rejected) === 'false' || status === 'approved'
+                    ? 'bg-emerald-50'
+                    : 'bg-white'}
                   card-front border border-dial-gray hover:border-transparent shadow-sm
                 `}
                 >
@@ -52,7 +52,7 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                     </div>
                     <div className='col-span-12 lg:col-span-4 my-auto'>
                       {
-                        String(product.rejected) === 'null' && session && session.user &&
+                        String(product.rejected) === 'null' && session?.user?.canEdit &&
                           <div className='lg:col-span-3 flex flex-row'>
                             <ToggleRejectionButton
                               {...{ setStatus, loading }}
@@ -77,10 +77,10 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                 </div>
                 <div className={`
                   ${String(product.rejected) === 'true' || status === 'rejected'
-                    ? 'bg-red-50'
-                    : String(product.rejected) === 'false' || status === 'approved'
-                      ? 'bg-green-50'
-                      : 'bg-dial-gray'}
+                  ? 'bg-red-50'
+                  : String(product.rejected) === 'false' || status === 'approved'
+                    ? 'bg-emerald-50'
+                    : 'bg-dial-gray'}
                   card-back flip-horizontal border border-dial-gray hover:border-transparent shadow-sm
                 `}
                 >
@@ -97,20 +97,25 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                     </div>
                     <div className='col-span-12 lg:col-span-4 my-auto'>
                       <div className='flex flex-row'>
-                        <CancelButton {...{ status, setStatus, loading }} />
-                        <DeclineButton {...{ status, setStatus, loading, setLoading, product }} />
-                        <ApproveButton {...{ status, setStatus, loading, setLoading, product }} />
+                        {
+                          session?.user?.canEdit &&
+                            <>
+                              <CancelButton {...{ status, setStatus, loading }} />
+                              <DeclineButton {...{ status, setStatus, loading, setLoading, product }} />
+                              <ApproveButton {...{ status, setStatus, loading, setLoading, product }} />
+                            </>
+                        }
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            )
+          )
           : (
             <div className={`card ${status === 'rejection' || status === 'approval' ? 'flip-vertical' : ''}`}>
               <div className='card-body border-3 border-transparent hover:border-dial-gray text-dial-purple cursor-pointer h-full'>
-                <div className='card-front h-full flex flex-col border border-dial-gray drop-shadow'>
+                <div className='card-front h-full flex flex-col border border-dial-gray card-drop-shadow'>
                   <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
                     {
                       (String(product.rejected) === 'true' || status === 'rejected') &&
@@ -120,7 +125,7 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                     }
                     {
                       (String(product.rejected) === 'false' || status === 'approved') &&
-                        <div className='bg-green-500 py-1 px-2 rounded text-white text-sm font-semibold'>
+                        <div className='bg-emerald-500 py-1 px-2 rounded text-white text-sm font-semibold'>
                           {format('candidate.approved').toUpperCase()}
                         </div>
                     }
@@ -168,7 +173,7 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                         </div>
                       </div>
                       {
-                        String(product.rejected) === 'null' && session && session.user && status === '' &&
+                        String(product.rejected) === 'null' && session?.user?.canEdit && status === '' &&
                           <div className='pl-3 py-2 flex flex-row'>
                             <ToggleRejectionButton
                               {...{ setStatus, loading }}
@@ -207,15 +212,20 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                       />
                     </label>
                     <div className='py-2 flex flex-row'>
-                      <CancelButton {...{ status, setStatus, loading }} />
-                      <DeclineButton {...{ status, setStatus, loading, setLoading, product }} />
-                      <ApproveButton {...{ status, setStatus, loading, setLoading, product }} />
+                      {
+                        session?.user && session?.user.canEdit &&
+                          <>
+                            <CancelButton {...{ status, setStatus, loading }} />
+                            <DeclineButton {...{ status, setStatus, loading, setLoading, product }} />
+                            <ApproveButton {...{ status, setStatus, loading, setLoading, product }} />
+                          </>
+                      }
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            )
+          )
       }
     </>
   )
@@ -244,13 +254,14 @@ const CancelButton = ({ status, setStatus, loading }) => {
 const ToggleApprovalButton = ({ style, setStatus, loading }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
   return (
     <button
       className={style}
       onClick={() => setStatus('approval')}
       disabled={loading}
     >
-      {format('candidate.approve')} <FaRegCheckCircle className='ml-1 inline text-xl text-green-500' />
+      {format('candidate.approve')} <FaRegCheckCircle className='ml-1 inline text-xl text-emerald-500' />
     </button>
   )
 }
@@ -284,6 +295,7 @@ const ApproveButton = ({ product, status, setStatus, loading, setLoading }) => {
     if (response.status === 200) {
       setStatus('approved')
     }
+
     setLoading(false)
   }
 
@@ -298,7 +310,7 @@ const ApproveButton = ({ product, status, setStatus, loading, setLoading }) => {
       onClick={approveCandidateProduct}
       disabled={loading}
     >
-      {format('candidate.approve')} <FaRegCheckCircle className='ml-1 inline text-xl text-green-500' />
+      {format('candidate.approve')} <FaRegCheckCircle className='ml-1 inline text-xl text-emerald-500' />
     </button>
   )
 }
@@ -306,6 +318,7 @@ const ApproveButton = ({ product, status, setStatus, loading, setLoading }) => {
 const ToggleRejectionButton = ({ style, setStatus, loading }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
   return (
     <button
       className={style}
@@ -346,6 +359,7 @@ const DeclineButton = ({ product, status, setStatus, loading, setLoading }) => {
     if (response.status === 200) {
       setStatus('rejected')
     }
+
     setLoading(false)
   }
 

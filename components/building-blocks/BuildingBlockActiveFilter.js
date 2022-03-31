@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-
+import { MdClose } from 'react-icons/md'
+import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext } from '../context/BuildingBlockFilterContext'
 import { SDGFilters } from '../filter/element/SDG'
@@ -9,9 +10,6 @@ import { UseCaseFilters } from '../filter/element/UseCase'
 import { WorkflowFilters } from '../filter/element/Workflow'
 import { parseQuery } from '../shared/SharableLink'
 
-import { MdClose } from 'react-icons/md'
-
-import dynamic from 'next/dynamic'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const BuildingBlockActiveFilter = () => {
@@ -29,7 +27,9 @@ const BuildingBlockActiveFilter = () => {
     if (showMature) {
       count = count + 1
     }
+
     count = count + sdgs.length + useCases.length + workflows.length
+    
     return count
   }
 
@@ -52,6 +52,7 @@ const BuildingBlockActiveFilter = () => {
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [activeFilter, showMatureFilter, ...sdgFilters, ...useCaseFilters, ...workflowFilters].filter(f => f).join('&')
+
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
 
@@ -71,10 +72,10 @@ const BuildingBlockActiveFilter = () => {
 
   return (
     <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
-      <div className='flex flex-row flex-wrap px-3'>
+      <div className='flex flex-row flex-wrap px-3 gap-2'>
         {
           showMature &&
-            <div className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
+            <div className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
               {format('filter.buildingBlock.matureOnly')}
               <MdClose className='ml-3 inline cursor-pointer' onClick={toggleWithMaturity} />
             </div>

@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
-
 import { useIntl } from 'react-intl'
-
 import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
 import { SectorAutocomplete, SectorFilters } from '../filter/element/Sector'
 import { ProductAutocomplete, ProductFilters } from '../filter/element/Product'
@@ -147,7 +145,7 @@ const MapFilter = (props) => {
         <div className='px-2 py-1 mt-2 text-sm text-white whitespace-nowrap'>
           {format('filter.general.applied', { count: filterCount() })}:
         </div>
-        <div className='flex flex-row flex-wrap'>
+        <div className='flex flex-row flex-wrap gap-2'>
           {
             router.pathname.indexOf('projects') >= 0 &&
               <>

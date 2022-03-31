@@ -1,16 +1,16 @@
 import { useContext, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
-
-import CountryInfo from './CountryInfo'
 import { gql, useQuery } from '@apollo/client'
 import { MapFilterContext } from '../../context/MapFilterContext'
+import CountryInfo from './CountryInfo'
 
 const CountryMarkersMaps = (props) => {
   const CountryMarkersMaps = useMemo(() => dynamic(
     () => import('./CountryMarkers'),
     { ssr: false }
   ), [])
+
   return <CountryMarkersMaps {...props} />
 }
 
@@ -111,10 +111,11 @@ const ProjectMap = () => {
       nodes.forEach(project => {
         project.countries.forEach(country => {
           const currentCountry = countriesWithProjects[country.name]
-          currentCountry.projects.push({ name: project.name, slug: project.slug })
+          currentCountry?.projects.push({ name: project.name, slug: project.slug })
         })
       })
     }
+
     return countriesWithProjects
   })()
 

@@ -1,15 +1,12 @@
 import { useIntl } from 'react-intl'
-import Breadcrumb from '../../shared/breadcrumb'
 import { useSession } from 'next-auth/client'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import { descriptionByLocale } from '../../../lib/utilities'
-import { useRouter } from 'next/router'
+import Breadcrumb from '../../shared/breadcrumb'
 
-const MoveDetail = ({ move }) => {
+const MoveDetail = ({ move, locale }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
-  const { locale } = useRouter()
   const [session] = useSession()
 
   const generateEditLink = () => {
@@ -24,6 +21,7 @@ const MoveDetail = ({ move }) => {
     const map = {}
     map[move.playSlug] = move.playName
     map[move.slug] = move.name
+
     return map
   })()
 
@@ -49,7 +47,7 @@ const MoveDetail = ({ move }) => {
       <div className='h4 font-bold py-4'>{format('plays.label')}</div>
       {format('moves.description')}
       <div className='fr-view tinyEditor text-dial-gray-dark'>
-        {ReactHtmlParser(descriptionByLocale(move.moveDescriptions, locale))}
+        {parse(descriptionByLocale(move.moveDescriptions, locale))}
       </div>
     </div>
   )

@@ -1,14 +1,11 @@
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-
+import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { SDGFilterContext, SDGFilterDispatchContext } from '../context/SDGFilterContext'
 import { SDGAutocomplete, SDGFilters } from '../filter/element/SDG'
-
 import { parseQuery } from '../shared/SharableLink'
-
-import dynamic from 'next/dynamic'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const SDGFilter = (props) => {
@@ -40,6 +37,7 @@ const SDGFilter = (props) => {
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [activeFilter, ...sdgFilters].filter(f => f).join('&')
+
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
 
@@ -76,7 +74,7 @@ const SDGFilter = (props) => {
         <div className='px-2 py-1 mt-2 text-sm text-white whitespace-nowrap'>
           {format('filter.general.applied', { count: filterCount() })}:
         </div>
-        <div className='flex flex-row flex-wrap'>
+        <div className='flex flex-row flex-wrap gap-2'>
           <SDGFilters {...{ sdgs, setSDGs }} />
 
           <div className='flex px-2 py-1 mt-2 text-sm text-white'>

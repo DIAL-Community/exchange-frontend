@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
-
 import apolloClient from '../../../lib/apolloClient'
-
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import QueryNotification from '../../../components/shared/QueryNotification'

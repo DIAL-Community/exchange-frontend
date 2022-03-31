@@ -2,12 +2,16 @@ import Link from 'next/link'
 import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
-
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Workflows')
 
 const ellipsisTextStyle = `
-   whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+   whitespace-nowrap text-ellipsis overflow-hidden my-auto
+`
+const containerElementStyle = `
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+  text-workflow hover:text-dial-yellow
 `
 
 const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
@@ -50,8 +54,10 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
       if (useCaseSlugs.indexOf(useCaseStep.useCase.slug) === -1) {
         useCases.push(useCaseStep.useCase)
       }
+
       return useCaseStep
     })
+
     return useCases
   })()
 
@@ -61,13 +67,16 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
       : filterDisplayed ? 'col-span-12 xl:col-span-4' : 'col-span-12 lg:col-span-4'
   }
 
+  const navClickHandler = () => {
+  }
+
   return (
     <Link href={`/${collectionPath}/${workflow.slug}`}>
       {
         listType === 'list'
           ? (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-workflow hover:text-dial-yellow cursor-pointer'>
-              <div className='bg-white border border-dial-gray hover:border-transparent drop-shadow'>
+            <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                 <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                   <div className={`${nameColSpan()} ${ellipsisTextStyle} text-base font-semibold`}>
                     <img
@@ -87,7 +96,7 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
                           <div className='text-sm font-normal'>
                             {format('useCase.header')}:
                           </div>
-                          <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
+                          <div className='mx-1 text-sm font-normal overflow-hidden text-ellipsis'>
                             {useCases.length === 0 && format('general.na')}
                             {
                               useCases.length > 0 &&
@@ -107,7 +116,7 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
                           <div className='text-sm font-normal'>
                             {format('building-block.header')}:
                           </div>
-                          <div className='mx-1 text-sm font-normal overflow-hidden overflow-ellipsis'>
+                          <div className='mx-1 text-sm font-normal overflow-hidden text-ellipsis'>
                             {workflow.buildingBlocks.length === 0 && format('general.na')}
                             {
                               workflow.buildingBlocks.length > 0 &&
@@ -144,12 +153,12 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
                 </div>
               </div>
             </div>
-            )
+          )
           : (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-building-block hover:text-dial-yellow cursor-pointer'>
-              <div className='border border-dial-gray hover:border-transparent drop-shadow'>
+            <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className='border border-dial-gray hover:border-transparent card-drop-shadow'>
                 <div className='flex flex-col h-80 p-4'>
-                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
+                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
                     {workflow.name}
                   </div>
                   <div className='m-auto align-middle w-40'>
@@ -248,7 +257,7 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
                 </div>
               </div>
             </div>
-            )
+          )
       }
     </Link>
   )

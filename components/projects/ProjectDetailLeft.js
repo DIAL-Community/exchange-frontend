@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
-import Breadcrumb from '../shared/breadcrumb'
 import { useRouter } from 'next/router'
+import Breadcrumb from '../shared/breadcrumb'
 
 const ProjectDetailLeft = ({ project }) => {
   const { formatMessage } = useIntl()
@@ -15,6 +15,7 @@ const ProjectDetailLeft = ({ project }) => {
     }
 
     const { userEmail, userToken } = session.user
+
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/projects/${project.slug}/` +
       `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
@@ -22,6 +23,7 @@ const ProjectDetailLeft = ({ project }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[project.slug] = project.name
+
     return map
   })()
 
@@ -49,7 +51,7 @@ const ProjectDetailLeft = ({ project }) => {
       <div className='h4 font-bold py-4'>{format('project.label')}</div>
       <div className='bg-white border-2 border-dial-gray p-6 lg:mr-6 shadow-lg'>
         <div id='header' className='mb-4'>
-          <div className='h2 p-2 text-dial-purple overflow-clip'>
+          <div className='h2 p-2 text-dial-purple text-clip'>
             {project.name}
           </div>
         </div>

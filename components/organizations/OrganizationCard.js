@@ -1,16 +1,24 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-
 import { convertToKey } from '../context/FilterContext'
+
 const collectionPath = convertToKey('Organizations')
 
 const ellipsisTextStyle = `
-  whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+  whitespace-nowrap text-ellipsis overflow-hidden my-auto
+`
+const containerElementStyle = `
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+  text-organization hover:text-dial-yellow
 `
 
 const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
+  const navClickHandler = () => {
+  }
 
   const nameColSpan = (organization) => {
     return !organization.sectors
@@ -24,9 +32,9 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
         listType === 'list'
           ? (
             <Link className='card-link' href={`/${collectionPath}/${organization.slug}`}>
-              <a {... newTab && { target: '_blank' }}>
-                <div className='border-3 border-transparent hover:border-dial-yellow text-workflow cursor-pointer'>
-                  <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg hover:text-dial-yellow'>
+              <a {...newTab && { target: '_blank' }}>
+                <div onClick={() => navClickHandler()} className={containerElementStyle}>
+                  <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                     <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                       <img
                         className='m-auto w-8'
@@ -36,7 +44,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                       <div
                         className={`
                           ${nameColSpan(organization)} text-base font-semibold text-dial-gray-dark
-                          my-auto whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+                          my-auto whitespace-nowrap text-ellipsis overflow-hidden my-auto
                         `}
                       >
                         {organization.name}
@@ -46,7 +54,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                               <div className='text-sm font-normal'>
                                 {format('sector.header')}:
                               </div>
-                              <div className='text-sm font-normal overflow-hidden overflow-ellipsis'>
+                              <div className='text-sm font-normal overflow-hidden text-ellipsis'>
                                 {organization.sectors.length === 0 && format('general.na')}
                                 {
                                   organization.sectors.length > 0 &&
@@ -94,10 +102,10 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                 </div>
               </a>
             </Link>
-            )
+          )
           : (
-            <div className='group border-3 border-transparent hover:border-dial-yellow text-dial-purple cursor-pointer'>
-              <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow drop-shadow'>
+            <div onClick={() => navClickHandler()} className={`group ${containerElementStyle}`}>
+              <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow card-drop-shadow'>
                 {
                   organization.whenEndorsed && (
                     <div>
@@ -128,8 +136,8 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                   <div className='flex flex-col h-80 p-4'>
                     <div
                       className={`
-                        text-2xl font-semibold group-hover:text-dial-yellow w-64 2xl:w-80 bg-white bg-opacity-70
-                        overflow-ellipsis overflow-hidden
+                        text-2xl font-semibold group-hover:text-dial-yellow w-64 2xl:w-80
+                        text-ellipsis overflow-hidden
                       `}
                     >
                       {organization.name}
@@ -161,7 +169,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                 }
               </div>
             </div>
-            )
+          )
       }
     </>
   )

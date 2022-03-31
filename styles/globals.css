@@ -113,7 +113,7 @@ body {
   color: #fab230;
 }
 
-.infinite-scroll-component__outerdiv, .default-height {
+.infinite-scroll-default-height {
   min-height: 50vh;
 }
 

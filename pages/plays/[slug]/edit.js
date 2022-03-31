@@ -1,15 +1,11 @@
 import { useRouter } from 'next/router'
-
-import withApollo from '../../../lib/apolloClient'
 import { gql, useQuery } from '@apollo/client'
-
 import Head from 'next/head'
+import { useIntl } from 'react-intl'
+import withApollo from '../../../lib/apolloClient'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
-
-import { useIntl } from 'react-intl'
-
 import { PlayForm } from '../../../components/plays/PlayForm'
 
 const PLAY_QUERY = gql`
@@ -19,15 +15,13 @@ query Play($slug: String!) {
     name
     slug
     tags
-    playDescriptions {
+    playDescription {
       description
-      locale
     }
     playMoves {
       name
-      moveDescriptions {
+      moveDescription {
         description
-        locale
       }
     }
   }
@@ -42,7 +36,11 @@ function EditPlay () {
 
   const { locale } = router
   const { slug } = router.query
-  const { loading, error, data } = useQuery(PLAY_QUERY, { variables: { slug: slug, locale: locale }, skip: !slug })
+  const { loading, error, data } = useQuery(PLAY_QUERY, {
+    variables: { slug: slug, locale: locale },
+    skip: !slug,
+    context: { headers: { 'Accept-Language': locale } }
+  })
 
   if (loading) {
     return <Loading />
@@ -61,7 +59,7 @@ function EditPlay () {
       <Header />
       {
         data && data.play &&
-          <PlayForm play={data.play} action='update' />
+          <PlayForm play={data.play} />
       }
       <Footer />
     </>

@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl'
+import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
 import ProductCard from '../products/ProductCard'
 import WorkflowCard from '../workflows/WorkflowCard'
-import ReactHtmlParser from 'react-html-parser'
 import { DiscourseForum } from '../shared/discourse'
 
 const BuildingBlockDetailRight = ({ buildingBlock, discourseRef }) => {
@@ -12,6 +12,7 @@ const BuildingBlockDetailRight = ({ buildingBlock, discourseRef }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[buildingBlock.slug] = buildingBlock.name
+
     return map
   })()
 
@@ -21,7 +22,7 @@ const BuildingBlockDetailRight = ({ buildingBlock, discourseRef }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='fr-view text-dial-gray-dark'>
-        {buildingBlock.buildingBlockDescription && ReactHtmlParser(buildingBlock.buildingBlockDescription.description)}
+        {buildingBlock.buildingBlockDescription && parse(buildingBlock.buildingBlockDescription.description)}
       </div>
       {
         buildingBlock.products && buildingBlock.products.length > 0 &&

@@ -1,16 +1,16 @@
 import { useContext, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
-
-import EndorserInfo from './EndorserInfo'
-import { MapFilterContext } from '../../context/MapFilterContext'
 import { gql, useQuery } from '@apollo/client'
+import { MapFilterContext } from '../../context/MapFilterContext'
+import EndorserInfo from './EndorserInfo'
 
 const EndorserMarkerMaps = (props) => {
   const EndorserMarkerMaps = useMemo(() => dynamic(
     () => import('./EndorserMarkers'),
     { ssr: false }
   ), [])
+
   return <EndorserMarkerMaps {...props} />
 }
 
@@ -103,6 +103,7 @@ const EndorserMap = () => {
         })
       })
     }
+
     return cities
   })()
 

@@ -1,13 +1,10 @@
 import { createRef, useEffect, useState } from 'react'
-
 import 'leaflet/dist/leaflet.css'
 import { MapContainer, Marker, TileLayer, LayerGroup, useMap, useMapEvents } from 'react-leaflet'
-
-import { createEndorserMarker } from './EndorserMarker'
-import { createProjectMarker } from './ProjectMarker'
-
 import L from 'leaflet'
 import { useIntl } from 'react-intl'
+import { createEndorserMarker } from './EndorserMarker'
+import { createProjectMarker } from './ProjectMarker'
 
 const popupTemplate = (title, content) => {
   return `
@@ -39,6 +36,7 @@ const EndorserMarkers = (props) => {
     if (countryMarkerGroup.current) {
       countryMarkerGroup.current.clearLayers()
     }
+
     if (organization && organization.countries) {
       organization.countries.forEach(country => {
         const marker = L.marker([country.latitude, country.longitude],
@@ -94,6 +92,7 @@ const EndorserMarkers = (props) => {
         {
           Object.keys(cities).map(cityName => {
             const city = cities[cityName]
+
             return (
               <Marker
                 key={cityName}
@@ -120,6 +119,7 @@ const EndorserMarkerMaps = (props) => {
     url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
     attribution = 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
   }
+
   return (
     <MapContainer
       className='w-full' style={{ minHeight: props.height, zIndex: 18 }}

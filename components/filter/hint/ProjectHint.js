@@ -1,11 +1,10 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import { FilterContext } from '../../context/FilterContext'
 
 const ProjectHint = () => {
-  const { setOpenHint } = useContext(FilterContext)
+  const { setHintDisplayed } = useContext(FilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -29,7 +28,7 @@ const ProjectHint = () => {
             {format('project.hint.characteristicTitle').toUpperCase()}
           </div>
           <div className='fr-view text-sm px-8 pb-3'>
-            {ReactHtmlParser(format('project.hint.characteristics'))}
+            {parse(format('project.hint.characteristics'))}
           </div>
           <div className='text-lg px-8 pb-3'>
             {format('project.hint.descriptionTitle').toUpperCase()}
@@ -41,7 +40,7 @@ const ProjectHint = () => {
         <div className='absolute right-2 top-2'>
           <button
             className='bg-button-gray p-3 float-right rounded text-button-gray-light'
-            onClick={() => setOpenHint(false)}
+            onClick={() => setHintDisplayed(false)}
           >
             {format('general.close')}
           </button>

@@ -1,13 +1,11 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-
+import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { WorkflowFilterContext, WorkflowFilterDispatchContext } from '../context/WorkflowFilterContext'
 import { SDGFilters } from '../filter/element/SDG'
 import { parseQuery } from '../shared/SharableLink'
-
-import dynamic from 'next/dynamic'
 import { UseCaseFilters } from '../filter/element/UseCase'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
@@ -40,6 +38,7 @@ const WorkflowActiveFilter = () => {
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [activeFilter, ...sdgFilters, ...useCaseFilters].filter(f => f).join('&')
+
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
 
@@ -53,7 +52,7 @@ const WorkflowActiveFilter = () => {
 
   return (
     <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
-      <div className='flex flex-row flex-wrap px-3'>
+      <div className='flex flex-row flex-wrap px-3 gap-2'>
         <SDGFilters {...{ sdgs, setSDGs }} />
         <UseCaseFilters {...{ useCases, setUseCases }} />
 

@@ -1,16 +1,13 @@
 /* global fetch:false */
 import Head from 'next/head'
-
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
-
+import zxcvbn from 'zxcvbn'
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
-
-import zxcvbn from 'zxcvbn'
 
 // "user"=>{"reset_password_token"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
 
@@ -93,8 +90,9 @@ const PasswordAction = () => {
       setPasswordConfirmation('')
       setTimeout(() => {
         router.push('/auth/signin')
-      }, 5000)
+      }, 1000)
     }
+
     setLoading(false)
   }
 
@@ -111,6 +109,7 @@ const PasswordAction = () => {
     if (password.length === 0) {
       return ''
     }
+
     return strengthClasses[passwordStrength]
   }
 
@@ -124,7 +123,7 @@ const PasswordAction = () => {
       <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <div className='bg-dial-gray-dark pt-20 simple-form-height'>
         <div className={`mx-4 ${applied ? 'visible' : 'invisible'} text-center bg-dial-gray-dark`}>
-          <div className='my-auto text-green-500'>{format('reset.applied')}</div>
+          <div className='my-auto text-emerald-500'>{format('reset.applied')}</div>
         </div>
         <div className='pt-4'>
           <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>

@@ -1,4 +1,4 @@
-FROM node:14.16-alpine AS base
+FROM node:16.14-alpine AS base
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock ./
@@ -11,7 +11,7 @@ COPY . .
 COPY --from=base /app/node_modules ./node_modules
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 
-FROM node:14.16-alpine AS prod
+FROM node:16.14-alpine AS prod
 ENV NODE_ENV=production
 WORKDIR /app
 RUN addgroup -g 1001 -S nodejs

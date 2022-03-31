@@ -1,11 +1,9 @@
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { useContext, useEffect, useState } from 'react'
-
 import { MdPlayArrow } from 'react-icons/md'
-
-import { PlaybookDetailContext, PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 import { Error, Loading } from '../shared/FetchStatus'
+import { PlaybookDetailContext, PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
 
 const PLAYBOOK_QUERY = gql`
@@ -16,13 +14,16 @@ const PLAYBOOK_QUERY = gql`
       name
       imageFile
       playbookPlays {
+        id
         playSlug
         playName
         order
       }
       plays {
+        id
         slug
         playMoves {
+          id
           name
         }
       }
@@ -94,11 +95,13 @@ const PlaybookDetailNavigation = ({ slug }) => {
         setActiveSlug(currentSlug)
         found = true
       }
+
       if (!found && slugIntersectionRatio === 1) {
         // Use slug with full intersection if we don't find any with the above condition.
         setActiveSlug(currentSlug)
         found = true
       }
+
       index = index + 1
     }
 
@@ -148,7 +151,10 @@ const PlaybookDetailNavigation = ({ slug }) => {
   }
 
   return (
-    <div className='bg-dial-gray-dark sticky h-full overflow-y-auto border-t-8 border-dial-gray-dark' style={{ left: 0, top: '150px', height: 'calc(100vh - 150px)' }}>
+    <div
+      className='bg-dial-gray-dark sticky h-full overflow-y-auto border-dial-gray-dark'
+      style={{ left: 0, top: '150px', height: 'calc(100vh - 150px)' }}
+    >
       <div className='flex flex-col text-white'>
         <div
           className={`
@@ -167,7 +173,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
           data.playbook.playbookPlays.map((playbookPlay, index) => {
             return (
               <div
-                key={playbookPlay.order}
+                key={index}
                 className={`
                   border-r-4 border-dial-gray-dark
                   hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light

@@ -2,19 +2,15 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import Head from 'next/head'
 import { useSession } from 'next-auth/client'
-
+import { gql, useQuery } from '@apollo/client'
+import dynamic from 'next/dynamic'
+import { useEffect } from 'react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import NotFound from '../../../components/shared/NotFound'
-
 import withApollo from '../../../lib/apolloClient'
-import { gql, useQuery } from '@apollo/client'
-
 import UserDetail from '../../../components/users/UserDetail'
 import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
-
-import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const USER_QUERY = gql`
@@ -42,7 +38,8 @@ const User = () => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const router = useRouter()
-  const { pathname, asPath, query, locale } = useRouter()
+  const { locale, query } = router
+  const { userId } = query
 
   const [session] = useSession()
 
@@ -52,17 +49,10 @@ const User = () => {
     )
   }
 
-  const { userId } = router.query
   const { loading, error, data, refetch } = useQuery(USER_QUERY, {
     variables: { userId: userId },
-    context: { headers: { 'Accept-Language': locale } },
+    context: { headers: { 'Accept-Language': query.locale } },
     skip: !userId
-  })
-
-  useEffect(() => {
-    if (query.locale) {
-      router.replace({ pathname }, asPath, { locale: query.locale })
-    }
   })
 
   useEffect(() => {
@@ -82,9 +72,7 @@ const User = () => {
       {error && !error.networkError && <NotFound />}
       {
         data && data.user &&
-        
-            <UserDetail user={data.user} />
-
+          <UserDetail user={data.user} />
       }
       <Footer />
     </>

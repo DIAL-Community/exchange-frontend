@@ -1,0 +1,24 @@
+{
+	"extends": ["next"],
+	"ignorePatterns": ["build/"],
+	"rules": {
+    "template-curly-spacing": "off",
+    "quotes": [2, "single"],
+		"semi": [2, "never"],
+		"indent": ["error", 2, { 
+      "ignoredNodes": ["TemplateLiteral"] 
+    }],
+		"import/order": [2, {
+			"groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+			"newlines-between": "never"
+		}],
+		"padding-line-between-statements": [2,
+			{ "blankLine": "always", "prev": "*", "next": "return" },
+			{ "blankLine": "always", "prev": "block-like", "next": "*" }
+		],
+    "@next/next/no-img-element": "off",
+    "react-hooks/rules-of-hooks": "warn",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off"
+	}
+}

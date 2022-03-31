@@ -1,0 +1,47 @@
+image: node
+
+stages:
+  - lint
+  - build
+  - test
+
+variables:
+  NODE_OPTIONS: --openssl-legacy-provider
+
+eslint:
+  stage: lint
+  script:
+    # Install eslint
+    - |
+      npm install eslint \
+      eslint-config-airbnb \
+      eslint-config-prettier \
+      eslint-plugin-import \
+      eslint-plugin-jsx-a11y \
+      eslint-plugin-prettier \
+      eslint-plugin-react
+    # Run eslint
+    - node_modules/eslint/bin/eslint.js .
+
+cache:
+  paths:
+    - node_modules/
+
+build_react:
+  stage: build
+  script:
+    - yarn install
+    - yarn build
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - build
+
+test:
+  stage: test
+  script:
+    - yarn test
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - node_modules/

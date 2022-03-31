@@ -1,9 +1,7 @@
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-
 import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
-
 import { SectorFilters } from '../filter/element/Sector'
 import { TagFilters } from '../filter/element/Tag'
 import { ProductFilters } from '../filter/element/Product'
@@ -56,7 +54,7 @@ const MapActiveFilter = () => {
 
   return (
     <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
-      <div className='flex flex-row flex-wrap px-3'>
+      <div className='flex flex-row flex-wrap px-3 gap-2'>
         {
           router.pathname.indexOf('projects') >= 0 &&
             <>

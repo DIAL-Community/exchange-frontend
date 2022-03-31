@@ -1,9 +1,7 @@
 import Link from 'next/link'
-import Header from '../../components/Header'
-
 import Head from 'next/head'
-
 import { useIntl } from 'react-intl'
+import Header from '../../components/Header'
 
 export default function Error ({ csrfToken }) {
   const { formatMessage } = useIntl()

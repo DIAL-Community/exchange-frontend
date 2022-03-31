@@ -1,26 +1,22 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-
 import { gql, useMutation } from '@apollo/client'
-
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
-
 import { HtmlEditor } from '../../shared/HtmlEditor'
 import { descriptionByLocale } from '../../../lib/utilities'
 import Breadcrumb from '../../shared/breadcrumb'
 
 const CREATE_TASK = gql`
-mutation ($playSlug: String!, $name: String!, $description: String!, $resources: JSON!, $order: Int!, $locale: String!) {
-  createMove(play: $playSlug, name: $name, description: $description, resources: $resources, order: $order, locale: $locale) {
+mutation ($playSlug: String!, $name: String!, $description: String!, $resources: JSON!, $order: Int!) {
+  createMove(play: $playSlug, name: $name, description: $description, resources: $resources, order: $order) {
     move {
       id
       name
       slug
       resources
-      moveDescriptions {
+      moveDescription {
         description
-        locale
       }
       playName
       playSlug
@@ -50,6 +46,7 @@ export const MoveForm = ({ move, action }) => {
       map[move.playSlug] = move.playName
       map[move.slug] = move.name
     }
+
     return map
   })()
 
@@ -99,7 +96,7 @@ export const MoveForm = ({ move, action }) => {
   return (
     <div className='pt-4'>
       <div className={`mx-4 ${data ? 'visible' : 'invisible'} text-center pt-4`}>
-        <div className='my-auto text-green-500'>{action === 'create' ? format('play.created') : format('play.updated')}</div>
+        <div className='my-auto text-emerald-500'>{action === 'create' ? format('play.created') : format('play.updated')}</div>
       </div>
       <div className='p-3 font-semibold text-gray'>
         {format('moves.forPlay')}: {playSlug}

@@ -2,13 +2,9 @@
 
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
-
-import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
-
 import { gql, useQuery } from '@apollo/client'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
 import { Error, Loading } from '../shared/FetchStatus'
 import { PlaybookDetailDispatchContext } from './PlaybookDetailContext'
@@ -20,10 +16,10 @@ const PLAYBOOK_QUERY = gql`
       slug
       name
       playbookDescription {
+        id
         overview
         audience
         outcomes
-        locale
       }
     }
   }
@@ -31,7 +27,7 @@ const PLAYBOOK_QUERY = gql`
 
 export const OVERVIEW_SLUG_NAME = 'base-slug-overview-information'
 
-const PlaybookDetailOverview = ({ slug }) => {
+const PlaybookDetailOverview = ({ slug, locale }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -40,20 +36,15 @@ const PlaybookDetailOverview = ({ slug }) => {
   const { updateSlugInformation } = useContext(PlaybookDetailDispatchContext)
 
   const ref = useRef()
-  const router = useRouter()
-  const { locale } = useRouter()
-  const { pathname, asPath, query } = useRouter()
 
-  const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
+  const { loading, error, data, refetch } = useQuery(PLAYBOOK_QUERY, {
     variables: { slug: slug },
-    context: { headers: { 'Accept-Language': query.locale } }
+    context: { headers: { 'Accept-Language': locale } }
   })
 
   useEffect(() => {
-    if (query.locale) {
-      router.replace({ pathname }, asPath, { locale: query.locale })
-    }
-  })
+    refetch()
+  }, [locale])
 
   useEffect(() => {
     // Update context for this overview. We're using fake slug data for this.
@@ -70,6 +61,7 @@ const PlaybookDetailOverview = ({ slug }) => {
         // Skip if we don't have observer data ready yet.
         return
       }
+
       setHeight(observerData.boundingClientRect.height)
     }
 
@@ -78,6 +70,7 @@ const PlaybookDetailOverview = ({ slug }) => {
     })
 
     observer.observe(ref.current)
+
     // Remove the observer as soon as the component is unmounted.
     return () => { observer.disconnect() }
   }, [ref.current])
@@ -108,34 +101,28 @@ const PlaybookDetailOverview = ({ slug }) => {
         <div className='hidden lg:block'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
-        <div className='w-full flex justify-end mt-4'>
+        <div className='mt-4 ml-auto'>
           {
-            session && (
-              <div className='inline'>
-                {
-                  session.user.canEdit && (
-                    <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
-                      <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-                      <span className='text-sm px-2'>{format('app.edit')}</span>
-                    </a>
-                  )
-                }
-              </div>
+            session && session.user.canEdit && (
+              <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
+                <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
+                <span className='text-sm px-2'>{format('app.edit')}</span>
+              </a>
             )
           }
         </div>
       </div>
       <div className='h4'>{format('playbooks.overview')}</div>
-      <div className='fr-view tinyEditor text-dial-gray-dark'>
-        {ReactHtmlParser(data.playbook.playbookDescription.overview)}
+      <div className='fr-view tiny-editor text-dial-gray-dark'>
+        {parse(data.playbook.playbookDescription.overview)}
       </div>
       <div className='h4'>{format('playbooks.audience')}</div>
-      <div className='fr-view tinyEditor text-dial-gray-dark'>
-        {ReactHtmlParser(data.playbook.playbookDescription.audience)}
+      <div className='fr-view tiny-editor text-dial-gray-dark'>
+        {parse(data.playbook.playbookDescription.audience)}
       </div>
       <div className='h4'>{format('playbooks.outcomes')}</div>
-      <div className='fr-view tinyEditor text-dial-gray-dark'>
-        {ReactHtmlParser(data.playbook.playbookDescription.outcomes)}
+      <div className='fr-view tiny-editor text-dial-gray-dark'>
+        {parse(data.playbook.playbookDescription.outcomes)}
       </div>
     </div>
   )

@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
-
+import { useRouter } from 'next/router'
+import { gql, useMutation } from '@apollo/client'
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { gql, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
+import { ToastContext } from '../../../lib/ToastContext'
 
 const CREATE_CANDIDATE_PRODUCT = gql`
   mutation CreateCandidateProduct(
@@ -37,6 +37,8 @@ const ProductForm = () => {
   const [email, setEmail] = useState('')
   const [captcha, setCaptcha] = useState('')
 
+  const { showToast } = useContext(ToastContext)
+
   const [createCandidateProduct, { data, loading }] = useMutation(CREATE_CANDIDATE_PRODUCT)
 
   const handleTextFieldChange = (e, callback) => {
@@ -54,9 +56,10 @@ const ProductForm = () => {
       setRepository('')
       setDescription('')
       captchaRef.current.reset()
+      showToast(format('candidateProduct.created'), 'success', 'top-center')
       setTimeout(() => {
         router.push('/candidate/products')
-      }, 5000)
+      }, 1000)
     }
   }, [data])
 
@@ -76,9 +79,6 @@ const ProductForm = () => {
 
   return (
     <div className='pt-4'>
-      <div className={`mx-4 ${data ? 'visible' : 'invisible'} text-center pt-4`}>
-        <div className='my-auto text-green-500'>{format('candidateProduct.created')}</div>
-      </div>
       <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
         <form method='post' onSubmit={handleSubmit}>
           <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>

@@ -105,7 +105,7 @@ export const SectorFilters = (props) => {
       {
         sectors &&
         sectors.map(sector => (
-          <div key={`filter-${sector.label}`} className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
+          <div key={`filter-${sector.label}`} className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
             {`${format('sector.label')}: ${sector.label}`}
             <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeSector(sector.value)} />
           </div>

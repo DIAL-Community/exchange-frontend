@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useIntl } from 'react-intl'
-
 import DigitalPrinciple from '../principles/DigitalPrinciple'
 import Resource from '../resources/Resource'
 
@@ -58,7 +57,7 @@ const Lifecycle = ({ wizardData, objType }) => {
                             })}
                           </div>
                         </div>
-                        )
+                      )
                       : (
                         <div key={phase} className={openTab === index ? 'block' : 'hidden'} id={'resource-phase-' + index}>
                           <div className='pb-6 grid lg:grid-cols-3'>
@@ -69,7 +68,7 @@ const Lifecycle = ({ wizardData, objType }) => {
                             })}
                           </div>
                         </div>
-                        )
+                      )
                   })}
                 </div>
               </div>

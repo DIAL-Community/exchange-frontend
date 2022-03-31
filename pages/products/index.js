@@ -1,27 +1,20 @@
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useContext } from 'react'
-
+import dynamic from 'next/dynamic'
 import apolloClient from '../../lib/apolloClient'
-
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import GradientBackground from '../../components/shared/GradientBackground'
 import QueryNotification from '../../components/shared/QueryNotification'
-
 import TabNav from '../../components/main/TabNav'
 import MobileNav from '../../components/main/MobileNav'
 import PageContent from '../../components/main/PageContent'
-
 import ProductHint from '../../components/filter/hint/ProductHint'
-
 import ProductFilter from '../../components/products/ProductFilter'
 import ProductActiveFilter from '../../components/products/ProductActiveFilter'
-
 import SearchFilter from '../../components/shared/SearchFilter'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../../components/context/ProductFilterContext'
-
-import dynamic from 'next/dynamic'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 const ProductListQuery = dynamic(() => import('../../components/products/ProductList'), { ssr: false })
 

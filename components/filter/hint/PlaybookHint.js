@@ -1,11 +1,10 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import { FilterContext } from '../../context/FilterContext'
 
 const PlaybookHint = () => {
-  const { setOpenHint } = useContext(FilterContext)
+  const { setHintDisplayed } = useContext(FilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -21,7 +20,7 @@ const PlaybookHint = () => {
             <div className='text-base px-8'>
               {format('playbook.hint.subtitle')}
             </div>
-            <img className='w-48 h-48 mt-8 mx-auto xl:mt-0' src='images/tiles/playbook.svg' alt='' />
+            <img className='w-48 h-48 mt-8 mx-auto xl:mt-0' src='images/tiles/use-case.svg' alt='' />
           </div>
         </div>
         <div className='col-span-11'>
@@ -29,7 +28,7 @@ const PlaybookHint = () => {
             {format('playbook.hint.characteristicTitle').toUpperCase()}
           </div>
           <div className='fr-view text-sm px-8 pb-3'>
-            {ReactHtmlParser(format('playbook.hint.characteristics'))}
+            {parse(format('playbook.hint.characteristics'))}
           </div>
           <div className='text-lg px-8 pb-3'>
             {format('playbook.hint.descriptionTitle').toUpperCase()}
@@ -41,7 +40,7 @@ const PlaybookHint = () => {
         <div className='absolute right-2 top-2'>
           <button
             className='bg-button-gray p-3 float-right rounded text-button-gray-light'
-            onClick={() => setOpenHint(false)}
+            onClick={() => setHintDisplayed(false)}
           >
             {format('general.close')}
           </button>

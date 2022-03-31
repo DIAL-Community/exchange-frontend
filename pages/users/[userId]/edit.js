@@ -1,16 +1,12 @@
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
-
-import withApollo from '../../../lib/apolloClient'
-import { gql, useQuery } from "@apollo/client"
-
+import { gql, useQuery } from '@apollo/client'
 import Head from 'next/head'
+import { useIntl } from 'react-intl'
+import withApollo from '../../../lib/apolloClient'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
-
-import { useIntl } from 'react-intl'
-
 import { UserForm } from '../../../components/users/UserForm'
 
 const USER_QUERY = gql`
@@ -35,8 +31,7 @@ const USER_QUERY = gql`
   }
 `
 
-function EditUser() {
-
+function EditUser () {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -69,8 +64,9 @@ function EditUser() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      {data && data.user &&
-        <UserForm user={data.user} action='update' />
+      {
+        data && data.user &&
+          <UserForm user={data.user} action='update' />
       }
       <Footer />
     </>

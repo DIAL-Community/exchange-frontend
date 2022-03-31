@@ -2,12 +2,16 @@ import Link from 'next/link'
 import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
-
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('SDGs')
 
 const ellipsisTextStyle = `
-  whitespace-nowrap overflow-ellipsis overflow-hidden my-auto
+  whitespace-nowrap text-ellipsis overflow-hidden my-auto
+`
+const containerElementStyle = `
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+  text-sdg hover:text-dial-yellow
 `
 
 const SDGCard = ({ sdg, listType, filterDisplayed }) => {
@@ -50,12 +54,18 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
         if (workflowSlugs.indexOf(useCase.slug) === -1) {
           useCases.push(useCase)
         }
+
         return useCase
       })
+
       return sdgTarget
     })
+
     return useCases
   })()
+
+  const navClickHandler = () => {
+  }
 
   const nameColSpan = () => {
     return !useCases
@@ -74,7 +84,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
       {
         listType === 'list'
           ? (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
+            <div onClick={() => navClickHandler()} className={containerElementStyle}>
               <div className='bg-white border border-dial-gray hover:border-transparent'>
                 <div className='grid grid-cols-1 lg:grid-cols-6 gap-x-4 py-4 px-4'>
                   <div className={`${nameColSpan()} text-base text-sdg font-semibold ${ellipsisTextStyle}`}>
@@ -94,7 +104,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                           <div className='inline'>
                             {format('useCase.header')}:
                           </div>
-                          <div className='mx-1 whitespace-nowrap overflow-ellipsis overflow-hidden'>
+                          <div className='mx-1 whitespace-nowrap text-ellipsis overflow-hidden'>
                             {
                               useCases.length === 0 && format('general.na')
                             }
@@ -118,12 +128,12 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                 </div>
               </div>
             </div>
-            )
+          )
           : (
-            <div className='border-3 border-transparent hover:border-dial-yellow text-sdg hover:text-dial-yellow cursor-pointer'>
-              <div className='border border-dial-gray hover:border-transparent drop-shadow'>
+            <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className='border border-dial-gray hover:border-transparent card-drop-shadow'>
                 <div className='flex flex-col h-80 p-4'>
-                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80 bg-white bg-opacity-70'>
+                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
                     {sdg.name}
                   </div>
                   <div className='m-auto align-middle w-40'>
@@ -222,7 +232,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                 </div>
               </div>
             </div>
-            )
+          )
       }
     </Link>
   )

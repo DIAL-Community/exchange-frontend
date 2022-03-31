@@ -1,8 +1,12 @@
 import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
+import mockRouter from 'next-router-mock'
 import BuildingBlockCard from '../../../components/building-blocks/BuildingBlockCard'
-
 import { render } from '../../test-utils'
+
+// This is needed as the ToastContext requires a router context
+jest.mock('next/dist/client/router', () => require('next-router-mock'))
+
 const completeBuildingBlock = {
   name: 'Fake Building Block',
   slug: 'fake_bb',
@@ -29,6 +33,10 @@ const minimalBuildingBlock = {
   slug: 'fake_bb',
   maturity: 'beta'
 }
+
+beforeEach(() => {
+  mockRouter.setCurrentUrl('/')
+})
 
 test('Should render building block in list view.', () => {
   render(<BuildingBlockCard buildingBlock={completeBuildingBlock} listType='list' />)

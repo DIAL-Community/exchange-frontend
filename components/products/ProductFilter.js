@@ -1,10 +1,8 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { BsQuestionCircleFill } from 'react-icons/bs'
-
 import { FilterContext } from '../context/FilterContext'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../context/ProductFilterContext'
-
 import { BuildingBlockAutocomplete } from '../filter/element/BuildingBlock'
 import { CountryAutocomplete } from '../filter/element/Country'
 import { EndorserAutocomplete } from '../filter/element/Endorser'
@@ -21,7 +19,7 @@ const ProductFilter = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { setOpenHint } = useContext(FilterContext)
+  const { setHintDisplayed } = useContext(FilterContext)
 
   const {
     withMaturity, productDeployable, forCovid, sectors, countries, organizations, origins, sdgs, tags,
@@ -53,7 +51,7 @@ const ProductFilter = () => {
     <div className='px-4 py-4'>
       <div className='text-dial-gray-dark'>
         <div className='px-2 mb-4 text-xs'>
-          <button href='openHint' className='font-semibold flex gap-1' onClick={() => setOpenHint(true)}>
+          <button className='font-semibold flex gap-1' onClick={() => setHintDisplayed(true)}>
             {format('filter.hint.text')} {format('product.label')}
             <BsQuestionCircleFill className='inline text-sm mb-1' />
           </button>

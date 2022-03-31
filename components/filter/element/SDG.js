@@ -102,7 +102,7 @@ export const SDGFilters = (props) => {
       {
         sdgs &&
           sdgs.map(sdg => (
-            <div key={`filter-${sdg.label}`} className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
+            <div key={`filter-${sdg.label}`} className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
               {`${format('sdg.shortLabel')}: ${sdg.label}`}
               <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeSDG(sdg.value)} />
             </div>
