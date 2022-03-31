@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useIntl } from 'react-intl'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 
 const Carousel = () => {
   const { formatMessage } = useIntl()
@@ -38,7 +38,7 @@ const Carousel = () => {
           <div className='w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg'>
             <div className='p-6 md:py-12'>
               <div className='text-lg tracking-wide'>
-                {ReactHtmlParser(format('definition.who'))}
+                {parse(format('definition.who'))}
               </div>
             </div>
           </div>
@@ -82,7 +82,7 @@ const Carousel = () => {
           <div className='w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg'>
             <div className='p-6 md:py-12'>
               <p className='text-lg tracking-wide pb-6'>
-                {ReactHtmlParser(format('definition.approach'))}
+                {parse(format('definition.approach'))}
               </p>
               <div className='text-center'>
                 <a href='https://digitalimpactalliance.org/research/sdg-digital-investment-framework/' target='_blank' rel='noreferrer'>
@@ -105,7 +105,7 @@ const Carousel = () => {
           <div className='w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg'>
             <div className='p-6 md:py-12'>
               <p className='text-lg tracking-wide'>
-                {ReactHtmlParser(format('definition.featured'))}
+                {parse(format('definition.featured'))}
               </p>
             </div>
           </div>

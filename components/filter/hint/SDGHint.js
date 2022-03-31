@@ -1,10 +1,9 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-
 import { FilterContext } from '../../context/FilterContext'
 
 const SDGHint = () => {
-  const { setOpenHint } = useContext(FilterContext)
+  const { setHintDisplayed } = useContext(FilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -34,7 +33,7 @@ const SDGHint = () => {
         <div className='absolute right-4 top-4'>
           <button
             className='bg-button-gray p-3 float-right rounded text-button-gray-light'
-            onClick={() => setOpenHint(false)}
+            onClick={() => setHintDisplayed(false)}
           >
             {format('general.close')}
           </button>

@@ -1,26 +1,19 @@
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
-
+import { useContext } from 'react'
+import dynamic from 'next/dynamic'
 import apolloClient from '../../lib/apolloClient'
-
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-
 import GradientBackground from '../../components/shared/GradientBackground'
 import QueryNotification from '../../components/shared/QueryNotification'
-
 import MobileNav from '../../components/main/MobileNav'
 import TabNav from '../../components/main/TabNav'
 import PageContent from '../../components/main/PageContent'
 import SearchFilter from '../../components/shared/SearchFilter'
-
 import PlaybookFilter from '../../components/playbooks/PlaybookFilter'
 import PlaybookActiveFilter from '../../components/playbooks/PlaybookActiveFilter'
 import PlaybookHint from '../../components/filter/hint/PlaybookHint'
-
-import { useContext } from 'react'
-import dynamic from 'next/dynamic'
-
 import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../../components/context/PlaybookFilterContext'
 const PlaybookListQuery = dynamic(() => import('../../components/playbooks/PlaybookList'), { ssr: false })
 

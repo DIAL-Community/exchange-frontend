@@ -3,7 +3,7 @@ import { BsChevronDoubleLeft, BsChevronDoubleRight } from 'react-icons/bs'
 import { FilterContext } from '../context/FilterContext'
 
 const LeftDrawer = ({ filter, hint }) => {
-  const { openHint, filterDisplayed, setFilterDisplayed } = useContext(FilterContext)
+  const { hintDisplayed, filterDisplayed, setFilterDisplayed } = useContext(FilterContext)
   const [openingFilter, setOpeningFilter] = useState(true)
 
   const toggleDrawer = () => {
@@ -48,13 +48,13 @@ const LeftDrawer = ({ filter, hint }) => {
         style={{ boxShadow: '6px 0 6px -2px rgba(0, 0, 0, 0.3)', left: 0, top: '166px' }}
         onTransitionEnd={transitionEndHandler}
       >
-        <div className={`card ${openHint ? 'flip-vertical' : ''}`}>
+        <div className={`card ${hintDisplayed ? 'flip-vertical' : ''}`}>
           <div className='card-body'>
             <div className='card-front'>
               {filterDisplayed && filter}
             </div>
             <div className='card-back flip-vertical'>
-              {filterDisplayed && openHint && hint}
+              {filterDisplayed && hintDisplayed && hint}
             </div>
           </div>
         </div>

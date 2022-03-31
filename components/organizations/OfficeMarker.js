@@ -1,6 +1,5 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-
 import { divIcon } from 'leaflet'
 import { useIntl } from 'react-intl'
 
@@ -21,6 +20,7 @@ const OfficeMarker = (props) => {
   const altText = formatMessage({ id: 'image.alt.logoFor' }, { name: format('digitalPrinciple.title') })
 
   const { position, title, body } = props
+
   return (
     <MapContainer center={position} zoom={10} className='w-full 2xl:w-3/6 h-80 z-10'>
       <TileLayer

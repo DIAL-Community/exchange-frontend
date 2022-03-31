@@ -1,14 +1,12 @@
 import { FormattedDate, useIntl } from 'react-intl'
+import parse from 'html-react-parser'
+import { useMemo } from 'react'
+import dynamic from 'next/dynamic'
 import Breadcrumb from '../shared/breadcrumb'
 import SectorCard from '../sectors/SectorCard'
 import CountryCard from '../countries/CountryCard'
 import ProjectCard from '../projects/ProjectCard'
 import ProductCard from '../products/ProductCard'
-
-import ReactHtmlParser from 'react-html-parser'
-
-import { useMemo } from 'react'
-import dynamic from 'next/dynamic'
 import CityCard from '../cities/CityCard'
 import AggregatorCapability from './AggregatorCapability'
 
@@ -20,6 +18,7 @@ const DynamicOfficeMarker = (props) => {
       ssr: false
     }
   ), [props])
+
   return <OfficeMarker {...props} />
 }
 
@@ -29,15 +28,16 @@ const OrganizationDetailRight = ({ organization }) => {
 
   const marker = organization.offices.length > 0
     ? {
-        position: [parseFloat(organization.offices[0].latitude), parseFloat(organization.offices[0].longitude)],
-        title: organization.name,
-        body: organization.offices[0].name
-      }
+      position: [parseFloat(organization.offices[0].latitude), parseFloat(organization.offices[0].longitude)],
+      title: organization.name,
+      body: organization.offices[0].name
+    }
     : undefined
 
   const slugNameMapping = (() => {
     const map = {}
     map[organization.slug] = organization.name
+
     return map
   })()
 
@@ -86,7 +86,7 @@ const OrganizationDetailRight = ({ organization }) => {
       </div>
       <div className='mt-8 card-title mb-3 text-dial-gray-dark'>{format('product.description')}</div>
       <div className='fr-view text-dial-gray-dark p-3'>
-        {organization.organizationDescription && ReactHtmlParser(organization.organizationDescription.description)}
+        {organization.organizationDescription && parse(organization.organizationDescription.description)}
       </div>
       {
         organization.offices.length > 1 &&
@@ -97,6 +97,7 @@ const OrganizationDetailRight = ({ organization }) => {
                 organization.offices.map((office, i) => {
                   // Skipping the first one because it is displayed as map marker.
                   if (i === 0) return <></>
+
                   return <CityCard key={i} city={office} listType='list' />
                 })
               }
@@ -113,7 +114,7 @@ const OrganizationDetailRight = ({ organization }) => {
                   <div className='grid grid-cols-1 lg:grid-cols-2'>
                     {organization.sectors.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
                   </div>
-                  )
+                )
                 : <div className='text-sm pb-5 text-button-gray'>{format('organization.no-sector')}</div>
             }
           </div>
@@ -128,7 +129,7 @@ const OrganizationDetailRight = ({ organization }) => {
                   <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
                     {organization.countries.map((country, i) => <CountryCard key={i} country={country} listType='list' />)}
                   </div>
-                  )
+                )
                 : <div className='text-sm pb-5 text-button-gray'>{format('organization.no-country')}</div>
             }
           </div>

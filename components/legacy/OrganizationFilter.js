@@ -2,15 +2,13 @@ import { useContext, useEffect } from 'react'
 import { MdClose } from 'react-icons/md'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-
+import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../context/OrganizationFilterContext'
 import { CountryAutocomplete, CountryFilters } from '../filter/element/Country'
 import { EndorsingYearFilters, EndorsingYearSelect } from '../filter/element/EndorsingYear'
 import { SectorAutocomplete, SectorFilters } from '../filter/element/Sector'
 import { parseQuery } from '../shared/SharableLink'
-
-import dynamic from 'next/dynamic'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const OrganizationFilter = (props) => {
@@ -38,6 +36,7 @@ const OrganizationFilter = (props) => {
     count = endorser ? count + 1 : count
     count = aggregator ? count + 1 : count
     count = count + countries.length + years.length + sectors.length
+
     return count
   }
 
@@ -64,6 +63,7 @@ const OrganizationFilter = (props) => {
     const filterParameters = [
       activeFilter, aggregatorFilter, endorserFilter, ...countryFilters, ...sectorFilters, ...yearFilters
     ].filter(f => f).join('&')
+
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
 
@@ -119,17 +119,17 @@ const OrganizationFilter = (props) => {
         <div className='px-2 py-1 mt-2 text-sm text-white whitespace-nowrap'>
           {format('filter.general.applied', { count: filterCount() })}:
         </div>
-        <div className='flex flex-row flex-wrap'>
+        <div className='flex flex-row flex-wrap gap-2'>
           {
             aggregator &&
-              <div className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
+              <div className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
                 {format('filter.organization.aggregatorOnly')}
                 <MdClose className='ml-3 inline cursor-pointer' onClick={toggleAggregator} />
               </div>
           }
           {
             endorser &&
-              <div className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
+              <div className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
                 {format('filter.organization.endorserOnly')}
                 <MdClose className='ml-3 inline cursor-pointer' onClick={toggleEndorser} />
               </div>

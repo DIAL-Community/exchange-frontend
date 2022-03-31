@@ -2,16 +2,14 @@
 
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
-import ReactHtmlParser from 'react-html-parser'
-import { DiscourseCount } from '../shared/discourse'
-import Breadcrumb from '../shared/breadcrumb'
+import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
-
 import ReCAPTCHA from 'react-google-recaptcha'
-
 import { FaSpinner } from 'react-icons/fa'
 import { useEffect, useRef, useState } from 'react'
 import { gql, useLazyQuery } from '@apollo/client'
+import { DiscourseCount } from '../shared/discourse'
+import Breadcrumb from '../shared/breadcrumb'
 
 const CANDIDATE_ROLE_QUERY = gql`
   query CandidateRole($email: String!, $productId: String!, $organizationId: String!) {
@@ -48,6 +46,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
     }
 
     const { userEmail, userToken } = session.user
+
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/products/${product.slug}/` +
         `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
@@ -55,9 +54,10 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
   const [fetchCandidateRole, { data, error }] = useLazyQuery(CANDIDATE_ROLE_QUERY)
   useEffect(() => {
     if (session) {
+      const { userEmail } = session.user
       fetchCandidateRole({
         variables:
-          { email: session.userEmail, productId: product.id, organizationId: '' }
+          { email: userEmail, productId: product.id, organizationId: '' }
       })
     }
   }, [session])
@@ -98,7 +98,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
       return 'owner'
     }
 
-    if (appliedToBeOwner || (data && `${data.candidateRole.productId}` === `${product.id}`)) {
+    if (appliedToBeOwner || (data && `${data.candidateRole?.productId}` === `${product.id}`)) {
       // Applying to be the owner of the organization
       return 'applied-to-own'
     }
@@ -185,6 +185,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[product.slug] = product.name
+
     return map
   })()
 
@@ -199,7 +200,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
             session && (
               <div className='inline'>
                 {
-                  (session.canEdit || session.user.own.products.filter(p => `${p}` === `${product.id}`).length > 0) && (
+                  (session.user.canEdit || session.user.own.products.filter(p => `${p}` === `${product.id}`).length > 0) && (
                     <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
                       <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
                       <span className='text-sm px-2'>{format('app.edit')}</span>
@@ -218,10 +219,14 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
           <div className='h1 p-2 text-dial-purple'>
             {product.name}
           </div>
-          <img alt={`${product.name} Logo`} className='p-2 m-auto' src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile} width='200px' height='200px' />
+          <img
+            alt={`${product.name} Logo`} className='p-2 m-auto'
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+            width='200px' height='200px'
+          />
         </div>
         <div className='fr-view text-dial-gray-dark max-h-40 overflow-hidden'>
-          {product.productDescription && ReactHtmlParser(product.productDescription.description)}
+          {product.productDescription && parse(product.productDescription.description)}
         </div>
       </div>
       <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 lg:mr-6 shadow-lg border-b-2 border-dial-gray'>
@@ -283,7 +288,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
                   <div className='mt-2'>
                     {format('ownership.label')}:
                     <a
-                      class='text-dial-yellow mx-2 mt-2 border-b border-transparent hover:border-dial-yellow'
+                      className='text-dial-yellow mx-2 mt-2 border-b border-transparent hover:border-dial-yellow'
                       href={`mailto:${emailAddress}`} target='_blank' rel='noreferrer'
                     >
                       {emailAddress}

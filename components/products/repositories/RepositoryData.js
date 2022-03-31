@@ -1,12 +1,11 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import Breadcrumb from '../../shared/breadcrumb'
-import ReactHtmlParser from 'react-html-parser'
-
-import RepositoryDetail from '../RepositoryDetail'
+import parse from 'html-react-parser'
 import { useSession } from 'next-auth/client'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import RepositoryDetail from '../RepositoryDetail'
+import Breadcrumb from '../../shared/breadcrumb'
 
 const REPOSITORY_QUERY = gql`
   query ProductRepository($slug: String!) {
@@ -58,6 +57,7 @@ const RepositoryInformation = ({ productRepository }) => {
     const map = {}
     map[productRepository.product.slug] = productRepository.product.name
     map[productRepository.slug] = productRepository.name
+
     return map
   })()
 
@@ -100,7 +100,7 @@ const RepositoryInformation = ({ productRepository }) => {
         {format('productRepository.description')}
       </div>
       <div className='text-sm text-dial-gray-dark'>
-        {ReactHtmlParser(productRepository.description)}
+        {parse(productRepository.description)}
       </div>
       <div className='w-full xl:w-4/5 mt-3 py-3 border-b border-gray-300'>
         <RepositoryDetail
@@ -109,21 +109,24 @@ const RepositoryInformation = ({ productRepository }) => {
         />
       </div>
       {
-        (session?.user.canEdit || session?.user.own.products.filter(p => `${p}` === `${productRepository.product.id}`).length > 0) &&
+        (
+          session?.user.canEdit ||
+          session?.user.own.products.filter(p => `${p}` === `${productRepository.product.id}`).length > 0
+        ) &&
           <div className='w-full xl:w-4/5 my-2 flex flex-row gap-2'>
             <button
-              className='text-white bg-blue-400 hover:bg-blue-500 rounded inline-flex items-center py-2 px-4'
+              className='text-white bg-blue-400 hover:bg-blue-500 rounded py-2 px-4'
               onClick={handleEdit}
             >
               {format('productRepository.edit')}
             </button>
             <button
-              className='text-black border-2 border-blue-400 hover:border-blue-500 rounded inline-flex items-center py-1 px-4'
+              className='text-dial-blue border-2 border-dial-blue-light rounded py-1 px-4'
               onClick={handleDelete}
             >
               {format('productRepository.delete')}
             </button>
-            {data && <div className='my-auto text-green-500 ml-auto'>{format('productRepository.deleted')}</div>}
+            {data && <div className='my-auto text-emerald-500 ml-auto'>{format('productRepository.deleted')}</div>}
           </div>
       }
     </div>

@@ -47,6 +47,7 @@ const OPERATORS_QUERY = gql`
 const OperatorCapability = (props) => {
   const { operatorId, operatorData, operators } = props
   const operator = operators[operatorId]
+
   return (
     <Accordion allowMultipleExpanded allowZeroExpanded>
       <AccordionItem>
@@ -83,6 +84,7 @@ const OperatorCapability = (props) => {
 
 const ServiceCapability = (props) => {
   const { service, serviceData, operators } = props
+
   return (
     <AccordionItem>
       <AccordionItemHeading>
@@ -94,6 +96,7 @@ const ServiceCapability = (props) => {
         {
           Object.keys(serviceData).map((operatorId, index) => {
             const operatorData = serviceData[operatorId]
+
             return (
               <Accordion key={index} allowMultipleExpanded allowZeroExpanded>
                 <OperatorCapability {...{ operatorId, operatorData, operators }} />
@@ -121,6 +124,7 @@ const CountryCapability = (props) => {
           countryData &&
             Object.keys(countryData).map((service, index) => {
               const serviceData = countryData[service]
+
               return (
                 <Accordion key={index} allowMultipleExpanded allowZeroExpanded>
                   <ServiceCapability {...{ service, serviceData, operators }} />
@@ -203,6 +207,7 @@ const AggregatorCapability = (props) => {
           Object.keys(mappedCapabilities).map((countryId, index) => {
             const country = countries[countryId]
             const countryData = mappedCapabilities[countryId]
+
             return (
               <CountryCapability key={index} {...{ country, countryData, operators }} />
             )

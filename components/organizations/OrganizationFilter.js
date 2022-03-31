@@ -1,10 +1,8 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { BsQuestionCircleFill } from 'react-icons/bs'
-
 import { FilterContext } from '../context/FilterContext'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../context/OrganizationFilterContext'
-
 import { CountryAutocomplete } from '../filter/element/Country'
 import { EndorsingYearSelect } from '../filter/element/EndorsingYear'
 import { SectorAutocomplete } from '../filter/element/Sector'
@@ -13,7 +11,7 @@ const OrganizationFilter = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { setOpenHint } = useContext(FilterContext)
+  const { setHintDisplayed } = useContext(FilterContext)
 
   const { aggregator, endorser, sectors, countries, years } = useContext(OrganizationFilterContext)
   const { setAggregator, setEndorser, setSectors, setCountries, setYears } = useContext(OrganizationFilterDispatchContext)
@@ -30,7 +28,7 @@ const OrganizationFilter = () => {
     <div className='px-4 py-4'>
       <div className='text-dial-gray-dark'>
         <div className='px-2 mb-4 text-xs'>
-          <button href='openHint' className='font-semibold flex gap-1' onClick={() => setOpenHint(true)}>
+          <button className='font-semibold flex gap-1' onClick={() => setHintDisplayed(true)}>
             {format('filter.hint.text.an')} {format('organization.label')}
             <BsQuestionCircleFill className='inline text-sm mb-1' />
           </button>

@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
-
 import Link from 'next/link'
-
 import { FaSpinner } from 'react-icons/fa'
 import { gql, useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
+import { ToastContext } from '../../../lib/ToastContext'
 
 const CREATE_PRODUCT_REPOSITORY = gql`
   mutation CreateProductRepository(
@@ -56,6 +55,8 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
   const [description, setDescription] = useState('')
   const [mainRepository, setMainRepository] = useState(false)
 
+  const { showToast } = useContext(ToastContext)
+
   const [createProductRepository, { data: createData, loading: loadingCreate }] = useMutation(CREATE_PRODUCT_REPOSITORY)
   const [updateProductRepository, { data: updateData, loading: loadingUpdate }] = useMutation(UPDATE_PRODUCT_REPOSITORY)
 
@@ -69,6 +70,7 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
 
   const goBackPath = () => {
     const slug = productRepository ? productRepository.slug : ''
+
     return `/products/${productSlug}/repositories/${slug}`
   }
 
@@ -78,6 +80,10 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
       setAbsoluteUrl('')
       setDescription('')
       setMainRepository(false)
+
+      const toastMessage = createData ? format('productRepository.created') : format('productRepository.updated')
+      showToast(toastMessage, 'success', 'top-center')
+
       setTimeout(() => {
         const slug = createData ? createData.createProductRepository.slug : updateData.updateProductRepository.slug
         router.push(`/products/${productSlug}/repositories/${slug}`)
@@ -125,7 +131,8 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
                   {format('productRepository.name')}
                 </label>
                 <input
-                  id='name' name='name' type='text' placeholder={format('productRepository.name.placeholder')}
+                  id='name' name='name' type='text'
+                  placeholder={format('productRepository.name.placeholder')}
                   className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
                   value={name} onChange={(e) => handleTextFieldChange(e, setName)}
                 />
@@ -145,7 +152,8 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
                 {format('productRepository.description')}
               </label>
               <input
-                id='website' name='website' type='text' placeholder={format('productRepository.description.placeholder')}
+                id='website' name='website' type='text'
+                placeholder={format('productRepository.description.placeholder')}
                 className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
                 value={description} onChange={(e) => handleTextFieldChange(e, setDescription)}
               />
@@ -159,9 +167,9 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
                 <span className='ml-2'>{format('productRepository.mainRepository.label')}</span>
               </label>
             </div>
-            <div className='flex flex-row gap-2 text-sm mt-2'>
+            <div className='font-semibold flex flex-row gap-2 text-sm mt-2'>
               <button
-                className='font-semibold bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded disabled:opacity-50'
                 disabled={loadingCreate || loadingUpdate}
                 onClick={handleSubmit}
               >
@@ -169,14 +177,10 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
                 {(loadingCreate || loadingUpdate) && <FaSpinner className='spinner ml-3' />}
               </button>
               <Link href={goBackPath()}>
-                <a
-                  className='font-semibold border border-dial-gray-dark text-dial-gray-dark py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                >
+                <a className='border border-dial-gray-dark text-dial-gray-dark py-2 px-4 rounded disabled:opacity-50'>
                   {format('productRepository.cancel')}
                 </a>
               </Link>
-              {updateData && <div className='ml-auto my-auto text-green-500'>{format('productRepository.updated')}</div>}
-              {createData && <div className='ml-auto my-auto text-green-500'>{format('productRepository.created')}</div>}
             </div>
           </div>
         </form>

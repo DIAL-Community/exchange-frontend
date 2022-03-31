@@ -2,22 +2,17 @@ import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useState, useRef, useEffect } from 'react'
 import { gql, useLazyQuery } from '@apollo/client'
-
+import Select from 'react-select'
 import withApollo from '../../lib/apolloClient'
-
-import Lifecycle from './Lifecycle'
 import UseCaseCard from '../use-cases/UseCaseCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
-
 import { Loading, Error } from '../shared/FetchStatus'
 import PaginatedBuildingBlockList from '../building-blocks/PaginatedBuildingBlockList'
 import PaginatedUseCaseList from '../use-cases/PaginatedUseCaseList'
-
+import Lifecycle from './Lifecycle'
 import PagedAggregatorsList from './paginated/PagedAggregatorsList'
 import PagedProductList from './paginated/PagedProductList'
 import PagedProjectList from './paginated/PagedProjectList'
-
-import Select from 'react-select'
 
 const sortHintOptions = [
   { value: 'name', label: 'Sort by Name' },
@@ -74,6 +69,7 @@ query Wizard(
 const LeftMenu = ({ currentSection, phase, clickHandler }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
   return (
     <div className='block py-3 float-right w-3/4 hidden lg:block'>
       <div
@@ -174,48 +170,48 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const clickHandler = (section) => {
     setCurrentSection(section)
     switch (section) {
-      case 0:
-        parentRef.current && parentRef.current.scrollTo({
-          top: principlesRef.current.offsetTop - 210,
-          behavior: 'smooth'
-        })
-        break
-      case 1:
-        parentRef.current.scrollTo({
-          top: projectsRef.current.offsetTop - 210,
-          behavior: 'smooth'
-        })
-        break
-      case 2:
-        parentRef.current.scrollTo({
-          top: productsRef.current.offsetTop - 210,
-          behavior: 'smooth'
-        })
-        break
-      case 3:
-        parentRef.current.scrollTo({
-          top: useCasesRef.current.offsetTop - 210,
-          behavior: 'smooth'
-        })
-        break
-      case 4:
-        parentRef.current.scrollTo({
-          top: buildingBlocksRef.current.offsetTop - 210,
-          behavior: 'smooth'
-        })
-        break
-      case 5:
-        parentRef.current.scrollTo({
-          top: resourcesRef.current.offsetTop - 210,
-          behavior: 'smooth'
-        })
-        break
-      case 6:
-        parentRef.current.scrollTo({
-          top: aggregatorsRef.current.offsetTop - 210,
-          behavior: 'smooth'
-        })
-        break
+    case 0:
+      parentRef.current && parentRef.current.scrollTo({
+        top: principlesRef.current.offsetTop - 210,
+        behavior: 'smooth'
+      })
+      break
+    case 1:
+      parentRef.current.scrollTo({
+        top: projectsRef.current.offsetTop - 210,
+        behavior: 'smooth'
+      })
+      break
+    case 2:
+      parentRef.current.scrollTo({
+        top: productsRef.current.offsetTop - 210,
+        behavior: 'smooth'
+      })
+      break
+    case 3:
+      parentRef.current.scrollTo({
+        top: useCasesRef.current.offsetTop - 210,
+        behavior: 'smooth'
+      })
+      break
+    case 4:
+      parentRef.current.scrollTo({
+        top: buildingBlocksRef.current.offsetTop - 210,
+        behavior: 'smooth'
+      })
+      break
+    case 5:
+      parentRef.current.scrollTo({
+        top: resourcesRef.current.offsetTop - 210,
+        behavior: 'smooth'
+      })
+      break
+    case 6:
+      parentRef.current.scrollTo({
+        top: aggregatorsRef.current.offsetTop - 210,
+        behavior: 'smooth'
+      })
+      break
     }
   }
 

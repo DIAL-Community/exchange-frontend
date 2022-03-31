@@ -111,7 +111,7 @@ export const CapabilityFilters = (props) => {
       {
         services &&
           services.map(service => (
-            <div key={`filter-${service.label}`} className='px-2 py-1 mt-2 mr-2 rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
+            <div key={`filter-${service.label}`} className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
               {`${format('service.label')}: ${service.label}`}
               <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeCapability(service.value)} />
             </div>

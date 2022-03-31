@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 import { HiDownload } from 'react-icons/hi'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 
@@ -15,6 +15,7 @@ const MOVE_QUERY = gql`
       resources
       order
       moveDescription {
+        id
         description
       }
     }
@@ -62,7 +63,7 @@ const MoveDetail = ({ moveName, moveSlug }) => {
             <div className={`move-body ${openingDetail ? 'slide-down' : 'slide-up'}`}>
               <div className='px-4 py-4'>
                 <div className='fr-view text-dial-gray-dark'>
-                  {ReactHtmlParser(data.move.moveDescription.description)}
+                  {parse(data.move.moveDescription.description)}
                 </div>
                 {
                   data.move.resources && data.move.resources.length > 0 &&
@@ -72,7 +73,7 @@ const MoveDetail = ({ moveName, moveSlug }) => {
                         {
                           data.move.resources.map(resource => {
                             return (
-                              <div key={resource.i} className='group border-2 border-gray-300 hover:border-dial-yellow drop-shadow'>
+                              <div key={resource.i} className='group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow'>
                                 <div className='flex'>
                                   <div className='flex flex-col gap-2 px-3 py-4'>
                                     <div className='font-semibold'>{resource.name}</div>

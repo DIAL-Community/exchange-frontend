@@ -1,20 +1,17 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-
+import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { ProjectFilterContext, ProjectFilterDispatchContext } from '../context/ProjectFilterContext'
 import { SDGFilters } from '../filter/element/SDG'
 import { parseQuery } from '../shared/SharableLink'
-
 import { OriginFilters } from '../filter/element/Origin'
 import { CountryFilters } from '../filter/element/Country'
 import { SectorFilters } from '../filter/element/Sector'
 import { OrganizationFilters } from '../filter/element/Organization'
 import { ProductFilters } from '../filter/element/Product'
 import { TagFilters } from '../filter/element/Tag'
-
-import dynamic from 'next/dynamic'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const ProjectActiveFilter = () => {
@@ -59,6 +56,7 @@ const ProjectActiveFilter = () => {
       activeFilter, ...originFilters, ...countryFilters, ...productFilters, ...sectorFilters, ...organizationFilters,
       ...sdgFilters, ...tagFilters
     ].filter(f => f).join('&')
+
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
 
@@ -77,7 +75,7 @@ const ProjectActiveFilter = () => {
 
   return (
     <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
-      <div className='flex flex-row flex-wrap px-3'>
+      <div className='flex flex-row flex-wrap px-3 gap-2'>
         <SDGFilters {...{ sdgs, setSDGs }} />
         <OriginFilters {...{ origins, setOrigins }} />
         <CountryFilters {...{ countries, setCountries }} />

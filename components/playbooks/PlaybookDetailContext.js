@@ -26,6 +26,7 @@ const PlaybookDetailProvider = ({ children }) => {
 
   const values = { currentSlug, slugYValues, slugHeights, windowHeight, slugIntersectionRatios }
   const dispatchValues = { updateSlugInformation, setCurrentSlug }
+
   return (
     <PlaybookDetailContext.Provider value={values}>
       <PlaybookDetailDispatchContext.Provider value={dispatchValues}>

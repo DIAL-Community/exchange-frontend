@@ -16,8 +16,14 @@ export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, edi
         init={{
           selector: '#' + editorId ? editorId : 'TinyMCE-Editor',
           menubar: false,
-          plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template imagetools codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists wordcount textpattern noneditable help charmap quickbars emoticons',
-          toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen preview | insertfile image media link anchor codesample | ltr rtl',
+          plugins: `print preview paste importcss searchreplace autolink autosave save directionality
+            code visualblocks visualchars fullscreen image link media template codesample
+            table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists wordcount
+            textpattern noneditable help charmap quickbars emoticons`,
+          toolbar: `undo redo | bold italic underline strikethrough | fontselect fontsizeselect |
+            alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist |
+            forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen preview |
+            insertfile image media link anchor codesample | ltr rtl`,
           toolbar_sticky: true,
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
           init_instance_callback: initInstanceCallback,

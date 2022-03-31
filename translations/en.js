@@ -11,6 +11,10 @@ export const en = {
   'app.search': 'Search',
   'app.create-new': 'Create New',
   'app.edit-entity': 'Edit {entity}',
+  'app.create': 'Create',
+  'app.cancel': 'Cancel',
+  'app.duplicate': 'Duplicate',
+  'app.close': 'Close',
   'app.powered': 'Powered by DIAL\'s Catalog of Digital Solutions',
   'app.reportIssue': 'Report Issue',
 
@@ -301,7 +305,7 @@ export const en = {
   'landing.blurb': 'An interactive online resource to support Global Development Actors in the implementation of digital strategies.',
   'landing.wizard.title': 'Recommendations Wizard',
   'landing.catalog.title': 'Launch Catalog',
-  'landing.wizard.whereToStart': "Don't know where to start?",
+  'landing.wizard.whereToStart': 'Don\'t know where to start?',
   'landing.wizard.description': `
     Use the Requirements and Recommendation Wizard to help guide you to a curated list of resources,
     tailored to wherever you are in a project lifecycle — ideation, planning, implementation, or monitoring/evaluation.
@@ -494,9 +498,9 @@ export const en = {
   'productType.datasetOnly': 'Dataset Only',
   'productType.allType': 'All Type',
 
-  'map.aggregator.loadingData': "Loading map's aggregator data ...",
-  'map.project.loadingData': "Loading map's project data ...",
-  'map.endorser.loadingData': "Loading map's endorser data ...",
+  'map.aggregator.loadingData': 'Loading map\'s aggregator data ...',
+  'map.project.loadingData': 'Loading map\'s project data ...',
+  'map.endorser.loadingData': 'Loading map\'s endorser data ...',
 
   'organization.endorsedOn': 'Endorsed On',
   'organization.visitWebsite': 'Visit website',
@@ -531,6 +535,24 @@ export const en = {
   'project.hint.description': `
     Project data is sourced from many different partners, including the World Health Organization's Digital Health Atlas,
     the Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ), and New America.
+  `,
+
+  'playbook.hint.subtitle': `
+  Playbooks are tactical guides that  help different actors approach common digital initiatives. They provide step-by-step instructions and highlight key technical and operational considerations.
+  `,
+  'playbook.hint.characteristicTitle': 'Description',
+  'playbook.hint.descriptionTitle': 'Sources',
+  'playbook.hint.characteristics': `
+      Playbooks help answer common questions such as how to address a use case, apply a workflow, deploy a product, work with a partner, or even build capacity within a team. They have several components:
+      <ul>
+        <li>Audience: the intended user of the guidance material</li>
+        <li>Outcomes: the intended outcome of the playbook</li>
+        <li>Plays: the combination of tasks (moves) that a group must do to carry out an action. Each playbook can have a series of plays. Plays are reusable and can be added to multiple playbooks.</li>
+        <li>Moves: the individual tasks that comprise a play. Each play can have multiple moves, and moves can also link to external sources.</li>
+    </ul>
+  `,
+  'playbook.hint.description': `
+    Each playbook has a unique source, as listed. If you have content you would like to turn into a playbook, contact our team at issues@solutions.dial.community
   `,
 
   'organization.hint.characteristicTitle': 'Description',
@@ -1048,6 +1070,18 @@ export const en = {
   'play.buildingBlocks.subtitle': 'This Play is associated with these building blocks.',
   'play.products.subtitle': 'This Play is associated with these products.',
 
+  'play.view': 'View',
+  'play.assign': 'Assign',
+  'play.preview': 'Preview',
+  'play.unassign': 'Unassign',
+  'play.error': 'Play err!',
+
+  'playbook.assignAnotherPlay': 'Assign another play',
+  'playbook.submitted': 'Playbook submitted.',
+
+  'move.reOrder': 'Move Order.',
+
+  'playbook.error': 'Playbook err!',
   'report.reportIssue': 'Report an Issue',
   'report.name': 'Your Name',
   'report.email': 'Email Address',
@@ -1056,6 +1090,11 @@ export const en = {
   'report.issueType': 'What kind of feedback are you providing',
   'report.positive': 'Comment on something I liked',
   'report.bug': 'Report a problem or issue',
-  'report.suggest': 'Make a suggestion'
+  'report.suggest': 'Make a suggestion',
+
+  'breadcrumbs.navigating': 'Opening',
+
+  'app.navigatingTo': 'Navigating to',
+  'app.openingDetails': 'Opening details page'
 
 }

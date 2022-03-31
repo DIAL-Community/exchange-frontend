@@ -2,12 +2,11 @@ import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-
-import ProjectCard from './ProjectCard'
-import { ProjectFilterContext } from '../context/ProjectFilterContext'
-import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
+import { FilterContext } from '../context/FilterContext'
+import { ProjectFilterContext } from '../context/ProjectFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
+import ProjectCard from './ProjectCard'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -105,12 +104,12 @@ const ProjectList = (props) => {
           props.projectList.length > 0
             ? props.projectList.map((project) => (
               <ProjectCard key={project.id} project={project} listType={displayType} />
-              ))
+            ))
             : (
               <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
                 {format('noResults.entity', { entity: format('project.label').toLowerCase() })}
               </div>
-              )
+            )
         }
       </div>
     </>
@@ -173,9 +172,10 @@ const ProjectListQuery = () => {
   }
 
   const { searchProjects: { nodes, pageInfo } } = data
+
   return (
     <InfiniteScroll
-      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'
+      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height'
       dataLength={nodes.length}
       next={handleLoadMore}
       hasMore={pageInfo.hasNextPage}

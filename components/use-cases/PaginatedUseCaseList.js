@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
-
 import UseCaseCard from './UseCaseCard'
 
 const PaginatedUseCaseList = ({ itemsPerPage, items }) => {

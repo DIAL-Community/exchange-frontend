@@ -1,11 +1,10 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-import ReactHtmlParser from 'react-html-parser'
-
+import parse from 'html-react-parser'
 import { FilterContext } from '../../context/FilterContext'
 
 const WorkflowHint = () => {
-  const { setOpenHint } = useContext(FilterContext)
+  const { setHintDisplayed } = useContext(FilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -21,7 +20,7 @@ const WorkflowHint = () => {
             <div className='text-base px-8'>
               {format('workflow.hint.subtitle')}
             </div>
-            <img className='w-48 h-48 mt-8 mx-auto xl:mt-0' src='images/tiles/building-block.svg' alt='' />
+            <img className='w-48 h-48 mt-8 mx-auto xl:mt-0' src='images/tiles/workflow.svg' alt='' />
           </div>
         </div>
         <div className='col-span-11'>
@@ -29,7 +28,7 @@ const WorkflowHint = () => {
             {format('workflow.hint.characteristicTitle').toUpperCase()}
           </div>
           <div className='fr-view text-sm'>
-            {ReactHtmlParser(format('workflow.hint.characteristics'))}
+            {parse(format('workflow.hint.characteristics'))}
           </div>
           <div className='text-lg px-8 pb-3'>
             {format('workflow.hint.descriptionTitle').toUpperCase()}
@@ -41,7 +40,7 @@ const WorkflowHint = () => {
         <div className='absolute right-2 top-2'>
           <button
             className='bg-button-gray p-3 float-right rounded text-button-gray-light'
-            onClick={() => setOpenHint(false)}
+            onClick={() => setHintDisplayed(false)}
           >
             {format('general.close')}
           </button>

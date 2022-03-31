@@ -6,9 +6,9 @@ import { useRouter } from 'next/router'
 import { useState, useEffect, useContext } from 'react'
 import { useSession } from 'next-auth/client'
 import { useIntl } from 'react-intl'
-import { FilterContext } from '../context/FilterContext'
-
 import { saveAs } from 'file-saver'
+import { FaSearch } from 'react-icons/fa'
+import { FilterContext } from '../context/FilterContext'
 import { ProductFilterContext } from '../context/ProductFilterContext'
 import { OrganizationFilterContext } from '../context/OrganizationFilterContext'
 import { BuildingBlockFilterContext } from '../context/BuildingBlockFilterContext'
@@ -16,8 +16,6 @@ import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
 import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
 import { ProjectFilterContext } from '../context/ProjectFilterContext'
 import { SDGFilterContext } from '../context/SDGFilterContext'
-
-import { FaSearch } from 'react-icons/fa'
 
 const SearchFilter = (props) => {
   const { search, setSearch, hint } = props
@@ -40,6 +38,7 @@ const SearchFilter = (props) => {
 
   useEffect(() => {
     const timeOutId = setTimeout(() => setSearch(searchTerm), 500)
+
     return () => clearTimeout(timeOutId)
   }, [searchTerm])
 
@@ -55,19 +54,23 @@ const SearchFilter = (props) => {
       return '/create-not-available'
     }
 
-    const candidatePaths = ['products', 'organizations']
-    if (!session.user.canEdit && candidatePaths.some(el => linkPath.includes(el))) {
+    if (!session.user.canEdit && linkPath.includes('candidate')) {
+      return `/candidate/${linkPath[1]}/create`
+    }
+
+    const withCandidatePaths = ['products', 'organizations']
+    if (!session.user.canEdit && withCandidatePaths.some(el => linkPath.includes(el))) {
       return `/candidate/${linkPath[0]}/create`
     }
 
     const reactEditPaths = ['playbooks', 'plays']
-
     if (reactEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails
       return `/${linkPath[0]}/create`
     }
 
     const { userEmail, userToken } = session.user
+
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/${linkPath[0]}/` +
       `new?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
   }
@@ -88,6 +91,7 @@ const SearchFilter = (props) => {
       if (Array.isArray(object[key])) {
         object[key] = object[key].map(value => value.slug)
       }
+
       // Convert the key to snake case.
       const snakeCaseKey = key.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)
       if (key !== snakeCaseKey) {
@@ -96,36 +100,38 @@ const SearchFilter = (props) => {
         delete object[key]
       }
     })
+
     return object
   }
 
   const buildExportParameters = (path) => {
     let exportParameters = { pageSize: -1 }
     switch (String(path).toLowerCase()) {
-      case 'products':
-        exportParameters = { ...exportParameters, ...productFilters }
-        break
-      case 'organizations':
-        exportParameters = { ...exportParameters, ...organizationFilters }
-        break
-      case 'building_blocks':
-        exportParameters = { ...exportParameters, ...buildingBlockFilters }
-        break
-      case 'workflows':
-        exportParameters = { ...exportParameters, ...workflowFilters }
-        break
-      case 'use_cases':
-        exportParameters = { ...exportParameters, ...useCaseFilters }
-        break
-      case 'projects':
-        exportParameters = { ...exportParameters, ...projectFilters }
-        break
-      case 'sdgs':
-        exportParameters = { ...exportParameters, ...sdgFilters }
-        break
-      default:
-        break
+    case 'products':
+      exportParameters = { ...exportParameters, ...productFilters }
+      break
+    case 'organizations':
+      exportParameters = { ...exportParameters, ...organizationFilters }
+      break
+    case 'building_blocks':
+      exportParameters = { ...exportParameters, ...buildingBlockFilters }
+      break
+    case 'workflows':
+      exportParameters = { ...exportParameters, ...workflowFilters }
+      break
+    case 'use_cases':
+      exportParameters = { ...exportParameters, ...useCaseFilters }
+      break
+    case 'projects':
+      exportParameters = { ...exportParameters, ...projectFilters }
+      break
+    case 'sdgs':
+      exportParameters = { ...exportParameters, ...sdgFilters }
+      break
+    default:
+      break
     }
+
     return convertKeys(exportParameters)
   }
 
@@ -153,6 +159,7 @@ const SearchFilter = (props) => {
       .then(response => response.body)
       .then(body => {
         const reader = body.getReader()
+
         return new ReadableStream({
           start (controller) {
             return pump()
@@ -161,10 +168,13 @@ const SearchFilter = (props) => {
               // When no more data needs to be consumed, close the stream
               if (done) {
                 controller.close()
+
                 return
               }
+
               // Enqueue the next data chunk into our target stream
               controller.enqueue(value)
+
               return pump()
             }
           }

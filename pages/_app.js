@@ -1,13 +1,13 @@
+
+import { useEffect } from 'react'
 import { Provider } from 'next-auth/client'
 import { IntlProvider } from 'react-intl'
 import { useRouter } from 'next/router'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-
 import * as translations from '../translations'
 import * as gtag from '../lib/gtag'
 import * as matomo from '../lib/matomo'
-
 import '../styles/globals.css'
 import '../styles/editor.css'
 import '../styles/filter.css'
@@ -18,15 +18,13 @@ import '../styles/leaflet.css'
 import '../styles/loading.css'
 import '../styles/tooltip.css'
 import '../styles/password.css'
-
 import '../styles/drawer.css'
 import '../styles/card.css'
-
 import '../styles/playbook.css'
-
+import 'react-toastify/dist/ReactToastify.css'
 import CatalogContext from '../lib/CatalogContext'
-import { useEffect } from 'react'
 import CandidateContext from '../lib/CandidateContext'
+import { ToastContextProvider } from '../lib/ToastContext'
 
 export function reportWebVitals (metric) {
   // https://nextjs.org/docs/advanced-features/measuring-performance
@@ -41,6 +39,18 @@ export function reportWebVitals (metric) {
   }
 }
 
+const ApplicationDefaultContexts = ({ children }) => {
+  return (
+    <CatalogContext>
+      <CandidateContext>
+        <ToastContextProvider>
+          {children}
+        </ToastContextProvider>
+      </CandidateContext>
+    </CatalogContext>
+  )
+}
+
 const App = ({ Component, pageProps }) => {
   const router = useRouter()
   const { locale } = router
@@ -51,7 +61,9 @@ const App = ({ Component, pageProps }) => {
       gtag.pageview(url)
       matomo.pageview(url)
     }
+
     router.events.on('routeChangeComplete', handleRouteChange)
+
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
@@ -61,11 +73,9 @@ const App = ({ Component, pageProps }) => {
     <IntlProvider locale={locale} defaultLocale='en' messages={messages}>
       <Provider session={pageProps.session}>
         <DndProvider backend={HTML5Backend}>
-          <CatalogContext>
-            <CandidateContext>
-              <Component {...pageProps} />
-            </CandidateContext>
-          </CatalogContext>
+          <ApplicationDefaultContexts>
+            <Component {...pageProps} />
+          </ApplicationDefaultContexts>
         </DndProvider>
       </Provider>
     </IntlProvider>

@@ -162,6 +162,7 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
   const format = (id, values) => formatMessage({ id: id }, values)
   const classNameSelected = 'bg-white border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-button-gray inline'
   const classNameNotSelected = 'bg-dial-gray-dark border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-white inline'
+
   return (
     <div className='lg:flex gap-12 -mb-12'>
       <div className='lg:w-1/4'>

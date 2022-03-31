@@ -1,13 +1,11 @@
 import { useEffect } from 'react'
 import { gql, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
-
+import parse from 'html-react-parser'
 import Breadcrumb from '../../shared/breadcrumb'
 import WorkflowCard from '../../workflows/WorkflowCard'
 import BuildingBlockCard from '../../building-blocks/BuildingBlockCard'
 import ProductCard from '../../products/ProductCard'
-
-import ReactHtmlParser from 'react-html-parser'
 
 const USE_CASE_STEP_QUERY = gql`
   query UseCaseStep($slug: String!) {
@@ -50,6 +48,7 @@ const UseCaseStepInformation = ({ useCaseStep }) => {
     const map = {}
     map[useCaseStep.useCase.slug] = useCaseStep.useCase.name
     map[useCaseStep.slug] = useCaseStep.name
+
     return map
   })()
 
@@ -59,7 +58,7 @@ const UseCaseStepInformation = ({ useCaseStep }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='fr-view text-dial-gray-dark'>
-        {useCaseStep.useCaseStepDescription && ReactHtmlParser(useCaseStep.useCaseStepDescription.description)}
+        {useCaseStep.useCaseStepDescription && parse(useCaseStep.useCaseStepDescription.description)}
       </div>
       {
         useCaseStep.workflows && useCaseStep.workflows.length > 0 &&

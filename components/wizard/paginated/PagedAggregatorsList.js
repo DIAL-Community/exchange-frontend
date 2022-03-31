@@ -1,8 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
-
 import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
-
 import OrganizationCard from '../../organizations/OrganizationCard'
 import { Loading, Error } from '../../shared/FetchStatus'
 

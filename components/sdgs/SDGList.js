@@ -2,12 +2,11 @@ import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-
-import SDGCard from './SDGCard'
-import { SDGFilterContext } from '../context/SDGFilterContext'
-import { FilterContext } from '../context/FilterContext'
 import { HiSortAscending } from 'react-icons/hi'
+import { FilterContext } from '../context/FilterContext'
+import { SDGFilterContext } from '../context/SDGFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
+import SDGCard from './SDGCard'
 
 const DEFAULT_PAGE_SIZE = 20
 
@@ -91,12 +90,12 @@ const SDGList = (props) => {
           props.sdgList.length > 0
             ? props.sdgList.map((sdg) => (
               <SDGCard key={sdg.id} listType={displayType} {...{ sdg, filterDisplayed }} />
-              ))
+            ))
             : (
               <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
                 {format('noResults.entity', { entity: format('sdg.label').toLowerCase() })}
               </div>
-              )
+            )
         }
       </div>
     </>
@@ -147,9 +146,10 @@ const SDGListQuery = () => {
   }
 
   const { searchSdgs: { nodes, pageInfo } } = data
+
   return (
     <InfiniteScroll
-      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'
+      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height'
       dataLength={nodes.length}
       next={handleLoadMore}
       hasMore={pageInfo.hasNextPage}

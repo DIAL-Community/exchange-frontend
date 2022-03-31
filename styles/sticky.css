@@ -1,4 +1,6 @@
-@variants responsive {
+@tailwind base;
+@tailwind utilities;
+@layer utilities {
   .header-min-height {
     /*
       Setting the minimum height of the header. The value is based on the minimum height used in the mobile menu.

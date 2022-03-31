@@ -2,9 +2,7 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { createRef, useContext, useState } from 'react'
 import { createPopper } from '@popperjs/core'
-
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
-
 import { FilterContext, FILTER_ITEMS, MAPPED_FILTER_ITEMS_URL } from '../context/FilterContext'
 
 const MobileNav = ({ activeTab }) => {
@@ -23,6 +21,7 @@ const MobileNav = ({ activeTab }) => {
     })
     openCallback(true)
   }
+
   const closeDropdownPopover = (closeCallback) => {
     closeCallback(false)
   }

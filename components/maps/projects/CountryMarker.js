@@ -30,6 +30,7 @@ const findIndex = (projectCount) => {
   }
 
   const filteredIndex = keys.filter(size => parseInt(size) > projectCount)
+
   return filteredIndex.shift()
 }
 

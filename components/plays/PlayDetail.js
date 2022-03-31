@@ -1,15 +1,16 @@
 import { useIntl } from 'react-intl'
-import Breadcrumb from '../shared/breadcrumb'
 import { useSession } from 'next-auth/client'
-import ReactHtmlParser from 'react-html-parser'
-
-import { descriptionByLocale } from '../../lib/utilities'
+import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
+import Breadcrumb from '../shared/breadcrumb'
+import MoveDetail from '../playbooks/MoveDetail'
+import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
+import ProductCard from '../products/ProductCard'
 
 const PlayDetail = ({ play }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
-  const router = useRouter()
+
   const { locale } = useRouter()
   const [session] = useSession()
 
@@ -24,86 +25,69 @@ const PlayDetail = ({ play }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[play.slug] = play.name
+
     return map
   })()
 
-  const addMove = () => {
-    router.push(`/${locale}/plays/${play.slug}/moves/create`)
-  }
-
-  const editMove = (e, moveSlug) => {
-    router.push(`/${locale}/plays/${play.slug}/moves/${moveSlug}/edit`)
-  }
-
   return (
-    <div className='px-4'>
-      <div className='hidden lg:block'>
-        <Breadcrumb slugNameMapping={slugNameMapping} />
-      </div>
-      <div className='w-full'>
+    <>
+      <div className='flex flex-col gap-3 pb-8 max-w-screen-lg'>
+        <div className='flex'>
+          <div className='hidden lg:block'>
+            <Breadcrumb slugNameMapping={slugNameMapping} />
+          </div>
+          <div className='w-full flex justify-end mt-4'>
+            {
+              session && (
+                <div className='inline'>
+                  {
+                    session.user.canEdit && (
+                      <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
+                        <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
+                        <span className='text-sm px-2'>{format('app.edit')}</span>
+                      </a>
+                    )
+                  }
+                </div>
+              )
+            }
+          </div>
+        </div>
+        <div className='font-semibold text-2xl py-3'>
+          {`${format('plays.label')}. ${play.name}`}
+        </div>
+        <div className='fr-view tinyEditor text-dial-gray-dark'>
+          {parse(play.playDescription?.description)}
+        </div>
+        <div className='flex flex-col gap-3'>
+          {
+            play.playMoves.map((move, i) => <MoveDetail key={i} moveSlug={move.slug} moveName={move.name} />)
+          }
+        </div>
         {
-          session && (
-            <div className='inline'>
-              {
-                session.user.canEdit && (
-                  <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
-                    <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-                    <span className='text-sm px-2'>{format('app.edit')}</span>
-                  </a>
-                )
-              }
+          play.buildingBlocks && play.buildingBlocks.length > 0 &&
+            <div className='flex flex-col gap-3 my-3'>
+              <div className='h4'>{format('building-block.header')}</div>
+              <div
+                className='text-sm'
+                dangerouslySetInnerHTML={{ __html: format('play.buildingBlocks.subtitle') }}
+              />
+              {play.buildingBlocks.map((bb, i) => <BuildingBlockCard key={i} buildingBlock={bb} listType='list' />)}
             </div>
-          )
+        }
+        {
+          play.products && play.products.length > 0 &&
+            <div className='flex flex-col gap-3 my-3'>
+              <div className='h4'>{format('product.header')}</div>
+              <div
+                className='text-sm'
+                dangerouslySetInnerHTML={{ __html: format('play.products.subtitle') }}
+              />
+              {play.products.map((product, i) => <ProductCard key={i} product={product} listType='list' />)}
+            </div>
         }
       </div>
-      <div className='h4 font-bold py-4'>{play.name}</div>
-      <div className='h4'>
-        {format('plays.description')}
-      </div>
-      <div className='fr-view tinyEditor text-dial-gray-dark px-4 py-2'>
-        {ReactHtmlParser(descriptionByLocale(play.playDescriptions, locale))}
-      </div>
-      <div className='pb-4 h4'>{format('plays.tags')}: {play.tags}</div>
-      <label className='block h4'>
-        {format('plays.moves')}
-      </label>
-      {play.playMoves && play.playMoves.map((move, i) => {
-        return (
-          <div key={i} className='px-4 py-2'>
-            <div className='inline w-full'>
-              <div className='h4 inline'>{format('moves.name')}:</div> {move.name}
-              <div className='tinyEditor px-3'>{ReactHtmlParser(descriptionByLocale(move.moveDescriptions, locale))}</div>
-              <div className='px-3 py-2'><div className='h4'>{format('moves.resources')}</div>
-                {move.resources && move.resources.map((resource, i) => {
-                  return (
-                    <div key={i} className='p-3 w-full'>
-                      <a className='text-dial-yellow' href={resource.url} target='_blank' rel='noreferrer'>
-                        {resource.name}
-                      </a>
-                      <div className='px-2'>{resource.description}</div>
-                    </div>
-                  )
-                })}
-              </div>
-              <button
-                className='bg-dial-gray-dark text-dial-gray-light text-sm py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                onClick={(e) => editMove(e, move.slug)}
-              >
-                {format('plays.editMove')}
-              </button>
-            </div>
-          </div>
-        )
-      })}
-      <div className='flex items-center justify-between text-sm mt-2'>
-        <button
-          className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-          onClick={addMove}
-        >
-          {format('plays.addMove')}
-        </button>
-      </div>
-    </div>
+    </>
   )
 }
 

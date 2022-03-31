@@ -1,11 +1,8 @@
-import withApollo from '../../../lib/apolloClient'
-
 import Head from 'next/head'
+import { useIntl } from 'react-intl'
+import withApollo from '../../../lib/apolloClient'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
-
-import { useIntl } from 'react-intl'
-
 import { PlayForm } from '../../../components/plays/PlayForm'
 
 function CreatePlay () {
@@ -19,7 +16,7 @@ function CreatePlay () {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <PlayForm play={null} action='create' />
+      <PlayForm />
       <Footer />
     </>
   )

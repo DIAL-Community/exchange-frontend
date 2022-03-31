@@ -5,7 +5,7 @@ import { FaHome, FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 
-const ellipsisTextStyle = 'whitespace-nowrap overflow-ellipsis overflow-hidden my-auto'
+const ellipsisTextStyle = 'whitespace-nowrap text-ellipsis overflow-hidden my-auto'
 const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
 
 const OrganizationCard = ({ organization, listType }) => {
@@ -44,6 +44,7 @@ const OrganizationCard = ({ organization, listType }) => {
     if (response.status === 200) {
       setStatus('approved')
     }
+
     setLoading(false)
   }
 
@@ -70,6 +71,7 @@ const OrganizationCard = ({ organization, listType }) => {
     if (response.status === 200) {
       setStatus('rejected')
     }
+
     setLoading(false)
   }
 
@@ -81,11 +83,11 @@ const OrganizationCard = ({ organization, listType }) => {
             <div className='border-3 border-transparent hover:border-dial-gray text-workflow cursor-pointer'>
               <div className={`
                 ${String(organization.rejected) === 'true' || status === 'rejected'
-                  ? 'bg-red-50'
-                  : String(organization.rejected) === 'false' || status === 'approved'
-                    ? 'bg-green-50'
-                    : 'bg-white'}
-                border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg
+                ? 'bg-red-50'
+                : String(organization.rejected) === 'false' || status === 'approved'
+                  ? 'bg-emerald-50'
+                  : 'bg-white'}
+                border border-dial-gray hover:border-transparent card-drop-shadow
               `}
               >
                 <div className='grid grid-cols-12 gap-4 py-4 px-4 text-organization'>
@@ -123,7 +125,7 @@ const OrganizationCard = ({ organization, listType }) => {
                             <span className='inline'>
                               {format('candidate.approve')}
                             </span>
-                            <FaRegCheckCircle className='ml-1 inline text-xl text-green-500' />
+                            <FaRegCheckCircle className='ml-1 inline text-xl text-emerald-500' />
                           </button>
                         </div>
                     }
@@ -132,7 +134,7 @@ const OrganizationCard = ({ organization, listType }) => {
                     {organization.website}
                   </div>
                   {
-                    String(organization.rejected) === 'null' && session && session.user && status === '' &&
+                    String(organization.rejected) === 'null' && status === '' && session?.user?.canEdit &&
                       <div className='hidden lg:flex lg:col-span-4 flex-row'>
                         <button
                           className={`
@@ -160,17 +162,17 @@ const OrganizationCard = ({ organization, listType }) => {
                           <span className='hidden lg:inline'>
                             {format('candidate.approve')}
                           </span>
-                          <FaRegCheckCircle className='ml-1 inline text-xl text-green-500' />
+                          <FaRegCheckCircle className='ml-1 inline text-xl text-emerald-500' />
                         </button>
                       </div>
                   }
                 </div>
               </div>
             </div>
-            )
+          )
           : (
             <div className='border-3 border-transparent hover:border-dial-gray text-dial-purple cursor-pointer h-full'>
-              <div className='h-full flex flex-col border border-dial-gray drop-shadow'>
+              <div className='h-full flex flex-col border border-dial-gray card-drop-shadow'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
                   {
                     (String(organization.rejected) === 'true' || status === 'rejected') &&
@@ -180,7 +182,7 @@ const OrganizationCard = ({ organization, listType }) => {
                   }
                   {
                     (String(organization.rejected) === 'false' || status === 'approved') &&
-                      <div className='bg-green-500 py-1 px-2 rounded text-white text-sm font-semibold'>
+                      <div className='bg-emerald-500 py-1 px-2 rounded text-white text-sm font-semibold'>
                         {format('candidate.approved').toUpperCase()}
                       </div>
                   }
@@ -208,7 +210,7 @@ const OrganizationCard = ({ organization, listType }) => {
                       </div>
                     </div>
                     {
-                      String(organization.rejected) === 'null' && session && session.user && status === '' &&
+                      String(organization.rejected) === 'null' && status === '' && session?.user?.canEdit &&
                         <div className='pl-3 py-2 flex flex-row'>
                           <button
                             className={`
@@ -230,7 +232,7 @@ const OrganizationCard = ({ organization, listType }) => {
                             onClick={approveCandidateOrganization}
                             disabled={loading}
                           >
-                            {format('candidate.approve')} <FaRegCheckCircle className='ml-1 inline text-xl text-green-500' />
+                            {format('candidate.approve')} <FaRegCheckCircle className='ml-1 inline text-xl text-emerald-500' />
                           </button>
                         </div>
                     }
@@ -238,7 +240,7 @@ const OrganizationCard = ({ organization, listType }) => {
                 </div>
               </div>
             </div>
-            )
+          )
       }
     </>
   )

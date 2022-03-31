@@ -1,11 +1,10 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 import { FilterContext } from '../../context/FilterContext'
 
 const ProductHint = () => {
-  const { setOpenHint } = useContext(FilterContext)
+  const { setHintDisplayed } = useContext(FilterContext)
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -35,13 +34,13 @@ const ProductHint = () => {
             {format('product.hint.descriptionTitle').toUpperCase()}
           </div>
           <div className='text-sm px-8 pb-3'>
-            {ReactHtmlParser(format('product.hint.description'))}
+            {parse(format('product.hint.description'))}
           </div>
         </div>
         <div className='absolute right-2 top-2'>
           <button
             className='bg-button-gray p-3 float-right rounded text-button-gray-light'
-            onClick={() => setOpenHint(false)}
+            onClick={() => setHintDisplayed(false)}
           >
             <div className='inline'>{format('general.close')}</div>
           </button>

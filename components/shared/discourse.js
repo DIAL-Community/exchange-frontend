@@ -1,11 +1,10 @@
 /* global fetch:false */
 
 import { useState, useEffect, useContext } from 'react'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 import { FaThumbsUp, FaHeart, FaLightbulb } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
-
 import { DiscourseContext, DiscourseDispatchContext } from '../context/DiscourseContext'
 
 export const DiscourseCount = () => {
@@ -20,13 +19,13 @@ export const DiscourseCount = () => {
           <img src='/icons/comment.svg' className='inline mr-2' alt='Edit' height='15px' width='15px' />
           <div className='text-dial-blue text-sm inline'>{postCount} - {format('app.comment')}</div>
         </>
-        )
+      )
       : (
         <>
           <img src='/icons/comment.svg' className='inline mr-2' alt='Edit' height='15px' width='15px' />
           <div className='text-dial-blue text-sm inline'>{format('app.nocomment')}</div>
         </>
-        )
+      )
   )
 }
 
@@ -109,21 +108,21 @@ export const DiscourseForum = ({ topicId, objType }) => {
             posts && posts.map((post, i) => {
               return (
                 <div key={i} className='p-2 text-dial-purple-light border border-dial-gray rounded'>
-                  {ReactHtmlParser(post.cooked)}
+                  {parse(post.cooked)}
                   <div className='text-xs'>
                     <div className='mr-5 inline'>Post Date: {new Date(post.created_at).toDateString()}</div>
                     <div className='mx-5 inline'>Author: {post.display_username}</div>
                     {
                       post.reactions && post.reactions.map((reaction, j) => {
                         switch (reaction.id) {
-                          case 'thumbsup':
-                            return (<div key={j} className='text-xs inline ml-5'><FaThumbsUp className='mr-2 inline' />{reaction.count}</div>)
-                          case 'heart':
-                            return (<div key={j} className='text-xs inline ml-5'><FaHeart className='mr-2 inline' />{reaction.count}</div>)
-                          case 'lightbulb':
-                            return (<div key={j} className='text-xs inline ml-5'><FaLightbulb className='mr-2 inline' />{reaction.count}</div>)
-                          default:
-                            return <div key={j} />
+                        case 'thumbsup':
+                          return (<div key={j} className='text-xs inline ml-5'><FaThumbsUp className='mr-2 inline' />{reaction.count}</div>)
+                        case 'heart':
+                          return (<div key={j} className='text-xs inline ml-5'><FaHeart className='mr-2 inline' />{reaction.count}</div>)
+                        case 'lightbulb':
+                          return (<div key={j} className='text-xs inline ml-5'><FaLightbulb className='mr-2 inline' />{reaction.count}</div>)
+                        default:
+                          return <div key={j} />
                         }
                       })
                     }
@@ -135,29 +134,29 @@ export const DiscourseForum = ({ topicId, objType }) => {
           {
             showPost
               ? (
-                  session
-                    ? (
-                      <div className='p-2 text-dial-purple-light border border-dial-gray rounded'>
-                        <textarea id='postText' placeholder='Write a post' className='w-full p-2' onChange={e => setNewPost(e.target.value)} />
-                        <button className='py-1 px-2 h5 text-white bg-dial-teal rounded' onClick={(e) => submitPost(e)}>{format('app.submit')}</button>
-                      </div>
-                      )
-                    : (<div className='p-2 text-dial-purple-light'>{format('product.forum.login')}</div>)
-                )
+                session
+                  ? (
+                    <div className='p-2 text-dial-purple-light border border-dial-gray rounded'>
+                      <textarea id='postText' placeholder='Write a post' className='w-full p-2' onChange={e => setNewPost(e.target.value)} />
+                      <button className='py-1 px-2 h5 text-white bg-dial-teal rounded' onClick={(e) => submitPost(e)}>{format('app.submit')}</button>
+                    </div>
+                  )
+                  : (<div className='p-2 text-dial-purple-light'>{format('product.forum.login')}</div>)
+              )
               : !showUser && (
                 <div className='mt-2'>
                   <button className='py-1 px-2 h5 text-white bg-dial-teal rounded' onClick={(e) => toggleShowPosts(e)}>{format('product.post')}</button>
                 </div>
-                )
+              )
           }
           {showUser && (
             <div className='mt-2'>
-              <div className='text-dial-purple-light'>{format('product.forum.createAccount')} '{session.user.name}'</div>
+              <div className='text-dial-purple-light'>{format('product.forum.createAccount')} &apos;{session.user.name}&apos;</div>
               <a href={`${url}/signup`} target='_blank' rel='noreferrer' className='py-1 px-2 h5 text-white bg-dial-teal rounded'>Sign Up</a>
             </div>
           )}
         </div>
-        )
+      )
       : <div className='text-sm text-dial-gray-dark'>{format('product.noforum')}<br />{objType === 'prod' ? <div className='text-sm mb-3 text-dial-gray-dark highlight-link' dangerouslySetInnerHTML={{ __html: format('product.create-prod-topic') }} /> : <div className='text-sm mb-3 text-dial-gray-dark highlight-link' dangerouslySetInnerHTML={{ __html: format('product.create-bb-topic') }} />}</div>
   )
 }
