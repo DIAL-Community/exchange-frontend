@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { gql, useQuery } from '@apollo/client'
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
@@ -57,11 +58,15 @@ function EditPlay () {
 
   const { locale } = router
   const { slug, playSlug } = router.query
-  const { loading, error, data } = useQuery(PLAY_QUERY, {
+  const { loading, error, data, refetch } = useQuery(PLAY_QUERY, {
     variables: { playSlug: playSlug, playbookSlug: slug },
     skip: !playSlug && !slug,
     context: { headers: { 'Accept-Language': locale } }
   })
+
+  useEffect(() => {
+    refetch()
+  }, [refetch])
 
   if (loading) {
     return <Loading />
