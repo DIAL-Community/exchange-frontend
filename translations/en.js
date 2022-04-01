@@ -17,6 +17,8 @@ export const en = {
   'app.close': 'Close',
   'app.powered': 'Powered by DIAL\'s Catalog of Digital Solutions',
   'app.reportIssue': 'Report Issue',
+  'app.submit': 'Submit',
+  'app.delete': 'Delete',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -487,10 +489,13 @@ export const en = {
   'moves.forPlay': 'Move for Play',
   'moves.addResource': 'Add Resource',
   'moves.deleteResource': 'Delete Resource',
+  'move.assignedResources': 'Resources currently assigned. You can add or delete resources',
 
   'resource.name': 'Resource Name',
   'resource.description': 'Resource Description',
   'resource.url': 'Resource URL',
+  'resource.header': 'Resources',
+  'resource.label': 'Resource',
 
   'productType.label': 'Type',
   'productType.header': 'Product or Dataset?',
@@ -1075,7 +1080,9 @@ export const en = {
   'play.preview': 'Preview',
   'play.unassign': 'Unassign',
   'play.error': 'Play err!',
+  'play.form.tags': 'Add tag for this play.',
 
+  'playbook.form.tags': 'Add tag for this playbook.',
   'playbook.assignAnotherPlay': 'Assign another play',
   'playbook.submitted': 'Playbook submitted.',
 
@@ -1095,6 +1102,21 @@ export const en = {
   'breadcrumbs.navigating': 'Opening',
 
   'app.navigatingTo': 'Navigating to',
-  'app.openingDetails': 'Opening details page'
+  'app.openingDetails': 'Opening details page',
+
+  'move.preview': 'Preview',
+  'move.unassign': 'Unassign',
+  'move.label': 'Move',
+  'move.header': 'Moves',
+
+  'play.submitAndAssign': 'Submit and Assign',
+  'play.assignedMoves': 'Moves currently assigned. You can preview, re-order, unnassign moves, or add a new move.',
+
+  'playbook.submittedToCreatePlay': 'Playbook saved. Navigating to create play ...',
+  'play.submittedToCreateMove': 'Play saved. Navigating to create move ...',
+  'play.submitted': 'Play saved.',
+
+  'move.submitted': 'Move saved.',
+  'resource.submitted': 'Resource saved.'
 
 }

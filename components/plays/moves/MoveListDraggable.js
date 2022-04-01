@@ -2,40 +2,46 @@ import { useRef, useCallback, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useMutation } from '@apollo/client'
 import { useDrag, useDrop } from 'react-dnd'
-import parse from 'html-react-parser'
 import update from 'immutability-helper'
-import { PlayPreviewDispatchContext } from './PlayPreviewContext'
-import { PlayListContext, PlayListDispatchContext } from './PlayListContext'
+import parse from 'html-react-parser'
+import { MovePreviewDispatchContext } from './MovePreviewContext'
+import { MoveListContext, MoveListDispatchContext } from './MoveListContext'
 
-const UPDATE_PLAY_ORDER = gql`
+const UPDATE_MOVE_ORDER = gql`
   mutation (
-    $playbookSlug: String!,
     $playSlug: String!,
+    $moveSlug: String!,
     $operation: String!,
     $distance: Int!
   ) {
-    updatePlayOrder (
-      playbookSlug: $playbookSlug,
+    updateMoveOrder (
       playSlug: $playSlug,
+      moveSlug: $moveSlug,
       operation: $operation,
       distance: $distance
     ) {
-      play {
+      move {
         id
         slug
+        name
       }
+      errors
     }
   }
 `
 
-const DraggableCard = ({ id, play, index, movePlay, unassignPlay, previewPlay }) => {
+const DraggableCard = ({ id, move, index, swapMove, unassignMove, previewMove }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const ref = useRef(null)
 
+  const openPreviewMove = (move) => {
+    previewMove(move)
+  }
+
   const [{ handlerId }, drop] = useDrop({
-    accept: 'play',
+    accept: 'move',
     collect (monitor) {
       return {
         handlerId: monitor.getHandlerId()
@@ -75,7 +81,7 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay, previewPlay })
       }
 
       // Time to actually perform the action
-      movePlay(dragIndex, hoverIndex)
+      swapMove(dragIndex, hoverIndex)
       // Note: we're mutating the monitor item here!
       // Generally it's better to avoid mutations,
       // but it's good here for the sake of performance
@@ -85,7 +91,7 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay, previewPlay })
   })
 
   const [{ opacity }, drag, preview] = useDrag({
-    type: 'play',
+    type: 'move',
     item: () => {
       return { id, index }
     },
@@ -106,31 +112,31 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay, previewPlay })
       <div className='flex flex-row gap-3'>
         <div className='py-4 font-semibold text-lg'>{index + 1})</div>
         <div ref={preview} className='w-full'>
-          <div ref={ref} className={`${dndBorderStyles} flex flex-row gap-3 px-3 py-4 h-16`}>
-            <div className='w-2/6 font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
-              {play.name}
+          <div ref={ref} className={`${dndBorderStyles} flex flex-row gap-3 px-3 py-4 h-16 w-full`}>
+            <div className='w-3/12 font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
+              {move.name}
             </div>
             {
               // Manual alignment for the description because can't do my-auto to center the text.
-              // The original text is large and we're using playbook-list-description to force it to become 1 line.
+              // The original text is large and we're using play-list-description to force it to become 1 line.
             }
-            <div className='w-full playbook-list-description fr-view my-1'>
-              {play.playDescription && parse(play.playDescription.description.slice(0, 300))}
+            <div className='w-6/12 single-line-description overflow-hidden fr-view my-1'>
+              {move.moveDescription && parse(move.moveDescription.description)}
             </div>
-            <div className='w-2/6 my-auto flex gap-2 text-sm'>
+            <div className='w-3/12 my-auto flex gap-2 text-sm'>
               <button
                 type='button'
                 className='ml-auto bg-dial-orange-light text-dial-purple py-1.5 px-3 rounded disabled:opacity-50'
-                onClick={() => previewPlay(play)}
+                onClick={() => openPreviewMove(move)}
               >
-                {format('play.preview')}
+                {format('move.preview')}
               </button>
               <button
                 type='button'
                 className='bg-dial-purple-light text-dial-gray-light py-1.5 px-3 rounded disabled:opacity-50'
-                onClick={() => unassignPlay(play)}
+                onClick={() => unassignMove(move)}
               >
-                {format('play.unassign')}
+                {format('move.unassign')}
               </button>
               <img
                 alt={format('image.alt.logoFor', { name: format('move.reOrder') })}
@@ -144,91 +150,93 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay, previewPlay })
   )
 }
 
-const PlayListDraggable = ({ playbook }) => {
+const MoveListDraggable = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const [draggedPlay, setDraggedPlay] = useState([-1, -1])
-  const [unassignedPlay, setUnassignedPlay] = useState('')
+  const [draggedMove, setDraggedMove] = useState([-1, -1])
+  const [unassignedMove, setUnassignedMove] = useState('')
 
-  const { currentPlays } = useContext(PlayListContext)
-  const { setCurrentPlays } = useContext(PlayListDispatchContext)
-  const { setPreviewSlug, setPreviewContext, setPreviewDisplayed } = useContext(PlayPreviewDispatchContext)
+  const { currentMoves } = useContext(MoveListContext)
+  const { setCurrentMoves } = useContext(MoveListDispatchContext)
+  const { setPreviewSlug, setPreviewContext, setPreviewDisplayed } = useContext(MovePreviewDispatchContext)
 
-  const [updatePlayOrder] = useMutation(UPDATE_PLAY_ORDER)
+  const [updateMoveOrder] = useMutation(UPDATE_MOVE_ORDER)
 
   useEffect(() => {
-    // Watch the unassigned play and delete them after render.
-    if (unassignedPlay) {
-      setCurrentPlays(currentPlays.filter(
-        currentPlay => currentPlay.slug !== unassignedPlay.slug)
+    // Watch the unassigned move and delete them after render.
+    if (unassignedMove) {
+      setCurrentMoves(currentMoves.filter(
+        currentMove => currentMove.slug !== unassignedMove.slug)
       )
-      if (playbook) {
-        updatePlayOrder({
+      if (unassignedMove) {
+        updateMoveOrder({
           variables: {
-            playbookSlug: playbook.slug,
-            playSlug: unassignedPlay.slug,
+            playSlug: play.slug,
+            moveSlug: unassignedMove.slug,
             operation: 'UNASSIGN',
             distance: 0
           }
         })
       }
     }
-  }, [unassignedPlay])
+  }, [unassignedMove])
 
   useEffect(() => {
-    const [dragIndex, hoverIndex] = draggedPlay
-    if (playbook && dragIndex >= 0 && hoverIndex >= 0) {
-      updatePlayOrder({
+    const [dragIndex, hoverIndex] = draggedMove
+    if (play && dragIndex >= 0 && hoverIndex >= 0) {
+      updateMoveOrder({
         variables: {
-          playbookSlug: playbook.slug,
-          playSlug: currentPlays[hoverIndex].slug,
+          playSlug: play.slug,
+          moveSlug: currentMoves[hoverIndex].slug,
           operation: 'SWAP',
           distance: hoverIndex - dragIndex
         }
       })
     }
-  }, [draggedPlay])
+  }, [draggedMove])
 
-  const unassignPlay = (play) => {
-    // Mark play as un-assigned. This will trigger deletion from the context component.
-    setUnassignedPlay(play)
+  const unassignMove = (move) => {
+    // Mark move as un-assigned. This will trigger deletion from the context component.
+    setUnassignedMove(move)
   }
 
-  const previewPlay = useCallback((play) => {
+  const previewMove = useCallback((move) => {
     setPreviewDisplayed(true)
-    setPreviewContext(playbook.slug)
-    setPreviewSlug(play.slug)
-  }, [playbook, setPreviewContext, setPreviewSlug, setPreviewDisplayed])
+    setPreviewSlug(move.slug)
+    setPreviewContext([playbook.slug, play.slug])
+  }, [play, playbook, setPreviewContext, setPreviewSlug, setPreviewDisplayed])
 
-  const movePlay = useCallback((dragIndex, hoverIndex) => {
-    setCurrentPlays((prevCards) => update(prevCards, {
+  const swapMove = useCallback((dragIndex, hoverIndex) => {
+    setCurrentMoves((prevCards) => update(prevCards, {
       $splice: [
         [dragIndex, 1],
         [hoverIndex, 0, prevCards[dragIndex]]
       ]
     }))
-    setDraggedPlay([dragIndex, hoverIndex])
-  }, [setCurrentPlays])
+    setDraggedMove([dragIndex, hoverIndex])
+  }, [setCurrentMoves])
 
-  const renderCard = useCallback((play, index) => (
-    <DraggableCard key={index} id={play.id} {...{ index, play, movePlay, unassignPlay, previewPlay }} />
-  ), [movePlay, previewPlay])
+  const renderCard = useCallback((move, index) => (
+    <div key={index}>
+      <DraggableCard id={move.id} {...{ index, move, swapMove, unassignMove, previewMove }} />
+    </div>
+  ), [swapMove, previewMove])
 
   useEffect(() => {
-    if (playbook) {
-      setCurrentPlays(playbook.plays)
+    if (play) {
+      setCurrentMoves(play.playMoves)
     }
-  }, [playbook, setCurrentPlays])
+  }, [play, setCurrentMoves])
 
   return (
     <div className='flex flex-col gap-2 text-dial-purple-light'>
       {
-        currentPlays.length > 0
-          ? currentPlays.map((play, index) => renderCard(play, index))
+        currentMoves.length > 0
+          ? currentMoves.map((move, index) => renderCard(move, index))
           : (
             <div className='text-sm font-medium opacity-80'>
-              {format('noResults.entity', { entity: format('plays.label').toString().toLowerCase() })}
+              {format('noResults.entity', { entity: format('move.label').toString().toLowerCase() })}
             </div>
           )
       }
@@ -236,4 +244,4 @@ const PlayListDraggable = ({ playbook }) => {
   )
 }
 
-export default PlayListDraggable
+export default MoveListDraggable

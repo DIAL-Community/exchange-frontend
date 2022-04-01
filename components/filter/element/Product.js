@@ -36,10 +36,15 @@ const customStyles = (controlSize = '12rem') => {
 
 export const ProductAutocomplete = (props) => {
   const client = useApolloClient()
-  const { products, setProducts, containerStyles, controlSize } = props
+  const { products, setProducts, containerStyles, controlSize, placeholder } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
+  let controlPlaceholder = placeholder
+  if (!controlPlaceholder) {
+    controlPlaceholder = format('filter.byEntity', { entity: format('product.label') })
+  }
 
   const selectProduct = (product) => {
     setProducts([...products.filter(p => p.value !== product.value), product])
@@ -78,7 +83,7 @@ export const ProductAutocomplete = (props) => {
         loadOptions={(input, callback) => fetchOptions(input, callback, PRODUCT_SEARCH_QUERY)}
         noOptionsMessage={() => format('filter.searchFor', { entity: format('product.header') })}
         onChange={selectProduct}
-        placeholder={format('filter.byEntity', { entity: format('product.label') })}
+        placeholder={controlPlaceholder}
         styles={customStyles(controlSize)}
         value=''
       />

@@ -159,7 +159,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
                     </div>
                   </div>
                   <div className='flex flex-col h-80 p-4'>
-                    <div className='text-2xl font-semibold absolute w-72 2xl:w-80'>
+                    <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
                       {buildingBlock.name}
                     </div>
                     <div className='m-auto align-middle w-40'>

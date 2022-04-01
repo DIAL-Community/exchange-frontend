@@ -53,7 +53,7 @@ const PlayList = ({ playbook, playList, currentPlays, displayType, filterDisplay
 
   const gridStyles = `grid ${displayType === 'card'
     ? `grid-cols-1 gap-4
-       ${filterDisplayed ? 'lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3' : 'md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'}`
+       ${filterDisplayed ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'}`
     : 'grid-cols-1'
     }`
 
@@ -74,7 +74,7 @@ const PlayList = ({ playbook, playList, currentPlays, displayType, filterDisplay
         playList.length > 0
           ? playList.map((play) => {
             return (!currentPlays || !currentPlays.filter(e => e.id === play.id).length > 0) && (
-              <PlayCard key={play.id} {...{ playbook, play, displayType, filterDisplayed, sourceType }} />
+              <PlayCard key={play.id} {...{ playbook, play, filterDisplayed, sourceType }} />
             )
           })
           : (
@@ -108,7 +108,7 @@ const PlayListQuery = ({ playbook, sourceType }) => {
 
   useEffect(() => {
     refetch()
-  }, [locale])
+  }, [locale, refetch])
 
   useEffect(() => {
     if (data) {

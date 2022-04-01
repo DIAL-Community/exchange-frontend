@@ -1,173 +1,460 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useContext } from 'react'
+import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { gql, useMutation } from '@apollo/client'
+import { Controller, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa'
+import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
 import { HtmlEditor } from '../../shared/HtmlEditor'
-import { descriptionByLocale } from '../../../lib/utilities'
 import Breadcrumb from '../../shared/breadcrumb'
+import { ToastContext } from '../../../lib/ToastContext'
 
-const CREATE_TASK = gql`
-mutation ($playSlug: String!, $name: String!, $description: String!, $resources: JSON!, $order: Int!) {
-  createMove(play: $playSlug, name: $name, description: $description, resources: $resources, order: $order) {
-    move {
-      id
-      name
-      slug
-      resources
-      moveDescription {
-        description
+const CREATE_RESOURCE = gql`
+  mutation (
+    $playSlug: String!,
+    $moveSlug: String!,
+    $url: String!,
+    $name: String!,
+    $description: String!,
+    $index: Int!
+  ) {
+    createResource(
+      playSlug: $playSlug,
+      moveSlug: $moveSlug,
+      url: $url,
+      name: $name,
+      description: $description,
+      index: $index
+    ) {
+      move {
+        id
+        name
+        slug
       }
-      playName
-      playSlug
+      errors
     }
   }
-}
+`
+const CREATE_MOVE = gql`
+  mutation (
+    $playSlug: String!,
+    $moveSlug: String!,
+    $name: String!,
+    $description: String!,
+    $resources: JSON!
+  ) {
+    createMove(
+      playSlug: $playSlug,
+      moveSlug: $moveSlug,
+      name: $name,
+      description: $description,
+      resources: $resources
+    ) {
+      move {
+        id
+        name
+        slug
+        play {
+          slug
+        }
+      }
+      errors
+    }
+  }
 `
 
-export const MoveForm = ({ move, action }) => {
+const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResource, removeResource, setEditing }) => {
+  const [mutating, setMutating] = useState(false)
+
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
+
+  const [session] = useSession()
+  const { locale } = useRouter()
+  const [createResource, { data }] = useMutation(CREATE_RESOURCE)
+  const { showToast } = useContext(ToastContext)
+
+  useEffect(() => {
+    if (data && data.createResource.errors.length === 0 && data.createResource.move) {
+      setEditing(false)
+      setMutating(false)
+      showToast(format('resource.submitted'), 'success', 'top-center')
+    }
+  }, [data, setEditing, showToast, setMutating, format])
+
+  const { handleSubmit, register } = useForm({
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
+    shouldUnregister: true,
+    defaultValues: {
+      name: resource && resource.name,
+      resourceDescription: resource && resource.description,
+      url: resource && resource.url
+    }
+  })
+
+  const doUpsert = async (data) => {
+    if (session) {
+      setMutating(true)
+
+      const { userEmail, userToken } = session.user
+      const { name, resourceDescription, url } = data
+
+      updateResource(index, { name, description: resourceDescription, url })
+      if (moveSlug) {
+        createResource({
+          variables: {
+            playSlug,
+            moveSlug,
+            url,
+            name,
+            description: resourceDescription,
+            index
+          },
+          context: {
+            headers: {
+              'Accept-Language': locale,
+              Authorization: `${userEmail} ${userToken}`
+            }
+          }
+        })
+      }
+    }
+  }
+
+  const saveForm = () => {
+    handleSubmit(doUpsert)()
+  }
+
+  const cancelForm = () => {
+    setEditing(false)
+    if (Object.keys(resource).length <= 0) {
+      removeResource(index, resource)
+    }
+  }
+
+  return (
+    <div className='flex flex-col border-b border-t py-3 px-3'>
+      <div className='flex flex-col lg:flex-row gap-4 text-sm'>
+        <div className='w-full lg:w-1/3 flex flex-col gap-y-3'>
+          <label className='flex flex-col gap-y-2 mb-2'>
+            {format('resource.name')}
+            <input
+              {...register('name', { required: true })}
+              className='shadow border-1 rounded w-full py-2 px-3'
+            />
+          </label>
+          <label className='flex flex-col gap-y-2 mb-2'>
+            {format('resource.url')}
+            <input
+              {...register('url', { required: true })}
+              className='shadow border-1 rounded w-full py-2 px-3'
+            />
+          </label>
+        </div>
+        <div className='w-full lg:w-2/3'>
+          <label className='flex flex-col gap-y-2 mb-2'>
+            {format('resource.description')}
+            <textarea
+              {...register('resourceDescription', { required: true })}
+              className='shadow border-1 rounded w-full py-2 px-3'
+              rows={4}
+            />
+          </label>
+        </div>
+      </div>
+      <div className='flex font-semibold lg:mt-8 gap-3 text-sm'>
+        <button
+          type='button'
+          className='bg-dial-purple text-white px-3 py-2 rounded disabled:opacity-50'
+          disabled={mutating}
+          onClick={saveForm}
+        >
+          {`${format('app.submit')} ${format('resource.label')}`}
+          {mutating && <FaSpinner className='spinner ml-3 inline' />}
+        </button>
+        <button
+          type='button'
+          className='bg-dial-purple-light text-white px-3 py-2 rounded disabled:opacity-50'
+          disabled={mutating}
+          onClick={cancelForm}
+        >
+          {format('app.cancel')}
+        </button>
+      </div>
+    </div>
+  )
+}
+
+const ResourceViewer = ({ index, resource, removeResource, setEditing }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
+
+  return (
+    <div className='flex flex-row gap-3 px-3'>
+      <div className='py-3 font-semibold my-auto'>{index + 1})</div>
+      <div className='bg-white border border-dial-gray border-opacity-50 card-drop-shadow w-full'>
+        <div className='flex gap-4 px-3 py-3 w-full'>
+          <div className='w-3/12 font-semibold my-auto overflow-hidden text-ellipsis'>
+            {resource.name}
+          </div>
+          <div className='w-4/12 my-auto overflow-hidden text-ellipsis whitespace-nowrap'>
+            {resource.description}
+          </div>
+          <div className='w-3/12 my-auto overflow-hidden text-ellipsis whitespace-nowrap'>
+            {resource.url}
+          </div>
+          <div className='w-2/12 my-auto flex gap-2 text-sm'>
+            <button
+              type='button'
+              className='ml-auto bg-dial-orange-light text-dial-purple py-1.5 px-3 rounded disabled:opacity-50'
+              onClick={() => setEditing(true)}
+            >
+              {format('app.edit')}
+            </button>
+            <button
+              type='button'
+              className='bg-dial-blue text-dial-gray-light py-1.5 px-3 rounded disabled:opacity-50'
+              onClick={() => removeResource(index, resource)}
+            >
+              {format('app.delete')}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const ResourceRenderer = (props) => {
+  const [editing, setEditing] = useState(false)
+  const { resource } = props
+
+  useEffect(() => {
+    if (Object.keys(resource).length <= 0) {
+      setEditing(true)
+    }
+  }, [setEditing, resource])
+
+  return (
+    <>
+      {!editing && <ResourceViewer {...{ ...props, setEditing }} />}
+      {editing && <ResourceFormEditor {...{ ...props, setEditing }} />}
+    </>
+  )
+}
+
+const FormTextEditor = ({ control, fieldLabel, fieldName }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { locale } = useRouter()
+  return (
+    <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
+      {format(fieldLabel)}
+      <Controller
+        name={fieldName}
+        control={control}
+        rules={{ required: true }}
+        render={({ field: { value, onChange, onBlur } }) => {
+          return (
+            <HtmlEditor
+              editorId={`${fieldName}-editor`}
+              onBlur={onBlur}
+              onChange={onChange}
+              initialContent={value}
+            />
+          )
+        }}
+      />
+    </label>
+  )
+}
 
-  const [createMove, { data, loading }] = useMutation(CREATE_TASK) // {update: updateCache}
-
-  const [playSlug, setPlaySlug] = useState(move ? move.playSlug : '')
-  const [name, setName] = useState(move ? move.name : '')
-  const [description, setDescription] = useState(move ? descriptionByLocale(move.moveDescriptions, locale) : '')
-  const [resources, setResources] = useState(move ? move.resources.map((resource, i) => ({ ...resource, i: i })) : [])
+export const MoveForm = ({ playbook, play, move }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
 
   const router = useRouter()
+  const [session] = useSession()
+  const [mutating, setMutating] = useState(false)
+  const [reverting, setReverting] = useState(false)
+
+  const [moveSlug] = useState(move ? move.slug : '')
+  const [playSlug] = useState(play ? play.slug : move ? move.play.slug : '')
+  const [resources, setResources] = useState(
+    move ? move.resources.map((resource, i) => ({ ...resource, i: i })) : []
+  )
+  const [createMove, { data }] = useMutation(CREATE_MOVE)
+  const { showToast } = useContext(ToastContext)
+
+  const { handleSubmit, register, control } = useForm({
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
+    shouldUnregister: true,
+    defaultValues: {
+      name: move && move.name,
+      description: move && move.moveDescription?.description
+    }
+  })
+
+  const doUpsert = async (data) => {
+    if (session) {
+      setMutating(true)
+
+      const { userEmail, userToken } = session.user
+      const { name, description } = data
+
+      createMove({
+        variables: {
+          moveSlug,
+          playSlug,
+          name,
+          description,
+          resources
+        },
+        context: {
+          headers: {
+            'Accept-Language': router.locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
+    }
+  }
 
   const slugNameMapping = (() => {
     const map = {}
+    if (play) {
+      map[play.slug] = play.name
+    }
+
+    if (playbook) {
+      map[playbook.slug] = playbook.name
+    }
+
     if (move) {
-      map[move.playSlug] = move.playName
+      map[move.play.slug] = move.play.name
       map[move.slug] = move.name
     }
+
+    map.edit = format('app.edit')
+    map.create = format('app.create')
 
     return map
   })()
 
   useEffect(() => {
-    if (data) {
-      setTimeout(() => {
-        router.push(`/${locale}/plays/${data.createMove.move.playSlug}`)
+    const { locale } = router
+    if (data && data.createMove.errors.length === 0 && data.createMove.move) {
+      setMutating(false)
+      showToast(format('move.submitted'), 'success', 'top-center')
+      const navigateToPlay = setTimeout(() => {
+        router.push(`/${locale}/playbooks/${playbook.slug}/plays/${play.slug}/edit`)
       }, 2000)
+
+      return () => clearTimeout(navigateToPlay)
     }
-  }, [data])
+  }, [play, playbook, router, data, showToast, format])
 
-  useEffect(() => {
-    const { slug } = router.query
-    setPlaySlug(slug)
-  }, [router.query])
-
-  const handleTextFieldChange = (e, callback) => {
-    callback(e.target.value)
+  const cancelForm = () => {
+    setReverting(true)
+    const route = `/${router.locale}/playbooks/${playbook.slug}/plays/${play.slug}/edit`
+    router.push(route)
   }
 
-  const handleResourceChange = (e, i) => {
-    if (e.target.getAttribute('name') === 'resourceName') {
-      setResources(resources.map(resource => resource.i === i ? { ...resource, name: e.target.value } : resource))
-    } else if (e.target.getAttribute('name') === 'resourceDesc') {
-      setResources(resources.map(resource => resource.i === i ? { ...resource, description: e.target.value } : resource))
-    } else {
-      setResources(resources.map(resource => resource.i === i ? { ...resource, url: e.target.value } : resource))
+  const addResource = (resource) => {
+    setResources([...resources, resource])
+  }
+
+  const updateResource = (index, resource) => {
+    for (let i = 0; i < resources.length; i++) {
+      if (index !== i) {
+        continue
+      }
+
+      const currentResource = resources[i]
+      currentResource.name = resource.name
+      currentResource.description = resource.description
+      currentResource.url = resource.url
     }
+
+    setResources([...resources])
   }
 
-  const addResource = (e) => {
-    e.preventDefault()
-    setResources([...resources, { name: '', description: '', i: resources.length }])
-  }
-
-  const deleteResource = (e, i) => {
-    e.preventDefault()
-    setResources(resources.map(phase => phase.i === i ? { name: '', description: '' } : phase))
-  }
-
-  const doUpsert = async e => {
-    e.preventDefault()
-    const submitResources = resources.map(resource => resource.name === '' ? null : resource)
-    createMove({ variables: { playSlug, name, description, resources: submitResources, order: 1, locale } })
+  const removeResource = (index, resource) => {
+    setResources(resources.filter((r, i) => i !== index && r.name !== resource.name))
   }
 
   return (
-    <div className='pt-4'>
-      <div className={`mx-4 ${data ? 'visible' : 'invisible'} text-center pt-4`}>
-        <div className='my-auto text-emerald-500'>{action === 'create' ? format('play.created') : format('play.updated')}</div>
-      </div>
-      <div className='p-3 font-semibold text-gray'>
-        {format('moves.forPlay')}: {playSlug}
-      </div>
-      <div className='px-4'>
+    <div className='flex flex-col'>
+      <div className='hidden lg:block px-8'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
-        {action === 'update' && format('app.edit-entity', { entity: move.name })}
       </div>
-      <div id='content' className='px-4 sm:px-0 max-w-full mx-auto'>
-        <form onSubmit={doUpsert}>
-          <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('moves.name')}
-              </label>
-              <input
-                id='name' name='name' type='text' placeholder={format('moves.name.placeholder')}
-                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                value={name} onChange={(e) => handleTextFieldChange(e, setName)}
-              />
-            </div>
-            <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-              {format('moves.description')}
-            </label>
-            <HtmlEditor updateText={setDescription} initialContent={description} />
-            {resources && resources.map((resource, i) => {
-              return (
-                <div key={i} className='inline'>
-                  <input
-                    id={'resourceName' + i} name='resourceName' type='text' placeholder={format('resource.name')}
-                    className='inline w-1/4 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
-                    value={resource.name} onChange={(e) => handleResourceChange(e, i)}
-                  />
-                  <input
-                    id={'resourceDesc' + i} name='resourceDesc' type='text' placeholder={format('resource.description')}
-                    className='inline w-1/4 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
-                    value={resource.description} onChange={(e) => handleResourceChange(e, i)}
-                  />
-                  <input
-                    id={'resourceUrl' + i} name='resourceUrl' type='text' placeholder={format('resource.url')}
-                    className='inline w-1/4 shadow appearance-none border rounded py-2 px-3 text-grey-darker'
-                    value={resource.url} onChange={(e) => handleResourceChange(e, i)}
-                  />
-                  <button
-                    className='inline bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                    onClick={(e) => deleteResource(e, i)} disabled={loading}
-                  >
-                    {format('moves.deleteResource')}
-                  </button>
+      <div className='pb-8 px-8'>
+        <div id='content' className='sm:px-0 max-w-full mx-auto'>
+          <form onSubmit={handleSubmit(doUpsert)}>
+            <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
+              <div className='text-2xl font-bold text-dial-blue pb-4'>
+                {move && format('app.edit-entity', { entity: move.name })}
+                {!move && `${format('app.create-new')} ${format('move.label')}`}
+              </div>
+              <div className='flex flex-col lg:flex-row gap-4'>
+                <div className='w-full lg:w-1/3 flex flex-col gap-y-3'>
+                  <label className='flex flex-col gap-y-2 text-xl text-dial-blue mb-2'>
+                    {format('plays.name')}
+                    <input
+                      {...register('name', { required: true })}
+                      className='shadow border-1 rounded w-full py-2 px-3'
+                    />
+                  </label>
                 </div>
-              )
-            })}
-            <div className='flex items-center justify-between font-semibold text-sm mt-2'>
-              <button
-                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                onClick={addResource} disabled={loading}
-              >
-                {format('moves.addResource')}
-              </button>
+                <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }}>
+                  <FormTextEditor control={control} fieldLabel='plays.description' fieldName='description' />
+                </div>
+              </div>
+              <div className='flex flex-col gap-y-2 mt-4'>
+                <div className='text-xl text-dial-blue font-bold'>
+                  {format('resource.header')}
+                </div>
+                <div className='text-sm text-dial-blue'>
+                  {format('move.assignedResources')}
+                </div>
+                {
+                  resources && resources.map((resource, i) =>
+                    <div key={i}>
+                      <ResourceRenderer index={i} {...{ moveSlug, playSlug, resource, updateResource, removeResource }} />
+                    </div>
+                  )
+                }
+              </div>
+              <div className='block'>
+                <button type='button' className='flex gap-2' onClick={() => addResource({})}>
+                  <FaPlusCircle className='ml-3 my-auto' color='#3f9edd' />
+                  <div className='text-dial-blue'>{`${format('app.create-new')} ${format('resource.label')}`}</div>
+                </button>
+              </div>
+              <div className='flex font-semibold text-xl lg:mt-8 gap-3'>
+                <button
+                  type='submit'
+                  className='bg-blue-500 text-dial-gray-light py-3 px-8 rounded disabled:opacity-50'
+                  disabled={mutating || reverting}
+                >
+                  {`${format('app.submit')} ${format('move.label')}`}
+                  {mutating && <FaSpinner className='spinner ml-3 inline' />}
+                </button>
+                <button
+                  type='button'
+                  className='bg-button-gray-light text-white py-3 px-8 rounded disabled:opacity-50'
+                  disabled={mutating || reverting}
+                  onClick={cancelForm}
+                >
+                  {format('app.cancel')}
+                  {reverting && <FaSpinner className='spinner ml-3 inline' />}
+                </button>
+              </div>
             </div>
-            <div className='flex items-center justify-between font-semibold text-sm mt-2'>
-              <button
-                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                type='submit' disabled={loading}
-              >
-                {format('plays.submit')}
-                {loading && <FaSpinner className='spinner ml-3' />}
-              </button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   )

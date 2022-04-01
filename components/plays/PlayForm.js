@@ -1,41 +1,30 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { gql, useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa'
+import { FaSpinner, FaPlusCircle } from 'react-icons/fa'
 import { useSession } from 'next-auth/client'
 import { HtmlEditor } from '../shared/HtmlEditor'
 import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
 import Breadcrumb from '../shared/breadcrumb'
+import { ToastContext } from '../../lib/ToastContext'
+import MoveListDraggable from './moves/MoveListDraggable'
 
 const CREATE_PLAY = gql`
-mutation ($name: String!, $slug: String!, $description: String!, $tags: JSON!) {
-  createPlay(name: $name, slug: $slug, description: $description, tags: $tags) {
+mutation ($name: String!, $slug: String!, $description: String!, $tags: JSON!, $playbookSlug: String) {
+  createPlay(name: $name, slug: $slug, description: $description, tags: $tags, playbookSlug: $playbookSlug) {
     play {
       id
       name
       slug
-      tags
-      playDescription {
-        id
-        description
-      }
-      playMoves {
-        id
-        name
-        moveDescription {
-          id
-          description
-        }
-      }
     }
     errors
   }
 }
 `
 
-export const FormTextEditor = ({ control, name }) => {
+const FormTextEditor = ({ control, name }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -45,6 +34,7 @@ export const FormTextEditor = ({ control, name }) => {
       <Controller
         name={name}
         control={control}
+        rules={{ required: true }}
         render={({ field: { value, onChange, onBlur } }) => {
           return (
             <HtmlEditor
@@ -60,19 +50,21 @@ export const FormTextEditor = ({ control, name }) => {
   )
 }
 
-export const PlayForm = ({ play }) => {
+export const PlayForm = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
+  const [navigateToMove, setNavigateToMove] = useState(false)
+  const [assigningToPlaybook, setAssigningToPlaybook] = useState(false)
 
   const [createPlay, { data }] = useMutation(CREATE_PLAY)
 
   const router = useRouter()
   const [session] = useSession()
+  const { showToast } = useContext(ToastContext)
 
-  const { locale } = router
   const [slug] = useState(play ? play.slug : '')
   const [tags, setTags] = useState(
     play ? play.tags.map(tag => { return { label: tag, value: tag } }) : []
@@ -89,13 +81,26 @@ export const PlayForm = ({ play }) => {
   })
 
   useEffect(() => {
+    const { locale } = router
     if (data && data.createPlay.errors.length === 0 && data.createPlay.play) {
       setMutating(false)
-      setTimeout(() => {
-        router.push(`/${locale}/plays/${data.createPlay.play.slug}`)
-      }, 500)
+      if (!navigateToMove) {
+        showToast(format('play.submitted'), 'success', 'top-center')
+        const navigateToPlay = setTimeout(() => {
+          router.push(`/${locale}/playbooks/${playbook.slug}/edit`)
+        }, 800)
+
+        return () => clearTimeout(navigateToPlay)
+      } else {
+        showToast(format('play.submittedToCreateMove'), 'success', 'top-center')
+        const navigateToMove = setTimeout(() => {
+          router.push(`/${locale}/playbooks/${playbook.slug}/plays/${data.createPlay.play.slug}/moves/create`)
+        }, 800)
+
+        return () => clearTimeout(navigateToMove)
+      }
     }
-  }, [data])
+  }, [data, playbook, navigateToMove, router, showToast, format])
 
   const doUpsert = async (data) => {
     if (session) {
@@ -103,17 +108,23 @@ export const PlayForm = ({ play }) => {
 
       const { userEmail, userToken } = session.user
       const { name, description } = data
+      const variables = {
+        name,
+        slug,
+        description,
+        tags: tags.map(tag => tag.label),
+        playbookSlug: ''
+      }
+
+      if (assigningToPlaybook) {
+        variables.playbookSlug = playbook.slug
+      }
 
       createPlay({
-        variables: {
-          name,
-          slug,
-          description,
-          tags: tags.map(tag => tag.label)
-        },
+        variables,
         context: {
           headers: {
-            'Accept-Language': locale,
+            'Accept-Language': router.locale,
             Authorization: `${userEmail} ${userToken}`
           }
         }
@@ -123,11 +134,7 @@ export const PlayForm = ({ play }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    let route = '/plays'
-    if (play) {
-      route = `${route}/${play.slug}`
-    }
-
+    const route = `/${router.locale}/playbooks/${playbook.slug}/edit`
     router.push(route)
   }
 
@@ -137,11 +144,27 @@ export const PlayForm = ({ play }) => {
       map[play.slug] = play.name
     }
 
+    map[playbook.slug] = playbook.name
     map.edit = format('app.edit')
     map.create = format('app.create')
 
     return map
   })()
+
+  const saveAndCreateMove = () => {
+    setNavigateToMove(true)
+    setAssigningToPlaybook(false)
+  }
+
+  const savePlay = () => {
+    setNavigateToMove(false)
+    setAssigningToPlaybook(false)
+  }
+
+  const saveAndAssignPlay = () => {
+    setNavigateToMove(false)
+    setAssigningToPlaybook(true)
+  }
 
   return (
     <div className='flex flex-col'>
@@ -152,14 +175,6 @@ export const PlayForm = ({ play }) => {
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-              <div className={`mx-4 ${(data && data.createPlay.play) ? 'visible' : 'hidden'} text-center pt-4`}>
-                <div className='my-auto text-emerald-500'>
-                  {play ? format('play.created') : format('play.updated')}
-                </div>
-              </div>
-              <div className={`mx-4 ${(data && data.createPlay.errors.length > 0) ? 'visible' : 'hidden'} text-center pt-4`}>
-                <div className='my-auto text-red-500'>{format('play.error')}</div>
-              </div>
               <div className='text-2xl font-bold text-dial-blue pb-4'>
                 {play && format('app.edit-entity', { entity: play.name })}
                 {!play && `${format('app.create-new')} ${format('plays.label')}`}
@@ -176,7 +191,7 @@ export const PlayForm = ({ play }) => {
                   <div className='flex flex-col gap-y-2'>
                     <label className='text-xl text-dial-blue' htmlFor='name'>
                       {format('plays.tags')}
-                      <TagAutocomplete {...{ tags, setTags }} containerStyles='pb-2' controlSize='100%' />
+                      <TagAutocomplete {...{ tags, setTags }} controlSize='100%' placeholder={format('play.form.tags')} />
                     </label>
                     <div className='flex flex-wrap gap-1'>
                       <TagFilters {...{ tags, setTags }} />
@@ -187,13 +202,38 @@ export const PlayForm = ({ play }) => {
                   <FormTextEditor control={control} name='description' />
                 </div>
               </div>
+              <div className='flex flex-col gap-y-2 mt-4'>
+                <div className='text-xl text-dial-blue font-bold'>
+                  {format('move.header')}
+                </div>
+                <div className='text-sm text-dial-blue'>
+                  {format('play.assignedMoves')}
+                </div>
+                <MoveListDraggable playbook={playbook} play={play} />
+              </div>
+              <div className='block'>
+                <button className='flex gap-2' onClick={saveAndCreateMove}>
+                  <FaPlusCircle className='ml-3 my-auto' color='#3f9edd' />
+                  <div className='text-dial-blue'>{`${format('app.create-new')} ${format('move.label')}`}</div>
+                </button>
+              </div>
               <div className='flex font-semibold text-xl lg:mt-8 gap-3'>
                 <button
                   type='submit'
+                  onClick={savePlay}
                   className='bg-blue-500 text-dial-gray-light py-3 px-8 rounded disabled:opacity-50'
                   disabled={mutating || reverting}
                 >
-                  {`${format('plays.submit')} ${format('plays.label')}`}
+                  {`${format('app.submit')} ${format('plays.label')}`}
+                  {mutating && <FaSpinner className='spinner ml-3 inline' />}
+                </button>
+                <button
+                  type='submit'
+                  onClick={saveAndAssignPlay}
+                  className='bg-blue-500 text-dial-gray-light py-3 px-8 rounded disabled:opacity-50'
+                  disabled={mutating || reverting}
+                >
+                  {`${format('play.submitAndAssign')} ${format('plays.label')}`}
                   {mutating && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
                 <button

@@ -3,11 +3,11 @@ import { useSession } from 'next-auth/client'
 import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
 import Breadcrumb from '../shared/breadcrumb'
-import MoveDetail from '../playbooks/MoveDetail'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import ProductCard from '../products/ProductCard'
+import PlayPreviewMove from './PlayPreviewMove'
 
-const PlayDetail = ({ play }) => {
+const PlayDetail = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -19,12 +19,13 @@ const PlayDetail = ({ play }) => {
       return '/edit-not-available'
     }
 
-    return `/${locale}/plays/${play.slug}/edit`
+    return `/${locale}/playbooks/${playbook.slug}/plays/${play.slug}/edit`
   }
 
   const slugNameMapping = (() => {
     const map = {}
     map[play.slug] = play.name
+    map[playbook.slug] = playbook.name
 
     return map
   })()
@@ -54,14 +55,16 @@ const PlayDetail = ({ play }) => {
           </div>
         </div>
         <div className='font-semibold text-2xl py-3'>
-          {`${format('plays.label')}. ${play.name}`}
+          {`${format('plays.label')}: ${play.name}`}
         </div>
-        <div className='fr-view tinyEditor text-dial-gray-dark'>
+        <div className='fr-view text-dial-gray-dark'>
           {parse(play.playDescription?.description)}
         </div>
         <div className='flex flex-col gap-3'>
           {
-            play.playMoves.map((move, i) => <MoveDetail key={i} moveSlug={move.slug} moveName={move.name} />)
+            play.playMoves.map((move, i) =>
+              <PlayPreviewMove key={i} playSlug={play.slug} moveSlug={move.slug} moveName={move.name} />
+            )
           }
         </div>
         {

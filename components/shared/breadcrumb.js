@@ -26,7 +26,8 @@ const basePathMappings = {
   organizations: 'organization.header',
   playbooks: 'playbook.header',
   plays: 'play.header',
-  users: 'user.header'
+  users: 'user.header',
+  moves: 'move.header'
 }
 
 const Breadcrumb = (props) => {

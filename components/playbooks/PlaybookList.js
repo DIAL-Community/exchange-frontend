@@ -52,7 +52,7 @@ const PlaybookList = (props) => {
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card'
     ? `grid-cols-1 gap-4
-       ${filterDisplayed ? 'lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3' : 'md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'}`
+       ${filterDisplayed ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'}`
     : 'grid-cols-1'
     }`
 
