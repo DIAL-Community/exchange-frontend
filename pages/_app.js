@@ -1,5 +1,6 @@
 
 import { useEffect } from 'react'
+import Head from 'next/head'
 import { Provider } from 'next-auth/client'
 import { IntlProvider } from 'react-intl'
 import { useRouter } from 'next/router'
@@ -70,15 +71,20 @@ const App = ({ Component, pageProps }) => {
   }, [router.events])
 
   return (
-    <IntlProvider locale={locale} defaultLocale='en' messages={messages}>
-      <Provider session={pageProps.session}>
-        <DndProvider backend={HTML5Backend}>
-          <ApplicationDefaultContexts>
-            <Component {...pageProps} />
-          </ApplicationDefaultContexts>
-        </DndProvider>
-      </Provider>
-    </IntlProvider>
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+      </Head>
+      <IntlProvider locale={locale} defaultLocale='en' messages={messages}>
+        <Provider session={pageProps.session}>
+          <DndProvider backend={HTML5Backend}>
+            <ApplicationDefaultContexts>
+              <Component {...pageProps} />
+            </ApplicationDefaultContexts>
+          </DndProvider>
+        </Provider>
+      </IntlProvider>
+    </>
   )
 }
 

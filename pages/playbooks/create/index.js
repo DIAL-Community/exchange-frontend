@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import withApollo from '../../../lib/apolloClient'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
-import PlayDetailPreview from '../../../components/plays/PlayPreview'
+import PlayPreview from '../../../components/plays/PlayPreview'
 import { PlaybookForm } from '../../../components/playbooks/PlaybookForm'
 import { PlayListProvider } from '../../../components/plays/PlayListContext'
 import { PlayPreviewProvider } from '../../../components/plays/PlayPreviewContext'
@@ -31,7 +31,7 @@ function CreatePlaybook () {
       <Header />
       <div className='max-w-catalog mx-auto'>
         <CreateFormProvider>
-          <PlayDetailPreview />
+          <PlayPreview />
           <PlaybookForm />
         </CreateFormProvider>
       </div>

@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import parse from 'html-react-parser'
-import { HiDownload } from 'react-icons/hi'
+import { HiExternalLink } from 'react-icons/hi'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 
 const MOVE_QUERY = gql`
-  query Move($slug: String!) {
-    move(slug: $slug) {
+  query Move($playSlug: String!, $slug: String!) {
+    move(playSlug: $playSlug, slug: $slug) {
       id
       slug
       name
@@ -22,7 +23,7 @@ const MOVE_QUERY = gql`
   }
 `
 
-const MoveDetail = ({ moveName, moveSlug }) => {
+const PlayPreviewMove = ({ moveName, moveSlug, playSlug }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   const [openingDetail, setOpeningDetail] = useState(false)
@@ -34,7 +35,7 @@ const MoveDetail = ({ moveName, moveSlug }) => {
   const { query } = useRouter()
 
   const { data } = useQuery(MOVE_QUERY, {
-    variables: { slug: moveSlug },
+    variables: { playSlug: playSlug, slug: moveSlug },
     context: { headers: { 'Accept-Language': query.locale } },
     skip: !moveSlug
   })
@@ -63,25 +64,29 @@ const MoveDetail = ({ moveName, moveSlug }) => {
             <div className={`move-body ${openingDetail ? 'slide-down' : 'slide-up'}`}>
               <div className='px-4 py-4'>
                 <div className='fr-view text-dial-gray-dark'>
-                  {parse(data.move.moveDescription.description)}
+                  {data?.move?.moveDescription && parse(data.move.moveDescription.description)}
                 </div>
                 {
-                  data.move.resources && data.move.resources.length > 0 &&
+                  data?.move?.resources && data?.move?.resources.length > 0 &&
                     <>
                       <div className='font-semibold py-2'>{format('move.resources.header')}</div>
                       <div className='flex flex-wrap gap-3'>
                         {
-                          data.move.resources.map(resource => {
+                          data?.move?.resources.map(resource => {
                             return (
-                              <div key={resource.i} className='group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow'>
-                                <div className='flex'>
-                                  <div className='flex flex-col gap-2 px-3 py-4'>
-                                    <div className='font-semibold'>{resource.name}</div>
-                                    <div className='text-sm'>{resource.description}</div>
+                              <Link key={resource.i} href={resource.url} passHref>
+                                <a target='_blank' rel='noreferrer'>
+                                  <div key={resource.i} className='group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow'>
+                                    <div className='flex'>
+                                      <div className='flex flex-col gap-2 px-3 py-4'>
+                                        <div className='font-semibold'>{resource.name}</div>
+                                        <div className='text-sm'>{resource.description}</div>
+                                      </div>
+                                      <HiExternalLink className='ml-auto px-2' size='2.2em' />
+                                    </div>
                                   </div>
-                                  <HiDownload className='ml-auto px-2' size='2.2em' />
-                                </div>
-                              </div>
+                                </a>
+                              </Link>
                             )
                           })
                         }
@@ -96,4 +101,4 @@ const MoveDetail = ({ moveName, moveSlug }) => {
   )
 }
 
-export default MoveDetail
+export default PlayPreviewMove

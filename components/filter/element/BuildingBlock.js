@@ -36,11 +36,15 @@ const customStyles = (controlSize = '14rem') => {
 
 export const BuildingBlockAutocomplete = (props) => {
   const client = useApolloClient()
-
-  const { buildingBlocks, setBuildingBlocks, containerStyles, controlSize } = props
+  const { buildingBlocks, setBuildingBlocks, containerStyles, controlSize, placeholder } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
+  let controlPlaceholder = placeholder
+  if (!controlPlaceholder) {
+    controlPlaceholder = format('filter.byEntity', { entity: format('buildingBlock.label') })
+  }
 
   const selectBuildingBlock = (buildingBlock) => {
     setBuildingBlocks([...buildingBlocks.filter(b => b.value !== buildingBlock.value), buildingBlock])
@@ -79,7 +83,7 @@ export const BuildingBlockAutocomplete = (props) => {
         loadOptions={(input, callback) => fetchOptions(input, callback, BUILDING_BLOCK_SEARCH_QUERY)}
         noOptionsMessage={() => format('filter.searchFor', { entity: format('building-block.header') })}
         onChange={selectBuildingBlock}
-        placeholder={format('filter.byEntity', { entity: format('buildingBlock.label') })}
+        placeholder={controlPlaceholder}
         styles={customStyles(controlSize)}
         value=''
       />

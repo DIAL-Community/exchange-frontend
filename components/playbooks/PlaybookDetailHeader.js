@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { useContext, useEffect, useState } from 'react'
+import Link from 'next/link'
 import { Error, Loading } from '../shared/FetchStatus'
 import { PlaybookDetailContext } from './PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
@@ -90,12 +91,17 @@ const PlaybookDetailHeader = ({ slug }) => {
       <div className='flex flex-wrap gap-3'>
         <div className='px-8 py-3 flex flex-col gap-1'>
           <div className='text-sm'>
-            <img
-              data-tip={format('tooltip.forEntity', { entity: format('playbooks.label'), name: data.playbook.name })}
-              alt={format('image.alt.logoFor', { name: data.playbook.name })} className='m-auto h-6 inline mr-2 playbook-filter'
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.playbook.imageFile}
-            />
-            {format('playbooks.label')}
+            <Link href='/playbooks'>
+              <a href='back-to-playbooks'>
+                <img
+                  data-tip={format('tooltip.forEntity', { entity: format('playbooks.label'), name: data.playbook.name })}
+                  className='m-auto h-6 inline mr-2 playbook-filter'
+                  alt={format('image.alt.logoFor', { name: data.playbook.name })}
+                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.playbook.imageFile}
+                />
+                {format('playbooks.label')}
+              </a>
+            </Link>
           </div>
           <div className='text-2xl font-semibold'>{data.playbook.name}</div>
         </div>
