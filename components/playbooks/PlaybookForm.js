@@ -125,7 +125,7 @@ const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
   )
 }
 
-const FormTextEditor = ({ control, name }) => {
+const FormTextEditor = ({ control, name, required=false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -135,7 +135,7 @@ const FormTextEditor = ({ control, name }) => {
       <Controller
         name={name}
         control={control}
-        rules={{ required: true }}
+        rules={{ required: required }}
         render={({ field: { value, onChange, onBlur } }) => {
           return (
             <HtmlEditor
@@ -301,7 +301,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
                   </div>
                 </div>
                 <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }}>
-                  <FormTextEditor control={control} name='overview' />
+                  <FormTextEditor control={control} name='overview' required={true} />
                 </div>
               </div>
               <div className='flex flex-col lg:flex-row gap-x-4'>
