@@ -5,10 +5,10 @@ import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { Dialog, Transition } from '@headlessui/react'
 import { FaSpinner } from 'react-icons/fa'
-import MoveDetail from '../playbooks/MoveDetail'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import ProductCard from '../products/ProductCard'
 import { PlayPreviewContext, PlayPreviewDispatchContext } from './PlayPreviewContext'
+import PlayPreviewMove from './PlayPreviewMove'
 
 const PLAY_QUERY = gql`
   query Play($slug: String!) {
@@ -64,14 +64,14 @@ const PlayPreview = () => {
   const [editing, setEditing] = useState(false)
   const [duplicating, setDuplicating] = useState(false)
 
-  const { previewSlug, previewDisplayed } = useContext(PlayPreviewContext)
+  const { previewSlug, previewContext, previewDisplayed } = useContext(PlayPreviewContext)
   const { setPreviewDisplayed } = useContext(PlayPreviewDispatchContext)
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const [duplicatePlay, { data: duplicatedPlay }] = useMutation(DUPLICATE_PLAY)
-  const [fetchPlayDetail, { data, refetch }] = useLazyQuery(PLAY_QUERY, {
+  const [fetchPlayDetail, { data }] = useLazyQuery(PLAY_QUERY, {
     variables: {
       slug: previewSlug
     },
@@ -80,21 +80,17 @@ const PlayPreview = () => {
   })
 
   useEffect(() => {
-    refetch()
-  }, [locale])
-
-  useEffect(() => {
-    if (previewSlug && previewDisplayed) {
+    if (previewSlug && previewContext && previewDisplayed) {
       fetchPlayDetail()
     }
-  }, [previewSlug, previewDisplayed])
+  }, [fetchPlayDetail, previewSlug, previewContext, previewDisplayed])
 
   useEffect(() => {
     if (duplicating && duplicatedPlay) {
       setDuplicating(false)
-      router.push(`/plays/${duplicatedPlay.duplicatePlay.play.slug}/edit`)
+      router.push(`/${locale}/playbooks/${previewContext}/plays/${duplicatedPlay.duplicatePlay.play.slug}/edit`)
     }
-  }, [duplicatedPlay])
+  }, [duplicating, duplicatedPlay, router])
 
   const createDuplicatePlay = () => {
     setDuplicating(true)
@@ -105,9 +101,9 @@ const PlayPreview = () => {
     })
   }
 
-  const navigateToEdit = (play) => {
+  const navigateToEdit = () => {
     setEditing(true)
-    router.push(`/plays/${previewSlug}/edit`)
+    router.push(`/${locale}/playbooks/${previewContext}/plays/${previewSlug}/edit`)
   }
 
   return (
@@ -170,14 +166,14 @@ const PlayPreview = () => {
                       </div>
                     </Dialog.Title>
 
-                    <div className='flex flex-col gap-4 w-5/6 px-4'>
+                    <div className='flex flex-col gap-4 w-5/6 px-4 pb-4'>
                       <div className='fr-view tinyEditor text-dial-gray-dark'>
-                        {parse(data.play.playDescription?.description)}
+                        {data.play.playDescription && parse(data.play.playDescription?.description)}
                       </div>
                       <div className='flex flex-col gap-3'>
                         {
                           data.play.playMoves.map((move, i) =>
-                            <MoveDetail key={i} moveSlug={move.slug} moveName={move.name} />
+                            <PlayPreviewMove key={i} playSlug={data.play.slug} moveSlug={move.slug} moveName={move.name} />
                           )
                         }
                       </div>

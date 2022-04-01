@@ -8,7 +8,7 @@ import parse from 'html-react-parser'
 import { Loading, Error } from '../shared/FetchStatus'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import ProductCard from '../products/ProductCard'
-import MoveDetail from './MoveDetail'
+import PlayPreviewMove from '../plays/PlayPreviewMove'
 import { PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 
 const DEFAULT_PAGE_SIZE = 10
@@ -110,7 +110,9 @@ const Play = ({ play, index }) => {
       </div>
       <div className='flex flex-col gap-3'>
         {
-          play.playMoves.map((move, i) => <MoveDetail key={i} moveSlug={move.slug} moveName={move.name} />)
+          play.playMoves.map((move, i) =>
+            <PlayPreviewMove key={i} playSlug={play.slug} moveSlug={move.slug} moveName={move.name} />
+          )
         }
       </div>
       {

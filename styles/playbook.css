@@ -1,11 +1,13 @@
-.playbook-description > * {
+.playbook-description > *, .triple-line-description > * {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.playbook-list-description > * {
+.playbook-list-description > *,
+.single-line-description > *,
+.simple-line-descripton {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -41,6 +43,12 @@
   display: flex;
   column-gap: 2rem;
   justify-content: space-between;
+}
+
+@media(max-width:500px) {
+  .play-progress-number {
+    column-gap: 1rem;
+  }
 }
 
 .play-progress-number::before {
@@ -153,7 +161,8 @@
   }
 }
 
-#overview-editor, #outcomes-editor, #audience-editor {
+/* Min height of the tinymce editor. */
+#overview-editor, #outcomes-editor, #audience-editor, #description-editor {
   min-height: 18rem;
 }
 

@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 import { gql, useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa'
+import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
 import { Controller, useForm } from 'react-hook-form'
 import dynamic from 'next/dynamic'
 import Breadcrumb from '../shared/breadcrumb'
@@ -57,7 +57,7 @@ const MUTATE_PLAYBOOK = gql`
   }
 `
 
-const FormPlayList = ({ playbook }) => {
+const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -93,6 +93,12 @@ const FormPlayList = ({ playbook }) => {
             </div>
             <PlayListQuery playbook={playbook} sourceType={SOURCE_TYPE_ASSIGNING} />
             <div className='flex'>
+              <button className='flex gap-2' onClick={saveAndCreatePlay}>
+                <FaPlusCircle className='ml-3 my-auto' color='#3f9edd' />
+                <div className='text-dial-blue my-auto'>
+                  {`${format('app.create-new')} ${format('plays.label')}`}
+                </div>
+              </button>
               <button
                 type='button'
                 className='ml-auto bg-button-gray-light text-white py-2 px-4 rounded'
@@ -119,7 +125,7 @@ const FormPlayList = ({ playbook }) => {
   )
 }
 
-export const FormTextEditor = ({ control, name }) => {
+const FormTextEditor = ({ control, name }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -129,6 +135,7 @@ export const FormTextEditor = ({ control, name }) => {
       <Controller
         name={name}
         control={control}
+        rules={{ required: true }}
         render={({ field: { value, onChange, onBlur } }) => {
           return (
             <HtmlEditor
@@ -147,12 +154,13 @@ export const FormTextEditor = ({ control, name }) => {
 // eslint-disable-next-line react/display-name
 export const PlaybookForm = React.memo(({ playbook }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
 
   const [session] = useSession()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
+  const [navigateToPlay, setNavigateToPlay] = useState(false)
 
   const { locale } = useRouter()
   const [updatePlaybook, { data }] = useMutation(MUTATE_PLAYBOOK)
@@ -183,12 +191,23 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   useEffect(() => {
     if (data && data.createPlaybook.errors.length === 0 && data.createPlaybook.playbook) {
       setMutating(false)
-      showToast(format('playbook.submitted'), 'success', 'top-center')
-      setTimeout(() => {
-        router.push(`/${locale}/playbooks/${data.createPlaybook.playbook.slug}`)
-      }, 500)
+      if (!navigateToPlay) {
+        showToast(format('playbook.submitted'), 'success', 'top-center')
+        const navigateToPlaybook = setTimeout(() => {
+          router.push(`/${locale}/playbooks/${data.createPlaybook.playbook.slug}`)
+        }, 800)
+
+        return () => clearTimeout(navigateToPlaybook)
+      } else {
+        showToast(format('playbook.submittedToCreatePlay'), 'success', 'top-center')
+        const navigateToPlay = setTimeout(() => {
+          router.push(`/${locale}/playbooks/${data.createPlaybook.playbook.slug}/plays/create`)
+        }, 800)
+
+        return () => clearTimeout(navigateToPlay)
+      }
     }
-  }, [data, locale, router, showToast])
+  }, [data, locale, router, showToast, format])
 
   const doUpsert = async (data) => {
     if (session) {
@@ -241,6 +260,14 @@ export const PlaybookForm = React.memo(({ playbook }) => {
     return map
   })()
 
+  const saveAndCreatePlay = () => {
+    setNavigateToPlay(true)
+  }
+
+  const savePlaybook = () => {
+    setNavigateToPlay(false)
+  }
+
   return (
     <div className='flex flex-col'>
       <div className='hidden lg:block px-8'>
@@ -266,7 +293,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
                   <div className='flex flex-col gap-y-2'>
                     <label className='text-xl text-dial-blue' htmlFor='name'>
                       {format('playbooks.tags')}
-                      <TagAutocomplete {...{ tags, setTags }} containerStyles='pb-2' controlSize='100%' />
+                      <TagAutocomplete {...{ tags, setTags }} controlSize='100%' placeholder={format('playbook.form.tags')} />
                     </label>
                     <div className='flex flex-wrap gap-1'>
                       <TagFilters {...{ tags, setTags }} />
@@ -285,10 +312,11 @@ export const PlaybookForm = React.memo(({ playbook }) => {
                   <FormTextEditor control={control} name='outcomes' />
                 </div>
               </div>
-              <FormPlayList playbook={playbook} />
+              <FormPlayList playbook={playbook} saveAndCreatePlay={saveAndCreatePlay} />
               <div className='flex font-semibold text-xl mt-8 gap-3'>
                 <button
                   type='submit'
+                  onClick={savePlaybook}
                   className='bg-blue-500 text-dial-gray-light py-3 px-8 rounded disabled:opacity-50'
                   disabled={mutating || reverting}
                 >
