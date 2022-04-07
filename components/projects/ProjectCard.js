@@ -158,7 +158,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                         <div className='text-base'>{format('organization.header')}</div>
                         <div className={`font-semibold whitespace-wrap ${!projectOrganization ? 'opacity-30' : ''}`}>
                           {
-                            !projectOrganization ? format('general.na') : projectOrganization.name
+                            !projectOrganization ? format('general.na') : truncate(projectOrganization.name, 40, true, true)
                           }
                         </div>
                       </div>
