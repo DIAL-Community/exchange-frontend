@@ -1113,6 +1113,9 @@ export const en = {
   'play.assignedMoves': 'Moves currently assigned. You can preview, re-order, unnassign moves, or add a new move.',
 
   'playbook.submittedToCreatePlay': 'Playbook saved. Navigating to create play ...',
+  'playbook.author': 'Playbook Author',
+  'playbook.cover': 'Playbook Cover',
+
   'play.submittedToCreateMove': 'Play saved. Navigating to create move ...',
   'play.submitted': 'Play saved.',
 

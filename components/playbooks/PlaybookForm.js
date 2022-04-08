@@ -20,6 +20,8 @@ const MUTATE_PLAYBOOK = gql`
   mutation (
     $name: String!,
     $slug: String!,
+    $cover: Upload,
+    $author: String,
     $overview: String!,
     $audience: String,
     $outcomes: String,
@@ -29,6 +31,8 @@ const MUTATE_PLAYBOOK = gql`
     createPlaybook(
       name: $name,
       slug: $slug,
+      cover: $cover,
+      author: $author,
       overview: $overview,
       audience: $audience,
       outcomes: $outcomes,
@@ -170,6 +174,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
     shouldUnregister: true,
     defaultValues: {
       name: playbook && playbook.name,
+      author: playbook && playbook.author,
       overview: playbook && playbook.playbookDescription.overview,
       audience: playbook && playbook.playbookDescription.audience,
       outcomes: playbook && playbook.playbookDescription.outcomes
@@ -215,17 +220,21 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = session.user
-      const { name, overview, audience, outcomes } = data
+      const { name, cover, author, overview, audience, outcomes } = data
+      const [coverFile] = cover
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
         slug,
+        author,
         overview,
         audience,
         outcomes,
+        cover: coverFile,
         plays: currentPlays,
         tags: tags.map(tag => tag.label)
       }
+
       updatePlaybook({
         variables,
         context: {
@@ -288,6 +297,20 @@ export const PlaybookForm = React.memo(({ playbook }) => {
                     <input
                       {...register('name', { required: true })}
                       className='shadow border-1 rounded w-full py-2 px-3'
+                    />
+                  </label>
+                  <label className='flex flex-col gap-y-2 text-xl text-dial-blue mb-2'>
+                    {format('playbook.cover')}
+                    <input
+                      {...register('cover')} type='file'
+                      className='shadow border-1 rounded w-full py-2 px-3 text-base leading-6'
+                    />
+                  </label>
+                  <label className='flex flex-col gap-y-2 text-xl text-dial-blue mb-2'>
+                    {format('playbook.author')}
+                    <input
+                      {...register('author')}
+                      className='shadow border-1 rounded w-full py-2 px-3 text-base leading-6'
                     />
                   </label>
                   <div className='flex flex-col gap-y-2'>
