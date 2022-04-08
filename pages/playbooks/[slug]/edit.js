@@ -19,6 +19,7 @@ const PLAYBOOK_QUERY = gql`
       name
       slug
       tags
+      author
       playbookDescription {
         overview
         audience
