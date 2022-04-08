@@ -14,12 +14,16 @@ const PLAYBOOKS_QUERY = gql`
 query SearchPlaybooks(
   $first: Int,
   $after: String,
-  $search: String!
+  $search: String!,
+  $tags: [String!],
+  $products: [String!]
   ) {
   searchPlaybooks(
     first: $first,
     after: $after,
-    search: $search
+    search: $search,
+    products: $products,
+    tags: $tags
   ) {
     __typename
     totalCount
@@ -90,12 +94,14 @@ const PlaybookListQuery = () => {
   const format = (id) => formatMessage({ id })
 
   const { displayType, filterDisplayed, resultCounts, setResultCounts } = useContext(FilterContext)
-  const { search } = useContext(PlaybookFilterContext)
+  const { search, tags, products } = useContext(PlaybookFilterContext)
 
   const { loading, error, data, fetchMore, refetch } = useQuery(PLAYBOOKS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
-      search: search
+      search: search,
+      products: products.map(product => product.value),
+      tags: tags.map(tag => tag.label)
     },
     context: { headers: { 'Accept-Language': locale } }
   })
@@ -105,14 +111,16 @@ const PlaybookListQuery = () => {
       variables: {
         first: DEFAULT_PAGE_SIZE,
         after: pageInfo.endCursor,
-        search: search
+        search: search,
+        products: products.map(product => product.value),
+        tags: tags.map(tag => tag.label)
       }
     })
   }
 
   useEffect(() => {
     refetch()
-  }, [locale])
+  }, [locale, refetch])
 
   useEffect(() => {
     if (data) {
@@ -121,7 +129,7 @@ const PlaybookListQuery = () => {
         ...{ [['filter.entity.playbooks']]: data.searchPlaybooks.totalCount }
       })
     }
-  }, [data])
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />

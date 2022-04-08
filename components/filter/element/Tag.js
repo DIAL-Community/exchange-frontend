@@ -36,7 +36,7 @@ const customStyles = (controlSize = '12rem') => {
 
 export const TagAutocomplete = (props) => {
   const client = useApolloClient()
-  const { tags, setTags, containerStyles, controlSize, placeholder } = props
+  const { tags, setTags, tagQuery, containerStyles, controlSize, placeholder } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -62,8 +62,13 @@ export const TagAutocomplete = (props) => {
       }
     })
 
-    if (response.data && response.data.tags) {
-      return response.data.tags.map((tag) => ({
+    if (response.data) {
+      let tags = response.data.tags
+      if (!tags) {
+        tags = response.data.searchPlaybookTags
+      }
+
+      return tags.map((tag) => ({
         label: tag.name,
         value: tag.id,
         slug: tag.name
@@ -80,7 +85,7 @@ export const TagAutocomplete = (props) => {
         className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
         cacheOptions
         defaultOptions
-        loadOptions={(input, callback) => fetchOptions(input, callback, TAG_SEARCH_QUERY)}
+        loadOptions={(input, callback) => fetchOptions(input, callback, tagQuery || TAG_SEARCH_QUERY)}
         noOptionsMessage={() => format('filter.searchFor', { entity: format('tag.header') })}
         onChange={selectTag}
         placeholder={controlPlaceholder}

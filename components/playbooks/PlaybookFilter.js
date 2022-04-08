@@ -1,10 +1,21 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
+import { gql } from '@apollo/client'
 import { BsQuestionCircleFill } from 'react-icons/bs'
 import { FilterContext } from '../context/FilterContext'
 import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../context/PlaybookFilterContext'
 import { ProductAutocomplete } from '../filter/element/Product'
 import { TagAutocomplete } from '../filter/element/Tag'
+
+const SEARCH_PLAYBOOK_TAGS_QUERY = gql`
+  query SearchPlaybookTags($search: String!) {
+    searchPlaybookTags(search: $search) {
+      id
+      name
+      slug
+    }
+  }
+`
 
 const PlaybookFilter = () => {
   const { formatMessage } = useIntl()
@@ -30,7 +41,12 @@ const PlaybookFilter = () => {
           </div>
           <div className='text-sm text-dial-gray-light flex flex-row flex-wrap'>
             <ProductAutocomplete {...{ products, setProducts }} containerStyles='px-2 pb-2' controlSize='20rem' />
-            <TagAutocomplete {...{ tags, setTags }} containerStyles='px-2 pb-2' controlSize='20rem' />
+            <TagAutocomplete
+              {...{ tags, setTags }}
+              tagQuery={SEARCH_PLAYBOOK_TAGS_QUERY}
+              containerStyles='px-2 pb-2'
+              controlSize='20rem'
+            />
           </div>
         </div>
       </div>
