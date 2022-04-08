@@ -125,7 +125,7 @@ const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
   )
 }
 
-const FormTextEditor = ({ control, name, required=false }) => {
+const FormTextEditor = ({ control, name, required = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -207,7 +207,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
         return () => clearTimeout(navigateToPlay)
       }
     }
-  }, [data, locale, router, showToast, format])
+  }, [data, locale, router, showToast, navigateToPlay, format])
 
   const doUpsert = async (data) => {
     if (session) {
@@ -301,7 +301,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
                   </div>
                 </div>
                 <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }}>
-                  <FormTextEditor control={control} name='overview' required={true} />
+                  <FormTextEditor control={control} name='overview' required />
                 </div>
               </div>
               <div className='flex flex-col lg:flex-row gap-x-4'>
