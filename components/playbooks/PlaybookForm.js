@@ -21,6 +21,8 @@ const generateMutationText = (mutationFunc) => {
     mutation (
       $name: String!,
       $slug: String!,
+      $author: String,
+      $cover: Upload,
       $overview: String!,
       $audience: String,
       $outcomes: String,
@@ -30,6 +32,8 @@ const generateMutationText = (mutationFunc) => {
       ${mutationFunc}(
         name: $name,
         slug: $slug,
+        author: $author,
+        cover: $cover,
         overview: $overview,
         audience: $audience,
         outcomes: $outcomes,
@@ -262,11 +266,13 @@ export const PlaybookForm = React.memo(({ playbook }) => {
         setMutating(true)
         // Pull all needed data from session and form.
         const { userEmail, userToken } = session.user
-        const { name, overview, audience, outcomes } = watch()
+        const { name, author, overview, audience, outcomes } = watch()
         // Send graph query to the backend. Set the base variables needed to perform update.
+        // Auto save will not save the cover file since it could be expensive.
         const variables = {
           name,
           slug,
+          author,
           overview,
           audience,
           outcomes,
