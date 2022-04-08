@@ -19,6 +19,7 @@ export const en = {
   'app.reportIssue': 'Report Issue',
   'app.submit': 'Submit',
   'app.delete': 'Delete',
+  'app.print-pdf': 'Print PDF',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -328,6 +329,7 @@ export const en = {
   'general.fetchError': 'Error fetching data. Please check your network connection.',
   'general.loadingData': 'Loading more data ...',
   'general.unauthorized': 'You are not authorized to view this page',
+  'general.ready-to-download': 'Your document is ready. Click to download',
 
   'view.switch.title': 'Switch View',
   'search.input.label': 'Enter Search Term',
