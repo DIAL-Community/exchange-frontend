@@ -11,18 +11,35 @@ import Breadcrumb from '../shared/breadcrumb'
 import { ToastContext } from '../../lib/ToastContext'
 import MoveListDraggable from './moves/MoveListDraggable'
 
-const CREATE_PLAY = gql`
-mutation ($name: String!, $slug: String!, $description: String!, $tags: JSON!, $playbookSlug: String) {
-  createPlay(name: $name, slug: $slug, description: $description, tags: $tags, playbookSlug: $playbookSlug) {
-    play {
-      id
-      name
-      slug
+const generateMutationText = (mutationFunc) => {
+  return `
+    mutation (
+      $name: String!,
+      $slug: String!,
+      $description: String!,
+      $tags: JSON!,
+      $playbookSlug: String
+    ) {
+      ${mutationFunc} (
+        name: $name,
+        slug: $slug,
+        description: $description,
+        tags: $tags,
+        playbookSlug: $playbookSlug
+      ) {
+        play {
+          id
+          name
+          slug
+        }
+        errors
+      }
     }
-    errors
-  }
+  `
 }
-`
+
+const CREATE_PLAY = gql(generateMutationText('createPlay'))
+const AUTOSAVE_PLAY = gql(generateMutationText('autoSavePlay'))
 
 const FormTextEditor = ({ control, name }) => {
   const { formatMessage } = useIntl()
@@ -60,6 +77,7 @@ export const PlayForm = ({ playbook, play }) => {
   const [assigningToPlaybook, setAssigningToPlaybook] = useState(false)
 
   const [createPlay, { data }] = useMutation(CREATE_PLAY)
+  const [autoSavePlay, { data: autoSaveData }] = useMutation(AUTOSAVE_PLAY)
 
   const router = useRouter()
   const [session] = useSession()
@@ -70,7 +88,7 @@ export const PlayForm = ({ playbook, play }) => {
     play ? play.tags.map(tag => { return { label: tag, value: tag } }) : []
   )
 
-  const { handleSubmit, register, control } = useForm({
+  const { handleSubmit, register, control, watch } = useForm({
     mode: 'onBlur',
     reValidateMode: 'onChange',
     shouldUnregister: true,
@@ -99,8 +117,11 @@ export const PlayForm = ({ playbook, play }) => {
 
         return () => clearTimeout(navigateToMove)
       }
+    } else if (autoSaveData?.autoSavePlay?.errors.length === 0 && autoSaveData?.autoSavePlay?.play) {
+      setMutating(false)
+      showToast(format('play.autoSaved'), 'success', 'top-right')
     }
-  }, [data, playbook, navigateToMove, router, showToast, format])
+  }, [data, autoSaveData, playbook, navigateToMove, router, showToast, format])
 
   const doUpsert = async (data) => {
     if (session) {
@@ -131,6 +152,43 @@ export const PlayForm = ({ playbook, play }) => {
       })
     }
   }
+
+  useEffect(() => {
+    const doAutoSave = () => {
+      const { locale } = router
+      if (session) {
+        // Set the loading indicator.
+        setMutating(true)
+        // Pull all needed data from session and form.
+        const { userEmail, userToken } = session.user
+        const { name, description } = watch()
+        // Send graph query to the backend. Set the base variables needed to perform update.
+        const variables = {
+          name,
+          slug,
+          description,
+          tags: tags.map(tag => tag.label)
+        }
+        autoSavePlay({
+          variables,
+          context: {
+            headers: {
+              'Accept-Language': locale,
+              Authorization: `${userEmail} ${userToken}`
+            }
+          }
+        })
+      }
+    }
+
+    const interval = setInterval(() => {
+      if (slug) {
+        doAutoSave()
+      }
+    }, 20000)
+
+    return () => clearInterval(interval)
+  }, [session, slug, tags, router, watch, autoSavePlay])
 
   const cancelForm = () => {
     setReverting(true)
