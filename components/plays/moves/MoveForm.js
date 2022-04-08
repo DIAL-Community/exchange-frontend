@@ -398,7 +398,7 @@ export const MoveForm = ({ playbook, play, move }) => {
       if (moveSlug) {
         doAutoSave()
       }
-    }, 20000)
+    }, 60000)
 
     return () => clearInterval(interval)
   }, [session, moveSlug, playSlug, resources, router, watch, autoSaveMove])

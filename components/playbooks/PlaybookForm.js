@@ -289,7 +289,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       if (slug) {
         doAutoSave()
       }
-    }, 20000)
+    }, 60000)
 
     return () => clearInterval(interval)
   }, [session, slug, currentPlays, tags, locale, watch, autoSavePlaybook])

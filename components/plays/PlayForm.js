@@ -185,7 +185,7 @@ export const PlayForm = ({ playbook, play }) => {
       if (slug) {
         doAutoSave()
       }
-    }, 20000)
+    }, 60000)
 
     return () => clearInterval(interval)
   }, [session, slug, tags, router, watch, autoSavePlay])
