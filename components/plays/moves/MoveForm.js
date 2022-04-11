@@ -35,33 +35,38 @@ const CREATE_RESOURCE = gql`
     }
   }
 `
-const CREATE_MOVE = gql`
-  mutation (
-    $playSlug: String!,
-    $moveSlug: String!,
-    $name: String!,
-    $description: String!,
-    $resources: JSON!
-  ) {
-    createMove(
-      playSlug: $playSlug,
-      moveSlug: $moveSlug,
-      name: $name,
-      description: $description,
-      resources: $resources
+const generateMutationText = (mutationFunc) => {
+  return `
+    mutation (
+      $playSlug: String!,
+      $moveSlug: String!,
+      $name: String!,
+      $description: String!,
+      $resources: JSON!
     ) {
-      move {
-        id
-        name
-        slug
-        play {
+      ${mutationFunc} (
+        playSlug: $playSlug,
+        moveSlug: $moveSlug,
+        name: $name,
+        description: $description,
+        resources: $resources
+      ) {
+        move {
+          id
+          name
           slug
+          play {
+            slug
+          }
         }
+        errors
       }
-      errors
     }
-  }
-`
+  `
+}
+
+const CREATE_MOVE = gql(generateMutationText('createMove'))
+const AUTOSAVE_MOVE = gql(generateMutationText('autoSaveMove'))
 
 const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResource, removeResource, setEditing }) => {
   const [mutating, setMutating] = useState(false)
@@ -285,9 +290,10 @@ export const MoveForm = ({ playbook, play, move }) => {
     move ? move.resources.map((resource, i) => ({ ...resource, i: i })) : []
   )
   const [createMove, { data }] = useMutation(CREATE_MOVE)
+  const [autoSaveMove, { data: autoSaveData }] = useMutation(AUTOSAVE_MOVE)
   const { showToast } = useContext(ToastContext)
 
-  const { handleSubmit, register, control } = useForm({
+  const { handleSubmit, register, control, watch } = useForm({
     mode: 'onBlur',
     reValidateMode: 'onChange',
     shouldUnregister: true,
@@ -353,8 +359,49 @@ export const MoveForm = ({ playbook, play, move }) => {
       }, 2000)
 
       return () => clearTimeout(navigateToPlay)
+    } else if (autoSaveData?.autoSaveMove?.errors.length === 0 && autoSaveData?.autoSaveMove?.move) {
+      setMutating(false)
+      showToast(format('move.autoSaved'), 'success', 'top-right')
     }
-  }, [play, playbook, router, data, showToast, format])
+  }, [data, autoSaveData, play, playbook, router, showToast, format])
+
+  useEffect(() => {
+    const doAutoSave = () => {
+      const { locale } = router
+      if (session) {
+        // Set the loading indicator.
+        setMutating(true)
+        // Pull all needed data from session and form.
+        const { userEmail, userToken } = session.user
+        const { name, description } = watch()
+        // Send graph query to the backend. Set the base variables needed to perform update.
+        const variables = {
+          moveSlug,
+          playSlug,
+          name,
+          description,
+          resources
+        }
+        autoSaveMove({
+          variables,
+          context: {
+            headers: {
+              'Accept-Language': locale,
+              Authorization: `${userEmail} ${userToken}`
+            }
+          }
+        })
+      }
+    }
+
+    const interval = setInterval(() => {
+      if (moveSlug) {
+        doAutoSave()
+      }
+    }, 60000)
+
+    return () => clearInterval(interval)
+  }, [session, moveSlug, playSlug, resources, router, watch, autoSaveMove])
 
   const cancelForm = () => {
     setReverting(true)

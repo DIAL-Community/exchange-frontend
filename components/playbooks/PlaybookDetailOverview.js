@@ -83,6 +83,10 @@ const PlaybookDetailOverview = ({ slug, locale }) => {
     return `/${locale}/playbooks/${slug}/edit`
   }
 
+  const generatePdfLink = () => {
+    return `/${locale}/playbooks/${slug}/pdf`
+  }
+
   if (loading) {
     return <Loading />
   }
@@ -102,6 +106,10 @@ const PlaybookDetailOverview = ({ slug, locale }) => {
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
         <div className='mt-4 ml-auto'>
+          <a href={generatePdfLink()} target='_blank' rel='noreferrer' className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
+            <img src='/icons/pdf.svg' className='inline mr-2 pb-1' alt='Print PDF' height='12px' width='12px' />
+            <span className='text-sm px-2'>{format('app.print-pdf')}</span>
+          </a>
           {
             session?.user.canEdit && (
               <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>

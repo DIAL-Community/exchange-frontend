@@ -19,6 +19,7 @@ export const en = {
   'app.reportIssue': 'Report Issue',
   'app.submit': 'Submit',
   'app.delete': 'Delete',
+  'app.print-pdf': 'Print PDF',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -328,6 +329,7 @@ export const en = {
   'general.fetchError': 'Error fetching data. Please check your network connection.',
   'general.loadingData': 'Loading more data ...',
   'general.unauthorized': 'You are not authorized to view this page',
+  'general.ready-to-download': 'Your document is ready. Click to download',
 
   'view.switch.title': 'Switch View',
   'search.input.label': 'Enter Search Term',
@@ -1113,10 +1115,17 @@ export const en = {
   'play.assignedMoves': 'Moves currently assigned. You can preview, re-order, unnassign moves, or add a new move.',
 
   'playbook.submittedToCreatePlay': 'Playbook saved. Navigating to create play ...',
+  'playbook.autoSaved': 'Playbook saved ...',
+  'playbook.author': 'Playbook Author',
+  'playbook.cover': 'Playbook Cover',
+
   'play.submittedToCreateMove': 'Play saved. Navigating to create move ...',
   'play.submitted': 'Play saved.',
+  'play.autoSaved': 'Play saved ...',
 
   'move.submitted': 'Move saved.',
+  'move.autoSaved': 'Move saved ...',
+
   'resource.submitted': 'Resource saved.'
 
 }

@@ -16,46 +16,55 @@ import { PlayFilterContext, PlayFilterDispatchContext } from '../context/PlayFil
 import { ToastContext } from '../../lib/ToastContext'
 const PlayListQuery = dynamic(() => import('../plays/PlayList'), { ssr: false })
 
-const MUTATE_PLAYBOOK = gql`
-  mutation (
-    $name: String!,
-    $slug: String!,
-    $overview: String!,
-    $audience: String,
-    $outcomes: String,
-    $tags: JSON!,
-    $plays: JSON
-  ) {
-    createPlaybook(
-      name: $name,
-      slug: $slug,
-      overview: $overview,
-      audience: $audience,
-      outcomes: $outcomes,
-      tags: $tags,
-      plays: $plays
+const generateMutationText = (mutationFunc) => {
+  return `
+    mutation (
+      $name: String!,
+      $slug: String!,
+      $author: String,
+      $cover: Upload,
+      $overview: String!,
+      $audience: String,
+      $outcomes: String,
+      $tags: JSON!,
+      $plays: JSON
     ) {
-      playbook {
-        id
-        name
-        slug
-        tags
-        playbookDescription {
+      ${mutationFunc}(
+        name: $name,
+        slug: $slug,
+        author: $author,
+        cover: $cover,
+        overview: $overview,
+        audience: $audience,
+        outcomes: $outcomes,
+        tags: $tags,
+        plays: $plays
+      ) {
+        playbook {
           id
-          overview
-          audience
-          outcomes
-        }
-        plays {
-          id
-          slug
           name
+          slug
+          tags
+          playbookDescription {
+            id
+            overview
+            audience
+            outcomes
+          }
+          plays {
+            id
+            slug
+            name
+          }
         }
+        errors
       }
-      errors
     }
-  }
-`
+  `
+}
+
+const MUTATE_PLAYBOOK = gql(generateMutationText('createPlaybook'))
+const AUTOSAVE_PLAYBOOK = gql(generateMutationText('autoSavePlaybook'))
 
 const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
   const { formatMessage } = useIntl()
@@ -125,7 +134,7 @@ const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
   )
 }
 
-const FormTextEditor = ({ control, name, required=false }) => {
+const FormTextEditor = ({ control, name, required = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -156,6 +165,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
 
+  const router = useRouter()
   const [session] = useSession()
 
   const [mutating, setMutating] = useState(false)
@@ -164,12 +174,14 @@ export const PlaybookForm = React.memo(({ playbook }) => {
 
   const { locale } = useRouter()
   const [updatePlaybook, { data }] = useMutation(MUTATE_PLAYBOOK)
-  const { handleSubmit, register, control } = useForm({
+  const [autoSavePlaybook, { data: autoSaveData }] = useMutation(AUTOSAVE_PLAYBOOK)
+  const { handleSubmit, register, control, watch } = useForm({
     mode: 'onBlur',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
       name: playbook && playbook.name,
+      author: playbook && playbook.author,
       overview: playbook && playbook.playbookDescription.overview,
       audience: playbook && playbook.playbookDescription.audience,
       outcomes: playbook && playbook.playbookDescription.outcomes
@@ -186,28 +198,33 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   const { showToast } = useContext(ToastContext)
   const { currentPlays } = useContext(PlayListContext)
 
-  const router = useRouter()
+  const notifyAndNavigateAway = useCallback(() => {
+    setMutating(false)
+    if (!navigateToPlay) {
+      showToast(format('playbook.submitted'), 'success', 'top-center')
+      const navigateToPlaybook = setTimeout(() => {
+        router.push(`/${router.locale}/playbooks/${data.createPlaybook.playbook.slug}`)
+      }, 800)
+
+      return () => clearTimeout(navigateToPlaybook)
+    } else {
+      showToast(format('playbook.submittedToCreatePlay'), 'success', 'top-center')
+      const navigateToPlay = setTimeout(() => {
+        router.push(`/${router.locale}/playbooks/${data.createPlaybook.playbook.slug}/plays/create`)
+      }, 800)
+
+      return () => clearTimeout(navigateToPlay)
+    }
+  }, [data, router, format, showToast, navigateToPlay])
 
   useEffect(() => {
-    if (data && data.createPlaybook.errors.length === 0 && data.createPlaybook.playbook) {
+    if (data?.createPlaybook?.errors.length === 0 && data?.createPlaybook?.playbook) {
+      notifyAndNavigateAway()
+    } else if (autoSaveData?.autoSavePlaybook?.errors.length === 0 && autoSaveData?.autoSavePlaybook?.playbook) {
       setMutating(false)
-      if (!navigateToPlay) {
-        showToast(format('playbook.submitted'), 'success', 'top-center')
-        const navigateToPlaybook = setTimeout(() => {
-          router.push(`/${locale}/playbooks/${data.createPlaybook.playbook.slug}`)
-        }, 800)
-
-        return () => clearTimeout(navigateToPlaybook)
-      } else {
-        showToast(format('playbook.submittedToCreatePlay'), 'success', 'top-center')
-        const navigateToPlay = setTimeout(() => {
-          router.push(`/${locale}/playbooks/${data.createPlaybook.playbook.slug}/plays/create`)
-        }, 800)
-
-        return () => clearTimeout(navigateToPlay)
-      }
+      showToast(format('playbook.autoSaved'), 'success', 'top-right')
     }
-  }, [data, locale, router, showToast, format])
+  }, [data, autoSaveData, notifyAndNavigateAway, showToast, format])
 
   const doUpsert = async (data) => {
     if (session) {
@@ -215,17 +232,21 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = session.user
-      const { name, overview, audience, outcomes } = data
+      const { name, cover, author, overview, audience, outcomes } = data
+      const [coverFile] = cover
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
         slug,
+        author,
         overview,
         audience,
         outcomes,
+        cover: coverFile,
         plays: currentPlays,
         tags: tags.map(tag => tag.label)
       }
+
       updatePlaybook({
         variables,
         context: {
@@ -237,6 +258,47 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       })
     }
   }
+
+  useEffect(() => {
+    const doAutoSave = () => {
+      if (session) {
+        // Set the loading indicator.
+        setMutating(true)
+        // Pull all needed data from session and form.
+        const { userEmail, userToken } = session.user
+        const { name, author, overview, audience, outcomes } = watch()
+        // Send graph query to the backend. Set the base variables needed to perform update.
+        // Auto save will not save the cover file since it could be expensive.
+        const variables = {
+          name,
+          slug,
+          author,
+          overview,
+          audience,
+          outcomes,
+          plays: currentPlays,
+          tags: tags.map(tag => tag.label)
+        }
+        autoSavePlaybook({
+          variables,
+          context: {
+            headers: {
+              'Accept-Language': locale,
+              Authorization: `${userEmail} ${userToken}`
+            }
+          }
+        })
+      }
+    }
+
+    const interval = setInterval(() => {
+      if (slug) {
+        doAutoSave()
+      }
+    }, 60000)
+
+    return () => clearInterval(interval)
+  }, [session, slug, currentPlays, tags, locale, watch, autoSavePlaybook])
 
   const cancelForm = () => {
     setReverting(true)
@@ -290,6 +352,20 @@ export const PlaybookForm = React.memo(({ playbook }) => {
                       className='shadow border-1 rounded w-full py-2 px-3'
                     />
                   </label>
+                  <label className='flex flex-col gap-y-2 text-xl text-dial-blue mb-2'>
+                    {format('playbook.cover')}
+                    <input
+                      {...register('cover')} type='file'
+                      className='shadow border-1 rounded w-full py-2 px-3 text-base leading-6'
+                    />
+                  </label>
+                  <label className='flex flex-col gap-y-2 text-xl text-dial-blue mb-2'>
+                    {format('playbook.author')}
+                    <input
+                      {...register('author')}
+                      className='shadow border-1 rounded w-full py-2 px-3 text-base leading-6'
+                    />
+                  </label>
                   <div className='flex flex-col gap-y-2'>
                     <label className='text-xl text-dial-blue' htmlFor='name'>
                       {format('playbooks.tags')}
@@ -301,7 +377,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
                   </div>
                 </div>
                 <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }}>
-                  <FormTextEditor control={control} name='overview' required={true} />
+                  <FormTextEditor control={control} name='overview' required />
                 </div>
               </div>
               <div className='flex flex-col lg:flex-row gap-x-4'>

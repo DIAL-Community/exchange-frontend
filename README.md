@@ -28,9 +28,14 @@ Please also reference the [Wiki page for the Catalog](https://solutions-catalog.
 
 ## Prerequisites
 
- * Node.js (Version 12 or greater)
+ * Node.js (Version 16 or greater)
+ * Npm
 
-## Application configuration
+## Application configuration for development 
+
+Environment variables must be set in the .env.development file in the root of the project. See the 
+.env.example file for a list of variables to be set. These variables will be loaded automatically when
+the application starts.
 
 To configure and run the application, navigate to project directory and run the following commands:
 

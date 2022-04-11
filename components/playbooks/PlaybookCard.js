@@ -36,7 +36,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed }) => {
                   <div className={` ${ellipsisTextStyle} pr-3 text-base font-semibold group-hover:text-dial-yellow`}>
                     <img
                       data-tip={format('tooltip.forEntity', { entity: format('playbooks.label'), name: playbook.name })}
-                      alt={format('image.alt.logoFor', { name: playbook.name })} className='m-auto h-6 workflow-filter inline mr-3'
+                      alt={format('image.alt.logoFor', { name: playbook.name })} className='m-auto h-6 inline mr-3'
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
                     />
                     {playbook.name}
@@ -62,7 +62,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed }) => {
                     </div>
                     <div className='mx-auto mt-5 pt-20 w-40 h-60'>
                       <img
-                        alt={format('image.alt.logoFor', { name: playbook.name })} className='workflow-filter'
+                        alt={format('image.alt.logoFor', { name: playbook.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
                       />
                     </div>

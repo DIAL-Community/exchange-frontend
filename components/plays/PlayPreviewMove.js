@@ -23,10 +23,10 @@ const MOVE_QUERY = gql`
   }
 `
 
-const PlayPreviewMove = ({ moveName, moveSlug, playSlug }) => {
+const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf=false }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
-  const [openingDetail, setOpeningDetail] = useState(false)
+  const [openingDetail, setOpeningDetail] = useState(pdf)
 
   const toggleDetail = () => {
     setOpeningDetail(!openingDetail)
