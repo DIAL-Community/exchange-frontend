@@ -123,11 +123,18 @@ export const en = {
       This approach is rooted in the SDG Digital Investment Framework, developed by DIAL and ITU.
       `,
   'definition.featured': `
-      We are excited to announce the launch of our new dialog and commenting features. For many of the products and building blocks in the Catalog, you can join online conversations with other users.
+      New! Playbooks are guides that provide step-by-step instructions and 
+      highlight key technical and operational considerations for your 
+      #digitaltransformation projects. 
       <br /><br />
-      We invite you to share your questions, experiences, best practices and recommendations with the community of Catalog users.
+      Hola! Olá! Habari! We recently added these 3 new languages to the 
+      Catalog of Digital Solutions
       <br /><br />
-      Look for the 'Comments' section on the Product and Building Block pages.
+      For product owners: You can now update your logo, create and edit 
+      important information about your software, or even list your contact 
+      details to help users get in touch with your team.
+      <br /><br />
+      Read our <a href='https://dial.global/announcing-catalog-of-digital-solutions-release-playbooks-enhanced-filtering-seamless-product-page-editing-and-more/' target='_blank' rel='noreferrer'>blog</a> to learn more about new features
       `,
   'definition.contact': 'We welcome questions or feedback on the Catalog of Digital Solutions. Please feel free to reach out to us.',
   'definition.tutorial.intro': 'Tutorial: Introduction',
