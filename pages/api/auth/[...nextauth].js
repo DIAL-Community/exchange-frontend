@@ -81,7 +81,6 @@ export default NextAuth({
             email: token.user.email
           }
         }
-
         const response = await fetch(
           process.env.NEXT_PUBLIC_AUTH_SERVER + '/authenticate/auth0',
           {
@@ -109,11 +108,11 @@ export default NextAuth({
           ...token,
           user: {
             ...token.user,
-            canEdit: railsUser.canEdit,
-            userEmail: railsUser.userEmail,
-            userToken: railsUser.userToken,
-            own: railsUser.own,
-            roles: railsUser.roles
+            canEdit: railsUser?.canEdit,
+            userEmail: railsUser?.userEmail,
+            userToken: railsUser?.userToken,
+            own: railsUser?.own,
+            roles: railsUser?.roles
           },
           railsAuth: true
         }
