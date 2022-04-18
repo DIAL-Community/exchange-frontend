@@ -30,18 +30,6 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
     }
   })()
 
-  const nameColSpan = (project) => {
-    return !project.organizations && !project.products
-      ? 'col-span-12 lg:col-span-10 xl:col-span-9'
-      : 'col-span-12 lg:col-span-5 xl:col-span-4'
-  }
-
-  const originColSpan = (project) => {
-    return !project.organizations && !project.products
-      ? 'hidden lg:block lg:col-span-2 xl:col-span-3'
-      : 'hidden lg:block lg:col-span-1 xl:col-span-2'
-  }
-
   useEffect(() => {
     ReactTooltip.rebuild()
   })
@@ -57,84 +45,32 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
             ? (
               <div onClick={() => navClickHandler()} className={containerElementStyle}>
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
-                  <div className='grid grid-cols-12 my-4 px-4 text-base font-semibold hover:text-dial-yellow'>
-                    <div className={`${nameColSpan(project)} lg:mr-4 my-auto ${ellipsisTextStyle}`}>
-                      <div className='block lg:hidden font-normal float-right'>
-                        <div
-                          className='block xl:hidden text-right'
-                          data-tip={format('tooltip.forEntity', { entity: format('origin.label'), name: project.origin.name })}
-                        >
-                          {(ORIGIN_ACRONYMS[project.origin.slug.toLowerCase()] || project.origin.slug).toUpperCase()}
-                        </div>
-                      </div>
+                  <div className='flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4' style={{ minHeight: '4.5rem' }}>
+                    <div className={`w-10/12 lg:w-3/12 my-auto font-semibold ${ellipsisTextStyle}`}>
                       {project.name}
-                      {
-                        project.organizations &&
-                        <div className='block lg:hidden flex flex-row mt-1'>
-                          <div className='text-sm font-normal'>
-                            {format('organization.header')}:
-                          </div>
-                          <div className={`mx-1 text-sm font-normal ${ellipsisTextStyle}`}>
-                            {
-                              project.organizations.length === 0 && format('general.na')
-                            }
-                            {
-                              project.organizations.length > 0 &&
-                              project.organizations.map(o => o.name).join(', ')
-                            }
-                          </div>
-                        </div>
-                      }
-                      {
-                        project.products &&
-                        <div className='block lg:hidden flex flex-row mt-1'>
-                          <div className='text-sm font-normal'>
-                            {format('product.header')}:
-                          </div>
-                          <div className='mx-1 text-sm font-normal overflow-hidden text-ellipsis'>
-                            {
-                              project.products.length === 0 && format('general.na')
-                            }
-                            {
-                              project.products.length > 0 &&
-                                project.products.map(p => p.name).join(', ')
-                            }
-                          </div>
-                        </div>
-                      }
                     </div>
                     {
                       project.organizations &&
-                      <div className={`hidden lg:block lg:col-span-3 mr-4 font-normal ${ellipsisTextStyle}`}>
-                        {
-                          project.organizations.length === 0 && format('general.na')
-                        }
-                        {
-                          project.organizations.length > 0 &&
-                            project.organizations.map(o => o.name).join(', ')
-                        }
-                      </div>
+                        <div className={`w-4/12 lg:w-3/12 text-sm lg:text-base ${ellipsisTextStyle}`}>
+                          {project.organizations.length === 0 && format('general.na')}
+                          {project.organizations.length > 0 && project.organizations.map(o => o.name).join(', ')}
+                        </div>
                     }
                     {
                       project.products &&
-                      <div className={`hidden lg:block lg:col-span-3 mr-4 font-normal ${ellipsisTextStyle}`}>
-                        {
-                          project.products.length === 0 && format('general.na')
-                        }
-                        {
-                          project.products.length > 0 &&
-                            project.products.map(p => p.name).join(', ')
-                        }
-                      </div>
+                        <div className={`w-4/12 lg:w-3/12 text-sm lg:text-base ${ellipsisTextStyle}`}>
+                          {project.products.length === 0 && format('general.na')}
+                          {project.products.length > 0 && project.products.map(p => p.name).join(', ')}
+                        </div>
                     }
-                    <div className={`${originColSpan(project)} font-normal`}>
+                    <div className='absolute top-2 lg:top-1/3 right-3 lg:right-4 text-base lg:justify-end'>
                       <img
                         className='hidden xl:block h-6 ml-auto'
                         src={`/images/origins/${project.origin.slug}.png`}
                         alt={project.origin.slug}
                       />
                       <div
-                        className='block xl:hidden text-right'
+                        className='block xl:hidden text-right text-sm font-semibold text-dial-cyan'
                         data-tip={format('tooltip.forEntity', { entity: format('origin.label'), name: project.origin.name })}
                       >
                         {(ORIGIN_ACRONYMS[project.origin.slug.toLowerCase()] || project.origin.slug).toUpperCase()}

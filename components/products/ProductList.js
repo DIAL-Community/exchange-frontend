@@ -2,14 +2,26 @@ import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import { HiSortAscending } from 'react-icons/hi'
+import { FixedSizeGrid, FixedSizeList } from 'react-window'
+import AutoSizer from 'react-virtualized-auto-sizer'
+import InfiniteLoader from 'react-window-infinite-loader'
 import { FilterContext } from '../context/FilterContext'
 import { ProductFilterContext } from '../context/ProductFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
+import NotFound from '../shared/NotFound'
 import ProductCard from './ProductCard'
 
+/* Default number of elements coming from graphql query. */
 const DEFAULT_PAGE_SIZE = 20
+/* Minimum width per product card. This will decide how many column we have in the page. */
+/* The value is based on the minimum required to render Bahmni card. */
+const MIN_PRODUCT_CARD_WIDTH = 380
+/* Default height of the product card. */
+const MIN_PRODUCT_CARD_HEIGHT = 540
+/* Default spacing between product card in a row. This is 0.5 rem. */
+const PRODUCT_CARD_GUTTER_SIZE = 8
+/* Height of the product's single list element when viewing the list view. */
+const MIN_PRODUCT_LIST_SIZE = 80
 
 const PRODUCTS_QUERY = gql`
 query SearchProducts(
@@ -94,64 +106,6 @@ query SearchProducts(
 }
 `
 
-const ProductList = (props) => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-
-  const filterDisplayed = props.filterDisplayed
-  const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card'
-    ? `grid-cols-1 gap-4
-       ${filterDisplayed ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'}`
-    : 'grid-cols-1'
-    }`
-
-  return (
-    <>
-      <div className={gridStyles}>
-        {
-          displayType === 'list' &&
-            <div className='grid grid-cols-12 my-3 px-4 gap-x-4'>
-              <div className='col-span-4 ml-2 text-sm font-semibold opacity-70'>
-                {format('product.header').toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
-              </div>
-              <div
-                className={`
-                  hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
-                  col-span-2 text-sm font-semibold opacity-50
-                `}
-              >
-                {format('product.card.dataset').toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
-              </div>
-              <div
-                className={`
-                  hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
-                  col-span-4 text-sm font-semibold opacity-50
-                `}
-              >
-                {format('origin.header').toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
-              </div>
-            </div>
-        }
-        {
-          props.productList.length > 0
-            ? props.productList.map((product) => (
-              <ProductCard key={product.id} listType={displayType} {...{ product, filterDisplayed }} />
-            ))
-            : (
-              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
-                {format('noResults.entity', { entity: format('products.label').toLowerCase() })}
-              </div>
-            )
-        }
-      </div>
-    </>
-  )
-}
-
 const ProductListQuery = () => {
   const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const {
@@ -224,22 +178,157 @@ const ProductListQuery = () => {
     return <Loading />
   }
 
-  if (error) {
+  if (error && error.networkError) {
     return <Error />
   }
 
-  const { searchProducts: { nodes, pageInfo } } = data
+  if (error && !error.networkError) {
+    return <NotFound />
+  }
+
+  const { searchProducts: { nodes, pageInfo, totalCount } } = data
+  if (nodes.length <= 0) {
+    return (
+      <div className='px-3 py-4'>
+        {format('noResults.entity', { entity: format('product.label').toLowerCase() })}
+      </div>
+    )
+  }
+
+  const isProductLoaded = (index) => !pageInfo.hasNextPage || index < nodes.length
 
   return (
-    <InfiniteScroll
-      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height'
-      dataLength={nodes.length}
-      next={handleLoadMore}
-      hasMore={pageInfo.hasNextPage}
-      loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
-    >
-      <ProductList productList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
-    </InfiniteScroll>
+    <div className='pt-4'>
+      {
+        displayType === 'list' &&
+          <div className='flex flex-row my-3 px-4 gap-x-4'>
+            <div className='w-4/12 text-sm font-semibold opacity-70'>
+              {format('product.header').toUpperCase()}
+            </div>
+            <div className='hidden lg:block w-4/12 text-sm font-semibold opacity-50'>
+              {format('origin.header').toUpperCase()}
+            </div>
+            <div className='hidden lg:block w-2/12 text-sm text-right px-2 font-semibold opacity-50'>
+              {format('product.card.dataset').toUpperCase()}
+            </div>
+          </div>
+      }
+      <div className='block pr-2' style={{ height: '80vh' }}>
+        <AutoSizer>
+          {({ height, width }) => (
+            <InfiniteLoader
+              isItemLoaded={isProductLoaded}
+              itemCount={totalCount}
+              loadMoreItems={handleLoadMore}
+            >
+              {({ onItemsRendered, ref }) => {
+                let columnCount = Math.floor(width / MIN_PRODUCT_CARD_WIDTH)
+                if (width < MIN_PRODUCT_CARD_WIDTH) {
+                  columnCount = 1
+                }
+
+                return (
+                  <>
+                    {
+                      displayType === 'card' &&
+                      <FixedSizeGrid
+                        className='no-scrollbars'
+                        height={height}
+                        width={(width)}
+                        rowHeight={MIN_PRODUCT_CARD_HEIGHT}
+                        columnWidth={width / columnCount}
+                        rowCount={Math.floor(totalCount / columnCount) + 1}
+                        columnCount={columnCount}
+                        onItemsRendered={({
+                          overscanColumnStartIndex,
+                          overscanColumnStopIndex,
+                          overscanRowStartIndex,
+                          overscanRowStopIndex,
+                          visibleColumnStartIndex,
+                          visibleColumnStopIndex,
+                          visibleRowStartIndex,
+                          visibleRowStopIndex
+                        }) => {
+                          onItemsRendered({
+                            overscanStartIndex: overscanColumnStartIndex + overscanRowStartIndex * columnCount,
+                            overscanStopIndex: overscanColumnStopIndex + overscanRowStopIndex * columnCount,
+                            visibleStartIndex: visibleColumnStartIndex + visibleRowStartIndex * columnCount,
+                            visibleStopIndex: visibleColumnStopIndex + visibleRowStopIndex * columnCount
+                          })
+                        }}
+                        ref={ref}
+                      >
+                        {({ columnIndex, rowIndex, style }) => {
+                          const currentIndex = rowIndex * columnCount + columnIndex
+                          const product = nodes[currentIndex]
+
+                          return (
+                            <div
+                              style={{
+                                ...style,
+                                left: style.left + PRODUCT_CARD_GUTTER_SIZE,
+                                top: style.top + PRODUCT_CARD_GUTTER_SIZE,
+                                width: style.width - PRODUCT_CARD_GUTTER_SIZE,
+                                height: style.height - PRODUCT_CARD_GUTTER_SIZE
+                              }}
+                            >
+                              {
+                                currentIndex < nodes.length && product &&
+                                <ProductCard listType={displayType} {...{ product, filterDisplayed }} />
+                              }
+                              {currentIndex < nodes.length && !product && <Loading />}
+                            </div>
+                          )
+                        }}
+                      </FixedSizeGrid>
+                    }
+                    {
+                      displayType === 'list' &&
+                      <FixedSizeList
+                        className='no-scrollbars'
+                        height={height}
+                        width={(width)}
+                        itemSize={(MIN_PRODUCT_LIST_SIZE)}
+                        columnWidth={width / columnCount}
+                        itemCount={totalCount}
+                        onItemsRendered={({
+                          overscanStartIndex,
+                          overscanStopIndex,
+                          visibleStartIndex,
+                          visibleStopIndex
+                        }) => {
+                          onItemsRendered({
+                            overscanStartIndex: overscanStartIndex,
+                            overscanStopIndex: overscanStopIndex,
+                            visibleStartIndex: visibleStartIndex,
+                            visibleStopIndex: visibleStopIndex
+                          })
+                        }}
+                        ref={ref}
+                      >
+                        {({ index, style }) => {
+                          const product = nodes[index]
+
+                          return (
+                            <div style={style}>
+                              {
+                                index < nodes.length && product &&
+                                <ProductCard listType={displayType} {...{ product, filterDisplayed }} />
+                              }
+                              {index < nodes.length && !product && <Loading />}
+                            </div>
+                          )
+                        }}
+                      </FixedSizeList>
+                    }
+                  </>
+                )
+              }}
+            </InfiniteLoader>
+          )}
+        </AutoSizer>
+      </div>
+    </div>
   )
 }
 
