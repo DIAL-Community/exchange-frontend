@@ -1,12 +1,10 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { gql, useQuery } from '@apollo/client'
-import { useEffect } from 'react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
-import withApollo from '../../../lib/apolloClient'
 import WorkflowDetail from '../../../components/workflows/WorkflowDetail'
+import ClientOnly from '../../../lib/ClientOnly'
 
 const Workflow = () => {
   const { formatMessage } = useIntl()
@@ -23,10 +21,12 @@ const Workflow = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <WorkflowDetail slug={slug} locale={locale} />
+      <ClientOnly>
+        <WorkflowDetail slug={slug} locale={locale} />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default withApollo()(Workflow)
+export default Workflow

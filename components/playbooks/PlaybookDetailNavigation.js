@@ -50,7 +50,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
 
   useEffect(() => {
     setCurrentSlug(activeSlug)
-  }, [activeSlug])
+  }, [activeSlug, setCurrentSlug])
 
   useEffect(() => {
     if (windowHeight) {

@@ -1,6 +1,7 @@
 
 import { useEffect } from 'react'
 import Head from 'next/head'
+import { ApolloProvider } from '@apollo/client'
 import { Provider } from 'next-auth/client'
 import { IntlProvider } from 'react-intl'
 import { useRouter } from 'next/router'
@@ -26,6 +27,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import CatalogContext from '../lib/CatalogContext'
 import CandidateContext from '../lib/CandidateContext'
 import { ToastContextProvider } from '../lib/ToastContext'
+import client from '../lib/apolloClient'
 
 export function reportWebVitals (metric) {
   // https://nextjs.org/docs/advanced-features/measuring-performance
@@ -73,16 +75,18 @@ const App = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0' />
       </Head>
       <IntlProvider locale={locale} defaultLocale='en' messages={messages}>
-        <Provider session={pageProps.session}>
-          <DndProvider backend={HTML5Backend}>
-            <ApplicationDefaultContexts>
-              <Component {...pageProps} />
-            </ApplicationDefaultContexts>
-          </DndProvider>
-        </Provider>
+        <ApolloProvider client={client}>
+          <Provider session={pageProps.session}>
+            <DndProvider backend={HTML5Backend}>
+              <ApplicationDefaultContexts>
+                <Component {...pageProps} />
+              </ApplicationDefaultContexts>
+            </DndProvider>
+          </Provider>
+        </ApolloProvider>
       </IntlProvider>
     </>
   )

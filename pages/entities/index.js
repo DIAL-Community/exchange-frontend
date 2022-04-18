@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
-import withApollo from '../../lib/apolloClient'
 import EntityUpload from '../../components/entities/EntityUpload'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
@@ -25,4 +24,4 @@ const EntitiesUpload = () => {
   )
 }
 
-export default withApollo()(EntitiesUpload)
+export default EntitiesUpload

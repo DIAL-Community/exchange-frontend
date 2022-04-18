@@ -127,7 +127,11 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                           src='/icons/coronavirus/coronavirus.png'
                         />
                       }
-                      {product.isLaunchable && <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />}
+                      {product.isLaunchable &&
+                        <img
+                          className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png'
+                          alt={format('image.alt.logoFor', { name: format('product.launchable') })}
+                        />}
                     </div>
                   </div>
                 </div>
@@ -161,7 +165,13 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                         src='/icons/coronavirus/coronavirus.png'
                       />
                     }
-                    {product.isLaunchable && <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />}
+                    {
+                      product.isLaunchable &&
+                        <img
+                          className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png'
+                          alt={format('image.alt.logoFor', { name: format('product.launchable') })}
+                        />
+                    }
                     {
                       product.productType === 'dataset' &&
                       <div className='ml-auto text-dial-cyan text-sm font-semibold'>

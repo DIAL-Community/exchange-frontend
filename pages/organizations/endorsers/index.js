@@ -2,7 +2,6 @@ import { useContext, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { gql, useQuery } from '@apollo/client'
-import apolloClient from '../../../lib/apolloClient'
 import GradientBackground from '../../../components/shared/GradientBackground'
 import OrganizationCard from '../../../components/organizations/OrganizationCard'
 import { FilterContext } from '../../../components/context/FilterContext'
@@ -12,6 +11,7 @@ import { CountryAutocomplete, CountryFilters } from '../../../components/filter/
 import { EndorsingYearFilters, EndorsingYearSelect } from '../../../components/filter/element/EndorsingYear'
 import { SectorAutocomplete, SectorFilters } from '../../../components/filter/element/Sector'
 import EndorserInfo from '../../../components/maps/endorsers/EndorserInfo'
+import ClientOnly from '../../../lib/ClientOnly'
 
 const EndorserMarkerMaps = (props) => {
   const EndorserMarkerMaps = useMemo(() => dynamic(
@@ -74,7 +74,7 @@ query SearchOrganizations(
 }
 `
 
-const EndorserPage = () => {
+const EndorserPageInformation = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -201,4 +201,12 @@ const EndorserPage = () => {
   )
 }
 
-export default apolloClient()(EndorserPage)
+const EndorserPage = () => {
+  return (
+    <ClientOnly>
+      <EndorserPageInformation />
+    </ClientOnly>
+  )
+}
+
+export default EndorserPage

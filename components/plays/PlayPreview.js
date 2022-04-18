@@ -88,9 +88,9 @@ const PlayPreview = () => {
   useEffect(() => {
     if (duplicating && duplicatedPlay) {
       setDuplicating(false)
-      router.push(`/${locale}/playbooks/${previewContext}/plays/${duplicatedPlay.duplicatePlay.play.slug}/edit`)
+      router.push(`/${router.locale}/playbooks/${previewContext}/plays/${duplicatedPlay.duplicatePlay.play.slug}/edit`)
     }
-  }, [duplicating, duplicatedPlay, router])
+  }, [duplicating, duplicatedPlay, router, previewContext])
 
   const createDuplicatePlay = () => {
     setDuplicating(true)

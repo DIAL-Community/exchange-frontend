@@ -23,6 +23,7 @@ const customStyles = (controlSize = '16rem') => {
     control: (provided) => ({
       ...provided,
       width: controlSize,
+      boxShadow: 'none',
       cursor: 'pointer'
     }),
     option: (provided) => ({
@@ -70,7 +71,7 @@ export const OrganizationAutocomplete = (props) => {
   }
 
   return (
-    <div className={`${containerStyles} text-dial-gray-dark flex`}>
+    <div className={`${containerStyles} catalog-filter text-dial-gray-dark flex`}>
       <AsyncSelect
         aria-label={format('filter.byEntity', {
           entity: aggregatorOnly ? format('aggregator.label') : format('organization.label')

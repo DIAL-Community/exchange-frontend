@@ -8,8 +8,8 @@ import { Loading, Error } from '../../shared/FetchStatus'
 const DEFAULT_PAGE_SIZE = 5
 const PRODUCTS_QUERY = gql`
   query PaginatedProjects(
-    $first: Int,
-    $offset: Int,
+    $first: Int!,
+    $offset: Int!,
     $sectors: [String!],
     $subSectors: [String!],
     $countries: [String!],

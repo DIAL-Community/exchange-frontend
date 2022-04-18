@@ -66,13 +66,19 @@ export default function SignIn ({ csrfToken }) {
                   </button>
                   <div>
                     <Link href='/auth/signup'>
-                      <a className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow' href='/auth/signup'>
+                      <a
+                        className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow'
+                        href='navigate-to-signup'
+                      >
                         {format('app.signUp')}
                       </a>
                     </Link>
                     <span className='border-r-2 border-dial-gray-dark mx-2' />
                     <Link href='/auth/reset-password'>
-                      <a className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow' href='/auth/reset-password'>
+                      <a
+                        className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow'
+                        href='navigate-to-reset'
+                      >
                         {format('signIn.forgetPassword')}
                       </a>
                     </Link>

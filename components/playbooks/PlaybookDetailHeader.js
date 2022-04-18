@@ -44,7 +44,7 @@ const PlaybookDetailHeader = ({ slug }) => {
     const barSegmentMultiplier = 100 / (playSlugs.length - 1)
 
     setPercentage(barSegmentMultiplier * currentSlugIndex)
-  }, [currentSlugIndex, slugIntersectionRatios])
+  }, [currentSlugIndex, slugIntersectionRatios, data])
 
   useEffect(() => {
     if (!data || !data.playbook) {
@@ -54,7 +54,7 @@ const PlaybookDetailHeader = ({ slug }) => {
 
     const playSlugs = data.playbook.playbookPlays.map(play => play.playSlug)
     setCurrentSlugIndex(playSlugs.indexOf(currentSlug))
-  }, [currentSlug])
+  }, [currentSlug, setCurrentSlugIndex, data])
 
   if (loading) {
     return <Loading />
@@ -95,7 +95,7 @@ const PlaybookDetailHeader = ({ slug }) => {
               <a href='back-to-playbooks'>
                 <img
                   data-tip={format('tooltip.forEntity', { entity: format('playbooks.label'), name: data.playbook.name })}
-                  className='m-auto h-6 inline mr-2 playbook-filter'
+                  className='m-auto h-6 inline mr-2'
                   alt={format('image.alt.logoFor', { name: data.playbook.name })}
                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.playbook.imageFile}
                 />

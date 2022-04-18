@@ -40,7 +40,7 @@ const SearchFilter = (props) => {
     const timeOutId = setTimeout(() => setSearch(searchTerm), 500)
 
     return () => clearTimeout(timeOutId)
-  }, [searchTerm])
+  }, [searchTerm, setSearch])
 
   const handleChange = (e) => setSearchTerm(e.target.value)
 

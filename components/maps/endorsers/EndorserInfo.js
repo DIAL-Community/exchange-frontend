@@ -5,16 +5,16 @@ import { useIntl } from 'react-intl'
 const EndorserInfo = (props) => {
   const { city, setOrganization } = props
 
-  // Just return empty fragment when there's no city selected.
-  if (!city) {
-    return null
-  }
-
+  const router = useRouter()
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const [active, setActive] = useState(city.organizations[0].slug)
-  const router = useRouter()
+
+  // Just return empty fragment when there's no city selected.
+  if (!city) {
+    return null
+  }
 
   const openDetailPage = (e, slug) => {
     e.preventDefault()

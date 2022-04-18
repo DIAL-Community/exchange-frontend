@@ -44,12 +44,12 @@ const PlaybookDetailOverview = ({ slug, locale }) => {
 
   useEffect(() => {
     refetch()
-  }, [locale])
+  }, [locale, refetch])
 
   useEffect(() => {
     // Update context for this overview. We're using fake slug data for this.
     updateSlugInformation(OVERVIEW_SLUG_NAME, 0, height)
-  }, [height])
+  }, [height, updateSlugInformation])
 
   useEffect(() => {
     if (!ref.current) {
@@ -73,7 +73,7 @@ const PlaybookDetailOverview = ({ slug, locale }) => {
 
     // Remove the observer as soon as the component is unmounted.
     return () => { observer.disconnect() }
-  }, [ref.current])
+  }, [ref])
 
   const generateEditLink = () => {
     if (!session.user) {

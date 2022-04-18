@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import withApollo from '../../../lib/apolloClient'
+import ClientOnly from '../../../lib/ClientOnly'
 
 const PlaybookPdf = dynamic(
   () => import('../../../components/playbooks/PlaybookPdf'),
@@ -12,8 +12,10 @@ const DownloadPdf = () => {
   const { locale } = router
 
   return (
-    <PlaybookPdf locale={locale} />
+    <ClientOnly>
+      <PlaybookPdf locale={locale} />
+    </ClientOnly>
   )
 }
 
-export default withApollo()(DownloadPdf)
+export default DownloadPdf

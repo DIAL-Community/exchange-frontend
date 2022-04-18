@@ -51,7 +51,7 @@ const UseCaseDetail = ({ slug, locale }) => {
 
   useEffect(() => {
     refetch()
-  }, [locale])
+  }, [locale, refetch])
 
   return (
     <>

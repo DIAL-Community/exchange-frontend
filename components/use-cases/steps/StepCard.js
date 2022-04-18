@@ -32,7 +32,7 @@ const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
   const [hoverStyle, containerStyle] = cardContainerStyles()
 
   return (
-    <Link href={`/${useCasesPath}/${useCaseStep.useCase.slug}/${stepsPath}/${useCaseStep.slug}`}>
+    <Link href={`/${useCasesPath}/${useCaseStep.useCase.slug}/${stepsPath}/${useCaseStep.slug}`} passHref>
       <div className={hoverStyle}>
         <div className={containerStyle}>
           <div className='flex flex-row'>
