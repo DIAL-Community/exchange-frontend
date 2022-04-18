@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
-import apolloClient from '../../../lib/apolloClient'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import GradientBackground from '../../../components/shared/GradientBackground'
 import ProductForm from '../../../components/candidate/products/ProductForm'
+import ClientOnly from '../../../lib/ClientOnly'
 
 const CreateProduct = () => {
   const { formatMessage } = useIntl()
@@ -20,10 +20,12 @@ const CreateProduct = () => {
       <QueryNotification />
       <GradientBackground />
       <Header />
-      <ProductForm />
+      <ClientOnly>
+        <ProductForm />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default apolloClient()(CreateProduct)
+export default CreateProduct

@@ -69,7 +69,7 @@ const Play = ({ play, index }) => {
   useEffect(() => {
     // Update context for this slug
     updateSlugInformation(play.slug, yValue, height, windowHeight, intersectionRatio)
-  }, [yValue, height, windowHeight, intersectionRatio])
+  }, [play, yValue, height, windowHeight, intersectionRatio, updateSlugInformation])
 
   useEffect(() => {
     const observerCallback = ([observerData]) => {
@@ -155,7 +155,7 @@ const PlaybookDetailPlayList = ({ slug, locale }) => {
 
   useEffect(() => {
     refetch()
-  }, [locale])
+  }, [locale, refetch])
 
   if (loading) {
     return <Loading />

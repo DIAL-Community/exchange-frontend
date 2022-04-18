@@ -1133,6 +1133,7 @@ export const en = {
   'move.submitted': 'Move saved.',
   'move.autoSaved': 'Move saved ...',
 
-  'resource.submitted': 'Resource saved.'
+  'resource.submitted': 'Resource saved.',
+  'product.launchable': 'Product Launchable'
 
 }

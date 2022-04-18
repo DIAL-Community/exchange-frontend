@@ -111,7 +111,11 @@ const ProductDetailRight = ({ product, discourseRef }) => {
           {product.origins.map((origin, i) => {
             return (
               <div key={i}>
-                <img src={'/images/origins/' + origin.slug + '.png'} height='20px' width='20px' className='inline' />
+                <img
+                  src={'/images/origins/' + origin.slug + '.png'}
+                  height='20px' width='20px' className='inline'
+                  alt={format('image.alt.logoFor', { name: origin.name })}
+                />
                 <div key={i} className='inline ml-2 text-sm'>{origin.name}</div>
                 {origin.slug === 'dpga' && product.endorsers.length === 0 && (
                   <div className='inline ml-2 h5'>{format('product.nominee')}</div>
@@ -131,7 +135,12 @@ const ProductDetailRight = ({ product, discourseRef }) => {
             return (
               <div key={i}>
                 <div>
-                  <img data-tip={format('product.endorsed-by')} src={'/images/origins/' + endorser.slug + '.png'} height='20px' width='20px' className='inline' />
+                  <img
+                    alt={format('image.alt.logoFor', { name: endorser.name })}
+                    data-tip={format('product.endorsed-by')}
+                    src={'/images/origins/' + endorser.slug + '.png'}
+                    height='20px' width='20px' className='inline'
+                  />
                   <div key={i} className='text-sm inline ml-2'>{format('product.endorsed-by') + endorser.name}</div>
                 </div>
               </div>
@@ -139,7 +148,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
           })}
         </div>
       </div>
-      <Link href={`${product.slug}/repositories`}>
+      <Link href={`${product.slug}/repositories`} passHref>
         <div className='card-title mt-12 mb-3'>
           <span className='cursor-pointer text-dial-gray-dark border-b-2 border-transparent hover:border-dial-yellow inline'>
             {format('product.repository')}

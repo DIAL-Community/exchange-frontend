@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import UseCaseDetail from '../../../components/use-cases/UseCaseDetail'
-import withApollo from '../../../lib/apolloClient'
+import ClientOnly from '../../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const UseCase = () => {
@@ -24,10 +24,12 @@ const UseCase = () => {
       </Head>
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <UseCaseDetail slug={slug} locale={locale} />
+      <ClientOnly>
+        <UseCaseDetail slug={slug} locale={locale} />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default withApollo()(UseCase)
+export default UseCase

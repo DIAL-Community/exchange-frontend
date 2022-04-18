@@ -8,9 +8,9 @@ import { useEffect } from 'react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import NotFound from '../../../components/shared/NotFound'
-import withApollo from '../../../lib/apolloClient'
 import UserDetail from '../../../components/users/UserDetail'
 import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
+import ClientOnly from '../../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const USER_QUERY = gql`
@@ -33,31 +33,52 @@ const USER_QUERY = gql`
   }
 `
 
-const User = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-
-  const router = useRouter()
-  const { locale, query } = router
-  const { userId } = query
-
-  const [session] = useSession()
-
-  if (session && !session.user.roles.includes('admin')) {
-    return (
-      <Unauthorized />
-    )
-  }
-
+const UserPageDefinition = ({ userId, locale }) => {
   const { loading, error, data, refetch } = useQuery(USER_QUERY, {
     variables: { userId: userId },
-    context: { headers: { 'Accept-Language': query.locale } },
-    skip: !userId
+    skip: !userId,
+    context: { headers: { 'Accept-Language': locale } }
   })
 
   useEffect(() => {
     refetch()
-  }, [locale])
+  }, [locale, refetch])
+
+  if (loading) {
+    return <Loading />
+  }
+
+  if (error && error.networkError) {
+    return <Error />
+  }
+
+  if (error && !error.networkError) {
+    return <NotFound />
+  }
+
+  return (
+    <>
+      {
+        data && data.user &&
+          <UserDetail user={data.user} />
+      }
+    </>
+  )
+}
+
+const User = () => {
+  const router = useRouter()
+  const [session] = useSession()
+  const { formatMessage } = useIntl()
+
+  if (session && !session.user.roles.includes('admin')) {
+    return <Unauthorized />
+  }
+
+  const format = (id, values) => formatMessage({ id: id }, values)
+
+  const { locale, query } = router
+  const { userId } = query
 
   return (
     <>
@@ -67,16 +88,12 @@ const User = () => {
       </Head>
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      {loading && <Loading />}
-      {error && error.networkError && <Error />}
-      {error && !error.networkError && <NotFound />}
-      {
-        data && data.user &&
-          <UserDetail user={data.user} />
-      }
+      <ClientOnly>
+        <UserPageDefinition userId={userId} locale={locale} />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default withApollo()(User)
+export default User

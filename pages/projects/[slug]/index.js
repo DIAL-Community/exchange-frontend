@@ -1,11 +1,9 @@
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
-import { gql, useQuery } from '@apollo/client'
-import { useEffect } from 'react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
-import withApollo from '../../../lib/apolloClient'
+import ClientOnly from '../../../lib/ClientOnly'
 import ProjectDetail from '../../../components/projects/ProjectDetail'
 
 const Project = () => {
@@ -23,10 +21,12 @@ const Project = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <ProjectDetail slug={slug} locale={locale} />
+      <ClientOnly>
+        <ProjectDetail slug={slug} locale={locale} />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default withApollo()(Project)
+export default Project

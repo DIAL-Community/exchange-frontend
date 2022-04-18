@@ -71,25 +71,17 @@ const ProjectMap = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const fetchProjectData = () => {
-    const projects = useQuery(PROJECTS_QUERY, {
-      variables: {
-        first: DEFAULT_PAGE_SIZE,
-        sectors: sectors.map(sector => sector.value),
-        tags: tags.map(tag => tag.label),
-        products: products.map(product => product.value),
-        mapView: true
-      }
-    })
-    const countries = useQuery(COUNTRIES_QUERY)
+  const { loading: loadingProjects, data: projectData } = useQuery(PROJECTS_QUERY, {
+    variables: {
+      first: DEFAULT_PAGE_SIZE,
+      sectors: sectors.map(sector => sector.value),
+      tags: tags.map(tag => tag.label),
+      products: products.map(product => product.value),
+      mapView: true
+    }
+  })
 
-    return [projects, countries]
-  }
-
-  const [
-    { loading: loadingProjects, data: projectData },
-    { loading: loadingCountries, data: countryData }
-  ] = fetchProjectData()
+  const { loading: loadingCountries, data: countryData } = useQuery(COUNTRIES_QUERY)
 
   // Group project into map of countries with projects
   const countriesWithProjects = (() => {

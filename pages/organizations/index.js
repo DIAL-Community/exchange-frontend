@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useContext } from 'react'
-import apolloClient from '../../lib/apolloClient'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import OrganizationListQuery from '../../components/organizations/OrganizationList'
@@ -15,6 +14,7 @@ import OrganizationHint from '../../components/filter/hint/OrganizationHint'
 import SearchFilter from '../../components/shared/SearchFilter'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../../components/context/OrganizationFilterContext'
 import MobileNav from '../../components/main/MobileNav'
+import ClientOnly from '../../lib/ClientOnly'
 
 const Organizations = () => {
   const { formatMessage } = useIntl()
@@ -34,17 +34,19 @@ const Organizations = () => {
       <Header />
       <TabNav activeTab='filter.entity.organizations' />
       <MobileNav activeTab='filter.entity.organizations' />
-      <PageContent
-        activeTab='filter.entity.products'
-        filter={<OrganizationFilter />}
-        content={<OrganizationListQuery />}
-        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.organizations' />}
-        activeFilter={<OrganizationActiveFilter />}
-        hint={<OrganizationHint />}
-      />
+      <ClientOnly>
+        <PageContent
+          activeTab='filter.entity.products'
+          filter={<OrganizationFilter />}
+          content={<OrganizationListQuery />}
+          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.organizations' />}
+          activeFilter={<OrganizationActiveFilter />}
+          hint={<OrganizationHint />}
+        />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default apolloClient()(Organizations)
+export default Organizations

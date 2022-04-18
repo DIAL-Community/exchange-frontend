@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useContext } from 'react'
 import dynamic from 'next/dynamic'
-import apolloClient from '../../lib/apolloClient'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import QueryNotification from '../../components/shared/QueryNotification'
@@ -15,7 +14,9 @@ import BuildingBlockFilter from '../../components/building-blocks/BuildingBlockF
 import BuildingBlockActiveFilter from '../../components/building-blocks/BuildingBlockActiveFilter'
 import BuildingBlockListQuery from '../../components/building-blocks/BuildingBlockList'
 import SearchFilter from '../../components/shared/SearchFilter'
-import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext } from '../../components/context/BuildingBlockFilterContext'
+import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext }
+  from '../../components/context/BuildingBlockFilterContext'
+import ClientOnly from '../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const BuildingBlocks = () => {
@@ -37,17 +38,19 @@ const BuildingBlocks = () => {
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <TabNav activeTab='filter.entity.buildingBlocks' />
       <MobileNav activeTab='filter.entity.buildingBlocks' />
-      <PageContent
-        activeTab='filter.entity.products'
-        filter={<BuildingBlockFilter />}
-        content={<BuildingBlockListQuery />}
-        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.buildingBlocks' />}
-        activeFilter={<BuildingBlockActiveFilter />}
-        hint={<BuildingBlockHint />}
-      />
+      <ClientOnly>
+        <PageContent
+          activeTab='filter.entity.products'
+          filter={<BuildingBlockFilter />}
+          content={<BuildingBlockListQuery />}
+          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.buildingBlocks' />}
+          activeFilter={<BuildingBlockActiveFilter />}
+          hint={<BuildingBlockHint />}
+        />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default apolloClient()(BuildingBlocks)
+export default BuildingBlocks

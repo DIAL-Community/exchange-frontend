@@ -2,12 +2,10 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { gql, useQuery } from '@apollo/client'
-import { useEffect } from 'react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
-import withApollo from '../../../lib/apolloClient'
 import OrganizationDetail from '../../../components/organizations/OrganizationDetail'
+import ClientOnly from '../../../lib/ClientOnly'
 
 const Organization = () => {
   const { formatMessage } = useIntl()
@@ -24,10 +22,12 @@ const Organization = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <OrganizationDetail slug={slug} locale={locale} />
+      <ClientOnly>
+        <OrganizationDetail slug={slug} locale={locale} />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default withApollo()(Organization)
+export default Organization

@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
-import withApollo from '../../../lib/apolloClient'
 import { PlaybookDetailProvider } from '../../../components/playbooks/PlaybookDetailContext'
 import PlaybookDetail from '../../../components/playbooks/PlaybookDetail'
+import ClientOnly from '../../../lib/ClientOnly'
 
 const Playbook = () => {
   const { formatMessage } = useIntl()
@@ -22,12 +22,14 @@ const Playbook = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <PlaybookDetailProvider>
-        <PlaybookDetail slug={slug} locale={locale} />
-      </PlaybookDetailProvider>
+      <ClientOnly>
+        <PlaybookDetailProvider>
+          <PlaybookDetail slug={slug} locale={locale} />
+        </PlaybookDetailProvider>
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default withApollo()(Playbook)
+export default Playbook

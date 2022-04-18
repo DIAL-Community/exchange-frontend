@@ -209,7 +209,7 @@ const ProductListQuery = () => {
 
   useEffect(() => {
     refetch()
-  }, [locale])
+  }, [locale, refetch])
 
   useEffect(() => {
     if (data) {

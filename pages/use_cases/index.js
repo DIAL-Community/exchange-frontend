@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useContext } from 'react'
 import dynamic from 'next/dynamic'
-import apolloClient from '../../lib/apolloClient'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import QueryNotification from '../../components/shared/QueryNotification'
@@ -15,6 +14,7 @@ import UseCaseFilter from '../../components/use-cases/UseCaseFilter'
 import UseCaseActiveFilter from '../../components/use-cases/UseCaseActiveFilter'
 import SearchFilter from '../../components/shared/SearchFilter'
 import { UseCaseFilterContext, UseCaseFilterDispatchContext } from '../../components/context/UseCaseFilterContext'
+import ClientOnly from '../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 const UseCaseListQuery = dynamic(() => import('../../components/use-cases/UseCaseList'), { ssr: false })
 
@@ -37,17 +37,19 @@ const UseCases = () => {
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <TabNav activeTab='filter.entity.useCases' />
       <MobileNav activeTab='filter.entity.useCases' />
-      <PageContent
-        activeTab='filter.entity.products'
-        filter={<UseCaseFilter />}
-        content={<UseCaseListQuery />}
-        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.useCases' />}
-        activeFilter={<UseCaseActiveFilter />}
-        hint={<UseCaseHint />}
-      />
+      <ClientOnly>
+        <PageContent
+          activeTab='filter.entity.products'
+          filter={<UseCaseFilter />}
+          content={<UseCaseListQuery />}
+          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.useCases' />}
+          activeFilter={<UseCaseActiveFilter />}
+          hint={<UseCaseHint />}
+        />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default apolloClient()(UseCases)
+export default UseCases

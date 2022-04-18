@@ -4,7 +4,6 @@ import { HiChevronDown, HiChevronUp, HiQuestionMarkCircle } from 'react-icons/hi
 import { gql, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FilterContext, FILTER_ITEMS, MAPPED_FILTER_ITEMS_URL } from '../context/FilterContext'
-import withApollo from '../../lib/apolloClient'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { truncate } from '../../lib/utilities'
 import ProductFilter from './ProductFilter'
@@ -80,7 +79,10 @@ const Filter = (props) => {
         </div>
         <div className='text-right -mt-4'>
           <Link href='/wizard'>
-            <a href='/wizard' className='text-sm border-b-2 border-transparent text-dial-yellow font-bold hover:border-dial-yellow'>
+            <a
+              href='/navigate-to-wizard'
+              className='text-sm border-b-2 border-transparent text-dial-yellow font-bold hover:border-dial-yellow'
+            >
               {format('filter.launchWizard')}
             </a>
           </Link>
@@ -313,4 +315,4 @@ const Filter = (props) => {
   )
 }
 
-export default withApollo()(Filter)
+export default Filter

@@ -34,3 +34,7 @@
 .playbook-filter {
   filter: invert(0%) sepia(2%) saturate(0%) hue-rotate(162deg) brightness(25%) contrast(104%);
 }
+
+.catalog-filter input:focus {
+  box-shadow: none !important;
+}

@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useContext } from 'react'
 import dynamic from 'next/dynamic'
-import apolloClient from '../../lib/apolloClient'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import GradientBackground from '../../components/shared/GradientBackground'
@@ -15,6 +14,7 @@ import PlaybookFilter from '../../components/playbooks/PlaybookFilter'
 import PlaybookActiveFilter from '../../components/playbooks/PlaybookActiveFilter'
 import PlaybookHint from '../../components/filter/hint/PlaybookHint'
 import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../../components/context/PlaybookFilterContext'
+import ClientOnly from '../../lib/ClientOnly'
 const PlaybookListQuery = dynamic(() => import('../../components/playbooks/PlaybookList'), { ssr: false })
 
 const Playbooks = () => {
@@ -35,17 +35,19 @@ const Playbooks = () => {
       <Header />
       <TabNav activeTab='filter.entity.playbooks' />
       <MobileNav activeTab='filter.entity.playbooks' />
-      <PageContent
-        activeTab='filter.entity.playbooks'
-        filter={<PlaybookFilter />}
-        content={<PlaybookListQuery />}
-        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.playbooks' />}
-        activeFilter={<PlaybookActiveFilter />}
-        hint={<PlaybookHint />}
-      />
+      <ClientOnly>
+        <PageContent
+          activeTab='filter.entity.playbooks'
+          filter={<PlaybookFilter />}
+          content={<PlaybookListQuery />}
+          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.playbooks' />}
+          activeFilter={<PlaybookActiveFilter />}
+          hint={<PlaybookHint />}
+        />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default apolloClient()(Playbooks)
+export default Playbooks

@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { useState, useRef, useEffect } from 'react'
 import { gql, useLazyQuery } from '@apollo/client'
 import Select from 'react-select'
-import withApollo from '../../lib/apolloClient'
 import UseCaseCard from '../use-cases/UseCaseCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import { Loading, Error } from '../shared/FetchStatus'
@@ -371,4 +370,4 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   )
 }
 
-export default withApollo()(WizardResults)
+export default WizardResults

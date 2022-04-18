@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
-import apolloClient from '../../../lib/apolloClient'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import EndorserMap from '../../../components/maps/endorsers/EndorserMap'
@@ -9,6 +8,7 @@ import PageContent from '../../../components/main/PageContent'
 import MobileNav from '../../../components/main/MobileNav'
 import MapFilter from '../../../components/maps/MapFilter'
 import MapActiveFilter from '../../../components/maps/MapActiveFilter'
+import ClientOnly from '../../../lib/ClientOnly'
 
 const EndorserMapPage = () => {
   const { formatMessage } = useIntl()
@@ -23,15 +23,17 @@ const EndorserMapPage = () => {
       <Header />
       <TabNav activeTab='filter.entity.maps' />
       <MobileNav activeTab='filter.entity.maps' />
-      <PageContent
-        activeTab='filter.entity.maps'
-        filter={<MapFilter />}
-        content={<EndorserMap />}
-        activeFilter={<MapActiveFilter />}
-      />
+      <ClientOnly>
+        <PageContent
+          activeTab='filter.entity.maps'
+          filter={<MapFilter />}
+          content={<EndorserMap />}
+          activeFilter={<MapActiveFilter />}
+        />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default apolloClient()(EndorserMapPage)
+export default EndorserMapPage

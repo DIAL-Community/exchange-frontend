@@ -7,8 +7,8 @@ import { Loading, Error } from '../../shared/FetchStatus'
 const DEFAULT_PAGE_SIZE = 5
 const AGGREGATORS_QUERY = gql`
   query PaginatedAggregators(
-    $first: Int,
-    $offset: Int,
+    $first: Int!,
+    $offset: Int!,
     $countries: [String!],
     $services: [String!],
     $search: String!

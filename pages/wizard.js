@@ -8,7 +8,7 @@ import Footer from '../components/Footer'
 import WizardHeader from '../components/wizard/WizardHeader'
 import WizardContent from '../components/wizard/WizardContent'
 import WizardResults from '../components/wizard/WizardResults'
-import withApollo from '../lib/apolloClient'
+import ClientOnly from '../lib/ClientOnly'
 import { Loading, Error } from '../components/shared/FetchStatus'
 
 const SECTOR_QUERY = gql`
@@ -55,7 +55,7 @@ query Tags {
 }
 `
 
-const WizardPage = () => {
+const WizardPageDefinition = () => {
   const [stage, setStage] = useState(0)
   const [allValues, setAllValues] = useState({
     projectPhase: '',
@@ -70,8 +70,6 @@ const WizardPage = () => {
     productSortHint: '',
     projectSortHint: ''
   })
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
   const router = useRouter()
   const { locale } = router
 
@@ -98,18 +96,31 @@ const WizardPage = () => {
 
   return (
     <>
+      <WizardHeader stage={stage} setStage={setStage} />
+      {stage < 4
+        ? <WizardContent stage={stage} setStage={setStage} projData={projData} allValues={allValues} setAllValues={setAllValues} />
+        : <WizardResults stage={stage} setStage={setStage} allValues={allValues} setAllValues={setAllValues} />}
+    </>
+  )
+}
+
+const WizardPage = () => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
+  return (
+    <>
       <Head>
         <title>{format('app.title')}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <WizardHeader stage={stage} setStage={setStage} />
-      {stage < 4
-        ? <WizardContent stage={stage} setStage={setStage} projData={projData} allValues={allValues} setAllValues={setAllValues} />
-        : <WizardResults stage={stage} setStage={setStage} allValues={allValues} setAllValues={setAllValues} />}
+      <ClientOnly>
+        <WizardPageDefinition />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default withApollo()(WizardPage)
+export default WizardPage
