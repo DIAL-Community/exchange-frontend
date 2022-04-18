@@ -1,14 +1,26 @@
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import { HiSortAscending } from 'react-icons/hi'
+import { FixedSizeGrid, FixedSizeList } from 'react-window'
+import AutoSizer from 'react-virtualized-auto-sizer'
+import InfiniteLoader from 'react-window-infinite-loader'
 import { FilterContext } from '../context/FilterContext'
 import { ProjectFilterContext } from '../context/ProjectFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
+import NotFound from '../shared/NotFound'
 import ProjectCard from './ProjectCard'
 
+/* Default number of elements coming from graphql query. */
 const DEFAULT_PAGE_SIZE = 20
+/* Minimum width per project card. This will decide how many column we have in the page. */
+/* The value is based on the minimum required to render Bahmni card. */
+const MIN_PROJECT_CARD_WIDTH = 380
+/* Default height of the project card. */
+const MIN_PROJECT_CARD_HEIGHT = 450
+/* Default spacing between project card in a row. This is 0.5 rem. */
+const PROJECT_CARD_GUTTER_SIZE = 8
+/* Height of the project's single list element when viewing the list view. */
+const MIN_PROJECT_LIST_SIZE = 80
 
 const PROJECTS_QUERY = gql`
 query SearchProjects(
@@ -68,54 +80,6 @@ query SearchProjects(
 }
 `
 
-const ProjectList = (props) => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-
-  const filterDisplayed = props.filterDisplayed
-  const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card'
-    ? `grid-cols-1 gap-4
-       ${filterDisplayed ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'}`
-    : 'grid-cols-1'
-    }`
-
-  return (
-    <>
-      <div className={gridStyles}>
-        {
-          displayType === 'list' &&
-            <div className='grid grid-cols-12 my-3 text-dial-gray-dark px-4 font-semibold '>
-              <div className='col-span-3 lg:col-span-5 xl:col-span-4  mr-4 text-sm opacity-80'>
-                {format('project.header').toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
-              </div>
-              <div className='hidden lg:block col-span-3 md:col-span-3 lg:col-span-3 mr-4 text-sm opacity-50'>
-                {format('organization.header').toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
-              </div>
-              <div className='hidden lg:block col-span-3 md:col-span-3 lg:col-span-3 mr-4 text-sm opacity-50'>
-                {format('product.header').toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
-              </div>
-            </div>
-        }
-        {
-          props.projectList.length > 0
-            ? props.projectList.map((project) => (
-              <ProjectCard key={project.id} project={project} listType={displayType} />
-            ))
-            : (
-              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
-                {format('noResults.entity', { entity: format('project.label').toLowerCase() })}
-              </div>
-            )
-        }
-      </div>
-    </>
-  )
-}
-
 const ProjectListQuery = () => {
   const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const { origins, countries, sectors, organizations, products, sdgs, tags, search } = useContext(ProjectFilterContext)
@@ -167,22 +131,157 @@ const ProjectListQuery = () => {
     return <Loading />
   }
 
-  if (error) {
+  if (error && error.networkError) {
     return <Error />
   }
 
-  const { searchProjects: { nodes, pageInfo } } = data
+  if (error && !error.networkError) {
+    return <NotFound />
+  }
+
+  const { searchProjects: { nodes, pageInfo, totalCount } } = data
+  if (nodes.length <= 0) {
+    return (
+      <div className='px-3 py-4'>
+        {format('noResults.entity', { entity: format('project.label').toLowerCase() })}
+      </div>
+    )
+  }
+
+  const isProjectLoaded = (index) => !pageInfo.hasNextPage || index < nodes.length
 
   return (
-    <InfiniteScroll
-      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height'
-      dataLength={nodes.length}
-      next={handleLoadMore}
-      hasMore={pageInfo.hasNextPage}
-      loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
-    >
-      <ProjectList projectList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
-    </InfiniteScroll>
+    <div className='pt-4'>
+      {
+        displayType === 'list' &&
+          <div className='flex flex-row my-3 px-4 gap-x-4'>
+            <div className='w-3/12 text-sm font-semibold opacity-70'>
+              {format('project.header').toUpperCase()}
+            </div>
+            <div className='hidden lg:block w-3/12 text-sm font-semibold opacity-50'>
+              {format('organization.header').toUpperCase()}
+            </div>
+            <div className='hidden lg:block w-3/12 text-sm font-semibold opacity-50'>
+              {format('product.header').toUpperCase()}
+            </div>
+          </div>
+      }
+      <div className='block pr-2' style={{ height: '80vh' }}>
+        <AutoSizer>
+          {({ height, width }) => (
+            <InfiniteLoader
+              isItemLoaded={isProjectLoaded}
+              itemCount={totalCount}
+              loadMoreItems={handleLoadMore}
+            >
+              {({ onItemsRendered, ref }) => {
+                let columnCount = Math.floor(width / MIN_PROJECT_CARD_WIDTH)
+                if (width < MIN_PROJECT_CARD_WIDTH) {
+                  columnCount = 1
+                }
+
+                return (
+                  <>
+                    {
+                      displayType === 'card' &&
+                      <FixedSizeGrid
+                        className='no-scrollbars'
+                        height={height}
+                        width={(width)}
+                        rowHeight={MIN_PROJECT_CARD_HEIGHT}
+                        columnWidth={width / columnCount}
+                        rowCount={Math.floor(totalCount / columnCount) + 1}
+                        columnCount={columnCount}
+                        onItemsRendered={({
+                          overscanColumnStartIndex,
+                          overscanColumnStopIndex,
+                          overscanRowStartIndex,
+                          overscanRowStopIndex,
+                          visibleColumnStartIndex,
+                          visibleColumnStopIndex,
+                          visibleRowStartIndex,
+                          visibleRowStopIndex
+                        }) => {
+                          onItemsRendered({
+                            overscanStartIndex: overscanColumnStartIndex + overscanRowStartIndex * columnCount,
+                            overscanStopIndex: overscanColumnStopIndex + overscanRowStopIndex * columnCount,
+                            visibleStartIndex: visibleColumnStartIndex + visibleRowStartIndex * columnCount,
+                            visibleStopIndex: visibleColumnStopIndex + visibleRowStopIndex * columnCount
+                          })
+                        }}
+                        ref={ref}
+                      >
+                        {({ columnIndex, rowIndex, style }) => {
+                          const currentIndex = rowIndex * columnCount + columnIndex
+                          const project = nodes[currentIndex]
+
+                          return (
+                            <div
+                              style={{
+                                ...style,
+                                left: style.left + PROJECT_CARD_GUTTER_SIZE,
+                                top: style.top + PROJECT_CARD_GUTTER_SIZE,
+                                width: style.width - PROJECT_CARD_GUTTER_SIZE,
+                                height: style.height - PROJECT_CARD_GUTTER_SIZE
+                              }}
+                            >
+                              {
+                                currentIndex < nodes.length && project &&
+                                  <ProjectCard listType={displayType} {...{ project, filterDisplayed }} />
+                              }
+                              {currentIndex < nodes.length && !project && <Loading />}
+                            </div>
+                          )
+                        }}
+                      </FixedSizeGrid>
+                    }
+                    {
+                      displayType === 'list' &&
+                      <FixedSizeList
+                        className='no-scrollbars'
+                        height={height}
+                        width={(width)}
+                        itemSize={(MIN_PROJECT_LIST_SIZE)}
+                        columnWidth={width / columnCount}
+                        itemCount={totalCount}
+                        onItemsRendered={({
+                          overscanStartIndex,
+                          overscanStopIndex,
+                          visibleStartIndex,
+                          visibleStopIndex
+                        }) => {
+                          onItemsRendered({
+                            overscanStartIndex: overscanStartIndex,
+                            overscanStopIndex: overscanStopIndex,
+                            visibleStartIndex: visibleStartIndex,
+                            visibleStopIndex: visibleStopIndex
+                          })
+                        }}
+                        ref={ref}
+                      >
+                        {({ index, style }) => {
+                          const project = nodes[index]
+
+                          return (
+                            <div style={style}>
+                              {
+                                index < nodes.length && project &&
+                                  <ProjectCard listType={displayType} {...{ project, filterDisplayed }} />
+                              }
+                              {index < nodes.length && !project && <Loading />}
+                            </div>
+                          )
+                        }}
+                      </FixedSizeList>
+                    }
+                  </>
+                )
+              }}
+            </InfiniteLoader>
+          )}
+        </AutoSizer>
+      </div>
+    </div>
   )
 }
 
