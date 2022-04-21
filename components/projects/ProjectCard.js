@@ -88,9 +88,9 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                       {truncate(project.name, 50, true, true)}
                     </div>
                   </div>
-                  <div className='flex flex-row h-64'>
-                    <div className='flex-grow flex flex-col p-4'>
-                      <div className='flex flex-col absolute w-40'>
+                  <div className='flex flex-col h-64'>
+                    <div className='flex'>
+                      <div className='flex-col flex-grow w-40 p-4'>
                         <div className='text-base'>{format('organization.header')}</div>
                         <div className={`font-semibold whitespace-wrap ${!projectOrganization ? 'opacity-30' : ''}`}>
                           {
@@ -98,27 +98,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                           }
                         </div>
                       </div>
-                      <div className='m-auto w-32'>
-                        {
-                          !projectOrganization
-                            ? (
-                              <img
-                                className='object-cover object-center opacity-30 mx-auto'
-                                alt='Placeholder logo for organization.'
-                                src='/images/placeholders/organization.png'
-                              />)
-                            : (
-                              <img
-                                className='object-cover object-center mx-auto'
-                                alt={format('image.alt.logoFor', { name: projectOrganization.name })}
-                                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + projectOrganization.imageFile}
-                              />
-                            )
-                        }
-                      </div>
-                    </div>
-                    <div className='flex-grow flex flex-col border-l p-4'>
-                      <div className='flex flex-col absolute w-40 px-4'>
+                      <div className='flex-col flex-grow w-40 p-4 border-l'>
                         <div className='text-base'>{format('product.header')}</div>
                         <div className={`font-semibold whitespace-wrap ${!projectProduct ? 'opacity-30' : ''}`}>
                           {
@@ -126,23 +106,47 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                           }
                         </div>
                       </div>
-                      <div className='m-auto w-32'>
-                        {
-                          !projectProduct
-                            ? (
-                              <img
-                                className='object-cover object-center opacity-30 mx-auto'
-                                alt='Placeholder logo for product'
-                                src='/images/placeholders/product.png'
-                              />)
-                            : (
-                              <img
-                                className='object-cover object-center mx-auto'
-                                alt={format('image.alt.logoFor', { name: projectProduct.name })}
-                                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + projectProduct.imageFile}
-                              />
-                            )
-                        }
+                    </div>
+                    <div className='flex flex-grow'>
+                      <div className='flex flex-grow'>
+                        <div className='w-32 m-auto'>
+                          {
+                            !projectOrganization
+                              ? (
+                                <img
+                                  className='object-cover object-center opacity-30 mx-auto'
+                                  alt='Placeholder logo for organization.'
+                                  src='/images/placeholders/organization.png'
+                                />)
+                              : (
+                                <img
+                                  className='object-cover object-center mx-auto'
+                                  alt={format('image.alt.logoFor', { name: projectOrganization.name })}
+                                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + projectOrganization.imageFile}
+                                />
+                              )
+                          }
+                        </div>
+                      </div>
+                      <div className='flex flex-grow border-l'>
+                        <div className='w-32 m-auto'>
+                          {
+                            !projectProduct
+                              ? (
+                                <img
+                                  className='object-cover object-center opacity-30 mx-auto'
+                                  alt='Placeholder logo for product'
+                                  src='/images/placeholders/product.png'
+                                />)
+                              : (
+                                <img
+                                  className='object-cover object-center mx-auto'
+                                  alt={format('image.alt.logoFor', { name: projectProduct.name })}
+                                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + projectProduct.imageFile}
+                                />
+                              )
+                          }
+                        </div>
                       </div>
                     </div>
                   </div>
