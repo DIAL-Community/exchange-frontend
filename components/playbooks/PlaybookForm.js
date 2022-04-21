@@ -70,10 +70,11 @@ const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { tags } = useContext(PlayFilterContext)
-  const { setTags } = useContext(PlayFilterDispatchContext)
+  const { search, tags } = useContext(PlayFilterContext)
+  const { setSearch, setTags } = useContext(PlayFilterDispatchContext)
 
   const [showPlayForm, setShowPlayForm] = useState(false)
+  const handleChange = (e) => setSearch(e.target.value)
 
   return (
     <>
@@ -94,6 +95,15 @@ const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
                 <div className='text-sm text-dial-blue my-auto'>
                   {format('playbook.assignAnotherPlay')}
                 </div>
+                <label className='my-auto'>
+                  <span className='sr-only'>{format('search.input.label')}</span>
+                  <input
+                    type='search'
+                    value={search} onChange={handleChange}
+                    className='py-2 px-3 text-sm rounded-md w-56 2xl:w-96'
+                    placeholder={`${format('app.search')} ${format('play.header')}`}
+                  />
+                </label>
                 <TagAutocomplete {...{ tags, setTags }} />
               </div>
               <div className='flex flex-row flex-wrap gap-2'>
