@@ -6,7 +6,8 @@
     "dev": "next dev -p 3002",
     "build": "next build",
     "start": "next start -p 3002",
-    "test": "jest ./tests",
+    "test": "jest",
+    "test-live": "jest --watch",
     "lint": "next lint"
   },
   "dependencies": {
@@ -66,7 +67,6 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-sort-exports": "^0.6.0",
     "jest": "^27.0.6",
-    "next-router-mock": "^0.6.5",
     "postcss": "^8.4.12",
     "prettier": "^2.6.1",
     "standard": "^16.0.4",

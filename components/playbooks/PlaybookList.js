@@ -10,42 +10,42 @@ import PlaybookCard from './PlaybookCard'
 
 const DEFAULT_PAGE_SIZE = 20
 
-const PLAYBOOKS_QUERY = gql`
-query SearchPlaybooks(
-  $first: Int,
-  $after: String,
-  $search: String!,
-  $tags: [String!],
-  $products: [String!]
-  ) {
-  searchPlaybooks(
-    first: $first,
-    after: $after,
-    search: $search,
-    products: $products,
-    tags: $tags
-  ) {
-    __typename
-    totalCount
-    pageInfo {
-      endCursor
-      startCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    nodes {
-      id
-      slug
-      name
-      imageFile
-      tags
-      playbookDescription {
+export const PLAYBOOKS_QUERY = gql`
+  query SearchPlaybooks(
+    $first: Int,
+    $after: String,
+    $search: String!,
+    $tags: [String!],
+    $products: [String!]
+    ) {
+    searchPlaybooks(
+      first: $first,
+      after: $after,
+      search: $search,
+      products: $products,
+      tags: $tags
+    ) {
+      __typename
+      totalCount
+      pageInfo {
+        endCursor
+        startCursor
+        hasPreviousPage
+        hasNextPage
+      }
+      nodes {
         id
-        overview
+        slug
+        name
+        imageFile
+        tags
+        playbookDescription {
+          id
+          overview
+        }
       }
     }
   }
-}
 `
 
 const PlaybookList = (props) => {

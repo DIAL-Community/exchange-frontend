@@ -7,7 +7,7 @@ import parse from 'html-react-parser'
 import { HiExternalLink } from 'react-icons/hi'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 
-const MOVE_QUERY = gql`
+export const MOVE_QUERY = gql`
   query Move($playSlug: String!, $slug: String!) {
     move(playSlug: $playSlug, slug: $slug) {
       id
@@ -23,7 +23,7 @@ const MOVE_QUERY = gql`
   }
 `
 
-const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf=false }) => {
+const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   const [openingDetail, setOpeningDetail] = useState(pdf)
@@ -32,11 +32,11 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf=false }) => {
     setOpeningDetail(!openingDetail)
   }
 
-  const { query } = useRouter()
+  const { locale } = useRouter()
 
   const { data } = useQuery(MOVE_QUERY, {
     variables: { playSlug: playSlug, slug: moveSlug },
-    context: { headers: { 'Accept-Language': query.locale } },
+    context: { headers: { 'Accept-Language': locale } },
     skip: !moveSlug
   })
 

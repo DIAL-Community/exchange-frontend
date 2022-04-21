@@ -12,7 +12,7 @@ import PlayPreviewMove from '../plays/PlayPreviewMove'
 import { PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 
 const DEFAULT_PAGE_SIZE = 10
-const PLAYBOOK_PLAYS_QUERY = gql`
+export const PLAYBOOK_PLAYS_QUERY = gql`
   query SearchPlaybookPlays($first: Int, $after: String, $slug: String!) {
     searchPlaybookPlays(first: $first, after: $after, slug: $slug) {
       __typename
@@ -69,7 +69,7 @@ const Play = ({ play, index }) => {
   useEffect(() => {
     // Update context for this slug
     updateSlugInformation(play.slug, yValue, height, windowHeight, intersectionRatio)
-  }, [play, yValue, height, windowHeight, intersectionRatio, updateSlugInformation])
+  }, [play, yValue, height, windowHeight, intersectionRatio])
 
   useEffect(() => {
     const observerCallback = ([observerData]) => {
