@@ -73,7 +73,7 @@ export const EndorserAutocomplete = (props) => {
     <div className={`${containerStyles} catalog-filter text-dial-gray-dark flex`}>
       <AsyncSelect
         aria-label={format('filter.byEntity', { entity: format('endorser.label') })}
-        className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
+        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input, callback) => fetchOptions(input, callback, ENDORSER_SEARCH_QUERY)}

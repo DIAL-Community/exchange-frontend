@@ -285,7 +285,7 @@ const SignUp = () => {
                         />
                       </span>
                       <AsyncSelect
-                        className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
+                        className='rounded text-sm text-dial-gray-dark my-auto'
                         cacheOptions
                         defaultOptions
                         loadOptions={(input, callback) => fetchOptions(input, callback, PRODUCT_SEARCH_QUERY)}
