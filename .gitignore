@@ -33,4 +33,8 @@ yarn-error.log*
 # vercel
 .vercel
 
+# VS Code history files from a plugin.
 .history
+
+# Unit test snapshot directory.
+__snapshots__

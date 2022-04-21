@@ -9,7 +9,7 @@ import Breadcrumb from '../shared/breadcrumb'
 import { Error, Loading } from '../shared/FetchStatus'
 import { PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 
-const PLAYBOOK_QUERY = gql`
+export const PLAYBOOK_QUERY = gql`
   query Playbook($slug: String!) {
     playbook(slug: $slug) {
       id
@@ -49,7 +49,7 @@ const PlaybookDetailOverview = ({ slug, locale }) => {
   useEffect(() => {
     // Update context for this overview. We're using fake slug data for this.
     updateSlugInformation(OVERVIEW_SLUG_NAME, 0, height)
-  }, [height, updateSlugInformation])
+  }, [height])
 
   useEffect(() => {
     if (!ref.current) {

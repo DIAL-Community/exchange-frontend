@@ -1,6 +1,8 @@
 import { resolve } from 'path'
 import { config } from 'dotenv'
 
-export default async () => {
+const envFile = async () => {
   config({ path: resolve(__dirname, './.env.test') })
 }
+
+export default envFile

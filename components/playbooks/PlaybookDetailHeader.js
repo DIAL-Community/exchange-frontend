@@ -6,7 +6,7 @@ import { Error, Loading } from '../shared/FetchStatus'
 import { PlaybookDetailContext } from './PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
 
-const PLAYBOOK_QUERY = gql`
+export const PLAYBOOK_QUERY = gql`
   query Playbook($slug: String!) {
     playbook(slug: $slug) {
       id
