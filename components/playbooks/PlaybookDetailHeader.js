@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { Error, Loading } from '../shared/FetchStatus'
 import { PlaybookDetailContext } from './PlaybookDetailContext'
@@ -26,6 +26,7 @@ const PlaybookDetailHeader = ({ slug }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
+  const playProgressNumbersRef = useRef([])
   const [percentage, setPercentage] = useState(0)
   const [currentSlugIndex, setCurrentSlugIndex] = useState(-1)
   const { currentSlug, slugHeights, slugIntersectionRatios } = useContext(PlaybookDetailContext)
@@ -33,6 +34,10 @@ const PlaybookDetailHeader = ({ slug }) => {
   const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
     variables: { slug: slug }
   })
+
+  useEffect(() => {
+    playProgressNumbersRef.current = playProgressNumbersRef.current.slice(0, data?.playbook?.playbookPlays?.length)
+  }, [data])
 
   useEffect(() => {
     if (!data || !data.playbook) {
@@ -53,7 +58,12 @@ const PlaybookDetailHeader = ({ slug }) => {
     }
 
     const playSlugs = data.playbook.playbookPlays.map(play => play.playSlug)
-    setCurrentSlugIndex(playSlugs.indexOf(currentSlug))
+    const playIndex = playSlugs.indexOf(currentSlug)
+
+    // Scroll into the current play if play progress bar is scrollable
+    playProgressNumbersRef.current[playIndex]?.scrollIntoView({ block: 'nearest' })
+
+    setCurrentSlugIndex(playIndex)
   }, [currentSlug, setCurrentSlugIndex, data])
 
   if (loading) {
@@ -105,7 +115,7 @@ const PlaybookDetailHeader = ({ slug }) => {
           </div>
           <div className='text-2xl font-semibold'>{data.playbook.name}</div>
         </div>
-        <div className='lg:ml-auto px-8 lg:px-4 pb-3 lg:pb-0 my-auto'>
+        <div className='flex lg:ml-auto px-8 lg:px-4 pb-3 lg:pb-0 my-auto overflow-x-auto'>
           <div className='play-progress'>
             <div className='play-progress-bar' style={{ width: `${percentage}%` }} />
             <div className='play-progress-bar-base' />
@@ -113,7 +123,12 @@ const PlaybookDetailHeader = ({ slug }) => {
               {
                 data.playbook.playbookPlays.map((playbookPlay, index) => {
                   return (
-                    <a key={index} href='#navigate-to-play' onClick={(e) => navigateToPlay(e, playbookPlay.playSlug)}>
+                    <a
+                      key={index}
+                      ref={playProgressNumber => playProgressNumbersRef.current[index] = playProgressNumber}
+                      href='#navigate-to-play'
+                      onClick={(e) => navigateToPlay(e, playbookPlay.playSlug)}
+                    >
                       <div className={`step ${index <= currentSlugIndex && 'active'}`}>
                         {index + 1}
                       </div>
