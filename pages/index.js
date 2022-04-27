@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useContext } from 'react'
 import dynamic from 'next/dynamic'
-import withApollo from '../lib/apolloClient'
 import Header from '../components/Header'
 import Landing from '../components/Landing'
 import Definition from '../components/Definition'
@@ -19,6 +18,7 @@ import ProductActiveFilter from '../components/products/ProductActiveFilter'
 import ProductListQuery from '../components/products/ProductList'
 import SearchFilter from '../components/shared/SearchFilter'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../components/context/ProductFilterContext'
+import ClientOnly from '../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const HomePage = () => {
@@ -43,17 +43,19 @@ const HomePage = () => {
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <TabNav activeTab='filter.entity.products' />
       <MobileNav activeTab='filter.entity.products' />
-      <PageContent
-        activeTab='filter.entity.products'
-        filter={<ProductFilter />}
-        content={<ProductListQuery />}
-        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.products' />}
-        activeFilter={<ProductActiveFilter />}
-        hint={<ProductHint />}
-      />
+      <ClientOnly>
+        <PageContent
+          activeTab='filter.entity.products'
+          filter={<ProductFilter />}
+          content={<ProductListQuery />}
+          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.products' />}
+          activeFilter={<ProductActiveFilter />}
+          hint={<ProductHint />}
+        />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default withApollo()(HomePage)
+export default HomePage

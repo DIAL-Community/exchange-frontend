@@ -102,7 +102,7 @@ const StepDetail = ({ stepSlug, locale }) => {
 
   useEffect(() => {
     refetch()
-  }, [locale])
+  }, [locale, refetch])
 
   return (
     <>

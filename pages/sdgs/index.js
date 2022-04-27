@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useContext } from 'react'
-import apolloClient from '../../lib/apolloClient'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import QueryNotification from '../../components/shared/QueryNotification'
@@ -16,6 +15,7 @@ import SDGActiveFilter from '../../components/sdgs/SDGActiveFilter'
 import SDGListQuery from '../../components/sdgs/SDGList'
 import SearchFilter from '../../components/shared/SearchFilter'
 import { SDGFilterContext, SDGFilterDispatchContext } from '../../components/context/SDGFilterContext'
+import ClientOnly from '../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const SDGs = () => {
@@ -37,17 +37,19 @@ const SDGs = () => {
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <TabNav activeTab='filter.entity.sdgs' />
       <MobileNav activeTab='filter.entity.sdgs' />
-      <PageContent
-        activeTab='filter.entity.products'
-        filter={<SDGFilter />}
-        content={<SDGListQuery />}
-        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.sdgs' />}
-        activeFilter={<SDGActiveFilter />}
-        hint={<SDGHint />}
-      />
+      <ClientOnly>
+        <PageContent
+          activeTab='filter.entity.products'
+          filter={<SDGFilter />}
+          content={<SDGListQuery />}
+          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.sdgs' />}
+          activeFilter={<SDGActiveFilter />}
+          hint={<SDGHint />}
+        />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default apolloClient()(SDGs)
+export default SDGs

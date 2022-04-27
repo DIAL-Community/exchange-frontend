@@ -8,7 +8,6 @@ import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import { convertToKey } from '../context/FilterContext'
 import StepList from './steps/StepList'
 
-
 const UseCaseDetailRight = ({ useCase }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -77,7 +76,7 @@ const UseCaseDetailRight = ({ useCase }) => {
               {
                 useCase.sdgTargets.map((sdgTarget, index) => {
                   return (
-                    <Link key={index} href={`/${convertToKey('SDGs')}/${sdgTarget.sustainableDevelopmentGoal.slug}`}>
+                    <Link key={index} href={`/${convertToKey('SDGs')}/${sdgTarget.sustainableDevelopmentGoal.slug}`} passHref>
                       <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
                         <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
                           <div className='flex flex-row text-dial-gray-dark'>

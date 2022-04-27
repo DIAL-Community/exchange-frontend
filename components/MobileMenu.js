@@ -97,6 +97,10 @@ const subMenus = {
         link: '/projects'
       },
       {
+        label: 'playbook.header',
+        link: '/playbooks'
+      },
+      {
         label: 'map.header',
         link: '/maps/projects'
       }

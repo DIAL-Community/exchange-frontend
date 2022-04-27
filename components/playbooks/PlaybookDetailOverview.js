@@ -9,7 +9,7 @@ import Breadcrumb from '../shared/breadcrumb'
 import { Error, Loading } from '../shared/FetchStatus'
 import { PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 
-const PLAYBOOK_QUERY = gql`
+export const PLAYBOOK_QUERY = gql`
   query Playbook($slug: String!) {
     playbook(slug: $slug) {
       id
@@ -44,7 +44,7 @@ const PlaybookDetailOverview = ({ slug, locale }) => {
 
   useEffect(() => {
     refetch()
-  }, [locale])
+  }, [locale, refetch])
 
   useEffect(() => {
     // Update context for this overview. We're using fake slug data for this.
@@ -73,7 +73,7 @@ const PlaybookDetailOverview = ({ slug, locale }) => {
 
     // Remove the observer as soon as the component is unmounted.
     return () => { observer.disconnect() }
-  }, [ref.current])
+  }, [ref])
 
   const generateEditLink = () => {
     if (!session.user) {

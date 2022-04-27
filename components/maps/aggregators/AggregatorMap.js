@@ -130,24 +130,16 @@ const AggregatorMap = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const fetchAggregatorData = () => {
-    const aggregatorData = useQuery(AGGREGATORS_QUERY, {
-      variables: {
-        first: DEFAULT_PAGE_SIZE,
-        mapView: true,
-        aggregatorOnly: true,
-        aggregators: aggregators.map(a => a.value)
-      }
-    })
-    const countries = useQuery(COUNTRIES_QUERY)
+  const { loading: loadingAggregators, data: aggregatorData } = useQuery(AGGREGATORS_QUERY, {
+    variables: {
+      first: DEFAULT_PAGE_SIZE,
+      mapView: true,
+      aggregatorOnly: true,
+      aggregators: aggregators.map(a => a.value)
+    }
+  })
 
-    return [aggregatorData, countries]
-  }
-
-  const [
-    { loading: loadingAggregators, data: aggregatorData },
-    { loading: loadingCountries, data: countryData }
-  ] = fetchAggregatorData()
+  const { loading: loadingCountries, data: countryData } = useQuery(COUNTRIES_QUERY)
 
   const serviceNames = []
   const capabilityNames = []

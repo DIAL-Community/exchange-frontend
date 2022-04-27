@@ -100,7 +100,7 @@ const ProductDetail = ({ slug, locale }) => {
 
   useEffect(() => {
     refetch()
-  }, [locale])
+  }, [locale, refetch])
 
   return (
     <>

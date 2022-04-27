@@ -47,7 +47,7 @@ const BuildingBlockDetail = ({ slug, locale }) => {
 
   useEffect(() => {
     refetch()
-  }, [locale])
+  }, [locale, refetch])
 
   return (
     <>

@@ -1,14 +1,26 @@
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import { HiSortAscending } from 'react-icons/hi'
+import { FixedSizeGrid, FixedSizeList } from 'react-window'
+import AutoSizer from 'react-virtualized-auto-sizer'
+import InfiniteLoader from 'react-window-infinite-loader'
 import { FilterContext } from '../context/FilterContext'
 import { OrganizationFilterContext } from '../context/OrganizationFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
+import NotFound from '../shared/NotFound'
 import OrganizationCard from './OrganizationCard'
 
+/* Default number of elements coming from graphql query. */
 const DEFAULT_PAGE_SIZE = 20
+/* Minimum width per product card. This will decide how many column we have in the page. */
+/* The value is based on the minimum required to render Bahmni card. */
+const MIN_ORGANIZATION_CARD_WIDTH = 380
+/* Default height of the product card. */
+const MIN_ORGANIZATION_CARD_HEIGHT = 420
+/* Default spacing between product card in a row. This is 0.5 rem. */
+const ORGANIZATION_CARD_GUTTER_SIZE = 8
+/* Height of the product's single list element when viewing the list view. */
+const MIN_ORGANIZATION_LIST_SIZE = 80
 
 const ORGANIZATIONS_QUERY = gql`
 query SearchOrganizations(
@@ -57,55 +69,6 @@ query SearchOrganizations(
   }
 }
 `
-
-const OrganizationList = (props) => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, { ...values })
-
-  const filterDisplayed = props.filterDisplayed
-  const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card'
-    ? `grid-cols-1 gap-4
-       ${filterDisplayed ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'}`
-    : 'grid-cols-1'
-    }`
-
-  return (
-    <>
-      <div className={gridStyles}>
-        {
-          displayType === 'list' &&
-            <div className='grid grid-cols-12 my-3 text-dial-gray-dark px-4'>
-              <div className='col-span-10 lg:col-span-4 ml-2 text-sm font-semibold opacity-80'>
-                {format('organization.header').toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
-              </div>
-              <div
-                className={`
-                  hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
-                  lg:col-span-6 text-sm font-semibold opacity-50
-                `}
-              >
-                {format('sector.header').toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
-              </div>
-            </div>
-        }
-        {
-          props.organizationList.length > 0
-            ? props.organizationList.map((organization) => (
-              <OrganizationCard key={organization.id} listType={displayType} {...{ organization, filterDisplayed }} />
-            ))
-            : (
-              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
-                {format('noResults.entity', { entity: format('organization.label').toLowerCase() })}
-              </div>
-            )
-        }
-      </div>
-    </>
-  )
-}
 
 const OrganizationListQuery = () => {
   const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
@@ -156,22 +119,154 @@ const OrganizationListQuery = () => {
     return <Loading />
   }
 
-  if (error) {
+  if (error && error.networkError) {
     return <Error />
   }
 
-  const { searchOrganizations: { nodes, pageInfo } } = data
+  if (error && !error.networkError) {
+    return <NotFound />
+  }
+
+  const { searchOrganizations: { nodes, pageInfo, totalCount } } = data
+  if (nodes.length <= 0) {
+    return (
+      <div className='px-3 py-4'>
+        {format('noResults.entity', { entity: format('organization.label').toLowerCase() })}
+      </div>
+    )
+  }
+
+  const isProductLoaded = (index) => !pageInfo.hasNextPage || index < nodes.length
 
   return (
-    <InfiniteScroll
-      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height'
-      dataLength={nodes.length}
-      next={handleLoadMore}
-      hasMore={pageInfo.hasNextPage}
-      loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
-    >
-      <OrganizationList organizationList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
-    </InfiniteScroll>
+    <div className='pt-4'>
+      {
+        displayType === 'list' &&
+        <div className='flex flex-row my-3 px-4 gap-x-4'>
+          <div className='w-4/12 text-sm font-semibold opacity-70'>
+            {format('organization.header').toUpperCase()}
+          </div>
+          <div className='hidden lg:block w-4/12 text-sm font-semibold opacity-50'>
+            {format('sector.header').toUpperCase()}
+          </div>
+        </div>
+      }
+      <div className='block pr-2' style={{ height: '80vh' }}>
+        <AutoSizer>
+          {({ height, width }) => (
+            <InfiniteLoader
+              isItemLoaded={isProductLoaded}
+              itemCount={totalCount}
+              loadMoreItems={handleLoadMore}
+            >
+              {({ onItemsRendered, ref }) => {
+                let columnCount = Math.floor(width / MIN_ORGANIZATION_CARD_WIDTH)
+                if (width < MIN_ORGANIZATION_CARD_WIDTH) {
+                  columnCount = 1
+                }
+
+                return (
+                  <>
+                    {
+                      displayType === 'card' &&
+                        <FixedSizeGrid
+                          className='no-scrollbars'
+                          height={height}
+                          width={(width)}
+                          rowHeight={MIN_ORGANIZATION_CARD_HEIGHT}
+                          columnWidth={width / columnCount}
+                          rowCount={Math.floor(totalCount / columnCount) + 1}
+                          columnCount={columnCount}
+                          onItemsRendered={({
+                            overscanColumnStartIndex,
+                            overscanColumnStopIndex,
+                            overscanRowStartIndex,
+                            overscanRowStopIndex,
+                            visibleColumnStartIndex,
+                            visibleColumnStopIndex,
+                            visibleRowStartIndex,
+                            visibleRowStopIndex
+                          }) => {
+                            onItemsRendered({
+                              overscanStartIndex: overscanColumnStartIndex + overscanRowStartIndex * columnCount,
+                              overscanStopIndex: overscanColumnStopIndex + overscanRowStopIndex * columnCount,
+                              visibleStartIndex: visibleColumnStartIndex + visibleRowStartIndex * columnCount,
+                              visibleStopIndex: visibleColumnStopIndex + visibleRowStopIndex * columnCount
+                            })
+                          }}
+                          ref={ref}
+                        >
+                          {({ columnIndex, rowIndex, style }) => {
+                            const currentIndex = rowIndex * columnCount + columnIndex
+                            const organization = nodes[currentIndex]
+
+                            return (
+                              <div
+                                style={{
+                                  ...style,
+                                  left: style.left + ORGANIZATION_CARD_GUTTER_SIZE,
+                                  top: style.top + ORGANIZATION_CARD_GUTTER_SIZE,
+                                  width: style.width - ORGANIZATION_CARD_GUTTER_SIZE,
+                                  height: style.height - ORGANIZATION_CARD_GUTTER_SIZE
+                                }}
+                              >
+                                {
+                                  currentIndex < nodes.length && organization &&
+                                    <OrganizationCard listType={displayType} {...{ organization, filterDisplayed }} />
+                                }
+                                {currentIndex < nodes.length && !organization && <Loading />}
+                              </div>
+                            )
+                          }}
+                        </FixedSizeGrid>
+                    }
+                    {
+                      displayType === 'list' &&
+                        <FixedSizeList
+                          className='no-scrollbars'
+                          height={height}
+                          width={(width)}
+                          itemSize={(MIN_ORGANIZATION_LIST_SIZE)}
+                          columnWidth={width / columnCount}
+                          itemCount={totalCount}
+                          onItemsRendered={({
+                            overscanStartIndex,
+                            overscanStopIndex,
+                            visibleStartIndex,
+                            visibleStopIndex
+                          }) => {
+                            onItemsRendered({
+                              overscanStartIndex: overscanStartIndex,
+                              overscanStopIndex: overscanStopIndex,
+                              visibleStartIndex: visibleStartIndex,
+                              visibleStopIndex: visibleStopIndex
+                            })
+                          }}
+                          ref={ref}
+                        >
+                          {({ index, style }) => {
+                            const organization = nodes[index]
+
+                            return (
+                              <div style={style}>
+                                {
+                                  index < nodes.length && organization &&
+                                    <OrganizationCard listType={displayType} {...{ organization, filterDisplayed }} />
+                                }
+                                {index < nodes.length && !organization && <Loading />}
+                              </div>
+                            )
+                          }}
+                        </FixedSizeList>
+                    }
+                  </>
+                )
+              }}
+            </InfiniteLoader>
+          )}
+        </AutoSizer>
+      </div>
+    </div>
   )
 }
 

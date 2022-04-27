@@ -4,8 +4,8 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
-import withApollo from '../../../lib/apolloClient'
 import ProductDetail from '../../../components/products/ProductDetail'
+import ClientOnly from '../../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const Product = () => {
@@ -24,10 +24,12 @@ const Product = () => {
       </Head>
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <ProductDetail slug={slug} locale={locale} />
+      <ClientOnly>
+        <ProductDetail slug={slug} locale={locale} />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default withApollo()(Product)
+export default Product

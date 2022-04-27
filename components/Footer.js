@@ -147,7 +147,25 @@ const Footer = () => {
           <div className='border border-t-0 border-dial-gray-light' />
         </div>
         <div className='px-4 pt-4 pb-8 lg:px-10 2xl:px-24 2xl:pt-8 2xl:pb-12 flex flex-row flex-wrap mx-auto max-w-catalog'>
-          <div className='w-full flex flex-row flex-wrap gap-3 leading-none text-base'>
+          <div className='w-full flex flex-row flex-wrap gap-3 leading-none text-base place-content-center'>
+            <div className='py-2 px-0 2xl:px-2 text-center'>
+              <span>{format('footer.icons')} </span>
+              <a
+                className='border-b-2 border-transparent hover:border-dial-yellow'
+                href='https://fontawesome.com/' target='_blank' rel='noreferrer'
+              >
+                FontAwesome
+              </a>
+              <span> and </span>
+              <a
+                className='border-b-2 border-transparent hover:border-dial-yellow'
+                href='https://www.globalgoals.org/' target='_blank' rel='noreferrer'
+              >
+                The Global Goals for Sustainable Development
+              </a>
+            </div>
+          </div>
+          <div className='w-full flex flex-row flex-wrap gap-3 leading-none text-base place-content-center'>
             <div className='py-2 order-last xl:order-first'>
               &copy; {new Date().getFullYear()} {format('footer.organizationName').toUpperCase()}
             </div>
@@ -171,22 +189,6 @@ const Footer = () => {
                 className='border-b-2 border-transparent hover:border-dial-yellow'
               >
                 {format('footer.contactUs').toUpperCase()}
-              </a>
-            </div>
-            <div className='py-2 px-0 2xl:px-2 flex-auto xl:text-left 2xl:text-right'>
-              <span>{format('footer.icons')} </span>
-              <a
-                className='border-b-2 border-transparent hover:border-dial-yellow'
-                href='https://fontawesome.com/' target='_blank' rel='noreferrer'
-              >
-                FontAwesome
-              </a>
-              <span> and </span>
-              <a
-                className='border-b-2 border-transparent hover:border-dial-yellow'
-                href='https://www.globalgoals.org/' target='_blank' rel='noreferrer'
-              >
-                The Global Goals for Sustainable Development
               </a>
             </div>
           </div>

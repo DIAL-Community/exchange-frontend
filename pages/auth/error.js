@@ -19,15 +19,21 @@ export default function Error ({ csrfToken }) {
           <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
             <h1 className='block mb-3 mx-2'>{format('error.auth')}</h1>
             <div className='flex items-center'>
-              <Link href='/auth/signin'>
-                <button className='bg-dial-gray-dark hover:bg-blue-dark text-dial-gray-light font-bold py-2 px-4 mx-2 rounded'>
+              <Link href='/auth/signin' passHref>
+                <a
+                  href='navigate-to-signin'
+                  className='bg-dial-gray-dark hover:bg-blue-dark text-dial-gray-light font-bold py-2 px-4 mx-2 rounded'
+                >
                   {format('error.tryAgain')}
-                </button>
+                </a>
               </Link>
               <Link href='/'>
-                <button className='bg-dial-gray-dark hover:bg-blue-dark text-dial-gray-light font-bold py-2 px-4 mx-2 rounded'>
+                <a
+                  href='navigate-to-home'
+                  className='bg-dial-gray-dark hover:bg-blue-dark text-dial-gray-light font-bold py-2 px-4 mx-2 rounded'
+                >
                   {format('error.goBack')}
-                </button>
+                </a>
               </Link>
             </div>
           </div>

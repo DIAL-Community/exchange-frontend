@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useContext } from 'react'
 import dynamic from 'next/dynamic'
-import apolloClient from '../../lib/apolloClient'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import QueryNotification from '../../components/shared/QueryNotification'
@@ -16,6 +15,7 @@ import WorkflowListQuery from '../../components/workflows/WorkflowList'
 import WorkflowActiveFilter from '../../components/workflows/WorkflowActiveFilter'
 import SearchFilter from '../../components/shared/SearchFilter'
 import { WorkflowFilterContext, WorkflowFilterDispatchContext } from '../../components/context/WorkflowFilterContext'
+import ClientOnly from '../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const Workflows = () => {
@@ -37,17 +37,19 @@ const Workflows = () => {
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <TabNav activeTab='filter.entity.workflows' />
       <MobileNav activeTab='filter.entity.workflows' />
-      <PageContent
-        activeTab='filter.entity.products'
-        filter={<WorkflowFilter />}
-        content={<WorkflowListQuery />}
-        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.workflows' />}
-        activeFilter={<WorkflowActiveFilter />}
-        hint={<WorkflowHint />}
-      />
+      <ClientOnly>
+        <PageContent
+          activeTab='filter.entity.products'
+          filter={<WorkflowFilter />}
+          content={<WorkflowListQuery />}
+          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.workflows' />}
+          activeFilter={<WorkflowActiveFilter />}
+          hint={<WorkflowHint />}
+        />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default apolloClient()(Workflows)
+export default Workflows

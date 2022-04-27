@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useContext } from 'react'
 import dynamic from 'next/dynamic'
-import apolloClient from '../../lib/apolloClient'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import QueryNotification from '../../components/shared/QueryNotification'
@@ -16,6 +15,7 @@ import ProjectActiveFilter from '../../components/projects/ProjectActiveFilter'
 import ProjectListQuery from '../../components/projects/ProjectList'
 import SearchFilter from '../../components/shared/SearchFilter'
 import { ProjectFilterContext, ProjectFilterDispatchContext } from '../../components/context/ProjectFilterContext'
+import ClientOnly from '../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const Projects = () => {
@@ -37,17 +37,19 @@ const Projects = () => {
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <TabNav activeTab='filter.entity.projects' />
       <MobileNav activeTab='filter.entity.projects' />
-      <PageContent
-        activeTab='filter.entity.products'
-        filter={<ProjectFilter />}
-        content={<ProjectListQuery />}
-        searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.projects' />}
-        activeFilter={<ProjectActiveFilter />}
-        hint={<ProjectHint />}
-      />
+      <ClientOnly>
+        <PageContent
+          activeTab='filter.entity.products'
+          filter={<ProjectFilter />}
+          content={<ProjectListQuery />}
+          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.projects' />}
+          activeFilter={<ProjectActiveFilter />}
+          hint={<ProjectHint />}
+        />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default apolloClient()(Projects)
+export default Projects

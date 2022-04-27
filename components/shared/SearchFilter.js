@@ -40,7 +40,7 @@ const SearchFilter = (props) => {
     const timeOutId = setTimeout(() => setSearch(searchTerm), 500)
 
     return () => clearTimeout(timeOutId)
-  }, [searchTerm])
+  }, [searchTerm, setSearch])
 
   const handleChange = (e) => setSearchTerm(e.target.value)
 
@@ -212,7 +212,7 @@ const SearchFilter = (props) => {
                 type='search'
                 value={searchTerm} onChange={handleChange}
                 className={`
-                  form-input py-2 px-3 text-sm text-dial-gray-light bg-dial-gray-dark rounded-md w-56 2xl:w-96
+                  form-input py-2 px-3 text-sm text-dial-gray-light bg-dial-gray-dark rounded-md w-96 2xl:w-[32rem]
                   placeholder-dial-gray-light placeholder-opacity-40 border border-dial-gray-dark focus:border-dial-yellow
                 `}
                 placeholder={`${format('app.search')} ${format(hint).toString().toLowerCase()}`}

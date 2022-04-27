@@ -33,7 +33,7 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
   const [hoverStyle, containerStyle] = cardContainerStyles()
 
   return (
-    <Link href={`/${productsPath}/${productRepository.product.slug}/${repositoriesPath}/${productRepository.slug}`}>
+    <Link href={`/${productsPath}/${productRepository.product.slug}/${repositoriesPath}/${productRepository.slug}`} passHref>
       <div className={hoverStyle}>
         <div className={containerStyle}>
           <div className='flex flex-row justify-between'>

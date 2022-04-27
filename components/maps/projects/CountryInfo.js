@@ -4,16 +4,17 @@ import { useIntl } from 'react-intl'
 
 const CountryInfo = (props) => {
   const { country } = props
+  const router = useRouter()
+
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
+  const [active, setActive] = useState(country.projects[0].slug)
+
   // Just return empty fragment when there's no country selected.
   if (!country) {
     return null
   }
-
-  const router = useRouter()
-  const [active, setActive] = useState(country.projects[0].slug)
-
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
 
   const openDetailPage = (e, slug) => {
     e.preventDefault()

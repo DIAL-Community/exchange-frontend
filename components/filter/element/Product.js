@@ -23,6 +23,7 @@ const customStyles = (controlSize = '12rem') => {
     control: (provided) => ({
       ...provided,
       width: controlSize,
+      boxShadow: 'none',
       cursor: 'pointer'
     }),
     option: (provided) => ({
@@ -74,10 +75,10 @@ export const ProductAutocomplete = (props) => {
   }
 
   return (
-    <div className={`${containerStyles} text-dial-gray-dark flex`}>
+    <div className={`${containerStyles} catalog-filter text-dial-gray-dark flex`}>
       <AsyncSelect
         aria-label={format('filter.byEntity', { entity: format('product.label') })}
-        className='rounded text-sm text-dial-gray-dark mt-1 block w-full'
+        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input, callback) => fetchOptions(input, callback, PRODUCT_SEARCH_QUERY)}

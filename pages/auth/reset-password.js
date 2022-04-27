@@ -89,7 +89,7 @@ const ResetPassword = () => {
                     <Link href='/auth/signin'>
                       <a
                         className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow'
-                        href='/auth/signin'
+                        href='navigate-to-signin'
                       >
                         {format('app.signIn')}
                       </a>
@@ -98,7 +98,7 @@ const ResetPassword = () => {
                     <Link href='/auth/signup'>
                       <a
                         className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow'
-                        href='/auth/signup'
+                        href='navigate-to-signup'
                       >
                         {format('app.signUp')}
                       </a>

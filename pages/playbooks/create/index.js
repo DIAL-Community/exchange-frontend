@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
-import withApollo from '../../../lib/apolloClient'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import PlayPreview from '../../../components/plays/PlayPreview'
 import { PlaybookForm } from '../../../components/playbooks/PlaybookForm'
 import { PlayListProvider } from '../../../components/plays/PlayListContext'
 import { PlayPreviewProvider } from '../../../components/plays/PlayPreviewContext'
+import ClientOnly from '../../../lib/ClientOnly'
 
 const CreateFormProvider = ({ children }) => {
   return (
@@ -30,14 +30,16 @@ function CreatePlaybook () {
       </Head>
       <Header />
       <div className='max-w-catalog mx-auto'>
-        <CreateFormProvider>
-          <PlayPreview />
-          <PlaybookForm />
-        </CreateFormProvider>
+        <ClientOnly>
+          <CreateFormProvider>
+            <PlayPreview />
+            <PlaybookForm />
+          </CreateFormProvider>
+        </ClientOnly>
       </div>
       <Footer />
     </>
   )
 }
 
-export default withApollo()(CreatePlaybook)
+export default CreatePlaybook

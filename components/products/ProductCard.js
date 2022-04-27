@@ -32,12 +32,6 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
     return endorserOrgs.length > 0
   }
 
-  const nameColSpan = () => {
-    return !product.origins
-      ? 'col-span-10'
-      : filterDisplayed ? 'col-span-10 xl:col-span-4' : 'col-span-10 lg:col-span-4'
-  }
-
   useEffect(() => {
     ReactTooltip.rebuild()
   })
@@ -48,47 +42,18 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
         {
           listType === 'list'
             ? (
-              <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div onClick={() => navClickHandler()} className={`${containerElementStyle}`}>
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
-                  <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
-                    <div className={`${nameColSpan()} font-semibold my-auto ${ellipsisTextStyle}`}>
+                  <div className='flex flex-row flex-wrap lg:gap-x-4 px-4' style={{ minHeight: '4.5rem' }}>
+                    <div className={`w-full lg:w-4/12 font-semibold my-auto ${ellipsisTextStyle}`}>
                       <img
                         className='inline pr-3' width='50' height='50'
                         alt={format('image.alt.logoFor', { name: product.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
                       />
                       {product.name}
-                      <div
-                        className={`
-                        block ${filterDisplayed ? 'xl:hidden' : 'lg:hidden'}
-                        font-normal mt-1 text-dial-purple ${ellipsisTextStyle}
-                      `}
-                      >
-                        {product.origins && product.origins.length === 0 && format('general.na')}
-                        {
-                          product.origins && product.origins.length > 0 &&
-                        product.origins
-                          .map(origin => ORIGIN_EXPANSIONS[origin.name.toLowerCase()] || origin.name)
-                          .join(', ')
-                        }
-                      </div>
-                      <div className={`block ${filterDisplayed ? 'xl:hidden' : 'lg:hidden'} mt-1 text-sm xl:text-base font-semibold text-dial-cyan`}>
-                        {product.productType === 'dataset' ? format('product.card.dataset').toUpperCase() : ''}
-                      </div>
                     </div>
-                    <div
-                      className={`
-                      hidden ${filterDisplayed ? 'xl:block' : 'lg:block'} col-span-2 font-semibold text-dial-cyan my-auto
-                    `}
-                    >
-                      {product.productType === 'dataset' ? format('product.card.dataset').toUpperCase() : ''}
-                    </div>
-                    <div
-                      className={`
-                      hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
-                      md:col-span-4 text-base text-dial-purple ${ellipsisTextStyle}
-                    `}
-                    >
+                    <div className={`w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple ${ellipsisTextStyle}`}>
                       {product.origins && product.origins.length === 0 && format('general.na')}
                       {
                         product.origins && product.origins.length > 0 &&
@@ -97,37 +62,36 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                           .join(', ')
                       }
                     </div>
-                    <div
-                      className={`
-                      hidden ${filterDisplayed ? ' lg:block' : 'md:block'}
-                      col-span-2 md:col-span-1 flex flex-row justify-end my-auto
-                    `}
-                    >
+                    <div className='w-4/12 lg:w-2/12 text-right text-sm lg:text-base font-semibold text-dial-cyan my-auto'>
+                      {product.productType === 'dataset' ? format('product.card.dataset').toUpperCase() : ''}
+                    </div>
+                    <div className='absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end'>
                       {
                         product.endorsers && product.endorsers.length > 0 &&
-                        <img
-                          alt={format('image.alt.logoFor', { name: format('endorsed.title') })}
-                          data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5'
-                          src='/icons/check/check.png'
-                        />
+                          <img
+                            alt={format('image.alt.logoFor', { name: format('endorsed.title') })}
+                            data-tip={format('tooltip.endorsed')} className='h-5' src='/icons/check/check.png'
+                          />
                       }
                       {
                         isEndorsingOrg() &&
-                        <img
-                          alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
-                          data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5'
-                          src='/icons/digiprins/digiprins.png'
-                        />
+                          <img
+                            alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
+                            data-tip={format('tooltip.digiprins')} className='h-5' src='/icons/digiprins/digiprins.png'
+                          />
                       }
                       {
                         product.tags && product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
-                        <img
-                          alt={format('image.alt.logoFor', { name: format('coronavirus.title') })}
-                          data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5'
-                          src='/icons/coronavirus/coronavirus.png'
-                        />
+                          <img
+                            alt={format('image.alt.logoFor', { name: format('coronavirus.title') })}
+                            data-tip={format('tooltip.covid')} className='h-5' src='/icons/coronavirus/coronavirus.png'
+                          />
                       }
-                      {product.isLaunchable && <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />}
+                      {product.isLaunchable &&
+                        <img
+                          data-tip={format('tooltip.launchable')} className='h-5' src='/icons/launchable/launchable.png'
+                          alt={format('image.alt.logoFor', { name: format('product.launchable') })}
+                        />}
                     </div>
                   </div>
                 </div>
@@ -136,37 +100,40 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
             : (
               <div onClick={() => navClickHandler()} className={containerElementStyle}>
                 <div className='h-full flex flex-col border border-dial-gray hover:border-transparent card-drop-shadow'>
-                  <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
+                  <div className='flex flex-row gap-x-1.5 p-1.5 border-b border-dial-gray product-card-header'>
                     {
                       product.endorsers && product.endorsers.length > 0 &&
-                      <img
-                        alt={format('image.alt.logoFor', { name: format('endorsed.title') })}
-                        data-tip={format('tooltip.endorsed')} className='mr-1.5 last:mr-0 h-5'
-                        src='/icons/check/check.png'
-                      />
+                        <img
+                          alt={format('image.alt.logoFor', { name: format('endorsed.title') })}
+                          data-tip={format('tooltip.endorsed')} className='h-5' src='/icons/check/check.png'
+                        />
                     }
                     {
                       isEndorsingOrg() &&
-                      <img
-                        alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
-                        data-tip={format('tooltip.digiprins')} className='mr-1.5 last:mr-0 h-5'
-                        src='/icons/digiprins/digiprins.png'
-                      />
+                        <img
+                          alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
+                          data-tip={format('tooltip.digiprins')} className='h-5' src='/icons/digiprins/digiprins.png'
+                        />
                     }
                     {
                       product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
-                      <img
-                        alt={format('image.alt.logoFor', { name: format('coronavirus.title') })}
-                        data-tip={format('tooltip.covid')} className='mr-1.5 last:mr-0 h-5'
-                        src='/icons/coronavirus/coronavirus.png'
-                      />
+                        <img
+                          alt={format('image.alt.logoFor', { name: format('coronavirus.title') })}
+                          data-tip={format('tooltip.covid')} className='h-5' src='/icons/coronavirus/coronavirus.png'
+                        />
                     }
-                    {product.isLaunchable && <img className='mr-1.5 last:mr-0 h-5' src='/icons/launchable/launchable.png' />}
+                    {
+                      product.isLaunchable &&
+                        <img
+                          alt={format('image.alt.logoFor', { name: format('product.launchable') })}
+                          data-tip={format('tooltip.launchable')} className='h-5' src='/icons/launchable/launchable.png'
+                        />
+                    }
                     {
                       product.productType === 'dataset' &&
-                      <div className='ml-auto text-dial-cyan text-sm font-semibold'>
-                        {format('product.card.dataset').toUpperCase()}
-                      </div>
+                        <div className='ml-auto text-dial-cyan text-sm font-semibold'>
+                          {format('product.card.dataset').toUpperCase()}
+                        </div>
                     }
                   </div>
                   <div className='flex flex-col h-80 p-4'>
@@ -175,12 +142,12 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                     </div>
                     {
                       product.productDescription &&
-                      <img
-                        className='ml-auto opacity-20 hover:opacity-100 product-filter'
-                        data-tip={product.productDescription.description}
-                        data-html
-                        alt='Info' height='20px' width='20px' src='/icons/info.svg'
-                      />
+                        <img
+                          className='ml-auto opacity-20 hover:opacity-100 product-filter'
+                          data-tip={product.productDescription.description}
+                          data-html
+                          alt='Info' height='20px' width='20px' src='/icons/info.svg'
+                        />
                     }
                     <div className='m-auto'>
                       <img
@@ -192,14 +159,14 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                   </div>
                   <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark mt-auto'>
                     <div className='pb-3 flex flex-row flex-wrap justify-between border-b border-dial-gray'>
-                      <div className='pl-3 pt-3 flex flex-row flex-wrap'>
-                        <div className='text-base my-auto mr-2'>{format('product.card.sdgs')}</div>
-                        <div className='bg-white rounded p-1.5 flex flex-row'>
+                      <div className='pl-3 pt-3 flex flex-row'>
+                        <div className='text-base my-auto mr-1'>{format('product.card.sdgs')}</div>
+                        <div className='bg-white rounded p-1.5 flex flex-row gap-x-1'>
                           {
                             product.sustainableDevelopmentGoals.length === 0 &&
-                            <span className='text-base my-1 mx-auto font-semibold'>
-                              {format('general.na')}
-                            </span>
+                              <span className='text-base my-1 mx-auto font-semibold'>
+                                {format('general.na')}
+                              </span>
                           }
                           {
                             product.sustainableDevelopmentGoals
@@ -207,7 +174,7 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                               .map(sdg => (
                                 <img
                                   data-tip={format('tooltip.forEntity', { entity: format('sdg.label'), name: sdg.name })}
-                                  key={`sdg-${sdg.slug}`} className='mr-1.5 last:mr-0 h-8 cursor-default'
+                                  key={`sdg-${sdg.slug}`} className='h-8 cursor-default'
                                   alt={format('image.alt.logoFor', { name: sdg.name })}
                                   src={`/images/sdgs/${sdg.slug}.png`}
                                 />
@@ -215,18 +182,18 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                           }
                           {
                             product.sustainableDevelopmentGoals.length > 2 &&
-                            <span className='text-xl leading-none'>...</span>
+                              <span className='text-base'>...</span>
                           }
                         </div>
                       </div>
                       <div className='px-3 pt-3 flex flex-row flex-wrap'>
-                        <div className='text-base my-auto mr-2'>{format('product.card.buildingBlocks')}</div>
-                        <div className='bg-white rounded p-1.5 flex flex-row'>
+                        <div className='text-base my-auto mr-1'>{format('product.card.buildingBlocks')}</div>
+                        <div className='bg-white rounded p-1.5 flex flex-row gap-x-1'>
                           {
                             product.buildingBlocks.length === 0 &&
-                            <span className='text-base my-1 mx-auto font-semibold'>
-                              {format('general.na')}
-                            </span>
+                              <span className='text-base my-1 mx-auto font-semibold'>
+                                {format('general.na')}
+                              </span>
                           }
                           {
                             product.buildingBlocks
@@ -234,7 +201,7 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                               .map(bb => (
                                 <img
                                   data-tip={format('tooltip.forEntity', { entity: format('buildingBlock.label'), name: bb.name })}
-                                  key={`sdg-${bb.slug}`} className='mr-1 last:mr-0 w-8 building-block-filter cursor-default'
+                                  key={`sdg-${bb.slug}`} className='w-8 building-block-filter cursor-default'
                                   alt={format('image.alt.logoFor', { name: bb.name })}
                                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + bb.imageFile}
                                 />
@@ -242,7 +209,7 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                           }
                           {
                             product.buildingBlocks.length > 2 &&
-                            <span className='text-xl leading-none'>...</span>
+                              <span className='text-xl leading-none'>...</span>
                           }
                         </div>
                       </div>
@@ -256,23 +223,23 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                       </div>
                       {
                         product.maturityScore &&
-                        <div className='pl-3 py-3 flex-auto flex flex-col'>
-                          <div className='text-base m-auto'>
-                            {format('product.card.maturityScore')}
+                          <div className='pl-3 py-3 flex-auto flex flex-col'>
+                            <div className='text-base m-auto'>
+                              {format('product.card.maturityScore')}
+                            </div>
+                            <div className='bg-dial-cyan mt-1.5 mx-auto px-3 py-2 rounded text-sm text-white'>
+                              {product.maturityScore || format('general.na')}
+                            </div>
                           </div>
-                          <div className='bg-dial-cyan mt-1.5 mx-auto px-3 py-2 rounded text-sm text-white'>
-                            {product.maturityScore || format('general.na')}
-                          </div>
-                        </div>
                       }
                       <div className='pr-3 py-3 flex-auto flex flex-col'>
                         <div className='text-base text-right my-auto'>Sources</div>
                         <div className='flex flex-row justify-end font-semibold'>
                           {
                             product.origins.length === 0 &&
-                            <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
-                              {format('general.na')}
-                            </div>
+                              <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
+                                {format('general.na')}
+                              </div>
                           }
                           {
                             product.origins
@@ -298,12 +265,12 @@ const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => 
                           }
                           {
                             product.origins.length > 3 &&
-                            <div
-                              className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
-                              data-tip={format('tooltip.ellipsisFor', { entity: format('product.label') })}
-                            >
-                              &hellip;
-                            </div>
+                              <div
+                                className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
+                                data-tip={format('tooltip.ellipsisFor', { entity: format('product.label') })}
+                              >
+                                &hellip;
+                              </div>
                           }
                         </div>
                       </div>

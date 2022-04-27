@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import Head from 'next/head'
-import { gql, useQuery } from '@apollo/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import SDGDetail from '../../../components/sdgs/SDGDetail'
-import withApollo from '../../../lib/apolloClient'
+import ClientOnly from '../../../lib/ClientOnly'
 
 const SDG = () => {
   const { formatMessage } = useIntl()
@@ -21,10 +20,12 @@ const SDG = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <SDGDetail slug={slug} />
+      <ClientOnly>
+        <SDGDetail slug={slug} />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default withApollo()(SDG)
+export default SDG

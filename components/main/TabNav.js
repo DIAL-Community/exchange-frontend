@@ -26,7 +26,10 @@ const TabNav = (props) => {
         </div>
         <div className='text-right -mt-4'>
           <Link href='/wizard'>
-            <a href='/wizard' className='text-sm border-b-2 border-transparent text-dial-yellow font-bold hover:border-dial-yellow'>
+            <a
+              href='/navigate-to-wizard'
+              className='text-sm border-b-2 border-transparent text-dial-yellow font-bold hover:border-dial-yellow'
+            >
               {format('filter.launchWizard')}
             </a>
           </Link>

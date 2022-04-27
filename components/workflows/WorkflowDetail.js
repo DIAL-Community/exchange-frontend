@@ -45,7 +45,7 @@ const WorkflowDetail = ({ slug, locale }) => {
 
   useEffect(() => {
     refetch()
-  }, [locale])
+  }, [locale, refetch])
 
   return (
     <>
