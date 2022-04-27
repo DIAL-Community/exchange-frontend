@@ -1,5 +1,6 @@
 import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion'
 import { useIntl } from 'react-intl'
+import parse from 'html-react-parser'
 
 const MaturityCategory = ({ category }) => {
   const { formatMessage } = useIntl()
@@ -30,7 +31,7 @@ const MaturityCategory = ({ category }) => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                   <div className='text-sm text-button-gray pl-6'>
-                    {indicator.description}
+                    {parse(indicator.description)}
                   </div>
                 </AccordionItemPanel>
               </AccordionItem>
