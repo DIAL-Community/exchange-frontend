@@ -66,6 +66,14 @@ const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
           </div>
         </div>
       </div>
+      { buildingBlock.specUrl && 
+        (<div className='p-3 lg:mr-6 text-dial-gray-dark text-sm'>
+          {format('building-block.spec-link')}
+          <a href={buildingBlock.specUrl} className='text-dial-blue text-sm' target='_blank' rel='noreferrer'>
+            {buildingBlock.name}
+          </a>
+        </div>)
+      }
     </>
   )
 }

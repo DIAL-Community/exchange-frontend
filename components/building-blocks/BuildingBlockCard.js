@@ -155,7 +155,13 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
                 <div className='h-full flex flex-col border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='flex flex-row p-1.5 border-b border-dial-gray'>
                     <div className='ml-auto text-button-gray-light text-sm font-semibold'>
-                      {buildingBlock.maturity.toUpperCase()}
+                      { buildingBlock.specUrl ? (
+                        <a href={buildingBlock.specUrl} className='text-dial-blue' target='_blank' rel='noreferrer'>
+                          <div className='text-dial-blue'>{buildingBlock.maturity.toUpperCase()}</div>
+                        </a>
+                      ) : (
+                        buildingBlock.maturity.toUpperCase()
+                      )}
                     </div>
                   </div>
                   <div className='flex flex-col h-80 p-4'>
