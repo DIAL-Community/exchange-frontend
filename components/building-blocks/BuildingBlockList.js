@@ -43,6 +43,7 @@ query SearchBuildingBlocks(
       slug
       imageFile
       maturity
+      specUrl
       workflows {
         slug
         name
