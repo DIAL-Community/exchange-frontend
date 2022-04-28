@@ -231,6 +231,7 @@ export const en = {
   'building-block.label': 'Building Block',
   'buildingBlock.label': 'Building Block',
   'building-block.disclaimer': 'Note: As part of the <a href="https://govstack.global">GovStack Initiative</a>, DIAL is working to map digital platforms with key Building Block functionalities. Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative examples of how these tools may support building block functionalities. As Building Block specifications are developed, products that are aligned with the specifications will be tagged as such.',
+  'building-block.spec-link': 'The GovStack initiative has published a full specification for this building block. You can view the documentation at this link: ',
 
   'sector.header': 'Sectors',
   'sector.label': 'Sector',

@@ -13,6 +13,7 @@ const BUILDING_BLOCK_QUERY = gql`
       slug
       imageFile
       discourseId
+      specUrl
       buildingBlockDescription {
         description
         locale
