@@ -83,6 +83,9 @@ const AdminMenu = () => {
           <a href='/candidate/products' role='menuitem' className={dropdwonMenuStyles}>
             {format('header.admin.candidate_products')}
           </a>
+          <a href='/candidate/roles' role='menuitem' className={dropdwonMenuStyles}>
+            {format('header.admin.candidate_roles')}
+          </a>
           <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/deploys?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
             {format('header.admin.deploys')}
           </a>
