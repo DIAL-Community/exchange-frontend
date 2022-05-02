@@ -65,6 +65,7 @@ export const en = {
   'header.admin.settings': 'Settings',
   'header.admin.sectors': 'Sectors',
   'header.admin.tags': 'Tags',
+  'header.admin.countries': 'Countries',
   'header.admin.candidate_orgs': 'Candidate Orgs',
   'header.admin.candidate_products': 'Candidate Products',
   'header.admin.candidate_roles': 'Candidate Roles',
