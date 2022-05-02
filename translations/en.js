@@ -67,6 +67,7 @@ export const en = {
   'header.admin.tags': 'Tags',
   'header.admin.candidate_orgs': 'Candidate Orgs',
   'header.admin.candidate_products': 'Candidate Products',
+  'header.admin.candidate_roles': 'Candidate Roles',
   'header.admin.deploys': 'Deploys',
   'header.admin.portal_views': 'Portal Views',
   'header.admin.maturity_rubrics': 'Maturity Rubrics',
@@ -1028,6 +1029,8 @@ export const en = {
   'candidate.feedback': 'Feedback',
   'candidate.feedback.placeholder': 'Reason for approval / rejection.',
   'candidate.cancel': 'Cancel',
+  'candidate.email': 'Email',
+  'candidate.applied': 'Applied For',
 
   'entity.file': 'File to Process',
   'entity.process': 'Start Processing File',

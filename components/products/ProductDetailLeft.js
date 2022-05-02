@@ -62,7 +62,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
     }
   }, [session])
 
-  const displayApplyOwnershipLink = (user, error, appliedToBeOwner) => {
+  const displayApplyOwnershipLink = (user, data, appliedToBeOwner) => {
     if (!user) {
       // Not logged in, don't display the link.
       return false
@@ -76,7 +76,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
       return false
     }
 
-    if (!appliedToBeOwner && error) {
+    if (!appliedToBeOwner && !data?.candidateRole) {
       // Have not apply to be one or if searching in the db return no data.
       return true
     }
@@ -105,8 +105,8 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
   }
 
   useEffect(() => {
-    setShowApplyLink(displayApplyOwnershipLink(session, error, appliedToBeOwner))
-    setOwnershipText(staticOwnershipTextSelection(session, data, appliedToBeOwner))
+    setShowApplyLink(displayApplyOwnershipLink(session?.user, data, appliedToBeOwner))
+    setOwnershipText(staticOwnershipTextSelection(session?.user, data, appliedToBeOwner))
   }, [session, data, error, appliedToBeOwner])
 
   const updateContactInfo = async (captchaValue) => {
