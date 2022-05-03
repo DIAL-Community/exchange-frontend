@@ -9,7 +9,7 @@ const EndorserInfo = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const [active, setActive] = useState(city.organizations[0].slug)
+  const [active, setActive] = useState(city?.organizations[0].slug)
 
   // Just return empty fragment when there's no city selected.
   if (!city) {
