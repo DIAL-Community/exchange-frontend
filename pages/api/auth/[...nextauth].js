@@ -74,7 +74,7 @@ export default NextAuth({
       //  ...and return it...
       user && (token.user = user)
 
-      if (!token.railsAuth) {
+      if (0) {
         token.railsAuth = true
         const authBody = {
           user: {

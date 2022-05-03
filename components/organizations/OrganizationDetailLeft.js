@@ -52,19 +52,19 @@ const OrganizationDetailLeft = ({ organization }) => {
     }
   }, [session])
 
-  const displayApplyOwnershipLink = (session, error, appliedToBeOwner) => {
+  const displayApplyOwnershipLink = (session, data, appliedToBeOwner) => {
     if (!session || !session.user) {
       // Not logged in, don't display the link.
       return false
     }
 
     const user = session.user
-    if (`${user.own.organization}` === `${organization.id}`) {
+    if (`${user.own.organization.id}` === `${organization.id}`) {
       // Already owning this organization, don't display the link.
       return false
     }
 
-    if (!appliedToBeOwner && error) {
+    if (!appliedToBeOwner && !data?.candidateRole) {
       // Have not apply to be one or if searching in the db return no data.
       return true
     }
@@ -79,7 +79,7 @@ const OrganizationDetailLeft = ({ organization }) => {
     }
 
     const user = session.user
-    if (`${user.own.organization}` === `${organization.id}`) {
+    if (`${user.own.organization.id}` === `${organization.id}`) {
       // Already owning this organization, display user already owning.
       return 'owner'
     }
@@ -91,7 +91,7 @@ const OrganizationDetailLeft = ({ organization }) => {
   }
 
   useEffect(() => {
-    setShowApplyLink(displayApplyOwnershipLink(session, error, appliedToBeOwner))
+    setShowApplyLink(displayApplyOwnershipLink(session, data, appliedToBeOwner))
     setOwnershipText(staticOwnershipTextSelection(session, data, appliedToBeOwner))
   }, [session, data, error, appliedToBeOwner])
 
@@ -149,7 +149,7 @@ const OrganizationDetailLeft = ({ organization }) => {
             session && (
               <div className='inline'>
                 {
-                  (session.user.canEdit || `${session.user.own.organization}` === `${organization.id}`) && (
+                  (session.user.canEdit || `${session.user.own.organization.id}` === `${organization.id}`) && (
                     <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
                       <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
                       <span className='text-sm px-2'>{format('app.edit')}</span>

@@ -74,6 +74,9 @@ const AdminMenu = () => {
           <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/sectors?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
             {format('header.admin.sectors')}
           </a>
+          <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/countries?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
+            {format('header.admin.countries')}
+          </a>
           <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/tags?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
             {format('header.admin.tags')}
           </a>
@@ -82,6 +85,9 @@ const AdminMenu = () => {
           </a>
           <a href='/candidate/products' role='menuitem' className={dropdwonMenuStyles}>
             {format('header.admin.candidate_products')}
+          </a>
+          <a href='/candidate/roles' role='menuitem' className={dropdwonMenuStyles}>
+            {format('header.admin.candidate_roles')}
           </a>
           <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/deploys?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdwonMenuStyles}>
             {format('header.admin.deploys')}

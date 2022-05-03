@@ -6,7 +6,7 @@ const CountryInfo = (props) => {
   const { country } = props
 
   const router = useRouter()
-  const [active, setActive] = useState(country.aggregators[0].slug)
+  const [active, setActive] = useState(country?.aggregators[0].slug)
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)

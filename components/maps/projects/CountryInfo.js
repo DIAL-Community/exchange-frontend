@@ -9,7 +9,7 @@ const CountryInfo = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const [active, setActive] = useState(country.projects[0].slug)
+  const [active, setActive] = useState(country?.projects[0].slug)
 
   // Just return empty fragment when there's no country selected.
   if (!country) {
