@@ -411,6 +411,7 @@ export const en = {
   'filter.entity.workflows': 'Workflows',
   'filter.entity.buildingBlocks': 'Building Blocks',
   'filter.entity.products': 'Products',
+  'filter.entity.datasets': 'Datasets',
   'filter.entity.projects': 'Projects',
   'filter.entity.organizations': 'Organizations',
   'filter.entity.playbooks': 'Playbooks',
