@@ -179,11 +179,12 @@ const OrganizationDetailLeft = ({ organization }) => {
           )
         }
         <div className='flex flex-col h-80 p-4'>
-          <div className='text-2xl font-semibold absolute w-4/5 md:w-auto lg:w-64 2xl:w-80 text-dial-purple'>
+          <div className='text-2xl font-semibold w-4/5 md:w-auto lg:w-64 2xl:w-80 text-dial-purple overflow-hidden'>
             {organization.name}
           </div>
-          <div className='m-auto align-middle w-40'>
+          <div className='m-auto'>
             <img
+              className='w-40'
               alt={format('image.alt.logoFor', { name: organization.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
             />
