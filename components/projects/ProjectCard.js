@@ -45,7 +45,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
             ? (
               <div onClick={() => navClickHandler()} className={containerElementStyle}>
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
-                  <div className='flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4' style={{ minHeight: '4.5rem' }}>
+                  <div className='flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 justify-between' style={{ minHeight: '4.5rem' }}>
                     <div className={`w-10/12 lg:w-3/12 my-auto font-semibold ${ellipsisTextStyle}`}>
                       {project.name}
                     </div>
@@ -63,7 +63,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                           {project.products.length > 0 && project.products.map(p => p.name).join(', ')}
                         </div>
                     }
-                    <div className='absolute top-2 lg:top-1/3 right-3 lg:right-4 text-base lg:justify-end'>
+                    <div className='top-2 lg:top-1/3 right-3 lg:right-4 text-base lg:justify-end self-center'>
                       <img
                         className='hidden xl:block h-6 ml-auto'
                         src={`/images/origins/${project.origin.slug}.png`}
