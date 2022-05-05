@@ -571,6 +571,7 @@ export const en = {
   'playbook.hint.description': `
     Each playbook has a unique source, as listed. If you have content you would like to turn into a playbook, contact our team at issues@solutions.dial.community
   `,
+  'playbook.hint.createPlaybooks': 'Sign up or login to create playbooks',
 
   'organization.hint.characteristicTitle': 'Description',
   'organization.hint.descriptionTitle': 'Types of Organizations',

@@ -35,6 +35,9 @@ const PlaybookFilter = () => {
             <BsQuestionCircleFill className='inline text-sm mb-1' />
           </button>
         </div>
+        <div className='px-2 mb-4 text-xs'>
+          {format('playbook.hint.createPlaybooks')}
+        </div>
         <div className='col-span-11 lg:col-span-6'>
           <div className='text-dial-gray-dark text-xl px-2 py-2'>
             {format('filter.entity', { entity: format('playbooks.label') }).toUpperCase()}
@@ -45,7 +48,7 @@ const PlaybookFilter = () => {
               {...{ tags, setTags }}
               tagQuery={SEARCH_PLAYBOOK_TAGS_QUERY}
               containerStyles='px-2 pb-2'
-              controlSize='20rem'
+              controlSize='20rem' 
             />
           </div>
         </div>
