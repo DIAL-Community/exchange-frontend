@@ -71,6 +71,7 @@ const UseCaseHeader = ({ useCase }) => {
 
 const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
   const [session] = useSession()
+  const { locale } = useRouter()
   const { data, loading, error } = useQuery(USE_CASE_QUERY, { variables: { slug: slug } })
 
   const generateEditLink = () => {
