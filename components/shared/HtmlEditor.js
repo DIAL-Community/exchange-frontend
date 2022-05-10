@@ -1,12 +1,12 @@
 import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
-export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, editorId }) => {
+export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, editorId, placeholder }) => {
   const editorRef = useRef(null)
   const handleEditorChange = (editor) => onChange(editor)
 
   return (
-    <>
+    <div className='htmlEditor'>
       <Editor
         id={editorId || 'TinyMCE-Editor'}
         apiKey={process.env.NEXT_PUBLIC_EDITOR_KEY}
@@ -14,7 +14,7 @@ export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, edi
         value={initialContent}
         onEditorChange={handleEditorChange}
         init={{
-          selector: '#' + editorId ? editorId : 'TinyMCE-Editor',
+          selector: '#' + editorId ?? 'TinyMCE-Editor',
           menubar: false,
           plugins: `print preview paste importcss searchreplace autolink autosave save directionality
             code visualblocks visualchars fullscreen image link media template codesample
@@ -25,14 +25,25 @@ export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, edi
             forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen preview |
             insertfile image media link anchor codesample | ltr rtl`,
           toolbar_sticky: true,
-          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+          content_style: `
+            body { font-family: Arial; font-size: 18px }
+            .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
+              color: #dfdfea;
+            }
+          `,
           init_instance_callback: initInstanceCallback,
           image_title: true,
           automatic_uploads: true,
           file_picker_types: 'image',
-          images_upload_url: process.env.NEXT_PUBLIC_RAILS_SERVER + '/images/upload'
+          images_upload_url: process.env.NEXT_PUBLIC_RAILS_SERVER + '/images/upload',
+          branding: false,
+          setup: function(editor) {
+            editor.on('focus', () => editor.container.classList.add('focused'))
+            editor.on('blur', () => editor.container.classList.remove('focused'))
+          },
+          placeholder
         }}
       />
-    </>
+    </div>
   )
 }
