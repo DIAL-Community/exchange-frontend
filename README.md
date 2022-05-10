@@ -33,9 +33,13 @@ Please also reference the [Wiki page for the Catalog](https://solutions-catalog.
 
 ## Application configuration for development 
 
-Environment variables must be set in the .env.development file in the root of the project. See the 
+Environment variables must be set in the **.env.development** file in the root of the project. See the
 .env.example file for a list of variables to be set. These variables will be loaded automatically when
 the application starts.
+
+A sample **env.development** file with values to use can be found at the [Onboarding
+Confluence Page](https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/pages/
+196575233/New+Developer+Onboarding).
 
 To configure and run the application, navigate to project directory and run the following commands:
 
