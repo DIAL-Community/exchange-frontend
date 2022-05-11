@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/react'
-import { FileUploader } from '../../../components/shared/FileUploader'
+import FileUploader from '../../../components/shared/FileUploader'
 
 describe('Unit test for the File Uploader component.', () => {
   const TEST_ID = 'file-uploader'

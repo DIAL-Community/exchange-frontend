@@ -1,10 +1,11 @@
+import React from 'react'
 import dynamic from 'next/dynamic'
 import ReactSelect from 'react-select'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncReactSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
-export const Select = ({ value, options, onChange, onBlur, placeholder, async = false, controlSize = null, ...otherProps }) => {
+const Select = React.forwardRef(({ value, options, onChange, onBlur, placeholder, async = false, controlSize = null, ...otherProps }, ref) => {
   const defaultStyles = {
     dropdownIndicator: (provided) => ({
       ...provided,
@@ -37,13 +38,15 @@ export const Select = ({ value, options, onChange, onBlur, placeholder, async = 
       boxShadow: 'none',
       cursor: 'pointer',
       borderRadius: '0.375rem',
-      border: 0
+      border: 0,
+      fontSize: '1.125rem'
     }),
     option: (provided, { isFocused, isSelected }) => ({
       ...provided,
       cursor: 'pointer',
       backgroundColor: isSelected ? '#3F9EDD' : isFocused && '#b2daf5',
-      color: isSelected ? 'white' : '#46465a' 
+      color: isSelected ? 'white' : '#46465a',
+      fontSize: '1.125rem'
     }),
     menuPortal: (provided) => ({
       ...provided, zIndex: 30,
@@ -59,6 +62,7 @@ export const Select = ({ value, options, onChange, onBlur, placeholder, async = 
     async ? (
       <AsyncReactSelect
         {...otherProps}
+        innerRef={ref}
         value={value}
         placeholder={placeholder}
         options={options}
@@ -70,6 +74,7 @@ export const Select = ({ value, options, onChange, onBlur, placeholder, async = 
     ) : (
       <ReactSelect
         {...otherProps}
+        innerRef={ref}
         value={value}
         placeholder={placeholder}
         options={options}
@@ -80,4 +85,8 @@ export const Select = ({ value, options, onChange, onBlur, placeholder, async = 
       />
     )
   )
-}
+})
+
+Select.displayName = 'Select'
+
+export default Select
