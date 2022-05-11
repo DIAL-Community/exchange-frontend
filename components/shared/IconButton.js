@@ -1,4 +1,4 @@
-export const IconButton = ({ icon, onClick, className = '', ...otherProps }) => (
+const IconButton = ({ icon, onClick, className = '', ...otherProps }) => (
   <button
     {...otherProps}
     type='button'
@@ -9,3 +9,5 @@ export const IconButton = ({ icon, onClick, className = '', ...otherProps }) => 
     {icon}
   </button>
 )
+
+export default IconButton

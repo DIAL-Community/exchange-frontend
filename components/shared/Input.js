@@ -1,4 +1,6 @@
-export const Input = ({ type = 'text', value, placeholder, onChange, onBlur, className = '', ...otherProps }) => (
+import React from 'react'
+
+export const Input = React.forwardRef(({ type = 'text', value, placeholder, onChange, onBlur, className = '', ...otherProps }, ref) => (
   <input
     {...otherProps}
     type={type}
@@ -8,4 +10,8 @@ export const Input = ({ type = 'text', value, placeholder, onChange, onBlur, cla
     placeholder={placeholder}
     className={`${className} w-full`}
   />
-)
+))
+
+Input.displayName = 'Input'
+
+export default Input

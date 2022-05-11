@@ -1,5 +1,5 @@
 import { render, fireEvent, screen } from '@testing-library/react'
-import { Select } from '../../../components/shared/Select'
+import Select from '../../../components/shared/Select'
 
 describe('Unit test for the Select component.', () => {
   const TEST_ID = 'select'

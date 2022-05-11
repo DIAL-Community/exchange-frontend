@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/react'
-import { Input } from '../../../components/shared/Input'
+import Input from '../../../components/shared/Input'
 
 describe('Unit test for the Input component.', () => {
   const TEST_ID = 'test-input'

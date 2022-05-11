@@ -1,9 +1,11 @@
+import React from 'react'
 import { ImFilePicture } from 'react-icons/im'
 
-export const FileUploader = ({ type, value, placeholder, onChange, onBlur, className = '', ...otherProps }) => (
+const FileUploader = React.forwardRef(({ type, value, placeholder, onChange, onBlur, className = '', ...otherProps }, ref) => (
   <div className={`${className} flex items-center`}>
     <input
       {...otherProps}
+      ref={ref}
       type='file'
       value={value}
       onChange={onChange}
@@ -18,4 +20,8 @@ export const FileUploader = ({ type, value, placeholder, onChange, onBlur, class
       </span>
     </div>
   </div>
-)
+))
+
+FileUploader.displayName = 'FileUploader'
+
+export default FileUploader
