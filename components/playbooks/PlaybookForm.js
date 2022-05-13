@@ -14,6 +14,7 @@ import PlayListDraggable from '../plays/PlayListDraggable'
 import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
 import { PlayFilterContext, PlayFilterDispatchContext } from '../context/PlayFilterContext'
 import { ToastContext } from '../../lib/ToastContext'
+import { SearchInput } from '../../components/shared/SearchInput'
 const PlayListQuery = dynamic(() => import('../plays/PlayList'), { ssr: false })
 
 const generateMutationText = (mutationFunc) => {
@@ -97,8 +98,7 @@ const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
                 </div>
                 <label className='my-auto'>
                   <span className='sr-only'>{format('search.input.label')}</span>
-                  <input
-                    type='search'
+                  <SearchInput
                     value={search} onChange={handleChange}
                     className='py-2 px-3 text-sm rounded-md w-56 2xl:w-96'
                     placeholder={`${format('app.search')} ${format('play.header')}`}
