@@ -1,6 +1,6 @@
 /* global IntersectionObserver: false */
 
-import { useContext, useEffect, useRef, useState } from 'react'
+import { createRef, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import { gql, useQuery } from '@apollo/client'
@@ -35,7 +35,7 @@ const PlaybookDetailOverview = ({ slug, locale }) => {
   const [height, setHeight] = useState(0)
   const { updateSlugInformation } = useContext(PlaybookDetailDispatchContext)
 
-  const ref = useRef()
+  const ref = createRef()
 
   const { loading, error, data, refetch } = useQuery(PLAYBOOK_QUERY, {
     variables: { slug: slug },
@@ -52,27 +52,13 @@ const PlaybookDetailOverview = ({ slug, locale }) => {
   }, [height])
 
   useEffect(() => {
+    // Update scrolling state information based on the observer data.
     if (!ref.current) {
       return
     }
 
-    const observerCallback = ([observerData]) => {
-      if (!observerData || !observerData.boundingClientRect) {
-        // Skip if we don't have observer data ready yet.
-        return
-      }
-
-      setHeight(observerData.boundingClientRect.height)
-    }
-
-    const observer = new IntersectionObserver(observerCallback, {
-      rootMargin: '-150px 0px 0px 0px'
-    })
-
-    observer.observe(ref.current)
-
-    // Remove the observer as soon as the component is unmounted.
-    return () => { observer.disconnect() }
+    const boundingClientRect = ref.current.getBoundingClientRect()
+    setHeight(boundingClientRect.height)
   }, [ref])
 
   const generateEditLink = () => {
