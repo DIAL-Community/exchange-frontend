@@ -59,7 +59,7 @@ const OrganizationDetailLeft = ({ organization }) => {
     }
 
     const user = session.user
-    if (`${user.own?.organization.id}` === `${organization.id}`) {
+    if (`${user.own?.organization?.id}` === `${organization.id}`) {
       // Already owning this organization, don't display the link.
       return false
     }
@@ -79,7 +79,7 @@ const OrganizationDetailLeft = ({ organization }) => {
     }
 
     const user = session.user
-    if (`${user.own?.organization.id}` === `${organization.id}`) {
+    if (`${user.own?.organization?.id}` === `${organization.id}`) {
       // Already owning this organization, display user already owning.
       return 'owner'
     }
@@ -149,7 +149,7 @@ const OrganizationDetailLeft = ({ organization }) => {
             session && (
               <div className='inline'>
                 {
-                  (session.user.canEdit || `${session.user.own?.organization.id}` === `${organization.id}`) && (
+                  (session.user.canEdit || `${session.user.own?.organization?.id}` === `${organization.id}`) && (
                     <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
                       <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
                       <span className='text-sm px-2'>{format('app.edit')}</span>
