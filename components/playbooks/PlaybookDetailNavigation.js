@@ -37,20 +37,17 @@ const PlaybookDetailNavigation = ({ slug }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const [activeSlug, setActiveSlug] = useState('')
   const [centerYPosition, setCenterYPosition] = useState(0)
   const [mappedMoves, setMappedMoves] = useState({})
 
-  const { slugYValues, slugHeights, windowHeight, slugIntersectionRatios } = useContext(PlaybookDetailContext)
-  const { setCurrentSlug } = useContext(PlaybookDetailDispatchContext)
+  const {
+    currentSlug, slugYValues, slugHeights, windowHeight, slugIntersectionRatios, direct
+  } = useContext(PlaybookDetailContext)
+  const { setCurrentSlug, setDirect } = useContext(PlaybookDetailDispatchContext)
 
   const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
     variables: { slug: slug }
   })
-
-  useEffect(() => {
-    setCurrentSlug(activeSlug)
-  }, [activeSlug, setCurrentSlug])
 
   useEffect(() => {
     if (windowHeight) {
@@ -70,6 +67,19 @@ const PlaybookDetailNavigation = ({ slug }) => {
   }, [data])
 
   useEffect(() => {
+    // This will read the state of the context, and update the active slug.
+    // Executed when user scrolling through the content of the playbook play list.
+
+    if (direct) {
+      // Skip if navigating directly to a slug
+      const slugIntersectionRatio = slugIntersectionRatios[currentSlug]
+      if (slugIntersectionRatio >= 0.5) {
+        setDirect(false)
+      }
+
+      return
+    }
+
     if (!data || !data.playbook) {
       // Skip execution if we don't have the playbook play information.
       return
@@ -86,19 +96,19 @@ const PlaybookDetailNavigation = ({ slug }) => {
     let index = 0
     let found = false
     while (index < playSlugs.length && !found) {
-      const currentSlug = playSlugs[index]
-      const slugHeight = slugHeights[currentSlug]
-      const slugYValue = slugYValues[currentSlug]
-      const slugIntersectionRatio = slugIntersectionRatios[currentSlug]
+      const playSlug = playSlugs[index]
+      const slugHeight = slugHeights[playSlug]
+      const slugYValue = slugYValues[playSlug]
+      const slugIntersectionRatio = slugIntersectionRatios[playSlug]
       if (centerYPosition > slugYValue && centerYPosition < slugYValue + slugHeight) {
         // If slug is within the boundary, then this is could be the active slug.
-        setActiveSlug(currentSlug)
+        setCurrentSlug(playSlug)
         found = true
       }
 
-      if (!found && slugIntersectionRatio === 1) {
+      if (!found && slugIntersectionRatio >= 1) {
         // Use slug with full intersection if we don't find any with the above condition.
-        setActiveSlug(currentSlug)
+        setCurrentSlug(playSlug)
         found = true
       }
 
@@ -107,15 +117,13 @@ const PlaybookDetailNavigation = ({ slug }) => {
 
     if (!found) {
       // Edge cases for last element and first element.
-      const currentSlugIndex = playSlugs.indexOf(activeSlug)
-      const slugYValue = slugYValues[activeSlug]
-      if (currentSlugIndex === 0) {
-        if (slugYValue > centerYPosition) {
-          setActiveSlug('')
-        }
+      const slugYValue = slugYValues[currentSlug]
+      const currentSlugIndex = playSlugs.indexOf(currentSlug)
+      if (currentSlugIndex === 0 && slugYValue > centerYPosition) {
+        setCurrentSlug(OVERVIEW_SLUG_NAME)
       }
     }
-  }, [slugYValues, slugIntersectionRatios, data])
+  }, [centerYPosition, direct, setDirect, currentSlug, setCurrentSlug, slugYValues, slugHeights, slugIntersectionRatios, data])
 
   if (loading) {
     return <Loading />
@@ -127,6 +135,10 @@ const PlaybookDetailNavigation = ({ slug }) => {
 
   const navigateToPlay = (e, slug) => {
     e.preventDefault()
+
+    setDirect(true)
+    setCurrentSlug(slug)
+    
     if (!data || !data.playbook) {
       // Skip execution if we don't have the playbook play information.
       return
@@ -160,10 +172,10 @@ const PlaybookDetailNavigation = ({ slug }) => {
           className={`
             border-r-4 border-dial-gray-dark
             hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
-            ${!activeSlug ? 'border-dial-purple text-dial-yellow' : 'border-dial-gray-dark'}
+            ${currentSlug === OVERVIEW_SLUG_NAME ? 'border-dial-purple text-dial-yellow' : 'border-dial-gray-dark'}
           `}
         >
-          <div className={`border-l-8 ${!activeSlug ? `${ACTIVE_NAV_COLOR}` : 'border-transparent'}`}>
+          <div className={`border-l-8 ${currentSlug === OVERVIEW_SLUG_NAME ? `${ACTIVE_NAV_COLOR}` : 'border-transparent'}`}>
             <a href='#navigate-to-play' className='block py-4 px-8' onClick={(e) => navigateToPlay(e, OVERVIEW_SLUG_NAME)}>
               {format('playbooks.overview')}
             </a>
@@ -177,19 +189,19 @@ const PlaybookDetailNavigation = ({ slug }) => {
                 className={`
                   border-r-4 border-dial-gray-dark
                   hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
-                  ${activeSlug === playbookPlay.playSlug ? 'border-dial-purple text-dial-yellow' : 'border-dial-gray-dark'}
+                  ${currentSlug === playbookPlay.playSlug ? 'border-dial-purple text-dial-yellow' : 'border-dial-gray-dark'}
                 `}
               >
                 <a href='#navigate-to-play' className='block' onClick={(e) => navigateToPlay(e, playbookPlay.playSlug)}>
                   <div
                     className={`
                       flex flex-col gap-y-1 border-l-8 py-3 px-8
-                      ${activeSlug === playbookPlay.playSlug ? `${ACTIVE_NAV_COLOR}` : 'border-transparent'}
+                      ${currentSlug === playbookPlay.playSlug ? `${ACTIVE_NAV_COLOR}` : 'border-transparent'}
                     `}
                   >
                     {`${format('plays.label')} ${index + 1}. ${playbookPlay.playName}`}
                     {
-                      activeSlug === playbookPlay.playSlug && mappedMoves[playbookPlay.playSlug] &&
+                      currentSlug === playbookPlay.playSlug && mappedMoves[playbookPlay.playSlug] &&
                         mappedMoves[playbookPlay.playSlug].map((moveName, index) =>
                           <div key={index} className='block'>
                             <MdPlayArrow size='0.8rem' className='inline mr-2 my-auto' />{moveName}

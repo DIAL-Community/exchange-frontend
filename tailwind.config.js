@@ -13,7 +13,7 @@ module.exports = {
         },
         'button-gray': {
           light: '#9899b4',
-          DEFAULT: '#323345'
+          DEFAULT: '#323245'
         },
         'dial-yellow': {
           DEFAULT: '#faab19',

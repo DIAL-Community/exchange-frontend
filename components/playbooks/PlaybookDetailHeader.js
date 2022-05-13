@@ -3,7 +3,7 @@ import { gql, useQuery } from '@apollo/client'
 import { useContext, useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { Error, Loading } from '../shared/FetchStatus'
-import { PlaybookDetailContext } from './PlaybookDetailContext'
+import { PlaybookDetailContext, PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
 
 export const PLAYBOOK_QUERY = gql`
@@ -30,6 +30,7 @@ const PlaybookDetailHeader = ({ slug }) => {
   const [percentage, setPercentage] = useState(0)
   const [currentSlugIndex, setCurrentSlugIndex] = useState(-1)
   const { currentSlug, slugHeights, slugIntersectionRatios } = useContext(PlaybookDetailContext)
+  const { setDirect, setCurrentSlug } = useContext(PlaybookDetailDispatchContext)
 
   const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
     variables: { slug: slug }
@@ -76,6 +77,10 @@ const PlaybookDetailHeader = ({ slug }) => {
 
   const navigateToPlay = (e, slug) => {
     e.preventDefault()
+
+    setDirect(true)
+    setCurrentSlug(slug)
+
     if (!data || !data.playbook) {
       // Skip execution if we don't have the playbook play information.
       return
@@ -84,10 +89,13 @@ const PlaybookDetailHeader = ({ slug }) => {
     const playSlugs = data.playbook.playbookPlays.map(play => play.playSlug)
 
     let index = 0
-    let height = slugHeights[OVERVIEW_SLUG_NAME]
-    while (index < playSlugs.length && playSlugs[index] !== slug) {
-      height = height + slugHeights[playSlugs[index]]
-      index = index + 1
+    let height = 0
+    if (slug !== OVERVIEW_SLUG_NAME) {
+      height = slugHeights[OVERVIEW_SLUG_NAME]
+      while (index < playSlugs.length && playSlugs[index] !== slug) {
+        height = height + slugHeights[playSlugs[index]]
+        index = index + 1
+      }
     }
 
     window.scrollTo({

@@ -16,6 +16,7 @@ import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
 import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
 import { ProjectFilterContext } from '../context/ProjectFilterContext'
 import { SDGFilterContext } from '../context/SDGFilterContext'
+import { SearchInput } from './SearchInput'
 
 const SearchFilter = (props) => {
   const { search, setSearch, hint } = props
@@ -208,12 +209,11 @@ const SearchFilter = (props) => {
           <div className='ml-auto flex gap-x-3'>
             <label className='my-auto'>
               <span className='sr-only'>{format('search.input.label')}</span>
-              <input
-                type='search'
+              <SearchInput
                 value={searchTerm} onChange={handleChange}
                 className={`
-                  form-input py-2 px-3 text-sm text-dial-gray-light bg-dial-gray-dark rounded-md w-96 2xl:w-[32rem]
-                  placeholder-dial-gray-light placeholder-opacity-40 border border-dial-gray-dark focus:border-dial-yellow
+                  form-input py-2 px-3 text-sm rounded-md w-96 2xl:w-[32rem]
+                  placeholder-dial-gray-dark placeholder-opacity-40 border border-dial-gray-dark focus:border-dial-yellow
                 `}
                 placeholder={`${format('app.search')} ${format(hint).toString().toLowerCase()}`}
               />

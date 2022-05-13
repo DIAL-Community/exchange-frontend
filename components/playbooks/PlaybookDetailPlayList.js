@@ -1,6 +1,6 @@
 /* global IntersectionObserver: false */
 
-import { useContext, useEffect, useRef, useState } from 'react'
+import { createRef, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -60,7 +60,7 @@ const Play = ({ play, index }) => {
 
   const { updateSlugInformation } = useContext(PlaybookDetailDispatchContext)
 
-  const ref = useRef()
+  const ref = createRef()
   const [yValue, setYValue] = useState(0)
   const [height, setHeight] = useState(0)
   const [windowHeight, setWindowHeight] = useState(0)
@@ -72,11 +72,21 @@ const Play = ({ play, index }) => {
   }, [play, yValue, height, windowHeight, intersectionRatio])
 
   useEffect(() => {
+    // Update scrolling state information based on the observer data.
+    if (!ref.current) {
+      return
+    }
+
     const observerCallback = ([observerData]) => {
       if (!observerData || !observerData.boundingClientRect || !observerData.rootBounds) {
         // Skip if we don't have observer data ready yet.
         return
       }
+      
+      // Throttle this state update?
+      // const timeoutId = setTimeout(() => {
+      // }, 500)
+      // return () => clearTimeout(timeoutId)
 
       setYValue(observerData.boundingClientRect.y)
       setHeight(observerData.boundingClientRect.height)
@@ -86,7 +96,7 @@ const Play = ({ play, index }) => {
 
     const min = 0.0
     const max = 1.0
-    const items = 20
+    const items = 4
     const increments = ((max - min) / items)
     const observer = new IntersectionObserver(observerCallback, {
       threshold: [...Array(items + 1)].map((x, y) => min + increments * y),
@@ -97,7 +107,7 @@ const Play = ({ play, index }) => {
 
     // Remove the observer as soon as the component is unmounted.
     return () => { observer.disconnect() }
-  }, [])
+  }, [ref])
 
   return (
     <div className='flex flex-col gap-4' ref={ref}>

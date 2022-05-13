@@ -150,3 +150,62 @@ body {
 .bg-edit {
   background-color: #f7fcff;
 }
+
+@layer components {
+  /* native HTML inputs */
+  input,
+  input[type]:not(.react-select__input) {
+    @apply border-0;
+    @apply text-lg;
+    @apply text-dial-gray-dark;
+    @apply shadow-md;
+    @apply rounded-md;
+    @apply outline;
+    @apply outline-1;
+    @apply outline-offset-0;
+    @apply outline-button-gray;
+    @apply placeholder-dial-gray;
+    @apply pl-3;
+    @apply py-2;
+  }
+
+  input:focus,
+  input[type]:focus {
+    @apply outline;
+    @apply outline-offset-0;
+    @apply outline-[3px];
+    @apply outline-dial-blue;
+    @apply ring-0;
+  }
+  
+  /* native HTML button */
+  button[type='button'] {
+    @apply rounded-md;
+    @apply text-white;
+  }
+
+  button:focus,
+  button:focus-visible {
+    @apply outline-none;
+    @apply ring-[3px];
+    @apply ring-dial-blue;
+    @apply ring-offset-2;
+  }
+
+  /* TinyMCE HTML editor - textarea */
+  .htmlEditor .tox-tinymce {
+    @apply border-0;
+    @apply outline;
+    @apply outline-1;
+    @apply outline-offset-0;
+    @apply outline-button-gray;
+    @apply shadow-md;
+    @apply rounded-md;
+  }
+  
+  .htmlEditor .tox-tinymce.focused {
+    @apply outline-offset-0;
+    @apply outline-[3px];
+    @apply outline-dial-blue;
+  }
+}
