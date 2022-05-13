@@ -187,3 +187,7 @@
   margin-inline-end: 0px;
   padding-inline-start: 40px;
 }
+
+.tiny-editor a {
+  color: #3F9EDD;
+}
