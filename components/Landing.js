@@ -40,14 +40,14 @@ const Landing = () => {
                 <div className='px-4 mt-8 sm:mt-20 md:mt-20 sm:flex lg:justify-start sm:text-xs md:text-sm lg:text-lg'>
                   <div className='text-white lg:py-1'>
                     <Link href='/products'>
-                      <a href='/start-catalog' className={`${buttonAnchorStyle} shadow-2xl px-10 text-white bg-dial-blue`}>
+                      <a href='/products' className={`${buttonAnchorStyle} shadow-2xl px-10 text-white bg-dial-blue`}>
                         {format('landing.catalog.title')}
                       </a>
                     </Link>
                   </div>
                   <div className='px-4 mt-3 sm:mt-0 sm:ml-3 lg:py-1'>
                     <Link href='/wizard'>
-                      <a href='/start-wizard' className={`${buttonAnchorStyle} shadow-2xl pl-4 pr-8 text-button-gray bg-dial-yellow`}>
+                      <a href='/wizard' className={`${buttonAnchorStyle} shadow-2xl pl-4 pr-8 text-button-gray bg-dial-yellow`}>
                         <img src='/icons/wizard.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
                         {format('landing.wizard.title')}
                       </a>
