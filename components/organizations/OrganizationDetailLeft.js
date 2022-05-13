@@ -59,7 +59,7 @@ const OrganizationDetailLeft = ({ organization }) => {
     }
 
     const user = session.user
-    if (`${user.own?.organization.id}` === `${organization.id}`) {
+    if (`${user.own?.organization?.id}` === `${organization.id}`) {
       // Already owning this organization, don't display the link.
       return false
     }
@@ -79,7 +79,7 @@ const OrganizationDetailLeft = ({ organization }) => {
     }
 
     const user = session.user
-    if (`${user.own?.organization.id}` === `${organization.id}`) {
+    if (`${user.own?.organization?.id}` === `${organization.id}`) {
       // Already owning this organization, display user already owning.
       return 'owner'
     }
