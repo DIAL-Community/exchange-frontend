@@ -48,6 +48,11 @@ const ORGANIZATION_QUERY = gql`
           slug
         }
       }
+      contacts {
+        name
+        email
+        title
+      }
     }
   }
 `
