@@ -249,7 +249,13 @@ export const en = {
   'buildingBlock.label': 'Building Block',
   'building-block.disclaimer': 'Note: As part of the <a href="https://govstack.global">GovStack Initiative</a>, DIAL is working to map digital platforms with key Building Block functionalities. Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative examples of how these tools may support building block functionalities. As Building Block specifications are developed, products that are aligned with the specifications will be tagged as such.',
   'building-block.spec-link': 'The GovStack initiative has published a full specification for this building block. You can view the documentation at this link: ',
-
+  
+  'contact.header': 'Contacts',
+  'contact.label': 'Contact',
+  'contact.name.label': 'Name:',
+  'contact.email.label': 'Email:',
+  'contact.title.label': 'Title:',
+  
   'sector.header': 'Sectors',
   'sector.label': 'Sector',
 
@@ -683,6 +689,7 @@ export const en = {
 
   'organization.no-sector': 'We do not have sector information for this organization.',
   'organization.no-country': 'We do not have country information for this organization.',
+  'organization.no-contact': 'We do not have contact information for this organization.',
   'office.other.header': 'Other Office Locations',
 
   'useCaseStep.header': 'Use Case Steps',
@@ -1157,5 +1164,4 @@ export const en = {
 
   'resource.submitted': 'Resource saved.',
   'product.launchable': 'Product Launchable'
-
 }
