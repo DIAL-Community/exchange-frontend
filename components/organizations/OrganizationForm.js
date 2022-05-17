@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/client'
+import { gql, useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner, FaPlus, FaMinus } from 'react-icons/fa'
 import { Controller, useForm, useFieldArray } from 'react-hook-form'
@@ -11,14 +13,68 @@ import Checkbox from '../shared/Checkbox'
 import IconButton from '../shared/IconButton'
 import Select from '../shared/Select'
 
+const generateMutationText = (mutationFunc) => {
+  return `
+    mutation (
+      $name: String!,
+      $slug: String!,
+      $aliases: JSON,
+      $imageFile: Upload,
+      $website: String,
+      $isEndorser: Boolean,
+      $whenEndorsed: ISO8601Date,
+      $endorserLevel: String,
+      $isMni: Boolean,
+      $description: String
+    ) {
+      ${mutationFunc}(
+        name: $name,
+        slug: $slug,
+        aliases: $aliases,
+        imageFile: $imageFile,
+        website: $website,
+        isEndorser: $isEndorser,
+        whenEndorsed: $whenEndorsed,
+        endorserLevel: $endorserLevel,
+        isMni: $isMni,
+        description: $description
+      ) {
+        organization {
+          name
+          slug
+          aliases
+          website
+          isEndorser
+          whenEndorsed
+          endorserLevel
+          isMni
+          imageFile
+          organizationDescription {
+            description
+            locale
+          }
+        }
+        errors
+      }
+    }
+  `
+}
+
+const MUTATE_ORGANIZATION = gql(generateMutationText('createOrganization'))
+
 // eslint-disable-next-line react/display-name
 export const OrganizationForm = React.memo(({ organization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
 
   const router = useRouter()
+  const [session] = useSession()
+
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
+
+  const { locale } = useRouter()
+  const [updateOrganization, { data }] = useMutation(MUTATE_ORGANIZATION)
 
   const endorserLevelOptions = [
     { label: format('organization.endorserLevel.none'), value: 'none' },
@@ -42,6 +98,9 @@ export const OrganizationForm = React.memo(({ organization }) => {
       description: organization?.organizationDescription?.description
     }
   })
+
+  const [slug] = useState(organization ? organization.slug : '')
+  const [imageSelected, setImageSelected] = useState(organization ? organization.imageFile : '')
 
   const { fields: aliases, append, remove } = useFieldArray({
     control,
@@ -75,7 +134,40 @@ export const OrganizationForm = React.memo(({ organization }) => {
   const isSingleAlias = useMemo(() => aliases.length === 1, [aliases])
 
   const isLastAlias = (aliasIndex) => aliasIndex === aliases.length - 1
-  
+
+  const doUpsert = async (data) => {
+    if (session) {
+      // Set the loading indicator.
+      setMutating(true)
+      // Pull all needed data from session and form.
+      const { userEmail, userToken } = session.user
+      const { name, imageFile, website, isEndorser, whenEndorsed, endorserLevel, isMni, description } = data
+      // Send graph query to the backend. Set the base variables needed to perform update.
+      const variables = {
+        name,
+        slug,
+        aliases,
+        imageFile: imageSelected,
+        website,
+        isEndorser,
+        whenEndorsed,
+        endorserLevel: endorserLevel.value,
+        isMni,
+        description
+      }
+
+      updateOrganization({
+        variables,
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
+    }
+  }
+
   return (
     <div className='flex flex-col'>
       <div className='hidden lg:block px-8'>
@@ -83,7 +175,7 @@ export const OrganizationForm = React.memo(({ organization }) => {
       </div>
       <div className='pb-8 px-8'>
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
-          <form onSubmit={handleSubmit()}>
+          <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
               <div className='text-2xl font-bold text-dial-blue pb-4'>
                 {organization
@@ -138,7 +230,7 @@ export const OrganizationForm = React.memo(({ organization }) => {
                     <Controller
                       name='imageFile'
                       control={control}
-                      render={({ field }) => <FileUploader {...field} type='file' placeholder={format('organization.imageFile')} />}
+                      render={({ field }) => <FileUploader {...field} type='file' onChange={(e) => setImageSelected(e.target.files[0])} placeholder={format('organization.imageFile')} />}
                     />
                   </label>
                   <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'>
