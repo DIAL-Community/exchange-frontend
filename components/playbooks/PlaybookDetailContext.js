@@ -9,7 +9,7 @@ const PlaybookDetailProvider = ({ children }) => {
   const [windowHeight, setWindowHeight] = useState()
   const [slugIntersectionRatios, setSlugIntersectionRatios] = useState({})
 
-  const [currentSlug, setCurrentSlug] = useState('')
+  const [currentSlug, setCurrentSlug] = useState('base-slug-overview-information')
   const [direct, setDirect] = useState(false)
 
   const updateSlugInformation = (slug, yValue, height, windowHeight, intersectionRatio) => {

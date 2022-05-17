@@ -35,10 +35,7 @@ const OrganizationDetailLeft = ({ organization }) => {
       return '/edit-not-available'
     }
 
-    const { userEmail, userToken } = session.user
-
-    return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/organizations/${organization.slug}/` +
-      `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
+    return `/${locale}/organizations/${organization.slug}/edit`
   }
 
   const [fetchCandidateRole, { data, error }] = useLazyQuery(CANDIDATE_ROLE_QUERY)

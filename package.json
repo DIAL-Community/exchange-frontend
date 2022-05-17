@@ -13,6 +13,7 @@
   "dependencies": {
     "@apollo/client": "^3.5.8",
     "@babel/plugin-transform-react-jsx": "^7.17.3",
+    "@handsontable/react": "^11.1.0",
     "@headlessui/react": "^1.5.0",
     "@popperjs/core": "^2.9.1",
     "@react-pdf/renderer": "^2.1.1",
@@ -21,6 +22,7 @@
     "apollo-upload-client": "^17.0.0",
     "file-saver": "^2.0.5",
     "graphql": "^16.3.0",
+    "handsontable": "^11.1.0",
     "html-react-parser": "^1.4.9",
     "immutability-helper": "^3.1.1",
     "isomorphic-unfetch": "^3.1.0",

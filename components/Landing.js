@@ -17,8 +17,8 @@ const Landing = () => {
   return (
     <>
       <div className='flex flex-row'>
-        <div className='absolute top-0 left-0 w-6/12 h-screen' style={{ backgroundColor: '#F5F6FA' }}>&nbsp;</div>
-        <div className='absolute top-0 right-0 w-6/12 h-screen' style={{ backgroundColor: '#646375' }}>&nbsp;</div>
+        <div className='absolute top-0 left-0 w-9/12 h-screen bg-dial-hero-graphic-light'>&nbsp;</div>
+        <div className='absolute top-0 right-0 w-3/12 h-screen bg-dial-hero-graphic-dark'>&nbsp;</div>
       </div>
       <div className='relative overflow-hidden landing-with-menu'>
         <div className='max-w-catalog mx-auto'>
@@ -60,7 +60,7 @@ const Landing = () => {
         </div>
         <div className='absolute inset-y-0 right-0'>
           <img
-            className='h-full object-cover'
+            className='h-screen object-cover'
             src='images/hero-image/hero-image.png'
             alt='Banner of the catalog of digital solutions.'
           />
