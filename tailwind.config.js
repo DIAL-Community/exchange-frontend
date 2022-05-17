@@ -68,6 +68,10 @@ module.exports = {
           DEFAULT: '',
           light: '#ffc862'
         },
+        'dial-hero-graphic': {
+          light: '#f5f6fa',
+          dark: '#646375'
+        },
       },
       fontSize: {
         'landing-title': ['66px', {
