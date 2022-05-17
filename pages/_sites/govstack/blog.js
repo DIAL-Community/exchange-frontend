@@ -18,7 +18,7 @@ const HomePage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <Landing />
+      Blog Here!
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       
       <Footer />

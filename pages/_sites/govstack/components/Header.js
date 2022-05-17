@@ -11,7 +11,16 @@ const Header = () => {
             </div>
           </Link>
           <Link href='/about'>
-            <div className='text-blue-900 text-2xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>About GovStack</div>
+            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>About GovStack</div>
+          </Link>
+          <Link href='/use-cases'>
+            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Use Cases</div>
+          </Link>
+          <Link href='/building-blocks'>
+            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Building Blocks</div>
+          </Link>
+          <Link href='/blog'>
+            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Blog</div>
           </Link>
         </div>
       </div>

@@ -1,15 +1,20 @@
-import Head from 'next/head'
 import { useIntl } from 'react-intl'
-import { useContext } from 'react'
+import { useRouter } from 'next/router'
+import Head from 'next/head'
 import dynamic from 'next/dynamic'
-import Header from './components/Header'
-import Landing from './components/Landing'
-import Footer from './components/Footer'
+import Header from '../../../components/Header'
+import Footer from '../../../components/Footer'
+import ProductDetail from '../../../components/products/ProductDetail'
+import ClientOnly from '../../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
-const HomePage = () => {
+const Product = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
+  const router = useRouter()
+  const { locale, query } = router
+  const { slug } = query
 
   return (
     <>
@@ -18,12 +23,13 @@ const HomePage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <Landing />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      
+      <ClientOnly>
+        <ProductDetail slug={slug} locale={locale} />
+      </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default HomePage
+export default Product

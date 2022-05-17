@@ -9,21 +9,21 @@ import QueryNotification from '../../../../components/shared/QueryNotification'
 import TabNav from '../../../../components/main/TabNav'
 import MobileNav from '../../../../components/main/MobileNav'
 import PageContent from '../../../../components/main/PageContent'
-import ProductHint from '../../../../components/filter/hint/ProductHint'
-import ProductFilter from '../../../../components/products/ProductFilter'
-import ProductActiveFilter from '../../../../components/products/ProductActiveFilter'
+import BuildingBlockHint from '../../../../components/filter/hint/BuildingBlockHint'
+import BuildingBlockFilter from '../../../../components/building-blocks/BuildingBlockFilter'
+import BuildingBlockActiveFilter from '../../../../components/building-blocks/BuildingBlockActiveFilter'
 import SearchFilter from '../../../../components/shared/SearchFilter'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../../../components/context/ProductFilterContext'
+import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext } from '../../../../components/context/BuildingBlockFilterContext'
 import ClientOnly from '../../../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
-const ProductListQuery = dynamic(() => import('../../../../components/products/ProductList'), { ssr: false })
+const BuildingBlockListQuery = dynamic(() => import('../../../../components/building-blocks/BuildingBlockList'), { ssr: false })
 
-const Products = () => {
+const BuildingBlocks = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { search } = useContext(ProductFilterContext)
-  const { setSearch } = useContext(ProductFilterDispatchContext)
+  const { search } = useContext(BuildingBlockFilterContext)
+  const { setSearch } = useContext(BuildingBlockFilterDispatchContext)
 
   return (
     <>
@@ -35,16 +35,16 @@ const Products = () => {
       <GradientBackground />
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <TabNav activeTab='filter.entity.products' />
-      <MobileNav activeTab='filter.entity.products' />
+      <TabNav activeTab='filter.entity.buildingBlocks' />
+      <MobileNav activeTab='filter.entity.buildingBlocks' />
       <ClientOnly>
         <PageContent
-          activeTab='filter.entity.products'
-          filter={<ProductFilter />}
-          content={<ProductListQuery />}
-          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.products' />}
-          activeFilter={<ProductActiveFilter />}
-          hint={<ProductHint />}
+          activeTab='filter.entity.buildingBlocks'
+          filter={<BuildingBlockFilter />}
+          content={<BuildingBlockListQuery />}
+          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.buildingBlocks' />}
+          activeFilter={<BuildingBlockActiveFilter />}
+          hint={<BuildingBlockHint />}
         />
       </ClientOnly>
       <Footer />
@@ -52,4 +52,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default BuildingBlocks

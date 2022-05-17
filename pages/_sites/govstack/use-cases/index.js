@@ -9,21 +9,21 @@ import QueryNotification from '../../../../components/shared/QueryNotification'
 import TabNav from '../../../../components/main/TabNav'
 import MobileNav from '../../../../components/main/MobileNav'
 import PageContent from '../../../../components/main/PageContent'
-import ProductHint from '../../../../components/filter/hint/ProductHint'
-import ProductFilter from '../../../../components/products/ProductFilter'
-import ProductActiveFilter from '../../../../components/products/ProductActiveFilter'
+import UseCaseHint from '../../../../components/filter/hint/UseCaseHint'
+import UseCaseFilter from '../../../../components/use-cases/UseCaseFilter'
+import UseCaseActiveFilter from '../../../../components/use-cases/UseCaseActiveFilter'
 import SearchFilter from '../../../../components/shared/SearchFilter'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../../../components/context/ProductFilterContext'
+import { UseCaseFilterContext, UseCaseFilterDispatchContext } from '../../../../components/context/UseCaseFilterContext'
 import ClientOnly from '../../../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
-const ProductListQuery = dynamic(() => import('../../../../components/products/ProductList'), { ssr: false })
+const UseCaseListQuery = dynamic(() => import('../../../../components/use-cases/UseCaseList'), { ssr: false })
 
-const Products = () => {
+const UseCases = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { search } = useContext(ProductFilterContext)
-  const { setSearch } = useContext(ProductFilterDispatchContext)
+  const { search } = useContext(UseCaseFilterContext)
+  const { setSearch } = useContext(UseCaseFilterDispatchContext)
 
   return (
     <>
@@ -35,16 +35,16 @@ const Products = () => {
       <GradientBackground />
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <TabNav activeTab='filter.entity.products' />
-      <MobileNav activeTab='filter.entity.products' />
+      <TabNav activeTab='filter.entity.useCases' />
+      <MobileNav activeTab='filter.entity.useCases' />
       <ClientOnly>
         <PageContent
-          activeTab='filter.entity.products'
-          filter={<ProductFilter />}
-          content={<ProductListQuery />}
-          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.products' />}
-          activeFilter={<ProductActiveFilter />}
-          hint={<ProductHint />}
+          activeTab='filter.entity.useCases'
+          filter={<UseCaseFilter />}
+          content={<UseCaseListQuery />}
+          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.useCases' />}
+          activeFilter={<UseCaseActiveFilter />}
+          hint={<UseCaseHint />}
         />
       </ClientOnly>
       <Footer />
@@ -52,4 +52,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default UseCases
