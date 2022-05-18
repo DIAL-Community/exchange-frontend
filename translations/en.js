@@ -245,6 +245,7 @@ export const en = {
   'organization.endorserLevel.gold': 'Gold',
   'organization.isMni': 'MNI',
   'organization.submit': 'Submit',
+  'organization.submitted': 'Organization submitted.',
   'organization.countries.updated': 'Countries updated successfully',
 
   'building-block.header': 'Building Blocks',

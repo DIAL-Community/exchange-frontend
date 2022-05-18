@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react'
+import React, { useState, useCallback, useMemo, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 import { gql, useMutation } from '@apollo/client'
@@ -12,6 +12,7 @@ import FileUploader from '../shared/FileUploader'
 import Checkbox from '../shared/Checkbox'
 import IconButton from '../shared/IconButton'
 import Select from '../shared/Select'
+import { ToastContext } from '../../lib/ToastContext'
 
 const generateMutationText = (mutationFunc) => {
   return `
@@ -73,6 +74,7 @@ export const OrganizationForm = React.memo(({ organization }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
+  const { showToast } = useContext(ToastContext)
   const { locale } = useRouter()
   const [updateOrganization, { data }] = useMutation(MUTATE_ORGANIZATION)
 
@@ -107,6 +109,19 @@ export const OrganizationForm = React.memo(({ organization }) => {
     name: 'aliases',
     shouldUnregister: true
   })
+
+  // to add a condition when navigateToOrganizationDetailPage() should render
+  const navigateToOrganizationDetailPage = useCallback(() => {
+    setMutating(false)
+ 
+    showToast(format('organization.submitted'), 'success', 'top-center')
+    const navigateToOrganizationDetailPage = setTimeout(() => {
+      router.push(`/${router.locale}/organizations/${organization.slug}`)
+    }, 800)
+
+    return () => clearTimeout(navigateToOrganizationDetailPage)
+   
+  }, [])
 
   const cancelForm = () => {
     setReverting(true)
