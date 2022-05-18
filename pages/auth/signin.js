@@ -31,7 +31,7 @@ export default function SignIn ({ csrfToken }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <div className='bg-dial-gray-dark pt-40 simple-form-height'>
+      <div className='bg-dial-gray-dark pt-40 pb-40'>
         <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
           <form ref={formEl} method='post' onSubmit={handleSubmit} action={process.env.NEXT_PUBLIC_AUTH_TYPE === 'auth0' ? '/api/auth/signin/auth0' : '/api/auth/callback/credentials'}>
             <input name='csrfToken' type='hidden' defaultValue={csrfToken} />
