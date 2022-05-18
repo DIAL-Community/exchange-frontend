@@ -17,6 +17,19 @@ describe('Unit test for the Select component.', () => {
     expect(getByText('test')).toBeInTheDocument()
   })
 
+  test('Should match snapshot - search.', () => {
+    const { container, getByText } = render(<Select isSearch={true} placeholder='test' />)
+    expect(container).toMatchSnapshot()
+    expect(getByText('test')).toBeInTheDocument()
+  })
+
+  test('Should match snapshot - search async.', async () => {
+    const { container, getByText } = render(<Select async={true} isSearch={true} placeholder='test' />)
+    await screen.findByText('test')
+    expect(container).toMatchSnapshot()
+    expect(getByText('test')).toBeInTheDocument()
+  })
+
   test('Should call onChange function.', async () => {
     const onChange = jest.fn()
     const { getByTestId, getByText } = render(

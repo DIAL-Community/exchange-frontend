@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@testing-library/react'
 import IconButton from '../../../components/shared/IconButton'
 
-describe('Unit test for the Icon Button component.', () => {
+describe('Unit test for the IconButton component.', () => {
   const TEST_ID = 'icon-button'
   const ICON = '+'
 
