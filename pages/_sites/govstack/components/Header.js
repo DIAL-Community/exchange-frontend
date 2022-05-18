@@ -13,10 +13,10 @@ const Header = () => {
           <Link href='/about'>
             <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>About GovStack</div>
           </Link>
-          <Link href='/use-cases'>
+          <Link href='/use_cases'>
             <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Use Cases</div>
           </Link>
-          <Link href='/building-blocks'>
+          <Link href='/building_blocks'>
             <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Building Blocks</div>
           </Link>
           <Link href='/blog'>
