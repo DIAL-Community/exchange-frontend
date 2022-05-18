@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@testing-library/react'
 import { SearchInput } from '../../../components/shared/SearchInput'
 
-describe('Unit test for the Search Input component.', () => {
+describe('Unit test for the SearchInput component.', () => {
   const TEST_ID = 'search-input'
 
   test('Should match snapshot - without search icon.', () => {

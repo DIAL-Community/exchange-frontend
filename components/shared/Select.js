@@ -1,11 +1,12 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import ReactSelect from 'react-select'
+import ReactSelect, { components } from 'react-select'
+import { HiOutlineSearch } from 'react-icons/hi'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncReactSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
-const Select = React.forwardRef(({ value, options, onChange, onBlur, placeholder, async = false, controlSize = null, ...otherProps }, ref) => {
+const Select = React.forwardRef(({ value, options, onChange, onBlur, placeholder, async = false, isSearch = false, controlSize = null, ...otherProps }, ref) => {
   const defaultStyles = {
     dropdownIndicator: (provided) => ({
       ...provided,
@@ -57,6 +58,12 @@ const Select = React.forwardRef(({ value, options, onChange, onBlur, placeholder
       zIndex: 30
     })
   }
+
+  const SearchDropdownIndicator = props => (
+    <components.DropdownIndicator {...props}>
+      <HiOutlineSearch className='text-2xl'/>
+    </components.DropdownIndicator>
+  )
   
   return (
     async ? (
@@ -70,6 +77,7 @@ const Select = React.forwardRef(({ value, options, onChange, onBlur, placeholder
         onBlur={onBlur}
         classNamePrefix='react-select'
         styles={defaultStyles}
+        components={isSearch && { DropdownIndicator: SearchDropdownIndicator }}
       />
     ) : (
       <ReactSelect
@@ -82,6 +90,7 @@ const Select = React.forwardRef(({ value, options, onChange, onBlur, placeholder
         onBlur={onBlur}
         classNamePrefix='react-select'
         styles={defaultStyles}
+        components={isSearch && { DropdownIndicator: SearchDropdownIndicator }}
       />
     )
   )
