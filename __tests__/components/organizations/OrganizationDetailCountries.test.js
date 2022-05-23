@@ -3,7 +3,8 @@ import { OrganizationDetailCountries } from '../../../components/organizations/O
 import { COUNTRY_SEARCH_QUERY } from '../../../queries/country'
 import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { countries, organization } from './data/OrganizationDetailCountries'
+import { countries } from './data/OrganizationDetailCountries'
+import { organization } from './data/OrganizationForm'
 
 // Mock next-router calls.
 jest.mock('next/dist/client/router')

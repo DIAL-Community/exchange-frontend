@@ -36,7 +36,7 @@ const EditableSection = ({ canEdit, sectionHeader, editModeBody, displayModeBody
                   setIsSubmitInProgress(true)
                   onSubmit()
                 }}
-                className='flex items-center bg-dial-blue text-white py-2 px-5 rounded-md disabled:bg-dial-gray'
+                className='submit-button'
                 disabled={!isDirty || isSubmitInProgress}
                 data-testid='submit-button'
               >
@@ -49,7 +49,7 @@ const EditableSection = ({ canEdit, sectionHeader, editModeBody, displayModeBody
                   onCancel()
                   setIsInEditMode(false)
                 }}
-                className='bg-button-gray-light text-white py-2 px-5 rounded-md disabled:opacity-50'
+                className='cancel-button'
                 disabled={isSubmitInProgress}
                 data-testid='cancel-button'
               >

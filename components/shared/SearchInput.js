@@ -1,9 +1,10 @@
 import { HiOutlineSearch } from 'react-icons/hi'
 import { MdClose } from 'react-icons/md'
+import classNames from 'classnames'
 
 const EMPTY_VALUE = ''
 
-export const SearchInput = ({ value, placeholder, onChange, onBlur, onSearchIconClick = null, className = '', ...otherProps }) => (
+export const SearchInput = ({ value, placeholder, onChange, onBlur, onSearchIconClick = null, className, ...otherProps }) => (
   <div className='flex items-center'>
     <input
       {...otherProps}
@@ -12,7 +13,7 @@ export const SearchInput = ({ value, placeholder, onChange, onBlur, onSearchIcon
       onChange={onChange}
       onBlur={onBlur}
       placeholder={placeholder}
-      className={`${className} w-full ${onSearchIconClick ? 'pr-20' : 'pr-10'}`}
+      className={classNames(className, { 'pr-20': onSearchIconClick, 'pr-10': !onSearchIconClick }, 'w-full')}
       data-testid='search-input'
     />
     <div className={`${onSearchIconClick ? '-ml-[4.5rem]' : '-ml-8'} flex`}>

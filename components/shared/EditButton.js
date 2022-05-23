@@ -1,6 +1,7 @@
 import { FormattedMessage } from 'react-intl'
+import classNames from 'classnames'
 
-const EditButton = ({ type = 'button', onClick, href, className = '' }) => {
+const EditButton = ({ type = 'button', onClick, href, className }) => {
   const innerHtml =
     <>
       <img
@@ -15,12 +16,14 @@ const EditButton = ({ type = 'button', onClick, href, className = '' }) => {
       </span>
     </>
 
+  const style = 'inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white'
+
   return (
     type === 'button' ? (
       <button
         type='button'
         onClick={onClick}
-        className={`${className} inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 text-white`}
+        className={classNames(className, style)}
         data-testid='edit-button'
       >
         {innerHtml}
@@ -28,7 +31,7 @@ const EditButton = ({ type = 'button', onClick, href, className = '' }) => {
     ) : type === 'link' && (
       <a
         href={href}
-        className={`${className} inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white`}
+        className={classNames(className, style)}
         data-testid='edit-link'
       >
         {innerHtml}

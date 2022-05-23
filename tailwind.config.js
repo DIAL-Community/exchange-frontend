@@ -72,6 +72,9 @@ module.exports = {
           light: '#f5f6fa',
           dark: '#646375'
         },
+        'validation-error': {
+          DEFAULT: '#e11d48'
+        }
       },
       fontSize: {
         'landing-title': ['66px', {

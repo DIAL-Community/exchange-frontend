@@ -80,7 +80,7 @@ export const OrganizationDetailCountries = ({ organization, canEdit }) => {
     setIsDirty(false)
   }
 
-  const displayModeBody = organization.countries.length > 0
+  const displayModeBody = countries.length > 0
     ? (
       <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
         {countries.map((country, countryIdx) => <CountryCard key={countryIdx} country={country} listType='list' />)}

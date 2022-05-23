@@ -30,9 +30,9 @@ const OrganizationDetailRight = ({ organization }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
-  const canEdit = session?.user?.canEdit || session?.user?.own?.organization?.id === organization.id
-
   const [session] = useSession()
+
+  const canEdit = session?.user?.canEdit || session?.user?.own?.organization?.id === organization.id
 
   const marker = organization.offices.length > 0
     ? {
