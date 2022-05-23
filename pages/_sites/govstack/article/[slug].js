@@ -80,7 +80,7 @@ export async function getStaticPaths() {
       fallback: false,
     }
   } else {
-    return ['/articles']
+    return { paths: [{params: { slug: 'one' }}], fallback: false }
   }
 }
 
