@@ -22,6 +22,7 @@ const ORGANIZATION_QUERY = gql`
       isEndorser
       whenEndorsed
       endorserLevel
+      aliases
       organizationDescription {
         description
         locale

@@ -1169,5 +1169,7 @@ export const en = {
   'resource.submitted': 'Resource saved.',
   'product.launchable': 'Product Launchable',
 
-  'shared.select.autocomplete.defaultPlaceholder': 'Type to search...'
+  'shared.select.autocomplete.defaultPlaceholder': 'Type to search...',
+
+  'validation.required': 'This field is required'
 }

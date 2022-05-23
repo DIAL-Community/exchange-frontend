@@ -1,6 +1,7 @@
 import React from 'react'
+import classNames from 'classnames'
 
-const Checkbox = React.forwardRef(({ type, value, onChange, onBlur, className = '', ...otherProps }, ref) => (
+const Checkbox = React.forwardRef(({ type, value, onChange, onBlur, className, ...otherProps }, ref) => (
   <input
     {...otherProps}
     ref={ref}
@@ -8,7 +9,7 @@ const Checkbox = React.forwardRef(({ type, value, onChange, onBlur, className = 
     checked={value}
     onChange={onChange}
     onBlur={onBlur}
-    className={`${className} h-8 w-8`}
+    className={classNames(className, 'h-8 w-8')}
     data-testid='checkbox'
   />
 ))

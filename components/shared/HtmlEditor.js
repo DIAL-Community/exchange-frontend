@@ -1,12 +1,13 @@
 import React, { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
+import classNames from 'classnames'
 
-export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, editorId, placeholder }) => {
+export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, editorId, placeholder, className, isInvalid = false }) => {
   const editorRef = useRef(null)
   const handleEditorChange = (editor) => onChange(editor)
 
   return (
-    <div className='htmlEditor'>
+    <div className={classNames({ 'validation-error': isInvalid }, className, 'htmlEditor')}>
       <Editor
         id={editorId || 'TinyMCE-Editor'}
         apiKey={process.env.NEXT_PUBLIC_EDITOR_KEY}

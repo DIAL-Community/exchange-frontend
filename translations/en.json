@@ -789,5 +789,7 @@
   "move.submitted": "Move saved.",
   "resource.submitted": "Resource saved.",
 
-  "shared.select.autocomplete.defaultPlaceholder": "Type to search..."
+  "shared.select.autocomplete.defaultPlaceholder": "Type to search...",
+
+  "validation.required": "This field is required"
 }
