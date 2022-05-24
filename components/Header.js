@@ -1,10 +1,9 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { signIn, signOut, useSession } from 'next-auth/client'
-import { useState, createRef, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
-import { createPopper } from '@popperjs/core'
 import MobileMenu from './MobileMenu'
 import ReportIssue from './shared/ReportIssue'
 
@@ -12,6 +11,8 @@ const RESOURCE_MENU = 'resourceMenu'
 const ABOUT_MENU = 'aboutMenu'
 const HELP_MENU = 'helpMenu'
 const LANGUAGE_MENU = 'switchLanguage'
+const ADMIN_MENU = 'adminMenu'
+const USER_MENU ='userMenu'
 const NONE = ''
 
 const menuItemStyles = `
@@ -27,30 +28,17 @@ const dropdownPanelStyles = `
     ring-1 ring-black ring-opacity-5 focus:outline-none z-30
   `
 
-const AdminMenu = () => {
+const AdminMenu = ({ isCurrentOpenMenu, onToggle }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
   const [session] = useSession()
 
-  const [showAdminMenu, setShowAdminMenu] = useState(false)
-
-  const buttonRef = createRef()
-  const popoverRef = createRef()
+  const buttonRef = useRef()
+  const popoverRef = useRef()
 
   const toggleSwitcher = (e) => {
     e.preventDefault()
-    showAdminMenu ? closeDropdownPopover() : openDropdownPopover()
-  }
-
-  const openDropdownPopover = () => {
-    createPopper(buttonRef.current, popoverRef.current, {
-      placement: 'bottom-end'
-    })
-    setShowAdminMenu(true)
-  }
-
-  const closeDropdownPopover = () => {
-    setShowAdminMenu(false)
+    onToggle(!isCurrentOpenMenu, ADMIN_MENU)
   }
 
   const { userEmail, userToken } = session.user
@@ -58,16 +46,17 @@ const AdminMenu = () => {
   return (
     <>
       <a
+        id={ADMIN_MENU}
         className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={buttonRef}
         href='admin' onClick={(e) => toggleSwitcher(e)}
       >
-        <div className={`${menuItemStyles} inline`}>{format('header.admin')}
+        <div id={ADMIN_MENU} className={`${menuItemStyles} inline`}>{format('header.admin')} 
           {
-            showAdminMenu ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
+            isCurrentOpenMenu ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
           }
         </div>
       </a>
-      <div className={`${showAdminMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
+      <div className={`${isCurrentOpenMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
         <div className='py-1' role='none'>
           <Link href='/users'>
             <a href='/users' role='menuitem' className={dropdownMenuStyles}>
@@ -110,7 +99,7 @@ const AdminMenu = () => {
   )
 }
 
-const UserMenu = () => {
+const UserMenu = ({ isCurrentOpenMenu, onToggle }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
@@ -118,10 +107,8 @@ const UserMenu = () => {
 
   const userName = session.user && session.user.name && session.user.name.toUpperCase()
 
-  const [showUserMenu, setShowUserMenu] = useState(false)
-
-  const buttonRef = createRef()
-  const popoverRef = createRef()
+  const buttonRef = useRef()
+  const popoverRef = useRef()
 
   const signOutUser = (e) => {
     e.preventDefault()
@@ -130,34 +117,24 @@ const UserMenu = () => {
 
   const toggleSwitcher = (e) => {
     e.preventDefault()
-    showUserMenu ? closeDropdownPopover() : openDropdownPopover()
-  }
-
-  const openDropdownPopover = () => {
-    createPopper(buttonRef.current, popoverRef.current, {
-      placement: 'bottom-end'
-    })
-    setShowUserMenu(true)
-  }
-
-  const closeDropdownPopover = () => {
-    setShowUserMenu(false)
+    onToggle(!isCurrentOpenMenu, USER_MENU)
   }
 
   return (
     <>
       <a
+        id={USER_MENU}
         className={`${menuItemStyles} lg:mb-0 mb-2 inline bg-dial-yellow-light pt-2 pb-2 rounded`} ref={buttonRef}
         href='signOut' onClick={(e) => toggleSwitcher(e)}
       >
         <img src='/icons/user.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
-        <div className='inline text-xs'>{userName}
+        <div id={USER_MENU} className='inline text-xs'>{userName}
           {
-            showUserMenu ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
+            isCurrentOpenMenu ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
           }
         </div>
       </a>
-      <div className={`${showUserMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
+      <div className={`${isCurrentOpenMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
         <div className='py-1' role='none'>
           <Link href='/auth/profile'>
             <a href='/auth/profile' role='menuitem' className={dropdownMenuStyles}>
@@ -208,7 +185,7 @@ const Header = () => {
   const isAdmin = session?.user?.roles?.includes('admin')
 
   const handleClickOutside = useCallback((event) => {
-    
+
     const clickedMenu = event.target.getAttribute('id')
     if (clickedMenu === RESOURCE_MENU && currentOpenMenu !== RESOURCE_MENU) {
       setCurrentOpenMenu(RESOURCE_MENU)
@@ -218,6 +195,10 @@ const Header = () => {
       setCurrentOpenMenu(HELP_MENU)
     } else if (clickedMenu === LANGUAGE_MENU && currentOpenMenu !== LANGUAGE_MENU) {
       setCurrentOpenMenu(LANGUAGE_MENU)
+    } else if (clickedMenu === ADMIN_MENU && currentOpenMenu !== ADMIN_MENU) {
+      setCurrentOpenMenu(ADMIN_MENU)
+    } else if (clickedMenu === USER_MENU && currentOpenMenu !== USER_MENU) {
+      setCurrentOpenMenu(USER_MENU)
     } else {
       setCurrentOpenMenu(NONE)
     }
@@ -242,7 +223,6 @@ const Header = () => {
     setShowForm(true)
   }
   
-
   const switchLanguage = (e, localeCode) => {
     e.preventDefault()
     router.push({ pathname, query }, asPath, { locale: localeCode })
@@ -271,6 +251,16 @@ const Header = () => {
 
   const toggleMenu = () => {
     setMenuExpanded(!menuExpanded)
+  }
+
+  const toggleAdminOrUserMenu = (isOpen, openedMenuId) => {
+    if (isOpen && openedMenuId === USER_MENU) {
+      setCurrentOpenMenu(USER_MENU)
+    } else if (isOpen && openedMenuId === ADMIN_MENU) {
+      setCurrentOpenMenu(ADMIN_MENU)
+    } else {
+      setCurrentOpenMenu(NONE)
+    }
   }
 
   return (
@@ -368,10 +358,10 @@ const Header = () => {
                   ? (
                     <>
                       <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
-                        {isAdmin && (<AdminMenu />)}
+                        {isAdmin && (<AdminMenu isCurrentOpenMenu={currentOpenMenu === ADMIN_MENU} onToggle={toggleAdminOrUserMenu}  />)}
                       </li>
                       <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
-                        <UserMenu />
+                        <UserMenu isCurrentOpenMenu={currentOpenMenu === USER_MENU} onToggle={toggleAdminOrUserMenu}/>
                       </li>
                     </>
                   )

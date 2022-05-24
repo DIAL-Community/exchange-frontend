@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@testing-library/react'
 import FileUploader from '../../../components/shared/FileUploader'
 
-describe('Unit test for the File Uploader component.', () => {
+describe('Unit test for the FileUploader component.', () => {
   const TEST_ID = 'file-uploader'
 
   test('Should match snapshot.', () => {

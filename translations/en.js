@@ -8,6 +8,7 @@ export const en = {
   'app.nocomment': 'Start a Conversation',
   'app.home': 'Home',
   'app.submit': 'Submit',
+  'app.submitting': 'Submitting',
   'app.search': 'Search',
   'app.create-new': 'Create New',
   'app.edit-entity': 'Edit {entity}',
@@ -17,8 +18,9 @@ export const en = {
   'app.close': 'Close',
   'app.powered': 'Powered by DIAL\'s Catalog of Digital Solutions',
   'app.reportIssue': 'Report Issue',
-  'app.submit': 'Submit',
   'app.delete': 'Delete',
+  'app.assign': 'Assign',
+  'app.searchAndAssign': 'Search and Assign',
   'app.print-pdf': 'Print PDF',
 
   'profile.profile': 'User Profile for ',
@@ -243,13 +245,21 @@ export const en = {
   'organization.endorserLevel.gold': 'Gold',
   'organization.isMni': 'MNI',
   'organization.submit': 'Submit',
+  'organization.submitted': 'Organization submitted.',
+  'organization.countries.updated': 'Countries updated successfully',
 
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',
   'buildingBlock.label': 'Building Block',
   'building-block.disclaimer': 'Note: As part of the <a href="https://govstack.global">GovStack Initiative</a>, DIAL is working to map digital platforms with key Building Block functionalities. Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative examples of how these tools may support building block functionalities. As Building Block specifications are developed, products that are aligned with the specifications will be tagged as such.',
   'building-block.spec-link': 'The GovStack initiative has published a full specification for this building block. You can view the documentation at this link: ',
-
+  
+  'contact.header': 'Contacts',
+  'contact.label': 'Contact',
+  'contact.name.label': 'Name:',
+  'contact.email.label': 'Email:',
+  'contact.title.label': 'Title:',
+  
   'sector.header': 'Sectors',
   'sector.label': 'Sector',
 
@@ -683,6 +693,7 @@ export const en = {
 
   'organization.no-sector': 'We do not have sector information for this organization.',
   'organization.no-country': 'We do not have country information for this organization.',
+  'organization.no-contact': 'We do not have contact information for this organization.',
   'office.other.header': 'Other Office Locations',
 
   'useCaseStep.header': 'Use Case Steps',
@@ -1156,6 +1167,9 @@ export const en = {
   'move.autoSaved': 'Move saved ...',
 
   'resource.submitted': 'Resource saved.',
-  'product.launchable': 'Product Launchable'
+  'product.launchable': 'Product Launchable',
 
+  'shared.select.autocomplete.defaultPlaceholder': 'Type to search...',
+
+  'validation.required': 'This field is required'
 }

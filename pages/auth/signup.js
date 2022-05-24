@@ -204,11 +204,11 @@ const SignUp = () => {
       <Header />
       <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <ClientOnly>
-        <div className='bg-dial-gray-dark h-screen'>
+        <div className='bg-dial-gray-dark'>
           <div className={`mx-4 ${created ? 'visible' : 'invisible'} text-center pt-4`}>
             <div className='my-auto text-emerald-500'>{format('signUp.created')}</div>
           </div>
-          <div className='pt-4'>
+          <div className='pt-4 pb-8'>
             <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
               <form method='post' onSubmit={handleSubmit}>
                 <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>

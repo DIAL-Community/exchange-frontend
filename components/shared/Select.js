@@ -1,11 +1,25 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import ReactSelect from 'react-select'
+import ReactSelect, { components } from 'react-select'
+import { HiOutlineSearch } from 'react-icons/hi'
+import classNames from 'classnames'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncReactSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
-const Select = React.forwardRef(({ value, options, onChange, onBlur, placeholder, async = false, controlSize = null, ...otherProps }, ref) => {
+const Select = React.forwardRef(({
+  value,
+  options,
+  onChange,
+  onBlur,
+  placeholder,
+  async = false,
+  isSearch = false,
+  controlSize = null,
+  isInvalid = false,
+  className,
+  ...otherProps
+}, ref) => {
   const defaultStyles = {
     dropdownIndicator: (provided) => ({
       ...provided,
@@ -29,7 +43,7 @@ const Select = React.forwardRef(({ value, options, onChange, onBlur, placeholder
     container: (provided, { isFocused }) => ({
       ...provided,
       boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-      outline: isFocused ? '3px solid #3F9EDD' : '1px solid #323245',
+      outline: isFocused ? '3px solid #3F9EDD' : isInvalid ? '1px solid #e11d48' : '1px solid #323245',
       borderRadius: '0.375rem'
     }),
     control: (provided) => ({
@@ -57,6 +71,12 @@ const Select = React.forwardRef(({ value, options, onChange, onBlur, placeholder
       zIndex: 30
     })
   }
+
+  const SearchDropdownIndicator = props => (
+    <components.DropdownIndicator {...props}>
+      <HiOutlineSearch className='text-2xl'/>
+    </components.DropdownIndicator>
+  )
   
   return (
     async ? (
@@ -69,7 +89,9 @@ const Select = React.forwardRef(({ value, options, onChange, onBlur, placeholder
         onChange={onChange}
         onBlur={onBlur}
         classNamePrefix='react-select'
+        className={classNames(className)}
         styles={defaultStyles}
+        components={isSearch && { DropdownIndicator: SearchDropdownIndicator }}
       />
     ) : (
       <ReactSelect
@@ -81,7 +103,9 @@ const Select = React.forwardRef(({ value, options, onChange, onBlur, placeholder
         onChange={onChange}
         onBlur={onBlur}
         classNamePrefix='react-select'
+        className={classNames(className)}
         styles={defaultStyles}
+        components={isSearch && { DropdownIndicator: SearchDropdownIndicator }}
       />
     )
   )
