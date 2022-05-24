@@ -64,7 +64,7 @@ const SearchFilter = (props) => {
       return `/candidate/${linkPath[0]}/create`
     }
 
-    const reactEditPaths = ['playbooks', 'plays']
+    const reactEditPaths = ['playbooks', 'plays', 'organizations']
     if (reactEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails
       return `/${linkPath[0]}/create`

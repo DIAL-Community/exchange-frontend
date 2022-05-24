@@ -163,10 +163,17 @@ body {
     @apply outline;
     @apply outline-1;
     @apply outline-offset-0;
-    @apply outline-button-gray;
     @apply placeholder-dial-gray;
     @apply pl-3;
     @apply py-2;
+  }
+
+  input:not(.validation-error) {
+    @apply outline-button-gray;
+  }
+
+  input.validation-error {
+    @apply outline-validation-error;
   }
 
   input:focus,
@@ -203,9 +210,42 @@ body {
     @apply rounded-md;
   }
   
-  .htmlEditor .tox-tinymce.focused {
+  .htmlEditor .tox-tinymce.focused,
+  .htmlEditor.validation-error .tox-tinymce.focused {
     @apply outline-offset-0;
     @apply outline-[3px];
     @apply outline-dial-blue;
+  }
+
+  .htmlEditor.validation-error .tox-tinymce {
+    @apply outline-validation-error;
+  }
+}
+
+@layer utilities {
+  .required-field::after {
+    content: '*';
+  }
+
+  button.submit-button {
+    @apply flex;
+    @apply items-center;
+    @apply py-2;
+    @apply px-5;
+    @apply rounded-md;
+    @apply bg-dial-blue;
+    @apply text-white;
+    @apply disabled:bg-dial-gray;
+  }
+
+  button.cancel-button {
+    @apply flex;
+    @apply items-center;
+    @apply py-2;
+    @apply px-5;
+    @apply rounded-md;
+    @apply bg-button-gray-light;
+    @apply text-white;
+    @apply disabled:opacity-50;
   }
 }

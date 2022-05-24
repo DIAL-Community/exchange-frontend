@@ -1,21 +1,13 @@
 import dynamic from 'next/dynamic'
 import { MdClose } from 'react-icons/md'
-import { gql, useApolloClient } from '@apollo/client'
+import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { asyncSelectStyles } from '../../../lib/utilities'
+import { COUNTRY_SEARCH_QUERY } from '../../../queries/country'
+import { fetchSelectOptions } from '../../../queries/utils'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
-
-const COUNTRY_SEARCH_QUERY = gql`
-  query Countries($search: String!) {
-    countries(search: $search) {
-      id
-      name
-      slug
-    }
-  }
-`
 
 const customStyles = (controlSize = '12rem') => {
   return {
@@ -46,28 +38,13 @@ export const CountryAutocomplete = (props) => {
     setCountries([...countries.filter(c => c.value !== country.value), country])
   }
 
-  const fetchOptions = async (input, callback, query) => {
-    if (input && input.trim().length < 2) {
-      return []
-    }
-
-    const response = await client.query({
-      query: query,
-      variables: {
-        search: input
-      }
-    })
-
-    if (response.data && response.data.countries) {
-      return response.data.countries.map((country) => ({
-        label: country.name,
-        value: country.id,
-        slug: country.slug
-      }))
-    }
-
-    return []
-  }
+  const fetchedCountriesCallback = (data) => (
+    data.countries.map((country) => ({
+      label: country.name,
+      value: country.id,
+      slug: country.slug
+    }))
+  )
 
   return (
     <div className={`${containerStyles} catalog-filter text-dial-gray-dark flex`}>
@@ -76,7 +53,7 @@ export const CountryAutocomplete = (props) => {
         className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
-        loadOptions={(input, callback) => fetchOptions(input, callback, COUNTRY_SEARCH_QUERY)}
+        loadOptions={(input) => fetchSelectOptions(client, input, COUNTRY_SEARCH_QUERY, fetchedCountriesCallback)}
         noOptionsMessage={() => format('filter.searchFor', { entity: format('country.header') })}
         onChange={selectCountry}
         placeholder={format('filter.byEntity', { entity: format('country.label') })}

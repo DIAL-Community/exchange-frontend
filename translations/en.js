@@ -8,6 +8,7 @@ export const en = {
   'app.nocomment': 'Start a Conversation',
   'app.home': 'Home',
   'app.submit': 'Submit',
+  'app.submitting': 'Submitting',
   'app.search': 'Search',
   'app.create-new': 'Create New',
   'app.edit-entity': 'Edit {entity}',
@@ -17,8 +18,9 @@ export const en = {
   'app.close': 'Close',
   'app.powered': 'Powered by DIAL\'s Catalog of Digital Solutions',
   'app.reportIssue': 'Report Issue',
-  'app.submit': 'Submit',
   'app.delete': 'Delete',
+  'app.assign': 'Assign',
+  'app.searchAndAssign': 'Search and Assign',
   'app.print-pdf': 'Print PDF',
 
   'profile.profile': 'User Profile for ',
@@ -243,6 +245,8 @@ export const en = {
   'organization.endorserLevel.gold': 'Gold',
   'organization.isMni': 'MNI',
   'organization.submit': 'Submit',
+  'organization.submitted': 'Organization submitted.',
+  'organization.countries.updated': 'Countries updated successfully',
 
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',
@@ -1163,5 +1167,9 @@ export const en = {
   'move.autoSaved': 'Move saved ...',
 
   'resource.submitted': 'Resource saved.',
-  'product.launchable': 'Product Launchable'
+  'product.launchable': 'Product Launchable',
+
+  'shared.select.autocomplete.defaultPlaceholder': 'Type to search...',
+
+  'validation.required': 'This field is required'
 }
