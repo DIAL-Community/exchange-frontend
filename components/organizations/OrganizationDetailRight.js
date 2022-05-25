@@ -10,7 +10,8 @@ import ProductCard from '../products/ProductCard'
 import CityCard from '../cities/CityCard'
 import ContactCard from '../contacts/ContactCard'
 import AggregatorCapability from './AggregatorCapability'
-import { OrganizationDetailCountries } from './OrganizationDetailCountries'
+import OrganizationDetailCountries from './OrganizationDetailCountries'
+import OrganizationDetailSectors from './OrganizationDetailSectors'
 
 const sectionHeaderStyle = 'card-title mb-3 text-dial-gray-dark'
 
@@ -127,24 +128,8 @@ const OrganizationDetailRight = ({ organization }) => {
             }
           </div>
       }
-      {
-        organization.sectors &&
-          <div className='mt-12'>
-            <div className={sectionHeaderStyle}>{format('sector.header')}</div>
-            {
-              organization.sectors.length > 0
-                ? (
-                  <div className='grid grid-cols-1 lg:grid-cols-2'>
-                    {organization.sectors.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
-                  </div>
-                )
-                : <div className='text-sm pb-5 text-button-gray'>{format('organization.no-sector')}</div>
-            }
-          </div>
-      }
-      {
-        organization.countries && <OrganizationDetailCountries organization={organization} canEdit={canEdit} />
-      }
+      {organization.sectors && <OrganizationDetailSectors organization={organization} canEdit={canEdit} />}
+      {organization.countries && <OrganizationDetailCountries organization={organization} canEdit={canEdit} />}
       {
         organization.products && organization.products.length > 0 &&
           <div className='mt-12'>
