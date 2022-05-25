@@ -4,19 +4,11 @@ import { gql, useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { asyncSelectStyles } from '../../../lib/utilities'
+import { fetchSelectOptions } from '../../../queries/utils'
+import { SECTOR_SEARCH_QUERY } from '../../../queries/sector'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
-
-const SECTOR_SEARCH_QUERY = gql`
-  query Sectors($search: String!, $locale: String) {
-    sectors(search: $search, locale: $locale) {
-      id
-      name
-      slug
-    }
-  }
-`
 
 const customStyles = (controlSize = '12rem') => {
   return {
@@ -49,29 +41,13 @@ export const SectorAutocomplete = (props) => {
     setSectors([...sectors.filter(s => s.value !== sector.value), sector])
   }
 
-  const fetchOptions = async (input, callback, query) => {
-    if (input && input.trim().length < 2) {
-      return []
-    }
-
-    const response = await client.query({
-      query: query,
-      variables: {
-        search: input,
-        locale: locale
-      }
-    })
-
-    if (response.data && response.data.sectors) {
-      return response.data.sectors.map((sector) => ({
-        label: sector.name,
-        value: sector.id,
-        slug: sector.slug
-      }))
-    }
-
-    return []
-  }
+  const fetchedSectorsCallback = (data) => (
+    data.sectors.map((sector) => ({
+      label: sector.name,
+      value: sector.id,
+      slug: sector.slug
+    }))
+  )
 
   return (
     <div className={`${containerStyles} catalog-filter text-dial-gray-dark flex`}>
@@ -80,7 +56,7 @@ export const SectorAutocomplete = (props) => {
         className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
-        loadOptions={(input, callback) => fetchOptions(input, callback, SECTOR_SEARCH_QUERY)}
+        loadOptions={(input) => fetchSelectOptions(client, input, SECTOR_SEARCH_QUERY, fetchedSectorsCallback, locale)}
         noOptionsMessage={() => format('filter.searchFor', { entity: format('sector.header') })}
         onChange={selectSector}
         placeholder={format('filter.byEntity', { entity: format('sector.label') })}

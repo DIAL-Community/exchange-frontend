@@ -247,6 +247,7 @@ export const en = {
   'organization.submit': 'Submit',
   'organization.submitted': 'Organization submitted.',
   'organization.countries.updated': 'Countries updated successfully',
+  'organization.sectors.updated': 'Sectors updated successfully',
 
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',

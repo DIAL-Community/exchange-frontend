@@ -12,7 +12,7 @@ import FileUploader from '../shared/FileUploader'
 import Checkbox from '../shared/Checkbox'
 import IconButton from '../shared/IconButton'
 import Select from '../shared/Select'
-import { ToastContext } from '../../lib/ToastContext'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import ValidationError from '../shared/ValidationError'
 
 const generateMutationText = (mutationFunc) => {
@@ -127,17 +127,14 @@ export const OrganizationForm = React.memo(({ organization }) => {
     return map
   }, [organization, format])
 
-  const navigateToOrganizationDetailPage = useCallback(() => {
-    setMutating(false)
- 
-    showToast(format('organization.submitted'), 'success', 'top-center')
-
-    const navigateToOrganizationDetailPage = setTimeout(() => {
-      router.push(`/${router.locale}/organizations/${data.createOrganization.organization.slug}`)
-    }, 800)
-
-    return () => clearTimeout(navigateToOrganizationDetailPage)
-  }, [data, format, router, showToast])
+  const navigateToOrganizationDetailPage = useCallback(() => showToast(
+    format('organization.submitted'),
+    'success',
+    'top-center',
+    DEFAULT_AUTO_CLOSE_DELAY,
+    null,
+    () => router.push(`/${router.locale}/organizations/${data.createOrganization.organization.slug}`)
+  ), [data, format, router, showToast])
 
   useEffect(() => {
     if (data?.createOrganization?.errors.length === 0 && data?.createOrganization?.organization) {
