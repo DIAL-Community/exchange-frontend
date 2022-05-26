@@ -16,6 +16,7 @@ module.exports = {
         '__typename': 'Sector'
       }
     ],
+    'contacts': [],
     'id': 1,
     'endorserLevel': 'none',
     'imageFile': '/assets/organizations/test_organization.png',
