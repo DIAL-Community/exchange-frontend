@@ -42,6 +42,30 @@ export const UPDATE_ORGANIZATION_SECTORS = gql`
   }
 `
 
+export const UPDATE_ORGANIZATION_PROJECTS = gql`
+  mutation UpdateOrganizationProjects(
+    $slug: String!,
+    $projectsSlugs: [String!]!
+  ) {
+    updateOrganizationProjects(
+      slug: $slug,
+      projectsSlugs: $projectsSlugs
+    ) {
+      organization {
+        projects {
+          id,
+          name,
+          slug,
+          origin {
+            slug
+          }
+        }
+      },
+      errors
+    }
+  }
+`
+
 export const UPDATE_ORGANIZATION_CONTACTS = gql`
   mutation UpdateOrganizationContacts(
     $slug: String!,
