@@ -248,6 +248,7 @@ export const en = {
   'organization.submitted': 'Organization submitted.',
   'organization.countries.updated': 'Countries updated successfully',
   'organization.sectors.updated': 'Sectors updated successfully',
+  'organization.contacts.updated': 'Contacts updated successfully',
 
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',
@@ -1172,5 +1173,7 @@ export const en = {
 
   'shared.select.autocomplete.defaultPlaceholder': 'Type to search...',
 
-  'validation.required': 'This field is required'
+  'validation.required': 'This field is required',
+  'validation.email': 'Please enter a valid email address',
+  'organization.validation.contact.uniqueName': 'This contact is already assigned to this organization'
 }

@@ -41,3 +41,24 @@ export const UPDATE_ORGANIZATION_SECTORS = gql`
     }
   }
 `
+
+export const UPDATE_ORGANIZATION_CONTACTS = gql`
+  mutation UpdateOrganizationContacts(
+    $slug: String!,
+    $contacts: JSON!
+  ) {
+    updateOrganizationContacts(
+      slug: $slug,
+      contacts: $contacts
+    ) {
+      organization {
+        contacts {
+          name,
+          title,
+          email,
+        }
+      },
+      errors
+    }
+  }
+`
