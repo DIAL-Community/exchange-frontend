@@ -500,6 +500,9 @@ export const en = {
   'playbooks.unassignPlay': 'Unassign Play',
   'playbooks.assign': 'Assign',
   'playbooks.assignedPlays': 'Plays currently assigned. You can preview, re-order, unnassign Plays, or add new Plays.',
+  'playbook.published': 'Published',
+  'playbook.publish': 'Publish Playbook',
+  'playbook.saveAsDraft': 'Save as Draft',
 
   'play.header': 'Plays',
   'plays.label': 'Play',
