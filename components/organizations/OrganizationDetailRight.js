@@ -5,12 +5,13 @@ import dynamic from 'next/dynamic'
 import { useSession } from 'next-auth/client'
 import Breadcrumb from '../shared/breadcrumb'
 import SectorCard from '../sectors/SectorCard'
-import ProjectCard from '../projects/ProjectCard'
 import ProductCard from '../products/ProductCard'
 import CityCard from '../cities/CityCard'
-import ContactCard from '../contacts/ContactCard'
 import AggregatorCapability from './AggregatorCapability'
-import { OrganizationDetailCountries } from './OrganizationDetailCountries'
+import OrganizationDetailCountries from './OrganizationDetailCountries'
+import OrganizationDetailSectors from './OrganizationDetailSectors'
+import OrganizationDetailProjects from './OrganizationDetailProjects'
+import OrganizationDetailContacts from './OrganizationDetailContacts'
 
 const sectionHeaderStyle = 'card-title mb-3 text-dial-gray-dark'
 
@@ -112,39 +113,9 @@ const OrganizationDetailRight = ({ organization }) => {
             </div>
           </div>
       }
-      {
-        session && session.user.canEdit &&
-          <div className='mt-12'>
-            <div className={sectionHeaderStyle}>{format('contact.header')}</div>
-            {
-              organization.contacts.length > 0
-                ? (
-                  <div className='grid grid-cols-1 lg:grid-cols-2'>
-                    {organization.contacts.map((contact, index) => <ContactCard key={index} contact={contact} listType='list' />)}
-                  </div>
-                )
-                : <div className='text-sm pb-5 text-button-gray'>{format('organization.no-contact')}</div>
-            }
-          </div>
-      }
-      {
-        organization.sectors &&
-          <div className='mt-12'>
-            <div className={sectionHeaderStyle}>{format('sector.header')}</div>
-            {
-              organization.sectors.length > 0
-                ? (
-                  <div className='grid grid-cols-1 lg:grid-cols-2'>
-                    {organization.sectors.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
-                  </div>
-                )
-                : <div className='text-sm pb-5 text-button-gray'>{format('organization.no-sector')}</div>
-            }
-          </div>
-      }
-      {
-        organization.countries && <OrganizationDetailCountries organization={organization} canEdit={canEdit} />
-      }
+      {canEdit && <OrganizationDetailContacts organization={organization}/>}
+      {organization.sectors && <OrganizationDetailSectors organization={organization} canEdit={canEdit} />}
+      {organization.countries && <OrganizationDetailCountries organization={organization} canEdit={canEdit} />}
       {
         organization.products && organization.products.length > 0 &&
           <div className='mt-12'>
@@ -152,15 +123,7 @@ const OrganizationDetailRight = ({ organization }) => {
             {organization.products.map((product, i) => <ProductCard key={i} product={product} listType='list' />)}
           </div>
       }
-      {
-        organization.projects && organization.projects.length > 0 &&
-          <div className='mt-12'>
-            <div className={sectionHeaderStyle}>{format('project.header')}</div>
-            <div className='grid grid-cols-1'>
-              {organization.projects.map((project, i) => <ProjectCard key={i} project={project} listType='list' />)}
-            </div>
-          </div>
-      }
+      {organization.projects && <OrganizationDetailProjects organization={organization} canEdit={canEdit} />}
       {
         organization.isMni &&
           <div className='mt-12'>

@@ -35,6 +35,7 @@ const PLAYBOOK_QUERY = gql`
           description
         }
       }
+      draft
     }
   }
 `

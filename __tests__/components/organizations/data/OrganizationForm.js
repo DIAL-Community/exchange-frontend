@@ -1,8 +1,33 @@
 module.exports = {
   'organization': {
     'countries': [
-      { 'id': 1, 'name': 'Test Country', 'slug': 'ts', '__typename': 'Country' }
+      {
+        'id': 1,
+        'name': 'Test Country',
+        'slug': 'ts',
+        '__typename': 'Country'
+      }
     ],
+    'sectors': [
+      {
+        'id': 1,
+        'name': 'Test Sector',
+        'slug': 'test_sector',
+        '__typename': 'Sector'
+      }
+    ],
+    'projects': [
+      {
+        'id': 1,
+        'name': 'Test Project',
+        'slug': 'test_project',
+        'origin': {
+          'slug': 'origin_slug'
+        },
+        '__typename': 'Project'
+      }
+    ],
+    'contacts': [],
     'id': 1,
     'endorserLevel': 'none',
     'imageFile': '/assets/organizations/test_organization.png',
