@@ -15,6 +15,7 @@ import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
 import { PlayFilterContext, PlayFilterDispatchContext } from '../context/PlayFilterContext'
 import { ToastContext } from '../../lib/ToastContext'
 import { SearchInput } from '../../components/shared/SearchInput'
+import Checkbox from '../shared/Checkbox'
 const PlayListQuery = dynamic(() => import('../plays/PlayList'), { ssr: false })
 
 const generateMutationText = (mutationFunc) => {
@@ -28,7 +29,8 @@ const generateMutationText = (mutationFunc) => {
       $audience: String,
       $outcomes: String,
       $tags: JSON!,
-      $plays: JSON
+      $plays: JSON,
+      $draft: Boolean
     ) {
       ${mutationFunc}(
         name: $name,
@@ -39,7 +41,8 @@ const generateMutationText = (mutationFunc) => {
         audience: $audience,
         outcomes: $outcomes,
         tags: $tags,
-        plays: $plays
+        plays: $plays,
+        draft: $draft
       ) {
         playbook {
           id
@@ -57,6 +60,7 @@ const generateMutationText = (mutationFunc) => {
             slug
             name
           }
+          draft
         }
         errors
       }
@@ -66,6 +70,7 @@ const generateMutationText = (mutationFunc) => {
 
 const MUTATE_PLAYBOOK = gql(generateMutationText('createPlaybook'))
 const AUTOSAVE_PLAYBOOK = gql(generateMutationText('autoSavePlaybook'))
+const PUBLISHED_CHECKBOX_FIELD_NAME = 'published'
 
 const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
   const { formatMessage } = useIntl()
@@ -194,9 +199,11 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       author: playbook && playbook.author,
       overview: playbook && playbook.playbookDescription.overview,
       audience: playbook && playbook.playbookDescription.audience,
-      outcomes: playbook && playbook.playbookDescription.outcomes
+      outcomes: playbook && playbook.playbookDescription.outcomes,
+      published: playbook ? !playbook.draft : false
     }
   })
+  const isPublished = watch(PUBLISHED_CHECKBOX_FIELD_NAME)
 
   const [slug] = useState(playbook ? playbook.slug : '')
   const [tags, setTags] = useState(
@@ -209,7 +216,6 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   const { currentPlays } = useContext(PlayListContext)
 
   const notifyAndNavigateAway = useCallback(() => {
-    setMutating(false)
     if (!navigateToPlay) {
       showToast(format('playbook.submitted'), 'success', 'top-center')
       const navigateToPlaybook = setTimeout(() => {
@@ -242,7 +248,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = session.user
-      const { name, cover, author, overview, audience, outcomes } = data
+      const { name, cover, author, overview, audience, outcomes, published } = data
       const [coverFile] = cover
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -254,7 +260,8 @@ export const PlaybookForm = React.memo(({ playbook }) => {
         outcomes,
         cover: coverFile,
         plays: currentPlays,
-        tags: tags.map(tag => tag.label)
+        tags: tags.map(tag => tag.label),
+        draft: !published
       }
 
       updatePlaybook({
@@ -399,14 +406,22 @@ export const PlaybookForm = React.memo(({ playbook }) => {
                 </div>
               </div>
               <FormPlayList playbook={playbook} saveAndCreatePlay={saveAndCreatePlay} />
-              <div className='flex font-semibold text-xl mt-8 gap-3'>
+              <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'>
+                <Controller
+                  name={PUBLISHED_CHECKBOX_FIELD_NAME}
+                  control={control}
+                  render={({ field }) => <Checkbox {...field} />}
+                />
+                {format('playbook.published')}
+              </label>
+              <div className='flex font-semibold text-xl gap-3'>
                 <button
                   type='submit'
                   onClick={savePlaybook}
                   className='bg-blue-500 text-dial-gray-light py-3 px-8 rounded disabled:opacity-50'
                   disabled={mutating || reverting}
                 >
-                  {`${format('playbooks.submit')} ${format('playbooks.label')}`}
+                  {format(isPublished ? 'playbook.publish' : 'playbook.saveAsDraft')}
                   {mutating && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
                 <button
