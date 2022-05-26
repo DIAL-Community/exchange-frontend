@@ -16,6 +16,17 @@ module.exports = {
         '__typename': 'Sector'
       }
     ],
+    'projects': [
+      {
+        'id': 1,
+        'name': 'Test Project',
+        'slug': 'test_project',
+        'origin': {
+          'slug': 'origin_slug'
+        },
+        '__typename': 'Project'
+      }
+    ],
     'contacts': [],
     'id': 1,
     'endorserLevel': 'none',
