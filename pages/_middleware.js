@@ -12,7 +12,7 @@ export default function middleware(req) {
   // If prod, get the custom domain/subdomain value by removing the root URL
   // (in the case of "test.vercel.app", "vercel.app" is the root URL)
   const currentHost =
-    hostname?.includes('govstack') ? 'govstack' : 'default'
+    hostname?.includes('govstack') ? 'govstack' : hostname?.includes('gosl') ? 'gosl' : 'default'
 
   // Prevent security issues – users should not be able to canonically access
   // the pages/sites folder and its respective contents. This can also be done
