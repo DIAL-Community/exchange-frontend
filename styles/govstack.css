@@ -17,3 +17,11 @@
   padding-left: 60px;
   padding-right: 60px;
 }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown .dropdown-menu {
+  display: hidden;
+}

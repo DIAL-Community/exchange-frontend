@@ -10,6 +10,22 @@ const Header = () => {
               <img src='images/gosl/GoSL.png' alt='Government of Sierra Leone' height='100' width='100' />
             </div>
           </Link>
+          <div className='dropdown'>
+            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Ministries <svg className='w-4 h-4 ml-2' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M19 9l-7 7-7-7'></path></svg></div>
+            <div className='dropdown-menu z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700'>
+              <ul className='py-1 text-sm text-gray-700 dark:text-gray-200' aria-labelledby='dropdownDefault'>
+                <li>
+                  <a href='/ministries/mic' className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>Dashboard</a>
+                </li>
+                <li>
+                  <a href='#' className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>Settings</a>
+                </li>
+                <li>
+                  <a href='#' className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>Earnings</a>
+                </li>
+              </ul>
+            </div>
+          </div>
           <Link href='/ministries'>
             <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Ministries</div>
           </Link>

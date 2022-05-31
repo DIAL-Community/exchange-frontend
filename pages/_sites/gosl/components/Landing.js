@@ -12,9 +12,7 @@ const Landing = () => {
           </div>
         </div>
       </div> 
-      <button className="text-white scroll-button"><span className="hidden">Scroll Down</span>
-        <svg width="32" height="33" viewBox="0 0 32 33" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M.746 16.079l1.386-1.415a.828.828 0 011.188 0l10.86 11.081V1.357c0-.473.376-.857.84-.857h1.96c.464 0 .84.384.84.857v24.388l10.86-11.08a.828.828 0 011.188 0l1.386 1.414a.87.87 0 010 1.212l-14.66 14.958a.828.828 0 01-1.188 0L.746 17.291a.87.87 0 010-1.212z" fill="currentColor"></path></svg> 
-      </button>
+      
     </div>
   )
 }
