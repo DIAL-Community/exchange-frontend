@@ -7,26 +7,20 @@ const PlaybookDetailProvider = ({ children }) => {
   const [slugYValues, setSlugYValues] = useState({})
   const [slugHeights, setSlugHeights] = useState({})
   const [windowHeight, setWindowHeight] = useState()
-  const [slugIntersectionRatios, setSlugIntersectionRatios] = useState({})
 
   const [currentSlug, setCurrentSlug] = useState('base-slug-overview-information')
   const [direct, setDirect] = useState(false)
 
-  const updateSlugInformation = (slug, yValue, height, windowHeight, intersectionRatio) => {
-    setWindowHeight(windowHeight)
-
+  const updateSlugInformation = (slug, yValue, height) => {
     slugYValues[slug] = yValue
     setSlugYValues({ ...slugYValues })
 
     slugHeights[slug] = height
     setSlugHeights({ ...slugHeights })
-
-    slugIntersectionRatios[slug] = intersectionRatio
-    setSlugIntersectionRatios({ ...slugIntersectionRatios })
   }
 
-  const values = { currentSlug, direct, slugYValues, slugHeights, windowHeight, slugIntersectionRatios }
-  const dispatchValues = { updateSlugInformation, setCurrentSlug, setDirect }
+  const values = { slugYValues, slugHeights, currentSlug, direct, windowHeight }
+  const dispatchValues = { updateSlugInformation, setCurrentSlug, setDirect, setWindowHeight }
 
   return (
     <PlaybookDetailContext.Provider value={values}>

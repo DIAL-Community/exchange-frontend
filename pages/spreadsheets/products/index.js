@@ -28,7 +28,6 @@ const ProductSpreadsheet = () => {
       <QueryNotification />
       <Header />
       <div className='max-w-catalog mx-auto' style={{ minHeight: '70vh' }}>
-        {console.log('Session: ', session)}
         {session?.user?.canEdit &&
           <ClientOnly>
             <ProductSpreadsheetWithoutSSR />
