@@ -2,6 +2,7 @@ import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { useContext, useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
+import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
 import { PlaybookDetailContext, PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
@@ -67,14 +68,6 @@ const PlaybookDetailHeader = ({ slug }) => {
     setCurrentSlugIndex(playIndex)
   }, [currentSlug, setCurrentSlugIndex, data])
 
-  if (loading) {
-    return <Loading />
-  }
-
-  if (error) {
-    return <Error />
-  }
-
   const navigateToPlay = (e, slug) => {
     e.preventDefault()
 
@@ -102,6 +95,17 @@ const PlaybookDetailHeader = ({ slug }) => {
       top: height,
       behavior: 'smooth'
     })
+  }
+
+  // Loading and error handler section.
+  if (loading) {
+    return <Loading />
+  } else if (error) {
+    if (error.networkError) {
+      return <Error />
+    } else {
+      return <NotFound />
+    }
   }
 
   return (

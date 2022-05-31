@@ -1,12 +1,10 @@
-/* global IntersectionObserver: false */
-
 import { createRef, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
 import { gql, useQuery } from '@apollo/client'
 import parse from 'html-react-parser'
-import Breadcrumb from '../shared/breadcrumb'
+import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
+import PlaybookDetailMenu from './PlaybookDetailMenu'
 import { PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 
 export const PLAYBOOK_QUERY = gql`
@@ -27,11 +25,10 @@ export const PLAYBOOK_QUERY = gql`
 
 export const OVERVIEW_SLUG_NAME = 'base-slug-overview-information'
 
-const PlaybookDetailOverview = ({ slug, locale }) => {
+const PlaybookDetailOverview = ({ slug, locale, allowEmbedCreation }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const [session] = useSession()
   const [height, setHeight] = useState(0)
   const { updateSlugInformation } = useContext(PlaybookDetailDispatchContext)
 
@@ -61,51 +58,20 @@ const PlaybookDetailOverview = ({ slug, locale }) => {
     setHeight(boundingClientRect.height)
   }, [ref])
 
-  const generateEditLink = () => {
-    if (!session.user) {
-      return '/edit-not-available'
-    }
-
-    return `/${locale}/playbooks/${slug}/edit`
-  }
-
-  const generatePdfLink = () => {
-    return `/${locale}/playbooks/${slug}/pdf`
-  }
-
+  // Loading and error handler section.
   if (loading) {
     return <Loading />
+  } else if (error) {
+    if (error.networkError) {
+      return <Error />
+    } else {
+      return <NotFound />
+    }
   }
-
-  if (error) {
-    return <Error />
-  }
-
-  const slugNameMapping = (() => {
-    return { [[data.playbook.slug]]: data.playbook.name }
-  })()
 
   return (
     <div className='flex flex-col gap-3 px-3' ref={ref}>
-      <div className='flex'>
-        <div className='hidden lg:block'>
-          <Breadcrumb slugNameMapping={slugNameMapping} />
-        </div>
-        <div className='mt-4 ml-auto'>
-          <a href={generatePdfLink()} target='_blank' rel='noreferrer' className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
-            <img src='/icons/pdf.svg' className='inline mr-2 pb-1' alt='Print PDF' height='12px' width='12px' />
-            <span className='text-sm px-2'>{format('app.print-pdf')}</span>
-          </a>
-          {
-            session?.user.canEdit && (
-              <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
-                <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-                <span className='text-sm px-2'>{format('app.edit')}</span>
-              </a>
-            )
-          }
-        </div>
-      </div>
+      <PlaybookDetailMenu playbook={data.playbook} locale={locale} allowEmbedCreation={allowEmbedCreation} />
       <div className='h4'>{format('playbooks.overview')}</div>
       <div className='fr-view tiny-editor text-dial-gray-dark'>
         {parse(data.playbook.playbookDescription.overview)}
