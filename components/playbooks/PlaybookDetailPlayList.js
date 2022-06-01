@@ -1,10 +1,11 @@
 /* global IntersectionObserver: false */
 
-import { createRef, useContext, useEffect, useState } from 'react'
+import { createRef, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import parse from 'html-react-parser'
+import NotFound from '../shared/NotFound'
 import { Loading, Error } from '../shared/FetchStatus'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import ProductCard from '../products/ProductCard'
@@ -58,18 +59,17 @@ const Play = ({ play, index }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { updateSlugInformation } = useContext(PlaybookDetailDispatchContext)
+  const { updateSlugInformation, setWindowHeight } = useContext(PlaybookDetailDispatchContext)
 
-  const ref = createRef()
+  const ref = useRef()
   const [yValue, setYValue] = useState(0)
   const [height, setHeight] = useState(0)
-  const [windowHeight, setWindowHeight] = useState(0)
-  const [intersectionRatio, setIntersectionRatio] = useState(0)
 
   useEffect(() => {
     // Update context for this slug
-    updateSlugInformation(play.slug, yValue, height, windowHeight, intersectionRatio)
-  }, [play, yValue, height, windowHeight, intersectionRatio])
+    setWindowHeight(window.innerHeight)
+    updateSlugInformation(play.slug, yValue, height)
+  }, [play, yValue, height])
 
   useEffect(() => {
     // Update scrolling state information based on the observer data.
@@ -77,36 +77,21 @@ const Play = ({ play, index }) => {
       return
     }
 
-    const observerCallback = ([observerData]) => {
-      if (!observerData || !observerData.boundingClientRect || !observerData.rootBounds) {
-        // Skip if we don't have observer data ready yet.
+    const onScroll = () => {
+      if (!ref.current) {
         return
       }
-      
-      // Throttle this state update?
-      // const timeoutId = setTimeout(() => {
-      // }, 500)
-      // return () => clearTimeout(timeoutId)
 
-      setYValue(observerData.boundingClientRect.y)
-      setHeight(observerData.boundingClientRect.height)
-      setWindowHeight(observerData.rootBounds.height)
-      setIntersectionRatio(observerData.intersectionRatio)
+      const boundingClientRect = ref.current.getBoundingClientRect()
+      console.log('Slug: ', play.slug, ' -> BoundingClientRect: ', boundingClientRect, ' -> Inner Height: ', window.innerHeight)
+      setYValue(boundingClientRect.y)
+      setHeight(boundingClientRect.height)
     }
 
-    const min = 0.0
-    const max = 1.0
-    const items = 4
-    const increments = ((max - min) / items)
-    const observer = new IntersectionObserver(observerCallback, {
-      threshold: [...Array(items + 1)].map((x, y) => min + increments * y),
-      rootMargin: '-150px 0px 0px 0px'
-    })
-
-    observer.observe(ref.current)
+    window.addEventListener('scroll', onScroll)
 
     // Remove the observer as soon as the component is unmounted.
-    return () => { observer.disconnect() }
+    return () => window.removeEventListener('scroll', onScroll)
   }, [ref])
 
   return (
@@ -167,14 +152,6 @@ const PlaybookDetailPlayList = ({ slug, locale }) => {
     refetch()
   }, [locale, refetch])
 
-  if (loading) {
-    return <Loading />
-  }
-
-  if (error) {
-    return <Error />
-  }
-
   const handleLoadMore = () => {
     fetchMore({
       variables: {
@@ -183,6 +160,17 @@ const PlaybookDetailPlayList = ({ slug, locale }) => {
         slug: slug
       }
     })
+  }
+
+  // Loading and error handler section.
+  if (loading) {
+    return <Loading />
+  } else if (error) {
+    if (error.networkError) {
+      return <Error />
+    } else {
+      return <NotFound />
+    }
   }
 
   const { searchPlaybookPlays: { nodes, pageInfo } } = data

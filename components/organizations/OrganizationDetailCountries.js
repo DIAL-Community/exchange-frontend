@@ -12,7 +12,7 @@ import { ToastContext } from '../../lib/ToastContext'
 import { UPDATE_ORGANIZATION_COUNTRY } from '../../mutations/organization'
 import { fetchSelectOptions } from '../../queries/utils'
 
-export const OrganizationDetailCountries = ({ organization, canEdit }) => {
+const OrganizationDetailCountries = ({ organization, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -134,3 +134,5 @@ export const OrganizationDetailCountries = ({ organization, canEdit }) => {
     />
   )
 }
+
+export default OrganizationDetailCountries

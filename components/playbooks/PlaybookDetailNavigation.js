@@ -2,6 +2,7 @@ import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { useContext, useEffect, useState } from 'react'
 import { MdPlayArrow } from 'react-icons/md'
+import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
 import { PlaybookDetailContext, PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
@@ -41,7 +42,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
   const [mappedMoves, setMappedMoves] = useState({})
 
   const {
-    currentSlug, slugYValues, slugHeights, windowHeight, slugIntersectionRatios, direct
+    currentSlug, slugYValues, slugHeights, windowHeight, direct
   } = useContext(PlaybookDetailContext)
   const { setCurrentSlug, setDirect } = useContext(PlaybookDetailDispatchContext)
 
@@ -52,7 +53,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
   useEffect(() => {
     if (windowHeight) {
       // Playbook header is at 150px on large screens.
-      setCenterYPosition(150 + (windowHeight / 2))
+      setCenterYPosition(windowHeight / 2)
     }
   }, [windowHeight])
 
@@ -71,9 +72,9 @@ const PlaybookDetailNavigation = ({ slug }) => {
     // Executed when user scrolling through the content of the playbook play list.
 
     if (direct) {
-      // Skip if navigating directly to a slug
-      const slugIntersectionRatio = slugIntersectionRatios[currentSlug]
-      if (slugIntersectionRatio >= 0.5) {
+      const slugHeight = slugHeights[currentSlug]
+      const slugYValue = slugYValues[currentSlug]
+      if (centerYPosition > slugYValue && centerYPosition < slugYValue + slugHeight) {
         setDirect(false)
       }
 
@@ -99,15 +100,8 @@ const PlaybookDetailNavigation = ({ slug }) => {
       const playSlug = playSlugs[index]
       const slugHeight = slugHeights[playSlug]
       const slugYValue = slugYValues[playSlug]
-      const slugIntersectionRatio = slugIntersectionRatios[playSlug]
       if (centerYPosition > slugYValue && centerYPosition < slugYValue + slugHeight) {
         // If slug is within the boundary, then this is could be the active slug.
-        setCurrentSlug(playSlug)
-        found = true
-      }
-
-      if (!found && slugIntersectionRatio >= 1) {
-        // Use slug with full intersection if we don't find any with the above condition.
         setCurrentSlug(playSlug)
         found = true
       }
@@ -123,14 +117,17 @@ const PlaybookDetailNavigation = ({ slug }) => {
         setCurrentSlug(OVERVIEW_SLUG_NAME)
       }
     }
-  }, [centerYPosition, direct, setDirect, currentSlug, setCurrentSlug, slugYValues, slugHeights, slugIntersectionRatios, data])
+  }, [centerYPosition, direct, setDirect, currentSlug, setCurrentSlug, slugYValues, slugHeights, data])
 
+  // Loading and error handler section.
   if (loading) {
     return <Loading />
-  }
-
-  if (error) {
-    return <Error />
+  } else if (error) {
+    if (error.networkError) {
+      return <Error />
+    } else {
+      return <NotFound />
+    }
   }
 
   const navigateToPlay = (e, slug) => {
@@ -151,7 +148,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
 
       height = slugHeights[OVERVIEW_SLUG_NAME]
       while (index < playSlugs.length && playSlugs[index] !== slug) {
-        height = height + slugHeights[playSlugs[index]]
+        height = height + slugHeights[playSlugs[index]] + (16 * 1.5)
         index = index + 1
       }
     }
