@@ -250,6 +250,7 @@ export const en = {
   'organization.sectors.updated': 'Sectors updated successfully',
   'organization.projects.updated': 'Projects updated successfully',
   'organization.contacts.updated': 'Contacts updated successfully',
+  'organization.products.updated': 'Products updated successfully',
 
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',
@@ -701,6 +702,8 @@ export const en = {
   'organization.no-country': 'We do not have country information for this organization.',
   'organization.no-contact': 'We do not have contact information for this organization.',
   'organization.no-project': 'We do not have project information for this organization.',
+  'organization.no-products': 'We do not have product information for this organization.',
+  'organization.no-product': 'We do not have product information for this organization.',
   'office.other.header': 'Other Office Locations',
 
   'useCaseStep.header': 'Use Case Steps',

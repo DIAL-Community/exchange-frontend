@@ -86,3 +86,25 @@ export const UPDATE_ORGANIZATION_CONTACTS = gql`
     }
   }
 `
+
+export const UPDATE_ORGANIZATION_PRODUCT = gql`
+  mutation UpdateOrganizationProducts(
+    $slug: String!,
+    $productsSlugs: [String!]!
+  ) {
+    updateOrganizationProducts(
+      slug: $slug,
+      productsSlugs: $productsSlugs
+    ) {
+      organization {
+        products {
+          id,
+          name,
+          slug,
+          imageFile
+        }
+      },
+      errors
+    }
+  }
+`

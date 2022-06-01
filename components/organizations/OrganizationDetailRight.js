@@ -4,14 +4,13 @@ import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useSession } from 'next-auth/client'
 import Breadcrumb from '../shared/breadcrumb'
-import SectorCard from '../sectors/SectorCard'
-import ProductCard from '../products/ProductCard'
 import CityCard from '../cities/CityCard'
 import AggregatorCapability from './AggregatorCapability'
 import OrganizationDetailCountries from './OrganizationDetailCountries'
 import OrganizationDetailSectors from './OrganizationDetailSectors'
 import OrganizationDetailProjects from './OrganizationDetailProjects'
 import OrganizationDetailContacts from './OrganizationDetailContacts'
+import OrganizationDetailProducts from './OrganizationDetailProducts'
 
 const sectionHeaderStyle = 'card-title mb-3 text-dial-gray-dark'
 
@@ -116,13 +115,7 @@ const OrganizationDetailRight = ({ organization }) => {
       {canEdit && <OrganizationDetailContacts organization={organization}/>}
       {organization.sectors && <OrganizationDetailSectors organization={organization} canEdit={canEdit} />}
       {organization.countries && <OrganizationDetailCountries organization={organization} canEdit={canEdit} />}
-      {
-        organization.products && organization.products.length > 0 &&
-          <div className='mt-12'>
-            <div className={sectionHeaderStyle}>{format('product.header')}</div>
-            {organization.products.map((product, i) => <ProductCard key={i} product={product} listType='list' />)}
-          </div>
-      }
+      {organization.products && <OrganizationDetailProducts organization={organization} canEdit={canEdit} />}
       {organization.projects && <OrganizationDetailProjects organization={organization} canEdit={canEdit} />}
       {
         organization.isMni &&
