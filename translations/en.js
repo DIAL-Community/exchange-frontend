@@ -250,6 +250,7 @@ export const en = {
   'organization.sectors.updated': 'Sectors updated successfully',
   'organization.projects.updated': 'Projects updated successfully',
   'organization.contacts.updated': 'Contacts updated successfully',
+  'organization.products.updated': 'Products updated successfully',
 
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',
@@ -701,6 +702,8 @@ export const en = {
   'organization.no-country': 'We do not have country information for this organization.',
   'organization.no-contact': 'We do not have contact information for this organization.',
   'organization.no-project': 'We do not have project information for this organization.',
+  'organization.no-products': 'We do not have product information for this organization.',
+  'organization.no-product': 'We do not have product information for this organization.',
   'office.other.header': 'Other Office Locations',
 
   'useCaseStep.header': 'Use Case Steps',
@@ -1165,6 +1168,14 @@ export const en = {
   'playbook.autoSaved': 'Playbook saved ...',
   'playbook.author': 'Playbook Author',
   'playbook.cover': 'Playbook Cover',
+
+  'playbook.openEmbedDialog': 'Create Embed',
+  'playbook.embed.title': 'Embed Playbook',
+  'playbook.embed.description': 'Display current playbook on your website by using the above code. Adjust the sizing as needed.',
+  'playbook.embed.copy': 'Copy',
+  'playbook.embed.copySuccess': 'Embed code copied to clipboard.',
+  'playbook.embed.copyFailed': 'Copying embed code failed. Please copy the code manually.',
+  'playbook.embed.unsupported': 'Embedding using iframe is not supported by your browser.',
 
   'play.submittedToCreateMove': 'Play saved. Navigating to create move ...',
   'play.submitted': 'Play saved.',
