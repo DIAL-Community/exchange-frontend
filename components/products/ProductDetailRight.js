@@ -1,6 +1,8 @@
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
+import { useSession } from 'next-auth/client'
+import { convertToKey } from '../context/FilterContext'
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseForum } from '../shared/discourse'
 import OrganizationCard from '../organizations/OrganizationCard'
@@ -9,13 +11,20 @@ import SDGCard from '../sdgs/SDGCard'
 import SectorCard from '../sectors/SectorCard'
 import TagCard from '../tags/TagCard'
 import ProjectCard from '../projects/ProjectCard'
+import EditButton from '../shared/EditButton'
 import ProductCard from './ProductCard'
 import MaturityAccordion from './Maturity'
 import RepositoryList from './repositories/RepositoryList'
+const productsPath = convertToKey('Products')
+const repositoriesPath = convertToKey('Repositories')
 
 const ProductDetailRight = ({ product, discourseRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
+  const [session] = useSession()
+
+  const canEdit = session?.user?.canEdit || session?.user?.own?.product?.id === product.id
 
   const slugNameMapping = (() => {
     const map = {}
@@ -148,13 +157,18 @@ const ProductDetailRight = ({ product, discourseRef }) => {
           })}
         </div>
       </div>
-      <Link href={`${product.slug}/repositories`} passHref>
-        <div className='card-title mt-12 mb-3'>
-          <span className='cursor-pointer text-dial-gray-dark border-b-2 border-transparent hover:border-dial-yellow inline'>
+      <div className='flex justify-between  mt-12 mb-3'>
+        <Link href={`${product.slug}/repositories`} passHref>
+          <span className='cursor-pointer text-dial-gray-dark border-b-2 border-transparent hover:border-dial-yellow inline card-title'>
             {format('product.repository')}
           </span>
-        </div>
-      </Link>
+        </Link>
+        {canEdit && product.mainRepository.mainRepository &&
+          <EditButton
+            type='link'
+            href={`/${productsPath}/${product.slug}/${repositoriesPath}/${product.mainRepository.slug}`}
+          />}
+      </div>
       <RepositoryList productSlug={product.slug} />
       <div className='mt-12 grid grid-cols-1 xl:grid-cols-2 gap-y-12 xl:gap-y-0'>
         <div>
