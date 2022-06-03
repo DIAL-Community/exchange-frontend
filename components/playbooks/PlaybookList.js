@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { useSession } from 'next-auth/client'
 import { Loading, Error } from '../shared/FetchStatus'
 import { FilterContext } from '../context/FilterContext'
 import { PlaybookFilterContext } from '../context/PlaybookFilterContext'
@@ -43,6 +44,7 @@ export const PLAYBOOKS_QUERY = gql`
           id
           overview
         }
+        draft
       }
     }
   }
@@ -51,6 +53,10 @@ export const PLAYBOOKS_QUERY = gql`
 const PlaybookList = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
+  const [session] = useSession()
+
+  const canEdit = session?.user?.canEdit
 
   const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
@@ -76,7 +82,7 @@ const PlaybookList = (props) => {
       {
         props.playbookList.length > 0
           ? props.playbookList.map((playbook) => (
-            <PlaybookCard key={playbook.id} listType={displayType} {...{ playbook, filterDisplayed }} />
+            <PlaybookCard key={playbook.id} listType={displayType} {...{ playbook, filterDisplayed }} canEdit={canEdit} />
           ))
           : (
             <div className='text-sm font-medium opacity-80'>

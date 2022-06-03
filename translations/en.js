@@ -22,6 +22,7 @@ export const en = {
   'app.assign': 'Assign',
   'app.searchAndAssign': 'Search and Assign',
   'app.print-pdf': 'Print PDF',
+  'app.status': 'Status:',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -506,6 +507,8 @@ export const en = {
   'playbook.published': 'Published',
   'playbook.publish': 'Publish Playbook',
   'playbook.saveAsDraft': 'Save as Draft',
+  'playbook.status.draft': 'Draft',
+  'playbook.status.published': 'Published',
 
   'play.header': 'Plays',
   'plays.label': 'Play',
