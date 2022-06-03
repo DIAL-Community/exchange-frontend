@@ -459,7 +459,7 @@ export const en = {
   'filter.framework.title': 'Framework Filters',
   'filter.framework.subTitle': 'Use elements of the Digital Investment Framework to filter {entity}',
 
-  'filter.buildingBlock.matureOnly': 'Show only mature building blocks',
+  'filter.buildingBlock.matureOnly': 'Show only published building blocks',
 
   'filter.general.applied': '{count, plural, one {Filter Applied} other {Filters Applied}}',
   'filter.general.clearAll': 'Clear all',

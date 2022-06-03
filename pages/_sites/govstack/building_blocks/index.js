@@ -6,8 +6,6 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import GradientBackground from '../../../../components/shared/GradientBackground'
 import QueryNotification from '../../../../components/shared/QueryNotification'
-import TabNav from '../../../../components/main/TabNav'
-import MobileNav from '../../../../components/main/MobileNav'
 import PageContent from '../../../../components/main/PageContent'
 import BuildingBlockHint from '../../../../components/filter/hint/BuildingBlockHint'
 import BuildingBlockFilter from '../../../../components/building-blocks/BuildingBlockFilter'
@@ -35,8 +33,6 @@ const BuildingBlocks = () => {
       <GradientBackground />
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <TabNav activeTab='filter.entity.buildingBlocks' />
-      <MobileNav activeTab='filter.entity.buildingBlocks' />
       <ClientOnly>
         <PageContent
           activeTab='filter.entity.buildingBlocks'

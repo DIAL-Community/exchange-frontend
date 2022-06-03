@@ -6,8 +6,6 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import GradientBackground from '../../../../components/shared/GradientBackground'
 import QueryNotification from '../../../../components/shared/QueryNotification'
-import TabNav from '../../../../components/main/TabNav'
-import MobileNav from '../../../../components/main/MobileNav'
 import PageContent from '../../../../components/main/PageContent'
 import ProductHint from '../../../../components/filter/hint/ProductHint'
 import ProductFilter from '../../../../components/products/ProductFilter'
@@ -35,8 +33,7 @@ const Products = () => {
       <GradientBackground />
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <TabNav activeTab='filter.entity.products' />
-      <MobileNav activeTab='filter.entity.products' />
+      <div className='text-dial-gray-dark my-5 mx-10 text-xl'>The following products have been evaluated as candidates to fulfill the capabilities for one or more GovStack Building Blocks</div>
       <ClientOnly>
         <PageContent
           activeTab='filter.entity.products'
