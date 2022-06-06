@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import OrganizationDetailCountries from '../../../components/organizations/OrganizationDetailCountries'
 import { COUNTRY_SEARCH_QUERY } from '../../../queries/country'
 import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
@@ -62,6 +62,7 @@ describe('Unit test for the OrganizationDetailCountries component.', () => {
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await screen.findByText(COUNTRY_SEARCH_PLACEHOLDER)
+    await waitFor(() => expect(container.querySelector('.react-select__loading-indicator')).toBeNull())
     expect(container).toMatchSnapshot()
   })
 

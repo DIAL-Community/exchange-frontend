@@ -2,7 +2,7 @@ import React from 'react'
 import { ImFilePicture } from 'react-icons/im'
 import classNames from 'classnames'
 
-const FileUploader = React.forwardRef(({ type, placeholder, onChange, onBlur, isInvalid = false, className, ...otherProps }, ref) => {
+const FileUploader = React.forwardRef(({ type, onChange, onBlur, isInvalid = false, className, ...otherProps }, ref) => {
   // when used in React Hook Form, to pass a list of selected files a custom 'onChange' function has to be used
   // however, to keep the value uncontrolled the 'value' property has to be omitted in props passed to input of type 'file'
   // https://github.com/react-hook-form/react-hook-form/issues/3025
@@ -14,9 +14,8 @@ const FileUploader = React.forwardRef(({ type, placeholder, onChange, onBlur, is
         {...otherPropsWithoutValue}
         ref={ref}
         type='file'
-        onChange={(event) => onChange(event.target.files)}
+        onChange={onChange}
         onBlur={onBlur}
-        placeholder={placeholder}
         className={classNames({ 'validation-error': isInvalid }, 'bg-white file:hidden w-full pr-10')}
         data-testid='file-uploader'
       />
