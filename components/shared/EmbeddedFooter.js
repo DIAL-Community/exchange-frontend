@@ -53,14 +53,9 @@ const EmbeddedFooter = () => {
               {format('app.reportIssue').toUpperCase()}
               {showForm && <ReportIssue showForm={showForm} setShowForm={setShowForm} />}
             </div>
-            <div className='py-2 px-3 rounded-md bg-dial-gray-light'>
-              <a
-                href='mailto:info@solutions.dial.community'
-                target='_blank' rel='noreferrer'
-                className='border-b-2 border-transparent hover:border-dial-yellow'
-              >
-                {format('footer.contactUs').toUpperCase()}
-              </a>
+            <div className='py-2 px-3 rounded-md bg-dial-gray-light' onClick={() => setShowForm(true)}>
+              {format('footer.contactUs').toUpperCase()}
+              {showForm && <ReportIssue showForm={showForm} setShowForm={setShowForm} />}
             </div>
           </div>
         </div>

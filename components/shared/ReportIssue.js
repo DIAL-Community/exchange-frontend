@@ -6,7 +6,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { Dialog, Transition } from '@headlessui/react'
 import Select from 'react-select'
 
-const ReportIssue = ({ showForm, setShowForm }) => {
+const ReportIssue = ({ showForm, setShowForm, formTitle }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -82,7 +82,7 @@ const ReportIssue = ({ showForm, setShowForm }) => {
                   <Dialog.Title>
                     <div className='flex gap-3 px-2'>
                       <div className='font-semibold text-2xl py-3'>
-                        {format('report.reportIssue')}
+                        {formTitle}
                       </div>
                     </div>
                   </Dialog.Title>
