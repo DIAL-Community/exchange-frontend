@@ -1,9 +1,10 @@
-import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
-import { useContext, useEffect, useState, useRef } from 'react'
+import { useSession } from 'next-auth/client'
 import Link from 'next/link'
-import NotFound from '../shared/NotFound'
+import { useContext, useEffect, useRef, useState } from 'react'
+import { useIntl } from 'react-intl'
 import { Error, Loading } from '../shared/FetchStatus'
+import NotFound from '../shared/NotFound'
 import { PlaybookDetailContext, PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
 
@@ -19,6 +20,7 @@ export const PLAYBOOK_QUERY = gql`
         playSlug
         order
       }
+      draft
     }
   }
 `
@@ -27,16 +29,23 @@ const PlaybookDetailHeader = ({ slug }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
+  const [session] = useSession()
+
+  const canEdit = session?.user?.canEdit
+
+  
   const playProgressNumbersRef = useRef([])
   const [percentage, setPercentage] = useState(0)
   const [currentSlugIndex, setCurrentSlugIndex] = useState(-1)
   const { currentSlug, slugHeights, slugIntersectionRatios } = useContext(PlaybookDetailContext)
   const { setDirect, setCurrentSlug } = useContext(PlaybookDetailDispatchContext)
-
+  
   const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
     variables: { slug: slug }
   })
-
+  
+  const isPlaybookPublished = !data?.playbook.draft
+  
   useEffect(() => {
     playProgressNumbersRef.current = playProgressNumbersRef.current.slice(0, data?.playbook?.playbookPlays?.length)
   }, [data])
@@ -125,7 +134,13 @@ const PlaybookDetailHeader = ({ slug }) => {
               </a>
             </Link>
           </div>
-          <div className='text-2xl font-semibold'>{data.playbook.name}</div>
+          <div className='flex flex-col md:flex-row gap-x-2 text-2xl font-semibold'>
+            <div>{data.playbook.name}</div>
+            {canEdit &&
+              <div className='text-base font-base text-white md:self-center'>
+                ({format(isPlaybookPublished ? 'playbook.status.published' : 'playbook.status.draft')})
+              </div>}
+          </div>
         </div>
         <div className='flex lg:ml-auto px-8 lg:px-4 pb-3 lg:pb-0 my-auto overflow-x-auto'>
           <div className='play-progress'>
@@ -146,8 +161,7 @@ const PlaybookDetailHeader = ({ slug }) => {
                       </div>
                     </a>
                   )
-                })
-              }
+                })}
             </div>
           </div>
         </div>

@@ -79,6 +79,11 @@ const PRODUCT_QUERY = gql`
       maturityScore
       maturityScores
       manualUpdate
+      mainRepository {
+        mainRepository
+        name
+        slug
+      }
     }
   }
 `
