@@ -9,16 +9,14 @@ import Breadcrumb from '../shared/breadcrumb'
 import { HtmlEditor } from '../shared/HtmlEditor'
 import Input from '../shared/Input'
 import FileUploader from '../shared/FileUploader'
-import Checkbox from '../shared/Checkbox'
 import IconButton from '../shared/IconButton'
-import Select from '../shared/Select'
 import { ToastContext } from '../../lib/ToastContext'
 import ValidationError from '../shared/ValidationError'
-import { CREATE_ORGANIZATION } from '../../mutations/organization'
+import { CREATE_PRODUCT } from '../../mutations/product'
 
-const OrganizationForm = React.memo(({ organization }) => {
+const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
   const [session] = useSession()
@@ -28,32 +26,21 @@ const OrganizationForm = React.memo(({ organization }) => {
 
   const { showToast } = useContext(ToastContext)
   const { locale } = useRouter()
-  const [updateOrganization, { data }] = useMutation(CREATE_ORGANIZATION)
-
-  const endorserLevelOptions = [
-    { label: format('organization.endorserLevel.none'), value: 'none' },
-    { label: format('organization.endorserLevel.bronze'), value: 'bronze' },
-    { label: format('organization.endorserLevel.silver'), value: 'silver' },
-    { label: format('organization.endorserLevel.gold'), value: 'gold' }
-  ]
+  const [updateProduct, { data }] = useMutation(CREATE_PRODUCT)
 
   const { handleSubmit, register, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
-      name: organization?.name,
-      aliases: organization?.aliases?.length ? organization?.aliases.map(value => ({ value })) : [{ value: '' }],
-      website: organization?.website,
-      isEndorser: organization?.isEndorser,
-      whenEndorsed: organization?.whenEndorsed ?? null,
-      endorserLevel: endorserLevelOptions.find(({ value }) => value === organization?.endorserLevel) ?? endorserLevelOptions[0],
-      isMni: organization?.isMni,
-      description: organization?.organizationDescription?.description
+      name: product?.name,
+      aliases: product?.aliases?.length ? product?.aliases.map(value => ({ value })) : [{ value: '' }],
+      website: product?.website,
+      description: product?.productDescription?.description
     }
   })
 
-  const slug = organization?.slug ?? ''
+  const slug = product?.slug ?? ''
 
   const { fields: aliases, append, remove } = useFieldArray({
     control,
@@ -71,29 +58,29 @@ const OrganizationForm = React.memo(({ organization }) => {
       edit: format('app.edit')
     }
 
-    if (organization) {
-      map[organization.slug] = organization.name
+    if (product) {
+      map[product.slug] = product.name
     }
 
     return map
-  }, [organization, format])
+  }, [product, format])
 
   useEffect(() => {
-    if (!data?.createOrganization?.errors.length && data?.createOrganization?.organization) {
+    if (!data?.createProduct?.errors.length && data?.createProduct?.product) {
       showToast(
-        format('organization.submit.success'),
+        format('product.submit.success'),
         'success',
         'top-center',
         1000,
         null,
-        () => router.push(`/${router.locale}/organizations/${data.createOrganization.organization.slug}`)
+        () => router.push(`/${router.locale}/products/${data.createProduct.product.slug}`)
       )
-    } else if (data?.createOrganization?.errors.length) {
+    } else if (data?.createProduct?.errors.length) {
       setMutating(false)
       showToast(
         <div className='flex flex-col'>
-          <span>{format('organization.submit.failure')}</span>
-          {data?.createOrganization?.errors.map((error, errorIdx) => (
+          <span>{format('product.submit.failure')}</span>
+          {data?.createProduct?.errors.map((error, errorIdx) => (
             <span key={errorIdx}>{error}</span>
           ))}
         </div>,
@@ -110,24 +97,20 @@ const OrganizationForm = React.memo(({ organization }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = session.user
-      const { name, imageFile, website, isEndorser, whenEndorsed, endorserLevel, isMni, description, aliases } = data
+      const { name, imageFile, website, description, aliases } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
         slug,
         aliases: aliases.map(({ value }) => value),
         website,
-        isEndorser,
-        whenEndorsed,
-        endorserLevel: endorserLevel.value,
-        isMni,
         description
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
       }
 
-      updateOrganization({
+      updateProduct({
         variables,
         context: {
           headers: {
@@ -141,9 +124,9 @@ const OrganizationForm = React.memo(({ organization }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    let route = '/organizations'
-    if (organization) {
-      route = `${route}/${organization.slug}`
+    let route = '/products'
+    if (product) {
+      route = `${route}/${product.slug}`
     }
 
     router.push(route)
@@ -159,34 +142,34 @@ const OrganizationForm = React.memo(({ organization }) => {
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
               <div className='text-2xl font-bold text-dial-blue pb-4'>
-                {organization
-                  ? format('app.edit-entity', { entity: organization.name })
-                  : `${format('app.create-new')} ${format('organization.label')}`
+                {product
+                  ? format('app.edit-entity', { entity: product.name })
+                  : `${format('app.create-new')} ${format('product.label')}`
                 }
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
-                  <div className='flex flex-col gap-y-2 mb-2' data-testid='organization-name'>
+                  <div className='flex flex-col gap-y-2 mb-2' data-testid='product-name'>
                     <label className='text-xl text-dial-blue required-field' htmlFor='name'>
-                      {format('organization.name')}
+                      {format('product.name')}
                     </label>
                     <Input
                       {...register('name', { required: format('validation.required') })}
                       id='name'
-                      placeholder={format('organization.name')}
+                      placeholder={format('product.name')}
                       isInvalid={errors.name}
                     />
                     {errors.name && <ValidationError value={errors.name?.message} />}
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2'>
                     <label className='text-xl text-dial-blue'>
-                      {format('organization.aliases')}
+                      {format('product.aliases')}
                     </label>
                     {aliases.map((alias, aliasIdx) => (
                       <div key={alias.id} className='flex gap-x-2'>
                         <Input
                           {...register(`aliases.${aliasIdx}.value`)}
-                          placeholder={format('organization.alias')}
+                          placeholder={format('product.alias')}
                         />
                         {isLastAlias(aliasIdx) && (
                           <IconButton
@@ -203,60 +186,29 @@ const OrganizationForm = React.memo(({ organization }) => {
                       </div>
                     ))}
                   </div>
-                  <div className='flex flex-col gap-y-2 mb-2' data-testid='organization-website'>
-                    <label className='text-xl text-dial-blue required-field' htmlFor='website'>
-                      {format('organization.website')}
+                  <div className='flex flex-col gap-y-2 mb-2' data-testid='product-website'>
+                    <label className='text-xl text-dial-blue' htmlFor='website'>
+                      {format('product.website')}
                     </label>
                     <Input
-                      {...register('website', { required: format('validation.required') })}
+                      {...register('website')}
                       id='website'
-                      placeholder={format('organization.website')}
+                      placeholder={format('product.website')}
                       isInvalid={errors.website}
                     />
                     {errors.website && <ValidationError value={errors.website?.message} />}
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2'>
                     <label className='text-xl text-dial-blue'>
-                      {format('organization.imageFile')}
+                      {format('product.imageFile')}
                     </label>
-                    <FileUploader
-                      {...register('imageFile')}
-                      placeholder={format('organization.imageFile')}
-                    />
+                    <FileUploader {...register('imageFile')} />
                   </div>
-                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'>
-                    <Checkbox {...register('isEndorser')} />
-                    {format('organization.isEndorser')}
-                  </label>
-                  <div className='flex flex-col gap-y-2 mb-2'>
-                    <label className='text-xl text-dial-blue'>
-                      {format('organization.whenEndorsed')}
-                    </label>
-                    <Input
-                      {...register('whenEndorsed')}
-                      type='date'
-                      placeholder={format('organization.whenEndorsed')}
-                    />
-                  </div>
-                  <div className='flex flex-col gap-y-2 mb-2'>
-                    <label className='text-xl text-dial-blue'>
-                      {format('organization.endorserLevel')}
-                    </label>
-                    <Controller
-                      name='endorserLevel'
-                      control={control}
-                      render={({ field }) => <Select {...field} options={endorserLevelOptions} placeholder={format('organization.endorserLevel')} />}
-                    />
-                  </div>
-                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'>
-                    <Checkbox {...register('isMni')} />
-                    {format('organization.isMni')}
-                  </label>
                 </div>
                 <div className='w-full lg:w-1/2'>
-                  <div className='block flex flex-col gap-y-2' data-testid='organization-description'>
+                  <div className='block flex flex-col gap-y-2' data-testid='product-description'>
                     <label className='text-xl text-dial-blue required-field'>
-                      {format('organization.description')}
+                      {format('product.description')}
                     </label>
                     <Controller
                       name='description'
@@ -266,7 +218,7 @@ const OrganizationForm = React.memo(({ organization }) => {
                           editorId='description-editor'
                           onChange={onChange}
                           initialContent={value}
-                          placeholder={format('organization.description')}
+                          placeholder={format('product.description')}
                           isInvalid={errors.description}
                         />
                       )}
@@ -283,7 +235,7 @@ const OrganizationForm = React.memo(({ organization }) => {
                   disabled={mutating || reverting}
                   data-testid='submit-button'
                 >
-                  {`${format('organization.submit')} ${format('organization.label')}`}
+                  {`${format('app.submit')} ${format('product.label')}`}
                   {mutating && <FaSpinner className='spinner ml-3' />}
                 </button>
                 <button
@@ -304,6 +256,6 @@ const OrganizationForm = React.memo(({ organization }) => {
   )
 })
 
-OrganizationForm.displayName = 'OrganizationForm'
+ProductForm.displayName = 'ProductForm'
 
-export default OrganizationForm
+export default ProductForm

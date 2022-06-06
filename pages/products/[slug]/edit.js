@@ -8,22 +8,17 @@ import Footer from '../../../components/Footer'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
 import ClientOnly from '../../../lib/ClientOnly'
 import NotFound from '../../../components/shared/NotFound'
-import OrganizationForm from '../../../components/organizations/OrganizationForm'
+import ProductForm from '../../../components/products/ProductForm'
 
-const ORGANIZATION_QUERY = gql`
-  query Organization($slug: String!) {
-    organization(slug: $slug) {
+const PRODUCT_QUERY = gql`
+  query Product($slug: String!) {
+    product(slug: $slug) {
       id
       name
       slug
-      isMni
       website
-      imageFile
-      isEndorser
-      whenEndorsed
-      endorserLevel
       aliases
-      organizationDescription {
+      productDescription {
         description
         locale
       }
@@ -31,7 +26,7 @@ const ORGANIZATION_QUERY = gql`
   }
 `
 
-const EditOrganization = () => {
+const EditProduct = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -39,7 +34,7 @@ const EditOrganization = () => {
 
   const { locale } = router
   const { slug } = router.query
-  const { loading, error, data, refetch } = useQuery(ORGANIZATION_QUERY, {
+  const { loading, error, data, refetch } = useQuery(PRODUCT_QUERY, {
     variables: { slug: slug, locale: locale },
     skip: !slug,
     context: { headers: { 'Accept-Language': locale } }
@@ -64,10 +59,10 @@ const EditOrganization = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      {data && data.organization && (
+      {data && data.product && (
         <div className='max-w-catalog mx-auto'>
           <ClientOnly>
-            <OrganizationForm organization={data.organization} />
+            <ProductForm product={data.product} />
           </ClientOnly>
         </div>
       )}
@@ -76,4 +71,4 @@ const EditOrganization = () => {
   )
 }
 
-export default EditOrganization
+export default EditProduct

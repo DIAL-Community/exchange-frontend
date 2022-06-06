@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the EditButton component. Should match snapshot - type === "button". 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <button
+    class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+    data-testid="edit-button"
+    type="button"
+  >
+    <img
+      alt="Edit"
+      class=""
+      height="12px"
+      src="/icons/edit.svg"
+      width="12px"
+    />
+    <span
+      class="text-sm"
+    >
+      Edit
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Unit test for the EditButton component. Should match snapshot - type === "link". 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <a
+    class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+    data-testid="edit-link"
+    href="http://test/"
+  >
+    <img
+      alt="Edit"
+      class=""
+      height="12px"
+      src="/icons/edit.svg"
+      width="12px"
+    />
+    <span
+      class="text-sm"
+    >
+      Edit
+    </span>
+  </a>
+</div>
+`;
