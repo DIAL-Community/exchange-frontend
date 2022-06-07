@@ -123,7 +123,7 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-.product-card-header {
+.product-card-header, .playbook-card-header {
   min-height: 33px;
 }
 

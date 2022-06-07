@@ -1,0 +1,1974 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for playbook interaction. Privileged user should be able to edit the playbook. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Toastify"
+      />
+      <div
+        class="sticky sticky-under-header flex flex-col max-w-catalog mx-auto"
+      >
+        <div
+          class="bg-dial-yellow sticky sticky-under-header"
+        >
+          <div
+            class="flex flex-wrap gap-3"
+          >
+            <div
+              class="px-8 py-3 flex flex-col gap-1"
+            >
+              <div
+                class="text-sm"
+              >
+                <a
+                  href="back-to-playbooks"
+                >
+                  <img
+                    alt="Logo for: {name}"
+                    class="m-auto h-6 inline mr-2"
+                    data-tip="{entity}: {name}"
+                    src="http://localhost:3000/assets/playbooks/playbook_placeholder.png"
+                  />
+                  Playbook
+                </a>
+              </div>
+              <div
+                class="text-2xl font-semibold"
+              >
+                Example Playbook
+              </div>
+            </div>
+            <div
+              class="flex lg:ml-auto px-8 lg:px-4 pb-3 lg:pb-0 my-auto overflow-x-auto"
+            >
+              <div
+                class="play-progress"
+              >
+                <div
+                  class="play-progress-bar"
+                  style="width: 0%;"
+                />
+                <div
+                  class="play-progress-bar-base"
+                />
+                <div
+                  class="play-progress-number"
+                >
+                  <a
+                    href="#navigate-to-play"
+                  >
+                    <div
+                      class="step false"
+                    >
+                      1
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex gap-x-3"
+        >
+          <div
+            class="hidden lg:block w-1/4"
+          >
+            <div
+              class="bg-dial-gray-dark sticky h-full overflow-y-auto border-dial-gray-dark"
+              style="left: 0px; top: 150px; height: calc(100vh - 150px);"
+            >
+              <div
+                class="flex flex-col text-white"
+              >
+                <div
+                  class="
+            border-r-4 border-dial-gray-dark
+            hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
+            border-dial-purple text-dial-yellow
+          "
+                >
+                  <div
+                    class="border-l-8 bg-dial-purple border-dial-yellow"
+                  >
+                    <a
+                      class="block py-4 px-8"
+                      href="#navigate-to-play"
+                    >
+                      Overview
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="
+                  border-r-4 border-dial-gray-dark
+                  hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
+                  border-dial-gray-dark
+                "
+                >
+                  <a
+                    class="block"
+                    href="#navigate-to-play"
+                  >
+                    <div
+                      class="
+                      flex flex-col gap-y-1 border-l-8 py-3 px-8
+                      border-transparent
+                    "
+                    >
+                      Play 1. D4D: Understand the Problem
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-3 w-full max-w-screen-lg"
+          >
+            <div
+              class="flex flex-col gap-3 px-3"
+            >
+              <div
+                class="flex"
+              >
+                <div
+                  class="hidden lg:block"
+                >
+                  <div
+                    class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+                  >
+                    <a
+                      class="inline text-dial-blue h5"
+                      href="/"
+                    >
+                      Home
+                    </a>
+                    <div
+                      class="inline h5"
+                    >
+                       &gt; 
+                      <a
+                        class="text-dial-gray-dark"
+                        href="/"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="mt-4 ml-auto"
+                >
+                  <a
+                    class="bg-dial-blue px-2 py-1 rounded text-white mr-5"
+                    href="/en/playbooks/example_playbook/pdf"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <img
+                      alt="Print PDF"
+                      class="inline mr-2 pb-1"
+                      height="12px"
+                      src="/icons/pdf.svg"
+                      width="12px"
+                    />
+                    <span
+                      class="text-sm px-2"
+                    >
+                      Print PDF
+                    </span>
+                  </a>
+                  <a
+                    class="cursor-pointer bg-dial-blue px-2 py-1 rounded text-white mr-5"
+                  >
+                    <svg
+                      class="inline"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 640 512"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"
+                      />
+                    </svg>
+                    <span
+                      class="text-sm px-2"
+                    >
+                      Create Embed
+                    </span>
+                  </a>
+                  <a
+                    class="bg-dial-blue px-2 py-1 rounded text-white mr-5"
+                    href="/en/playbooks/example_playbook/edit"
+                  >
+                    <img
+                      alt="Edit"
+                      class="inline mr-2 pb-1"
+                      height="12px"
+                      src="/icons/edit.svg"
+                      width="12px"
+                    />
+                    <span
+                      class="text-sm px-2"
+                    >
+                      Edit
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="h4"
+              >
+                Overview
+              </div>
+              <div
+                class="fr-view tiny-editor text-dial-gray-dark"
+              >
+                Just an example of playbook.
+              </div>
+              <div
+                class="h4"
+              >
+                Audience
+              </div>
+              <div
+                class="fr-view tiny-editor text-dial-gray-dark"
+              >
+                The audience of this playbook is you.
+              </div>
+              <div
+                class="h4"
+              >
+                Outcomes
+              </div>
+              <div
+                class="fr-view tiny-editor text-dial-gray-dark"
+              >
+                The outcome of this playbook is expected.
+              </div>
+            </div>
+            <div
+              class="infinite-scroll-component__outerdiv"
+            >
+              <div
+                class="infinite-scroll-component relative px-2 py-4 max-w-catalog mx-auto"
+                style="height: auto; overflow: auto;"
+              >
+                <div
+                  class="flex flex-col gap-6"
+                >
+                  <div
+                    class="flex flex-col gap-4"
+                  >
+                    <div
+                      class="h-px border-b"
+                    />
+                    <div
+                      class="font-semibold text-2xl py-4"
+                    >
+                      Play 1. D4D: Understand the Problem
+                    </div>
+                    <div
+                      class="fr-view tinyEditor text-dial-gray-dark"
+                    >
+                      The play description goes here.
+                    </div>
+                    <div
+                      class="flex flex-col gap-3"
+                    >
+                      <div
+                        class="flex flex-col border border-dial-orange-light"
+                      >
+                        <div
+                          class="move-header cursor-pointer"
+                        >
+                          <div
+                            class="move-animation-base bg-dial-yellow-light h-14"
+                          />
+                          <div
+                            class="
+                  animated-move
+                  move-header-collapsed
+                  move-animation bg-dial-orange-light h-14
+                "
+                          />
+                          <div
+                            class="flex move-header"
+                          >
+                            <div
+                              class="font-semibold px-4 py-4 my-auto"
+                            >
+                              Considerations
+                            </div>
+                            <div
+                              class="ml-auto my-auto px-4"
+                            >
+                              <svg
+                                fill="currentColor"
+                                height="1em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 16 16"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                                  fill-rule="evenodd"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="move-body slide-up"
+                        >
+                          <div
+                            class="px-4 py-4"
+                          >
+                            <div
+                              class="fr-view text-dial-gray-dark"
+                            >
+                              Description of the move goes here.
+                            </div>
+                            <div
+                              class="font-semibold py-2"
+                            >
+                              Resources
+                            </div>
+                            <div
+                              class="flex flex-wrap gap-3"
+                            >
+                              <a
+                                href="https://www.example.com/"
+                                rel="noreferrer"
+                                target="_blank"
+                              >
+                                <div
+                                  class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                                >
+                                  <div
+                                    class="flex"
+                                  >
+                                    <div
+                                      class="flex flex-col gap-2 px-3 py-4"
+                                    >
+                                      <div
+                                        class="font-semibold"
+                                      >
+                                        Nyoman Ribeka
+                                      </div>
+                                      <div
+                                        class="text-sm"
+                                      >
+                                        Adadadada
+                                      </div>
+                                    </div>
+                                    <svg
+                                      class="ml-auto px-2"
+                                      fill="currentColor"
+                                      height="2.2em"
+                                      stroke="currentColor"
+                                      stroke-width="0"
+                                      viewBox="0 0 20 20"
+                                      width="2.2em"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+                                      />
+                                      <path
+                                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                                      />
+                                    </svg>
+                                  </div>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Toastify"
+    />
+    <div
+      class="sticky sticky-under-header flex flex-col max-w-catalog mx-auto"
+    >
+      <div
+        class="bg-dial-yellow sticky sticky-under-header"
+      >
+        <div
+          class="flex flex-wrap gap-3"
+        >
+          <div
+            class="px-8 py-3 flex flex-col gap-1"
+          >
+            <div
+              class="text-sm"
+            >
+              <a
+                href="back-to-playbooks"
+              >
+                <img
+                  alt="Logo for: {name}"
+                  class="m-auto h-6 inline mr-2"
+                  data-tip="{entity}: {name}"
+                  src="http://localhost:3000/assets/playbooks/playbook_placeholder.png"
+                />
+                Playbook
+              </a>
+            </div>
+            <div
+              class="text-2xl font-semibold"
+            >
+              Example Playbook
+            </div>
+          </div>
+          <div
+            class="flex lg:ml-auto px-8 lg:px-4 pb-3 lg:pb-0 my-auto overflow-x-auto"
+          >
+            <div
+              class="play-progress"
+            >
+              <div
+                class="play-progress-bar"
+                style="width: 0%;"
+              />
+              <div
+                class="play-progress-bar-base"
+              />
+              <div
+                class="play-progress-number"
+              >
+                <a
+                  href="#navigate-to-play"
+                >
+                  <div
+                    class="step false"
+                  >
+                    1
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex gap-x-3"
+      >
+        <div
+          class="hidden lg:block w-1/4"
+        >
+          <div
+            class="bg-dial-gray-dark sticky h-full overflow-y-auto border-dial-gray-dark"
+            style="left: 0px; top: 150px; height: calc(100vh - 150px);"
+          >
+            <div
+              class="flex flex-col text-white"
+            >
+              <div
+                class="
+            border-r-4 border-dial-gray-dark
+            hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
+            border-dial-purple text-dial-yellow
+          "
+              >
+                <div
+                  class="border-l-8 bg-dial-purple border-dial-yellow"
+                >
+                  <a
+                    class="block py-4 px-8"
+                    href="#navigate-to-play"
+                  >
+                    Overview
+                  </a>
+                </div>
+              </div>
+              <div
+                class="
+                  border-r-4 border-dial-gray-dark
+                  hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
+                  border-dial-gray-dark
+                "
+              >
+                <a
+                  class="block"
+                  href="#navigate-to-play"
+                >
+                  <div
+                    class="
+                      flex flex-col gap-y-1 border-l-8 py-3 px-8
+                      border-transparent
+                    "
+                  >
+                    Play 1. D4D: Understand the Problem
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-col gap-3 w-full max-w-screen-lg"
+        >
+          <div
+            class="flex flex-col gap-3 px-3"
+          >
+            <div
+              class="flex"
+            >
+              <div
+                class="hidden lg:block"
+              >
+                <div
+                  class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+                >
+                  <a
+                    class="inline text-dial-blue h5"
+                    href="/"
+                  >
+                    Home
+                  </a>
+                  <div
+                    class="inline h5"
+                  >
+                     &gt; 
+                    <a
+                      class="text-dial-gray-dark"
+                      href="/"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="mt-4 ml-auto"
+              >
+                <a
+                  class="bg-dial-blue px-2 py-1 rounded text-white mr-5"
+                  href="/en/playbooks/example_playbook/pdf"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <img
+                    alt="Print PDF"
+                    class="inline mr-2 pb-1"
+                    height="12px"
+                    src="/icons/pdf.svg"
+                    width="12px"
+                  />
+                  <span
+                    class="text-sm px-2"
+                  >
+                    Print PDF
+                  </span>
+                </a>
+                <a
+                  class="cursor-pointer bg-dial-blue px-2 py-1 rounded text-white mr-5"
+                >
+                  <svg
+                    class="inline"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 640 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"
+                    />
+                  </svg>
+                  <span
+                    class="text-sm px-2"
+                  >
+                    Create Embed
+                  </span>
+                </a>
+                <a
+                  class="bg-dial-blue px-2 py-1 rounded text-white mr-5"
+                  href="/en/playbooks/example_playbook/edit"
+                >
+                  <img
+                    alt="Edit"
+                    class="inline mr-2 pb-1"
+                    height="12px"
+                    src="/icons/edit.svg"
+                    width="12px"
+                  />
+                  <span
+                    class="text-sm px-2"
+                  >
+                    Edit
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div
+              class="h4"
+            >
+              Overview
+            </div>
+            <div
+              class="fr-view tiny-editor text-dial-gray-dark"
+            >
+              Just an example of playbook.
+            </div>
+            <div
+              class="h4"
+            >
+              Audience
+            </div>
+            <div
+              class="fr-view tiny-editor text-dial-gray-dark"
+            >
+              The audience of this playbook is you.
+            </div>
+            <div
+              class="h4"
+            >
+              Outcomes
+            </div>
+            <div
+              class="fr-view tiny-editor text-dial-gray-dark"
+            >
+              The outcome of this playbook is expected.
+            </div>
+          </div>
+          <div
+            class="infinite-scroll-component__outerdiv"
+          >
+            <div
+              class="infinite-scroll-component relative px-2 py-4 max-w-catalog mx-auto"
+              style="height: auto; overflow: auto;"
+            >
+              <div
+                class="flex flex-col gap-6"
+              >
+                <div
+                  class="flex flex-col gap-4"
+                >
+                  <div
+                    class="h-px border-b"
+                  />
+                  <div
+                    class="font-semibold text-2xl py-4"
+                  >
+                    Play 1. D4D: Understand the Problem
+                  </div>
+                  <div
+                    class="fr-view tinyEditor text-dial-gray-dark"
+                  >
+                    The play description goes here.
+                  </div>
+                  <div
+                    class="flex flex-col gap-3"
+                  >
+                    <div
+                      class="flex flex-col border border-dial-orange-light"
+                    >
+                      <div
+                        class="move-header cursor-pointer"
+                      >
+                        <div
+                          class="move-animation-base bg-dial-yellow-light h-14"
+                        />
+                        <div
+                          class="
+                  animated-move
+                  move-header-collapsed
+                  move-animation bg-dial-orange-light h-14
+                "
+                        />
+                        <div
+                          class="flex move-header"
+                        >
+                          <div
+                            class="font-semibold px-4 py-4 my-auto"
+                          >
+                            Considerations
+                          </div>
+                          <div
+                            class="ml-auto my-auto px-4"
+                          >
+                            <svg
+                              fill="currentColor"
+                              height="1em"
+                              stroke="currentColor"
+                              stroke-width="0"
+                              viewBox="0 0 16 16"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                                fill-rule="evenodd"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="move-body slide-up"
+                      >
+                        <div
+                          class="px-4 py-4"
+                        >
+                          <div
+                            class="fr-view text-dial-gray-dark"
+                          >
+                            Description of the move goes here.
+                          </div>
+                          <div
+                            class="font-semibold py-2"
+                          >
+                            Resources
+                          </div>
+                          <div
+                            class="flex flex-wrap gap-3"
+                          >
+                            <a
+                              href="https://www.example.com/"
+                              rel="noreferrer"
+                              target="_blank"
+                            >
+                              <div
+                                class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                              >
+                                <div
+                                  class="flex"
+                                >
+                                  <div
+                                    class="flex flex-col gap-2 px-3 py-4"
+                                  >
+                                    <div
+                                      class="font-semibold"
+                                    >
+                                      Nyoman Ribeka
+                                    </div>
+                                    <div
+                                      class="text-sm"
+                                    >
+                                      Adadadada
+                                    </div>
+                                  </div>
+                                  <svg
+                                    class="ml-auto px-2"
+                                    fill="currentColor"
+                                    height="2.2em"
+                                    stroke="currentColor"
+                                    stroke-width="0"
+                                    viewBox="0 0 20 20"
+                                    width="2.2em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+                                    />
+                                    <path
+                                      d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                                    />
+                                  </svg>
+                                </div>
+                              </div>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Unit tests for playbook interaction. Should render error message when the apollo is returning errors. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Toastify"
+      />
+      <div
+        class="sticky sticky-under-header flex flex-col max-w-catalog mx-auto"
+      >
+        <div
+          class="text-button-gray text-lg"
+          style="margin-top: 10%;"
+        >
+          <svg
+            class="w-full mb-5"
+            fill="currentColor"
+            height="3em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 512 512"
+            width="3em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+            />
+          </svg>
+          <div
+            class="text-center mt-5"
+          >
+            Error fetching data. Please check your network connection.
+          </div>
+        </div>
+        <div
+          class="flex gap-x-3"
+        >
+          <div
+            class="hidden lg:block w-1/4"
+          >
+            <div
+              class="text-button-gray text-lg"
+              style="margin-top: 10%;"
+            >
+              <svg
+                class="w-full mb-5"
+                fill="currentColor"
+                height="3em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="3em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                />
+              </svg>
+              <div
+                class="text-center mt-5"
+              >
+                Error fetching data. Please check your network connection.
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-3 w-full max-w-screen-lg"
+          >
+            <div
+              class="text-button-gray text-lg"
+              style="margin-top: 10%;"
+            >
+              <svg
+                class="w-full mb-5"
+                fill="currentColor"
+                height="3em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="3em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                />
+              </svg>
+              <div
+                class="text-center mt-5"
+              >
+                Error fetching data. Please check your network connection.
+              </div>
+            </div>
+            <div
+              class="text-button-gray text-lg"
+              style="margin-top: 10%;"
+            >
+              <svg
+                class="w-full mb-5"
+                fill="currentColor"
+                height="3em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="3em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                />
+              </svg>
+              <div
+                class="text-center mt-5"
+              >
+                Error fetching data. Please check your network connection.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Toastify"
+    />
+    <div
+      class="sticky sticky-under-header flex flex-col max-w-catalog mx-auto"
+    >
+      <div
+        class="text-button-gray text-lg"
+        style="margin-top: 10%;"
+      >
+        <svg
+          class="w-full mb-5"
+          fill="currentColor"
+          height="3em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 512 512"
+          width="3em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+          />
+        </svg>
+        <div
+          class="text-center mt-5"
+        >
+          Error fetching data. Please check your network connection.
+        </div>
+      </div>
+      <div
+        class="flex gap-x-3"
+      >
+        <div
+          class="hidden lg:block w-1/4"
+        >
+          <div
+            class="text-button-gray text-lg"
+            style="margin-top: 10%;"
+          >
+            <svg
+              class="w-full mb-5"
+              fill="currentColor"
+              height="3em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              width="3em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+              />
+            </svg>
+            <div
+              class="text-center mt-5"
+            >
+              Error fetching data. Please check your network connection.
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-col gap-3 w-full max-w-screen-lg"
+        >
+          <div
+            class="text-button-gray text-lg"
+            style="margin-top: 10%;"
+          >
+            <svg
+              class="w-full mb-5"
+              fill="currentColor"
+              height="3em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              width="3em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+              />
+            </svg>
+            <div
+              class="text-center mt-5"
+            >
+              Error fetching data. Please check your network connection.
+            </div>
+          </div>
+          <div
+            class="text-button-gray text-lg"
+            style="margin-top: 10%;"
+          >
+            <svg
+              class="w-full mb-5"
+              fill="currentColor"
+              height="3em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              width="3em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+              />
+            </svg>
+            <div
+              class="text-center mt-5"
+            >
+              Error fetching data. Please check your network connection.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Unit tests for playbook interaction. Should render playbook data when apollo query returning playbook data. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Toastify"
+      />
+      <div
+        class="sticky sticky-under-header flex flex-col max-w-catalog mx-auto"
+      >
+        <div
+          class="bg-dial-yellow sticky sticky-under-header"
+        >
+          <div
+            class="flex flex-wrap gap-3"
+          >
+            <div
+              class="px-8 py-3 flex flex-col gap-1"
+            >
+              <div
+                class="text-sm"
+              >
+                <a
+                  href="back-to-playbooks"
+                >
+                  <img
+                    alt="Logo for: {name}"
+                    class="m-auto h-6 inline mr-2"
+                    data-tip="{entity}: {name}"
+                    src="http://localhost:3000/assets/playbooks/playbook_placeholder.png"
+                  />
+                  Playbook
+                </a>
+              </div>
+              <div
+                class="text-2xl font-semibold"
+              >
+                Example Playbook
+              </div>
+            </div>
+            <div
+              class="flex lg:ml-auto px-8 lg:px-4 pb-3 lg:pb-0 my-auto overflow-x-auto"
+            >
+              <div
+                class="play-progress"
+              >
+                <div
+                  class="play-progress-bar"
+                  style="width: 0%;"
+                />
+                <div
+                  class="play-progress-bar-base"
+                />
+                <div
+                  class="play-progress-number"
+                >
+                  <a
+                    href="#navigate-to-play"
+                  >
+                    <div
+                      class="step false"
+                    >
+                      1
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex gap-x-3"
+        >
+          <div
+            class="hidden lg:block w-1/4"
+          >
+            <div
+              class="bg-dial-gray-dark sticky h-full overflow-y-auto border-dial-gray-dark"
+              style="left: 0px; top: 150px; height: calc(100vh - 150px);"
+            >
+              <div
+                class="flex flex-col text-white"
+              >
+                <div
+                  class="
+            border-r-4 border-dial-gray-dark
+            hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
+            border-dial-purple text-dial-yellow
+          "
+                >
+                  <div
+                    class="border-l-8 bg-dial-purple border-dial-yellow"
+                  >
+                    <a
+                      class="block py-4 px-8"
+                      href="#navigate-to-play"
+                    >
+                      Overview
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="
+                  border-r-4 border-dial-gray-dark
+                  hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
+                  border-dial-gray-dark
+                "
+                >
+                  <a
+                    class="block"
+                    href="#navigate-to-play"
+                  >
+                    <div
+                      class="
+                      flex flex-col gap-y-1 border-l-8 py-3 px-8
+                      border-transparent
+                    "
+                    >
+                      Play 1. D4D: Understand the Problem
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-3 w-full max-w-screen-lg"
+          >
+            <div
+              class="flex flex-col gap-3 px-3"
+            >
+              <div
+                class="flex"
+              >
+                <div
+                  class="hidden lg:block"
+                >
+                  <div
+                    class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+                  >
+                    <a
+                      class="inline text-dial-blue h5"
+                      href="/"
+                    >
+                      Home
+                    </a>
+                    <div
+                      class="inline h5"
+                    >
+                       &gt; 
+                      <a
+                        class="text-dial-gray-dark"
+                        href="/"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="mt-4 ml-auto"
+                >
+                  <a
+                    class="bg-dial-blue px-2 py-1 rounded text-white mr-5"
+                    href="/en/playbooks/example_playbook/pdf"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <img
+                      alt="Print PDF"
+                      class="inline mr-2 pb-1"
+                      height="12px"
+                      src="/icons/pdf.svg"
+                      width="12px"
+                    />
+                    <span
+                      class="text-sm px-2"
+                    >
+                      Print PDF
+                    </span>
+                  </a>
+                  <a
+                    class="cursor-pointer bg-dial-blue px-2 py-1 rounded text-white mr-5"
+                  >
+                    <svg
+                      class="inline"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 640 512"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"
+                      />
+                    </svg>
+                    <span
+                      class="text-sm px-2"
+                    >
+                      Create Embed
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="h4"
+              >
+                Overview
+              </div>
+              <div
+                class="fr-view tiny-editor text-dial-gray-dark"
+              >
+                Just an example of playbook.
+              </div>
+              <div
+                class="h4"
+              >
+                Audience
+              </div>
+              <div
+                class="fr-view tiny-editor text-dial-gray-dark"
+              >
+                The audience of this playbook is you.
+              </div>
+              <div
+                class="h4"
+              >
+                Outcomes
+              </div>
+              <div
+                class="fr-view tiny-editor text-dial-gray-dark"
+              >
+                The outcome of this playbook is expected.
+              </div>
+            </div>
+            <div
+              class="infinite-scroll-component__outerdiv"
+            >
+              <div
+                class="infinite-scroll-component relative px-2 py-4 max-w-catalog mx-auto"
+                style="height: auto; overflow: auto;"
+              >
+                <div
+                  class="flex flex-col gap-6"
+                >
+                  <div
+                    class="flex flex-col gap-4"
+                  >
+                    <div
+                      class="h-px border-b"
+                    />
+                    <div
+                      class="font-semibold text-2xl py-4"
+                    >
+                      Play 1. D4D: Understand the Problem
+                    </div>
+                    <div
+                      class="fr-view tinyEditor text-dial-gray-dark"
+                    >
+                      The play description goes here.
+                    </div>
+                    <div
+                      class="flex flex-col gap-3"
+                    >
+                      <div
+                        class="flex flex-col border border-dial-orange-light"
+                      >
+                        <div
+                          class="move-header cursor-pointer"
+                        >
+                          <div
+                            class="move-animation-base bg-dial-yellow-light h-14"
+                          />
+                          <div
+                            class="
+                  animated-move
+                  move-header-collapsed
+                  move-animation bg-dial-orange-light h-14
+                "
+                          />
+                          <div
+                            class="flex move-header"
+                          >
+                            <div
+                              class="font-semibold px-4 py-4 my-auto"
+                            >
+                              Considerations
+                            </div>
+                            <div
+                              class="ml-auto my-auto px-4"
+                            >
+                              <svg
+                                fill="currentColor"
+                                height="1em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 16 16"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                                  fill-rule="evenodd"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="move-body slide-up"
+                        >
+                          <div
+                            class="px-4 py-4"
+                          >
+                            <div
+                              class="fr-view text-dial-gray-dark"
+                            >
+                              Description of the move goes here.
+                            </div>
+                            <div
+                              class="font-semibold py-2"
+                            >
+                              Resources
+                            </div>
+                            <div
+                              class="flex flex-wrap gap-3"
+                            >
+                              <a
+                                href="https://www.example.com/"
+                                rel="noreferrer"
+                                target="_blank"
+                              >
+                                <div
+                                  class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                                >
+                                  <div
+                                    class="flex"
+                                  >
+                                    <div
+                                      class="flex flex-col gap-2 px-3 py-4"
+                                    >
+                                      <div
+                                        class="font-semibold"
+                                      >
+                                        Nyoman Ribeka
+                                      </div>
+                                      <div
+                                        class="text-sm"
+                                      >
+                                        Adadadada
+                                      </div>
+                                    </div>
+                                    <svg
+                                      class="ml-auto px-2"
+                                      fill="currentColor"
+                                      height="2.2em"
+                                      stroke="currentColor"
+                                      stroke-width="0"
+                                      viewBox="0 0 20 20"
+                                      width="2.2em"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+                                      />
+                                      <path
+                                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                                      />
+                                    </svg>
+                                  </div>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Toastify"
+    />
+    <div
+      class="sticky sticky-under-header flex flex-col max-w-catalog mx-auto"
+    >
+      <div
+        class="bg-dial-yellow sticky sticky-under-header"
+      >
+        <div
+          class="flex flex-wrap gap-3"
+        >
+          <div
+            class="px-8 py-3 flex flex-col gap-1"
+          >
+            <div
+              class="text-sm"
+            >
+              <a
+                href="back-to-playbooks"
+              >
+                <img
+                  alt="Logo for: {name}"
+                  class="m-auto h-6 inline mr-2"
+                  data-tip="{entity}: {name}"
+                  src="http://localhost:3000/assets/playbooks/playbook_placeholder.png"
+                />
+                Playbook
+              </a>
+            </div>
+            <div
+              class="text-2xl font-semibold"
+            >
+              Example Playbook
+            </div>
+          </div>
+          <div
+            class="flex lg:ml-auto px-8 lg:px-4 pb-3 lg:pb-0 my-auto overflow-x-auto"
+          >
+            <div
+              class="play-progress"
+            >
+              <div
+                class="play-progress-bar"
+                style="width: 0%;"
+              />
+              <div
+                class="play-progress-bar-base"
+              />
+              <div
+                class="play-progress-number"
+              >
+                <a
+                  href="#navigate-to-play"
+                >
+                  <div
+                    class="step false"
+                  >
+                    1
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex gap-x-3"
+      >
+        <div
+          class="hidden lg:block w-1/4"
+        >
+          <div
+            class="bg-dial-gray-dark sticky h-full overflow-y-auto border-dial-gray-dark"
+            style="left: 0px; top: 150px; height: calc(100vh - 150px);"
+          >
+            <div
+              class="flex flex-col text-white"
+            >
+              <div
+                class="
+            border-r-4 border-dial-gray-dark
+            hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
+            border-dial-purple text-dial-yellow
+          "
+              >
+                <div
+                  class="border-l-8 bg-dial-purple border-dial-yellow"
+                >
+                  <a
+                    class="block py-4 px-8"
+                    href="#navigate-to-play"
+                  >
+                    Overview
+                  </a>
+                </div>
+              </div>
+              <div
+                class="
+                  border-r-4 border-dial-gray-dark
+                  hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
+                  border-dial-gray-dark
+                "
+              >
+                <a
+                  class="block"
+                  href="#navigate-to-play"
+                >
+                  <div
+                    class="
+                      flex flex-col gap-y-1 border-l-8 py-3 px-8
+                      border-transparent
+                    "
+                  >
+                    Play 1. D4D: Understand the Problem
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-col gap-3 w-full max-w-screen-lg"
+        >
+          <div
+            class="flex flex-col gap-3 px-3"
+          >
+            <div
+              class="flex"
+            >
+              <div
+                class="hidden lg:block"
+              >
+                <div
+                  class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+                >
+                  <a
+                    class="inline text-dial-blue h5"
+                    href="/"
+                  >
+                    Home
+                  </a>
+                  <div
+                    class="inline h5"
+                  >
+                     &gt; 
+                    <a
+                      class="text-dial-gray-dark"
+                      href="/"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="mt-4 ml-auto"
+              >
+                <a
+                  class="bg-dial-blue px-2 py-1 rounded text-white mr-5"
+                  href="/en/playbooks/example_playbook/pdf"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <img
+                    alt="Print PDF"
+                    class="inline mr-2 pb-1"
+                    height="12px"
+                    src="/icons/pdf.svg"
+                    width="12px"
+                  />
+                  <span
+                    class="text-sm px-2"
+                  >
+                    Print PDF
+                  </span>
+                </a>
+                <a
+                  class="cursor-pointer bg-dial-blue px-2 py-1 rounded text-white mr-5"
+                >
+                  <svg
+                    class="inline"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 640 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"
+                    />
+                  </svg>
+                  <span
+                    class="text-sm px-2"
+                  >
+                    Create Embed
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div
+              class="h4"
+            >
+              Overview
+            </div>
+            <div
+              class="fr-view tiny-editor text-dial-gray-dark"
+            >
+              Just an example of playbook.
+            </div>
+            <div
+              class="h4"
+            >
+              Audience
+            </div>
+            <div
+              class="fr-view tiny-editor text-dial-gray-dark"
+            >
+              The audience of this playbook is you.
+            </div>
+            <div
+              class="h4"
+            >
+              Outcomes
+            </div>
+            <div
+              class="fr-view tiny-editor text-dial-gray-dark"
+            >
+              The outcome of this playbook is expected.
+            </div>
+          </div>
+          <div
+            class="infinite-scroll-component__outerdiv"
+          >
+            <div
+              class="infinite-scroll-component relative px-2 py-4 max-w-catalog mx-auto"
+              style="height: auto; overflow: auto;"
+            >
+              <div
+                class="flex flex-col gap-6"
+              >
+                <div
+                  class="flex flex-col gap-4"
+                >
+                  <div
+                    class="h-px border-b"
+                  />
+                  <div
+                    class="font-semibold text-2xl py-4"
+                  >
+                    Play 1. D4D: Understand the Problem
+                  </div>
+                  <div
+                    class="fr-view tinyEditor text-dial-gray-dark"
+                  >
+                    The play description goes here.
+                  </div>
+                  <div
+                    class="flex flex-col gap-3"
+                  >
+                    <div
+                      class="flex flex-col border border-dial-orange-light"
+                    >
+                      <div
+                        class="move-header cursor-pointer"
+                      >
+                        <div
+                          class="move-animation-base bg-dial-yellow-light h-14"
+                        />
+                        <div
+                          class="
+                  animated-move
+                  move-header-collapsed
+                  move-animation bg-dial-orange-light h-14
+                "
+                        />
+                        <div
+                          class="flex move-header"
+                        >
+                          <div
+                            class="font-semibold px-4 py-4 my-auto"
+                          >
+                            Considerations
+                          </div>
+                          <div
+                            class="ml-auto my-auto px-4"
+                          >
+                            <svg
+                              fill="currentColor"
+                              height="1em"
+                              stroke="currentColor"
+                              stroke-width="0"
+                              viewBox="0 0 16 16"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                                fill-rule="evenodd"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="move-body slide-up"
+                      >
+                        <div
+                          class="px-4 py-4"
+                        >
+                          <div
+                            class="fr-view text-dial-gray-dark"
+                          >
+                            Description of the move goes here.
+                          </div>
+                          <div
+                            class="font-semibold py-2"
+                          >
+                            Resources
+                          </div>
+                          <div
+                            class="flex flex-wrap gap-3"
+                          >
+                            <a
+                              href="https://www.example.com/"
+                              rel="noreferrer"
+                              target="_blank"
+                            >
+                              <div
+                                class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                              >
+                                <div
+                                  class="flex"
+                                >
+                                  <div
+                                    class="flex flex-col gap-2 px-3 py-4"
+                                  >
+                                    <div
+                                      class="font-semibold"
+                                    >
+                                      Nyoman Ribeka
+                                    </div>
+                                    <div
+                                      class="text-sm"
+                                    >
+                                      Adadadada
+                                    </div>
+                                  </div>
+                                  <svg
+                                    class="ml-auto px-2"
+                                    fill="currentColor"
+                                    height="2.2em"
+                                    stroke="currentColor"
+                                    stroke-width="0"
+                                    viewBox="0 0 20 20"
+                                    width="2.2em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+                                    />
+                                    <path
+                                      d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                                    />
+                                  </svg>
+                                </div>
+                              </div>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
