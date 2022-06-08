@@ -147,7 +147,7 @@ const OrganizationDetailLeft = ({ organization }) => {
               <div className='inline'>
                 {
                   (session.user.canEdit || `${session.user.own?.organization?.id}` === `${organization.id}`) && (
-                    <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
+                    <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5' data-testid='edit-org'>
                       <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
                       <span className='text-sm px-2'>{format('app.edit')}</span>
                     </a>

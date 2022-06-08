@@ -187,18 +187,23 @@ const OrganizationForm = React.memo(({ organization }) => {
                         <Input
                           {...register(`aliases.${aliasIdx}.value`)}
                           placeholder={format('organization.alias')}
+                          data-testid='alias-name'
                         />
                         {isLastAlias(aliasIdx) && (
-                          <IconButton
-                            icon={<FaPlus />}
-                            onClick={() => append({ value: '' })}
-                          />
+                          <span data-testid='alias-add'>
+                            <IconButton
+                              icon={<FaPlus />}
+                              onClick={() => append({ value: '' })}
+                            />
+                          </span>
                         )}
                         {!isSingleAlias && (
-                          <IconButton
-                            icon={<FaMinus />}
-                            onClick={() => remove(aliasIdx)}
-                          />
+                          <span data-testid='alias-remove'>
+                            <IconButton
+                              icon={<FaMinus />}
+                              onClick={() => remove(aliasIdx)}
+                            />
+                          </span>
                         )}
                       </div>
                     ))}
@@ -215,7 +220,7 @@ const OrganizationForm = React.memo(({ organization }) => {
                     />
                     {errors.website && <ValidationError value={errors.website?.message} />}
                   </div>
-                  <div className='flex flex-col gap-y-2 mb-2'>
+                  <div className='flex flex-col gap-y-2 mb-2' data-testid='organization-logo'>
                     <label className='text-xl text-dial-blue'>
                       {format('organization.imageFile')}
                     </label>
@@ -224,7 +229,7 @@ const OrganizationForm = React.memo(({ organization }) => {
                       placeholder={format('organization.imageFile')}
                     />
                   </div>
-                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'>
+                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue' data-testid='organization-is-endorser'>
                     <Checkbox {...register('isEndorser')} />
                     {format('organization.isEndorser')}
                   </label>
@@ -236,9 +241,10 @@ const OrganizationForm = React.memo(({ organization }) => {
                       {...register('whenEndorsed')}
                       type='date'
                       placeholder={format('organization.whenEndorsed')}
+                      data-testid='organization-when-endorsed'
                     />
                   </div>
-                  <div className='flex flex-col gap-y-2 mb-2'>
+                  <div className='flex flex-col gap-y-2 mb-2' data-testid='organization-endorser-level'>
                     <label className='text-xl text-dial-blue'>
                       {format('organization.endorserLevel')}
                     </label>
@@ -248,7 +254,7 @@ const OrganizationForm = React.memo(({ organization }) => {
                       render={({ field }) => <Select {...field} options={endorserLevelOptions} placeholder={format('organization.endorserLevel')} />}
                     />
                   </div>
-                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'>
+                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue' data-testid='organization-is-mni'>
                     <Checkbox {...register('isMni')} />
                     {format('organization.isMni')}
                   </label>

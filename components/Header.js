@@ -47,6 +47,7 @@ const AdminMenu = ({ isCurrentOpenMenu, onToggle }) => {
     <>
       <a
         id={ADMIN_MENU}
+        data-testid='admin-menu'
         className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={buttonRef}
         href='admin' onClick={(e) => toggleSwitcher(e)}
       >
@@ -124,6 +125,7 @@ const UserMenu = ({ isCurrentOpenMenu, onToggle }) => {
     <>
       <a
         id={USER_MENU}
+        data-testid='user-menu'
         className={`${menuItemStyles} lg:mb-0 mb-2 inline bg-dial-yellow-light pt-2 pb-2 rounded`} ref={buttonRef}
         href='signOut' onClick={(e) => toggleSwitcher(e)}
       >
@@ -367,7 +369,7 @@ const Header = () => {
                   )
                   : (
                     <li className='relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0'>
-                      <a href='signin' role='menuitem' className={dropdownMenuStyles} onClick={signInUser}>
+                      <a data-testid='login' href='signin' role='menuitem' className={dropdownMenuStyles} onClick={signInUser}>
                         {format('header.signIn')}
                       </a>
                     </li>

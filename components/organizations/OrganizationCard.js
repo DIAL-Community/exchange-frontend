@@ -22,7 +22,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
       {
         listType === 'list'
           ? (
-            <Link className='card-link' href={`/${collectionPath}/${organization.slug}`}>
+            <Link data-testid='org-card' className='card-link' href={`/${collectionPath}/${organization.slug}`}>
               <a {...newTab && { target: '_blank' }}>
                 <div className={containerElementStyle}>
                   <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
@@ -79,7 +79,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
             </Link>
           )
           : (
-            <div className={`group ${containerElementStyle}`}>
+            <div data-testid='org-card' className={`group ${containerElementStyle}`}>
               <div className='flex flex-col border border-dial-gray hover:border-dial-yellow card-drop-shadow'>
                 <div>
                   <div className='flex justify-between p-1.5 border-b border-dial-gray text-sm font-semibold text-dial-cyan'>

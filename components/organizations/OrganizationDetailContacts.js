@@ -173,16 +173,18 @@ const OrganizationDetailContacts = ({ organization }) => {
     </>
 
   return (
-    <EditableSection
-      canEdit={true}
-      sectionHeader={format('contact.header')}
-      onSubmit={onSubmit}
-      onCancel={onCancel}
-      isDirty={isDirty}
-      isMutating={loading}
-      displayModeBody={displayModeBody}
-      editModeBody={editModeBody}
-    />
+    <div data-testid='organization-contacts'>
+      <EditableSection
+        canEdit={true}
+        sectionHeader={format('contact.header')}
+        onSubmit={onSubmit}
+        onCancel={onCancel}
+        isDirty={isDirty}
+        isMutating={loading}
+        displayModeBody={displayModeBody}
+        editModeBody={editModeBody}
+      />
+    </div>
   )
 }
 
