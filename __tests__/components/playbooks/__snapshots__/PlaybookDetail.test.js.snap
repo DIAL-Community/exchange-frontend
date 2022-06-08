@@ -36,9 +36,18 @@ Object {
                 </a>
               </div>
               <div
-                class="text-2xl font-semibold"
+                class="flex flex-col md:flex-row gap-x-2 text-2xl font-semibold"
               >
-                Example Playbook
+                <div>
+                  Example Playbook
+                </div>
+                <div
+                  class="text-base font-base text-white md:self-center"
+                >
+                  (
+                  Published
+                  )
+                </div>
               </div>
             </div>
             <div
@@ -436,9 +445,18 @@ Object {
               </a>
             </div>
             <div
-              class="text-2xl font-semibold"
+              class="flex flex-col md:flex-row gap-x-2 text-2xl font-semibold"
             >
-              Example Playbook
+              <div>
+                Example Playbook
+              </div>
+              <div
+                class="text-base font-base text-white md:self-center"
+              >
+                (
+                Published
+                )
+              </div>
             </div>
           </div>
           <div
@@ -1186,9 +1204,11 @@ Object {
                 </a>
               </div>
               <div
-                class="text-2xl font-semibold"
+                class="flex flex-col md:flex-row gap-x-2 text-2xl font-semibold"
               >
-                Example Playbook
+                <div>
+                  Example Playbook
+                </div>
               </div>
             </div>
             <div
@@ -1569,9 +1589,11 @@ Object {
               </a>
             </div>
             <div
-              class="text-2xl font-semibold"
+              class="flex flex-col md:flex-row gap-x-2 text-2xl font-semibold"
             >
-              Example Playbook
+              <div>
+                Example Playbook
+              </div>
             </div>
           </div>
           <div

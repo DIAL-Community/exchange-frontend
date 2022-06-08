@@ -1,21 +1,13 @@
 import dynamic from 'next/dynamic'
 import { MdClose } from 'react-icons/md'
-import { gql, useApolloClient } from '@apollo/client'
+import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { asyncSelectStyles } from '../../../lib/utilities'
+import { fetchSelectOptions } from '../../../queries/utils'
+import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../queries/building-block'
 
 // https://github.com/JedWatson/react-select/issues/3590
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
-
-const BUILDING_BLOCK_SEARCH_QUERY = gql`
-  query BuildingBlocks($search: String!) {
-    buildingBlocks(search: $search) {
-      id
-      name
-      slug
-    }
-  }
-`
 
 const customStyles = (controlSize = '14rem') => {
   return {
@@ -51,28 +43,13 @@ export const BuildingBlockAutocomplete = (props) => {
     setBuildingBlocks([...buildingBlocks.filter(b => b.value !== buildingBlock.value), buildingBlock])
   }
 
-  const fetchOptions = async (input, _, query) => {
-    if (input && input.trim().length < 2) {
-      return []
-    }
-
-    const response = await client.query({
-      query: query,
-      variables: {
-        search: input
-      }
-    })
-
-    if (response.data && response.data.buildingBlocks) {
-      return response.data.buildingBlocks.map((buildingBlock) => ({
-        label: buildingBlock.name,
-        value: buildingBlock.id,
-        slug: buildingBlock.slug
-      }))
-    }
-
-    return []
-  }
+  const fetchedBuildingBlocksCallback = (data) => (
+    data.buildingBlocks.map((buildingBlock) => ({
+      label: buildingBlock.name,
+      value: buildingBlock.id,
+      slug: buildingBlock.slug
+    }))
+  )
 
   return (
     <div className={`${containerStyles} catalog-filter text-dial-gray-dark flex`}>
@@ -81,7 +58,7 @@ export const BuildingBlockAutocomplete = (props) => {
         className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
-        loadOptions={(input, callback) => fetchOptions(input, callback, BUILDING_BLOCK_SEARCH_QUERY)}
+        loadOptions={(input) => fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)}
         noOptionsMessage={() => format('filter.searchFor', { entity: format('building-block.header') })}
         onChange={selectBuildingBlock}
         placeholder={controlPlaceholder}
