@@ -1,92 +1,10 @@
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useEffect, useRef } from 'react'
 import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
+import { PRODUCT_QUERY } from '../../queries/product'
 import ProductDetailLeft from './ProductDetailLeft'
 import ProductDetailRight from './ProductDetailRight'
-
-const PRODUCT_QUERY = gql`
-  query Product($slug: String!) {
-    product(slug: $slug) {
-      id
-      name
-      slug
-      imageFile
-      website
-      owner
-      tags
-      discourseId
-      productDescription {
-        description
-        locale
-      }
-      origins {
-        name
-        slug
-      }
-      endorsers {
-        name
-        slug
-      }
-      interoperatesWith {
-        name
-        slug
-        imageFile
-        origins {
-          name
-        }
-      }
-      includes {
-        name 
-        slug
-        imageFile
-        origins {
-          name
-        }
-      }
-      organizations {
-        name
-        slug
-        imageFile
-        isEndorser
-        whenEndorsed
-      }
-      currentProjects(first:10) {
-        name
-        slug
-        origin {
-          name
-          slug
-        }
-      }
-      buildingBlocks {
-        name
-        slug
-        imageFile
-        maturity
-      }
-      sustainableDevelopmentGoals {
-        id
-        name
-        slug
-        imageFile
-      }
-      sectors {
-        name
-        slug
-        isDisplayable
-      }
-      maturityScore
-      maturityScores
-      manualUpdate
-      mainRepository {
-        mainRepository
-        name
-        slug
-      }
-    }
-  }
-`
 
 const ProductDetail = ({ slug, locale }) => {
   const discourseElement = useRef()

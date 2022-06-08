@@ -27,7 +27,29 @@ export const CREATE_PRODUCT = gql`
           description
           locale
         }
-      }
+      },
+      errors
+    }
+  }
+`
+
+export const UPDATE_PRODUCT_BUILDING_BLOCKS = gql`
+  mutation UpdateProductBuildingBlocks(
+    $slug: String!,
+    $buildingBlocksSlugs: [String!]!
+  ) {
+    updateProductBuildingBlocks(
+      slug: $slug,
+      buildingBlocksSlugs: $buildingBlocksSlugs
+    ) {
+      product {
+        buildingBlocks {
+          name,
+          slug,
+          imageFile
+          maturity
+        }
+      },
       errors
     }
   }

@@ -14,6 +14,14 @@ module.exports = {
       locale: 'en',
       __typename: 'ProductDescription'
     },
+    buildingBlocks: [{
+      id: 3,
+      name: 'Test Building Block',
+      slug: 'test_building_block',
+      maturity: 'BETA',
+      imageFile: 'test-building-block.png',
+      __typename: 'BuildingBlock'
+    }],
     __typename: 'Product'
   },
   createProductSuccess: {

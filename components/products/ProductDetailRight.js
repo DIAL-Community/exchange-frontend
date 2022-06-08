@@ -15,6 +15,7 @@ import EditButton from '../shared/EditButton'
 import ProductCard from './ProductCard'
 import MaturityAccordion from './Maturity'
 import RepositoryList from './repositories/RepositoryList'
+import ProductDetailBuildingBlocks from './ProductDetailBuildingBlocks'
 const productsPath = convertToKey('Products')
 const repositoriesPath = convertToKey('Repositories')
 
@@ -66,16 +67,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
             })}
           </div>
       }
-      {
-        product.buildingBlocks &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('building-block.header')}</div>
-            <div className='text-sm text-dial-gray-dark pb-2 highlight-link' dangerouslySetInnerHTML={{ __html: format('building-block.disclaimer') }} />
-            {product.buildingBlocks.map((bb, i) => {
-              return (<BuildingBlockCard key={i} buildingBlock={bb} listType='list' />)
-            })}
-          </div>
-      }
+      {product.buildingBlocks && <ProductDetailBuildingBlocks product={product} canEdit={canEdit} />}
       {
         product.sectors &&
           <div className='mt-12'>
@@ -163,7 +155,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
             {format('product.repository')}
           </span>
         </Link>
-        {canEdit && product.mainRepository.mainRepository &&
+        {canEdit && product.mainRepository?.mainRepository &&
           <EditButton
             type='link'
             href={`/${productsPath}/${product.slug}/${repositoriesPath}/${product.mainRepository.slug}`}
