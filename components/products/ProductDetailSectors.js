@@ -32,13 +32,12 @@ const ProductDetailSectors = ({ product, canEdit }) => {
     onCompleted: (data) => {  
       setSectors(data.updateProductSectors.product.sectors)
       setIsDirty(false)
-      showToast(format('toast.<entity>.update.success', { entity: format('sector.header') }), 'success', 'top-center')
+      showToast(format('toast.sectors.update.success'), 'success', 'top-center')
     },
-
     onError: () => {
       setSectors(product.sectors)
       setIsDirty(false)
-      showToast(format('toast.<entity>.update.failure', { entity: format('sector.header') }), 'error', 'top-center')
+      showToast(format('toast.sectors.update.failure'), 'error', 'top-center')
     }
   })
 
