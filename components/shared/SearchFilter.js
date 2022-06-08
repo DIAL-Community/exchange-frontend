@@ -202,7 +202,7 @@ const SearchFilter = (props) => {
         <div className='flex flex-wrap gap-x-4 gap-y-4 lg:gap-x-8 xl:gap-20'>
           <div className='hidden md:block ml-auto text-xl font-semibold my-auto animated-drawer'>
             {format(hint)}
-            <span className='ml-2 px-2 py-1.5 text-base rounded text-dial-gray-dark bg-dial-yellow'>
+            <span data-testid='list-counter' className='ml-2 px-2 py-1.5 text-base rounded text-dial-gray-dark bg-dial-yellow'>
               {resultCounts[hint]}
             </span>
           </div>
@@ -274,7 +274,8 @@ const SearchFilter = (props) => {
             <div className='text-xs mt-2'>
               <div className='flex justify-end px-3'>
                 <>
-                  <a className='border-b-2 border-transparent hover:border-dial-yellow' href={generateCreateLink()}>
+                  <a className='border-b-2 border-transparent hover:border-dial-yellow'
+                    data-testid='create-new' href={generateCreateLink()}>
                     <span className='text-dial-yellow'>{format('app.create-new')}</span>
                   </a>
                   <div className='border-r mx-2 border-gray-400' />

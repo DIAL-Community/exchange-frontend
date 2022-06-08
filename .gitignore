@@ -35,3 +35,13 @@ yarn-error.log*
 
 # VS Code history files from a plugin.
 .history
+
+# Unit test snapshot directory.
+__snapshots__
+
+# Cypress artifacts
+cypress/screenshots
+cypress/videos
+
+# Cypress environment
+cypress.env.json
