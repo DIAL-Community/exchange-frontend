@@ -229,6 +229,7 @@ export const en = {
   'product.submit.success': 'Product submitted successfully',
   'product.submit.failure': 'Product submission failed',
   'product.no-building-block': 'We do not have any Building Block information for this Product.',
+  'product.no-sector': 'We do not have any Sector information for this Product.',
 
   'project.header': 'Projects',
   'project.label': 'Project',
@@ -1202,9 +1203,14 @@ export const en = {
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
-
+  
   'toast.buildingBlocks.update.success': 'Building Blocks updated successfully',
   'toast.buildingBlocks.update.failure': 'Building Blocks update failed',
+  
+  'noEntityInformationFor': 'We do not have {entity} information for this {parentEntity}.',
 
-  'noEntityInformationFor': 'We do not have {entity} information for this {parentEntity}.'
+  'organization.validation.contact.uniqueName': 'This contact is already assigned to this organization',
+
+  'toast.sectors.update.success': 'Sectors updated successfully',
+  'toast.sectors.update.failure': 'Sectors update failed',
 }

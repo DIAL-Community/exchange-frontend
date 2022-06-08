@@ -54,3 +54,24 @@ export const UPDATE_PRODUCT_BUILDING_BLOCKS = gql`
     }
   }
 `
+
+export const UPDATE_PRODUCT_SECTORS = gql`
+  mutation UpdateProductSectors(
+    $slug: String!,
+    $sectorsSlugs: [String!]!
+  ) {
+    updateProductSectors(
+      slug: $slug,
+      sectorsSlugs: $sectorsSlugs
+    ) {
+      product {
+        sectors {
+          id,
+          name,
+          slug
+        }
+      },
+      errors
+    }
+  }
+`

@@ -22,6 +22,14 @@ module.exports = {
       imageFile: 'test-building-block.png',
       __typename: 'BuildingBlock'
     }],
+    sectors: [
+      {
+        id: 1,
+        name: 'Test Sector',
+        slug: 'test_sector',
+        __typename: 'Sector'
+      }
+    ],
     __typename: 'Product'
   },
   createProductSuccess: {
