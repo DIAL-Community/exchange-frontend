@@ -7,21 +7,21 @@ import Footer from '../components/Footer'
 import GradientBackground from '../../../../components/shared/GradientBackground'
 import QueryNotification from '../../../../components/shared/QueryNotification'
 import PageContent from '../../../../components/main/PageContent'
-import ProductHint from '../../../../components/filter/hint/ProductHint'
-import ProductFilter from '../../../../components/products/ProductFilter'
-import ProductActiveFilter from '../../../../components/products/ProductActiveFilter'
+import UseCaseHint from '../../../../components/filter/hint/UseCaseHint'
+import UseCaseFilter from '../../../../components/use-cases/UseCaseFilter'
+import UseCaseActiveFilter from '../../../../components/use-cases/UseCaseActiveFilter'
 import SearchFilter from '../../../../components/shared/SearchFilter'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../../../components/context/ProductFilterContext'
+import { UseCaseFilterContext, UseCaseFilterDispatchContext } from '../../../../components/context/UseCaseFilterContext'
 import ClientOnly from '../../../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
-const ProductListQuery = dynamic(() => import('../../../../components/products/ProductList'), { ssr: false })
+const UseCaseListQuery = dynamic(() => import('../../../../components/use-cases/UseCaseList'), { ssr: false })
 
-const Products = () => {
+const UseCases = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { search } = useContext(ProductFilterContext)
-  const { setSearch } = useContext(ProductFilterDispatchContext)
+  const { search } = useContext(UseCaseFilterContext)
+  const { setSearch } = useContext(UseCaseFilterDispatchContext)
 
   return (
     <>
@@ -33,15 +33,14 @@ const Products = () => {
       <GradientBackground />
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <div className='text-dial-gray-dark my-5 mx-10 text-xl'>The following products have been evaluated as candidates for deployment in Sierra Leone</div>
       <ClientOnly>
         <PageContent
-          activeTab='filter.entity.products'
-          filter={<ProductFilter />}
-          content={<ProductListQuery />}
-          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.products' />}
-          activeFilter={<ProductActiveFilter />}
-          hint={<ProductHint />}
+          activeTab='filter.entity.useCases'
+          filter={<UseCaseFilter />}
+          content={<UseCaseListQuery />}
+          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.useCases' />}
+          activeFilter={<UseCaseActiveFilter />}
+          hint={<UseCaseHint />}
         />
       </ClientOnly>
       <Footer />
@@ -49,4 +48,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default UseCases

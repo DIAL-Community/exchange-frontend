@@ -64,9 +64,11 @@ const COUNTRIES_QUERY = gql`
   }
 `
 
-const ProjectMap = () => {
+const ProjectMap = (props) => {
   const [selectedCountry, setSelectedCountry] = useState('')
   const { sectors, tags, products } = useContext(MapFilterContext)
+
+  const { initialCountry, center, zoom } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -112,6 +114,10 @@ const ProjectMap = () => {
   })()
 
   const country = countriesWithProjects[selectedCountry]
+  
+  if (initialCountry && !loadingProjects && !loadingCountries && selectedCountry != initialCountry) {
+    setSelectedCountry(initialCountry)
+  }
 
   return (
     <div className='flex flex-row' style={{ minHeight: '10vh' }}>
@@ -121,7 +127,7 @@ const ProjectMap = () => {
             {format('map.loading.indicator')}
           </div>
       }
-      <CountryMarkersMaps countries={countriesWithProjects} setSelectedCountry={setSelectedCountry} />
+      <CountryMarkersMaps countries={countriesWithProjects} setSelectedCountry={setSelectedCountry} center={center} zoom={zoom} />
       <CountryInfo country={country} />
     </div>
   )
