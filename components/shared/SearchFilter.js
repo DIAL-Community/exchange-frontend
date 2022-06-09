@@ -2,20 +2,20 @@
 /* global Response:false */
 /* global ReadableStream:false */
 
-import { useRouter } from 'next/router'
-import { useState, useEffect, useContext } from 'react'
-import { useSession } from 'next-auth/client'
-import { useIntl } from 'react-intl'
 import { saveAs } from 'file-saver'
+import { useSession } from 'next-auth/client'
+import { useRouter } from 'next/router'
+import { useContext, useEffect, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
-import { FilterContext } from '../context/FilterContext'
-import { ProductFilterContext } from '../context/ProductFilterContext'
-import { OrganizationFilterContext } from '../context/OrganizationFilterContext'
+import { useIntl } from 'react-intl'
 import { BuildingBlockFilterContext } from '../context/BuildingBlockFilterContext'
-import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
-import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
+import { FilterContext } from '../context/FilterContext'
+import { OrganizationFilterContext } from '../context/OrganizationFilterContext'
+import { ProductFilterContext } from '../context/ProductFilterContext'
 import { ProjectFilterContext } from '../context/ProjectFilterContext'
 import { SDGFilterContext } from '../context/SDGFilterContext'
+import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
+import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
 import { SearchInput } from './SearchInput'
 
 const SearchFilter = (props) => {
@@ -64,7 +64,7 @@ const SearchFilter = (props) => {
       return `/candidate/${linkPath[0]}/create`
     }
 
-    const reactEditPaths = ['playbooks', 'plays', 'organizations']
+    const reactEditPaths = ['playbooks', 'plays', 'organizations', 'products']
     if (reactEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails
       return `/${linkPath[0]}/create`
@@ -276,6 +276,7 @@ const SearchFilter = (props) => {
                 <>
                   <a className='border-b-2 border-transparent hover:border-dial-yellow'
                     data-testid='create-new' href={generateCreateLink()}>
+
                     <span className='text-dial-yellow'>{format('app.create-new')}</span>
                   </a>
                   <div className='border-r mx-2 border-gray-400' />
