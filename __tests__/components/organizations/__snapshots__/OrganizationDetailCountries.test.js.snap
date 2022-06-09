@@ -7,6 +7,7 @@ exports[`Unit test for the OrganizationDetailCountries component. Should add a p
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -196,6 +197,7 @@ exports[`Unit test for the OrganizationDetailCountries component. Should match s
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -256,6 +258,7 @@ exports[`Unit test for the OrganizationDetailCountries component. Should match s
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -421,6 +424,7 @@ exports[`Unit test for the OrganizationDetailCountries component. Should match s
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -463,6 +467,7 @@ exports[`Unit test for the OrganizationDetailCountries component. Should remove 
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"

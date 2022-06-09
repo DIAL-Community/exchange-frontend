@@ -7,6 +7,7 @@ exports[`Unit test for the OrganizationDetailProducts component. Should add a pi
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -196,6 +197,7 @@ exports[`Unit test for the OrganizationDetailProducts component. Should match sn
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -285,6 +287,7 @@ exports[`Unit test for the OrganizationDetailProducts component. Should match sn
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -450,6 +453,7 @@ exports[`Unit test for the OrganizationDetailProducts component. Should match sn
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -521,6 +525,7 @@ exports[`Unit test for the OrganizationDetailProducts component. Should remove a
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
