@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { TAGS_SEARCH_QUERY } from '../../../queries/tags'
@@ -62,6 +62,7 @@ describe('Unit test for the ProductDetailTags component.', () => {
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await screen.findByText(TAGS_SEARCH_PLACEHOLDER)
+    await waitFor(() => expect(container.querySelector('.react-select__loading-indicator')).toBeNull())
     expect(container).toMatchSnapshot()
   })
 

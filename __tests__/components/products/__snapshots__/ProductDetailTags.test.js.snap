@@ -335,20 +335,6 @@ exports[`Unit test for the ProductDetailTags component. Should match snapshot - 
             <div
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
-              <div
-                aria-hidden="true"
-                class="react-select__indicator react-select__loading-indicator css-at12u2-loadingIndicator"
-              >
-                <span
-                  class="css-1xtdfmb-LoadingDot"
-                />
-                <span
-                  class="css-zoievk-LoadingDot"
-                />
-                <span
-                  class="css-x748d8-LoadingDot"
-                />
-              </div>
               <span
                 class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
               />
