@@ -132,7 +132,7 @@ export const UPDATE_PRODUCT_TAGS = gql`
     $tags: [String!]!
   ) {
     updateProductTags(
-      slug: $slug,
+      slug: $slug
       tags: $tags
     ) {
       product {

@@ -232,8 +232,6 @@ export const en = {
   'product.no-building-block': 'We do not have any Building Block information for this Product.',
   'product.no-sector': 'We do not have any Sector information for this Product.',
   'product.no-tag': 'We do not have any Tag information for this Product',
-  'product.tags.updated': 'Tags updated successfully',
-  'product.tags.failed': 'Tags updated failed',
   'product.no-project': 'We do not have any Project information for this Product.',
 
   'project.header': 'Projects',
@@ -1274,6 +1272,8 @@ export const en = {
   'toast.buildingBlocks.update.failure': 'Building Blocks update failed',
   'toast.organizations.update.success': 'Organizations updated successfully',
   'toast.organizations.update.failure': 'Organizations update failed',
+  'toast.tags.update.success': 'Tags updated successfully',
+  'toast.tags.failed.failure': 'Tags update failed',
   'toast.sectors.update.success': 'Sectors updated successfully',
   'toast.sectors.update.failure': 'Sectors update failed',
   'toast.projects.updated': 'Projects updated successfully',

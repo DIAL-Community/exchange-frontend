@@ -29,12 +29,12 @@ const ProductDetailTags = ({ product, canEdit }) => {
     onError: () => {
       setTags(product.tags)
       setIsDirty(false)
-      showToast(format('product.tags.failed'), 'error', 'top-center')
+      showToast(format('toast.tags.failed.failure'), 'error', 'top-center')
     },
     onCompleted: (data) => {
       setTags(data.updateProductTags.product.tags)
       setIsDirty(false)
-      showToast(format('product.tags.updated'), 'success', 'top-center')
+      showToast(format('toast.tags.update.success'), 'success', 'top-center')
     }
   })
 
@@ -85,7 +85,7 @@ const ProductDetailTags = ({ product, canEdit }) => {
     setIsDirty(false)
   }
 
-  const displayModeBody = tags.length > 0
+  const displayModeBody = tags.length
     ? (
       <div className='card-title mb-3 text-dial-gray-dark'>
         {tags.map((tag, tagIdx) => <TagCard key={tagIdx} tag={tag} listType='list' />)}
