@@ -125,3 +125,21 @@ export const UPDATE_PRODUCT_ORGANIZATION = gql`
     }
   }
 `
+
+export const UPDATE_PRODUCT_TAGS = gql`
+  mutation UpdateProductTags(
+    $slug: String!,
+    $tags: [String!]!
+  ) {
+    updateProductTags(
+      slug: $slug,
+      tags: $tags
+    ) {
+      product {
+        slug
+        tags
+      },
+      errors
+    }  
+  }
+`
