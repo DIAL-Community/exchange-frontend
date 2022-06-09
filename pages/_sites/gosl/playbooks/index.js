@@ -27,6 +27,7 @@ const Playbooks = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
+      <div className='text-dial-gray-dark my-5 mx-10 text-xl'>The following playbooks have been to support migration of various platforms as part of the EA Digital Transformation process</div>
       <ClientOnly>
         <PageContent
           activeTab='filter.entity.playbooks'

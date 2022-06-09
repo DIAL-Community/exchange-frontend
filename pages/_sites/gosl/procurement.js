@@ -21,13 +21,10 @@ const AboutPage = () => {
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <div className='container py-6'>
         <div className='w-[14rem] p-3 text-4xl bg-blue-900 text-white'>
-          Who we are
+          Procurement resources
         </div>
-        <div className='w-full text-dial-gray-dark text-xl p-12'>
-          The GovStack initiative is a multi-stakeholder initiative led by the Federal Ministry for Economic Cooperation and Development, Gesellschaft für Internationale Zusammenarbeit (GIZ), Estonia, the International Telecommunication Union (ITU) and the Digital Impact Alliance. 
-          <br />
-          <br />
-          The initiative actively seeks partnerships with governments, agencies, private sector organizations and the open source community
+        <div className='p-4 text-dial-gray-dark'>
+          <a href='http://demo.dial.community:8090/' target='_blank' rel='noreferrer'>Click here to see a list of open RFPs for various ministries</a>
         </div>
       </div>
       <Footer />
