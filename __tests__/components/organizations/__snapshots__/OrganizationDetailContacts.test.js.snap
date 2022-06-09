@@ -29,7 +29,7 @@ exports[`Unit test for the OrganizationDetailContacts component. If input name i
             class="card-title text-dial-blue mb-3"
           >
             Assign
-             
+
             Contacts
           </p>
           <div
@@ -161,7 +161,7 @@ exports[`Unit test for the OrganizationDetailContacts component. Should add pill
             class="card-title text-dial-blue mb-3"
           >
             Assign
-             
+
             Contacts
           </p>
           <div
@@ -308,7 +308,7 @@ exports[`Unit test for the OrganizationDetailContacts component. Should assign b
             class="card-title text-dial-blue mb-3"
           >
             Assign
-             
+
             Contacts
           </p>
           <div
@@ -430,7 +430,7 @@ exports[`Unit test for the OrganizationDetailContacts component. Should clear in
             class="card-title text-dial-blue mb-3"
           >
             Assign
-             
+
             Contacts
           </p>
           <div
@@ -577,7 +577,7 @@ exports[`Unit test for the OrganizationDetailContacts component. Should remove p
             class="card-title text-dial-blue mb-3"
           >
             Assign
-             
+
             Contacts
           </p>
           <div

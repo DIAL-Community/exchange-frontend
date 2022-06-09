@@ -7,6 +7,7 @@ exports[`Unit test for the ProductDetailTags component. Should add a pill and re
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -196,6 +197,7 @@ exports[`Unit test for the ProductDetailTags component. Should match snapshot - 
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -256,6 +258,7 @@ exports[`Unit test for the ProductDetailTags component. Should match snapshot - 
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -435,6 +438,7 @@ exports[`Unit test for the ProductDetailTags component. Should match snapshot - 
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -477,6 +481,7 @@ exports[`Unit test for the ProductDetailTags component. Should remove a pill 1`]
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
