@@ -252,7 +252,7 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should match s
       </button>
     </div>
     <div
-      class="grid grid-cols-1"
+      class="flex flex-col gap-2"
     >
       <a
         href="/projects/test_project"
@@ -486,7 +486,7 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should match s
       </div>
     </div>
     <div
-      class="grid grid-cols-1"
+      class="flex flex-col gap-2"
     >
       <a
         href="/projects/test_project"

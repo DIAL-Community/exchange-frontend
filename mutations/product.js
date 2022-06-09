@@ -75,3 +75,28 @@ export const UPDATE_PRODUCT_SECTORS = gql`
     }
   }
 `
+
+export const UPDATE_PRODUCT_PROJECTS = gql`
+  mutation UpdateProductProjects(
+    $slug: String!,
+    $projectsSlugs: [String!]!
+  ) {
+    updateProductProjects(
+      slug: $slug,
+      projectsSlugs: $projectsSlugs
+    ) {
+      product {
+        slug
+        projects {
+          id,
+          name,
+          slug,
+          origin {
+            slug
+          }
+        }
+      }
+      errors
+    }
+  }
+`

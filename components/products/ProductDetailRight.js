@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { convertToKey } from '../context/FilterContext'
 import OrganizationCard from '../organizations/OrganizationCard'
-import ProjectCard from '../projects/ProjectCard'
 import SDGCard from '../sdgs/SDGCard'
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseForum } from '../shared/discourse'
@@ -13,6 +12,7 @@ import TagCard from '../tags/TagCard'
 import MaturityAccordion from './Maturity'
 import ProductCard from './ProductCard'
 import ProductDetailBuildingBlocks from './ProductDetailBuildingBlocks'
+import ProductDetailProjects from './ProductDetailProjects'
 import ProductDetailSectors from './ProductDetailSectors'
 import RepositoryList from './repositories/RepositoryList'
 const productsPath = convertToKey('Products')
@@ -77,15 +77,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
             })}
           </div>
       }
-      {
-        product.currProjects &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('project.header')}</div>
-            {product.currProjects.map((project, i) => {
-              return (<ProjectCard key={i} project={project} listType='list' />)
-            })}
-          </div>
-      }
+      {product.currentProjects && <ProductDetailProjects product={product} canEdit={canEdit} />}
       {
         product.tags &&
           <div className='mt-12'>

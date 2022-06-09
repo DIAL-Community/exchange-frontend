@@ -1,42 +1,45 @@
-import { useIntl } from 'react-intl'
-import { useState, useEffect, useCallback, useContext } from 'react'
-import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
 import { useSession } from 'next-auth/client'
-import Pill from '../shared/Pill'
-import Select from '../shared/Select'
-import EditableSection from '../shared/EditableSection'
+import { useRouter } from 'next/router'
+import { useCallback, useContext, useState } from 'react'
+import { useIntl } from 'react-intl'
 import { ToastContext } from '../../lib/ToastContext'
-import { UPDATE_ORGANIZATION_PROJECTS } from '../../mutations/organization'
+import { UPDATE_PRODUCT_PROJECTS } from '../../mutations/product'
+import { PROJECT_SEARCH_QUERY } from '../../queries/project'
 import { fetchSelectOptions } from '../../queries/utils'
 import ProjectCard from '../projects/ProjectCard'
-import { PROJECT_SEARCH_QUERY } from '../../queries/project'
+import EditableSection from '../shared/EditableSection'
+import Pill from '../shared/Pill'
+import Select from '../shared/Select'
 
-const OrganizationDetailProjects = ({ organization, canEdit }) => {
+const ProductDetailProjects = ({ product, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
 
-  const [projects, setProjects] = useState(organization.projects)
+  const [projects, setProjects] = useState(product.currentProjects)
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateOrganizationProjects, { data, loading }] = useMutation(UPDATE_ORGANIZATION_PROJECTS)
+  const [updateProductProjects, { data, loading }] = useMutation(UPDATE_PRODUCT_PROJECTS, {
+    onCompleted(data) {
+      setProjects(data.updateProductProjects.product.projects)
+      setIsDirty(false)
+      showToast(format('toast.projects.updated'), 'success', 'top-center')
+    },
+    onError() {
+      setProjects(product.currentProjects)
+      setIsDirty(false)
+      showToast(format('toast.projects.update.failure'), 'error', 'top-center')
+    }
+  })
 
   const [session] = useSession()
 
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)
-
-  useEffect(() => {
-    if (data?.updateOrganizationProjects?.errors.length === 0 && data?.updateOrganizationProjects?.organization) {
-      setProjects(data.updateOrganizationProjects.organization.projects)
-      setIsDirty(false)
-      showToast(format('organization.projects.updated'), 'success', 'top-center')
-    }
-  }, [data, showToast, format])
 
   const fetchedProjectsCallback = (data) => (
     data.projects.map((project) => ({
@@ -49,8 +52,7 @@ const OrganizationDetailProjects = ({ organization, canEdit }) => {
 
   const addProject = (project) => {
     setProjects([
-      ...projects.filter(({ slug }) => slug !== project.slug),
-      { name: project.label, slug: project.slug, origin: project.origin }
+      ...projects.filter(({ slug }) => slug !== project.slug), { name: project.label, slug: project.slug, origin: project.origin }
     ])
     setIsDirty(true)
   }
@@ -64,9 +66,9 @@ const OrganizationDetailProjects = ({ organization, canEdit }) => {
     if (session) {
       const { userEmail, userToken } = session.user
 
-      updateOrganizationProjects({
+      updateProductProjects({
         variables: {
-          slug: organization.slug,
+          slug: product.slug,
           projectsSlugs: projects.map(({ slug }) => slug)
         },
         context: {
@@ -80,18 +82,18 @@ const OrganizationDetailProjects = ({ organization, canEdit }) => {
   }
 
   const onCancel = () => {
-    setProjects(data?.updateOrganizationProjects?.organization?.projects ?? organization.projects)
+    setProjects(data?.updateProductProjects?.product?.projects ?? product.currentProjects)
     setIsDirty(false)
   }
-
+    
   const displayModeBody = projects.length > 0
     ? (
-      <div className='flex flex-col gap-2'>
+      <div className='grid grid-cols-1'>
         {projects.map((project, projectIdx) => <ProjectCard key={projectIdx} project={project} listType='list' />)}
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('organization.no-project')}
+        {format('product.no-project')}
       </div>
     )
 
@@ -126,19 +128,17 @@ const OrganizationDetailProjects = ({ organization, canEdit }) => {
     </>
 
   return (
-    (organization.projects.length > 0 || canEdit) && (
-      <EditableSection
-        canEdit={canEdit}
-        sectionHeader={format('project.header')}
-        onSubmit={onSubmit}
-        onCancel={onCancel}
-        isDirty={isDirty}
-        isMutating={loading}
-        displayModeBody={displayModeBody}
-        editModeBody={editModeBody}
-      />
-    )
+    <EditableSection
+      canEdit={canEdit}
+      sectionHeader={format('project.header')}
+      onSubmit={onSubmit}
+      onCancel={onCancel}
+      isDirty={isDirty}
+      isMutating={loading}
+      displayModeBody={displayModeBody}
+      editModeBody={editModeBody}
+    />
   )
 }
 
-export default OrganizationDetailProjects
+export default ProductDetailProjects
