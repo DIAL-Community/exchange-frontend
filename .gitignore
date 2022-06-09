@@ -38,3 +38,10 @@ yarn-error.log*
 
 # Unit test snapshot directory.
 __snapshots__
+
+# Cypress artifacts
+cypress/screenshots
+cypress/videos
+
+# Cypress environment
+cypress.env.json

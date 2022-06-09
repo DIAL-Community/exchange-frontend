@@ -122,16 +122,18 @@ const OrganizationDetailSectors = ({ organization, canEdit }) => {
     </>
 
   return (
-    <EditableSection
-      canEdit={canEdit}
-      sectionHeader={format('sector.header')}
-      onSubmit={onSubmit}
-      onCancel={onCancel}
-      isDirty={isDirty}
-      isMutating={loading}
-      displayModeBody={displayModeBody}
-      editModeBody={editModeBody}
-    />
+    <div data-testid='organization-sectors'>
+      <EditableSection
+        canEdit={canEdit}
+        sectionHeader={format('sector.header')}
+        onSubmit={onSubmit}
+        onCancel={onCancel}
+        isDirty={isDirty}
+        isMutating={loading}
+        displayModeBody={displayModeBody}
+        editModeBody={editModeBody}
+      />
+    </div>
   )
 }
 

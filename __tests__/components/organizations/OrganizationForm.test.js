@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
-import { OrganizationForm } from '../../../components/organizations/OrganizationForm'
+import OrganizationForm from '../../../components/organizations/OrganizationForm'
 import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
 import { organization } from './data/OrganizationForm'
@@ -11,7 +11,7 @@ jest.mock('next/dist/client/router')
 // Mock the next-auth's useSession.
 jest.mock('next-auth/client')
 
-describe('Unit test for the OrganizationForm component.', () => {
+describe('Unit tests for the OrganizationForm component.', () => {
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
   const ORGANIZATION_NAME_TEST_ID = 'organization-name'
   const ORGANIZATION_WEBSITE_TEST_ID = 'organization-website'
@@ -25,7 +25,7 @@ describe('Unit test for the OrganizationForm component.', () => {
 
   test('Should match snapshot - create.', () => {
     const { container } = render(
-      <CustomMockedProvider addTypename={false}>
+      <CustomMockedProvider>
         <OrganizationForm />
       </CustomMockedProvider>
     )

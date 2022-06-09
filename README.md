@@ -50,6 +50,9 @@ To configure and run the application, navigate to project directory and run the 
 
 The application will run on localhost port 3002 by default.
 
+## End to End Tests
+
+For information on End to End Tests, refer to [README](cypress/README.md) in the `cypress` directory.
 
 ## Copyright Information
 

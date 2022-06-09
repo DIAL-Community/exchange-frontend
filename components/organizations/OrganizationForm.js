@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner, FaPlus, FaMinus } from 'react-icons/fa'
 import { Controller, useForm, useFieldArray } from 'react-hook-form'
@@ -12,60 +12,11 @@ import FileUploader from '../shared/FileUploader'
 import Checkbox from '../shared/Checkbox'
 import IconButton from '../shared/IconButton'
 import Select from '../shared/Select'
-import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
+import { ToastContext } from '../../lib/ToastContext'
 import ValidationError from '../shared/ValidationError'
+import { CREATE_ORGANIZATION } from '../../mutations/organization'
 
-const generateMutationText = (mutationFunc) => {
-  return `
-    mutation (
-      $name: String!,
-      $slug: String!,
-      $aliases: JSON,
-      $imageFile: Upload,
-      $website: String,
-      $isEndorser: Boolean,
-      $whenEndorsed: ISO8601Date,
-      $endorserLevel: String,
-      $isMni: Boolean,
-      $description: String
-    ) {
-      ${mutationFunc}(
-        name: $name,
-        slug: $slug,
-        aliases: $aliases,
-        imageFile: $imageFile,
-        website: $website,
-        isEndorser: $isEndorser,
-        whenEndorsed: $whenEndorsed,
-        endorserLevel: $endorserLevel,
-        isMni: $isMni,
-        description: $description
-      ) {
-        organization {
-          name
-          slug
-          aliases
-          website
-          isEndorser
-          whenEndorsed
-          endorserLevel
-          isMni
-          imageFile
-          organizationDescription {
-            description
-            locale
-          }
-        }
-        errors
-      }
-    }
-  `
-}
-
-const MUTATE_ORGANIZATION = gql(generateMutationText('createOrganization'))
-
-// eslint-disable-next-line react/display-name
-export const OrganizationForm = React.memo(({ organization }) => {
+const OrganizationForm = React.memo(({ organization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
 
@@ -77,7 +28,7 @@ export const OrganizationForm = React.memo(({ organization }) => {
 
   const { showToast } = useContext(ToastContext)
   const { locale } = useRouter()
-  const [updateOrganization, { data }] = useMutation(MUTATE_ORGANIZATION)
+  const [updateOrganization, { data }] = useMutation(CREATE_ORGANIZATION)
 
   const endorserLevelOptions = [
     { label: format('organization.endorserLevel.none'), value: 'none' },
@@ -86,7 +37,7 @@ export const OrganizationForm = React.memo(({ organization }) => {
     { label: format('organization.endorserLevel.gold'), value: 'gold' }
   ]
 
-  const { handleSubmit, control, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
@@ -102,7 +53,7 @@ export const OrganizationForm = React.memo(({ organization }) => {
     }
   })
 
-  const [slug] = useState(organization?.slug ?? '')
+  const slug = organization?.slug ?? ''
 
   const { fields: aliases, append, remove } = useFieldArray({
     control,
@@ -127,20 +78,31 @@ export const OrganizationForm = React.memo(({ organization }) => {
     return map
   }, [organization, format])
 
-  const navigateToOrganizationDetailPage = useCallback(() => showToast(
-    format('organization.submitted'),
-    'success',
-    'top-center',
-    DEFAULT_AUTO_CLOSE_DELAY,
-    null,
-    () => router.push(`/${router.locale}/organizations/${data.createOrganization.organization.slug}`)
-  ), [data, format, router, showToast])
-
   useEffect(() => {
-    if (data?.createOrganization?.errors.length === 0 && data?.createOrganization?.organization) {
-      navigateToOrganizationDetailPage()
+    if (!data?.createOrganization?.errors.length && data?.createOrganization?.organization) {
+      showToast(
+        format('organization.submit.success'),
+        'success',
+        'top-center',
+        1000,
+        null,
+        () => router.push(`/${router.locale}/organizations/${data.createOrganization.organization.slug}`)
+      )
+    } else if (data?.createOrganization?.errors.length) {
+      setMutating(false)
+      showToast(
+        <div className='flex flex-col'>
+          <span>{format('organization.submit.failure')}</span>
+          {data?.createOrganization?.errors.map((error, errorIdx) => (
+            <span key={errorIdx}>{error}</span>
+          ))}
+        </div>,
+        'error',
+        'top-center',
+        false
+      )
     }
-  }, [data, navigateToOrganizationDetailPage])
+  }, [data, format, router, showToast])
 
   const doUpsert = async (data) => {
     if (session) {
@@ -204,100 +166,104 @@ export const OrganizationForm = React.memo(({ organization }) => {
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
-                  <label className='flex flex-col gap-y-2 mb-2 text-xl text-dial-blue' data-testid='organization-name'>
-                    <p className='required-field'>{format('organization.name')}</p>
-                    <Controller
-                      name='name'
-                      control={control}
-                      render={({ field }) => (
-                        <Input {...field} placeholder={format('organization.name')} isInvalid={errors.name} />
-                      )}
-                      rules={{ required: format('validation.required') }}
+                  <div className='flex flex-col gap-y-2 mb-2' data-testid='organization-name'>
+                    <label className='text-xl text-dial-blue required-field' htmlFor='name'>
+                      {format('organization.name')}
+                    </label>
+                    <Input
+                      {...register('name', { required: format('validation.required') })}
+                      id='name'
+                      placeholder={format('organization.name')}
+                      isInvalid={errors.name}
                     />
                     {errors.name && <ValidationError value={errors.name?.message} />}
-                  </label>
-                  <label className='flex flex-col gap-y-2 mb-2 text-xl text-dial-blue'>
-                    {format('organization.aliases')}
+                  </div>
+                  <div className='flex flex-col gap-y-2 mb-2'>
+                    <label className='text-xl text-dial-blue'>
+                      {format('organization.aliases')}
+                    </label>
                     {aliases.map((alias, aliasIdx) => (
                       <div key={alias.id} className='flex gap-x-2'>
-                        <Controller
-                          name={`aliases.${aliasIdx}.value`}
-                          control={control}
-                          render={({ field }) => <Input {...field} placeholder={format('organization.alias')} />}
+                        <Input
+                          {...register(`aliases.${aliasIdx}.value`)}
+                          placeholder={format('organization.alias')}
+                          data-testid='alias-name'
                         />
                         {isLastAlias(aliasIdx) && (
-                          <IconButton
-                            icon={<FaPlus />}
-                            onClick={() => append({ value: '' })}
-                          />
+                          <span data-testid='alias-add'>
+                            <IconButton
+                              icon={<FaPlus />}
+                              onClick={() => append({ value: '' })}
+                            />
+                          </span>
                         )}
                         {!isSingleAlias && (
-                          <IconButton
-                            icon={<FaMinus />}
-                            onClick={() => remove(aliasIdx)}
-                          />
+                          <span data-testid='alias-remove'>
+                            <IconButton
+                              icon={<FaMinus />}
+                              onClick={() => remove(aliasIdx)}
+                            />
+                          </span>
                         )}
                       </div>
                     ))}
-                  </label>
-                  <label className='flex flex-col gap-y-2 mb-2 text-xl text-dial-blue' data-testid='organization-website'>
-                    <p className='required-field'>{format('organization.website')}</p>
-                    <Controller
-                      name='website'
-                      control={control}
-                      render={({ field }) => (
-                        <Input {...field} placeholder={format('organization.website')} isInvalid={errors.website} />
-                      )}
-                      rules={{ required: format('validation.required') }}
+                  </div>
+                  <div className='flex flex-col gap-y-2 mb-2' data-testid='organization-website'>
+                    <label className='text-xl text-dial-blue required-field' htmlFor='website'>
+                      {format('organization.website')}
+                    </label>
+                    <Input
+                      {...register('website', { required: format('validation.required') })}
+                      id='website'
+                      placeholder={format('organization.website')}
+                      isInvalid={errors.website}
                     />
                     {errors.website && <ValidationError value={errors.website?.message} />}
-                  </label>
-                  <div className='flex flex-col gap-y-2 mb-2'>
+                  </div>
+                  <div className='flex flex-col gap-y-2 mb-2' data-testid='organization-logo'>
                     <label className='text-xl text-dial-blue'>
                       {format('organization.imageFile')}
                     </label>
-                    <Controller
-                      name='imageFile'
-                      control={control}
-                      render={({ field }) => <FileUploader {...field} placeholder={format('organization.imageFile')} />}
+                    <FileUploader
+                      {...register('imageFile')}
+                      placeholder={format('organization.imageFile')}
                     />
                   </div>
-                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'>
-                    <Controller
-                      name='isEndorser'
-                      control={control}
-                      render={({ field }) => <Checkbox {...field} />}
-                    />
+                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue' data-testid='organization-is-endorser'>
+                    <Checkbox {...register('isEndorser')} />
                     {format('organization.isEndorser')}
                   </label>
-                  <label className='flex flex-col gap-y-2 mb-2 text-xl text-dial-blue'>
-                    {format('organization.whenEndorsed')}
-                    <Controller
-                      name='whenEndorsed'
-                      control={control}
-                      render={({ field }) => <Input {...field} type='date' placeholder={format('organization.whenEndorsed')} />}
+                  <div className='flex flex-col gap-y-2 mb-2'>
+                    <label className='text-xl text-dial-blue'>
+                      {format('organization.whenEndorsed')}
+                    </label>
+                    <Input
+                      {...register('whenEndorsed')}
+                      type='date'
+                      placeholder={format('organization.whenEndorsed')}
+                      data-testid='organization-when-endorsed'
                     />
-                  </label>
-                  <label className='flex flex-col gap-y-2 mb-2 text-xl text-dial-blue'>
-                    {format('organization.endorserLevel')}
+                  </div>
+                  <div className='flex flex-col gap-y-2 mb-2' data-testid='organization-endorser-level'>
+                    <label className='text-xl text-dial-blue'>
+                      {format('organization.endorserLevel')}
+                    </label>
                     <Controller
                       name='endorserLevel'
                       control={control}
                       render={({ field }) => <Select {...field} options={endorserLevelOptions} placeholder={format('organization.endorserLevel')} />}
                     />
-                  </label>
-                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'>
-                    <Controller
-                      name='isMni'
-                      control={control}
-                      render={({ field }) => <Checkbox {...field} />}
-                    />
+                  </div>
+                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue' data-testid='organization-is-mni'>
+                    <Checkbox {...register('isMni')} />
                     {format('organization.isMni')}
                   </label>
                 </div>
-                <div className='w-full lg:w-1/2' style={{ minHeight: '20rem' }}>
-                  <label className='block flex flex-col gap-y-2 text-xl text-dial-blue' data-testid='organization-description'>
-                    <p className='required-field'>{format('organization.description')}</p>
+                <div className='w-full lg:w-1/2'>
+                  <div className='block flex flex-col gap-y-2' data-testid='organization-description'>
+                    <label className='text-xl text-dial-blue required-field'>
+                      {format('organization.description')}
+                    </label>
                     <Controller
                       name='description'
                       control={control}
@@ -313,7 +279,7 @@ export const OrganizationForm = React.memo(({ organization }) => {
                       rules={{ required: format('validation.required') }}
                     />
                     {errors.description && <ValidationError value={errors.description?.message} />}
-                  </label>
+                  </div>
                 </div>
               </div>
               <div className='flex flex-wrap text-xl mt-8 gap-3'>
@@ -343,3 +309,7 @@ export const OrganizationForm = React.memo(({ organization }) => {
     </div>
   )
 })
+
+OrganizationForm.displayName = 'OrganizationForm'
+
+export default OrganizationForm

@@ -202,11 +202,11 @@ export const en = {
   'product.est-effort': 'Estimated effort (person months)',
   'product.interoperable': 'Interoperable products',
   'product.included': 'Included products',
-  'product.no-interop': 'We don’t have any interoperating information for this product.',
-  'product.no-include': 'We don’t have any includes information for this product.',
+  'product.no-interop': 'We do not have any Interoperating information for this Product.',
+  'product.no-include': 'We do not have any Includes information for this Product.',
   'product.maturity-scores': 'Product maturity scores',
   'product.maturity-desc': 'These maturity scores have been sourced from organizations such as Digital Square and DIAL Open Source Center. These maturity scores are not an endorsement, but a reflection of ratings given by various organizations. For more information visit the <a href="https://docs.osc.dial.community/projects/product-registry/en/latest/maturity.html" target="_blank">Catalog Documentation</a>',
-  'product.no-maturity': 'We do not have any maturity information for this product.',
+  'product.no-maturity': 'We do not have any Maturity information for this Product.',
   'product.overall-score': 'Overall maturity score',
   'product.category-score': 'Category score',
   'product.indicator-score': 'Indicator score',
@@ -221,6 +221,15 @@ export const en = {
   'product.forum.login': 'You must be logged in to post',
   'product.forum.createAccount': 'In order to create a new post, you must first create an account on our forum. Click the button below and register an account with the username',
   'product.manualUpdate': '(Note: this data has been manually updated by the product owner)',
+  'product.name': 'Name',
+  'product.aliases': 'Aliases',
+  'product.alias': 'Alias',
+  'product.webiste': 'Website',
+  'product.imageFile': 'Logo',
+  'product.submit.success': 'Product submitted successfully',
+  'product.submit.failure': 'Product submission failed',
+  'product.no-building-block': 'We do not have any Building Block information for this Product.',
+  'product.no-sector': 'We do not have any Sector information for this Product.',
 
   'project.header': 'Projects',
   'project.label': 'Project',
@@ -246,12 +255,18 @@ export const en = {
   'organization.endorserLevel.gold': 'Gold',
   'organization.isMni': 'MNI',
   'organization.submit': 'Submit',
-  'organization.submitted': 'Organization submitted.',
+  'organization.submit.success': 'Organization submitted successfully',
+  'organization.submit.failure': 'Organization submission failed',
   'organization.countries.updated': 'Countries updated successfully',
-  'organization.sectors.updated': 'Sectors updated successfully',
   'organization.projects.updated': 'Projects updated successfully',
   'organization.contacts.updated': 'Contacts updated successfully',
   'organization.products.updated': 'Products updated successfully',
+  'organization.validation.contact.uniqueName': 'This contact is already assigned to this organization',
+  'organization.no-sector': 'We do not have any Sector information for this Organization.',
+  'organization.no-country': 'We do not have any Country information for this Organization.',
+  'organization.no-contact': 'We do not have any Contact information for this Organization.',
+  'organization.no-project': 'We do not have any Project information for this Organization.',
+  'organization.no-product': 'We do not have any Product information for this Organization.',
 
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',
@@ -701,12 +716,6 @@ export const en = {
   'tooltip.launchable': 'This product has been tagged as can be deployed to cloud provider.',
   'tooltip.digiprins': 'This product is owned or maintained by a Digital Principles endorser.',
 
-  'organization.no-sector': 'We do not have sector information for this organization.',
-  'organization.no-country': 'We do not have country information for this organization.',
-  'organization.no-contact': 'We do not have contact information for this organization.',
-  'organization.no-project': 'We do not have project information for this organization.',
-  'organization.no-products': 'We do not have product information for this organization.',
-  'organization.no-product': 'We do not have product information for this organization.',
   'office.other.header': 'Other Office Locations',
 
   'useCaseStep.header': 'Use Case Steps',
@@ -1194,5 +1203,14 @@ export const en = {
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
-  'organization.validation.contact.uniqueName': 'This contact is already assigned to this organization'
+  
+  'toast.buildingBlocks.update.success': 'Building Blocks updated successfully',
+  'toast.buildingBlocks.update.failure': 'Building Blocks update failed',
+  
+  'noEntityInformationFor': 'We do not have {entity} information for this {parentEntity}.',
+
+  'organization.validation.contact.uniqueName': 'This contact is already assigned to this organization',
+
+  'toast.sectors.update.success': 'Sectors updated successfully',
+  'toast.sectors.update.failure': 'Sectors update failed',
 }

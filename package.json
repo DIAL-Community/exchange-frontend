@@ -8,7 +8,11 @@
     "start": "next start -p 3002",
     "test": "jest",
     "test-live": "jest --watch",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress:open": "cypress open",
+    "cy:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "@apollo/client": "^3.5.8",
@@ -64,6 +68,8 @@
     "@testing-library/user-event": "^14.2.0",
     "autoprefixer": "^10.4.4",
     "babel-jest": "^27.0.6",
+    "cypress": "^9.7.0",
+    "cypress-file-upload": "^5.0.8",
     "dotenv": "^16.0.0",
     "eslint": "^7.0.0",
     "eslint-config-next": "^12.1.1",

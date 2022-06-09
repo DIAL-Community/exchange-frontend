@@ -1,19 +1,19 @@
-import { useIntl } from 'react-intl'
-import Link from 'next/link'
 import parse from 'html-react-parser'
 import { useSession } from 'next-auth/client'
+import Link from 'next/link'
+import { useIntl } from 'react-intl'
 import { convertToKey } from '../context/FilterContext'
+import OrganizationCard from '../organizations/OrganizationCard'
+import ProjectCard from '../projects/ProjectCard'
+import SDGCard from '../sdgs/SDGCard'
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseForum } from '../shared/discourse'
-import OrganizationCard from '../organizations/OrganizationCard'
-import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
-import SDGCard from '../sdgs/SDGCard'
-import SectorCard from '../sectors/SectorCard'
-import TagCard from '../tags/TagCard'
-import ProjectCard from '../projects/ProjectCard'
 import EditButton from '../shared/EditButton'
-import ProductCard from './ProductCard'
+import TagCard from '../tags/TagCard'
 import MaturityAccordion from './Maturity'
+import ProductCard from './ProductCard'
+import ProductDetailBuildingBlocks from './ProductDetailBuildingBlocks'
+import ProductDetailSectors from './ProductDetailSectors'
 import RepositoryList from './repositories/RepositoryList'
 const productsPath = convertToKey('Products')
 const repositoriesPath = convertToKey('Repositories')
@@ -66,27 +66,8 @@ const ProductDetailRight = ({ product, discourseRef }) => {
             })}
           </div>
       }
-      {
-        product.buildingBlocks &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('building-block.header')}</div>
-            <div className='text-sm text-dial-gray-dark pb-2 highlight-link' dangerouslySetInnerHTML={{ __html: format('building-block.disclaimer') }} />
-            {product.buildingBlocks.map((bb, i) => {
-              return (<BuildingBlockCard key={i} buildingBlock={bb} listType='list' />)
-            })}
-          </div>
-      }
-      {
-        product.sectors &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('sector.header')}</div>
-            <div className='grid grid-cols-1 lg:grid-cols-2'>
-              {product.sectors.map((sector, i) => {
-                return sector.isDisplayable && (<SectorCard key={i} sector={sector} listType='list' />)
-              })}
-            </div>
-          </div>
-      }
+      {product.buildingBlocks && <ProductDetailBuildingBlocks product={product} canEdit={canEdit} />}
+      {product.sectors && <ProductDetailSectors product={product} canEdit={canEdit} />}
       {
         product.organizations &&
           <div className='mt-12'>
@@ -163,7 +144,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
             {format('product.repository')}
           </span>
         </Link>
-        {canEdit && product.mainRepository.mainRepository &&
+        {canEdit && product.mainRepository?.mainRepository &&
           <EditButton
             type='link'
             href={`/${productsPath}/${product.slug}/${repositoriesPath}/${product.mainRepository.slug}`}

@@ -8,7 +8,7 @@ import Footer from '../../../components/Footer'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
 import ClientOnly from '../../../lib/ClientOnly'
 import NotFound from '../../../components/shared/NotFound'
-import { OrganizationForm } from '../../../components/organizations/OrganizationForm'
+import OrganizationForm from '../../../components/organizations/OrganizationForm'
 
 const ORGANIZATION_QUERY = gql`
   query Organization($slug: String!) {
@@ -51,13 +51,9 @@ const EditOrganization = () => {
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error && error.networkError) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (error && !error.networkError) {
     return <NotFound />
   }
 

@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the Editable Section component. Should match snapshot - with edit permission. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="mt-12"
+  >
+    <div
+      class="flex justify-between items-center mb-3"
+    >
+      <div
+        class="card-title text-dial-gray-dark"
+      >
+        Mock Section Header
+      </div>
+      <button
+        class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+        data-testid="edit-button"
+        type="button"
+      >
+        <img
+          alt="Edit"
+          class=""
+          height="12px"
+          src="/icons/edit.svg"
+          width="12px"
+        />
+        <span
+          class="text-sm"
+        >
+          Edit
+        </span>
+      </button>
+    </div>
+    display mode body
+  </div>
+</div>
+`;
+
+exports[`Unit test for the Editable Section component. Should match snapshot - without edit permission. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="mt-12"
+  >
+    <div
+      class="flex justify-between items-center mb-3"
+    >
+      <div
+        class="card-title text-dial-gray-dark"
+      >
+        Mock Section Header
+      </div>
+    </div>
+    display mode body
+  </div>
+</div>
+`;
+
+exports[`Unit test for the Editable Section component. Should switch to edit mode and back to display mode on "Cancel" button click. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="mt-12"
+  >
+    <div
+      class="flex justify-between items-center mb-3"
+    >
+      <div
+        class="card-title text-dial-gray-dark"
+      >
+        Mock Section Header
+      </div>
+    </div>
+    <div
+      class="bg-edit p-6"
+    >
+      edit mode body
+      <div
+        class="flex justify-end mt-8 gap-3 text-xl"
+      >
+        <button
+          class="submit-button"
+          data-testid="submit-button"
+          disabled=""
+          type="submit"
+        >
+          Submit
+        </button>
+        <button
+          class="cancel-button"
+          data-testid="cancel-button"
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

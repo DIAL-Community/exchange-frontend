@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import OrganizationDetailProducts from '../../../components/organizations/OrganizationDetailProducts'
 import { PRODUCT_SEARCH_QUERY } from '../../../queries/product'
 import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
@@ -59,6 +59,7 @@ describe('Unit test for the OrganizationDetailProducts component.', () => {
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await screen.findByText('Type to search...')
+    await waitFor(() => expect(container.querySelector('.react-select__loading-indicator')).toBeNull())
     expect(container).toMatchSnapshot()
   })
 

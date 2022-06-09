@@ -1,5 +1,50 @@
 import { gql } from '@apollo/client'
 
+export const CREATE_ORGANIZATION = gql`
+  mutation CreateOrganization(
+    $name: String!,
+    $slug: String!,
+    $aliases: JSON,
+    $imageFile: Upload,
+    $website: String,
+    $isEndorser: Boolean,
+    $whenEndorsed: ISO8601Date,
+    $endorserLevel: String,
+    $isMni: Boolean,
+    $description: String
+  ) {
+    createOrganization(
+      name: $name,
+      slug: $slug,
+      aliases: $aliases,
+      imageFile: $imageFile,
+      website: $website,
+      isEndorser: $isEndorser,
+      whenEndorsed: $whenEndorsed,
+      endorserLevel: $endorserLevel,
+      isMni: $isMni,
+      description: $description
+    ) {
+      organization {
+        name
+        slug
+        aliases
+        website
+        isEndorser
+        whenEndorsed
+        endorserLevel
+        isMni
+        imageFile
+        organizationDescription {
+          description
+          locale
+        }
+      }
+      errors
+    }
+  }
+`
+
 export const UPDATE_ORGANIZATION_COUNTRY = gql`
   mutation UpdateOrganizationCountry(
     $slug: String!,

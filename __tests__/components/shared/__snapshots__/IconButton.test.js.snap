@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the IconButton component. Should match snapshot. 1`] = `
+<div>
+  <button
+    class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+    data-testid="icon-button"
+    type="button"
+  >
+    +
+  </button>
+</div>
+`;

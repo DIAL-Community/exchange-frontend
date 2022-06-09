@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import ClientOnly from '../../../lib/ClientOnly'
-import { OrganizationForm } from '../../../components/organizations/OrganizationForm'
+import OrganizationForm from '../../../components/organizations/OrganizationForm'
 
 const CreateOrganization = () => ( 
   <>

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the Input component. Should match snapshot. 1`] = `
+<div>
+  <input
+    class="w-full"
+    type="text"
+    value="test"
+  />
+</div>
+`;

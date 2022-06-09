@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the Checkbox component. Should match snapshot - checked. 1`] = `
+<input
+  checked=""
+  class="h-8 w-8"
+  data-testid="checkbox"
+  type="checkbox"
+/>
+`;
+
+exports[`Unit test for the Checkbox component. Should match snapshot - unchecked. 1`] = `
+<input
+  class="h-8 w-8"
+  data-testid="checkbox"
+  type="checkbox"
+/>
+`;
