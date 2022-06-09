@@ -30,6 +30,17 @@ module.exports = {
         __typename: 'Sector'
       }
     ],
+    currentProjects: [
+      {
+        id: 1,
+        name: 'Test Project',
+        slug: 'test_project',
+        origin: {
+          slug: 'origin_slug'
+        },
+        __typename: 'Project'
+      }
+    ],
     __typename: 'Product'
   },
   createProductSuccess: {

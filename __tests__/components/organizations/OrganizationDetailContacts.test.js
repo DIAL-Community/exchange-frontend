@@ -131,6 +131,8 @@ describe('Unit test for the OrganizationDetailContacts component.', () => {
     fireEvent.change(inputEmail, { target: { value: contacts.data.email } })
     fireEvent.change(inputTitle, { target: { value: contacts.data.title } })
     await act(async () => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))   
+
+    expect(inputName).toHaveTextContent('')
     expect(inputEmail).toHaveTextContent('')
     expect(inputTitle).toHaveTextContent('')
     expect(container).toMatchSnapshot()
