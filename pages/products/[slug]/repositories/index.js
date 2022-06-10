@@ -59,7 +59,7 @@ const ProductHeader = ({ product }) => {
   )
 }
 
-const PageDefinition = (slug, repositorySlug) => {
+const PageDefinition = ({ slug, repositorySlug }) => {
   const [session] = useSession()
   const { data, loading, error } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
 
@@ -129,7 +129,7 @@ const ProductRepositories = () => {
       </Head>
       <Header />
       <ClientOnly>
-        <PageDefinition {...{ slug, repositorySlug }} />
+        <PageDefinition slug={slug} repositorySlug={repositorySlug} />
       </ClientOnly>
       <Footer />
     </>
