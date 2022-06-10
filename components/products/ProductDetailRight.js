@@ -3,7 +3,6 @@ import { useSession } from 'next-auth/client'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { convertToKey } from '../context/FilterContext'
-import OrganizationCard from '../organizations/OrganizationCard'
 import SDGCard from '../sdgs/SDGCard'
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseForum } from '../shared/discourse'
@@ -15,6 +14,8 @@ import ProductDetailBuildingBlocks from './ProductDetailBuildingBlocks'
 import ProductDetailProjects from './ProductDetailProjects'
 import ProductDetailSectors from './ProductDetailSectors'
 import RepositoryList from './repositories/RepositoryList'
+import ProductDetailOrganizations from './ProductDetailOrganizations'
+
 const productsPath = convertToKey('Products')
 const repositoriesPath = convertToKey('Repositories')
 
@@ -68,15 +69,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
       }
       {product.buildingBlocks && <ProductDetailBuildingBlocks product={product} canEdit={canEdit} />}
       {product.sectors && <ProductDetailSectors product={product} canEdit={canEdit} />}
-      {
-        product.organizations &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('organization.header')}</div>
-            {product.organizations.map((org, i) => {
-              return (<OrganizationCard key={i} organization={org} listType='list' />)
-            })}
-          </div>
-      }
+      {product.organizations && <ProductDetailOrganizations product={product} canEdit={canEdit} />}
       {product.currentProjects && <ProductDetailProjects product={product} canEdit={canEdit} />}
       {
         product.tags &&

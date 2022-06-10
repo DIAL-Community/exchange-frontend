@@ -14,6 +14,12 @@ module.exports = {
       locale: 'en',
       __typename: 'ProductDescription'
     },
+    organizations: [{
+      id: 1,
+      name: 'Test Organization',
+      slug: 'to',
+      __typename: 'Organization'
+    }],
     buildingBlocks: [{
       id: 3,
       name: 'Test Building Block',
