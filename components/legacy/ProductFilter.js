@@ -9,7 +9,6 @@ import { BuildingBlockAutocomplete, BuildingBlockFilters } from '../filter/eleme
 import { CountryAutocomplete, CountryFilters } from '../filter/element/Country'
 import { OrganizationAutocomplete, OrganizationFilters } from '../filter/element/Organization'
 import { OriginAutocomplete, OriginFilters } from '../filter/element/Origin'
-import { ProductTypeFilters, ProductTypeSelect } from '../filter/element/ProductType'
 import { SDGAutocomplete, SDGFilters } from '../filter/element/SDG'
 import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
 import { SectorAutocomplete, SectorFilters } from '../filter/element/Sector'
@@ -30,12 +29,12 @@ const ProductFilter = (props) => {
 
   const {
     withMaturity, productDeployable, forCovid, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, productTypes, endorsers
+    useCases, workflows, buildingBlocks, endorsers
   } = useContext(ProductFilterContext)
 
   const {
     setWithMaturity, setProductDeployable, setForCovid, setSectors, setCountries, setOrganizations,
-    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setProductTypes, setEndorsers
+    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers
   } = useContext(ProductFilterDispatchContext)
 
   const toggleWithMaturity = () => {
@@ -60,7 +59,7 @@ const ProductFilter = (props) => {
     count = productDeployable ? count + 1 : count
     count = count + countries.length + organizations.length + tags.length +
       sectors.length + origins.length + sdgs.length + useCases.length +
-      workflows.length + buildingBlocks.length + productTypes.length + endorsers.length
+      workflows.length + buildingBlocks.length + endorsers.length
 
     return count
   }
@@ -74,7 +73,6 @@ const ProductFilter = (props) => {
     setCountries([])
     setSectors([])
     setOrganizations([])
-    setProductTypes([])
     setSDGs([])
     setTags([])
     setUseCases([])
@@ -95,7 +93,6 @@ const ProductFilter = (props) => {
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
     const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
     const organizationFilters = organizations.map(organization => `organizations=${organization.value}--${organization.label}`)
-    const productTypeFilters = productTypes.map(productType => `productTypes=${productType.value}--${productType.label}`)
     const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
     const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
     const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
@@ -105,7 +102,7 @@ const ProductFilter = (props) => {
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, maturityFilter, deployableFilter, ...originFilters, ...countryFilters, ...productTypeFilters,
+      activeFilter, maturityFilter, deployableFilter, ...originFilters, ...countryFilters,
       ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters, ...useCaseFilters,
       ...workflowFilters, ...buildingBlockFilters, ...endorserFilters
     ].filter(f => f).join('&')
@@ -122,7 +119,6 @@ const ProductFilter = (props) => {
       parseQuery(query, 'countries', countries, setCountries)
       parseQuery(query, 'sectors', sectors, setSectors)
       parseQuery(query, 'organizations', organizations, setOrganizations)
-      parseQuery(query, 'productTypes', productTypes, setProductTypes)
       parseQuery(query, 'sdgs', sdgs, setSDGs)
       parseQuery(query, 'tags', tags, setTags)
       parseQuery(query, 'useCases', useCases, setUseCases)
@@ -192,7 +188,6 @@ const ProductFilter = (props) => {
               <div className='text-sm text-dial-gray-light flex flex-row flex-wrap'>
                 <OriginAutocomplete {...{ origins, setOrigins }} containerStyles='px-2 pb-2' />
                 <EndorserAutocomplete {...{ endorsers, setEndorsers }} containerStyles='px-2 pb-2' />
-                <ProductTypeSelect {...{ productTypes, setProductTypes }} containerStyles='px-2 pb-2' />
                 <CountryAutocomplete {...{ countries, setCountries }} containerStyles='px-2 pb-2' />
                 <SectorAutocomplete {...{ sectors, setSectors }} containerStyles='px-2 pb-2' />
                 <OrganizationAutocomplete {...{ organizations, setOrganizations }} containerStyles='px-2 pb-2' />
@@ -226,7 +221,6 @@ const ProductFilter = (props) => {
           <TagFilters {...{ tags, setTags }} />
           <OriginFilters {...{ origins, setOrigins }} />
           <EndorserFilters {...{ endorsers, setEndorsers }} />
-          <ProductTypeFilters {...{ productTypes, setProductTypes }} />
           <CountryFilters {...{ countries, setCountries }} />
           <SectorFilters {...{ sectors, setSectors }} />
           <OrganizationFilters {...{ organizations, setOrganizations }} />

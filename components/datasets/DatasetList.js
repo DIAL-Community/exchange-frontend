@@ -6,25 +6,25 @@ import { FixedSizeGrid, FixedSizeList } from 'react-window'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import InfiniteLoader from 'react-window-infinite-loader'
 import { FilterContext } from '../context/FilterContext'
-import { ProductFilterContext } from '../context/ProductFilterContext'
+import { DatasetFilterContext } from '../context/DatasetFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
 import NotFound from '../shared/NotFound'
-import ProductCard from './ProductCard'
+import DatasetCard from './DatasetCard'
 
 /* Default number of elements coming from graphql query. */
 const DEFAULT_PAGE_SIZE = 20
-/* Minimum width per product card. This will decide how many column we have in the page. */
+/* Minimum width per dataset card. This will decide how many column we have in the page. */
 /* The value is based on the minimum required to render Bahmni card. */
 const MIN_PRODUCT_CARD_WIDTH = 380
-/* Default height of the product card. */
+/* Default height of the dataset card. */
 const MIN_PRODUCT_CARD_HEIGHT = 540
-/* Default spacing between product card in a row. This is 0.5 rem. */
+/* Default spacing between dataset card in a row. This is 0.5 rem. */
 const PRODUCT_CARD_GUTTER_SIZE = 8
-/* Height of the product's single list element when viewing the list view. */
+/* Height of the dataset's single list element when viewing the list view. */
 const MIN_PRODUCT_LIST_SIZE = 80
 
-const PRODUCTS_QUERY = gql`
-query SearchProducts(
+const DATASETS_QUERY = gql`
+query SearchDatasets(
   $first: Int,
   $after: String,
   $origins: [String!],
@@ -33,15 +33,10 @@ query SearchProducts(
   $organizations: [String!],
   $sdgs: [String!],
   $tags: [String!],
-  $useCases: [String!],
-  $workflows: [String!],
-  $buildingBlocks: [String!],
-  $endorsers: [String!],
-  $productDeployable: Boolean,
-  $withMaturity: Boolean,
+  $datasetTypes: [String!],
   $search: String!
   ) {
-  searchProducts(
+  searchDatasets(
     first: $first,
     after: $after,
     origins: $origins,
@@ -50,12 +45,7 @@ query SearchProducts(
     organizations: $organizations,
     sdgs: $sdgs,
     tags: $tags,
-    useCases: $useCases,
-    workflows: $workflows,
-    buildingBlocks: $buildingBlocks,
-    endorsers: $endorsers,
-    productDeployable: $productDeployable,
-    withMaturity: $withMaturity,
+    datasetTypes: $datasetTypes,
     search: $search
   ) {
     __typename
@@ -71,51 +61,36 @@ query SearchProducts(
       name
       slug
       imageFile
-      isLaunchable
-      maturityScore
-      productType
+      datasetType
       tags
-      endorsers {
-        name
-        slug
-      }
       origins{
         name
         slug
-      }
-      buildingBlocks {
-        slug
-        name
-        imageFile
       }
       sustainableDevelopmentGoals {
         slug
         name
       }
-      productDescription {
+      datasetDescription {
         description
         locale
-      }
-      mainRepository {
-        license
       }
     }
   }
 }
 `
 
-const ProductListQuery = () => {
+const DatasetListQuery = () => {
   const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const {
-    origins, countries, sectors, organizations, sdgs, tags, useCases, workflows, buildingBlocks, 
-    endorsers, productDeployable, withMaturity, search
-  } = useContext(ProductFilterContext)
+    origins, countries, sectors, organizations, sdgs, tags, datasetTypes, search
+  } = useContext(DatasetFilterContext)
 
   const { locale } = useRouter()
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { loading, error, data, fetchMore, refetch } = useQuery(PRODUCTS_QUERY, {
+  const { loading, error, data, fetchMore, refetch } = useQuery(DATASETS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       origins: origins.map(origin => origin.value),
@@ -124,12 +99,7 @@ const ProductListQuery = () => {
       organizations: organizations.map(organization => organization.value),
       sdgs: sdgs.map(sdg => sdg.value),
       tags: tags.map(tag => tag.label),
-      useCases: useCases.map(useCase => useCase.value),
-      workflows: workflows.map(workflow => workflow.value),
-      buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
-      endorsers: endorsers.map(endorser => endorser.value),
-      productDeployable: productDeployable,
-      withMaturity: withMaturity,
+      datasetTypes: datasetTypes.map(datasetType => datasetType.value),
       search: search
     },
     context: { headers: { 'Accept-Language': locale } }
@@ -146,12 +116,7 @@ const ProductListQuery = () => {
         organizations: organizations.map(organization => organization.value),
         sdgs: sdgs.map(sdg => sdg.value),
         tags: tags.map(tag => tag.label),
-        useCases: useCases.map(useCase => useCase.value),
-        workflows: workflows.map(workflow => workflow.value),
-        buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
-        endorsers: endorsers.map(endorser => endorser.value),
-        productDeployable: productDeployable,
-        withMaturity: withMaturity,
+        datasetTypes: datasetTypes.map(datasetType => datasetType.value),
         search: search
       }
     })
@@ -165,7 +130,7 @@ const ProductListQuery = () => {
     if (data) {
       setResultCounts({
         ...resultCounts,
-        ...{ [['filter.entity.products']]: data.searchProducts.totalCount }
+        ...{ [['filter.entity.datasets']]: data.searchDatasets.totalCount }
       })
     }
   }, [data])
@@ -182,16 +147,16 @@ const ProductListQuery = () => {
     return <NotFound />
   }
 
-  const { searchProducts: { nodes, pageInfo, totalCount } } = data
+  const { searchDatasets: { nodes, pageInfo, totalCount } } = data
   if (nodes.length <= 0) {
     return (
       <div className='px-3 py-4'>
-        {format('noResults.entity', { entity: format('product.label').toLowerCase() })}
+        {format('noResults.entity', { entity: format('dataset.label').toLowerCase() })}
       </div>
     )
   }
 
-  const isProductLoaded = (index) => !pageInfo.hasNextPage || index < nodes.length
+  const isDatasetLoaded = (index) => !pageInfo.hasNextPage || index < nodes.length
 
   return (
     <div className='pt-4'>
@@ -199,13 +164,13 @@ const ProductListQuery = () => {
         displayType === 'list' &&
           <div className='flex flex-row my-3 px-4 gap-x-4'>
             <div className='w-4/12 text-sm font-semibold opacity-70'>
-              {format('product.header').toUpperCase()}
+              {format('dataset.header').toUpperCase()}
             </div>
             <div className='hidden lg:block w-4/12 text-sm font-semibold opacity-50'>
               {format('origin.header').toUpperCase()}
             </div>
             <div className='hidden lg:block w-2/12 text-sm text-right px-2 font-semibold opacity-50'>
-              {format('product.card.dataset').toUpperCase()}
+              {format('dataset.card.dataset').toUpperCase()}
             </div>
           </div>
       }
@@ -213,7 +178,7 @@ const ProductListQuery = () => {
         <AutoSizer>
           {({ height, width }) => (
             <InfiniteLoader
-              isItemLoaded={isProductLoaded}
+              isItemLoaded={isDatasetLoaded}
               itemCount={totalCount}
               loadMoreItems={handleLoadMore}
             >
@@ -256,7 +221,7 @@ const ProductListQuery = () => {
                       >
                         {({ columnIndex, rowIndex, style }) => {
                           const currentIndex = rowIndex * columnCount + columnIndex
-                          const product = nodes[currentIndex]
+                          const dataset = nodes[currentIndex]
 
                           return (
                             <div
@@ -269,10 +234,10 @@ const ProductListQuery = () => {
                               }}
                             >
                               {
-                                currentIndex < nodes.length && product &&
-                                <ProductCard listType={displayType} {...{ product, filterDisplayed }} />
+                                currentIndex < nodes.length && dataset &&
+                                <DatasetCard listType={displayType} {...{ dataset, filterDisplayed }} />
                               }
-                              {currentIndex < nodes.length && !product && <Loading />}
+                              {currentIndex < nodes.length && !dataset && <Loading />}
                             </div>
                           )
                         }}
@@ -303,15 +268,15 @@ const ProductListQuery = () => {
                         ref={ref}
                       >
                         {({ index, style }) => {
-                          const product = nodes[index]
+                          const dataset = nodes[index]
 
                           return (
                             <div style={style}>
                               {
-                                index < nodes.length && product &&
-                                <ProductCard listType={displayType} {...{ product, filterDisplayed }} />
+                                index < nodes.length && dataset &&
+                                <DatasetCard listType={displayType} {...{ dataset, filterDisplayed }} />
                               }
-                              {index < nodes.length && !product && <Loading />}
+                              {index < nodes.length && !dataset && <Loading />}
                             </div>
                           )
                         }}
@@ -328,4 +293,4 @@ const ProductListQuery = () => {
   )
 }
 
-export default ProductListQuery
+export default DatasetListQuery

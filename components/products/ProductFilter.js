@@ -8,7 +8,6 @@ import { CountryAutocomplete } from '../filter/element/Country'
 import { EndorserAutocomplete } from '../filter/element/Endorser'
 import { OrganizationAutocomplete } from '../filter/element/Organization'
 import { OriginAutocomplete } from '../filter/element/Origin'
-import { ProductTypeSelect } from '../filter/element/ProductType'
 import { SDGAutocomplete } from '../filter/element/SDG'
 import { SectorAutocomplete } from '../filter/element/Sector'
 import { TagAutocomplete } from '../filter/element/Tag'
@@ -51,10 +50,10 @@ const ProductFilter = () => {
     <div className='px-4 py-4'>
       <div className='text-dial-gray-dark'>
         <div className='px-2 mb-4 text-xs'>
-          <button className='font-semibold flex gap-1' onClick={() => setHintDisplayed(true)}>
+          <a className='cursor-pointer font-semibold flex gap-1' onClick={() => setHintDisplayed(true)}>
             {format('filter.hint.text')} {format('product.label')}
             <BsQuestionCircleFill className='inline text-sm mb-1' />
-          </button>
+          </a>
         </div>
         <div className='text-sm flex flex-row'>
           <div className='text-xl px-2 pb-3'>
@@ -109,7 +108,6 @@ const ProductFilter = () => {
           <div className='text-sm text-dial-gray-light flex flex-row flex-wrap'>
             <OriginAutocomplete {...{ origins, setOrigins }} containerStyles='px-2 pb-2' controlSize='20rem' />
             <EndorserAutocomplete {...{ endorsers, setEndorsers }} containerStyles='px-2 pb-2' controlSize='20rem' />
-            <ProductTypeSelect {...{ productTypes, setProductTypes }} containerStyles='px-2 pb-2' controlSize='20rem' />
             <CountryAutocomplete {...{ countries, setCountries }} containerStyles='px-2 pb-2' controlSize='20rem' />
             <SectorAutocomplete {...{ sectors, setSectors }} containerStyles='px-2 pb-2' controlSize='20rem' />
             <OrganizationAutocomplete {...{ organizations, setOrganizations }} containerStyles='px-2 pb-2' controlSize='20rem' />
