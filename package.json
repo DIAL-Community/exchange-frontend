@@ -29,6 +29,7 @@
     "graphql": "^16.3.0",
     "handsontable": "^11.1.0",
     "html-react-parser": "^1.4.9",
+    "iframe-resizer-react": "^1.1.0",
     "immutability-helper": "^3.1.1",
     "isomorphic-unfetch": "^3.1.0",
     "leaflet": "^1.7.1",

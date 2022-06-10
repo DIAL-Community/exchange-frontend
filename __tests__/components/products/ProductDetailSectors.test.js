@@ -61,6 +61,9 @@ describe('Unit test for the ProductDetailSectors component.', () => {
         />
       </CustomMockedProvider>
     )
+
+    await waitFor(() => new Promise((res) => setTimeout(res, 0)))
+
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await screen.findByText(SECTOR_SEARCH_PLACEHOLDER)
     await waitFor(() => expect(container.querySelector('.react-select__loading-indicator')).toBeNull())

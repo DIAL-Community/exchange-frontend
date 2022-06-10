@@ -24,20 +24,20 @@ const customStyles = (controlSize = '12rem') => {
   }
 }
 
-export const ProductTypeSelect = (props) => {
-  const { productTypes, setProductTypes, containerStyles, controlSize } = props
+export const DatasetTypeSelect = (props) => {
+  const { datasetTypes, setDatasetTypes, containerStyles, controlSize } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const selectProductType = (productType) => {
-    setProductTypes([...productTypes.filter(p => p.value !== productType.value), productType])
+  const selectDatasetType = (datasetType) => {
+    setDatasetTypes([...datasetTypes.filter(p => p.value !== datasetType.value), datasetType])
   }
 
   const options = [
-    { value: 'product_and_dataset', label: format('productType.allType') },
-    { value: 'product', label: format('productType.productOnly') },
-    { value: 'dataset', label: format('productType.datasetOnly') }
+    { value: 'dataset_and_content', label: format('datasetType.allType') },
+    { value: 'dataset', label: format('datasetType.datasetOnly') },
+    { value: 'content', label: format('datasetType.contentOnly') }
   ]
 
   const fetchOptions = async (input) => {
@@ -47,13 +47,13 @@ export const ProductTypeSelect = (props) => {
   return (
     <div className={`${containerStyles} catalog-filter text-dial-gray-dark flex`}>
       <AsyncSelect
-        aria-label={format('filter.byEntity', { entity: format('productType.label') })}
+        aria-label={format('filter.byEntity', { entity: format('datasetType.label') })}
         className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions={options}
         loadOptions={fetchOptions}
-        onChange={selectProductType}
-        placeholder={format('filter.byEntity', { entity: format('productType.label') })}
+        onChange={selectDatasetType}
+        placeholder={format('filter.byEntity', { entity: format('datasetType.label') })}
         styles={customStyles(controlSize)}
         value=''
       />
@@ -61,24 +61,24 @@ export const ProductTypeSelect = (props) => {
   )
 }
 
-export const ProductTypeFilters = (props) => {
-  const { productTypes, setProductTypes } = props
+export const DatasetTypeFilters = (props) => {
+  const { datasetTypes, setDatasetTypes } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const removeProductType = (productTypeId) => {
-    setProductTypes(productTypes.filter(productType => productType.value !== productTypeId))
+  const removeDatasetType = (datasetTypeId) => {
+    setDatasetTypes(datasetTypes.filter(datasetType => datasetType.value !== datasetTypeId))
   }
 
   return (
     <>
       {
-        productTypes &&
-          productTypes.map(productType => (
-            <div key={`filter-${productType.label}`} className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {`${format('productType.label')}: ${productType.label}`}
-              <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeProductType(productType.value)} />
+        datasetTypes &&
+          datasetTypes.map(datasetType => (
+            <div key={`filter-${datasetType.label}`} className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
+              {`${format('datasetType.label')}: ${datasetType.label}`}
+              <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeDatasetType(datasetType.value)} />
             </div>
           ))
       }

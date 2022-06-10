@@ -7,6 +7,7 @@ import { FilterContext, FILTER_ITEMS, MAPPED_FILTER_ITEMS_URL } from '../context
 import { QueryParamContext } from '../context/QueryParamContext'
 import { truncate } from '../../lib/utilities'
 import ProductFilter from './ProductFilter'
+import DatasetFilter from './DatasetFilter'
 import BuildingBlockFilter from './BuildingBlockFilter'
 import WorkflowFilter from './WorkflowFilter'
 import UseCaseFilter from './UseCaseFilter'
@@ -24,6 +25,7 @@ const COUNT_QUERY = gql`
       workflowCount
       buildingBlockCount
       productCount
+      datasetCount
       projectCount
       orgCount
       mapCount
@@ -52,6 +54,7 @@ const Filter = (props) => {
         'filter.entity.workflows': data.counts.workflowCount,
         'filter.entity.buildingBlocks': data.counts.buildingBlockCount,
         'filter.entity.products': data.counts.productCount,
+        'filter.entity.datasets': data.counts.datasetCount,
         'filter.entity.projects': data.counts.projectCount,
         'filter.entity.organizations': data.counts.orgCount,
         'filter.entity.maps': data.counts.mapCount
@@ -303,9 +306,10 @@ const Filter = (props) => {
           {activeTab === 2 && <WorkflowFilter filterDisplayed={filterDisplayed} />}
           {activeTab === 3 && <BuildingBlockFilter filterDisplayed={filterDisplayed} />}
           {activeTab === 4 && <ProductFilter filterDisplayed={filterDisplayed} />}
-          {activeTab === 5 && <ProjectFilter filterDisplayed={filterDisplayed} />}
-          {activeTab === 6 && <OrganizationFilter filterDisplayed={filterDisplayed} />}
-          {activeTab === 7 && <MapFilter filterDisplayed={filterDisplayed} />}
+          {activeTab === 5 && <DatasetFilter filterDisplayed={filterDisplayed} />}
+          {activeTab === 6 && <ProjectFilter filterDisplayed={filterDisplayed} />}
+          {activeTab === 7 && <OrganizationFilter filterDisplayed={filterDisplayed} />}
+          {activeTab === 8 && <MapFilter filterDisplayed={filterDisplayed} />}
         </div>
       </div>
       <div className='max-w-catalog mx-auto md:sticky md:sticky-under-filter'>

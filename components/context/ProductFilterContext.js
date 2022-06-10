@@ -16,7 +16,6 @@ const ProductFilterProvider = ({ children }) => {
   const [useCases, setUseCases] = useState([])
   const [workflows, setWorkflows] = useState([])
   const [buildingBlocks, setBuildingBlocks] = useState([])
-  const [productTypes, setProductTypes] = useState([])
   const [endorsers, setEndorsers] = useState([])
 
   const [search, setSearch] = useState('')
@@ -36,7 +35,6 @@ const ProductFilterProvider = ({ children }) => {
     useCases,
     workflows,
     buildingBlocks,
-    productTypes,
     endorsers,
     search,
     sortColumn,
@@ -55,7 +53,6 @@ const ProductFilterProvider = ({ children }) => {
     setUseCases,
     setWorkflows,
     setBuildingBlocks,
-    setProductTypes,
     setEndorsers,
     setSearch,
     setSortColumn,

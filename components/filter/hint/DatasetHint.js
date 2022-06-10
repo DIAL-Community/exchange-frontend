@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { FilterContext } from '../../context/FilterContext'
 
-const ProductHint = () => {
+const DatasetHint = () => {
   const { setHintDisplayed } = useContext(FilterContext)
 
   const { formatMessage } = useIntl()
@@ -15,26 +15,20 @@ const ProductHint = () => {
         <div className='col-span-11'>
           <div className='text-sm flex flex-col'>
             <div className='text-xl font-semibold px-8 pb-3'>
-              {format('product.label')}
+              {format('dataset.label')}
             </div>
             <div className='text-base px-8'>
-              {format('product.hint.subtitle')}
+              {format('dataset.hint.subtitle')}
             </div>
-            <img className='w-48 h-48 mt-8 mx-auto xl:mt-0' src='images/tiles/product.svg' alt='' />
+            <img className='w-48 h-48 mt-8 mx-auto xl:mt-0' src='images/placeholders/dataset.png' alt='' />
           </div>
         </div>
         <div className='col-span-11'>
           <div className='text-lg px-8 pb-3'>
-            {format('product.hint.characteristicTitle').toUpperCase()}
+            {format('dataset.hint.descriptionTitle').toUpperCase()}
           </div>
           <div className='text-sm px-8 pb-3'>
-            {format('product.hint.characteristics')}
-          </div>
-          <div className='text-lg px-8 pb-3'>
-            {format('product.hint.descriptionTitle').toUpperCase()}
-          </div>
-          <div className='text-sm px-8 pb-3'>
-            {parse(format('product.hint.description'))}
+            {parse(format('dataset.hint.description'))}
           </div>
         </div>
         <div className='absolute right-2 top-2'>
@@ -50,4 +44,4 @@ const ProductHint = () => {
   )
 }
 
-export default ProductHint
+export default DatasetHint

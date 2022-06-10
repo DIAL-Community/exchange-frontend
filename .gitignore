@@ -37,7 +37,7 @@ yarn-error.log*
 .history
 
 # Unit test snapshot directory.
-__snapshots__
+# __snapshots__
 
 # Cypress artifacts
 cypress/screenshots
