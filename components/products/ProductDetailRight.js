@@ -70,7 +70,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
       {product.sectors && <ProductDetailSectors product={product} canEdit={canEdit} />}
       {product.organizations && <ProductDetailOrganizations product={product} canEdit={canEdit} />}
       {product.currentProjects && <ProductDetailProjects product={product} canEdit={canEdit} />}
-      {product.tags && <ProductDetailTags product={product} canEdit />}
+      {product.tags && <ProductDetailTags product={product} canEdit={canEdit} />}
       <div className='mt-12 card-title mb-3 text-dial-gray-dark'>{format('product.source')}</div>
       <div className='grid grid-cols-3'>
         <div className='pb-5 pr-5'>
