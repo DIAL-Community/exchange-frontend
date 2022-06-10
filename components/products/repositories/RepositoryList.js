@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import classNames from 'classnames'
 import RepositoryCard from './RepositoryCard'
 
 const REPOSITORIES_QUERY = gql`
@@ -34,18 +35,20 @@ const RepositoryList = ({ productSlug, repositorySlug, listStyle, shadowOnContai
 
   return (
     <div className={`${shadowOnContainer ? 'shadow-xl' : 'h-60 overflow-y-scroll'}`}>
-      {
-        loading &&
+      {loading &&
           <div className='absolute right-4 text-white bg-dial-gray-dark px-3 py-2 mt-2 rounded text-sm'>
             {format('productRepositories.loading.indicator')}
           </div>
       }
-      {
-        data &&
-          data.productRepositories.map((productRepository, index) => (
-            <RepositoryCard key={index} productRepository={productRepository} repositorySlug={repositorySlug} listStyle={listStyle} />
-          ))
-      }
+      {!data?.productRepositories.length
+        ? (
+          <div className={classNames({ 'pl-3 pb-5 pt-5': shadowOnContainer }, 'text-sm text-gray')}>
+            {format('productRepository.no-repositories')}
+          </div>
+        ) :
+        data?.productRepositories.map((productRepository, index) => (
+          <RepositoryCard key={index} productRepository={productRepository} repositorySlug={repositorySlug} listStyle={listStyle} />
+        ))}
     </div>
   )
 }

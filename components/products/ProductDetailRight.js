@@ -1,19 +1,18 @@
+import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { useSession } from 'next-auth/client'
-import Link from 'next/link'
-import { useIntl } from 'react-intl'
 import { convertToKey } from '../context/FilterContext'
 import SDGCard from '../sdgs/SDGCard'
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseForum } from '../shared/discourse'
 import EditButton from '../shared/EditButton'
 import TagCard from '../tags/TagCard'
-import MaturityAccordion from './Maturity'
 import ProductCard from './ProductCard'
+import MaturityAccordion from './Maturity'
+import RepositoryList from './repositories/RepositoryList'
 import ProductDetailBuildingBlocks from './ProductDetailBuildingBlocks'
 import ProductDetailProjects from './ProductDetailProjects'
 import ProductDetailSectors from './ProductDetailSectors'
-import RepositoryList from './repositories/RepositoryList'
 import ProductDetailOrganizations from './ProductDetailOrganizations'
 
 const productsPath = convertToKey('Products')
@@ -123,17 +122,18 @@ const ProductDetailRight = ({ product, discourseRef }) => {
           })}
         </div>
       </div>
-      <div className='flex justify-between  mt-12 mb-3'>
-        <Link href={`${product.slug}/repositories`} passHref>
-          <span className='cursor-pointer text-dial-gray-dark border-b-2 border-transparent hover:border-dial-yellow inline card-title'>
-            {format('product.repository')}
-          </span>
-        </Link>
-        {canEdit && product.mainRepository?.mainRepository &&
+      <div className='flex justify-between mt-12 mb-3'>
+        <span className='text-dial-gray-dark border-b-2 border-transparent card-title'>
+          {format('product.repository')}
+        </span>
+        {canEdit && (
           <EditButton
             type='link'
-            href={`/${productsPath}/${product.slug}/${repositoriesPath}/${product.mainRepository.slug}`}
-          />}
+            href={product.mainRepository?.mainRepository
+              ? `/products/${product.slug}/repositories/${product.mainRepository.slug}`
+              : `/products/${product.slug}/repositories`}
+          />
+        )}
       </div>
       <RepositoryList productSlug={product.slug} />
       <div className='mt-12 grid grid-cols-1 xl:grid-cols-2 gap-y-12 xl:gap-y-0'>
