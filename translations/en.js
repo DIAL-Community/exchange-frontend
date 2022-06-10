@@ -228,6 +228,7 @@ export const en = {
   'product.imageFile': 'Logo',
   'product.submit.success': 'Product submitted successfully',
   'product.submit.failure': 'Product submission failed',
+  'product.no-organization': 'We do not have any Organization information for this Product.',
   'product.no-building-block': 'We do not have any Building Block information for this Product.',
   'product.no-sector': 'We do not have any Sector information for this Product.',
   'product.no-project': 'We do not have any Project information for this Product.',
@@ -262,7 +263,6 @@ export const en = {
   'organization.projects.updated': 'Projects updated successfully',
   'organization.contacts.updated': 'Contacts updated successfully',
   'organization.products.updated': 'Products updated successfully',
-  'organization.validation.contact.uniqueName': 'This contact is already assigned to this organization',
   'organization.no-sector': 'We do not have any Sector information for this Organization.',
   'organization.no-country': 'We do not have any Country information for this Organization.',
   'organization.no-contact': 'We do not have any Contact information for this Organization.',
@@ -1204,11 +1204,11 @@ export const en = {
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
-  
-  'noEntityInformationFor': 'We do not have {entity} information for this {parentEntity}.',
-  
+
   'toast.buildingBlocks.update.success': 'Building Blocks updated successfully',
   'toast.buildingBlocks.update.failure': 'Building Blocks update failed',
+  'toast.organizations.update.success': 'Organizations updated successfully',
+  'toast.organizations.update.failure': 'Organizations update failed',
   'toast.sectors.update.success': 'Sectors updated successfully',
   'toast.sectors.update.failure': 'Sectors update failed',
   'toast.projects.updated': 'Projects updated successfully',
