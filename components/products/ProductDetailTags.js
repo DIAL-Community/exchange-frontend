@@ -29,7 +29,7 @@ const ProductDetailTags = ({ product, canEdit }) => {
     onError: () => {
       setTags(product.tags)
       setIsDirty(false)
-      showToast(format('toast.tags.failed.failure'), 'error', 'top-center')
+      showToast(format('toast.tags.update.failure'), 'error', 'top-center')
     },
     onCompleted: (data) => {
       setTags(data.updateProductTags.product.tags)

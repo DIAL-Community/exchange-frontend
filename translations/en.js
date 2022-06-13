@@ -1273,7 +1273,7 @@ export const en = {
   'toast.organizations.update.success': 'Organizations updated successfully',
   'toast.organizations.update.failure': 'Organizations update failed',
   'toast.tags.update.success': 'Tags updated successfully',
-  'toast.tags.failed.failure': 'Tags update failed',
+  'toast.tags.update.failure': 'Tags update failed',
   'toast.sectors.update.success': 'Sectors updated successfully',
   'toast.sectors.update.failure': 'Sectors update failed',
   'toast.projects.updated': 'Projects updated successfully',
