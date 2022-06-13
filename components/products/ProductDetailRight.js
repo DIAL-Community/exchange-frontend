@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { useSession } from 'next-auth/client'
-import { convertToKey } from '../context/FilterContext'
 import SDGCard from '../sdgs/SDGCard'
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseForum } from '../shared/discourse'
@@ -14,9 +13,6 @@ import ProductDetailSectors from './ProductDetailSectors'
 import ProductDetailOrganizations from './ProductDetailOrganizations'
 import RepositoryList from './repositories/RepositoryList'
 import ProductDetailTags from './ProductDetailTags'
-
-const productsPath = convertToKey('Products')
-const repositoriesPath = convertToKey('Repositories')
 
 const ProductDetailRight = ({ product, discourseRef }) => {
   const { formatMessage } = useIntl()

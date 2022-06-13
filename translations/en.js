@@ -231,7 +231,7 @@ export const en = {
   'product.no-organization': 'We do not have any Organization information for this Product.',
   'product.no-building-block': 'We do not have any Building Block information for this Product.',
   'product.no-sector': 'We do not have any Sector information for this Product.',
-  'product.no-tag': 'We do not have any Tag information for this Product',
+  'product.no-tag': 'We do not have any Tag information for this Product.',
   'product.no-project': 'We do not have any Project information for this Product.',
 
   'project.header': 'Projects',
