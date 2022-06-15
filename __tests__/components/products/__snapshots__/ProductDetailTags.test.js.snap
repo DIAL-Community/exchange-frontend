@@ -227,7 +227,7 @@ exports[`Unit test for the ProductDetailTags component. Should match snapshot - 
       </button>
     </div>
     <div
-      class="card-title mb-3 text-dial-gray-dark"
+      class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
         class="border-3 border-transparent hover:border-dial-yellow text-button-gray hover:text-dial-yellow cursor-pointer"
@@ -436,7 +436,7 @@ exports[`Unit test for the ProductDetailTags component. Should match snapshot - 
       </div>
     </div>
     <div
-      class="card-title mb-3 text-dial-gray-dark"
+      class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
         class="border-3 border-transparent hover:border-dial-yellow text-button-gray hover:text-dial-yellow cursor-pointer"
