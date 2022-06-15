@@ -227,6 +227,18 @@ body {
     content: '*';
   }
 
+  .form-field-label {
+    @apply text-xl;
+    @apply text-dial-blue;
+  }
+
+  .form-field-wrapper {
+    @apply flex;
+    @apply flex-col;
+    @apply gap-y-2;
+    @apply mb-2;
+  }
+
   button.submit-button {
     @apply flex;
     @apply items-center;

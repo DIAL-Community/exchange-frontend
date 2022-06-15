@@ -7,6 +7,7 @@ import { VscClose } from 'react-icons/vsc'
 import { useIntl } from 'react-intl'
 import { ToastContext } from '../../lib/ToastContext'
 import Breadcrumb from '../shared/breadcrumb'
+import EditButton from '../shared/EditButton'
 
 const PlaybookEmbedDetail = ({ displayed, setDisplayed }) => {
   const { formatMessage } = useIntl()
@@ -139,12 +140,7 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
               <span className='text-sm px-2'>{format('playbook.openEmbedDialog')}</span>
             </a>
           }
-          {session?.user.canEdit &&
-            <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
-              <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-              <span className='text-sm px-2'>{format('app.edit')}</span>
-            </a>
-          }
+          {session?.user.canEdit && <EditButton type='link' href={generateEditLink()} />}
         </div>
       </div>
     </>
