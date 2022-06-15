@@ -24,7 +24,6 @@ exports[`Unit test for the Editable Section component. Should match snapshot - w
       >
         <img
           alt="Edit"
-          class=""
           height="12px"
           src="/icons/edit.svg"
           width="12px"

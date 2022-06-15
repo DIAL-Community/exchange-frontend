@@ -1,73 +1,32 @@
-import dynamic from 'next/dynamic'
-import { MdClose } from 'react-icons/md'
-import { gql, useApolloClient } from '@apollo/client'
+import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { asyncSelectStyles } from '../../../lib/utilities'
+import classNames from 'classnames'
+import Select from '../../shared/Select'
+import { TAG_SEARCH_QUERY } from '../../../queries/tag'
+import { fetchSelectOptions } from '../../../queries/utils'
+import Pill from '../../shared/Pill'
 
-// https://github.com/JedWatson/react-select/issues/3590
-const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
-
-const TAG_SEARCH_QUERY = gql`
-  query Tags($search: String!) {
-    tags(search: $search) {
-      id
-      name
-      slug
-    }
-  }
-`
-
-const customStyles = (controlSize = '12rem') => {
-  return {
-    ...asyncSelectStyles,
-    control: (provided) => ({
-      ...provided,
-      width: controlSize,
-      boxShadow: 'none',
-      cursor: 'pointer'
-    }),
-    option: (provided) => ({
-      ...provided,
-      cursor: 'pointer'
-    }),
-    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-    menu: (provided) => ({ ...provided, zIndex: 30 })
-  }
-}
-
-export const TagAutocomplete = (props) => {
+export const TagAutocomplete = ({
+  tags,
+  setTags,
+  tagQuery,
+  containerStyles = null,
+  controlSize = null,
+  placeholder = null,
+  isSearch = false
+}) => {
   const client = useApolloClient()
-  const { tags, setTags, tagQuery, containerStyles, controlSize, placeholder } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
-  let controlPlaceholder = placeholder
-  if (!controlPlaceholder) {
-    controlPlaceholder = format('filter.byEntity', { entity: format('tag.label') })
-  }
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('tag.label') })
 
-  const selectTag = (tag) => {
-    setTags([...tags.filter(s => s.value !== tag.value), tag])
-  }
+  const selectTag = (tagToAdd) => setTags([...tags.filter(({ value }) => value !== tagToAdd.value), tagToAdd])
 
-  const fetchOptions = async (input, callback, query) => {
-    if (input && input.trim().length < 2) {
-      return []
-    }
-
-    const response = await client.query({
-      query: query,
-      variables: {
-        search: input
-      }
-    })
-
-    if (response.data) {
-      let tags = response.data.tags
-      if (!tags) {
-        tags = response.data.searchPlaybookTags
-      }
+  const fetchedTagsCallback = (data) => {
+    if (data) {
+      const tags = data.tags ?? data.searchPlaybookTags
 
       return tags.map((tag) => ({
         label: tag.name,
@@ -80,18 +39,19 @@ export const TagAutocomplete = (props) => {
   }
 
   return (
-    <div className={`${containerStyles || ''} catalog-filter text-dial-gray-dark flex my-auto`}>
-      <AsyncSelect
+    <div className={classNames(containerStyles)}>
+      <Select
+        async
         aria-label={format('filter.byEntity', { entity: format('tag.label') })}
-        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
-        loadOptions={(input, callback) => fetchOptions(input, callback, tagQuery || TAG_SEARCH_QUERY)}
+        loadOptions={(input) => fetchSelectOptions(client, input, tagQuery || TAG_SEARCH_QUERY, fetchedTagsCallback)}
         noOptionsMessage={() => format('filter.searchFor', { entity: format('tag.header') })}
         onChange={selectTag}
         placeholder={controlPlaceholder}
-        styles={customStyles(controlSize)}
         value=''
+        controlSize={controlSize}
+        isSearch={isSearch}
       />
     </div>
   )
@@ -109,15 +69,13 @@ export const TagFilters = (props) => {
 
   return (
     <>
-      {
-        tags &&
-          tags.map(tag => (
-            <div key={`filter-${tag.label}`} className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {`${format('tag.label')}: ${tag.label}`}
-              <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeTag(tag.value)} />
-            </div>
-          ))
-      }
+      {tags?.map((tag, tagIdx) => (
+        <Pill
+          key={`filter-${tagIdx}`}
+          label={`${format('tag.label')}: ${tag.label}`}
+          onRemove={() => removeTag(tag.value)}
+        />
+      ))}
     </>
   )
 }

@@ -138,7 +138,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                   >
                     Logo
                   </label>
-                  <div
+                  <label
                     class="flex items-center"
                   >
                     <input
@@ -175,7 +175,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                         </svg>
                       </span>
                     </div>
-                  </div>
+                  </label>
                 </div>
               </div>
               <div
@@ -413,7 +413,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                   >
                     Logo
                   </label>
-                  <div
+                  <label
                     class="flex items-center"
                   >
                     <input
@@ -450,7 +450,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                         </svg>
                       </span>
                     </div>
-                  </div>
+                  </label>
                 </div>
               </div>
               <div

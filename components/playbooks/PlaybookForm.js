@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
 import { Controller, useForm } from 'react-hook-form'
 import dynamic from 'next/dynamic'
+import classNames from 'classnames'
 import Breadcrumb from '../shared/breadcrumb'
 import { HtmlEditor } from '../shared/HtmlEditor'
 import { SOURCE_TYPE_ASSIGNING } from '../plays/PlayList'
@@ -16,65 +17,17 @@ import { PlayFilterContext, PlayFilterDispatchContext } from '../context/PlayFil
 import { ToastContext } from '../../lib/ToastContext'
 import { SearchInput } from '../../components/shared/SearchInput'
 import Checkbox from '../shared/Checkbox'
+import Input from '../shared/Input'
+import { AUTOSAVE_PLAYBOOK, CREATE_PLAYBOOK } from '../../mutations/playbook'
+import ValidationError from '../shared/ValidationError'
+import FileUploader from '../shared/FileUploader'
 const PlayListQuery = dynamic(() => import('../plays/PlayList'), { ssr: false })
 
-const generateMutationText = (mutationFunc) => {
-  return `
-    mutation (
-      $name: String!,
-      $slug: String!,
-      $author: String,
-      $cover: Upload,
-      $overview: String!,
-      $audience: String,
-      $outcomes: String,
-      $tags: JSON!,
-      $plays: JSON,
-      $draft: Boolean
-    ) {
-      ${mutationFunc}(
-        name: $name,
-        slug: $slug,
-        author: $author,
-        cover: $cover,
-        overview: $overview,
-        audience: $audience,
-        outcomes: $outcomes,
-        tags: $tags,
-        plays: $plays,
-        draft: $draft
-      ) {
-        playbook {
-          id
-          name
-          slug
-          tags
-          playbookDescription {
-            id
-            overview
-            audience
-            outcomes
-          }
-          plays {
-            id
-            slug
-            name
-          }
-          draft
-        }
-        errors
-      }
-    }
-  `
-}
-
-const MUTATE_PLAYBOOK = gql(generateMutationText('createPlaybook'))
-const AUTOSAVE_PLAYBOOK = gql(generateMutationText('autoSavePlaybook'))
 const PUBLISHED_CHECKBOX_FIELD_NAME = 'published'
 
 const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { search, tags } = useContext(PlayFilterContext)
   const { setSearch, setTags } = useContext(PlayFilterDispatchContext)
@@ -96,23 +49,27 @@ const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
       {
         showPlayForm &&
           <div className='flex flex-col gap-3 mt-4'>
-            <div className='flex flex-col gap-y-2'>
-              <div className='flex gap-x-2'>
+            <div className='flex flex-col gap-y-3'>
+              <div className='flex flex-wrap gap-2'>
                 <div className='text-sm text-dial-blue my-auto'>
                   {format('playbook.assignAnotherPlay')}
                 </div>
-                <label className='my-auto'>
-                  <span className='sr-only'>{format('search.input.label')}</span>
-                  <SearchInput
-                    value={search} onChange={handleChange}
-                    className='py-2 px-3 text-sm rounded-md w-56 2xl:w-96'
-                    placeholder={`${format('app.search')} ${format('play.header')}`}
-                  />
-                </label>
-                <TagAutocomplete {...{ tags, setTags }} />
+                <span className='sr-only'>{format('search.input.label')}</span>
+                <SearchInput
+                  value={search}
+                  onChange={handleChange}
+                  className='w-56 2xl:w-96'
+                  placeholder={`${format('app.search')} ${format('play.header')}`}
+                />
+                <TagAutocomplete
+                  isSearch
+                  tags={tags}
+                  setTags={setTags}
+                  containerStyles='w-56 2xl:w-96'
+                />
               </div>
-              <div className='flex flex-row flex-wrap gap-2'>
-                <TagFilters {...{ tags, setTags }} />
+              <div className='flex flex-row flex-wrap gap-3'>
+                <TagFilters tags={tags} setTags={setTags} />
               </div>
             </div>
             <PlayListQuery playbook={playbook} sourceType={SOURCE_TYPE_ASSIGNING} />
@@ -149,29 +106,34 @@ const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
   )
 }
 
-const FormTextEditor = ({ control, name, required = false }) => {
+const FormTextEditor = ({ control, name, placeholder = null, required = false, isInvalid = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
-    <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
-      {format(`playbooks.${name}`)}
+    <div className='form-field-wrapper'>
+      <label className={classNames({ 'required-field': required }, 'form-field-label')}>
+        {format(`playbooks.${name}`)}
+      </label>
       <Controller
         name={name}
         control={control}
-        rules={{ required: required }}
+        rules={required && { required: format('validation.required') }}
         render={({ field: { value, onChange, onBlur } }) => {
           return (
             <HtmlEditor
               editorId={`${name}-editor`}
               onBlur={onBlur}
               onChange={onChange}
+              placeholder={placeholder}
               initialContent={value}
+              isInvalid={isInvalid}
             />
           )
         }}
       />
-    </label>
+      {isInvalid && <ValidationError value={format('validation.required')} />}
+    </div>
   )
 }
 
@@ -188,10 +150,10 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   const [navigateToPlay, setNavigateToPlay] = useState(false)
 
   const { locale } = useRouter()
-  const [updatePlaybook, { data }] = useMutation(MUTATE_PLAYBOOK)
+  const [updatePlaybook, { data }] = useMutation(CREATE_PLAYBOOK)
   const [autoSavePlaybook, { data: autoSaveData }] = useMutation(AUTOSAVE_PLAYBOOK)
-  const { handleSubmit, register, control, watch } = useForm({
-    mode: 'onBlur',
+  const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
+    mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
@@ -206,11 +168,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   const isPublished = watch(PUBLISHED_CHECKBOX_FIELD_NAME)
 
   const [slug] = useState(playbook ? playbook.slug : '')
-  const [tags, setTags] = useState(
-    playbook
-      ? playbook.tags.map(tag => { return { label: tag, value: tag } })
-      : []
-  )
+  const [tags, setTags] = useState(playbook?.tags.map(tag => ({ label: tag, value: tag })) ?? [])
 
   const { showToast } = useContext(ToastContext)
   const { currentPlays } = useContext(PlayListContext)
@@ -362,71 +320,91 @@ export const PlaybookForm = React.memo(({ playbook }) => {
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/3 flex flex-col gap-y-3'>
-                  <label className='flex flex-col gap-y-2 text-xl text-dial-blue mb-2'>
-                    {format('playbooks.name')}
-                    <input
-                      {...register('name', { required: true })}
-                      className='shadow border-1 rounded w-full py-2 px-3'
-                    />
-                  </label>
-                  <label className='flex flex-col gap-y-2 text-xl text-dial-blue mb-2'>
-                    {format('playbook.cover')}
-                    <input
-                      {...register('cover')} type='file'
-                      className='shadow border-1 rounded w-full py-2 px-3 text-base leading-6'
-                    />
-                  </label>
-                  <label className='flex flex-col gap-y-2 text-xl text-dial-blue mb-2'>
-                    {format('playbook.author')}
-                    <input
-                      {...register('author')}
-                      className='shadow border-1 rounded w-full py-2 px-3 text-base leading-6'
-                    />
-                  </label>
-                  <div className='flex flex-col gap-y-2'>
-                    <label className='text-xl text-dial-blue' htmlFor='name'>
-                      {format('playbooks.tags')}
-                      <TagAutocomplete {...{ tags, setTags }} controlSize='100%' placeholder={format('playbook.form.tags')} />
+                  <div className='form-field-wrapper' data-testid='playbook-name'>
+                    <label className='form-field-label required-field' htmlFor='name'>
+                      {format('playbooks.name')}
                     </label>
-                    <div className='flex flex-wrap gap-1'>
-                      <TagFilters {...{ tags, setTags }} />
+                    <Input
+                      {...register('name', { required: format('validation.required') })}
+                      id='name'
+                      placeholder={format('playbooks.name')}
+                      isInvalid={errors.name}
+                    />
+                    {errors.name && <ValidationError value={errors.name?.message} />}
+                  </div>
+                  <div className='form-field-wrapper'>
+                    <label className='form-field-label'>
+                      {format('playbook.cover')}
+                    </label>
+                    <FileUploader {...register('cover')} />
+                  </div>
+                  <div className='form-field-wrapper'>
+                    <label className='form-field-label'>
+                      {format('playbook.author')}
+                    </label>
+                    <Input {...register('author')} placeholder={format('playbook.author')} />
+                  </div>
+                  <div className='form-field-wrapper'>
+                    <label className='form-field-label'>
+                      {format('playbooks.tags')}
+                    </label>
+                    <TagAutocomplete
+                      isSearch
+                      tags={tags}
+                      setTags={setTags}
+                      placeholder={format('playbook.form.tags')}
+                      containerStyles='mb-2'
+                    />
+                    <div className='flex flex-wrap gap-3'>
+                      <TagFilters tags={tags} setTags={setTags} />
                     </div>
                   </div>
                 </div>
-                <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }}>
-                  <FormTextEditor control={control} name='overview' required />
+                <div className='w-full lg:w-2/3' data-testid='playbook-overview'>
+                  <FormTextEditor
+                    control={control}
+                    name='overview'
+                    placeholder={format('playbooks.overview')}
+                    required
+                    isInvalid={errors.overview}
+                  />
                 </div>
               </div>
               <div className='flex flex-col lg:flex-row gap-x-4'>
                 <div className='w-full lg:w-1/2'>
-                  <FormTextEditor control={control} name='audience' />
+                  <FormTextEditor
+                    control={control}
+                    name='audience'
+                    placeholder={format('playbooks.audience')}
+                  />
                 </div>
                 <div className='w-full lg:w-1/2'>
-                  <FormTextEditor control={control} name='outcomes' />
+                  <FormTextEditor
+                    control={control}
+                    name='outcomes'
+                    placeholder={format('playbooks.outcomes')}
+                  />
                 </div>
               </div>
               <FormPlayList playbook={playbook} saveAndCreatePlay={saveAndCreatePlay} />
-              <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'>
-                <Controller
-                  name={PUBLISHED_CHECKBOX_FIELD_NAME}
-                  control={control}
-                  render={({ field }) => <Checkbox {...field} />}
-                />
+              <label className='flex gap-x-2 mb-2 items-center self-start form-field-label'>
+                <Checkbox {...register(PUBLISHED_CHECKBOX_FIELD_NAME)} />
                 {format('playbook.published')}
               </label>
               <div className='flex font-semibold text-xl gap-3'>
                 <button
                   type='submit'
                   onClick={savePlaybook}
-                  className='bg-blue-500 text-dial-gray-light py-3 px-8 rounded disabled:opacity-50'
+                  className='submit-button'
                   disabled={mutating || reverting}
+                  data-testid='submit-button'
                 >
                   {format(isPublished ? 'playbook.publish' : 'playbook.saveAsDraft')}
                   {mutating && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
                 <button
                   type='button'
-                  className='bg-button-gray-light text-white py-3 px-8 rounded disabled:opacity-50'
+                  className='cancel-button'
                   disabled={mutating || reverting}
                   onClick={cancelForm}
                 >

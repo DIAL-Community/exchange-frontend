@@ -12,7 +12,7 @@ exports[`Unit test for the SearchInput component. Should match snapshot - with s
       value="test"
     />
     <div
-      class="-ml-[4.5rem] flex"
+      class="-ml-[4.5rem] flex mr-2"
     >
       <span
         class="my-auto pr-1 bg-white text-2xl text-dial-gray-dark border-dial-gray-dark"
@@ -76,7 +76,7 @@ exports[`Unit test for the SearchInput component. Should match snapshot - withou
       value="test"
     />
     <div
-      class="-ml-8 flex"
+      class="-ml-8 flex mr-2"
     >
       <span
         class="my-auto pr-1 bg-white text-2xl text-dial-gray-dark border-dial-gray-dark"

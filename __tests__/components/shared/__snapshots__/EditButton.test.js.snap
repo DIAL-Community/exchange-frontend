@@ -12,7 +12,6 @@ exports[`Unit test for the EditButton component. Should match snapshot - type ==
   >
     <img
       alt="Edit"
-      class=""
       height="12px"
       src="/icons/edit.svg"
       width="12px"
@@ -38,7 +37,6 @@ exports[`Unit test for the EditButton component. Should match snapshot - type ==
   >
     <img
       alt="Edit"
-      class=""
       height="12px"
       src="/icons/edit.svg"
       width="12px"
