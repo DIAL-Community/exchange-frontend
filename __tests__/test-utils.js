@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 import { IntlProvider } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
@@ -21,7 +21,7 @@ const Providers = ({ children }) => {
 const customRender = (ui, options = {}) => render(ui, { wrapper: Providers, ...options })
 
 // Mocked router implementation.
-const mockRouterImplementation = () => useRouter.mockImplementation(() => ({
+export const mockRouterImplementation = () => useRouter.mockImplementation(() => ({
   asPath: '/',
   locale: 'en',
   push: jest.fn(() => Promise.resolve(true)),
@@ -33,7 +33,11 @@ const mockRouterImplementation = () => useRouter.mockImplementation(() => ({
 }))
 
 // Mocked session implementation.
-const mockSessionImplementation = (canEdit = false) => useSession.mockReturnValue([{ user: { canEdit }}, false])
+export const mockSessionImplementation = (canEdit = false) => useSession.mockReturnValue([{ user: { canEdit }}, false])
+
+export const waitForReactSelectToLoad = (container) => (
+  waitFor(() => expect(container.querySelector('.react-select__loading-indicator')).toBeNull())
+)
 
 // override render method
-export { customRender as render, mockRouterImplementation, mockSessionImplementation }
+export { customRender as render }

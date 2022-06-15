@@ -2,7 +2,7 @@
 
 exports[`Unit test for the FileUploader component. Should match snapshot. 1`] = `
 <div>
-  <div
+  <label
     class="flex items-center"
   >
     <input
@@ -38,6 +38,6 @@ exports[`Unit test for the FileUploader component. Should match snapshot. 1`] = 
         </svg>
       </span>
     </div>
-  </div>
+  </label>
 </div>
 `;

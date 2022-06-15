@@ -47,7 +47,7 @@ exports[`Unit test for the OrganizationDetailProducts component. Should add a pi
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"
@@ -214,7 +214,6 @@ exports[`Unit test for the OrganizationDetailProducts component. Should match sn
       >
         <img
           alt="Edit"
-          class=""
           height="12px"
           src="/icons/edit.svg"
           width="12px"
@@ -327,7 +326,7 @@ exports[`Unit test for the OrganizationDetailProducts component. Should match sn
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"
@@ -565,7 +564,7 @@ exports[`Unit test for the OrganizationDetailProducts component. Should remove a
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"

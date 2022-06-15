@@ -1,5 +1,5 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
-import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
+import { fireEvent, screen } from '@testing-library/react'
+import { mockRouterImplementation, mockSessionImplementation, render, waitForReactSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { ORGANIZATION_SEARCH_QUERY } from '../../../queries/organization'
 import ProductDetailOrganizations from '../../../components/products/ProductDetailOrganizations'
@@ -62,7 +62,7 @@ describe('Unit test for the ProductDetailOrganizations component.', () => {
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await screen.findByText(ORGANIZATION_SEARCH_PLACEHOLDER)
-    await waitFor(() => expect(container.querySelector('.react-select__loading-indicator')).toBeNull())
+    await waitForReactSelectToLoad(container)
     expect(container).toMatchSnapshot()
   })
 
@@ -77,6 +77,7 @@ describe('Unit test for the ProductDetailOrganizations component.', () => {
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await screen.findByText(ORGANIZATION_SEARCH_PLACEHOLDER)
+    await waitForReactSelectToLoad(container)
     fireEvent.click(getByTestId(PILL_REMOVE_BUTTON_TEST_ID))
     expect(screen.queryByTestId(PILL_TEST_ID)).toBeNull()
     expect(container).toMatchSnapshot()
@@ -93,6 +94,7 @@ describe('Unit test for the ProductDetailOrganizations component.', () => {
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await screen.findByText(ORGANIZATION_SEARCH_PLACEHOLDER)
+    await waitForReactSelectToLoad(container)
 
     fireEvent.keyDown(getByTestId(ORGANIZATION_SEARCH_TEST_ID).childNodes[1], { key: 'ArrowDown' })
     await screen.findByText(ORGANIZATION_SEARCH_OPTION_LABEL)

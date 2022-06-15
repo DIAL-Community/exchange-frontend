@@ -48,7 +48,8 @@ const Select = React.forwardRef(({
     }),
     control: (provided) => ({
       ...provided,
-      width: controlSize ,
+      width: controlSize,
+      height: '44px',
       boxShadow: 'none',
       cursor: 'pointer',
       borderRadius: '0.375rem',

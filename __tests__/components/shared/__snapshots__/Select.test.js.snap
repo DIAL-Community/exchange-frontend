@@ -16,7 +16,7 @@ exports[`Unit test for the Select component. Should match snapshot - async. 1`] 
       class="css-1f43avz-a11yText-A11yText"
     />
     <div
-      class="react-select__control css-9fpz0u-control"
+      class="react-select__control css-19jej77-control"
     >
       <div
         class="react-select__value-container css-3tzzl5-ValueContainer"
@@ -95,7 +95,7 @@ exports[`Unit test for the Select component. Should match snapshot - search asyn
       class="css-1f43avz-a11yText-A11yText"
     />
     <div
-      class="react-select__control css-9fpz0u-control"
+      class="react-select__control css-19jej77-control"
     >
       <div
         class="react-select__value-container css-3tzzl5-ValueContainer"
@@ -179,7 +179,7 @@ exports[`Unit test for the Select component. Should match snapshot - search. 1`]
       class="css-1f43avz-a11yText-A11yText"
     />
     <div
-      class="react-select__control css-9fpz0u-control"
+      class="react-select__control css-19jej77-control"
     >
       <div
         class="react-select__value-container css-3tzzl5-ValueContainer"
@@ -263,7 +263,7 @@ exports[`Unit test for the Select component. Should match snapshot. 1`] = `
       class="css-1f43avz-a11yText-A11yText"
     />
     <div
-      class="react-select__control css-9fpz0u-control"
+      class="react-select__control css-19jej77-control"
     >
       <div
         class="react-select__value-container css-3tzzl5-ValueContainer"

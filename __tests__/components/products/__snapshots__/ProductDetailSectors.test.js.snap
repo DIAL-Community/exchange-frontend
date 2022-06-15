@@ -47,7 +47,7 @@ exports[`Unit test for the ProductDetailSectors component. Should add a pill and
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"
@@ -239,7 +239,6 @@ exports[`Unit test for the ProductDetailSectors component. Should match snapshot
       >
         <img
           alt="Edit"
-          class=""
           height="12px"
           src="/icons/edit.svg"
           width="12px"
@@ -323,7 +322,7 @@ exports[`Unit test for the ProductDetailSectors component. Should match snapshot
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"
@@ -532,7 +531,7 @@ exports[`Unit test for the ProductDetailSectors component. Should remove a pill 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"

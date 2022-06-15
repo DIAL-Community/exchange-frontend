@@ -224,10 +224,7 @@ const OrganizationForm = React.memo(({ organization }) => {
                     <label className='text-xl text-dial-blue'>
                       {format('organization.imageFile')}
                     </label>
-                    <FileUploader
-                      {...register('imageFile')}
-                      placeholder={format('organization.imageFile')}
-                    />
+                    <FileUploader {...register('imageFile')} />
                   </div>
                   <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue' data-testid='organization-is-endorser'>
                     <Checkbox {...register('isEndorser')} />

@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react'
 import ProductDetailProjects from '../../../components/products/ProductDetailProjects'
 import { PROJECT_SEARCH_QUERY } from '../../../queries/project'
-import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
+import { mockRouterImplementation, mockSessionImplementation, render, waitForReactSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { projects } from './data/ProductDetailProjects'
 import { product } from './data/ProductForm'
@@ -63,6 +63,7 @@ describe('Unit tests for the ProductDetailProjects component.', () => {
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await screen.findByText(PROJECT_SEARCH_PLACEHOLDER)
+    await waitForReactSelectToLoad(container)
     expect(container).toMatchSnapshot()
   })
 
@@ -77,6 +78,7 @@ describe('Unit tests for the ProductDetailProjects component.', () => {
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await screen.findByText(PROJECT_SEARCH_PLACEHOLDER)
+    await waitForReactSelectToLoad(container)
     fireEvent.click(getByTestId(PILL_REMOVE_BUTTON_TEST_ID))
     expect(screen.queryByTestId(PILL_TEST_ID)).toBeNull()
     expect(container).toMatchSnapshot()
@@ -93,6 +95,7 @@ describe('Unit tests for the ProductDetailProjects component.', () => {
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await screen.findByText(PROJECT_SEARCH_PLACEHOLDER)
+    await waitForReactSelectToLoad(container)
 
     fireEvent.keyDown(getByTestId(PROJECT_SEARCH_TEST_ID).childNodes[1], { key: 'ArrowDown' })
     await screen.findByText(PROJECT_SEARCH_OPTION_1_LABEL)
