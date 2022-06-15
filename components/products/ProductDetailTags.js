@@ -87,7 +87,7 @@ const ProductDetailTags = ({ product, canEdit }) => {
 
   const displayModeBody = tags.length
     ? (
-      <div className='card-title mb-3 text-dial-gray-dark'>
+      <div className='grid grid-cols-1 lg:grid-cols-2'>
         {tags.map((tag, tagIdx) => <TagCard key={tagIdx} tag={tag} listType='list' />)}
       </div>
     ) : (
