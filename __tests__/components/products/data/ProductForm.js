@@ -20,6 +20,7 @@ module.exports = {
       slug: 'to',
       __typename: 'Organization'
     }],
+    tags: ['Test Tag'],
     buildingBlocks: [{
       id: 3,
       name: 'Test Building Block',

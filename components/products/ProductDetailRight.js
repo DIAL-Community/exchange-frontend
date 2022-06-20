@@ -1,22 +1,18 @@
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { useSession } from 'next-auth/client'
-import { convertToKey } from '../context/FilterContext'
 import SDGCard from '../sdgs/SDGCard'
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseForum } from '../shared/discourse'
 import EditButton from '../shared/EditButton'
-import TagCard from '../tags/TagCard'
-import ProductCard from './ProductCard'
 import MaturityAccordion from './Maturity'
-import RepositoryList from './repositories/RepositoryList'
+import ProductCard from './ProductCard'
 import ProductDetailBuildingBlocks from './ProductDetailBuildingBlocks'
 import ProductDetailProjects from './ProductDetailProjects'
 import ProductDetailSectors from './ProductDetailSectors'
 import ProductDetailOrganizations from './ProductDetailOrganizations'
-
-const productsPath = convertToKey('Products')
-const repositoriesPath = convertToKey('Repositories')
+import RepositoryList from './repositories/RepositoryList'
+import ProductDetailTags from './ProductDetailTags'
 
 const ProductDetailRight = ({ product, discourseRef }) => {
   const { formatMessage } = useIntl()
@@ -70,15 +66,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
       {product.sectors && <ProductDetailSectors product={product} canEdit={canEdit} />}
       {product.organizations && <ProductDetailOrganizations product={product} canEdit={canEdit} />}
       {product.currentProjects && <ProductDetailProjects product={product} canEdit={canEdit} />}
-      {
-        product.tags &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('tag.header')}</div>
-            <div className='grid grid-cols-1 lg:grid-cols-2'>
-              {product.tags.map((tag, i) => <TagCard key={i} tag={tag} listType='list' />)}
-            </div>
-          </div>
-      }
+      {product.tags && <ProductDetailTags product={product} canEdit={canEdit} />}
       <div className='mt-12 card-title mb-3 text-dial-gray-dark'>{format('product.source')}</div>
       <div className='grid grid-cols-3'>
         <div className='pb-5 pr-5'>
