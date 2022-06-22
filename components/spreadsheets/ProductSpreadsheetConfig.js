@@ -5,7 +5,7 @@ export const DEFAULT_SHEET_NAMES = ['Products', 'Descriptions', 'Organizations',
 const PRODUCT_HEADERS = ['Name', 'Other Names', 'Website', 'License', 'Product Type', 'Product Tags', 'Submitter Name', 'Submitter Email']
 const PRODUCT_DESCRIPTION_HEADERS = ['Product Name', 'Locale', 'Description']
 const ORGANIZATION_HEADERS = ['Product Name', 'Organization Name']
-const SDG_HEADERS = ['Product Name', 'SDG Name']
+const SDG_HEADERS = ['Product Name', 'SDG Number']
 const SECTOR_HEADERS = ['Product Name', 'Sector Name']
 
 // All header configurations.
@@ -42,7 +42,7 @@ const ORGANIZATION_COLUMN_DEFINITION = [
 
 const SDG_COLUMN_DEFINITION = [
   { data: 'productName' },
-  { data: 'sdgName' }
+  { data: 'sdgNumber' }
 ]
 
 const SECTOR_COLUMN_DEFINITION = [
@@ -169,7 +169,7 @@ const productSDGDefinition = (spreadsheetProduct) => {
     return product.sdgs.map(sdg => {
       return [
         product.name,
-        sdg.name
+        sdg.number
       ]
     })
   }))

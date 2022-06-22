@@ -154,7 +154,7 @@ const DatasetSpreadsheet = () => {
         {},
         {
           type: 'autocomplete',
-          source: data.sdgs.map(sdg => sdg.name),
+          source: data.sdgs.map(sdg => sdg.number),
           strict: false,
           visibleRows: 5
         }

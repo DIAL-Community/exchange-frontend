@@ -598,10 +598,10 @@
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.1.tgz#076d78ce99822258cf813ecc1e7fa460fa74d052"
   integrity sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg==
 
-"@handsontable/react@^11.1.0":
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/@handsontable/react/-/react-11.1.0.tgz#d4bf7b141d533265de678ad233573ad631714645"
-  integrity sha512-HocbP95R4bx5GQ2UZ6hwTgJgW25JxKEAlNFxWbVDZVcF8lsnCYnvIoWfqNAH3kz89WLs/2J4B3JnmJzRhM5Gqg==
+"@handsontable/react@^12.0.1":
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/@handsontable/react/-/react-12.0.1.tgz#a3a12753b3b02a220e1717d387cd3b007bf59957"
+  integrity sha512-WmxzC7Gf7Ly7Xh8qJBsxrcCv1mWrnGuxamV6kH4ALomPvcvfn0yhoIez4EipoJABTY7laEpP4wYlO6STVsv9vw==
 
 "@hapi/accept@5.0.2":
   version "5.0.2"
@@ -4055,19 +4055,19 @@ graphql@^16.3.0:
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.3.0.tgz#a91e24d10babf9e60c706919bb182b53ccdffc05"
   integrity sha512-xm+ANmA16BzCT5pLjuXySbQVFwH3oJctUVdy81w1sV0vBU0KgDdBGtxQOUd5zqOBk/JayAFeG8Dlmeq74rjm/A==
 
-handsontable@^11.1.0:
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/handsontable/-/handsontable-11.1.0.tgz#36e26465b91f4353bb03ea1ffefbabb355e2f958"
-  integrity sha512-Ph0avovpqLy+1U0+U+ptvfPDMLYWkxfBXwJU5mT+ql475tAM1CuwhFlY8MH6iRAxrqWJdCDOzytIgIrbGrfjMQ==
+handsontable@^12.0.1:
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/handsontable/-/handsontable-12.0.1.tgz#46e3e2f5ca6672edd1075e3aec112d0cd626ea03"
+  integrity sha512-OUQzIrdqk0Ty36OJ0XlV4d3ImW2fn0alxD0AnnjBxRS/oNxteQ9Qa5cdL7JAusfer6Fv0ODmIVsZmJxIZiyvww==
   dependencies:
     "@types/pikaday" "1.7.4"
     core-js "^3.0.0"
     dompurify "^2.1.1"
-    moment "2.24.0"
+    moment "2.29.3"
     numbro "2.1.2"
     pikaday "1.8.0"
   optionalDependencies:
-    hyperformula "^1.2.0"
+    hyperformula "^2.0.0"
 
 has-bigints@^1.0.1:
   version "1.0.1"
@@ -4255,16 +4255,18 @@ human-signals@^2.1.0:
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-2.1.0.tgz#dc91fcba42e4d06e4abaed33b3e7a3c02f514ea0"
   integrity sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
 
-hyperformula@^1.2.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/hyperformula/-/hyperformula-1.3.1.tgz#10bcd160cafbd57de8181845b9fb6750d7431e30"
-  integrity sha512-9CdvkJSAy74PLaLQZf6mnvJGncE+ur2tmuZ6wB86E8M+A1hM9HeAJbl+6X3WjeZyvHle6UMV8b0uSNkjGxecKQ==
+hyperformula@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/hyperformula/-/hyperformula-2.0.1.tgz#a775b37b020bf2475f442e9b61b0561651b95059"
+  integrity sha512-rqqMUW6QcRHboi3UuJ4LckTQPve9Ls41hDMoMAGZqkWb6AKasSfZYaeJF5PU/cQJzrMdBzphWk3DksG5nd288A==
   dependencies:
     chevrotain "^6.5.0"
     core-js "^3.6.4"
     regenerator-runtime "^0.13.3"
     tiny-emitter "^2.1.0"
     unorm "^1.6.0"
+  optionalDependencies:
+    fsevents "~2.3.2"
 
 hyphen@^1.6.4:
   version "1.6.4"
@@ -5599,12 +5601,7 @@ mkdirp@^1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-moment@2.24.0:
-  version "2.24.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
-  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
-
-moment@>=2.14.0:
+moment@2.29.3, moment@>=2.14.0:
   version "2.29.3"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.3.tgz#edd47411c322413999f7a5940d526de183c031f3"
   integrity sha512-c6YRvhEo//6T2Jz/vVtYzqBzwvPT95JBQ+smCytzf7c50oMZRsR/a4w88aD34I+/QVSfnoAnSBFPJHItlOMJVw==

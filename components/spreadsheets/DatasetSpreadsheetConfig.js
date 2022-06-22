@@ -8,7 +8,7 @@ const DATASET_HEADERS = [
 ]
 const DATASET_DESCRIPTION_HEADERS = ['Dataset Name', 'Locale', 'Description']
 const ORGANIZATION_HEADERS = ['Dataset Name', 'Organization Name']
-const SDG_HEADERS = ['Dataset Name', 'SDG Name']
+const SDG_HEADERS = ['Dataset Name', 'SDG Number']
 const SECTOR_HEADERS = ['Dataset Name', 'Sector Name']
 
 // All header configurations.
@@ -158,7 +158,7 @@ const datasetSectorDataDefinition = (spreadsheetProduct) => {
 
 const SDG_COLUMN_DEFINITION = [
   { data: 'datasetName' },
-  { data: 'sdgName' }
+  { data: 'sdgNumber' }
 ]
 
 const datasetSDGDefinition = (spreadsheetProduct) => {
@@ -173,7 +173,7 @@ const datasetSDGDefinition = (spreadsheetProduct) => {
     return dataset.sdgs.map(sdg => {
       return [
         dataset.name,
-        sdg.name
+        sdg.number
       ]
     })
   }))
