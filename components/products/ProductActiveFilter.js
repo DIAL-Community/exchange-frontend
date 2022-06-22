@@ -13,7 +13,6 @@ import { BuildingBlockFilters } from '../filter/element/BuildingBlock'
 import { TagFilters } from '../filter/element/Tag'
 import { OriginFilters } from '../filter/element/Origin'
 import { EndorserFilters } from '../filter/element/Endorser'
-import { ProductTypeFilters } from '../filter/element/ProductType'
 import { CountryFilters } from '../filter/element/Country'
 import { SectorFilters } from '../filter/element/Sector'
 import { OrganizationFilters } from '../filter/element/Organization'
@@ -29,12 +28,12 @@ const ProductActiveFilter = () => {
 
   const {
     withMaturity, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, productTypes, endorsers
+    useCases, workflows, buildingBlocks, endorsers
   } = useContext(ProductFilterContext)
 
   const {
     setWithMaturity, setProductDeployable, setForCovid, setSectors, setCountries, setOrganizations,
-    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setProductTypes, setEndorsers
+    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers
   } = useContext(ProductFilterDispatchContext)
 
   const toggleWithMaturity = () => {
@@ -51,7 +50,7 @@ const ProductActiveFilter = () => {
     count = productDeployable ? count + 1 : count
     count = count + countries.length + organizations.length + tags.length +
       sectors.length + origins.length + sdgs.length + useCases.length +
-      workflows.length + buildingBlocks.length + productTypes.length + endorsers.length
+      workflows.length + buildingBlocks.length + endorsers.length
 
     return count
   }
@@ -65,7 +64,6 @@ const ProductActiveFilter = () => {
     setCountries([])
     setSectors([])
     setOrganizations([])
-    setProductTypes([])
     setSDGs([])
     setTags([])
     setUseCases([])
@@ -86,7 +84,6 @@ const ProductActiveFilter = () => {
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
     const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
     const organizationFilters = organizations.map(organization => `organizations=${organization.value}--${organization.label}`)
-    const productTypeFilters = productTypes.map(productType => `productTypes=${productType.value}--${productType.label}`)
     const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
     const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
     const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
@@ -96,7 +93,7 @@ const ProductActiveFilter = () => {
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, maturityFilter, deployableFilter, ...originFilters, ...countryFilters, ...productTypeFilters,
+      activeFilter, maturityFilter, deployableFilter, ...originFilters, ...countryFilters, 
       ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters, ...useCaseFilters,
       ...workflowFilters, ...buildingBlockFilters, ...endorserFilters
     ].filter(f => f).join('&')
@@ -113,7 +110,6 @@ const ProductActiveFilter = () => {
       parseQuery(query, 'countries', countries, setCountries)
       parseQuery(query, 'sectors', sectors, setSectors)
       parseQuery(query, 'organizations', organizations, setOrganizations)
-      parseQuery(query, 'productTypes', productTypes, setProductTypes)
       parseQuery(query, 'sdgs', sdgs, setSDGs)
       parseQuery(query, 'tags', tags, setTags)
       parseQuery(query, 'useCases', useCases, setUseCases)
@@ -147,7 +143,6 @@ const ProductActiveFilter = () => {
         <TagFilters {...{ tags, setTags }} />
         <OriginFilters {...{ origins, setOrigins }} />
         <EndorserFilters {...{ endorsers, setEndorsers }} />
-        <ProductTypeFilters {...{ productTypes, setProductTypes }} />
         <CountryFilters {...{ countries, setCountries }} />
         <SectorFilters {...{ sectors, setSectors }} />
         <OrganizationFilters {...{ organizations, setOrganizations }} />

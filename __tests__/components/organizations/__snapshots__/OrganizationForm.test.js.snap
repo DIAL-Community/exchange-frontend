@@ -85,30 +85,35 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   >
                     <input
                       class="w-full"
+                      data-testid="alias-name"
                       name="aliases.0.value"
                       placeholder="Alias"
                       type="text"
                       value=""
                     />
-                    <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
-                      data-testid="icon-button"
-                      type="button"
+                    <span
+                      data-testid="alias-add"
                     >
-                      <svg
-                        fill="currentColor"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 448 512"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
+                      <button
+                        class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                        data-testid="icon-button"
+                        type="button"
                       >
-                        <path
-                          d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
-                        />
-                      </svg>
-                    </button>
+                        <svg
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 448 512"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                          />
+                        </svg>
+                      </button>
+                    </span>
                   </div>
                 </div>
                 <div
@@ -132,20 +137,20 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                 </div>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
+                  data-testid="organization-logo"
                 >
                   <label
                     class="text-xl text-dial-blue"
                   >
                     Logo
                   </label>
-                  <div
+                  <label
                     class="flex items-center"
                   >
                     <input
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
-                      placeholder="Logo"
                       type="file"
                     />
                     <div
@@ -176,10 +181,11 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                         </svg>
                       </span>
                     </div>
-                  </div>
+                  </label>
                 </div>
                 <label
                   class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  data-testid="organization-is-endorser"
                 >
                   <input
                     class="h-8 w-8"
@@ -199,6 +205,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   </label>
                   <input
                     class="w-full"
+                    data-testid="organization-when-endorsed"
                     name="whenEndorsed"
                     placeholder="Endorsed Date"
                     type="date"
@@ -207,6 +214,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                 </div>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
+                  data-testid="organization-endorser-level"
                 >
                   <label
                     class="text-xl text-dial-blue"
@@ -227,7 +235,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-9fpz0u-control"
+                      class="react-select__control css-19jej77-control"
                     >
                       <div
                         class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
@@ -293,6 +301,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                 </div>
                 <label
                   class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  data-testid="organization-is-mni"
                 >
                   <input
                     class="h-8 w-8"
@@ -436,79 +445,93 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   >
                     <input
                       class="w-full"
+                      data-testid="alias-name"
                       name="aliases.0.value"
                       placeholder="Alias"
                       type="text"
                       value=""
                     />
-                    <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
-                      data-testid="icon-button"
-                      type="button"
+                    <span
+                      data-testid="alias-remove"
                     >
-                      <svg
-                        fill="currentColor"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 448 512"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
+                      <button
+                        class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                        data-testid="icon-button"
+                        type="button"
                       >
-                        <path
-                          d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
-                        />
-                      </svg>
-                    </button>
+                        <svg
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 448 512"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                          />
+                        </svg>
+                      </button>
+                    </span>
                   </div>
                   <div
                     class="flex gap-x-2"
                   >
                     <input
                       class="w-full"
+                      data-testid="alias-name"
                       name="aliases.1.value"
                       placeholder="Alias"
                       type="text"
                       value=""
                     />
-                    <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
-                      data-testid="icon-button"
-                      type="button"
+                    <span
+                      data-testid="alias-add"
                     >
-                      <svg
-                        fill="currentColor"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 448 512"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
+                      <button
+                        class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                        data-testid="icon-button"
+                        type="button"
                       >
-                        <path
-                          d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
-                        />
-                      </svg>
-                    </button>
-                    <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
-                      data-testid="icon-button"
-                      type="button"
+                        <svg
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 448 512"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                          />
+                        </svg>
+                      </button>
+                    </span>
+                    <span
+                      data-testid="alias-remove"
                     >
-                      <svg
-                        fill="currentColor"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 448 512"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
+                      <button
+                        class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                        data-testid="icon-button"
+                        type="button"
                       >
-                        <path
-                          d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
-                        />
-                      </svg>
-                    </button>
+                        <svg
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 448 512"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                          />
+                        </svg>
+                      </button>
+                    </span>
                   </div>
                 </div>
                 <div
@@ -532,20 +555,20 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                 </div>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
+                  data-testid="organization-logo"
                 >
                   <label
                     class="text-xl text-dial-blue"
                   >
                     Logo
                   </label>
-                  <div
+                  <label
                     class="flex items-center"
                   >
                     <input
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
-                      placeholder="Logo"
                       type="file"
                     />
                     <div
@@ -576,10 +599,11 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                         </svg>
                       </span>
                     </div>
-                  </div>
+                  </label>
                 </div>
                 <label
                   class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  data-testid="organization-is-endorser"
                 >
                   <input
                     class="h-8 w-8"
@@ -599,6 +623,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   </label>
                   <input
                     class="w-full"
+                    data-testid="organization-when-endorsed"
                     name="whenEndorsed"
                     placeholder="Endorsed Date"
                     type="date"
@@ -607,6 +632,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                 </div>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
+                  data-testid="organization-endorser-level"
                 >
                   <label
                     class="text-xl text-dial-blue"
@@ -627,7 +653,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-9fpz0u-control"
+                      class="react-select__control css-19jej77-control"
                     >
                       <div
                         class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
@@ -693,6 +719,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                 </div>
                 <label
                   class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  data-testid="organization-is-mni"
                 >
                   <input
                     class="h-8 w-8"

@@ -576,10 +576,10 @@
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.1.tgz#076d78ce99822258cf813ecc1e7fa460fa74d052"
   integrity sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg==
 
-"@handsontable/react@^11.1.0":
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/@handsontable/react/-/react-11.1.0.tgz#d4bf7b141d533265de678ad233573ad631714645"
-  integrity sha512-HocbP95R4bx5GQ2UZ6hwTgJgW25JxKEAlNFxWbVDZVcF8lsnCYnvIoWfqNAH3kz89WLs/2J4B3JnmJzRhM5Gqg==
+"@handsontable/react@^12.0.1":
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/@handsontable/react/-/react-12.0.1.tgz#a3a12753b3b02a220e1717d387cd3b007bf59957"
+  integrity sha512-WmxzC7Gf7Ly7Xh8qJBsxrcCv1mWrnGuxamV6kH4ALomPvcvfn0yhoIez4EipoJABTY7laEpP4wYlO6STVsv9vw==
 
 "@headlessui/react@^1.5.0":
   version "1.5.0"
@@ -3821,19 +3821,19 @@ graphql@^16.3.0:
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.3.0.tgz#a91e24d10babf9e60c706919bb182b53ccdffc05"
   integrity sha512-xm+ANmA16BzCT5pLjuXySbQVFwH3oJctUVdy81w1sV0vBU0KgDdBGtxQOUd5zqOBk/JayAFeG8Dlmeq74rjm/A==
 
-handsontable@^11.1.0:
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/handsontable/-/handsontable-11.1.0.tgz#36e26465b91f4353bb03ea1ffefbabb355e2f958"
-  integrity sha512-Ph0avovpqLy+1U0+U+ptvfPDMLYWkxfBXwJU5mT+ql475tAM1CuwhFlY8MH6iRAxrqWJdCDOzytIgIrbGrfjMQ==
+handsontable@^12.0.1:
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/handsontable/-/handsontable-12.0.1.tgz#46e3e2f5ca6672edd1075e3aec112d0cd626ea03"
+  integrity sha512-OUQzIrdqk0Ty36OJ0XlV4d3ImW2fn0alxD0AnnjBxRS/oNxteQ9Qa5cdL7JAusfer6Fv0ODmIVsZmJxIZiyvww==
   dependencies:
     "@types/pikaday" "1.7.4"
     core-js "^3.0.0"
     dompurify "^2.1.1"
-    moment "2.24.0"
+    moment "2.29.3"
     numbro "2.1.2"
     pikaday "1.8.0"
   optionalDependencies:
-    hyperformula "^1.2.0"
+    hyperformula "^2.0.0"
 
 has-bigints@^1.0.1:
   version "1.0.1"
@@ -3984,16 +3984,18 @@ human-signals@^2.1.0:
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-2.1.0.tgz#dc91fcba42e4d06e4abaed33b3e7a3c02f514ea0"
   integrity sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
 
-hyperformula@^1.2.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/hyperformula/-/hyperformula-1.3.1.tgz#10bcd160cafbd57de8181845b9fb6750d7431e30"
-  integrity sha512-9CdvkJSAy74PLaLQZf6mnvJGncE+ur2tmuZ6wB86E8M+A1hM9HeAJbl+6X3WjeZyvHle6UMV8b0uSNkjGxecKQ==
+hyperformula@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/hyperformula/-/hyperformula-2.0.1.tgz#a775b37b020bf2475f442e9b61b0561651b95059"
+  integrity sha512-rqqMUW6QcRHboi3UuJ4LckTQPve9Ls41hDMoMAGZqkWb6AKasSfZYaeJF5PU/cQJzrMdBzphWk3DksG5nd288A==
   dependencies:
     chevrotain "^6.5.0"
     core-js "^3.6.4"
     regenerator-runtime "^0.13.3"
     tiny-emitter "^2.1.0"
     unorm "^1.6.0"
+  optionalDependencies:
+    fsevents "~2.3.2"
 
 hyphen@^1.6.4:
   version "1.6.4"
@@ -4018,6 +4020,19 @@ ieee754@^1.1.13, ieee754@^1.1.4, ieee754@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
   integrity sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==
+
+iframe-resizer-react@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/iframe-resizer-react/-/iframe-resizer-react-1.1.0.tgz#5009e019b7a5c7f1c009bff5bcdf0dbf33557465"
+  integrity sha512-FrytSq91AIJaDgE+6uK/Vdd6IR8CrwLoZ6eGmL2qQMPTzF0xlSV2jaSzRRUh5V2fttD7vzl21jvBl97bV40eBw==
+  dependencies:
+    iframe-resizer "^4.3.0"
+    warning "^4.0.3"
+
+iframe-resizer@^4.3.0:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/iframe-resizer/-/iframe-resizer-4.3.2.tgz#42dd88345d18b9e377b6044dddb98c664ab0ce6b"
+  integrity sha512-gOWo2hmdPjMQsQ+zTKbses08mDfDEMh4NneGQNP4qwePYujY1lguqP6gnbeJkf154gojWlBhIltlgnMfYjGHWA==
 
 ignore@^4.0.6:
   version "4.0.6"
@@ -5155,7 +5170,7 @@ log-update@^4.0.0:
     slice-ansi "^4.0.0"
     wrap-ansi "^6.2.0"
 
-loose-envify@^1.1.0, loose-envify@^1.4.0:
+loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -7631,6 +7646,21 @@ walker@^1.0.7:
   integrity sha512-ts/8E8l5b7kY0vlWLewOkDXMmPdLcVV4GmOQLyxuSswIJsweeFZtAsMF7k1Nszz+TYBQrlYRmzOnr398y1JemQ==
   dependencies:
     makeerror "1.0.12"
+
+warning@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
+  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
+  dependencies:
+    loose-envify "^1.0.0"
+
+watchpack@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-2.1.1.tgz#e99630550fca07df9f90a06056987baa40a689c7"
+  integrity sha512-Oo7LXCmc1eE1AjyuSBmtC3+Wy4HcV8PxWh2kP6fOl8yTlNS7r0K9l1ao2lrrUza7V39Y3D/BbJgY8VeSlc5JKw==
+  dependencies:
+    glob-to-regexp "^0.4.1"
+    graceful-fs "^4.1.2"
 
 webidl-conversions@^3.0.0:
   version "3.0.1"

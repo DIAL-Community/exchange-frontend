@@ -86,7 +86,7 @@ const OrganizationDetailProjects = ({ organization, canEdit }) => {
 
   const displayModeBody = projects.length > 0
     ? (
-      <div className='grid grid-cols-1'>
+      <div className='flex flex-col gap-2'>
         {projects.map((project, projectIdx) => <ProjectCard key={projectIdx} project={project} listType='list' />)}
       </div>
     ) : (

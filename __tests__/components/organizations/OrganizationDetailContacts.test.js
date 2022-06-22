@@ -1,8 +1,9 @@
 import { fireEvent, screen } from '@testing-library/react'
+import { act } from 'react-dom/test-utils'
 import OrganizationDetailContacts from '../../../components/organizations/OrganizationDetailContacts'
+import { CONTACT_SEARCH_QUERY } from '../../../queries/contact'
 import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { CONTACT_SEARCH_QUERY } from '../../../queries/contact'
 import { contacts } from './data/OrganizationDetailContacts'
 import { organization } from './data/OrganizationForm'
 
@@ -41,7 +42,7 @@ describe('Unit test for the OrganizationDetailContacts component.', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('If input name is empty shouldn\'t add pill after clicking assign', () => {
+  test('If input name is empty shouldn\'t add pill after clicking assign', async () => {
     const { container, getByTestId, queryByTestId } = render(
       <CustomMockedProvider mocks={[mockContacts]} addTypename={false}>
         <OrganizationDetailContacts
@@ -55,7 +56,7 @@ describe('Unit test for the OrganizationDetailContacts component.', () => {
     const input = getByTestId(NAME_INPUT_TEST_ID)
 
     fireEvent.change(input, { target: { value: '' } })
-    fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID))
+    await act(async () => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))
     expect(queryByTestId(PILL_TEST_ID)).toBeNull()
     expect(container).toMatchSnapshot()
   })
@@ -76,7 +77,7 @@ describe('Unit test for the OrganizationDetailContacts component.', () => {
 
     fireEvent.change(inputName, { target: { value: contacts.data.name } })
     fireEvent.change(inputEmail, { target: { value: contacts.data.email } })
-    fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID))
+    await act(async () => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))
     await screen.findByTestId(PILL_TEST_ID)
 
     expect(getByTestId(PILL_TEST_ID)).toHaveTextContent(`Name: ${contacts.data.name}`)
@@ -99,7 +100,7 @@ describe('Unit test for the OrganizationDetailContacts component.', () => {
 
     fireEvent.change(inputName, { target: { value: contacts.data.name } })
     fireEvent.change(inputEmail, { target: { value: contacts.data.email } })
-    fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID))
+    await act(async () => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))
     await screen.findByTestId(PILL_TEST_ID)
 
     expect(getByTestId(PILL_TEST_ID)).toHaveTextContent(`Name: ${contacts.data.name}`)
@@ -111,7 +112,7 @@ describe('Unit test for the OrganizationDetailContacts component.', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('Should clear inputs after click assign button', () => {
+  test('Should clear inputs after click assign button', async () => {
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockContacts]} addTypename={false}>
         <OrganizationDetailContacts
@@ -129,7 +130,8 @@ describe('Unit test for the OrganizationDetailContacts component.', () => {
     fireEvent.change(inputName, { target: { value: contacts.data.name } })
     fireEvent.change(inputEmail, { target: { value: contacts.data.email } })
     fireEvent.change(inputTitle, { target: { value: contacts.data.title } })
-    fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID))
+    await act(async () => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))   
+
     expect(inputName).toHaveTextContent('')
     expect(inputEmail).toHaveTextContent('')
     expect(inputTitle).toHaveTextContent('')

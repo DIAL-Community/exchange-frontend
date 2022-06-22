@@ -7,6 +7,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -46,7 +47,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"
@@ -221,6 +222,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -237,7 +239,6 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
       >
         <img
           alt="Edit"
-          class=""
           height="12px"
           src="/icons/edit.svg"
           width="12px"
@@ -314,6 +315,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -353,7 +355,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"
@@ -479,6 +481,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -554,6 +557,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -593,7 +597,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"

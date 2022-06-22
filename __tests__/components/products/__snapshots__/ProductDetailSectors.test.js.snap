@@ -7,6 +7,7 @@ exports[`Unit test for the ProductDetailSectors component. Should add a pill and
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -46,7 +47,7 @@ exports[`Unit test for the ProductDetailSectors component. Should add a pill and
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"
@@ -221,6 +222,7 @@ exports[`Unit test for the ProductDetailSectors component. Should match snapshot
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -237,7 +239,6 @@ exports[`Unit test for the ProductDetailSectors component. Should match snapshot
       >
         <img
           alt="Edit"
-          class=""
           height="12px"
           src="/icons/edit.svg"
           width="12px"
@@ -281,6 +282,7 @@ exports[`Unit test for the ProductDetailSectors component. Should match snapshot
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -320,7 +322,7 @@ exports[`Unit test for the ProductDetailSectors component. Should match snapshot
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"
@@ -357,20 +359,6 @@ exports[`Unit test for the ProductDetailSectors component. Should match snapshot
             <div
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
-              <div
-                aria-hidden="true"
-                class="react-select__indicator react-select__loading-indicator css-at12u2-loadingIndicator"
-              >
-                <span
-                  class="css-1xtdfmb-LoadingDot"
-                />
-                <span
-                  class="css-zoievk-LoadingDot"
-                />
-                <span
-                  class="css-x748d8-LoadingDot"
-                />
-              </div>
               <span
                 class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
               />
@@ -460,6 +448,7 @@ exports[`Unit test for the ProductDetailSectors component. Should match snapshot
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -502,6 +491,7 @@ exports[`Unit test for the ProductDetailSectors component. Should remove a pill 
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -541,7 +531,7 @@ exports[`Unit test for the ProductDetailSectors component. Should remove a pill 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"

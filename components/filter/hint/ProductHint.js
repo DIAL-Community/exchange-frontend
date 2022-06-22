@@ -38,12 +38,12 @@ const ProductHint = () => {
           </div>
         </div>
         <div className='absolute right-2 top-2'>
-          <button
-            className='bg-button-gray p-3 float-right rounded text-button-gray-light'
+          <a
+            className='cursor-pointer bg-button-gray p-3 float-right rounded text-button-gray-light'
             onClick={() => setHintDisplayed(false)}
           >
             <div className='inline'>{format('general.close')}</div>
-          </button>
+          </a>
         </div>
       </div>
     </>

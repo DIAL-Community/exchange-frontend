@@ -6,7 +6,6 @@ const EditButton = ({ type = 'button', onClick, href, className }) => {
     <>
       <img
         src='/icons/edit.svg'
-        className=''
         alt='Edit'
         height='12px'
         width='12px'

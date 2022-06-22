@@ -213,18 +213,18 @@ Object {
                     </span>
                   </a>
                   <a
-                    class="bg-dial-blue px-2 py-1 rounded text-white mr-5"
+                    class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+                    data-testid="edit-link"
                     href="/en/playbooks/example_playbook/edit"
                   >
                     <img
                       alt="Edit"
-                      class="inline mr-2 pb-1"
                       height="12px"
                       src="/icons/edit.svg"
                       width="12px"
                     />
                     <span
-                      class="text-sm px-2"
+                      class="text-sm"
                     >
                       Edit
                     </span>
@@ -622,18 +622,18 @@ Object {
                   </span>
                 </a>
                 <a
-                  class="bg-dial-blue px-2 py-1 rounded text-white mr-5"
+                  class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+                  data-testid="edit-link"
                   href="/en/playbooks/example_playbook/edit"
                 >
                   <img
                     alt="Edit"
-                    class="inline mr-2 pb-1"
                     height="12px"
                     src="/icons/edit.svg"
                     width="12px"
                   />
                   <span
-                    class="text-sm px-2"
+                    class="text-sm"
                   >
                     Edit
                   </span>
