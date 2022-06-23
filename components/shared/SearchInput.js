@@ -16,7 +16,7 @@ export const SearchInput = ({ value, placeholder, onChange, onBlur, onSearchIcon
       className={classNames(className, { 'pr-20': onSearchIconClick, 'pr-10': !onSearchIconClick }, 'w-full')}
       data-testid='search-input'
     />
-    <div className={`${onSearchIconClick ? '-ml-[4.5rem]' : '-ml-8'} flex`}>
+    <div className={classNames({ '-ml-[4.5rem]': onSearchIconClick, '-ml-8': !onSearchIconClick }, 'flex mr-2')}>
       <span className='my-auto pr-1 bg-white text-2xl text-dial-gray-dark border-dial-gray-dark'>
         <MdClose
           data-testid='clear-icon-button'

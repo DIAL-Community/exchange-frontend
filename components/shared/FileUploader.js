@@ -9,7 +9,7 @@ const FileUploader = React.forwardRef(({ type, onChange, onBlur, isInvalid = fal
   const { value, ...otherPropsWithoutValue } = otherProps
 
   return (
-    <div className={classNames(className, 'flex items-center')}>
+    <label className={classNames(className, 'flex items-center')}>
       <input
         {...otherPropsWithoutValue}
         ref={ref}
@@ -24,7 +24,7 @@ const FileUploader = React.forwardRef(({ type, onChange, onBlur, isInvalid = fal
           <ImFilePicture />
         </span>
       </div>
-    </div>
+    </label>
   )
 })
 

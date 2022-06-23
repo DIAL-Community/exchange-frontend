@@ -6,111 +6,126 @@ exports[`Unit test for the OrganizationDetailContacts component. If input name i
     class="Toastify"
   />
   <div
-    class="mt-12"
+    data-testid="organization-contacts"
   >
     <div
-      class="flex justify-between items-center mb-3"
+      class="mt-12"
+      data-testid="editable-section"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="flex justify-between items-center mb-3"
       >
-        Contacts
-      </div>
-    </div>
-    <div
-      class="bg-edit p-6"
-    >
-      <form>
-        <p
-          class="card-title text-dial-blue mb-3"
+        <div
+          class="card-title text-dial-gray-dark"
         >
-          Assign
-           
           Contacts
-        </p>
-        <div
-          class="flex flex-col md:flex-row justify-between"
-        >
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p
-              class="required-field"
-            >
-              Name:
-            </p>
-            <input
-              class="w-full"
-              data-testid="name-input"
-              name="name"
-              type="text"
-              value=""
-            />
-          </label>
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p
-              class="required-field"
-            >
-              Email:
-            </p>
-            <input
-              class="w-full"
-              data-testid="email-input"
-              name="email"
-              type="text"
-              value=""
-            />
-          </label>
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p>
-              Title:
-            </p>
-            <input
-              class="w-full"
-              data-testid="title-input"
-              name="title"
-              type="text"
-              value=""
-            />
-          </label>
-          <label
-            class="flex md:block justify-center md:justify-end ml-4 mb-2 mt-8 text-xl"
-          >
-            <button
-              class="submit-button"
-              data-testid="assign-button"
-              type="submit"
-            >
-              Assign
-            </button>
-          </label>
         </div>
-        <div
-          class="flex flex-wrap gap-3 mt-5 mx-4"
-        />
-      </form>
+      </div>
       <div
-        class="flex justify-end mt-8 gap-3 text-xl"
+        class="bg-edit p-6"
       >
-        <button
-          class="submit-button"
-          data-testid="submit-button"
-          disabled=""
-          type="submit"
+        <form>
+          <p
+            class="card-title text-dial-blue mb-3"
+          >
+            Assign
+             
+            Contacts
+          </p>
+          <div
+            class="flex flex-col md:flex-row justify-between"
+          >
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p
+                class="required-field"
+              >
+                Name:
+              </p>
+              <input
+                class="validation-error w-full"
+                data-testid="name-input"
+                name="name"
+                type="text"
+                value=""
+              />
+              <p
+                class="text-sm text-validation-error"
+              >
+                This field is required
+              </p>
+            </label>
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p
+                class="required-field"
+              >
+                Email:
+              </p>
+              <input
+                class="validation-error w-full"
+                data-testid="email-input"
+                name="email"
+                type="text"
+                value=""
+              />
+              <p
+                class="text-sm text-validation-error"
+              >
+                This field is required
+              </p>
+            </label>
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p>
+                Title:
+              </p>
+              <input
+                class="w-full"
+                data-testid="title-input"
+                name="title"
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              class="flex md:block justify-center md:justify-end ml-4 mb-2 mt-8 text-xl"
+            >
+              <button
+                class="submit-button"
+                data-testid="assign-button"
+                type="submit"
+              >
+                Assign
+              </button>
+            </label>
+          </div>
+          <div
+            class="flex flex-wrap gap-3 mt-5 mx-4"
+          />
+        </form>
+        <div
+          class="flex justify-end mt-8 gap-3 text-xl"
         >
-          Submit
-        </button>
-        <button
-          class="cancel-button"
-          data-testid="cancel-button"
-          type="button"
-        >
-          Cancel
-        </button>
+          <button
+            class="submit-button"
+            data-testid="submit-button"
+            disabled=""
+            type="submit"
+          >
+            Submit
+          </button>
+          <button
+            class="cancel-button"
+            data-testid="cancel-button"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -123,136 +138,141 @@ exports[`Unit test for the OrganizationDetailContacts component. Should add pill
     class="Toastify"
   />
   <div
-    class="mt-12"
+    data-testid="organization-contacts"
   >
     <div
-      class="flex justify-between items-center mb-3"
+      class="mt-12"
+      data-testid="editable-section"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="flex justify-between items-center mb-3"
       >
-        Contacts
-      </div>
-    </div>
-    <div
-      class="bg-edit p-6"
-    >
-      <form>
-        <p
-          class="card-title text-dial-blue mb-3"
+        <div
+          class="card-title text-dial-gray-dark"
         >
-          Assign
-           
           Contacts
-        </p>
-        <div
-          class="flex flex-col md:flex-row justify-between"
-        >
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p
-              class="required-field"
-            >
-              Name:
-            </p>
-            <input
-              class="w-full"
-              data-testid="name-input"
-              name="name"
-              type="text"
-              value=""
-            />
-          </label>
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p
-              class="required-field"
-            >
-              Email:
-            </p>
-            <input
-              class="w-full"
-              data-testid="email-input"
-              name="email"
-              type="text"
-              value=""
-            />
-          </label>
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p>
-              Title:
-            </p>
-            <input
-              class="w-full"
-              data-testid="title-input"
-              name="title"
-              type="text"
-              value=""
-            />
-          </label>
-          <label
-            class="flex md:block justify-center md:justify-end ml-4 mb-2 mt-8 text-xl"
-          >
-            <button
-              class="submit-button"
-              data-testid="assign-button"
-              type="submit"
-            >
-              Assign
-            </button>
-          </label>
         </div>
-        <div
-          class="flex flex-wrap gap-3 mt-5 mx-4"
-        >
-          <div
-            class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-            data-testid="pill"
-          >
-            Name: Test Test
-            <svg
-              class="ml-3 text-2xl cursor-pointer"
-              data-testid="remove-button"
-              fill="currentColor"
-              height="1em"
-              stroke="currentColor"
-              stroke-width="0"
-              viewBox="0 0 24 24"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0 0h24v24H0z"
-                fill="none"
-              />
-              <path
-                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-              />
-            </svg>
-          </div>
-        </div>
-      </form>
+      </div>
       <div
-        class="flex justify-end mt-8 gap-3 text-xl"
+        class="bg-edit p-6"
       >
-        <button
-          class="submit-button"
-          data-testid="submit-button"
-          type="submit"
+        <form>
+          <p
+            class="card-title text-dial-blue mb-3"
+          >
+            Assign
+             
+            Contacts
+          </p>
+          <div
+            class="flex flex-col md:flex-row justify-between"
+          >
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p
+                class="required-field"
+              >
+                Name:
+              </p>
+              <input
+                class="w-full"
+                data-testid="name-input"
+                name="name"
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p
+                class="required-field"
+              >
+                Email:
+              </p>
+              <input
+                class="w-full"
+                data-testid="email-input"
+                name="email"
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p>
+                Title:
+              </p>
+              <input
+                class="w-full"
+                data-testid="title-input"
+                name="title"
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              class="flex md:block justify-center md:justify-end ml-4 mb-2 mt-8 text-xl"
+            >
+              <button
+                class="submit-button"
+                data-testid="assign-button"
+                type="submit"
+              >
+                Assign
+              </button>
+            </label>
+          </div>
+          <div
+            class="flex flex-wrap gap-3 mt-5 mx-4"
+          >
+            <div
+              class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+              data-testid="pill"
+            >
+              Name: Test Test
+              <svg
+                class="ml-3 text-2xl cursor-pointer"
+                data-testid="remove-button"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+              </svg>
+            </div>
+          </div>
+        </form>
+        <div
+          class="flex justify-end mt-8 gap-3 text-xl"
         >
-          Submit
-        </button>
-        <button
-          class="cancel-button"
-          data-testid="cancel-button"
-          type="button"
-        >
-          Cancel
-        </button>
+          <button
+            class="submit-button"
+            data-testid="submit-button"
+            type="submit"
+          >
+            Submit
+          </button>
+          <button
+            class="cancel-button"
+            data-testid="cancel-button"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -265,111 +285,116 @@ exports[`Unit test for the OrganizationDetailContacts component. Should assign b
     class="Toastify"
   />
   <div
-    class="mt-12"
+    data-testid="organization-contacts"
   >
     <div
-      class="flex justify-between items-center mb-3"
+      class="mt-12"
+      data-testid="editable-section"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="flex justify-between items-center mb-3"
       >
-        Contacts
-      </div>
-    </div>
-    <div
-      class="bg-edit p-6"
-    >
-      <form>
-        <p
-          class="card-title text-dial-blue mb-3"
+        <div
+          class="card-title text-dial-gray-dark"
         >
-          Assign
-           
           Contacts
-        </p>
-        <div
-          class="flex flex-col md:flex-row justify-between"
-        >
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p
-              class="required-field"
-            >
-              Name:
-            </p>
-            <input
-              class="w-full"
-              data-testid="name-input"
-              name="name"
-              type="text"
-              value=""
-            />
-          </label>
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p
-              class="required-field"
-            >
-              Email:
-            </p>
-            <input
-              class="w-full"
-              data-testid="email-input"
-              name="email"
-              type="text"
-              value=""
-            />
-          </label>
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p>
-              Title:
-            </p>
-            <input
-              class="w-full"
-              data-testid="title-input"
-              name="title"
-              type="text"
-              value=""
-            />
-          </label>
-          <label
-            class="flex md:block justify-center md:justify-end ml-4 mb-2 mt-8 text-xl"
-          >
-            <button
-              class="submit-button"
-              data-testid="assign-button"
-              type="submit"
-            >
-              Assign
-            </button>
-          </label>
         </div>
-        <div
-          class="flex flex-wrap gap-3 mt-5 mx-4"
-        />
-      </form>
+      </div>
       <div
-        class="flex justify-end mt-8 gap-3 text-xl"
+        class="bg-edit p-6"
       >
-        <button
-          class="submit-button"
-          data-testid="submit-button"
-          disabled=""
-          type="submit"
+        <form>
+          <p
+            class="card-title text-dial-blue mb-3"
+          >
+            Assign
+             
+            Contacts
+          </p>
+          <div
+            class="flex flex-col md:flex-row justify-between"
+          >
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p
+                class="required-field"
+              >
+                Name:
+              </p>
+              <input
+                class="w-full"
+                data-testid="name-input"
+                name="name"
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p
+                class="required-field"
+              >
+                Email:
+              </p>
+              <input
+                class="w-full"
+                data-testid="email-input"
+                name="email"
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p>
+                Title:
+              </p>
+              <input
+                class="w-full"
+                data-testid="title-input"
+                name="title"
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              class="flex md:block justify-center md:justify-end ml-4 mb-2 mt-8 text-xl"
+            >
+              <button
+                class="submit-button"
+                data-testid="assign-button"
+                type="submit"
+              >
+                Assign
+              </button>
+            </label>
+          </div>
+          <div
+            class="flex flex-wrap gap-3 mt-5 mx-4"
+          />
+        </form>
+        <div
+          class="flex justify-end mt-8 gap-3 text-xl"
         >
-          Submit
-        </button>
-        <button
-          class="cancel-button"
-          data-testid="cancel-button"
-          type="button"
-        >
-          Cancel
-        </button>
+          <button
+            class="submit-button"
+            data-testid="submit-button"
+            disabled=""
+            type="submit"
+          >
+            Submit
+          </button>
+          <button
+            class="cancel-button"
+            data-testid="cancel-button"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -382,111 +407,141 @@ exports[`Unit test for the OrganizationDetailContacts component. Should clear in
     class="Toastify"
   />
   <div
-    class="mt-12"
+    data-testid="organization-contacts"
   >
     <div
-      class="flex justify-between items-center mb-3"
+      class="mt-12"
+      data-testid="editable-section"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="flex justify-between items-center mb-3"
       >
-        Contacts
-      </div>
-    </div>
-    <div
-      class="bg-edit p-6"
-    >
-      <form>
-        <p
-          class="card-title text-dial-blue mb-3"
+        <div
+          class="card-title text-dial-gray-dark"
         >
-          Assign
-           
           Contacts
-        </p>
-        <div
-          class="flex flex-col md:flex-row justify-between"
-        >
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p
-              class="required-field"
-            >
-              Name:
-            </p>
-            <input
-              class="w-full"
-              data-testid="name-input"
-              name="name"
-              type="text"
-              value="Test Test"
-            />
-          </label>
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p
-              class="required-field"
-            >
-              Email:
-            </p>
-            <input
-              class="w-full"
-              data-testid="email-input"
-              name="email"
-              type="text"
-              value="test@test.com"
-            />
-          </label>
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p>
-              Title:
-            </p>
-            <input
-              class="w-full"
-              data-testid="title-input"
-              name="title"
-              type="text"
-              value="Head of test"
-            />
-          </label>
-          <label
-            class="flex md:block justify-center md:justify-end ml-4 mb-2 mt-8 text-xl"
-          >
-            <button
-              class="submit-button"
-              data-testid="assign-button"
-              type="submit"
-            >
-              Assign
-            </button>
-          </label>
         </div>
-        <div
-          class="flex flex-wrap gap-3 mt-5 mx-4"
-        />
-      </form>
+      </div>
       <div
-        class="flex justify-end mt-8 gap-3 text-xl"
+        class="bg-edit p-6"
       >
-        <button
-          class="submit-button"
-          data-testid="submit-button"
-          disabled=""
-          type="submit"
+        <form>
+          <p
+            class="card-title text-dial-blue mb-3"
+          >
+            Assign
+             
+            Contacts
+          </p>
+          <div
+            class="flex flex-col md:flex-row justify-between"
+          >
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p
+                class="required-field"
+              >
+                Name:
+              </p>
+              <input
+                class="w-full"
+                data-testid="name-input"
+                name="name"
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p
+                class="required-field"
+              >
+                Email:
+              </p>
+              <input
+                class="w-full"
+                data-testid="email-input"
+                name="email"
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p>
+                Title:
+              </p>
+              <input
+                class="w-full"
+                data-testid="title-input"
+                name="title"
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              class="flex md:block justify-center md:justify-end ml-4 mb-2 mt-8 text-xl"
+            >
+              <button
+                class="submit-button"
+                data-testid="assign-button"
+                type="submit"
+              >
+                Assign
+              </button>
+            </label>
+          </div>
+          <div
+            class="flex flex-wrap gap-3 mt-5 mx-4"
+          >
+            <div
+              class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+              data-testid="pill"
+            >
+              Name: Test Test
+              <svg
+                class="ml-3 text-2xl cursor-pointer"
+                data-testid="remove-button"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+              </svg>
+            </div>
+          </div>
+        </form>
+        <div
+          class="flex justify-end mt-8 gap-3 text-xl"
         >
-          Submit
-        </button>
-        <button
-          class="cancel-button"
-          data-testid="cancel-button"
-          type="button"
-        >
-          Cancel
-        </button>
+          <button
+            class="submit-button"
+            data-testid="submit-button"
+            type="submit"
+          >
+            Submit
+          </button>
+          <button
+            class="cancel-button"
+            data-testid="cancel-button"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -499,110 +554,115 @@ exports[`Unit test for the OrganizationDetailContacts component. Should remove p
     class="Toastify"
   />
   <div
-    class="mt-12"
+    data-testid="organization-contacts"
   >
     <div
-      class="flex justify-between items-center mb-3"
+      class="mt-12"
+      data-testid="editable-section"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="flex justify-between items-center mb-3"
       >
-        Contacts
-      </div>
-    </div>
-    <div
-      class="bg-edit p-6"
-    >
-      <form>
-        <p
-          class="card-title text-dial-blue mb-3"
+        <div
+          class="card-title text-dial-gray-dark"
         >
-          Assign
-           
           Contacts
-        </p>
-        <div
-          class="flex flex-col md:flex-row justify-between"
-        >
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p
-              class="required-field"
-            >
-              Name:
-            </p>
-            <input
-              class="w-full"
-              data-testid="name-input"
-              name="name"
-              type="text"
-              value=""
-            />
-          </label>
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p
-              class="required-field"
-            >
-              Email:
-            </p>
-            <input
-              class="w-full"
-              data-testid="email-input"
-              name="email"
-              type="text"
-              value=""
-            />
-          </label>
-          <label
-            class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
-          >
-            <p>
-              Title:
-            </p>
-            <input
-              class="w-full"
-              data-testid="title-input"
-              name="title"
-              type="text"
-              value=""
-            />
-          </label>
-          <label
-            class="flex md:block justify-center md:justify-end ml-4 mb-2 mt-8 text-xl"
-          >
-            <button
-              class="submit-button"
-              data-testid="assign-button"
-              type="submit"
-            >
-              Assign
-            </button>
-          </label>
         </div>
-        <div
-          class="flex flex-wrap gap-3 mt-5 mx-4"
-        />
-      </form>
+      </div>
       <div
-        class="flex justify-end mt-8 gap-3 text-xl"
+        class="bg-edit p-6"
       >
-        <button
-          class="submit-button"
-          data-testid="submit-button"
-          type="submit"
+        <form>
+          <p
+            class="card-title text-dial-blue mb-3"
+          >
+            Assign
+             
+            Contacts
+          </p>
+          <div
+            class="flex flex-col md:flex-row justify-between"
+          >
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p
+                class="required-field"
+              >
+                Name:
+              </p>
+              <input
+                class="w-full"
+                data-testid="name-input"
+                name="name"
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p
+                class="required-field"
+              >
+                Email:
+              </p>
+              <input
+                class="w-full"
+                data-testid="email-input"
+                name="email"
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              class="flex flex-col gap-y-2 mb-2 mx-4 w-full"
+            >
+              <p>
+                Title:
+              </p>
+              <input
+                class="w-full"
+                data-testid="title-input"
+                name="title"
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              class="flex md:block justify-center md:justify-end ml-4 mb-2 mt-8 text-xl"
+            >
+              <button
+                class="submit-button"
+                data-testid="assign-button"
+                type="submit"
+              >
+                Assign
+              </button>
+            </label>
+          </div>
+          <div
+            class="flex flex-wrap gap-3 mt-5 mx-4"
+          />
+        </form>
+        <div
+          class="flex justify-end mt-8 gap-3 text-xl"
         >
-          Submit
-        </button>
-        <button
-          class="cancel-button"
-          data-testid="cancel-button"
-          type="button"
-        >
-          Cancel
-        </button>
+          <button
+            class="submit-button"
+            data-testid="submit-button"
+            type="submit"
+          >
+            Submit
+          </button>
+          <button
+            class="cancel-button"
+            data-testid="cancel-button"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   </div>

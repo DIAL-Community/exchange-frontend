@@ -20,7 +20,7 @@ const EditableSection = ({ canEdit, sectionHeader, editModeBody, displayModeBody
   }, [isSubmitInProgress, isMutating])
 
   return (
-    <div className='mt-12'>
+    <div className='mt-12' data-testid='editable-section'>
       <div className='flex justify-between items-center mb-3'>
         <div className='card-title text-dial-gray-dark'>{sectionHeader}</div>
         {canEdit && !isInEditMode && <EditButton onClick={() => setIsInEditMode(true)} className='mr-2' />}

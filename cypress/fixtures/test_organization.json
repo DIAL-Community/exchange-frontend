@@ -1,0 +1,19 @@
+{
+    "name": "E2E Test Organization",
+    "slug": "e2e_test_organization",
+    "website": "https://www.example.com",
+    "logoPath": "images/organization_logo.png",
+    "endorsedOn": "2021-03-05",
+    "description": "This is a test organization created by End-to-End tests",
+    "aliases": ["End to End Test Org", "Test Org", "My Test Organization"],
+    "contacts": [
+        { "name": "John Doe", "email": "jdoe@example.com", "title": "CEO" },
+        { "name": "Test Man", "email": "tman@example.com", "title": "CFO" }
+    ],
+    "sectors": ["Agriculture and Rural Development: Economy", "Digital, Data, and Technology: Big data"],
+    "countries": [],
+    "products": [],
+    "endorser": true,
+    "mni": true,
+    "endorserLevel": "Gold"
+}

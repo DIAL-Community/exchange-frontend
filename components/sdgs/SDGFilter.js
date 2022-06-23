@@ -18,10 +18,10 @@ const SDGFilter = (props) => {
     <div className='px-4 py-4'>
       <div className='text-dial-gray-dark'>
         <div className='px-2 mb-4 text-xs'>
-          <button className='font-semibold flex gap-1' onClick={() => setHintDisplayed(true)}>
+          <a className='cursor-pointer font-semibold flex gap-1' onClick={() => setHintDisplayed(true)}>
             {format('filter.hint.text.an')} {format('sdg.shortLabel')}
             <BsQuestionCircleFill className='inline text-sm mb-1' />
-          </button>
+          </a>
         </div>
         <div className='text-sm text-dial-gray-dark flex flex-row'>
           <div className='text-xl px-2 pb-3'>

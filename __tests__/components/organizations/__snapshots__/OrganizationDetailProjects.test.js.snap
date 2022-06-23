@@ -7,6 +7,7 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should add a p
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -46,7 +47,7 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should add a p
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"
@@ -221,6 +222,7 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should match s
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -237,7 +239,6 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should match s
       >
         <img
           alt="Edit"
-          class=""
           height="12px"
           src="/icons/edit.svg"
           width="12px"
@@ -250,7 +251,7 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should match s
       </button>
     </div>
     <div
-      class="grid grid-cols-1"
+      class="flex flex-col gap-2"
     >
       <a
         href="/projects/test_project"
@@ -306,6 +307,7 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should match s
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -345,7 +347,7 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should match s
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"
@@ -471,6 +473,7 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should match s
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -482,7 +485,7 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should match s
       </div>
     </div>
     <div
-      class="grid grid-cols-1"
+      class="flex flex-col gap-2"
     >
       <a
         href="/projects/test_project"
@@ -538,6 +541,7 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should remove 
   />
   <div
     class="mt-12"
+    data-testid="editable-section"
   >
     <div
       class="flex justify-between items-center mb-3"
@@ -577,7 +581,7 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should remove 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-9fpz0u-control"
+            class="react-select__control css-19jej77-control"
           >
             <div
               class="react-select__value-container css-3tzzl5-ValueContainer"

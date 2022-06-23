@@ -47,13 +47,13 @@ const Footer = () => {
                 />
               </a>
             </div>
-            <div className='h-20 w-24 relative p-2 m-auto'>
+            <div className='relative p-2 m-auto'>
               <a
                 href='https://www.gov.uk/government/organisations/foreign-commonwealth-development-office'
                 target='_blank' rel='noreferrer'
               >
                 <Image
-                  src='/images/footer/fcdo-logo.png' layout='fill' objectFit='scale-down'
+                  src='/images/footer/fcdo-logo.png' height={60} width={60}
                   alt='The Foreign, Commonwealth & Development Office Logo'
                 />
               </a>

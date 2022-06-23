@@ -59,7 +59,7 @@ const OrganizationDetailRight = ({ organization }) => {
           <div className='text-sm text-dial-purple-light leading-6 tracking-wide'>
             {format('organization.detail.website').toUpperCase()}
           </div>
-          <div className='text-base text-dial-teal'>
+          <div className='text-base text-dial-teal' data-testid='organization-website'>
             <a href={`//${organization.website}`} className='flex flex-row' target='_blank' rel='noreferrer'>
               <div className='my-auto'>{organization.website} ⧉</div>
             </a>
@@ -81,7 +81,7 @@ const OrganizationDetailRight = ({ organization }) => {
                 <div className='text-sm leading-6 text-dial-purple-light pt-6 leading-6 tracking-wide'>
                   {format('organization.detail.endorserLevel').toUpperCase()}
                 </div>
-                <div className='text-base text-dial-yellow pb-2'>
+                <div className='text-base text-dial-yellow pb-2' data-testid='organization-endorser-level'>
                   {organization.endorserLevel.toUpperCase()}
                 </div>
               </>
@@ -93,7 +93,7 @@ const OrganizationDetailRight = ({ organization }) => {
         }
       </div>
       <div className={`mt-8 ${sectionHeaderStyle}`}>{format('product.description')}</div>
-      <div className='fr-view text-dial-gray-dark p-3'>
+      <div className='fr-view text-dial-gray-dark p-3' data-testid='organization-description'>
         {organization.organizationDescription && parse(organization.organizationDescription.description)}
       </div>
       {

@@ -202,11 +202,11 @@ export const en = {
   'product.est-effort': 'Estimated effort (person months)',
   'product.interoperable': 'Interoperable products',
   'product.included': 'Included products',
-  'product.no-interop': 'We don’t have any interoperating information for this product.',
-  'product.no-include': 'We don’t have any includes information for this product.',
+  'product.no-interop': 'We do not have any Interoperating information for this Product.',
+  'product.no-include': 'We do not have any Includes information for this Product.',
   'product.maturity-scores': 'Product maturity scores',
   'product.maturity-desc': 'These maturity scores have been sourced from organizations such as Digital Square and DIAL Open Source Center. These maturity scores are not an endorsement, but a reflection of ratings given by various organizations. For more information visit the <a href="https://docs.osc.dial.community/projects/product-registry/en/latest/maturity.html" target="_blank">Catalog Documentation</a>',
-  'product.no-maturity': 'We do not have any maturity information for this product.',
+  'product.no-maturity': 'We do not have any Maturity information for this Product.',
   'product.overall-score': 'Overall maturity score',
   'product.category-score': 'Category score',
   'product.indicator-score': 'Indicator score',
@@ -228,6 +228,11 @@ export const en = {
   'product.imageFile': 'Logo',
   'product.submit.success': 'Product submitted successfully',
   'product.submit.failure': 'Product submission failed',
+  'product.no-organization': 'We do not have any Organization information for this Product.',
+  'product.no-building-block': 'We do not have any Building Block information for this Product.',
+  'product.no-sector': 'We do not have any Sector information for this Product.',
+  'product.no-tag': 'We do not have any Tag information for this Product.',
+  'product.no-project': 'We do not have any Project information for this Product.',
 
   'project.header': 'Projects',
   'project.label': 'Project',
@@ -256,10 +261,14 @@ export const en = {
   'organization.submit.success': 'Organization submitted successfully',
   'organization.submit.failure': 'Organization submission failed',
   'organization.countries.updated': 'Countries updated successfully',
-  'organization.sectors.updated': 'Sectors updated successfully',
   'organization.projects.updated': 'Projects updated successfully',
   'organization.contacts.updated': 'Contacts updated successfully',
   'organization.products.updated': 'Products updated successfully',
+  'organization.no-sector': 'We do not have any Sector information for this Organization.',
+  'organization.no-country': 'We do not have any Country information for this Organization.',
+  'organization.no-contact': 'We do not have any Contact information for this Organization.',
+  'organization.no-project': 'We do not have any Project information for this Organization.',
+  'organization.no-product': 'We do not have any Product information for this Organization.',
 
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',
@@ -371,6 +380,17 @@ export const en = {
   'product.card.buildingBlocks': 'Building Blocks',
   'product.card.sdgs': 'SDGs',
 
+  'datasets.label': 'Dataset',
+  'dataset.website': 'Data URL',
+  'dataset.description': 'Description',
+  'dataset.source': 'Source',
+  'dataset.coverage': 'Geograpic Coverage',
+  'dataset.timeRange': 'Time Range',
+  'dataset.card.sdgs': 'SDGs',
+  'dataset.card.dataset': 'Dataset',
+  'dataset.card.content': 'Content',
+  'dataset.card.coronavirusTagValue': 'COVID-19',
+
   'general.close': 'Close',
   'general.na': 'N/A',
   'general.fetchingData': 'Fetching data ...',
@@ -392,6 +412,7 @@ export const en = {
   'workflow.header': 'Workflows',
   'useCase.header': 'Use Cases',
   'product.header': 'Products',
+  'dataset.header': 'Open Data',
 
   'organization.detail.website': 'Website',
   'organization.detail.whenEndorsed': 'Endorsed On',
@@ -409,6 +430,7 @@ export const en = {
   'useCase.description': 'Description',
   'workflow.label': 'Workflow',
   'product.label': 'Product',
+  'dataset.label': 'Dataset',
   'country.label': 'Country',
 
   'error.auth': 'Error in authentication',
@@ -449,6 +471,7 @@ export const en = {
   'filter.entity.workflows': 'Workflows',
   'filter.entity.buildingBlocks': 'Building Blocks',
   'filter.entity.products': 'Products',
+  'filter.entity.datasets': 'Open Data',
   'filter.entity.projects': 'Projects',
   'filter.entity.organizations': 'Organizations',
   'filter.entity.playbooks': 'Playbooks',
@@ -552,11 +575,58 @@ export const en = {
   'resource.header': 'Resources',
   'resource.label': 'Resource',
 
-  'productType.label': 'Type',
-  'productType.header': 'Product or Dataset?',
-  'productType.productOnly': 'Product Only',
-  'productType.datasetOnly': 'Dataset Only',
-  'productType.allType': 'All Type',
+  'datasetType.label': 'Type',
+  'datasetType.header': 'Open Data Type',
+  'datasetType.contentOnly': 'Content Only',
+  'datasetType.datasetOnly': 'Dataset Only',
+  'datasetType.allType': 'All Types',
+
+  'dataset.name': 'Dataset Name',
+  'dataset.aliases': 'Dataset Other Name',
+  'dataset.visualizationUrl': 'Dataset Visualization URL',
+  'dataset.type.content': 'Content',
+  'dataset.type.dataset': 'Dataset',
+  'dataset.type.aiModel': 'AI Model',
+  'dataset.type.standard': 'Standard',
+  'dataset.datasetType': 'Dataset Type',
+  'dataset.submit': 'Submit',
+  'dataset.submit.success': 'Dataset submitted successfully.',
+  'dataset.submit.failure': 'Dataset submission failed.',
+  'dataset.sectors.updated': 'Sectors updated successfully.',
+  'dataset.organizations.updated': 'Organizations updated successfully.',
+  'dataset.tags.updated': 'Tags updated successfully.',
+  'dataset.sdgs.updated': 'SDGs updated successfully.',
+
+  'dataset.sdg.mappingStatus': 'Mapping Status',
+  'dataset.mappingStatus.beta': 'Beta',
+  'dataset.mappingStatus.mature': 'Mature',
+  'dataset.mappingStatus.selfReported': 'Self Reported',
+  'dataset.mappingStatus.validated': 'Validated',
+
+  'dataset.no-sector': 'We do not have sector information for this dataset.',
+  'dataset.no-organization': 'We do not have organization information for this dataset.',
+  'dataset.no-tag': 'We do not have tag information for this dataset.',
+  'dataset.no-sdg': 'We do not have SDG information for this dataset.',
+
+  'dataset.view-DPGA-data': 'View information submitted to DPGA',
+
+  'dataset.hint.subtitle': 'Open data is data that anyone can easily access, use, analyze, share, and redistribute.',
+  'dataset.hint.descriptionTitle': 'Description',
+  'dataset.hint.description': `
+  <div className='flex flex-col gap-2'>
+    <div>
+      Open data presents a key opportunity to attain the Sustainable Development Goal(s) by helping accelerate technical
+      innovation by allowing software and AI models to be more precise and therefore deepen their potential positive impact
+      on development. With greater access to data, policymakers can be equipped with the information and knowledge to make
+      informed decisions while fostering greater accountability and transparency.
+    </div>
+    <div>
+      In this tab, you can find links to freely available datasets that can help with your own digital transformation
+      initiatives. Key documentation is also available including a description of the dataset, the organization which is
+      maintaining it, information on updates and licenses, the sector it provides data for, geographic coverage, etc.
+    </div>
+  </div>
+  `,
 
   'map.aggregator.loadingData': 'Loading map\'s aggregator data ...',
   'map.project.loadingData': 'Loading map\'s project data ...',
@@ -709,12 +779,6 @@ export const en = {
   'tooltip.launchable': 'This product has been tagged as can be deployed to cloud provider.',
   'tooltip.digiprins': 'This product is owned or maintained by a Digital Principles endorser.',
 
-  'organization.no-sector': 'We do not have sector information for this organization.',
-  'organization.no-country': 'We do not have country information for this organization.',
-  'organization.no-contact': 'We do not have contact information for this organization.',
-  'organization.no-project': 'We do not have project information for this organization.',
-  'organization.no-products': 'We do not have product information for this organization.',
-  'organization.no-product': 'We do not have product information for this organization.',
   'office.other.header': 'Other Office Locations',
 
   'useCaseStep.header': 'Use Case Steps',
@@ -1128,6 +1192,7 @@ export const en = {
   'productRepository.edit': 'Edit Repository',
   'productRepository.updated': 'Product repository updated.',
   'productRepository.deleted': 'Product repository deleted.',
+  'productRepository.no-repositories': 'There are no repositories for this Product.',
 
   'wizard.project.sortHint': 'Sort Projects',
   'wizard.product.sortHint': 'Sort Products',
@@ -1202,5 +1267,15 @@ export const en = {
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
-  'organization.validation.contact.uniqueName': 'This contact is already assigned to this organization'
+
+  'toast.buildingBlocks.update.success': 'Building Blocks updated successfully',
+  'toast.buildingBlocks.update.failure': 'Building Blocks update failed',
+  'toast.organizations.update.success': 'Organizations updated successfully',
+  'toast.organizations.update.failure': 'Organizations update failed',
+  'toast.tags.update.success': 'Tags updated successfully',
+  'toast.tags.update.failure': 'Tags update failed',
+  'toast.sectors.update.success': 'Sectors updated successfully',
+  'toast.sectors.update.failure': 'Sectors update failed',
+  'toast.projects.updated': 'Projects updated successfully',
+  'toast.projects.update.failure': 'Projects update failed'
 }

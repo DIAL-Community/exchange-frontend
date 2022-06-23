@@ -14,6 +14,40 @@ module.exports = {
       locale: 'en',
       __typename: 'ProductDescription'
     },
+    organizations: [{
+      id: 1,
+      name: 'Test Organization',
+      slug: 'to',
+      __typename: 'Organization'
+    }],
+    tags: ['Test Tag'],
+    buildingBlocks: [{
+      id: 3,
+      name: 'Test Building Block',
+      slug: 'test_building_block',
+      maturity: 'BETA',
+      imageFile: 'test-building-block.png',
+      __typename: 'BuildingBlock'
+    }],
+    sectors: [
+      {
+        id: 1,
+        name: 'Test Sector',
+        slug: 'test_sector',
+        __typename: 'Sector'
+      }
+    ],
+    currentProjects: [
+      {
+        id: 1,
+        name: 'Test Project',
+        slug: 'test_project',
+        origin: {
+          slug: 'origin_slug'
+        },
+        __typename: 'Project'
+      }
+    ],
     __typename: 'Product'
   },
   createProductSuccess: {

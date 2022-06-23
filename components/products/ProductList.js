@@ -36,7 +36,6 @@ query SearchProducts(
   $useCases: [String!],
   $workflows: [String!],
   $buildingBlocks: [String!],
-  $productTypes: [String!],
   $endorsers: [String!],
   $productDeployable: Boolean,
   $withMaturity: Boolean,
@@ -54,7 +53,6 @@ query SearchProducts(
     useCases: $useCases,
     workflows: $workflows,
     buildingBlocks: $buildingBlocks,
-    productTypes: $productTypes,
     endorsers: $endorsers,
     productDeployable: $productDeployable,
     withMaturity: $withMaturity,
@@ -109,7 +107,7 @@ query SearchProducts(
 const ProductListQuery = () => {
   const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const {
-    origins, countries, sectors, organizations, sdgs, tags, useCases, workflows, buildingBlocks, productTypes,
+    origins, countries, sectors, organizations, sdgs, tags, useCases, workflows, buildingBlocks, 
     endorsers, productDeployable, withMaturity, search
   } = useContext(ProductFilterContext)
 
@@ -129,7 +127,6 @@ const ProductListQuery = () => {
       useCases: useCases.map(useCase => useCase.value),
       workflows: workflows.map(workflow => workflow.value),
       buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
-      productTypes: productTypes.map(productType => productType.value),
       endorsers: endorsers.map(endorser => endorser.value),
       productDeployable: productDeployable,
       withMaturity: withMaturity,
@@ -152,7 +149,6 @@ const ProductListQuery = () => {
         useCases: useCases.map(useCase => useCase.value),
         workflows: workflows.map(workflow => workflow.value),
         buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
-        productTypes: productTypes.map(productType => productType.value),
         endorsers: endorsers.map(endorser => endorser.value),
         productDeployable: productDeployable,
         withMaturity: withMaturity,

@@ -42,12 +42,14 @@ const PRODUCT_SPREADSHEET_MUTATION = gql`
   mutation (
     $spreadsheetData: JSON!,
     $spreadsheetType: String!,
-    $assoc: String
+    $assoc: String,
+    $rowIndex: Int
   ) {
       createSpreadsheetData(
         spreadsheetData: $spreadsheetData,
         spreadsheetType: $spreadsheetType,
-        assoc: $assoc
+        assoc: $assoc,
+        rowIndex: $rowIndex
       ) {
         dialSpreadsheetData {
           id
@@ -97,11 +99,10 @@ const ProductSpreadsheet = () => {
     return classes.filter(Boolean).join(' ')
   }
 
-  const buildData = (rowData, changes) => {
-    const [rowChanges] = changes
+  const buildData = (rowData) => {
     const data = {
       name: rowData[0],
-      changes: rowChanges.map(x => typeof x === 'undefined' || x === null ? '' : x )
+      changes: rowData.map(x => typeof x === 'undefined' || x === null ? '' : x )
     }
 
     // The locale field for description is needed to assign the correct description locale.
@@ -112,20 +113,18 @@ const ProductSpreadsheet = () => {
     return data
   }
 
-  const afterChangeHandler = (changes) => {
-    const currentHotRef = hotRefs[selectedIndex].current
+  const saveSpreadsheet = () => {
+    const currentHotRef = hotRefs[selectedIndex].current.hotInstance
+    const changes = currentHotRef.getData()
     if (currentHotRef && changes && session) {
       // The form of 'changes' is array of array. The first element:
       // [rowIndex, columnIndex, previousValue, currentValue]
-      const [currentChange] = changes
-      const updatedColumnIndex = parseInt(currentChange[1])
-      if (updatedColumnIndex > 0) {
-        const updatedRowIndex = parseInt(currentChange[0])
-        const rowData = currentHotRef.hotInstance.getDataAtRow(updatedRowIndex)
+      changes.map((currentChange, index) => {
         const variables = {
           spreadsheetType: 'product',
-          spreadsheetData: buildData(rowData, changes),
-          assoc: convertToKey(DEFAULT_SHEET_NAMES[selectedIndex])
+          spreadsheetData: buildData(currentChange),
+          assoc: convertToKey(DEFAULT_SHEET_NAMES[selectedIndex]),
+          rowIndex: index
         }
         const { userEmail, userToken } = session.user
         saveSpreadsheetData({
@@ -138,6 +137,7 @@ const ProductSpreadsheet = () => {
           }
         })
       }
+      )
     }
   }
 
@@ -157,7 +157,7 @@ const ProductSpreadsheet = () => {
         {},
         {
           type: 'autocomplete',
-          source: data.sdgs.map(sdg => sdg.name),
+          source: data.sdgs.map(sdg => sdg.number),
           strict: false,
           visibleRows: 5
         }
@@ -227,12 +227,12 @@ const ProductSpreadsheet = () => {
                 stretchH='all'
                 width='100%'
                 style={{ zIndex: 19 }}
-                afterChange={afterChangeHandler}
               />
             </Tab.Panel>
           ))}
         </Tab.Panels>
       </Tab.Group>
+      <button className='ml-10 mb-6 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white' onClick={saveSpreadsheet}>Save Spreadsheet</button>
     </div>
   )
 }
