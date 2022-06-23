@@ -43,7 +43,7 @@ const DATASET_SPREADSHEET_MUTATION = gql`
     $spreadsheetData: JSON!,
     $spreadsheetType: String!,
     $assoc: String,
-    $rowIndex: Integer,
+    $rowIndex: Int,
   ) {
       createSpreadsheetData(
         spreadsheetData: $spreadsheetData,
