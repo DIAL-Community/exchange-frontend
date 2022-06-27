@@ -16,6 +16,10 @@ const DATASET_QUERY = gql`
       visualizationUrl
       geographicCoverage
       timeRange
+      license
+      languages
+      datasetType
+      dataFormat
       tags
       datasetDescription {
         description

@@ -37,7 +37,9 @@ export const DatasetTypeSelect = (props) => {
   const options = [
     { value: 'dataset_and_content', label: format('datasetType.allType') },
     { value: 'dataset', label: format('datasetType.datasetOnly') },
-    { value: 'content', label: format('datasetType.contentOnly') }
+    { value: 'content', label: format('datasetType.contentOnly') },
+    { value: 'standard', label: format('datasetType.standardOnly') },
+    { value: 'ai_model', label: format('datasetType.aiModelOnly') }
   ]
 
   const fetchOptions = async (input) => {

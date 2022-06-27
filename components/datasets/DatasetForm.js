@@ -47,6 +47,9 @@ const DatasetForm = React.memo(({ dataset }) => {
       visualizationUrl: dataset?.visualizationUrl,
       geographicCoverage: dataset?.geographicCoverage,
       timeRange: dataset?.timeRange,
+      license: dataset?.license,
+      languages: dataset?.languages,
+      dataFormat: dataset?.dataFormat,
       description: dataset?.datasetDescription?.description
     }
   })
@@ -108,7 +111,7 @@ const DatasetForm = React.memo(({ dataset }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = session.user
-      const { name, aliases, website, visualizationUrl, geographicCoverage, timeRange, datasetType, description } = data
+      const { name, aliases, website, visualizationUrl, geographicCoverage, timeRange, datasetType, license, languages, dataFormat, description } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
@@ -119,6 +122,9 @@ const DatasetForm = React.memo(({ dataset }) => {
         geographicCoverage,
         timeRange,
         datasetType: datasetType.value,
+        license,
+        languages,
+        dataFormat,
         description
       }
 
@@ -250,6 +256,36 @@ const DatasetForm = React.memo(({ dataset }) => {
                       {...register('timeRange')}
                       id='timeRange'
                       placeholder={format('dataset.timeRange')}
+                    />
+                  </div>
+                  <div className='flex flex-col gap-y-2 mb-2' data-testid='dataset-license'>
+                    <label className='text-xl text-dial-blue' htmlFor='license'>
+                      {format('dataset.license')}
+                    </label>
+                    <Input
+                      {...register('license')}
+                      id='license'
+                      placeholder={format('dataset.license')}
+                    />
+                  </div>
+                  <div className='flex flex-col gap-y-2 mb-2' data-testid='dataset-languages'>
+                    <label className='text-xl text-dial-blue' htmlFor='languages'>
+                      {format('dataset.languages')}
+                    </label>
+                    <Input
+                      {...register('languages')}
+                      id='languages'
+                      placeholder={format('dataset.languages')}
+                    />
+                  </div>
+                  <div className='flex flex-col gap-y-2 mb-2' data-testid='dataset-dataFormat'>
+                    <label className='text-xl text-dial-blue' htmlFor='dataFormat'>
+                      {format('dataset.dataFormat')}
+                    </label>
+                    <Input
+                      {...register('dataFormat')}
+                      id='dataFormat'
+                      placeholder={format('dataset.dataFormat')}
                     />
                   </div>
                 </div>
