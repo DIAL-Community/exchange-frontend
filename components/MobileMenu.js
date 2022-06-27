@@ -93,6 +93,10 @@ const subMenus = {
         link: '/products'
       },
       {
+        label: 'dataset.header',
+        link: '/datasets'
+      },
+      {
         label: 'project.header',
         link: '/projects'
       },

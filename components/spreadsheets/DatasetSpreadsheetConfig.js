@@ -4,7 +4,7 @@ export const DEFAULT_SHEET_NAMES = ['Datasets', 'Descriptions', 'Organizations',
 // Header on each sheet.
 const DATASET_HEADERS = [
   'Name', 'Other Names', 'Website', 'Origins', 'Endorsers', 'License', 'Type', 'Tags', 'Data Format', 'Comments',
-  'Geographic Coverage', 'Time Range', 'Visualization URL'
+  'Geographic Coverage', 'Time Range', 'Visualization URL', 'Languages'
 ]
 const DATASET_DESCRIPTION_HEADERS = ['Dataset Name', 'Locale', 'Description']
 const ORGANIZATION_HEADERS = ['Dataset Name', 'Organization Name']
@@ -50,7 +50,8 @@ const DATASET_COLUMN_DEFINITION = [
   { data: 'comments' },
   { data: 'geographicCoverage' },
   { data: 'timeRange' },
-  { data: 'visualizationUrl' }
+  { data: 'visualizationUrl' },
+  { data: 'languages' }
 ]
 
 const datasetDataDefinition = (spreadsheetProduct) => {
@@ -74,7 +75,8 @@ const datasetDataDefinition = (spreadsheetProduct) => {
       dataset.comments,
       dataset.geographicCoverage,
       dataset.timeRange,
-      dataset.visualizationUrl
+      dataset.visualizationUrl,
+      dataset.languages
     ]
   })
 }

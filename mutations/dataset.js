@@ -10,6 +10,9 @@ export const CREATE_DATASET = gql`
     $geographicCoverage: String,
     $timeRange: String,
     $datasetType: String!,
+    $license: String,
+    $languages: String,
+    $dataFormat: String,
     $description: String!
   ) {
     createDataset (
@@ -21,6 +24,9 @@ export const CREATE_DATASET = gql`
       geographicCoverage: $geographicCoverage,
       timeRange: $timeRange,
       datasetType: $datasetType,
+      license: $license,
+      languages: $languages,
+      dataFormat: $dataFormat,
       description: $description
     ) {
       dataset {

@@ -20,6 +20,9 @@ const DATASET_QUERY = gql`
       visualizationUrl
       geographicCoverage
       timeRange
+      license
+      languages
+      dataFormat
       aliases
       datasetDescription {
         description
