@@ -386,6 +386,9 @@ export const en = {
   'dataset.source': 'Source',
   'dataset.coverage': 'Geograpic Coverage',
   'dataset.timeRange': 'Time Range',
+  'dataset.license': 'License',
+  'dataset.languages': 'Languages',
+  'dataset.dataFormat': 'Data Format',
   'dataset.card.sdgs': 'SDGs',
   'dataset.card.dataset': 'Dataset',
   'dataset.card.content': 'Content',
@@ -577,8 +580,10 @@ export const en = {
 
   'datasetType.label': 'Type',
   'datasetType.header': 'Open Data Type',
-  'datasetType.contentOnly': 'Content Only',
-  'datasetType.datasetOnly': 'Dataset Only',
+  'datasetType.contentOnly': 'Content',
+  'datasetType.datasetOnly': 'Dataset',
+  'datasetType.standardOnly': 'Standard',
+  'datasetType.aiModelOnly': 'AI Model',
   'datasetType.allType': 'All Types',
 
   'dataset.name': 'Dataset Name',

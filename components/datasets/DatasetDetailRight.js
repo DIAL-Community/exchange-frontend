@@ -38,20 +38,52 @@ const DatasetDetailRight = ({ dataset }) => {
             </div>
           </div>
       }
-      {
-        dataset.geographicCoverage &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.coverage')}</div>
-            <div className='my-auto'>{dataset.geographicCoverage}</div>
-          </div>
-      }
-      {
-        dataset.timeRange &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.timeRange')}</div>
-            <div className='my-auto'>{dataset.timeRange}</div>
-          </div>
-      }
+      <div className='w-2/3 flex place-content-between'>
+        {
+          dataset.datasetType &&
+            <div className='mt-12'>
+              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.datasetType')}</div>
+              <div className='my-auto'>{dataset.datasetType}</div>
+            </div>
+        }
+        {
+          dataset.geographicCoverage &&
+            <div className='mt-12'>
+              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.coverage')}</div>
+              <div className='my-auto'>{dataset.geographicCoverage}</div>
+            </div>
+        }
+        {
+          dataset.license &&
+            <div className='mt-12'>
+              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.license')}</div>
+              <div className='my-auto'>{dataset.license}</div>
+            </div>
+        }
+      </div>
+      <div className='w-2/3 flex place-content-between'>
+        {
+          dataset.languages &&
+            <div className='mt-12'>
+              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.languages')}</div>
+              <div className='my-auto'>{dataset.languages}</div>
+            </div>
+        }
+        {
+          dataset.timeRange &&
+            <div className='mt-12'>
+              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.timeRange')}</div>
+              <div className='my-auto'>{dataset.timeRange}</div>
+            </div>
+        }
+        {
+          dataset.dataFormat &&
+            <div className='mt-12'>
+              <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.dataFormat')}</div>
+              <div className='my-auto'>{dataset.dataFormat}</div>
+            </div>
+        }
+      </div>
       <div className='mt-8 card-title mb-3 text-dial-gray-dark'>{format('dataset.description')}
         {dataset.manualUpdate && (
           <div className='inline ml-5 h5'>{format('dataset.manualUpdate')}</div>
@@ -62,7 +94,9 @@ const DatasetDetailRight = ({ dataset }) => {
       </div>
       {
         dataset.visualizationUrl &&
-          <div>
+          <div className='mt-3
+          
+          '>
             <IframeResizer
               src={dataset.visualizationUrl}
               style={{ position: 'relative', width: '100%' }}

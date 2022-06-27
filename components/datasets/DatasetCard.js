@@ -126,6 +126,12 @@ const DatasetCard = ({ dataset, listType, filterDisplayed, newTab = false }) => 
                       </div>
                     </div>
                     <div className='flex flex-row justify-between text-dial-gray-dark'>
+                      <div className='pl-3 py-3 flex-auto flex flex-col'>
+                        <div className='text-base my-auto'>{format('product.card.license')}</div>
+                        <div className='bg-white mt-1.5 mr-auto p-2 rounded text-sm font-semibold'>
+                          {(dataset.license || format('general.na')).toUpperCase()}
+                        </div>
+                      </div>
                       <div className='pr-3 py-3 flex-auto flex flex-col'>
                         <div className='text-base text-right my-auto'>Sources</div>
                         <div className='flex flex-row justify-end font-semibold'>
