@@ -12,3 +12,26 @@ export const PROJECT_SEARCH_QUERY = gql`
     }
   }
 `
+
+export const PROJECT_QUERY = gql`
+  query Project($slug: String!) {
+    project(slug: $slug) {
+      id
+      name
+      slug
+      startDate
+      endDate
+      projectUrl
+      projectDescription {
+        description
+        locale
+      }
+      products {
+        slug
+      }
+      organizations {
+        slug
+      }
+    }
+  }
+`

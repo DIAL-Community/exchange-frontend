@@ -166,6 +166,8 @@ body {
     @apply placeholder-dial-gray;
     @apply pl-3;
     @apply py-2;
+    @apply disabled:outline-button-gray-light;
+    @apply disabled:text-button-gray-light;
   }
 
   input:not(.validation-error) {

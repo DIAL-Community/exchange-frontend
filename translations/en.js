@@ -241,6 +241,13 @@ export const en = {
   'project.url': 'Project URL',
   'project.source': 'Origin',
   'project.description': 'Description',
+  'project.name': 'Name',
+  'project.startDate': 'Start Date',
+  'project.endDate': 'End Date',
+  'project.product': 'Product',
+  'project.organization': 'Organization',
+  'project.submit.success': 'Project submitted successfully',
+  'project.submit.failure': 'Project submission failed',
 
   'organization.header': 'Organizations',
   'organization.label': 'Organization',
@@ -1276,6 +1283,7 @@ export const en = {
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
+  'validation.endDateEarlierThanStartDate': 'End Date cannot be earlier than Start Date',
 
   'toast.buildingBlocks.update.success': 'Building Blocks updated successfully',
   'toast.buildingBlocks.update.failure': 'Building Blocks update failed',
