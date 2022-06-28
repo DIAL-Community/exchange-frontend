@@ -45,6 +45,9 @@ export const PRODUCT_QUERY = gql`
         imageFile
         isEndorser
         whenEndorsed
+        sectors{
+          name
+        }
       }
       currentProjects(first:10) {
         name

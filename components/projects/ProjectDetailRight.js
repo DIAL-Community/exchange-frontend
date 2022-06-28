@@ -1,10 +1,12 @@
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
-import OrganizationCard from '../organizations/OrganizationCard'
+import CountryCard from '../countries/CountryCard'
 import ProductCard from '../products/ProductCard'
 import SectorCard from '../sectors/SectorCard'
 import TagCard from '../tags/TagCard'
+import OrganizationCard from '../organizations/OrganizationCard'
+import ProjectDetailOrganizations from './ProjectDetailOrganizations'
 import ProjectDetailCountries from './ProjectDetailCountries'
 
 const ProjectDetailRight = ({ project, canEdit }) => {
@@ -35,15 +37,7 @@ const ProjectDetailRight = ({ project, canEdit }) => {
         <div className='h5 pb-1'>{format('project.source')}</div>
         <div className='inline text-sm'>{project.origin.name}</div>
       </div>
-      {
-        project.organizations &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('organization.header')}</div>
-            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
-              {project.organizations.map((org, i) => <OrganizationCard key={i} organization={org} listType='card' />)}
-            </div>
-          </div>
-      }
+      {project.organizations && <ProjectDetailOrganizations project={project} canEdit={canEdit} />}
       {
         project.products &&
           <div className='mt-12'>
