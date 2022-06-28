@@ -246,8 +246,8 @@ describe('Unit tests for PlaybookForm component.', () => {
         </PlayListProvider>
       </CustomMockedProvider>
     )
+    await waitForReactSelectToLoad(container)
     await waitFor(() => {
-      expect(container.querySelector('.react-select__loading-indicator')).toBeNull()
       expect(getByLabelText(PUBLISHED_CHECKBOX_LABEL)).toBeChecked()
       expect(screen.queryByText(SAVE_AS_DRAFT_SUBMIT_BUTTON_LABEL)).not.toBeInTheDocument()
       expect(screen.queryByText(PUBLISH_PLAYBOOK_SUBMIT_BUTTON_LABEL)).toBeInTheDocument()

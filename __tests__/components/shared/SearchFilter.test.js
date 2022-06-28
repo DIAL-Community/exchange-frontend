@@ -1,7 +1,6 @@
-import { useSession } from 'next-auth/client'
 import { FilterContextProvider } from '../../../components/context/FilterContext'
 import SearchFilter from '../../../components/shared/SearchFilter'
-import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
+import { mockRouterImplementation, mockSessionImplementation, mockUnauthorizedUserSessionImplementation, render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
 import { hint, resultCounts } from './data/SearchFilter'
 
@@ -18,7 +17,7 @@ describe('Unit test for the SearchFilter component.', () => {
   })
 
   test('Should "Create New" link not be visible for unauthorized user', () => {
-    useSession.mockReturnValue([false])
+    mockUnauthorizedUserSessionImplementation()
     
     const { queryByTestId } = render(
       <CustomMockedProvider>
