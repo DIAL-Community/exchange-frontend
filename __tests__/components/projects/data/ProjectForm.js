@@ -88,6 +88,7 @@ export const project = {
     description: '<p>test project description</p>',
     locale: 'en'
   },
+  tags: ['Test Tag'],
   sectors: [
     {
       id: 1,
