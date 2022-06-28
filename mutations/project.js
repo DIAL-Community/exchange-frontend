@@ -28,3 +28,25 @@ export const CREATE_PROJECT = gql`
     }
   }
 `
+
+export const UPDATE_PROJECT_COUNTRIES = gql`
+  mutation UpdateProjectCountries(
+    $slug: String!,
+    $countriesSlugs: [String!]!
+  ) {
+    updateProjectCountries(
+      slug: $slug,
+      countriesSlugs: $countriesSlugs
+    ) {
+      project {
+        slug
+        name
+        countries {
+          id
+          name
+          slug
+        }
+      }
+    }
+  }
+`
