@@ -16,8 +16,8 @@ const Landing = () => {
       <div className="absolute flex pl-5 pb-12 pt-20">
         <div className="block text-white">
           <div className="content-limiter">
-            <div className='text-4xl font-bold my-5'>Accelerating the digital transformation of government services</div>
-            <p className='w-1/2 text-2xl mt-4'>Our vision is that in five years, we can empower governments to take ownership of their digital futures by building more effective and cost-efficient digital government services.</p>
+            <div className='w-1/2 ml-12 pl-12 pt-40 mt-20 text-4xl font-medium'>Accelerating the digital transformation of government services</div>
+            <p className='w-1/2 text-lg ml-12 pl-12 mt-4'>Our vision is that in five years, we can empower governments to take ownership of their digital futures by building more effective and cost-efficient digital government services.</p>
           </div>
         </div>
       </div> 

@@ -25,7 +25,7 @@ const Header = () => {
           <Link href='https://er3.ext.egovstack.net/'>
             <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Sandbox</div>
           </Link>
-          <Link href='/procurement'>
+          <Link href='http://demo.dial.community:8090/'>
             <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Procure Services</div>
           </Link>
           <Link href='/blog'>
