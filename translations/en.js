@@ -248,6 +248,7 @@ export const en = {
   'project.organization': 'Organization',
   'project.submit.success': 'Project submitted successfully',
   'project.submit.failure': 'Project submission failed',
+  'project.no-organization': 'We do not have any Organization information for this Project.',
   'project.no-countries': 'We do not have any Country information for this Project.',
 
   'organization.header': 'Organizations',

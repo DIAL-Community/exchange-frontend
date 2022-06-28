@@ -107,3 +107,16 @@ export const createProjectSuccess = {
     }
   }
 }
+
+export const projectOrganization = {
+  organizations: [{
+    id: '1',
+    name: 'Test Organization',
+    slug: 'to',
+  },
+  {
+    id: '2',
+    name: 'owned organization',
+    slug: 'oo',
+  }],
+}

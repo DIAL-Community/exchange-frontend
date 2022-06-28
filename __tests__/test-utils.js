@@ -43,6 +43,10 @@ export const waitForReactSelectToLoad = (container) => (
 
 export const waitForAllEffects = () => waitFor(() => new Promise((res) => setTimeout(res, 0)))
 
+export const waitForAllEffectsAndSelectToLoad = async (container) => (
+  await waitForAllEffects().then(() => waitForReactSelectToLoad(container))
+)
+
 // Mocked intersection observer for Headless UI Dialog component.
 export const mockObserverImplementation = () => jest.fn(() => ({
   observe: () => jest.fn(),

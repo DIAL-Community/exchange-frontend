@@ -29,6 +29,31 @@ export const CREATE_PROJECT = gql`
   }
 `
 
+export const UPDATE_PROJECT_ORGANIZATIONS = gql`
+  mutation UpdateProjectOrganizations(
+    $slug: String!,
+    $organizationsSlugs: [String!]!
+  ) {
+    updateProjectOrganizations(
+      slug: $slug
+      organizationsSlugs: $organizationsSlugs
+    ) {
+      project {
+        organizations {
+          id
+          name
+          slug
+          imageFile
+          whenEndorsed
+          sectors {
+            name
+          }
+        }
+      }
+    }
+  }
+`
+
 export const UPDATE_PROJECT_COUNTRIES = gql`
   mutation UpdateProjectCountries(
     $slug: String!,
