@@ -20,9 +20,11 @@ export const en = {
   'app.reportIssue': 'Report Issue',
   'app.delete': 'Delete',
   'app.assign': 'Assign',
+  'app.deleting-entity': 'Deleting {entity}',
   'app.searchAndAssign': 'Search and Assign',
   'app.print-pdf': 'Print PDF',
   'app.status': 'Status:',
+  'app.confirm': 'Confirm',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -239,6 +241,16 @@ export const en = {
   'project.url': 'Project URL',
   'project.source': 'Origin',
   'project.description': 'Description',
+  'project.name': 'Name',
+  'project.startDate': 'Start Date',
+  'project.endDate': 'End Date',
+  'project.product': 'Product',
+  'project.organization': 'Organization',
+  'project.submit.success': 'Project submitted successfully',
+  'project.submit.failure': 'Project submission failed',
+  'project.no-sector': 'We do not have any Sector information for this Project.',
+  'project.no-organization': 'We do not have any Organization information for this Project.',
+  'project.no-countries': 'We do not have any Country information for this Project.',
 
   'organization.header': 'Organizations',
   'organization.label': 'Organization',
@@ -269,6 +281,8 @@ export const en = {
   'organization.no-contact': 'We do not have any Contact information for this Organization.',
   'organization.no-project': 'We do not have any Project information for this Organization.',
   'organization.no-product': 'We do not have any Product information for this Organization.',
+  'organization.delete.confirm.message': 'Are you sure you want to delete this Organization?',
+
 
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',
@@ -386,6 +400,9 @@ export const en = {
   'dataset.source': 'Source',
   'dataset.coverage': 'Geograpic Coverage',
   'dataset.timeRange': 'Time Range',
+  'dataset.license': 'License',
+  'dataset.languages': 'Languages',
+  'dataset.dataFormat': 'Data Format',
   'dataset.card.sdgs': 'SDGs',
   'dataset.card.dataset': 'Dataset',
   'dataset.card.content': 'Content',
@@ -577,8 +594,10 @@ export const en = {
 
   'datasetType.label': 'Type',
   'datasetType.header': 'Open Data Type',
-  'datasetType.contentOnly': 'Content Only',
-  'datasetType.datasetOnly': 'Dataset Only',
+  'datasetType.contentOnly': 'Content',
+  'datasetType.datasetOnly': 'Dataset',
+  'datasetType.standardOnly': 'Standard',
+  'datasetType.aiModelOnly': 'AI Model',
   'datasetType.allType': 'All Types',
 
   'dataset.name': 'Dataset Name',
@@ -1267,6 +1286,7 @@ export const en = {
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
+  'validation.endDateEarlierThanStartDate': 'End Date cannot be earlier than Start Date',
 
   'toast.buildingBlocks.update.success': 'Building Blocks updated successfully',
   'toast.buildingBlocks.update.failure': 'Building Blocks update failed',
@@ -1277,5 +1297,9 @@ export const en = {
   'toast.sectors.update.success': 'Sectors updated successfully',
   'toast.sectors.update.failure': 'Sectors update failed',
   'toast.projects.updated': 'Projects updated successfully',
-  'toast.projects.update.failure': 'Projects update failed'
+  'toast.projects.update.failure': 'Projects update failed',
+  'toast.countries.update.success': 'Countries updated successfully',
+  'toast.countries.update.failure': 'Countries update failed',
+  'toast.organization.delete.success': 'Organization deleted successfully',
+  'toast.organization.delete.failure': 'Organization delete failed'
 }

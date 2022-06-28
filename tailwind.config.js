@@ -74,7 +74,10 @@ module.exports = {
         },
         'validation-error': {
           DEFAULT: '#e11d48'
-        }
+        },
+        'button-red': {
+          DEFAULT: '#e11d48'
+        },
       },
       fontSize: {
         'landing-title': ['66px', {

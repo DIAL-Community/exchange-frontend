@@ -42,12 +42,14 @@ const PRODUCT_SPREADSHEET_MUTATION = gql`
   mutation (
     $spreadsheetData: JSON!,
     $spreadsheetType: String!,
-    $assoc: String
+    $assoc: String,
+    $rowIndex: Int
   ) {
       createSpreadsheetData(
         spreadsheetData: $spreadsheetData,
         spreadsheetType: $spreadsheetType,
-        assoc: $assoc
+        assoc: $assoc,
+        rowIndex: $rowIndex
       ) {
         dialSpreadsheetData {
           id
@@ -117,11 +119,12 @@ const ProductSpreadsheet = () => {
     if (currentHotRef && changes && session) {
       // The form of 'changes' is array of array. The first element:
       // [rowIndex, columnIndex, previousValue, currentValue]
-      changes.map((currentChange) => {
+      changes.map((currentChange, index) => {
         const variables = {
           spreadsheetType: 'product',
           spreadsheetData: buildData(currentChange),
-          assoc: convertToKey(DEFAULT_SHEET_NAMES[selectedIndex])
+          assoc: convertToKey(DEFAULT_SHEET_NAMES[selectedIndex]),
+          rowIndex: index
         }
         const { userEmail, userToken } = session.user
         saveSpreadsheetData({

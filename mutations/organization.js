@@ -153,3 +153,19 @@ export const UPDATE_ORGANIZATION_PRODUCT = gql`
     }
   }
 `
+
+export const DELETE_ORGANIZATION = gql`
+  mutation DeleteOrganization(
+    $id: ID!
+  ) {
+    deleteOrganization(
+      id: $id
+    ) {
+      organization {
+       id
+       slug
+       name
+      }
+    }
+  }
+`

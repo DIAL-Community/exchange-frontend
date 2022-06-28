@@ -33,11 +33,26 @@ export const mockRouterImplementation = () => useRouter.mockImplementation(() =>
 }))
 
 // Mocked session implementation.
-export const mockSessionImplementation = (canEdit = false) => useSession.mockReturnValue([{ user: { canEdit }}, false])
+export const mockSessionImplementation = (canEdit = false, userProps = {}) => useSession.mockReturnValue([{ user: { ...userProps, canEdit }}, false])
+
+export const mockUnauthorizedUserSessionImplementation = () => useSession.mockReturnValue([false])
 
 export const waitForReactSelectToLoad = (container) => (
   waitFor(() => expect(container.querySelector('.react-select__loading-indicator')).toBeNull())
 )
+
+export const waitForAllEffects = () => waitFor(() => new Promise((res) => setTimeout(res, 0)))
+
+export const waitForAllEffectsAndSelectToLoad = async (container) => (
+  await waitForAllEffects().then(() => waitForReactSelectToLoad(container))
+)
+
+// Mocked intersection observer for Headless UI Dialog component.
+export const mockObserverImplementation = () => jest.fn(() => ({
+  observe: () => jest.fn(),
+  disconnect: () => jest.fn(),
+  unobserve: () => jest.fn()
+}))
 
 // override render method
 export { customRender as render }
