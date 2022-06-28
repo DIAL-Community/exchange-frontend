@@ -88,6 +88,14 @@ export const project = {
     description: '<p>test project description</p>',
     locale: 'en'
   },
+  sectors: [
+    {
+      id: 1,
+      name: 'Test Sector',
+      slug: 'test_sector',
+      __typename: 'Sector'
+    }
+  ],
   countries: [
     {
       id: 1,

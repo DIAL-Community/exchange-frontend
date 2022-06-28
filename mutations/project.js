@@ -23,6 +23,27 @@ export const CREATE_PROJECT = gql`
     ) {
       project {
         slug
+            },
+      errors
+    }
+  }
+  `
+
+export const UPDATE_PROJECT_SECTORS = gql`
+  mutation UpdateProjectSectors(
+    $slug: String!,
+    $sectorsSlugs: [String!]!
+  ) {
+    updateProjectSectors(
+      slug: $slug
+      sectorsSlugs: $sectorsSlugs
+    ) {
+      project {
+        sectors {
+          id
+          name
+          slug
+        }
       },
       errors
     }
@@ -49,7 +70,8 @@ export const UPDATE_PROJECT_ORGANIZATIONS = gql`
             name
           }
         }
-      }
+      },
+      errors
     }
   }
 `
@@ -71,7 +93,8 @@ export const UPDATE_PROJECT_COUNTRIES = gql`
           name
           slug
         }
-      }
+      },
+      errors
     }
   }
 `
