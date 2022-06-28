@@ -87,7 +87,14 @@ export const project = {
   projectDescription: {
     description: '<p>test project description</p>',
     locale: 'en'
-  }
+  },
+  countries: [
+    {
+      id: 1,
+      name: 'Test Country',
+      slug: 'ts'
+    }
+  ]
 }
 
 export const createProjectSuccess = {

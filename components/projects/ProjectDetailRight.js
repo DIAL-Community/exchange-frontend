@@ -1,13 +1,13 @@
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
-import CountryCard from '../countries/CountryCard'
 import OrganizationCard from '../organizations/OrganizationCard'
 import ProductCard from '../products/ProductCard'
 import SectorCard from '../sectors/SectorCard'
 import TagCard from '../tags/TagCard'
+import ProjectDetailCountries from './ProjectDetailCountries'
 
-const ProjectDetailRight = ({ project }) => {
+const ProjectDetailRight = ({ project, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -51,15 +51,7 @@ const ProjectDetailRight = ({ project }) => {
             {project.products.map((product, i) => <ProductCard key={i} product={product} listType='list' />)}
           </div>
       }
-      {
-        project.countries &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('country.header')}</div>
-            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
-              {project.countries.map((country, i) => <CountryCard key={i} country={country} listType='list' />)}
-            </div>
-          </div>
-      }
+      {project.countries && <ProjectDetailCountries project={project} canEdit={canEdit} />}
       {
         project.sectors &&
           <div className='mt-12'>

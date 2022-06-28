@@ -248,6 +248,7 @@ export const en = {
   'project.organization': 'Organization',
   'project.submit.success': 'Project submitted successfully',
   'project.submit.failure': 'Project submission failed',
+  'project.no-countries': 'We do not have any Country information for this Project.',
 
   'organization.header': 'Organizations',
   'organization.label': 'Organization',
@@ -1295,6 +1296,8 @@ export const en = {
   'toast.sectors.update.failure': 'Sectors update failed',
   'toast.projects.updated': 'Projects updated successfully',
   'toast.projects.update.failure': 'Projects update failed',
+  'toast.countries.update.success': 'Countries updated successfully',
+  'toast.countries.update.failure': 'Countries update failed',
   'toast.organization.delete.success': 'Organization deleted successfully',
   'toast.organization.delete.failure': 'Organization delete failed'
 }
