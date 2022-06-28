@@ -260,4 +260,16 @@ body {
     @apply text-white;
     @apply disabled:opacity-50;
   }
+
+  button.delete-button {
+    @apply flex;
+    @apply items-center;
+    @apply py-1;
+    @apply px-2;
+    @apply rounded-md;
+    @apply bg-button-red;
+    @apply text-white;
+    @apply focus:outline-button-red;
+    @apply focus:ring-button-red
+  }
 }

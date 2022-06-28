@@ -39,5 +39,12 @@ export const waitForReactSelectToLoad = (container) => (
   waitFor(() => expect(container.querySelector('.react-select__loading-indicator')).toBeNull())
 )
 
+// Mocked intersection observer for Headless UI Dialog component.
+export const mockObserverImplementation = () => jest.fn(() => ({
+  observe: () => jest.fn(),
+  disconnect: () => jest.fn(),
+  unobserve: () => jest.fn()
+}))
+
 // override render method
 export { customRender as render }

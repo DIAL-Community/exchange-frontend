@@ -87,7 +87,9 @@ const OrganizationListQuery = () => {
       endorserOnly: endorser,
       endorserLevel: endorserLevel,
       search: search
-    }
+    },
+    fetchPolicy: 'network-only',
+    nextFetchPolicy: 'cache-first'
   })
 
   const handleLoadMore = () => {
