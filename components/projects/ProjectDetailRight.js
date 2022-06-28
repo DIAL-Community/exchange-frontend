@@ -1,11 +1,12 @@
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
+import { useSession } from 'next-auth/client'
 import Breadcrumb from '../shared/breadcrumb'
 import CountryCard from '../countries/CountryCard'
 import ProductCard from '../products/ProductCard'
-import SectorCard from '../sectors/SectorCard'
 import TagCard from '../tags/TagCard'
 import OrganizationCard from '../organizations/OrganizationCard'
+import ProjectDetailSectors from './ProjectDetailSectors'
 import ProjectDetailOrganizations from './ProjectDetailOrganizations'
 import ProjectDetailCountries from './ProjectDetailCountries'
 
@@ -45,16 +46,8 @@ const ProjectDetailRight = ({ project, canEdit }) => {
             {project.products.map((product, i) => <ProductCard key={i} product={product} listType='list' />)}
           </div>
       }
+      {project.sectors && <ProjectDetailSectors project={project} canEdit={canEdit} />}
       {project.countries && <ProjectDetailCountries project={project} canEdit={canEdit} />}
-      {
-        project.sectors &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('sector.header')}</div>
-            <div className='grid grid-cols-1 lg:grid-cols-2'>
-              {project.sectors.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
-            </div>
-          </div>
-      }
       {
         project.tags &&
           <div className='mt-12'>
