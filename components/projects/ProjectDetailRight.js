@@ -4,11 +4,13 @@ import { useSession } from 'next-auth/client'
 import Breadcrumb from '../shared/breadcrumb'
 import CountryCard from '../countries/CountryCard'
 import ProductCard from '../products/ProductCard'
+import SectorCard from '../sectors/SectorCard'
 import TagCard from '../tags/TagCard'
 import OrganizationCard from '../organizations/OrganizationCard'
 import ProjectDetailSectors from './ProjectDetailSectors'
 import ProjectDetailOrganizations from './ProjectDetailOrganizations'
 import ProjectDetailCountries from './ProjectDetailCountries'
+import ProjectDetailTags from './ProjectDetailTags'
 
 const ProjectDetailRight = ({ project, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -48,15 +50,7 @@ const ProjectDetailRight = ({ project, canEdit }) => {
       }
       {project.sectors && <ProjectDetailSectors project={project} canEdit={canEdit} />}
       {project.countries && <ProjectDetailCountries project={project} canEdit={canEdit} />}
-      {
-        project.tags &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('tag.header')}</div>
-            <div className='grid grid-cols-1 lg:grid-cols-2'>
-              {project.tags.map((tag, i) => <TagCard key={i} tag={tag} listType='list' />)}
-            </div>
-          </div>
-      }
+      {project.tags && <ProjectDetailTags project={project} canEdit={canEdit} />}
     </div>
   )
 }

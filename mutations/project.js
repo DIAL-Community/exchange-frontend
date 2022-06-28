@@ -50,6 +50,24 @@ export const UPDATE_PROJECT_SECTORS = gql`
   }
 `
 
+export const UPDATE_PROJECT_TAGS = gql`
+  mutation UpdateProjectTags(
+    $slug: String!,
+    $tags: [String!]!
+  ) {
+    updateProjectTags(
+      slug: $slug
+      tags: $tags
+    ) {
+      project {
+        slug
+        tags
+      },
+      errors
+    }  
+  }
+`
+
 export const UPDATE_PROJECT_ORGANIZATIONS = gql`
   mutation UpdateProjectOrganizations(
     $slug: String!,
