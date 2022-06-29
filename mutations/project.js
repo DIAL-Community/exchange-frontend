@@ -116,3 +116,25 @@ export const UPDATE_PROJECT_COUNTRIES = gql`
     }
   }
 `
+
+export const UPDATE_PROJECT_PRODUCTS = gql`
+  mutation UpdateProjectProducts(
+    $slug: String!,
+    $productsSlugs: [String!]!
+  ) {
+    updateProjectProducts(
+      slug: $slug
+      productsSlugs: $productsSlugs
+    ) {
+      project {
+        products {
+          id
+          name
+          slug
+          imageFile
+        }
+      },
+      errors
+    }
+  }
+`

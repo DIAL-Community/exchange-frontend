@@ -253,6 +253,7 @@ export const en = {
   'project.no-organization': 'We do not have any Organization information for this Project.',
   'project.no-countries': 'We do not have any Country information for this Project.',
   'project.no-tag': 'We do not have any Tag information for this Project.',
+  'project.no-product': 'We do not have any Product information for this Project.',
 
   'organization.header': 'Organizations',
   'organization.label': 'Organization',
@@ -1307,5 +1308,7 @@ export const en = {
   'toast.organization.delete.success': 'Organization deleted successfully',
   'toast.organization.delete.failure': 'Organization delete failed',
   'toast.sdgs.update.success': 'SDGs updated successfully',
-  'toast.sdgs.update.failure': 'SDGs update failed'
+  'toast.sdgs.update.failure': 'SDGs update failed',
+  'toast.products.update.success': 'Products updated successfully',
+  'toast.products.update.failure': 'Products update failed'
 }
