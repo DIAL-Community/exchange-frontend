@@ -48,6 +48,12 @@ module.exports = {
         __typename: 'Project'
       }
     ],
+    sustainableDevelopmentGoals: [{
+      id: 1,
+      name: 'Test SDG',
+      slug: 'test_sdg',
+      number: 1
+    }],
     __typename: 'Product'
   },
   createProductSuccess: {

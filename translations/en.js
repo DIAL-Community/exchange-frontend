@@ -20,9 +20,11 @@ export const en = {
   'app.reportIssue': 'Report Issue',
   'app.delete': 'Delete',
   'app.assign': 'Assign',
+  'app.deleting-entity': 'Deleting {entity}',
   'app.searchAndAssign': 'Search and Assign',
   'app.print-pdf': 'Print PDF',
   'app.status': 'Status:',
+  'app.confirm': 'Confirm',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -86,7 +88,7 @@ export const en = {
   `,
   'footer.organizationName': 'Digital Impact Alliance',
   'footer.privacyPolicy': 'Privacy Policy',
-  'footer.sign-up': 'Sign up for updates on the digital investment framework',
+  'footer.sign-up': 'Sign up for our Newsletter',
   'footer.discuss': 'Discuss on the Open Source Center Forum',
   'footer.view-gitlab': 'View this project on GitLab',
   'footer.follow': 'Follow DIAL on social media',
@@ -233,12 +235,24 @@ export const en = {
   'product.no-sector': 'We do not have any Sector information for this Product.',
   'product.no-tag': 'We do not have any Tag information for this Product.',
   'product.no-project': 'We do not have any Project information for this Product.',
+  'product.no-sdgs': 'We do not have any Sustainable Development Goal information for this Product.',
 
   'project.header': 'Projects',
   'project.label': 'Project',
   'project.url': 'Project URL',
   'project.source': 'Origin',
   'project.description': 'Description',
+  'project.name': 'Name',
+  'project.startDate': 'Start Date',
+  'project.endDate': 'End Date',
+  'project.product': 'Product',
+  'project.organization': 'Organization',
+  'project.submit.success': 'Project submitted successfully',
+  'project.submit.failure': 'Project submission failed',
+  'project.no-sector': 'We do not have any Sector information for this Project.',
+  'project.no-organization': 'We do not have any Organization information for this Project.',
+  'project.no-countries': 'We do not have any Country information for this Project.',
+  'project.no-tag': 'We do not have any Tag information for this Project.',
 
   'organization.header': 'Organizations',
   'organization.label': 'Organization',
@@ -269,6 +283,8 @@ export const en = {
   'organization.no-contact': 'We do not have any Contact information for this Organization.',
   'organization.no-project': 'We do not have any Project information for this Organization.',
   'organization.no-product': 'We do not have any Product information for this Organization.',
+  'organization.delete.confirm.message': 'Are you sure you want to delete this Organization?',
+
 
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',
@@ -365,6 +381,7 @@ export const en = {
   'landing.blurb': 'An interactive online resource to support Global Development Actors in the implementation of digital strategies.',
   'landing.wizard.title': 'Recommendations Wizard',
   'landing.catalog.title': 'Launch Catalog',
+  'landing.newsletter': 'Sign up for our Newsletter',
   'landing.wizard.whereToStart': 'Don\'t know where to start?',
   'landing.wizard.description': `
     Use the Requirements and Recommendation Wizard to help guide you to a curated list of resources,
@@ -1272,6 +1289,8 @@ export const en = {
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
+  'validation.endDateEarlierThanStartDate': 'End Date cannot be earlier than Start Date',
+  'organization.validation.contact.uniqueName': 'This contact is already assigned to this organization',
 
   'toast.buildingBlocks.update.success': 'Building Blocks updated successfully',
   'toast.buildingBlocks.update.failure': 'Building Blocks update failed',
@@ -1282,5 +1301,11 @@ export const en = {
   'toast.sectors.update.success': 'Sectors updated successfully',
   'toast.sectors.update.failure': 'Sectors update failed',
   'toast.projects.updated': 'Projects updated successfully',
-  'toast.projects.update.failure': 'Projects update failed'
+  'toast.projects.update.failure': 'Projects update failed',
+  'toast.countries.update.success': 'Countries updated successfully',
+  'toast.countries.update.failure': 'Countries update failed',
+  'toast.organization.delete.success': 'Organization deleted successfully',
+  'toast.organization.delete.failure': 'Organization delete failed',
+  'toast.sdgs.update.success': 'SDGs updated successfully',
+  'toast.sdgs.update.failure': 'SDGs update failed'
 }

@@ -7,6 +7,8 @@ import { FaSpinner } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import { gql, useLazyQuery } from '@apollo/client'
 import Breadcrumb from '../shared/breadcrumb'
+import EditButton from '../shared/EditButton'
+import DeleteOrganization from './DeleteOrganization'
 
 const CANDIDATE_ROLE_QUERY = gql`
   query CandidateRole($email: String!, $productId: String!, $organizationId: String!) {
@@ -141,23 +143,13 @@ const OrganizationDetailLeft = ({ organization }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-20'>
-        <div className='w-full'>
-          {
-            session && (
-              <div className='inline'>
-                {
-                  (session.user.canEdit || `${session.user.own?.organization?.id}` === `${organization.id}`) && (
-                    <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5' data-testid='edit-org'>
-                      <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-                      <span className='text-sm px-2'>{format('app.edit')}</span>
-                    </a>
-                  )
-                }
-              </div>
-            )
-          }
-          <img src='/icons/comment.svg' className='inline mr-2' alt='Edit' height='15px' width='15px' />
-          <div className='text-dial-blue inline'>{format('app.comment')}</div>
+        <div className='w-full flex gap-3'>
+          {session?.user.canEdit && <DeleteOrganization organization={organization} />}
+          {(session?.user.own?.organization?.id === parseInt(organization.id) || session?.user.canEdit) && <EditButton type='link' href={generateEditLink()}/>}
+          <div>
+            <img src='/icons/comment.svg' className='inline mr-2' alt='Edit' height='15px' width='15px' />
+            <div className='text-dial-blue inline'>{format('app.comment')}</div>
+          </div>
         </div>
         <div className='h4 font-bold py-4'>{format('organization.label')}</div>
       </div>

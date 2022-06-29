@@ -10,7 +10,7 @@ import { ToastContext } from '../../lib/ToastContext'
 import { UPDATE_DATASET_ORGANIZATIONS } from '../../mutations/dataset'
 import { fetchSelectOptions } from '../../queries/utils'
 import CountryCard from '../countries/CountryCard'
-import { ORGANIZATION_SEARCH_QUERY } from '../../queries/country'
+import { ORGANIZATION_SEARCH_QUERY } from '../../queries/organization'
 
 const DatasetDetailCountries = ({ dataset, canEdit }) => {
   const { formatMessage } = useIntl()

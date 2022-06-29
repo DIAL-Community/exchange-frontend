@@ -1,13 +1,18 @@
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
+import { useSession } from 'next-auth/client'
 import Breadcrumb from '../shared/breadcrumb'
 import CountryCard from '../countries/CountryCard'
-import OrganizationCard from '../organizations/OrganizationCard'
 import ProductCard from '../products/ProductCard'
 import SectorCard from '../sectors/SectorCard'
 import TagCard from '../tags/TagCard'
+import OrganizationCard from '../organizations/OrganizationCard'
+import ProjectDetailSectors from './ProjectDetailSectors'
+import ProjectDetailOrganizations from './ProjectDetailOrganizations'
+import ProjectDetailCountries from './ProjectDetailCountries'
+import ProjectDetailTags from './ProjectDetailTags'
 
-const ProjectDetailRight = ({ project }) => {
+const ProjectDetailRight = ({ project, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -35,15 +40,7 @@ const ProjectDetailRight = ({ project }) => {
         <div className='h5 pb-1'>{format('project.source')}</div>
         <div className='inline text-sm'>{project.origin.name}</div>
       </div>
-      {
-        project.organizations &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('organization.header')}</div>
-            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
-              {project.organizations.map((org, i) => <OrganizationCard key={i} organization={org} listType='card' />)}
-            </div>
-          </div>
-      }
+      {project.organizations && <ProjectDetailOrganizations project={project} canEdit={canEdit} />}
       {
         project.products &&
           <div className='mt-12'>
@@ -51,33 +48,9 @@ const ProjectDetailRight = ({ project }) => {
             {project.products.map((product, i) => <ProductCard key={i} product={product} listType='list' />)}
           </div>
       }
-      {
-        project.countries &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('country.header')}</div>
-            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
-              {project.countries.map((country, i) => <CountryCard key={i} country={country} listType='list' />)}
-            </div>
-          </div>
-      }
-      {
-        project.sectors &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('sector.header')}</div>
-            <div className='grid grid-cols-1 lg:grid-cols-2'>
-              {project.sectors.map((sector, i) => <SectorCard key={i} sector={sector} listType='list' />)}
-            </div>
-          </div>
-      }
-      {
-        project.tags &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('tag.header')}</div>
-            <div className='grid grid-cols-1 lg:grid-cols-2'>
-              {project.tags.map((tag, i) => <TagCard key={i} tag={tag} listType='list' />)}
-            </div>
-          </div>
-      }
+      {project.sectors && <ProjectDetailSectors project={project} canEdit={canEdit} />}
+      {project.countries && <ProjectDetailCountries project={project} canEdit={canEdit} />}
+      {project.tags && <ProjectDetailTags project={project} canEdit={canEdit} />}
     </div>
   )
 }

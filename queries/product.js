@@ -45,6 +45,9 @@ export const PRODUCT_QUERY = gql`
         imageFile
         isEndorser
         whenEndorsed
+        sectors{
+          name
+        }
       }
       currentProjects(first:10) {
         name
@@ -93,13 +96,12 @@ export const PRODUCT_SEARCH_QUERY = gql`
   }
 `
 
-export const PRODUCT_BUILDING_BLOCKS_FRAGMENT = gql`
-  fragment BuildingBlocks on Product {
-    buildingBlocks {
+export const OWNED_PRODUCTS_QUERY = gql`
+  query OwnedProducts {
+    ownedProducts {
+      id
       name
       slug
-      imageFile
-      maturity
     }
   }
 `
