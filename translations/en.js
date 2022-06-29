@@ -88,7 +88,7 @@ export const en = {
   `,
   'footer.organizationName': 'Digital Impact Alliance',
   'footer.privacyPolicy': 'Privacy Policy',
-  'footer.sign-up': 'Sign up for updates on the digital investment framework',
+  'footer.sign-up': 'Sign up for our Newsletter',
   'footer.discuss': 'Discuss on the Open Source Center Forum',
   'footer.view-gitlab': 'View this project on GitLab',
   'footer.follow': 'Follow DIAL on social media',
@@ -381,6 +381,7 @@ export const en = {
   'landing.blurb': 'An interactive online resource to support Global Development Actors in the implementation of digital strategies.',
   'landing.wizard.title': 'Recommendations Wizard',
   'landing.catalog.title': 'Launch Catalog',
+  'landing.newsletter': 'Sign up for our Newsletter',
   'landing.wizard.whereToStart': 'Don\'t know where to start?',
   'landing.wizard.description': `
     Use the Requirements and Recommendation Wizard to help guide you to a curated list of resources,

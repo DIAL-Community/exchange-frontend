@@ -54,6 +54,15 @@ const Landing = () => {
                     </Link>
                   </div>
                 </div>
+                <div className='px-4 mt-2 sm:flex lg:justify-start sm:text-xs md:text-sm lg:text-lg'>
+                  <div className='text-white lg:py-1'>
+                    <Link href='https://digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'>
+                      <a target='_blank' rel='noreferrer' className={`${buttonAnchorStyle} shadow-2xl px-10 text-white bg-sdg-target`}>
+                        {format('landing.newsletter')}
+                      </a>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
