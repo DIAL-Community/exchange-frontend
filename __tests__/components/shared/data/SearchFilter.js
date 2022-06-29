@@ -1,4 +1,9 @@
-module.exports = {
-  'resultCounts': 'filter.entity.products',
-  'hint': 'filter.entity.products'
+export const products = {
+  resultCounts: 'filter.entity.projects',
+  hint: 'filter.entity.projects'
+}
+
+export const projects = {
+  resultCounts: 'filter.entity.projects',
+  hint: 'filter.entity.projects'
 }

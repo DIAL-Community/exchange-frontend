@@ -17,6 +17,7 @@ import { ProjectFilterContext } from '../context/ProjectFilterContext'
 import { SDGFilterContext } from '../context/SDGFilterContext'
 import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
 import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
+import { useOrganizationOwnerUser, useProductOwnerUser, useUser } from '../../lib/hooks'
 import { SearchInput } from './SearchInput'
 
 const SearchFilter = (props) => {
@@ -31,6 +32,12 @@ const SearchFilter = (props) => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const [searchTerm, setSearchTerm] = useState(search)
+
+  const { isAdminUser } = useUser(session)
+  const { isOrganizationOwner } = useOrganizationOwnerUser(session)
+  const { isProductOwner } = useProductOwnerUser()
+  
+  const canEdit = isAdminUser || isOrganizationOwner || isProductOwner 
 
   const linkPath = router.asPath.split('/')
   linkPath.shift()
@@ -63,6 +70,10 @@ const SearchFilter = (props) => {
     const withCandidatePaths = ['products', 'organizations']
     if (!session.user.canEdit && withCandidatePaths.some(el => linkPath.includes(el))) {
       return `/candidate/${linkPath[0]}/create`
+    }
+
+    if (canEdit && linkPath.includes('projects')) {
+      return 'projects/create'
     }
 
     const reactEditPaths = ['playbooks', 'plays', 'organizations', 'products', 'datasets']
