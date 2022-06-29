@@ -2,6 +2,7 @@ import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import Breadcrumb from '../shared/breadcrumb'
+import EditButton from '../shared/EditButton'
 
 const ProjectDetailLeft = ({ project, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -14,10 +15,7 @@ const ProjectDetailLeft = ({ project, canEdit }) => {
       return '/edit-not-available'
     }
 
-    const { userEmail, userToken } = session.user
-
-    return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/projects/${project.slug}/` +
-      `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
+    return `/${locale}/projects/${project.slug}/edit`
   }
 
   const slugNameMapping = (() => {
@@ -36,14 +34,7 @@ const ProjectDetailLeft = ({ project, canEdit }) => {
         {
           session && (
             <div className='inline'>
-              {
-                canEdit && (
-                  <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
-                    <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-                    <span className='text-sm px-2'>{format('app.edit')}</span>
-                  </a>
-                )
-              }
+              {canEdit && <EditButton type='link' href={generateEditLink()} />}
             </div>
           )
         }
