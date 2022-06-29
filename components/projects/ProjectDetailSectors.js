@@ -85,7 +85,7 @@ const ProjectDetailSectors = ({ project, canEdit }) => {
 
   const displayModeBody = sectors.length > 0
     ? (
-      <div className='flex flex-col gap-2'>
+      <div className='grid grid-cols-1 lg:grid-cols-2'>
         {sectors.map((sector, sectorIdx) => <SectorCard key={sectorIdx} sector={sector} listType='list' />)}
       </div>
     ) : (

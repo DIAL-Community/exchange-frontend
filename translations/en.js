@@ -235,6 +235,7 @@ export const en = {
   'product.no-sector': 'We do not have any Sector information for this Product.',
   'product.no-tag': 'We do not have any Tag information for this Product.',
   'product.no-project': 'We do not have any Project information for this Product.',
+  'product.no-sdgs': 'We do not have any Sustainable Development Goal information for this Product.',
 
   'project.header': 'Projects',
   'project.label': 'Project',
@@ -251,6 +252,7 @@ export const en = {
   'project.no-sector': 'We do not have any Sector information for this Project.',
   'project.no-organization': 'We do not have any Organization information for this Project.',
   'project.no-countries': 'We do not have any Country information for this Project.',
+  'project.no-tag': 'We do not have any Tag information for this Project.',
 
   'organization.header': 'Organizations',
   'organization.label': 'Organization',
@@ -1287,6 +1289,7 @@ export const en = {
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
   'validation.endDateEarlierThanStartDate': 'End Date cannot be earlier than Start Date',
+  'organization.validation.contact.uniqueName': 'This contact is already assigned to this organization',
 
   'toast.buildingBlocks.update.success': 'Building Blocks updated successfully',
   'toast.buildingBlocks.update.failure': 'Building Blocks update failed',
@@ -1301,5 +1304,7 @@ export const en = {
   'toast.countries.update.success': 'Countries updated successfully',
   'toast.countries.update.failure': 'Countries update failed',
   'toast.organization.delete.success': 'Organization deleted successfully',
-  'toast.organization.delete.failure': 'Organization delete failed'
+  'toast.organization.delete.failure': 'Organization delete failed',
+  'toast.sdgs.update.success': 'SDGs updated successfully',
+  'toast.sdgs.update.failure': 'SDGs update failed'
 }

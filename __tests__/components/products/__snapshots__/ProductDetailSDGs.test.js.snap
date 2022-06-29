@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit test for the ProjectDetailSectors component. Should add a pill and revert changes on "Cancel" button click 1`] = `
+exports[`Unit tests for the ProductDetailSDGs component. Should add a pill and revert changes on "Cancel" button click 1`] = `
 <div>
   <div
     class="Toastify"
@@ -15,7 +15,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should add a pill and
       <div
         class="card-title text-dial-gray-dark"
       >
-        Sectors
+        Sustainable Development Goal
       </div>
     </div>
     <div
@@ -26,13 +26,13 @@ exports[`Unit test for the ProjectDetailSectors component. Should add a pill and
       >
         Assign
          
-        Sectors
+        Sustainable Development Goal
       </p>
       <label
         class="flex flex-col gap-y-2 mb-2"
-        data-testid="sector-search"
+        data-testid="sdgs-search"
       >
-        Search and Assign Sectors
+        Search and Assign Sustainable Development Goal
         <div
           class=" css-l45kjq-container"
         >
@@ -120,7 +120,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should add a pill and
           class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
           data-testid="pill"
         >
-          Test Sector
+          Test SDG
           <svg
             class="ml-3 text-2xl cursor-pointer"
             data-testid="remove-button"
@@ -145,7 +145,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should add a pill and
           class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
           data-testid="pill"
         >
-          Sector 1
+          SDGs 1
           <svg
             class="ml-3 text-2xl cursor-pointer"
             data-testid="remove-button"
@@ -170,7 +170,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should add a pill and
           class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
           data-testid="pill"
         >
-          Sector 2
+          SDGs 2
           <svg
             class="ml-3 text-2xl cursor-pointer"
             data-testid="remove-button"
@@ -215,7 +215,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should add a pill and
 </div>
 `;
 
-exports[`Unit test for the ProjectDetailSectors component. Should match snapshot - when user is Organization owner. 1`] = `
+exports[`Unit tests for the ProductDetailSDGs component. Should match snapshot - with edit permission. 1`] = `
 <div>
   <div
     class="Toastify"
@@ -230,7 +230,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
       <div
         class="card-title text-dial-gray-dark"
       >
-        Sectors
+        Sustainable Development Goal
       </div>
       <button
         class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
@@ -251,22 +251,40 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
       </button>
     </div>
     <div
-      class="grid grid-cols-1 lg:grid-cols-2"
+      class="grid grid-cols-1"
     >
       <div
-        class="border-3 border-transparent"
+        class="
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+  text-sdg hover:text-dial-yellow
+"
       >
         <div
-          class="border border-dial-gray card-drop-shadow"
+          class="bg-white border border-dial-gray hover:border-transparent"
         >
           <div
-            class="flex justify-between my-5 px-4"
+            class="grid grid-cols-1 lg:grid-cols-6 gap-x-4 py-4 px-4"
           >
             <div
-              class="inline-block font-semibold text-button-gray"
+              class="col-span-6 text-base text-sdg font-semibold 
+  whitespace-nowrap text-ellipsis overflow-hidden my-auto
+"
             >
-              Test Sector
+              <img
+                alt="Logo for: Test SDG"
+                class="inline pr-4"
+                height="40"
+                src="http://localhost:3000undefined"
+                width="40"
+              />
+              Test SDG
             </div>
+            <div
+              class="hidden text-base text-use-case 
+  whitespace-nowrap text-ellipsis overflow-hidden my-auto
+"
+            />
           </div>
         </div>
       </div>
@@ -275,7 +293,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
 </div>
 `;
 
-exports[`Unit test for the ProjectDetailSectors component. Should match snapshot - with edit permission. 1`] = `
+exports[`Unit tests for the ProductDetailSDGs component. Should match snapshot - with open editable section 1`] = `
 <div>
   <div
     class="Toastify"
@@ -290,67 +308,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
       <div
         class="card-title text-dial-gray-dark"
       >
-        Sectors
-      </div>
-      <button
-        class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-        data-testid="edit-button"
-        type="button"
-      >
-        <img
-          alt="Edit"
-          height="12px"
-          src="/icons/edit.svg"
-          width="12px"
-        />
-        <span
-          class="text-sm"
-        >
-          Edit
-        </span>
-      </button>
-    </div>
-    <div
-      class="grid grid-cols-1 lg:grid-cols-2"
-    >
-      <div
-        class="border-3 border-transparent"
-      >
-        <div
-          class="border border-dial-gray card-drop-shadow"
-        >
-          <div
-            class="flex justify-between my-5 px-4"
-          >
-            <div
-              class="inline-block font-semibold text-button-gray"
-            >
-              Test Sector
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Unit test for the ProjectDetailSectors component. Should match snapshot - with open editable section 1`] = `
-<div>
-  <div
-    class="Toastify"
-  />
-  <div
-    class="mt-12"
-    data-testid="editable-section"
-  >
-    <div
-      class="flex justify-between items-center mb-3"
-    >
-      <div
-        class="card-title text-dial-gray-dark"
-      >
-        Sectors
+        Sustainable Development Goal
       </div>
     </div>
     <div
@@ -361,13 +319,13 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
       >
         Assign
          
-        Sectors
+        Sustainable Development Goal
       </p>
       <label
         class="flex flex-col gap-y-2 mb-2"
-        data-testid="sector-search"
+        data-testid="sdgs-search"
       >
-        Search and Assign Sectors
+        Search and Assign Sustainable Development Goal
         <div
           class=" css-l45kjq-container"
         >
@@ -455,7 +413,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
           class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
           data-testid="pill"
         >
-          Test Sector
+          Test SDG
           <svg
             class="ml-3 text-2xl cursor-pointer"
             data-testid="remove-button"
@@ -501,7 +459,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
 </div>
 `;
 
-exports[`Unit test for the ProjectDetailSectors component. Should match snapshot - without edit permission. 1`] = `
+exports[`Unit tests for the ProductDetailSDGs component. Should match snapshot - without edit permission. 1`] = `
 <div>
   <div
     class="Toastify"
@@ -516,26 +474,44 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
       <div
         class="card-title text-dial-gray-dark"
       >
-        Sectors
+        Sustainable Development Goal
       </div>
     </div>
     <div
-      class="grid grid-cols-1 lg:grid-cols-2"
+      class="grid grid-cols-1"
     >
       <div
-        class="border-3 border-transparent"
+        class="
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+  text-sdg hover:text-dial-yellow
+"
       >
         <div
-          class="border border-dial-gray card-drop-shadow"
+          class="bg-white border border-dial-gray hover:border-transparent"
         >
           <div
-            class="flex justify-between my-5 px-4"
+            class="grid grid-cols-1 lg:grid-cols-6 gap-x-4 py-4 px-4"
           >
             <div
-              class="inline-block font-semibold text-button-gray"
+              class="col-span-6 text-base text-sdg font-semibold 
+  whitespace-nowrap text-ellipsis overflow-hidden my-auto
+"
             >
-              Test Sector
+              <img
+                alt="Logo for: Test SDG"
+                class="inline pr-4"
+                height="40"
+                src="http://localhost:3000undefined"
+                width="40"
+              />
+              Test SDG
             </div>
+            <div
+              class="hidden text-base text-use-case 
+  whitespace-nowrap text-ellipsis overflow-hidden my-auto
+"
+            />
           </div>
         </div>
       </div>
@@ -544,7 +520,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
 </div>
 `;
 
-exports[`Unit test for the ProjectDetailSectors component. Should remove a pill 1`] = `
+exports[`Unit tests for the ProductDetailSDGs component. Should remove a pill 1`] = `
 <div>
   <div
     class="Toastify"
@@ -559,7 +535,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should remove a pill 
       <div
         class="card-title text-dial-gray-dark"
       >
-        Sectors
+        Sustainable Development Goal
       </div>
     </div>
     <div
@@ -570,13 +546,13 @@ exports[`Unit test for the ProjectDetailSectors component. Should remove a pill 
       >
         Assign
          
-        Sectors
+        Sustainable Development Goal
       </p>
       <label
         class="flex flex-col gap-y-2 mb-2"
-        data-testid="sector-search"
+        data-testid="sdgs-search"
       >
-        Search and Assign Sectors
+        Search and Assign Sustainable Development Goal
         <div
           class=" css-l45kjq-container"
         >
