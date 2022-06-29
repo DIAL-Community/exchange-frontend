@@ -146,3 +146,26 @@ export const UPDATE_PRODUCT_TAGS = gql`
     }  
   }
 `
+
+export const UPDATE_PRODUCT_SDGS = gql`
+  mutation UpdateProductSdgs(
+    $slug: String!,
+    $sdgsSlugs: [String!]!
+    $mappingStatus: String!
+  ) {
+    updateProductSdgs(
+      slug: $slug
+      sdgsSlugs: $sdgsSlugs
+      mappingStatus: $mappingStatus
+    ) {
+      product {
+        slug
+        sustainableDevelopmentGoals {
+          slug
+          name
+          imageFile
+        }
+      }
+    }  
+  }
+`

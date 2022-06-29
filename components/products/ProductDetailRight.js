@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { useSession } from 'next-auth/client'
-import SDGCard from '../sdgs/SDGCard'
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseForum } from '../shared/discourse'
 import EditButton from '../shared/EditButton'
@@ -13,6 +12,7 @@ import ProductDetailSectors from './ProductDetailSectors'
 import ProductDetailOrganizations from './ProductDetailOrganizations'
 import RepositoryList from './repositories/RepositoryList'
 import ProductDetailTags from './ProductDetailTags'
+import ProductDetailSdgs from './ProductDetailSdgs'
 
 const ProductDetailRight = ({ product, discourseRef }) => {
   const { formatMessage } = useIntl()
@@ -53,15 +53,7 @@ const ProductDetailRight = ({ product, discourseRef }) => {
       <div className='fr-view text-dial-gray-dark'>
         {product.productDescription && parse(product.productDescription.description)}
       </div>
-      {
-        product.sustainableDevelopmentGoals &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('sdg.header')}</div>
-            {product.sustainableDevelopmentGoals.map((sdg, i) => {
-              return (<SDGCard key={i} sdg={sdg} listType='list' />)
-            })}
-          </div>
-      }
+      {product.sustainableDevelopmentGoals && <ProductDetailSdgs product={product} canEdit={canEdit} />}
       {product.buildingBlocks && <ProductDetailBuildingBlocks product={product} canEdit={canEdit} />}
       {product.sectors && <ProductDetailSectors product={product} canEdit={canEdit} />}
       {product.organizations && <ProductDetailOrganizations product={product} canEdit={canEdit} />}
