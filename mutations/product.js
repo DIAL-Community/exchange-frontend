@@ -37,10 +37,12 @@ export const UPDATE_PRODUCT_BUILDING_BLOCKS = gql`
   mutation UpdateProductBuildingBlocks(
     $slug: String!,
     $buildingBlocksSlugs: [String!]!
+    $mappingStatus: String
   ) {
     updateProductBuildingBlocks(
       slug: $slug
       buildingBlocksSlugs: $buildingBlocksSlugs
+      mappingStatus: $mappingStatus
     ) {
       product {
         buildingBlocks {
@@ -48,7 +50,8 @@ export const UPDATE_PRODUCT_BUILDING_BLOCKS = gql`
           slug
           imageFile
           maturity
-        }
+        },
+        buildingBlocksMappingStatus
       },
       errors
     }
@@ -164,7 +167,8 @@ export const UPDATE_PRODUCT_SDGS = gql`
           slug
           name
           imageFile
-        }
+        },
+        sustainableDevelopmentGoalsMappingStatus
       }
     }  
   }

@@ -65,8 +65,9 @@ export const UPDATE_DATASET_SDGS = gql`
           id,
           name,
           imageFile,
-          slug
-        }
+          slug,
+        },
+        sustainableDevelopmentGoalMapping
       },
       errors
     }

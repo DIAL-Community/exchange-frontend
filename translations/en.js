@@ -228,6 +228,7 @@ export const en = {
   'product.alias': 'Alias',
   'product.webiste': 'Website',
   'product.imageFile': 'Logo',
+  'product.mappingStatus': 'Mapping Status',
   'product.submit.success': 'Product submitted successfully',
   'product.submit.failure': 'Product submission failed',
   'product.no-organization': 'We do not have any Organization information for this Product.',
@@ -619,12 +620,7 @@ export const en = {
   'dataset.organizations.updated': 'Organizations updated successfully.',
   'dataset.tags.updated': 'Tags updated successfully.',
   'dataset.sdgs.updated': 'SDGs updated successfully.',
-
   'dataset.sdg.mappingStatus': 'Mapping Status',
-  'dataset.mappingStatus.beta': 'Beta',
-  'dataset.mappingStatus.mature': 'Mature',
-  'dataset.mappingStatus.selfReported': 'Self Reported',
-  'dataset.mappingStatus.validated': 'Validated',
 
   'dataset.no-sector': 'We do not have sector information for this dataset.',
   'dataset.no-organization': 'We do not have organization information for this dataset.',
@@ -1287,6 +1283,10 @@ export const en = {
   'product.launchable': 'Product Launchable',
 
   'shared.select.autocomplete.defaultPlaceholder': 'Type to search...',
+  'shared.mappingStatus.beta': 'Beta',
+  'shared.mappingStatus.mature': 'Mature',
+  'shared.mappingStatus.selfReported': 'Self Reported',
+  'shared.mappingStatus.validated': 'Validated',
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { ToastContext } from '../../lib/ToastContext'
+import { getMappingStatusOptions } from '../../lib/utilities'
 import { UPDATE_PRODUCT_BUILDING_BLOCKS } from '../../mutations/product'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../queries/building-block'
 import { fetchSelectOptions } from '../../queries/utils'
@@ -19,6 +20,14 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
   const client = useApolloClient()
 
   const [buildingBlocks, setBuildingBlocks] = useState(product.buildingBlocks)
+
+  const mappingStatusOptions = getMappingStatusOptions(format)
+
+  const [mappingStatus, setMappingStatus] = useState(
+    mappingStatusOptions.find(({ value: mappingStatus }) => 
+      mappingStatus === (product?.buildingBlocksMappingStatus)
+    ) ?? mappingStatusOptions?.[0]
+  )
 
   const [isDirty, setIsDirty] = useState(false)
 
@@ -62,6 +71,11 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
     setIsDirty(true)
   }
 
+  const updateMappingStatus = (selectedMappingStatus) => {
+    setMappingStatus(selectedMappingStatus)
+    setIsDirty(true)
+  }
+
   const onSubmit = () => {
     if (session) {
       const { userEmail, userToken } = session.user
@@ -69,6 +83,7 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
       updateProductBuildingBlocks({
         variables: {
           slug: product.slug,
+          mappingStatus: mappingStatus.value,
           buildingBlocksSlugs: buildingBlocks.map(({ slug }) => slug)
         },
         context: {
@@ -83,6 +98,9 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
 
   const onCancel = () => {
     setBuildingBlocks(data?.updateProductBuildingBlocks?.product?.buildingBlocks ?? product.buildingBlocks)
+    setMappingStatus(mappingStatusOptions.find(({ value: mappingStatus }) =>
+      mappingStatus === (data?.updateProductBuildingBlocks?.product?.buildingBlocksMappingStatus ?? product.buildingBlocksMappingStatus)
+    ))
     setIsDirty(false)
   }
 
@@ -109,6 +127,15 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
       <p className='card-title text-dial-blue mb-3'>
         {format('app.assign')} {format('building-block.header')}
       </p>
+      <label className='flex flex-col gap-y-2 mb-2'>
+        {format('product.mappingStatus')}
+        <Select
+          options={mappingStatusOptions}
+          placeholder={format('product.mappingStatus')}
+          onChange={updateMappingStatus}
+          value={mappingStatus}
+        />
+      </label>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='building-block-search'>
         {`${format('app.searchAndAssign')} ${format('building-block.header')}`}
         <Select
