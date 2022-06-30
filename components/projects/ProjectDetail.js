@@ -63,8 +63,8 @@ const ProjectDetail = ({ slug, locale }) => {
   const { isAdminUser } = useUser(session)
   const { ownsSomeOrganization } = useOrganizationOwnerUser(session, null, data?.project?.organizations)
   const { ownsSomeProduct } = useProductOwnerUser(null, data?.project?.products, isAdminUser)
-  
-  const canEdit = isAdminUser || ownsSomeOrganization || ownsSomeProduct 
+
+  const canEdit = isAdminUser || ownsSomeOrganization || ownsSomeProduct
 
   useEffect(() => {
     refetch()
@@ -79,7 +79,7 @@ const ProjectDetail = ({ slug, locale }) => {
         data && data.project &&
           <div className='flex flex-col lg:flex-row justify-between pb-8 max-w-catalog mx-auto'>
             <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
-              <ProjectDetailLeft project={data.project} canEdit={canEdit}/>
+              <ProjectDetailLeft project={data.project} canEdit={canEdit} />
             </div>
             <div className='w-full lg:w-2/3 xl:w-3/4'>
               <ProjectDetailRight project={data.project} canEdit={canEdit} />

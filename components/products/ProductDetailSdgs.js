@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { ToastContext } from '../../lib/ToastContext'
+import { getMappingStatusOptions } from '../../lib/utilities'
 import { UPDATE_PRODUCT_SDGS } from '../../mutations/product'
 import { SDG_SEARCH_QUERY } from '../../queries/sdg'
 import { fetchSelectOptions } from '../../queries/utils'
@@ -12,8 +13,6 @@ import EditableSection from '../shared/EditableSection'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 
-const defaultMappingStatus = 'BETA'
- 
 const ProductDetailSdgs = ({ product, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
@@ -21,6 +20,14 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
   const client = useApolloClient()
  
   const [sdgs, setSdgs] = useState(product.sustainableDevelopmentGoals)
+
+  const mappingStatusOptions = getMappingStatusOptions(format)
+
+  const [mappingStatus, setMappingStatus] = useState(
+    mappingStatusOptions.find(({ value: mappingStatus }) => 
+      mappingStatus === (product?.sustainableDevelopmentGoalsMappingStatus)
+    ) ?? mappingStatusOptions?.[0]
+  )
  
   const [isDirty, setIsDirty] = useState(false)
  
@@ -52,7 +59,7 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
     }))
   )
   
-  const addSdgs = (sdg) => {
+  const addSdg = (sdg) => {
     setSdgs([
       ...sdgs.filter(({ slug }) => slug !== sdg.slug),
       { name: sdg.label, slug: sdg.slug }
@@ -60,8 +67,13 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
     setIsDirty(true)
   }
  
-  const removeSdgs = (sdg) => {
+  const removeSdg = (sdg) => {
     setSdgs([...sdgs.filter(({ slug }) => slug !== sdg.slug)])
+    setIsDirty(true)
+  }
+
+  const updateMappingStatus = (selectedMappingStatus) => {
+    setMappingStatus(selectedMappingStatus)
     setIsDirty(true)
   }
 
@@ -72,8 +84,8 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
       updateProductSdgs({
         variables: {
           slug: product.slug,
-          sdgsSlugs: sdgs.map(({ slug }) => slug),
-          mappingStatus: defaultMappingStatus,
+          mappingStatus: mappingStatus.value,
+          sdgsSlugs: sdgs.map(({ slug }) => slug)
         },
         context: {
           headers: {
@@ -87,6 +99,9 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
  
   const onCancel = () => {
     setSdgs(data?.updateProductSdgs?.product?.sustainableDevelopmentGoals ?? product.sustainableDevelopmentGoals)
+    setMappingStatus(mappingStatusOptions.find(({ value: mappingStatus }) =>
+      mappingStatus === (data?.updateProductSdgs?.product?.sustainableDevelopmentGoalsMappingStatus ?? product.sustainableDevelopmentGoalsMappingStatus)
+    ))
     setIsDirty(false)
   }
  
@@ -102,34 +117,43 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
     )
  
   const editModeBody =
-   <>
-     <p className='card-title text-dial-blue mb-3'>
-       {format('app.assign')} {format('sdg.label')}
-     </p>
-     <label className='flex flex-col gap-y-2 mb-2' data-testid='sdgs-search'>
-       {`${format('app.searchAndAssign')} ${format('sdg.label')}`}
-       <Select
-         async
-         isSearch
-         defaultOptions
-         cacheOptions
-         placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-         loadOptions={(input) => fetchSelectOptions(client, input, SDG_SEARCH_QUERY, fetchedSdgsCallback)}
-         noOptionsMessage={() => format('filter.searchFor', { entity: format('sdg.label') })}
-         onChange={addSdgs}
-         value={null}
-       />
-     </label>
-     <div className='flex flex-wrap gap-3 mt-5'>
-       {sdgs.map((sdg, sdgIdx) => (
-         <Pill
-           key={`sdgs-${sdgIdx}`}
-           label={sdg.name}
-           onRemove={() => removeSdgs(sdg)}
-         />
-       ))}
-     </div>
-   </>
+    <>
+      <p className='card-title text-dial-blue mb-3'>
+        {format('app.assign')} {format('sdg.label')}
+      </p>
+      <label className='flex flex-col gap-y-2 mb-2'>
+        {format('product.mappingStatus')}
+        <Select
+          options={mappingStatusOptions}
+          placeholder={format('product.mappingStatus')}
+          onChange={updateMappingStatus}
+          value={mappingStatus}
+        />
+      </label>
+      <label className='flex flex-col gap-y-2 mb-2' data-testid='sdgs-search'>
+        {`${format('app.searchAndAssign')} ${format('sdg.label')}`}
+        <Select
+          async
+          isSearch
+          defaultOptions
+          cacheOptions
+          placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
+          loadOptions={(input) => fetchSelectOptions(client, input, SDG_SEARCH_QUERY, fetchedSdgsCallback)}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('sdg.label') })}
+          onChange={addSdg}
+          value={null}
+        />
+      </label>
+      <div className='flex flex-wrap gap-3 mt-5'>
+        {sdgs.map((sdg, sdgIdx) => (
+          <Pill
+            key={`sdgs-${sdgIdx}`}
+            label={sdg.name}
+            onRemove={() => removeSdg(sdg)}
+          />
+        ))}
+      </div>
+    </>
  
   return (
     <EditableSection

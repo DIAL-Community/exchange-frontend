@@ -23,11 +23,11 @@ export const CREATE_PROJECT = gql`
     ) {
       project {
         slug
-            },
+      },
       errors
     }
   }
-  `
+`
 
 export const UPDATE_PROJECT_SECTORS = gql`
   mutation UpdateProjectSectors(
@@ -110,6 +110,28 @@ export const UPDATE_PROJECT_COUNTRIES = gql`
           id
           name
           slug
+        }
+      },
+      errors
+    }
+  }
+`
+
+export const UPDATE_PROJECT_PRODUCTS = gql`
+  mutation UpdateProjectProducts(
+    $slug: String!,
+    $productsSlugs: [String!]!
+  ) {
+    updateProjectProducts(
+      slug: $slug
+      productsSlugs: $productsSlugs
+    ) {
+      project {
+        products {
+          id
+          name
+          slug
+          imageFile
         }
       },
       errors
