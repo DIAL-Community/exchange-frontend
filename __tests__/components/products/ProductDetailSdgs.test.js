@@ -9,7 +9,7 @@ import {
 } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { product } from './data/ProductForm'
-import { sdgs } from './data/ProductDetailSDGs'
+import { sdgs } from './data/ProductDetailSdgs'
  
 jest.mock('next/dist/client/router')
 jest.mock('next-auth/client')

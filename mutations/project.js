@@ -23,11 +23,11 @@ export const CREATE_PROJECT = gql`
     ) {
       project {
         slug
-            },
+      },
       errors
     }
   }
-  `
+`
 
 export const UPDATE_PROJECT_SECTORS = gql`
   mutation UpdateProjectSectors(

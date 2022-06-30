@@ -63,12 +63,14 @@ export const PRODUCT_QUERY = gql`
         imageFile
         maturity
       }
+      buildingBlocksMappingStatus
       sustainableDevelopmentGoals {
         id
         name
         slug
         imageFile
       }
+      sustainableDevelopmentGoalsMappingStatus
       sectors {
         name
         slug
