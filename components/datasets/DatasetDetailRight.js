@@ -48,7 +48,7 @@ const DatasetDetailRight = ({ dataset }) => {
         }
         {
           dataset.geographicCoverage &&
-            <div className='mt-12'>
+            <div className='mt-12 px-4'>
               <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.coverage')}</div>
               <div className='my-auto'>{dataset.geographicCoverage}</div>
             </div>
@@ -71,7 +71,7 @@ const DatasetDetailRight = ({ dataset }) => {
         }
         {
           dataset.timeRange &&
-            <div className='mt-12'>
+            <div className='mt-12 px-4'>
               <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.timeRange')}</div>
               <div className='my-auto'>{dataset.timeRange}</div>
             </div>
