@@ -306,9 +306,13 @@ export const en = {
   'sdg.header': 'Sustainable Development Goals',
   'sdg.label': 'Sustainable Development Goal',
 
+  'sdg-target.header': 'SDG Targets',
+  'sdg-target.label': 'SDG Target',
+
   'use-case.label': 'Use Case',
   'use-case.sdg-targets': 'SDG Targets',
   'use-case.workflow': 'Workflows',
+  'use-case.no-sdg-targets': 'We do not have any SDG Target information for this Use Case.',
 
   'wizard.title': 'Requirements and Recommendation Wizard',
   'wizard.complete': 'Complete',
@@ -1310,5 +1314,7 @@ export const en = {
   'toast.sdgs.update.success': 'SDGs updated successfully',
   'toast.sdgs.update.failure': 'SDGs update failed',
   'toast.products.update.success': 'Products updated successfully',
-  'toast.products.update.failure': 'Products update failed'
+  'toast.products.update.failure': 'Products update failed',
+  'toast.sdgTargets.update.success': 'SDG Targets updated successfully',
+  'toast.sdgTargets.update.failure': 'SDG Targets update failed'
 }
