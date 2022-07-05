@@ -1,14 +1,13 @@
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { useSession } from 'next-auth/client'
-import Link from 'next/link'
 import Breadcrumb from '../shared/breadcrumb'
 import WorkflowCard from '../workflows/WorkflowCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
-import { convertToKey } from '../context/FilterContext'
 import StepList from './steps/StepList'
+import UseCaseDetailSdgTargets from './UseCaseDetailSdgTargets'
 
-const UseCaseDetailRight = ({ useCase }) => {
+const UseCaseDetailRight = ({ useCase, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
   const [session] = useSession()
@@ -68,34 +67,7 @@ const UseCaseDetailRight = ({ useCase }) => {
             </div>
           </div>
       }
-      {
-        useCase.sdgTargets && useCase.sdgTargets.length > 0 &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('sdg.sdgTargets')}</div>
-            <div className='grid grid-cols-1'>
-              {
-                useCase.sdgTargets.map((sdgTarget, index) => {
-                  return (
-                    <Link key={index} href={`/${convertToKey('SDGs')}/${sdgTarget.sustainableDevelopmentGoal.slug}`} passHref>
-                      <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
-                        <div className='bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg'>
-                          <div className='flex flex-row text-dial-gray-dark'>
-                            <div className='px-4 my-auto text-sm font-semibold text-dial-yellow w-3/12 md:w-2/12'>
-                              {`${format('sdg.target.title')}: ${sdgTarget.targetNumber}`}
-                            </div>
-                            <div className='my-2 text-sm w-9/12 md:w-10/12'>
-                              {sdgTarget.name}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  )
-                })
-              }
-            </div>
-          </div>
-      }
+      {useCase.sdgTargets && <UseCaseDetailSdgTargets useCase={useCase} canEdit={canEdit} />}
       {
         useCase.buildingBlocks && useCase.buildingBlocks.length > 0 &&
           <div className='mt-12 mb-4'>
