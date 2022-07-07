@@ -314,6 +314,8 @@ export const en = {
   'use-case.workflow': 'Workflows',
   'use-case.no-sdg-targets': 'We do not have any SDG Target information for this Use Case.',
 
+  'use-case-step.no-workflow': 'We do not have any Workflow information for this Use Case Step.',
+
   'wizard.title': 'Requirements and Recommendation Wizard',
   'wizard.complete': 'Complete',
   'wizard.close': 'Close',
@@ -1316,5 +1318,7 @@ export const en = {
   'toast.products.update.success': 'Products updated successfully',
   'toast.products.update.failure': 'Products update failed',
   'toast.sdgTargets.update.success': 'SDG Targets updated successfully',
-  'toast.sdgTargets.update.failure': 'SDG Targets update failed'
+  'toast.sdgTargets.update.failure': 'SDG Targets update failed',
+  'toast.workflows.update.success': 'Workflows updated successfully',
+  'toast.workflows.update.failure': 'Workflows update failed'
 }
