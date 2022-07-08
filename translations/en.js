@@ -438,9 +438,13 @@ export const en = {
 
   'country.header': 'Countries',
   'workflow.header': 'Workflows',
-  'useCase.header': 'Use Cases',
   'product.header': 'Products',
   'dataset.header': 'Open Data',
+
+  'country.label': 'Country',
+  'workflow.label': 'Workflow',
+  'product.label': 'Product',
+  'dataset.label': 'Dataset',
 
   'organization.detail.website': 'Website',
   'organization.detail.whenEndorsed': 'Endorsed On',
@@ -454,13 +458,18 @@ export const en = {
   'map.endorsers.viewOrganization': 'View Organization',
   'map.projects.viewProject': 'View Project',
 
+  'useCase.header': 'Use Cases',
   'useCase.label': 'Use Case',
   'useCase.description': 'Description',
-  'workflow.label': 'Workflow',
-  'product.label': 'Product',
-  'dataset.label': 'Dataset',
-  'country.label': 'Country',
-
+  'useCase.name': 'Name',
+  'useCase.sector': 'Sector',
+  'useCase.maturity': 'Maturity',
+  'useCase.maturity.beta': 'BETA',
+  'useCase.maturity.mature': 'MATURE',
+  'useCase.imageFile': 'Logo',
+  'useCase.submit.success': 'Use Case submitted successfully',
+  'useCase.submit.failure': 'Use Case submission failed',
+  
   'error.auth': 'Error in authentication',
   'error.tryAgain': 'Try Again',
   'error.goBack': 'Go Back to Catalog',
