@@ -6,12 +6,12 @@ export const USE_CASE_QUERY = gql`
       id
       name
       slug
+      maturity
       sector {
         slug
         name
         id
       }
-      maturity
       useCaseDescription {
         description
       }

@@ -1,9 +1,8 @@
-
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
 import Breadcrumb from '../../../../components/shared/breadcrumb'
@@ -11,17 +10,8 @@ import StepList from '../../../../components/use-cases/steps/StepList'
 import ClientOnly from '../../../../lib/ClientOnly'
 import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import NotFound from '../../../../components/shared/NotFound'
+import { USE_CASE_DETAIL_QUERY } from '../../../../queries/use-case'
 
-const USE_CASE_QUERY = gql`
-  query UseCase($slug: String!) {
-    useCase(slug: $slug) {
-      name
-      slug
-      maturity
-      imageFile
-    }
-  }
-`
 
 // Create the top left header of the step list.
 const UseCaseHeader = ({ useCase }) => {
@@ -48,7 +38,7 @@ const UseCaseHeader = ({ useCase }) => {
 }
 
 const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
-  const { data, loading, error } = useQuery(USE_CASE_QUERY, { variables: { slug: slug } })
+  const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug: slug } })
 
   if (loading) {
     return <Loading />

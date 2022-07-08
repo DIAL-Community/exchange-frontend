@@ -15,6 +15,7 @@ query UseCaseSteps(
       stepNumber
       useCase {
         slug
+        name
       }
       workflows {
         slug

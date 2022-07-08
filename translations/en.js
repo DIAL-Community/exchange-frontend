@@ -316,9 +316,6 @@ export const en = {
   'use-case.no-sdg-targets': 'We do not have any SDG Target information for this Use Case.',
   'use-case.no-tag': 'We do not have any Tag information for this Use Case.',
 
-  'use-case-step.no-workflow': 'We do not have any Workflow information for this Use Case Step.',
-  'use-case-step.no-product': 'We do not have any Product information for this Use Case Step.',
-
   'wizard.title': 'Requirements and Recommendation Wizard',
   'wizard.complete': 'Complete',
   'wizard.close': 'Close',
@@ -552,6 +549,15 @@ export const en = {
 
   'sdg.shortLabel': 'SDG',
   'sdg.shortHeader': 'SDGs',
+
+  'use-case-step.label': 'Use Case Step',
+  'use-case-step.name': 'Name',
+  'use-case-step.description': 'Description',
+  'use-case-step.step-number': 'Step Number',
+  'use-case-step.submit.failure': 'Use Case Step submission failed',
+  'use-case-step.submit.success': 'Use Case Step submitted successfully',
+  'use-case-step.no-workflow': 'We do not have any Workflow information for this Use Case Step.',
+  'use-case-step.no-product': 'We do not have any Product information for this Use Case Step.',
 
   'playbook.header': 'Playbooks',
   'playbooks.label': 'Playbook',
