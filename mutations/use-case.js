@@ -27,11 +27,11 @@ export const UPDATE_USE_CASE_SDG_TARGETS = gql`
 
 export const CREATE_USE_CASE = gql`
   mutation CreateUseCase(
-    $name: String!,
-    $slug: String!,
-    $sectorSlug: String!,
-    $maturity: String!,
-    $imageFile: Upload,
+    $name: String!
+    $slug: String!
+    $sectorSlug: String!
+    $maturity: String!
+    $imageFile: Upload
     $description: String!
   ) {
     createUseCase(
@@ -44,8 +44,25 @@ export const CREATE_USE_CASE = gql`
     ) {
       useCase {
         slug
-      },
+      }
       errors
     }
+  }
+`
+
+export const UPDATE_USE_CASE_TAGS = gql`
+  mutation UpdateUseCaseTags(
+    $slug: String!
+    $tags: [String!]!
+  ) {
+    updateUseCaseTags(
+      slug: $slug
+      tags: $tags
+    ) {
+      useCase {
+        tags
+      }
+      errors
+    }  
   }
 `

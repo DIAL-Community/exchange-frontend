@@ -313,6 +313,7 @@ export const en = {
   'use-case.sdg-targets': 'SDG Targets',
   'use-case.workflow': 'Workflows',
   'use-case.no-sdg-targets': 'We do not have any SDG Target information for this Use Case.',
+  'use-case.no-tag': 'We do not have any Tag information for this Use Case.',
 
   'use-case-step.no-workflow': 'We do not have any Workflow information for this Use Case Step.',
 
