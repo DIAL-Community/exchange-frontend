@@ -285,6 +285,7 @@ export const en = {
   'organization.no-contact': 'We do not have any Contact information for this Organization.',
   'organization.no-project': 'We do not have any Project information for this Organization.',
   'organization.no-product': 'We do not have any Product information for this Organization.',
+  'organization.no-office-locations': 'We do not have any Office Locations information for this Organization.',
   'organization.delete.confirm.message': 'Are you sure you want to delete this Organization?',
 
 
@@ -814,6 +815,7 @@ export const en = {
   'tooltip.digiprins': 'This product is owned or maintained by a Digital Principles endorser.',
 
   'office.other.header': 'Other Office Locations',
+  'office.locations.header': 'Office locations',
 
   'useCaseStep.header': 'Use Case Steps',
   'organization.aggregator.loading': 'Loading aggregator data ...',

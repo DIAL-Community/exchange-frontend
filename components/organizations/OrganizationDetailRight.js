@@ -96,20 +96,22 @@ const OrganizationDetailRight = ({ organization }) => {
       <div className='fr-view text-dial-gray-dark p-3' data-testid='organization-description'>
         {organization.organizationDescription && parse(organization.organizationDescription.description)}
       </div>
-      {
-        organization.offices.length > 1 &&
+      {canEdit && organization.offices &&
           <div className='mt-12'>
-            <div className={sectionHeaderStyle}>{format('office.other.header')}</div>
-            <div className='grid grid-cols-1 lg:grid-cols-2'>
-              {
-                organization.offices.map((office, i) => {
-                  // Skipping the first one because it is displayed as map marker.
-                  if (i === 0) return <></>
-
-                  return <CityCard key={i} city={office} listType='list' />
-                })
-              }
-            </div>
+            <div className={sectionHeaderStyle}>{format('office.locations.header')}</div>
+            {organization.offices.length ?
+              (
+                <div className='grid grid-cols-1 lg:grid-cols-2'>
+                  {organization.offices.map((office, i) => (
+                    <CityCard key={i} city={office} listType='list' />
+                  ))}
+                </div>
+              ) : (
+                <div className='text-sm pb-5 text-button-gray'>
+                  {format('organization.no-office-locations')}
+                </div>
+              )
+            }
           </div>
       }
       {canEdit && <OrganizationDetailContacts organization={organization}/>}
