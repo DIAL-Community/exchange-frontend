@@ -28,7 +28,8 @@ export const useCase = {
     sustainableDevelopmentGoal: {
       slug: 'sdg_target_slug_2'
     }
-  }]
+  }],
+  tags: ['Test Tag']
 }
 
 export const sectors = {
@@ -43,7 +44,7 @@ export const sectors = {
         id: 2,
         name: 'Sector 2',
         slug: 'sector_2'
-      },
+      }
     ]
   }
 }

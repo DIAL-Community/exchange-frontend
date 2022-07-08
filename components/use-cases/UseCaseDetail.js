@@ -1,51 +1,14 @@
-import { useEffect } from 'react'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useSession } from 'next-auth/client'
 import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
 import { useUser } from '../../lib/hooks'
+import { USE_CASE_DETAIL_QUERY } from '../../queries/use-case'
 import UseCaseDetailLeft from './UseCaseDetailLeft'
 import UseCaseDetailRight from './UseCaseDetailRight'
 
-const USE_CASE_QUERY = gql`
-  query UseCase($slug: String!) {
-    useCase(slug: $slug) {
-      id
-      name
-      slug
-      imageFile
-      useCaseDescription {
-        description
-        locale
-      }
-      sdgTargets {
-        id
-        name
-        targetNumber
-        sustainableDevelopmentGoal {
-          slug
-        }
-      }
-      workflows {
-        name
-        slug
-        imageFile
-      }
-      buildingBlocks {
-        name
-        slug
-        maturity
-        imageFile
-      }
-      useCaseHeaders {
-        header
-      }
-    }
-  }
-`
-
 const UseCaseDetail = ({ slug, locale }) => {
-  const { loading, error, data, refetch } = useQuery(USE_CASE_QUERY, {
+  const { loading, error, data } = useQuery(USE_CASE_DETAIL_QUERY, {
     variables: { slug: slug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !slug
@@ -54,10 +17,6 @@ const UseCaseDetail = ({ slug, locale }) => {
   const [session] = useSession()
 
   const { isAdminUser: canEdit } = useUser(session)
-
-  useEffect(() => {
-    refetch()
-  }, [locale, refetch])
 
   return (
     <>

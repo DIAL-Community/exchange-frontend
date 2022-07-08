@@ -6,6 +6,7 @@ import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import WorkflowCard from '../workflows/WorkflowCard'
 import StepList from './steps/StepList'
 import UseCaseDetailSdgTargets from './UseCaseDetailSdgTargets'
+import UseCaseDetailTags from './UseCaseDetailTags'
 
 const UseCaseDetailRight = ({ useCase, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -77,6 +78,7 @@ const UseCaseDetailRight = ({ useCase, canEdit }) => {
             </div>
           </div>
       }
+      {useCase.tags && <UseCaseDetailTags useCase={useCase} canEdit={canEdit} />}
     </div>
   )
 }
