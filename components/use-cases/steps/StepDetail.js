@@ -5,8 +5,8 @@ import parse from 'html-react-parser'
 import { useSession } from 'next-auth/client'
 import Breadcrumb from '../../shared/breadcrumb'
 import BuildingBlockCard from '../../building-blocks/BuildingBlockCard'
-import ProductCard from '../../products/ProductCard'
 import { useUser } from '../../../lib/hooks'
+import UseCaseStepDetailProducts from './UseCaseStepDetailProducts'
 import UseCaseStepDetailWorkflows from './UseCaseStepDetailWorkflows'
 
 const USE_CASE_STEP_QUERY = gql`
@@ -72,15 +72,7 @@ const UseCaseStepInformation = ({ useCaseStep, canEdit }) => {
             </div>
           </div>
       }
-      {
-        useCaseStep.products && useCaseStep.products.length > 0 &&
-          <div className='mt-12 mb-4'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('product.header')}</div>
-            <div className='grid grid-cols-1'>
-              {useCaseStep.products.map((product, i) => <ProductCard key={i} product={product} listType='list' />)}
-            </div>
-          </div>
-      }
+      {useCaseStep.products && <UseCaseStepDetailProducts useCaseStep={useCaseStep} canEdit={canEdit} />}
     </div>
   )
 }

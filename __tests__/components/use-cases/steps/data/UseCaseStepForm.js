@@ -8,5 +8,12 @@ export const useCaseStep = {
       name: 'Test Workflow',
       slug: 'tw'
     }
+  ],
+  products: [
+    {
+      id: 1,
+      name: 'Test Product',
+      slug: 'tp'
+    }
   ]
 }

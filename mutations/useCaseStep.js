@@ -20,3 +20,24 @@ export const UPDATE_USE_CASE_STEP_WORKFLOWS = gql`
     }
   }
 `
+
+export const UPDATE_USE_CASE_STEP_PRODUCTS = gql`
+  mutation UpdateUseCaseStepProducts(
+    $slug: String!,
+    $productsSlugs: [String!]!
+  ) {
+    updateUseCaseStepProducts(
+      slug: $slug,
+      productsSlugs: $productsSlugs
+    ) {
+      useCaseStep {
+        slug
+        products {
+          slug
+          imageFile
+          name
+        }
+      }
+    }
+  }
+`

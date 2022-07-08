@@ -317,6 +317,7 @@ export const en = {
   'use-case.no-tag': 'We do not have any Tag information for this Use Case.',
 
   'use-case-step.no-workflow': 'We do not have any Workflow information for this Use Case Step.',
+  'use-case-step.no-product': 'We do not have any Product information for this Use Case Step.',
 
   'wizard.title': 'Requirements and Recommendation Wizard',
   'wizard.complete': 'Complete',
