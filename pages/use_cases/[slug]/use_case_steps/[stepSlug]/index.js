@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import Link from 'next/link'
 import Head from 'next/head'
 import StepList from '../../../../../components/use-cases/steps/StepList'
@@ -12,17 +12,7 @@ import Footer from '../../../../../components/Footer'
 import { Error, Loading } from '../../../../../components/shared/FetchStatus'
 import NotFound from '../../../../../components/shared/NotFound'
 import ClientOnly from '../../../../../lib/ClientOnly'
-
-const USE_CASE_QUERY = gql`
-  query UseCase($slug: String!) {
-    useCase(slug: $slug) {
-      name
-      slug
-      maturity
-      imageFile
-    }
-  }
-`
+import { USE_CASE_DETAIL_QUERY } from '../../../../../queries/use-case'
 
 // Generate the edit link to edit this step data.
 const EditLink = ({ linkHref }) => {
@@ -72,7 +62,7 @@ const UseCaseHeader = ({ useCase }) => {
 const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
   const [session] = useSession()
   const { locale } = useRouter()
-  const { data, loading, error } = useQuery(USE_CASE_QUERY, { variables: { slug: slug } })
+  const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug: slug } })
 
   const generateEditLink = () => {
     if (!session.user) {
@@ -129,9 +119,8 @@ const UseCaseStep = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const { locale, query } = useRouter()
+  const { query } = useRouter()
   const { slug, stepSlug } = query
-
 
   return (
     <>

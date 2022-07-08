@@ -1,5 +1,31 @@
 import { gql } from '@apollo/client'
 
+export const CREATE_USE_CASE_STEP = gql`
+  mutation CreateUseCaseStep(
+    $name: String!,
+    $slug: String!,
+    $stepNumber: Int!,
+    $description: String!
+    $useCaseId: Int!
+  ) {
+    createUseCaseStep(
+      name: $name
+      slug: $slug
+      stepNumber: $stepNumber
+      description: $description
+      useCaseId: $useCaseId
+    ) {
+      useCaseStep {
+        slug
+        useCase {
+          slug
+        }
+      },
+      errors
+    }
+  }
+`
+
 export const UPDATE_USE_CASE_SDG_TARGETS = gql`
   mutation UpdateUseCaseSdgTargets (
     $sdgTargetsIds: [Int!]!
