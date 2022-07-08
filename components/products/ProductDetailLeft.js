@@ -11,6 +11,7 @@ import { useIntl } from 'react-intl'
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseCount } from '../shared/discourse'
 import EditButton from '../shared/EditButton'
+import { useProductOwnerUser, useUser } from '../../lib/hooks'
 
 const CANDIDATE_ROLE_QUERY = gql`
   query CandidateRole($email: String!, $productId: String!, $organizationId: String!) {
@@ -31,6 +32,9 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
   const [session] = useSession()
   const router = useRouter()
   const { locale } = router
+
+  const { isAdminUser, loadingUserSession } = useUser(session)
+  const { ownsProduct } = useProductOwnerUser(product, [], loadingUserSession || isAdminUser)
 
   const captchaRef = useRef()
   const [contactState, setContactState] = useState(CONTACT_STATES[0])
@@ -197,10 +201,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
           {
             session && (
               <div className='inline mr-5'>
-                {
-                  (session.user.canEdit || session.user.own?.products.filter(p => `${p}` === `${product.id}`).length > 0) &&
-                    <EditButton type='link' href={generateEditLink()} />
-                }
+                {(isAdminUser || ownsProduct) && <EditButton type='link' href={generateEditLink()} />}
               </div>
             )
           }
