@@ -253,7 +253,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         href="/sdgs/ts"
       >
         <div
-          class="bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg"
+          class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
         >
           <div
             class="flex flex-row text-dial-gray-dark"
@@ -276,7 +276,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         href="/sdgs/as"
       >
         <div
-          class="bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg"
+          class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
         >
           <div
             class="flex flex-row text-dial-gray-dark"
@@ -516,7 +516,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         href="/sdgs/ts"
       >
         <div
-          class="bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg"
+          class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
         >
           <div
             class="flex flex-row text-dial-gray-dark"
@@ -539,7 +539,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         href="/sdgs/as"
       >
         <div
-          class="bg-white border border-dial-gray hover:border-transparent shadow-sm hover:shadow-lg"
+          class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
         >
           <div
             class="flex flex-row text-dial-gray-dark"
