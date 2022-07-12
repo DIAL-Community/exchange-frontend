@@ -550,6 +550,7 @@ export const en = {
   'sdg.shortLabel': 'SDG',
   'sdg.shortHeader': 'SDGs',
 
+  'use-case-step.create': 'Add Use Case Step',
   'use-case-step.label': 'Use Case Step',
   'use-case-step.name': 'Name',
   'use-case-step.description': 'Description',

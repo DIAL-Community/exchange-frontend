@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useQuery } from '@apollo/client'
+import { useSession } from 'next-auth/client'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
 import Breadcrumb from '../../../../components/shared/breadcrumb'
@@ -11,7 +12,7 @@ import ClientOnly from '../../../../lib/ClientOnly'
 import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import NotFound from '../../../../components/shared/NotFound'
 import { USE_CASE_DETAIL_QUERY } from '../../../../queries/use-case'
-
+import CreateButton from '../../../../components/shared/CreateButton'
 
 // Create the top left header of the step list.
 const UseCaseHeader = ({ useCase }) => {
@@ -38,6 +39,11 @@ const UseCaseHeader = ({ useCase }) => {
 }
 
 const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
+  const [session] = useSession()
+
   const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug: slug } })
 
   if (loading) {
@@ -66,6 +72,9 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
       <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
         <div className='block lg:hidden'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
+        </div>
+        <div className='w-full mb-2'>
+          {session?.user && <CreateButton type='link' label={format('use-case-step.create')} href={`/use_cases/${data.useCase.slug}/use_case_steps/create`} />}
         </div>
         {data?.useCase && <UseCaseHeader useCase={data.useCase} />}
         <StepList useCaseSlug={slug} stepSlug={stepSlug} listStyle='compact' shadowOnContainer />
