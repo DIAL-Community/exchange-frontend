@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the CreateButton component. Should match snapshot - type === "button". 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <button
+    class="create-button gap-x-1.5"
+    data-testid="create-button"
+    type="button"
+  >
+    <img
+      alt="Edit"
+      height="12px"
+      src="/icons/edit.svg"
+      width="12px"
+    />
+    <span
+      class="text-sm"
+    >
+      Create
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Unit test for the CreateButton component. Should match snapshot - type === "link". 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <a
+    class="create-button gap-x-1.5"
+    data-testid="create-link"
+    href="http://test/"
+  >
+    <img
+      alt="Edit"
+      height="12px"
+      src="/icons/edit.svg"
+      width="12px"
+    />
+    <span
+      class="text-sm"
+    >
+      Create
+    </span>
+  </a>
+</div>
+`;

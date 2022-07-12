@@ -3,6 +3,7 @@ import parse from 'html-react-parser'
 import { useSession } from 'next-auth/client'
 import Breadcrumb from '../shared/breadcrumb'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
+import CreateButton from '../shared/CreateButton'
 import WorkflowCard from '../workflows/WorkflowCard'
 import StepList from './steps/StepList'
 import UseCaseDetailSdgTargets from './UseCaseDetailSdgTargets'
@@ -18,11 +19,7 @@ const UseCaseDetailRight = ({ useCase, canEdit }) => {
       return '/edit-not-available'
     }
 
-    const { userEmail, userToken } = session.user
-
-    return `
-      ${process.env.NEXT_PUBLIC_RAILS_SERVER}/use_cases/${useCase.slug}/use_case_steps/new?user_email=${userEmail}&user_token=${userToken}
-    `
+    return`/use_cases/${useCase.slug}/use_case_steps/create`
   }
 
   const slugNameMapping = (() => {
@@ -43,14 +40,11 @@ const UseCaseDetailRight = ({ useCase, canEdit }) => {
       </div>
       <div className='mt-12'>
         <div className='self-center place-self-end text-sm'>
-          {
-            session && session.user.canEdit &&
-              <a href={generateCreateStepLink()}>
-                <span className='grid justify-end text-dial-teal'>{format('step.create-new')}</span>
-              </a>
-          }
         </div>
-        <div className='card-title mb-3 text-dial-gray-dark'>{format('useCaseStep.header')}</div>
+        <div className='flex justify-between mb-2'>
+          <div className='card-title text-dial-gray-dark self-center'>{format('useCaseStep.header')}</div>
+          {canEdit && <CreateButton type='link' label={format('use-case-step.create')} href={generateCreateStepLink()}/>}
+        </div>
         {
           useCase.useCaseHeaders && useCase.useCaseHeaders.length > 0 &&
             <div className='fr-view'>

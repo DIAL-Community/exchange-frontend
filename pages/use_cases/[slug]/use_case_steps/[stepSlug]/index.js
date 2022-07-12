@@ -12,30 +12,10 @@ import Footer from '../../../../../components/Footer'
 import { Error, Loading } from '../../../../../components/shared/FetchStatus'
 import NotFound from '../../../../../components/shared/NotFound'
 import ClientOnly from '../../../../../lib/ClientOnly'
+import CreateButton from '../../../../../components/shared/CreateButton'
+import EditButton from '../../../../../components/shared/EditButton'
 import { USE_CASE_DETAIL_QUERY } from '../../../../../queries/use-case'
 
-// Generate the edit link to edit this step data.
-const EditLink = ({ linkHref }) => {
-  const [session] = useSession()
-
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-
-  return (
-    <div className='inline'>
-      {
-        session.user.canEdit && (
-          <a href={linkHref} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
-            <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-            <span className='text-sm px-2'>{format('app.edit')}</span>
-          </a>
-        )
-      }
-    </div>
-  )
-}
-
-// Create the top left header of the step list.
 const UseCaseHeader = ({ useCase }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -60,6 +40,9 @@ const UseCaseHeader = ({ useCase }) => {
 }
 
 const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
   const [session] = useSession()
   const { locale } = useRouter()
   const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug: slug } })
@@ -69,10 +52,7 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
       return '/edit-not-available'
     }
 
-    const { userEmail, userToken } = session.user
-
-    return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/use_cases/${slug}/use_case_steps/${stepSlug}/` +
-      `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
+    return `/use_cases/${slug}/use_case_steps/${stepSlug}/edit`
   }
 
   if (loading) {
@@ -102,9 +82,12 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
         <div className='block lg:hidden'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
-        <div className='w-full mb-2'>
-          {session?.user && <EditLink linkHref={generateEditLink()} />}
-        </div>
+        {session?.user &&
+          <div className='flex flex-row justify-between mb-2'>
+            <EditButton type='link' href={generateEditLink()} />
+            <CreateButton type='link' label={format('use-case-step.create')} href={`/use_cases/${data.useCase.slug}/use_case_steps/create`}/>
+          </div>
+        }
         {data?.useCase && <UseCaseHeader useCase={data.useCase} />}
         <StepList useCaseSlug={slug} stepSlug={stepSlug} listStyle='compact' shadowOnContainer />
       </div>
