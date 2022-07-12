@@ -1,23 +1,19 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
-import { useRouter } from 'next/router'
 import Breadcrumb from '../shared/breadcrumb'
+import EditButton from '../shared/EditButton'
 
 const UseCaseDetailLeft = ({ useCase, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
   const [session] = useSession()
-  const { locale } = useRouter()
 
   const generateEditLink = () => {
     if (!session.user) {
       return '/edit-not-available'
     }
 
-    const { userEmail, userToken } = session.user
-
-    return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/use_cases/${useCase.slug}/` +
-        `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
+    return `/use_cases/${useCase.slug}/edit`
   }
 
   const slugNameMapping = (() => {
@@ -36,15 +32,8 @@ const UseCaseDetailLeft = ({ useCase, canEdit }) => {
         <div className='w-full'>
           {
             session && (
-              <div className='inline'>
-                {
-                  canEdit && (
-                    <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
-                      <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-                      <span className='text-sm px-2'>{format('app.edit')}</span>
-                    </a>
-                  )
-                }
+              <div className='inline mr-5'>
+                {canEdit && <EditButton type='link' href={generateEditLink()} />}
               </div>
             )
           }
