@@ -1,42 +1,42 @@
-import { useState, useEffect } from 'react'
+import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { gql, useMutation } from '@apollo/client'
-import { useIntl } from 'react-intl'
+import { useContext, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa'
-import { Controller, useForm } from 'react-hook-form'
-import Select from 'react-select'
+import { useIntl } from 'react-intl'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
+import { UPDATE_USER} from '../../mutations/users'
 import { OrganizationAutocomplete, OrganizationFilters } from '../filter/element/Organization'
 import { ProductAutocomplete, ProductFilters } from '../filter/element/Product'
 import Breadcrumb from '../shared/breadcrumb'
+import { emailRegex } from '../shared/emailRegex'
+import Input from '../shared/Input'
+import Pill from '../shared/Pill'
+import Select from '../shared/Select'
+import ValidationError from '../shared/ValidationError'
 
-const UPDATE_USER = gql`
-mutation ($email: String!, $roles: JSON!, $products: JSON!, $organizations: JSON!, $username: String!) {
-  updateUser(email: $email, roles: $roles, products: $products, organizations: $organizations, username: $username) {
-    user {
-      id
-      email
-      username
-      roles
-      products {
-        name
-        slug
-      }
-      organization {
-        name
-        slug
-      }
-    }
-  }
-}
-`
+
+
+const sectionStyle = 'w-full flex flex-col'
+const sectionLabelStyle = 'form-field-wrapper form-field-label'
 
 export const UserForm = ({ user, action }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
-
+  
+  const router = useRouter()
+  const [organizations, setOrganizations] = useState((user?.organization) ? [{ label: user.organization.name, slug: user.organization.slug }] : [])
+  const [products, setProducts] = useState(user?.products.map(({name, slug}) => ({ label: name, slug }) ) ?? [])
+  const [userRoles, setUserRoles] = useState(user.roles)
+  
   const { locale } = useRouter()
-
-  const { handleSubmit, register, control } = useForm({
+  
+  const { showToast } = useContext(ToastContext)
+  
+  const userProfilePageUrl = (data) => `/${locale}/users/${data.updateUser.user.id}`
+  const roleOptions = user.allRoles.map(role => ({ label: role, value: role }) )
+  
+  const { handleSubmit, register, formState: { errors } } = useForm({
     mode: 'onBlur',
     reValidateMode: 'onChange',
     shouldUnregister: true,
@@ -48,11 +48,7 @@ export const UserForm = ({ user, action }) => {
       products: user.products.map(prod => prod.name)
     }
   })
-
-  const router = useRouter()
-  const [organizations, setOrganizations] = useState((user && user.organization) ? [{ label: user.organization.name, slug: user.organization.slug }] : [])
-  const [products, setProducts] = useState(user ? user.products.map(product => { return { label: product.name, slug: product.slug } }) : [])
-
+  
   const idNameMapping = (() => {
     const map = {}
     if (user) {
@@ -61,100 +57,142 @@ export const UserForm = ({ user, action }) => {
 
     return map
   })()
-
-  const [updateUser, { data, loading }] = useMutation(UPDATE_USER)
-
-  useEffect(() => {
-    if (data) {
-      setTimeout(() => {
-        router.push(`/${locale}/users/${data.updateUser.user.id}`)
-      }, 2000)
+  
+  const [updateUser, { data, called, reset }] = useMutation(UPDATE_USER, {
+    onCompleted: (data) => {
+      showToast(
+        format('toast.user-profile.update.success'),
+        'success',
+        'top-center',
+        DEFAULT_AUTO_CLOSE_DELAY,
+        null,
+        () => router.push(userProfilePageUrl(data))
+      )
+    },
+    onError: (error) => {
+      showToast(
+        <div className='flex flex-col'>
+          <span>{format('toast.user-profile.update.failure')}</span>
+          <span>{error.message}</span>
+        </div>,
+        'error',
+        'top-center'
+      )
+      reset()
     }
-  }, [data])
-
-  const doUpsert = async (data, e) => {
-    const { email, roles, username } = data
-    updateUser({ variables: { email, roles, products, organizations, username } })
+  })
+  
+  const doUpsert = async (data) => {
+    const { email, username } = data
+    updateUser({ variables: { email, roles: userRoles, products, organizations, username } })
+  }
+  
+  const addRole = (selectedRole) => {
+    setUserRoles([...userRoles.filter((role) => role !== selectedRole.label), selectedRole.label ])
+  }
+  
+  const removeRole = (role) => {
+    setUserRoles([...userRoles.filter((userRole) => userRole !== role)])
   }
 
-  const options = user.allRoles.map(role => { return { label: role, value: role } })
-
   return (
-    <div className='pt-4'>
-      <div className={`mx-4 ${data ? 'visible' : 'invisible'} text-center pt-4`}>
-        <div className='my-auto text-emerald-500'>{action === 'create' ? format('play.created') : format('play.updated')}</div>
-      </div>
-      <div className='px-4 font-bold text-xl text-dial-blue'>
+    <div className='flex flex-col'>
+      <div className='lg:w-2/5 mx-auto px-4 font-bold text-xl text-dial-blue'>
         <div className='hidden lg:block'>
           <Breadcrumb slugNameMapping={idNameMapping} />
         </div>
-        {action === 'update' && format('app.edit-entity', { entity: user.username })}
       </div>
-      <div id='content' className='px-4 sm:px-0 max-w-full mx-auto'>
-        <form onSubmit={handleSubmit(doUpsert)}>
-          <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('user.email')}
-              </label>
-              <input {...register('email', { required: true })} className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker' />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('user.username')}
-              </label>
-              <input {...register('username', { required: true })} className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker' />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-grey-darker h4 mb-2' htmlFor='name'>
-                {format('user.roles')}
-              </label>
-              <Controller
-                name='roles'
-                control={control}
-                render={({ field: { value, onChange, onBlur } }) => {
-                  return (
-                    <Select
-                      options={options}
-                      placeholder={format('user.roles.placeholder')}
-                      isMulti
-                      onChange={(options) => onChange(options?.map((option) => option.value))}
-                      onBlur={onBlur}
-                      value={options.filter((option) => value?.includes(option.value))}
+      <div className='pb-8 px-8'>
+        <div id='content' className='sm:px-0 mx-auto'>
+          <form onSubmit={handleSubmit(doUpsert)}>
+            <div className='sm:w-full md:w-2/3 lg:w-2/5 bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 mx-auto flex flex-col gap-3'>
+              <div className='text-2xl font-bold text-dial-blue pb-4'>
+                {action === 'update' && format('app.edit-entity', { entity: user.username })}
+              </div>
+              <div className='flex flex-col lg:flex-col gap-4'>
+                <div className={sectionStyle}>
+                  <label className={sectionLabelStyle} htmlFor='name' data-testid='email-label'>
+                    <p className='required-field'>{format('user.email')}</p>
+                    <Input
+                      {...register('email', {
+                        required: format('validation.required'),
+                        pattern: { value: emailRegex, message: format('validation.email') }
+                      })}
+                      isInvalid={errors.email}
+                      data-testid='email-input'
                     />
-                  )
-                }}
-              />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-grey-darker h4 mb-2' htmlFor='name'>
-                {format('user.organization')}
-              </label>
-              <OrganizationAutocomplete {...{ organizations, setOrganizations }} containerStyles='px-2 pb-2' />
-              <div className='flex flex-cols-4'>
-                <OrganizationFilters {...{ organizations, setOrganizations }} />
+                    {errors.email && <ValidationError value={errors.email?.message} />}
+                  </label>
+                </div>
+                <div className={sectionStyle}>
+                  <label className={sectionLabelStyle} htmlFor='name' data-testid='username-label'>
+                    <p className='required-field'>{format('user.username')}</p>
+                    <Input
+                      {...register('username', { required: format('validation.required') })}
+                      isInvalid={errors.username}
+                      data-testid='username-input'
+                    />
+                    {errors.username && <ValidationError value={errors.username?.message} />}
+                  </label>
+                </div>
+                <div className={sectionStyle}>
+                  <label className={sectionLabelStyle} htmlFor='name'>
+                    <p>{format('user.roles')}</p>
+                    <Select
+                      options={roleOptions}
+                      placeholder={format('user.roles.placeholder')}
+                      onChange={addRole}
+                      value={null}
+                    />
+                    {userRoles.length > 0 &&
+                      <div className='flex flex-wrap gap-3'>
+                        {userRoles.map((role, roleIdx) => (
+                          <Pill
+                            key={`roles-${roleIdx}`}
+                            label={role}
+                            onRemove={() => removeRole(role)}
+                          />
+                        ))}
+                      </div>
+                    }
+                  </label>
+                </div>
+                <div className={sectionStyle}>
+                  <label className={sectionLabelStyle} htmlFor='name'>
+                    <p>{format('user.organization')}</p>
+                    <OrganizationAutocomplete {...{ organizations, setOrganizations }} />
+                    {organizations.length > 0 &&
+                    <div className='flex flex-wrap gap-3'>
+                      <OrganizationFilters {...{ organizations, setOrganizations }} />
+                    </div>
+                    }
+                  </label>
+                </div>
+                <div className={sectionStyle}>
+                  <label className={sectionLabelStyle} htmlFor='name'>
+                    <p>{format('user.products')}</p>
+                    <ProductAutocomplete {...{ products, setProducts }} />
+                    {organizations.length > 0 &&
+                      <div className='flex flex-wrap gap-3'>
+                        <ProductFilters {...{ products, setProducts }} />
+                      </div>
+                    }
+                  </label>
+                </div>
+                <div className='flex flex-wrap text-xl mt-8 gap-3'>
+                  <button
+                    className='submit-button'
+                    type='submit' disabled={called}
+                    data-testid='submit-button'
+                  >
+                    {format('plays.submit')}
+                    {called && <FaSpinner className='spinner ml-3' />}
+                  </button>
+                </div>
               </div>
             </div>
-            <div className='mb-4'>
-              <label className='block text-grey-darker h4 mb-2' htmlFor='name'>
-                {format('user.products')}
-              </label>
-              <ProductAutocomplete {...{ products, setProducts }} containerStyles='px-2 pb-2' />
-              <div className='flex flex-cols-4'>
-                <ProductFilters {...{ products, setProducts }} />
-              </div>
-            </div>
-            <div className='flex items-center justify-between font-semibold text-sm mt-3'>
-              <button
-                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                type='submit' disabled={loading}
-              >
-                {format('plays.submit')}
-                {loading && <FaSpinner className='spinner ml-3' />}
-              </button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   )

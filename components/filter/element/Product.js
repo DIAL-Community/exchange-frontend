@@ -1,43 +1,13 @@
-import dynamic from 'next/dynamic'
-import { MdClose } from 'react-icons/md'
-import { gql, useApolloClient } from '@apollo/client'
+import { useApolloClient } from '@apollo/client'
+import classNames from 'classnames'
 import { useIntl } from 'react-intl'
-import { asyncSelectStyles } from '../../../lib/utilities'
-
-// https://github.com/JedWatson/react-select/issues/3590
-const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
-
-const PRODUCT_SEARCH_QUERY = gql`
-  query Products($search: String!) {
-    products(search: $search) {
-      id
-      name
-      slug
-    }
-  }
-`
-
-const customStyles = (controlSize = '12rem') => {
-  return {
-    ...asyncSelectStyles,
-    control: (provided) => ({
-      ...provided,
-      width: controlSize,
-      boxShadow: 'none',
-      cursor: 'pointer'
-    }),
-    option: (provided) => ({
-      ...provided,
-      cursor: 'pointer'
-    }),
-    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-    menu: (provided) => ({ ...provided, zIndex: 30 })
-  }
-}
+import { PRODUCT_SEARCH_QUERY } from '../../../queries/product'
+import Pill from '../../shared/Pill'
+import Select from '../../shared/Select'
 
 export const ProductAutocomplete = (props) => {
   const client = useApolloClient()
-  const { products, setProducts, containerStyles, controlSize, placeholder } = props
+  const { products, setProducts, placeholder, containerStyles, controlSize } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -47,8 +17,8 @@ export const ProductAutocomplete = (props) => {
     controlPlaceholder = format('filter.byEntity', { entity: format('product.label') })
   }
 
-  const selectProduct = (product) => {
-    setProducts([...products.filter(p => p.value !== product.value), product])
+  const addProduct = (product) => {
+    setProducts([...products.filter(({label}) => label !== product.label), product])
   }
 
   const fetchOptions = async (input, callback, query) => {
@@ -75,18 +45,18 @@ export const ProductAutocomplete = (props) => {
   }
 
   return (
-    <div className={`${containerStyles} catalog-filter text-dial-gray-dark flex`}>
-      <AsyncSelect
+    <div className={classNames(containerStyles)} data-testid='product-search'>
+      <Select
         aria-label={format('filter.byEntity', { entity: format('product.label') })}
-        className='rounded text-sm text-dial-gray-dark my-auto'
+        async
         cacheOptions
         defaultOptions
         loadOptions={(input, callback) => fetchOptions(input, callback, PRODUCT_SEARCH_QUERY)}
         noOptionsMessage={() => format('filter.searchFor', { entity: format('product.header') })}
-        onChange={selectProduct}
+        onChange={addProduct}
         placeholder={controlPlaceholder}
-        styles={customStyles(controlSize)}
-        value=''
+        value={null}
+        controlSize={controlSize}
       />
     </div>
   )
@@ -95,24 +65,19 @@ export const ProductAutocomplete = (props) => {
 export const ProductFilters = (props) => {
   const { products, setProducts } = props
 
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-
   const removeProduct = (productId) => {
-    setProducts(products.filter(product => product.value !== productId))
+    setProducts(products.filter(product => product.label !== productId))
   }
 
   return (
     <>
-      {
-        products &&
-          products.map(product => (
-            <div key={`filter-${product.label}`} className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {`${format('product.label')}: ${product.label}`}
-              <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeProduct(product.value)} />
-            </div>
-          ))
-      }
+      {products?.map((product, productIdx) => (
+        <Pill
+          key={`product-${productIdx}`}
+          label={product.label}
+          onRemove={() => removeProduct(product.label)}
+        />
+      ))}
     </>
   )
 }
