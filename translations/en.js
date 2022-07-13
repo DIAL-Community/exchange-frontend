@@ -1349,5 +1349,7 @@ export const en = {
   'toast.sdgTargets.update.success': 'SDG Targets updated successfully',
   'toast.sdgTargets.update.failure': 'SDG Targets update failed',
   'toast.workflows.update.success': 'Workflows updated successfully',
-  'toast.workflows.update.failure': 'Workflows update failed'
+  'toast.workflows.update.failure': 'Workflows update failed',
+  'toast.user-profile.update.success': 'Profile updated successfully',
+  'toast.user-profile.update.failure': 'Profile update failed'
 }
