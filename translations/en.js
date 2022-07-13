@@ -294,6 +294,13 @@ export const en = {
   'buildingBlock.label': 'Building Block',
   'building-block.disclaimer': 'Note: As part of the <a href="https://govstack.global">GovStack Initiative</a>, DIAL is working to map digital platforms with key Building Block functionalities. Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative examples of how these tools may support building block functionalities. As Building Block specifications are developed, products that are aligned with the specifications will be tagged as such.',
   'building-block.spec-link': 'The GovStack initiative has published a full specification for this building block. You can view the documentation at this link: ',
+  'building-block.name': 'Name',
+  'building-block.maturity': 'Maturity',
+  'building-block.specUrl': 'GovStack Specification URL',
+  'building-block.imageFile': 'Logo Upload',
+  'building-block.description': 'Description',
+  'building-block.submit.success': 'Building Block submitted successfully',
+  'building-block.submit.failure': 'Building Block submission failed',
   
   'contact.header': 'Contacts',
   'contact.label': 'Contact',
@@ -1313,6 +1320,8 @@ export const en = {
   'shared.mappingStatus.mature': 'Mature',
   'shared.mappingStatus.selfReported': 'Self Reported',
   'shared.mappingStatus.validated': 'Validated',
+  'shared.maturity.beta': 'BETA',
+  'shared.maturity.published': 'PUBLISHED', 
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',

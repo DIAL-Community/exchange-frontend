@@ -1,0 +1,297 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for BuildingBlockForm component. Should render BuildingBlockForm component for admin user. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="flex flex-col"
+  >
+    <div
+      class="hidden lg:block px-8"
+    >
+      <div
+        class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+      >
+        <a
+          class="inline text-dial-blue h5"
+          href="/"
+        >
+          Home
+        </a>
+        <div
+          class="inline h5"
+        >
+           &gt; 
+          <a
+            class="text-dial-gray-dark"
+            href="/"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="pb-8 px-8"
+    >
+      <div
+        class="sm:px-0 max-w-full mx-auto"
+        id="content"
+      >
+        <form>
+          <div
+            class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
+          >
+            <div
+              class="text-2xl font-bold text-dial-blue pb-4"
+            >
+              Create New Building Block
+            </div>
+            <div
+              class="flex flex-col lg:flex-row gap-4"
+            >
+              <div
+                class="w-full lg:w-1/2 flex flex-col gap-y-3"
+              >
+                <div
+                  class="form-field-wrapper"
+                  data-testid="building-block-name"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="name"
+                  >
+                    Name
+                  </label>
+                  <input
+                    class="w-full"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="building-block-maturity"
+                >
+                  <label
+                    class="form-field-label required-field"
+                  >
+                    Maturity
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-2-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-19jej77-control"
+                    >
+                      <div
+                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                      >
+                        <div
+                          class="react-select__placeholder css-19jynah-placeholder"
+                          id="react-select-2-placeholder"
+                        >
+                          Maturity
+                        </div>
+                        <div
+                          class="react-select__input-container css-6j8wv5-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-describedby="react-select-2-placeholder"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-2-input"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        >
+                          <svg
+                            class="text-2xl"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <input
+                      name="maturity"
+                      type="hidden"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="form-field-wrapper"
+                >
+                  <label
+                    class="form-field-label"
+                  >
+                    Logo Upload
+                  </label>
+                  <label
+                    class="flex items-center"
+                  >
+                    <input
+                      class="bg-white file:hidden w-full pr-10"
+                      data-testid="file-uploader"
+                      name="imageFile"
+                      type="file"
+                    />
+                    <div
+                      class="-ml-11 flex p-1"
+                    >
+                      <span
+                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                      >
+                        <svg
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          version="1.1"
+                          viewBox="0 0 16 16"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M13 14h-10v-2l3-5 4.109 5 2.891-2v4z"
+                          />
+                          <path
+                            d="M13 7.5c0 0.828-0.672 1.5-1.5 1.5s-1.5-0.672-1.5-1.5 0.672-1.5 1.5-1.5c0.828 0 1.5 0.672 1.5 1.5z"
+                          />
+                          <path
+                            d="M14.341 3.579c-0.347-0.473-0.831-1.027-1.362-1.558s-1.085-1.015-1.558-1.362c-0.806-0.591-1.197-0.659-1.421-0.659h-7.75c-0.689 0-1.25 0.561-1.25 1.25v13.5c0 0.689 0.561 1.25 1.25 1.25h11.5c0.689 0 1.25-0.561 1.25-1.25v-9.75c0-0.224-0.068-0.615-0.659-1.421zM12.271 2.729c0.48 0.48 0.856 0.912 1.134 1.271h-2.406v-2.405c0.359 0.278 0.792 0.654 1.271 1.134zM14 14.75c0 0.136-0.114 0.25-0.25 0.25h-11.5c-0.135 0-0.25-0.114-0.25-0.25v-13.5c0-0.135 0.115-0.25 0.25-0.25 0 0 7.749-0 7.75 0v3.5c0 0.276 0.224 0.5 0.5 0.5h3.5v9.75z"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </label>
+                </div>
+                <div
+                  class="form-field-wrapper"
+                >
+                  <label
+                    class="form-field-label"
+                  >
+                    GovStack Specification URL
+                  </label>
+                  <input
+                    class="w-full"
+                    name="specUrl"
+                    placeholder="GovStack Specification URL"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                class="w-full lg:w-1/2"
+              >
+                <div
+                  class="block flex flex-col gap-y-2"
+                  data-testid="building-block-description"
+                >
+                  <label
+                    class="form-field-label required-field"
+                  >
+                    Description
+                  </label>
+                  <div
+                    class="relative"
+                  >
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="htmlEditor"
+                    >
+                      <textarea
+                        id="description-editor"
+                        style="visibility: hidden;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex flex-wrap text-xl mt-8 gap-3"
+            >
+              <button
+                class="submit-button"
+                data-testid="submit-button"
+                type="submit"
+              >
+                Submit Building Block
+              </button>
+              <button
+                class="cancel-button"
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
