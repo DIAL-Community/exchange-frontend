@@ -288,7 +288,6 @@ export const en = {
   'organization.no-office-locations': 'We do not have any Office Locations information for this Organization.',
   'organization.delete.confirm.message': 'Are you sure you want to delete this Organization?',
 
-
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',
   'buildingBlock.label': 'Building Block',
@@ -301,7 +300,8 @@ export const en = {
   'building-block.description': 'Description',
   'building-block.submit.success': 'Building Block submitted successfully',
   'building-block.submit.failure': 'Building Block submission failed',
-  
+  'building-block.no-workflow': 'We do not have any Workflow information for this Building Block.',
+
   'contact.header': 'Contacts',
   'contact.label': 'Contact',
   'contact.name.label': 'Name:',
@@ -476,7 +476,7 @@ export const en = {
   'useCase.imageFile': 'Logo',
   'useCase.submit.success': 'Use Case submitted successfully',
   'useCase.submit.failure': 'Use Case submission failed',
-  
+
   'error.auth': 'Error in authentication',
   'error.tryAgain': 'Try Again',
   'error.goBack': 'Go Back to Catalog',
@@ -1321,7 +1321,7 @@ export const en = {
   'shared.mappingStatus.selfReported': 'Self Reported',
   'shared.mappingStatus.validated': 'Validated',
   'shared.maturity.beta': 'BETA',
-  'shared.maturity.published': 'PUBLISHED', 
+  'shared.maturity.published': 'PUBLISHED',
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
