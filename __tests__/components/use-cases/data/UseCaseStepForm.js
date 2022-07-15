@@ -23,7 +23,10 @@ export const createUseCaseStepSuccess = {
   data: {
     createUseCaseStep: {
       useCaseStep: {
-        slug: 'test_use_case_step'
+        slug: 'test_use_case_step',
+        useCase: {
+          slug: 'test_use_case'
+        }
       },
       errors: []
     }

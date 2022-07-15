@@ -4,7 +4,7 @@ import { DiscourseCount } from '../shared/discourse'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
 
-const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick, canEdit }) => {
+const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
   const [session] = useSession()
