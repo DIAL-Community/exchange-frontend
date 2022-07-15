@@ -16,6 +16,7 @@ const BuildingBlockDetail = ({ slug, locale }) => {
   })
 
   const [session] = useSession()
+
   const { isAdminUser: canEdit } = useUser(session)
 
   const discourseElement = useRef()
@@ -37,7 +38,6 @@ const BuildingBlockDetail = ({ slug, locale }) => {
               <BuildingBlockDetailLeft
                 buildingBlock={data.buildingBlock}
                 discourseClick={() => scrollToDiv(discourseElement)}
-                canEdit={canEdit}
               />
             </div>
             <div className='w-full lg:w-2/3 xl:w-3/4'>

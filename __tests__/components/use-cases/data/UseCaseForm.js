@@ -53,7 +53,10 @@ export const createUseCaseSuccess = {
   data: {
     createUseCase: {
       useCase: {
-        slug: 'test_use_case'
+        slug: 'test_use_case',
+        useCase: {
+          slug: 'test_use_case'
+        }
       },
       errors: []
     }

@@ -1,5 +1,33 @@
 import { gql } from '@apollo/client'
 
+export const BUILDING_BLOCK_DETAIL_QUERY = gql`
+  query BuildingBlock($slug: String!) {
+    buildingBlock(slug: $slug) {
+      id
+      name
+      slug
+      imageFile
+      discourseId
+      specUrl
+      buildingBlockDescription {
+        description
+        locale
+      }
+      workflows {
+        name
+        slug
+        imageFile
+      }
+      products {
+        name
+        slug
+        imageFile
+        buildingBlocksMappingStatus
+      }
+    }
+  }
+`
+
 export const BUILDING_BLOCK_SEARCH_QUERY = gql`
   query BuildingBlocks($search: String!) {
     buildingBlocks(search: $search) {
@@ -23,33 +51,6 @@ export const BUILDING_BLOCK_QUERY = gql`
       buildingBlockDescription {
         description
         locale
-      }
-    }
-  }
-`
-
-export const BUILDING_BLOCK_DETAIL_QUERY = gql`
-  query BuildingBlock($slug: String!) {
-    buildingBlock(slug: $slug) {
-      id
-      name
-      slug
-      imageFile
-      discourseId
-      specUrl
-      buildingBlockDescription {
-        description
-        locale
-      }
-      workflows {
-        name
-        slug
-        imageFile
-      }
-      products {
-        name
-        slug
-        imageFile
       }
     }
   }
