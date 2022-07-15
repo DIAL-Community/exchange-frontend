@@ -35,7 +35,7 @@ const CreateBuildingBlock = () => {
   return (
     <>
       <Head>
-        <title>{format({ id: 'app.title' })}</title>
+        <title>{format('app.title')}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />

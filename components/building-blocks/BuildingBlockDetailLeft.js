@@ -1,24 +1,20 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
-import { useRouter } from 'next/router'
 import { DiscourseCount } from '../shared/discourse'
 import Breadcrumb from '../shared/breadcrumb'
+import EditButton from '../shared/EditButton'
 
 const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
   const [session] = useSession()
-  const { locale } = useRouter()
 
   const generateEditLink = () => {
     if (!session.user) {
       return '/edit-not-available'
     }
 
-    const { userEmail, userToken } = session.user
-
-    return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/building_blocks/${buildingBlock.slug}/` +
-      `edit?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
+    return `/building_blocks/${buildingBlock.slug}/edit`
   }
 
   const slugNameMapping = (() => {
@@ -34,21 +30,8 @@ const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-20'>
-        <div className='w-full'>
-          {
-            session && (
-              <div className='inline'>
-                {
-                  session.user.canEdit && (
-                    <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
-                      <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-                      <span className='text-sm px-2'>{format('app.edit')}</span>
-                    </a>
-                  )
-                }
-              </div>
-            )
-          }
+        <div className='w-full flex gap-3'>
+          {session?.user.canEdit && <EditButton type='link' href={generateEditLink()}/>}
           <button onClick={discourseClick}><DiscourseCount /></button>
         </div>
         <div className='h4 font-bold py-4'>{format('buildingBlock.label')}</div>
