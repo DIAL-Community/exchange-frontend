@@ -1,5 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
+import { useSession } from 'next-auth/client'
+import { useUser } from '../../lib/hooks'
 import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
 import { BUILDING_BLOCK_DETAIL_QUERY } from '../../queries/building-block'
@@ -12,6 +14,9 @@ const BuildingBlockDetail = ({ slug, locale }) => {
     context: { headers: { 'Accept-Language': locale } },
     skip: !slug
   })
+
+  const [session] = useSession()
+  const { isAdminUser: canEdit } = useUser(session)
 
   const discourseElement = useRef()
   const scrollToDiv = (ref) => {
@@ -32,12 +37,14 @@ const BuildingBlockDetail = ({ slug, locale }) => {
               <BuildingBlockDetailLeft
                 buildingBlock={data.buildingBlock}
                 discourseClick={() => scrollToDiv(discourseElement)}
+                canEdit={canEdit}
               />
             </div>
             <div className='w-full lg:w-2/3 xl:w-3/4'>
               <BuildingBlockDetailRight
                 buildingBlock={data.buildingBlock}
                 discourseRef={discourseElement}
+                canEdit={canEdit}
               />
             </div>
           </div>

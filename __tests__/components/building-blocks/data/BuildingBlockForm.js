@@ -7,7 +7,14 @@ export const buildingBlock = {
   buildingBlockDescription: {
     description: '<p>test building block description</p>',
     locale: 'en'
-  }
+  },
+  workflows: [
+    {
+      id: 1,
+      name: 'Test Workflow',
+      slug: 'tw'
+    }
+  ]
 }
 
 export const createBuildingBlockSuccess = {
