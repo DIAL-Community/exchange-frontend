@@ -1353,5 +1353,8 @@ export const en = {
   'toast.workflows.update.success': 'Workflows updated successfully',
   'toast.workflows.update.failure': 'Workflows update failed',
   'toast.user-profile.update.success': 'Profile updated successfully',
-  'toast.user-profile.update.failure': 'Profile update failed'
+  'toast.user-profile.update.failure': 'Profile update failed',
+
+  'location.header': 'Location',
+  'location.select.autocomplete.defaultPlaceholder': 'Enter location'
 }
