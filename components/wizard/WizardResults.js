@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useState, useRef, useEffect } from 'react'
 import { gql, useLazyQuery } from '@apollo/client'
-import Select from 'react-select'
+import Select from '../shared/Select'
 import UseCaseCard from '../use-cases/UseCaseCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import { Loading, Error } from '../shared/FetchStatus'
@@ -137,7 +137,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const router = useRouter()
   const [currentSection, setCurrentSection] = useState(0)
   const [wizardData, setWizardData] = useState()
-
+  
   const vars = {
     phase: allValues.projectPhase,
     sector: allValues.sector,
@@ -249,13 +249,13 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           <Lifecycle wizardData={wizardData} objType='principles' />
         </div>
         <div className='text-dial-gray-dark' ref={projectsRef}>
-          <div className='flex w-3/4'>
+          <div className='flex w-3/4 justify-between'>
             <div className='text-2xl font-bold'>
               {format('wizard.results.similarProjects')}
             </div>
             <Select
               onChange={(val) => setAllValues(prevValues => { return { ...prevValues, projectSortHint: val && val.value } })}
-              className='ml-auto text-button-gray' options={sortHintOptions}
+              options={sortHintOptions}
               placeholder={format('wizard.project.sortHint')}
             />
           </div>
@@ -270,13 +270,13 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           </div>
         </div>
         <div className='text-dial-gray-dark' ref={productsRef}>
-          <div className='flex w-3/4'>
+          <div className='flex w-3/4 justify-between'>
             <div className='text-2xl font-bold'>
               {format('wizard.results.products')}
             </div>
             <Select
               onChange={(val) => setAllValues(prevValues => { return { ...prevValues, productSortHint: val && val.value } })}
-              className='ml-auto text-button-gray' options={sortHintOptions.filter(x => x.value !== 'country')}
+              options={sortHintOptions.filter(x => x.value !== 'country')}
               placeholder={format('wizard.product.sortHint')}
             />
           </div>
