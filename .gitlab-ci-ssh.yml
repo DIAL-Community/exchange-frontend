@@ -1,0 +1,13 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  script:
+   - cd /root/catalog_front
+   - git pull
+   - cd /root/product_registry
+   - git pull
+   - ./update.sh
+  only:
+   - development
