@@ -1,8 +1,9 @@
+image: node
+
 stages:
   - lint
   - build
   - test
-  - deploy
 
 variables:
   NODE_OPTIONS: --openssl-legacy-provider
