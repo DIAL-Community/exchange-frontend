@@ -4,6 +4,7 @@ stages:
   - lint
   - build
   - test
+  - deploy
 
 variables:
   NODE_OPTIONS: --openssl-legacy-provider
@@ -45,3 +46,14 @@ test:
     expire_in: 1 hour
     paths:
       - node_modules/
+
+deploy:
+  stage: deploy
+  script:
+   - cd /root/catalog_front
+   - git pull
+   - cd /root/product_registry
+   - git pull
+   - ./update.sh
+  only:
+   - development
