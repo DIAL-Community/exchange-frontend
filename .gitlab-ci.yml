@@ -11,7 +11,6 @@ variables:
 eslint:
   stage: lint
   script:
-    - cd /root/catalog_front
     # Install eslint
     - |
       npm install eslint \
