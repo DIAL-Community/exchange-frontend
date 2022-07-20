@@ -67,7 +67,6 @@ test:
 
 deploy:
   stage: deploy
-  <<: *deploy_run-docker
   script:
    - ssh $SERVER_IP /root/gitlab-deploy.sh
   only:
