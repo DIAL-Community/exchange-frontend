@@ -23,8 +23,6 @@ variables:
 
 eslint:
   stage: lint
-  except:
-    - development
   script:
     # Install eslint
     - |
@@ -44,8 +42,6 @@ cache:
 
 build_react:
   stage: build
-  except:
-    - development
   script:
     - yarn install
     - yarn build
@@ -56,8 +52,6 @@ build_react:
 
 test:
   stage: test
-  except:
-    - development
   script:
     - yarn test
   artifacts:
@@ -69,7 +63,6 @@ deploy:
   stage: deploy
   <<: *deploy_run-docker
   script:
-   - echo "$SERVER_IP"
    - 'ssh "$SERVER_IP" /root/gitlab-deploy.sh'
   only:
    - development
