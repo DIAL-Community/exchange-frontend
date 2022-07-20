@@ -50,10 +50,6 @@ test:
 deploy:
   stage: deploy
   script:
-   - cd /root/catalog_front
-   - git pull
-   - cd /root/product_registry
-   - git pull
-   - ./update.sh
+   - ssh $SERVER_IP "/root/gitlab-deploy.sh"
   only:
    - development
