@@ -16,7 +16,6 @@ variables:
     - set -e
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY"
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null  
     - mkdir -p ~/.ssh
     - touch ~/.ssh/config
@@ -71,6 +70,6 @@ deploy:
   <<: *deploy_run-docker
   script:
    - echo "$SERVER_IP"
-   - 'ssh solutionsapp01-dev.dial.community /root/gitlab-deploy.sh'
+   - 'ssh "$SERVER_IP" /root/gitlab-deploy.sh'
   only:
    - development
