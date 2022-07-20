@@ -9,7 +9,7 @@ stages:
 variables:
   NODE_OPTIONS: --openssl-legacy-provider
   SERVER_IP: "$SERVER_IP"
-  SSH_PRIVATE_KEY: 12345
+  SSH_PRIVATE_KEY: "$SSH_PRIVATE_KEY"
 
 .before_script_template: &deploy_run-docker
   before_script:
@@ -70,6 +70,7 @@ deploy:
   stage: deploy
   <<: *deploy_run-docker
   script:
+   - echo "$SERVER_IP"
    - 'ssh solutionsapp01-dev.dial.community /root/gitlab-deploy.sh'
   only:
    - development
