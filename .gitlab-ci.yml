@@ -67,6 +67,7 @@ test:
 
 deploy:
   stage: deploy
+  <<: *deploy_run-docker
   script:
    - 'ssh solutionsapp01-dev.dial.community /root/gitlab-deploy.sh'
   only:
