@@ -8,7 +8,7 @@ stages:
 
 variables:
   NODE_OPTIONS: --openssl-legacy-provider
-  SERVER_IP: $SERVER_IP
+  SERVER_IP: ${SERVER_IP}
   SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY
 
 .before_script_template: &deploy_run-docker
