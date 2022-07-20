@@ -68,6 +68,6 @@ test:
 deploy:
   stage: deploy
   script:
-   - ssh $SERVER_IP /root/gitlab-deploy.sh
+   - ssh "$SERVER_IP" /root/gitlab-deploy.sh
   only:
    - development
