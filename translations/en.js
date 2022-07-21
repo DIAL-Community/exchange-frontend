@@ -1247,6 +1247,8 @@ export const en = {
   'productRepository.updated': 'Product repository updated.',
   'productRepository.deleted': 'Product repository deleted.',
   'productRepository.no-repositories': 'There are no repositories for this Product.',
+  'product-repository.submit.success': 'Repository submitted successfully',
+  'product-repository.submit.failure': 'Repository submission failed',
 
   'wizard.project.sortHint': 'Sort Projects',
   'wizard.product.sortHint': 'Sort Products',
