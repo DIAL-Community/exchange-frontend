@@ -11,6 +11,8 @@ import Breadcrumb from '../../../../components/shared/breadcrumb'
 import ClientOnly from '../../../../lib/ClientOnly'
 import NotFound from '../../../../components/shared/NotFound'
 import { Loading, Error } from '../../../../components/shared/FetchStatus'
+import { useProductOwnerUser, useUser } from '../../../../lib/hooks'
+import CreateButton from '../../../../components/shared/CreateButton'
 
 const PRODUCT_QUERY = gql`
   query Product($slug: String!) {
@@ -22,20 +24,6 @@ const PRODUCT_QUERY = gql`
     }
   }
 `
-
-const CreateLink = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-
-  return (
-    <div className='inline'>
-      <a href='repositories/create' className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
-        <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-        <span className='text-sm px-2'>{format('app.create-new')}</span>
-      </a>
-    </div>
-  )
-}
 
 const ProductHeader = ({ product }) => {
   const { formatMessage } = useIntl()
@@ -60,19 +48,24 @@ const ProductHeader = ({ product }) => {
 }
 
 const PageDefinition = ({ slug, repositorySlug }) => {
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id: id }, values)
+
   const [session] = useSession()
+
+  const { isAdminUser } = useUser(session)
+  const { ownsProduct } = useProductOwnerUser(data?.product, [], isAdminUser)
+
+  const canEdit = isAdminUser || ownsProduct
+
   const { data, loading, error } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
 
   if (loading) {
-    return <Loading />
-  }
-
-  if (error && error.networkError) {
-    return <Error />
-  }
-
-  if (error && !error.networkError) {
-    return <NotFound />
+    return <Loading/>
+  } else if (error && error.networkError) {
+    return <Error/>
+  } else if (error && !error.networkError) {
+    return <NotFound/>
   }
 
   const slugNameMapping = (() => {
@@ -91,13 +84,7 @@ const PageDefinition = ({ slug, repositorySlug }) => {
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
         <div className='w-full mb-2'>
-          {
-            session?.user && data?.product &&
-            (
-              session?.user.canEdit ||
-              session?.user.own.products.filter(p => `${p}` === `${data.product.id}`).length > 0
-            ) && <CreateLink />
-          }
+          {canEdit && <CreateButton type='link' label={format('app.create-new')} href='repositories/create' />}
         </div>
         {data?.product && <ProductHeader product={data.product} />}
         <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer />

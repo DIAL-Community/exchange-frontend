@@ -1,47 +1,18 @@
-import { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
-import Link from 'next/link'
 import { FaSpinner } from 'react-icons/fa'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
+import { useForm } from 'react-hook-form'
 import { ToastContext } from '../../../lib/ToastContext'
-
-const CREATE_PRODUCT_REPOSITORY = gql`
-  mutation CreateProductRepository(
-    $slug: String!,
-    $name: String!,
-    $absoluteUrl: String!,
-    $description: String!,
-    $mainRepository: Boolean!,
-  ) {
-    createProductRepository(
-      slug: $slug,
-      name: $name,
-      absoluteUrl: $absoluteUrl,
-      description: $description,
-      mainRepository: $mainRepository,
-    ) { slug }
-  }
-`
-
-const UPDATE_PRODUCT_REPOSITORY = gql`
-  mutation CreateProductRepository(
-    $slug: String!,
-    $name: String!,
-    $absoluteUrl: String!,
-    $description: String!,
-    $mainRepository: Boolean!,
-  ) {
-    updateProductRepository(
-      slug: $slug,
-      name: $name,
-      absoluteUrl: $absoluteUrl,
-      description: $description,
-      mainRepository: $mainRepository,
-    ) { slug }
-  }
-`
+import {
+  CREATE_PRODUCT_REPOSITORY,
+  UPDATE_PRODUCT_REPOSITORY
+} from '../../../mutations/product'
+import ValidationError from '../../shared/ValidationError'
+import Input from '../../shared/Input'
+import Checkbox from '../../shared/Checkbox'
 
 const RepositoryForm = ({ productRepository, productSlug }) => {
   const router = useRouter()
@@ -50,65 +21,64 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const [name, setName] = useState('')
-  const [absoluteUrl, setAbsoluteUrl] = useState('')
-  const [description, setDescription] = useState('')
-  const [mainRepository, setMainRepository] = useState(false)
+  const [mutating, setMutating] = useState(false)
+  const [reverting, setReverting] = useState(false)
 
   const { showToast } = useContext(ToastContext)
 
-  const [createProductRepository, { data: createData, loading: loadingCreate }] = useMutation(CREATE_PRODUCT_REPOSITORY)
-  const [updateProductRepository, { data: updateData, loading: loadingUpdate }] = useMutation(UPDATE_PRODUCT_REPOSITORY)
+  const submitFailureToast = () => showToast(
+    format('product-repository.submit.failure'),
+    'error',
+    'top-center',
+    false
+  )
 
-  const handleTextFieldChange = (e, callback) => {
-    callback(e.target.value)
+  const submitSuccessToast = (data) => {
+    const slug = data.createProductRepository?.slug ?? data.updateProductRepository?.slug
+
+    showToast(
+      format('product-repository.submit.success'),
+      'success',
+      'top-center',
+      1000,
+      null,
+      () =>  router.push(`/products/${productSlug}/repositories/${slug}`)
+    )
   }
 
-  const toggleMainRepository = () => {
-    setMainRepository(!mainRepository)
-  }
+  const [createProductRepository] = useMutation(CREATE_PRODUCT_REPOSITORY, {
+    onError: () => submitFailureToast(),
+    onCompleted: (data) => submitSuccessToast(data)
+  })
 
-  const goBackPath = () => {
-    const slug = productRepository ? productRepository.slug : ''
+  const [updateProductRepository] = useMutation(UPDATE_PRODUCT_REPOSITORY, {
+    onError: () => submitFailureToast(),
+    onCompleted: (data) => submitSuccessToast(data)
+  })
 
-    return `/products/${productSlug}/repositories/${slug}`
-  }
-
-  useEffect(() => {
-    if (createData || updateData) {
-      setName('')
-      setAbsoluteUrl('')
-      setDescription('')
-      setMainRepository(false)
-
-      const toastMessage = createData ? format('productRepository.created') : format('productRepository.updated')
-      showToast(toastMessage, 'success', 'top-center')
-
-      setTimeout(() => {
-        const slug = createData ? createData.createProductRepository.slug : updateData.updateProductRepository.slug
-        router.push(`/products/${productSlug}/repositories/${slug}`)
-      }, 2000)
+  const { handleSubmit, register, formState: { errors } } = useForm({
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
+    shouldUnregister: true,
+    defaultValues: {
+      name: productRepository?.name,
+      description: productRepository?.description,
+      absoluteUrl: productRepository?.absoluteUrl,
+      mainRepository: productRepository?.mainRepository === 'true'
     }
-  }, [createData, updateData])
+  })
 
-  useEffect(() => {
-    if (productRepository) {
-      setName(productRepository.name)
-      setAbsoluteUrl(productRepository.absoluteUrl)
-      setDescription(productRepository.description)
-      setMainRepository(toString(productRepository.mainRepository) === 'true')
-    }
-  }, [productRepository])
-
-  const handleSubmit = async (e) => {
-    if (session.user) {
-      e.preventDefault()
+  const doUpsert = async (data) => {
+    if (session) {
+      setMutating(true)
 
       const { userEmail, userToken } = session.user
+      const { name, absoluteUrl, description, mainRepository } = data
+
       const graphParameters = {
         context: { headers: { Authorization: `${userEmail} ${userToken}` } },
         variables: {
-          slug: productRepository ? productRepository.slug : productSlug,
+          slug: productRepository?.slug ?? productSlug,
           name,
           absoluteUrl,
           description,
@@ -120,67 +90,82 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
     }
   }
 
+  const cancelForm = () => {
+    setReverting(true)
+    router.push(`/products/${productSlug}/repositories/${productRepository?.slug ?? ''}`)
+  }
+
   return (
     <div className='block'>
       <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mr-auto'>
-        <form method='post'>
-          <div className='bg-white border-t shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
+        <form onSubmit={handleSubmit(doUpsert)}>
+          <div className='bg-edit border-t shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
+            <div className='text-2xl font-bold text-dial-blue pb-4'>
+              {productRepository
+                ? format('app.edit-entity', { entity: productRepository.name })
+                : `${format('app.create-new')} ${format('productRepository.label')}`
+              }
+            </div>
             <div className='mb-4'>
-              <div className='mb-4'>
-                <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                  {format('productRepository.name')}
-                </label>
-                <input
-                  id='name' name='name' type='text'
-                  placeholder={format('productRepository.name.placeholder')}
-                  className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                  value={name} onChange={(e) => handleTextFieldChange(e, setName)}
-                />
+              <div className='flex flex-col lg:flex-col gap-4'>
+                <div className='w-full lg:w-full flex flex-col gap-y-3' data-testid='product-repository-name'>
+                  <label className='form-field-wrapper form-field-label'>
+                    <p className='required-field'>{format('productRepository.name')}</p>
+                    <Input
+                      {...register('name', { required: format('validation.required') })}
+                      placeholder={format('productRepository.name.placeholder')}
+                      isInvalid={errors.name}
+                    />
+                    {errors.name && <ValidationError value={errors.name?.message} />}
+                  </label>
+                </div>
+                <div className='w-full lg:w-full flex flex-col gap-y-3'>
+                  <label className='form-field-wrapper form-field-label'>
+                    <p>{format('productRepository.aboluteUrl')}</p>
+                    <Input
+                      {...register('absoluteUrl')}
+                      placeholder={format('productRepository.absoluteUrl.placeholder')}
+                    />
+                  </label>
+                </div>
+                <div className='w-full lg:w-full flex flex-col gap-y-3'>
+                  <label className='form-field-wrapper form-field-label'>
+                    <p>{format('productRepository.description')}</p>
+                    <Input
+                      {...register('description')}
+                      placeholder={format('productRepository.description.placeholder')}
+                    />
+                  </label>
+                </div>
+                <div className='w-full lg:w-full flex flex-col gap-y-3'>
+                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue' data-testid='organization-is-mni'>
+                    <Checkbox {...register('mainRepository')} />
+                    {format('productRepository.mainRepository.label')}
+                  </label>
+                </div>
               </div>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='absoluteUrl'>
-                {format('productRepository.aboluteUrl')}
-              </label>
-              <input
-                id='absoluteUrl' name='absoluteUrl' type='text'
-                placeholder={format('productRepository.absoluteUrl.placeholder')}
-                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                value={absoluteUrl} onChange={(e) => handleTextFieldChange(e, setAbsoluteUrl)}
-              />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('productRepository.description')}
-              </label>
-              <input
-                id='website' name='website' type='text'
-                placeholder={format('productRepository.description.placeholder')}
-                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                value={description} onChange={(e) => handleTextFieldChange(e, setDescription)}
-              />
-            </div>
-            <div className='flex'>
-              <label className='inline-flex items-center'>
-                <input
-                  type='checkbox' className='h-4 w-4' name='main-repository'
-                  checked={mainRepository} onChange={toggleMainRepository}
-                />
-                <span className='ml-2'>{format('productRepository.mainRepository.label')}</span>
-              </label>
             </div>
             <div className='font-semibold flex flex-row gap-2 text-sm mt-2'>
-              <button
-                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded disabled:opacity-50'
-                disabled={loadingCreate || loadingUpdate}
-                onClick={handleSubmit}
-              >
-                {format('productRepository.submit')}
-                {(loadingCreate || loadingUpdate) && <FaSpinner className='spinner ml-3' />}
-              </button>
-              <Link href={goBackPath()}>
-                <a className='border border-dial-gray-dark text-dial-gray-dark py-2 px-4 rounded disabled:opacity-50'>
+              <div className='flex flex-wrap text-xl gap-3'>
+                <button
+                  className='submit-button'
+                  type='submit'
+                  disabled={mutating || reverting}
+                  data-testid='submit-button'
+                >
+                  {format('productRepository.submit')}
+                  {mutating && <FaSpinner className='spinner ml-3' />}
+                </button>
+                <button
+                  type='button'
+                  className='cancel-button'
+                  disabled={mutating || reverting}
+                  onClick={cancelForm}
+                >
                   {format('productRepository.cancel')}
-                </a>
-              </Link>
+                  {reverting && <FaSpinner className='spinner ml-3' />}
+                </button>
+              </div>
             </div>
           </div>
         </form>

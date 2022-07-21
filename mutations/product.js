@@ -173,3 +173,28 @@ export const UPDATE_PRODUCT_SDGS = gql`
     }  
   }
 `
+
+
+const generateProductRepositoryMutation = (mutationName) => `
+  mutation productRepositoryMutation (
+    $slug: String!
+    $name: String!
+    $absoluteUrl: String!
+    $description: String!
+    $mainRepository: Boolean!
+  ) {
+    ${mutationName} (
+      slug: $slug,
+      name: $name,
+      absoluteUrl: $absoluteUrl,
+      description: $description,
+      mainRepository: $mainRepository,
+    ) { 
+      slug
+      }
+  }
+ `
+
+export const CREATE_PRODUCT_REPOSITORY = gql(generateProductRepositoryMutation('createProductRepository'))
+
+export const UPDATE_PRODUCT_REPOSITORY = gql(generateProductRepositoryMutation('updateProductRepository'))

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client'
+import { useCallback } from 'react'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
 import RepositoryForm from '../../../../components/products/repositories/RepositoryForm'
@@ -45,6 +46,9 @@ const ProductHeader = ({ product }) => {
 }
 
 const PageDefinition = ({ slug }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const { data, loading, error } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
 
   if (loading) {
@@ -60,7 +64,8 @@ const PageDefinition = ({ slug }) => {
   }
 
   const slugNameMapping = (() => {
-    const map = {}
+    const map = {create: format('app.create')}
+
     map[data?.product.slug] = data?.product.name
 
     return map
