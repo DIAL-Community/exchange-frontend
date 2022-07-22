@@ -5,12 +5,24 @@ import { ORGANIZATION_SEARCH_QUERY } from '../../../queries/organization'
 import Pill from '../../shared/Pill'
 import Select from '../../shared/Select'
 
-export const OrganizationAutocomplete = (props) => {
+export const OrganizationAutocomplete = ({
+  organizations,
+  setOrganizations,
+  aggregatorOnly,
+  containerStyles = null,
+  controlSize = null,
+  placeholder = null,
+  isSearch = false
+}) => {
   const client = useApolloClient()
-  const { aggregatorOnly, organizations, setOrganizations, containerStyles, controlSize } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
+
+  const controlPlaceholder = placeholder ??
+    format('filter.byEntity', {
+      entity: format(aggregatorOnly ? 'aggregator.label' : 'organization.label')
+    })
 
   const fetchOptions = async (input, aggregatorOnly, callback, query) => {
     if (input && input.trim().length < 2) {
@@ -44,24 +56,23 @@ export const OrganizationAutocomplete = (props) => {
   return (
     <div className={classNames(containerStyles)} data-testid='organization-search'>
       <Select
+        async
         aria-label={format('filter.byEntity', {
           entity: aggregatorOnly ? format('aggregator.label') : format('organization.label')
         })}
-        async
+        cacheOptions
         defaultOptions
         loadOptions={(input, callback) => fetchOptions(input, aggregatorOnly, callback, ORGANIZATION_SEARCH_QUERY)}
         onChange={addOrganization}
         value={null}
-        placeholder={format('filter.byEntity', {
-          entity: aggregatorOnly ? format('aggregator.label') : format('organization.label')
-        })}
+        placeholder={controlPlaceholder}
         noOptionsMessage={() => {
-          return format('filter.searchFor', {
-            entity: aggregatorOnly ? format('aggregator.header') : format('organization.header')
+          format('filter.searchFor', {
+            entity: format(aggregatorOnly ? 'aggregator.header' : 'organization.header')
           })
         }}
-        cacheOptions
         controlSize={controlSize}
+        isSearch={isSearch}
       />
     </div>
   )
@@ -73,18 +84,20 @@ export const OrganizationFilters = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const removeOrganization = (organizationId) => {
-    setOrganizations(organizations.filter(organization => organization.label !== organizationId))
+  const removeOrganization = (organizationSlug) => {
+    setOrganizations(organizations.filter(({ slug }) => slug !== organizationSlug))
   }
 
   return (
     <>
       {organizations?.map((organization, organizationIdx) => (
-        <Pill
-          key={`organization-${organizationIdx}`}
-          label={aggregatorOnly ? format('aggregator.label') : organization.label}
-          onRemove={() => removeOrganization(organization.label)}
-        />
+        <div className='py-1' key={organizationIdx}>
+          <Pill
+            key={`organization-${organizationIdx}`}
+            label={`${aggregatorOnly ? format('aggregator.label') : format('organization.label')}: ${organization.label}`}
+            onRemove={() => removeOrganization(organization.slug)}
+          />
+        </div>
       ))}
     </>
   )

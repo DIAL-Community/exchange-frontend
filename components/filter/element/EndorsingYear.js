@@ -1,37 +1,23 @@
-import dynamic from 'next/dynamic'
-import { MdClose } from 'react-icons/md'
+import classNames from 'classnames'
 import { useIntl } from 'react-intl'
-import { asyncSelectStyles } from '../../../lib/utilities'
+import Pill from '../../shared/Pill'
+import Select from '../../shared/Select'
 
-// https://github.com/JedWatson/react-select/issues/3590
-const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
-
-const customStyles = (controlSize = '14rem') => {
-  return {
-    ...asyncSelectStyles,
-    control: (provided) => ({
-      ...provided,
-      width: controlSize,
-      boxShadow: 'none',
-      cursor: 'pointer'
-    }),
-    option: (provided) => ({
-      ...provided,
-      cursor: 'pointer'
-    }),
-    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-    menu: (provided) => ({ ...provided, zIndex: 30 })
-  }
-}
-
-export const EndorsingYearSelect = (props) => {
-  const { years, setYears, containerStyles, controlSize } = props
-
+export const EndorsingYearSelect = ({
+  years,
+  setYears,
+  containerStyles = null,
+  controlSize = null,
+  placeholder = null,
+  isSearch = false
+}) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('endorsingYear.label') })
+
   const selectYear = (year) => {
-    setYears([...years.filter(p => p.value !== year.value), year])
+    setYears([...years.filter(({ value }) => value !== year.value), year])
   }
 
   const options = (() => {
@@ -48,21 +34,22 @@ export const EndorsingYearSelect = (props) => {
   })()
 
   const fetchOptions = async (input) => {
-    return options.filter(o => o.label.indexOf(input) >= 0)
+    return options.filter(({ label }) => label.indexOf(input) >= 0)
   }
 
   return (
-    <div className={`${containerStyles} catalog-filter text-dial-gray-dark flex`}>
-      <AsyncSelect
+    <div className={classNames(containerStyles)} data-testid='endorsing-year-search'>
+      <Select
+        async
         aria-label={format('filter.byEntity', { entity: format('endorsingYear.label') })}
-        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions={options}
         loadOptions={fetchOptions}
         onChange={selectYear}
-        placeholder={format('filter.byEntity', { entity: format('endorsingYear.label') })}
-        styles={customStyles(controlSize)}
+        placeholder={controlPlaceholder}
         value=''
+        controlSize={controlSize}
+        isSearch={isSearch}
       />
     </div>
   )
@@ -74,21 +61,21 @@ export const EndorsingYearFilters = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const removeYear = (yearId) => {
-    setYears(years.filter(year => year.value !== yearId))
+  const removeYear = (yearValue) => {
+    setYears(years.filter(({ value }) => value !== yearValue))
   }
 
   return (
     <>
-      {
-        years &&
-          years.map(year => (
-            <div key={`filter-${year.label}`} className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {`${format('endorsingYear.label')}: ${year.label}`}
-              <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeYear(year.value)} />
-            </div>
-          ))
-      }
+      {years?.map((year, yearIdx) => (
+        <div className='py-1' key={yearIdx}>
+          <Pill
+            key={`filter-${yearIdx}`}
+            label={`${format('endorsingYear.label')}: ${year.label}`}
+            onRemove={() => removeYear(year.value)}
+          />
+        </div>
+      ))}
     </>
   )
 }

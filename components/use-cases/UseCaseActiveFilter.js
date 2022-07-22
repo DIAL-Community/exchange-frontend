@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { MdClose } from 'react-icons/md'
 import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { UseCaseFilterContext, UseCaseFilterDispatchContext } from '../context/UseCaseFilterContext'
 import { SDGFilters } from '../filter/element/SDG'
 import { parseQuery } from '../shared/SharableLink'
+import Pill from '../shared/Pill'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const UseCaseActiveFilter = () => {
@@ -60,18 +60,19 @@ const UseCaseActiveFilter = () => {
   return (
     <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
       <div className='flex flex-row flex-wrap px-3 gap-2'>
-        {
-          showBeta &&
-            <div className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {format('filter.useCase.showBeta')}
-              <MdClose className='ml-3 inline cursor-pointer' onClick={toggleShowBeta} />
-            </div>
-        }
+        {showBeta && (
+          <div className='py-1'>
+            <Pill
+              label={format('filter.useCase.showBeta')}
+              onRemove={toggleShowBeta}
+            />
+          </div>
+        )}
         <SDGFilters {...{ sdgs, setSDGs }} />
 
         <div className='flex px-2 py-1 mt-2 text-sm text-dial-gray-dark'>
           <a
-            className='border-b-2 border-transparent hover:border-dial-yellow my-auto opacity-50'
+            className='border-b-2 border-transparent hover:border-dial-yellow opacity-50'
             href='#clear-filter' onClick={clearFilter}
           >
             {format('filter.general.clearAll')}

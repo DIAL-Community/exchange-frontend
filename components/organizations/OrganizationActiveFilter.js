@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { MdClose } from 'react-icons/md'
 import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../context/OrganizationFilterContext'
@@ -9,6 +8,7 @@ import { parseQuery } from '../shared/SharableLink'
 import { EndorsingYearFilters } from '../filter/element/EndorsingYear'
 import { CountryFilters } from '../filter/element/Country'
 import { SectorFilters } from '../filter/element/Sector'
+import Pill from '../shared/Pill'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
 const OrganizationActiveFilter = () => {
@@ -79,27 +79,29 @@ const OrganizationActiveFilter = () => {
   return (
     <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
       <div className='flex flex-row flex-wrap px-3 gap-2'>
-        {
-          aggregator &&
-            <div className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {format('filter.organization.aggregatorOnly')}
-              <MdClose className='ml-3 inline cursor-pointer' onClick={toggleAggregator} />
-            </div>
-        }
-        {
-          endorser &&
-            <div className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {format('filter.organization.endorserOnly')}
-              <MdClose className='ml-3 inline cursor-pointer' onClick={toggleEndorser} />
-            </div>
-        }
+        {aggregator && (
+          <div className='py-1'>
+            <Pill
+              label={format('filter.organization.aggregatorOnly')}
+              onRemove={toggleAggregator}
+            />
+          </div>
+        )}
+        {endorser && (
+          <div className='py-1'>
+            <Pill
+              label={format('filter.organization.endorserOnly')}
+              onRemove={toggleEndorser}
+            />
+          </div>
+        )}
         <EndorsingYearFilters {...{ years, setYears }} />
         <CountryFilters {...{ countries, setCountries }} />
         <SectorFilters {...{ sectors, setSectors }} />
 
         <div className='flex px-2 py-1 mt-2 text-sm text-dial-gray-dark'>
           <a
-            className='border-b-2 border-transparent hover:border-dial-yellow my-auto opacity-50'
+            className='border-b-2 border-transparent hover:border-dial-yellow opacity-50'
             href='#clear-filter' onClick={clearFilter}
           >
             {format('filter.general.clearAll')}

@@ -70,11 +70,13 @@ export const TagFilters = (props) => {
   return (
     <>
       {tags?.map((tag, tagIdx) => (
-        <Pill
-          key={`filter-${tagIdx}`}
-          label={`${format('tag.label')}: ${tag.label}`}
-          onRemove={() => removeTag(tag.value)}
-        />
+        <div className='py-1' key={tagIdx}>
+          <Pill
+            key={`filter-${tagIdx}`}
+            label={`${format('tag.label')}: ${tag.label}`}
+            onRemove={() => removeTag(tag.value)}
+          />
+        </div>
       ))}
     </>
   )

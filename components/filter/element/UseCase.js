@@ -1,88 +1,52 @@
-import dynamic from 'next/dynamic'
-import { MdClose } from 'react-icons/md'
-import { gql, useApolloClient } from '@apollo/client'
+import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { asyncSelectStyles } from '../../../lib/utilities'
+import classNames from 'classnames'
+import { USE_CASE_SEARCH_QUERY } from '../../../queries/use-case'
+import { fetchSelectOptionsWithMature } from '../../../queries/utils'
+import Select from '../../shared/Select'
+import Pill from '../../shared/Pill'
 
-// https://github.com/JedWatson/react-select/issues/3590
-const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
-
-const USE_CASE_SEARCH_QUERY = gql`
-  query UseCases($search: String!, $mature: Boolean!) {
-    useCases(search: $search, mature: $mature) {
-      id
-      name
-      slug
-    }
-  }
-`
-
-const customStyles = (controlSize = '11rem') => {
-  return {
-    ...asyncSelectStyles,
-    control: (provided) => ({
-      ...provided,
-      width: controlSize,
-      boxShadow: 'none',
-      cursor: 'pointer'
-    }),
-    option: (provided) => ({
-      ...provided,
-      cursor: 'pointer'
-    }),
-    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-    menu: (provided) => ({ ...provided, zIndex: 30 })
-  }
-}
-
-export const UseCaseAutocomplete = (props) => {
+export const UseCaseAutocomplete = ({
+  useCases,
+  setUseCases,
+  containerStyles = null,
+  controlSize = null,
+  placeholder = null,
+  isSearch = false
+}) => {
   const client = useApolloClient()
-  const { useCases, setUseCases, containerStyles, controlSize } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('useCase.label') })
+
   const selectUseCase = (useCase) => {
-    setUseCases([...useCases.filter(u => u.value !== useCase.value), useCase])
+    setUseCases([...useCases.filter(({ slug }) => slug !== useCase.slug), useCase])
   }
 
-  const fetchOptions = async (input, callback, query) => {
-    if (input && input.trim().length < 2) {
-      return []
-    }
-
-    const response = await client.query({
-      query: query,
-      variables: {
-        search: input,
-        mature: true
-      }
-    })
-
-    if (response.data && response.data.useCases) {
-      return response.data.useCases.map((useCase) => ({
-        label: useCase.name,
-        value: useCase.id,
-        slug: useCase.slug
-      }))
-    }
-
-    return []
-  }
+  const fetchedUseCasesCallback = (data) => (
+    data?.useCases.map((useCase) => ({
+      label: useCase.name,
+      value: useCase.id,
+      slug: useCase.slug
+    }))
+  )
 
   return (
-    <div className={`${containerStyles} catalog-filter text-dial-gray-dark flex`}>
-      <AsyncSelect
+    <div className={classNames(containerStyles)} data-testid='use-case-search'>
+      <Select
+        async
         aria-label={format('filter.byEntity', { entity: format('useCase.label') })}
-        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
-        loadOptions={(input, callback) => fetchOptions(input, callback, USE_CASE_SEARCH_QUERY)}
+        loadOptions={(input) => fetchSelectOptionsWithMature(client, input, USE_CASE_SEARCH_QUERY, fetchedUseCasesCallback)}
         noOptionsMessage={() => format('filter.searchFor', { entity: format('useCase.header') })}
         onChange={selectUseCase}
-        placeholder={format('filter.byEntity', { entity: format('useCase.label') })}
-        styles={customStyles(controlSize)}
+        placeholder={controlPlaceholder}
         value=''
+        controlSize={controlSize}
+        isSearch={isSearch}
       />
     </div>
   )
@@ -95,20 +59,20 @@ export const UseCaseFilters = (props) => {
   const format = (id, values) => formatMessage({ id: id }, values)
 
   const removeUseCase = (useCaseId) => {
-    setUseCases(useCases.filter(useCase => useCase.value !== useCaseId))
+    setUseCases(useCases.filter(({ slug }) => slug !== useCaseId))
   }
 
   return (
     <>
-      {
-        useCases &&
-          useCases.map(useCase => (
-            <div key={`filter-${useCase.label}`} className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {`${format('useCase.label')}: ${useCase.label}`}
-              <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeUseCase(useCase.value)} />
-            </div>
-          ))
-      }
+      {useCases?.map((useCases, useCasesIdx) => (
+        <div className='py-1' key={useCasesIdx}>
+          <Pill
+            key={`filter-${useCasesIdx}`}
+            label={`${format('useCase.label')}: ${useCases.label}`}
+            onRemove={() => removeUseCase(useCases.slug)}
+          />
+        </div>
+      ))}
     </>
   )
 }
