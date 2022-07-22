@@ -53,8 +53,8 @@ const MapActiveFilter = () => {
   }
 
   return (
-    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
-      <div className='flex flex-row flex-wrap px-3 gap-2'>
+    <div className={`flex flex-row py-4 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
+      <div className='flex flex-row flex-wrap gap-2'>
         {
           router.pathname.indexOf('projects') >= 0 &&
             <>
@@ -81,7 +81,7 @@ const MapActiveFilter = () => {
 
         <div className='flex px-2 py-1 mt-2 text-sm text-dial-gray-dark'>
           <a
-            className='border-b-2 border-transparent hover:border-dial-yellow my-auto opacity-50'
+            className='border-b-2 border-transparent hover:border-dial-yellow opacity-50'
             href='#clear-filter' onClick={clearFilter}
           >
             {format('filter.general.clearAll')}

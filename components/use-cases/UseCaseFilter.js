@@ -4,6 +4,7 @@ import { BsQuestionCircleFill } from 'react-icons/bs'
 import { FilterContext } from '../context/FilterContext'
 import { UseCaseFilterContext, UseCaseFilterDispatchContext } from '../context/UseCaseFilterContext'
 import { SDGAutocomplete } from '../filter/element/SDG'
+import Checkbox from '../shared/Checkbox'
 
 const UseCaseFilter = () => {
   const { formatMessage } = useIntl()
@@ -48,10 +49,7 @@ const UseCaseFilter = () => {
           <div className='text-sm text-dial-gray-dark flex flex-row'>
             <div className='px-2 pb-2'>
               <label className='inline-flex items-center'>
-                <input
-                  type='checkbox' className='h-4 w-4 form-checkbox text-dial-gray-dark' name='show-beta'
-                  checked={showBeta} onChange={toggleShowBeta}
-                />
+                <Checkbox onChange={toggleShowBeta} value={showBeta} />
                 <span className='ml-2'>{format('filter.useCase.showBeta')}</span>
               </label>
             </div>
