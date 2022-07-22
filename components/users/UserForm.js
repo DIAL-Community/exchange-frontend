@@ -9,13 +9,12 @@ import { UPDATE_USER} from '../../mutations/users'
 import { OrganizationAutocomplete, OrganizationFilters } from '../filter/element/Organization'
 import { ProductAutocomplete, ProductFilters } from '../filter/element/Product'
 import Breadcrumb from '../shared/breadcrumb'
+import Checkbox from '../shared/Checkbox'
 import { emailRegex } from '../shared/emailRegex'
 import Input from '../shared/Input'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 import ValidationError from '../shared/ValidationError'
-
-
 
 const sectionStyle = 'w-full flex flex-col'
 const sectionLabelStyle = 'form-field-wrapper form-field-label'
@@ -45,7 +44,8 @@ export const UserForm = ({ user, action }) => {
       email: user.email,
       username: user.username,
       organization: user.organization && user.organization.name,
-      products: user.products.map(prod => prod.name)
+      products: user.products.map(prod => prod.name),
+      confirmed: user.confirmed
     }
   })
   
@@ -83,8 +83,8 @@ export const UserForm = ({ user, action }) => {
   })
   
   const doUpsert = async (data) => {
-    const { email, username } = data
-    updateUser({ variables: { email, roles: userRoles, products, organizations, username } })
+    const { email, username, confirmed } = data
+    updateUser({ variables: { email, roles: userRoles, products, organizations, username, confirmed } })
   }
   
   const addRole = (selectedRole) => {
@@ -179,6 +179,10 @@ export const UserForm = ({ user, action }) => {
                     }
                   </label>
                 </div>
+                <label className='flex gap-x-2 items-center form-field-label my-auto' data-testid='user-is-confirmed'>
+                  <Checkbox {...register('confirmed')} />
+                  {format('user.confirmed')}
+                </label>
                 <div className='flex flex-wrap text-xl mt-8 gap-3'>
                   <button
                     className='submit-button'
