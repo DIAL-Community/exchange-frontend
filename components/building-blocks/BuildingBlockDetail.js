@@ -1,43 +1,23 @@
-import { useEffect, useRef } from 'react'
-import { gql, useQuery } from '@apollo/client'
+import { useRef } from 'react'
+import { useQuery } from '@apollo/client'
+import { useSession } from 'next-auth/client'
+import { useUser } from '../../lib/hooks'
 import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
+import { BUILDING_BLOCK_DETAIL_QUERY } from '../../queries/building-block'
 import BuildingBlockDetailLeft from './BuildingBlockDetailLeft'
 import BuildingBlockDetailRight from './BuildingBlockDetailRight'
 
-const BUILDING_BLOCK_QUERY = gql`
-  query BuildingBlock($slug: String!) {
-    buildingBlock(slug: $slug) {
-      id
-      name
-      slug
-      imageFile
-      discourseId
-      specUrl
-      buildingBlockDescription {
-        description
-        locale
-      }
-      workflows {
-        name
-        slug
-        imageFile
-      }
-      products {
-        name
-        slug
-        imageFile
-      }
-    }
-  }
-`
-
 const BuildingBlockDetail = ({ slug, locale }) => {
-  const { loading, error, data, refetch } = useQuery(BUILDING_BLOCK_QUERY, {
+  const { loading, error, data } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
     variables: { slug: slug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !slug
   })
+
+  const [session] = useSession()
+
+  const { isAdminUser: canEdit } = useUser(session)
 
   const discourseElement = useRef()
   const scrollToDiv = (ref) => {
@@ -45,10 +25,6 @@ const BuildingBlockDetail = ({ slug, locale }) => {
       behavior: 'smooth'
     })
   }
-
-  useEffect(() => {
-    refetch()
-  }, [locale, refetch])
 
   return (
     <>
@@ -68,6 +44,7 @@ const BuildingBlockDetail = ({ slug, locale }) => {
               <BuildingBlockDetailRight
                 buildingBlock={data.buildingBlock}
                 discourseRef={discourseElement}
+                canEdit={canEdit}
               />
             </div>
           </div>

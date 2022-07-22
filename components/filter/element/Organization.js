@@ -1,50 +1,28 @@
-import dynamic from 'next/dynamic'
-import { MdClose } from 'react-icons/md'
-import { gql, useApolloClient } from '@apollo/client'
+import { useApolloClient } from '@apollo/client'
+import classNames from 'classnames'
 import { useIntl } from 'react-intl'
-import { asyncSelectStyles } from '../../../lib/utilities'
+import { ORGANIZATION_SEARCH_QUERY } from '../../../queries/organization'
+import Pill from '../../shared/Pill'
+import Select from '../../shared/Select'
 
-// https://github.com/JedWatson/react-select/issues/3590
-const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
-
-const ORGANIZATION_SEARCH_QUERY = gql`
-  query Organizations($search: String!, $aggregatorOnly: Boolean) {
-    organizations(search: $search, aggregatorOnly: $aggregatorOnly) {
-      id
-      name
-      slug
-    }
-  }
-`
-
-const customStyles = (controlSize = '16rem') => {
-  return {
-    ...asyncSelectStyles,
-    control: (provided) => ({
-      ...provided,
-      width: controlSize,
-      boxShadow: 'none',
-      cursor: 'pointer'
-    }),
-    option: (provided) => ({
-      ...provided,
-      cursor: 'pointer'
-    }),
-    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-    menu: (provided) => ({ ...provided, zIndex: 30 })
-  }
-}
-
-export const OrganizationAutocomplete = (props) => {
+export const OrganizationAutocomplete = ({
+  organizations,
+  setOrganizations,
+  aggregatorOnly,
+  containerStyles = null,
+  controlSize = null,
+  placeholder = null,
+  isSearch = false
+}) => {
   const client = useApolloClient()
-  const { aggregatorOnly, organizations, setOrganizations, containerStyles, controlSize } = props
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const selectOrganization = (organization) => {
-    setOrganizations([...organizations.filter(o => o.value !== organization.value), organization])
-  }
+  const controlPlaceholder = placeholder ??
+    format('filter.byEntity', {
+      entity: format(aggregatorOnly ? 'aggregator.label' : 'organization.label')
+    })
 
   const fetchOptions = async (input, aggregatorOnly, callback, query) => {
     if (input && input.trim().length < 2) {
@@ -70,27 +48,31 @@ export const OrganizationAutocomplete = (props) => {
     return []
   }
 
+  const addOrganization = (organization) => {
+    setOrganizations([...organizations.filter(({ label }) => label !== organization.label),
+      { slug: organization.slug, label: organization.label }])
+  }
+
   return (
-    <div className={`${containerStyles} catalog-filter text-dial-gray-dark flex`}>
-      <AsyncSelect
+    <div className={classNames(containerStyles)} data-testid='organization-search'>
+      <Select
+        async
         aria-label={format('filter.byEntity', {
           entity: aggregatorOnly ? format('aggregator.label') : format('organization.label')
         })}
-        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input, callback) => fetchOptions(input, aggregatorOnly, callback, ORGANIZATION_SEARCH_QUERY)}
+        onChange={addOrganization}
+        value={null}
+        placeholder={controlPlaceholder}
         noOptionsMessage={() => {
-          return format('filter.searchFor', {
-            entity: aggregatorOnly ? format('aggregator.header') : format('organization.header')
+          format('filter.searchFor', {
+            entity: format(aggregatorOnly ? 'aggregator.header' : 'organization.header')
           })
         }}
-        onChange={selectOrganization}
-        placeholder={format('filter.byEntity', {
-          entity: aggregatorOnly ? format('aggregator.label') : format('organization.label')
-        })}
-        styles={customStyles(controlSize)}
-        value=''
+        controlSize={controlSize}
+        isSearch={isSearch}
       />
     </div>
   )
@@ -102,21 +84,21 @@ export const OrganizationFilters = (props) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
-  const removeOrganization = (organizationId) => {
-    setOrganizations(organizations.filter(organization => organization.value !== organizationId))
+  const removeOrganization = (organizationSlug) => {
+    setOrganizations(organizations.filter(({ slug }) => slug !== organizationSlug))
   }
 
   return (
     <>
-      {
-        organizations &&
-          organizations.map(organization => (
-            <div key={`filter-${organization.label}`} className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {`${aggregatorOnly ? format('aggregator.label') : format('organization.label')}: ${organization.label}`}
-              <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeOrganization(organization.value)} />
-            </div>
-          ))
-      }
+      {organizations?.map((organization, organizationIdx) => (
+        <div className='py-1' key={organizationIdx}>
+          <Pill
+            key={`organization-${organizationIdx}`}
+            label={`${aggregatorOnly ? format('aggregator.label') : format('organization.label')}: ${organization.label}`}
+            onRemove={() => removeOrganization(organization.slug)}
+          />
+        </div>
+      ))}
     </>
   )
 }

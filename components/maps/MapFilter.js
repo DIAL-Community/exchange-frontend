@@ -10,7 +10,7 @@ import { ProductAutocomplete } from '../filter/element/Product'
 import { SectorAutocomplete } from '../filter/element/Sector'
 import { TagAutocomplete } from '../filter/element/Tag'
 
-const MapFilter = (props) => {
+const MapFilter = () => {
   const router = useRouter()
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
@@ -73,23 +73,23 @@ const MapFilter = (props) => {
           </div>
         </div>
         <div className='col-span-11 xl:col-span-5'>
-          <div className='text-dial-gray-dark text-xl px-2'>
+          <div className='text-dial-gray-dark text-xl px-2 py-2'>
             {'Map Filters'.toUpperCase()}
           </div>
           <div className='text-sm text-dial-gray-light flex flex-row flex-wrap'>
             {
               router.pathname.indexOf('projects') >= 0 &&
                 <>
-                  <SectorAutocomplete {...{ sectors, setSectors }} containerStyles='px-2' controlSize='20rem' />
-                  <TagAutocomplete {...{ tags, setTags }} containerStyles='px-2' controlSize='20rem' />
-                  <ProductAutocomplete {...{ products, setProducts }} containerStyles='px-2' controlSize='20rem' />
+                  <SectorAutocomplete {...{ sectors, setSectors }} containerStyles='px-2 pb-2' controlSize='20rem' />
+                  <TagAutocomplete {...{ tags, setTags }} containerStyles='px-2 pb-2' controlSize='20rem' />
+                  <ProductAutocomplete {...{ products, setProducts }} containerStyles='px-2 pb-2' controlSize='20rem' />
                 </>
             }
             {
               router.pathname.indexOf('endorsers') >= 0 &&
                 <>
-                  <SectorAutocomplete sectors={orgSectors} setSectors={setOrgSectors} containerStyles='px-2' controlSize='20rem' />
-                  <EndorsingYearSelect {...{ years, setYears }} containerStyles='px-2' controlSize='20rem' />
+                  <SectorAutocomplete sectors={orgSectors} setSectors={setOrgSectors} containerStyles='px-2 pb-2' controlSize='20rem' />
+                  <EndorsingYearSelect {...{ years, setYears }} containerStyles='px-2 pb-2' controlSize='20rem' />
                 </>
             }
             {
@@ -97,10 +97,10 @@ const MapFilter = (props) => {
                 <>
                   <OrganizationAutocomplete
                     aggregatorOnly organizations={aggregators} setOrganizations={setAggregators}
-                    containerStyles='px-2' controlSize='20rem'
+                    containerStyles='px-2 pb-2' controlSize='20rem'
                   />
-                  <OperatorAutocomplete operators={operators} setOperators={setOperators} containerStyles='px-2' controlSize='20rem' />
-                  <CapabilityAutocomplete services={services} setServices={setServices} containerStyles='px-2' controlSize='20rem' />
+                  <OperatorAutocomplete operators={operators} setOperators={setOperators} containerStyles='px-2 pb-2' controlSize='20rem' />
+                  <CapabilityAutocomplete services={services} setServices={setServices} containerStyles='px-2 pb-2' controlSize='20rem' />
                 </>
             }
           </div>

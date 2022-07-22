@@ -1,0 +1,261 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RepositoryForm component. Should match snapshot: Create. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="block"
+  >
+    <div
+      class="px-4 sm:px-0 max-w-full sm:max-w-prose mr-auto"
+      id="content"
+    >
+      <form>
+        <div
+          class="bg-edit border-t shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col"
+        >
+          <div
+            class="text-2xl font-bold text-dial-blue pb-4"
+          >
+            Create New Product Repository
+          </div>
+          <div
+            class="mb-4"
+          >
+            <div
+              class="flex flex-col lg:flex-col gap-4"
+            >
+              <div
+                class="w-full lg:w-full flex flex-col gap-y-3"
+                data-testid="product-repository-name"
+              >
+                <label
+                  class="form-field-wrapper form-field-label"
+                >
+                  <p
+                    class="required-field"
+                  >
+                    Repository Name
+                  </p>
+                  <input
+                    class="w-full"
+                    name="name"
+                    placeholder="Name of this repository."
+                    type="text"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div
+                class="w-full lg:w-full flex flex-col gap-y-3"
+              >
+                <label
+                  class="form-field-wrapper form-field-label"
+                >
+                  <p>
+                    Repository Location
+                  </p>
+                  <input
+                    class="w-full"
+                    name="absoluteUrl"
+                    placeholder="Abolute path / url of the repository."
+                    type="text"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div
+                class="w-full lg:w-full flex flex-col gap-y-3"
+              >
+                <label
+                  class="form-field-wrapper form-field-label"
+                >
+                  <p>
+                    Repository Description
+                  </p>
+                  <input
+                    class="w-full"
+                    name="description"
+                    placeholder="Short description of this repository."
+                    type="text"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div
+                class="w-full lg:w-full flex flex-col gap-y-3"
+              >
+                <label
+                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  data-testid="organization-is-mni"
+                >
+                  <input
+                    class="h-8 w-8"
+                    data-testid="checkbox"
+                    name="mainRepository"
+                    type="checkbox"
+                  />
+                  This is main repository.
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            class="font-semibold flex flex-row gap-2 text-sm mt-2"
+          >
+            <div
+              class="flex flex-wrap text-xl gap-3"
+            >
+              <button
+                class="submit-button"
+                data-testid="submit-button"
+                type="submit"
+              >
+                Submit
+              </button>
+              <button
+                class="cancel-button"
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RepositoryForm component. Should match snapshot: Edit. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="block"
+  >
+    <div
+      class="px-4 sm:px-0 max-w-full sm:max-w-prose mr-auto"
+      id="content"
+    >
+      <form>
+        <div
+          class="bg-edit border-t shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col"
+        >
+          <div
+            class="text-2xl font-bold text-dial-blue pb-4"
+          >
+            Edit Repository 1
+          </div>
+          <div
+            class="mb-4"
+          >
+            <div
+              class="flex flex-col lg:flex-col gap-4"
+            >
+              <div
+                class="w-full lg:w-full flex flex-col gap-y-3"
+                data-testid="product-repository-name"
+              >
+                <label
+                  class="form-field-wrapper form-field-label"
+                >
+                  <p
+                    class="required-field"
+                  >
+                    Repository Name
+                  </p>
+                  <input
+                    class="w-full"
+                    name="name"
+                    placeholder="Name of this repository."
+                    type="text"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div
+                class="w-full lg:w-full flex flex-col gap-y-3"
+              >
+                <label
+                  class="form-field-wrapper form-field-label"
+                >
+                  <p>
+                    Repository Location
+                  </p>
+                  <input
+                    class="w-full"
+                    name="absoluteUrl"
+                    placeholder="Abolute path / url of the repository."
+                    type="text"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div
+                class="w-full lg:w-full flex flex-col gap-y-3"
+              >
+                <label
+                  class="form-field-wrapper form-field-label"
+                >
+                  <p>
+                    Repository Description
+                  </p>
+                  <input
+                    class="w-full"
+                    name="description"
+                    placeholder="Short description of this repository."
+                    type="text"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div
+                class="w-full lg:w-full flex flex-col gap-y-3"
+              >
+                <label
+                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  data-testid="organization-is-mni"
+                >
+                  <input
+                    class="h-8 w-8"
+                    data-testid="checkbox"
+                    name="mainRepository"
+                    type="checkbox"
+                  />
+                  This is main repository.
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            class="font-semibold flex flex-row gap-2 text-sm mt-2"
+          >
+            <div
+              class="flex flex-wrap text-xl gap-3"
+            >
+              <button
+                class="submit-button"
+                data-testid="submit-button"
+                type="submit"
+              >
+                Submit
+              </button>
+              <button
+                class="cancel-button"
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

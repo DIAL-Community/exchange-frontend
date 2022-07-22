@@ -25,6 +25,7 @@ export const en = {
   'app.print-pdf': 'Print PDF',
   'app.status': 'Status:',
   'app.confirm': 'Confirm',
+  'app.mappingStatus': 'Mapping Status',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -44,6 +45,7 @@ export const en = {
   'user.organization.placeholder': 'Enter user organization',
   'user.products': 'Products',
   'user.products.placeholder': 'Enter products owned by user',
+  'user.confirmed': 'User account confirmed',
 
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
@@ -285,15 +287,24 @@ export const en = {
   'organization.no-contact': 'We do not have any Contact information for this Organization.',
   'organization.no-project': 'We do not have any Project information for this Organization.',
   'organization.no-product': 'We do not have any Product information for this Organization.',
+  'organization.no-office-locations': 'We do not have any Office Locations information for this Organization.',
   'organization.delete.confirm.message': 'Are you sure you want to delete this Organization?',
-
 
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',
   'buildingBlock.label': 'Building Block',
+  'building-block.no-product': 'We do not have any Product information for this Building Block.',
   'building-block.disclaimer': 'Note: As part of the <a href="https://govstack.global">GovStack Initiative</a>, DIAL is working to map digital platforms with key Building Block functionalities. Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative examples of how these tools may support building block functionalities. As Building Block specifications are developed, products that are aligned with the specifications will be tagged as such.',
   'building-block.spec-link': 'The GovStack initiative has published a full specification for this building block. You can view the documentation at this link: ',
-  
+  'building-block.name': 'Name',
+  'building-block.maturity': 'Maturity',
+  'building-block.specUrl': 'GovStack Specification URL',
+  'building-block.imageFile': 'Logo Upload',
+  'building-block.description': 'Description',
+  'building-block.submit.success': 'Building Block submitted successfully',
+  'building-block.submit.failure': 'Building Block submission failed',
+  'building-block.no-workflow': 'We do not have any Workflow information for this Building Block.',
+
   'contact.header': 'Contacts',
   'contact.label': 'Contact',
   'contact.name.label': 'Name:',
@@ -306,9 +317,14 @@ export const en = {
   'sdg.header': 'Sustainable Development Goals',
   'sdg.label': 'Sustainable Development Goal',
 
+  'sdg-target.header': 'SDG Targets',
+  'sdg-target.label': 'SDG Target',
+
   'use-case.label': 'Use Case',
   'use-case.sdg-targets': 'SDG Targets',
   'use-case.workflow': 'Workflows',
+  'use-case.no-sdg-targets': 'We do not have any SDG Target information for this Use Case.',
+  'use-case.no-tag': 'We do not have any Tag information for this Use Case.',
 
   'wizard.title': 'Requirements and Recommendation Wizard',
   'wizard.complete': 'Complete',
@@ -432,9 +448,13 @@ export const en = {
 
   'country.header': 'Countries',
   'workflow.header': 'Workflows',
-  'useCase.header': 'Use Cases',
   'product.header': 'Products',
   'dataset.header': 'Open Data',
+
+  'country.label': 'Country',
+  'workflow.label': 'Workflow',
+  'product.label': 'Product',
+  'dataset.label': 'Dataset',
 
   'organization.detail.website': 'Website',
   'organization.detail.whenEndorsed': 'Endorsed On',
@@ -448,12 +468,17 @@ export const en = {
   'map.endorsers.viewOrganization': 'View Organization',
   'map.projects.viewProject': 'View Project',
 
+  'useCase.header': 'Use Cases',
   'useCase.label': 'Use Case',
   'useCase.description': 'Description',
-  'workflow.label': 'Workflow',
-  'product.label': 'Product',
-  'dataset.label': 'Dataset',
-  'country.label': 'Country',
+  'useCase.name': 'Name',
+  'useCase.sector': 'Sector',
+  'useCase.maturity': 'Maturity',
+  'useCase.maturity.beta': 'BETA',
+  'useCase.maturity.mature': 'MATURE',
+  'useCase.imageFile': 'Logo',
+  'useCase.submit.success': 'Use Case submitted successfully',
+  'useCase.submit.failure': 'Use Case submission failed',
 
   'error.auth': 'Error in authentication',
   'error.tryAgain': 'Try Again',
@@ -534,6 +559,16 @@ export const en = {
 
   'sdg.shortLabel': 'SDG',
   'sdg.shortHeader': 'SDGs',
+
+  'use-case-step.create': 'Add Use Case Step',
+  'use-case-step.label': 'Use Case Step',
+  'use-case-step.name': 'Name',
+  'use-case-step.description': 'Description',
+  'use-case-step.step-number': 'Step Number',
+  'use-case-step.submit.failure': 'Use Case Step submission failed',
+  'use-case-step.submit.success': 'Use Case Step submitted successfully',
+  'use-case-step.no-workflow': 'We do not have any Workflow information for this Use Case Step.',
+  'use-case-step.no-product': 'We do not have any Product information for this Use Case Step.',
 
   'playbook.header': 'Playbooks',
   'playbooks.label': 'Playbook',
@@ -799,6 +834,7 @@ export const en = {
   'tooltip.digiprins': 'This product is owned or maintained by a Digital Principles endorser.',
 
   'office.other.header': 'Other Office Locations',
+  'office.locations.header': 'Office locations',
 
   'useCaseStep.header': 'Use Case Steps',
   'organization.aggregator.loading': 'Loading aggregator data ...',
@@ -1138,6 +1174,8 @@ export const en = {
   'candidateProduct.created': 'Candidate product submitted successfully. Redirecting ...',
   'candidateProduct.website.hint': 'Website of the candidate product.',
   'candidateProduct.repository.hint': 'Code repository of the candidate product.',
+  'candidate-product.submit.success': 'Candidate Product submitted successfully',
+  'candidate-product.submit.failure': 'Candidate Product submission failed',
 
   'candidateOrganization.organizationName': 'Organization Name',
   'candidateOrganization.organizationName.placeholder': 'Name of the candidate organization.',
@@ -1212,6 +1250,8 @@ export const en = {
   'productRepository.updated': 'Product repository updated.',
   'productRepository.deleted': 'Product repository deleted.',
   'productRepository.no-repositories': 'There are no repositories for this Product.',
+  'product-repository.submit.success': 'Repository submitted successfully',
+  'product-repository.submit.failure': 'Repository submission failed',
 
   'wizard.project.sortHint': 'Sort Projects',
   'wizard.product.sortHint': 'Sort Products',
@@ -1287,6 +1327,8 @@ export const en = {
   'shared.mappingStatus.mature': 'Mature',
   'shared.mappingStatus.selfReported': 'Self Reported',
   'shared.mappingStatus.validated': 'Validated',
+  'shared.maturity.beta': 'BETA',
+  'shared.maturity.published': 'PUBLISHED',
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
@@ -1310,5 +1352,14 @@ export const en = {
   'toast.sdgs.update.success': 'SDGs updated successfully',
   'toast.sdgs.update.failure': 'SDGs update failed',
   'toast.products.update.success': 'Products updated successfully',
-  'toast.products.update.failure': 'Products update failed'
+  'toast.products.update.failure': 'Products update failed',
+  'toast.sdgTargets.update.success': 'SDG Targets updated successfully',
+  'toast.sdgTargets.update.failure': 'SDG Targets update failed',
+  'toast.workflows.update.success': 'Workflows updated successfully',
+  'toast.workflows.update.failure': 'Workflows update failed',
+  'toast.user-profile.update.success': 'Profile updated successfully',
+  'toast.user-profile.update.failure': 'Profile update failed',
+
+  'location.header': 'Location',
+  'location.select.autocomplete.defaultPlaceholder': 'Enter location'
 }

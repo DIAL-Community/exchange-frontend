@@ -274,4 +274,18 @@ body {
     @apply focus:outline-button-red;
     @apply focus:ring-button-red
   }
+
+  .create-button {
+    @apply inline-flex;
+    @apply items-center;
+    @apply py-1;
+    @apply px-2;
+    @apply rounded-md;
+    @apply bg-dial-blue;
+    @apply text-white;
+  }
+
+  button.create-button {
+    @apply focus:bg-dial-blue;
+  }
 }

@@ -9,7 +9,7 @@ import { PLAYBOOK_PLAYS_QUERY } from '../../../components/playbooks/PlaybookDeta
 import { MOVE_QUERY } from '../../../components/plays/PlayPreviewMove'
 import PlaybookDetail from '../../../components/playbooks/PlaybookDetail'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { render } from '../../test-utils'
+import { render, waitForAllEffects } from '../../test-utils'
 import { playbook, searchPlaysResult, move } from './data/PlaybookDetail'
 
 const slug = 'example_playbook'
@@ -61,7 +61,7 @@ describe('Unit tests for playbook interaction.', () => {
       </CustomMockedProvider>
     )
     // Wait for all effect to be executed.
-    await waitFor(() => new Promise((res) => setTimeout(res, 0)))
+    await waitForAllEffects()
     // Each section in the playbook detail should show error.
     expect(screen.getAllByText(/Error fetching data/).length).toEqual(4)
     expect(component).toMatchSnapshot()
@@ -83,7 +83,7 @@ describe('Unit tests for playbook interaction.', () => {
       </CustomMockedProvider>
     )
     // Wait for all effect to be executed.
-    await waitFor(() => new Promise((res) => setTimeout(res, 0)))
+    await waitForAllEffects()
 
     // Each section in the playbook detail should not show any error.
     const errorMessage = screen.queryByText(/Error fetching data/)
@@ -99,6 +99,8 @@ describe('Unit tests for playbook interaction.', () => {
     // Playbook detail should not have edit link for unprivileged users.
     const editLink = screen.queryByText(/Edit/)
     expect(editLink).toBeNull()
+    
+    await waitForAllEffects()
 
     // Expect this to match existing snapshot of the page.
     expect(component).toMatchSnapshot()
@@ -124,7 +126,7 @@ describe('Unit tests for playbook interaction.', () => {
       </CustomMockedProvider>
     )
     // Wait for all effect to be executed.
-    await waitFor(() => new Promise((res) => setTimeout(res, 0)))
+    await waitForAllEffects()
     // Playbook detail should have edit link for privileged users.
     expect(screen.getByText('Edit')).toBeInTheDocument()
     expect(screen.getByText('Edit').closest('a')).toHaveAttribute('href', `/en/playbooks/${slug}/edit`)

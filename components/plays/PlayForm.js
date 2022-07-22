@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback, useContext } from 'react'
+import React, { useState, useEffect, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 import { FaSpinner, FaPlusCircle } from 'react-icons/fa'
@@ -9,119 +9,93 @@ import { HtmlEditor } from '../shared/HtmlEditor'
 import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
 import Breadcrumb from '../shared/breadcrumb'
 import { ToastContext } from '../../lib/ToastContext'
+import Input from '../shared/Input'
+import ValidationError from '../shared/ValidationError'
+import { AUTOSAVE_PLAY, CREATE_PLAY } from '../../mutations/play'
 import MoveListDraggable from './moves/MoveListDraggable'
-
-const generateMutationText = (mutationFunc) => {
-  return `
-    mutation (
-      $name: String!,
-      $slug: String!,
-      $description: String!,
-      $tags: JSON!,
-      $playbookSlug: String
-    ) {
-      ${mutationFunc} (
-        name: $name,
-        slug: $slug,
-        description: $description,
-        tags: $tags,
-        playbookSlug: $playbookSlug
-      ) {
-        play {
-          id
-          name
-          slug
-        }
-        errors
-      }
-    }
-  `
-}
-
-const CREATE_PLAY = gql(generateMutationText('createPlay'))
-const AUTOSAVE_PLAY = gql(generateMutationText('autoSavePlay'))
-
-const FormTextEditor = ({ control, name }) => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-
-  return (
-    <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
-      {format(`plays.${name}`)}
-      <Controller
-        name={name}
-        control={control}
-        rules={{ required: true }}
-        render={({ field: { value, onChange, onBlur } }) => {
-          return (
-            <HtmlEditor
-              editorId={`${name}-editor`}
-              onBlur={onBlur}
-              onChange={onChange}
-              initialContent={value}
-            />
-          )
-        }}
-      />
-    </label>
-  )
-}
 
 export const PlayForm = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
+
+  const router = useRouter()
+  const { locale } = router
+  const [session] = useSession()
+  const { showToast } = useContext(ToastContext)
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
   const [navigateToMove, setNavigateToMove] = useState(false)
   const [assigningToPlaybook, setAssigningToPlaybook] = useState(false)
 
-  const [createPlay, { data }] = useMutation(CREATE_PLAY)
-  const [autoSavePlay, { data: autoSaveData }] = useMutation(AUTOSAVE_PLAY)
+  const [createPlay] = useMutation(CREATE_PLAY, {
+    onError: (error) => {
+      showToast(
+        <div className='flex flex-col'>
+          <span>{error?.message}</span>
+        </div>,
+        'error',
+        'top-center',
+        false
+      )
+    },
+    onCompleted: (data) => {
+      if (!navigateToMove) {
+        showToast(
+          format('play.submitted'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => router.push(`/${locale}/playbooks/${playbook.slug}/edit`)
+        )
+      } else {
+        showToast(
+          format('play.submittedToCreateMove'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => router.push(`/${locale}/playbooks/${playbook.slug}/plays/${data.createPlay.play.slug}/moves/create`)
+        )
+      }
+    }
+  })
 
-  const router = useRouter()
-  const [session] = useSession()
-  const { showToast } = useContext(ToastContext)
+  const [autoSavePlay] = useMutation(AUTOSAVE_PLAY, {
+    onError: (error) => {
+      showToast(
+        <div className='flex flex-col'>
+          <span>{error?.message}</span>
+        </div>,
+        'error',
+        'top-center',
+        false
+      )
+    },
+    onCompleted: () => {
+      showToast(
+        format('play.autoSaved'),
+        'success',
+        'top-right',
+        1000,
+        null
+      )
+    }
+  })
 
-  const [slug] = useState(play ? play.slug : '')
-  const [tags, setTags] = useState(
-    play ? play.tags.map(tag => { return { label: tag, value: tag } }) : []
-  )
+  const [slug] = useState(play?.slug ?? '')
+  const [tags, setTags] = useState(play?.tags.map(tag => ({ label: tag })) ?? [])
 
-  const { handleSubmit, register, control, watch } = useForm({
+  const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
     mode: 'onBlur',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
-      name: play && play.name,
-      description: play && play.playDescription?.description
+      name: play?.name,
+      description: play?.playDescription?.description
     }
   })
-
-  useEffect(() => {
-    const { locale } = router
-    if (data && data.createPlay.errors.length === 0 && data.createPlay.play) {
-      setMutating(false)
-      if (!navigateToMove) {
-        showToast(format('play.submitted'), 'success', 'top-center')
-        const navigateToPlay = setTimeout(() => {
-          router.push(`/${locale}/playbooks/${playbook.slug}/edit`)
-        }, 800)
-
-        return () => clearTimeout(navigateToPlay)
-      } else {
-        showToast(format('play.submittedToCreateMove'), 'success', 'top-center')
-        const navigateToMove = setTimeout(() => {
-          router.push(`/${locale}/playbooks/${playbook.slug}/plays/${data.createPlay.play.slug}/moves/create`)
-        }, 800)
-
-        return () => clearTimeout(navigateToMove)
-      }
-    } else if (autoSaveData?.autoSavePlay?.errors.length === 0 && autoSaveData?.autoSavePlay?.play) {
-      setMutating(false)
-      showToast(format('play.autoSaved'), 'success', 'top-right')
-    }
-  }, [data, autoSaveData, playbook, navigateToMove, router, showToast, format])
 
   const doUpsert = async (data) => {
     if (session) {
@@ -157,12 +131,10 @@ export const PlayForm = ({ playbook, play }) => {
     const doAutoSave = () => {
       const { locale } = router
       if (session) {
-        // Set the loading indicator.
         setMutating(true)
-        // Pull all needed data from session and form.
+
         const { userEmail, userToken } = session.user
         const { name, description } = watch()
-        // Send graph query to the backend. Set the base variables needed to perform update.
         const variables = {
           name,
           slug,
@@ -192,17 +164,16 @@ export const PlayForm = ({ playbook, play }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    const route = `/${router.locale}/playbooks/${playbook.slug}/edit`
-    router.push(route)
+    router.push(`/${router.locale}/playbooks/${playbook.slug}/edit`)
   }
 
   const slugNameMapping = (() => {
     const map = {}
-    if (play) {
-      map[play.slug] = play.name
-    }
 
-    map[playbook.slug] = playbook.name
+    map[play?.slug] = play?.name
+
+    map[playbook?.slug] = playbook?.name
+
     map.edit = format('app.edit')
     map.create = format('app.create')
 
@@ -238,16 +209,18 @@ export const PlayForm = ({ playbook, play }) => {
                 {!play && `${format('app.create-new')} ${format('plays.label')}`}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
-                <div className='w-full lg:w-1/3 flex flex-col gap-y-3'>
+                <div className='w-full lg:w-1/3 flex flex-col gap-y-3' data-testid='play-name'>
                   <label className='flex flex-col gap-y-2 text-xl text-dial-blue mb-2'>
-                    {format('plays.name')}
-                    <input
-                      {...register('name', { required: true })}
-                      className='shadow border-1 rounded w-full py-2 px-3'
+                    <p className='required-field'>{format('plays.name')}</p>
+                    <Input
+                      {...register('name', { required: format('validation.required') })}
+                      placeholder={format('plays.name')}
+                      isInvalid={errors.name}
                     />
+                    {errors.name && <ValidationError value={errors.name?.message} />}
                   </label>
-                  <div className='flex flex-col gap-y-2'>
-                    <label className='text-xl text-dial-blue' htmlFor='name'>
+                  <div className='flex flex-col gap-y-2' data-testid='play-tags'>
+                    <label className='text-xl text-dial-blue flex flex-col gap-y-2' htmlFor='name'>
                       {format('plays.tags')}
                       <TagAutocomplete {...{ tags, setTags }} controlSize='100%' placeholder={format('play.form.tags')} />
                     </label>
@@ -256,8 +229,27 @@ export const PlayForm = ({ playbook, play }) => {
                     </div>
                   </div>
                 </div>
-                <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }}>
-                  <FormTextEditor control={control} name='description' />
+                <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }} data-testid='play-description'>
+                  <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
+                    <p className='required-field'> {format('plays.description')}</p>
+                    <Controller
+                      name='description'
+                      control={control}
+                      rules={{ required: format('validation.required') }}
+                      render={({ field: { value, onChange, onBlur } }) => {
+                        return (
+                          <HtmlEditor
+                            editorId={`${name}-editor`}
+                            onBlur={onBlur}
+                            onChange={onChange}
+                            initialContent={value}
+                            isInvalid={errors.description}
+                          />
+                        )
+                      }}
+                    />
+                    {errors.description && <ValidationError value={errors.description?.message} />}
+                  </label>
                 </div>
               </div>
               <div className='flex flex-col gap-y-2 mt-4'>
@@ -275,11 +267,12 @@ export const PlayForm = ({ playbook, play }) => {
                   <div className='text-dial-blue'>{`${format('app.create-new')} ${format('move.label')}`}</div>
                 </button>
               </div>
-              <div className='flex font-semibold text-xl lg:mt-8 gap-3'>
+              <div className='flex flex-wrap font-semibold text-xl lg:mt-8 gap-3'>
                 <button
                   type='submit'
+                  data-testid='submit-button'
                   onClick={savePlay}
-                  className='bg-blue-500 text-dial-gray-light py-3 px-8 rounded disabled:opacity-50'
+                  className='submit-button'
                   disabled={mutating || reverting}
                 >
                   {`${format('app.submit')} ${format('plays.label')}`}
@@ -288,7 +281,7 @@ export const PlayForm = ({ playbook, play }) => {
                 <button
                   type='submit'
                   onClick={saveAndAssignPlay}
-                  className='bg-blue-500 text-dial-gray-light py-3 px-8 rounded disabled:opacity-50'
+                  className='submit-button'
                   disabled={mutating || reverting}
                 >
                   {`${format('play.submitAndAssign')} ${format('plays.label')}`}
@@ -296,7 +289,7 @@ export const PlayForm = ({ playbook, play }) => {
                 </button>
                 <button
                   type='button'
-                  className='bg-button-gray-light text-white py-3 px-8 rounded disabled:opacity-50'
+                  className='cancel-button'
                   disabled={mutating || reverting}
                   onClick={cancelForm}
                 >

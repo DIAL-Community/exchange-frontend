@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from 'react'
 import { gql, useLazyQuery } from '@apollo/client'
 import { DiscourseCount } from '../shared/discourse'
 import Breadcrumb from '../shared/breadcrumb'
+import EditButton from '../shared/EditButton'
 
 const CANDIDATE_ROLE_QUERY = gql`
   query CandidateRole($email: String!, $datasetId: String!, $organizationId: String!) {
@@ -56,10 +57,7 @@ const DatasetDetailLeft = ({ dataset }) => {
           {session && (
             <div className='inline'>
               {session.user.canEdit && (
-                <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
-                  <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
-                  <span className='text-sm px-2'>{format('app.edit')}</span>
-                </a>
+                <EditButton type='link' href={generateEditLink()} />
               )}
             </div>
           )}

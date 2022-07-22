@@ -54,8 +54,8 @@ const CreatePlayInformation = ({ slug, locale }) => {
   return (
     <>
       {
-        data && data.playbook &&
-          <div className='px-8 max-w-catalog mx-auto'>
+        data?.playbook &&
+          <div className='max-w-catalog mx-auto'>
             <CreateFormProvider>
               <MovePreview />
               <PlayForm playbook={data.playbook} />

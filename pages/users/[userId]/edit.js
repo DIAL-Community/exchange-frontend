@@ -15,6 +15,7 @@ const USER_QUERY = gql`
     user(userId: $userId) {
       id
       username
+      confirmed
       email
       roles
       organization {

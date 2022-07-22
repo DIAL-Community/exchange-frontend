@@ -1,10 +1,8 @@
 import { useIntl } from 'react-intl'
-import Select from 'react-select'
 import { useState } from 'react'
-
-const Checkbox = props => (
-  <input type='checkbox' {...props} />
-)
+import Select from '../shared/Select'
+import Pill from '../shared/Pill'
+import Checkbox from '../shared/Checkbox'
 
 export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
@@ -25,7 +23,7 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
           <div>{format('wizard.selectSector')}</div>
         </div>
         <Select
-          className='text-button-gray' options={projData.sectors}
+          options={projData.sectors}
           value={allValues.sector && { value: allValues.sector, label: allValues.sector }}
           onChange={(val) => updateSubsectors(val)}
           placeholder={format('wizard.sectorPlaceholder')}
@@ -36,7 +34,7 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
           {format('wizard.selectSubsector')}
         </div>
         <Select
-          className='text-button-gray' options={subSectors}
+          options={subSectors}
           value={allValues.subsector && { value: allValues.subsector, label: allValues.subsector }}
           onChange={(val) => setAllValues(prevValues => { return { ...prevValues, subsector: val && val.value } })}
           placeholder={format('wizard.subsectorPlaceholder')}
@@ -48,7 +46,7 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
           {format('wizard.selectSDG')}
         </div>
         <Select
-          className='text-button-gray' options={projData.sdgs}
+          options={projData.sdgs}
           value={allValues.sdg && { value: allValues.sdg, label: allValues.sdg }}
           onChange={(val) => setAllValues(prevValues => { return { ...prevValues, sdg: val.value } })}
           placeholder={format('wizard.sdgPlaceholder')}
@@ -76,6 +74,14 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
     }
   }
 
+  const removeTag = (tagValue) => {
+    setAllValues(prevValues => { return { ...prevValues, tags: allValues.tags.filter(val => val !== tagValue) } })
+  }
+
+  const removeCountry = (countryValue) => {
+    setAllValues(prevValues => { return { ...prevValues, countries: allValues.countries.filter(val => val !== countryValue) } })
+  }
+
   return (
     <div className='lg:grid lg:grid-cols-3 gap-12 '>
       <div className='mt-6 lg:mt-0'>
@@ -83,24 +89,19 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
           {format('wizard.selectTags')}
         </div>
         <Select
-          className='text-button-gray pb-2' options={projData.tags}
+          options={projData.tags}
           onChange={(tag) => addSelectedTagValue(tag.value)}
           placeholder={format('wizard.tagPlaceholder')}
+          value={null}
         />
-        <div className=''>
-          {allValues.tags.map((tag) => {
-            return (
-              <div className='text-button-gray-light flex justify-between bg-button-gray pl-2 p-1 rounded my-1' key={tag}>{tag}
-                <div
-                  className='text-white' onClick={() => {
-                    setAllValues(prevValues => { return { ...prevValues, tags: allValues.tags.filter(val => val !== tag) } })
-                  }}
-                >
-                  <img src='/icons/close.svg' className='cursor-pointer inline mr-2' alt='Back' height='10px' width='10px' />
-                </div>
-              </div>
-            )
-          })}
+        <div className='flex flex-wrap gap-3 mt-5'>
+          {allValues.tags.map((tag, tagIdx) => (
+            <Pill
+              key={`tag-${tagIdx}`}
+              label={tag}
+              onRemove={() => removeTag(tag)}
+            />
+          ))}
         </div>
       </div>
       <div className='mt-6 lg:mt-0'>
@@ -108,24 +109,19 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
           {format('wizard.selectCountry')}
         </div>
         <Select
-          className='text-button-gray pb-2' options={projData.countries}
+          options={projData.countries}
           onChange={(country) => addSelectedCountryName(country.value)}
           placeholder={format('wizard.countryPlaceholder')}
+          value={null}
         />
-        <div className=''>
-          {allValues.countries.map((country) => {
-            return (
-              <div className='text-button-gray-light flex justify-between bg-button-gray pl-2 p-1 rounded my-1' key={country}>{country}
-                <div
-                  className='text-white' onClick={() => {
-                    setAllValues(prevValues => { return { ...prevValues, countries: allValues.countries.filter(val => val !== country) } })
-                  }}
-                >
-                  <img src='/icons/close.svg' className='cursor-pointer inline mr-2' alt='Back' height='10px' width='10px' />
-                </div>
-              </div>
-            )
-          })}
+        <div className='flex flex-wrap gap-3 mt-5'>
+          {allValues.countries.map((country, countryIdx) => (
+            <Pill
+              key={`country-${countryIdx}`}
+              label={country}
+              onRemove={() => removeCountry(country)}
+            />
+          ))}
         </div>
       </div>
       <div className='mt-6 lg:mt-0'>
@@ -133,24 +129,21 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
           {format('wizard.selectMobile')}
         </div>
         <div className='xl:grid xl:grid-cols-2'>
-          {projData.mobileServices.map((service) => {
-            return (
-              <div key={service.value} className='text-sm pt-2'>
-                <label>
-                  <Checkbox
-                    className='h-5 w-5 form-checkbox bg-dial-gray-dark border rounded text-white color-dial-gray-dark'
-                    onChange={(e) => e.currentTarget.checked
-                      ? allValues.mobileServices.push(service.value) &&
+          {projData.mobileServices.map((service, serviceIdx) => (
+            <div key={serviceIdx} className='text-sm pt-2'>
+              <label>
+                <Checkbox
+                  onChange={(e) => e.currentTarget.checked
+                    ? allValues.mobileServices.push(service.value) &&
                         setAllValues(prevValues => { return { ...prevValues, mobileServices: allValues.mobileServices } })
-                      : setAllValues(prevValues => { return { ...prevValues, mobileServices: allValues.mobileServices.filter(val => val !== service.value) } })}
-                  />
-                  <span className='pl-2'>
-                    {service.label}
-                  </span>
-                </label>
-              </div>
-            )
-          })}
+                    : setAllValues(prevValues => { return { ...prevValues, mobileServices: allValues.mobileServices.filter(val => val !== service.value) } })}
+                />
+                <span className='pl-2'>
+                  {service.label}
+                </span>
+              </label>
+            </div>
+          ))}
         </div>
       </div>
     </div>

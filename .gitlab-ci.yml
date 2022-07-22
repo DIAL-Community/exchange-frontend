@@ -4,9 +4,22 @@ stages:
   - lint
   - build
   - test
+  - deploy
 
 variables:
   NODE_OPTIONS: --openssl-legacy-provider
+  SERVER_IP: "$SERVER_IP"
+  SSH_PRIVATE_KEY: "$SSH_PRIVATE_KEY"
+
+.before_script_template: &deploy_run-docker
+  before_script:
+    - set -e
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null  
+    - mkdir -p ~/.ssh
+    - touch ~/.ssh/config
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" >> ~/.ssh/config
 
 eslint:
   stage: lint
@@ -45,3 +58,11 @@ test:
     expire_in: 1 hour
     paths:
       - node_modules/
+
+deploy:
+  stage: deploy
+  <<: *deploy_run-docker
+  script:
+   - 'ssh "$SERVER_IP" /root/gitlab-deploy.sh'
+  only:
+   - development

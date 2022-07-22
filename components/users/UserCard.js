@@ -37,7 +37,7 @@ const UserCard = ({ user, listType, filterDisplayed, newTab = false }) => {
                     </div>
                     <div className='col-span-4 p-1.5'>
                       <div className='ml-auto text-button-gray-light text-sm font-semibold'>
-                        {user.roles.map(role => { return role.toUpperCase() + '; ' })}
+                        {user.roles.map(role => role.toUpperCase()).join(', ')}
                       </div>
                     </div>
                   </div>

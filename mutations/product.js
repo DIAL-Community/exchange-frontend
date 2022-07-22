@@ -173,3 +173,47 @@ export const UPDATE_PRODUCT_SDGS = gql`
     }  
   }
 `
+
+export const CREATE_CANDIDATE_PRODUCT = gql`
+  mutation CreateCandidateProduct(
+    $name: String!
+    $website: String!
+    $repository: String!
+    $description: String!
+    $email: String!
+    $captcha: String!
+  ) {
+    createCandidateProduct(
+      name: $name
+      website: $website
+      repository: $repository
+      description: $description
+      email: $email
+      captcha: $captcha
+    ) { slug }
+  }
+`
+
+const generateProductRepositoryMutation = (mutationName) => `
+  mutation productRepositoryMutation (
+    $slug: String!
+    $name: String!
+    $absoluteUrl: String!
+    $description: String!
+    $mainRepository: Boolean!
+  ) {
+    ${mutationName} (
+      slug: $slug,
+      name: $name,
+      absoluteUrl: $absoluteUrl,
+      description: $description,
+      mainRepository: $mainRepository,
+    ) { 
+      slug
+      }
+  }
+ `
+
+export const CREATE_PRODUCT_REPOSITORY = gql(generateProductRepositoryMutation('createProductRepository'))
+
+export const UPDATE_PRODUCT_REPOSITORY = gql(generateProductRepositoryMutation('updateProductRepository'))
