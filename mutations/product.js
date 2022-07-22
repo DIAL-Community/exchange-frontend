@@ -174,6 +174,25 @@ export const UPDATE_PRODUCT_SDGS = gql`
   }
 `
 
+export const CREATE_CANDIDATE_PRODUCT = gql`
+  mutation CreateCandidateProduct(
+    $name: String!
+    $website: String!
+    $repository: String!
+    $description: String!
+    $email: String!
+    $captcha: String!
+  ) {
+    createCandidateProduct(
+      name: $name
+      website: $website
+      repository: $repository
+      description: $description
+      email: $email
+      captcha: $captcha
+    ) { slug }
+  }
+`
 
 const generateProductRepositoryMutation = (mutationName) => `
   mutation productRepositoryMutation (

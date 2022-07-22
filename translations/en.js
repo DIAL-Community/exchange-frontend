@@ -1173,6 +1173,8 @@ export const en = {
   'candidateProduct.created': 'Candidate product submitted successfully. Redirecting ...',
   'candidateProduct.website.hint': 'Website of the candidate product.',
   'candidateProduct.repository.hint': 'Code repository of the candidate product.',
+  'candidate-product.submit.success': 'Candidate Product submitted successfully',
+  'candidate-product.submit.failure': 'Candidate Product submission failed',
 
   'candidateOrganization.organizationName': 'Organization Name',
   'candidateOrganization.organizationName.placeholder': 'Name of the candidate organization.',
