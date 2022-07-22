@@ -397,6 +397,18 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                   </div>
                 </label>
               </div>
+              <label
+                class="flex gap-x-2 items-center form-field-label my-auto"
+                data-testid="user-is-confirmed"
+              >
+                <input
+                  class="h-8 w-8"
+                  data-testid="checkbox"
+                  name="confirmed"
+                  type="checkbox"
+                />
+                User account confirmed
+              </label>
               <div
                 class="flex flex-wrap text-xl mt-8 gap-3"
               >

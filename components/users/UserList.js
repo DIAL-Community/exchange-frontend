@@ -68,7 +68,7 @@ const UserList = (props) => {
               <UserCard key={user.id} listType={displayType} {...{ user, filterDisplayed }} />
             ))
             : (
-              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
+              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-6'>
                 {format('noResults.entity', { entity: format('user.label').toLowerCase() })}
               </div>
             )

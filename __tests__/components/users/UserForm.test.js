@@ -1,3 +1,4 @@
+import { within } from '@testing-library/dom'
 import { fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
@@ -6,7 +7,6 @@ import {
   mockRouterImplementation,
   mockSessionImplementation,
   render,
-  waitForAllEffects,
   waitForAllEffectsAndSelectToLoad
 } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
@@ -19,6 +19,9 @@ describe('Unit tests for the UserForm component.', () => {
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
   const EMAIL_INPUT_TEST_ID = 'email-input'
   const EMAIL_LABEL_TEST_ID = 'email-label'
+
+  const CONFIRMED_CHECKBOX_TEST_ID = 'user-is-confirmed'
+
   const USER_NAME_INPUT_TEST_ID = 'username-input'
   const USER_NAME_LABEL_TEST_ID = 'username-label'
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
@@ -45,6 +48,7 @@ describe('Unit tests for the UserForm component.', () => {
         <UserForm user={user} action='update' />
       </CustomMockedProvider>
     )
+
     await someUser.type(getByTestId(EMAIL_INPUT_TEST_ID), 'user_test@web.com')
     await someUser.type(getByTestId(USER_NAME_INPUT_TEST_ID), 'User Test')
     expect(getByTestId(EMAIL_INPUT_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -76,5 +80,30 @@ describe('Unit tests for the UserForm component.', () => {
     await someUser.type(getByTestId(USER_NAME_INPUT_TEST_ID), 'User Test')
     expect(getByTestId(EMAIL_LABEL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USER_NAME_LABEL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
+  })
+
+  test('Should render unchecked based on the confirmed flag data.', async () => {
+    const { queryByTestId } = render(
+      <CustomMockedProvider>
+        <UserForm user={user} action='update' />
+      </CustomMockedProvider>
+    )
+
+    const checkboxLabel = queryByTestId(CONFIRMED_CHECKBOX_TEST_ID)
+    const checkbox = within(checkboxLabel).queryByTestId('checkbox')
+    expect(checkbox.checked).toEqual(false)
+  })
+
+  test('Should render checked based on the confirmed flag data.', async () => {
+    user.confirmed = true
+    const { queryByTestId } = render(
+      <CustomMockedProvider>
+        <UserForm user={user} action='update' />
+      </CustomMockedProvider>
+    )
+
+    const checkboxLabel = queryByTestId(CONFIRMED_CHECKBOX_TEST_ID)
+    const checkbox = within(checkboxLabel).queryByTestId('checkbox')
+    expect(checkbox.checked).toEqual(true)
   })
 })

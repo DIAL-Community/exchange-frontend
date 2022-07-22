@@ -45,6 +45,7 @@ export const en = {
   'user.organization.placeholder': 'Enter user organization',
   'user.products': 'Products',
   'user.products.placeholder': 'Enter products owned by user',
+  'user.confirmed': 'User account confirmed',
 
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
