@@ -1,32 +1,39 @@
 
 import { fireEvent } from '@testing-library/react'
 import GeocodeAutocomplete from '../../../components/shared/GeocodeAutocomplete'
-import { mockRouterImplementation, render, waitForReactSelectToLoad } from '../../test-utils'
+import { COUNTRY_CODES_QUERY } from '../../../queries/country'
+import { mockArcGisToken, mockRouterImplementation, render, waitForReactSelectToLoad } from '../../test-utils'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 
 jest.mock('next/dist/client/router')
 
 describe('Unit test for the GeocodeAutocomplete component.', () => {
   const TEST_ID = 'select'
   const mockOnChange = jest.fn()
+  const mockCountries = generateMockApolloData(COUNTRY_CODES_QUERY, { search: '' }, null, [])
     
   beforeAll(() => {
-    fetch.mockResponse(JSON.stringify({ token: 'test-token' }))
+    mockArcGisToken()
     mockRouterImplementation()
   })
 
   test('Should match snapshot.', async () => {
     const { container, getByText } = render(
-      <GeocodeAutocomplete onChange={mockOnChange} />
+      <CustomMockedProvider mocks={[mockCountries]}>
+        <GeocodeAutocomplete onChange={mockOnChange} />
+      </CustomMockedProvider>
     )
     await waitForReactSelectToLoad(container)
-    expect(getByText('Enter location')).toBeInTheDocument()
+    expect(getByText('Type to search...')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 
   test('Should match snapshot - search.', async () => {
     const { container, getByText, getByTestId } = render(
       <div data-testid={TEST_ID}>
-        <GeocodeAutocomplete onChange={mockOnChange} />
+        <CustomMockedProvider mocks={[mockCountries]}>
+          <GeocodeAutocomplete onChange={mockOnChange} />
+        </CustomMockedProvider>
       </div>
     )
     await waitForReactSelectToLoad(container)

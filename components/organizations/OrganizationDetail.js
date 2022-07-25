@@ -1,61 +1,10 @@
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useEffect } from 'react'
 import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
+import { ORGANIZATION_QUERY } from '../../queries/organization'
 import OrganizationDetailLeft from './OrganizationDetailLeft'
 import OrganizationDetailRight from './OrganizationDetailRight'
-
-const ORGANIZATION_QUERY = gql`
-  query Organization($slug: String!) {
-    organization(slug: $slug) {
-      id
-      name
-      slug
-      isMni
-      website
-      imageFile
-      whenEndorsed
-      endorserLevel
-      organizationDescription {
-        description
-        locale
-      }
-      offices {
-        id
-        name
-        latitude
-        longitude
-      }
-      sectors {
-        name
-        slug
-      }
-      countries {
-        id
-        name
-        slug
-      }
-      products {
-        id
-        slug
-        name
-        imageFile
-      }
-      projects {
-        name
-        slug
-        origin {
-          slug
-        }
-      }
-      contacts {
-        name
-        email
-        title
-      }
-    }
-  }
-`
 
 const OrganizationDetail = ({ slug, locale }) => {
   const { loading, error, data, refetch } = useQuery(ORGANIZATION_QUERY, {

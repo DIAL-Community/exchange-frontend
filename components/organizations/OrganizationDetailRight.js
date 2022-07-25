@@ -4,13 +4,13 @@ import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useSession } from 'next-auth/client'
 import Breadcrumb from '../shared/breadcrumb'
-import CityCard from '../cities/CityCard'
 import AggregatorCapability from './AggregatorCapability'
 import OrganizationDetailCountries from './OrganizationDetailCountries'
 import OrganizationDetailSectors from './OrganizationDetailSectors'
 import OrganizationDetailProjects from './OrganizationDetailProjects'
 import OrganizationDetailContacts from './OrganizationDetailContacts'
 import OrganizationDetailProducts from './OrganizationDetailProducts'
+import OrganizationDetailOffices from './OrganizationDetailOffices'
 
 const sectionHeaderStyle = 'card-title mb-3 text-dial-gray-dark'
 
@@ -96,24 +96,7 @@ const OrganizationDetailRight = ({ organization }) => {
       <div className='fr-view text-dial-gray-dark p-3' data-testid='organization-description'>
         {organization.organizationDescription && parse(organization.organizationDescription.description)}
       </div>
-      {canEdit && organization.offices &&
-          <div className='mt-12'>
-            <div className={sectionHeaderStyle}>{format('office.locations.header')}</div>
-            {organization.offices.length ?
-              (
-                <div className='grid grid-cols-1 lg:grid-cols-2'>
-                  {organization.offices.map((office, i) => (
-                    <CityCard key={i} city={office} listType='list' />
-                  ))}
-                </div>
-              ) : (
-                <div className='text-sm pb-5 text-button-gray'>
-                  {format('organization.no-office-locations')}
-                </div>
-              )
-            }
-          </div>
-      }
+      {canEdit && <OrganizationDetailOffices organization={organization} canEdit={canEdit} />}
       {canEdit && <OrganizationDetailContacts organization={organization}/>}
       {organization.sectors && <OrganizationDetailSectors organization={organization} canEdit={canEdit} />}
       {organization.countries && <OrganizationDetailCountries organization={organization} canEdit={canEdit} />}

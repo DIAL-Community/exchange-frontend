@@ -1,0 +1,196 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for the OrganizationForm component. Should match snapshot - candidate organization. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="flex flex-col"
+  >
+    <div
+      class="py-8 px-8"
+    >
+      <div
+        class="sm:px-0 max-w-full mx-auto"
+        id="content"
+      >
+        <form>
+          <div
+            class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
+          >
+            <div
+              class="text-2xl font-bold text-dial-blue pb-4"
+            >
+              Candidate Organization
+            </div>
+            <div
+              class="flex flex-col lg:flex-row gap-4"
+            >
+              <div
+                class="w-full lg:w-1/2 flex flex-col gap-y-3"
+              >
+                <div
+                  class="form-field-wrapper"
+                  data-testid="candidate-organization-organization-name"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="organizationName"
+                  >
+                    Organization Name
+                  </label>
+                  <input
+                    class="w-full"
+                    id="organizationName"
+                    name="organizationName"
+                    placeholder="Name of the candidate organization."
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="candidate-organization-website"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="website"
+                  >
+                    Organization Website
+                  </label>
+                  <input
+                    class="w-full"
+                    id="website"
+                    name="website"
+                    placeholder="Website of the candidate organization."
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="candidate-organization-name"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="name"
+                  >
+                    Your Name
+                  </label>
+                  <input
+                    class="w-full"
+                    id="name"
+                    name="name"
+                    placeholder="Your name, submitter of the candidate organization."
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="candidate-organization-email"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="email"
+                  >
+                    Your Email
+                  </label>
+                  <input
+                    class="w-full"
+                    id="email"
+                    name="email"
+                    placeholder="Your email, submitter of the candidate organization."
+                    type="email"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="candidate-organization-title"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="title"
+                  >
+                    Your Title
+                  </label>
+                  <input
+                    class="w-full"
+                    id="title"
+                    name="title"
+                    placeholder="Your title, submitter of the candidate organization."
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div />
+              </div>
+              <div
+                class="w-full lg:w-2/3"
+                data-testid="candidate-organization-description"
+                style="min-height: 20rem;"
+              >
+                <label
+                  class="block text-xl text-dial-blue flex flex-col gap-y-2"
+                >
+                  <p
+                    class="required-field"
+                  >
+                     
+                    Description
+                  </p>
+                  <div
+                    class="relative"
+                  >
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="htmlEditor"
+                    >
+                      <textarea
+                        id="-editor"
+                        style="visibility: hidden;"
+                      />
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div
+              class="flex flex-wrap font-semibold text-xl lg:mt-8 gap-3"
+            >
+              <button
+                class="submit-button"
+                data-testid="submit-button"
+                type="submit"
+              >
+                Submit Candidate Product
+              </button>
+              <button
+                class="cancel-button"
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

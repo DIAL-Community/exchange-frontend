@@ -1,18 +1,28 @@
+import { useQuery } from '@apollo/client'
 import { suggest, geocode, reverseGeocode } from '@esri/arcgis-rest-geocoding'
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
+import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { useArcGisToken } from '../../lib/hooks'
+import { COUNTRY_CODES_QUERY } from '../../queries/country'
 import Select from './Select'
 
-const GeocodeAutocomplete = React.forwardRef(({ onChange }, ref) => {
+const GeocodeAutocomplete = React.forwardRef(({ value, onChange }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { loading: loadingCountries, data: countryData } = useQuery(COUNTRY_CODES_QUERY, { variables: { search: '' } })
+
+  const countryCodes = useMemo(
+    () => countryData?.countries?.filter(({ codeLonger }) => !!codeLonger)?.map(({ codeLonger }) => codeLonger),
+    [countryData]
+  )
 
   const { token: authentication } = useArcGisToken()
 
   const fetchLocationOptions = async (searchText) => {
     if (searchText !== '') {
-      const response = await suggest(searchText, { authentication })
+      const response = await suggest(searchText, { authentication, params: { countryCode: countryCodes }})
 
       return response?.suggestions?.map(({ text, magicKey }) => ({
         value: magicKey,
@@ -42,16 +52,20 @@ const GeocodeAutocomplete = React.forwardRef(({ onChange }, ref) => {
   }
 
   return (
-    <Select
-      ref={ref}
-      async
-      isSearch
-      isClearable
-      placeholder={format('location.select.autocomplete.defaultPlaceholder')}
-      loadOptions={input => fetchLocationOptions(input)}
-      noOptionsMessage={() => format('filter.searchFor', { entity: format('location.header') })}
-      onChange={setLocation}
-    />
+    loadingCountries ? (
+      <FaSpinner size='2em' className='spinner' />
+    ) : (
+      <Select
+        ref={ref}
+        async
+        isSearch
+        placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
+        loadOptions={input => fetchLocationOptions(input)}
+        noOptionsMessage={() => format('filter.searchFor', { entity: format('location.header') })}
+        onChange={setLocation}
+        value={value}
+      />
+    )
   )
 })
 
