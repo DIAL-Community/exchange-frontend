@@ -169,3 +169,25 @@ export const DELETE_ORGANIZATION = gql`
     }
   }
 `
+
+export const CREATE_CANDIDATE_ORGANIZATION = gql`
+  mutation CreateCandidateOrganization(
+    $organizationName: String!,
+    $website: String!,
+    $name: String!,
+    $description: String!,
+    $email: String!,
+    $title: String!,
+    $captcha: String!
+  ) {
+    createCandidateOrganization(
+      organizationName: $organizationName,
+      website: $website,
+      name: $name,
+      description: $description,
+      email: $email,
+      title: $title,
+      captcha: $captcha
+    ) { slug }
+  }
+`
