@@ -48,6 +48,9 @@ const DATASET_QUERY = gql`
         slug
         isDisplayable
       }
+      countries {
+        name
+      }
       manualUpdate
     }
   }
