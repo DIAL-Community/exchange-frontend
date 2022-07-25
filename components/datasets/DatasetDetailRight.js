@@ -94,13 +94,14 @@ const DatasetDetailRight = ({ dataset }) => {
       </div>
       {
         dataset.visualizationUrl &&
-          <div className='mt-3
+          <div className='mt-3 v
           
           '>
             <IframeResizer
               src={dataset.visualizationUrl}
               style={{ position: 'relative', width: '100%' }}
               minHeight="600"
+              scrolling='true'
             >
               ${format('dataset.embed.unsupported')}
             </IframeResizer>
