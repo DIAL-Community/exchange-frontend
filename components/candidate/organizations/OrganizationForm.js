@@ -1,171 +1,242 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
+import { Controller, useForm } from 'react-hook-form'
+import { useSession } from 'next-auth/client'
 import { ToastContext } from '../../../lib/ToastContext'
-
-const CREATE_CANDIDATE_ORGANIZATION = gql`
-  mutation CreateCandidateOrganization(
-    $organizationName: String!,
-    $website: String!,
-    $name: String!,
-    $description: String!,
-    $email: String!,
-    $title: String!,
-    $captcha: String!
-  ) {
-    createCandidateOrganization(
-      organizationName: $organizationName,
-      website: $website,
-      name: $name,
-      description: $description,
-      email: $email,
-      title: $title,
-      captcha: $captcha
-    ) { slug }
-  }
-`
+import { CREATE_CANDIDATE_ORGANIZATION } from '../../../mutations/organization'
+import Input from '../../shared/Input'
+import ValidationError from '../../shared/ValidationError'
+import { HtmlEditor } from '../../shared/HtmlEditor'
+import { emailRegex } from '../../shared/emailRegex'
+import { Loading, Unauthorized } from '../../shared/FetchStatus'
+import { useUser } from '../../../lib/hooks'
 
 const OrganizationForm = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const [organizationName, setOrganizationName] = useState('')
-  const [website, setWebsite] = useState('')
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [email, setEmail] = useState('')
-  const [title, setTitle] = useState('')
-  const [captcha, setCaptcha] = useState('')
+  const router = useRouter()
+
+  const [session] = useSession()
+
+  const { loadingUserSession } = useUser(session)
 
   const { showToast } = useContext(ToastContext)
 
-  const [createCandidateOrganization, { data, loading }] = useMutation(CREATE_CANDIDATE_ORGANIZATION)
+  const [mutating, setMutating] = useState(false)
+  const [reverting, setReverting] = useState(false)
 
-  const handleTextFieldChange = (e, callback) => {
-    callback(e.target.value)
-  }
-
-  const router = useRouter()
-  const captchaRef = useRef()
-
-  useEffect(() => {
-    if (data) {
-      setOrganizationName('')
-      setEmail('')
-      setName('')
-      setDescription('')
-      setTitle('')
-      setWebsite('')
-      captchaRef.current.reset()
-      showToast(format('candidateOrganization.created'), 'success', 'top-center')
-      setTimeout(() => {
-        router.push('/candidate/organizations')
-      }, 1000)
+  const [createCandidateOrganization] = useMutation(CREATE_CANDIDATE_ORGANIZATION, {
+    onError: () => {
+      showToast(
+        format('candidate-organization.submit.failure'),
+        'error',
+        'top-center',
+        false
+      )
+    },
+    onCompleted: () => {
+      showToast(
+        format('candidate-organization.submit.success'),
+        'success',
+        'top-center',
+        1000,
+        null,
+        () => router.push('/organizations')
+      )
     }
-  }, [data])
+  })
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    createCandidateOrganization({
-      variables: {
-        organizationName,
-        website,
+  const { handleSubmit, register, control, formState: { errors } } = useForm({
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
+    shouldUnregister: true,
+    defaultValues: {
+      name: '',
+      description: '',
+      organizationName: '',
+      website: '',
+      email: '',
+      title: '',
+      captcha: null
+    }
+  })
+
+  const doUpsert = async (data) => {
+    if (session) {
+      setMutating(true)
+
+      const { userEmail, userToken } = session.user
+      const { name, description, organizationName, website, email, title, captcha } = data
+      const variables = {
         name,
+        website,
+        organizationName,
         description,
         email,
         title,
         captcha
       }
-    })
+
+      createCandidateOrganization({
+        variables,
+        context: {
+          headers: {
+            'Accept-Language': router.locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
+    }
+  }
+
+  const cancelForm = () => {
+    setReverting(true)
+    router.push('/organizations')
   }
 
   return (
-    <div className='pt-4'>
-      <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
-        <form method='post' onSubmit={handleSubmit}>
-          <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('candidateOrganization.organizationName')}
-              </label>
-              <input
-                id='organizationName' name='organizationName' type='text'
-                placeholder={format('candidateOrganization.organizationName.placeholder')}
-                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                value={organizationName} onChange={(e) => handleTextFieldChange(e, setOrganizationName)}
-              />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('candidateOrganization.website')}
-              </label>
-              <input
-                id='website' name='website' type='text'
-                placeholder={format('candidateOrganization.website.placeholder')}
-                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                value={website} onChange={(e) => handleTextFieldChange(e, setWebsite)}
-              />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('candidateOrganization.description')}
-              </label>
-              <input
-                id='website' name='website' type='text'
-                placeholder={format('candidateOrganization.description.placeholder')}
-                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                value={description} onChange={(e) => handleTextFieldChange(e, setDescription)}
-              />
-            </div>
-            <div className='border-b border-dial-gray my-4' />
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='repository'>
-                {format('candidateOrganization.name')}
-              </label>
-              <input
-                id='name' name='name' type='text' placeholder={format('candidateOrganization.name.placeholder')}
-                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                value={name} onChange={(e) => handleTextFieldChange(e, setName)}
-              />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='passwordConfirmation'>
-                {format('candidateOrganization.email')}
-              </label>
-              <input
-                id='email' name='email' type='text' placeholder={format('candidateOrganization.email.placeholder')}
-                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                value={email} onChange={(e) => handleTextFieldChange(e, setEmail)}
-              />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('candidateOrganization.title')}
-              </label>
-              <input
-                id='title' name='website' type='text' placeholder={format('candidateOrganization.title.placeholder')}
-                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                value={title} onChange={(e) => handleTextFieldChange(e, setTitle)}
-              />
-            </div>
-            <ReCAPTCHA sitekey='6LfAGscbAAAAAFW_hQyW5OxXPhI7v6X8Ul3FJrsa' onChange={setCaptcha} ref={captchaRef} />
-            <div className='flex items-center justify-between font-semibold text-sm mt-2'>
-              <button
-                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                type='submit' disabled={loading}
-              >
-                {format('candidateOrganization.submit')}
-                {loading && <FaSpinner className='spinner ml-3' />}
-              </button>
-            </div>
+    loadingUserSession ? <Loading /> : session ? (
+      <div className='flex flex-col'>
+        <div className='py-8 px-8'>
+          <div id='content' className='sm:px-0 max-w-full mx-auto'>
+            <form onSubmit={handleSubmit(doUpsert)}>
+              <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
+                <div className='text-2xl font-bold text-dial-blue pb-4'>
+                  {format('candidateOrganization.label')}
+                </div>
+                <div className='flex flex-col lg:flex-row gap-4'>
+                  <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
+                    <div className='form-field-wrapper' data-testid='candidate-organization-organization-name'>
+                      <label className='form-field-label required-field' htmlFor='organizationName'>
+                        {format('candidateOrganization.organizationName')}
+                      </label>
+                      <Input
+                        {...register('organizationName', { required: format('validation.required') })}
+                        id='organizationName'
+                        placeholder={format('candidateOrganization.organizationName.placeholder')}
+                        isInvalid={errors.organizationName}
+                      />
+                      {errors.organizationName && <ValidationError value={errors.organizationName?.message} />}
+                    </div>
+                    <div className='form-field-wrapper' data-testid='candidate-organization-website'>
+                      <label className='form-field-label required-field' htmlFor='website'>
+                        {format('candidateOrganization.website')}
+                      </label>
+                      <Input
+                        {...register('website', { required: format('validation.required') })}
+                        id='website'
+                        placeholder={format('candidateOrganization.website.placeholder')}
+                        isInvalid={errors.website}
+                      />
+                      {errors.website && <ValidationError value={errors.website?.message} />}
+                    </div>
+                    <div className='form-field-wrapper' data-testid='candidate-organization-name'>
+                      <label className='form-field-label required-field' htmlFor='name'>
+                        {format('candidateOrganization.name')}
+                      </label>
+                      <Input
+                        {...register('name', { required: format('validation.required') })}
+                        id='name'
+                        placeholder={format('candidateOrganization.name.placeholder')}
+                        isInvalid={errors.name}
+                      />
+                      {errors.name && <ValidationError value={errors.name?.message} />}
+                    </div>
+                    <div className='form-field-wrapper' data-testid='candidate-organization-email'>
+                      <label className='form-field-label required-field' htmlFor='email'>
+                        {format('candidateOrganization.email')}
+                      </label>
+                      <Input
+                        type='email'
+                        {...register('email',
+                          {
+                            required: format('validation.required'),
+                            pattern: { value: emailRegex , message: format('validation.email') }
+                          }
+                        )}
+                        id='email'
+                        placeholder={format('candidateOrganization.email.placeholder')}
+                        isInvalid={errors.email}
+                      />
+                      {errors.email && <ValidationError value={errors.email?.message} />}
+                    </div>
+                    <div className='form-field-wrapper' data-testid='candidate-organization-title'>
+                      <label className='form-field-label required-field' htmlFor='title'>
+                        {format('candidateOrganization.title')}
+                      </label>
+                      <Input
+                        {...register('title', { required: format('validation.required') })}
+                        id='title'
+                        placeholder={format('candidateOrganization.title.placeholder')}
+                        isInvalid={errors.title}
+                      />
+                      {errors.title && <ValidationError value={errors.title?.message} />}
+                    </div>
+                    <Controller
+                      name='captcha'
+                      control={control}
+                      rules={{ required: format('validation.required') }}
+                      render={({ field: { onChange, ref } }) => {
+                        return (<ReCAPTCHA sitekey='6LfAGscbAAAAAFW_hQyW5OxXPhI7v6X8Ul3FJrsa' ref={ref} onChange={onChange} />)
+                      }}
+                    />
+                    {errors.captcha && <ValidationError value={errors.captcha?.message} />}
+                  </div>
+                  <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }} data-testid='candidate-organization-description'>
+                    <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
+                      <p className='required-field'> {format('candidateOrganization.description')}</p>
+                      <Controller
+                        name='description'
+                        control={control}
+                        rules={{ required: format('validation.required') }}
+                        render={({ field: { value, onChange, onBlur } }) => {
+                          return (
+                            <HtmlEditor
+                              editorId={`${name}-editor`}
+                              onBlur={onBlur}
+                              onChange={onChange}
+                              initialContent={value}
+                              isInvalid={errors.description}
+                              placeholder={format('candidateOrganization.description.placeholder')}
+                            />
+                          )
+                        }}
+                      />
+                      {errors.description && <ValidationError value={errors.description?.message} />}
+                    </label>
+                  </div>
+                </div>
+                <div className='flex flex-wrap font-semibold text-xl lg:mt-8 gap-3'>
+                  <button
+                    type='submit'
+                    data-testid='submit-button'
+                    className='submit-button'
+                    disabled={mutating || reverting}
+                  >
+                    {format('candidateProduct.submit')}
+                    {mutating && <FaSpinner className='spinner ml-3 inline' />}
+                  </button>
+                  <button
+                    type='button'
+                    className='cancel-button'
+                    disabled={mutating || reverting}
+                    onClick={cancelForm}
+                  >
+                    {format('app.cancel')}
+                    {reverting && <FaSpinner className='spinner ml-3 inline' />}
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
-    </div>
-  )
-}
+    ) : <Unauthorized />
+  )}
 
 export default OrganizationForm

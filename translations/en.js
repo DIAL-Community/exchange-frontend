@@ -1190,6 +1190,8 @@ export const en = {
   'candidateOrganization.title': 'Your Title',
   'candidateOrganization.title.placeholder': 'Your title, submitter of the candidate organization.',
   'candidateOrganization.submit': 'Submit Candidate Organization',
+  'candidate-organization.submit.success': 'Candidate Organization submitted successfully',
+  'candidate-organization.submit.failure': 'Candidate Organization submission failed',
 
   'candidate.rejected': 'Declined',
   'candidate.approved': 'Approved',
