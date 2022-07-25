@@ -191,3 +191,29 @@ export const CREATE_CANDIDATE_ORGANIZATION = gql`
     ) { slug }
   }
 `
+
+export const UPDATE_ORGANIZATION_OFFICES = gql`
+  mutation UpdateOrganizationOffices(
+    $slug: String!
+    $offices: [JSON!]!
+  ) {
+    updateOrganizationOffices(
+      slug: $slug
+      offices: $offices
+    ) {
+      organization {
+        offices {
+          name
+          city
+          region
+          country {
+            codeLonger
+          }
+          latitude
+          longitude
+        }
+      }
+      errors
+    }
+  }
+`

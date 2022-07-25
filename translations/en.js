@@ -1324,6 +1324,8 @@ export const en = {
   'resource.submitted': 'Resource saved.',
   'product.launchable': 'Product Launchable',
 
+  'location.header': 'Location',
+
   'shared.select.autocomplete.defaultPlaceholder': 'Type to search...',
   'shared.mappingStatus.beta': 'Beta',
   'shared.mappingStatus.mature': 'Mature',
@@ -1361,7 +1363,6 @@ export const en = {
   'toast.workflows.update.failure': 'Workflows update failed',
   'toast.user-profile.update.success': 'Profile updated successfully',
   'toast.user-profile.update.failure': 'Profile update failed',
-
-  'location.header': 'Location',
-  'location.select.autocomplete.defaultPlaceholder': 'Enter location'
+  'toast.offices.update.success': 'Offices updated successfully',
+  'toast.offices.update.failure': 'Offices update failed'
 }

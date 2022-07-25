@@ -54,5 +54,7 @@ export const mockObserverImplementation = () => jest.fn(() => ({
   unobserve: () => jest.fn()
 }))
 
+export const mockArcGisToken = () => fetch.mockResponse(JSON.stringify({ token: 'test-token' }))
+
 // override render method
 export { customRender as render }
