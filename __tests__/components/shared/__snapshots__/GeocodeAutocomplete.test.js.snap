@@ -31,7 +31,7 @@ exports[`Unit test for the GeocodeAutocomplete component. Should match snapshot 
             class="react-select__placeholder css-19jynah-placeholder"
             id="react-select-3-placeholder"
           >
-            Enter location
+            Type to search...
           </div>
           <div
             class="react-select__input-container css-6j8wv5-Input"
@@ -135,7 +135,7 @@ exports[`Unit test for the GeocodeAutocomplete component. Should match snapshot.
           class="react-select__placeholder css-19jynah-placeholder"
           id="react-select-2-placeholder"
         >
-          Enter location
+          Type to search...
         </div>
         <div
           class="react-select__input-container css-6j8wv5-Input"
