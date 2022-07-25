@@ -9,3 +9,11 @@ export const COUNTRY_SEARCH_QUERY = gql`
     }
   }
 `
+
+export const COUNTRY_CODES_QUERY = gql`
+  query Countries($search: String!) {
+    countries(search: $search) {
+      codeLonger
+    }
+  }
+`
