@@ -444,7 +444,7 @@ export const en = {
   'sdg.target.title': 'Target',
 
   'workflow.useCases': 'Use Cases',
-  'workflow.buildingBlocks': 'Use Cases',
+  'workflow.no-building-block': 'We do not have any Building Block information for this Workflow.',
 
   'country.header': 'Countries',
   'workflow.header': 'Workflows',
