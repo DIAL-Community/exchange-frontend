@@ -15,6 +15,13 @@ export const useCaseStep = {
       name: 'Test Product',
       slug: 'tp'
     }
+  ],
+  buildingBlocks: [
+    {
+      id: 1,
+      name: 'Test Building Block',
+      slug: 'tbb'
+    }
   ]
 }
 
