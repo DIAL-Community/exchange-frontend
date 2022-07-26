@@ -569,6 +569,7 @@ export const en = {
   'use-case-step.submit.success': 'Use Case Step submitted successfully',
   'use-case-step.no-workflow': 'We do not have any Workflow information for this Use Case Step.',
   'use-case-step.no-product': 'We do not have any Product information for this Use Case Step.',
+  'use-case-step.no-building-block': 'We do not have any Building Block information for this Use Case Step.',
 
   'playbook.header': 'Playbooks',
   'playbooks.label': 'Playbook',
