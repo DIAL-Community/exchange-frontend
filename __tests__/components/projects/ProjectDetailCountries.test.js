@@ -1,21 +1,18 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react'
 import ProjectDetailCountries from '../../../components/projects/ProjectDetailCountries'
 import { COUNTRY_SEARCH_QUERY } from '../../../queries/country'
-import { mockRouterImplementation, mockSessionImplementation, render, waitForReactSelectToLoad } from '../../test-utils'
+import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { countries } from './data/ProjectDetailCountries'
 import { project } from './data/ProjectForm'
 
-// Mock next-router calls.
 jest.mock('next/dist/client/router')
-// Mock the next-auth's useSession.
 jest.mock('next-auth/client')
 
 describe('Unit test for the ProjectDetailCountries component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
   const COUNTRY_SEARCH_TEST_ID = 'country-search'
-  const COUNTRY_SEARCH_PLACEHOLDER = 'Type to search...'
   const COUNTRY_SEARCH_OPTION_LABEL = 'Another Country'
   const PROJECT_TEST_COUNTRY_LABEL = 'Test Country'
   const PILL_TEST_ID = 'pill'
@@ -61,8 +58,7 @@ describe('Unit test for the ProjectDetailCountries component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(COUNTRY_SEARCH_PLACEHOLDER)
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     expect(container).toMatchSnapshot()
   })
 
@@ -76,7 +72,7 @@ describe('Unit test for the ProjectDetailCountries component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(COUNTRY_SEARCH_PLACEHOLDER)
+    await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.click(getByTestId(PILL_REMOVE_BUTTON_TEST_ID))
     expect(screen.queryByTestId(PILL_TEST_ID)).toBeNull()
     expect(container).toMatchSnapshot()
@@ -92,7 +88,7 @@ describe('Unit test for the ProjectDetailCountries component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(COUNTRY_SEARCH_PLACEHOLDER)
+    await waitForAllEffectsAndSelectToLoad(container)
 
     fireEvent.keyDown(getByTestId(COUNTRY_SEARCH_TEST_ID).childNodes[1], { key: 'ArrowDown' })
     await screen.findByText(COUNTRY_SEARCH_OPTION_LABEL)
@@ -105,7 +101,7 @@ describe('Unit test for the ProjectDetailCountries component.', () => {
     expect(screen.queryByText(COUNTRY_SEARCH_OPTION_LABEL)).not.toBeInTheDocument()
 
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(COUNTRY_SEARCH_PLACEHOLDER)
+    await waitForAllEffectsAndSelectToLoad(container)
 
     expect(screen.queryByText(PROJECT_TEST_COUNTRY_LABEL)).toBeInTheDocument()
     expect(screen.queryByText(COUNTRY_SEARCH_OPTION_LABEL)).not.toBeInTheDocument()

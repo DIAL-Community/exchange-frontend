@@ -1,21 +1,18 @@
 import { fireEvent, screen } from '@testing-library/react'
-import { mockRouterImplementation, mockSessionImplementation, render, waitForReactSelectToLoad } from '../../test-utils'
+import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../queries/building-block'
 import ProductDetailBuildingBlocks from '../../../components/products/ProductDetailBuildingBlocks'
 import { buildingBlocks } from './data/ProductDetailBuildingBlocks'
 import { product } from './data/ProductForm'
 
-// Mock next-router calls.
 jest.mock('next/dist/client/router')
-// Mock the next-auth's useSession.
 jest.mock('next-auth/client')
 
 describe('Unit tests for the ProductDetailBuildingBlocks component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
   const BUILDING_BLOCK_SEARCH_TEST_ID = 'building-block-search'
-  const BUILDING_BLOCK_SEARCH_PLACEHOLDER = 'Type to search...'
   const BUILDING_BLOCK_SEARCH_OPTION_1_LABEL = 'Building Block 1'
   const BUILDING_BLOCK_SEARCH_OPTION_2_LABEL = 'Building Block 2'
   const PRODUCT_TEST_BUILDING_BLOCK_LABEL = 'Test Building Block'
@@ -62,8 +59,7 @@ describe('Unit tests for the ProductDetailBuildingBlocks component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(BUILDING_BLOCK_SEARCH_PLACEHOLDER)
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     expect(container).toMatchSnapshot()
   })
 
@@ -77,8 +73,7 @@ describe('Unit tests for the ProductDetailBuildingBlocks component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(BUILDING_BLOCK_SEARCH_PLACEHOLDER)
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.click(getByTestId(PILL_REMOVE_BUTTON_TEST_ID))
     expect(screen.queryByTestId(PILL_TEST_ID)).toBeNull()
     expect(container).toMatchSnapshot()
@@ -94,8 +89,7 @@ describe('Unit tests for the ProductDetailBuildingBlocks component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(BUILDING_BLOCK_SEARCH_PLACEHOLDER)
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
 
     fireEvent.keyDown(getByTestId(BUILDING_BLOCK_SEARCH_TEST_ID).childNodes[1], { key: 'ArrowDown' })
     await screen.findByText(BUILDING_BLOCK_SEARCH_OPTION_1_LABEL)
@@ -115,7 +109,7 @@ describe('Unit tests for the ProductDetailBuildingBlocks component.', () => {
     expect(screen.queryByText(BUILDING_BLOCK_SEARCH_OPTION_2_LABEL)).not.toBeInTheDocument()
 
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(BUILDING_BLOCK_SEARCH_PLACEHOLDER)
+    await waitForAllEffectsAndSelectToLoad(container)
 
     expect(screen.queryByText(PRODUCT_TEST_BUILDING_BLOCK_LABEL)).toBeInTheDocument()
     expect(screen.queryByText(BUILDING_BLOCK_SEARCH_OPTION_1_LABEL)).not.toBeInTheDocument()

@@ -37,7 +37,7 @@ export const mockSessionImplementation = (canEdit = false, userProps = {}) => us
 
 export const mockUnauthorizedUserSessionImplementation = () => useSession.mockReturnValue([false])
 
-export const waitForReactSelectToLoad = (container) => (
+const waitForReactSelectToLoad = (container) => (
   waitFor(() => expect(container.querySelector('.react-select__loading-indicator')).toBeNull())
 )
 
