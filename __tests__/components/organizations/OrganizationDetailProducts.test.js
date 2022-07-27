@@ -1,14 +1,12 @@
 import { fireEvent, screen } from '@testing-library/react'
 import OrganizationDetailProducts from '../../../components/organizations/OrganizationDetailProducts'
 import { PRODUCT_SEARCH_QUERY } from '../../../queries/product'
-import { mockRouterImplementation, mockSessionImplementation, render, waitForReactSelectToLoad } from '../../test-utils'
+import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { products } from './data/OrganizationDetailProducts'
 import { organization } from './data/OrganizationForm'
 
-// Mock next-router calls.
 jest.mock('next/dist/client/router')
-// Mock the next-auth's useSession.
 jest.mock('next-auth/client')
 
 describe('Unit test for the OrganizationDetailProducts component.', () => {
@@ -58,8 +56,7 @@ describe('Unit test for the OrganizationDetailProducts component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText('Type to search...')
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     expect(container).toMatchSnapshot()
   })
 
@@ -73,8 +70,7 @@ describe('Unit test for the OrganizationDetailProducts component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText('Type to search...')
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.click(getByTestId(PILL_REMOVE_BUTTON_TEST_ID))
     expect(screen.queryByTestId(PILL_TEST_ID)).toBeNull()
     expect(container).toMatchSnapshot()
@@ -90,8 +86,7 @@ describe('Unit test for the OrganizationDetailProducts component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText('Type to search...')
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
 
     fireEvent.keyDown(getByTestId(PRODUCT_SEARCH_TEST_ID).childNodes[1], { key: 'ArrowDown' })
     await screen.findByText('Another Product')
@@ -104,7 +99,7 @@ describe('Unit test for the OrganizationDetailProducts component.', () => {
     expect(screen.queryByText('Another Product')).not.toBeInTheDocument()
 
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText('Type to search...')
+    await waitForAllEffectsAndSelectToLoad(container)
 
     expect(screen.queryByText('Test Product')).toBeInTheDocument()
     expect(screen.queryByText('Another Product')).not.toBeInTheDocument()

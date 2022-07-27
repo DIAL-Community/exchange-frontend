@@ -1,6 +1,6 @@
 import { DiscourseProvider } from '../../../components/context/DiscourseContext'
 import ProjectDetailLeft from '../../../components/projects/ProjectDetailLeft'
-import { mockRouterImplementation, mockSessionImplementation, mockUnauthorizedUserSessionImplementation, render, waitForReactSelectToLoad } from '../../test-utils'
+import { mockRouterImplementation, mockSessionImplementation, mockUnauthorizedUserSessionImplementation, render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
 import { project } from './data/ProjectForm'
 
