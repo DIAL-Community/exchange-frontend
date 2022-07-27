@@ -5,7 +5,7 @@ import {
   mockRouterImplementation,
   mockSessionImplementation,
   render,
-  waitForReactSelectToLoad
+  waitForAllEffectsAndSelectToLoad
 } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
 import { organization } from './data/OrganizationForm'
@@ -59,7 +59,7 @@ describe('Unit test for the OrganizationDetailOffices component.', () => {
         </CustomMockedProvider>
       )
       fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-      await waitForReactSelectToLoad(container)
+      await waitForAllEffectsAndSelectToLoad(container)
       expect(container).toMatchSnapshot()
     })
   })
@@ -74,7 +74,7 @@ describe('Unit test for the OrganizationDetailOffices component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.click(getByTestId(PILL_REMOVE_BUTTON_TEST_ID))
     expect(screen.queryByTestId(PILL_TEST_ID)).toBeNull()
   })

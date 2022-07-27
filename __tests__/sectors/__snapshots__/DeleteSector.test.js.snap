@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit tests for the OrganizationDelete component. Should open ConfirmActionDialog after clicks "Delete" button. 1`] = `
+exports[`Unit tests for the SectorDelete component. Should open ConfirmActionDialog after clicks "Delete" button. 1`] = `
 <div
   aria-labelledby="headlessui-dialog-title-5"
   aria-modal="true"
@@ -27,14 +27,14 @@ exports[`Unit tests for the OrganizationDelete component. Should open ConfirmAct
         <span
           data-testid="title"
         >
-          Deleting Test Organization
+          Deleting sector
         </span>
       </h2>
       <span
         class="flex flex-col pb-3"
         data-testid="message"
       >
-        Are you sure you want to delete this Organization?
+        Are you sure you want to delete this Sector? All associations will also be removed.
       </span>
       <div
         class="flex justify-center sm:justify-end gap-3 text-xl"

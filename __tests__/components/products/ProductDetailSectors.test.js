@@ -1,7 +1,7 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react'
 import ProductDetailSectors from '../../../components/products/ProductDetailSectors'
 import { SECTOR_SEARCH_QUERY } from '../../../queries/sector'
-import { mockRouterImplementation, mockSessionImplementation, render, waitForReactSelectToLoad } from '../../test-utils'
+import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { sectors } from './data/ProductDetailSectors'
 import { product } from './data/ProductForm'
@@ -15,7 +15,6 @@ describe('Unit test for the ProductDetailSectors component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
   const SECTOR_SEARCH_TEST_ID = 'sector-search'
-  const SECTOR_SEARCH_PLACEHOLDER = 'Type to search...'
   const SECTOR_SEARCH_OPTION_1_LABEL = 'Sector 1'
   const SECTOR_SEARCH_OPTION_2_LABEL = 'Sector 2'
   const PRODUCT_TEST_SECTOR_LABEL = 'Test Sector'
@@ -65,8 +64,7 @@ describe('Unit test for the ProductDetailSectors component.', () => {
     await waitFor(() => new Promise((res) => setTimeout(res, 0)))
 
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(SECTOR_SEARCH_PLACEHOLDER)
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     expect(container).toMatchSnapshot()
   })
 
@@ -80,8 +78,7 @@ describe('Unit test for the ProductDetailSectors component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(SECTOR_SEARCH_PLACEHOLDER)
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.click(getByTestId(PILL_REMOVE_BUTTON_TEST_ID))
     expect(screen.queryByTestId(PILL_TEST_ID)).toBeNull()
     expect(container).toMatchSnapshot()
@@ -97,8 +94,7 @@ describe('Unit test for the ProductDetailSectors component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(SECTOR_SEARCH_PLACEHOLDER)
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
 
     fireEvent.keyDown(getByTestId(SECTOR_SEARCH_TEST_ID).childNodes[1], { key: 'ArrowDown' })
     await screen.findByText(SECTOR_SEARCH_OPTION_1_LABEL)
@@ -118,7 +114,7 @@ describe('Unit test for the ProductDetailSectors component.', () => {
     expect(screen.queryByText(SECTOR_SEARCH_OPTION_2_LABEL)).not.toBeInTheDocument()
 
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(SECTOR_SEARCH_PLACEHOLDER)
+    await waitForAllEffectsAndSelectToLoad(container)
 
     expect(screen.queryByText(PRODUCT_TEST_SECTOR_LABEL)).toBeInTheDocument()
     expect(screen.queryByText(SECTOR_SEARCH_OPTION_1_LABEL)).not.toBeInTheDocument()

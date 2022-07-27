@@ -1,51 +1,21 @@
-import { gql, useQuery } from '@apollo/client'
-import { useEffect } from 'react'
+import { useQuery } from '@apollo/client'
+import { useSession } from 'next-auth/client'
 import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
+import { useUser } from '../../lib/hooks'
+import { WORKFLOW_QUERY } from '../../queries/workflow'
 import WorkflowDetailLeft from './WorkflowDetailLeft'
 import WorkflowDetailRight from './WorkflowDetailRight'
 
-const WORKFLOW_QUERY = gql`
-  query Workflow($slug: String!) {
-    workflow(slug: $slug) {
-      id
-      name
-      slug
-      imageFile
-      workflowDescription {
-        description
-        locale
-      }
-      useCaseSteps {
-        slug
-        name
-        useCase {
-          slug
-          name
-          maturity
-          imageFile
-        }
-      }
-      buildingBlocks {
-        name
-        slug
-        maturity
-        imageFile
-      }
-    }
-  }
-`
-
 const WorkflowDetail = ({ slug, locale }) => {
-  const { loading, error, data, refetch } = useQuery(WORKFLOW_QUERY, {
+  const { loading, error, data } = useQuery(WORKFLOW_QUERY, {
     variables: { slug: slug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !slug
   })
 
-  useEffect(() => {
-    refetch()
-  }, [locale, refetch])
+  const [session] = useSession()
+  const { isAdminUser: canEdit } = useUser(session)
 
   return (
     <>
@@ -59,7 +29,7 @@ const WorkflowDetail = ({ slug, locale }) => {
               <WorkflowDetailLeft workflow={data.workflow} />
             </div>
             <div className='w-full lg:w-2/3 xl:w-3/4'>
-              <WorkflowDetailRight workflow={data.workflow} />
+              <WorkflowDetailRight workflow={data.workflow} canEdit={canEdit} />
             </div>
           </div>
       }

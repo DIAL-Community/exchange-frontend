@@ -1,21 +1,18 @@
 import { fireEvent, screen } from '@testing-library/react'
 import OrganizationDetailProjects from '../../../components/organizations/OrganizationDetailProjects'
 import { PROJECT_SEARCH_QUERY } from '../../../queries/project'
-import { mockRouterImplementation, mockSessionImplementation, render, waitForReactSelectToLoad } from '../../test-utils'
+import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { projects } from './data/OrganizationDetailProjects'
 import { organization } from './data/OrganizationForm'
 
-// Mock next-router calls.
 jest.mock('next/dist/client/router')
-// Mock the next-auth's useSession.
 jest.mock('next-auth/client')
 
 describe('Unit tests for the OrganizationDetailProjects component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
   const PROJECT_SEARCH_TEST_ID = 'project-search'
-  const PROJECT_SEARCH_PLACEHOLDER = 'Type to search...'
   const PROJECT_SEARCH_OPTION_1_LABEL = 'Project 1'
   const PROJECT_SEARCH_OPTION_2_LABEL = 'Project 2'
   const ORGANIZATION_TEST_PROJECT_LABEL = 'Test Project'
@@ -62,8 +59,7 @@ describe('Unit tests for the OrganizationDetailProjects component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(PROJECT_SEARCH_PLACEHOLDER)
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     expect(container).toMatchSnapshot()
   })
 
@@ -77,8 +73,7 @@ describe('Unit tests for the OrganizationDetailProjects component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(PROJECT_SEARCH_PLACEHOLDER)
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.click(getByTestId(PILL_REMOVE_BUTTON_TEST_ID))
     expect(screen.queryByTestId(PILL_TEST_ID)).toBeNull()
     expect(container).toMatchSnapshot()
@@ -94,8 +89,7 @@ describe('Unit tests for the OrganizationDetailProjects component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(PROJECT_SEARCH_PLACEHOLDER)
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
 
     fireEvent.keyDown(getByTestId(PROJECT_SEARCH_TEST_ID).childNodes[1], { key: 'ArrowDown' })
     await screen.findByText(PROJECT_SEARCH_OPTION_1_LABEL)
@@ -115,7 +109,7 @@ describe('Unit tests for the OrganizationDetailProjects component.', () => {
     expect(screen.queryByText(PROJECT_SEARCH_OPTION_2_LABEL)).not.toBeInTheDocument()
 
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(PROJECT_SEARCH_PLACEHOLDER)
+    await waitForAllEffectsAndSelectToLoad(container)
 
     expect(screen.queryByText(ORGANIZATION_TEST_PROJECT_LABEL)).toBeInTheDocument()
     expect(screen.queryByText(PROJECT_SEARCH_OPTION_1_LABEL)).not.toBeInTheDocument()

@@ -1,15 +1,20 @@
 import { fireEvent, screen } from '@testing-library/react'
-import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
-import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../queries/building-block'
-import ProductDetailBuildingBlocks from '../../../components/products/ProductDetailBuildingBlocks'
-import { buildingBlocks } from './data/ProductDetailBuildingBlocks'
-import { product } from './data/ProductForm'
+import {
+  mockRouterImplementation,
+  mockSessionImplementation,
+  waitForAllEffectsAndSelectToLoad,
+  render
+} from '../../../test-utils'
+import CustomMockedProvider, { generateMockApolloData } from '../../../utils/CustomMockedProvider'
+import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../../queries/building-block'
+import UseCaseStepDetailBuildingBlocks from '../../../../components/use-cases/steps/UseCaseStepDetailBuildingBlocks'
+import { buildingBlocks } from './data/UseCaseStepDetailBuildingBlocks'
+import { useCaseStep } from './data/UseCaseStepForm'
 
 jest.mock('next/dist/client/router')
 jest.mock('next-auth/client')
 
-describe('Unit tests for the ProductDetailBuildingBlocks component.', () => {
+describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
   const BUILDING_BLOCK_SEARCH_TEST_ID = 'building-block-search'
@@ -25,50 +30,52 @@ describe('Unit tests for the ProductDetailBuildingBlocks component.', () => {
     mockSessionImplementation()
   })
 
-  test('Should match snapshot - without edit permission.', () => {
-    const { container } = render(
-      <CustomMockedProvider mocks={[mockBuildingBlocks]}>
-        <ProductDetailBuildingBlocks
-          canEdit={false}
-          product={product}
-        />
-      </CustomMockedProvider>
-    )
-    expect(container).toMatchSnapshot()
-  })
+  describe('Should match snapshot -', () => {
+    test('without edit permission.', () => {
+      const { container } = render(
+        <CustomMockedProvider mocks={[mockBuildingBlocks]}>
+          <UseCaseStepDetailBuildingBlocks
+            canEdit={false}
+            useCaseStep={useCaseStep}
+          />
+        </CustomMockedProvider>
+      )
+      expect(container).toMatchSnapshot()
+    })
 
-  test('Should match snapshot - with edit permission.', () => {
-    const { container } = render(
-      <CustomMockedProvider mocks={[mockBuildingBlocks]}>
-        <ProductDetailBuildingBlocks
-          canEdit={true}
-          product={product}
-        />
-      </CustomMockedProvider>
-    )
-    expect(container).toMatchSnapshot()
-  })
+    test('with edit permission.', () => {
+      const { container } = render(
+        <CustomMockedProvider mocks={[mockBuildingBlocks]}>
+          <UseCaseStepDetailBuildingBlocks
+            canEdit={true}
+            useCaseStep={useCaseStep}
+          />
+        </CustomMockedProvider>
+      )
+      expect(container).toMatchSnapshot()
+    })
 
-  test('Should match snapshot - with open editable section', async () => {
-    const { container, getByTestId } = render(
-      <CustomMockedProvider mocks={[mockBuildingBlocks]}>
-        <ProductDetailBuildingBlocks
-          canEdit={true}
-          product={product}
-        />
-      </CustomMockedProvider>
-    )
-    fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await waitForAllEffectsAndSelectToLoad(container)
-    expect(container).toMatchSnapshot()
+    test('with open editable section', async () => {
+      const { container, getByTestId } = render(
+        <CustomMockedProvider mocks={[mockBuildingBlocks]}>
+          <UseCaseStepDetailBuildingBlocks
+            canEdit={true}
+            useCaseStep={useCaseStep}
+          />
+        </CustomMockedProvider>
+      )
+      fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
+      await waitForAllEffectsAndSelectToLoad(container)
+      expect(container).toMatchSnapshot()
+    })
   })
 
   test('Should remove a pill', async () => {
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockBuildingBlocks]}>
-        <ProductDetailBuildingBlocks
+        <UseCaseStepDetailBuildingBlocks
           canEdit={true}
-          product={product}
+          useCaseStep={useCaseStep}
         />
       </CustomMockedProvider>
     )
@@ -82,9 +89,9 @@ describe('Unit tests for the ProductDetailBuildingBlocks component.', () => {
   test('Should add a pill and revert changes on "Cancel" button click', async () => {
     const { container, getByTestId, getByText } = render(
       <CustomMockedProvider mocks={[mockBuildingBlocks]}>
-        <ProductDetailBuildingBlocks
+        <UseCaseStepDetailBuildingBlocks
           canEdit={true}
-          product={product}
+          useCaseStep={useCaseStep}
         />
       </CustomMockedProvider>
     )
