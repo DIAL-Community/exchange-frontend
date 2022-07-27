@@ -661,6 +661,7 @@ export const en = {
   'dataset.no-organization': 'We do not have organization information for this dataset.',
   'dataset.no-tag': 'We do not have tag information for this dataset.',
   'dataset.no-sdg': 'We do not have SDG information for this dataset.',
+  'dataset.no-country': 'We do not have country information for this dataset.',
 
   'dataset.view-DPGA-data': 'View information submitted to DPGA',
 
