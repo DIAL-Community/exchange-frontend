@@ -10,3 +10,23 @@ export const DELETE_TAG = gql`
     }
   }
 `
+
+export const CREATE_TAG = gql`
+  mutation CreateTag(
+    $name: String!
+    $slug: String!
+    $description: String
+  ) {
+    createTag(
+      name: $name
+      slug: $slug
+      description: $description
+    ) {
+        tag {
+          name
+          slug
+        }
+        errors
+      }
+    }
+`
