@@ -822,6 +822,7 @@ export const en = {
 
   'tag.label': 'Tag',
   'tag.header': 'Tags',
+  'tag.delete.confirm.message': 'Are you sure you want to delete this Tag?',
 
   'service.label': 'Service',
   'service.header': 'Services',
@@ -1350,6 +1351,8 @@ export const en = {
   'toast.organization.delete.failure': 'Organization deletion failed',
   'toast.tags.update.success': 'Tags updated successfully',
   'toast.tags.update.failure': 'Tags update failed',
+  'toast.tag.delete.success': 'Tag deleted successfully',
+  'toast.tag.delete.failure': 'Tag deletion failed',
   'toast.sectors.update.success': 'Sectors updated successfully',
   'toast.sectors.update.failure': 'Sectors update failed',
   'toast.sector.delete.success': 'Sector deleted successfully',
