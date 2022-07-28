@@ -26,6 +26,8 @@ export const en = {
   'app.status': 'Status:',
   'app.confirm': 'Confirm',
   'app.mappingStatus': 'Mapping Status',
+  'app.name': 'Name',
+  'app.description': 'Description',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -1353,6 +1355,8 @@ export const en = {
   'toast.tags.update.failure': 'Tags update failed',
   'toast.tag.delete.success': 'Tag deleted successfully',
   'toast.tag.delete.failure': 'Tag deletion failed',
+  'toast.tag.submit.success': 'Tag submitted successfully',
+  'toast.tag.submit.failure': 'Tag submission failed',
   'toast.sectors.update.success': 'Sectors updated successfully',
   'toast.sectors.update.failure': 'Sectors update failed',
   'toast.sector.delete.success': 'Sector deleted successfully',

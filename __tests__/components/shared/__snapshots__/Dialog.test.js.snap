@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the Dialog component. Should match snapshot - when Dialog has default type and has close button. 1`] = `
+<div
+  aria-describedby="headlessui-description-10"
+  aria-modal="true"
+  class="fixed z-100"
+  data-testid="dialog"
+  id="headlessui-dialog-7"
+  role="dialog"
+>
+  <div
+    class="fixed inset-0 bg-dial-gray opacity-80"
+  />
+  <div
+    class="fixed inset-0 flex items-center justify-center"
+  >
+    <div
+      class="inline-block max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col ease-out duration-300 opacity-0 scale-95"
+      id="headlessui-dialog-panel-9"
+    >
+      <div
+        class="bg-white overflow-auto py-4 px-8 flex flex-col gap-3"
+        id="headlessui-description-10"
+      >
+        <div
+          class="flex justify-start text-xl"
+          data-testid="dialog-body"
+        >
+          Mock Dialog Body
+        </div>
+        <div
+          class="flex justify-start gap-3 text-xl"
+        />
+        <div
+          class="flex justify-end px-8 py-4 mt-8 text-xl"
+        >
+          <button
+            class="close-button"
+            data-testid="close-button"
+            type="button"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit test for the Dialog component. Should match snapshot - when Dialog has form type with submit and cancel button. 1`] = `
+<div
+  aria-describedby="headlessui-description-5"
+  aria-modal="true"
+  class="fixed z-100"
+  data-testid="dialog"
+  id="headlessui-dialog-2"
+  role="dialog"
+>
+  <div
+    class="fixed inset-0 bg-dial-gray opacity-80"
+  />
+  <div
+    class="fixed inset-0 flex items-center justify-center"
+  >
+    <div
+      class="inline-block max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col ease-out duration-300 opacity-0 scale-95"
+      id="headlessui-dialog-panel-4"
+    >
+      <div
+        class="bg-edit overflow-auto py-4 px-8 flex flex-col gap-3"
+        id="headlessui-description-5"
+      >
+        <div
+          class="flex justify-start text-xl"
+          data-testid="dialog-body"
+        >
+          Mock Dialog Body
+        </div>
+        <div
+          class="flex justify-start gap-3 text-xl"
+        >
+          <button
+            class="submit-button"
+            data-testid="submit-button"
+            type="submit"
+          >
+            Submit
+          </button>
+          <button
+            class="cancel-button"
+            data-testid="cancel-button"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
