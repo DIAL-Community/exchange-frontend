@@ -21,6 +21,7 @@ const DeleteTag = ({ tag }) => {
   const { showToast } = useContext(ToastContext)
 
   const [deleteTag, { called, reset }] = useMutation(DELETE_TAG, {
+    refetchQueries: ['SearchTags'],
     onCompleted: () => {  
       showToast(format('toast.tag.delete.success'), 'success', 'top-center')
       setDisplayConfirmDialog(false)

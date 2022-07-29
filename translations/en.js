@@ -534,6 +534,7 @@ export const en = {
   'filter.entity.maps': 'Maps',
   'filter.entity.users': 'Users',
   'filter.entity.sectors': 'Sectors',
+  'filter.entity.tags': 'Tags',
   'filter.entity.candidateOrganizations': 'Candidate Organizations',
   'filter.entity.candidateProducts': 'Candidate Products',
 
