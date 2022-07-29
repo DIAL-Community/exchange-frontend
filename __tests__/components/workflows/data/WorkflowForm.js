@@ -2,11 +2,11 @@ export const workflow = {
   id: 1,
   name: 'Test Workflow',
   slug: 'test_workflow',
-  imageFile: './test.jpg',
   workflowDescription: {
     description: '<p>test workflow description</p>',
     locale: 'en'
   },
+  imageFile: './test.jpg',
   buildingBlocks: [
     {
       id: 3,
@@ -17,4 +17,15 @@ export const workflow = {
     }
   ]
 }
-    
+
+export const createWorkflowSuccess = {
+  data: {
+    createWorkflow: {
+      workflow: {
+        slug: 'test_workflow'
+      },
+      errors: []
+    }
+  }
+}
+
