@@ -213,7 +213,7 @@ const SearchFilter = (props) => {
   }
 
   return (
-    <div className='bg-dial-gray-light md:bg-transparent w-full pt-1 md:pt-2'>
+    <div className='bg-dial-gray-light md:bg-transparent w-full max-w-catalog mx-auto pt-1 md:pt-2'>
       <div className='flex flex-wrap gap-x-4 px-3'>
         <div className='flex flex-wrap gap-x-4 gap-y-4 lg:gap-x-8 xl:gap-20'>
           <div className='hidden md:block ml-auto text-xl font-semibold my-auto animated-drawer'>

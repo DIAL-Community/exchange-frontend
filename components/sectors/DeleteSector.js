@@ -27,12 +27,9 @@ const DeleteSector = ({ sector }) => {
   }
 
   const [deleteSector, { called, reset }] = useMutation(DELETE_SECTOR, {
+    refetchQueries: ['SearchSectors'],
     onCompleted: () => {
-      showToast(
-        format('toast.sector.delete.success'),
-        'success',
-        'top-center'
-      )
+      showToast(format('toast.sector.delete.success'), 'success', 'top-center')
       setDisplayConfirmDialog(false)
     },
     onError: () => {
