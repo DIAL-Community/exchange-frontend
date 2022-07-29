@@ -67,9 +67,11 @@ const AdminMenu = ({ isCurrentOpenMenu, onToggle }) => {
           <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/settings?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdownMenuStyles}>
             {format('header.admin.settings')}
           </a>
-          <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/sectors?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdownMenuStyles}>
-            {format('header.admin.sectors')}
-          </a>
+          <Link href='/sectors' >
+            <a role='menuitem' className={dropdownMenuStyles}>
+              {format('header.admin.sectors')}
+            </a>
+          </Link>
           <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/countries?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdownMenuStyles}>
             {format('header.admin.countries')}
           </a>
