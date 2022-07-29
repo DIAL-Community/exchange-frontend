@@ -448,6 +448,11 @@ export const en = {
 
   'workflow.useCases': 'Use Cases',
   'workflow.no-building-block': 'We do not have any Building Block information for this Workflow.',
+  'workflow.name': 'Name',
+  'workflow.imageFile': 'Logo Upload',
+  'workflow.description': 'Description',
+  'workflow.submit.success': 'Workflow submitted successfully',
+  'workflow.submit.failure': 'Workflow submission failed',
 
   'country.header': 'Countries',
   'workflow.header': 'Workflows',
