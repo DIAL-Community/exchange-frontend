@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react'
 import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { TAGS_SEARCH_QUERY } from '../../../queries/tags'
+import { TAG_SEARCH_QUERY } from '../../../queries/tag'
 import UseCaseDetailTags from '../../../components/use-cases/UseCaseDetailTags'
 import { tags } from './data/UseCaseDetailTags'
 import { useCase } from './data/UseCaseForm'
@@ -17,7 +17,7 @@ describe('Unit test for the UseCaseDetailTags component.', () => {
   const USE_CASE_TEST_TAG_LABEL = 'Test Tag'
   const PILL_TEST_ID = 'pill'
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
-  const mockTags = generateMockApolloData(TAGS_SEARCH_QUERY, { search: '' }, null, tags)
+  const mockTags = generateMockApolloData(TAG_SEARCH_QUERY, { search: '' }, null, tags)
 
   beforeAll(() => {
     mockRouterImplementation()
