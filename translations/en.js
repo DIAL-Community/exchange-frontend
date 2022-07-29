@@ -528,6 +528,7 @@ export const en = {
   'filter.entity.plays': 'Plays',
   'filter.entity.maps': 'Maps',
   'filter.entity.users': 'Users',
+  'filter.entity.sectors': 'Sectors',
   'filter.entity.candidateOrganizations': 'Candidate Organizations',
   'filter.entity.candidateProducts': 'Candidate Products',
 

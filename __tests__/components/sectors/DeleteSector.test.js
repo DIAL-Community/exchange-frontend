@@ -1,12 +1,12 @@
 import { fireEvent, waitFor } from '@testing-library/react'
-import DeleteSector from '../../components/sectors/DeleteSector'
+import DeleteSector from '../../../components/sectors/DeleteSector'
 import {
   mockRouterImplementation,
   mockSessionImplementation,
   render,
   mockObserverImplementation
-} from '../test-utils'
-import CustomMockedProvider from '../utils/CustomMockedProvider'
+} from '../../test-utils'
+import CustomMockedProvider from '../../utils/CustomMockedProvider'
 import { sector } from './data/DeleteSector'
 
 jest.mock('next/dist/client/router')
