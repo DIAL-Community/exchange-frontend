@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useSession } from 'next-auth/client'
 import dynamic from 'next/dynamic'
 import Header from '../../components/Header'
@@ -12,6 +12,7 @@ import { UserFilterContext, UserFilterDispatchContext } from '../../components/c
 import { Loading, Unauthorized } from '../../components/shared/FetchStatus'
 import ClientOnly from '../../lib/ClientOnly'
 import { useUser } from '../../lib/hooks'
+import TagForm from '../../components/tags/TagForm'
 const TagsListQuery = dynamic(() => import('../../components/tags/TagList'), { ssr: false })
 
 const Tags = () => {
@@ -23,6 +24,10 @@ const Tags = () => {
 
   const { search } = useContext(UserFilterContext)
   const { setSearch } = useContext(UserFilterDispatchContext)
+
+  const [isFormDialogOpen, setIsFormDialogOpen] = useState(false)
+
+  const toggleFormDialog = () => setIsFormDialogOpen(!isFormDialogOpen)
 
   return (
     <>
@@ -36,8 +41,17 @@ const Tags = () => {
       <ClientOnly>
         {loadingUserSession ? <Loading /> : isAdminUser ? (
           <>
-            <SearchFilter {...{ search, setSearch }} hint='filter.entity.tags' />
+            <SearchFilter
+              search={search}
+              setSearch={setSearch}
+              onCreateNewClick={toggleFormDialog}
+              hint='filter.entity.tags'
+              switchView={false}
+              exportJson={false}
+              exportCsv={false}
+            />
             <TagsListQuery />
+            <TagForm isOpen={isFormDialogOpen} onClose={toggleFormDialog} />
           </>
         ) : <Unauthorized />}
       </ClientOnly>
