@@ -463,6 +463,7 @@ export const en = {
   'workflow.label': 'Workflow',
   'product.label': 'Product',
   'dataset.label': 'Dataset',
+  'country.delete.confirm.message': 'Are you sure you want to delete this Country?',
 
   'organization.detail.website': 'Website',
   'organization.detail.whenEndorsed': 'Endorsed On',
@@ -1372,6 +1373,8 @@ export const en = {
   'toast.projects.update.failure': 'Projects update failed',
   'toast.countries.update.success': 'Countries updated successfully',
   'toast.countries.update.failure': 'Countries update failed',
+  'toast.country.delete.success': 'Country deleted successfully',
+  'toast.country.delete.failure': 'Country deletion failed',
   'toast.sdgs.update.success': 'SDGs updated successfully',
   'toast.sdgs.update.failure': 'SDGs update failed',
   'toast.products.update.success': 'Products updated successfully',
