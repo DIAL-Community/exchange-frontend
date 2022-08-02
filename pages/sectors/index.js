@@ -36,7 +36,14 @@ const Sectors = () => {
       <ClientOnly>
         {loadingUserSession ? <Loading /> : isAdminUser ? (
           <>
-            <SearchFilter {...{ search, setSearch }} hint='filter.entity.sectors' />
+            <SearchFilter
+              search={search}
+              setSearch={setSearch}
+              hint='filter.entity.sectors'
+              switchView={false}
+              exportJson={false}
+              exportCsv={false}
+            />
             <SectorListQuery />
           </>
         ) : <Unauthorized />}

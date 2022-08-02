@@ -13,7 +13,7 @@ exports[`Unit test for the TagCard component Should match snapshot - user is NOT
       class="border border-dial-gray hover:border-transparent card-drop-shadow"
     >
       <div
-        class="flex justify-between my-5 px-4"
+        class="flex justify-between my-5 px-4 items-center"
       >
         <div
           class="card-link-text inline-block card-title text-button-gray"
@@ -41,10 +41,10 @@ exports[`Unit test for the TagCard component Should match snapshot - user is NOT
       class="border border-dial-gray hover:border-transparent card-drop-shadow"
     >
       <div
-        class="flex justify-between my-5 px-4"
+        class="flex justify-between my-5 px-4 items-center"
       >
         <div
-          class="inline-block card-title text-button-gray"
+          class="w-1/2 md:w-3/4 inline-block card-title text-button-gray"
         >
           <span>
             Example Tag
@@ -69,7 +69,7 @@ exports[`Unit test for the TagCard component Should match snapshot - user is an 
       class="border border-dial-gray hover:border-transparent card-drop-shadow"
     >
       <div
-        class="flex justify-between my-5 px-4"
+        class="flex justify-between my-5 px-4 items-center"
       >
         <div
           class="card-link-text inline-block card-title text-button-gray"
@@ -97,10 +97,10 @@ exports[`Unit test for the TagCard component Should match snapshot - user is an 
       class="border border-dial-gray hover:border-transparent card-drop-shadow"
     >
       <div
-        class="flex justify-between my-5 px-4"
+        class="flex justify-between my-5 px-4 items-center"
       >
         <div
-          class="inline-block card-title text-button-gray"
+          class="w-1/2 md:w-3/4 inline-block card-title text-button-gray"
         >
           <span>
             Example Tag
@@ -109,6 +109,23 @@ exports[`Unit test for the TagCard component Should match snapshot - user is an 
         <div
           class="flex flex-row gap-3"
         >
+          <button
+            class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+            data-testid="edit-button"
+            type="button"
+          >
+            <img
+              alt="Edit"
+              height="12px"
+              src="/icons/edit.svg"
+              width="12px"
+            />
+            <span
+              class="text-sm"
+            >
+              Edit
+            </span>
+          </button>
           <button
             class="delete-button gap-x-1.5"
             data-testid="delete-button"

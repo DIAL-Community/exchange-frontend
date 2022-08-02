@@ -20,6 +20,7 @@ const TagForm = ({ isOpen, onClose, tag }) => {
   const { showToast } = useContext(ToastContext)
 
   const [updateTag, { called: isSubmitInProgress, reset }] = useMutation(CREATE_TAG, {
+    refetchQueries:['SearchTags'],
     onCompleted: () => {
       showToast(
         format('toast.tag.submit.success'),

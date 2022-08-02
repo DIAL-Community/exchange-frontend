@@ -236,7 +236,7 @@ exports[`Unit test for the ProductDetailTags component. Should match snapshot - 
           class="border border-dial-gray hover:border-transparent card-drop-shadow"
         >
           <div
-            class="flex justify-between my-5 px-4"
+            class="flex justify-between my-5 px-4 items-center"
           >
             <div
               class="card-link-text inline-block card-title text-button-gray"
@@ -448,7 +448,7 @@ exports[`Unit test for the ProductDetailTags component. Should match snapshot - 
           class="border border-dial-gray hover:border-transparent card-drop-shadow"
         >
           <div
-            class="flex justify-between my-5 px-4"
+            class="flex justify-between my-5 px-4 items-center"
           >
             <div
               class="card-link-text inline-block card-title text-button-gray"
