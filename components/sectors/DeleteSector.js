@@ -23,7 +23,8 @@ const DeleteSector = ({ sector }) => {
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
 
   const toggleConfirmDialog = () => {
-    setDisplayConfirmDialog(!displayConfirmDialog)
+    event.stopPropagation()
+    setDisplayConfirmDialog(!displayConfirmDialog)     
   }
 
   const [deleteSector, { called, reset }] = useMutation(DELETE_SECTOR, {
@@ -59,7 +60,10 @@ const DeleteSector = ({ sector }) => {
 
   return (
     <>
-      <DeleteButton type='button' onClick={toggleConfirmDialog}/>
+      <DeleteButton type='button' onClick={(event) => {
+        event.stopPropagation()
+        toggleConfirmDialog()
+      }} />
       <ConfirmActionDialog
         title={format('app.deleting-entity', { entity: sector.name })}
         message={format('sector.delete.confirm.message')}

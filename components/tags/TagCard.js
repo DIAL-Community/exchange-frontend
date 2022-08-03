@@ -1,4 +1,3 @@
-import classNames from 'classnames'
 import { useSession } from 'next-auth/client'
 import { useIntl } from 'react-intl'
 import { useState } from 'react'
@@ -23,12 +22,12 @@ const TagCard = ({ tag, listType, displayEditButtons = false }) => {
       {listType === 'list'
         ? (
           <div
-            className={classNames({ 'hover:border-dial-yellow hover:text-dial-yellow cursor-pointer': !displayEditButtons }, 'border-3 border-transparent text-button-gray')}
+            className='border-3 border-transparent text-button-gray'
             data-testid='tag-card'
           >
-            <div className='border border-dial-gray hover:border-transparent card-drop-shadow'>
-              <div className='flex justify-between my-5 px-4 items-center'>
-                <div className={classNames({ 'card-link-text': !displayEditButtons }, { 'w-1/2 md:w-3/4': displayEditButtons }, 'inline-block card-title text-button-gray')}>
+            <div className='border border-dial-gray card-drop-shadow'>
+              <div className='flex justify-between my-5 px-4'>
+                <div className='inline-block card-title text-button-gray'>
                   {isAdminUser && displayEditButtons ? (
                     <span>{tag.name}</span>
                   ) : (

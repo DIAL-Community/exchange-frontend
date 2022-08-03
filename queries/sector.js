@@ -32,6 +32,9 @@ export const SECTORS_LIST_QUERY = gql`
         id
         name
         slug
+        locale
+        parentSectorId
+        isDisplayable
       }
     }
   }

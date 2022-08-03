@@ -6,17 +6,17 @@ exports[`Unit test for the TagCard component Should match snapshot - user is NOT
     class="Toastify"
   />
   <div
-    class="hover:border-dial-yellow hover:text-dial-yellow cursor-pointer border-3 border-transparent text-button-gray"
+    class="border-3 border-transparent text-button-gray"
     data-testid="tag-card"
   >
     <div
-      class="border border-dial-gray hover:border-transparent card-drop-shadow"
+      class="border border-dial-gray card-drop-shadow"
     >
       <div
-        class="flex justify-between my-5 px-4 items-center"
+        class="flex justify-between my-5 px-4"
       >
         <div
-          class="card-link-text inline-block card-title text-button-gray"
+          class="inline-block card-title text-button-gray"
         >
           <span>
             Example Tag
@@ -38,13 +38,13 @@ exports[`Unit test for the TagCard component Should match snapshot - user is NOT
     data-testid="tag-card"
   >
     <div
-      class="border border-dial-gray hover:border-transparent card-drop-shadow"
+      class="border border-dial-gray card-drop-shadow"
     >
       <div
-        class="flex justify-between my-5 px-4 items-center"
+        class="flex justify-between my-5 px-4"
       >
         <div
-          class="w-1/2 md:w-3/4 inline-block card-title text-button-gray"
+          class="inline-block card-title text-button-gray"
         >
           <span>
             Example Tag
@@ -62,17 +62,17 @@ exports[`Unit test for the TagCard component Should match snapshot - user is an 
     class="Toastify"
   />
   <div
-    class="hover:border-dial-yellow hover:text-dial-yellow cursor-pointer border-3 border-transparent text-button-gray"
+    class="border-3 border-transparent text-button-gray"
     data-testid="tag-card"
   >
     <div
-      class="border border-dial-gray hover:border-transparent card-drop-shadow"
+      class="border border-dial-gray card-drop-shadow"
     >
       <div
-        class="flex justify-between my-5 px-4 items-center"
+        class="flex justify-between my-5 px-4"
       >
         <div
-          class="card-link-text inline-block card-title text-button-gray"
+          class="inline-block card-title text-button-gray"
         >
           <span>
             Example Tag
@@ -94,13 +94,13 @@ exports[`Unit test for the TagCard component Should match snapshot - user is an 
     data-testid="tag-card"
   >
     <div
-      class="border border-dial-gray hover:border-transparent card-drop-shadow"
+      class="border border-dial-gray card-drop-shadow"
     >
       <div
-        class="flex justify-between my-5 px-4 items-center"
+        class="flex justify-between my-5 px-4"
       >
         <div
-          class="w-1/2 md:w-3/4 inline-block card-title text-button-gray"
+          class="inline-block card-title text-button-gray"
         >
           <span>
             Example Tag
