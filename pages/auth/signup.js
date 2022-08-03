@@ -340,6 +340,9 @@ const SignUp = () => {
                       </Link>
                     </div>
                   </div>
+                  <div className='h5 mt-2'>
+                    {format('signUp.privacy')} <Link href='/privacy-policy'><a className='text-dial-yellow'>{format('signUp.privacyLink')}</a></Link>
+                  </div>
                 </div>
               </form>
             </div>
