@@ -540,6 +540,7 @@ export const en = {
   'filter.entity.tags': 'Tags',
   'filter.entity.candidateOrganizations': 'Candidate Organizations',
   'filter.entity.candidateProducts': 'Candidate Products',
+  'filter.entity.countries': 'Countries',
 
   'filter.byEntity': 'Filter by {entity}',
   'filter.searchFor': 'Search for {entity}',

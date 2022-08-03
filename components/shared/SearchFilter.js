@@ -80,7 +80,10 @@ const SearchFilter = ({
       return 'projects/create'
     }
 
-    const reactEditPaths = ['playbooks', 'plays', 'organizations', 'products', 'datasets', 'use_cases', 'building_blocks', 'workflows']
+    const reactEditPaths = [
+      'playbooks', 'plays', 'organizations', 'products', 'datasets', 'use_cases', 'building_blocks', 'workflows',
+      'countries'
+    ]
     if (reactEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails
       return `/${linkPath[0]}/create`

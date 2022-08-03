@@ -30,7 +30,7 @@ export const Unauthorized = () => {
   const format = (id, values) => formatMessage({ id }, values)
 
   return (
-    <div className='text-button-gray text-lg' style={{ marginTop: '10%' }}>
+    <div className='text-button-gray text-lg' style={{ marginTop: '10%', marginBottom: '10%' }}>
       <FaExclamationCircle size='3em' className='w-full mb-5' />
       <div className='text-center mt-5'>{format('general.unauthorized')}</div>
     </div>
