@@ -315,6 +315,8 @@ export const en = {
   
   'sector.header': 'Sectors',
   'sector.label': 'Sector',
+  'sector.parent-sector.label': 'Parent Sector',
+  'sector.is-displayable.label': 'Is displayable',
   'sector.delete.confirm.message': 'Are you sure you want to delete this Sector? All associations will also be removed.',
 
   'sdg.header': 'Sustainable Development Goals',
@@ -1386,5 +1388,14 @@ export const en = {
   'toast.user-profile.update.success': 'Profile updated successfully',
   'toast.user-profile.update.failure': 'Profile update failed',
   'toast.offices.update.success': 'Offices updated successfully',
-  'toast.offices.update.failure': 'Offices update failed'
+  'toast.offices.update.failure': 'Offices update failed',
+
+  'locale.label': 'Locale',
+  'locale.english.label': 'English (en)',
+  'locale.german.label': 'German (de)',
+  'locale.spanish.label': 'Spanish (es)',
+  'locale.french.label': 'French (fr)',
+  'locale.portuguese.label': 'Portuguese (pt)',
+  'locale.swahili.label': 'Swahili (sw)',
+  'locale.czech.label': 'Czech (cs)'
 }
