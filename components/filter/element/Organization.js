@@ -17,7 +17,7 @@ export const OrganizationAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const controlPlaceholder = placeholder ??
     format('filter.byEntity', {
@@ -30,10 +30,10 @@ export const OrganizationAutocomplete = ({
     }
 
     const response = await client.query({
-      query: query,
+      query,
       variables: {
         search: input,
-        aggregatorOnly: aggregatorOnly
+        aggregatorOnly
       }
     })
 
@@ -82,7 +82,7 @@ export const OrganizationFilters = (props) => {
   const { aggregatorOnly, organizations, setOrganizations } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeOrganization = (organizationSlug) => {
     setOrganizations(organizations.filter(({ slug }) => slug !== organizationSlug))

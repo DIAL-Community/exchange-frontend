@@ -13,7 +13,7 @@ describe('Unit test for the Input component.', () => {
   test('Should call onChange function.', () => {
     const onChange = jest.fn()
     const input = render(<Input data-testid={TEST_ID} value='test' onChange={onChange} />).getByTestId(TEST_ID)
-    fireEvent.change(input, { target: { value: 'updated' }})
+    fireEvent.change(input, { target: { value: 'updated' } })
     expect(onChange).toBeCalledTimes(1)
   })
 })

@@ -1,6 +1,4 @@
-/* global IntersectionObserver: false */
-
-import { createRef, useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -57,7 +55,7 @@ export const PLAYBOOK_PLAYS_QUERY = gql`
 
 const Play = ({ play, index }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { updateSlugInformation, setWindowHeight } = useContext(PlaybookDetailDispatchContext)
 
@@ -138,12 +136,12 @@ const Play = ({ play, index }) => {
 
 const PlaybookDetailPlayList = ({ slug, locale }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { loading, error, data, fetchMore, refetch } = useQuery(PLAYBOOK_PLAYS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
-      slug: slug
+      slug
     },
     context: { headers: { 'Accept-Language': locale } }
   })
@@ -157,7 +155,7 @@ const PlaybookDetailPlayList = ({ slug, locale }) => {
       variables: {
         after: pageInfo.endCursor,
         first: DEFAULT_PAGE_SIZE,
-        slug: slug
+        slug
       }
     })
   }

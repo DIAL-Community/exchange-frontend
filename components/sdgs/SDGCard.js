@@ -16,7 +16,7 @@ const containerElementStyle = `
 
 const SDGCard = ({ sdg, listType, filterDisplayed }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const sdgTargetContainer = createRef()
   const [sdgTargetOverflow, setSdgTargetOverflow] = useState(false)

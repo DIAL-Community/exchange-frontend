@@ -5,7 +5,7 @@ import { FILTER_ITEMS, MAPPED_FILTER_ITEMS_URL } from '../context/FilterContext'
 
 const TabNav = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const activeTab = FILTER_ITEMS.indexOf(props.activeTab)
 

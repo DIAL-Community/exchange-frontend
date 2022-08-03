@@ -17,7 +17,7 @@ export const BuildingBlockAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('buildingBlock.label') })
 
@@ -56,7 +56,7 @@ export const BuildingBlockFilters = (props) => {
   const { buildingBlocks, setBuildingBlocks } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeBuildingBlock = (buildingBlockId) => {
     setBuildingBlocks(buildingBlocks.filter(({ slug }) => slug !== buildingBlockId))

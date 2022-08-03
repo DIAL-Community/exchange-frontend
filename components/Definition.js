@@ -4,7 +4,7 @@ import parse from 'html-react-parser'
 
 const Description = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
   const [openTab, setOpenTab] = useState(0)
 
   const tabClickHandler = (e, tabNumber) => {

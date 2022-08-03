@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 
 const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isConfirming }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   // Dialog should contain at least one focusable element - documentation of @headlessui/react
   let initialFocusRef = useRef(null)

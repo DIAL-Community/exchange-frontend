@@ -62,7 +62,7 @@ query SearchWorkflows(
 
 const WorkflowList = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
@@ -123,14 +123,14 @@ const WorkflowListQuery = () => {
   const { sdgs, useCases, search } = useContext(WorkflowFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { loading, error, data, fetchMore } = useQuery(WORKFLOWS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       sdgs: sdgs.map(sdg => sdg.value),
       useCases: useCases.map(useCase => useCase.value),
-      search: search
+      search
     }
   })
 
@@ -141,7 +141,7 @@ const WorkflowListQuery = () => {
         first: DEFAULT_PAGE_SIZE,
         sdgs: sdgs.map(sdg => sdg.value),
         useCases: useCases.map(useCase => useCase.value),
-        search: search
+        search
       }
     })
   }

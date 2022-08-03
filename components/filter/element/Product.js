@@ -17,7 +17,7 @@ export const ProductAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('product.label') })
 
@@ -56,7 +56,7 @@ export const ProductFilters = (props) => {
   const { products, setProducts } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeProduct = (productSlug) => {
     setProducts(products.filter(({ slug }) => slug !== productSlug))

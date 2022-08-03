@@ -9,7 +9,7 @@ import ClientOnly from '../../../lib/ClientOnly'
 
 const CreateProduct = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <>

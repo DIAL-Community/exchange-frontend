@@ -7,7 +7,7 @@ const CountryInfo = (props) => {
   const router = useRouter()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [active, setActive] = useState(country?.projects[0].slug)
 

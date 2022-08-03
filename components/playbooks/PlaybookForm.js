@@ -140,7 +140,7 @@ const FormTextEditor = ({ control, name, placeholder = null, required = false, i
 // eslint-disable-next-line react/display-name
 export const PlaybookForm = React.memo(({ playbook }) => {
   const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
   const [session] = useSession()

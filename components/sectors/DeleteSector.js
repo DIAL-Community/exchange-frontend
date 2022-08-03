@@ -10,7 +10,7 @@ import { DELETE_SECTOR } from '../../mutations/sectors'
 
 const DeleteSector = ({ sector }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { showToast } = useContext(ToastContext)
 

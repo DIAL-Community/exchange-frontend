@@ -20,7 +20,7 @@ const DatasetListQuery = dynamic(() => import('../../components/datasets/Dataset
 
 const Datasets = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { search } = useContext(DatasetFilterContext)
   const { setSearch } = useContext(DatasetFilterDispatchContext)

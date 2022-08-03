@@ -20,7 +20,7 @@ const CreateWorkflow = () => {
   const { slug } = router.query
 
   const { loading, error, data } = useQuery(WORKFLOW_DETAIL_QUERY, {
-    variables: { slug: slug, locale: locale },
+    variables: { slug, locale },
     skip: !slug,
     context: { headers: { 'Accept-Language': locale } }
   })

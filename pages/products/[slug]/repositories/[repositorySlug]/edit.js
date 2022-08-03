@@ -33,7 +33,7 @@ const REPOSITORY_QUERY = gql`
 
 const ProductHeader = ({ product }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <div className='border'>
@@ -106,7 +106,7 @@ const PageDefinition = ({ slug, repositorySlug }) => {
 
 const EditRepository = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const router = useRouter()
   const { slug, repositorySlug } = router.query

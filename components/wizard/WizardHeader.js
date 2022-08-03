@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 
 const ProgressBar = ({ stage, setStage }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <div className='w-full lg:w-1/2 pt-3 lg:float-right'>
@@ -90,7 +90,7 @@ const ProgressBar = ({ stage, setStage }) => {
 
 const WizardHeader = ({ stage, setStage }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <>

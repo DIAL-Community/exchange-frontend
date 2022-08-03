@@ -43,7 +43,7 @@ const PLAY_QUERY = gql`
 const PlayInformation = ({ slug, playSlug, locale }) => {
 
   const { loading, error, data, refetch } = useQuery(PLAY_QUERY, {
-    variables: { playbookSlug: slug, playSlug: playSlug },
+    variables: { playbookSlug: slug, playSlug },
     skip: !slug && !playSlug,
     context: { headers: { 'Accept-Language': locale } }
   })

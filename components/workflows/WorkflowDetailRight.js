@@ -6,7 +6,7 @@ import WorkflowDetailBuildingBlocks from './WorkflowDetailBuildingBlocks'
 
 const WorkflowDetailRight = ({ workflow, canEdit }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const useCases = (() => {
     if (!workflow.useCaseSteps) {

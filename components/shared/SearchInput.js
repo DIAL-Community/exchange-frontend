@@ -20,7 +20,7 @@ export const SearchInput = ({ value, placeholder, onChange, onBlur, onSearchIcon
       <span className='my-auto pr-1 bg-white text-2xl text-dial-gray-dark border-dial-gray-dark'>
         <MdClose
           data-testid='clear-icon-button'
-          onClick={() => onChange({ target: { value: EMPTY_VALUE }})}
+          onClick={() => onChange({ target: { value: EMPTY_VALUE } })}
           className='cursor-pointer'
         />
       </span>

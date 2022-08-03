@@ -1,4 +1,3 @@
-/* global fetch:false */
 import { useSession } from 'next-auth/client'
 import { useEffect, useState } from 'react'
 import { FaCode, FaHome, FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
@@ -10,7 +9,7 @@ const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-ye
 
 const ProductCard = ({ product, listType, filterDisplayed }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [session] = useSession()
 
@@ -233,7 +232,7 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
 
 const CancelButton = ({ status, setStatus, loading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <button
@@ -253,7 +252,7 @@ const CancelButton = ({ status, setStatus, loading }) => {
 
 const ToggleApprovalButton = ({ style, setStatus, loading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <button
@@ -268,7 +267,7 @@ const ToggleApprovalButton = ({ style, setStatus, loading }) => {
 
 const ApproveButton = ({ product, status, setStatus, loading, setLoading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [session] = useSession()
 
@@ -317,7 +316,7 @@ const ApproveButton = ({ product, status, setStatus, loading, setLoading }) => {
 
 const ToggleRejectionButton = ({ style, setStatus, loading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <button
@@ -332,7 +331,7 @@ const ToggleRejectionButton = ({ style, setStatus, loading }) => {
 
 const DeclineButton = ({ product, status, setStatus, loading, setLoading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [session] = useSession()
 

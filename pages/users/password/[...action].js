@@ -1,4 +1,3 @@
-/* global fetch:false */
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -64,7 +63,7 @@ const PasswordAction = () => {
 
     const resetBody = {
       user: {
-        password: password,
+        password,
         password_confirmation: passwordConfirmation,
         reset_password_token: resetToken
       }

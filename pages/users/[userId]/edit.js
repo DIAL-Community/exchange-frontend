@@ -35,7 +35,7 @@ const USER_QUERY = gql`
 
 const EditUserPageDefinition = ({ userId, locale }) => {
   const { loading, error, data } = useQuery(USER_QUERY, {
-    variables: { userId: userId, locale: locale },
+    variables: { userId, locale },
     skip: !userId,
     context: { headers: { 'Accept-Language': locale } }
   })

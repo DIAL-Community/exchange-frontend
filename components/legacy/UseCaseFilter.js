@@ -16,7 +16,7 @@ const UseCaseFilter = (props) => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { sdgs, showBeta } = useContext(UseCaseFilterContext)
   const { setSDGs, setShowBeta } = useContext(UseCaseFilterDispatchContext)

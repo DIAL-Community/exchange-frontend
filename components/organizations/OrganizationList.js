@@ -75,7 +75,7 @@ const OrganizationListQuery = () => {
   const { aggregator, endorser, endorserLevel, countries, sectors, years, search } = useContext(OrganizationFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { loading, error, data, fetchMore } = useQuery(ORGANIZATIONS_QUERY, {
     variables: {
@@ -85,8 +85,8 @@ const OrganizationListQuery = () => {
       years: years.map(year => year.value),
       aggregatorOnly: aggregator,
       endorserOnly: endorser,
-      endorserLevel: endorserLevel,
-      search: search
+      endorserLevel,
+      search
     },
     fetchPolicy: 'network-only',
     nextFetchPolicy: 'cache-first'
@@ -102,8 +102,8 @@ const OrganizationListQuery = () => {
         years: years.map(year => year.value),
         aggregatorOnly: aggregator,
         endorserOnly: endorser,
-        endorserLevel: endorserLevel,
-        search: search
+        endorserLevel,
+        search
       }
     })
   }
@@ -238,10 +238,10 @@ const OrganizationListQuery = () => {
                             visibleStopIndex
                           }) => {
                             onItemsRendered({
-                              overscanStartIndex: overscanStartIndex,
-                              overscanStopIndex: overscanStopIndex,
-                              visibleStartIndex: visibleStartIndex,
-                              visibleStopIndex: visibleStopIndex
+                              overscanStartIndex,
+                              overscanStopIndex,
+                              visibleStartIndex,
+                              visibleStopIndex
                             })
                           }}
                           ref={ref}

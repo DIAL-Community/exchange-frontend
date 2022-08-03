@@ -88,7 +88,7 @@ describe('Unit tests for WorkflowForm component.', () => {
     expect(getByTestId(WORKFLOW_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
 
-  describe('Should display toast on submit - ', () => {
+  describe('Should display toast on submit -', () => {
     test('Success.', async () => {
       mockSessionImplementation(true)
       const mockCreateWorkflow = generateMockApolloData(

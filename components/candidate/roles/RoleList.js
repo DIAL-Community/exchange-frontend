@@ -91,7 +91,7 @@ const RoleList = (props) => {
   )
 }
 
-const RoleListQuery = ( {displayType} ) => {
+const RoleListQuery = ({ displayType }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
@@ -101,7 +101,7 @@ const RoleListQuery = ( {displayType} ) => {
   const { loading, error, data, fetchMore } = useQuery(ROLES_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
-      search: search
+      search
     },
     onCompleted: (data) => {
       setResultCounts({ ...resultCounts, ...{ [['filter.entity.candidateRoles']]: data.searchCandidateRoles.totalCount } })
@@ -123,7 +123,7 @@ const RoleListQuery = ( {displayType} ) => {
       variables: {
         first: DEFAULT_PAGE_SIZE,
         after: pageInfo.endCursor,
-        search: search
+        search
       }
     })
   }

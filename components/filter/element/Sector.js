@@ -20,7 +20,7 @@ export const SectorAutocomplete = ({
   const { locale } = router
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('sector.label') })
 
@@ -60,7 +60,7 @@ export const SectorFilters = (props) => {
   const { sectors, setSectors } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeSector = (sectorSlug) => {
     setSectors(sectors.filter(({ slug }) => slug !== sectorSlug))

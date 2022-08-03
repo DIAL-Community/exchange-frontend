@@ -17,7 +17,7 @@ const PlayNavigator = ({ playList }) => {
       <div>
         {playList && playList.map((play, i) => {
           return (
-            <div key={i} className='border-2 p-2' onClick={(e) => changePlay(i)}>
+            <div key={i} className='border-2 p-2' onClick={() => changePlay(i)}>
               {play.name}
             </div>
           )

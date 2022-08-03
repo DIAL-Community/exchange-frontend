@@ -43,6 +43,5 @@ export const allValues = {
   mobileServices: [],
   buildingBlocks: ['buildingBlocks'],
   productSortHint: '',
-  projectPhase: '',
   projectSortHint: ''
 }

@@ -35,7 +35,7 @@ const USER_QUERY = gql`
 
 const UserPageDefinition = ({ userId, locale }) => {
   const { loading, error, data, refetch } = useQuery(USER_QUERY, {
-    variables: { userId: userId },
+    variables: { userId },
     skip: !userId,
     context: { headers: { 'Accept-Language': locale } }
   })
@@ -75,7 +75,7 @@ const User = () => {
     return <Unauthorized />
   }
 
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { locale, query } = router
   const { userId } = query

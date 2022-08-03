@@ -1,5 +1,3 @@
-/* global fetch:false */
-
 import { useState, useEffect, useContext } from 'react'
 import parse from 'html-react-parser'
 import { FaThumbsUp, FaHeart, FaLightbulb } from 'react-icons/fa'
@@ -9,7 +7,7 @@ import { DiscourseContext, DiscourseDispatchContext } from '../context/Discourse
 
 export const DiscourseCount = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
   const { postCount } = useContext(DiscourseContext)
 
   return (
@@ -31,7 +29,7 @@ export const DiscourseCount = () => {
 
 export const DiscourseForum = ({ topicId, objType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [posts, setPosts] = useState()
   const [showPost, setShowPost] = useState(false)
@@ -75,9 +73,9 @@ export const DiscourseForum = ({ topicId, objType }) => {
     e.preventDefault()
     const postURL = new URL(process.env.NEXT_PUBLIC_API_URL + '/api/discourse')
     postURL.search = new URLSearchParams({
-      topicId: topicId,
+      topicId,
       username: session.user.name,
-      objType: objType,
+      objType,
       raw: newPost
     })
     fetch(postURL).then(res => {

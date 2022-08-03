@@ -17,7 +17,7 @@ const EditProject = () => {
   const { locale, query: { slug } } = useRouter()
 
   const { loading, error, data } = useQuery(PROJECT_QUERY, {
-    variables: { slug: slug, locale: locale },
+    variables: { slug, locale },
     skip: !slug,
     context: { headers: { 'Accept-Language': locale } }
   })

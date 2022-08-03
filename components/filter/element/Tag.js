@@ -61,7 +61,7 @@ export const TagFilters = (props) => {
   const { tags, setTags } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeTag = (tagId) => {
     setTags(tags.filter(tag => tag.value !== tagId))

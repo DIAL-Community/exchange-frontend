@@ -40,8 +40,8 @@ const EditMoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
   const { loading, error, data } = useQuery(MOVE_QUERY, {
     variables: {
       playbookSlug: slug,
-      playSlug: playSlug,
-      moveSlug: moveSlug
+      playSlug,
+      moveSlug
     },
     skip: !slug && !playSlug && !moveSlug,
     context: { headers: { 'Accept-Language': locale } }
@@ -84,7 +84,7 @@ const EditMove = () => {
       </Head>
       <Header />
       <ClientOnly>
-        <EditMoveInformation {...{slug, playSlug, moveSlug, locale }} />
+        <EditMoveInformation {...{ slug, playSlug, moveSlug, locale }} />
       </ClientOnly>
       <Footer />
     </>

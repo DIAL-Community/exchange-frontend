@@ -88,7 +88,7 @@ const DatasetListQuery = () => {
 
   const { locale } = useRouter()
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { loading, error, data, fetchMore, refetch } = useQuery(DATASETS_QUERY, {
     variables: {
@@ -100,7 +100,7 @@ const DatasetListQuery = () => {
       sdgs: sdgs.map(sdg => sdg.value),
       tags: tags.map(tag => tag.label),
       datasetTypes: datasetTypes.map(datasetType => datasetType.value),
-      search: search
+      search
     },
     context: { headers: { 'Accept-Language': locale } }
   })
@@ -117,7 +117,7 @@ const DatasetListQuery = () => {
         sdgs: sdgs.map(sdg => sdg.value),
         tags: tags.map(tag => tag.label),
         datasetTypes: datasetTypes.map(datasetType => datasetType.value),
-        search: search
+        search
       }
     })
   }
@@ -259,10 +259,10 @@ const DatasetListQuery = () => {
                           visibleStopIndex
                         }) => {
                           onItemsRendered({
-                            overscanStartIndex: overscanStartIndex,
-                            overscanStopIndex: overscanStopIndex,
-                            visibleStartIndex: visibleStartIndex,
-                            visibleStopIndex: visibleStopIndex
+                            overscanStartIndex,
+                            overscanStopIndex,
+                            visibleStartIndex,
+                            visibleStopIndex
                           })
                         }}
                         ref={ref}

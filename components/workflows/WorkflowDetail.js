@@ -9,7 +9,7 @@ import WorkflowDetailRight from './WorkflowDetailRight'
 
 const WorkflowDetail = ({ slug, locale }) => {
   const { loading, error, data } = useQuery(WORKFLOW_DETAIL_QUERY, {
-    variables: { slug: slug },
+    variables: { slug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !slug
   })

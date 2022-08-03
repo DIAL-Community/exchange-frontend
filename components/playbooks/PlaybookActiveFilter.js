@@ -14,7 +14,7 @@ const PlaybookActiveFilter = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { tags, products } = useContext(PlaybookFilterContext)
   const { setTags, setProducts } = useContext(PlaybookFilterDispatchContext)

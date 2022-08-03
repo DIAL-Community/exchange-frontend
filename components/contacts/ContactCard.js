@@ -5,7 +5,7 @@ const contactTextStyle = 'inline-block card-title text-button-gray'
 
 const ContactCard = ({ contact, listType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     listType === 'list'

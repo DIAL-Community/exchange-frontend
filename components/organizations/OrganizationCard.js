@@ -13,9 +13,9 @@ const containerElementStyle = `
   text-organization hover:text-dial-yellow
 `
 
-const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = false }) => {
+const OrganizationCard = ({ organization, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <>

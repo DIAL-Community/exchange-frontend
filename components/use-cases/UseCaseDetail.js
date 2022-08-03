@@ -9,7 +9,7 @@ import UseCaseDetailRight from './UseCaseDetailRight'
 
 const UseCaseDetail = ({ slug, locale }) => {
   const { loading, error, data } = useQuery(USE_CASE_DETAIL_QUERY, {
-    variables: { slug: slug },
+    variables: { slug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !slug
   })

@@ -11,6 +11,7 @@ import ContactCard from '../contacts/ContactCard'
 import EditableSection from '../shared/EditableSection'
 import { UPDATE_ORGANIZATION_CONTACTS } from '../../mutations/organization'
 import ValidationError from '../shared/ValidationError'
+import { emailRegex } from '../shared/emailRegex'
 
 const inputSectionStyle = 'flex flex-col gap-y-2 mb-2 mx-4 w-full'
 
@@ -28,8 +29,6 @@ const OrganizationDetailContacts = ({ organization }) => {
   const { locale } = useRouter() 
     
   const { showToast } = useContext(ToastContext) 
-
-  const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   
   const isContactNameUnique = (name) => !contacts.some(contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase())
 
@@ -76,7 +75,7 @@ const OrganizationDetailContacts = ({ organization }) => {
       updateOrganizationContacts({
         variables: {
           slug: organization.slug,
-          contacts: contacts
+          contacts
         },
         context: {
           headers: {
@@ -133,7 +132,7 @@ const OrganizationDetailContacts = ({ organization }) => {
               )}
               rules={{ 
                 required: format('validation.required'), 
-                pattern: { value: emailRegex , message: format('validation.email') }
+                pattern: { value: emailRegex, message: format('validation.email') }
               }}
             />
             {errors.email && <ValidationError value={errors.email?.message} />}

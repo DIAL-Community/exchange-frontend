@@ -9,7 +9,7 @@ import Footer from '../../components/Footer'
 
 export default function SignIn ({ csrfToken }) {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [loading, setLoading] = useState(false)
   const formEl = useRef()

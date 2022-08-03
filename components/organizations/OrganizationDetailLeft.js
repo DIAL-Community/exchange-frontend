@@ -1,5 +1,3 @@
-/* global fetch:false */
-
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
@@ -22,7 +20,7 @@ const CANDIDATE_ROLE_QUERY = gql`
 
 const OrganizationDetailLeft = ({ organization }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [session] = useSession()
   const { locale } = useRouter()

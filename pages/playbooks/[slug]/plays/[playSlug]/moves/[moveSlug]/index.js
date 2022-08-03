@@ -38,8 +38,8 @@ const MoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
   const { loading, error, data, refetch } = useQuery(MOVE_QUERY, {
     variables: {
       playbookSlug: slug,
-      playSlug: playSlug,
-      moveSlug: moveSlug
+      playSlug,
+      moveSlug
     },
     skip: !slug && !playSlug && !moveSlug,
     context: { headers: { 'Accept-Language': locale } }
@@ -89,7 +89,7 @@ const Move = () => {
       </Head>
       <Header />
       <ClientOnly>
-        <MoveInformation {...{slug, playSlug, moveSlug, locale}} />
+        <MoveInformation {...{ slug, playSlug, moveSlug, locale }} />
       </ClientOnly>
       <Footer />
     </>

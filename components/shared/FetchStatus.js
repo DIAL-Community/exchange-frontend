@@ -3,7 +3,7 @@ import { FaSpinner, FaExclamationCircle, FaDownload } from 'react-icons/fa'
 
 export const Loading = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <div className='text-button-gray text-lg' style={{ marginTop: '10%' }}>
@@ -15,7 +15,7 @@ export const Loading = () => {
 
 export const Error = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <div className='text-button-gray text-lg' style={{ marginTop: '10%' }}>
@@ -27,7 +27,7 @@ export const Error = () => {
 
 export const Unauthorized = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <div className='text-button-gray text-lg' style={{ marginTop: '10%' }}>
@@ -39,7 +39,7 @@ export const Unauthorized = () => {
 
 export const ReadyToDownload = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <div className='text-button-gray text-lg' style={{ marginTop: '10%' }}>

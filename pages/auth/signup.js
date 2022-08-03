@@ -1,5 +1,3 @@
-/* global fetch:false */
-
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useState } from 'react'
@@ -116,7 +114,7 @@ const SignUp = () => {
     }
 
     const response = await client.query({
-      query: query,
+      query,
       variables: {
         search: input
       }

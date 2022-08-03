@@ -8,7 +8,7 @@ import Checkbox from '../shared/Checkbox'
 
 const UseCaseFilter = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { setHintDisplayed } = useContext(FilterContext)
 

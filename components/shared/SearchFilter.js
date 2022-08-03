@@ -1,7 +1,3 @@
-/* global fetch:false */
-/* global Response:false */
-/* global ReadableStream:false */
-
 import { saveAs } from 'file-saver'
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
@@ -37,7 +33,7 @@ const SearchFilter = ({
   const [session] = useSession()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [searchTerm, setSearchTerm] = useState(search)
 

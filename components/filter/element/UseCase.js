@@ -17,7 +17,7 @@ export const UseCaseAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('useCase.label') })
 
@@ -56,7 +56,7 @@ export const UseCaseFilters = (props) => {
   const { useCases, setUseCases } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeUseCase = (useCaseId) => {
     setUseCases(useCases.filter(({ slug }) => slug !== useCaseId))

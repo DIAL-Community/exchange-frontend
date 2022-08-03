@@ -17,7 +17,7 @@ export const SDGAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('sdg.shortLabel') })
 
@@ -56,7 +56,7 @@ export const SDGFilters = (props) => {
   const { sdgs, setSDGs } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeSDG = (sdgId) => {
     setSDGs(sdgs.filter(sdg => sdg.value !== sdgId))

@@ -17,18 +17,18 @@ import Checkbox from '../shared/Checkbox'
 
 const ProductFilter = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { setHintDisplayed } = useContext(FilterContext)
 
   const {
     withMaturity, productDeployable, forCovid, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, productTypes, endorsers
+    useCases, workflows, buildingBlocks, endorsers
   } = useContext(ProductFilterContext)
 
   const {
     setWithMaturity, setProductDeployable, setForCovid, setSectors, setCountries, setOrganizations,
-    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setProductTypes, setEndorsers
+    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers
   } = useContext(ProductFilterDispatchContext)
 
   const toggleWithMaturity = () => {
