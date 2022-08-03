@@ -19,7 +19,7 @@ describe('UseCaseDetailLeft component.', () => {
     mockRouterImplementation()
   })
 
-  describe(' Edit button', () => {
+  describe('Edit button', () => {
     test('Should not be visible for user who is not an admin.', () => {
       mockUnauthorizedUserSessionImplementation()
       const { queryByTestId } = render(

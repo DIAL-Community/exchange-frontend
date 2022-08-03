@@ -68,7 +68,7 @@ const PlayPreview = () => {
   const { setPreviewDisplayed } = useContext(PlayPreviewDispatchContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [duplicatePlay, { data: duplicatedPlay }] = useMutation(DUPLICATE_PLAY)
   const [fetchPlayDetail, { data }] = useLazyQuery(PLAY_QUERY, {

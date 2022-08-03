@@ -1,5 +1,3 @@
-/* global fetch:false */
-
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useState } from 'react'
@@ -116,7 +114,7 @@ const SignUp = () => {
     }
 
     const response = await client.query({
-      query: query,
+      query,
       variables: {
         search: input
       }
@@ -341,6 +339,9 @@ const SignUp = () => {
                         </a>
                       </Link>
                     </div>
+                  </div>
+                  <div className='h5 mt-2'>
+                    {format('signUp.privacy')} <Link href='/privacy-policy'><a className='text-dial-yellow'>{format('signUp.privacyLink')}</a></Link>
                   </div>
                 </div>
               </form>

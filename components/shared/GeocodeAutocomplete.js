@@ -22,7 +22,7 @@ const GeocodeAutocomplete = React.forwardRef(({ value, onChange }, ref) => {
 
   const fetchLocationOptions = async (searchText) => {
     if (searchText !== '') {
-      const response = await suggest(searchText, { authentication, params: { countryCode: countryCodes }})
+      const response = await suggest(searchText, { authentication, params: { countryCode: countryCodes } })
 
       return response?.suggestions?.map(({ text, magicKey }) => ({
         value: magicKey,

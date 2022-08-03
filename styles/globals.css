@@ -252,7 +252,8 @@ body {
     @apply disabled:bg-dial-gray;
   }
 
-  button.cancel-button {
+  button.cancel-button,
+  button.close-button {
     @apply flex;
     @apply items-center;
     @apply py-2;

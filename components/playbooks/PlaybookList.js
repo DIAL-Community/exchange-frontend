@@ -52,7 +52,7 @@ export const PLAYBOOKS_QUERY = gql`
 
 const PlaybookList = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [session] = useSession()
 
@@ -105,7 +105,7 @@ const PlaybookListQuery = () => {
   const { loading, error, data, fetchMore, refetch } = useQuery(PLAYBOOKS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
-      search: search,
+      search,
       products: products.map(product => product.value),
       tags: tags.map(tag => tag.label)
     },
@@ -117,7 +117,7 @@ const PlaybookListQuery = () => {
       variables: {
         first: DEFAULT_PAGE_SIZE,
         after: pageInfo.endCursor,
-        search: search,
+        search,
         products: products.map(product => product.value),
         tags: tags.map(tag => tag.label)
       }

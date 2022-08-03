@@ -18,7 +18,7 @@ export const OperatorAutocomplete = ({
   const client = useApolloClient()
   
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
   
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('operator.label') })
   
@@ -59,7 +59,7 @@ export const OperatorFilters = (props) => {
   const { operators, setOperators } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeOperator = (operatorValue) => {
     setOperators(operators.filter(({ value }) => value !== operatorValue))

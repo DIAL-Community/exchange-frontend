@@ -7,7 +7,7 @@ import { FilterContext, FILTER_ITEMS, MAPPED_FILTER_ITEMS_URL } from '../context
 
 const MobileNav = ({ activeTab }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [showTabs, setShowTabs] = useState(false)
   const { resultCounts } = useContext(FilterContext)
@@ -64,7 +64,7 @@ const MobileNav = ({ activeTab }) => {
           <div className='w-full'>
             <ul className='flex flex-col gap-2 mb-2 list-none pt-2'>
               {
-                FILTER_ITEMS.map((filterItem, index) => {
+                FILTER_ITEMS.map((filterItem) => {
                   let href = MAPPED_FILTER_ITEMS_URL[filterItem]
                   if (href.indexOf('map') >= 0) {
                     href = `${href}/projects`

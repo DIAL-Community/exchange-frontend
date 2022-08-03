@@ -35,7 +35,7 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
   const { locale } = useRouter()
 
   const { data } = useQuery(MOVE_QUERY, {
-    variables: { playSlug: playSlug, slug: moveSlug },
+    variables: { playSlug, slug: moveSlug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !moveSlug
   })

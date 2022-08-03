@@ -1,32 +1,13 @@
-/* global fetch:false */
-
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
-import ReCAPTCHA from 'react-google-recaptcha'
-import { FaSpinner } from 'react-icons/fa'
-import { useEffect, useRef, useState } from 'react'
-import { gql, useLazyQuery } from '@apollo/client'
-import { DiscourseCount } from '../shared/discourse'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
 
-const CANDIDATE_ROLE_QUERY = gql`
-  query CandidateRole($email: String!, $datasetId: String!, $organizationId: String!) {
-    candidateRole(email: $email, datasetId: $datasetId, organizationId: $organizationId) {
-      id
-      datasetId
-      organizationId
-    }
-  }
-`
-
-const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
-
 const DatasetDetailLeft = ({ dataset }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [session] = useSession()
   const router = useRouter()

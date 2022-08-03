@@ -2,12 +2,9 @@ import { useContext } from 'react'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { gql, useMutation } from '@apollo/client'
-import { useRouter } from 'next/router'
-import { convertToKey } from '../context/FilterContext'
 import { PlayPreviewDispatchContext } from './PlayPreviewContext'
 import { PlayListContext, PlayListDispatchContext } from './PlayListContext'
 import { SOURCE_TYPE_ASSIGNING } from './PlayList'
-const collectionPath = convertToKey('Plays')
 
 const UPDATE_PLAY_ORDER = gql`
   mutation (
@@ -32,7 +29,7 @@ const UPDATE_PLAY_ORDER = gql`
 
 const PlayCard = ({ playbook, play, sourceType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { currentPlays } = useContext(PlayListContext)
   const { setCurrentPlays } = useContext(PlayListDispatchContext)

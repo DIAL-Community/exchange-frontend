@@ -753,7 +753,7 @@ exports[`Unit tests for UseCaseForm component. Should render Unauthorized compon
   />
   <div
     class="text-button-gray text-lg"
-    style="margin-top: 10%;"
+    style="margin-top: 10%; margin-bottom: 10%;"
   >
     <svg
       class="w-full mb-5"

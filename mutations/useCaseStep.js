@@ -41,3 +41,24 @@ export const UPDATE_USE_CASE_STEP_PRODUCTS = gql`
     }
   }
 `
+
+export const UPDATE_USE_CASE_STEP_BUILDING_BLOCKS = gql`
+  mutation UpdateUseCaseStepBuildingBlocks (
+    $buildingBlocksSlugs: [String!]!
+    $slug: String!
+  ) {
+    updateUseCaseStepBuildingBlocks (
+      buildingBlocksSlugs: $buildingBlocksSlugs
+      slug: $slug
+    ) {
+      useCaseStep {
+        slug
+        buildingBlocks {
+          slug
+          name
+          imageFile
+        }
+      }
+    }
+  }
+`

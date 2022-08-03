@@ -31,13 +31,6 @@ export const organization = {
       slug: 'ts'
     }
   ],
-  products: [
-    {
-      id: 1,
-      name: 'Test Product',
-      slug: 'ts'
-    }
-  ],
   id: 1,
   endorserLevel: 'none',
   imageFile: '/assets/organizations/test_organization.png',

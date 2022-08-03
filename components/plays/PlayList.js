@@ -49,7 +49,7 @@ query SearchPlays(
 
 const PlayList = ({ playbook, playList, currentPlays, displayType, filterDisplayed, sourceType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const gridStyles = `grid ${displayType === 'card'
     ? `grid-cols-1 gap-4
@@ -100,8 +100,8 @@ const PlayListQuery = ({ playbook, sourceType }) => {
   const { loading, error, data, fetchMore, refetch } = useQuery(PLAYS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
-      tags: tags,
-      search: search
+      tags,
+      search
     },
     context: { headers: { 'Accept-Language': locale } }
   })
@@ -124,7 +124,7 @@ const PlayListQuery = ({ playbook, sourceType }) => {
       variables: {
         first: DEFAULT_PAGE_SIZE,
         after: pageInfo.endCursor,
-        search: search
+        search
       }
     })
   }

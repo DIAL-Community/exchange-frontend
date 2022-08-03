@@ -8,7 +8,7 @@ import OrganizationDetailRight from './OrganizationDetailRight'
 
 const OrganizationDetail = ({ slug, locale }) => {
   const { loading, error, data, refetch } = useQuery(ORGANIZATION_QUERY, {
-    variables: { slug: slug },
+    variables: { slug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !slug
   })

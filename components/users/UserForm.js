@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
-import { UPDATE_USER} from '../../mutations/users'
+import { UPDATE_USER } from '../../mutations/users'
 import { OrganizationAutocomplete, OrganizationFilters } from '../filter/element/Organization'
 import { ProductAutocomplete, ProductFilters } from '../filter/element/Product'
 import Breadcrumb from '../shared/breadcrumb'
@@ -21,11 +21,11 @@ const sectionLabelStyle = 'form-field-wrapper form-field-label'
 
 export const UserForm = ({ user, action }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
   
   const router = useRouter()
   const [organizations, setOrganizations] = useState((user?.organization) ? [{ label: user.organization.name, slug: user.organization.slug }] : [])
-  const [products, setProducts] = useState(user?.products.map(({name, slug}) => ({ label: name, slug }) ) ?? [])
+  const [products, setProducts] = useState(user?.products.map(({ name, slug }) => ({ label: name, slug }) ) ?? [])
   const [userRoles, setUserRoles] = useState(user.roles)
   
   const { locale } = useRouter()
@@ -58,7 +58,7 @@ export const UserForm = ({ user, action }) => {
     return map
   })()
   
-  const [updateUser, { data, called, reset }] = useMutation(UPDATE_USER, {
+  const [updateUser, { called, reset }] = useMutation(UPDATE_USER, {
     onCompleted: (data) => {
       showToast(
         format('toast.user-profile.update.success'),

@@ -46,8 +46,8 @@ const PagedAggregatorsList = ({ countries, services }) => {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       offset: itemOffset,
-      countries: countries,
-      services: services,
+      countries,
+      services,
       search: ''
     }
   })
@@ -58,8 +58,8 @@ const PagedAggregatorsList = ({ countries, services }) => {
         variables: {
           first: DEFAULT_PAGE_SIZE,
           offset: itemOffset,
-          countries: countries,
-          services: services,
+          countries,
+          services,
           search: ''
         }
       })

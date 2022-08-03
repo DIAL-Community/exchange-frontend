@@ -6,7 +6,7 @@ import Checkbox from '../shared/Checkbox'
 
 export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [subSectors, setSubsectors] = useState()
 
@@ -58,7 +58,7 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
 
 export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const addSelectedTagValue = (selectedTagValue) => {
     if (allValues.tags.indexOf(selectedTagValue) < 0) {
@@ -152,7 +152,7 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
 
 export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
   const classNameSelected = 'bg-white border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-button-gray inline'
   const classNameNotSelected = 'bg-dial-gray-dark border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-white inline'
 

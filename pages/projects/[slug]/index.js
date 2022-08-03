@@ -8,7 +8,7 @@ import ProjectDetail from '../../../components/projects/ProjectDetail'
 
 const Project = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const router = useRouter()
   const { locale, query } = router

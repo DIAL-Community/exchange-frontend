@@ -1,4 +1,4 @@
-import { fireEvent, getAllByTestId, screen } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import {
   mockRouterImplementation,
   mockSessionImplementation,

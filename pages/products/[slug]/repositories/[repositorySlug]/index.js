@@ -28,7 +28,7 @@ const PRODUCT_QUERY = gql`
 
 const ProductHeader = ({ product }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <div className='border-t border-l border-r'>
@@ -50,7 +50,7 @@ const ProductHeader = ({ product }) => {
 
 const PageDefinition = ({ slug, repositorySlug }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [session] = useSession()
 
@@ -59,7 +59,7 @@ const PageDefinition = ({ slug, repositorySlug }) => {
 
   const canEdit = isAdminUser || ownsProduct
 
-  const { data, loading, error } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
+  const { data, loading, error } = useQuery(PRODUCT_QUERY, { variables: { slug } })
 
   if (loading) {
     return <Loading/>
@@ -99,7 +99,7 @@ const PageDefinition = ({ slug, repositorySlug }) => {
 
 const ProductStep = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const router = useRouter()
   const { query } = router

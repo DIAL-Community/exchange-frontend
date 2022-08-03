@@ -17,7 +17,7 @@ export const EndorserAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('endorser.label') })
 
@@ -56,7 +56,7 @@ export const EndorserFilters = (props) => {
   const { endorsers, setEndorsers } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeEndorser = (endorserSlug) => {
     setEndorsers(endorsers.filter(({ slug }) => slug !== endorserSlug))

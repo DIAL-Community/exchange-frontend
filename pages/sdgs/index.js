@@ -20,7 +20,7 @@ const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const SDGs = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { search } = useContext(SDGFilterContext)
   const { setSearch } = useContext(SDGFilterDispatchContext)

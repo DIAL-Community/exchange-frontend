@@ -54,7 +54,7 @@ const PROJECT_QUERY = gql`
 
 const ProjectDetail = ({ slug, locale }) => {
   const { loading, error, data, refetch } = useQuery(PROJECT_QUERY, {
-    variables: { slug: slug },
+    variables: { slug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !slug
   })

@@ -17,7 +17,7 @@ const BuildingBlockActiveFilter = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { showMature, sdgs, useCases, workflows } = useContext(BuildingBlockFilterContext)
   const { setShowMature, setSDGs, setUseCases, setWorkflows } = useContext(BuildingBlockFilterDispatchContext)

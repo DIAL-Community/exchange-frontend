@@ -10,7 +10,7 @@ const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const UseCase = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const router = useRouter()
   const { locale, query } = router

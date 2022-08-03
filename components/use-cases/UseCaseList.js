@@ -60,7 +60,7 @@ query SearchUseCases(
 `
 const UseCaseList = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
@@ -121,14 +121,14 @@ const UseCaseListQuery = () => {
   const { sdgs, showBeta, search } = useContext(UseCaseFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { loading, error, data, fetchMore } = useQuery(USE_CASES_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       sdgs: sdgs.map(sdg => sdg.value),
-      showBeta: showBeta,
-      search: search
+      showBeta,
+      search
     }
   })
 
@@ -138,7 +138,7 @@ const UseCaseListQuery = () => {
         after: pageInfo.endCursor,
         first: DEFAULT_PAGE_SIZE,
         sdgs: sdgs.map(sdg => sdg.value),
-        showBeta: showBeta
+        showBeta
       }
     })
   }

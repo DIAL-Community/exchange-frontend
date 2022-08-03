@@ -235,10 +235,10 @@ exports[`Unit test for the OrganizationDetailCountries component. Should match s
           class="border border-dial-gray card-drop-shadow"
         >
           <div
-            class="my-4 px-4"
+            class="flex justify-between my-4 px-4"
           >
             <div
-              class="pr-3 text-base font-semibold whitespace-nowrap text-ellipsis overflow-hidden text-button-gray"
+              class="inline-block font-semibold text-button-gray"
             >
               Test Country
             </div>
@@ -444,10 +444,10 @@ exports[`Unit test for the OrganizationDetailCountries component. Should match s
           class="border border-dial-gray card-drop-shadow"
         >
           <div
-            class="my-4 px-4"
+            class="flex justify-between my-4 px-4"
           >
             <div
-              class="pr-3 text-base font-semibold whitespace-nowrap text-ellipsis overflow-hidden text-button-gray"
+              class="inline-block font-semibold text-button-gray"
             >
               Test Country
             </div>

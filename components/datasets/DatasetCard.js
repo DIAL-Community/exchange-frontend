@@ -13,9 +13,9 @@ const containerElementStyle = `
   text-dataset hover:text-dial-yellow
 `
 
-const DatasetCard = ({ dataset, listType, filterDisplayed, newTab = false }) => {
+const DatasetCard = ({ dataset, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const navClickHandler = () => {
   }

@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 
 const PoweredBy = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <a href='https://solutions.dial.community' target='_blank' rel='noreferrer'>

@@ -2,11 +2,11 @@ import React from 'react'
 import { ImFilePicture } from 'react-icons/im'
 import classNames from 'classnames'
 
-const FileUploader = React.forwardRef(({ type, onChange, onBlur, isInvalid = false, className, ...otherProps }, ref) => {
+const FileUploader = React.forwardRef(({ onChange, onBlur, isInvalid = false, className, ...otherProps }, ref) => {
   // when used in React Hook Form, to pass a list of selected files a custom 'onChange' function has to be used
   // however, to keep the value uncontrolled the 'value' property has to be omitted in props passed to input of type 'file'
   // https://github.com/react-hook-form/react-hook-form/issues/3025
-  const { value, ...otherPropsWithoutValue } = otherProps
+  const { value, ...otherPropsWithoutValue } = otherProps // eslint-disable-line
 
   return (
     <label className={classNames(className, 'flex items-center')}>

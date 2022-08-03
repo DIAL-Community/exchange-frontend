@@ -14,7 +14,7 @@ const containerElementStyle = `
   text-button-gray hover:text-dial-yellow
 `
 
-const UserCard = ({ user, listType, filterDisplayed, newTab = false }) => {
+const UserCard = ({ user, listType, newTab = false }) => {
   useEffect(() => {
     ReactTooltip.rebuild()
   })

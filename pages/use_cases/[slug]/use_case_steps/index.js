@@ -17,7 +17,7 @@ import CreateButton from '../../../../components/shared/CreateButton'
 // Create the top left header of the step list.
 const UseCaseHeader = ({ useCase }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <div className='border'>
@@ -40,11 +40,11 @@ const UseCaseHeader = ({ useCase }) => {
 
 const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [session] = useSession()
 
-  const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug: slug } })
+  const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug } })
 
   if (loading) {
     return <Loading />
@@ -90,7 +90,7 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
 
 const UseCaseStep = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const router = useRouter()
   const { slug, stepSlug } = router.query

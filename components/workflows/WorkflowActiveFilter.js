@@ -14,7 +14,7 @@ const WorkflowActiveFilter = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { sdgs, useCases } = useContext(WorkflowFilterContext)
   const { setSDGs, setUseCases } = useContext(WorkflowFilterDispatchContext)

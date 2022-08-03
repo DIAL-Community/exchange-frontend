@@ -19,7 +19,7 @@ const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const Roles = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { search } = useContext(RoleFilterContext)
   const { setSearch } = useContext(RoleFilterDispatchContext)

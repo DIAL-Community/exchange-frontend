@@ -6,7 +6,7 @@ import { FilterContext } from '../context/FilterContext'
 
 const MobileDrawer = ({ filter, hint, activeTab }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [showFilters, setShowFilters] = useState(false)
   const { hintDisplayed } = useContext(FilterContext)

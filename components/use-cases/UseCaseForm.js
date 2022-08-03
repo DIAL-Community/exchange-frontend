@@ -38,7 +38,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
   const { locale } = useRouter()
 
   const { data: sectorsData, loading: loadingSectors } = useQuery(SECTOR_SEARCH_QUERY, {
-    variables: { search: '', locale: locale }
+    variables: { search: '', locale }
   })
 
   const sectorOptions = useMemo(() => (

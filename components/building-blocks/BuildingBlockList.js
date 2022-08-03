@@ -129,8 +129,8 @@ const BuildingBlockListQuery = () => {
       sdgs: sdgs.map(sdg => sdg.value),
       useCases: useCases.map(useCase => useCase.value),
       workflows: workflows.map(workflow => workflow.value),
-      showMature: showMature,
-      search: search
+      showMature,
+      search
     }
   })
 
@@ -142,8 +142,8 @@ const BuildingBlockListQuery = () => {
         sdgs: sdgs.map(sdg => sdg.value),
         useCases: useCases.map(useCase => useCase.value),
         workflows: workflows.map(workflow => workflow.value),
-        showMature: showMature,
-        search: search
+        showMature,
+        search
       }
     })
   }

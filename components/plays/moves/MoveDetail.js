@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/client'
 import parse from 'html-react-parser'
 import Breadcrumb from '../../shared/breadcrumb'
 
-const MoveDetail = ({ playbook, play, move }) => {
+const MoveDetail = ({ play, move }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   const [session] = useSession()

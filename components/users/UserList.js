@@ -1,95 +1,47 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { HiSortAscending } from 'react-icons/hi'
+import classNames from 'classnames'
 import { FilterContext } from '../context/FilterContext'
 import { UserFilterContext } from '../context/UserFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
+import { DEFAULT_PAGE_SIZE, DisplayType } from '../../lib/constants'
+import NotFound from '../shared/NotFound'
+import { USERS_LIST_QUERY } from '../../queries/user'
 import UserCard from './UserCard'
 
-const DEFAULT_PAGE_SIZE = 20
-
-const USERS_QUERY = gql`
-query SearchUsers(
-  $first: Int,
-  $after: String,
-  $search: String!
-  ) {
-  searchUsers(
-    first: $first,
-    after: $after,
-    search: $search
-  ) {
-    __typename
-    totalCount
-    pageInfo {
-      endCursor
-      startCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    nodes {
-      id
-      email
-      username
-      roles
-    }
-  }
-}
-`
-const UserList = (props) => {
+const UserList = ({ userList, displayType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-
-  const filterDisplayed = props.filterDisplayed
-  const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card'
-    ? `grid-cols-1 gap-4
-       ${filterDisplayed ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'}`
-    : 'grid-cols-1'
-    }`
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
-    <>
-      <div className={gridStyles}>
-        {
-          displayType === 'list' &&
-            <div className='grid grid-cols-12 gap-4 my-3 px-4 text-use-case'>
-              <div className='col-span-9 md:col-span-10 lg:col-span-4 ml-2 text-sm font-semibold opacity-80'>
-                {format('user.header').toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
-              </div>
+    <div className={classNames('grid', { 'grid-cols-1' : displayType === DisplayType.LIST })}>
+      {
+        userList.length
+          ? userList.map((user) => (
+            <UserCard key={user.id} listType={displayType} user={user}/>
+          )) : (
+            <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-6'>
+              {format('noResults.entity', { entity: format('user.label') })}
             </div>
-        }
-        {
-          props.userList.length > 0
-            ? props.userList.map((user) => (
-              <UserCard key={user.id} listType={displayType} {...{ user, filterDisplayed }} />
-            ))
-            : (
-              <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-6'>
-                {format('noResults.entity', { entity: format('user.label').toLowerCase() })}
-              </div>
-            )
-        }
-      </div>
-    </>
+          )
+      }
+    </div>
   )
 }
 
 const UserListQuery = () => {
-  const { resultCounts, filterDisplayed, setResultCounts } = useContext(FilterContext)
+  const { resultCounts, setResultCounts } = useContext(FilterContext)
   const { search } = useContext(UserFilterContext)
-  const displayType = 'list'
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
-  const { loading, error, data, fetchMore } = useQuery(USERS_QUERY, {
+  const { loading, error, data, fetchMore } = useQuery(USERS_LIST_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
-      search: search
+      search
     },
     onCompleted: (data) => {
       setResultCounts({ ...resultCounts, ...{ [['filter.entity.users']]: data.searchUsers.totalCount } })
@@ -98,10 +50,10 @@ const UserListQuery = () => {
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error) {
+  } else if (error && error.networkError) {
     return <Error />
+  } else if  (error && !error.networkError) {
+    return <NotFound />
   }
 
   const { searchUsers: { nodes, pageInfo } } = data
@@ -123,7 +75,7 @@ const UserListQuery = () => {
       hasMore={pageInfo.hasNextPage}
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
-      <UserList userList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
+      <UserList userList={nodes} displayType={DisplayType.LIST} />
     </InfiniteScroll>
   )
 }

@@ -142,7 +142,7 @@ describe('Organizations', () => {
     })
   }
   
-
+  // eslint-disable-next-line
   const enterOrganization = (orgName, expectedSlug) => {
     cy.getByTestId('search-input').type(orgName)
 

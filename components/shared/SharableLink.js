@@ -13,15 +13,15 @@ export const parseQuery = (query, fieldName, contextValues, contextSetter) => {
       query[fieldName].forEach(entry => {
         const [value, label] = entry.split('--')
         contextValues.push({
-          value: value,
-          label: label
+          value,
+          label
         })
       })
     } else {
       const [value, label] = query[fieldName].split('--')
       contextValues.push({
-        value: value,
-        label: label
+        value,
+        label
       })
     }
 
@@ -33,7 +33,7 @@ const SharableLink = ({ sharableLink }) => {
   const [shareStatus, setShareStatus] = useState('')
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { showToast } = useContext(ToastContext)
 

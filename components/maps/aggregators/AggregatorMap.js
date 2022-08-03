@@ -128,7 +128,7 @@ const AggregatorMap = () => {
   const { aggregators, operators, services } = useContext(MapFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { loading: loadingAggregators, data: aggregatorData } = useQuery(AGGREGATORS_QUERY, {
     variables: {

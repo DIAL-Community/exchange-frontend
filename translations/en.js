@@ -26,6 +26,8 @@ export const en = {
   'app.status': 'Status:',
   'app.confirm': 'Confirm',
   'app.mappingStatus': 'Mapping Status',
+  'app.name': 'Name',
+  'app.description': 'Description',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -313,6 +315,9 @@ export const en = {
   
   'sector.header': 'Sectors',
   'sector.label': 'Sector',
+  'sector.parent-sector.label': 'Parent Sector',
+  'sector.is-displayable.label': 'Is displayable',
+  'sector.delete.confirm.message': 'Are you sure you want to delete this Sector? All associations will also be removed.',
 
   'sdg.header': 'Sustainable Development Goals',
   'sdg.label': 'Sustainable Development Goal',
@@ -444,7 +449,12 @@ export const en = {
   'sdg.target.title': 'Target',
 
   'workflow.useCases': 'Use Cases',
-  'workflow.buildingBlocks': 'Use Cases',
+  'workflow.no-building-block': 'We do not have any Building Block information for this Workflow.',
+  'workflow.name': 'Name',
+  'workflow.imageFile': 'Logo Upload',
+  'workflow.description': 'Description',
+  'workflow.submit.success': 'Workflow submitted successfully',
+  'workflow.submit.failure': 'Workflow submission failed',
 
   'country.header': 'Countries',
   'workflow.header': 'Workflows',
@@ -455,6 +465,7 @@ export const en = {
   'workflow.label': 'Workflow',
   'product.label': 'Product',
   'dataset.label': 'Dataset',
+  'country.delete.confirm.message': 'Are you sure you want to delete this Country?',
 
   'organization.detail.website': 'Website',
   'organization.detail.whenEndorsed': 'Endorsed On',
@@ -525,8 +536,11 @@ export const en = {
   'filter.entity.plays': 'Plays',
   'filter.entity.maps': 'Maps',
   'filter.entity.users': 'Users',
+  'filter.entity.sectors': 'Sectors',
+  'filter.entity.tags': 'Tags',
   'filter.entity.candidateOrganizations': 'Candidate Organizations',
   'filter.entity.candidateProducts': 'Candidate Products',
+  'filter.entity.countries': 'Countries',
 
   'filter.byEntity': 'Filter by {entity}',
   'filter.searchFor': 'Search for {entity}',
@@ -569,6 +583,7 @@ export const en = {
   'use-case-step.submit.success': 'Use Case Step submitted successfully',
   'use-case-step.no-workflow': 'We do not have any Workflow information for this Use Case Step.',
   'use-case-step.no-product': 'We do not have any Product information for this Use Case Step.',
+  'use-case-step.no-building-block': 'We do not have any Building Block information for this Use Case Step.',
 
   'playbook.header': 'Playbooks',
   'playbooks.label': 'Playbook',
@@ -661,6 +676,7 @@ export const en = {
   'dataset.no-organization': 'We do not have organization information for this dataset.',
   'dataset.no-tag': 'We do not have tag information for this dataset.',
   'dataset.no-sdg': 'We do not have SDG information for this dataset.',
+  'dataset.no-country': 'We do not have country information for this dataset.',
 
   'dataset.view-DPGA-data': 'View information submitted to DPGA',
 
@@ -819,6 +835,7 @@ export const en = {
 
   'tag.label': 'Tag',
   'tag.header': 'Tags',
+  'tag.delete.confirm.message': 'Are you sure you want to delete this Tag?',
 
   'service.label': 'Service',
   'service.header': 'Services',
@@ -862,6 +879,8 @@ export const en = {
   'signUp.moreSecure': 'Please enter a more secure password',
   'signUp.organization': 'Owner of this organization',
   'signUp.products': 'Owner of these products',
+  'signUp.privacy': 'Note: By signing up, you agree to the terms in our',
+  'signUp.privacyLink': 'Privacy Policy',
   'signUp.tooltip.organizationOwner': 'Apply to be the owner for the organization which will allow you to update the organization information.',
   'signUp.tooltip.productOwner': 'Optionally apply as a product owner. You will need to be verified by our team member to do this.',
 
@@ -1343,16 +1362,24 @@ export const en = {
   'toast.buildingBlocks.update.failure': 'Building Blocks update failed',
   'toast.organizations.update.success': 'Organizations updated successfully',
   'toast.organizations.update.failure': 'Organizations update failed',
+  'toast.organization.delete.success': 'Organization deleted successfully',
+  'toast.organization.delete.failure': 'Organization deletion failed',
   'toast.tags.update.success': 'Tags updated successfully',
   'toast.tags.update.failure': 'Tags update failed',
+  'toast.tag.delete.success': 'Tag deleted successfully',
+  'toast.tag.delete.failure': 'Tag deletion failed',
+  'toast.tag.submit.success': 'Tag submitted successfully',
+  'toast.tag.submit.failure': 'Tag submission failed',
   'toast.sectors.update.success': 'Sectors updated successfully',
   'toast.sectors.update.failure': 'Sectors update failed',
+  'toast.sector.delete.success': 'Sector deleted successfully',
+  'toast.sector.delete.failure': 'Sector deletion failed',
   'toast.projects.updated': 'Projects updated successfully',
   'toast.projects.update.failure': 'Projects update failed',
   'toast.countries.update.success': 'Countries updated successfully',
   'toast.countries.update.failure': 'Countries update failed',
-  'toast.organization.delete.success': 'Organization deleted successfully',
-  'toast.organization.delete.failure': 'Organization delete failed',
+  'toast.country.delete.success': 'Country deleted successfully',
+  'toast.country.delete.failure': 'Country deletion failed',
   'toast.sdgs.update.success': 'SDGs updated successfully',
   'toast.sdgs.update.failure': 'SDGs update failed',
   'toast.products.update.success': 'Products updated successfully',
@@ -1364,5 +1391,14 @@ export const en = {
   'toast.user-profile.update.success': 'Profile updated successfully',
   'toast.user-profile.update.failure': 'Profile update failed',
   'toast.offices.update.success': 'Offices updated successfully',
-  'toast.offices.update.failure': 'Offices update failed'
+  'toast.offices.update.failure': 'Offices update failed',
+
+  'locale.label': 'Locale',
+  'locale.english.label': 'English (en)',
+  'locale.german.label': 'German (de)',
+  'locale.spanish.label': 'Spanish (es)',
+  'locale.french.label': 'French (fr)',
+  'locale.portuguese.label': 'Portuguese (pt)',
+  'locale.swahili.label': 'Swahili (sw)',
+  'locale.czech.label': 'Czech (cs)'
 }

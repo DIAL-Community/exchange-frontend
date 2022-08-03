@@ -1,6 +1,3 @@
-/* global fetch:false */
-/* global FormData:false */
-
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useRef, useState } from 'react'

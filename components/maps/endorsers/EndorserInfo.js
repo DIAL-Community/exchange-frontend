@@ -7,7 +7,7 @@ const EndorserInfo = (props) => {
 
   const router = useRouter()
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [active, setActive] = useState(city?.organizations[0].slug)
 

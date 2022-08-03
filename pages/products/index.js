@@ -20,7 +20,7 @@ const ProductListQuery = dynamic(() => import('../../components/products/Product
 
 const Products = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { search } = useContext(ProductFilterContext)
   const { setSearch } = useContext(ProductFilterDispatchContext)

@@ -3,9 +3,9 @@ import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import Header from '../../components/Header'
 
-export default function Error ({ csrfToken }) {
+export default function Error () {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <>

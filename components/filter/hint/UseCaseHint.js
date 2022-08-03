@@ -7,7 +7,7 @@ const UseCaseHint = () => {
   const { setHintDisplayed } = useContext(FilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <>

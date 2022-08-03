@@ -15,7 +15,7 @@ const ProductSpreadsheetWithoutSSR = dynamic(
 
 const OrganizationSpreadsheet = () => {
   const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [session] = useSession()
 

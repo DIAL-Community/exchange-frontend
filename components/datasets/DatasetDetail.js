@@ -60,7 +60,7 @@ const DatasetDetail = ({ slug, locale }) => {
   const discourseElement = useRef()
 
   const { loading, error, data, refetch } = useQuery(DATASET_QUERY, {
-    variables: { slug: slug },
+    variables: { slug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !slug
   })

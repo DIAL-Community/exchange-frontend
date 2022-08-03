@@ -1,7 +1,3 @@
-/* global fetch:false */
-/* global Response:false */
-/* global ReadableStream:false */
-
 import { saveAs } from 'file-saver'
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
@@ -20,8 +16,16 @@ import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
 import { useOrganizationOwnerUser, useProductOwnerUser, useUser } from '../../lib/hooks'
 import { SearchInput } from './SearchInput'
 
-const SearchFilter = (props) => {
-  const { search, setSearch, hint } = props
+const SearchFilter = ({
+  search,
+  setSearch,
+  hint,
+  onCreateNewClick,
+  createNew = true,
+  switchView = true,
+  exportJson = true,
+  exportCsv = true
+}) => {
   const { resultCounts, displayType, setDisplayType } = useContext(FilterContext)
 
   const router = useRouter()
@@ -29,7 +33,7 @@ const SearchFilter = (props) => {
   const [session] = useSession()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [searchTerm, setSearchTerm] = useState(search)
 
@@ -76,7 +80,10 @@ const SearchFilter = (props) => {
       return 'projects/create'
     }
 
-    const reactEditPaths = ['playbooks', 'plays', 'organizations', 'products', 'datasets', 'use_cases', 'building_blocks']
+    const reactEditPaths = [
+      'playbooks', 'plays', 'organizations', 'products', 'datasets', 'use_cases', 'building_blocks', 'workflows',
+      'countries'
+    ]
     if (reactEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails
       return `/${linkPath[0]}/create`
@@ -213,7 +220,7 @@ const SearchFilter = (props) => {
   }
 
   return (
-    <div className='bg-dial-gray-light md:bg-transparent w-full pt-1 md:pt-2'>
+    <div className='bg-dial-gray-light md:bg-transparent w-full max-w-catalog mx-auto pt-1 md:pt-2'>
       <div className='flex flex-wrap gap-x-4 px-3'>
         <div className='flex flex-wrap gap-x-4 gap-y-4 lg:gap-x-8 xl:gap-20'>
           <div className='hidden md:block ml-auto text-xl font-semibold my-auto animated-drawer'>
@@ -245,56 +252,67 @@ const SearchFilter = (props) => {
           </div>
         </div>
         <div className='ml-auto my-auto'>
-          <div className='flex flex-col md:flex-row'>
-            <div className='text-xs my-auto font-semibold text-dial-gray-dark opacity-50'>
-              {format('view.switch.title')}
-            </div>
-            <div className='my-auto pt-2 pb-3 px-2 flex flex-row'>
-              {
-                displayType === 'card' &&
-                  <>
-                    <img
-                      alt={format('image.alt.logoFor', { name: format('view.active.card') })}
-                      className='mr-2 h-6' src='/icons/card-active/card-active.png'
-                    />
-                    <a href='toggle-display' onClick={toggleDisplayType}>
+          {switchView && (
+            <div className='flex flex-col md:flex-row'>
+              <div className='text-xs my-auto font-semibold text-dial-gray-dark opacity-50'>
+                {format('view.switch.title')}
+              </div>
+              <div className='my-auto pt-2 pb-3 px-2 flex flex-row'>
+                {
+                  displayType === 'card' &&
+                    <>
                       <img
-                        alt={format('image.alt.logoFor', { name: format('view.inactive.list') })}
-                        className='h-6 cursor-pointer' src='/icons/list-inactive/list-inactive.png'
+                        alt={format('image.alt.logoFor', { name: format('view.active.card') })}
+                        className='mr-2 h-6' src='/icons/card-active/card-active.png'
                       />
-                    </a>
-                  </>
-              }
-              {
-                displayType === 'list' &&
-                  <>
-                    <a className='mr-2' href='toggle-display' onClick={toggleDisplayType}>
+                      <a href='toggle-display' onClick={toggleDisplayType}>
+                        <img
+                          alt={format('image.alt.logoFor', { name: format('view.inactive.list') })}
+                          className='h-6 cursor-pointer' src='/icons/list-inactive/list-inactive.png'
+                        />
+                      </a>
+                    </>
+                }
+                {
+                  displayType === 'list' &&
+                    <>
+                      <a className='mr-2' href='toggle-display' onClick={toggleDisplayType}>
+                        <img
+                          alt={format('image.alt.logoFor', { name: format('view.inactive.card') })}
+                          className='h-6 cursor-pointer' src='/icons/card-inactive/card-inactive.png'
+                        />
+                      </a>
                       <img
-                        alt={format('image.alt.logoFor', { name: format('view.inactive.card') })}
-                        className='h-6 cursor-pointer' src='/icons/card-inactive/card-inactive.png'
+                        alt={format('image.alt.logoFor', { name: format('view.active.list') })}
+                        className='h-6' src='/icons/list-active/list-active.png'
                       />
-                    </a>
-                    <img
-                      alt={format('image.alt.logoFor', { name: format('view.active.list') })}
-                      className='h-6' src='/icons/list-active/list-active.png'
-                    />
-                  </>
-              }
+                    </>
+                }
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
       <div>
-        {
-          session && session.user && (
-            <div className='text-xs mt-2'>
-              <div className='flex justify-end px-3'>
-                <>
+        {session && session.user && (
+          <div className='text-xs mt-2'>
+            <div className='flex justify-end px-3'>
+              {createNew &&
                   <a className='border-b-2 border-transparent hover:border-dial-yellow'
-                    data-testid='create-new' href={generateCreateLink()}>
-
+                    data-testid='create-new'
+                    href={generateCreateLink()}
+                    onClick={(event) => {
+                      if (onCreateNewClick) {
+                        event.preventDefault()
+                        onCreateNewClick()
+                      }
+                    }}
+                  >
                     <span className='text-dial-yellow'>{format('app.create-new')}</span>
                   </a>
+              }
+              {exportJson && (
+                <>
                   <div className='border-r mx-2 border-gray-400' />
                   <a
                     className='border-b-2 border-transparent hover:border-dial-yellow'
@@ -302,6 +320,10 @@ const SearchFilter = (props) => {
                   >
                     <span className='text-dial-yellow'>{format('app.exportAsJson')}</span>
                   </a>
+                </>
+              )}
+              {exportCsv && (
+                <>
                   <div className='border-r mx-2 border-gray-400' />
                   <a
                     className='border-b-2 border-transparent hover:border-dial-yellow'
@@ -310,10 +332,10 @@ const SearchFilter = (props) => {
                     <span className='text-dial-yellow'>{format('app.exportAsCSV')}</span>
                   </a>
                 </>
-              </div>
+              )}
             </div>
-          )
-        }
+          </div>
+        )}
       </div>
     </div>
   )

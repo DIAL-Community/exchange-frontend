@@ -35,12 +35,12 @@ const MovePreview = () => {
   const [playbookSlug, playSlug] = previewContext
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [fetchPlayDetail, { data }] = useLazyQuery(MOVE_QUERY, {
     variables: {
       slug: previewSlug,
-      playSlug: playSlug
+      playSlug
     },
     skip: !previewSlug,
     context: { headers: { 'Accept-Language': locale } }

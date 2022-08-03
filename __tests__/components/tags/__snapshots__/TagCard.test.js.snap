@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the TagCard component Should match snapshot - user is NOT an admin, displayEditButtons not passed. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="border-3 border-transparent text-button-gray"
+    data-testid="tag-card"
+  >
+    <div
+      class="border border-dial-gray card-drop-shadow"
+    >
+      <div
+        class="flex justify-between my-5 px-4"
+      >
+        <div
+          class="inline-block card-title text-button-gray"
+        >
+          <span>
+            Example Tag
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit test for the TagCard component Should match snapshot - user is NOT an admin, displayEditButtons passed. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="border-3 border-transparent text-button-gray"
+    data-testid="tag-card"
+  >
+    <div
+      class="border border-dial-gray card-drop-shadow"
+    >
+      <div
+        class="flex justify-between my-5 px-4"
+      >
+        <div
+          class="inline-block card-title text-button-gray"
+        >
+          <span>
+            Example Tag
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit test for the TagCard component Should match snapshot - user is an admin, displayEditButtons not passed. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="border-3 border-transparent text-button-gray"
+    data-testid="tag-card"
+  >
+    <div
+      class="border border-dial-gray card-drop-shadow"
+    >
+      <div
+        class="flex justify-between my-5 px-4"
+      >
+        <div
+          class="inline-block card-title text-button-gray"
+        >
+          <span>
+            Example Tag
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit test for the TagCard component Should match snapshot - user is an admin, displayEditButtons passed. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="border-3 border-transparent text-button-gray"
+    data-testid="tag-card"
+  >
+    <div
+      class="border border-dial-gray card-drop-shadow"
+    >
+      <div
+        class="flex justify-between my-5 px-4"
+      >
+        <div
+          class="inline-block card-title text-button-gray"
+        >
+          <span>
+            Example Tag
+          </span>
+        </div>
+        <div
+          class="flex flex-row gap-3"
+        >
+          <button
+            class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+            data-testid="edit-button"
+            type="button"
+          >
+            <img
+              alt="Edit"
+              height="12px"
+              src="/icons/edit.svg"
+              width="12px"
+            />
+            <span
+              class="text-sm"
+            >
+              Edit
+            </span>
+          </button>
+          <button
+            class="delete-button gap-x-1.5"
+            data-testid="delete-button"
+            type="button"
+          >
+            <svg
+              class="text-sm"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+              />
+              <path
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                fill-rule="evenodd"
+              />
+            </svg>
+            <span
+              class="text-sm"
+            >
+              Delete
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

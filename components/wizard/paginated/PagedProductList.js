@@ -48,7 +48,7 @@ const PRODUCTS_QUERY = gql`
 
 const PagedProductList = ({ buildingBlocks, countries, sectors, subSectors, tags, productSortHint }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [itemOffset, setItemOffset] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
@@ -56,12 +56,12 @@ const PagedProductList = ({ buildingBlocks, countries, sectors, subSectors, tags
     variables: {
       first: DEFAULT_PAGE_SIZE,
       offset: itemOffset,
-      buildingBlocks: buildingBlocks,
-      countries: countries,
-      sectors: sectors,
-      subSectors: subSectors,
-      tags: tags,
-      productSortHint: productSortHint
+      buildingBlocks,
+      countries,
+      sectors,
+      subSectors,
+      tags,
+      productSortHint
     }
   })
 
@@ -71,12 +71,12 @@ const PagedProductList = ({ buildingBlocks, countries, sectors, subSectors, tags
         variables: {
           first: DEFAULT_PAGE_SIZE,
           offset: itemOffset,
-          buildingBlocks: buildingBlocks,
-          countries: countries,
-          sectors: sectors,
-          subSectors: subSectors,
-          tags: tags,
-          productSortHint: productSortHint
+          buildingBlocks,
+          countries,
+          sectors,
+          subSectors,
+          tags,
+          productSortHint
         }
       })
     }
