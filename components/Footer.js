@@ -98,7 +98,7 @@ const Footer = () => {
           </div>
           <div className='py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light'>
             <a
-              href='https://gitlab.com/dial/osc/eng/t4d-online-catalog/product-registry'
+              href='https://gitlab.com/dial/online-catalog/product-registry'
               target='_blank' rel='noreferrer'
               className='border-b-2 border-transparent hover:border-dial-yellow'
             >
