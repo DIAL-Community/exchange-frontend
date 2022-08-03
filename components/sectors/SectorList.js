@@ -42,7 +42,7 @@ const SectorListQuery = () => {
   const { loading, error, data, fetchMore } = useQuery(SECTORS_LIST_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
-      search: search
+      search
     },
     onCompleted: (data) => {
       setResultCounts({ ...resultCounts, ...{ [['filter.entity.sectors']]: data.searchSectors.totalCount } })

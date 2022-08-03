@@ -70,7 +70,6 @@ const DatasetSpreadsheet = () => {
   const { locale } = useRouter()
   const [session] = useSession()
 
-  const [createSpreadsheetData] = useMutation(DATASET_SPREADSHEET_MUTATION)
   const [saveSpreadsheetData] = useMutation(DATASET_SPREADSHEET_MUTATION, {
     refetchQueries: [
       DATASET_SPREADSHEET_QUERY,
@@ -211,7 +210,7 @@ const DatasetSpreadsheet = () => {
             </Tab>
           ))}
         </Tab.List>
-        <Tab.Panels className='pt-2 pl-8 pr-4' style={{ minHeight: '70vh'}}>
+        <Tab.Panels className='pt-2 pl-8 pr-4' style={{ minHeight: '70vh' }}>
           {DEFAULT_SHEET_HEADERS.map((header, index) => (
             <Tab.Panel key={index}>
               <HotTable

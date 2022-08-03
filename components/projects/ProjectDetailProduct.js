@@ -125,7 +125,7 @@ const ProjectDetailProducts = ({ project, canEdit }) => {
             key={`product-${productIdx}`}
             label={product.name}
             onRemove={() => removeProduct(product)}
-            readOnly={ownedProjectProducts.length < 2 && ownedProducts.some(({slug}) => slug === product.slug)}
+            readOnly={ownedProjectProducts.length < 2 && ownedProducts.some(({ slug }) => slug === product.slug)}
           />
         ))}
       </div>

@@ -72,7 +72,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
   const [mutating, setMutating] = useState(false)
 
   const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [session] = useSession()
   const { locale } = useRouter()
@@ -193,7 +193,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
 
 const ResourceViewer = ({ index, resource, removeResource, setEditing }) => {
   const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='flex flex-row gap-3 px-3'>
@@ -251,7 +251,7 @@ const ResourceRenderer = (props) => {
 
 const FormTextEditor = ({ control, fieldLabel, fieldName }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
@@ -277,7 +277,7 @@ const FormTextEditor = ({ control, fieldLabel, fieldName }) => {
 
 export const MoveForm = ({ playbook, play, move }) => {
   const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
   const [session] = useSession()
@@ -287,7 +287,7 @@ export const MoveForm = ({ playbook, play, move }) => {
   const [moveSlug] = useState(move ? move.slug : '')
   const [playSlug] = useState(play ? play.slug : move ? move.play.slug : '')
   const [resources, setResources] = useState(
-    move ? move.resources.map((resource, i) => ({ ...resource, i: i })) : []
+    move ? move.resources.map((resource, i) => ({ ...resource, i })) : []
   )
   const [createMove, { data }] = useMutation(CREATE_MOVE)
   const [autoSaveMove, { data: autoSaveData }] = useMutation(AUTOSAVE_MOVE)

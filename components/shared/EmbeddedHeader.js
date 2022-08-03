@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
@@ -32,7 +31,6 @@ const AVAILABLE_LANGUAGES = {
 }
 
 const EmbeddedHeader = () => {
-  const [session] = useSession()
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 

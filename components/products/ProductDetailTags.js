@@ -68,7 +68,7 @@ const ProductDetailTags = ({ product, canEdit }) => {
       updateProductTags({
         variables: {
           slug: product.slug,
-          tags: tags
+          tags
         },
         context: {
           headers: {

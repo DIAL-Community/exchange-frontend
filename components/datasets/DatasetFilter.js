@@ -13,7 +13,7 @@ import { TagAutocomplete } from '../filter/element/Tag'
 
 const DatasetFilter = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { setHintDisplayed } = useContext(FilterContext)
 

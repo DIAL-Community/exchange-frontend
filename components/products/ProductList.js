@@ -113,7 +113,7 @@ const ProductListQuery = () => {
 
   const { locale } = useRouter()
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { loading, error, data, fetchMore, refetch } = useQuery(PRODUCTS_QUERY, {
     variables: {
@@ -128,9 +128,9 @@ const ProductListQuery = () => {
       workflows: workflows.map(workflow => workflow.value),
       buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
       endorsers: endorsers.map(endorser => endorser.value),
-      productDeployable: productDeployable,
-      withMaturity: withMaturity,
-      search: search
+      productDeployable,
+      withMaturity,
+      search
     },
     context: { headers: { 'Accept-Language': locale } }
   })
@@ -150,9 +150,9 @@ const ProductListQuery = () => {
         workflows: workflows.map(workflow => workflow.value),
         buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
         endorsers: endorsers.map(endorser => endorser.value),
-        productDeployable: productDeployable,
-        withMaturity: withMaturity,
-        search: search
+        productDeployable,
+        withMaturity,
+        search
       }
     })
   }
@@ -294,10 +294,10 @@ const ProductListQuery = () => {
                           visibleStopIndex
                         }) => {
                           onItemsRendered({
-                            overscanStartIndex: overscanStartIndex,
-                            overscanStopIndex: overscanStopIndex,
-                            visibleStartIndex: visibleStartIndex,
-                            visibleStopIndex: visibleStopIndex
+                            overscanStartIndex,
+                            overscanStopIndex,
+                            visibleStartIndex,
+                            visibleStopIndex
                           })
                         }}
                         ref={ref}

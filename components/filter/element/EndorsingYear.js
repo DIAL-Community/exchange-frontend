@@ -12,7 +12,7 @@ export const EndorsingYearSelect = ({
   isSearch = false
 }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('endorsingYear.label') })
 
@@ -59,7 +59,7 @@ export const EndorsingYearFilters = (props) => {
   const { years, setYears } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeYear = (yearValue) => {
     setYears(years.filter(({ value }) => value !== yearValue))

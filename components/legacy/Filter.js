@@ -38,7 +38,7 @@ const mappedUrls = MAPPED_FILTER_ITEMS_URL
 
 const Filter = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const activeTab = filterItems.indexOf(props.activeTab)
   const [hintDisplayed, setHintDisplayed] = useState(false)

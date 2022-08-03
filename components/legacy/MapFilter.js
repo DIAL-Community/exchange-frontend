@@ -15,7 +15,7 @@ const MapFilter = (props) => {
   const router = useRouter()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const {
     aggregators, operators, services, orgSectors, years, sectors, products, tags

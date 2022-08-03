@@ -12,7 +12,7 @@ const Consent = () => {
   const [statistics, setStatistics] = useState(true)
   const { consent, acceptAllCookies, acceptCookies } = useCookieConsent()
 
-  const handleAccept = (e) => {
+  const handleAccept = () => {
     acceptAllCookies()
     // acceptCookies({ thirdParty: true })
   }
@@ -34,7 +34,7 @@ const Consent = () => {
 
   const saveCookies = (e) => {
     e.preventDefault()
-    acceptCookies({ necessary: essential, session: essential, firstParty: essential, thirdParty: statistics, statistics: statistics })
+    acceptCookies({ necessary: essential, session: essential, firstParty: essential, thirdParty: statistics, statistics })
     if (!statistics) {
       // Disable Google Analytics if they do not accept statistics
       cookie.remove('_ga', { path: '/' })

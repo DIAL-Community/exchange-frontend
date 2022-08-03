@@ -24,7 +24,7 @@ const ProductActiveFilter = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const {
     withMaturity, productDeployable, sectors, countries, organizations, origins, sdgs, tags,

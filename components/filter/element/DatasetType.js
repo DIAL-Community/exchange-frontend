@@ -12,7 +12,7 @@ export const DatasetTypeSelect = ({
   isSearch = false
 }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('datasetType.label') })
 
@@ -54,7 +54,7 @@ export const DatasetTypeFilters = (props) => {
   const { datasetTypes, setDatasetTypes } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeDatasetType = (datasetTypeValue) => {
     setDatasetTypes(datasetTypes.filter(({ value }) => value !== datasetTypeValue))

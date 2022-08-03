@@ -20,7 +20,7 @@ const CreateUseCaseStep = () => {
   const { slug } = router.query
 
   const { loading, error, data } = useQuery(USE_CASE_QUERY, {
-    variables: { slug: slug, locale: locale },
+    variables: { slug, locale },
     skip: !slug,
     context: { headers: { 'Accept-Language': locale } }
   })

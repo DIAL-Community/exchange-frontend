@@ -1,4 +1,3 @@
-/* global fetch:false */
 import { useSession } from 'next-auth/client'
 import { useEffect, useState } from 'react'
 import { FaHome, FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
@@ -10,7 +9,7 @@ const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-ye
 
 const OrganizationCard = ({ organization, listType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [session] = useSession()
 

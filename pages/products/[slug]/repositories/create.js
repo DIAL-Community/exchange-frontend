@@ -25,7 +25,7 @@ const PRODUCT_QUERY = gql`
 
 const ProductHeader = ({ product }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <div className='border'>
@@ -49,7 +49,7 @@ const PageDefinition = ({ slug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data, loading, error } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
+  const { data, loading, error } = useQuery(PRODUCT_QUERY, { variables: { slug } })
 
   if (loading) {
     return <Loading />
@@ -64,7 +64,7 @@ const PageDefinition = ({ slug }) => {
   }
 
   const slugNameMapping = (() => {
-    const map = {create: format('app.create')}
+    const map = { create: format('app.create') }
 
     map[data?.product.slug] = data?.product.name
 
@@ -96,7 +96,7 @@ const PageDefinition = ({ slug }) => {
 
 const CreateRepository = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const router = useRouter()
   const { slug } = router.query

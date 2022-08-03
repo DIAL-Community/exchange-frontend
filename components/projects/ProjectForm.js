@@ -214,7 +214,7 @@ const ProjectForm = React.memo(({ project }) => {
                       <Input
                         {...register(
                           'endDate',
-                          { validate: (endDate) => isEndDateValid(endDate) || format('validation.endDateEarlierThanStartDate')}
+                          { validate: (endDate) => isEndDateValid(endDate) || format('validation.endDateEarlierThanStartDate') }
                         )}
                         type='date'
                         placeholder={format('project.endDate')}

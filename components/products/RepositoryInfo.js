@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 
 const RepositoryInfo = ({ product }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   useEffect(() => {
     ReactTooltip.rebuild()

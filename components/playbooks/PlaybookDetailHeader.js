@@ -41,7 +41,7 @@ const PlaybookDetailHeader = ({ slug }) => {
   const { setDirect, setCurrentSlug } = useContext(PlaybookDetailDispatchContext)
   
   const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
-    variables: { slug: slug }
+    variables: { slug }
   })
   
   const isPlaybookPublished = !data?.playbook.draft

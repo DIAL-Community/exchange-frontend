@@ -16,7 +16,7 @@ import Select from '../shared/Select'
 
 const DatasetForm = React.memo(({ dataset }) => {
   const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
   const [session] = useSession()

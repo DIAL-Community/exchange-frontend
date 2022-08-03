@@ -8,7 +8,7 @@ import ClientOnly from '../../../lib/ClientOnly'
 
 const BuildingBlock = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const router = useRouter()
   const { locale, query } = router

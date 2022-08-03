@@ -47,7 +47,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
   const { setCurrentSlug, setDirect } = useContext(PlaybookDetailDispatchContext)
 
   const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
-    variables: { slug: slug }
+    variables: { slug }
   })
 
   useEffect(() => {

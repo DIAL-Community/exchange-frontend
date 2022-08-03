@@ -48,7 +48,7 @@ export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, edi
             file_picker_types: 'image',
             images_upload_url: process.env.NEXT_PUBLIC_RAILS_SERVER + '/images/upload',
             branding: false,
-            setup: function(editor) {
+            setup(editor) {
               editor.on('focus', () => editor.container?.classList.add('focused'))
               editor.on('blur', () => editor.container?.classList.remove('focused'))
             },

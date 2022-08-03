@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import Image from 'next/image'
-import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import ReportIssue from './ReportIssue'

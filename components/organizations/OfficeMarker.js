@@ -16,7 +16,7 @@ const createIcon = (altText) => divIcon({
 
 const OfficeMarker = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
   const altText = formatMessage({ id: 'image.alt.logoFor' }, { name: format('digitalPrinciple.title') })
 
   const { position, title, body } = props

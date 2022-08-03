@@ -13,9 +13,9 @@ const containerElementStyle = `
   text-product hover:text-dial-yellow
 `
 
-const ProductCard = ({ product, listType, filterDisplayed, newTab = false }) => {
+const ProductCard = ({ product, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const navClickHandler = () => {
   }

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useIntl, IntlProvider } from 'react-intl'
-import { PDFDownloadLink, Document, Page, Text, StyleSheet, Link, Image } from '@react-pdf/renderer'
+import { PDFDownloadLink, Document, Page, Text, StyleSheet, Link } from '@react-pdf/renderer'
 import { gql, useQuery } from '@apollo/client'
 import parse from 'html-react-parser'
 import { HiExternalLink } from 'react-icons/hi'
@@ -180,8 +180,8 @@ const PlaybookPdf = ({ locale }) => {
   const { query } = router
   const { slug } = query
 
-  const { loading, error, data, refetch } = useQuery(PLAYBOOK_QUERY, {
-    variables: { slug: slug },
+  const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
+    variables: { slug },
     context: { headers: { 'Accept-Language': locale } }
   })
 
@@ -195,7 +195,7 @@ const PlaybookPdf = ({ locale }) => {
 
   return (
     <PDFDownloadLink document={<PlaybookContent format={format} data={JSON.parse(JSON.stringify(data).replaceAll('<img ', '<Image style={{width: 800}} '))} locale={locale} />} fileName={`${slug}.pdf`}>
-      {({ blob, url, loading, error }) => (loading ? <Loading /> : <ReadyToDownload />)}
+      {({ loading }) => (loading ? <Loading /> : <ReadyToDownload />)}
     </PDFDownloadLink>
   )
 }

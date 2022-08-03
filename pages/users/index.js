@@ -16,7 +16,7 @@ const UserListQuery = dynamic(() => import('../../components/users/UserList'), {
 
 const Users = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { search } = useContext(UserFilterContext)
   const { setSearch } = useContext(UserFilterDispatchContext)

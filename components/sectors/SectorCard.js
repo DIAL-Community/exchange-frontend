@@ -7,7 +7,7 @@ import DeleteSector from './DeleteSector'
 
 const SectorCard = ({ sector, listType, displayEditButtons = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [ session ] = useSession()
   const { isAdminUser } = useUser(session)

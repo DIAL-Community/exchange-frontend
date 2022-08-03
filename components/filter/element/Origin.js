@@ -17,7 +17,7 @@ export const OriginAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('origin.label') })
 
@@ -56,7 +56,7 @@ export const OriginFilters = (props) => {
   const { origins, setOrigins } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeOrigin = (originSlug) => {
     setOrigins(origins.filter(({ slug }) => slug !== originSlug))

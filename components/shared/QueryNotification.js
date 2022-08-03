@@ -5,7 +5,7 @@ import { QueryParamContext } from '../context/QueryParamContext'
 
 const QueryNotification = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { query } = useRouter()
 

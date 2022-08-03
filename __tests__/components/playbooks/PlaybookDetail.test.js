@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import { PlaybookDetailProvider } from '../../../components/playbooks/PlaybookDetailContext'
 import { PLAYBOOK_QUERY as HEADER_QUERY } from '../../../components/playbooks/PlaybookDetailHeader'
 import { PLAYBOOK_QUERY as NAVIGATION_QUERY } from '../../../components/playbooks/PlaybookDetailNavigation'
-import { PLAYBOOK_QUERY as OVERVIEW_QUERY} from '../../../components/playbooks/PlaybookDetailOverview'
+import { PLAYBOOK_QUERY as OVERVIEW_QUERY } from '../../../components/playbooks/PlaybookDetailOverview'
 import { PLAYBOOK_PLAYS_QUERY } from '../../../components/playbooks/PlaybookDetailPlayList'
 import { MOVE_QUERY } from '../../../components/plays/PlayPreviewMove'
 import PlaybookDetail from '../../../components/playbooks/PlaybookDetail'
@@ -48,10 +48,10 @@ describe('Unit tests for playbook interaction.', () => {
 
   test('Should render error message when the apollo is returning errors.', async () => {
     // Mock all apollo interaction
-    const mockNavigation = generateMockApolloData(NAVIGATION_QUERY, { slug: slug }, new Error('An error occurred'))
-    const mockHeader = generateMockApolloData(HEADER_QUERY, { slug: slug }, new Error('An error occurred'))
-    const mockOverview = generateMockApolloData(OVERVIEW_QUERY, { slug: slug }, new Error('An error occurred'))
-    const mockPlays = generateMockApolloData(PLAYBOOK_PLAYS_QUERY, { first: 10, slug: slug }, new Error('An error occurred'))
+    const mockNavigation = generateMockApolloData(NAVIGATION_QUERY, { slug }, new Error('An error occurred'))
+    const mockHeader = generateMockApolloData(HEADER_QUERY, { slug }, new Error('An error occurred'))
+    const mockOverview = generateMockApolloData(OVERVIEW_QUERY, { slug }, new Error('An error occurred'))
+    const mockPlays = generateMockApolloData(PLAYBOOK_PLAYS_QUERY, { first: 10, slug }, new Error('An error occurred'))
     // Render the component and use screen to check them.
     const component = render(
       <CustomMockedProvider mocks={[mockNavigation, mockHeader, mockOverview, mockPlays]} addTypename={false}>
@@ -69,11 +69,11 @@ describe('Unit tests for playbook interaction.', () => {
 
   test('Should render playbook data when apollo query returning playbook data.', async () => {
     // Mock all apollo interaction
-    const mockNavigation = generateMockApolloData(NAVIGATION_QUERY, { slug: slug }, null, playbook)
-    const mockHeader = generateMockApolloData(HEADER_QUERY, { slug: slug }, null, playbook)
-    const mockOverview = generateMockApolloData(OVERVIEW_QUERY, { slug: slug }, null, playbook)
-    const mockPlays = generateMockApolloData(PLAYBOOK_PLAYS_QUERY, { first: 10, slug: slug}, null, searchPlaysResult)
-    const mockMove = generateMockApolloData(MOVE_QUERY, { playSlug: playSlug, slug: moveSlug }, null, move)
+    const mockNavigation = generateMockApolloData(NAVIGATION_QUERY, { slug }, null, playbook)
+    const mockHeader = generateMockApolloData(HEADER_QUERY, { slug }, null, playbook)
+    const mockOverview = generateMockApolloData(OVERVIEW_QUERY, { slug }, null, playbook)
+    const mockPlays = generateMockApolloData(PLAYBOOK_PLAYS_QUERY, { first: 10, slug }, null, searchPlaysResult)
+    const mockMove = generateMockApolloData(MOVE_QUERY, { playSlug, slug: moveSlug }, null, move)
     // Render the component and use screen to check them.
     const component = render(
       <CustomMockedProvider mocks={[mockNavigation, mockHeader, mockOverview, mockPlays, mockMove]} addTypename={false}>
@@ -112,11 +112,11 @@ describe('Unit tests for playbook interaction.', () => {
     }
     useSession.mockReturnValue([mockSession, false])
     // Mock all apollo interaction
-    const mockNavigation = generateMockApolloData(NAVIGATION_QUERY, { slug: slug }, null, playbook)
-    const mockHeader = generateMockApolloData(HEADER_QUERY, { slug: slug }, null, playbook)
-    const mockOverview = generateMockApolloData(OVERVIEW_QUERY, { slug: slug }, null, playbook)
-    const mockPlays = generateMockApolloData(PLAYBOOK_PLAYS_QUERY, { first: 10, slug: slug }, null, searchPlaysResult)
-    const mockMove = generateMockApolloData(MOVE_QUERY, { playSlug: playSlug, slug: moveSlug }, null, move)
+    const mockNavigation = generateMockApolloData(NAVIGATION_QUERY, { slug }, null, playbook)
+    const mockHeader = generateMockApolloData(HEADER_QUERY, { slug }, null, playbook)
+    const mockOverview = generateMockApolloData(OVERVIEW_QUERY, { slug }, null, playbook)
+    const mockPlays = generateMockApolloData(PLAYBOOK_PLAYS_QUERY, { first: 10, slug }, null, searchPlaysResult)
+    const mockMove = generateMockApolloData(MOVE_QUERY, { playSlug, slug: moveSlug }, null, move)
     // Render the component and use screen to check them.
     const component = render(
       <CustomMockedProvider mocks={[mockNavigation, mockHeader, mockOverview, mockPlays, mockMove]} addTypename={false}>

@@ -6,7 +6,7 @@ import { useUser } from '../../lib/hooks'
 
 const WorkflowDetailLeft = ({ workflow }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
   const [session] = useSession()
 
   const { isAdminUser } = useUser(session)

@@ -22,7 +22,7 @@ const ProductFilter = (props) => {
   const filterDisplayed = props.filterDisplayed
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { query } = useRouter()
   const { interactionDetected } = useContext(QueryParamContext)

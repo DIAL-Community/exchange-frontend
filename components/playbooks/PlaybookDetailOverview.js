@@ -35,7 +35,7 @@ const PlaybookDetailOverview = ({ slug, locale, allowEmbedCreation }) => {
   const ref = createRef()
 
   const { loading, error, data, refetch } = useQuery(PLAYBOOK_QUERY, {
-    variables: { slug: slug },
+    variables: { slug },
     context: { headers: { 'Accept-Language': locale } }
   })
 

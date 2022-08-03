@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import ProjectDetailCountries from '../../../components/projects/ProjectDetailCountries'
 import { COUNTRY_SEARCH_QUERY } from '../../../queries/country'
 import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'

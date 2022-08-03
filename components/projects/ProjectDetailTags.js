@@ -68,7 +68,7 @@ const ProjectDetailTags = ({ project, canEdit }) => {
       updateProjectTags({
         variables: {
           slug: project.slug,
-          tags: tags
+          tags
         },
         context: {
           headers: {

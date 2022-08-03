@@ -18,7 +18,7 @@ import { CREATE_ORGANIZATION } from '../../mutations/organization'
 
 const OrganizationForm = React.memo(({ organization }) => {
   const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
   const [session] = useSession()

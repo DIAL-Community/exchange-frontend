@@ -76,7 +76,7 @@ query SearchOrganizations(
 
 const EndorserPageInformation = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [selectedCity, setSelectedCity] = useState('')
   const [organization, setOrganization] = useState()
@@ -98,8 +98,8 @@ const EndorserPageInformation = () => {
       sectors: sectors.map(sector => sector.value),
       years: years.map(year => year.value),
       countries: countries.map(country => country.value),
-      endorserLevel: endorserLevel,
-      search: search,
+      endorserLevel,
+      search,
       mapView: true
     },
     onCompleted: (data) => {

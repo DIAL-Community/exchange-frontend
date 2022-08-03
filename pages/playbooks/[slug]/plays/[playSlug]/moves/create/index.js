@@ -27,7 +27,7 @@ const PLAY_QUERY = gql`
 
 const CreateMoveInformation = ({ slug, playSlug, locale }) => {
   const { loading, error, data, refetch } = useQuery(PLAY_QUERY, {
-    variables: { playbookSlug: slug, playSlug: playSlug },
+    variables: { playbookSlug: slug, playSlug },
     skip: !slug && !playSlug,
     context: { headers: { 'Accept-Language': locale } }
   })
@@ -76,7 +76,7 @@ const CreateMove = () => {
       </Head>
       <Header />
       <ClientOnly>
-        <CreateMoveInformation {...{slug, playSlug, locale }} />
+        <CreateMoveInformation {...{ slug, playSlug, locale }} />
       </ClientOnly>
       <Footer />
     </>

@@ -41,7 +41,7 @@ const TagsListQuery = () => {
   const { loading, error, data, fetchMore } = useQuery(TAGS_LIST_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
-      search: search
+      search
     },
     onCompleted: (data) => {
       setResultCounts({ ...resultCounts, ...{ [['filter.entity.tags']]: data.searchTags.totalCount } })

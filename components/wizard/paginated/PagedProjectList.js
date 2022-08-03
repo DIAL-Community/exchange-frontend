@@ -60,7 +60,7 @@ const PRODUCTS_QUERY = gql`
 
 const PagedProjectList = ({ countries, sectors, subSectors, tags, projectSortHint }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [itemOffset, setItemOffset] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
@@ -68,11 +68,11 @@ const PagedProjectList = ({ countries, sectors, subSectors, tags, projectSortHin
     variables: {
       first: DEFAULT_PAGE_SIZE,
       offset: itemOffset,
-      countries: countries,
-      sectors: sectors,
-      subSectors: subSectors,
-      tags: tags,
-      projectSortHint: projectSortHint
+      countries,
+      sectors,
+      subSectors,
+      tags,
+      projectSortHint
     }
   })
 
@@ -82,11 +82,11 @@ const PagedProjectList = ({ countries, sectors, subSectors, tags, projectSortHin
         variables: {
           first: DEFAULT_PAGE_SIZE,
           offset: itemOffset,
-          countries: countries,
-          sectors: sectors,
-          subSectors: subSectors,
-          tags: tags,
-          projectSortHint: projectSortHint
+          countries,
+          sectors,
+          subSectors,
+          tags,
+          projectSortHint
         }
       })
     }

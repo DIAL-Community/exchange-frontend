@@ -17,7 +17,7 @@ export const CountryAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('country.label') })
 
@@ -56,7 +56,7 @@ export const CountryFilters = (props) => {
   const { countries, setCountries } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeCountry = (countrySlug) => {
     setCountries(countries.filter(({ slug }) => slug !== countrySlug))

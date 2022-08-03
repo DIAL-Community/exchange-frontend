@@ -18,7 +18,7 @@ export const WorkflowAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('workflow.label') })
 
@@ -57,7 +57,7 @@ export const WorkflowFilters = (props) => {
   const { workflows, setWorkflows } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeWorkflow = (workflowId) => {
     setWorkflows(workflows.filter(({ slug }) => slug !== workflowId))

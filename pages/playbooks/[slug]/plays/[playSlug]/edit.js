@@ -53,7 +53,7 @@ const EditFormProvider = ({ children }) => {
 
 const EditPlayInformation = ({ slug, playSlug, locale }) => {
   const { loading, error, data, refetch } = useQuery(PLAY_QUERY, {
-    variables: { playSlug: playSlug, playbookSlug: slug },
+    variables: { playSlug, playbookSlug: slug },
     skip: !playSlug && !slug,
     context: { headers: { 'Accept-Language': locale } }
   })

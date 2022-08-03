@@ -19,7 +19,7 @@ const ProjectActiveFilter = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { sectors, countries, organizations, products, origins, sdgs, tags } = useContext(ProjectFilterContext)
   const { setSectors, setCountries, setOrganizations, setProducts, setOrigins, setSDGs, setTags } = useContext(ProjectFilterDispatchContext)

@@ -5,7 +5,7 @@ import Resource from '../resources/Resource'
 
 const Lifecycle = ({ wizardData, objType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
   const [openTab, setOpenTab] = useState(objType === 'principles' ? 0 : 1)
 
   const tabClickHandler = (e, tabNumber) => {

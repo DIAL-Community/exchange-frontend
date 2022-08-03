@@ -10,7 +10,7 @@ import BuildingBlockDetailRight from './BuildingBlockDetailRight'
 
 const BuildingBlockDetail = ({ slug, locale }) => {
   const { loading, error, data } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
-    variables: { slug: slug },
+    variables: { slug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !slug
   })

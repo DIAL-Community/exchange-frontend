@@ -11,7 +11,7 @@ import DatasetDetailSdgs from './DatasetDetailSdgs'
 
 const DatasetDetailRight = ({ dataset }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [session] = useSession()
   const canEdit = session?.user?.canEdit

@@ -11,7 +11,7 @@ import UseCaseDetailTags from './UseCaseDetailTags'
 
 const UseCaseDetailRight = ({ useCase, canEdit }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
   const [session] = useSession()
 
   const generateCreateStepLink = () => {

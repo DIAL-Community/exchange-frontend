@@ -31,7 +31,7 @@ const SDG_QUERY = gql`
 
 const SDGDetail = ({ slug }) => {
   const { loading, error, data } = useQuery(SDG_QUERY, {
-    variables: { slug: slug },
+    variables: { slug },
     skip: !slug
   })
 

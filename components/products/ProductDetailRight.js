@@ -16,7 +16,7 @@ import ProductDetailSdgs from './ProductDetailSdgs'
 
 const ProductDetailRight = ({ product, discourseRef }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [session] = useSession()
 

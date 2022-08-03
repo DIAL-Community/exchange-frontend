@@ -1,5 +1,3 @@
-/* globals DOMParser */
-
 import { useRef, useCallback, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useMutation } from '@apollo/client'
@@ -34,7 +32,7 @@ const UPDATE_MOVE_ORDER = gql`
 
 const DraggableCard = ({ id, move, index, swapMove, unassignMove, previewMove }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const ref = useRef(null)
 
@@ -172,7 +170,7 @@ const DraggableCard = ({ id, move, index, swapMove, unassignMove, previewMove })
 
 const MoveListDraggable = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [draggedMove, setDraggedMove] = useState([-1, -1])
   const [unassignedMove, setUnassignedMove] = useState('')

@@ -49,7 +49,7 @@ const OrganizationDetailOffices = ({ organization, canEdit }) => {
   const { locale } = useRouter()
 
   const addOffice = (officeToAdd) => {
-    if (!!officeToAdd) {
+    if (officeToAdd) {
       const { cityName, regionName, countryCode, longitude, latitude } = officeToAdd
       const office = {
         name: [cityName, regionName, countryCode].join(OFFICE_NAME_PARTS_SEPARATOR),
@@ -75,7 +75,7 @@ const OrganizationDetailOffices = ({ organization, canEdit }) => {
       updateOrganizationOffices({
         variables: {
           slug: organization.slug,
-          offices: offices.map(({ name, ...mutationVars }) => mutationVars)
+          offices: offices.map(({ name, ...mutationVars }) => mutationVars) // eslint-disable-line
         },
         context: {
           headers: {

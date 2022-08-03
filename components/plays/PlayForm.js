@@ -16,7 +16,7 @@ import MoveListDraggable from './moves/MoveListDraggable'
 
 export const PlayForm = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id: id }, values), [formatMessage])
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
   const { locale } = router

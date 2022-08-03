@@ -65,9 +65,9 @@ query Wizard(
 }
 `
 
-const LeftMenu = ({ currentSection, phase, clickHandler }) => {
+const LeftMenu = ({ currentSection, clickHandler }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <div className='block py-3 float-right w-3/4 hidden lg:block'>
@@ -133,7 +133,7 @@ const LeftMenu = ({ currentSection, phase, clickHandler }) => {
 
 const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
   const router = useRouter()
   const [currentSection, setCurrentSection] = useState(0)
   const [wizardData, setWizardData] = useState()

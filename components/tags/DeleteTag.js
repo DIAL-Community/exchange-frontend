@@ -10,7 +10,7 @@ import DeleteButton from '../shared/DeleteButton'
 
 const DeleteTag = ({ tag }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
 

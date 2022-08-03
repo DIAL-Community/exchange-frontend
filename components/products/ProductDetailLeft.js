@@ -1,5 +1,3 @@
-/* global fetch:false */
-
 import { gql, useLazyQuery } from '@apollo/client'
 import parse from 'html-react-parser'
 import { useSession } from 'next-auth/client'
@@ -27,7 +25,7 @@ const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
 
 const ProductDetailLeft = ({ product, discourseClick }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [session] = useSession()
   const router = useRouter()

@@ -1,4 +1,4 @@
-import { mockRouterImplementation, render} from '../../test-utils'
+import { mockRouterImplementation, render } from '../../test-utils'
 import { WizardStage1, WizardStage2 } from '../../../components/wizard/StageContent'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
 import { projData, allValues } from './data/WizardStage'

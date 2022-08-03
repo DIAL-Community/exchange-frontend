@@ -18,7 +18,7 @@ export const CapabilityAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('service.label') })
 
@@ -58,7 +58,7 @@ export const CapabilityFilters = (props) => {
   const { services, setServices } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeCapability = (serviceSlug) => {
     setServices(services.filter(({ slug }) => slug !== serviceSlug))

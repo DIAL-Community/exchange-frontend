@@ -36,7 +36,7 @@ const EditProduct = () => {
   const { locale } = router
   const { slug } = router.query
   const { loading, error, data } = useQuery(PRODUCT_QUERY, {
-    variables: { slug: slug, locale: locale },
+    variables: { slug, locale },
     skip: !slug,
     context: { headers: { 'Accept-Language': locale } }
   })

@@ -19,7 +19,7 @@ const SEARCH_PLAYBOOK_TAGS_QUERY = gql`
 
 const PlaybookFilter = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { setHintDisplayed } = useContext(FilterContext)
 
