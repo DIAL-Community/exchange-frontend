@@ -8,7 +8,7 @@
     "start": "next start -p 3002",
     "test": "jest",
     "test-live": "jest --watch",
-    "lint": "next lint",
+    "lint": "eslint .",
     "cypress:open": "cypress open",
     "cy:open": "cypress open",
     "cypress:run": "cypress run",

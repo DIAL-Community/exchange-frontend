@@ -27,6 +27,7 @@ const DeleteCountry = ({ country }) => {
   }
 
   const [deleteCountry, { called, reset }] = useMutation(DELETE_COUNTRY, {
+    refetchQueries: ['SearchCountries'],
     onCompleted: () => {
       showToast(
         format('toast.country.delete.success'),
