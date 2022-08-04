@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useQuery } from '@apollo/client'
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
@@ -12,9 +10,6 @@ import UseCaseForm from '../../../components/use-cases/UseCaseForm'
 import { USE_CASE_QUERY } from '../../../queries/use-case'
 
 const EditUseCase = () => {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
   const router = useRouter()
 
   const { locale } = router
@@ -39,10 +34,6 @@ const EditUseCase = () => {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       {data?.useCase && (
         <div className='max-w-catalog mx-auto'>

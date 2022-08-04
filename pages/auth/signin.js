@@ -1,5 +1,4 @@
 import { csrfToken } from 'next-auth/client'
-import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useState, useRef, useEffect } from 'react'
 import { FaSpinner } from 'react-icons/fa'
@@ -26,10 +25,6 @@ export default function SignIn ({ csrfToken }) {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <div className='bg-dial-gray-dark pt-40 pb-40'>
         <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>

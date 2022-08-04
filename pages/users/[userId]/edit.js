@@ -1,8 +1,6 @@
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client'
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import ClientOnly from '../../../lib/ClientOnly'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
@@ -65,23 +63,16 @@ const EditUserPageDefinition = ({ userId, locale }) => {
 const EditUser = () => {
   const router = useRouter()
   const [session] = useSession()
-  const { formatMessage } = useIntl()
 
   if (session && !session.user.roles.includes('admin')) {
     return <Unauthorized />
   }
-
-  const format = (id) => formatMessage({ id })
 
   const { locale } = router
   const { userId } = router.query
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ClientOnly>
         <EditUserPageDefinition userId={userId} locale={locale} />

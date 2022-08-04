@@ -1,7 +1,5 @@
 import { useState } from 'react'
-import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import Head from 'next/head'
 import { gql, useQuery } from '@apollo/client'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -104,23 +102,14 @@ const WizardPageDefinition = () => {
   )
 }
 
-const WizardPage = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-
-  return (
-    <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-      <Header />
-      <ClientOnly>
-        <WizardPageDefinition />
-      </ClientOnly>
-      <Footer />
-    </>
-  )
-}
+const WizardPage = () => (
+  <>
+    <Header />
+    <ClientOnly>
+      <WizardPageDefinition />
+    </ClientOnly>
+    <Footer />
+  </>
+)
 
 export default WizardPage

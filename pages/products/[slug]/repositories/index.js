@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 import Link from 'next/link'
-import Head from 'next/head'
 import { gql, useQuery } from '@apollo/client'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
@@ -101,19 +100,12 @@ const PageDefinition = ({ slug, repositorySlug }) => {
 }
 
 const ProductRepositories = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-
   const router = useRouter()
   const { query } = router
   const { slug, repositorySlug } = query
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ClientOnly>
         <PageDefinition slug={slug} repositorySlug={repositorySlug} />

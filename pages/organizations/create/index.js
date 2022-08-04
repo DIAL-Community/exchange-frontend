@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
@@ -9,17 +7,11 @@ import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
 import { useUser } from '../../../lib/hooks'
 
 const CreateOrganization = () => {
-
   const [session] = useSession()
-  
   const { isAdminUser, loadingUserSession } = useUser(session)
 
   return (
     <>
-      <Head>
-        <title>{useIntl().formatMessage({ id: 'app.title' })}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <div className='max-w-catalog mx-auto'>
         <ClientOnly>

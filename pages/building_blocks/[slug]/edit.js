@@ -1,6 +1,4 @@
-import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
@@ -11,9 +9,6 @@ import NotFound from '../../../components/shared/NotFound'
 import { BUILDING_BLOCK_QUERY } from '../../../queries/building-block'
 
 const CreateBuildingBlock = () => {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
   const router = useRouter()
 
   const { locale } = router
@@ -34,10 +29,6 @@ const CreateBuildingBlock = () => {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       {data?.buildingBlock && (
         <div className='max-w-catalog mx-auto'>

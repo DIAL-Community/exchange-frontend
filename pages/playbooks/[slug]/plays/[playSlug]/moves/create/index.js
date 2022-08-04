@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
@@ -61,19 +59,12 @@ const CreateMoveInformation = ({ slug, playSlug, locale }) => {
 }
 
 const CreateMove = () => {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
   const router = useRouter()
   const { locale, query } = router
   const { slug, playSlug } = query
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ClientOnly>
         <CreateMoveInformation {...{ slug, playSlug, locale }} />

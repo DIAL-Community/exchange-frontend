@@ -1,6 +1,4 @@
 import { useRouter } from 'next/router'
-import { useIntl } from 'react-intl'
-import Head from 'next/head'
 import { useSession } from 'next-auth/client'
 import { gql, useQuery } from '@apollo/client'
 import dynamic from 'next/dynamic'
@@ -69,23 +67,16 @@ const UserPageDefinition = ({ userId, locale }) => {
 const User = () => {
   const router = useRouter()
   const [session] = useSession()
-  const { formatMessage } = useIntl()
 
   if (session && !session.user.roles.includes('admin')) {
     return <Unauthorized />
   }
-
-  const format = (id, values) => formatMessage({ id }, values)
 
   const { locale, query } = router
   const { userId } = query
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <ClientOnly>

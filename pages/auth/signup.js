@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useState } from 'react'
 import Link from 'next/link'
@@ -195,10 +194,6 @@ const SignUp = () => {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <ClientOnly>
