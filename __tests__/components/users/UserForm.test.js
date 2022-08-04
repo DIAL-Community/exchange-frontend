@@ -32,18 +32,19 @@ describe('Unit tests for the UserForm component.', () => {
   })
 
   test('Should match snapshot - edit.', async () => {
-    const { container } = render(
+    const { container, getByText } = render(
       <CustomMockedProvider>
         <UserForm user={user} action='update'/>
       </CustomMockedProvider>
     )
     await waitForAllEffectsAndSelectToLoad(container)
+    expect(getByText(/Organization 1/)).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 
   test('Should not show validation errors for mandatory fields.', async () => {
     const someUser = userEvent.setup()
-    const { getByTestId } = render(
+    const { container, getByTestId } = render(
       <CustomMockedProvider>
         <UserForm user={user} action='update' />
       </CustomMockedProvider>
@@ -57,6 +58,7 @@ describe('Unit tests for the UserForm component.', () => {
     await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(EMAIL_LABEL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USER_NAME_LABEL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
+    expect(container).toMatchSnapshot()
   })
 
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
@@ -80,10 +82,11 @@ describe('Unit tests for the UserForm component.', () => {
     await someUser.type(getByTestId(USER_NAME_INPUT_TEST_ID), 'User Test')
     expect(getByTestId(EMAIL_LABEL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USER_NAME_LABEL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
+    expect(container).toMatchSnapshot()
   })
 
   test('Should render unchecked based on the confirmed flag data.', async () => {
-    const { queryByTestId } = render(
+    const { container, queryByTestId } = render(
       <CustomMockedProvider>
         <UserForm user={user} action='update' />
       </CustomMockedProvider>
@@ -92,11 +95,12 @@ describe('Unit tests for the UserForm component.', () => {
     const checkboxLabel = queryByTestId(CONFIRMED_CHECKBOX_TEST_ID)
     const checkbox = within(checkboxLabel).queryByTestId('checkbox')
     expect(checkbox.checked).toEqual(false)
+    expect(container).toMatchSnapshot()
   })
 
   test('Should render checked based on the confirmed flag data.', async () => {
     user.confirmed = true
-    const { queryByTestId } = render(
+    const { container, queryByTestId } = render(
       <CustomMockedProvider>
         <UserForm user={user} action='update' />
       </CustomMockedProvider>
@@ -105,5 +109,6 @@ describe('Unit tests for the UserForm component.', () => {
     const checkboxLabel = queryByTestId(CONFIRMED_CHECKBOX_TEST_ID)
     const checkbox = within(checkboxLabel).queryByTestId('checkbox')
     expect(checkbox.checked).toEqual(true)
+    expect(container).toMatchSnapshot()
   })
 })

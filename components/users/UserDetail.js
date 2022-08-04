@@ -45,7 +45,7 @@ const UserDetail = ({ user }) => {
               {format('profile.roles')} {user.roles.map(role => role.toUpperCase()).join(', ')}
             </div>
             {
-              user?.products?.length &&
+              user?.products?.length > 0 &&
                 <div className='h4'>
                   {format('profile.products')} {user.products.map(prod => prod.name).join(', ')}
                 </div>
