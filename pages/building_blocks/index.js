@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import { useContext } from 'react'
 import dynamic from 'next/dynamic'
 import Header from '../../components/Header'
@@ -20,18 +18,11 @@ import ClientOnly from '../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const BuildingBlocks = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-
   const { search } = useContext(BuildingBlockFilterContext)
   const { setSearch } = useContext(BuildingBlockFilterDispatchContext)
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <QueryNotification />
       <GradientBackground />
       <Header />

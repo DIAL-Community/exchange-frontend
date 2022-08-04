@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import Head from 'next/head'
 import Link from 'next/link'
 import { useQuery } from '@apollo/client'
 import { useSession } from 'next-auth/client'
@@ -89,18 +88,11 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
 }
 
 const UseCaseStep = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-
   const router = useRouter()
   const { slug, stepSlug } = router.query
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ClientOnly>
         <UseCaseStepPageDefinition {...{ slug, stepSlug }} />

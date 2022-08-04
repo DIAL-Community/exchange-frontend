@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import dynamic from 'next/dynamic'
@@ -14,10 +13,6 @@ const UserProfile = () => {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       {session &&

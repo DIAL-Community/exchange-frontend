@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import { useContext } from 'react'
 import { useSession } from 'next-auth/client'
 import dynamic from 'next/dynamic'
@@ -15,9 +13,6 @@ import { useUser } from '../../lib/hooks'
 const UserListQuery = dynamic(() => import('../../components/users/UserList'), { ssr: false })
 
 const Users = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-
   const { search } = useContext(UserFilterContext)
   const { setSearch } = useContext(UserFilterDispatchContext)
 
@@ -26,10 +21,6 @@ const Users = () => {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <QueryNotification />
       <GradientBackground />
       <Header />

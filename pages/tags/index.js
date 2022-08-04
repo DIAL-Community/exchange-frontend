@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import { useContext, useState } from 'react'
 import { useSession } from 'next-auth/client'
 import dynamic from 'next/dynamic'
@@ -16,9 +14,6 @@ import TagForm from '../../components/tags/TagForm'
 const TagsListQuery = dynamic(() => import('../../components/tags/TagList'), { ssr: false })
 
 const Tags = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-
   const [session] = useSession()
   const { isAdminUser, loadingUserSession } = useUser(session)
 
@@ -31,10 +26,6 @@ const Tags = () => {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <QueryNotification />
       <GradientBackground />
       <Header />

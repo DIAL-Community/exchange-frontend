@@ -1,6 +1,4 @@
 import { useRouter } from 'next/router'
-import { useIntl } from 'react-intl'
-import Head from 'next/head'
 import { gql, useQuery } from '@apollo/client'
 import { useEffect } from 'react'
 import Header from '../../../../../components/Header'
@@ -77,19 +75,12 @@ const PlayInformation = ({ slug, playSlug, locale }) => {
 }
 
 const Play = () => {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
   const router = useRouter()
   const { locale, query } = router
   const { slug, playSlug } = query
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ClientOnly>
         <PlayInformation slug={slug} playSlug={playSlug} locale={locale} />

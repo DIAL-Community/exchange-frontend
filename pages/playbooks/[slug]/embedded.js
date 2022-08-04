@@ -1,6 +1,4 @@
-import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import Head from 'next/head'
 import { PlaybookDetailProvider } from '../../../components/playbooks/PlaybookDetailContext'
 import ClientOnly from '../../../lib/ClientOnly'
 import PlaybookDetailHeader from '../../../components/playbooks/PlaybookDetailHeader'
@@ -11,19 +9,12 @@ import EmbeddedHeader from '../../../components/shared/EmbeddedHeader'
 import EmbeddedFooter from '../../../components/shared/EmbeddedFooter'
 
 const EmbeddedPlaybook = () => {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
   const router = useRouter()
   const { locale, query } = router
   const { slug } = query
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <EmbeddedHeader />
       <ClientOnly>
         <PlaybookDetailProvider>

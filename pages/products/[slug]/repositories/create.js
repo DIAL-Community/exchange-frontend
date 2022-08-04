@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
@@ -95,18 +94,11 @@ const PageDefinition = ({ slug }) => {
 }
 
 const CreateRepository = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-
   const router = useRouter()
   const { slug } = router.query
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ClientOnly>
         <PageDefinition slug={slug} />

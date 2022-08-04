@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { gql, useQuery } from '@apollo/client'
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
 import { Loading, Error } from '../../../../../components/shared/FetchStatus'
@@ -91,9 +89,6 @@ const EditPlayInformation = ({ slug, playSlug, locale }) => {
 }
 
 function EditPlay () {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
   const router = useRouter()
 
   const { locale } = router
@@ -101,10 +96,6 @@ function EditPlay () {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ClientOnly>
         <EditPlayInformation slug={slug} playSlug={playSlug} locale={locale} />
