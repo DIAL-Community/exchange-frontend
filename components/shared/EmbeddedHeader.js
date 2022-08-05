@@ -55,7 +55,7 @@ const EmbeddedHeader = () => {
 
   useEffect(() => {
     // call addEventListener() only when menu dropdown is open
-    if (currentOpenMenu !== NONE){
+    if (currentOpenMenu !== NONE) {
       // whenever user clicks somewhere on the page - fire handleClickOutside
       // so that the current menu is closed and, if clicked, another menu is opened
       // e.g. About menu -> Help menu 

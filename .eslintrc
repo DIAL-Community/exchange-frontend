@@ -38,8 +38,9 @@
     "react-hooks/rules-of-hooks": "warn",
     "arrow-body-style": "off",
     "prefer-arrow-callback": "off",
-    "eol-last": ["error", "always"],
+    "eol-last": "error",
     "object-curly-spacing": [2, "always"],
-    "object-shorthand": ["error", "always"]
+    "object-shorthand": "error",
+    "space-before-blocks": "error"
   }
 }
