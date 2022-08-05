@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import DeleteButton from '../shared/DeleteButton'
 import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import { ToastContext } from '../../lib/ToastContext'
-import { DELETE_COUNTRY } from '../../mutations/countries'
+import { DELETE_COUNTRY } from '../../mutations/country'
 
 const DeleteCountry = ({ country }) => {
   const { formatMessage } = useIntl()
