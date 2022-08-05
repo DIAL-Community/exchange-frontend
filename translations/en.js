@@ -28,6 +28,7 @@ export const en = {
   'app.mappingStatus': 'Mapping Status',
   'app.name': 'Name',
   'app.description': 'Description',
+  'app.internal-server-error': "500 - Internal Server Error",
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
