@@ -1,7 +1,6 @@
 import { useSession } from 'next-auth/client'
 import classNames from 'classnames'
 import { useUser } from '../../lib/hooks'
-import EditButton from '../shared/EditButton'
 import { DisplayType } from '../../lib/constants'
 import DeleteCountry from './DeleteCountry'
 
@@ -22,7 +21,6 @@ const CountryCard = ({ country, listType, displayEditButtons }) => {
                   </div>
                   {isAdminUser && displayEditButtons &&
                     <div className='inline-flex gap-x-1.5 items-center'>
-                      <EditButton />
                       <DeleteCountry country={country} />
                     </div>
                   }
