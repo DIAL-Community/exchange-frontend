@@ -19,6 +19,7 @@ const CountryForm = ({ isOpen, onClose, country }) => {
   const { showToast } = useContext(ToastContext)
 
   const [updateCountry, { called: isSubmitInProgress, reset }] = useMutation(CREATE_COUNTRY, {
+    refetchQueries: ['SearchCountries'],
     onCompleted: (data) => {
       if (data.createCountry.country) {
         showToast(format('toast.country.submit.success'), 'success', 'top-center')

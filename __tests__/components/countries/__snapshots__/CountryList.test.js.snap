@@ -153,23 +153,6 @@ Object {
                     class="inline-flex gap-x-1.5 items-center"
                   >
                     <button
-                      class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-                      data-testid="edit-button"
-                      type="button"
-                    >
-                      <img
-                        alt="Edit"
-                        height="12px"
-                        src="/icons/edit.svg"
-                        width="12px"
-                      />
-                      <span
-                        class="text-sm"
-                      >
-                        Edit
-                      </span>
-                    </button>
-                    <button
                       class="delete-button gap-x-1.5"
                       data-testid="delete-button"
                       type="button"
@@ -219,23 +202,6 @@ Object {
                   <div
                     class="inline-flex gap-x-1.5 items-center"
                   >
-                    <button
-                      class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-                      data-testid="edit-button"
-                      type="button"
-                    >
-                      <img
-                        alt="Edit"
-                        height="12px"
-                        src="/icons/edit.svg"
-                        width="12px"
-                      />
-                      <span
-                        class="text-sm"
-                      >
-                        Edit
-                      </span>
-                    </button>
                     <button
                       class="delete-button gap-x-1.5"
                       data-testid="delete-button"
@@ -311,23 +277,6 @@ Object {
                   class="inline-flex gap-x-1.5 items-center"
                 >
                   <button
-                    class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-                    data-testid="edit-button"
-                    type="button"
-                  >
-                    <img
-                      alt="Edit"
-                      height="12px"
-                      src="/icons/edit.svg"
-                      width="12px"
-                    />
-                    <span
-                      class="text-sm"
-                    >
-                      Edit
-                    </span>
-                  </button>
-                  <button
                     class="delete-button gap-x-1.5"
                     data-testid="delete-button"
                     type="button"
@@ -377,23 +326,6 @@ Object {
                 <div
                   class="inline-flex gap-x-1.5 items-center"
                 >
-                  <button
-                    class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-                    data-testid="edit-button"
-                    type="button"
-                  >
-                    <img
-                      alt="Edit"
-                      height="12px"
-                      src="/icons/edit.svg"
-                      width="12px"
-                    />
-                    <span
-                      class="text-sm"
-                    >
-                      Edit
-                    </span>
-                  </button>
                   <button
                     class="delete-button gap-x-1.5"
                     data-testid="delete-button"
