@@ -1,35 +1,14 @@
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import ClientOnly from '../../../lib/ClientOnly'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
 import { UserForm } from '../../../components/users/UserForm'
 import NotFound from '../../../components/shared/NotFound'
-
-const USER_QUERY = gql`
-  query User($userId: String!) {
-    user(userId: $userId) {
-      id
-      username
-      confirmed
-      email
-      roles
-      organization {
-        id
-        name
-        slug
-      }
-      products {
-        name
-        slug
-        imageFile
-      }
-      allRoles
-    }
-  }
-`
+import { useUser } from '../../../lib/hooks'
+import { USER_QUERY } from '../../../queries/user'
 
 const EditUserPageDefinition = ({ userId, locale }) => {
   const { loading, error, data } = useQuery(USER_QUERY, {
@@ -63,10 +42,7 @@ const EditUserPageDefinition = ({ userId, locale }) => {
 const EditUser = () => {
   const router = useRouter()
   const [session] = useSession()
-
-  if (session && !session.user.roles.includes('admin')) {
-    return <Unauthorized />
-  }
+  const { isAdminUser, loadingUserSession } = useUser(session)
 
   const { locale } = router
   const { userId } = router.query
@@ -75,7 +51,7 @@ const EditUser = () => {
     <>
       <Header />
       <ClientOnly>
-        <EditUserPageDefinition userId={userId} locale={locale} />
+        {loadingUserSession ? <Loading /> : isAdminUser ? <EditUserPageDefinition userId={userId} locale={locale} /> : <Unauthorized />}
       </ClientOnly>
       <Footer />
     </>

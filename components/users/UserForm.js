@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { useContext, useState } from 'react'
+import { useContext, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
@@ -31,7 +31,7 @@ export const UserForm = ({ user, action }) => {
   const { locale } = useRouter()
   
   const { showToast } = useContext(ToastContext)
-  
+
   const userProfilePageUrl = (data) => `/${locale}/users/${data.updateUser.user.id}`
   const roleOptions = user.allRoles.map(role => ({ label: role, value: role }) )
   
@@ -49,14 +49,14 @@ export const UserForm = ({ user, action }) => {
     }
   })
   
-  const idNameMapping = (() => {
-    const map = {}
+  const idNameMapping = useMemo(() => {
+    const map = { edit: format('app.edit') }
     if (user) {
       map[user.id] = user.username
     }
 
     return map
-  })()
+  }, [user, format])
   
   const [updateUser, { called, reset }] = useMutation(UPDATE_USER, {
     onCompleted: (data) => {

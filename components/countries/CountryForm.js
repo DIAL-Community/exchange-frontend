@@ -20,7 +20,7 @@ const CountryForm = ({ isOpen, onClose, country }) => {
 
   const [updateCountry, { called: isSubmitInProgress, reset }] = useMutation(CREATE_COUNTRY, {
     onCompleted: (data) => {
-      if (data.createCountry.country){
+      if (data.createCountry.country) {
         showToast(format('toast.country.submit.success'), 'success', 'top-center')
         onClose(true)
         reset()
