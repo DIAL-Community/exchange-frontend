@@ -27,3 +27,26 @@ export const USERS_LIST_QUERY = gql`
     }
   }
 `
+
+export const USER_QUERY = gql`
+  query User($userId: String!) {
+    user(userId: $userId) {
+      id
+      username
+      confirmed
+      email
+      roles
+      organization {
+        id
+        name
+        slug
+      }
+      products {
+        name
+        slug
+        imageFile
+      }
+      allRoles
+    }
+  }
+`

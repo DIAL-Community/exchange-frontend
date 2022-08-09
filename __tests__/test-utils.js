@@ -21,7 +21,7 @@ const Providers = ({ children }) => {
 const customRender = (ui, options = {}) => render(ui, { wrapper: Providers, ...options })
 
 // Mocked router implementation.
-export const mockRouterImplementation = () => useRouter.mockImplementation(() => ({
+export const mockRouterImplementation = (query = {}) => useRouter.mockImplementation(() => ({
   asPath: '/',
   locale: 'en',
   push: jest.fn(() => Promise.resolve(true)),
@@ -29,7 +29,8 @@ export const mockRouterImplementation = () => useRouter.mockImplementation(() =>
   events: {
     on: jest.fn(),
     off: jest.fn()
-  }
+  },
+  query
 }))
 
 // Mocked session implementation.
