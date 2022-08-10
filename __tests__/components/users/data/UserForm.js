@@ -13,12 +13,10 @@ export const user = {
       slug: 'product_2'
     }
   ],
-  organizations: [
-    {
-      label: 'Organization 1',
-      slug: 'organization_1'
-    }
-  ],
+  organization: {
+    name: 'Organization 1',
+    slug: 'organization_1'
+  },
   allRoles: [
     'admin',
     'ict4sdg',

@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Link from 'next/link'
 import { useIntl, FormattedMessage } from 'react-intl'
 import Header from '../components/Header'
@@ -242,21 +241,12 @@ const Content = () => {
   )
 }
 
-const Covid19Resources = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-
-  return (
-    <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-      <Header />
-      <Content />
-      <Footer />
-    </>
-  )
-}
+const Covid19Resources = () => (
+  <>
+    <Header />
+    <Content />
+    <Footer />
+  </>
+)
 
 export default Covid19Resources

@@ -21,7 +21,7 @@ const Providers = ({ children }) => {
 const customRender = (ui, options = {}) => render(ui, { wrapper: Providers, ...options })
 
 // Mocked router implementation.
-export const mockRouterImplementation = () => useRouter.mockImplementation(() => ({
+export const mockRouterImplementation = (query = {}) => useRouter.mockImplementation(() => ({
   asPath: '/',
   locale: 'en',
   push: jest.fn(() => Promise.resolve(true)),
@@ -29,7 +29,8 @@ export const mockRouterImplementation = () => useRouter.mockImplementation(() =>
   events: {
     on: jest.fn(),
     off: jest.fn()
-  }
+  },
+  query
 }))
 
 // Mocked session implementation.
@@ -41,7 +42,7 @@ const waitForReactSelectToLoad = (container) => (
   waitFor(() => expect(container.querySelector('.react-select__loading-indicator')).toBeNull())
 )
 
-export const waitForAllEffects = () => waitFor(() => new Promise((res) => setTimeout(res, 0)))
+export const waitForAllEffects = (waitTimeout = 0) => waitFor(() => new Promise((res) => setTimeout(res, waitTimeout)))
 
 export const waitForAllEffectsAndSelectToLoad = async (container) => (
   await waitForAllEffects().then(() => waitForReactSelectToLoad(container))

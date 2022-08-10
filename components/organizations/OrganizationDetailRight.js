@@ -16,12 +16,12 @@ const sectionHeaderStyle = 'card-title mb-3 text-dial-gray-dark'
 
 const DynamicOfficeMarker = (props) => {
   const OfficeMarker = useMemo(() => dynamic(
-    () => import('./OfficeMarker'),
+    () => import('../shared/MapMarker'),
     {
       loading: () => <div>Loading Map data ...</div>,
       ssr: false
     }
-  ), [props])
+  ), [])
 
   return <OfficeMarker {...props} />
 }
@@ -38,7 +38,9 @@ const OrganizationDetailRight = ({ organization }) => {
     ? {
       position: [parseFloat(organization.offices[0].latitude), parseFloat(organization.offices[0].longitude)],
       title: organization.name,
-      body: organization.offices[0].name
+      body: organization.offices[0].name,
+      markerImage: '/icons/digiprins/digiprins.png',
+      markerImageAltText: formatMessage({ id: 'image.alt.logoFor' }, { name: format('digitalPrinciple.title') })
     }
     : undefined
 

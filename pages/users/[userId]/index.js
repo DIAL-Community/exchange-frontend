@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router'
-import { useIntl } from 'react-intl'
-import Head from 'next/head'
 import { useSession } from 'next-auth/client'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 import Header from '../../../components/Header'
@@ -11,27 +9,8 @@ import NotFound from '../../../components/shared/NotFound'
 import UserDetail from '../../../components/users/UserDetail'
 import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
 import ClientOnly from '../../../lib/ClientOnly'
+import { USER_QUERY } from '../../../queries/user'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
-
-const USER_QUERY = gql`
-  query User($userId: String!) {
-    user(userId: $userId) {
-      id
-      username
-      email
-      roles
-      organization {
-        id
-        name
-        slug
-      }
-      products {
-        name
-        imageFile
-      }
-    }
-  }
-`
 
 const UserPageDefinition = ({ userId, locale }) => {
   const { loading, error, data, refetch } = useQuery(USER_QUERY, {
@@ -69,23 +48,16 @@ const UserPageDefinition = ({ userId, locale }) => {
 const User = () => {
   const router = useRouter()
   const [session] = useSession()
-  const { formatMessage } = useIntl()
 
   if (session && !session.user.roles.includes('admin')) {
     return <Unauthorized />
   }
-
-  const format = (id, values) => formatMessage({ id }, values)
 
   const { locale, query } = router
   const { userId } = query
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <ClientOnly>

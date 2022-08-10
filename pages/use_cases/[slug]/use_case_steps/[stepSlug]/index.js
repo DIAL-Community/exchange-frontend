@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 import { useQuery } from '@apollo/client'
 import Link from 'next/link'
-import Head from 'next/head'
 import StepList from '../../../../../components/use-cases/steps/StepList'
 import StepDetail from '../../../../../components/use-cases/steps/StepDetail'
 import Breadcrumb from '../../../../../components/shared/breadcrumb'
@@ -99,18 +98,11 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
 }
 
 const UseCaseStep = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-
   const { query } = useRouter()
   const { slug, stepSlug } = query
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ClientOnly>
         <UseCaseStepPageDefinition {...{ slug, stepSlug }} />

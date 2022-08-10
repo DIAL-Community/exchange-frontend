@@ -35,12 +35,12 @@ const ProjectDetailProducts = ({ project, canEdit }) => {
   const [isDirty, setIsDirty] = useState(false)
 
   const [updateProjectProducts, { data, loading }] = useMutation(UPDATE_PROJECT_PRODUCTS, {
-    onError(){
+    onError() {
       setProducts(project.products)
       setIsDirty(false)
       showToast(format('toast.products.update.failure'), 'error', 'top-center')
     },
-    onCompleted(data){
+    onCompleted(data) {
       setProducts(data.updateProjectProducts.project.products)
       setIsDirty(false)
       showToast(format('toast.products.update.success'), 'success', 'top-center')

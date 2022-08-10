@@ -28,6 +28,7 @@ export const en = {
   'app.mappingStatus': 'Mapping Status',
   'app.name': 'Name',
   'app.description': 'Description',
+  'app.internal-server-error': "500 - Internal Server Error",
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -457,15 +458,16 @@ export const en = {
   'workflow.submit.failure': 'Workflow submission failed',
 
   'country.header': 'Countries',
+  'country.label': 'Country',
+  'country.delete.confirm.message': 'Are you sure you want to delete this Country?',
+
   'workflow.header': 'Workflows',
   'product.header': 'Products',
   'dataset.header': 'Open Data',
 
-  'country.label': 'Country',
   'workflow.label': 'Workflow',
   'product.label': 'Product',
   'dataset.label': 'Dataset',
-  'country.delete.confirm.message': 'Are you sure you want to delete this Country?',
 
   'organization.detail.website': 'Website',
   'organization.detail.whenEndorsed': 'Endorsed On',
@@ -1352,6 +1354,7 @@ export const en = {
   'shared.mappingStatus.validated': 'Validated',
   'shared.maturity.beta': 'BETA',
   'shared.maturity.published': 'PUBLISHED',
+  'shared.metadata.description.comprehensiveListOf': 'Comprehensive list of {entities} provided by DIAL\'s Catalog of Digital Solutions to support users in discovering digital technologies designed to address the Sustainable Development Goals (SDGs).',
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
@@ -1378,6 +1381,8 @@ export const en = {
   'toast.projects.update.failure': 'Projects update failed',
   'toast.countries.update.success': 'Countries updated successfully',
   'toast.countries.update.failure': 'Countries update failed',
+  'toast.country.submit.success': 'Country submitted successfully',
+  'toast.country.submit.failure': 'Country submission failed',
   'toast.country.delete.success': 'Country deleted successfully',
   'toast.country.delete.failure': 'Country deletion failed',
   'toast.sdgs.update.success': 'SDGs updated successfully',
@@ -1400,5 +1405,9 @@ export const en = {
   'locale.french.label': 'French (fr)',
   'locale.portuguese.label': 'Portuguese (pt)',
   'locale.swahili.label': 'Swahili (sw)',
-  'locale.czech.label': 'Czech (cs)'
+  'locale.czech.label': 'Czech (cs)',
+
+  'country.code': 'Country Alpha-2',
+  'country.codeLonger': 'Country Alpha-3',
+  'country.map.latLongDesc': 'At'
 }

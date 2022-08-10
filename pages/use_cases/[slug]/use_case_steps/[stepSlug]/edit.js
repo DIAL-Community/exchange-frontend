@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
 import { Loading, Error } from '../../../../../components/shared/FetchStatus'
@@ -11,9 +9,6 @@ import StepForm from '../../../../../components/use-cases/steps/StepForm'
 import { USE_CASE_STEP_QUERY } from '../../../../../queries/use-case-step'
 
 const EditUseCaseStep = () => {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
   const { query: { slug, stepSlug } } = useRouter()
 
   const useCase = { slug }
@@ -33,10 +28,6 @@ const EditUseCaseStep = () => {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       {data?.useCaseStep && (
         <div className='max-w-catalog mx-auto'>

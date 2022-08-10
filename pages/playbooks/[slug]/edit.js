@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { gql, useQuery } from '@apollo/client'
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
@@ -53,9 +51,6 @@ const EditFormProvider = ({ children }) => {
 }
 
 function EditPlaybook () {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
   const router = useRouter()
 
   const [session] = useSession()
@@ -87,10 +82,6 @@ function EditPlaybook () {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       {data?.playbook && (
         <div className='max-w-catalog mx-auto'>

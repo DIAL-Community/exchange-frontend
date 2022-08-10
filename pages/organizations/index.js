@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import { useContext } from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -17,18 +15,11 @@ import MobileNav from '../../components/main/MobileNav'
 import ClientOnly from '../../lib/ClientOnly'
 
 const Organizations = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-
   const { search } = useContext(OrganizationFilterContext)
   const { setSearch } = useContext(OrganizationFilterDispatchContext)
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <QueryNotification />
       <GradientBackground />
       <Header />

@@ -1,6 +1,4 @@
-import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
@@ -11,9 +9,6 @@ import { WORKFLOW_DETAIL_QUERY } from '../../../queries/workflow'
 import WorkflowForm from '../../../components/workflows/WorkflowForm'
 
 const CreateWorkflow = () => {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
   const router = useRouter()
 
   const { locale } = router
@@ -35,10 +30,6 @@ const CreateWorkflow = () => {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       {data?.workflow && (
         <div className='max-w-catalog mx-auto'>

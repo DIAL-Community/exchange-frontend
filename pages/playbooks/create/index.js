@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
@@ -22,18 +20,11 @@ const CreateFormProvider = ({ children }) => {
 }
 
 function CreatePlaybook () {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
   const [session] = useSession()
   const { isAdminUser, loadingUserSession } = useUser(session)
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <div className='max-w-catalog mx-auto'>
         <ClientOnly>
