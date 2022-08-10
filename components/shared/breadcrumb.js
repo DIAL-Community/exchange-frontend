@@ -28,7 +28,8 @@ const basePathMappings = {
   playbooks: 'playbook.header',
   plays: 'play.header',
   users: 'user.header',
-  moves: 'move.header'
+  moves: 'move.header',
+  countries: 'country.header'
 }
 
 const Breadcrumb = (props) => {

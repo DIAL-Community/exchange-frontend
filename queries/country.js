@@ -44,3 +44,16 @@ export const COUNTRIES_LIST_QUERY = gql`
     }
   }
 `
+
+export const COUNTRY_DETAIL_QUERY = gql`
+  query Country($slug: String!) {
+    country(slug: $slug) {
+      name
+      slug
+      code
+      codeLonger
+      latitude
+      longitude
+    }
+  }
+`

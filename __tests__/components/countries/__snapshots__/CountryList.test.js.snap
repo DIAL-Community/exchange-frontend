@@ -136,21 +136,26 @@ Object {
             class="grid grid-cols-1"
           >
             <div
-              class="border-3 border-transparent"
+              class="border-3 cursor-pointer border-transparent hover:border-dial-yellow"
             >
               <div
-                class="border border-dial-gray card-drop-shadow"
+                class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
               >
                 <div
-                  class="flex justify-between my-4 px-4"
+                  class="flex my-4 px-4"
                 >
-                  <div
-                    class="w-1/2 md:w-3/4 inline-block font-semibold text-button-gray"
+                  <a
+                    class="w-1/2 md:w-3/4"
+                    href="/countries/af"
                   >
-                    Afghanistan
-                  </div>
+                    <div
+                      class="font-semibold text-button-gray"
+                    >
+                      Afghanistan
+                    </div>
+                  </a>
                   <div
-                    class="inline-flex gap-x-1.5 items-center"
+                    class="inline-flex gap-x-1.5 ml-auto items-center"
                   >
                     <button
                       class="delete-button gap-x-1.5"
@@ -186,21 +191,26 @@ Object {
               </div>
             </div>
             <div
-              class="border-3 border-transparent"
+              class="border-3 cursor-pointer border-transparent hover:border-dial-yellow"
             >
               <div
-                class="border border-dial-gray card-drop-shadow"
+                class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
               >
                 <div
-                  class="flex justify-between my-4 px-4"
+                  class="flex my-4 px-4"
                 >
-                  <div
-                    class="w-1/2 md:w-3/4 inline-block font-semibold text-button-gray"
+                  <a
+                    class="w-1/2 md:w-3/4"
+                    href="/countries/al"
                   >
-                    Albania
-                  </div>
+                    <div
+                      class="font-semibold text-button-gray"
+                    >
+                      Albania
+                    </div>
+                  </a>
                   <div
-                    class="inline-flex gap-x-1.5 items-center"
+                    class="inline-flex gap-x-1.5 ml-auto items-center"
                   >
                     <button
                       class="delete-button gap-x-1.5"
@@ -260,21 +270,26 @@ Object {
           class="grid grid-cols-1"
         >
           <div
-            class="border-3 border-transparent"
+            class="border-3 cursor-pointer border-transparent hover:border-dial-yellow"
           >
             <div
-              class="border border-dial-gray card-drop-shadow"
+              class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
             >
               <div
-                class="flex justify-between my-4 px-4"
+                class="flex my-4 px-4"
               >
-                <div
-                  class="w-1/2 md:w-3/4 inline-block font-semibold text-button-gray"
+                <a
+                  class="w-1/2 md:w-3/4"
+                  href="/countries/af"
                 >
-                  Afghanistan
-                </div>
+                  <div
+                    class="font-semibold text-button-gray"
+                  >
+                    Afghanistan
+                  </div>
+                </a>
                 <div
-                  class="inline-flex gap-x-1.5 items-center"
+                  class="inline-flex gap-x-1.5 ml-auto items-center"
                 >
                   <button
                     class="delete-button gap-x-1.5"
@@ -310,21 +325,26 @@ Object {
             </div>
           </div>
           <div
-            class="border-3 border-transparent"
+            class="border-3 cursor-pointer border-transparent hover:border-dial-yellow"
           >
             <div
-              class="border border-dial-gray card-drop-shadow"
+              class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
             >
               <div
-                class="flex justify-between my-4 px-4"
+                class="flex my-4 px-4"
               >
-                <div
-                  class="w-1/2 md:w-3/4 inline-block font-semibold text-button-gray"
+                <a
+                  class="w-1/2 md:w-3/4"
+                  href="/countries/al"
                 >
-                  Albania
-                </div>
+                  <div
+                    class="font-semibold text-button-gray"
+                  >
+                    Albania
+                  </div>
+                </a>
                 <div
-                  class="inline-flex gap-x-1.5 items-center"
+                  class="inline-flex gap-x-1.5 ml-auto items-center"
                 >
                   <button
                     class="delete-button gap-x-1.5"

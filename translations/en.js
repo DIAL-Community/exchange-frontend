@@ -1405,5 +1405,9 @@ export const en = {
   'locale.french.label': 'French (fr)',
   'locale.portuguese.label': 'Portuguese (pt)',
   'locale.swahili.label': 'Swahili (sw)',
-  'locale.czech.label': 'Czech (cs)'
+  'locale.czech.label': 'Czech (cs)',
+
+  'country.code': 'Country Alpha-2',
+  'country.codeLonger': 'Country Alpha-3',
+  'country.map.latLongDesc': 'At'
 }

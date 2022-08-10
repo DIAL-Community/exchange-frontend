@@ -1,0 +1,1468 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the CountryDetail component should not render delete for user that without edit privilege. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Toastify"
+      />
+      <div
+        class="flex flex-col lg:flex-row pb-8 max-w-catalog mx-auto"
+      >
+        <div
+          class="relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4"
+        >
+          <div
+            class="block lg:hidden"
+          >
+            <div
+              class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+            >
+              <a
+                class="inline text-dial-blue h5"
+                href="/"
+              >
+                Home
+              </a>
+              <div
+                class="inline h5"
+              >
+                 &gt; 
+                <a
+                  class="text-dial-gray-dark"
+                  href="/"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="pb-4"
+          />
+          <div
+            class="bg-white border-2 border-dial-gray lg:mr-6 shadow-lg"
+          >
+            <div
+              class="flex flex-col p-4"
+            >
+              <div
+                class="font-semibold text-lg text-dial-gray-dark"
+              >
+                Kenya
+              </div>
+              <div
+                class="border-b my-2"
+              />
+              <div
+                class="text-sm text-dial-gray-dark"
+              >
+                <span
+                  class="font-semibold"
+                >
+                  Country Alpha-2
+                </span>
+                : 
+                KE
+              </div>
+              <div
+                class="text-sm text-dial-gray-dark"
+              >
+                <span
+                  class="font-semibold"
+                >
+                  Country Alpha-3
+                </span>
+                : 
+                KEN
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="px-4 w-full lg:w-2/3 xl:w-3/4 flex flex-col"
+        >
+          <div
+            class="hidden lg:block"
+          >
+            <div
+              class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+            >
+              <a
+                class="inline text-dial-blue h5"
+                href="/"
+              >
+                Home
+              </a>
+              <div
+                class="inline h5"
+              >
+                 &gt; 
+                <a
+                  class="text-dial-gray-dark"
+                  href="/"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col lg:flex-row gap-3"
+          >
+            <div
+              class="w-full 2xl:w-3/6 h-80 z-10 leaflet-container leaflet-grab leaflet-touch-drag"
+              style="position: relative;"
+              tabindex="0"
+            >
+              <div
+                class="leaflet-pane leaflet-map-pane"
+                style="left: 0px; top: 0px;"
+              >
+                <div
+                  class="leaflet-pane leaflet-tile-pane"
+                >
+                  <div
+                    class="leaflet-layer "
+                    style="z-index: 1;"
+                  >
+                    <div
+                      class="leaflet-tile-container leaflet-zoom-animated"
+                      style="z-index: 18; left: 0px; top: 0px;"
+                    >
+                      <img
+                        alt=""
+                        class="leaflet-tile"
+                        role="presentation"
+                        src="https://b.tile.openstreetmap.org/6/38/32.png"
+                        style="width: 256px; height: 256px; left: -189px; top: -1px;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="leaflet-pane leaflet-shadow-pane"
+                />
+                <div
+                  class="leaflet-pane leaflet-overlay-pane"
+                />
+                <div
+                  class="leaflet-pane leaflet-marker-pane"
+                >
+                  <div
+                    class="leaflet-marker-icon custom-div-icon leaflet-zoom-hide leaflet-interactive"
+                    style="margin-left: -15px; margin-top: -42px; width: 30px; height: 42px; left: 0px; top: 0px; z-index: 0;"
+                    tabindex="0"
+                  >
+                    
+    
+                    <div>
+                      
+      
+                      <div
+                        class="marker-pin"
+                        style="background-color:#3F9EDD;"
+                      />
+                      
+      
+                      <img
+                        alt="Logo for: Countries"
+                        src="/icons/map/map.png"
+                      />
+                      
+    
+                    </div>
+                    
+  
+                  </div>
+                </div>
+                <div
+                  class="leaflet-pane leaflet-tooltip-pane"
+                />
+                <div
+                  class="leaflet-pane leaflet-popup-pane"
+                />
+              </div>
+              <div
+                class="leaflet-control-container"
+              >
+                <div
+                  class="leaflet-top leaflet-left"
+                >
+                  <div
+                    class="leaflet-control-zoom leaflet-bar leaflet-control"
+                  >
+                    <a
+                      aria-label="Zoom in"
+                      class="leaflet-control-zoom-in"
+                      href="#"
+                      role="button"
+                      title="Zoom in"
+                    >
+                      +
+                    </a>
+                    <a
+                      aria-label="Zoom out"
+                      class="leaflet-control-zoom-out"
+                      href="#"
+                      role="button"
+                      title="Zoom out"
+                    >
+                      −
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="leaflet-top leaflet-right"
+                />
+                <div
+                  class="leaflet-bottom leaflet-left"
+                />
+                <div
+                  class="leaflet-bottom leaflet-right"
+                >
+                  <div
+                    class="leaflet-control-attribution leaflet-control"
+                  >
+                    <a
+                      href="https://leafletjs.com"
+                      title="A JS library for interactive maps"
+                    >
+                      Leaflet
+                    </a>
+                     | © 
+                    <a
+                      href="http://osm.org/copyright"
+                    >
+                      OpenStreetMap
+                    </a>
+                     contributors
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Toastify"
+    />
+    <div
+      class="flex flex-col lg:flex-row pb-8 max-w-catalog mx-auto"
+    >
+      <div
+        class="relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4"
+      >
+        <div
+          class="block lg:hidden"
+        >
+          <div
+            class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+          >
+            <a
+              class="inline text-dial-blue h5"
+              href="/"
+            >
+              Home
+            </a>
+            <div
+              class="inline h5"
+            >
+               &gt; 
+              <a
+                class="text-dial-gray-dark"
+                href="/"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="pb-4"
+        />
+        <div
+          class="bg-white border-2 border-dial-gray lg:mr-6 shadow-lg"
+        >
+          <div
+            class="flex flex-col p-4"
+          >
+            <div
+              class="font-semibold text-lg text-dial-gray-dark"
+            >
+              Kenya
+            </div>
+            <div
+              class="border-b my-2"
+            />
+            <div
+              class="text-sm text-dial-gray-dark"
+            >
+              <span
+                class="font-semibold"
+              >
+                Country Alpha-2
+              </span>
+              : 
+              KE
+            </div>
+            <div
+              class="text-sm text-dial-gray-dark"
+            >
+              <span
+                class="font-semibold"
+              >
+                Country Alpha-3
+              </span>
+              : 
+              KEN
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="px-4 w-full lg:w-2/3 xl:w-3/4 flex flex-col"
+      >
+        <div
+          class="hidden lg:block"
+        >
+          <div
+            class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+          >
+            <a
+              class="inline text-dial-blue h5"
+              href="/"
+            >
+              Home
+            </a>
+            <div
+              class="inline h5"
+            >
+               &gt; 
+              <a
+                class="text-dial-gray-dark"
+                href="/"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-col lg:flex-row gap-3"
+        >
+          <div
+            class="w-full 2xl:w-3/6 h-80 z-10 leaflet-container leaflet-grab leaflet-touch-drag"
+            style="position: relative;"
+            tabindex="0"
+          >
+            <div
+              class="leaflet-pane leaflet-map-pane"
+              style="left: 0px; top: 0px;"
+            >
+              <div
+                class="leaflet-pane leaflet-tile-pane"
+              >
+                <div
+                  class="leaflet-layer "
+                  style="z-index: 1;"
+                >
+                  <div
+                    class="leaflet-tile-container leaflet-zoom-animated"
+                    style="z-index: 18; left: 0px; top: 0px;"
+                  >
+                    <img
+                      alt=""
+                      class="leaflet-tile"
+                      role="presentation"
+                      src="https://b.tile.openstreetmap.org/6/38/32.png"
+                      style="width: 256px; height: 256px; left: -189px; top: -1px;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="leaflet-pane leaflet-shadow-pane"
+              />
+              <div
+                class="leaflet-pane leaflet-overlay-pane"
+              />
+              <div
+                class="leaflet-pane leaflet-marker-pane"
+              >
+                <div
+                  class="leaflet-marker-icon custom-div-icon leaflet-zoom-hide leaflet-interactive"
+                  style="margin-left: -15px; margin-top: -42px; width: 30px; height: 42px; left: 0px; top: 0px; z-index: 0;"
+                  tabindex="0"
+                >
+                  
+    
+                  <div>
+                    
+      
+                    <div
+                      class="marker-pin"
+                      style="background-color:#3F9EDD;"
+                    />
+                    
+      
+                    <img
+                      alt="Logo for: Countries"
+                      src="/icons/map/map.png"
+                    />
+                    
+    
+                  </div>
+                  
+  
+                </div>
+              </div>
+              <div
+                class="leaflet-pane leaflet-tooltip-pane"
+              />
+              <div
+                class="leaflet-pane leaflet-popup-pane"
+              />
+            </div>
+            <div
+              class="leaflet-control-container"
+            >
+              <div
+                class="leaflet-top leaflet-left"
+              >
+                <div
+                  class="leaflet-control-zoom leaflet-bar leaflet-control"
+                >
+                  <a
+                    aria-label="Zoom in"
+                    class="leaflet-control-zoom-in"
+                    href="#"
+                    role="button"
+                    title="Zoom in"
+                  >
+                    +
+                  </a>
+                  <a
+                    aria-label="Zoom out"
+                    class="leaflet-control-zoom-out"
+                    href="#"
+                    role="button"
+                    title="Zoom out"
+                  >
+                    −
+                  </a>
+                </div>
+              </div>
+              <div
+                class="leaflet-top leaflet-right"
+              />
+              <div
+                class="leaflet-bottom leaflet-left"
+              />
+              <div
+                class="leaflet-bottom leaflet-right"
+              >
+                <div
+                  class="leaflet-control-attribution leaflet-control"
+                >
+                  <a
+                    href="https://leafletjs.com"
+                    title="A JS library for interactive maps"
+                  >
+                    Leaflet
+                  </a>
+                   | © 
+                  <a
+                    href="http://osm.org/copyright"
+                  >
+                    OpenStreetMap
+                  </a>
+                   contributors
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Unit test for the CountryDetail component should render element of the country data with missing location. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Toastify"
+      />
+      <div
+        class="flex flex-col lg:flex-row pb-8 max-w-catalog mx-auto"
+      >
+        <div
+          class="relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4"
+        >
+          <div
+            class="block lg:hidden"
+          >
+            <div
+              class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+            >
+              <a
+                class="inline text-dial-blue h5"
+                href="/"
+              >
+                Home
+              </a>
+              <div
+                class="inline h5"
+              >
+                 &gt; 
+                <a
+                  class="text-dial-gray-dark"
+                  href="/"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="pb-4"
+          >
+            <button
+              class="delete-button gap-x-1.5"
+              data-testid="delete-button"
+              type="button"
+            >
+              <svg
+                class="text-sm"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 16 16"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                />
+                <path
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              <span
+                class="text-sm"
+              >
+                Delete
+              </span>
+            </button>
+          </div>
+          <div
+            class="bg-white border-2 border-dial-gray lg:mr-6 shadow-lg"
+          >
+            <div
+              class="flex flex-col p-4"
+            >
+              <div
+                class="font-semibold text-lg text-dial-gray-dark"
+              >
+                India
+              </div>
+              <div
+                class="border-b my-2"
+              />
+              <div
+                class="text-sm text-dial-gray-dark"
+              >
+                <span
+                  class="font-semibold"
+                >
+                  Country Alpha-2
+                </span>
+                : 
+                IN
+              </div>
+              <div
+                class="text-sm text-dial-gray-dark"
+              >
+                <span
+                  class="font-semibold"
+                >
+                  Country Alpha-3
+                </span>
+                : 
+                IND
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="px-4 w-full lg:w-2/3 xl:w-3/4 flex flex-col"
+        >
+          <div
+            class="hidden lg:block"
+          >
+            <div
+              class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+            >
+              <a
+                class="inline text-dial-blue h5"
+                href="/"
+              >
+                Home
+              </a>
+              <div
+                class="inline h5"
+              >
+                 &gt; 
+                <a
+                  class="text-dial-gray-dark"
+                  href="/"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col lg:flex-row gap-3"
+          />
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Toastify"
+    />
+    <div
+      class="flex flex-col lg:flex-row pb-8 max-w-catalog mx-auto"
+    >
+      <div
+        class="relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4"
+      >
+        <div
+          class="block lg:hidden"
+        >
+          <div
+            class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+          >
+            <a
+              class="inline text-dial-blue h5"
+              href="/"
+            >
+              Home
+            </a>
+            <div
+              class="inline h5"
+            >
+               &gt; 
+              <a
+                class="text-dial-gray-dark"
+                href="/"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="pb-4"
+        >
+          <button
+            class="delete-button gap-x-1.5"
+            data-testid="delete-button"
+            type="button"
+          >
+            <svg
+              class="text-sm"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+              />
+              <path
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                fill-rule="evenodd"
+              />
+            </svg>
+            <span
+              class="text-sm"
+            >
+              Delete
+            </span>
+          </button>
+        </div>
+        <div
+          class="bg-white border-2 border-dial-gray lg:mr-6 shadow-lg"
+        >
+          <div
+            class="flex flex-col p-4"
+          >
+            <div
+              class="font-semibold text-lg text-dial-gray-dark"
+            >
+              India
+            </div>
+            <div
+              class="border-b my-2"
+            />
+            <div
+              class="text-sm text-dial-gray-dark"
+            >
+              <span
+                class="font-semibold"
+              >
+                Country Alpha-2
+              </span>
+              : 
+              IN
+            </div>
+            <div
+              class="text-sm text-dial-gray-dark"
+            >
+              <span
+                class="font-semibold"
+              >
+                Country Alpha-3
+              </span>
+              : 
+              IND
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="px-4 w-full lg:w-2/3 xl:w-3/4 flex flex-col"
+      >
+        <div
+          class="hidden lg:block"
+        >
+          <div
+            class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+          >
+            <a
+              class="inline text-dial-blue h5"
+              href="/"
+            >
+              Home
+            </a>
+            <div
+              class="inline h5"
+            >
+               &gt; 
+              <a
+                class="text-dial-gray-dark"
+                href="/"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-col lg:flex-row gap-3"
+        />
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Unit test for the CountryDetail component should render element of the country data. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Toastify"
+      />
+      <div
+        class="flex flex-col lg:flex-row pb-8 max-w-catalog mx-auto"
+      >
+        <div
+          class="relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4"
+        >
+          <div
+            class="block lg:hidden"
+          >
+            <div
+              class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+            >
+              <a
+                class="inline text-dial-blue h5"
+                href="/"
+              >
+                Home
+              </a>
+              <div
+                class="inline h5"
+              >
+                 &gt; 
+                <a
+                  class="text-dial-gray-dark"
+                  href="/"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="pb-4"
+          >
+            <button
+              class="delete-button gap-x-1.5"
+              data-testid="delete-button"
+              type="button"
+            >
+              <svg
+                class="text-sm"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 16 16"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                />
+                <path
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              <span
+                class="text-sm"
+              >
+                Delete
+              </span>
+            </button>
+          </div>
+          <div
+            class="bg-white border-2 border-dial-gray lg:mr-6 shadow-lg"
+          >
+            <div
+              class="flex flex-col p-4"
+            >
+              <div
+                class="font-semibold text-lg text-dial-gray-dark"
+              >
+                Kenya
+              </div>
+              <div
+                class="border-b my-2"
+              />
+              <div
+                class="text-sm text-dial-gray-dark"
+              >
+                <span
+                  class="font-semibold"
+                >
+                  Country Alpha-2
+                </span>
+                : 
+                KE
+              </div>
+              <div
+                class="text-sm text-dial-gray-dark"
+              >
+                <span
+                  class="font-semibold"
+                >
+                  Country Alpha-3
+                </span>
+                : 
+                KEN
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="px-4 w-full lg:w-2/3 xl:w-3/4 flex flex-col"
+        >
+          <div
+            class="hidden lg:block"
+          >
+            <div
+              class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+            >
+              <a
+                class="inline text-dial-blue h5"
+                href="/"
+              >
+                Home
+              </a>
+              <div
+                class="inline h5"
+              >
+                 &gt; 
+                <a
+                  class="text-dial-gray-dark"
+                  href="/"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col lg:flex-row gap-3"
+          >
+            <div
+              class="w-full 2xl:w-3/6 h-80 z-10 leaflet-container leaflet-grab leaflet-touch-drag"
+              style="position: relative;"
+              tabindex="0"
+            >
+              <div
+                class="leaflet-pane leaflet-map-pane"
+                style="left: 0px; top: 0px;"
+              >
+                <div
+                  class="leaflet-pane leaflet-tile-pane"
+                >
+                  <div
+                    class="leaflet-layer "
+                    style="z-index: 1;"
+                  >
+                    <div
+                      class="leaflet-tile-container leaflet-zoom-animated"
+                      style="z-index: 18; left: 0px; top: 0px;"
+                    >
+                      <img
+                        alt=""
+                        class="leaflet-tile"
+                        role="presentation"
+                        src="https://b.tile.openstreetmap.org/6/38/32.png"
+                        style="width: 256px; height: 256px; left: -189px; top: -1px;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="leaflet-pane leaflet-shadow-pane"
+                />
+                <div
+                  class="leaflet-pane leaflet-overlay-pane"
+                />
+                <div
+                  class="leaflet-pane leaflet-marker-pane"
+                >
+                  <div
+                    class="leaflet-marker-icon custom-div-icon leaflet-zoom-hide leaflet-interactive"
+                    style="margin-left: -15px; margin-top: -42px; width: 30px; height: 42px; left: 0px; top: 0px; z-index: 0;"
+                    tabindex="0"
+                  >
+                    
+    
+                    <div>
+                      
+      
+                      <div
+                        class="marker-pin"
+                        style="background-color:#3F9EDD;"
+                      />
+                      
+      
+                      <img
+                        alt="Logo for: Countries"
+                        src="/icons/map/map.png"
+                      />
+                      
+    
+                    </div>
+                    
+  
+                  </div>
+                </div>
+                <div
+                  class="leaflet-pane leaflet-tooltip-pane"
+                />
+                <div
+                  class="leaflet-pane leaflet-popup-pane"
+                />
+              </div>
+              <div
+                class="leaflet-control-container"
+              >
+                <div
+                  class="leaflet-top leaflet-left"
+                >
+                  <div
+                    class="leaflet-control-zoom leaflet-bar leaflet-control"
+                  >
+                    <a
+                      aria-label="Zoom in"
+                      class="leaflet-control-zoom-in"
+                      href="#"
+                      role="button"
+                      title="Zoom in"
+                    >
+                      +
+                    </a>
+                    <a
+                      aria-label="Zoom out"
+                      class="leaflet-control-zoom-out"
+                      href="#"
+                      role="button"
+                      title="Zoom out"
+                    >
+                      −
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="leaflet-top leaflet-right"
+                />
+                <div
+                  class="leaflet-bottom leaflet-left"
+                />
+                <div
+                  class="leaflet-bottom leaflet-right"
+                >
+                  <div
+                    class="leaflet-control-attribution leaflet-control"
+                  >
+                    <a
+                      href="https://leafletjs.com"
+                      title="A JS library for interactive maps"
+                    >
+                      Leaflet
+                    </a>
+                     | © 
+                    <a
+                      href="http://osm.org/copyright"
+                    >
+                      OpenStreetMap
+                    </a>
+                     contributors
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Toastify"
+    />
+    <div
+      class="flex flex-col lg:flex-row pb-8 max-w-catalog mx-auto"
+    >
+      <div
+        class="relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4"
+      >
+        <div
+          class="block lg:hidden"
+        >
+          <div
+            class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+          >
+            <a
+              class="inline text-dial-blue h5"
+              href="/"
+            >
+              Home
+            </a>
+            <div
+              class="inline h5"
+            >
+               &gt; 
+              <a
+                class="text-dial-gray-dark"
+                href="/"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="pb-4"
+        >
+          <button
+            class="delete-button gap-x-1.5"
+            data-testid="delete-button"
+            type="button"
+          >
+            <svg
+              class="text-sm"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+              />
+              <path
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                fill-rule="evenodd"
+              />
+            </svg>
+            <span
+              class="text-sm"
+            >
+              Delete
+            </span>
+          </button>
+        </div>
+        <div
+          class="bg-white border-2 border-dial-gray lg:mr-6 shadow-lg"
+        >
+          <div
+            class="flex flex-col p-4"
+          >
+            <div
+              class="font-semibold text-lg text-dial-gray-dark"
+            >
+              Kenya
+            </div>
+            <div
+              class="border-b my-2"
+            />
+            <div
+              class="text-sm text-dial-gray-dark"
+            >
+              <span
+                class="font-semibold"
+              >
+                Country Alpha-2
+              </span>
+              : 
+              KE
+            </div>
+            <div
+              class="text-sm text-dial-gray-dark"
+            >
+              <span
+                class="font-semibold"
+              >
+                Country Alpha-3
+              </span>
+              : 
+              KEN
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="px-4 w-full lg:w-2/3 xl:w-3/4 flex flex-col"
+      >
+        <div
+          class="hidden lg:block"
+        >
+          <div
+            class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+          >
+            <a
+              class="inline text-dial-blue h5"
+              href="/"
+            >
+              Home
+            </a>
+            <div
+              class="inline h5"
+            >
+               &gt; 
+              <a
+                class="text-dial-gray-dark"
+                href="/"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-col lg:flex-row gap-3"
+        >
+          <div
+            class="w-full 2xl:w-3/6 h-80 z-10 leaflet-container leaflet-grab leaflet-touch-drag"
+            style="position: relative;"
+            tabindex="0"
+          >
+            <div
+              class="leaflet-pane leaflet-map-pane"
+              style="left: 0px; top: 0px;"
+            >
+              <div
+                class="leaflet-pane leaflet-tile-pane"
+              >
+                <div
+                  class="leaflet-layer "
+                  style="z-index: 1;"
+                >
+                  <div
+                    class="leaflet-tile-container leaflet-zoom-animated"
+                    style="z-index: 18; left: 0px; top: 0px;"
+                  >
+                    <img
+                      alt=""
+                      class="leaflet-tile"
+                      role="presentation"
+                      src="https://b.tile.openstreetmap.org/6/38/32.png"
+                      style="width: 256px; height: 256px; left: -189px; top: -1px;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="leaflet-pane leaflet-shadow-pane"
+              />
+              <div
+                class="leaflet-pane leaflet-overlay-pane"
+              />
+              <div
+                class="leaflet-pane leaflet-marker-pane"
+              >
+                <div
+                  class="leaflet-marker-icon custom-div-icon leaflet-zoom-hide leaflet-interactive"
+                  style="margin-left: -15px; margin-top: -42px; width: 30px; height: 42px; left: 0px; top: 0px; z-index: 0;"
+                  tabindex="0"
+                >
+                  
+    
+                  <div>
+                    
+      
+                    <div
+                      class="marker-pin"
+                      style="background-color:#3F9EDD;"
+                    />
+                    
+      
+                    <img
+                      alt="Logo for: Countries"
+                      src="/icons/map/map.png"
+                    />
+                    
+    
+                  </div>
+                  
+  
+                </div>
+              </div>
+              <div
+                class="leaflet-pane leaflet-tooltip-pane"
+              />
+              <div
+                class="leaflet-pane leaflet-popup-pane"
+              />
+            </div>
+            <div
+              class="leaflet-control-container"
+            >
+              <div
+                class="leaflet-top leaflet-left"
+              >
+                <div
+                  class="leaflet-control-zoom leaflet-bar leaflet-control"
+                >
+                  <a
+                    aria-label="Zoom in"
+                    class="leaflet-control-zoom-in"
+                    href="#"
+                    role="button"
+                    title="Zoom in"
+                  >
+                    +
+                  </a>
+                  <a
+                    aria-label="Zoom out"
+                    class="leaflet-control-zoom-out"
+                    href="#"
+                    role="button"
+                    title="Zoom out"
+                  >
+                    −
+                  </a>
+                </div>
+              </div>
+              <div
+                class="leaflet-top leaflet-right"
+              />
+              <div
+                class="leaflet-bottom leaflet-left"
+              />
+              <div
+                class="leaflet-bottom leaflet-right"
+              >
+                <div
+                  class="leaflet-control-attribution leaflet-control"
+                >
+                  <a
+                    href="https://leafletjs.com"
+                    title="A JS library for interactive maps"
+                  >
+                    Leaflet
+                  </a>
+                   | © 
+                  <a
+                    href="http://osm.org/copyright"
+                  >
+                    OpenStreetMap
+                  </a>
+                   contributors
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
