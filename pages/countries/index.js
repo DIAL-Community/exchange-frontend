@@ -21,7 +21,6 @@ const Countries = () => {
   const { setSearch } = useContext(UserFilterDispatchContext)
 
   const [isFormDialogOpen, setIsFormDialogOpen] = useState(false)
-
   const toggleFormDialog = () => setIsFormDialogOpen(!isFormDialogOpen)
 
   return (

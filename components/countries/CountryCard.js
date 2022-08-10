@@ -1,5 +1,5 @@
 import { useSession } from 'next-auth/client'
-import classNames from 'classnames'
+import Link from 'next/link'
 import { useUser } from '../../lib/hooks'
 import { DisplayType } from '../../lib/constants'
 import DeleteCountry from './DeleteCountry'
@@ -10,24 +10,27 @@ const CountryCard = ({ country, listType, displayEditButtons }) => {
 
   return (
     <>
-      {
-        listType === DisplayType.LIST &&
-          (
-            <div className='border-3 border-transparent'>
-              <div className='border border-dial-gray card-drop-shadow'>
-                <div className='flex justify-between my-4 px-4'>
-                  <div className={classNames({ 'w-1/2 md:w-3/4': displayEditButtons }, 'inline-block font-semibold text-button-gray')}>
-                    {country.name}
-                  </div>
-                  {isAdminUser && displayEditButtons &&
-                    <div className='inline-flex gap-x-1.5 items-center'>
-                      <DeleteCountry country={country} />
+      {listType === DisplayType.LIST &&
+        (
+          <div className='border-3 cursor-pointer border-transparent hover:border-dial-yellow'>
+            <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
+              <div className='flex my-4 px-4'>
+                <Link data-testid='country-card' className='card-link' href={`/countries/${country.slug}`}>
+                  <a className='w-1/2 md:w-3/4'>
+                    <div className='font-semibold text-button-gray'>
+                      {country.name}
                     </div>
-                  }
-                </div>
+                  </a>
+                </Link>
+                {isAdminUser && displayEditButtons &&
+                  <div className='inline-flex gap-x-1.5 ml-auto items-center'>
+                    <DeleteCountry country={country} />
+                  </div>
+                }
               </div>
             </div>
-          )
+          </div>
+        )
       }
     </>
   )

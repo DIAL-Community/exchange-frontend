@@ -30,7 +30,7 @@ describe('Unit tests for the TagForm component.', () => {
     
   describe('Should match snapshot -', () => {
     test('create.', async () => {
-      const { container, getByTestId } = render(
+      const { getByTestId } = render(
         <CustomMockedProvider>
           <TagForm
             isOpen={mockIsDialogOpen}
@@ -38,12 +38,12 @@ describe('Unit tests for the TagForm component.', () => {
           />
         </CustomMockedProvider>
       )
-      await waitForAllEffects(container)
+      await waitForAllEffects(500)
       expect(getByTestId(DIALOG_FORM_TEST_ID)).toMatchSnapshot()
     })
     
     test('edit.', async () => {
-      const { container, getByTestId } = render(
+      const { getByTestId } = render(
         <CustomMockedProvider>
           <TagForm
             isOpen={mockIsDialogOpen}
@@ -52,7 +52,7 @@ describe('Unit tests for the TagForm component.', () => {
           />
         </CustomMockedProvider>
       )
-      await waitForAllEffects(container)
+      await waitForAllEffects(500)
       expect(getByTestId(DIALOG_FORM_TEST_ID)).toMatchSnapshot()
     })
   })

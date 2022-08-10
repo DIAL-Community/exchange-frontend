@@ -42,7 +42,7 @@ const waitForReactSelectToLoad = (container) => (
   waitFor(() => expect(container.querySelector('.react-select__loading-indicator')).toBeNull())
 )
 
-export const waitForAllEffects = () => waitFor(() => new Promise((res) => setTimeout(res, 0)))
+export const waitForAllEffects = (waitTimeout = 0) => waitFor(() => new Promise((res) => setTimeout(res, waitTimeout)))
 
 export const waitForAllEffectsAndSelectToLoad = async (container) => (
   await waitForAllEffects().then(() => waitForReactSelectToLoad(container))
