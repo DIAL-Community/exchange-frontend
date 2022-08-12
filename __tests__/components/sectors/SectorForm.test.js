@@ -58,7 +58,7 @@ describe('Unit tests for the SectorForm component.', () => {
       expect(getByTestId(DIALOG_FORM_TEST_ID)).toMatchSnapshot()
     })
 
-    test('edit for which has not parent sector.', async () => {
+    test('edit for which does not have parent sector.', async () => {
       const { getByTestId } = render(
         <CustomMockedProvider mocks={[mockedSectors]}>
           <SectorForm
@@ -86,7 +86,7 @@ describe('Unit tests for the SectorForm component.', () => {
       await waitForAllEffects(500)
       await act(async () => fireEvent.click(getByText('Submit')))
       expect(getByTestId(SECTOR_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-      expect(getByTestId(SECTOR_LOCALE_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
+      expect(getByTestId(SECTOR_LOCALE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     })
 
     test('should show validation errors and hide one of them on input value change.', async () => {
@@ -102,11 +102,11 @@ describe('Unit tests for the SectorForm component.', () => {
       await waitForAllEffects(500)
       await act(async () => fireEvent.click(getByText('Submit')))
       expect(getByTestId(SECTOR_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-      expect(getByTestId(SECTOR_LOCALE_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
+      expect(getByTestId(SECTOR_LOCALE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
       await user.type(screen.getByLabelText(/Name/), 'test sector name')
       expect(getByTestId(SECTOR_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-      expect(getByTestId(SECTOR_LOCALE_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
+      expect(getByTestId(SECTOR_LOCALE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     })
   })
 })
