@@ -27,7 +27,7 @@ describe('Unit tests for the TagForm component.', () => {
     mockSessionImplementation(true)
     window.IntersectionObserver = mockObserverImplementation()
   })
-    
+
   describe('Should match snapshot -', () => {
     test('create.', async () => {
       const { getByTestId } = render(
@@ -41,7 +41,7 @@ describe('Unit tests for the TagForm component.', () => {
       await waitForAllEffects(500)
       expect(getByTestId(DIALOG_FORM_TEST_ID)).toMatchSnapshot()
     })
-    
+
     test('edit.', async () => {
       const { getByTestId } = render(
         <CustomMockedProvider>
@@ -56,7 +56,7 @@ describe('Unit tests for the TagForm component.', () => {
       expect(getByTestId(DIALOG_FORM_TEST_ID)).toMatchSnapshot()
     })
   })
-  
+
   describe('For mandatory field -', () => {
     test('should show validation errors.', async () => {
       const { container, getByTestId, getByText } = render(
@@ -71,7 +71,7 @@ describe('Unit tests for the TagForm component.', () => {
       await act(async () => fireEvent.click(getByText('Submit')))
       expect(getByTestId(TAG_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     })
-  
+
     test('should show validation errors and hide them on input value change.', async () => {
       const user = userEvent.setup()
       const { container, getByTestId, getByText } = render(
@@ -85,7 +85,7 @@ describe('Unit tests for the TagForm component.', () => {
       await waitForAllEffects(container)
       await act(async () => fireEvent.click(getByText('Submit')))
       expect(getByTestId(TAG_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-  
+
       await user.type(screen.getByLabelText(/Name/), 'test tag name')
       expect(getByTestId(TAG_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     })

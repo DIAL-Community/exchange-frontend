@@ -17,7 +17,7 @@ const SectorCard = ({ sector, listType, displayEditButtons = false }) => {
   const [isDetailDialogOpen, setIsDetailDialogOpen] = useState(false)
 
   const toggleSectorDetailDialog = () => setIsDetailDialogOpen(!isDetailDialogOpen)
-  
+
   return (
     <>
       {

@@ -29,7 +29,7 @@ describe('Unit test for the TagCard component', () => {
       expect(queryByTestId(DELETE_BUTTON_TEST_ID)).not.toBeInTheDocument()
       expect(container).toMatchSnapshot()
     })
-  
+
     test('user is NOT an admin, displayEditButtons passed.', () => {
       mockSessionImplementation()
       const { container, getByTestId, queryByTestId } = render(
@@ -60,7 +60,7 @@ describe('Unit test for the TagCard component', () => {
       expect(queryByTestId(DELETE_BUTTON_TEST_ID)).not.toBeInTheDocument()
       expect(container).toMatchSnapshot()
     })
-  
+
     test('user is an admin, displayEditButtons passed.', () => {
       mockSessionImplementation(true)
       const { container, getByTestId } = render(

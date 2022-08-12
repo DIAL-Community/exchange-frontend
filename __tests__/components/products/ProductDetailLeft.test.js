@@ -26,7 +26,7 @@ describe('Unit test for the ProductDetailLeft component.', () => {
         </DiscourseProvider>
       </CustomMockedProvider>
     )
-    
+
     expect(queryByTestId(EDIT_BUTTON_TEST_ID)).toBeNull()
   })
 
@@ -40,7 +40,7 @@ describe('Unit test for the ProductDetailLeft component.', () => {
         </DiscourseProvider>
       </CustomMockedProvider>
     )
-    
+
     expect(getByTestId(EDIT_BUTTON_TEST_ID)).toBeInTheDocument()
   })
 
@@ -54,7 +54,7 @@ describe('Unit test for the ProductDetailLeft component.', () => {
         </DiscourseProvider>
       </CustomMockedProvider>
     )
-    
+
     expect(getByTestId(EDIT_BUTTON_TEST_ID)).toHaveAttribute('href', `/en/products/${product.slug}/edit`)
   })
 })

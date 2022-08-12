@@ -37,7 +37,7 @@ describe('Unit test for the EndorserAutocomplete component.', () => {
     )
     await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.keyDown(getByTestId(ENDORSER_SEARCH_TEST_ID).childNodes[0], { key: 'ArrowDown' })
-    
+
     expect(container).toHaveTextContent('Endorser 1')
     expect(container).toHaveTextContent('Endorser 2')
     expect(container).toMatchSnapshot()

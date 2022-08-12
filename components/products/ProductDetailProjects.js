@@ -85,7 +85,7 @@ const ProductDetailProjects = ({ product, canEdit }) => {
     setProjects(data?.updateProductProjects?.product?.projects ?? product.currentProjects)
     setIsDirty(false)
   }
-    
+
   const displayModeBody = projects.length > 0
     ? (
       <div className='grid grid-cols-1'>

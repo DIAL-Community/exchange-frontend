@@ -69,7 +69,7 @@ const ProjectForm = React.memo(({ project }) => {
     })
   ) ?? []
 
-  const isAuthorized = 
+  const isAuthorized =
     isAdminUser || (project ? (ownsSomeProduct || ownsSomeOrganization) : (isProductOwner || isOrganizationOwner))
 
   const [mutating, setMutating] = useState(false)

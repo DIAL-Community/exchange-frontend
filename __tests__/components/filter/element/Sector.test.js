@@ -14,7 +14,7 @@ jest.mock('next/dist/client/router')
 describe('Unit test for the SectorAutocomplete component.', () => {
   const mockSectors = generateMockApolloData(SECTOR_SEARCH_QUERY, { search: '', locale: 'en' }, null, sectors)
   const SECTOR_SEARCH_TEST_ID = 'sector-search'
-  
+
   beforeAll(() => {
     mockRouterImplementation()
   })
@@ -37,7 +37,7 @@ describe('Unit test for the SectorAutocomplete component.', () => {
     )
     await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.keyDown(getByTestId(SECTOR_SEARCH_TEST_ID).childNodes[0], { key: 'ArrowDown' })
-    
+
     expect(container).toHaveTextContent('Sector 1')
     expect(container).toHaveTextContent('Sector 2')
     expect(container).toMatchSnapshot()

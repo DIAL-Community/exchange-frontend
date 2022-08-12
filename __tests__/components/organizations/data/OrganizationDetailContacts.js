@@ -1,6 +1,6 @@
 module.exports = {
   'contacts': {
-    'data': 
+    'data':
       {
         'name': 'Test Test',
         'email': 'test@test.com',

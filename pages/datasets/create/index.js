@@ -3,7 +3,7 @@ import Footer from '../../../components/Footer'
 import ClientOnly from '../../../lib/ClientOnly'
 import DatasetForm from '../../../components/datasets/DatasetForm'
 
-const CreateOrganization = () => ( 
+const CreateOrganization = () => (
   <>
     <Header />
     <div className='max-w-catalog mx-auto'>

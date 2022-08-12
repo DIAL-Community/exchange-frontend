@@ -1,4 +1,3 @@
-
 import { useCallback, useEffect } from 'react'
 import Head from 'next/head'
 import { ApolloProvider } from '@apollo/client'

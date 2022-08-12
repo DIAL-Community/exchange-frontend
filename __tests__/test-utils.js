@@ -8,7 +8,7 @@ import { ToastContextProvider } from '../lib/ToastContext'
 const Providers = ({ children }) => {
   const locale = 'en'
   const messages = { ...translations.en, ...translations[locale] }
-  
+
   return (
     <IntlProvider locale={locale} defaultLocale='en' messages={messages}>
       <ToastContextProvider>

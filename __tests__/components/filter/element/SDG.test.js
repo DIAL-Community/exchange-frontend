@@ -37,7 +37,7 @@ describe('Unit test for the SDGAutocomplete component.', () => {
     )
     await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.keyDown(getByTestId(SGD_SEARCH_TEST_ID).childNodes[0], { key: 'ArrowDown' })
-    
+
     expect(container).toHaveTextContent('SDGs 1')
     expect(container).toHaveTextContent('SDGs 2')
     expect(container).toMatchSnapshot()

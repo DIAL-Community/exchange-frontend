@@ -85,7 +85,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                   <div className='flex justify-between p-1.5 border-b border-dial-gray text-sm font-semibold text-dial-cyan'>
                     <div className='flex flex-row gap-x-2 h-6'>
                       {
-                        organization.whenEndorsed && 
+                        organization.whenEndorsed &&
                           <img
                             alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
                             src='/icons/digiprins/digiprins.png'

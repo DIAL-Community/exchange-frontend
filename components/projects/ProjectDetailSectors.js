@@ -27,9 +27,9 @@ const ProjectDetailSectors = ({ project, canEdit }) => {
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)
-    
+
   const [updateProjectSectors, { data, loading }] = useMutation(UPDATE_PROJECT_SECTORS, {
-    onCompleted: (data) => {  
+    onCompleted: (data) => {
       setSectors(data.updateProjectSectors.project.sectors)
       setIsDirty(false)
       showToast(format('toast.sectors.update.success'), 'success', 'top-center')

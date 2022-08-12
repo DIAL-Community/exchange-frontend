@@ -22,19 +22,19 @@ const sectionLabelStyle = 'form-field-wrapper form-field-label'
 export const UserForm = ({ user, action }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
-  
+
   const router = useRouter()
   const [organizations, setOrganizations] = useState((user?.organization) ? [{ label: user.organization.name, slug: user.organization.slug }] : [])
   const [products, setProducts] = useState(user?.products.map(({ name, slug }) => ({ label: name, slug }) ) ?? [])
   const [userRoles, setUserRoles] = useState(user.roles)
-  
+
   const { locale } = useRouter()
-  
+
   const { showToast } = useContext(ToastContext)
 
   const userProfilePageUrl = (data) => `/${locale}/users/${data.updateUser.user.id}`
   const roleOptions = user.allRoles.map(role => ({ label: role, value: role }) )
-  
+
   const { handleSubmit, register, formState: { errors } } = useForm({
     mode: 'onBlur',
     reValidateMode: 'onChange',
@@ -48,7 +48,7 @@ export const UserForm = ({ user, action }) => {
       confirmed: user.confirmed
     }
   })
-  
+
   const idNameMapping = useMemo(() => {
     const map = { edit: format('app.edit') }
     if (user) {
@@ -57,7 +57,7 @@ export const UserForm = ({ user, action }) => {
 
     return map
   }, [user, format])
-  
+
   const [updateUser, { called, reset }] = useMutation(UPDATE_USER, {
     onCompleted: (data) => {
       showToast(
@@ -81,16 +81,16 @@ export const UserForm = ({ user, action }) => {
       reset()
     }
   })
-  
+
   const doUpsert = async (data) => {
     const { email, username, confirmed } = data
     updateUser({ variables: { email, roles: userRoles, products, organizations, username, confirmed } })
   }
-  
+
   const addRole = (selectedRole) => {
     setUserRoles([...userRoles.filter((role) => role !== selectedRole.label), selectedRole.label ])
   }
-  
+
   const removeRole = (role) => {
     setUserRoles([...userRoles.filter((userRole) => userRole !== role)])
   }

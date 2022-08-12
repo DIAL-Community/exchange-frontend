@@ -40,8 +40,8 @@ const SearchFilter = ({
   const { isAdminUser } = useUser(session)
   const { isOrganizationOwner } = useOrganizationOwnerUser(session)
   const { isProductOwner } = useProductOwnerUser()
-  
-  const canEdit = isAdminUser || isOrganizationOwner || isProductOwner 
+
+  const canEdit = isAdminUser || isOrganizationOwner || isProductOwner
 
   const linkPath = router.asPath.split('/')
   linkPath.shift()

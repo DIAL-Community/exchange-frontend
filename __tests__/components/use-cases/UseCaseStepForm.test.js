@@ -80,7 +80,7 @@ describe('Unit tests for UseCaseStepForm component.', () => {
       </CustomMockedProvider>
     )
     await waitForAllEffects()
-   
+
     await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(USE_CASE_STEP_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_STEP_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)

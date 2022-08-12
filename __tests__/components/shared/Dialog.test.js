@@ -23,7 +23,6 @@ describe('Unit test for the Dialog component.', () => {
     window.IntersectionObserver = mockObserverImplementation()
   })
 
-
   test('Should not be visible when is not open.', () => {
     const { queryByTestId } = render(
       <CustomMockedProvider>
@@ -54,7 +53,7 @@ describe('Unit test for the Dialog component.', () => {
       expect(queryByTestId(CLOSE_BUTTON_TEST_ID)).not.toBeInTheDocument()
       expect(getByTestId(DIALOG_TEST_ID)).toMatchSnapshot()
     })
-      
+
     test('when Dialog has default type and has close button.', () => {
       const { getByTestId, queryByTestId } = render(
         <CustomMockedProvider>

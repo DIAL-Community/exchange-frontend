@@ -24,7 +24,6 @@ describe('Unit test for the UseCaseStepDetailProducts component.', () => {
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
   const mockProducts = generateMockApolloData(PRODUCT_SEARCH_QUERY, { search: '' }, null, products)
 
-
   beforeAll(() => {
     mockRouterImplementation()
     mockSessionImplementation()

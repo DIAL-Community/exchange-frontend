@@ -16,12 +16,12 @@ export const OperatorAutocomplete = ({
   isSearch = false
 }) => {
   const client = useApolloClient()
-  
+
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
-  
+
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('operator.label') })
-  
+
   const selectOperator = (operator) => {
     setOperators([...operators.filter(({ value }) => value !== operator.value), operator])
   }

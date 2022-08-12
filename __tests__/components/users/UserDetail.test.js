@@ -26,7 +26,7 @@ describe('Unit test for the UserDetail component', () => {
 
   test('should render element of the user owning product.', () => {
     const component = render(<UserDetail user={userWithProducts} />)
-    
+
     // Should correctly format both roles.
     expect(component.getByText(/ORG_USER, PRODUCT_USER/)).toBeInTheDocument()
 
