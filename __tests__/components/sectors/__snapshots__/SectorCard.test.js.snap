@@ -10,7 +10,7 @@ exports[`Unit test for the SectorCard component Should match snapshot - user is 
     data-testid="sector-card"
   >
     <div
-      class="flex justify-between border border-dial-gray card-drop-shadow"
+      class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
     >
       <div
         class="flex items-center p-4"
@@ -36,7 +36,7 @@ exports[`Unit test for the SectorCard component Should match snapshot - user is 
     data-testid="sector-card"
   >
     <div
-      class="flex justify-between border border-dial-gray card-drop-shadow"
+      class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
     >
       <div
         class="flex-1 cursor-pointer flex items-center p-4"
@@ -130,7 +130,7 @@ exports[`Unit test for the SectorCard component Should match snapshot - user is 
     data-testid="sector-card"
   >
     <div
-      class="flex justify-between border border-dial-gray card-drop-shadow"
+      class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
     >
       <div
         class="flex items-center p-4"
@@ -156,7 +156,7 @@ exports[`Unit test for the SectorCard component Should match snapshot - user is 
     data-testid="sector-card"
   >
     <div
-      class="flex justify-between border border-dial-gray card-drop-shadow"
+      class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
     >
       <div
         class="flex-1 cursor-pointer flex items-center p-4"

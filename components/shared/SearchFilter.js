@@ -298,7 +298,7 @@ const SearchFilter = ({
           <div className='text-xs mt-2'>
             <div className='flex justify-end px-3'>
               {createNew &&
-                  <a className='border-b-2 border-transparent hover:border-dial-yellow'
+                  <a className='bg-dial-blue px-2 py-1 rounded-md text-white text-md'
                     data-testid='create-new'
                     href={generateCreateLink()}
                     onClick={(event) => {
@@ -308,28 +308,26 @@ const SearchFilter = ({
                       }
                     }}
                   >
-                    <span className='text-dial-yellow'>{format('app.create-new')}</span>
+                    <span>{format('app.create-new')}</span>
                   </a>
               }
               {exportJson && (
                 <>
-                  <div className='border-r mx-2 border-gray-400' />
                   <a
-                    className='border-b-2 border-transparent hover:border-dial-yellow'
+                    className='bg-dial-yellow mx-2 px-2 py-1 rounded-md text-white text-md'
                     href='/export-as-json' onClick={(e) => exportAsJson(e)}
                   >
-                    <span className='text-dial-yellow'>{format('app.exportAsJson')}</span>
+                    <span>{format('app.exportAsJson')}</span>
                   </a>
                 </>
               )}
               {exportCsv && (
                 <>
-                  <div className='border-r mx-2 border-gray-400' />
                   <a
-                    className='border-b-2 border-transparent hover:border-dial-yellow'
+                    className='bg-dial-yellow px-2 py-1 rounded-md text-white text-md'
                     href='/export-as-csv' onClick={(e) => exportAsCsv(e)}
                   >
-                    <span className='text-dial-yellow'>{format('app.exportAsCSV')}</span>
+                    <span>{format('app.exportAsCSV')}</span>
                   </a>
                 </>
               )}
