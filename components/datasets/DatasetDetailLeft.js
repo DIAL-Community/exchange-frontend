@@ -2,6 +2,7 @@ import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
 
@@ -46,15 +47,20 @@ const DatasetDetailLeft = ({ dataset }) => {
         <div className='h4 font-bold py-4'>{format('datasets.label')}</div>
       </div>
       <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 lg:mr-6 shadow-lg'>
-        <div id='header' className='mb-4'>
+        <div id='header' className='flex flex-col h-80 p-2'>
           <div className='h1 p-2 text-dial-purple'>
             {dataset.name}
           </div>
-          <img
-            alt={`${dataset.name} Logo`} className='p-2 m-auto'
-            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
-            width='200px' height='200px'
-          />
+          <div className='m-auto w-3/5 h-3/5 relative' >
+            <Image
+              layout='fill'
+              objectFit='contain'
+              sizes='100vw'
+              alt={`${dataset.name} Logo`} className='p-2 m-auto'
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
+              width='200px' height='200px'
+            />
+          </div>
         </div>
         <div className='fr-view text-dial-gray-dark max-h-40 overflow-hidden'>
           {dataset.datasetDescription && parse(dataset.datasetDescription.description)}

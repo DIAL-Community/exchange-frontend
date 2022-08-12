@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
+import Image from 'next/image'
 import { ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
 
 const ellipsisTextStyle = `
@@ -44,14 +45,19 @@ const ProductCard = ({ product, listType, newTab = false }) => {
             ? (
               <div onClick={() => navClickHandler()} className={`${containerElementStyle}`}>
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
-                  <div className='flex flex-row flex-wrap lg:gap-x-4 px-4' style={{ minHeight: '4.5rem' }}>
-                    <div className={`w-full lg:w-4/12 font-semibold my-auto ${ellipsisTextStyle}`}>
-                      <img
-                        className='inline pr-3' width='50' height='50'
+                  <div className='relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4' style={{ minHeight: '4.5rem' }}>
+                    <div className='w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative'>
+                      <Image
+                        layout='fill'
+                        objectFit='scale-down'
+                        objectPosition='left'
+                        sizes='1vw'
                         alt={format('image.alt.logoFor', { name: product.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
                       />
-                      {product.name}
+                      <div className={`ml-8 w-4/5 h-3/5 font-semibold relative ${ellipsisTextStyle}`}>
+                        {product.name}
+                      </div>
                     </div>
                     <div className={`w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple ${ellipsisTextStyle}`}>
                       {product.origins && product.origins.length === 0 && format('general.na')}
@@ -149,8 +155,10 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                           alt='Info' height='20px' width='20px' src='/icons/info.svg'
                         />
                     }
-                    <div className='m-auto'>
-                      <img
+                    <div className='m-auto w-3/5 h-3/5 relative'>
+                      <Image
+                        layout='fill'
+                        objectFit='contain'
                         className='w-40'
                         alt={format('image.alt.logoFor', { name: product.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
@@ -172,7 +180,8 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                             product.sustainableDevelopmentGoals
                               .filter((_, index) => index <= 1)
                               .map(sdg => (
-                                <img
+                                <Image
+                                  height={30} width={30}
                                   data-tip={format('tooltip.forEntity', { entity: format('sdg.label'), name: sdg.name })}
                                   key={`sdg-${sdg.slug}`} className='h-8 cursor-default'
                                   alt={format('image.alt.logoFor', { name: sdg.name })}
@@ -199,7 +208,8 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                             product.buildingBlocks
                               .filter((_, index) => index <= 1)
                               .map(bb => (
-                                <img
+                                <Image
+                                  height={30} width={30}
                                   data-tip={format('tooltip.forEntity', { entity: format('buildingBlock.label'), name: bb.name })}
                                   key={`sdg-${bb.slug}`} className='w-8 building-block-filter cursor-default'
                                   alt={format('image.alt.logoFor', { name: bb.name })}

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
+import Image from 'next/image'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Workflows')
 
@@ -79,12 +80,16 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
               <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                 <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                   <div className={`${nameColSpan()} ${ellipsisTextStyle} text-base font-semibold`}>
-                    <img
+                    <Image
+                      height={20}
+                      width={20}
                       data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: workflow.name })}
-                      alt={format('image.alt.logoFor', { name: workflow.name })} className='m-auto h-6 workflow-filter inline mr-3'
+                      alt={format('image.alt.logoFor', { name: workflow.name })} className='workflow-filter'
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
                     />
-                    {workflow.name}
+                    <span className='ml-4'>
+                      {workflow.name}
+                    </span>
                     {
                       useCases &&
                         <div
@@ -161,8 +166,10 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
                   <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
                     {workflow.name}
                   </div>
-                  <div className='m-auto align-middle w-40'>
-                    <img
+                  <div className='m-auto w-3/5 h-3/5 relative' >
+                    <Image
+                      layout='fill'
+                      objectFit='contain'
                       alt={format('image.alt.logoFor', { name: workflow.name })} className='workflow-filter'
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
                     />
@@ -190,9 +197,11 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
                             useCases
                               .map(u => (
                                 <div key={`${workflow.id}-${u.id}`} className='bg-white rounded p-2 mr-1.5 cursor-default'>
-                                  <img
+                                  <Image
+                                    height={20}
+                                    width={20}
                                     data-tip={format('tooltip.forEntity', { entity: format('useCase.label'), name: u.name })}
-                                    className='m-auto h-6 use-case-filter' alt={format('image.alt.logoFor', { name: u.name })}
+                                    className='use-case-filter' alt={format('image.alt.logoFor', { name: u.name })}
                                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + u.imageFile}
                                   />
                                 </div>
@@ -230,9 +239,11 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
                             workflow.buildingBlocks
                               .map(b => (
                                 <div key={`${workflow.id}-${b.slug}`} className='bg-white rounded p-2 mr-1 cursor-default'>
-                                  <img
+                                  <Image
+                                    height={20}
+                                    width={20}
                                     data-tip={format('tooltip.forEntity', { entity: format('buildingBlock.label'), name: b.name })}
-                                    className='m-auto h-6 building-block-filter' alt={format('image.alt.logoFor', { name: b.name })}
+                                    className='building-block-filter' alt={format('image.alt.logoFor', { name: b.name })}
                                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + b.imageFile}
                                   />
                                 </div>

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
+import Image from 'next/image'
 import { convertToKey } from '../context/FilterContext'
 
 const collectionPath = convertToKey('Organizations')
@@ -27,13 +28,18 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                 <div className={containerElementStyle}>
                   <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                     <div className='relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4' style={{ minHeight: '4.5rem' }}>
-                      <div className={`w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto  ${ellipsisTextStyle}`}>
-                        <img
-                          className='inline pr-3 w-8'
+                      <div className='w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative'>
+                        <Image
+                          layout='fill'
+                          objectFit='scale-down'
+                          objectPosition='left'
+                          sizes='1vw'
                           alt={format('image.alt.logoFor', { name: organization.name })}
                           src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
                         />
-                        {organization.name}
+                        <div className={`ml-8 w-4/5 h-3/5 relative ${ellipsisTextStyle}`} >
+                          {organization.name}
+                        </div>
                       </div>
                       {
                         organization.sectors &&
@@ -115,9 +121,10 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                     >
                       {organization.name}
                     </div>
-                    <div className='m-auto'>
-                      <img
-                        className='w-40'
+                    <div className='m-auto w-3/5 h-3/5 relative' >
+                      <Image
+                        layout='fill'
+                        objectFit='contain'
                         alt={format('image.alt.logoFor', { name: organization.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
                       />

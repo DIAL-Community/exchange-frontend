@@ -6,14 +6,14 @@ export const buildingBlocks = {
         name: 'Building Block 1',
         slug: 'building_block_1',
         maturity: 'BETA',
-        imageFile: 'building-block-1.png'
+        imageFile: '/building-block-1.png'
       },
       {
         id: 2,
         name: 'Building Block 2',
         slug: 'building_block_2',
         maturity: 'BETA',
-        imageFile: 'building-block-2.png'
+        imageFile: '/building-block-2.png'
       }
     ]
   }

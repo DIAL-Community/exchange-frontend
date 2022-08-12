@@ -7,7 +7,7 @@ module.exports = {
           name: 'Building Block 1',
           slug: 'building_block_1',
           maturity: 'BETA',
-          imageFile: 'building-block-1.png',
+          imageFile: '/building-block-1.png',
           __typename: 'BuildingBlock'
         },
         {
@@ -15,7 +15,7 @@ module.exports = {
           name: 'Building Block 2',
           slug: 'building_block_2',
           maturity: 'BETA',
-          imageFile: 'building-block-2.png',
+          imageFile: '/building-block-2.png',
           __typename: 'BuildingBlock'
         },
       ]

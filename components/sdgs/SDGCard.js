@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
+import Image from 'next/image'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('SDGs')
 
@@ -87,12 +88,18 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
             <div onClick={() => navClickHandler()} className={containerElementStyle}>
               <div className='bg-white border border-dial-gray hover:border-transparent'>
                 <div className='grid grid-cols-1 lg:grid-cols-6 gap-x-4 py-4 px-4'>
-                  <div className={`${nameColSpan()} text-base text-sdg font-semibold ${ellipsisTextStyle}`}>
-                    <img
-                      className='inline pr-4' src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`}
+                  <div className={`${nameColSpan()} text-base text-sdg font-semibold ${ellipsisTextStyle} relative`}>
+                    <Image
+                      layout='fill'
+                      objectFit='scale-down'
+                      objectPosition='left'
+                      sizes='2vw'
+                      src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`}
                       alt={format('image.alt.logoFor', { name: sdg.name })} width='40' height='40'
                     />
-                    {sdg.name}
+                    <div className='ml-10'>
+                      {sdg.name}
+                    </div>
                     {
                       useCases &&
                         <div
@@ -137,7 +144,9 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                     {sdg.name}
                   </div>
                   <div className='m-auto align-middle w-40'>
-                    <img
+                    <Image
+                      height={250}
+                      width={250}
                       alt={format('image.alt.logoFor', { name: sdg.name })}
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}
                     />
@@ -205,7 +214,9 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                             useCases
                               .map(useCase => (
                                 <div key={`${sdg.id}-${useCase.id}`} className='bg-white rounded p-2 mr-1'>
-                                  <img
+                                  <Image
+                                    height={20}
+                                    width={20}
                                     data-tip={format('tooltip.forEntity', { entity: format('useCase.label'), name: useCase.name })}
                                     className='m-auto h-6 use-case-filter' alt={format('image.alt.logoFor', { name: useCase.name })}
                                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}

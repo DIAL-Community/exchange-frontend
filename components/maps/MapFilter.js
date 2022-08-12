@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
+import Image from 'next/image'
 import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
 import { CapabilityAutocomplete } from '../filter/element/Capability'
 import { EndorsingYearSelect } from '../filter/element/EndorsingYear'
@@ -37,7 +38,9 @@ const MapFilter = () => {
               <div className='whitespace-normal'>{format('map.project.title')}</div>
               <div className='block'>
                 <a href='set-projects-active' onClick={(e) => navigateToMap(e, 'projects')}>
-                  <img
+                  <Image
+                    height={125}
+                    width={225}
                     src='/images/maps/projects.png' alt='Navigate to map of projects'
                     className={`${router.pathname.indexOf('projects') >= 0 ? 'border-4 border-dial-yellow' : ''} w-56 mt-2`}
                   />
@@ -50,7 +53,9 @@ const MapFilter = () => {
               <div className='whitespace-normal'>{format('map.endorser.title')}</div>
               <div className='block'>
                 <a href='set-endorsers-active' onClick={(e) => navigateToMap(e, 'endorsers')}>
-                  <img
+                  <Image
+                    height={125}
+                    width={225}
                     src='/images/maps/endorsers.png' alt='Navigate to map of endorsers'
                     className={`${router.pathname.indexOf('endorsers') >= 0 ? 'border-4 border-dial-yellow' : ''} w-56 mt-2`}
                   />
@@ -63,7 +68,9 @@ const MapFilter = () => {
               <div className='whitespace-normal'>{format('map.aggregator.title')}</div>
               <div className='block'>
                 <a href='set-aggregators-active' onClick={(e) => navigateToMap(e, 'aggregators')}>
-                  <img
+                  <Image
+                    height={125}
+                    width={225}
                     src='/images/maps/aggregators.png' alt='Navigate to map of aggregators'
                     className={`${router.pathname.indexOf('aggregators') >= 0 ? 'border-4 border-dial-yellow' : ''} w-56 mt-2`}
                   />

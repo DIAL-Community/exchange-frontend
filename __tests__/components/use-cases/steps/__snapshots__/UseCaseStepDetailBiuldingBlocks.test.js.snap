@@ -274,7 +274,13 @@ exports[`Unit tests for the UseCaseStepDetailBuildingBlocks component. Should ma
    whitespace-nowrap text-ellipsis overflow-hidden my-auto
 "
               >
-                Test Building Block
+                <span
+                  class="ml-8 w-4/5 h-3/5 relative 
+   whitespace-nowrap text-ellipsis overflow-hidden my-auto
+"
+                >
+                  Test Building Block
+                </span>
               </div>
               <div
                 class="col-span-2 flex flex-row font-semibold opacity-50 justify-end"
@@ -496,7 +502,13 @@ exports[`Unit tests for the UseCaseStepDetailBuildingBlocks component. Should ma
    whitespace-nowrap text-ellipsis overflow-hidden my-auto
 "
               >
-                Test Building Block
+                <span
+                  class="ml-8 w-4/5 h-3/5 relative 
+   whitespace-nowrap text-ellipsis overflow-hidden my-auto
+"
+                >
+                  Test Building Block
+                </span>
               </div>
               <div
                 class="col-span-2 flex flex-row font-semibold opacity-50 justify-end"

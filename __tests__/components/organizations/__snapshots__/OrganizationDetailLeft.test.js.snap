@@ -81,13 +81,21 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
         Test Organization
       </div>
       <div
-        class="m-auto"
+        class="m-auto w-3/5 h-3/5 relative"
       >
-        <img
-          alt="Logo for: Test Organization"
-          class="w-40"
-          src="http://localhost:3000/assets/organizations/test_organization.png"
-        />
+        <div
+          style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
+        >
+          <img
+            alt="Logo for: Test Organization"
+            class="w-40"
+            data-nimg="fill"
+            decoding="async"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: contain;"
+          />
+          <noscript />
+        </div>
       </div>
     </div>
   </div>
@@ -247,13 +255,21 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
         Test Organization
       </div>
       <div
-        class="m-auto"
+        class="m-auto w-3/5 h-3/5 relative"
       >
-        <img
-          alt="Logo for: Test Organization"
-          class="w-40"
-          src="http://localhost:3000/assets/organizations/test_organization.png"
-        />
+        <div
+          style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
+        >
+          <img
+            alt="Logo for: Test Organization"
+            class="w-40"
+            data-nimg="fill"
+            decoding="async"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: contain;"
+          />
+          <noscript />
+        </div>
       </div>
     </div>
   </div>
@@ -367,13 +383,21 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
         Test Organization
       </div>
       <div
-        class="m-auto"
+        class="m-auto w-3/5 h-3/5 relative"
       >
-        <img
-          alt="Logo for: Test Organization"
-          class="w-40"
-          src="http://localhost:3000/assets/organizations/test_organization.png"
-        />
+        <div
+          style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
+        >
+          <img
+            alt="Logo for: Test Organization"
+            class="w-40"
+            data-nimg="fill"
+            decoding="async"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: contain;"
+          />
+          <noscript />
+        </div>
       </div>
     </div>
   </div>

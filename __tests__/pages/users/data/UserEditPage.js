@@ -11,13 +11,13 @@ export const user = {
           id: 1,
           name: 'product 1',
           slug: 'product_1',
-          imageFile: 'example.jpg'
+          imageFile: '/example.jpg'
         },
         {
           id: 1,
           name: 'product 2',
           slug: 'product_2',
-          imageFile: 'example.jpg'
+          imageFile: '/example.jpg'
         }
       ],
       organization: {

@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
+import Image from 'next/image'
 import { DiscourseCount } from '../shared/discourse'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
@@ -41,8 +42,10 @@ const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
           <div className='text-2xl font-semibold absolute w-4/5 md:w-auto lg:w-64 2xl:w-80 pr-2 text-building-block'>
             {buildingBlock.name}
           </div>
-          <div className='m-auto align-middle w-40 building-block-filter'>
-            <img
+          <div className='m-auto w-3/5 h-3/5 relative building-block-filter' >
+            <Image
+              layout='fill'
+              objectFit='contain'
               alt={format('image.alt.logoFor', { name: buildingBlock.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
             />
