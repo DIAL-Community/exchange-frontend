@@ -51,7 +51,7 @@ const AdminMenu = ({ isCurrentOpenMenu, onToggle }) => {
         className={`${menuItemStyles} lg:mb-0 mb-2 inline`} ref={buttonRef}
         href='admin' onClick={(e) => toggleSwitcher(e)}
       >
-        <div id={ADMIN_MENU} className={`${menuItemStyles} inline`}>{format('header.admin')} 
+        <div id={ADMIN_MENU} className={`${menuItemStyles} inline`}>{format('header.admin')}
           {
             isCurrentOpenMenu ? <HiChevronUp className='ml-1 inline text-2xl' /> : <HiChevronDown className='ml-1 inline text-2xl' />
           }
@@ -186,10 +186,10 @@ const Header = () => {
 
   const aboutPopoverButton = useRef(null)
   const aboutPopover = useRef(null)
-  
+
   const helpPopoverButton = useRef(null)
   const helpPopover = useRef(null)
-  
+
   const isAdmin = session?.user?.roles?.includes('admin')
 
   const handleClickOutside = useCallback((event) => {
@@ -217,9 +217,9 @@ const Header = () => {
     if (currentOpenMenu !== NONE) {
       // whenever user clicks somewhere on the page - fire handleClickOutside
       // so that the current menu is closed and, if clicked, another menu is opened
-      // e.g. About menu -> Help menu 
+      // e.g. About menu -> Help menu
       document.addEventListener('click', handleClickOutside)
-  
+
       // whenever currentOpenMenu changes - remove the listener
       return () => {
         document.removeEventListener('click', handleClickOutside)
@@ -230,7 +230,7 @@ const Header = () => {
   const showFeedbackForm = () => {
     setShowForm(true)
   }
-  
+
   const switchLanguage = (e, localeCode) => {
     e.preventDefault()
     router.push({ pathname, query }, asPath, { locale: localeCode })
@@ -321,13 +321,13 @@ const Header = () => {
                     </Link>
                     <a
                       href='//resources.dial.community/' target='_blank' rel='noreferrer'
-                      role='menuitem' className={dropdownMenuStyles} 
+                      role='menuitem' className={dropdownMenuStyles}
                     >
                       {format('header.dialResourcesPortal')}
                     </a>
                     <a
                       href='//digitalimpactalliance.org/research/sdg-digital-investment-framework/' target='_blank' rel='noreferrer'
-                      role='menuitem' className={dropdownMenuStyles} 
+                      role='menuitem' className={dropdownMenuStyles}
                     >
                       {format('header.SDGFramework')}
                     </a>
@@ -354,7 +354,7 @@ const Header = () => {
                     </Link>
                     <a
                       href='//solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/overview' target='_blank' rel='noreferrer'
-                      role='menuitem' className={dropdownMenuStyles} 
+                      role='menuitem' className={dropdownMenuStyles}
                     >
                       {format('header.confluence')}
                     </a>

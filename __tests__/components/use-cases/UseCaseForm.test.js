@@ -109,7 +109,7 @@ describe('Unit tests for UseCaseForm component.', () => {
     expect(getByTestId(USE_CASE_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(USE_CASE_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    
+
     await user.type(screen.getByLabelText(/Name/), 'test user case name 2')
     expect(getByTestId(USE_CASE_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 

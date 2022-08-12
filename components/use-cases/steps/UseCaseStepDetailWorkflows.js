@@ -17,13 +17,13 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
-  
+
   const [workflows, setWorkflows] = useState(useCaseStep.workflows)
-  
+
   const [isDirty, setIsDirty] = useState(false)
-  
+
   const [updateUseCaseStepWorkflows, { data, loading }] = useMutation(UPDATE_USE_CASE_STEP_WORKFLOWS, {
-    onCompleted: (data) => {  
+    onCompleted: (data) => {
       setWorkflows(data.updateUseCaseStepWorkflows.useCaseStep.workflows)
       setIsDirty(false)
       showToast(format('toast.workflows.update.success'), 'success', 'top-center')
@@ -34,9 +34,9 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit }) => {
       showToast(format('toast.workflows.update.failure'), 'error', 'top-center')
     }
   })
-  
+
   const [session] = useSession()
-  
+
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)

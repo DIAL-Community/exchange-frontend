@@ -66,7 +66,7 @@ export const CapabilityFilters = (props) => {
 
   return (
     <>
-      {services?.map((service, serviceIdx) => ( 
+      {services?.map((service, serviceIdx) => (
         <div className='py-1' key={serviceIdx}>
           <Pill
             key={`filter-${serviceIdx}`}

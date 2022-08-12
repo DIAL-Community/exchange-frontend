@@ -31,7 +31,6 @@ Cypress.Commands.add('getByTestId', testId => {
 Cypress.Commands.add('findByTestId', { prevSubject: true }, (subject, testId) => {
   return subject.find('[data-testid=' + testId +  ']')
 })
-  
 
 Cypress.Commands.add('findChildByTestId', (elem, testId) => {
   return elem.find('[data-testid=' + testId +  ']')
@@ -49,11 +48,11 @@ Cypress.Commands.add('login', (username, password) => {
 
   cy.getByTestId('user-menu').should('exist')
   cy.getByTestId('login').should('not.exist')
-})  
+})
 
 Cypress.Commands.add('loginAsAdmin', () => {
   cy.login(Cypress.env('ADMIN_EMAIL'), Cypress.env('ADMIN_PASSWORD'))
-  
+
   cy.getByTestId('admin-menu').should('exist')
 })
 

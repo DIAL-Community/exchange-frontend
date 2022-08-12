@@ -48,7 +48,7 @@ const PlaybookFilter = () => {
               {...{ tags, setTags }}
               tagQuery={SEARCH_PLAYBOOK_TAGS_QUERY}
               containerStyles='px-2 pb-2'
-              controlSize='20rem' 
+              controlSize='20rem'
             />
           </div>
         </div>

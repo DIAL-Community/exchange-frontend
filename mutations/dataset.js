@@ -105,7 +105,6 @@ export const UPDATE_DATASET_SECTORS = gql`
   }
 `
 
-
 export const UPDATE_DATASET_TAGS = gql`
   mutation UpdateDatasetTags($slug: String!, $tagNames: [String!]!) {
     updateDatasetTags(slug: $slug, tagNames: $tagNames) {

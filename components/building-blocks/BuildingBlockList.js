@@ -166,7 +166,7 @@ const BuildingBlockListQuery = () => {
   }
 
   const { searchBuildingBlocks: { nodes, pageInfo } } = data
-  
+
   return (
     <>
       <InfiniteScroll

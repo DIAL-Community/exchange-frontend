@@ -24,7 +24,7 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
   const mappingStatusOptions = getMappingStatusOptions(format)
 
   const [mappingStatus, setMappingStatus] = useState(
-    mappingStatusOptions.find(({ value: mappingStatus }) => 
+    mappingStatusOptions.find(({ value: mappingStatus }) =>
       mappingStatus === (product?.buildingBlocksMappingStatus)
     ) ?? mappingStatusOptions?.[0]
   )
@@ -105,13 +105,13 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
   }
 
   const disclaimer = <div className='text-sm text-dial-gray-dark pb-2 highlight-link' dangerouslySetInnerHTML={{ __html: format('building-block.disclaimer') }} />
-    
+
   const displayModeBody =
     <>
       {disclaimer}
       {buildingBlocks.length > 0 ? (
         <div className='grid grid-cols-1'>
-          {buildingBlocks.map((buildingBlock, buildingBlockIdx) => 
+          {buildingBlocks.map((buildingBlock, buildingBlockIdx) =>
             <BuildingBlockCard key={buildingBlockIdx} buildingBlock={buildingBlock} listType='list' />
           )}
         </div>

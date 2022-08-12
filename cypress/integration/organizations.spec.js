@@ -119,20 +119,20 @@ describe('Organizations', () => {
 
   const editContacts = orgData => {
     cy.getByTestId('organization-contacts').then($orgContacts => {
- 
+
       cy.findChildByTestId($orgContacts, 'edit-button')
         .click()
-      
+
       orgData.contacts.forEach(contact => {
         cy.findChildByTestId($orgContacts, 'name-input')
           .type(contact.name)
-        
+
         cy.findChildByTestId($orgContacts, 'email-input')
           .type(contact.email)
-        
+
         cy.findChildByTestId($orgContacts, 'title-input')
           .type(contact.title)
-        
+
         cy.findChildByTestId($orgContacts, 'assign-button')
           .click()
       })
@@ -141,7 +141,7 @@ describe('Organizations', () => {
         .click()
     })
   }
-  
+
   // eslint-disable-next-line
   const enterOrganization = (orgName, expectedSlug) => {
     cy.getByTestId('search-input').type(orgName)

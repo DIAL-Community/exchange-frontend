@@ -6,7 +6,6 @@ const InternalServerError = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-
   return (
     <div className='grid place-items-center bg-gradient-to-b from-dial-gray-light to-white'>
       <div className='my-20 text-button-gray text-lg'>

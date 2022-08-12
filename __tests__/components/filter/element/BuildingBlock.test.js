@@ -37,7 +37,7 @@ describe('Unit test for the BuildingBlockAutocomplete component.', () => {
     )
     await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.keyDown(getByTestId(BUILDING_BLOCK_SEARCH_TEST_ID).childNodes[0], { key: 'ArrowDown' })
-    
+
     expect(container).toHaveTextContent('buildingBlocks 1')
     expect(container).toHaveTextContent('buildingBlocks 2')
     expect(container).toMatchSnapshot()

@@ -76,7 +76,7 @@ describe('Unit test for the ProjectDetailSectors component.', () => {
     await waitForAllEffects()
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await waitForAllEffectsAndSelectToLoad(container)
-      
+
     expect(container).toMatchSnapshot()
   })
 
@@ -92,7 +92,7 @@ describe('Unit test for the ProjectDetailSectors component.', () => {
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await waitForAllEffectsAndSelectToLoad(container)
-      
+
     fireEvent.click(getByTestId(PILL_REMOVE_BUTTON_TEST_ID))
     expect(screen.queryByTestId(PILL_TEST_ID)).toBeNull()
     expect(container).toMatchSnapshot()

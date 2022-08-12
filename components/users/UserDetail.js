@@ -51,7 +51,7 @@ const UserDetail = ({ user }) => {
                 </div>
             }
             {
-              user?.organization && 
+              user?.organization &&
                 <div className='h4'>
                   {format('profile.organization')} {user.organization.name}
                 </div>

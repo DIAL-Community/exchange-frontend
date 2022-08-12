@@ -23,13 +23,13 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
   const [isDirty, setIsDirty] = useState(false)
 
   const [session] = useSession()
-  
+
   const { locale } = useRouter()
-  
+
   const { showToast } = useContext(ToastContext)
 
   const [updateUseCaseStepProducts, { data, loading }] = useMutation(UPDATE_USE_CASE_STEP_PRODUCTS, {
-    onCompleted: (data) => {  
+    onCompleted: (data) => {
       setProducts(data.updateUseCaseStepProducts.useCaseStep.products)
       setIsDirty(false)
       showToast(format('toast.products.update.success'), 'success', 'top-center')
@@ -40,7 +40,7 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
       showToast(format('toast.products.update.failure'), 'error', 'top-center')
     }
   })
-  
+
   const fetchedProductsCallback = (data) => (
     data.products?.map((product) => ({
       label: product.name,
@@ -84,7 +84,7 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
   }
 
   const displayModeBody = products.length
-    ? ( 
+    ? (
       <div className='grid grid-cols-1'>
         {products.map((product, productIdx) => <ProductCard key={productIdx} product={product} listType='list' />)}
       </div>
@@ -125,7 +125,7 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
     </>
 
   return (
-    <EditableSection 
+    <EditableSection
       canEdit={canEdit}
       sectionHeader={format('product.header')}
       onSubmit={onSubmit}

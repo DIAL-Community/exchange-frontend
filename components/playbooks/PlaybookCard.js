@@ -52,7 +52,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed, canEdit }) => {
         <div className={`group ${containerElementStyle}`}>
           <div className='border border-dial-gray hover:border-transparent card-drop-shadow h-full'>
             <div className='flex flex-col h-full'>
-              {canEdit && 
+              {canEdit &&
                 <div className='flex flex-row gap-x-1.5 p-1.5 border-b border-dial-gray playbook-card-header font-semibold text-dial-cyan'>
                   <div>{format('app.status')} {format(isPlaybookPublished ? 'playbook.status.published' : 'playbook.status.draft')}</div>
                 </div>

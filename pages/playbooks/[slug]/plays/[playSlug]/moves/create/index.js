@@ -33,7 +33,7 @@ const CreateMoveInformation = ({ slug, playSlug, locale }) => {
   useEffect(() => {
     refetch()
   }, [refetch, locale])
-  
+
   if (loading) {
     return <Loading />
   }

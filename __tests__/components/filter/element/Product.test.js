@@ -39,7 +39,7 @@ describe('Unit test for the ProductAutocomplete component.', () => {
     )
     await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.keyDown(getByTestId(PRODUCTS_SEARCH_TEST_ID).childNodes[0], { key: 'ArrowDown' })
-    
+
     expect(container).toHaveTextContent('Another Product')
     expect(container).toMatchSnapshot()
   })

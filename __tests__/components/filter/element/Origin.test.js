@@ -14,7 +14,7 @@ jest.mock('next/dist/client/router')
 describe('Unit test for the OriginAutocomplete component.', () => {
   const mockOrigins = generateMockApolloData(ORIGIN_SEARCH_QUERY, { search: '' }, null, origins)
   const ORIGINS_SEARCH_TEST_ID = 'origin-search'
-  
+
   beforeAll(() => {
     mockRouterImplementation()
   })
@@ -37,7 +37,7 @@ describe('Unit test for the OriginAutocomplete component.', () => {
     )
     await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.keyDown(getByTestId(ORIGINS_SEARCH_TEST_ID).childNodes[0], { key: 'ArrowDown' })
-    
+
     expect(container).toHaveTextContent('Origin 1')
     expect(container).toHaveTextContent('Origin 2')
     expect(container).toMatchSnapshot()

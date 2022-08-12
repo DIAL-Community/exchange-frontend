@@ -18,18 +18,18 @@ const inputSectionStyle = 'flex flex-col gap-y-2 mb-2 mx-4 w-full'
 const OrganizationDetailContacts = ({ organization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-        
-  const [contacts, setContacts] = useState(organization?.contacts)  
+
+  const [contacts, setContacts] = useState(organization?.contacts)
   const [isDirty, setIsDirty] = useState(false)
-     
+
   const [updateOrganizationContacts, { data, loading }] = useMutation(UPDATE_ORGANIZATION_CONTACTS)
-    
+
   const [session] = useSession()
-    
-  const { locale } = useRouter() 
-    
-  const { showToast } = useContext(ToastContext) 
-  
+
+  const { locale } = useRouter()
+
+  const { showToast } = useContext(ToastContext)
+
   const isContactNameUnique = (name) => !contacts.some(contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase())
 
   const { handleSubmit, control, reset, formState: { errors } } = useForm({
@@ -48,29 +48,28 @@ const OrganizationDetailContacts = ({ organization }) => {
     setIsDirty(true)
     reset()
   }
-  
-  useEffect(() => {    
+
+  useEffect(() => {
     if (data?.updateOrganizationContacts?.errors.length === 0 && data?.updateOrganizationContacts?.organization) {
       setContacts(data.updateOrganizationContacts.organization.contacts)
       setIsDirty(false)
       showToast(format('organization.contacts.updated'), 'success', 'top-center')
     }
   }, [data, showToast, format])
-  
-    
+
   const removeContact = (contact) => {
     setContacts([...contacts.filter(({ name }) => name !== contact.name)])
     setIsDirty(true)
   }
-  
+
   const onCancel = () => {
     setContacts(data?.updateOrganizationContacts?.organization?.contacts ?? organization.contacts)
     setIsDirty(false)
   }
-  
+
   const onSubmit = () => {
     if (session) {
-      const { userEmail, userToken } = session.user 
+      const { userEmail, userToken } = session.user
 
       updateOrganizationContacts({
         variables: {
@@ -95,7 +94,7 @@ const OrganizationDetailContacts = ({ organization }) => {
     ) : (
       <div className='text-sm pb-5 text-button-gray'>{format('organization.no-contact')}</div>
     )
-           
+
   const editModeBody =
     <>
       <form onSubmit={handleSubmit(addContact)}>
@@ -113,8 +112,8 @@ const OrganizationDetailContacts = ({ organization }) => {
               render={({ field }) => (
                 <Input {...field} data-testid='name-input' isInvalid={errors.name} />
               )}
-              rules={{ 
-                required: format('validation.required'), 
+              rules={{
+                required: format('validation.required'),
                 validate: name => isContactNameUnique(name) || format('organization.validation.contact.uniqueName')
               }}
             />
@@ -130,8 +129,8 @@ const OrganizationDetailContacts = ({ organization }) => {
               render={({ field }) => (
                 <Input {...field} data-testid='email-input' isInvalid={errors.email} />
               )}
-              rules={{ 
-                required: format('validation.required'), 
+              rules={{
+                required: format('validation.required'),
                 pattern: { value: emailRegex, message: format('validation.email') }
               }}
             />

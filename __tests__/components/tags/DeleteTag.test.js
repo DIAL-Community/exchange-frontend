@@ -35,7 +35,7 @@ describe('Unit tests for the DeletTag component.', () => {
     await waitForAllEffects(container)
     expect(getByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toBeVisible()
   })
-    
+
   describe('Should close ConfirmActionDialog after clicks', () => {
     test('"Cancel" button.', async () => {
       const { container, getByTestId, queryByTestId } = render(
@@ -43,15 +43,15 @@ describe('Unit tests for the DeletTag component.', () => {
           <DeleteTag tag={tag} />
         </CustomMockedProvider>
       )
-      fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID)) 
+      fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID))
       await waitForAllEffects(container)
       expect(getByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toBeVisible()
-        
+
       fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID))
       await waitForAllEffects(container)
       expect(queryByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).not.toBeInTheDocument()
     })
-          
+
     test('"Confirm" button', async () => {
       const { container, getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
@@ -60,11 +60,11 @@ describe('Unit tests for the DeletTag component.', () => {
       )
       fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID))
       await waitForAllEffects(container)
-      expect(getByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toBeVisible() 
-        
+      expect(getByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toBeVisible()
+
       fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID))
       await waitForAllEffects(container)
       expect(queryByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).not.toBeInTheDocument()
     })
-  }) 
+  })
 })

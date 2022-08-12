@@ -29,7 +29,7 @@ const BuildingBlockActiveFilter = () => {
     }
 
     count = count + sdgs.length + useCases.length + workflows.length
-    
+
     return count
   }
 

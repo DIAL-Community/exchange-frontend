@@ -78,7 +78,7 @@ const Select = React.forwardRef(({
       <HiOutlineSearch className='text-2xl'/>
     </components.DropdownIndicator>
   )
-  
+
   return (
     async ? (
       <AsyncReactSelect

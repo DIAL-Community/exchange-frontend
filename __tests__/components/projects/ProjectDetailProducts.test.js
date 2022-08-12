@@ -27,7 +27,6 @@ describe('Unit test for the ProjectDetailProducts component.', () => {
   const mockProducts = generateMockApolloData(PRODUCT_SEARCH_QUERY, { search: '' }, null, products)
   const mockOwnedProducts = generateMockApolloData(OWNED_PRODUCTS_QUERY, null, null, ownedProducts)
 
-
   beforeAll(() => {
     mockRouterImplementation()
     mockSessionImplementation()

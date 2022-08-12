@@ -106,7 +106,7 @@ describe('Unit tests for WorkflowForm component.', () => {
           <WorkflowForm workflow={workflow} />
         </CustomMockedProvider>
       )
-      
+
       await waitForAllEffects()
       await act(async () => {
         fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
@@ -131,7 +131,7 @@ describe('Unit tests for WorkflowForm component.', () => {
           <WorkflowForm workflow={workflow} />
         </CustomMockedProvider>
       )
-      
+
       await waitForAllEffects()
       await act(async () => {
         fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))

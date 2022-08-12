@@ -76,7 +76,7 @@ describe('Unit tests for the OrganizationForm component.', () => {
     expect(getByTestId(ORGANIZATION_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(ORGANIZATION_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    
+
     await user.type(screen.getByLabelText(/Name/), 'test organization name 2')
     await user.type(screen.getByLabelText(/Website/), 'test organization website')
     expect(getByTestId(ORGANIZATION_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)

@@ -4,7 +4,7 @@ export const fetchSelectOptions = async (client, input, query, fetchedDataCallba
   const variables = {
     search: input
   }
-  
+
   if (input && input.trim().length < MIN_SEARCH_VALUE_CHARACTERS) {
     return []
   } else if (locale) {
@@ -21,7 +21,7 @@ export const fetchSelectOptionsWithMature = async (client, input, query, fetched
     search: input,
     mature: true
   }
-  
+
   if (input && input.trim().length < MIN_SEARCH_VALUE_CHARACTERS) {
     return []
   } else if (locale) {

@@ -135,7 +135,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
 
     setDirect(true)
     setCurrentSlug(slug)
-    
+
     if (!data || !data.playbook) {
       // Skip execution if we don't have the playbook play information.
       return

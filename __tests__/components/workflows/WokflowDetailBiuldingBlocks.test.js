@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react'
 import {
   mockSessionImplementation,
   mockRouterImplementation,
-  render, 
+  render,
   waitForAllEffectsAndSelectToLoad
 } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'

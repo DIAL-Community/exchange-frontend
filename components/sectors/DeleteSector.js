@@ -24,7 +24,7 @@ const DeleteSector = ({ sector }) => {
 
   const toggleConfirmDialog = () => {
     event.stopPropagation()
-    setDisplayConfirmDialog(!displayConfirmDialog)     
+    setDisplayConfirmDialog(!displayConfirmDialog)
   }
 
   const [deleteSector, { called, reset }] = useMutation(DELETE_SECTOR, {

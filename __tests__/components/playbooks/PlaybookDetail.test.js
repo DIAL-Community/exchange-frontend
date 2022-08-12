@@ -99,7 +99,7 @@ describe('Unit tests for playbook interaction.', () => {
     // Playbook detail should not have edit link for unprivileged users.
     const editLink = screen.queryByText(/Edit/)
     expect(editLink).toBeNull()
-    
+
     await waitForAllEffects()
 
     // Expect this to match existing snapshot of the page.

@@ -137,7 +137,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const router = useRouter()
   const [currentSection, setCurrentSection] = useState(0)
   const [wizardData, setWizardData] = useState()
-  
+
   const vars = {
     phase: allValues.projectPhase,
     sector: allValues.sector,

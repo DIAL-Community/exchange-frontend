@@ -54,7 +54,7 @@ describe('Unit tests for the UserForm component.', () => {
     await someUser.type(getByTestId(USER_NAME_INPUT_TEST_ID), 'User Test')
     expect(getByTestId(EMAIL_INPUT_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USER_NAME_INPUT_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-      
+
     await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(EMAIL_LABEL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USER_NAME_LABEL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -72,9 +72,9 @@ describe('Unit tests for the UserForm component.', () => {
     await someUser.clear(getByTestId(USER_NAME_INPUT_TEST_ID))
 
     await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
-    
+
     await waitForAllEffectsAndSelectToLoad(container)
-    
+
     expect(getByTestId(EMAIL_LABEL_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USER_NAME_LABEL_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 

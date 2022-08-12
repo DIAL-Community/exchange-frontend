@@ -30,7 +30,7 @@ const CountryPageDefinition = ({ slug, locale }) => {
 
 const Country = () => {
   const router = useRouter()
-  
+
   const [session] = useSession()
   const { isAdminUser, loadingUserSession } = useUser(session)
 
