@@ -29,7 +29,7 @@ const SectorCard = ({ sector, listType = DisplayType.LIST, displayEditButtons = 
         className={classNames({ 'hover:border-dial-yellow text-button-gray': displayEditButtons }, 'border-3 border-transparent')}
         data-testid='sector-card'
       >
-        <div className='flex justify-between border border-dial-gray card-drop-shadow'>
+        <div className='flex justify-between border border-dial-gray card-drop-shadow px-4 h-16'>
           <div
             onClick={toggleSectorDetailDialog}
             className={classNames({ 'flex-1 cursor-pointer': displayEditButtons }, 'flex items-center p-4')}

@@ -81,7 +81,9 @@ const DatasetDetailTags = ({ dataset, canEdit }) => {
   const displayModeBody = tagNames.length > 0
     ? (
       <div className='grid grid-cols-1 lg:grid-cols-2'>
-        {tagNames.map((tagName, tagIdx) => <TagCard key={tagIdx} tag={tagName} listType='list' />)}
+        {tagNames
+          .filter(tagName => tagName.trim().length > 0)
+          .map((tagName, tagIdx) => <TagCard key={tagIdx} tag={tagName} listType='list' />)}
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>

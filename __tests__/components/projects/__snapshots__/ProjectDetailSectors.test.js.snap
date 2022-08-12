@@ -258,7 +258,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
         data-testid="sector-card"
       >
         <div
-          class="flex justify-between border border-dial-gray card-drop-shadow"
+          class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
         >
           <div
             class="flex items-center p-4"
@@ -319,7 +319,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
         data-testid="sector-card"
       >
         <div
-          class="flex justify-between border border-dial-gray card-drop-shadow"
+          class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
         >
           <div
             class="flex items-center p-4"
@@ -529,7 +529,7 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
         data-testid="sector-card"
       >
         <div
-          class="flex justify-between border border-dial-gray card-drop-shadow"
+          class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
         >
           <div
             class="flex items-center p-4"

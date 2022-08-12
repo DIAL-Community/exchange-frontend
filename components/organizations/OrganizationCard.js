@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import Image from 'next/image'
 import { convertToKey } from '../context/FilterContext'
 
 const collectionPath = convertToKey('Organizations')
@@ -28,26 +27,14 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                 <div className={containerElementStyle}>
                   <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                     <div className='relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4' style={{ minHeight: '4.5rem' }}>
-                      <div className='w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative'>
-                        <Image
-                          layout='fill'
-                          objectFit='scale-down'
-                          objectPosition='left'
-                          sizes='1vw'
+                      <div className={`w-10/12 lg:w-6/12 text-base font-semibold text-dial-gray-dark my-auto  ${ellipsisTextStyle}`}>
+                        <img
+                          className='inline pr-3 w-8'
                           alt={format('image.alt.logoFor', { name: organization.name })}
                           src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
                         />
-                        <div className={`ml-8 w-4/5 h-3/5 relative ${ellipsisTextStyle}`} >
-                          {organization.name}
-                        </div>
+                        {organization.name}
                       </div>
-                      {
-                        organization.sectors &&
-                          <div className={`w-10/12 lg:w-5/12 text-base text-dial-gray-dark ${ellipsisTextStyle}`}>
-                            {organization.sectors.length === 0 && format('general.na')}
-                            {organization.sectors.length > 0 && organization.sectors.map(u => u.name).join(', ')}
-                          </div>
-                      }
                       <div
                         className={`
                           absolute top-2 lg:top-1/3 right-4 flex flex-nowrap gap-x-1.5
@@ -69,7 +56,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                                 className='inline mr-2 h-6 ml-auto' src='/icons/digiprins/digiprins.png'
                               />
                               <span className='hidden lg:inline'>
-                                {`Endorsed on ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
+                                {`Endorsed in ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
                               </span>
                               <span className='inline lg:hidden'>
                                 {`${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
@@ -121,10 +108,9 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                     >
                       {organization.name}
                     </div>
-                    <div className='m-auto w-3/5 h-3/5 relative' >
-                      <Image
-                        layout='fill'
-                        objectFit='contain'
+                    <div className='m-auto'>
+                      <img
+                        className='w-40'
                         alt={format('image.alt.logoFor', { name: organization.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
                       />
