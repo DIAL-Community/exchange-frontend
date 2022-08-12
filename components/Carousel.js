@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
+import dynamic from 'next/dynamic'
+
+const LiteYoutubeEmbed = dynamic(() => import('react-lite-yt-embed').then((module) => module.LiteYoutubeEmbed), { ssr: false })
 
 const Carousel = () => {
   const { formatMessage } = useIntl()
@@ -25,10 +28,14 @@ const Carousel = () => {
           <div className='relative w-full md:w-2/5 px-5 py-3 rounded-l-lg block text-center leading-loose tracking-wide whitespace-nowrap font-bold text-lg text-carousel bg-carousel-light'>
             {format('definition.sections.what')}
           </div>
-          <div className='w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg'>
-            <div className='p-6 md:py-12' style={{ zIndex: 20 }}>
-              <iframe loading='lazy' title='The DIAL Catalog of Digital Solutions: Overview' src='https://www.youtube.com/embed/K-4j3kvT6aE' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen='' />
-            </div>
+          <div className='p-6 md:py-12' style={{ zIndex: 20 }}>
+            <LiteYoutubeEmbed
+              id='K-4j3kvT6aE'
+              mute={false}
+              isMobile={true}
+              imageAltText='The DIAL Catalog of Digital Solutions: Overview'
+              iframeTitle='The DIAL Catalog of Digital Solutions: Overview'
+            />
           </div>
         </div>
         <div className={openTab === 1 ? 'block md:flex' : 'hidden'}>
