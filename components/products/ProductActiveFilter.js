@@ -93,7 +93,7 @@ const ProductActiveFilter = () => {
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, maturityFilter, deployableFilter, ...originFilters, ...countryFilters, 
+      activeFilter, maturityFilter, deployableFilter, ...originFilters, ...countryFilters,
       ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters, ...useCaseFilters,
       ...workflowFilters, ...buildingBlockFilters, ...endorserFilters
     ].filter(f => f).join('&')

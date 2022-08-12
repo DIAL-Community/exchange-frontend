@@ -15,14 +15,14 @@ const DeleteTag = ({ tag }) => {
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
 
   const { locale } = useRouter()
-    
+
   const [session] = useSession()
-  
+
   const { showToast } = useContext(ToastContext)
 
   const [deleteTag, { called, reset }] = useMutation(DELETE_TAG, {
     refetchQueries: ['SearchTags'],
-    onCompleted: () => {  
+    onCompleted: () => {
       showToast(format('toast.tag.delete.success'), 'success', 'top-center')
       setDisplayConfirmDialog(false)
     },
@@ -32,11 +32,11 @@ const DeleteTag = ({ tag }) => {
       reset()
     }
   })
-  
+
   const onConfirmDelete = () => {
     if (session) {
       const { userEmail, userToken } = session.user
-    
+
       deleteTag({
         variables: { id: tag.id },
         context: {
@@ -52,7 +52,7 @@ const DeleteTag = ({ tag }) => {
   const toggleConfirmDeleteDialog = () => {
     setDisplayConfirmDialog(!displayConfirmDialog)
   }
-  
+
   return (
     <>
       <DeleteButton type='button' onClick={toggleConfirmDeleteDialog} />

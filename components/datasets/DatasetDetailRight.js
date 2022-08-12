@@ -95,7 +95,7 @@ const DatasetDetailRight = ({ dataset }) => {
       {
         dataset.visualizationUrl &&
           <div className='mt-3 v
-          
+
           '>
             <IframeResizer
               src={dataset.visualizationUrl}

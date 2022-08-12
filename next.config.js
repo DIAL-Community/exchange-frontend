@@ -12,6 +12,9 @@ module.exports = {
     defaultLocale: 'en',
     localeDetection: false
   },
+  images: {
+    domains: ['localhost','solutions-dev.dial.community','solutions.dial.community']
+  },
   async headers() {
     return [
       {

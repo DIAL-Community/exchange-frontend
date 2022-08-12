@@ -17,7 +17,7 @@ describe('Unit test for the SearchFilter component in Products tab.', () => {
 
   test('Should "Create New" link not be visible for unauthorized user', () => {
     mockUnauthorizedUserSessionImplementation()
-    
+
     const { queryByTestId } = render(
       <CustomMockedProvider>
         <FilterContextProvider resultCounts={products.resultCounts}>
@@ -25,7 +25,7 @@ describe('Unit test for the SearchFilter component in Products tab.', () => {
         </FilterContextProvider>
       </CustomMockedProvider>
     )
-    
+
     expect(queryByTestId(CREATE_NEW_LINK_TEST_ID)).toBeNull()
   })
 
@@ -39,13 +39,13 @@ describe('Unit test for the SearchFilter component in Products tab.', () => {
         </FilterContextProvider>
       </CustomMockedProvider>
     )
-    
+
     expect(getByTestId(CREATE_NEW_LINK_TEST_ID)).toBeInTheDocument()
   })
 
   test('Should redirect authorized user to candidate product form after clicking "Create New" link', () => {
     mockSessionImplementation()
-    
+
     const { getByTestId } = render(
       <CustomMockedProvider>
         <FilterContextProvider resultCounts={products.resultCounts}>
@@ -53,13 +53,13 @@ describe('Unit test for the SearchFilter component in Products tab.', () => {
         </FilterContextProvider>
       </CustomMockedProvider>
     )
-    
+
     expect(getByTestId(CREATE_NEW_LINK_TEST_ID)).toHaveAttribute('href', '/candidate/products/create')
   })
 
   test('Should redirect user with admin/edit privileges to product form after clicking "Create New" link', () => {
     mockSessionImplementation(true)
-    
+
     const { getByTestId } = render(
       <CustomMockedProvider>
         <FilterContextProvider resultCounts={products.resultCounts}>
@@ -67,7 +67,7 @@ describe('Unit test for the SearchFilter component in Products tab.', () => {
         </FilterContextProvider>
       </CustomMockedProvider>
     )
-    
+
     expect(getByTestId(CREATE_NEW_LINK_TEST_ID)).toHaveAttribute('href', '/products/create')
   })
 })
@@ -88,7 +88,7 @@ describe('Unit test for the SearchFilter component in Projects tab.', () => {
         </FilterContextProvider>
       </CustomMockedProvider>
     )
-    
+
     expect(queryByTestId(CREATE_NEW_LINK_TEST_ID)).toBeNull()
   })
 
@@ -101,7 +101,7 @@ describe('Unit test for the SearchFilter component in Projects tab.', () => {
         </FilterContextProvider>
       </CustomMockedProvider>
     )
-    
+
     expect(getByTestId(CREATE_NEW_LINK_TEST_ID)).toBeInTheDocument()
   })
 
@@ -114,7 +114,7 @@ describe('Unit test for the SearchFilter component in Projects tab.', () => {
         </FilterContextProvider>
       </CustomMockedProvider>
     )
-    
+
     expect(getByTestId(CREATE_NEW_LINK_TEST_ID)).toBeInTheDocument()
   })
 
@@ -127,7 +127,7 @@ describe('Unit test for the SearchFilter component in Projects tab.', () => {
         </FilterContextProvider>
       </CustomMockedProvider>
     )
-    
+
     expect(getByTestId(CREATE_NEW_LINK_TEST_ID)).toBeInTheDocument()
   })
 })

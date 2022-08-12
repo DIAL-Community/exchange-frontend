@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react'
 import { useIntl, FormattedMessage } from 'react-intl'
 import { useRouter } from 'next/router'

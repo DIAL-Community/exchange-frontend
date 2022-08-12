@@ -6,11 +6,11 @@ import { projData, allValues } from './data/WizardStage'
 jest.mock('next/dist/client/router')
 
 describe('Unit test for the WizardStage1 component.', () => {
-  
+
   beforeAll(() => {
     mockRouterImplementation()
   })
-    
+
   test('Should match snapshot.', () => {
     const { container } = render(
       <CustomMockedProvider>
@@ -29,7 +29,7 @@ describe('Unit test for the WizardStage2 component.', () => {
   beforeAll(() => {
     mockRouterImplementation()
   })
-    
+
   test('Should match snapshot.', () => {
     const { container } = render(
       <CustomMockedProvider>

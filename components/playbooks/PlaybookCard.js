@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 import parse from 'html-react-parser'
+import Image from 'next/image'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Playbooks')
 
@@ -33,11 +34,17 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed, canEdit }) => {
               <div
                 className={` ${ellipsisTextStyle} pr-3 text-base font-semibold group-hover:text-dial-yellow`}
               >
-                <img
-                  data-tip={format('tooltip.forEntity', { entity: format('playbooks.label'), name: playbook.name })}
-                  alt={format('image.alt.logoFor', { name: playbook.name })} className='m-auto h-6 inline mr-3'
-                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
-                />
+                <div className='m-auto w-3/5 h-3/5 relative' >
+                  <Image
+                    layout='fill'
+                    objectFit='scale-down'
+                    objectPosition='left'
+                    sizes='1vw'
+                    data-tip={format('tooltip.forEntity', { entity: format('playbooks.label'), name: playbook.name })}
+                    alt={format('image.alt.logoFor', { name: playbook.name })}
+                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
+                  />
+                </div>
                 {playbook.name}
               </div>
               <div className={`${filterDisplayed ? 'flex gap-1.5 text-sm lg:ml-auto' : 'md:ml-auto'}`}>
@@ -52,7 +59,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed, canEdit }) => {
         <div className={`group ${containerElementStyle}`}>
           <div className='border border-dial-gray hover:border-transparent card-drop-shadow h-full'>
             <div className='flex flex-col h-full'>
-              {canEdit && 
+              {canEdit &&
                 <div className='flex flex-row gap-x-1.5 p-1.5 border-b border-dial-gray playbook-card-header font-semibold text-dial-cyan'>
                   <div>{format('app.status')} {format(isPlaybookPublished ? 'playbook.status.published' : 'playbook.status.draft')}</div>
                 </div>
@@ -61,8 +68,10 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed, canEdit }) => {
                 <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
                   {playbook.name}
                 </div>
-                <div className='mx-auto mt-5 pt-20 w-40 h-60'>
-                  <img
+                <div className='mx-auto mt-5 pt-20 w-40 h-60 relative'>
+                  <Image
+                    layout='fill'
+                    objectFit='contain'
                     alt={format('image.alt.logoFor', { name: playbook.name })}
                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
                   />

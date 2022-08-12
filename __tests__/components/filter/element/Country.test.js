@@ -37,7 +37,7 @@ describe('Unit test for the CountryAutocomplete component.', () => {
     )
     await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.keyDown(getByTestId(COUNTRY_SEARCH_TEST_ID).childNodes[0], { key: 'ArrowDown' })
-    
+
     expect(container).toHaveTextContent('Country 1')
     expect(container).toHaveTextContent('Country 2')
     expect(container).toMatchSnapshot()

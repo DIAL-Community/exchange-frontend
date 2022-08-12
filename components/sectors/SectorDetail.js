@@ -48,7 +48,7 @@ const SectorDetail = ({ sector, isOpen, onClose }) => {
             <p className={labelTextBlue}>{format('sector.is-displayable.label')}</p>
           </div>
         </div>
-      </div>  
+      </div>
     </Dialog>
   )
 }

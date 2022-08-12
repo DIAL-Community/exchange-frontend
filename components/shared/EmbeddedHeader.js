@@ -58,16 +58,16 @@ const EmbeddedHeader = () => {
     if (currentOpenMenu !== NONE) {
       // whenever user clicks somewhere on the page - fire handleClickOutside
       // so that the current menu is closed and, if clicked, another menu is opened
-      // e.g. About menu -> Help menu 
+      // e.g. About menu -> Help menu
       document.addEventListener('click', handleClickOutside)
-  
+
       // whenever currentOpenMenu changes - remove the listener
       return () => {
         document.removeEventListener('click', handleClickOutside)
       }
     }
   }, [handleClickOutside, currentOpenMenu])
-  
+
   const switchLanguage = (e, localeCode) => {
     e.preventDefault()
     router.push({ pathname, query }, asPath, { locale: localeCode })

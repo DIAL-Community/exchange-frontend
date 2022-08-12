@@ -285,6 +285,7 @@ export const en = {
   'organization.projects.updated': 'Projects updated successfully',
   'organization.contacts.updated': 'Contacts updated successfully',
   'organization.products.updated': 'Products updated successfully',
+  'organization.sectors.updated': 'Sectors updated successfully',
   'organization.no-sector': 'We do not have any Sector information for this Organization.',
   'organization.no-country': 'We do not have any Country information for this Organization.',
   'organization.no-contact': 'We do not have any Contact information for this Organization.',
@@ -319,6 +320,8 @@ export const en = {
   'sector.parent-sector.label': 'Parent Sector',
   'sector.is-displayable.label': 'Is displayable',
   'sector.delete.confirm.message': 'Are you sure you want to delete this Sector? All associations will also be removed.',
+  'sector.displayable.tooltip': 'Displayable',
+  'sector.not-displayable.tooltip': 'Not Displayable',
 
   'sdg.header': 'Sustainable Development Goals',
   'sdg.label': 'Sustainable Development Goal',
@@ -1355,6 +1358,7 @@ export const en = {
   'shared.maturity.beta': 'BETA',
   'shared.maturity.published': 'PUBLISHED',
   'shared.metadata.description.comprehensiveListOf': 'Comprehensive list of {entities} provided by DIAL\'s Catalog of Digital Solutions to support users in discovering digital technologies designed to address the Sustainable Development Goals (SDGs).',
+  'shared.metadata.description.listOfKey': 'List of key {entities} provided by DIAL’s Catalog of Digital Solutions, to support users in the deployment of digital technologies designed to address the Sustainable Development Goals (SDGs).',
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
@@ -1377,6 +1381,8 @@ export const en = {
   'toast.sectors.update.failure': 'Sectors update failed',
   'toast.sector.delete.success': 'Sector deleted successfully',
   'toast.sector.delete.failure': 'Sector deletion failed',
+  'toast.sector.submit.success': 'Sector submitted successfully',
+  'toast.sector.submit.failure': 'Sector submission failed',
   'toast.projects.updated': 'Projects updated successfully',
   'toast.projects.update.failure': 'Projects update failed',
   'toast.countries.update.success': 'Countries updated successfully',

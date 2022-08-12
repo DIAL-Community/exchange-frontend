@@ -1,4 +1,3 @@
-
 import { fireEvent } from '@testing-library/react'
 import GeocodeAutocomplete from '../../../components/shared/GeocodeAutocomplete'
 import { COUNTRY_CODES_QUERY } from '../../../queries/country'
@@ -12,7 +11,7 @@ describe('Unit test for the GeocodeAutocomplete component.', () => {
   const TEST_ID = 'select'
   const mockOnChange = jest.fn()
   const mockCountries = generateMockApolloData(COUNTRY_CODES_QUERY, { search: '' }, null, countries)
-    
+
   beforeAll(() => {
     mockArcGisToken()
     mockRouterImplementation()
@@ -38,8 +37,8 @@ describe('Unit test for the GeocodeAutocomplete component.', () => {
       </div>
     )
     await waitForAllEffectsAndSelectToLoad(container)
-    fireEvent.keyDown(getByTestId(TEST_ID).firstChild, { key: 'ArrowDown' })      
-    expect(getByText('Search for Location')).toBeInTheDocument()  
+    fireEvent.keyDown(getByTestId(TEST_ID).firstChild, { key: 'ArrowDown' })
+    expect(getByText('Search for Location')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 })

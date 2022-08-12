@@ -5,14 +5,14 @@ export const buildingBlocks = {
         id: 1,
         name: 'buildingBlocks 1',
         slug: 'building_blocks_1',
-        imageFile: '',
+        imageFile: '/',
         maturity: true
       },
       {
         id: 2,
         name: 'buildingBlocks 2',
         slug: 'building_blocks_2',
-        imageFile: '',
+        imageFile: '/',
         maturity: true
       }
     ]

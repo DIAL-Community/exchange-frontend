@@ -37,7 +37,7 @@ describe('Unit test for the OrganizationAutocomplete component.', () => {
     )
     await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.keyDown(getByTestId(ORGANIZATION_SEARCH_TEST_ID).childNodes[0], { key: 'ArrowDown' })
-    
+
     expect(container).toHaveTextContent('Another Organization')
     expect(container).toMatchSnapshot()
   })

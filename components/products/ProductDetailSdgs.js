@@ -16,21 +16,21 @@ import Select from '../shared/Select'
 const ProductDetailSdgs = ({ product, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
- 
+
   const client = useApolloClient()
- 
+
   const [sdgs, setSdgs] = useState(product.sustainableDevelopmentGoals)
 
   const mappingStatusOptions = getMappingStatusOptions(format)
 
   const [mappingStatus, setMappingStatus] = useState(
-    mappingStatusOptions.find(({ value: mappingStatus }) => 
+    mappingStatusOptions.find(({ value: mappingStatus }) =>
       mappingStatus === (product?.sustainableDevelopmentGoalsMappingStatus)
     ) ?? mappingStatusOptions?.[0]
   )
- 
+
   const [isDirty, setIsDirty] = useState(false)
- 
+
   const [updateProductSdgs, { data, loading }] = useMutation(UPDATE_PRODUCT_SDGS, {
     onCompleted: (data) => {
       setSdgs(data.updateProductSdgs.product.sustainableDevelopmentGoals)
@@ -43,9 +43,9 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
       showToast(format('toast.sdgs.update.failure', { entity: format('sdg.label') }), 'error', 'top-center')
     }
   })
-  
+
   const [session] = useSession()
-  
+
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)
@@ -58,7 +58,7 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
       imageFile: sdg.imageFile
     }))
   )
-  
+
   const addSdg = (sdg) => {
     setSdgs([
       ...sdgs.filter(({ slug }) => slug !== sdg.slug),
@@ -66,7 +66,7 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
     ])
     setIsDirty(true)
   }
- 
+
   const removeSdg = (sdg) => {
     setSdgs([...sdgs.filter(({ slug }) => slug !== sdg.slug)])
     setIsDirty(true)
@@ -80,7 +80,7 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
   const onSubmit = () => {
     if (session) {
       const { userEmail, userToken } = session.user
-       
+
       updateProductSdgs({
         variables: {
           slug: product.slug,
@@ -96,7 +96,7 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
       })
     }
   }
- 
+
   const onCancel = () => {
     setSdgs(data?.updateProductSdgs?.product?.sustainableDevelopmentGoals ?? product.sustainableDevelopmentGoals)
     setMappingStatus(mappingStatusOptions.find(({ value: mappingStatus }) =>
@@ -104,7 +104,7 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
     ))
     setIsDirty(false)
   }
- 
+
   const displayModeBody = sdgs.length
     ? (
       <div className='grid grid-cols-1'>
@@ -115,7 +115,7 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
         {format('product.no-sdgs', { entity: format('sdg.label') })}
       </div>
     )
- 
+
   const editModeBody =
     <>
       <p className='card-title text-dial-blue mb-3'>
@@ -154,7 +154,7 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
         ))}
       </div>
     </>
- 
+
   return (
     <EditableSection
       canEdit={canEdit}
@@ -168,5 +168,5 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
     />
   )
 }
- 
+
 export default ProductDetailSdgs

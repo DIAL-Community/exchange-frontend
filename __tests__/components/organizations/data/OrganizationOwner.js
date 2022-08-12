@@ -17,7 +17,7 @@ module.exports = {
         aliases: ['abc', '123'],
         __typename: 'Organization'
       }
-    
+
     }
   }
 }

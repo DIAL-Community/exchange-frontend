@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { createRef, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
+import Image from 'next/image'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Use Cases')
 
@@ -83,11 +84,15 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                     <div className={`${nameColSpan(useCase)} text-base font-semibold ${ellipsisTextStyle}`}>
-                      <img
-                        alt={format('image.alt.logoFor', { name: useCase.name })} className='m-auto h-6 use-case-filter inline mr-3'
+                      <Image
+                        height={20}
+                        width={20}
+                        alt={format('image.alt.logoFor', { name: useCase.name })} className='use-case-filter'
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
                       />
-                      {useCase.name}
+                      <span className='ml-4'>
+                        {useCase.name}
+                      </span>
                       {
                         useCase.sdgTargets &&
                         <div className={`block ${filterDisplayed ? 'xl:hidden' : 'lg:hidden'} flex flex-row mt-1`}>
@@ -168,8 +173,10 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
                     <div className='text-2xl font-semibold absolute w-64 2xl:w-80 z-10'>
                       {useCase.name}
                     </div>
-                    <div className='m-auto align-middle w-40'>
-                      <img
+                    <div className='m-auto w-3/5 h-3/5 relative' >
+                      <Image
+                        layout='fill'
+                        objectFit='contain'
                         alt={format('image.alt.logoFor', { name: useCase.name })} className='use-case-filter'
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
                       />
@@ -234,9 +241,11 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
                               workflows
                                 .map(w => (
                                   <div key={`${useCase.id}-${w.id}`} className='bg-white rounded p-2 mr-1 cursor-default'>
-                                    <img
+                                    <Image
+                                      height={20}
+                                      width={20}
                                       data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: w.name })}
-                                      className='m-auto h-6 workflow-filter' alt={format('image.alt.logoFor', { name: w.name })}
+                                      className='workflow-filter' alt={format('image.alt.logoFor', { name: w.name })}
                                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + w.imageFile}
                                     />
                                   </div>

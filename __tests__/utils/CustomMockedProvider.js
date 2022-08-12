@@ -3,7 +3,6 @@ import { ApolloLink } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 import { MockLink, MockedProvider } from '@apollo/client/testing'
 
-
 export const generateMockApolloData = (graphQuery, graphVariables, errorData, resultData) => {
   const mockedDataStructure = {
     request: {

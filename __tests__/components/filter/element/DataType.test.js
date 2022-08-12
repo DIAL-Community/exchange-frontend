@@ -39,7 +39,7 @@ describe('Unit test for the DatasetTypeSelect component.', () => {
     )
     await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.keyDown(getByTestId(DATASET_SEARCH_TEST_ID).childNodes[0], { key: 'ArrowDown' })
-    
+
     expect(container).toHaveTextContent('Dataset')
     expect(container).toHaveTextContent('Content')
     expect(container).toMatchSnapshot()

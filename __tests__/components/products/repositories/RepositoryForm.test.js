@@ -90,7 +90,7 @@ describe('RepositoryForm component.', () => {
     })
     expect(getByTestId(PRODUCT_REPOSITORY_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
-  
+
   test('Should display success toast on submit.', async () => {
     const mockUpdateProductRepository = generateMockApolloData(
       UPDATE_PRODUCT_REPOSITORY,

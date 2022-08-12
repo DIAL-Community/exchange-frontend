@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
+import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
 
@@ -47,8 +48,11 @@ const UseCaseDetailLeft = ({ useCase, canEdit }) => {
           <div className='text-2xl font-semibold absolute w-4/5 md:w-auto lg:w-4/5 md:w-auto lg:w-64 2xl:w-80 text-use-case'>
             {useCase.name}
           </div>
-          <div className='m-auto align-middle w-40 use-case-filter'>
-            <img
+          <div className='m-auto w-3/5 h-3/5 relative use-case-filter' >
+            <Image
+              layout='fill'
+              objectFit='contain'
+              sizes='100vw'
               alt={format('image.alt.logoFor', { name: useCase.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
             />

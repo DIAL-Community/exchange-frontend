@@ -1,47 +1,44 @@
 import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
-import TagCard from '../../../components/tags/TagCard'
-import { tag } from './data/TagCard'
+import SectorCard from '../../../components/sectors/SectorCard'
+import { sectorWithParentSector } from './data/SectorDetail'
 
 jest.mock('next/dist/client/router')
 jest.mock('next-auth/client')
 
-describe('Unit test for the TagCard component', () => {
-  const CARD_TEST_ID = 'tag-card'
+describe('Unit test for the SectorCard component', () => {
+  const CARD_TEST_ID = 'sector-card'
+  const EDIT_BUTTON_TEST_ID = 'edit-button'
   const DELETE_BUTTON_TEST_ID = 'delete-button'
 
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
+  beforeAll(mockRouterImplementation)
 
   describe('Should match snapshot -', () => {
-    test('user is NOT an admin, displayEditButtons not passed.', () => {
+    test('user is not an admin, displayEditButtons not passed.', () => {
       mockSessionImplementation()
       const { container, getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
-          <TagCard
-            tag={'Example Tag'}
-            listType='list'
-          />
+          <SectorCard sector={sectorWithParentSector} />
         </CustomMockedProvider>
       )
-      expect(getByTestId(CARD_TEST_ID)).toHaveTextContent('Example Tag')
+      expect(getByTestId(CARD_TEST_ID)).toHaveTextContent('Example Sector')
+      expect(queryByTestId(EDIT_BUTTON_TEST_ID)).not.toBeInTheDocument()
       expect(queryByTestId(DELETE_BUTTON_TEST_ID)).not.toBeInTheDocument()
       expect(container).toMatchSnapshot()
     })
 
-    test('user is NOT an admin, displayEditButtons passed.', () => {
+    test('user is not an admin, displayEditButtons passed.', () => {
       mockSessionImplementation()
       const { container, getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
-          <TagCard
-            tag={'Example Tag'}
-            listType='list'
+          <SectorCard
+            sector={sectorWithParentSector}
             displayEditButtons
           />
         </CustomMockedProvider>
       )
-      expect(getByTestId(CARD_TEST_ID)).toHaveTextContent('Example Tag')
+      expect(getByTestId(CARD_TEST_ID)).toHaveTextContent('Example Sector')
+      expect(queryByTestId(EDIT_BUTTON_TEST_ID)).not.toBeInTheDocument()
       expect(queryByTestId(DELETE_BUTTON_TEST_ID)).not.toBeInTheDocument()
       expect(container).toMatchSnapshot()
     })
@@ -50,13 +47,11 @@ describe('Unit test for the TagCard component', () => {
       mockSessionImplementation(true)
       const { container, getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
-          <TagCard
-            tag={'Example Tag'}
-            listType='list'
-          />
+          <SectorCard sector={sectorWithParentSector} />
         </CustomMockedProvider>
       )
-      expect(getByTestId(CARD_TEST_ID)).toHaveTextContent('Example Tag')
+      expect(getByTestId(CARD_TEST_ID)).toHaveTextContent('Example Sector')
+      expect(queryByTestId(EDIT_BUTTON_TEST_ID)).not.toBeInTheDocument()
       expect(queryByTestId(DELETE_BUTTON_TEST_ID)).not.toBeInTheDocument()
       expect(container).toMatchSnapshot()
     })
@@ -65,14 +60,14 @@ describe('Unit test for the TagCard component', () => {
       mockSessionImplementation(true)
       const { container, getByTestId } = render(
         <CustomMockedProvider>
-          <TagCard
-            tag={tag}
-            listType='list'
+          <SectorCard
+            sector={sectorWithParentSector}
             displayEditButtons
           />
         </CustomMockedProvider>
       )
-      expect(getByTestId(CARD_TEST_ID)).toHaveTextContent('Example Tag')
+      expect(getByTestId(CARD_TEST_ID)).toHaveTextContent('Example Sector')
+      expect(getByTestId(EDIT_BUTTON_TEST_ID)).toBeInTheDocument()
       expect(getByTestId(DELETE_BUTTON_TEST_ID)).toBeInTheDocument()
       expect(container).toMatchSnapshot()
     })

@@ -346,16 +346,25 @@ exports[`Unit tests for the ProductDetailSDGs component. Should match snapshot -
             <div
               class="col-span-6 text-base text-sdg font-semibold 
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+ relative"
             >
-              <img
-                alt="Logo for: Test SDG"
-                class="inline pr-4"
-                height="40"
-                src="http://localhost:3000undefined"
-                width="40"
-              />
-              Test SDG
+              <div
+                style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
+              >
+                <img
+                  alt="Logo for: Test SDG"
+                  data-nimg="fill"
+                  decoding="async"
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                />
+                <noscript />
+              </div>
+              <div
+                class="ml-10"
+              >
+                Test SDG
+              </div>
             </div>
             <div
               class="hidden text-base text-use-case 
@@ -650,16 +659,25 @@ exports[`Unit tests for the ProductDetailSDGs component. Should match snapshot -
             <div
               class="col-span-6 text-base text-sdg font-semibold 
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+ relative"
             >
-              <img
-                alt="Logo for: Test SDG"
-                class="inline pr-4"
-                height="40"
-                src="http://localhost:3000undefined"
-                width="40"
-              />
-              Test SDG
+              <div
+                style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
+              >
+                <img
+                  alt="Logo for: Test SDG"
+                  data-nimg="fill"
+                  decoding="async"
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                />
+                <noscript />
+              </div>
+              <div
+                class="ml-10"
+              >
+                Test SDG
+              </div>
             </div>
             <div
               class="hidden text-base text-use-case 

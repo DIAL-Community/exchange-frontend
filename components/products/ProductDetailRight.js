@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { useSession } from 'next-auth/client'
+import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseForum } from '../shared/discourse'
 import EditButton from '../shared/EditButton'
@@ -65,9 +66,10 @@ const ProductDetailRight = ({ product, discourseRef }) => {
           {product.origins.map((origin, i) => {
             return (
               <div key={i}>
-                <img
+                <Image
+                  height={20} width={20}
                   src={'/images/origins/' + origin.slug + '.png'}
-                  height='20px' width='20px' className='inline'
+                  className='inline'
                   alt={format('image.alt.logoFor', { name: origin.name })}
                 />
                 <div key={i} className='inline ml-2 text-sm'>{origin.name}</div>
@@ -89,11 +91,12 @@ const ProductDetailRight = ({ product, discourseRef }) => {
             return (
               <div key={i}>
                 <div>
-                  <img
+                  <Image
+                    height={20} width={20}
                     alt={format('image.alt.logoFor', { name: endorser.name })}
                     data-tip={format('product.endorsed-by')}
                     src={'/images/origins/' + endorser.slug + '.png'}
-                    height='20px' width='20px' className='inline'
+                    className='inline'
                   />
                   <div key={i} className='text-sm inline ml-2'>{format('product.endorsed-by') + endorser.name}</div>
                 </div>

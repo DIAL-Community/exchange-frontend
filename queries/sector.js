@@ -15,11 +15,13 @@ export const SECTORS_LIST_QUERY = gql`
     $first: Int
     $after: String
     $search: String!
+    $locale: String
   ) {
     searchSectors(
       first: $first
       after: $after
       search: $search
+      locale: $locale
     ) {
       totalCount
       pageInfo {

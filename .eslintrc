@@ -41,6 +41,8 @@
     "eol-last": "error",
     "object-curly-spacing": [2, "always"],
     "object-shorthand": "error",
-    "space-before-blocks": "error"
+    "space-before-blocks": "error",
+    "no-trailing-spaces": "error",
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1, "maxBOF": 0 }]
   }
 }

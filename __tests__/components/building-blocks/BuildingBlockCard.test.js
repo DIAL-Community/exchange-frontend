@@ -10,7 +10,7 @@ const completeBuildingBlock = {
   name: 'Fake Building Block',
   slug: 'fake_bb',
   maturity: 'beta',
-  imageFile: 'fake_bb.png',
+  imageFile: '/fake_bb.png',
   products: [{
     slug: 'product_a',
     name: 'Product A'

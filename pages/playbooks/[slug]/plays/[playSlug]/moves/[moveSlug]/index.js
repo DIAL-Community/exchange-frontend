@@ -46,7 +46,7 @@ const MoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
   useEffect(() => {
     refetch()
   }, [locale, refetch])
-  
+
   if (loading) {
     return <Loading />
   }

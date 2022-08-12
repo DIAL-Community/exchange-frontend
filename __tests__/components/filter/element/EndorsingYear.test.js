@@ -39,7 +39,7 @@ describe('Unit test for the EndorsingYearSelect component.', () => {
     )
     await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.keyDown(getByTestId(ENDORSING_YEAR_SEARCH_TEST_ID).childNodes[0], { key: 'ArrowDown' })
-    
+
     expect(container).toHaveTextContent('2015')
     expect(container).toHaveTextContent('2016')
     expect(container).toMatchSnapshot()

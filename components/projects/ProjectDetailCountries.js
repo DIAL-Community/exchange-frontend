@@ -27,9 +27,9 @@ const ProjectDetailCountries = ({ project, canEdit }) => {
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)
-    
+
   const [updateProjectCountries, { data, loading }] = useMutation(UPDATE_PROJECT_COUNTRIES, {
-    onCompleted: (data) => {  
+    onCompleted: (data) => {
       setCountries(data.updateProjectCountries.project.countries)
       setIsDirty(false)
       showToast(format('toast.countries.update.success'), 'success', 'top-center')

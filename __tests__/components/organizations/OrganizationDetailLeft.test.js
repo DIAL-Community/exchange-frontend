@@ -1,4 +1,3 @@
-
 import { useSession } from 'next-auth/client'
 import OrganizationDetailLeft from '../../../components/organizations/OrganizationDetailLeft'
 import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
@@ -26,7 +25,7 @@ describe('Unit tests for the OrganizationDetailLeft component.', () => {
     )
     expect(container).toMatchSnapshot()
   })
-    
+
   test('Should match snapshot - user is organization owner.', () => {
     useSession.mockReturnValue([{ user: { user } }, false])
     const { container } = render(
@@ -36,7 +35,7 @@ describe('Unit tests for the OrganizationDetailLeft component.', () => {
     )
     expect(container).toMatchSnapshot()
   })
-    
+
   test('Should match snapshot - user is admin.', () => {
     mockSessionImplementation(true)
     const { container } = render(

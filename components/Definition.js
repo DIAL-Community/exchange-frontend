@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
+import dynamic from 'next/dynamic'
+
+const LiteYoutubeEmbed = dynamic(() => import('react-lite-yt-embed').then((module) => module.LiteYoutubeEmbed), { ssr: false })
 
 const Description = () => {
   const { formatMessage } = useIntl()
@@ -48,8 +51,13 @@ const Description = () => {
               <div className='px-4 py-5'>
                 <div className='tab-content tab-space'>
                   <div className={openTab === 0 ? 'block' : 'hidden'} id='donors'>
-                    <div className='flex flex-col flex-wrap px-8 py-4 xl:max-h-xl text-dial-blue-darkest'>
-                      <iframe loading='lazy' title='The DIAL Catalog of Digital Solutions: Overview' width='640' height='360' src='https://www.youtube.com/embed/K-4j3kvT6aE' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen='' />
+                    <div className='px-8 py-4 xl:max-h-xl'>
+                      <LiteYoutubeEmbed
+                        id='K-4j3kvT6aE'
+                        mute={false}
+                        imageAltText='The DIAL Catalog of Digital Solutions: Overview'
+                        iframeTitle='The DIAL Catalog of Digital Solutions: Overview'
+                      />
                     </div>
                   </div>
                   <div className={openTab === 1 ? 'block' : 'hidden'} id='policy-makers'>

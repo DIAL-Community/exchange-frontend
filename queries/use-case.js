@@ -18,7 +18,7 @@ export const USE_CASE_QUERY = gql`
     }
   }
 `
-  
+
 export const USE_CASE_DETAIL_QUERY = gql`
   query UseCase($slug: String!) {
     useCase(slug: $slug) {

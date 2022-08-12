@@ -27,7 +27,7 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit }) => {
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)
-    
+
   const [updateWorkflowBuildingBlocks, { data, loading }] = useMutation(UPDATE_WORKFLOW_BUILDING_BLOCKS, {
     onCompleted: (data) => {
       setBuildingBlocks(data.updateWorkflowBuildingBlocks.workflow.buildingBlocks)
@@ -84,12 +84,12 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit }) => {
     setBuildingBlocks(data?.updateWorkflowBuildingBlocks?.workflow?.buildingBlocks ?? workflow.buildingBlocks)
     setIsDirty(false)
   }
-    
+
   const displayModeBody =
     <>
       {buildingBlocks.length ? (
         <div className='grid grid-cols-1'>
-          {buildingBlocks.map((buildingBlock, buildingBlockIdx) => 
+          {buildingBlocks.map((buildingBlock, buildingBlockIdx) =>
             <BuildingBlockCard key={buildingBlockIdx} buildingBlock={buildingBlock} listType='list' />
           )}
         </div>

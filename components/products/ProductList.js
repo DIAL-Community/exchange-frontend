@@ -107,7 +107,7 @@ query SearchProducts(
 const ProductListQuery = () => {
   const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const {
-    origins, countries, sectors, organizations, sdgs, tags, useCases, workflows, buildingBlocks, 
+    origins, countries, sectors, organizations, sdgs, tags, useCases, workflows, buildingBlocks,
     endorsers, productDeployable, withMaturity, search
   } = useContext(ProductFilterContext)
 

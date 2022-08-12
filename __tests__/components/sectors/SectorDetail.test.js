@@ -12,7 +12,6 @@ import { sectors, sectorWithoutParentSector, sectorWithParentSector } from './da
 jest.mock('next/dist/client/router')
 jest.mock('next-auth/client')
 
-
 describe('Unit test for the SectorDetail component', () => {
   const SECTOR_DETAIL_TEST_ID = 'sector-detail'
   const SECTOR_NAME_TEST_ID = 'sector-name'
@@ -25,7 +24,7 @@ describe('Unit test for the SectorDetail component', () => {
     mockRouterImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
-  
+
   describe('Should match snapshot -', () => {
     test('for sector with parent sector.', async () => {
       const { getByTestId } = render(
@@ -43,7 +42,7 @@ describe('Unit test for the SectorDetail component', () => {
       expect(getByTestId(SECTOR_LOCALE_TEST_ID)).toHaveTextContent(sectorWithParentSector.locale)
       expect(getByTestId(SECTOR_DETAIL_TEST_ID)).toMatchSnapshot()
     })
-  
+
     test('for sector without parent sector.', () => {
       const { getByTestId, queryByTestId } = render(
         <CustomMockedProvider>

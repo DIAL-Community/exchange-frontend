@@ -3,7 +3,7 @@ import Footer from '../../components/Footer'
 import ClientOnly from '../../lib/ClientOnly'
 import BuildingBlockForm from '../../components/building-blocks/BuildingBlockForm'
 
-const CreateBuildingBlock = () => ( 
+const CreateBuildingBlock = () => (
   <>
     <Header />
     <div className='max-w-catalog mx-auto'>

@@ -84,12 +84,12 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
     setBuildingBlocks(data?.updateUseCaseStepBuildingBlocks?.useCaseStep?.buildingBlocks ?? useCaseStep.buildingBlocks)
     setIsDirty(false)
   }
-    
+
   const displayModeBody =
     <>
       {buildingBlocks.length ? (
         <div className='grid grid-cols-1'>
-          {buildingBlocks.map((buildingBlock, buildingBlockIdx) => 
+          {buildingBlocks.map((buildingBlock, buildingBlockIdx) =>
             <BuildingBlockCard key={buildingBlockIdx} buildingBlock={buildingBlock} listType='list' />
           )}
         </div>

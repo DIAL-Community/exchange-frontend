@@ -7,7 +7,7 @@ import {
   mockObserverImplementation
 } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
-import { sector } from './data/DeleteSector'
+import { sectorWithParentSector } from './data/SectorDetail'
 
 jest.mock('next/dist/client/router')
 jest.mock('next-auth/client')
@@ -27,7 +27,7 @@ describe('Unit tests for the SectorDelete component.', () => {
   test('Should open ConfirmActionDialog after clicks "Delete" button.', () => {
     const { getByTestId } = render(
       <CustomMockedProvider>
-        <DeleteSector sector={sector}/>
+        <DeleteSector sector={sectorWithParentSector}/>
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID))
@@ -39,7 +39,7 @@ describe('Unit tests for the SectorDelete component.', () => {
     test('after clicks "Cancel" button.', () => {
       const { getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
-          <DeleteSector sector={sector}/>
+          <DeleteSector sector={sectorWithParentSector}/>
         </CustomMockedProvider>
       )
       fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID))
@@ -50,7 +50,7 @@ describe('Unit tests for the SectorDelete component.', () => {
     test('after clicks "Confirm" button', async () => {
       const { getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
-          <DeleteSector sector={sector}/>
+          <DeleteSector sector={sectorWithParentSector}/>
         </CustomMockedProvider>
       )
       fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID))

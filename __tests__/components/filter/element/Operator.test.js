@@ -38,7 +38,7 @@ describe('Unit test for the OperatorAutocomplete component.', () => {
     await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.keyDown(getByTestId(OPERATOR_SEARCH_TEST_ID).childNodes[0], { key: 'ArrowDown' })
     await waitForAllEffectsAndSelectToLoad(container)
-    
+
     expect(container).toHaveTextContent('Operators 1')
     expect(container).toHaveTextContent('Operators 2')
     expect(container).toMatchSnapshot()

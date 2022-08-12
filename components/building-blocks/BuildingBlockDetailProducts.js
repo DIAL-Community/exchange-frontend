@@ -29,9 +29,9 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
 
   const mappingStatusOptions = getMappingStatusOptions(format).filter((status) =>
     status.label === `${format('shared.mappingStatus.beta')}` || status.label === `${format('shared.mappingStatus.validated')}`)
-  
+
   const [mappingStatus, setMappingStatus] = useState(
-    mappingStatusOptions.find(({ value: mappingStatus }) => 
+    mappingStatusOptions.find(({ value: mappingStatus }) =>
       mappingStatus === (buildingBlock?.products.buildingBlocksMappingStatus)
     ) ?? mappingStatusOptions?.[0]
   )

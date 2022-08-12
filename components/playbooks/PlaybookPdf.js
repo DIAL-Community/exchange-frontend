@@ -43,13 +43,13 @@ const PLAYBOOK_QUERY = gql`
   }
 `
 const styles = StyleSheet.create({
-  page: { 
-    backgroundColor: '#fff', 
+  page: {
+    backgroundColor: '#fff',
     paddingVertical: 25,
     paddingHorizontal: 20,
     color: '#46465A',
   },
-  h1: { 
+  h1: {
     fontSize: 24,
     fontWeight: 'bold',
     marginVertical: 15
