@@ -1,5 +1,7 @@
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
+import { NextSeo } from 'next-seo'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import QueryNotification from '../../components/shared/QueryNotification'
@@ -17,11 +19,17 @@ import ClientOnly from '../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const Workflows = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const { search } = useContext(WorkflowFilterContext)
   const { setSearch } = useContext(WorkflowFilterDispatchContext)
 
   return (
     <>
+      <NextSeo
+        title={format('workflow.header')}
+        description={format('shared.metadata.description.listOfKey', { entities: format('workflow.header')?.toLocaleLowerCase() })}
+      />
       <QueryNotification />
       <GradientBackground />
       <Header />
