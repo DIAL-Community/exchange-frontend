@@ -23,8 +23,8 @@ const SDGHint = () => {
             <div className='ml-20'>
               <Image
                 height={200}
-                width={200} 
-                src='/images/tiles/sdg.svg' 
+                width={200}
+                src='/images/tiles/sdg.svg'
                 alt='' />
             </div>
           </div>

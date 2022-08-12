@@ -24,8 +24,8 @@ const PlaybookHint = () => {
             <div className='ml-20'>
               <Image
                 height={200}
-                width={200} 
-                src='/images/tiles/use-case.svg' 
+                width={200}
+                src='/images/tiles/use-case.svg'
                 alt='' />
             </div>
           </div>

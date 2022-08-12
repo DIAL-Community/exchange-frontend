@@ -25,7 +25,7 @@ const BuildingBlockHint = () => {
               <Image
                 height={200}
                 width={200}
-                src='/images/tiles/building-block.svg' 
+                src='/images/tiles/building-block.svg'
                 alt='' />
             </div>
           </div>

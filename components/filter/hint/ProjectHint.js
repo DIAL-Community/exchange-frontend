@@ -25,7 +25,7 @@ const ProjectHint = () => {
               <Image
                 height={200}
                 width={200}
-                src='/images/tiles/project.svg' 
+                src='/images/tiles/project.svg'
                 alt='' />
             </div>
           </div>

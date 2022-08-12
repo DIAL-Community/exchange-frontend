@@ -24,8 +24,8 @@ const WorkflowHint = () => {
             <div className='ml-20'>
               <Image
                 height={200}
-                width={200} 
-                src='/images/tiles/workflow.svg' 
+                width={200}
+                src='/images/tiles/workflow.svg'
                 alt='' />
             </div>
           </div>

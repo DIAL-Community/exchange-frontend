@@ -24,8 +24,8 @@ const ProductHint = () => {
             <div className='ml-20'>
               <Image
                 height={200}
-                width={200} 
-                src='/images/tiles/product.svg' 
+                width={200}
+                src='/images/tiles/product.svg'
                 alt='' />
             </div>
           </div>

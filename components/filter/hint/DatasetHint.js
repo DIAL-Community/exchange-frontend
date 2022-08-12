@@ -24,8 +24,8 @@ const DatasetHint = () => {
             <div className='ml-20'>
               <Image
                 height={200}
-                width={200} 
-                src='/images/placeholders/dataset.png' 
+                width={200}
+                src='/images/placeholders/dataset.png'
                 alt='' />
             </div>
           </div>
