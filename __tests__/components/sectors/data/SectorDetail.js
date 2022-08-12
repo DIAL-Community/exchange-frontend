@@ -26,6 +26,7 @@ export const sectors = {
         locale: 'en',
         parentSectorId: 22,
         isDisplayable: true
-      }]
+      }
+    ]
   }
 }

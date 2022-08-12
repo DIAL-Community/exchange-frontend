@@ -27,7 +27,7 @@ exports[`Unit tests for the SectorDelete component. Should open ConfirmActionDia
         <span
           data-testid="title"
         >
-          Deleting sector
+          Deleting Example Sector
         </span>
       </h2>
       <span

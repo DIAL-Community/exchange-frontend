@@ -255,12 +255,13 @@ exports[`Unit test for the ProductDetailSectors component. Should match snapshot
     >
       <div
         class="border-3 border-transparent"
+        data-testid="sector-card"
       >
         <div
-          class="border border-dial-gray card-drop-shadow"
+          class="flex justify-between border border-dial-gray card-drop-shadow"
         >
           <div
-            class="flex justify-between my-5 px-4"
+            class="flex items-center p-4"
           >
             <div
               class="inline-block font-semibold text-button-gray"
@@ -464,12 +465,13 @@ exports[`Unit test for the ProductDetailSectors component. Should match snapshot
     >
       <div
         class="border-3 border-transparent"
+        data-testid="sector-card"
       >
         <div
-          class="border border-dial-gray card-drop-shadow"
+          class="flex justify-between border border-dial-gray card-drop-shadow"
         >
           <div
-            class="flex justify-between my-5 px-4"
+            class="flex items-center p-4"
           >
             <div
               class="inline-block font-semibold text-button-gray"
