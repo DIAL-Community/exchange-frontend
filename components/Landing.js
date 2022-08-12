@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
+import Image from 'next/image'
 
 const Landing = () => {
   const { formatMessage } = useIntl()
@@ -67,10 +68,12 @@ const Landing = () => {
             </div>
           </div>
         </div>
-        <div className='absolute inset-y-0 right-0'>
-          <img
+        <div>
+          <Image
+            layout='fill'
+            objectFit='contains'
             className='h-screen object-cover'
-            src='images/hero-image/hero-image.png'
+            src='/images/hero-image/hero-image.png'
             alt='Banner of the catalog of digital solutions.'
           />
         </div>

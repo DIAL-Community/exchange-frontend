@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
+import Image from 'next/image'
 import { convertToKey } from '../../context/FilterContext'
 const useCasesPath = convertToKey('Use Cases')
 const stepsPath = convertToKey('Use Case Steps')
@@ -62,9 +63,11 @@ const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
                       useCaseStep.workflows
                         .map(workflow => (
                           <div key={`workflow-${workflow.slug}`} className='bg-white p-2 mr-1.5 cursor-default'>
-                            <img
+                            <Image
+                              height={25}
+                              width={25}
                               data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: workflow.name })}
-                              alt={format('image.alt.logoFor', { name: workflow.name })} className='m-auto h-6 workflow-filter'
+                              alt={format('image.alt.logoFor', { name: workflow.name })} className='workflow-filter'
                               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
                             />
                           </div>

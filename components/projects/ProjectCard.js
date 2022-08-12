@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
+import Image from 'next/image'
 import { ORIGIN_ACRONYMS, truncate } from '../../lib/utilities'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Projects')
@@ -113,14 +114,20 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                           {
                             !projectOrganization
                               ? (
-                                <img
-                                  className='object-cover object-center opacity-30 mx-auto'
+                                <Image
+                                  layout='fill'
+                                  objectFit='scale-down'
+                                  objectPosition='20%'
+                                  className='opacity-30'
                                   alt='Placeholder logo for organization.'
                                   src='/images/placeholders/organization.png'
                                 />)
                               : (
-                                <img
-                                  className='object-cover object-center mx-auto'
+                                <Image
+                                  layout='fill'
+                                  objectFit='scale-down'
+                                  objectPosition='20%'
+                                  sizes='5vw'
                                   alt={format('image.alt.logoFor', { name: projectOrganization.name })}
                                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + projectOrganization.imageFile}
                                 />
@@ -133,14 +140,20 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                           {
                             !projectProduct
                               ? (
-                                <img
-                                  className='object-cover object-center opacity-30 mx-auto'
+                                <Image
+                                  layout='fill'
+                                  objectFit='scale-down'
+                                  objectPosition='80%'
+                                  className='opacity-30'
                                   alt='Placeholder logo for product'
                                   src='/images/placeholders/product.png'
                                 />)
                               : (
-                                <img
-                                  className='object-cover object-center mx-auto'
+                                <Image
+                                  layout='fill'
+                                  objectFit='scale-down'
+                                  objectPosition='80%'
+                                  sizes='5vw'
                                   alt={format('image.alt.logoFor', { name: projectProduct.name })}
                                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + projectProduct.imageFile}
                                 />

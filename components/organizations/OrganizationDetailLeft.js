@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { FaSpinner } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import { gql, useLazyQuery } from '@apollo/client'
+import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
 import DeleteOrganization from './DeleteOrganization'
@@ -169,8 +170,10 @@ const OrganizationDetailLeft = ({ organization }) => {
           <div className='text-2xl font-semibold w-4/5 md:w-auto lg:w-64 2xl:w-80 text-dial-purple overflow-hidden'>
             {organization.name}
           </div>
-          <div className='m-auto'>
-            <img
+          <div className='m-auto w-3/5 h-3/5 relative' >
+            <Image
+              layout='fill'
+              objectFit='contain'
               className='w-40'
               alt={format('image.alt.logoFor', { name: organization.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}

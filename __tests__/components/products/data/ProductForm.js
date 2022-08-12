@@ -23,7 +23,7 @@ export const product = {
     name: 'Test Building Block',
     slug: 'test_building_block',
     maturity: 'BETA',
-    imageFile: 'test-building-block.png'
+    imageFile: '/test-building-block.png'
   }],
   buildingBlocksMappingStatus: 'VALIDATED',
   sectors: [

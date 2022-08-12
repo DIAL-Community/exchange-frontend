@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
+import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import { DiscourseCount } from '../shared/discourse'
 import EditButton from '../shared/EditButton'
@@ -208,15 +209,18 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
         <div className='h4 font-bold py-4'>{format('products.label')}</div>
       </div>
       <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 lg:mr-6 shadow-lg'>
-        <div id='header' className='mb-4'>
+        <div id='header' className='flex flex-col h-80 p-2'>
           <div className='h1 p-2 text-dial-purple'>
             {product.name}
           </div>
-          <img
-            alt={`${product.name} Logo`} className='p-2 m-auto'
-            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
-            width='200px' height='200px'
-          />
+          <div className='m-auto w-3/5 h-3/5 relative' >
+            <Image
+              layout='fill'
+              objectFit='contain'
+              alt={`${product.name} Logo`}
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+            />
+          </div>
         </div>
         <div className='fr-view text-dial-gray-dark max-h-40 overflow-hidden'>
           {product.productDescription && parse(product.productDescription.description)}

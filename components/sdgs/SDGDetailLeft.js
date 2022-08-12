@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl'
+import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 
 const SDGDetailLeft = ({ sdg }) => {
@@ -29,8 +30,10 @@ const SDGDetailLeft = ({ sdg }) => {
           <div className='text-2xl font-semibold absolute w-4/5 md:w-auto lg:w-64 2xl:w-80 bg-white bg-opacity-80 text-dial-purple'>
             {sdg.name}
           </div>
-          <div className='pt-8 m-auto align-middle w-48'>
-            <img
+          <div className='m-auto w-3/5 h-3/5 relative' >
+            <Image
+              layout='fill'
+              objectFit='contain'
               alt={format('image.alt.logoFor', { name: sdg.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}
             />

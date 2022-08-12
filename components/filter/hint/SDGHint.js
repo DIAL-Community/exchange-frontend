@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
+import Image from 'next/image'
 import { FilterContext } from '../../context/FilterContext'
 
 const SDGHint = () => {
@@ -19,7 +20,13 @@ const SDGHint = () => {
             <div className='text-base px-8'>
               {format('sdg.hint.subtitle')}
             </div>
-            <img className='w-48 h-48 mt-8 mx-auto xl:mt-0' src='images/tiles/sdg.svg' alt='' />
+            <div className='ml-20'>
+              <Image
+                height={200}
+                width={200} 
+                src='/images/tiles/sdg.svg' 
+                alt='' />
+            </div>
           </div>
         </div>
         <div className='col-span-11'>
