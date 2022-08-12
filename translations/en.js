@@ -1358,6 +1358,7 @@ export const en = {
   'shared.maturity.beta': 'BETA',
   'shared.maturity.published': 'PUBLISHED',
   'shared.metadata.description.comprehensiveListOf': 'Comprehensive list of {entities} provided by DIAL\'s Catalog of Digital Solutions to support users in discovering digital technologies designed to address the Sustainable Development Goals (SDGs).',
+  'shared.metadata.description.listOfKey': 'List of key {entities} provided by DIAL’s Catalog of Digital Solutions, to support users in the deployment of digital technologies designed to address the Sustainable Development Goals (SDGs).',
 
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
