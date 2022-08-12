@@ -1,8 +1,10 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import classNames from 'classnames'
+import { useRouter } from 'next/router'
+import ReactTooltip from 'react-tooltip'
 import { FilterContext } from '../context/FilterContext'
 import { UserFilterContext } from '../context/UserFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
@@ -36,18 +38,25 @@ const SectorListQuery = () => {
   const { resultCounts, setResultCounts } = useContext(FilterContext)
   const { search } = useContext(UserFilterContext)
 
+  const { locale } = useRouter()
+
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
-  const { loading, error, data, fetchMore } = useQuery(SECTORS_LIST_QUERY, {
+  const { loading, error, data, fetchMore, refetch } = useQuery(SECTORS_LIST_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
-      search
+      search,
+      locale
     },
     onCompleted: (data) => {
       setResultCounts({ ...resultCounts, ...{ [['filter.entity.sectors']]: data.searchSectors.totalCount } })
     }
   })
+
+  useEffect(refetch, [refetch, locale])
+
+  useEffect(() => ReactTooltip.rebuild(), [data])
 
   if (loading) {
     return <Loading />
@@ -77,6 +86,7 @@ const SectorListQuery = () => {
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
       <SectorList sectorList={nodes} displayType={DisplayType.LIST}/>
+      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
     </InfiniteScroll>
   )
 }
