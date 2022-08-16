@@ -23,7 +23,7 @@ const SectorForm = ({ isOpen, onClose, sector }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const { data } = useQuery(SECTOR_SEARCH_QUERY, {
+  const { data, refetch: refetchSectors } = useQuery(SECTOR_SEARCH_QUERY, {
     variables: { search: '', locale }
   })
 
@@ -59,7 +59,7 @@ const SectorForm = ({ isOpen, onClose, sector }) => {
     }
   })
 
-  const { handleSubmit, register, control, formState: { errors }, reset: resetFormValues } = useForm({
+  const { handleSubmit, register, control, formState: { errors }, setValue, reset: resetFormValues } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
@@ -71,14 +71,23 @@ const SectorForm = ({ isOpen, onClose, sector }) => {
     }
   })
 
+  const onSectorLocaleChange = ({ value }) => {
+    refetchSectors({ search: '', locale: value })
+    setValue('parentSector', null)
+  }
+
   useEffect(() => {
-    resetFormValues({
-      name: sector?.name,
-      locale: sectorLocale,
-      parentSector,
-      isDisplayable: sector?.isDisplayable
-    })
-  }, [parentSector, resetFormValues, sector, sectorLocale])
+    if (isOpen) {
+      resetFormValues({
+        name: sector?.name,
+        locale: sectorLocale ?? localeOptions.find(({ value }) => value === locale),
+        parentSector,
+        isDisplayable: sector?.isDisplayable
+      })
+    } else {
+      refetchSectors({ search: '', locale: sectorLocale?.value })
+    }
+  }, [isOpen]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const slug = sector?.slug ?? ''
 
@@ -146,9 +155,13 @@ const SectorForm = ({ isOpen, onClose, sector }) => {
               <Controller
                 name='locale'
                 control={control}
-                render={({ field }) => (
+                render={({ field: { onChange, ...otherProps } }) => (
                   <Select
-                    {...field}
+                    {...otherProps}
+                    onChange={(value) => {
+                      onChange(value)
+                      onSectorLocaleChange(value)
+                    }}
                     isSearch
                     options={localeOptions}
                     placeholder={format('locale.label')}

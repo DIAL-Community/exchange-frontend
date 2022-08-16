@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useSession } from 'next-auth/client'
 import dynamic from 'next/dynamic'
 import Header from '../../components/Header'
@@ -10,6 +10,7 @@ import { UserFilterContext, UserFilterDispatchContext } from '../../components/c
 import { Loading, Unauthorized } from '../../components/shared/FetchStatus'
 import ClientOnly from '../../lib/ClientOnly'
 import { useUser } from '../../lib/hooks'
+import SectorForm from '../../components/sectors/SectorForm'
 const SectorListQuery = dynamic(() => import('../../components/sectors/SectorList'), { ssr: false })
 
 const Sectors = () => {
@@ -18,6 +19,9 @@ const Sectors = () => {
 
   const { search } = useContext(UserFilterContext)
   const { setSearch } = useContext(UserFilterDispatchContext)
+
+  const [isFormDialogOpen, setIsFormDialogOpen] = useState(false)
+  const toggleFormDialog = () => setIsFormDialogOpen(!isFormDialogOpen)
 
   return (
     <>
@@ -31,11 +35,13 @@ const Sectors = () => {
               search={search}
               setSearch={setSearch}
               hint='filter.entity.sectors'
+              onCreateNewClick={toggleFormDialog}
               switchView={false}
               exportJson={false}
               exportCsv={false}
             />
             <SectorListQuery />
+            <SectorForm isOpen={isFormDialogOpen} onClose={toggleFormDialog} />
           </>
         ) : <Unauthorized />}
       </ClientOnly>
