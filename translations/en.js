@@ -329,6 +329,7 @@ export const en = {
   'sdg-target.header': 'SDG Targets',
   'sdg-target.label': 'SDG Target',
 
+  'use-case.header': 'Use Cases',
   'use-case.label': 'Use Case',
   'use-case.sdg-targets': 'SDG Targets',
   'use-case.workflow': 'Workflows',
