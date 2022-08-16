@@ -1360,6 +1360,8 @@ export const en = {
   'shared.metadata.description.comprehensiveListOf': 'Comprehensive list of {entities} provided by DIAL\'s Catalog of Digital Solutions to support users in discovering digital technologies designed to address the Sustainable Development Goals (SDGs).',
   'shared.metadata.description.listOfKey': 'List of key {entities} provided by DIAL’s Catalog of Digital Solutions, to support users in the deployment of digital technologies designed to address the Sustainable Development Goals (SDGs).',
 
+  'seo.description.about': 'DIAL’s Catalog of Digital Solutions is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
+
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
   'validation.endDateEarlierThanStartDate': 'End Date cannot be earlier than Start Date',
