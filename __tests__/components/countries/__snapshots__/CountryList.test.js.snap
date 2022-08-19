@@ -135,114 +135,368 @@ Object {
           <div
             class="grid grid-cols-1"
           >
-            <div
-              class="border-3 cursor-pointer border-transparent hover:border-dial-yellow"
+            <a
+              href="/countries/af"
             >
               <div
-                class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                class="border-3 border-transparent hover:border-dial-yellow"
               >
                 <div
-                  class="flex my-4 px-4"
+                  class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
                 >
-                  <a
-                    class="w-1/2 md:w-3/4"
-                    href="/countries/af"
-                  >
-                    <div
-                      class="font-semibold text-button-gray"
-                    >
-                      Afghanistan
-                    </div>
-                  </a>
                   <div
-                    class="inline-flex gap-x-2 ml-auto items-center"
+                    class="p-4 font-semibold text-button-gray"
                   >
-                    <button
-                      class="delete-button gap-x-1.5"
-                      data-testid="delete-button"
-                      type="button"
-                    >
-                      <svg
-                        class="text-sm"
-                        fill="currentColor"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 16 16"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
-                        />
-                        <path
-                          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
-                      <span
-                        class="text-sm"
-                      >
-                        Delete
-                      </span>
-                    </button>
+                    Afghanistan
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
+            <a
+              href="/countries/al"
+            >
+              <div
+                class="border-3 border-transparent hover:border-dial-yellow"
+              >
+                <div
+                  class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                >
+                  <div
+                    class="p-4 font-semibold text-button-gray"
+                  >
+                    Albania
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div
+            class="relative text-center mt-3"
+          >
+            Loading more data ...
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Toastify"
+    />
+    <div
+      class="infinite-scroll-component__outerdiv"
+    >
+      <div
+        class="infinite-scroll-component relative px-2 mt-3 pb-8 max-w-catalog mx-auto"
+        style="height: auto; overflow: auto;"
+      >
+        <div
+          class="grid grid-cols-1"
+        >
+          <a
+            href="/countries/af"
+          >
             <div
-              class="border-3 cursor-pointer border-transparent hover:border-dial-yellow"
+              class="border-3 border-transparent hover:border-dial-yellow"
             >
               <div
                 class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
               >
                 <div
-                  class="flex my-4 px-4"
+                  class="p-4 font-semibold text-button-gray"
                 >
-                  <a
-                    class="w-1/2 md:w-3/4"
-                    href="/countries/al"
-                  >
-                    <div
-                      class="font-semibold text-button-gray"
-                    >
-                      Albania
-                    </div>
-                  </a>
+                  Afghanistan
+                </div>
+              </div>
+            </div>
+          </a>
+          <a
+            href="/countries/al"
+          >
+            <div
+              class="border-3 border-transparent hover:border-dial-yellow"
+            >
+              <div
+                class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+              >
+                <div
+                  class="p-4 font-semibold text-button-gray"
+                >
+                  Albania
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="relative text-center mt-3"
+        >
+          Loading more data ...
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Unit test for the CountryList component Should render text with anchor for authorized users 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Toastify"
+      />
+      <div
+        class="infinite-scroll-component__outerdiv"
+      >
+        <div
+          class="infinite-scroll-component relative px-2 mt-3 pb-8 max-w-catalog mx-auto"
+          style="height: auto; overflow: auto;"
+        >
+          <div
+            class="grid grid-cols-1"
+          >
+            <a
+              href="/countries/af"
+            >
+              <div
+                class="border-3 border-transparent hover:border-dial-yellow"
+              >
+                <div
+                  class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                >
                   <div
-                    class="inline-flex gap-x-2 ml-auto items-center"
+                    class="p-4 font-semibold text-button-gray"
                   >
-                    <button
-                      class="delete-button gap-x-1.5"
-                      data-testid="delete-button"
-                      type="button"
-                    >
-                      <svg
-                        class="text-sm"
-                        fill="currentColor"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 16 16"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
-                        />
-                        <path
-                          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
-                      <span
-                        class="text-sm"
-                      >
-                        Delete
-                      </span>
-                    </button>
+                    Afghanistan
                   </div>
                 </div>
+              </div>
+            </a>
+            <a
+              href="/countries/al"
+            >
+              <div
+                class="border-3 border-transparent hover:border-dial-yellow"
+              >
+                <div
+                  class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                >
+                  <div
+                    class="p-4 font-semibold text-button-gray"
+                  >
+                    Albania
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div
+            class="relative text-center mt-3"
+          >
+            Loading more data ...
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Toastify"
+    />
+    <div
+      class="infinite-scroll-component__outerdiv"
+    >
+      <div
+        class="infinite-scroll-component relative px-2 mt-3 pb-8 max-w-catalog mx-auto"
+        style="height: auto; overflow: auto;"
+      >
+        <div
+          class="grid grid-cols-1"
+        >
+          <a
+            href="/countries/af"
+          >
+            <div
+              class="border-3 border-transparent hover:border-dial-yellow"
+            >
+              <div
+                class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+              >
+                <div
+                  class="p-4 font-semibold text-button-gray"
+                >
+                  Afghanistan
+                </div>
+              </div>
+            </div>
+          </a>
+          <a
+            href="/countries/al"
+          >
+            <div
+              class="border-3 border-transparent hover:border-dial-yellow"
+            >
+              <div
+                class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+              >
+                <div
+                  class="p-4 font-semibold text-button-gray"
+                >
+                  Albania
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="relative text-center mt-3"
+        >
+          Loading more data ...
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Unit test for the CountryList component Should render text without anchor for unauthorized users 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Toastify"
+      />
+      <div
+        class="infinite-scroll-component__outerdiv"
+      >
+        <div
+          class="infinite-scroll-component relative px-2 mt-3 pb-8 max-w-catalog mx-auto"
+          style="height: auto; overflow: auto;"
+        >
+          <div
+            class="grid grid-cols-1"
+          >
+            <div
+              class="bg-white border border-dial-gray card-drop-shadow"
+            >
+              <div
+                class="p-4 font-semibold text-button-gray"
+              >
+                Afghanistan
+              </div>
+            </div>
+            <div
+              class="bg-white border border-dial-gray card-drop-shadow"
+            >
+              <div
+                class="p-4 font-semibold text-button-gray"
+              >
+                Albania
               </div>
             </div>
           </div>
@@ -270,113 +524,21 @@ Object {
           class="grid grid-cols-1"
         >
           <div
-            class="border-3 cursor-pointer border-transparent hover:border-dial-yellow"
+            class="bg-white border border-dial-gray card-drop-shadow"
           >
             <div
-              class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+              class="p-4 font-semibold text-button-gray"
             >
-              <div
-                class="flex my-4 px-4"
-              >
-                <a
-                  class="w-1/2 md:w-3/4"
-                  href="/countries/af"
-                >
-                  <div
-                    class="font-semibold text-button-gray"
-                  >
-                    Afghanistan
-                  </div>
-                </a>
-                <div
-                  class="inline-flex gap-x-2 ml-auto items-center"
-                >
-                  <button
-                    class="delete-button gap-x-1.5"
-                    data-testid="delete-button"
-                    type="button"
-                  >
-                    <svg
-                      class="text-sm"
-                      fill="currentColor"
-                      height="1em"
-                      stroke="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 16 16"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
-                      />
-                      <path
-                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
-                        fill-rule="evenodd"
-                      />
-                    </svg>
-                    <span
-                      class="text-sm"
-                    >
-                      Delete
-                    </span>
-                  </button>
-                </div>
-              </div>
+              Afghanistan
             </div>
           </div>
           <div
-            class="border-3 cursor-pointer border-transparent hover:border-dial-yellow"
+            class="bg-white border border-dial-gray card-drop-shadow"
           >
             <div
-              class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+              class="p-4 font-semibold text-button-gray"
             >
-              <div
-                class="flex my-4 px-4"
-              >
-                <a
-                  class="w-1/2 md:w-3/4"
-                  href="/countries/al"
-                >
-                  <div
-                    class="font-semibold text-button-gray"
-                  >
-                    Albania
-                  </div>
-                </a>
-                <div
-                  class="inline-flex gap-x-2 ml-auto items-center"
-                >
-                  <button
-                    class="delete-button gap-x-1.5"
-                    data-testid="delete-button"
-                    type="button"
-                  >
-                    <svg
-                      class="text-sm"
-                      fill="currentColor"
-                      height="1em"
-                      stroke="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 16 16"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
-                      />
-                      <path
-                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
-                        fill-rule="evenodd"
-                      />
-                    </svg>
-                    <span
-                      class="text-sm"
-                    >
-                      Delete
-                    </span>
-                  </button>
-                </div>
-              </div>
+              Albania
             </div>
           </div>
         </div>

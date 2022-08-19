@@ -1,10 +1,12 @@
 import { useIntl } from 'react-intl'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useSession } from 'next-auth/client'
 import dynamic from 'next/dynamic'
 import { useUser } from '../../lib/hooks'
 import Breadcrumb from '../shared/breadcrumb'
+import EditButton from '../shared/EditButton'
 import DeleteCountry from './DeleteCountry'
+import CountryForm from './CountryForm'
 
 const DynamicCountryMarker = (props) => {
   const MapMarker = useMemo(() => dynamic(
@@ -25,6 +27,9 @@ const CountryDetail = ({ country }) => {
   const [session] = useSession()
   const { isAdminUser } = useUser(session)
 
+  const [isFormDialogOpen, setIsFormDialogOpen] = useState(false)
+  const toggleFormDialog = () => setIsFormDialogOpen(!isFormDialogOpen)
+
   const marker = {
     position: [parseFloat(country.latitude), parseFloat(country.longitude)],
     title: country.name,
@@ -43,7 +48,12 @@ const CountryDetail = ({ country }) => {
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
         <div className='pb-4'>
-          {isAdminUser && <DeleteCountry country={country} />}
+          {isAdminUser &&
+            <div className='flex flex-row gap-3'>
+              <DeleteCountry country={country} />
+              <EditButton onClick={toggleFormDialog} />
+            </div>
+          }
         </div>
         <div className='bg-white border-2 border-dial-gray lg:mr-6 shadow-lg'>
           <div className='flex flex-col p-4'>
@@ -68,6 +78,7 @@ const CountryDetail = ({ country }) => {
           { country.latitude && country.longitude && <DynamicCountryMarker {...marker} /> }
         </div>
       </div>
+      <CountryForm country={country} isOpen={isFormDialogOpen} onClose={toggleFormDialog} />
     </div>
   )
 }
