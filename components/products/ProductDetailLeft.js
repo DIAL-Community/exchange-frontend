@@ -8,7 +8,6 @@ import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
-import { DiscourseCount } from '../shared/discourse'
 import EditButton from '../shared/EditButton'
 import { useProductOwnerUser, useUser } from '../../lib/hooks'
 
@@ -24,7 +23,7 @@ const CANDIDATE_ROLE_QUERY = gql`
 
 const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
 
-const ProductDetailLeft = ({ product, discourseClick }) => {
+const ProductDetailLeft = ({ product }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -197,14 +196,7 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
       </div>
       <div className='h-20'>
         <div className='w-full'>
-          {
-            session && (
-              <div className='inline mr-5'>
-                {(isAdminUser || ownsProduct) && <EditButton type='link' href={generateEditLink()} />}
-              </div>
-            )
-          }
-          <button onClick={discourseClick}><DiscourseCount /></button>
+          {(isAdminUser || ownsProduct) && <EditButton type='link' href={generateEditLink()} />}
         </div>
         <div className='h4 font-bold py-4'>{format('products.label')}</div>
       </div>

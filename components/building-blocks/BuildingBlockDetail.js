@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
 import { useSession } from 'next-auth/client'
 import { useUser } from '../../lib/hooks'
@@ -19,13 +18,6 @@ const BuildingBlockDetail = ({ slug, locale }) => {
 
   const { isAdminUser: canEdit } = useUser(session)
 
-  const discourseElement = useRef()
-  const scrollToDiv = (ref) => {
-    ref.current.scrollIntoView({
-      behavior: 'smooth'
-    })
-  }
-
   return (
     <>
       {loading && <Loading />}
@@ -37,13 +29,11 @@ const BuildingBlockDetail = ({ slug, locale }) => {
             <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
               <BuildingBlockDetailLeft
                 buildingBlock={data.buildingBlock}
-                discourseClick={() => scrollToDiv(discourseElement)}
               />
             </div>
             <div className='w-full lg:w-2/3 xl:w-3/4'>
               <BuildingBlockDetailRight
                 buildingBlock={data.buildingBlock}
-                discourseRef={discourseElement}
                 canEdit={canEdit}
               />
             </div>

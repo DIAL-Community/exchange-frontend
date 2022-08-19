@@ -10,7 +10,6 @@ export const PRODUCT_QUERY = gql`
       website
       owner
       tags
-      discourseId
       productDescription {
         description
         locale

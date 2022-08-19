@@ -1,4 +1,3 @@
-import { DiscourseProvider } from '../../../components/context/DiscourseContext'
 import ProjectDetailLeft from '../../../components/projects/ProjectDetailLeft'
 import { mockRouterImplementation, mockSessionImplementation, mockUnauthorizedUserSessionImplementation, render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
@@ -18,9 +17,7 @@ describe('Unit test for the ProjectDetailLeft component.', () => {
     mockUnauthorizedUserSessionImplementation()
     const { queryByTestId } = render(
       <CustomMockedProvider>
-        <DiscourseProvider>
-          <ProjectDetailLeft project={project} />
-        </DiscourseProvider>
+        <ProjectDetailLeft project={project} />
       </CustomMockedProvider>
     )
 
@@ -31,12 +28,10 @@ describe('Unit test for the ProjectDetailLeft component.', () => {
     mockSessionImplementation()
     const { getByTestId } = render(
       <CustomMockedProvider>
-        <DiscourseProvider>
-          <ProjectDetailLeft
-            project={project}
-            canEdit={true}
-          />
-        </DiscourseProvider>
+        <ProjectDetailLeft
+          project={project}
+          canEdit={true}
+        />
       </CustomMockedProvider>
     )
 
@@ -47,12 +42,10 @@ describe('Unit test for the ProjectDetailLeft component.', () => {
     mockSessionImplementation()
     const { getByTestId } = render(
       <CustomMockedProvider>
-        <DiscourseProvider>
-          <ProjectDetailLeft
-            project={project}
-            canEdit={true}
-          />
-        </DiscourseProvider>
+        <ProjectDetailLeft
+          project={project}
+          canEdit={true}
+        />
       </CustomMockedProvider>
     )
 

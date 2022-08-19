@@ -1,4 +1,3 @@
-import { DiscourseProvider } from '../../../components/context/DiscourseContext'
 import UseCaseDetailLeft from '../../../components/use-cases/UseCaseDetailLeft'
 import {
   mockRouterImplementation,
@@ -24,9 +23,7 @@ describe('UseCaseDetailLeft component.', () => {
       mockUnauthorizedUserSessionImplementation()
       const { queryByTestId } = render(
         <CustomMockedProvider>
-          <DiscourseProvider>
-            <UseCaseDetailLeft useCase={useCase} />
-          </DiscourseProvider>
+          <UseCaseDetailLeft useCase={useCase} />
         </CustomMockedProvider>
       )
 
@@ -37,12 +34,10 @@ describe('UseCaseDetailLeft component.', () => {
       mockSessionImplementation()
       const { getByTestId } = render(
         <CustomMockedProvider>
-          <DiscourseProvider>
-            <UseCaseDetailLeft
-              useCase={useCase}
-              canEdit={true}
-            />
-          </DiscourseProvider>
+          <UseCaseDetailLeft
+            useCase={useCase}
+            canEdit={true}
+          />
         </CustomMockedProvider>
       )
 
@@ -52,12 +47,10 @@ describe('UseCaseDetailLeft component.', () => {
       mockSessionImplementation()
       const { getByTestId } = render(
         <CustomMockedProvider>
-          <DiscourseProvider>
-            <UseCaseDetailLeft
-              useCase={useCase}
-              canEdit={true}
-            />
-          </DiscourseProvider>
+          <UseCaseDetailLeft
+            useCase={useCase}
+            canEdit={true}
+          />
         </CustomMockedProvider>
       )
 
