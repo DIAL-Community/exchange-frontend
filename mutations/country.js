@@ -20,17 +20,17 @@ export const CREATE_COUNTRY = gql`
   mutation CreateCountry(
     $name: String!
     $slug: String!
-    $code: String
-    $codeLonger: String
   ) {
     createCountry(
       name: $name
       slug: $slug
-      code: $code
-      codeLonger: $codeLonger
     ) {
         country {
+          id
+          name
           slug
+          code
+          codeLonger
         }
         errors
       }

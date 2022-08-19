@@ -19,12 +19,12 @@ export const COUNTRY_CODES_QUERY = gql`
 `
 
 export const COUNTRIES_LIST_QUERY = gql`
-  query SearchCountries(
+  query SearchCountries (
     $first: Int
     $after: String
     $search: String
   ) {
-    searchCountries(
+    searchCountries (
       first: $first
       after: $after
       search: $search
@@ -48,6 +48,7 @@ export const COUNTRIES_LIST_QUERY = gql`
 export const COUNTRY_DETAIL_QUERY = gql`
   query Country($slug: String!) {
     country(slug: $slug) {
+      id
       name
       slug
       code

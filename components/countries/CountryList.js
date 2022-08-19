@@ -43,8 +43,13 @@ const CountriesListQuery = () => {
       first: DEFAULT_PAGE_SIZE,
       search
     },
+    fetchPolicy: 'network-only',
+    nextFetchPolicy: 'cache-first',
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.countries']]: data.searchCountries.totalCount } })
+      setResultCounts({
+        ...resultCounts,
+        ...{ [['filter.entity.countries']]: data.searchCountries.totalCount }
+      })
     }
   })
 

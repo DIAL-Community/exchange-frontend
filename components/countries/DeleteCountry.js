@@ -15,7 +15,6 @@ const DeleteCountry = ({ country }) => {
   const { showToast } = useContext(ToastContext)
 
   const router = useRouter()
-
   const { locale } = router
 
   const [session] = useSession()
@@ -27,12 +26,13 @@ const DeleteCountry = ({ country }) => {
   }
 
   const [deleteCountry, { called, reset }] = useMutation(DELETE_COUNTRY, {
-    refetchQueries: ['SearchCountries'],
     onCompleted: () => {
       showToast(
         format('toast.country.delete.success'),
         'success',
-        'top-center'
+        'top-center',
+        null,
+        () => router.push(`/${locale}/countries`)
       )
       setIsConfirmDialogOpen(false)
     },
