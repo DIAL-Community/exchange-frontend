@@ -1,11 +1,10 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/client'
 import Image from 'next/image'
-import { DiscourseCount } from '../shared/discourse'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
 
-const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
+const BuildingBlockDetailLeft = ({ buildingBlock }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
   const [session] = useSession()
@@ -31,9 +30,8 @@ const BuildingBlockDetailLeft = ({ buildingBlock, discourseClick }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-20'>
-        <div className='w-full flex gap-3'>
+        <div className='w-full'>
           {session?.user.canEdit && <EditButton type='link' href={generateEditLink()}/>}
-          <button onClick={discourseClick}><DiscourseCount /></button>
         </div>
         <div className='h4 font-bold py-4'>{format('buildingBlock.label')}</div>
       </div>

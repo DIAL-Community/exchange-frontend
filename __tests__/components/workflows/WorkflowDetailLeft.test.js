@@ -1,4 +1,3 @@
-import { DiscourseProvider } from '../../../components/context/DiscourseContext'
 import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
 import WorkflowDetailLeft from '../../../components/workflows/WorkflowDetailLeft'
@@ -19,9 +18,7 @@ describe('Unit test for the WorkflowDetailLeft component.', () => {
 
     const { queryByTestId } = render(
       <CustomMockedProvider>
-        <DiscourseProvider>
-          <WorkflowDetailLeft workflow={workflow} />
-        </DiscourseProvider>
+        <WorkflowDetailLeft workflow={workflow} />
       </CustomMockedProvider>
     )
 
@@ -33,9 +30,7 @@ describe('Unit test for the WorkflowDetailLeft component.', () => {
 
     const { getByTestId } = render(
       <CustomMockedProvider>
-        <DiscourseProvider>
-          <WorkflowDetailLeft workflow={workflow} />
-        </DiscourseProvider>
+        <WorkflowDetailLeft workflow={workflow} />
       </CustomMockedProvider>
     )
 
@@ -47,9 +42,7 @@ describe('Unit test for the WorkflowDetailLeft component.', () => {
 
     const { getByTestId } = render(
       <CustomMockedProvider>
-        <DiscourseProvider>
-          <WorkflowDetailLeft workflow={workflow} />
-        </DiscourseProvider>
+        <WorkflowDetailLeft workflow={workflow} />
       </CustomMockedProvider>
     )
 
