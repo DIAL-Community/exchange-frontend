@@ -12,7 +12,8 @@
     "cypress:open": "cypress open",
     "cy:open": "cypress open",
     "cypress:run": "cypress run",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "sitemap": "next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
     "@apollo/client": "^3.5.8",
@@ -38,6 +39,7 @@
     "next": "^11.1.2",
     "next-auth": "^3.12.0",
     "next-seo": "^5.5.0",
+    "next-sitemap": "^3.1.16",
     "react": "^17.0.1",
     "react-accessible-accordion": "^4.0.0",
     "react-cookies": "^0.1.1",
