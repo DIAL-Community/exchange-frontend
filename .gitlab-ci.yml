@@ -67,8 +67,6 @@ test:
       - node_modules/
 
 deploy:
-  tags:
-    - dev
   stage: deploy
   <<: *deploy_run-docker
   script:
