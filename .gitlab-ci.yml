@@ -16,7 +16,6 @@ variables:
     - set -e
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
-    - echo $SSH_PRIVATE_KEY
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null  
     - mkdir -p ~/.ssh
     - touch ~/.ssh/config
@@ -67,6 +66,8 @@ test:
       - node_modules/
 
 deploy:
+  tags:
+   - dev
   stage: deploy
   <<: *deploy_run-docker
   script:
