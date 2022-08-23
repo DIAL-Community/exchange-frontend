@@ -43,6 +43,9 @@ cache:
     - node_modules/
 
 build_react:
+  cache:
+    paths:
+    - /cache
   tags:
     - test
   stage: build
