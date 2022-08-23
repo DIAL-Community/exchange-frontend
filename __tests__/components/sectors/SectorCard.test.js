@@ -1,4 +1,4 @@
-import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
+import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffects } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
 import SectorCard from '../../../components/sectors/SectorCard'
 import { sectorWithParentSector } from './data/SectorDetail'
@@ -66,6 +66,7 @@ describe('Unit test for the SectorCard component', () => {
           />
         </CustomMockedProvider>
       )
+      waitForAllEffects()
       expect(getByTestId(CARD_TEST_ID)).toHaveTextContent('Example Sector')
       expect(getByTestId(EDIT_BUTTON_TEST_ID)).toBeInTheDocument()
       expect(getByTestId(DELETE_BUTTON_TEST_ID)).toBeInTheDocument()
