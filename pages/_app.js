@@ -28,7 +28,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import CatalogContext from '../lib/CatalogContext'
 import CandidateContext from '../lib/CandidateContext'
 import { ToastContextProvider } from '../lib/ToastContext'
-import client from '../lib/apolloClient'
+import { useApollo } from '../lib/apolloClient'
 
 export function reportWebVitals (metric) {
   // https://nextjs.org/docs/advanced-features/measuring-performance
@@ -86,6 +86,8 @@ const App = ({ Component, pageProps }) => {
   const router = useRouter()
   const { locale } = router
   const messages = { ...translations.en, ...translations[locale] }
+
+  const client = useApollo(pageProps)
 
   useEffect(() => {
     const handleRouteChange = (url) => {
