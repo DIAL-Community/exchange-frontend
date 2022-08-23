@@ -28,7 +28,7 @@ eslint:
   script:
     # Install eslint
     - |
-      npm install eslint \
+      npm install eslint --legacy-peer-deps \
       eslint-config-airbnb \
       eslint-config-prettier \
       eslint-plugin-import \
