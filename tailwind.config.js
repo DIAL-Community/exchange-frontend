@@ -110,6 +110,9 @@ module.exports = {
       inset: {
         // This should be set to the value of our top bar height.
         '66px': '66px'
+      },
+      fontFamily: {
+        DEFAULT: 'Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif'
       }
     }
   },
