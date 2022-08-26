@@ -70,7 +70,6 @@ const ProductSpreadsheet = () => {
   const { locale } = useRouter()
   const [session] = useSession()
 
-  const [createSpreadsheetData] = useMutation(PRODUCT_SPREADSHEET_MUTATION)
   const [saveSpreadsheetData] = useMutation(PRODUCT_SPREADSHEET_MUTATION, {
     refetchQueries: [
       PRODUCT_SPREADSHEET_QUERY,
@@ -186,7 +185,7 @@ const ProductSpreadsheet = () => {
     }
   }
 
-  const { spreadsheetProduct, organizations, sectors, sdgs } = data
+  const { spreadsheetProduct } = data
 
   return (
     <div className='w-full'>
@@ -211,7 +210,7 @@ const ProductSpreadsheet = () => {
             </Tab>
           ))}
         </Tab.List>
-        <Tab.Panels className='pt-2 pl-8 pr-4' style={{ minHeight: '70vh'}}>
+        <Tab.Panels className='pt-2 pl-8 pr-4' style={{ minHeight: '70vh' }}>
           {DEFAULT_SHEET_HEADERS.map((header, index) => (
             <Tab.Panel key={index}>
               <HotTable

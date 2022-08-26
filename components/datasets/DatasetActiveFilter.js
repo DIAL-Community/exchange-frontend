@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { MdClose } from 'react-icons/md'
 import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
 import { DatasetFilterContext, DatasetFilterDispatchContext } from '../context/DatasetFilterContext'
@@ -21,7 +20,7 @@ const DatasetActiveFilter = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const {
     sectors, countries, organizations, origins, sdgs, tags, datasetTypes
@@ -99,7 +98,7 @@ const DatasetActiveFilter = () => {
 
         <div className='flex px-2 py-1 mt-2 text-sm text-dial-gray-dark'>
           <a
-            className='border-b-2 border-transparent hover:border-dial-yellow my-auto opacity-50'
+            className='border-b-2 border-transparent hover:border-dial-yellow opacity-50'
             href='#clear-filter' onClick={clearFilter}
           >
             {format('filter.general.clearAll')}

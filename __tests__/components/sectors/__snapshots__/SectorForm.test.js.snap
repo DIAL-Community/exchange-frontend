@@ -1,0 +1,883 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for the SectorForm component. Should match snapshot - create. 1`] = `
+<div
+  aria-describedby="headlessui-description-5"
+  aria-modal="true"
+  class="fixed z-100"
+  data-testid="dialog"
+  id="headlessui-dialog-1"
+  role="dialog"
+>
+  <div
+    class="fixed inset-0 bg-dial-gray opacity-80"
+  />
+  <div
+    class="fixed inset-0 flex items-center justify-center"
+  >
+    <div
+      class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col opacity-100 scale-100"
+      id="headlessui-dialog-panel-4"
+    >
+      <div
+        class="bg-edit overflow-auto py-4 px-8 flex flex-col gap-3"
+        id="headlessui-description-5"
+      >
+        <div
+          class="flex justify-start text-xl"
+          data-testid="dialog-body"
+        >
+          <div
+            class="w-full"
+          >
+            <form
+              id="sector-form"
+            >
+              <div
+                class="pb-12 mb-4 flex flex-col gap-3"
+              >
+                <div
+                  class="text-2xl font-bold text-dial-blue pb-4"
+                >
+                  Create New Sector
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                  data-testid="sector-name"
+                >
+                  <label
+                    class="text-xl text-dial-blue required-field"
+                    for="name"
+                  >
+                    Name
+                  </label>
+                  <input
+                    class="w-full"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                  data-testid="sector-locale"
+                >
+                  <label
+                    class="text-xl text-dial-blue required-field"
+                    for="locale"
+                  >
+                    Locale
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-2-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-19jej77-control"
+                    >
+                      <div
+                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                      >
+                        <div
+                          class="react-select__single-value css-qc6sy-singleValue"
+                        >
+                          English (en)
+                        </div>
+                        <div
+                          class="react-select__input-container css-6j8wv5-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-2-input"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        >
+                          <svg
+                            class="text-2xl"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <input
+                      name="locale"
+                      type="hidden"
+                      value="en"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                  data-testid="sector-parent"
+                >
+                  <label
+                    class="text-xl text-dial-blue"
+                    for="parent"
+                  >
+                    Parent Sector
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-3-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-19jej77-control"
+                    >
+                      <div
+                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                      >
+                        <div
+                          class="react-select__placeholder css-19jynah-placeholder"
+                          id="react-select-3-placeholder"
+                        >
+                          Parent Sector
+                        </div>
+                        <div
+                          class="react-select__input-container css-6j8wv5-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-describedby="react-select-3-placeholder"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-3-input"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        >
+                          <svg
+                            class="text-2xl"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <input
+                      name="parentSector"
+                      type="hidden"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                  data-testid="sector-displayable"
+                >
+                  <label
+                    class="flex gap-x-2 mb-2 items-center self-start form-field-label"
+                    for="sector-displayable"
+                  >
+                    <input
+                      class="h-8 w-8"
+                      data-testid="checkbox"
+                      name="isDisplayable"
+                      type="checkbox"
+                    />
+                    Is displayable
+                  </label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div
+          class="flex justify-start gap-3 text-xl"
+        >
+          <button
+            class="submit-button"
+            data-testid="submit-button"
+            form="sector-form"
+            type="submit"
+          >
+            Submit
+          </button>
+          <button
+            class="cancel-button"
+            data-testid="cancel-button"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit tests for the SectorForm component. Should match snapshot - edit for sector which has parent sector. 1`] = `
+<div
+  aria-describedby="headlessui-description-10"
+  aria-modal="true"
+  class="fixed z-100"
+  data-testid="dialog"
+  id="headlessui-dialog-7"
+  role="dialog"
+>
+  <div
+    class="fixed inset-0 bg-dial-gray opacity-80"
+  />
+  <div
+    class="fixed inset-0 flex items-center justify-center"
+  >
+    <div
+      class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col opacity-100 scale-100"
+      id="headlessui-dialog-panel-9"
+    >
+      <div
+        class="bg-edit overflow-auto py-4 px-8 flex flex-col gap-3"
+        id="headlessui-description-10"
+      >
+        <div
+          class="flex justify-start text-xl"
+          data-testid="dialog-body"
+        >
+          <div
+            class="w-full"
+          >
+            <form
+              id="sector-form"
+            >
+              <div
+                class="pb-12 mb-4 flex flex-col gap-3"
+              >
+                <div
+                  class="text-2xl font-bold text-dial-blue pb-4"
+                >
+                  Edit Example Sector
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                  data-testid="sector-name"
+                >
+                  <label
+                    class="text-xl text-dial-blue required-field"
+                    for="name"
+                  >
+                    Name
+                  </label>
+                  <input
+                    class="w-full"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                  data-testid="sector-locale"
+                >
+                  <label
+                    class="text-xl text-dial-blue required-field"
+                    for="locale"
+                  >
+                    Locale
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-4-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-19jej77-control"
+                    >
+                      <div
+                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                      >
+                        <div
+                          class="react-select__single-value css-qc6sy-singleValue"
+                        >
+                          English (en)
+                        </div>
+                        <div
+                          class="react-select__input-container css-6j8wv5-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-4-input"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        >
+                          <svg
+                            class="text-2xl"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <input
+                      name="locale"
+                      type="hidden"
+                      value="en"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                  data-testid="sector-parent"
+                >
+                  <label
+                    class="text-xl text-dial-blue"
+                    for="parent"
+                  >
+                    Parent Sector
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-5-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-19jej77-control"
+                    >
+                      <div
+                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                      >
+                        <div
+                          class="react-select__placeholder css-19jynah-placeholder"
+                          id="react-select-5-placeholder"
+                        >
+                          Parent Sector
+                        </div>
+                        <div
+                          class="react-select__input-container css-6j8wv5-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-describedby="react-select-5-placeholder"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-5-input"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        >
+                          <svg
+                            class="text-2xl"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <input
+                      name="parentSector"
+                      type="hidden"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                  data-testid="sector-displayable"
+                >
+                  <label
+                    class="flex gap-x-2 mb-2 items-center self-start form-field-label"
+                    for="sector-displayable"
+                  >
+                    <input
+                      class="h-8 w-8"
+                      data-testid="checkbox"
+                      name="isDisplayable"
+                      type="checkbox"
+                    />
+                    Is displayable
+                  </label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div
+          class="flex justify-start gap-3 text-xl"
+        >
+          <button
+            class="submit-button"
+            data-testid="submit-button"
+            form="sector-form"
+            type="submit"
+          >
+            Submit
+          </button>
+          <button
+            class="cancel-button"
+            data-testid="cancel-button"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit tests for the SectorForm component. Should match snapshot - edit for which does not have parent sector. 1`] = `
+<div
+  aria-describedby="headlessui-description-15"
+  aria-modal="true"
+  class="fixed z-100"
+  data-testid="dialog"
+  id="headlessui-dialog-12"
+  role="dialog"
+>
+  <div
+    class="fixed inset-0 bg-dial-gray opacity-80"
+  />
+  <div
+    class="fixed inset-0 flex items-center justify-center"
+  >
+    <div
+      class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col opacity-100 scale-100"
+      id="headlessui-dialog-panel-14"
+    >
+      <div
+        class="bg-edit overflow-auto py-4 px-8 flex flex-col gap-3"
+        id="headlessui-description-15"
+      >
+        <div
+          class="flex justify-start text-xl"
+          data-testid="dialog-body"
+        >
+          <div
+            class="w-full"
+          >
+            <form
+              id="sector-form"
+            >
+              <div
+                class="pb-12 mb-4 flex flex-col gap-3"
+              >
+                <div
+                  class="text-2xl font-bold text-dial-blue pb-4"
+                >
+                  Edit Example Sector
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                  data-testid="sector-name"
+                >
+                  <label
+                    class="text-xl text-dial-blue required-field"
+                    for="name"
+                  >
+                    Name
+                  </label>
+                  <input
+                    class="w-full"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                  data-testid="sector-locale"
+                >
+                  <label
+                    class="text-xl text-dial-blue required-field"
+                    for="locale"
+                  >
+                    Locale
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-6-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-19jej77-control"
+                    >
+                      <div
+                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                      >
+                        <div
+                          class="react-select__single-value css-qc6sy-singleValue"
+                        >
+                          English (en)
+                        </div>
+                        <div
+                          class="react-select__input-container css-6j8wv5-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-6-input"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        >
+                          <svg
+                            class="text-2xl"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <input
+                      name="locale"
+                      type="hidden"
+                      value="en"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                  data-testid="sector-parent"
+                >
+                  <label
+                    class="text-xl text-dial-blue"
+                    for="parent"
+                  >
+                    Parent Sector
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-7-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-19jej77-control"
+                    >
+                      <div
+                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                      >
+                        <div
+                          class="react-select__placeholder css-19jynah-placeholder"
+                          id="react-select-7-placeholder"
+                        >
+                          Parent Sector
+                        </div>
+                        <div
+                          class="react-select__input-container css-6j8wv5-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-describedby="react-select-7-placeholder"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-7-input"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        >
+                          <svg
+                            class="text-2xl"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <input
+                      name="parentSector"
+                      type="hidden"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                  data-testid="sector-displayable"
+                >
+                  <label
+                    class="flex gap-x-2 mb-2 items-center self-start form-field-label"
+                    for="sector-displayable"
+                  >
+                    <input
+                      class="h-8 w-8"
+                      data-testid="checkbox"
+                      name="isDisplayable"
+                      type="checkbox"
+                    />
+                    Is displayable
+                  </label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div
+          class="flex justify-start gap-3 text-xl"
+        >
+          <button
+            class="submit-button"
+            data-testid="submit-button"
+            form="sector-form"
+            type="submit"
+          >
+            Submit
+          </button>
+          <button
+            class="cancel-button"
+            data-testid="cancel-button"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

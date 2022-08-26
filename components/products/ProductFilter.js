@@ -13,21 +13,22 @@ import { SectorAutocomplete } from '../filter/element/Sector'
 import { TagAutocomplete } from '../filter/element/Tag'
 import { UseCaseAutocomplete } from '../filter/element/UseCase'
 import { WorkflowAutocomplete } from '../filter/element/Workflow'
+import Checkbox from '../shared/Checkbox'
 
 const ProductFilter = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { setHintDisplayed } = useContext(FilterContext)
 
   const {
     withMaturity, productDeployable, forCovid, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, productTypes, endorsers
+    useCases, workflows, buildingBlocks, endorsers
   } = useContext(ProductFilterContext)
 
   const {
     setWithMaturity, setProductDeployable, setForCovid, setSectors, setCountries, setOrganizations,
-    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setProductTypes, setEndorsers
+    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers
   } = useContext(ProductFilterDispatchContext)
 
   const toggleWithMaturity = () => {
@@ -79,28 +80,19 @@ const ProductFilter = () => {
           <div className='text-sm flex flex-col'>
             <div className='px-2 pb-2'>
               <label className='inline-flex items-center'>
-                <input
-                  type='checkbox' className='h-4 w-4 form-checkbox text-dial-gray' name='tagged-covid'
-                  checked={forCovid} onChange={toggleForCovid}
-                />
+                <Checkbox onChange={toggleForCovid} value={forCovid} />
                 <span className='ml-2'>{format('filter.product.forCovid')}</span>
               </label>
             </div>
             <div className='px-2 pb-2'>
               <label className='inline-flex items-center'>
-                <input
-                  type='checkbox' className='h-4 w-4 form-checkbox text-dial-gray' name='with-maturity'
-                  checked={withMaturity} onChange={toggleWithMaturity}
-                />
+                <Checkbox onChange={toggleWithMaturity} value={withMaturity} />
                 <span className='ml-2'>{format('filter.product.withMaturity')}</span>
               </label>
             </div>
             <div className='px-2 pb-2 flex'>
               <label className='inline-flex items-center'>
-                <input
-                  type='checkbox' className='h-4 w-4 form-checkbox text-dial-gray' name='product-deployable'
-                  checked={productDeployable} onChange={toggleProductDeployable}
-                />
+                <Checkbox onChange={toggleProductDeployable} value={productDeployable} />
                 <span className='ml-2'>{format('filter.product.launchable')}</span>
               </label>
             </div>

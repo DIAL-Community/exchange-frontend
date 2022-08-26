@@ -1,6 +1,6 @@
-import Head from 'next/head'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import { useContext } from 'react'
+import { NextSeo } from 'next-seo'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import OrganizationListQuery from '../../components/organizations/OrganizationList'
@@ -18,17 +18,17 @@ import ClientOnly from '../../lib/ClientOnly'
 
 const Organizations = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { search } = useContext(OrganizationFilterContext)
   const { setSearch } = useContext(OrganizationFilterDispatchContext)
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
+      <NextSeo
+        title={format('organization.header')}
+        description={format('shared.metadata.description.comprehensiveListOf', { entities: format('organization.header')?.toLocaleLowerCase() })}
+      />
       <QueryNotification />
       <GradientBackground />
       <Header />

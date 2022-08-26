@@ -8,7 +8,7 @@ import {
   mockUnauthorizedUserSessionImplementation,
   render,
   waitForAllEffects,
-  waitForReactSelectToLoad
+  waitForAllEffectsAndSelectToLoad
 } from '../../test-utils'
 import ProjectForm from '../../../components/projects/ProjectForm'
 import { ORGANIZATION_SEARCH_QUERY } from '../../../queries/organization'
@@ -72,8 +72,7 @@ describe('Unit tests for ProjectForm component.', () => {
         <ProjectForm />
       </CustomMockedProvider>
     )
-    await waitForAllEffects()
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.keyDown(getByTestId(PROJECT_ORGANIZATION_TEST_ID).childNodes[1], { key: 'ArrowDown' })
     fireEvent.keyDown(getByTestId(PROJECT_PRODUCT_TEST_ID).childNodes[1], { key: 'ArrowDown' })
     expect(container).toMatchSnapshot()
@@ -86,8 +85,7 @@ describe('Unit tests for ProjectForm component.', () => {
         <ProjectForm />
       </CustomMockedProvider>
     )
-    await waitForAllEffects()
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     expect(container).toMatchSnapshot()
   })
 
@@ -98,8 +96,7 @@ describe('Unit tests for ProjectForm component.', () => {
         <ProjectForm />
       </CustomMockedProvider>
     )
-    await waitForAllEffects()
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.keyDown(getByTestId(PROJECT_PRODUCT_TEST_ID).childNodes[1], { key: 'ArrowDown' })
     expect(container).toMatchSnapshot()
   })
@@ -111,8 +108,7 @@ describe('Unit tests for ProjectForm component.', () => {
         <ProjectForm />
       </CustomMockedProvider>
     )
-    await waitForAllEffects()
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PROJECT_PRODUCT_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
@@ -133,8 +129,7 @@ describe('Unit tests for ProjectForm component.', () => {
         <ProjectForm />
       </CustomMockedProvider>
     )
-    await waitForAllEffects()
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PROJECT_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PROJECT_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -143,7 +138,7 @@ describe('Unit tests for ProjectForm component.', () => {
     expect(getByTestId(PROJECT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(PROJECT_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    
+
     await user.type(screen.getByLabelText(/Name/), 'test project name 2')
     expect(getByTestId(PROJECT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PROJECT_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -173,8 +168,7 @@ describe('Unit tests for ProjectForm component.', () => {
         <ProjectForm project={project} />
       </CustomMockedProvider>
     )
-    await waitForAllEffects()
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     await act(async () => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
       await screen.findByText('Project submitted successfully')
@@ -201,8 +195,7 @@ describe('Unit tests for ProjectForm component.', () => {
         <ProjectForm project={project} />
       </CustomMockedProvider>
     )
-    await waitForAllEffects()
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     await act(async () => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
       await screen.findByText('Project submission failed')

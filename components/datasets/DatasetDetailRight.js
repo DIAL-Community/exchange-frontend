@@ -11,7 +11,7 @@ import DatasetDetailSdgs from './DatasetDetailSdgs'
 
 const DatasetDetailRight = ({ dataset }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [session] = useSession()
   const canEdit = session?.user?.canEdit
@@ -48,7 +48,7 @@ const DatasetDetailRight = ({ dataset }) => {
         }
         {
           dataset.geographicCoverage &&
-            <div className='mt-12'>
+            <div className='mt-12 px-4'>
               <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.coverage')}</div>
               <div className='my-auto'>{dataset.geographicCoverage}</div>
             </div>
@@ -71,7 +71,7 @@ const DatasetDetailRight = ({ dataset }) => {
         }
         {
           dataset.timeRange &&
-            <div className='mt-12'>
+            <div className='mt-12 px-4'>
               <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.timeRange')}</div>
               <div className='my-auto'>{dataset.timeRange}</div>
             </div>
@@ -94,13 +94,14 @@ const DatasetDetailRight = ({ dataset }) => {
       </div>
       {
         dataset.visualizationUrl &&
-          <div className='mt-3
-          
+          <div className='mt-3 v
+
           '>
             <IframeResizer
               src={dataset.visualizationUrl}
               style={{ position: 'relative', width: '100%' }}
               minHeight="600"
+              scrolling='true'
             >
               ${format('dataset.embed.unsupported')}
             </IframeResizer>

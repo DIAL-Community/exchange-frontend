@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
@@ -27,7 +25,7 @@ const PLAY_QUERY = gql`
 
 const CreateMoveInformation = ({ slug, playSlug, locale }) => {
   const { loading, error, data, refetch } = useQuery(PLAY_QUERY, {
-    variables: { playbookSlug: slug, playSlug: playSlug },
+    variables: { playbookSlug: slug, playSlug },
     skip: !slug && !playSlug,
     context: { headers: { 'Accept-Language': locale } }
   })
@@ -35,7 +33,7 @@ const CreateMoveInformation = ({ slug, playSlug, locale }) => {
   useEffect(() => {
     refetch()
   }, [refetch, locale])
-  
+
   if (loading) {
     return <Loading />
   }
@@ -61,22 +59,15 @@ const CreateMoveInformation = ({ slug, playSlug, locale }) => {
 }
 
 const CreateMove = () => {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
   const router = useRouter()
   const { locale, query } = router
   const { slug, playSlug } = query
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ClientOnly>
-        <CreateMoveInformation {...{slug, playSlug, locale }} />
+        <CreateMoveInformation {...{ slug, playSlug, locale }} />
       </ClientOnly>
       <Footer />
     </>

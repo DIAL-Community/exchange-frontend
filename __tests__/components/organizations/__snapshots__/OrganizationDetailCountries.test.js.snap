@@ -229,20 +229,12 @@ exports[`Unit test for the OrganizationDetailCountries component. Should match s
       class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
     >
       <div
-        class="border-3 border-transparent"
+        class="bg-white border border-dial-gray card-drop-shadow"
       >
         <div
-          class="border border-dial-gray card-drop-shadow"
+          class="p-4 font-semibold text-button-gray"
         >
-          <div
-            class="my-4 px-4"
-          >
-            <div
-              class="pr-3 text-base font-semibold whitespace-nowrap text-ellipsis overflow-hidden text-button-gray"
-            >
-              Test Country
-            </div>
-          </div>
+          Test Country
         </div>
       </div>
     </div>
@@ -438,20 +430,12 @@ exports[`Unit test for the OrganizationDetailCountries component. Should match s
       class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
     >
       <div
-        class="border-3 border-transparent"
+        class="bg-white border border-dial-gray card-drop-shadow"
       >
         <div
-          class="border border-dial-gray card-drop-shadow"
+          class="p-4 font-semibold text-button-gray"
         >
-          <div
-            class="my-4 px-4"
-          >
-            <div
-              class="pr-3 text-base font-semibold whitespace-nowrap text-ellipsis overflow-hidden text-button-gray"
-            >
-              Test Country
-            </div>
-          </div>
+          Test Country
         </div>
       </div>
     </div>

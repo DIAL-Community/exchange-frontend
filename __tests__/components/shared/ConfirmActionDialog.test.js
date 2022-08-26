@@ -38,7 +38,7 @@ describe('Unit test for the ConfirmActionDialog component.', () => {
     expect(getByTestId(CANCEL_BUTTON_TEST_ID)).toHaveTextContent('Cancel')
     expect(getByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toMatchSnapshot()
   })
-    
+
   test('Should call the onClose function after clicking the "Cancel" button.', () => {
     const { getByTestId } = render(
       <ConfirmActionDialog
@@ -52,7 +52,7 @@ describe('Unit test for the ConfirmActionDialog component.', () => {
     fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID))
     expect(mockSetIsDialogOpen).toBeCalled()
   })
-    
+
   test('Should call the onConfirm function after clicking the "Confirm" button.', () => {
     const { getByTestId } = render(
       <ConfirmActionDialog
@@ -65,5 +65,5 @@ describe('Unit test for the ConfirmActionDialog component.', () => {
     )
     fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID))
     expect(mockOnConfirm).toBeCalled()
-  })  
+  })
 })

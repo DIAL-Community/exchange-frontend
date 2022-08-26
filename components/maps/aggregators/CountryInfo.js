@@ -9,7 +9,7 @@ const CountryInfo = (props) => {
   const [active, setActive] = useState(country?.aggregators[0].slug)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   // Just return empty fragment when there's no country selected.
   if (!country) {

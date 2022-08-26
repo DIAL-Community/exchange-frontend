@@ -1,24 +1,26 @@
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
+import { useSession } from 'next-auth/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import ClientOnly from '../../../lib/ClientOnly'
 import OrganizationForm from '../../../components/organizations/OrganizationForm'
+import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
+import { useUser } from '../../../lib/hooks'
 
-const CreateOrganization = () => ( 
-  <>
-    <Head>
-      <title>{useIntl().formatMessage({ id: 'app.title' })}</title>
-      <link rel='icon' href='/favicon.ico' />
-    </Head>
-    <Header />
-    <div className='max-w-catalog mx-auto'>
-      <ClientOnly>
-        <OrganizationForm />
-      </ClientOnly>
-    </div>
-    <Footer />
-  </>
-)
+const CreateOrganization = () => {
+  const [session] = useSession()
+  const { isAdminUser, loadingUserSession } = useUser(session)
+
+  return (
+    <>
+      <Header />
+      <div className='max-w-catalog mx-auto'>
+        <ClientOnly>
+          {loadingUserSession ? <Loading /> : isAdminUser ? <OrganizationForm /> : <Unauthorized />}
+        </ClientOnly>
+      </div>
+      <Footer />
+    </>
+  )
+}
 
 export default CreateOrganization

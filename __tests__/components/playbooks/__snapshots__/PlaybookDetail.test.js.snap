@@ -30,7 +30,7 @@ Object {
                     alt="Logo for: {name}"
                     class="m-auto h-6 inline mr-2"
                     data-tip="{entity}: {name}"
-                    src="http://localhost:3000/assets/playbooks/playbook_placeholder.png"
+                    src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                   />
                   Playbook
                 </a>
@@ -439,7 +439,7 @@ Object {
                   alt="Logo for: {name}"
                   class="m-auto h-6 inline mr-2"
                   data-tip="{entity}: {name}"
-                  src="http://localhost:3000/assets/playbooks/playbook_placeholder.png"
+                  src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                 />
                 Playbook
               </a>
@@ -1198,7 +1198,7 @@ Object {
                     alt="Logo for: {name}"
                     class="m-auto h-6 inline mr-2"
                     data-tip="{entity}: {name}"
-                    src="http://localhost:3000/assets/playbooks/playbook_placeholder.png"
+                    src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                   />
                   Playbook
                 </a>
@@ -1583,7 +1583,7 @@ Object {
                   alt="Logo for: {name}"
                   class="m-auto h-6 inline mr-2"
                   data-tip="{entity}: {name}"
-                  src="http://localhost:3000/assets/playbooks/playbook_placeholder.png"
+                  src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                 />
                 Playbook
               </a>

@@ -10,18 +10,18 @@ import DeleteButton from '../shared/DeleteButton'
 
 const DeleteOrganization = ({ organization }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-  
+  const format = (id, values) => formatMessage({ id }, values)
+
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
-  
+
   const { locale } = useRouter()
-    
+
   const [session] = useSession()
-  
+
   const { showToast } = useContext(ToastContext)
 
   const [deleteOrganization, { called, reset }] = useMutation(DELETE_ORGANIZATION, {
-    onCompleted: () => {  
+    onCompleted: () => {
       showToast(
         format('toast.organization.delete.success'),
         'success',
@@ -37,7 +37,7 @@ const DeleteOrganization = ({ organization }) => {
       reset()
     }
   })
-  
+
   const onConfirmDelete = () => {
     if (session) {
       const { userEmail, userToken } = session.user
@@ -58,7 +58,7 @@ const DeleteOrganization = ({ organization }) => {
 
   const toggleConfirmDialog = () => {
     setDisplayConfirmDialog(!displayConfirmDialog)
-  }  
+  }
 
   return (
     <>

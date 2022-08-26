@@ -3,13 +3,15 @@ import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import ProductForm from '../../../components/products/ProductForm'
 import { CREATE_PRODUCT } from '../../../mutations/product'
-import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
+import {
+  mockRouterImplementation,
+  mockSessionImplementation,
+  render,
+} from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { createProductFailure, createProductSuccess, product } from './data/ProductForm'
 
-// Mock next-router calls.
 jest.mock('next/dist/client/router')
-// Mock the next-auth's useSession.
 jest.mock('next-auth/client')
 
 describe('Unit tests for the ProductForm component.', () => {
@@ -33,6 +35,7 @@ describe('Unit tests for the ProductForm component.', () => {
   })
 
   test('Should match snapshot - edit.', () => {
+    mockSessionImplementation(true)
     const { container } = render(
       <CustomMockedProvider>
         <ProductForm product={product} />
@@ -74,7 +77,7 @@ describe('Unit tests for the ProductForm component.', () => {
     expect(getByTestId(PRODUCT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(PRODUCT_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    
+
     await user.type(screen.getByLabelText(/Name/), 'test product name 2')
     expect(getByTestId(PRODUCT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 

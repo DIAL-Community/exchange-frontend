@@ -1,5 +1,3 @@
-/* global fetch: false */
-
 import { Fragment, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { Controller, useForm } from 'react-hook-form'
@@ -8,7 +6,7 @@ import Select from 'react-select'
 
 const ReportIssue = ({ showForm, setShowForm, formTitle }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [thanks, setThanks] = useState(false)
 
@@ -34,10 +32,10 @@ const ReportIssue = ({ showForm, setShowForm, formTitle }) => {
         'Access-Control-Allow-Headers': 'Set-Cookie'
       },
       body: JSON.stringify({
-        name: name,
-        email: email,
+        name,
+        email,
         issue_type: issueType,
-        issue: issue
+        issue
       })
     })
     setThanks(true)

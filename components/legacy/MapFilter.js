@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
+import Image from 'next/image'
 import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
 import { SectorAutocomplete, SectorFilters } from '../filter/element/Sector'
 import { ProductAutocomplete, ProductFilters } from '../filter/element/Product'
@@ -15,7 +16,7 @@ const MapFilter = (props) => {
   const router = useRouter()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const {
     aggregators, operators, services, orgSectors, years, sectors, products, tags
@@ -70,7 +71,9 @@ const MapFilter = (props) => {
                     <div className='text-center whitespace-normal'>{format('map.project.title')}</div>
                     <div className='block'>
                       <a href='set-projects-active' onClick={(e) => navigateToMap(e, 'projects')}>
-                        <img
+                        <Image
+                          height={125}
+                          width={225}
                           src='/images/maps/projects.png' alt='Navigate to map of projects'
                           className={`${router.pathname.indexOf('projects') >= 0 ? 'border-4 border-dial-yellow' : ''} w-64 mt-4 mx-auto`}
                         />
@@ -83,7 +86,9 @@ const MapFilter = (props) => {
                     <div className='text-center whitespace-normal'>{format('map.endorser.title')}</div>
                     <div className='block'>
                       <a href='set-endorsers-active' onClick={(e) => navigateToMap(e, 'endorsers')}>
-                        <img
+                        <Image
+                          height={125}
+                          width={225}
                           src='/images/maps/endorsers.png' alt='Navigate to map of endorsers'
                           className={`${router.pathname.indexOf('endorsers') >= 0 ? 'border-4 border-dial-yellow' : ''} w-64 mt-4 mx-auto`}
                         />
@@ -96,7 +101,9 @@ const MapFilter = (props) => {
                     <div className='text-center whitespace-normal'>{format('map.aggregator.title')}</div>
                     <div className='block'>
                       <a href='set-aggregators-active' onClick={(e) => navigateToMap(e, 'aggregators')}>
-                        <img
+                        <Image
+                          height={125}
+                          width={225}
                           src='/images/maps/aggregators.png' alt='Navigate to map of aggregators'
                           className={`${router.pathname.indexOf('aggregators') >= 0 ? 'border-4 border-dial-yellow' : ''} w-64 mt-4 mx-auto`}
                         />

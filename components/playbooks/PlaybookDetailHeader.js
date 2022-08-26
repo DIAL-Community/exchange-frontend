@@ -33,19 +33,18 @@ const PlaybookDetailHeader = ({ slug }) => {
 
   const canEdit = session?.user?.canEdit
 
-  
   const playProgressNumbersRef = useRef([])
   const [percentage, setPercentage] = useState(0)
   const [currentSlugIndex, setCurrentSlugIndex] = useState(-1)
   const { currentSlug, slugHeights, slugIntersectionRatios } = useContext(PlaybookDetailContext)
   const { setDirect, setCurrentSlug } = useContext(PlaybookDetailDispatchContext)
-  
+
   const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
-    variables: { slug: slug }
+    variables: { slug }
   })
-  
+
   const isPlaybookPublished = !data?.playbook.draft
-  
+
   useEffect(() => {
     playProgressNumbersRef.current = playProgressNumbersRef.current.slice(0, data?.playbook?.playbookPlays?.length)
   }, [data])

@@ -47,7 +47,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
   const { setCurrentSlug, setDirect } = useContext(PlaybookDetailDispatchContext)
 
   const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
-    variables: { slug: slug }
+    variables: { slug }
   })
 
   useEffect(() => {
@@ -135,7 +135,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
 
     setDirect(true)
     setCurrentSlug(slug)
-    
+
     if (!data || !data.playbook) {
       // Skip execution if we don't have the playbook play information.
       return

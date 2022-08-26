@@ -10,7 +10,7 @@ const completeBuildingBlock = {
   name: 'Fake Building Block',
   slug: 'fake_bb',
   maturity: 'beta',
-  imageFile: 'fake_bb.png',
+  imageFile: '/fake_bb.png',
   products: [{
     slug: 'product_a',
     name: 'Product A'
@@ -48,7 +48,7 @@ describe('Unit tests for the building block card.', () => {
     }))
   })
 
-  test('Should render building block in list view.', () => {
+  test('Should render complete building block in list view.', () => {
     render(<BuildingBlockCard buildingBlock={completeBuildingBlock} listType='list' />)
     expect(screen.getByText(completeBuildingBlock.name)).toBeInTheDocument()
 
@@ -67,7 +67,7 @@ describe('Unit tests for the building block card.', () => {
     expect(screen.getByText(/Workflows/)).toBeInTheDocument()
   })
 
-  test('Should render building block in list view.', () => {
+  test('Should render minimal building block in list view.', () => {
     render(<BuildingBlockCard buildingBlock={minimalBuildingBlock} listType='list' />)
     expect(screen.getByText(minimalBuildingBlock.name)).toBeInTheDocument()
 

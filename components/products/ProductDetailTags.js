@@ -9,7 +9,7 @@ import { fetchSelectOptions } from '../../queries/utils'
 import Pill from '../shared/Pill'
 import EditableSection from '../shared/EditableSection'
 import { UPDATE_PRODUCT_TAGS } from '../../mutations/product'
-import { TAGS_SEARCH_QUERY } from '../../queries/tags'
+import { TAG_SEARCH_QUERY } from '../../queries/tag'
 import TagCard from '../tags/TagCard'
 
 const ProductDetailTags = ({ product, canEdit }) => {
@@ -68,7 +68,7 @@ const ProductDetailTags = ({ product, canEdit }) => {
       updateProductTags({
         variables: {
           slug: product.slug,
-          tags: tags
+          tags
         },
         context: {
           headers: {
@@ -109,7 +109,7 @@ const ProductDetailTags = ({ product, canEdit }) => {
           defaultOptions
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-          loadOptions={(input) => fetchSelectOptions(client, input, TAGS_SEARCH_QUERY, fetchedTagsCallback)}
+          loadOptions={(input) => fetchSelectOptions(client, input, TAG_SEARCH_QUERY, fetchedTagsCallback)}
           noOptionsMessage={() => format('filter.searchFor', { entity: format('tag.header') })}
           onChange={addTag}
           value={null}

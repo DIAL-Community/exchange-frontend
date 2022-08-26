@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react'
 import { useIntl, FormattedMessage } from 'react-intl'
 import { useRouter } from 'next/router'
@@ -6,7 +5,7 @@ import { WizardStage1, WizardStage2, WizardStage3 } from './StageContent'
 
 const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
   const router = useRouter()
 
   useEffect(() => {

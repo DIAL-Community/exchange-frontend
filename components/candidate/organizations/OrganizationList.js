@@ -96,7 +96,7 @@ const OrganizationListQuery = () => {
   const { loading, error, data, fetchMore } = useQuery(ORGANIZATIONS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
-      search: search
+      search
     },
     onCompleted: (data) => {
       setResultCounts({ ...resultCounts, ...{ [['filter.entity.candidateOrganizations']]: data.searchCandidateOrganizations.totalCount } })
@@ -118,11 +118,11 @@ const OrganizationListQuery = () => {
       variables: {
         first: DEFAULT_PAGE_SIZE,
         after: pageInfo.endCursor,
-        search: search
+        search
       }
     })
   }
-  
+
   return (
     <InfiniteScroll
       className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height'

@@ -1,5 +1,3 @@
-/* global fetch:false */
-
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 import Auth0Provider from 'next-auth/providers/auth0'
@@ -74,7 +72,7 @@ export default NextAuth({
       //  ...and return it...
       user && (token.user = user)
 
-      if (0) {
+      if (0) { // eslint-disable-line
         token.railsAuth = true
         const authBody = {
           user: {

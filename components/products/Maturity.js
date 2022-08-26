@@ -4,7 +4,7 @@ import parse from 'html-react-parser'
 
 const MaturityCategory = ({ category }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
   const numIndicators = category.indicator_scores.length
 
   return (
@@ -45,7 +45,7 @@ const MaturityCategory = ({ category }) => {
 
 const RubricAccordion = ({ maturityScores, overallScore }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <>

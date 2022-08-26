@@ -28,7 +28,8 @@ const basePathMappings = {
   playbooks: 'playbook.header',
   plays: 'play.header',
   users: 'user.header',
-  moves: 'move.header'
+  moves: 'move.header',
+  countries: 'country.header'
 }
 
 const Breadcrumb = (props) => {
@@ -38,7 +39,7 @@ const Breadcrumb = (props) => {
   const [breadcrumbs, setBreadcrumbs] = useState([])
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   useEffect(() => {
     const linkPath = router.asPath.split('/')

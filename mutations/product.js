@@ -2,11 +2,11 @@ import { gql } from '@apollo/client'
 
 export const CREATE_PRODUCT = gql`
   mutation CreateProduct(
-    $name: String!,
-    $slug: String!,
-    $aliases: JSON,
-    $imageFile: Upload,
-    $website: String,
+    $name: String!
+    $slug: String!
+    $aliases: JSON
+    $imageFile: Upload
+    $website: String
     $description: String!
   ) {
     createProduct(
@@ -27,7 +27,7 @@ export const CREATE_PRODUCT = gql`
           description
           locale
         }
-      },
+      }
       errors
     }
   }
@@ -35,12 +35,14 @@ export const CREATE_PRODUCT = gql`
 
 export const UPDATE_PRODUCT_BUILDING_BLOCKS = gql`
   mutation UpdateProductBuildingBlocks(
-    $slug: String!,
+    $slug: String!
     $buildingBlocksSlugs: [String!]!
+    $mappingStatus: String
   ) {
     updateProductBuildingBlocks(
       slug: $slug
       buildingBlocksSlugs: $buildingBlocksSlugs
+      mappingStatus: $mappingStatus
     ) {
       product {
         buildingBlocks {
@@ -49,7 +51,8 @@ export const UPDATE_PRODUCT_BUILDING_BLOCKS = gql`
           imageFile
           maturity
         }
-      },
+        buildingBlocksMappingStatus
+      }
       errors
     }
   }
@@ -57,7 +60,7 @@ export const UPDATE_PRODUCT_BUILDING_BLOCKS = gql`
 
 export const UPDATE_PRODUCT_SECTORS = gql`
   mutation UpdateProductSectors(
-    $slug: String!,
+    $slug: String!
     $sectorsSlugs: [String!]!
   ) {
     updateProductSectors(
@@ -69,10 +72,8 @@ export const UPDATE_PRODUCT_SECTORS = gql`
           id
           name
           slug
-          imageFile
-          whenEndorsed
         }
-      },
+      }
       errors
     }
   }
@@ -80,19 +81,19 @@ export const UPDATE_PRODUCT_SECTORS = gql`
 
 export const UPDATE_PRODUCT_PROJECTS = gql`
   mutation UpdateProductProjects(
-    $slug: String!,
+    $slug: String!
     $projectsSlugs: [String!]!
   ) {
     updateProductProjects(
-      slug: $slug,
+      slug: $slug
       projectsSlugs: $projectsSlugs
     ) {
       product {
         slug
         projects {
-          id,
-          name,
-          slug,
+          id
+          name
+          slug
           origin {
             slug
           }
@@ -105,7 +106,7 @@ export const UPDATE_PRODUCT_PROJECTS = gql`
 
 export const UPDATE_PRODUCT_ORGANIZATION = gql`
   mutation UpdateProductOrganization(
-    $slug: String!,
+    $slug: String!
     $organizationsSlugs: [String!]!
   ) {
     updateProductOrganizations(
@@ -123,7 +124,7 @@ export const UPDATE_PRODUCT_ORGANIZATION = gql`
             name
           }
         }
-      },
+      }
       errors
     }
   }
@@ -131,7 +132,7 @@ export const UPDATE_PRODUCT_ORGANIZATION = gql`
 
 export const UPDATE_PRODUCT_TAGS = gql`
   mutation UpdateProductTags(
-    $slug: String!,
+    $slug: String!
     $tags: [String!]!
   ) {
     updateProductTags(
@@ -141,8 +142,76 @@ export const UPDATE_PRODUCT_TAGS = gql`
       product {
         slug
         tags
-      },
+      }
       errors
     }  
   }
 `
+
+export const UPDATE_PRODUCT_SDGS = gql`
+  mutation UpdateProductSdgs(
+    $slug: String!
+    $sdgsSlugs: [String!]!
+    $mappingStatus: String!
+  ) {
+    updateProductSdgs(
+      slug: $slug
+      sdgsSlugs: $sdgsSlugs
+      mappingStatus: $mappingStatus
+    ) {
+      product {
+        slug
+        sustainableDevelopmentGoals {
+          slug
+          name
+          imageFile
+        }
+        sustainableDevelopmentGoalsMappingStatus
+      }
+    }  
+  }
+`
+
+export const CREATE_CANDIDATE_PRODUCT = gql`
+  mutation CreateCandidateProduct(
+    $name: String!
+    $website: String!
+    $repository: String!
+    $description: String!
+    $email: String!
+    $captcha: String!
+  ) {
+    createCandidateProduct(
+      name: $name
+      website: $website
+      repository: $repository
+      description: $description
+      email: $email
+      captcha: $captcha
+    ) { slug }
+  }
+`
+
+const generateProductRepositoryMutation = (mutationName) => `
+  mutation productRepositoryMutation (
+    $slug: String!
+    $name: String!
+    $absoluteUrl: String!
+    $description: String!
+    $mainRepository: Boolean!
+  ) {
+    ${mutationName} (
+      slug: $slug
+      name: $name
+      absoluteUrl: $absoluteUrl
+      description: $description
+      mainRepository: $mainRepository
+    ) { 
+      slug
+    }
+  }
+ `
+
+export const CREATE_PRODUCT_REPOSITORY = gql(generateProductRepositoryMutation('createProductRepository'))
+
+export const UPDATE_PRODUCT_REPOSITORY = gql(generateProductRepositoryMutation('updateProductRepository'))

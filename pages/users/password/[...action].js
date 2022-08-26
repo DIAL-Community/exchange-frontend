@@ -1,5 +1,3 @@
-/* global fetch:false */
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { FaSpinner } from 'react-icons/fa'
@@ -64,7 +62,7 @@ const PasswordAction = () => {
 
     const resetBody = {
       user: {
-        password: password,
+        password,
         password_confirmation: passwordConfirmation,
         reset_password_token: resetToken
       }
@@ -115,10 +113,6 @@ const PasswordAction = () => {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <div className='bg-dial-gray-dark pt-20 simple-form-height'>

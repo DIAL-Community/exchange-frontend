@@ -1,8 +1,8 @@
-import Head from 'next/head'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client'
+import { useCallback } from 'react'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
 import RepositoryForm from '../../../../components/products/repositories/RepositoryForm'
@@ -24,7 +24,7 @@ const PRODUCT_QUERY = gql`
 
 const ProductHeader = ({ product }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <div className='border'>
@@ -45,7 +45,10 @@ const ProductHeader = ({ product }) => {
 }
 
 const PageDefinition = ({ slug }) => {
-  const { data, loading, error } = useQuery(PRODUCT_QUERY, { variables: { slug: slug } })
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { data, loading, error } = useQuery(PRODUCT_QUERY, { variables: { slug } })
 
   if (loading) {
     return <Loading />
@@ -60,7 +63,8 @@ const PageDefinition = ({ slug }) => {
   }
 
   const slugNameMapping = (() => {
-    const map = {}
+    const map = { create: format('app.create') }
+
     map[data?.product.slug] = data?.product.name
 
     return map
@@ -90,18 +94,11 @@ const PageDefinition = ({ slug }) => {
 }
 
 const CreateRepository = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-
   const router = useRouter()
   const { slug } = router.query
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ClientOnly>
         <PageDefinition slug={slug} />

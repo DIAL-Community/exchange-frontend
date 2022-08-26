@@ -5,9 +5,9 @@ import { FilterContext } from '../context/FilterContext'
 import { SDGFilterContext, SDGFilterDispatchContext } from '../context/SDGFilterContext'
 import { SDGAutocomplete } from '../filter/element/SDG'
 
-const SDGFilter = (props) => {
+const SDGFilter = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { setHintDisplayed } = useContext(FilterContext)
 

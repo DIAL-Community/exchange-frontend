@@ -1,7 +1,7 @@
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
+import { NextSeo } from 'next-seo'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import GradientBackground from '../../components/shared/GradientBackground'
@@ -20,17 +20,16 @@ const ProductListQuery = dynamic(() => import('../../components/products/Product
 
 const Products = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const { search } = useContext(ProductFilterContext)
   const { setSearch } = useContext(ProductFilterDispatchContext)
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
+      <NextSeo
+        title={format('products.header')}
+        description={format('shared.metadata.description.comprehensiveListOf', { entities: format('products.header')?.toLocaleLowerCase() })}
+      />
       <QueryNotification />
       <GradientBackground />
       <Header />

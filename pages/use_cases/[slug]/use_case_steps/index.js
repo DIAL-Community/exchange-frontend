@@ -1,9 +1,8 @@
-
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import Head from 'next/head'
 import Link from 'next/link'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
+import { useSession } from 'next-auth/client'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
 import Breadcrumb from '../../../../components/shared/breadcrumb'
@@ -11,22 +10,13 @@ import StepList from '../../../../components/use-cases/steps/StepList'
 import ClientOnly from '../../../../lib/ClientOnly'
 import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import NotFound from '../../../../components/shared/NotFound'
-
-const USE_CASE_QUERY = gql`
-  query UseCase($slug: String!) {
-    useCase(slug: $slug) {
-      name
-      slug
-      maturity
-      imageFile
-    }
-  }
-`
+import { USE_CASE_DETAIL_QUERY } from '../../../../queries/use-case'
+import CreateButton from '../../../../components/shared/CreateButton'
 
 // Create the top left header of the step list.
 const UseCaseHeader = ({ useCase }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <div className='border'>
@@ -48,7 +38,12 @@ const UseCaseHeader = ({ useCase }) => {
 }
 
 const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
-  const { data, loading, error } = useQuery(USE_CASE_QUERY, { variables: { slug: slug } })
+  const { formatMessage } = useIntl()
+  const format = (id, values) => formatMessage({ id }, values)
+
+  const [session] = useSession()
+
+  const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug } })
 
   if (loading) {
     return <Loading />
@@ -77,6 +72,9 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
         <div className='block lg:hidden'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
+        <div className='w-full mb-2'>
+          {session?.user && <CreateButton type='link' label={format('use-case-step.create')} href={`/use_cases/${data.useCase.slug}/use_case_steps/create`} />}
+        </div>
         {data?.useCase && <UseCaseHeader useCase={data.useCase} />}
         <StepList useCaseSlug={slug} stepSlug={stepSlug} listStyle='compact' shadowOnContainer />
       </div>
@@ -90,18 +88,11 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
 }
 
 const UseCaseStep = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-
   const router = useRouter()
   const { slug, stepSlug } = router.query
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ClientOnly>
         <UseCaseStepPageDefinition {...{ slug, stepSlug }} />

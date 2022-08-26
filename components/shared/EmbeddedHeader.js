@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
@@ -32,7 +31,6 @@ const AVAILABLE_LANGUAGES = {
 }
 
 const EmbeddedHeader = () => {
-  const [session] = useSession()
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
@@ -57,19 +55,19 @@ const EmbeddedHeader = () => {
 
   useEffect(() => {
     // call addEventListener() only when menu dropdown is open
-    if (currentOpenMenu !== NONE){
+    if (currentOpenMenu !== NONE) {
       // whenever user clicks somewhere on the page - fire handleClickOutside
       // so that the current menu is closed and, if clicked, another menu is opened
-      // e.g. About menu -> Help menu 
+      // e.g. About menu -> Help menu
       document.addEventListener('click', handleClickOutside)
-  
+
       // whenever currentOpenMenu changes - remove the listener
       return () => {
         document.removeEventListener('click', handleClickOutside)
       }
     }
   }, [handleClickOutside, currentOpenMenu])
-  
+
   const switchLanguage = (e, localeCode) => {
     e.preventDefault()
     router.push({ pathname, query }, asPath, { locale: localeCode })

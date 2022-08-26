@@ -1,6 +1,3 @@
-/* global fetch:false */
-
-import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useState } from 'react'
 import Link from 'next/link'
@@ -116,7 +113,7 @@ const SignUp = () => {
     }
 
     const response = await client.query({
-      query: query,
+      query,
       variables: {
         search: input
       }
@@ -197,10 +194,6 @@ const SignUp = () => {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <ClientOnly>
@@ -341,6 +334,9 @@ const SignUp = () => {
                         </a>
                       </Link>
                     </div>
+                  </div>
+                  <div className='h5 mt-2'>
+                    {format('signUp.privacy')} <Link href='/privacy-policy'><a className='text-dial-yellow'>{format('signUp.privacyLink')}</a></Link>
                   </div>
                 </div>
               </form>

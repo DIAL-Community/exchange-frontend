@@ -61,7 +61,7 @@ export const TagFilters = (props) => {
   const { tags, setTags } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const removeTag = (tagId) => {
     setTags(tags.filter(tag => tag.value !== tagId))
@@ -70,11 +70,13 @@ export const TagFilters = (props) => {
   return (
     <>
       {tags?.map((tag, tagIdx) => (
-        <Pill
-          key={`filter-${tagIdx}`}
-          label={`${format('tag.label')}: ${tag.label}`}
-          onRemove={() => removeTag(tag.value)}
-        />
+        <div className='py-1' key={tagIdx}>
+          <Pill
+            key={`filter-${tagIdx}`}
+            label={`${format('tag.label')}: ${tag.label}`}
+            onRemove={() => removeTag(tag.value)}
+          />
+        </div>
       ))}
     </>
   )

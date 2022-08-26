@@ -126,11 +126,11 @@ describe('Unit test for the OrganizationDetailContacts component.', () => {
     const inputName = getByTestId(NAME_INPUT_TEST_ID)
     const inputEmail = getByTestId(EMAIL_INPUT_TEST_ID)
     const inputTitle = getByTestId(TITLE_INPUT_TEST_ID)
-    
+
     fireEvent.change(inputName, { target: { value: contacts.data.name } })
     fireEvent.change(inputEmail, { target: { value: contacts.data.email } })
     fireEvent.change(inputTitle, { target: { value: contacts.data.title } })
-    await act(async () => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))   
+    await act(async () => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))
 
     expect(inputName).toHaveTextContent('')
     expect(inputEmail).toHaveTextContent('')

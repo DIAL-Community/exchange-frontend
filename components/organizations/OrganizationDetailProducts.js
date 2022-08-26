@@ -25,11 +25,11 @@ const OrganizationDetailProducts = ({ organization, canEdit }) => {
   const [updateOrganizationProducts, { data, loading }] = useMutation(UPDATE_ORGANIZATION_PRODUCT)
 
   const [session] = useSession()
-  
+
   const { locale } = useRouter()
-  
+
   const { showToast } = useContext(ToastContext)
-  
+
   useEffect(() => {
     if (data?.updateOrganizationProducts?.errors.length === 0 && data?.updateOrganizationProducts?.organization) {
       setProducts(data.updateOrganizationProducts.organization.products)
@@ -37,7 +37,7 @@ const OrganizationDetailProducts = ({ organization, canEdit }) => {
       showToast(format('organization.products.updated'), 'success', 'top-center')
     }
   }, [data, showToast, format])
-  
+
   const fetchedProductsCallback = (data) => (
     data.products?.map((product) => ({
       label: product.name,
@@ -80,8 +80,8 @@ const OrganizationDetailProducts = ({ organization, canEdit }) => {
     setIsDirty(false)
   }
 
-  const displayModeBody = products.length > 0 
-    ? ( 
+  const displayModeBody = products.length > 0
+    ? (
       <div className='grid grid-cols-1'>
         {products.map((product, productIdx) => <ProductCard key={productIdx} product={product} listType='list' />)}
       </div>
@@ -122,7 +122,7 @@ const OrganizationDetailProducts = ({ organization, canEdit }) => {
     </>
 
   return (
-    (organization.products.length > 0 || canEdit) && <EditableSection 
+    (organization.products.length > 0 || canEdit) && <EditableSection
       canEdit={canEdit}
       sectionHeader={format('product.header')}
       onSubmit={onSubmit}

@@ -1,34 +1,7 @@
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { USE_CASE_STEPS_QUERY } from '../../../queries/use-case-step'
 import StepCard from './StepCard'
-
-const USE_CASE_STEPS_QUERY = gql`
-query UseCaseSteps(
-  $slug: String!
-  ) {
-  useCaseSteps(
-    slug: $slug
-  ) {
-      id
-      name
-      slug
-      stepNumber
-      useCase {
-        slug
-      }
-      workflows {
-        slug
-        name
-        imageFile
-      }
-      products {
-        name
-        slug
-        imageFile
-      }
-  }
-}
-`
 
 const StepList = ({ useCaseSlug, stepSlug, listStyle, shadowOnContainer }) => {
   const { formatMessage } = useIntl()

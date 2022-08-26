@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client'
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import Header from '../../../../../../../components/Header'
 import Footer from '../../../../../../../components/Footer'
 import { Loading, Error } from '../../../../../../../components/shared/FetchStatus'
@@ -40,8 +38,8 @@ const EditMoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
   const { loading, error, data } = useQuery(MOVE_QUERY, {
     variables: {
       playbookSlug: slug,
-      playSlug: playSlug,
-      moveSlug: moveSlug
+      playSlug,
+      moveSlug
     },
     skip: !slug && !playSlug && !moveSlug,
     context: { headers: { 'Accept-Language': locale } }
@@ -68,9 +66,6 @@ const EditMoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
 }
 
 const EditMove = () => {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
   const router = useRouter()
 
   const { locale } = router
@@ -78,13 +73,9 @@ const EditMove = () => {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ClientOnly>
-        <EditMoveInformation {...{slug, playSlug, moveSlug, locale }} />
+        <EditMoveInformation {...{ slug, playSlug, moveSlug, locale }} />
       </ClientOnly>
       <Footer />
     </>

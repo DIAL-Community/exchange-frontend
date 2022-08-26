@@ -13,7 +13,7 @@ const SDGActiveFilter = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { sdgs } = useContext(SDGFilterContext)
   const { setSDGs } = useContext(SDGFilterDispatchContext)
@@ -53,7 +53,7 @@ const SDGActiveFilter = () => {
 
         <div className='flex px-2 py-1 mt-2 text-sm text-dial-gray-dark'>
           <a
-            className='border-b-2 border-transparent hover:border-dial-yellow my-auto opacity-50'
+            className='border-b-2 border-transparent hover:border-dial-yellow opacity-50'
             href='#clear-filter' onClick={clearFilter}
           >
             {format('filter.general.clearAll')}

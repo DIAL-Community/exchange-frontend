@@ -13,9 +13,9 @@ const containerElementStyle = `
   text-organization hover:text-dial-yellow
 `
 
-const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = false }) => {
+const OrganizationCard = ({ organization, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <>
@@ -27,7 +27,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                 <div className={containerElementStyle}>
                   <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                     <div className='relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4' style={{ minHeight: '4.5rem' }}>
-                      <div className={`w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto  ${ellipsisTextStyle}`}>
+                      <div className={`w-10/12 lg:w-6/12 text-base font-semibold text-dial-gray-dark my-auto  ${ellipsisTextStyle}`}>
                         <img
                           className='inline pr-3 w-8'
                           alt={format('image.alt.logoFor', { name: organization.name })}
@@ -35,13 +35,6 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                         />
                         {organization.name}
                       </div>
-                      {
-                        organization.sectors &&
-                          <div className={`w-10/12 lg:w-5/12 text-base text-dial-gray-dark ${ellipsisTextStyle}`}>
-                            {organization.sectors.length === 0 && format('general.na')}
-                            {organization.sectors.length > 0 && organization.sectors.map(u => u.name).join(', ')}
-                          </div>
-                      }
                       <div
                         className={`
                           absolute top-2 lg:top-1/3 right-4 flex flex-nowrap gap-x-1.5
@@ -63,7 +56,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                                 className='inline mr-2 h-6 ml-auto' src='/icons/digiprins/digiprins.png'
                               />
                               <span className='hidden lg:inline'>
-                                {`Endorsed on ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
+                                {`Endorsed in ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
                               </span>
                               <span className='inline lg:hidden'>
                                 {`${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
@@ -85,7 +78,7 @@ const OrganizationCard = ({ organization, listType, filterDisplayed, newTab = fa
                   <div className='flex justify-between p-1.5 border-b border-dial-gray text-sm font-semibold text-dial-cyan'>
                     <div className='flex flex-row gap-x-2 h-6'>
                       {
-                        organization.whenEndorsed && 
+                        organization.whenEndorsed &&
                           <img
                             alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
                             src='/icons/digiprins/digiprins.png'

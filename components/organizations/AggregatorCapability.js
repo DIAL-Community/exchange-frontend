@@ -139,7 +139,7 @@ const CountryCapability = (props) => {
 
 const AggregatorCapability = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { aggregatorId } = props
   const { loading: loadingCountryData, data: countryData } = useQuery(COUNTRIES_QUERY)

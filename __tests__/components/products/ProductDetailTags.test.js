@@ -1,26 +1,23 @@
 import { fireEvent, screen } from '@testing-library/react'
-import { mockRouterImplementation, mockSessionImplementation, render, waitForReactSelectToLoad } from '../../test-utils'
+import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { TAGS_SEARCH_QUERY } from '../../../queries/tags'
+import { TAG_SEARCH_QUERY } from '../../../queries/tag'
 import ProductDetailTags from '../../../components/products/ProductDetailTags'
 import { tags } from './data/ProductDetailTags'
 import { product } from './data/ProductForm'
 
-// Mock next-router calls.
 jest.mock('next/dist/client/router')
-// Mock the next-auth's useSession.
 jest.mock('next-auth/client')
 
 describe('Unit test for the ProductDetailTags component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
   const TAGS_SEARCH_TEST_ID = 'tag-search'
-  const TAGS_SEARCH_PLACEHOLDER = 'Type to search...'
   const TAGS_SEARCH_OPTION_LABEL = 'Another Tag'
   const PROJECT_TEST_TAGS_LABEL = 'Test Tag'
   const PILL_TEST_ID = 'pill'
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
-  const mockTags = generateMockApolloData(TAGS_SEARCH_QUERY, { search: '' }, null, tags)
+  const mockTags = generateMockApolloData(TAG_SEARCH_QUERY, { search: '' }, null, tags)
 
   beforeAll(() => {
     mockRouterImplementation()
@@ -61,8 +58,7 @@ describe('Unit test for the ProductDetailTags component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(TAGS_SEARCH_PLACEHOLDER)
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     expect(container).toMatchSnapshot()
   })
 
@@ -76,7 +72,7 @@ describe('Unit test for the ProductDetailTags component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(TAGS_SEARCH_PLACEHOLDER)
+    await waitForAllEffectsAndSelectToLoad(container)
     fireEvent.click(getByTestId(PILL_REMOVE_BUTTON_TEST_ID))
     expect(screen.queryByTestId(PILL_TEST_ID)).toBeNull()
     expect(container).toMatchSnapshot()
@@ -92,7 +88,7 @@ describe('Unit test for the ProductDetailTags component.', () => {
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(TAGS_SEARCH_PLACEHOLDER)
+    await waitForAllEffectsAndSelectToLoad(container)
 
     fireEvent.keyDown(getByTestId(TAGS_SEARCH_TEST_ID).childNodes[1], { key: 'ArrowDown' })
     await screen.findByText(TAGS_SEARCH_OPTION_LABEL)
@@ -105,7 +101,7 @@ describe('Unit test for the ProductDetailTags component.', () => {
     expect(screen.queryByText(TAGS_SEARCH_OPTION_LABEL)).not.toBeInTheDocument()
 
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    await screen.findByText(TAGS_SEARCH_PLACEHOLDER)
+    await waitForAllEffectsAndSelectToLoad(container)
 
     expect(screen.queryByText(PROJECT_TEST_TAGS_LABEL)).toBeInTheDocument()
     expect(screen.queryByText(TAGS_SEARCH_OPTION_LABEL)).not.toBeInTheDocument()

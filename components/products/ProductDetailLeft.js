@@ -1,5 +1,3 @@
-/* global fetch:false */
-
 import { gql, useLazyQuery } from '@apollo/client'
 import parse from 'html-react-parser'
 import { useSession } from 'next-auth/client'
@@ -8,9 +6,10 @@ import { useEffect, useRef, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
+import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
-import { DiscourseCount } from '../shared/discourse'
 import EditButton from '../shared/EditButton'
+import { useProductOwnerUser, useUser } from '../../lib/hooks'
 
 const CANDIDATE_ROLE_QUERY = gql`
   query CandidateRole($email: String!, $productId: String!, $organizationId: String!) {
@@ -24,13 +23,16 @@ const CANDIDATE_ROLE_QUERY = gql`
 
 const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
 
-const ProductDetailLeft = ({ product, discourseClick }) => {
+const ProductDetailLeft = ({ product }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const [session] = useSession()
   const router = useRouter()
   const { locale } = router
+
+  const { isAdminUser, loadingUserSession } = useUser(session)
+  const { ownsProduct } = useProductOwnerUser(product, [], loadingUserSession || isAdminUser)
 
   const captchaRef = useRef()
   const [contactState, setContactState] = useState(CONTACT_STATES[0])
@@ -194,30 +196,23 @@ const ProductDetailLeft = ({ product, discourseClick }) => {
       </div>
       <div className='h-20'>
         <div className='w-full'>
-          {
-            session && (
-              <div className='inline mr-5'>
-                {
-                  (session.user.canEdit || session.user.own?.products.filter(p => `${p}` === `${product.id}`).length > 0) &&
-                    <EditButton type='link' href={generateEditLink()} />
-                }
-              </div>
-            )
-          }
-          <button onClick={discourseClick}><DiscourseCount /></button>
+          {(isAdminUser || ownsProduct) && <EditButton type='link' href={generateEditLink()} />}
         </div>
         <div className='h4 font-bold py-4'>{format('products.label')}</div>
       </div>
       <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 lg:mr-6 shadow-lg'>
-        <div id='header' className='mb-4'>
+        <div id='header' className='flex flex-col h-80 p-2'>
           <div className='h1 p-2 text-dial-purple'>
             {product.name}
           </div>
-          <img
-            alt={`${product.name} Logo`} className='p-2 m-auto'
-            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
-            width='200px' height='200px'
-          />
+          <div className='m-auto w-3/5 h-3/5 relative' >
+            <Image
+              layout='fill'
+              objectFit='contain'
+              alt={`${product.name} Logo`}
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+            />
+          </div>
         </div>
         <div className='fr-view text-dial-gray-dark max-h-40 overflow-hidden'>
           {product.productDescription && parse(product.productDescription.description)}

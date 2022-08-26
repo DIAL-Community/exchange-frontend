@@ -1,0 +1,2759 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <header
+    class="z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white"
+  >
+    <div
+      class="flex flex-wrap justify-center items-center py-3 lg:py-0 max-w-catalog header-min-height mx-auto"
+    >
+      <div
+        class="flex-1 flex my-auto"
+      >
+        <a
+          class="px-6 lg:px-8"
+          href="/"
+        >
+          <div
+            class="text-dial-blue-darkest text-xs"
+          >
+            Digital Impact Alliance
+          </div>
+          <div
+            class="font-bold text-base text-dial-blue-darkest"
+          >
+            <span
+              class="block"
+            >
+              Catalog of
+               
+              Digital Solutions
+            </span>
+          </div>
+        </a>
+      </div>
+      <label
+        class="pointer-cursor block lg:hidden px-8"
+        for="menu-toggle"
+      >
+        <svg
+          class="fill-current text-gray-900"
+          height="20"
+          viewBox="0 0 20 20"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>
+            Menu
+          </title>
+          <path
+            d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"
+          />
+        </svg>
+      </label>
+      <input
+        class="hidden"
+        id="menu-toggle"
+        type="checkbox"
+      />
+      <div
+        class="hidden lg:flex lg:items-center lg:w-auto w-full"
+        id="menu"
+      >
+        <nav>
+          <ul
+            class="block lg:hidden mt-6 text-sm"
+            style="min-height: 405px;"
+          >
+            <li
+              class="py-4 border-b"
+            >
+              <a
+                class="mx-6 font-semibold"
+                href="/switch-language"
+              >
+                Select Language
+                <svg
+                  class="text-base inline ml-2 text-base"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
+                    />
+                  </g>
+                </svg>
+              </a>
+            </li>
+            <li
+              class="py-4 border-b"
+            >
+              <a
+                class="mx-6 font-semibold"
+                href="/expand-catalog"
+              >
+                Catalog
+                <svg
+                  class="text-base inline ml-2"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
+                    />
+                  </g>
+                </svg>
+              </a>
+            </li>
+            <li
+              class="py-4 border-b"
+            >
+              <a
+                class="mx-6 font-semibold"
+                href="about"
+              >
+                Recommendation Wizard
+              </a>
+            </li>
+            <li
+              class="py-4 border-b"
+            >
+              <a
+                class="mx-6 font-semibold"
+                href="/expand-resources"
+              >
+                Resources
+                <svg
+                  class="text-base inline ml-2"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
+                    />
+                  </g>
+                </svg>
+              </a>
+            </li>
+            <li
+              class="py-4 border-b"
+            >
+              <a
+                class="mx-6 font-semibold"
+                href="about"
+              >
+                About
+              </a>
+            </li>
+            <li
+              class="py-4 border-b font-semibold"
+            >
+              <a
+                class="mx-6 font-semibold"
+                href="/admin"
+              >
+                Admin Menu
+                <svg
+                  class="text-base inline ml-2"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
+                    />
+                  </g>
+                </svg>
+              </a>
+            </li>
+            <li
+              class="py-4 border-b"
+            >
+              <a
+                class="mx-2 inline bg-dial-yellow-light pl-2 pr-3 py-3 rounded font-semibold"
+                href="signOut"
+              >
+                <img
+                  alt="Back"
+                  class="inline mx-2"
+                  height="20px"
+                  src="/icons/user.svg"
+                  width="20px"
+                />
+                <div
+                  class="inline text-sm"
+                />
+                <svg
+                  class="text-base inline ml-2"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
+                    />
+                  </g>
+                </svg>
+              </a>
+            </li>
+            <li
+              class="py-4"
+            >
+              <a
+                class="mx-6 font-semibold"
+                href="https://docs.osc.dial.community/projects/product-registry/en/latest/"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Help
+              </a>
+            </li>
+          </ul>
+          
+          <ul
+            class="hidden lg:flex items-center justify-between text-base text-dial-blue-darkest pt-4 lg:pt-0"
+          >
+            <li
+              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+            >
+              <a
+                class="
+    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
+   lg:mb-0 mb-2 inline"
+                href="resourceMenu"
+                id="resourceMenu"
+              >
+                Resources
+                <svg
+                  class="ml-1 inline text-2xl"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <div
+                class="hidden 
+    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
+  "
+                role="menu"
+              >
+                <div
+                  class="py-1"
+                  role="none"
+                >
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="/covid-19-resources"
+                    role="menuitem"
+                  >
+                    COVID-19 Resources
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="//resources.dial.community/"
+                    rel="noreferrer"
+                    role="menuitem"
+                    target="_blank"
+                  >
+                    DIAL Resources Portal
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="//digitalimpactalliance.org/research/sdg-digital-investment-framework/"
+                    rel="noreferrer"
+                    role="menuitem"
+                    target="_blank"
+                  >
+                    SDG Framework
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li
+              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+            >
+              <a
+                class="
+    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
+   lg:mb-0 mb-2 inline"
+                href="aboutMenu"
+                id="aboutMenu"
+              >
+                About
+                <svg
+                  class="ml-1 inline text-2xl"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <div
+                class="hidden 
+    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
+  "
+                role="menu"
+              >
+                <div
+                  class="py-1"
+                  role="none"
+                >
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="/about"
+                    role="menuitem"
+                  >
+                    About
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="//solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/overview"
+                    rel="noreferrer"
+                    role="menuitem"
+                    target="_blank"
+                  >
+                    Catalog Wiki Page
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li
+              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+            />
+            <li
+              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+            >
+              <a
+                class="
+    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
+   lg:mb-0 mb-2 inline bg-dial-yellow-light pt-2 pb-2 rounded"
+                data-testid="user-menu"
+                href="signOut"
+                id="userMenu"
+              >
+                <img
+                  alt="Back"
+                  class="inline mx-2"
+                  height="20px"
+                  src="/icons/user.svg"
+                  width="20px"
+                />
+                <div
+                  class="inline text-xs"
+                  id="userMenu"
+                >
+                  <svg
+                    class="ml-1 inline text-2xl"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </a>
+              <div
+                class="hidden 
+    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
+  "
+                role="menu"
+              >
+                <div
+                  class="py-1"
+                  role="none"
+                >
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="/auth/profile"
+                    role="menuitem"
+                  >
+                    My Profile
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="en"
+                    role="menuitem"
+                  >
+                    Sign Out
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li
+              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+            >
+              <a
+                class="
+    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
+   lg:mb-0 mb-2 inline"
+                href="helpMenu"
+                id="helpMenu"
+              >
+                Help
+                <svg
+                  class="ml-1 inline text-2xl"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <div
+                class="hidden 
+    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
+  "
+                role="menu"
+              >
+                <a
+                  class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                  href="https://docs.osc.dial.community/projects/product-registry/en/latest/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  Documentation Portal
+                </a>
+                <a
+                  class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                  href="#"
+                >
+                  Report Issue
+                </a>
+              </div>
+            </li>
+            <li>
+              <div
+                class="border border-gray-400 border-t-0 lg:border-l-0 lg:h-9"
+              />
+            </li>
+            <li
+              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+            >
+              <a
+                class="
+    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
+   lg:mb-0 mb-2 inline"
+                href="switchLanguage"
+                id="switchLanguage"
+              >
+                Select Language
+                <svg
+                  class="ml-1 inline text-2xl"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <div
+                class="hidden 
+    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
+  "
+                role="menu"
+              >
+                <div
+                  class="py-1"
+                  role="none"
+                >
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="en"
+                    role="menuitem"
+                  >
+                    English (en)
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="de"
+                    role="menuitem"
+                  >
+                    Deutsch (de)
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="es"
+                    role="menuitem"
+                  >
+                    Español (es)
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="fr"
+                    role="menuitem"
+                  >
+                    Francais (fr)
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="pt"
+                    role="menuitem"
+                  >
+                    Português (pt)
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="sw"
+                    role="menuitem"
+                  >
+                    Kiswahili (sw)
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="cs"
+                    role="menuitem"
+                  >
+                    Czech (cs)
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div>
+    <div
+      class="flex flex-col"
+    >
+      <div
+        class="lg:w-2/5 mx-auto px-4 font-bold text-xl text-dial-blue"
+      >
+        <div
+          class="hidden lg:block"
+        >
+          <div
+            class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+          >
+            <a
+              class="inline text-dial-blue h5"
+              href="/"
+            >
+              Home
+            </a>
+            <div
+              class="inline h5"
+            >
+               &gt; 
+              <a
+                class="text-dial-gray-dark"
+                href="/"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pb-8 px-8"
+      >
+        <div
+          class="sm:px-0 mx-auto"
+          id="content"
+        >
+          <form>
+            <div
+              class="sm:w-full md:w-2/3 lg:w-2/5 bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 mx-auto flex flex-col gap-3"
+            >
+              <div
+                class="text-2xl font-bold text-dial-blue pb-4"
+              >
+                Edit User Test
+              </div>
+              <div
+                class="flex flex-col lg:flex-col gap-4"
+              >
+                <div
+                  class="w-full flex flex-col"
+                >
+                  <label
+                    class="form-field-wrapper form-field-label"
+                    data-testid="email-label"
+                    for="name"
+                  >
+                    <p
+                      class="required-field"
+                    >
+                      Email
+                    </p>
+                    <input
+                      class="w-full"
+                      data-testid="email-input"
+                      name="email"
+                      type="text"
+                      value=""
+                    />
+                  </label>
+                </div>
+                <div
+                  class="w-full flex flex-col"
+                >
+                  <label
+                    class="form-field-wrapper form-field-label"
+                    data-testid="username-label"
+                    for="name"
+                  >
+                    <p
+                      class="required-field"
+                    >
+                      Username
+                    </p>
+                    <input
+                      class="w-full"
+                      data-testid="username-input"
+                      name="username"
+                      type="text"
+                      value=""
+                    />
+                  </label>
+                </div>
+                <div
+                  class="w-full flex flex-col"
+                >
+                  <label
+                    class="form-field-wrapper form-field-label"
+                    for="name"
+                  >
+                    <p>
+                      Roles
+                    </p>
+                    <div
+                      class=" css-l45kjq-container"
+                    >
+                      <span
+                        class="css-1f43avz-a11yText-A11yText"
+                        id="react-select-2-live-region"
+                      />
+                      <span
+                        aria-atomic="false"
+                        aria-live="polite"
+                        aria-relevant="additions text"
+                        class="css-1f43avz-a11yText-A11yText"
+                      />
+                      <div
+                        class="react-select__control css-19jej77-control"
+                      >
+                        <div
+                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                        >
+                          <div
+                            class="react-select__placeholder css-19jynah-placeholder"
+                            id="react-select-2-placeholder"
+                          >
+                            Select user roles
+                          </div>
+                          <div
+                            class="react-select__input-container css-6j8wv5-Input"
+                            data-value=""
+                          >
+                            <input
+                              aria-autocomplete="list"
+                              aria-describedby="react-select-2-placeholder"
+                              aria-expanded="false"
+                              aria-haspopup="true"
+                              autocapitalize="none"
+                              autocomplete="off"
+                              autocorrect="off"
+                              class="react-select__input"
+                              id="react-select-2-input"
+                              role="combobox"
+                              spellcheck="false"
+                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                              tabindex="0"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                        >
+                          <span
+                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          />
+                          <div
+                            aria-hidden="true"
+                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="css-tj5bde-Svg"
+                              focusable="false"
+                              height="20"
+                              viewBox="0 0 20 20"
+                              width="20"
+                            >
+                              <path
+                                d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="flex flex-wrap gap-3"
+                    >
+                      <div
+                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                        data-testid="pill"
+                      >
+                        user
+                        <svg
+                          class="ml-3 text-2xl cursor-pointer"
+                          data-testid="remove-button"
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          />
+                          <path
+                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+                <div
+                  class="w-full flex flex-col"
+                >
+                  <label
+                    class="form-field-wrapper form-field-label"
+                    for="name"
+                  >
+                    <p>
+                      Organization
+                    </p>
+                    <div
+                      class=""
+                      data-testid="organization-search"
+                    >
+                      <div
+                        class=" css-l45kjq-container"
+                      >
+                        <span
+                          class="css-1f43avz-a11yText-A11yText"
+                          id="react-select-3-live-region"
+                        />
+                        <span
+                          aria-atomic="false"
+                          aria-live="polite"
+                          aria-relevant="additions text"
+                          class="css-1f43avz-a11yText-A11yText"
+                        />
+                        <div
+                          class="react-select__control css-19jej77-control"
+                        >
+                          <div
+                            class="react-select__value-container css-3tzzl5-ValueContainer"
+                          >
+                            <div
+                              class="react-select__placeholder css-19jynah-placeholder"
+                              id="react-select-3-placeholder"
+                            >
+                              Enter user organization
+                            </div>
+                            <div
+                              class="react-select__input-container css-6j8wv5-Input"
+                              data-value=""
+                            >
+                              <input
+                                aria-autocomplete="list"
+                                aria-describedby="react-select-3-placeholder"
+                                aria-expanded="false"
+                                aria-haspopup="true"
+                                aria-label="Filter by Organization"
+                                autocapitalize="none"
+                                autocomplete="off"
+                                autocorrect="off"
+                                class="react-select__input"
+                                id="react-select-3-input"
+                                role="combobox"
+                                spellcheck="false"
+                                style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                                tabindex="0"
+                                type="text"
+                                value=""
+                              />
+                            </div>
+                          </div>
+                          <div
+                            class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                          >
+                            <span
+                              class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            />
+                            <div
+                              aria-hidden="true"
+                              class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="css-tj5bde-Svg"
+                                focusable="false"
+                                height="20"
+                                viewBox="0 0 20 20"
+                                width="20"
+                              >
+                                <path
+                                  d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="flex flex-wrap gap-3"
+                    >
+                      <div
+                        class="py-1"
+                      >
+                        <div
+                          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                          data-testid="pill"
+                        >
+                          Organization: Organization 1
+                          <svg
+                            class="ml-3 text-2xl cursor-pointer"
+                            data-testid="remove-button"
+                            fill="currentColor"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M0 0h24v24H0z"
+                              fill="none"
+                            />
+                            <path
+                              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+                <div
+                  class="w-full flex flex-col"
+                >
+                  <label
+                    class="form-field-wrapper form-field-label"
+                    for="name"
+                  >
+                    <p>
+                      Products
+                    </p>
+                    <div
+                      class=""
+                      data-testid="product-search"
+                    >
+                      <div
+                        class=" css-l45kjq-container"
+                      >
+                        <span
+                          class="css-1f43avz-a11yText-A11yText"
+                          id="react-select-4-live-region"
+                        />
+                        <span
+                          aria-atomic="false"
+                          aria-live="polite"
+                          aria-relevant="additions text"
+                          class="css-1f43avz-a11yText-A11yText"
+                        />
+                        <div
+                          class="react-select__control css-19jej77-control"
+                        >
+                          <div
+                            class="react-select__value-container css-3tzzl5-ValueContainer"
+                          >
+                            <div
+                              class="react-select__placeholder css-19jynah-placeholder"
+                              id="react-select-4-placeholder"
+                            >
+                              Enter products owned by user
+                            </div>
+                            <div
+                              class="react-select__input-container css-6j8wv5-Input"
+                              data-value=""
+                            >
+                              <input
+                                aria-autocomplete="list"
+                                aria-describedby="react-select-4-placeholder"
+                                aria-expanded="false"
+                                aria-haspopup="true"
+                                aria-label="Filter by Product"
+                                autocapitalize="none"
+                                autocomplete="off"
+                                autocorrect="off"
+                                class="react-select__input"
+                                id="react-select-4-input"
+                                role="combobox"
+                                spellcheck="false"
+                                style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                                tabindex="0"
+                                type="text"
+                                value=""
+                              />
+                            </div>
+                          </div>
+                          <div
+                            class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                          >
+                            <span
+                              class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            />
+                            <div
+                              aria-hidden="true"
+                              class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="css-tj5bde-Svg"
+                                focusable="false"
+                                height="20"
+                                viewBox="0 0 20 20"
+                                width="20"
+                              >
+                                <path
+                                  d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="flex flex-wrap gap-3"
+                    >
+                      <div
+                        class="py-1"
+                      >
+                        <div
+                          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                          data-testid="pill"
+                        >
+                          Product: product 1
+                          <svg
+                            class="ml-3 text-2xl cursor-pointer"
+                            data-testid="remove-button"
+                            fill="currentColor"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M0 0h24v24H0z"
+                              fill="none"
+                            />
+                            <path
+                              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                      <div
+                        class="py-1"
+                      >
+                        <div
+                          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                          data-testid="pill"
+                        >
+                          Product: product 2
+                          <svg
+                            class="ml-3 text-2xl cursor-pointer"
+                            data-testid="remove-button"
+                            fill="currentColor"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M0 0h24v24H0z"
+                              fill="none"
+                            />
+                            <path
+                              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+                <label
+                  class="flex gap-x-2 items-center form-field-label my-auto"
+                  data-testid="user-is-confirmed"
+                >
+                  <input
+                    class="h-8 w-8"
+                    data-testid="checkbox"
+                    name="confirmed"
+                    type="checkbox"
+                  />
+                  User account confirmed
+                </label>
+                <div
+                  class="flex flex-wrap text-xl mt-8 gap-3"
+                >
+                  <button
+                    class="submit-button"
+                    data-testid="submit-button"
+                    type="submit"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div
+      class="block"
+    />
+    <div
+      class="relative w-full bg-dial-gray-light text-dial-purple-light"
+    >
+      <div
+        class="px-4 2xl:px-24 pt-8 2xl:pb-8 lg:flex lg:flex-row flex-wrap justify-center 2xl:justify-start mx-auto max-w-catalog"
+      >
+        <div
+          class="max-w-prose sm:w-full lg:flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto text-center 2xl:text-left"
+        >
+          
+    The Digital Impact Alliance is a partnership amongst some of the world’s most active
+    digital development champions. We are grateful for the support of our Founding Partners.
+  
+        </div>
+        <div
+          class="flex-grow flex flex-row flex-wrap place-content-center"
+        >
+          <div
+            class="relative p-2 lg:my-auto"
+          >
+            <a
+              href="https://unfoundation.org/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <div
+                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+              >
+                <div
+                  style="box-sizing: border-box; display: block; max-width: 100%;"
+                >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQ2IiBoZWlnaHQ9IjU5IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIvPg=="
+                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
+                  />
+                </div>
+                <img
+                  alt="The United Nations Foundation Logo"
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  src="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75"
+                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75 2x"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+                <noscript />
+              </div>
+            </a>
+          </div>
+          <div
+            class="relative p-2 m-auto"
+          >
+            <a
+              href="https://www.gatesfoundation.org/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <div
+                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+              >
+                <div
+                  style="box-sizing: border-box; display: block; max-width: 100%;"
+                >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjA0IiBoZWlnaHQ9IjQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIvPg=="
+                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
+                  />
+                </div>
+                <img
+                  alt="The Bill & Melinda Gates Foundation"
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  src="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75"
+                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75 2x"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+                <noscript />
+              </div>
+            </a>
+          </div>
+          <div
+            class="relative p-2 m-auto"
+          >
+            <a
+              href="https://www.sida.se/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <div
+                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+              >
+                <div
+                  style="box-sizing: border-box; display: block; max-width: 100%;"
+                >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAyIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
+                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
+                  />
+                </div>
+                <img
+                  alt="The Swedish International Development Cooperation Agency Logo"
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  src="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75"
+                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=128&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75 2x"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+                <noscript />
+              </div>
+            </a>
+          </div>
+          <div
+            class="relative p-2 m-auto"
+          >
+            <a
+              href="https://www.gov.uk/government/organisations/foreign-commonwealth-development-office"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <div
+                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+              >
+                <div
+                  style="box-sizing: border-box; display: block; max-width: 100%;"
+                >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
+                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
+                  />
+                </div>
+                <img
+                  alt="The Foreign, Commonwealth & Development Office Logo"
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  src="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75"
+                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=64&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75 2x"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+                <noscript />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="2xl:px-24 my-3 xl:my-0"
+      >
+        <div
+          class="border border-t-0 border-dial-gray"
+        />
+      </div>
+      <div
+        class="px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap justify-center 2xl:justify-start mx-auto max-w-catalog"
+      >
+        <div
+          class="w-full lg:max-w-2/4 2xl:max-w-prose flex-auto my-auto md:text-center 2xl:text-left"
+        >
+          
+    We are also thankful for direct support for this Catalog of Digital Solutions provided
+    by the following partners:
+  
+        </div>
+        <div
+          class="h-auto w-72 relative p-2 my-auto"
+        >
+          <a
+            href="https://www.giz.de/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <div
+              style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+            >
+              <div
+                style="box-sizing: border-box; display: block; max-width: 100%;"
+              >
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTU3MCIgaGVpZ2h0PSI4NzkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
+                  style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
+                />
+              </div>
+              <img
+                alt="The German Corporation for International Cooperation GmbH Logo"
+                data-nimg="intrinsic"
+                decoding="async"
+                src="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75"
+                srcset="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=1920&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75 2x"
+                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              />
+              <noscript />
+            </div>
+          </a>
+        </div>
+        <div
+          class="h-auto w-72 relative p-2 my-auto"
+        >
+          <a
+            href="https://www.bmz.de/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <div
+              style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+            >
+              <div
+                style="box-sizing: border-box; display: block; max-width: 100%;"
+              >
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTE1MiIgaGVpZ2h0PSI1MzYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
+                  style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
+                />
+              </div>
+              <img
+                alt="The Federal Ministry for Economic Cooperation and Development Logo"
+                data-nimg="intrinsic"
+                decoding="async"
+                src="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75"
+                srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=1200&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75 2x"
+                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              />
+              <noscript />
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="relative w-full bg-dial-gray text-dial-purple-light leading-none text-base"
+    >
+      <div
+        class="px-4 pb-4 pt-8 lg:px-10 2xl:pt-12 2xl:pb-8 2xl:px-24 flex flex-row flex-wrap mx-auto max-w-catalog"
+      >
+        <div
+          class="py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light"
+        >
+          <a
+            class="border-b-2 border-transparent hover:border-dial-yellow"
+            href="https://digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5"
+            rel="noreferrer"
+            target="_blank"
+          >
+            SIGN UP FOR OUR NEWSLETTER
+          </a>
+        </div>
+        <div
+          class="py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light"
+        >
+          <a
+            class="border-b-2 border-transparent hover:border-dial-yellow"
+            href="https://gitlab.com/dial/online-catalog/product-registry"
+            rel="noreferrer"
+            target="_blank"
+          >
+            VIEW THIS PROJECT ON GITLAB
+          </a>
+        </div>
+        <div
+          class="flex-grow mt-4 flex flex-row"
+        >
+          <div
+            class="py-2 px-0 lg:px-2 rounded-md flex-grow text-right"
+          >
+            Follow DIAL on social media
+          </div>
+          <div
+            class="p-2 rounded-md bg-dial-gray-light mx-2"
+          >
+            <a
+              class="border-b-2 border-transparent hover:border-dial-yellow"
+              href="https://facebook.com/DigitalImpactAlliance"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <svg
+                class="inline"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 320 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div
+            class="p-2 rounded-md bg-dial-gray-light"
+          >
+            <a
+              class="border-b-2 border-transparent hover:border-dial-yellow"
+              href="https://twitter.com/DIAL_Community"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <svg
+                class="inline"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div
+            class="p-2 rounded-md bg-dial-gray-light mx-2"
+          >
+            <a
+              class="border-b-2 border-transparent hover:border-dial-yellow"
+              href="https://www.instagram.com/dial_community"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <svg
+                class="inline"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 448 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div
+            class="p-2 rounded-md bg-dial-gray-light mx-2"
+          >
+            <a
+              class="border-b-2 border-transparent hover:border-dial-yellow"
+              href="https://www.linkedin.com/company/digital-impact-alliance/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <svg
+                class="inline"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 448 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="2xl:px-24"
+      >
+        <div
+          class="border border-t-0 border-dial-gray-light"
+        />
+      </div>
+      <div
+        class="px-4 pt-4 pb-8 lg:px-10 2xl:px-24 2xl:pt-8 2xl:pb-12 flex flex-row flex-wrap mx-auto max-w-catalog"
+      >
+        <div
+          class="w-full flex flex-row flex-wrap gap-3 leading-none text-base place-content-center"
+        >
+          <div
+            class="py-2 px-0 2xl:px-2 text-center"
+          >
+            <span>
+              Icons provided unmodified by 
+               
+            </span>
+            <a
+              class="border-b-2 border-transparent hover:border-dial-yellow"
+              href="https://fontawesome.com/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              FontAwesome
+            </a>
+            <span>
+               and 
+            </span>
+            <a
+              class="border-b-2 border-transparent hover:border-dial-yellow"
+              href="https://www.globalgoals.org/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              The Global Goals for Sustainable Development
+            </a>
+          </div>
+        </div>
+        <div
+          class="w-full flex flex-row flex-wrap gap-3 leading-none text-base place-content-center"
+        >
+          <div
+            class="py-2 order-last xl:order-first"
+          >
+            © 
+            2022
+             
+            DIGITAL IMPACT ALLIANCE
+          </div>
+          <div
+            class="py-2 px-3 rounded-md bg-dial-gray-light"
+          >
+            <a
+              class="border-b-2 border-transparent hover:border-dial-yellow"
+              href="/privacy-policy"
+              rel="noreferrer"
+              target="_blank"
+            >
+              PRIVACY POLICY
+            </a>
+          </div>
+          <div
+            class="py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
+          >
+            REPORT ISSUE
+          </div>
+          <div
+            class="py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
+          >
+            CONTACT US
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+`;
+
+exports[`Unit test for the EditUser component. Should match snapshot - unauthorized. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <header
+    class="z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white"
+  >
+    <div
+      class="flex flex-wrap justify-center items-center py-3 lg:py-0 max-w-catalog header-min-height mx-auto"
+    >
+      <div
+        class="flex-1 flex my-auto"
+      >
+        <a
+          class="px-6 lg:px-8"
+          href="/"
+        >
+          <div
+            class="text-dial-blue-darkest text-xs"
+          >
+            Digital Impact Alliance
+          </div>
+          <div
+            class="font-bold text-base text-dial-blue-darkest"
+          >
+            <span
+              class="block"
+            >
+              Catalog of
+               
+              Digital Solutions
+            </span>
+          </div>
+        </a>
+      </div>
+      <label
+        class="pointer-cursor block lg:hidden px-8"
+        for="menu-toggle"
+      >
+        <svg
+          class="fill-current text-gray-900"
+          height="20"
+          viewBox="0 0 20 20"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>
+            Menu
+          </title>
+          <path
+            d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"
+          />
+        </svg>
+      </label>
+      <input
+        class="hidden"
+        id="menu-toggle"
+        type="checkbox"
+      />
+      <div
+        class="hidden lg:flex lg:items-center lg:w-auto w-full"
+        id="menu"
+      >
+        <nav>
+          <ul
+            class="block lg:hidden mt-6 text-sm"
+            style="min-height: 405px;"
+          >
+            <li
+              class="py-4 border-b"
+            >
+              <a
+                class="mx-6 font-semibold"
+                href="/switch-language"
+              >
+                Select Language
+                <svg
+                  class="text-base inline ml-2 text-base"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
+                    />
+                  </g>
+                </svg>
+              </a>
+            </li>
+            <li
+              class="py-4 border-b"
+            >
+              <a
+                class="mx-6 font-semibold"
+                href="/expand-catalog"
+              >
+                Catalog
+                <svg
+                  class="text-base inline ml-2"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
+                    />
+                  </g>
+                </svg>
+              </a>
+            </li>
+            <li
+              class="py-4 border-b"
+            >
+              <a
+                class="mx-6 font-semibold"
+                href="about"
+              >
+                Recommendation Wizard
+              </a>
+            </li>
+            <li
+              class="py-4 border-b"
+            >
+              <a
+                class="mx-6 font-semibold"
+                href="/expand-resources"
+              >
+                Resources
+                <svg
+                  class="text-base inline ml-2"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
+                    />
+                  </g>
+                </svg>
+              </a>
+            </li>
+            <li
+              class="py-4 border-b"
+            >
+              <a
+                class="mx-6 font-semibold"
+                href="about"
+              >
+                About
+              </a>
+            </li>
+            <li
+              class="py-4 border-b font-semibold"
+            >
+              <a
+                class="mx-6 font-semibold"
+                href="/admin"
+              >
+                Admin Menu
+                <svg
+                  class="text-base inline ml-2"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
+                    />
+                  </g>
+                </svg>
+              </a>
+            </li>
+            <li
+              class="py-4 border-b"
+            >
+              <a
+                class="mx-2 inline bg-dial-yellow-light pl-2 pr-3 py-3 rounded font-semibold"
+                href="signOut"
+              >
+                <img
+                  alt="Back"
+                  class="inline mx-2"
+                  height="20px"
+                  src="/icons/user.svg"
+                  width="20px"
+                />
+                <div
+                  class="inline text-sm"
+                />
+                <svg
+                  class="text-base inline ml-2"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
+                    />
+                  </g>
+                </svg>
+              </a>
+            </li>
+            <li
+              class="py-4"
+            >
+              <a
+                class="mx-6 font-semibold"
+                href="https://docs.osc.dial.community/projects/product-registry/en/latest/"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Help
+              </a>
+            </li>
+          </ul>
+          
+          <ul
+            class="hidden lg:flex items-center justify-between text-base text-dial-blue-darkest pt-4 lg:pt-0"
+          >
+            <li
+              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+            >
+              <a
+                class="
+    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
+   lg:mb-0 mb-2 inline"
+                href="resourceMenu"
+                id="resourceMenu"
+              >
+                Resources
+                <svg
+                  class="ml-1 inline text-2xl"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <div
+                class="hidden 
+    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
+  "
+                role="menu"
+              >
+                <div
+                  class="py-1"
+                  role="none"
+                >
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="/covid-19-resources"
+                    role="menuitem"
+                  >
+                    COVID-19 Resources
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="//resources.dial.community/"
+                    rel="noreferrer"
+                    role="menuitem"
+                    target="_blank"
+                  >
+                    DIAL Resources Portal
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="//digitalimpactalliance.org/research/sdg-digital-investment-framework/"
+                    rel="noreferrer"
+                    role="menuitem"
+                    target="_blank"
+                  >
+                    SDG Framework
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li
+              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+            >
+              <a
+                class="
+    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
+   lg:mb-0 mb-2 inline"
+                href="aboutMenu"
+                id="aboutMenu"
+              >
+                About
+                <svg
+                  class="ml-1 inline text-2xl"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <div
+                class="hidden 
+    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
+  "
+                role="menu"
+              >
+                <div
+                  class="py-1"
+                  role="none"
+                >
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="/about"
+                    role="menuitem"
+                  >
+                    About
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="//solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/overview"
+                    rel="noreferrer"
+                    role="menuitem"
+                    target="_blank"
+                  >
+                    Catalog Wiki Page
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li
+              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+            />
+            <li
+              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+            >
+              <a
+                class="
+    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
+   lg:mb-0 mb-2 inline bg-dial-yellow-light pt-2 pb-2 rounded"
+                data-testid="user-menu"
+                href="signOut"
+                id="userMenu"
+              >
+                <img
+                  alt="Back"
+                  class="inline mx-2"
+                  height="20px"
+                  src="/icons/user.svg"
+                  width="20px"
+                />
+                <div
+                  class="inline text-xs"
+                  id="userMenu"
+                >
+                  <svg
+                    class="ml-1 inline text-2xl"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </a>
+              <div
+                class="hidden 
+    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
+  "
+                role="menu"
+              >
+                <div
+                  class="py-1"
+                  role="none"
+                >
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="/auth/profile"
+                    role="menuitem"
+                  >
+                    My Profile
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="en"
+                    role="menuitem"
+                  >
+                    Sign Out
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li
+              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+            >
+              <a
+                class="
+    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
+   lg:mb-0 mb-2 inline"
+                href="helpMenu"
+                id="helpMenu"
+              >
+                Help
+                <svg
+                  class="ml-1 inline text-2xl"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <div
+                class="hidden 
+    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
+  "
+                role="menu"
+              >
+                <a
+                  class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                  href="https://docs.osc.dial.community/projects/product-registry/en/latest/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  Documentation Portal
+                </a>
+                <a
+                  class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                  href="#"
+                >
+                  Report Issue
+                </a>
+              </div>
+            </li>
+            <li>
+              <div
+                class="border border-gray-400 border-t-0 lg:border-l-0 lg:h-9"
+              />
+            </li>
+            <li
+              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+            >
+              <a
+                class="
+    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
+   lg:mb-0 mb-2 inline"
+                href="switchLanguage"
+                id="switchLanguage"
+              >
+                Select Language
+                <svg
+                  class="ml-1 inline text-2xl"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <div
+                class="hidden 
+    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
+  "
+                role="menu"
+              >
+                <div
+                  class="py-1"
+                  role="none"
+                >
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="en"
+                    role="menuitem"
+                  >
+                    English (en)
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="de"
+                    role="menuitem"
+                  >
+                    Deutsch (de)
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="es"
+                    role="menuitem"
+                  >
+                    Español (es)
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="fr"
+                    role="menuitem"
+                  >
+                    Francais (fr)
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="pt"
+                    role="menuitem"
+                  >
+                    Português (pt)
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="sw"
+                    role="menuitem"
+                  >
+                    Kiswahili (sw)
+                  </a>
+                  <a
+                    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+                    href="cs"
+                    role="menuitem"
+                  >
+                    Czech (cs)
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div>
+    <div
+      class="text-button-gray text-lg"
+      style="margin-top: 10%; margin-bottom: 10%;"
+    >
+      <svg
+        class="w-full mb-5"
+        fill="currentColor"
+        height="3em"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 512 512"
+        width="3em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+        />
+      </svg>
+      <div
+        class="text-center mt-5"
+      >
+        You are not authorized to view this page
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div
+      class="block"
+    />
+    <div
+      class="relative w-full bg-dial-gray-light text-dial-purple-light"
+    >
+      <div
+        class="px-4 2xl:px-24 pt-8 2xl:pb-8 lg:flex lg:flex-row flex-wrap justify-center 2xl:justify-start mx-auto max-w-catalog"
+      >
+        <div
+          class="max-w-prose sm:w-full lg:flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto text-center 2xl:text-left"
+        >
+          
+    The Digital Impact Alliance is a partnership amongst some of the world’s most active
+    digital development champions. We are grateful for the support of our Founding Partners.
+  
+        </div>
+        <div
+          class="flex-grow flex flex-row flex-wrap place-content-center"
+        >
+          <div
+            class="relative p-2 lg:my-auto"
+          >
+            <a
+              href="https://unfoundation.org/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <div
+                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+              >
+                <div
+                  style="box-sizing: border-box; display: block; max-width: 100%;"
+                >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQ2IiBoZWlnaHQ9IjU5IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIvPg=="
+                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
+                  />
+                </div>
+                <img
+                  alt="The United Nations Foundation Logo"
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  src="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75"
+                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75 2x"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+                <noscript />
+              </div>
+            </a>
+          </div>
+          <div
+            class="relative p-2 m-auto"
+          >
+            <a
+              href="https://www.gatesfoundation.org/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <div
+                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+              >
+                <div
+                  style="box-sizing: border-box; display: block; max-width: 100%;"
+                >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjA0IiBoZWlnaHQ9IjQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIvPg=="
+                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
+                  />
+                </div>
+                <img
+                  alt="The Bill & Melinda Gates Foundation"
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  src="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75"
+                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75 2x"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+                <noscript />
+              </div>
+            </a>
+          </div>
+          <div
+            class="relative p-2 m-auto"
+          >
+            <a
+              href="https://www.sida.se/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <div
+                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+              >
+                <div
+                  style="box-sizing: border-box; display: block; max-width: 100%;"
+                >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAyIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
+                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
+                  />
+                </div>
+                <img
+                  alt="The Swedish International Development Cooperation Agency Logo"
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  src="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75"
+                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=128&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75 2x"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+                <noscript />
+              </div>
+            </a>
+          </div>
+          <div
+            class="relative p-2 m-auto"
+          >
+            <a
+              href="https://www.gov.uk/government/organisations/foreign-commonwealth-development-office"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <div
+                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+              >
+                <div
+                  style="box-sizing: border-box; display: block; max-width: 100%;"
+                >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
+                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
+                  />
+                </div>
+                <img
+                  alt="The Foreign, Commonwealth & Development Office Logo"
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  src="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75"
+                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=64&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75 2x"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+                <noscript />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="2xl:px-24 my-3 xl:my-0"
+      >
+        <div
+          class="border border-t-0 border-dial-gray"
+        />
+      </div>
+      <div
+        class="px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap justify-center 2xl:justify-start mx-auto max-w-catalog"
+      >
+        <div
+          class="w-full lg:max-w-2/4 2xl:max-w-prose flex-auto my-auto md:text-center 2xl:text-left"
+        >
+          
+    We are also thankful for direct support for this Catalog of Digital Solutions provided
+    by the following partners:
+  
+        </div>
+        <div
+          class="h-auto w-72 relative p-2 my-auto"
+        >
+          <a
+            href="https://www.giz.de/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <div
+              style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+            >
+              <div
+                style="box-sizing: border-box; display: block; max-width: 100%;"
+              >
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTU3MCIgaGVpZ2h0PSI4NzkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
+                  style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
+                />
+              </div>
+              <img
+                alt="The German Corporation for International Cooperation GmbH Logo"
+                data-nimg="intrinsic"
+                decoding="async"
+                src="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75"
+                srcset="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=1920&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75 2x"
+                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              />
+              <noscript />
+            </div>
+          </a>
+        </div>
+        <div
+          class="h-auto w-72 relative p-2 my-auto"
+        >
+          <a
+            href="https://www.bmz.de/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <div
+              style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+            >
+              <div
+                style="box-sizing: border-box; display: block; max-width: 100%;"
+              >
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTE1MiIgaGVpZ2h0PSI1MzYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
+                  style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
+                />
+              </div>
+              <img
+                alt="The Federal Ministry for Economic Cooperation and Development Logo"
+                data-nimg="intrinsic"
+                decoding="async"
+                src="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75"
+                srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=1200&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75 2x"
+                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              />
+              <noscript />
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="relative w-full bg-dial-gray text-dial-purple-light leading-none text-base"
+    >
+      <div
+        class="px-4 pb-4 pt-8 lg:px-10 2xl:pt-12 2xl:pb-8 2xl:px-24 flex flex-row flex-wrap mx-auto max-w-catalog"
+      >
+        <div
+          class="py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light"
+        >
+          <a
+            class="border-b-2 border-transparent hover:border-dial-yellow"
+            href="https://digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5"
+            rel="noreferrer"
+            target="_blank"
+          >
+            SIGN UP FOR OUR NEWSLETTER
+          </a>
+        </div>
+        <div
+          class="py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light"
+        >
+          <a
+            class="border-b-2 border-transparent hover:border-dial-yellow"
+            href="https://gitlab.com/dial/online-catalog/product-registry"
+            rel="noreferrer"
+            target="_blank"
+          >
+            VIEW THIS PROJECT ON GITLAB
+          </a>
+        </div>
+        <div
+          class="flex-grow mt-4 flex flex-row"
+        >
+          <div
+            class="py-2 px-0 lg:px-2 rounded-md flex-grow text-right"
+          >
+            Follow DIAL on social media
+          </div>
+          <div
+            class="p-2 rounded-md bg-dial-gray-light mx-2"
+          >
+            <a
+              class="border-b-2 border-transparent hover:border-dial-yellow"
+              href="https://facebook.com/DigitalImpactAlliance"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <svg
+                class="inline"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 320 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div
+            class="p-2 rounded-md bg-dial-gray-light"
+          >
+            <a
+              class="border-b-2 border-transparent hover:border-dial-yellow"
+              href="https://twitter.com/DIAL_Community"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <svg
+                class="inline"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div
+            class="p-2 rounded-md bg-dial-gray-light mx-2"
+          >
+            <a
+              class="border-b-2 border-transparent hover:border-dial-yellow"
+              href="https://www.instagram.com/dial_community"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <svg
+                class="inline"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 448 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div
+            class="p-2 rounded-md bg-dial-gray-light mx-2"
+          >
+            <a
+              class="border-b-2 border-transparent hover:border-dial-yellow"
+              href="https://www.linkedin.com/company/digital-impact-alliance/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <svg
+                class="inline"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 448 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="2xl:px-24"
+      >
+        <div
+          class="border border-t-0 border-dial-gray-light"
+        />
+      </div>
+      <div
+        class="px-4 pt-4 pb-8 lg:px-10 2xl:px-24 2xl:pt-8 2xl:pb-12 flex flex-row flex-wrap mx-auto max-w-catalog"
+      >
+        <div
+          class="w-full flex flex-row flex-wrap gap-3 leading-none text-base place-content-center"
+        >
+          <div
+            class="py-2 px-0 2xl:px-2 text-center"
+          >
+            <span>
+              Icons provided unmodified by 
+               
+            </span>
+            <a
+              class="border-b-2 border-transparent hover:border-dial-yellow"
+              href="https://fontawesome.com/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              FontAwesome
+            </a>
+            <span>
+               and 
+            </span>
+            <a
+              class="border-b-2 border-transparent hover:border-dial-yellow"
+              href="https://www.globalgoals.org/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              The Global Goals for Sustainable Development
+            </a>
+          </div>
+        </div>
+        <div
+          class="w-full flex flex-row flex-wrap gap-3 leading-none text-base place-content-center"
+        >
+          <div
+            class="py-2 order-last xl:order-first"
+          >
+            © 
+            2022
+             
+            DIGITAL IMPACT ALLIANCE
+          </div>
+          <div
+            class="py-2 px-3 rounded-md bg-dial-gray-light"
+          >
+            <a
+              class="border-b-2 border-transparent hover:border-dial-yellow"
+              href="/privacy-policy"
+              rel="noreferrer"
+              target="_blank"
+            >
+              PRIVACY POLICY
+            </a>
+          </div>
+          <div
+            class="py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
+          >
+            REPORT ISSUE
+          </div>
+          <div
+            class="py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
+          >
+            CONTACT US
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+`;

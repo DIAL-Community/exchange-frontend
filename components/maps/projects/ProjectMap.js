@@ -71,7 +71,7 @@ const ProjectMap = (props) => {
   const { initialCountry, center, zoom } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { loading: loadingProjects, data: projectData } = useQuery(PROJECTS_QUERY, {
     variables: {

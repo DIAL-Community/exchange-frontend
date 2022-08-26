@@ -1,11 +1,11 @@
 import { useIntl } from 'react-intl'
 
-const contactJustifyStyle = 'flex my-5 px-4'
-const contactTextStyle = 'inline-block card-title text-button-gray'
+const contactJustifyStyle = 'flex my-4 px-4 h-8'
+const contactTextStyle = 'inline-block font-semibold text-button-gray'
 
 const ContactCard = ({ contact, listType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     listType === 'list'

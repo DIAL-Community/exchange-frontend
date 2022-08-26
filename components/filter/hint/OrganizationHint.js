@@ -1,13 +1,14 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
+import Image from 'next/image'
 import { FilterContext } from '../../context/FilterContext'
 
 const OrganizationHint = () => {
   const { setHintDisplayed } = useContext(FilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <>
@@ -20,7 +21,13 @@ const OrganizationHint = () => {
             <div className='text-base px-8'>
               {format('organization.hint.subtitle')}
             </div>
-            <img className='w-48 h-48 mt-8 mx-auto xl:mt-0' src='images/tiles/organization.svg' alt='' />
+            <div className='ml-20'>
+              <Image
+                height={200}
+                width={200}
+                src='/images/tiles/organization.svg'
+                alt='' />
+            </div>
           </div>
         </div>
         <div className='col-span-11'>

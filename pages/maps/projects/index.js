@@ -1,5 +1,6 @@
-import Head from 'next/head'
+import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import ProjectMap from '../../../components/maps/projects/ProjectMap'
@@ -12,26 +13,26 @@ import ClientOnly from '../../../lib/ClientOnly'
 
 const ProjectMapPage = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = useCallback((id) => formatMessage({ id }), [formatMessage])
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-      <Header />
-      <TabNav activeTab='filter.entity.maps' />
-      <MobileNav activeTab='filter.entity.maps' />
+      <NextSeo
+        title={format('map.header')}
+        description={format('seo.description.maps')}
+      />
+      <Header/>
+      <TabNav activeTab='filter.entity.maps'/>
+      <MobileNav activeTab='filter.entity.maps'/>
       <ClientOnly>
         <PageContent
           activeTab='filter.entity.maps'
-          filter={<MapFilter />}
-          content={<ProjectMap />}
-          activeFilter={<MapActiveFilter />}
+          filter={<MapFilter/>}
+          content={<ProjectMap/>}
+          activeFilter={<MapActiveFilter/>}
         />
       </ClientOnly>
-      <Footer />
+      <Footer/>
     </>
   )
 }

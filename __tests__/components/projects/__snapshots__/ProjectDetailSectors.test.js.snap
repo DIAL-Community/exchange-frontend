@@ -251,16 +251,17 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
       </button>
     </div>
     <div
-      class="flex flex-col gap-2"
+      class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
         class="border-3 border-transparent"
+        data-testid="sector-card"
       >
         <div
-          class="border border-dial-gray card-drop-shadow"
+          class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
         >
           <div
-            class="flex justify-between my-5 px-4"
+            class="flex items-center p-4"
           >
             <div
               class="inline-block font-semibold text-button-gray"
@@ -311,16 +312,17 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
       </button>
     </div>
     <div
-      class="flex flex-col gap-2"
+      class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
         class="border-3 border-transparent"
+        data-testid="sector-card"
       >
         <div
-          class="border border-dial-gray card-drop-shadow"
+          class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
         >
           <div
-            class="flex justify-between my-5 px-4"
+            class="flex items-center p-4"
           >
             <div
               class="inline-block font-semibold text-button-gray"
@@ -520,16 +522,17 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
       </div>
     </div>
     <div
-      class="flex flex-col gap-2"
+      class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
         class="border-3 border-transparent"
+        data-testid="sector-card"
       >
         <div
-          class="border border-dial-gray card-drop-shadow"
+          class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
         >
           <div
-            class="flex justify-between my-5 px-4"
+            class="flex items-center p-4"
           >
             <div
               class="inline-block font-semibold text-button-gray"

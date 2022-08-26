@@ -1,3 +1,5 @@
+const withTM = require('next-transpile-modules')(['react-comments-section'])
+
 const AnyContentSecurityPolicy = `
   frame-ancestors *;
 `
@@ -6,15 +8,14 @@ const SelfContentSecurityPolicy = `
   frame-ancestors 'self';
 `
 
-module.exports = {
+module.exports = withTM({
   i18n: {
     locales: ['en', 'fr', 'de', 'cs', 'es', 'pt', 'sw'],
     defaultLocale: 'en',
     localeDetection: false
   },
   images: {
-    loader: 'default',
-    domains: ['strapi.dial.community', 'localhost'],
+    domains: ['localhost','solutions-dev.dial.community','solutions.dial.community','strapi.dial.community']
   },
   async headers() {
     return [
@@ -38,4 +39,4 @@ module.exports = {
       }
     ]
   }
-}
+})

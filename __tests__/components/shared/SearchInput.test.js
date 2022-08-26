@@ -20,7 +20,7 @@ describe('Unit test for the SearchInput component.', () => {
   test('Should call onChange function - updated value.', () => {
     const onChange = jest.fn()
     const input = render(<SearchInput value='test' onChange={onChange} />).getByTestId(TEST_ID)
-    fireEvent.change(input, { target: { value: 'updated' }})
+    fireEvent.change(input, { target: { value: 'updated' } })
     expect(onChange).toBeCalledTimes(1)
   })
 

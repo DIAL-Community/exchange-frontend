@@ -55,7 +55,7 @@ query SearchSDGs(
 
 const SDGList = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
@@ -107,13 +107,13 @@ const SDGListQuery = () => {
   const { sdgs, search } = useContext(SDGFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { loading, error, data, fetchMore } = useQuery(SDGS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       sdgs: sdgs.map(organization => organization.value),
-      search: search
+      search
     }
   })
 
@@ -123,7 +123,7 @@ const SDGListQuery = () => {
         after: pageInfo.endCursor,
         first: DEFAULT_PAGE_SIZE,
         sdgs: sdgs.map(sdg => sdg.value),
-        search: search
+        search
       }
     })
   }

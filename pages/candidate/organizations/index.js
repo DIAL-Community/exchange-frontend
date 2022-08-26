@@ -1,6 +1,4 @@
-import Head from 'next/head'
 import { useContext } from 'react'
-import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
@@ -18,18 +16,11 @@ const OrganizationListQuery = dynamic(() =>
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const Organizations = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-
   const { search } = useContext(OrganizationFilterContext)
   const { setSearch } = useContext(OrganizationFilterDispatchContext)
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <QueryNotification />
       <GradientBackground />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />

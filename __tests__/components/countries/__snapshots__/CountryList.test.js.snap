@@ -1,0 +1,605 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the CountryList component Should render error message when apollo returning error. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Toastify"
+      />
+      <div
+        class="text-button-gray text-lg"
+        style="margin-top: 10%;"
+      >
+        <svg
+          class="w-full mb-5"
+          fill="currentColor"
+          height="3em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 512 512"
+          width="3em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+          />
+        </svg>
+        <div
+          class="text-center mt-5"
+        >
+          Error fetching data. Please check your network connection.
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Toastify"
+    />
+    <div
+      class="text-button-gray text-lg"
+      style="margin-top: 10%;"
+    >
+      <svg
+        class="w-full mb-5"
+        fill="currentColor"
+        height="3em"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 512 512"
+        width="3em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+        />
+      </svg>
+      <div
+        class="text-center mt-5"
+      >
+        Error fetching data. Please check your network connection.
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Unit test for the CountryList component Should render list of countries. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Toastify"
+      />
+      <div
+        class="infinite-scroll-component__outerdiv"
+      >
+        <div
+          class="infinite-scroll-component relative px-2 mt-3 pb-8 max-w-catalog mx-auto"
+          style="height: auto; overflow: auto;"
+        >
+          <div
+            class="grid grid-cols-1"
+          >
+            <a
+              href="/countries/af"
+            >
+              <div
+                class="border-3 border-transparent hover:border-dial-yellow"
+              >
+                <div
+                  class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                >
+                  <div
+                    class="p-4 font-semibold text-button-gray"
+                  >
+                    Afghanistan
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              href="/countries/al"
+            >
+              <div
+                class="border-3 border-transparent hover:border-dial-yellow"
+              >
+                <div
+                  class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                >
+                  <div
+                    class="p-4 font-semibold text-button-gray"
+                  >
+                    Albania
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div
+            class="relative text-center mt-3"
+          >
+            Loading more data ...
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Toastify"
+    />
+    <div
+      class="infinite-scroll-component__outerdiv"
+    >
+      <div
+        class="infinite-scroll-component relative px-2 mt-3 pb-8 max-w-catalog mx-auto"
+        style="height: auto; overflow: auto;"
+      >
+        <div
+          class="grid grid-cols-1"
+        >
+          <a
+            href="/countries/af"
+          >
+            <div
+              class="border-3 border-transparent hover:border-dial-yellow"
+            >
+              <div
+                class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+              >
+                <div
+                  class="p-4 font-semibold text-button-gray"
+                >
+                  Afghanistan
+                </div>
+              </div>
+            </div>
+          </a>
+          <a
+            href="/countries/al"
+          >
+            <div
+              class="border-3 border-transparent hover:border-dial-yellow"
+            >
+              <div
+                class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+              >
+                <div
+                  class="p-4 font-semibold text-button-gray"
+                >
+                  Albania
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="relative text-center mt-3"
+        >
+          Loading more data ...
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Unit test for the CountryList component Should render text with anchor for authorized users 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Toastify"
+      />
+      <div
+        class="infinite-scroll-component__outerdiv"
+      >
+        <div
+          class="infinite-scroll-component relative px-2 mt-3 pb-8 max-w-catalog mx-auto"
+          style="height: auto; overflow: auto;"
+        >
+          <div
+            class="grid grid-cols-1"
+          >
+            <a
+              href="/countries/af"
+            >
+              <div
+                class="border-3 border-transparent hover:border-dial-yellow"
+              >
+                <div
+                  class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                >
+                  <div
+                    class="p-4 font-semibold text-button-gray"
+                  >
+                    Afghanistan
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              href="/countries/al"
+            >
+              <div
+                class="border-3 border-transparent hover:border-dial-yellow"
+              >
+                <div
+                  class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+                >
+                  <div
+                    class="p-4 font-semibold text-button-gray"
+                  >
+                    Albania
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div
+            class="relative text-center mt-3"
+          >
+            Loading more data ...
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Toastify"
+    />
+    <div
+      class="infinite-scroll-component__outerdiv"
+    >
+      <div
+        class="infinite-scroll-component relative px-2 mt-3 pb-8 max-w-catalog mx-auto"
+        style="height: auto; overflow: auto;"
+      >
+        <div
+          class="grid grid-cols-1"
+        >
+          <a
+            href="/countries/af"
+          >
+            <div
+              class="border-3 border-transparent hover:border-dial-yellow"
+            >
+              <div
+                class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+              >
+                <div
+                  class="p-4 font-semibold text-button-gray"
+                >
+                  Afghanistan
+                </div>
+              </div>
+            </div>
+          </a>
+          <a
+            href="/countries/al"
+          >
+            <div
+              class="border-3 border-transparent hover:border-dial-yellow"
+            >
+              <div
+                class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+              >
+                <div
+                  class="p-4 font-semibold text-button-gray"
+                >
+                  Albania
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="relative text-center mt-3"
+        >
+          Loading more data ...
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Unit test for the CountryList component Should render text without anchor for unauthorized users 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Toastify"
+      />
+      <div
+        class="infinite-scroll-component__outerdiv"
+      >
+        <div
+          class="infinite-scroll-component relative px-2 mt-3 pb-8 max-w-catalog mx-auto"
+          style="height: auto; overflow: auto;"
+        >
+          <div
+            class="grid grid-cols-1"
+          >
+            <div
+              class="bg-white border border-dial-gray card-drop-shadow"
+            >
+              <div
+                class="p-4 font-semibold text-button-gray"
+              >
+                Afghanistan
+              </div>
+            </div>
+            <div
+              class="bg-white border border-dial-gray card-drop-shadow"
+            >
+              <div
+                class="p-4 font-semibold text-button-gray"
+              >
+                Albania
+              </div>
+            </div>
+          </div>
+          <div
+            class="relative text-center mt-3"
+          >
+            Loading more data ...
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Toastify"
+    />
+    <div
+      class="infinite-scroll-component__outerdiv"
+    >
+      <div
+        class="infinite-scroll-component relative px-2 mt-3 pb-8 max-w-catalog mx-auto"
+        style="height: auto; overflow: auto;"
+      >
+        <div
+          class="grid grid-cols-1"
+        >
+          <div
+            class="bg-white border border-dial-gray card-drop-shadow"
+          >
+            <div
+              class="p-4 font-semibold text-button-gray"
+            >
+              Afghanistan
+            </div>
+          </div>
+          <div
+            class="bg-white border border-dial-gray card-drop-shadow"
+          >
+            <div
+              class="p-4 font-semibold text-button-gray"
+            >
+              Albania
+            </div>
+          </div>
+        </div>
+        <div
+          class="relative text-center mt-3"
+        >
+          Loading more data ...
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

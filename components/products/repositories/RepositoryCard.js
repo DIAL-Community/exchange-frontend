@@ -9,7 +9,7 @@ const repositoriesPath = convertToKey('Repositories')
 
 const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   useEffect(() => {
     ReactTooltip.rebuild()

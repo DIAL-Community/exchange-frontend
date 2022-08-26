@@ -1,37 +1,23 @@
-import dynamic from 'next/dynamic'
-import { MdClose } from 'react-icons/md'
+import classNames from 'classnames'
 import { useIntl } from 'react-intl'
-import { asyncSelectStyles } from '../../../lib/utilities'
+import Pill from '../../shared/Pill'
+import Select from '../../shared/Select'
 
-// https://github.com/JedWatson/react-select/issues/3590
-const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
-
-const customStyles = (controlSize = '12rem') => {
-  return {
-    ...asyncSelectStyles,
-    control: (provided) => ({
-      ...provided,
-      width: controlSize,
-      boxShadow: 'none',
-      cursor: 'pointer'
-    }),
-    option: (provided) => ({
-      ...provided,
-      cursor: 'pointer'
-    }),
-    menuPortal: (provided) => ({ ...provided, zIndex: 30 }),
-    menu: (provided) => ({ ...provided, zIndex: 30 })
-  }
-}
-
-export const DatasetTypeSelect = (props) => {
-  const { datasetTypes, setDatasetTypes, containerStyles, controlSize } = props
-
+export const DatasetTypeSelect = ({
+  datasetTypes,
+  setDatasetTypes,
+  containerStyles = null,
+  controlSize = null,
+  placeholder = null,
+  isSearch = false
+}) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
+
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('datasetType.label') })
 
   const selectDatasetType = (datasetType) => {
-    setDatasetTypes([...datasetTypes.filter(p => p.value !== datasetType.value), datasetType])
+    setDatasetTypes([...datasetTypes.filter(({ value }) => value !== datasetType.value), datasetType])
   }
 
   const options = [
@@ -43,21 +29,22 @@ export const DatasetTypeSelect = (props) => {
   ]
 
   const fetchOptions = async (input) => {
-    return options.filter(o => o.label.indexOf(input) >= 0)
+    return options.filter(({ label }) => label.indexOf(input) >= 0)
   }
 
   return (
-    <div className={`${containerStyles} catalog-filter text-dial-gray-dark flex`}>
-      <AsyncSelect
+    <div className={classNames(containerStyles)} data-testid='dataset-search'>
+      <Select
+        async
         aria-label={format('filter.byEntity', { entity: format('datasetType.label') })}
-        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions={options}
         loadOptions={fetchOptions}
         onChange={selectDatasetType}
-        placeholder={format('filter.byEntity', { entity: format('datasetType.label') })}
-        styles={customStyles(controlSize)}
+        placeholder={controlPlaceholder}
         value=''
+        controlSize={controlSize}
+        isSearch={isSearch}
       />
     </div>
   )
@@ -67,23 +54,23 @@ export const DatasetTypeFilters = (props) => {
   const { datasetTypes, setDatasetTypes } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
-  const removeDatasetType = (datasetTypeId) => {
-    setDatasetTypes(datasetTypes.filter(datasetType => datasetType.value !== datasetTypeId))
+  const removeDatasetType = (datasetTypeValue) => {
+    setDatasetTypes(datasetTypes.filter(({ value }) => value !== datasetTypeValue))
   }
 
   return (
     <>
-      {
-        datasetTypes &&
-          datasetTypes.map(datasetType => (
-            <div key={`filter-${datasetType.label}`} className='px-2 py-1 my-auto rounded-md bg-dial-yellow text-sm text-dial-gray-dark'>
-              {`${format('datasetType.label')}: ${datasetType.label}`}
-              <MdClose className='ml-3 inline cursor-pointer' onClick={() => removeDatasetType(datasetType.value)} />
-            </div>
-          ))
-      }
+      {datasetTypes?.map((datasetType, datasetTypeIdx) => (
+        <div className='py-1' key={datasetTypeIdx}>
+          <Pill
+            key={`filter-${datasetTypeIdx}`}
+            label={`${format('datasetType.label')}: ${datasetType.label}`}
+            onRemove={() => removeDatasetType(datasetType.value)}
+          />
+        </div>
+      ))}
     </>
   )
 }

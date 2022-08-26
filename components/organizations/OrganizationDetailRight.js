@@ -4,24 +4,24 @@ import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useSession } from 'next-auth/client'
 import Breadcrumb from '../shared/breadcrumb'
-import CityCard from '../cities/CityCard'
 import AggregatorCapability from './AggregatorCapability'
 import OrganizationDetailCountries from './OrganizationDetailCountries'
 import OrganizationDetailSectors from './OrganizationDetailSectors'
 import OrganizationDetailProjects from './OrganizationDetailProjects'
 import OrganizationDetailContacts from './OrganizationDetailContacts'
 import OrganizationDetailProducts from './OrganizationDetailProducts'
+import OrganizationDetailOffices from './OrganizationDetailOffices'
 
 const sectionHeaderStyle = 'card-title mb-3 text-dial-gray-dark'
 
 const DynamicOfficeMarker = (props) => {
   const OfficeMarker = useMemo(() => dynamic(
-    () => import('./OfficeMarker'),
+    () => import('../shared/MapMarker'),
     {
       loading: () => <div>Loading Map data ...</div>,
       ssr: false
     }
-  ), [props])
+  ), [])
 
   return <OfficeMarker {...props} />
 }
@@ -38,7 +38,9 @@ const OrganizationDetailRight = ({ organization }) => {
     ? {
       position: [parseFloat(organization.offices[0].latitude), parseFloat(organization.offices[0].longitude)],
       title: organization.name,
-      body: organization.offices[0].name
+      body: organization.offices[0].name,
+      markerImage: '/icons/digiprins/digiprins.png',
+      markerImageAltText: formatMessage({ id: 'image.alt.logoFor' }, { name: format('digitalPrinciple.title') })
     }
     : undefined
 
@@ -96,22 +98,7 @@ const OrganizationDetailRight = ({ organization }) => {
       <div className='fr-view text-dial-gray-dark p-3' data-testid='organization-description'>
         {organization.organizationDescription && parse(organization.organizationDescription.description)}
       </div>
-      {
-        organization.offices.length > 1 &&
-          <div className='mt-12'>
-            <div className={sectionHeaderStyle}>{format('office.other.header')}</div>
-            <div className='grid grid-cols-1 lg:grid-cols-2'>
-              {
-                organization.offices.map((office, i) => {
-                  // Skipping the first one because it is displayed as map marker.
-                  if (i === 0) return <></>
-
-                  return <CityCard key={i} city={office} listType='list' />
-                })
-              }
-            </div>
-          </div>
-      }
+      {canEdit && <OrganizationDetailOffices organization={organization} canEdit={canEdit} />}
       {canEdit && <OrganizationDetailContacts organization={organization}/>}
       {organization.sectors && <OrganizationDetailSectors organization={organization} canEdit={canEdit} />}
       {organization.countries && <OrganizationDetailCountries organization={organization} canEdit={canEdit} />}

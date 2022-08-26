@@ -4,7 +4,7 @@ import { DndProvider } from 'react-dnd'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockRouterImplementation, mockSessionImplementation, render, waitForReactSelectToLoad } from '../../test-utils'
+import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import { PlaybookForm } from '../../../components/playbooks/PlaybookForm'
 import { PlayListProvider } from '../../../components/plays/PlayListContext'
 import { PlayFilterProvider } from '../../../components/context/PlayFilterContext'
@@ -12,9 +12,7 @@ import { PlayPreviewProvider } from '../../../components/plays/PlayPreviewContex
 import { CREATE_PLAYBOOK } from '../../../mutations/playbook'
 import { createPlaybookSuccess, draftPlaybook, publishedPlaybook, testPlaybook } from './data/PlaybookForm'
 
-// Mock next-router calls.
 jest.mock('next/dist/client/router')
-// Mock the next-auth's useSession.
 jest.mock('next-auth/client')
 
 describe('Unit tests for PlaybookForm component.', () => {
@@ -43,7 +41,7 @@ describe('Unit tests for PlaybookForm component.', () => {
         </PlayListProvider>
       </CustomMockedProvider>
     )
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     expect(container).toMatchSnapshot()
   })
 
@@ -61,7 +59,7 @@ describe('Unit tests for PlaybookForm component.', () => {
         </PlayListProvider>
       </CustomMockedProvider>
     )
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     expect(container).toMatchSnapshot()
   })
 
@@ -78,7 +76,7 @@ describe('Unit tests for PlaybookForm component.', () => {
         </PlayListProvider>
       </CustomMockedProvider>
     )
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
 
     await user.type(screen.getByLabelText(/Name/), 'test playbook name')
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -102,7 +100,7 @@ describe('Unit tests for PlaybookForm component.', () => {
         </PlayListProvider>
       </CustomMockedProvider>
     )
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
 
     await act(async () => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
@@ -114,7 +112,7 @@ describe('Unit tests for PlaybookForm component.', () => {
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    
+
     await user.type(screen.getByLabelText(/Name/), 'test playbook name 2')
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
@@ -155,7 +153,7 @@ describe('Unit tests for PlaybookForm component.', () => {
         </PlayListProvider>
       </CustomMockedProvider>
     )
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     await act(async () => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
       await screen.findByText('Playbook submitted.')
@@ -174,7 +172,7 @@ describe('Unit tests for PlaybookForm component.', () => {
         </PlayListProvider>
       </CustomMockedProvider>
     )
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     await waitFor(() => {
       expect(getByLabelText(PUBLISHED_CHECKBOX_LABEL)).not.toBeChecked()
       expect(screen.queryByText(SAVE_AS_DRAFT_SUBMIT_BUTTON_LABEL)).toBeInTheDocument()
@@ -194,7 +192,7 @@ describe('Unit tests for PlaybookForm component.', () => {
         </PlayListProvider>
       </CustomMockedProvider>
     )
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     await waitFor(() => {
       const checkbox = getByLabelText(PUBLISHED_CHECKBOX_LABEL)
 
@@ -224,7 +222,7 @@ describe('Unit tests for PlaybookForm component.', () => {
         </PlayListProvider>
       </CustomMockedProvider>
     )
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     await waitFor(() => {
       expect(getByLabelText(PUBLISHED_CHECKBOX_LABEL)).not.toBeChecked()
       expect(screen.queryByText(SAVE_AS_DRAFT_SUBMIT_BUTTON_LABEL)).toBeInTheDocument()
@@ -246,7 +244,7 @@ describe('Unit tests for PlaybookForm component.', () => {
         </PlayListProvider>
       </CustomMockedProvider>
     )
-    await waitForReactSelectToLoad(container)
+    await waitForAllEffectsAndSelectToLoad(container)
     await waitFor(() => {
       expect(getByLabelText(PUBLISHED_CHECKBOX_LABEL)).toBeChecked()
       expect(screen.queryByText(SAVE_AS_DRAFT_SUBMIT_BUTTON_LABEL)).not.toBeInTheDocument()

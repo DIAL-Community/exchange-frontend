@@ -65,8 +65,9 @@ export const UPDATE_DATASET_SDGS = gql`
           id,
           name,
           imageFile,
-          slug
-        }
+          slug,
+        },
+        sustainableDevelopmentGoalMapping
       },
       errors
     }
@@ -103,7 +104,6 @@ export const UPDATE_DATASET_SECTORS = gql`
     }
   }
 `
-
 
 export const UPDATE_DATASET_TAGS = gql`
   mutation UpdateDatasetTags($slug: String!, $tagNames: [String!]!) {

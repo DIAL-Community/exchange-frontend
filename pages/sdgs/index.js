@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useContext } from 'react'
 import Header from '../../components/Header'
@@ -19,18 +17,11 @@ import ClientOnly from '../../lib/ClientOnly'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const SDGs = () => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-
   const { search } = useContext(SDGFilterContext)
   const { setSearch } = useContext(SDGFilterDispatchContext)
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <QueryNotification />
       <GradientBackground />
       <Header />
@@ -42,7 +33,7 @@ const SDGs = () => {
           activeTab='filter.entity.products'
           filter={<SDGFilter />}
           content={<SDGListQuery />}
-          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.sdgs' />}
+          searchFilter={<SearchFilter {...{ search, setSearch }} createNew={false} hint='filter.entity.sdgs' />}
           activeFilter={<SDGActiveFilter />}
           hint={<SDGHint />}
         />

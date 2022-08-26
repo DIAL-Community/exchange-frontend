@@ -9,3 +9,35 @@ export const SECTOR_SEARCH_QUERY = gql`
     }
   }
 `
+
+export const SECTORS_LIST_QUERY = gql`
+  query SearchSectors(
+    $first: Int
+    $after: String
+    $search: String!
+    $locale: String
+  ) {
+    searchSectors(
+      first: $first
+      after: $after
+      search: $search
+      locale: $locale
+    ) {
+      totalCount
+      pageInfo {
+        endCursor
+        startCursor
+        hasPreviousPage
+        hasNextPage
+      }
+      nodes {
+        id
+        name
+        slug
+        locale
+        parentSectorId
+        isDisplayable
+      }
+    }
+  }
+`

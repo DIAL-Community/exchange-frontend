@@ -11,23 +11,22 @@ import { UPDATE_DATASET_SDGS } from '../../mutations/dataset'
 import { fetchSelectOptions } from '../../queries/utils'
 import SDGCard from '../sdgs/SDGCard'
 import { SDG_SEARCH_QUERY } from '../../queries/sdg'
+import { getMappingStatusOptions } from '../../lib/utilities'
 
 const DatasetDetailSdgs = ({ dataset, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const sdgMappingStatusTypes = [
-    { label: format('dataset.mappingStatus.beta'), value: 'BETA' },
-    { label: format('dataset.mappingStatus.mature'), value: 'MATURE' },
-    { label: format('dataset.mappingStatus.selfReported'), value: 'SELF-REPORTED' },
-    { label: format('dataset.mappingStatus.validated'), value: 'VALIDATED' }
-  ]
+  const mappingStatusOptions = getMappingStatusOptions(format)
 
   const client = useApolloClient()
 
   const [sdgs, setSdgs] = useState(dataset.sustainableDevelopmentGoals)
+
   const [mappingStatus, setMappingStatus] = useState(
-    sdgMappingStatusTypes.filter(({ value }) => dataset.sustainableDevelopmentGoalMapping === value).shift()
+    mappingStatusOptions.find(
+      ({ value: mappingStatus }) => mappingStatus === dataset.sustainableDevelopmentGoalMapping
+    ) ?? mappingStatusOptions?.[0]
   )
   const [isDirty, setIsDirty] = useState(false)
 
@@ -90,6 +89,9 @@ const DatasetDetailSdgs = ({ dataset, canEdit }) => {
 
   const onCancel = () => {
     setSdgs(data?.updateDatasetSdgs?.dataset?.sustainableDevelopmentGoals ?? dataset.sustainableDevelopmentGoals)
+    setMappingStatus(mappingStatusOptions.find(({ value: mappingStatus }) =>
+      mappingStatus === (data?.updateDatasetSdgs?.dataset?.sustainableDevelopmentGoalMapping ?? dataset.sustainableDevelopmentGoalMapping)
+    ))
     setIsDirty(false)
   }
 
@@ -112,7 +114,7 @@ const DatasetDetailSdgs = ({ dataset, canEdit }) => {
       <label className='flex flex-col gap-y-2 mb-2'>
         {format('dataset.sdg.mappingStatus')}
         <Select
-          options={sdgMappingStatusTypes}
+          options={mappingStatusOptions}
           placeholder={format('dataset.sdg.mappingStatus')}
           onChange={updateMappingStatus}
           value={mappingStatus}

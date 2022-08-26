@@ -6,10 +6,11 @@ import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '..
 import { CountryAutocomplete } from '../filter/element/Country'
 import { EndorsingYearSelect } from '../filter/element/EndorsingYear'
 import { SectorAutocomplete } from '../filter/element/Sector'
+import Checkbox from '../shared/Checkbox'
 
 const OrganizationFilter = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { setHintDisplayed } = useContext(FilterContext)
 
@@ -39,19 +40,13 @@ const OrganizationFilter = () => {
         <div className='text-sm text-dial-gray-dark flex flex-col'>
           <div className='px-2 pb-2 mr-32'>
             <label className='inline-flex items-center'>
-              <input
-                type='checkbox' className='h-4 w-4 form-checkbox text-dial-gray-dark' name='aggregator'
-                checked={aggregator} onChange={toggleAggregator}
-              />
+              <Checkbox onChange={toggleAggregator} value={aggregator} />
               <span className='ml-2'>{format('filter.organization.aggregatorOnly')}</span>
             </label>
           </div>
           <div className='px-2 pb-2 flex'>
             <label className='inline-flex items-center'>
-              <input
-                type='checkbox' className='h-4 w-4 form-checkbox text-dial-gray-dark' name='endorser'
-                checked={endorser} onChange={toggleEndorser}
-              />
+              <Checkbox onChange={toggleEndorser} value={endorser} />
               <span className='ml-2'>{format('filter.organization.endorserOnly')}</span>
             </label>
           </div>

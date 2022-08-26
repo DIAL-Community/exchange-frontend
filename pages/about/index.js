@@ -1,5 +1,6 @@
-import Head from 'next/head'
 import { useIntl } from 'react-intl'
+import { NextSeo } from 'next-seo'
+import { useCallback } from 'react'
 import Header from '../../components/Header'
 import Definition from '../../components/Definition'
 import Footer from '../../components/Footer'
@@ -7,18 +8,18 @@ import Carousel from '../../components/Carousel'
 
 const AboutPage = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = useCallback((id) => formatMessage({ id }), [formatMessage])
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-      <Header />
-      <Definition />
-      <Carousel />
-      <Footer />
+      <NextSeo
+        title={format('header.about')}
+        description={format('seo.description.about')}
+      />
+      <Header/>
+      <Definition/>
+      <Carousel/>
+      <Footer/>
     </>
   )
 }

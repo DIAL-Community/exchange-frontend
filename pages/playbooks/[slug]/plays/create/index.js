@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client'
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
 import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
 import { PlayForm } from '../../../../../components/plays/PlayForm'
@@ -54,8 +52,8 @@ const CreatePlayInformation = ({ slug, locale }) => {
   return (
     <>
       {
-        data && data.playbook &&
-          <div className='px-8 max-w-catalog mx-auto'>
+        data?.playbook &&
+          <div className='max-w-catalog mx-auto'>
             <CreateFormProvider>
               <MovePreview />
               <PlayForm playbook={data.playbook} />
@@ -67,19 +65,12 @@ const CreatePlayInformation = ({ slug, locale }) => {
 }
 
 function CreatePlay () {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
   const router = useRouter()
   const { locale } = router
   const { slug } = router.query
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ClientOnly>
         <CreatePlayInformation slug={slug} locale={locale} />

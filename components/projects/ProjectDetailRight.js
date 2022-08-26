@@ -1,20 +1,15 @@
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
-import { useSession } from 'next-auth/client'
 import Breadcrumb from '../shared/breadcrumb'
-import CountryCard from '../countries/CountryCard'
-import ProductCard from '../products/ProductCard'
-import SectorCard from '../sectors/SectorCard'
-import TagCard from '../tags/TagCard'
-import OrganizationCard from '../organizations/OrganizationCard'
 import ProjectDetailSectors from './ProjectDetailSectors'
 import ProjectDetailOrganizations from './ProjectDetailOrganizations'
 import ProjectDetailCountries from './ProjectDetailCountries'
 import ProjectDetailTags from './ProjectDetailTags'
+import ProjectDetailProducts from './ProjectDetailProduct'
 
 const ProjectDetailRight = ({ project, canEdit }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const slugNameMapping = (() => {
     const map = {}
@@ -41,13 +36,7 @@ const ProjectDetailRight = ({ project, canEdit }) => {
         <div className='inline text-sm'>{project.origin.name}</div>
       </div>
       {project.organizations && <ProjectDetailOrganizations project={project} canEdit={canEdit} />}
-      {
-        project.products &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark'>{format('product.header')}</div>
-            {project.products.map((product, i) => <ProductCard key={i} product={product} listType='list' />)}
-          </div>
-      }
+      {project.products && <ProjectDetailProducts project={project} canEdit={canEdit} />}
       {project.sectors && <ProjectDetailSectors project={project} canEdit={canEdit} />}
       {project.countries && <ProjectDetailCountries project={project} canEdit={canEdit} />}
       {project.tags && <ProjectDetailTags project={project} canEdit={canEdit} />}

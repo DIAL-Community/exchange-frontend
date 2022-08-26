@@ -1,0 +1,249 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for the TagForm component. Should match snapshot - create. 1`] = `
+<div
+  aria-describedby="headlessui-description-5"
+  aria-modal="true"
+  class="fixed z-100"
+  data-testid="dialog"
+  id="headlessui-dialog-1"
+  role="dialog"
+>
+  <div
+    class="fixed inset-0 bg-dial-gray opacity-80"
+  />
+  <div
+    class="fixed inset-0 flex items-center justify-center"
+  >
+    <div
+      class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col opacity-100 scale-100"
+      id="headlessui-dialog-panel-4"
+    >
+      <div
+        class="bg-edit overflow-auto py-4 px-8 flex flex-col gap-3"
+        id="headlessui-description-5"
+      >
+        <div
+          class="flex justify-start text-xl"
+          data-testid="dialog-body"
+        >
+          <div
+            class="w-full"
+          >
+            <form
+              id="tag-form"
+            >
+              <div
+                class="pb-12 mb-4 flex flex-col gap-3"
+              >
+                <div
+                  class="text-2xl font-bold text-dial-blue pb-4"
+                >
+                  Create New Tag
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                  data-testid="tag-name"
+                >
+                  <label
+                    class="text-xl text-dial-blue required-field"
+                    for="name"
+                  >
+                    Name
+                  </label>
+                  <input
+                    class="w-full"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="block flex flex-col gap-y-2"
+                >
+                  <label
+                    class="text-xl text-dial-blue"
+                  >
+                    Description
+                  </label>
+                  <div
+                    class="relative"
+                  >
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="htmlEditor"
+                    >
+                      <textarea
+                        id="description-editor"
+                        style="visibility: hidden;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div
+          class="flex justify-start gap-3 text-xl"
+        >
+          <button
+            class="submit-button"
+            data-testid="submit-button"
+            form="tag-form"
+            type="submit"
+          >
+            Submit
+          </button>
+          <button
+            class="cancel-button"
+            data-testid="cancel-button"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit tests for the TagForm component. Should match snapshot - edit. 1`] = `
+<div
+  aria-describedby="headlessui-description-10"
+  aria-modal="true"
+  class="fixed z-100"
+  data-testid="dialog"
+  id="headlessui-dialog-7"
+  role="dialog"
+>
+  <div
+    class="fixed inset-0 bg-dial-gray opacity-80"
+  />
+  <div
+    class="fixed inset-0 flex items-center justify-center"
+  >
+    <div
+      class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col opacity-100 scale-100"
+      id="headlessui-dialog-panel-9"
+    >
+      <div
+        class="bg-edit overflow-auto py-4 px-8 flex flex-col gap-3"
+        id="headlessui-description-10"
+      >
+        <div
+          class="flex justify-start text-xl"
+          data-testid="dialog-body"
+        >
+          <div
+            class="w-full"
+          >
+            <form
+              id="tag-form"
+            >
+              <div
+                class="pb-12 mb-4 flex flex-col gap-3"
+              >
+                <div
+                  class="text-2xl font-bold text-dial-blue pb-4"
+                >
+                  Edit Example Tag
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                  data-testid="tag-name"
+                >
+                  <label
+                    class="text-xl text-dial-blue required-field"
+                    for="name"
+                  >
+                    Name
+                  </label>
+                  <input
+                    class="w-full"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="block flex flex-col gap-y-2"
+                >
+                  <label
+                    class="text-xl text-dial-blue"
+                  >
+                    Description
+                  </label>
+                  <div
+                    class="relative"
+                  >
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="htmlEditor"
+                    >
+                      <textarea
+                        id="description-editor"
+                        style="visibility: hidden;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div
+          class="flex justify-start gap-3 text-xl"
+        >
+          <button
+            class="submit-button"
+            data-testid="submit-button"
+            form="tag-form"
+            type="submit"
+          >
+            Submit
+          </button>
+          <button
+            class="cancel-button"
+            data-testid="cancel-button"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -27,9 +27,9 @@ const ProjectDetailSectors = ({ project, canEdit }) => {
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)
-    
+
   const [updateProjectSectors, { data, loading }] = useMutation(UPDATE_PROJECT_SECTORS, {
-    onCompleted: (data) => {  
+    onCompleted: (data) => {
       setSectors(data.updateProjectSectors.project.sectors)
       setIsDirty(false)
       showToast(format('toast.sectors.update.success'), 'success', 'top-center')
@@ -85,7 +85,7 @@ const ProjectDetailSectors = ({ project, canEdit }) => {
 
   const displayModeBody = sectors.length > 0
     ? (
-      <div className='flex flex-col gap-2'>
+      <div className='grid grid-cols-1 lg:grid-cols-2'>
         {sectors.map((sector, sectorIdx) => <SectorCard key={sectorIdx} sector={sector} listType='list' />)}
       </div>
     ) : (

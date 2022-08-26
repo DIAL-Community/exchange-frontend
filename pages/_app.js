@@ -1,12 +1,12 @@
-
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import Head from 'next/head'
 import { ApolloProvider } from '@apollo/client'
 import { Provider } from 'next-auth/client'
-import { IntlProvider } from 'react-intl'
+import { IntlProvider, useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import { DefaultSeo } from 'next-seo'
 import * as translations from '../translations'
 import * as gtag from '../lib/gtag'
 import * as matomo from '../lib/matomo'
@@ -29,7 +29,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import CatalogContext from '../lib/CatalogContext'
 import CandidateContext from '../lib/CandidateContext'
 import { ToastContextProvider } from '../lib/ToastContext'
-import client from '../lib/apolloClient'
+import { useApollo } from '../lib/apolloClient'
 
 export function reportWebVitals (metric) {
   // https://nextjs.org/docs/advanced-features/measuring-performance
@@ -45,10 +45,37 @@ export function reportWebVitals (metric) {
 }
 
 const ApplicationDefaultContexts = ({ children }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   return (
     <CatalogContext>
       <CandidateContext>
         <ToastContextProvider>
+          <DefaultSeo
+            titleTemplate={`%s | ${format('app.title')}`}
+            defaultTitle={format('app.title')}
+            description={format('landing.blurb')}
+            additionalLinkTags={[{
+              rel: 'icon',
+              href: '/favicon.ico'
+            }]}
+            openGraph={{
+              title: format('app.title'),
+              type: 'website',
+              images: [
+                {
+                  url: 'https://solutions.dial.community/images/hero-image/hero-image.png',
+                  width: 700,
+                  height: 380,
+                  alt: 'Banner of DIAL Catalog of Digital Solutions'
+                }
+              ]
+            }}
+            twitter={{
+              cardType: 'summary_large_image'
+            }}
+          />
           {children}
         </ToastContextProvider>
       </CandidateContext>
@@ -60,6 +87,8 @@ const App = ({ Component, pageProps }) => {
   const router = useRouter()
   const { locale } = router
   const messages = { ...translations.en, ...translations[locale] }
+
+  const client = useApollo(pageProps)
 
   useEffect(() => {
     const handleRouteChange = (url) => {

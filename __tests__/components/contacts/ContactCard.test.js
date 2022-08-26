@@ -6,7 +6,7 @@ import ContactCard from '../../../components/contacts/ContactCard'
 // Mock next-router calls.
 jest.mock('next/dist/client/router')
 
-const mockContactData = 
+const mockContactData =
   {
     name: 'Example Name',
     email: 'example@example.com',
@@ -16,7 +16,7 @@ const mockContactData =
 describe('Unit test for the contact card', () => {
   beforeEach(() => {
     // Mocked router implementation.
-    useRouter.mockImplementation(() => ({ 
+    useRouter.mockImplementation(() => ({
       asPath: '/',
       locale: 'en',
       push: jest.fn(() => Promise.resolve(true)),
@@ -35,9 +35,9 @@ describe('Unit test for the contact card', () => {
     expect(component.getByTestId('contactName')).toHaveTextContent(mockContactData.name)
     expect(component.getByTestId('contactEmail')).toHaveTextContent(mockContactData.email)
     expect(component.getByTestId('contactTitle')).toHaveTextContent(mockContactData.title)
-    expect(component.getByTestId('contactName')).toHaveClass('inline-block card-title text-button-gray mx-1')
-    expect(component.getByTestId('contactEmail')).toHaveClass('inline-block card-title text-button-gray mx-1')
-    expect(component.getByTestId('contactTitle')).toHaveClass('inline-block card-title text-button-gray mx-1')
+    expect(component.getByTestId('contactName')).toHaveClass('inline-block font-semibold text-button-gray')
+    expect(component.getByTestId('contactEmail')).toHaveClass('inline-block font-semibold text-button-gray')
+    expect(component.getByTestId('contactTitle')).toHaveClass('inline-block font-semibold text-button-gray')
     expect(component.getByTestId('nameLabel')).toHaveTextContent('Name')
     expect(component.getByTestId('emailLabel')).toHaveTextContent('Email')
     expect(component.getByTestId('titleLabel')).toHaveTextContent('Title')

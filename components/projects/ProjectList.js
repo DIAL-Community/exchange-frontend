@@ -85,7 +85,7 @@ const ProjectListQuery = () => {
   const { origins, countries, sectors, organizations, products, sdgs, tags, search } = useContext(ProjectFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { loading, error, data, fetchMore } = useQuery(PROJECTS_QUERY, {
     variables: {
@@ -97,7 +97,7 @@ const ProjectListQuery = () => {
       products: products.map(product => product.value),
       sdgs: sdgs.map(sdg => sdg.value),
       tags: tags.map(tag => tag.label),
-      search: search
+      search
     }
   })
 
@@ -113,7 +113,7 @@ const ProjectListQuery = () => {
         products: products.map(product => product.value),
         sdgs: sdgs.map(sdg => sdg.value),
         tags: tags.map(tag => tag.label),
-        search: search
+        search
       }
     })
   }
@@ -251,10 +251,10 @@ const ProjectListQuery = () => {
                           visibleStopIndex
                         }) => {
                           onItemsRendered({
-                            overscanStartIndex: overscanStartIndex,
-                            overscanStopIndex: overscanStopIndex,
-                            visibleStartIndex: visibleStartIndex,
-                            visibleStopIndex: visibleStopIndex
+                            overscanStartIndex,
+                            overscanStopIndex,
+                            visibleStartIndex,
+                            visibleStopIndex
                           })
                         }}
                         ref={ref}

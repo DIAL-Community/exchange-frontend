@@ -1,6 +1,3 @@
-/* global fetch:false */
-
-import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -51,10 +48,6 @@ const ResetPassword = () => {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <div className='bg-dial-gray-dark pt-28 simple-form-height'>

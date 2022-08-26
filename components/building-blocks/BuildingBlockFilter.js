@@ -6,10 +6,11 @@ import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext } from '
 import { SDGAutocomplete } from '../filter/element/SDG'
 import { UseCaseAutocomplete } from '../filter/element/UseCase'
 import { WorkflowAutocomplete } from '../filter/element/Workflow'
+import Checkbox from '../shared/Checkbox'
 
 const BuildingBlockFilter = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { setHintDisplayed } = useContext(FilterContext)
 
@@ -51,10 +52,7 @@ const BuildingBlockFilter = () => {
           <div className='text-sm flex flex-row'>
             <div className='px-2 pb-2'>
               <label className='inline-flex items-center'>
-                <input
-                  type='checkbox' className='h-4 w-4 form-checkbox' name='with-maturity'
-                  checked={showMature} onChange={toggleWithMaturity}
-                />
+                <Checkbox onChange={toggleWithMaturity} value={showMature} />
                 <span className='ml-2'>{format('filter.buildingBlock.matureOnly')}</span>
               </label>
             </div>

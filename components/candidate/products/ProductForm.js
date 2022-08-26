@@ -1,72 +1,74 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
+import { Controller, useForm } from 'react-hook-form'
+import { useSession } from 'next-auth/client'
 import { ToastContext } from '../../../lib/ToastContext'
-
-const CREATE_CANDIDATE_PRODUCT = gql`
-  mutation CreateCandidateProduct(
-    $name: String!,
-    $website: String!,
-    $repository: String!,
-    $description: String!,
-    $email: String!,
-    $captcha: String!
-  ) {
-    createCandidateProduct(
-      name: $name,
-      website: $website,
-      repository: $repository,
-      description: $description,
-      email: $email,
-      captcha: $captcha
-    ) { slug }
-  }
-`
+import { CREATE_CANDIDATE_PRODUCT } from '../../../mutations/product'
+import Input from '../../shared/Input'
+import ValidationError from '../../shared/ValidationError'
+import { HtmlEditor } from '../../shared/HtmlEditor'
+import { emailRegex } from '../../shared/emailRegex'
+import { Unauthorized } from '../../shared/FetchStatus'
 
 const ProductForm = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const [name, setName] = useState('')
-  const [website, setWebsite] = useState('')
-  const [repository, setRepository] = useState('')
-  const [description, setDescription] = useState('')
-  const [email, setEmail] = useState('')
-  const [captcha, setCaptcha] = useState('')
+  const router = useRouter()
+
+  const [session] = useSession()
 
   const { showToast } = useContext(ToastContext)
 
-  const [createCandidateProduct, { data, loading }] = useMutation(CREATE_CANDIDATE_PRODUCT)
+  const [mutating, setMutating] = useState(false)
+  const [reverting, setReverting] = useState(false)
 
-  const handleTextFieldChange = (e, callback) => {
-    callback(e.target.value)
-  }
-
-  const router = useRouter()
-  const captchaRef = useRef()
-
-  useEffect(() => {
-    if (data) {
-      setName('')
-      setEmail('')
-      setWebsite('')
-      setRepository('')
-      setDescription('')
-      captchaRef.current.reset()
-      showToast(format('candidateProduct.created'), 'success', 'top-center')
-      setTimeout(() => {
-        router.push('/candidate/products')
-      }, 1000)
+  const [createCandidateProduct] = useMutation(CREATE_CANDIDATE_PRODUCT, {
+    onError: () => {
+      showToast(
+        format('candidate-product.submit.failure'),
+        'error',
+        'top-center',
+        false
+      )
+    },
+    onCompleted: () => {
+      showToast(
+        format('candidate-product.submit.success'),
+        'success',
+        'top-center',
+        1000,
+        null,
+        () => router.push('/products')
+      )
     }
-  }, [data])
+  })
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    createCandidateProduct({
-      variables: {
+  const { handleSubmit, register, control, formState: { errors } } = useForm({
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
+    shouldUnregister: true,
+    defaultValues: {
+      name: '',
+      description: '',
+      repository: '',
+      website: '',
+      email: '',
+      captcha: null
+    }
+  })
+
+  const doUpsert = async (data) => {
+    if (session) {
+      setMutating(true)
+
+      const { userEmail, userToken } = session.user
+      const { name, description, repository, website, email, captcha } = data
+      const variables = {
         name,
         website,
         repository,
@@ -74,79 +76,143 @@ const ProductForm = () => {
         email,
         captcha
       }
-    })
+
+      createCandidateProduct({
+        variables,
+        context: {
+          headers: {
+            'Accept-Language': router.locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
+    }
   }
 
-  return (
-    <div className='pt-4'>
-      <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
-        <form method='post' onSubmit={handleSubmit}>
-          <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('candidateProduct.name')}
-              </label>
-              <input
-                id='name' name='name' type='text' placeholder={format('candidateProduct.name.placeholder')}
-                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                value={name} onChange={(e) => handleTextFieldChange(e, setName)}
-              />
+  const cancelForm = () => {
+    setReverting(true)
+    router.push('/products')
+  }
+
+  return session ? (
+    <div className='flex flex-col'>
+      <div className='py-8 px-8'>
+        <div id='content' className='sm:px-0 max-w-full mx-auto'>
+          <form onSubmit={handleSubmit(doUpsert)}>
+            <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
+              <div className='text-2xl font-bold text-dial-blue pb-4'>
+                {format('candidateProduct.label')}
+              </div>
+              <div className='flex flex-col lg:flex-row gap-4'>
+                <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
+                  <div className='form-field-wrapper' data-testid='candidate-product-name'>
+                    <label className='form-field-label required-field' htmlFor='name'>
+                      {format('candidateProduct.name')}
+                    </label>
+                    <Input
+                      {...register('name', { required: format('validation.required') })}
+                      id='name'
+                      placeholder={format('candidateProduct.name.placeholder')}
+                      isInvalid={errors.name}
+                    />
+                    {errors.name && <ValidationError value={errors.name?.message} />}
+                  </div>
+                  <div className='form-field-wrapper' data-testid='candidate-product-website'>
+                    <label className='form-field-label' htmlFor='website'>
+                      {format('candidateProduct.website')}
+                    </label>
+                    <Input
+                      {...register('website')}
+                      id='website'
+                      placeholder={format('candidateProduct.website.placeholder')}
+                    />
+                  </div>
+                  <div className='form-field-wrapper' data-testid='candidate-product-repository'>
+                    <label className='form-field-label' htmlFor='repository'>
+                      {format('candidateProduct.repository')}
+                    </label>
+                    <Input
+                      {...register('repository')}
+                      id='repository'
+                      placeholder={format('candidateProduct.repository.placeholder')}
+                    />
+                  </div>
+                  <div className='form-field-wrapper' data-testid='candidate-product-email'>
+                    <label className='form-field-label required-field' htmlFor='email'>
+                      {format('candidateProduct.email')}
+                    </label>
+                    <Input
+                      type='email'
+                      {...register('email', {
+                        required: format('validation.required'),
+                        pattern: { value: emailRegex , message: format('validation.email') }
+                      })}
+                      id='email'
+                      placeholder={format('candidateProduct.email.placeholder')}
+                      isInvalid={errors.email}
+                    />
+                    {errors.email && <ValidationError value={errors.email?.message} />}
+                  </div>
+                  <Controller
+                    name='captcha'
+                    control={control}
+                    rules={{ required: format('validation.required') }}
+                    render={({ field: { onChange, ref } }) => {
+                      return (<ReCAPTCHA sitekey='6LfAGscbAAAAAFW_hQyW5OxXPhI7v6X8Ul3FJrsa' ref={ref} onChange={onChange} />)
+                    }}
+                  />
+                  {errors.captcha && <ValidationError value={errors.captcha?.message} />}
+                </div>
+                <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }} data-testid='candidate-product-description'>
+                  <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
+                    <p className='required-field'> {format('candidateProduct.description')}</p>
+                    <Controller
+                      name='description'
+                      control={control}
+                      rules={{ required: format('validation.required') }}
+                      render={({ field: { value, onChange, onBlur } }) => {
+                        return (
+                          <HtmlEditor
+                            editorId={`${name}-editor`}
+                            onBlur={onBlur}
+                            onChange={onChange}
+                            initialContent={value}
+                            isInvalid={errors.description}
+                            placeholder={format('candidateProduct.description.placeholder')}
+                          />
+                        )
+                      }}
+                    />
+                    {errors.description && <ValidationError value={errors.description?.message} />}
+                  </label>
+                </div>
+              </div>
+              <div className='flex flex-wrap font-semibold text-xl lg:mt-8 gap-3'>
+                <button
+                  type='submit'
+                  data-testid='submit-button'
+                  className='submit-button'
+                  disabled={mutating || reverting}
+                >
+                  {format('candidateProduct.submit')}
+                  {mutating && <FaSpinner className='spinner ml-3 inline' />}
+                </button>
+                <button
+                  type='button'
+                  className='cancel-button'
+                  disabled={mutating || reverting}
+                  onClick={cancelForm}
+                >
+                  {format('app.cancel')}
+                  {reverting && <FaSpinner className='spinner ml-3 inline' />}
+                </button>
+              </div>
             </div>
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='name'>
-                {format('candidateProduct.website')}
-              </label>
-              <input
-                id='website' name='website' type='text' placeholder={format('candidateProduct.website.placeholder')}
-                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                value={website} onChange={(e) => handleTextFieldChange(e, setWebsite)}
-              />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='repository'>
-                {format('candidateProduct.repository')}
-              </label>
-              <input
-                id='repository' name='repository' type='text' placeholder={format('candidateProduct.repository.placeholder')}
-                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                value={repository} onChange={(e) => handleTextFieldChange(e, setRepository)}
-              />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='description'>
-                {format('candidateProduct.description')}
-              </label>
-              <input
-                id='description' name='description' type='text' placeholder={format('candidateProduct.description.placeholder')}
-                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                value={description} onChange={(e) => handleTextFieldChange(e, setDescription)}
-              />
-            </div>
-            <div className='mb-4'>
-              <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='passwordConfirmation'>
-                {format('candidateProduct.email')}
-              </label>
-              <input
-                id='email' name='email' type='text' placeholder={format('candidateProduct.email.placeholder')}
-                className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                value={email} onChange={(e) => handleTextFieldChange(e, setEmail)}
-              />
-            </div>
-            <ReCAPTCHA sitekey='6LfAGscbAAAAAFW_hQyW5OxXPhI7v6X8Ul3FJrsa' onChange={setCaptcha} ref={captchaRef} />
-            <div className='flex items-center justify-between font-semibold text-sm mt-2'>
-              <button
-                className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                type='submit' disabled={loading}
-              >
-                {format('candidateProduct.submit')}
-                {loading && <FaSpinner className='spinner ml-3' />}
-              </button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
-  )
+  ) : <Unauthorized />
 }
 
 export default ProductForm

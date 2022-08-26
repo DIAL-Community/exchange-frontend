@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { gql, useQuery } from '@apollo/client'
-import Head from 'next/head'
-import { useIntl } from 'react-intl'
+import { useSession } from 'next-auth/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
-import { Loading, Error } from '../../../components/shared/FetchStatus'
+import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
 import ClientOnly from '../../../lib/ClientOnly'
 import NotFound from '../../../components/shared/NotFound'
 import OrganizationForm from '../../../components/organizations/OrganizationForm'
+import { useOrganizationOwnerUser, useUser } from '../../../lib/hooks'
 
 const ORGANIZATION_QUERY = gql`
   query Organization($slug: String!) {
@@ -32,18 +32,21 @@ const ORGANIZATION_QUERY = gql`
 `
 
 const EditOrganization = () => {
-  const { formatMessage } = useIntl()
-  const format = (id) => formatMessage({ id })
-
   const router = useRouter()
+  const [session] = useSession()
 
   const { locale } = router
   const { slug } = router.query
   const { loading, error, data, refetch } = useQuery(ORGANIZATION_QUERY, {
-    variables: { slug: slug, locale: locale },
+    variables: { slug, locale },
     skip: !slug,
     context: { headers: { 'Accept-Language': locale } }
   })
+
+  const { isAdminUser, loadingUserSession } = useUser(session)
+  const { ownsOrganization } = useOrganizationOwnerUser(session, data?.organization)
+
+  const canEdit = isAdminUser || ownsOrganization
 
   useEffect(() => {
     refetch()
@@ -59,15 +62,11 @@ const EditOrganization = () => {
 
   return (
     <>
-      <Head>
-        <title>{format('app.title')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <Header />
       {data && data.organization && (
         <div className='max-w-catalog mx-auto'>
           <ClientOnly>
-            <OrganizationForm organization={data.organization} />
+            {loadingUserSession ? <Loading /> : canEdit ? <OrganizationForm organization={data.organization} /> : <Unauthorized />}
           </ClientOnly>
         </div>
       )}
