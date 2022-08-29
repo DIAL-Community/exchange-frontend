@@ -1,5 +1,17 @@
 import { gql } from '@apollo/client'
 
+export const COMMENTS_COUNT_QUERY = gql`
+  query CountComments(
+    $commentObjectType: String!,
+    $commentObjectId: Int!
+  ) {
+    countComments(
+      commentObjectType: $commentObjectType,
+      commentObjectId: $commentObjectId
+    )
+  }
+`
+
 export const COMMENTS_QUERY = gql`
   query Comments(
     $commentObjectType: String!

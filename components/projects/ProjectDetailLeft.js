@@ -3,8 +3,10 @@ import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
+import { ObjectType } from '../../lib/constants'
+import CommentsCount from '../shared/CommentsCount'
 
-const ProjectDetailLeft = ({ project, canEdit }) => {
+const ProjectDetailLeft = ({ project, canEdit, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
   const [session] = useSession()
@@ -30,14 +32,9 @@ const ProjectDetailLeft = ({ project, canEdit }) => {
       <div className='block lg:hidden'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
-      <div className='w-full'>
-        {
-          session && (
-            <div className='inline'>
-              {canEdit && <EditButton type='link' href={generateEditLink()} />}
-            </div>
-          )
-        }
+      <div className='w-full inline-flex gap-3'>
+        {canEdit && <EditButton type='link' href={generateEditLink()}/>}
+        <CommentsCount commentsSectionRef={commentsSectionRef} objectId={project.id} objectType={ObjectType.PROJECT}/>
       </div>
       <div className='h4 font-bold py-4'>{format('project.label')}</div>
       <div className='bg-white border-2 border-dial-gray p-6 lg:mr-6 shadow-lg'>

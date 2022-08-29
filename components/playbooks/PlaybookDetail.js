@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
 import CommentsSection from '../shared/CommentsSection'
 import { PLAYBOOK_QUERY } from '../../queries/playbook'
@@ -15,6 +16,8 @@ const PlaybookDetail = ({ slug, locale }) => {
     context: { headers: { 'Accept-Language': locale } }
   })
 
+  const commentsSectionElement = useRef(null)
+
   if (loading) {
     return <Loading />
   } else if (error && error.networkError) {
@@ -31,10 +34,19 @@ const PlaybookDetail = ({ slug, locale }) => {
           <PlaybookDetailNavigation playbook={data?.playbook} />
         </div>
         <div className='flex flex-col gap-3 w-full max-w-screen-lg'>
-          <PlaybookDetailOverview playbook={data?.playbook} locale={locale} allowEmbedCreation />
+          <PlaybookDetailOverview
+            playbook={data?.playbook}
+            locale={locale}
+            allowEmbedCreation
+            commentsSectionRef={commentsSectionElement}
+          />
           <PlaybookDetailPlayList slug={slug} locale={locale} />
           <div className='px-2'>
-            <CommentsSection objectId={data?.playbook?.id} objectType={ObjectType.PLAYBOOK} />
+            <CommentsSection
+              commentsSectionRef={commentsSectionElement}
+              objectId={data?.playbook.id}
+              objectType={ObjectType.PLAYBOOK}
+            />
           </div>
         </div>
       </div>

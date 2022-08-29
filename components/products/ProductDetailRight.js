@@ -16,7 +16,7 @@ import RepositoryList from './repositories/RepositoryList'
 import ProductDetailTags from './ProductDetailTags'
 import ProductDetailSdgs from './ProductDetailSdgs'
 
-const ProductDetailRight = ({ product }) => {
+const ProductDetailRight = ({ product, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -163,7 +163,11 @@ const ProductDetailRight = ({ product }) => {
             : <div className='text-sm pb-5 text-button-gray'>{format('product.no-maturity')}</div>
         }
       </div>
-      <CommentsSection objectId={product.id} objectType={ObjectType.PRODUCT} />
+      <CommentsSection
+        commentsSectionRef={commentsSectionRef}
+        objectId={product.id}
+        objectType={ObjectType.PRODUCT}
+      />
     </div>
   )
 }

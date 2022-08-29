@@ -3,8 +3,10 @@ import { useSession } from 'next-auth/client'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
+import { ObjectType } from '../../lib/constants'
+import CommentsCount from '../shared/CommentsCount'
 
-const UseCaseDetailLeft = ({ useCase, canEdit }) => {
+const UseCaseDetailLeft = ({ useCase, canEdit, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
   const [session] = useSession()
@@ -30,16 +32,9 @@ const UseCaseDetailLeft = ({ useCase, canEdit }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-20'>
-        <div className='w-full'>
-          {
-            session && (
-              <div className='inline mr-5'>
-                {canEdit && <EditButton type='link' href={generateEditLink()} />}
-              </div>
-            )
-          }
-          <img src='/icons/comment.svg' className='inline mr-2' alt='Edit' height='15px' width='15px' />
-          <div className='text-dial-blue inline'>{format('app.comment')}</div>
+        <div className='w-full inline-flex gap-3'>
+          {canEdit && <EditButton type='link' href={generateEditLink()}/>}
+          <CommentsCount commentsSectionRef={commentsSectionRef} objectId={useCase.id} objectType={ObjectType.USE_CASE}/>
         </div>
         <div className='h4 font-bold py-4'>{format('useCase.label')}</div>
       </div>

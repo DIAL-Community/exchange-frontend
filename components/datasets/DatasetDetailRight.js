@@ -11,7 +11,7 @@ import DatasetDetailSectors from './DatasetDetailSectors'
 import DatasetDetailTags from './DatasetDetailTags'
 import DatasetDetailSdgs from './DatasetDetailSdgs'
 
-const DatasetDetailRight = ({ dataset }) => {
+const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -136,7 +136,11 @@ const DatasetDetailRight = ({ dataset }) => {
           })}
         </div>
       </div>
-      <CommentsSection objectId={dataset.id} objectType={ObjectType.OPEN_DATA} />
+      <CommentsSection
+        commentsSectionRef={commentsSectionRef}
+        objectId={dataset.id}
+        objectType={ObjectType.OPEN_DATA}
+      />
     </div>
   )
 }

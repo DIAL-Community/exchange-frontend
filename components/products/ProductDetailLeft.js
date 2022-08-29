@@ -10,6 +10,8 @@ import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
 import { useProductOwnerUser, useUser } from '../../lib/hooks'
+import CommentsCount from '../shared/CommentsCount'
+import { ObjectType } from '../../lib/constants'
 
 const CANDIDATE_ROLE_QUERY = gql`
   query CandidateRole($email: String!, $productId: String!, $organizationId: String!) {
@@ -23,7 +25,7 @@ const CANDIDATE_ROLE_QUERY = gql`
 
 const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
 
-const ProductDetailLeft = ({ product }) => {
+const ProductDetailLeft = ({ product, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -195,8 +197,9 @@ const ProductDetailLeft = ({ product }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-20'>
-        <div className='w-full'>
+        <div className='w-full inline-flex gap-3'>
           {(isAdminUser || ownsProduct) && <EditButton type='link' href={generateEditLink()} />}
+          <CommentsCount commentsSectionRef={commentsSectionRef} objectId={product.id} objectType={ObjectType.PRODUCT}/>
         </div>
         <div className='h4 font-bold py-4'>{format('products.label')}</div>
       </div>

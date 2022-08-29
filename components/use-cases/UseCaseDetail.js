@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { useSession } from 'next-auth/client'
+import { useRef } from 'react'
 import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
 import { useUser } from '../../lib/hooks'
@@ -18,6 +19,8 @@ const UseCaseDetail = ({ slug, locale }) => {
 
   const { isAdminUser: canEdit } = useUser(session)
 
+  const commentsSectionElement = useRef()
+
   return (
     <>
       {loading && <Loading />}
@@ -27,10 +30,18 @@ const UseCaseDetail = ({ slug, locale }) => {
         data && data.useCase &&
           <div className='flex flex-col lg:flex-row justify-between pb-8 max-w-catalog mx-auto'>
             <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
-              <UseCaseDetailLeft useCase={data.useCase} canEdit={canEdit}/>
+              <UseCaseDetailLeft
+                useCase={data.useCase}
+                canEdit={canEdit}
+                commentsSectionRef={commentsSectionElement}
+              />
             </div>
             <div className='w-full lg:w-2/3 xl:w-3/4'>
-              <UseCaseDetailRight useCase={data.useCase} canEdit={canEdit}/>
+              <UseCaseDetailRight
+                useCase={data.useCase}
+                canEdit={canEdit}
+                commentsSectionRef={commentsSectionElement}
+              />
             </div>
           </div>
       }
