@@ -1,6 +1,8 @@
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
+import CommentsSection from '../shared/CommentsSection'
+import { ObjectType } from '../../lib/constants'
 import ProjectDetailSectors from './ProjectDetailSectors'
 import ProjectDetailOrganizations from './ProjectDetailOrganizations'
 import ProjectDetailCountries from './ProjectDetailCountries'
@@ -40,6 +42,7 @@ const ProjectDetailRight = ({ project, canEdit }) => {
       {project.sectors && <ProjectDetailSectors project={project} canEdit={canEdit} />}
       {project.countries && <ProjectDetailCountries project={project} canEdit={canEdit} />}
       {project.tags && <ProjectDetailTags project={project} canEdit={canEdit} />}
+      <CommentsSection objectId={project.id} objectType={ObjectType.PROJECT} />
     </div>
   )
 }

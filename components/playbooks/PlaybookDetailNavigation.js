@@ -1,40 +1,12 @@
 import { useIntl } from 'react-intl'
-import { gql, useQuery } from '@apollo/client'
 import { useContext, useEffect, useState } from 'react'
 import { MdPlayArrow } from 'react-icons/md'
-import NotFound from '../shared/NotFound'
-import { Error, Loading } from '../shared/FetchStatus'
 import { PlaybookDetailContext, PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
 
-export const PLAYBOOK_QUERY = gql`
-  query Playbook($slug: String!) {
-    playbook(slug: $slug) {
-      id
-      slug
-      name
-      imageFile
-      playbookPlays {
-        id
-        playSlug
-        playName
-        order
-      }
-      plays {
-        id
-        slug
-        playMoves {
-          id
-          name
-        }
-      }
-    }
-  }
-`
-
 const ACTIVE_NAV_COLOR = 'bg-dial-purple border-dial-yellow'
 
-const PlaybookDetailNavigation = ({ slug }) => {
+const PlaybookDetailNavigation = ({ playbook }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -46,10 +18,6 @@ const PlaybookDetailNavigation = ({ slug }) => {
   } = useContext(PlaybookDetailContext)
   const { setCurrentSlug, setDirect } = useContext(PlaybookDetailDispatchContext)
 
-  const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
-    variables: { slug }
-  })
-
   useEffect(() => {
     if (windowHeight) {
       // Playbook header is at 150px on large screens.
@@ -58,14 +26,14 @@ const PlaybookDetailNavigation = ({ slug }) => {
   }, [windowHeight])
 
   useEffect(() => {
-    if (data && data.playbook) {
-      data.playbook.plays.forEach(play => {
+    if ( playbook) {
+      playbook.plays.forEach(play => {
         const moves = play.playMoves.map(move => move.name)
         mappedMoves[play.slug] = moves
       })
       setMappedMoves({ ...mappedMoves })
     }
-  }, [data])
+  }, [playbook])
 
   useEffect(() => {
     // This will read the state of the context, and update the active slug.
@@ -81,7 +49,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
       return
     }
 
-    if (!data || !data.playbook) {
+    if (!playbook) {
       // Skip execution if we don't have the playbook play information.
       return
     }
@@ -91,7 +59,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
       return
     }
 
-    const playSlugs = data.playbook.playbookPlays.map(play => play.playSlug)
+    const playSlugs = playbook.playbookPlays.map(play => play.playSlug)
 
     // Find slug in the boundary of the screen.
     let index = 0
@@ -117,18 +85,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
         setCurrentSlug(OVERVIEW_SLUG_NAME)
       }
     }
-  }, [centerYPosition, direct, setDirect, currentSlug, setCurrentSlug, slugYValues, slugHeights, data])
-
-  // Loading and error handler section.
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    if (error.networkError) {
-      return <Error />
-    } else {
-      return <NotFound />
-    }
-  }
+  }, [centerYPosition, direct, setDirect, currentSlug, setCurrentSlug, slugYValues, slugHeights, playbook])
 
   const navigateToPlay = (e, slug) => {
     e.preventDefault()
@@ -136,7 +93,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
     setDirect(true)
     setCurrentSlug(slug)
 
-    if (!data || !data.playbook) {
+    if (!playbook) {
       // Skip execution if we don't have the playbook play information.
       return
     }
@@ -144,7 +101,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
     let index = 0
     let height = 0
     if (slug !== OVERVIEW_SLUG_NAME) {
-      const playSlugs = data.playbook.playbookPlays.map(play => play.playSlug)
+      const playSlugs = playbook.playbookPlays.map(play => play.playSlug)
 
       height = slugHeights[OVERVIEW_SLUG_NAME]
       while (index < playSlugs.length && playSlugs[index] !== slug) {
@@ -179,7 +136,7 @@ const PlaybookDetailNavigation = ({ slug }) => {
           </div>
         </div>
         {
-          data.playbook.playbookPlays.map((playbookPlay, index) => {
+          playbook.playbookPlays.map((playbookPlay, index) => {
             return (
               <div
                 key={index}

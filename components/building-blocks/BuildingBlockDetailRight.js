@@ -1,5 +1,7 @@
 import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
+import CommentsSection from '../shared/CommentsSection'
+import { ObjectType } from '../../lib/constants'
 import BuildingBlockDetailWorkflows from './BuildingBlockDetailWorkflows'
 import BuildingBlockDetailProducts from './BuildingBlockDetailProducts'
 
@@ -21,6 +23,7 @@ const BuildingBlockDetailRight = ({ buildingBlock, canEdit }) => {
       </div>
       {buildingBlock.products && <BuildingBlockDetailProducts buildingBlock={buildingBlock} canEdit={canEdit} />}
       {buildingBlock.workflows && <BuildingBlockDetailWorkflows buildingBlock={buildingBlock} canEdit={canEdit} />}
+      <CommentsSection objectId={buildingBlock.id} objectType={ObjectType.BUILDING_BLOCK} />
     </div>
   )
 }

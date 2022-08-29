@@ -81,7 +81,6 @@ const Play = ({ play, index }) => {
       }
 
       const boundingClientRect = ref.current.getBoundingClientRect()
-      console.log('Slug: ', play.slug, ' -> BoundingClientRect: ', boundingClientRect, ' -> Inner Height: ', window.innerHeight)
       setYValue(boundingClientRect.y)
       setHeight(boundingClientRect.height)
     }

@@ -4,6 +4,8 @@ import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useSession } from 'next-auth/client'
 import Breadcrumb from '../shared/breadcrumb'
+import CommentsSection from '../shared/CommentsSection'
+import { ObjectType } from '../../lib/constants'
 import AggregatorCapability from './AggregatorCapability'
 import OrganizationDetailCountries from './OrganizationDetailCountries'
 import OrganizationDetailSectors from './OrganizationDetailSectors'
@@ -111,6 +113,7 @@ const OrganizationDetailRight = ({ organization }) => {
             <AggregatorCapability aggregatorId={organization.id} />
           </div>
       }
+      <CommentsSection objectId={organization.id} objectType={ObjectType.ORGANIZATION} />
     </div>
   )
 }

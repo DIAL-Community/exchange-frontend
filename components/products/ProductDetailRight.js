@@ -4,6 +4,8 @@ import { useSession } from 'next-auth/client'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
+import CommentsSection from '../shared/CommentsSection'
+import { ObjectType } from '../../lib/constants'
 import MaturityAccordion from './Maturity'
 import ProductCard from './ProductCard'
 import ProductDetailBuildingBlocks from './ProductDetailBuildingBlocks'
@@ -161,6 +163,7 @@ const ProductDetailRight = ({ product }) => {
             : <div className='text-sm pb-5 text-button-gray'>{format('product.no-maturity')}</div>
         }
       </div>
+      <CommentsSection objectId={product.id} objectType={ObjectType.PRODUCT} />
     </div>
   )
 }
