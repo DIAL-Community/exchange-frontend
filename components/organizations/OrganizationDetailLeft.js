@@ -7,6 +7,8 @@ import { gql, useLazyQuery } from '@apollo/client'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
+import { ObjectType } from '../../lib/constants'
+import CommentsCount from '../shared/CommentsCount'
 import DeleteOrganization from './DeleteOrganization'
 
 const CANDIDATE_ROLE_QUERY = gql`
@@ -19,7 +21,7 @@ const CANDIDATE_ROLE_QUERY = gql`
   }
 `
 
-const OrganizationDetailLeft = ({ organization }) => {
+const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -142,13 +144,10 @@ const OrganizationDetailLeft = ({ organization }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-20'>
-        <div className='w-full flex gap-3'>
+        <div className='w-full inline-flex gap-3'>
           {session?.user.canEdit && <DeleteOrganization organization={organization} />}
           {(session?.user.own?.organization?.id === parseInt(organization.id) || session?.user.canEdit) && <EditButton type='link' href={generateEditLink()}/>}
-          <div>
-            <img src='/icons/comment.svg' className='inline mr-2' alt='Edit' height='15px' width='15px' />
-            <div className='text-dial-blue inline'>{format('app.comment')}</div>
-          </div>
+          <CommentsCount commentsSectionRef={commentsSectionRef} objectId={organization.id} objectType={ObjectType.ORGANIZATION}/>
         </div>
         <div className='h4 font-bold py-4'>{format('organization.label')}</div>
       </div>

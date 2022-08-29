@@ -13,9 +13,9 @@ const INPUT_BORDERED_WRAPPER_CLASSNAME = 'advanced-border'
 const FOCUSED_CLASSNAME = 'focused'
 const FIRST_ELEMENT_INDEX = 0
 
-const CommentsSection = ({ objectId, objectType }) => {
+const CommentsSection = ({ objectId, objectType, commentsSectionRef }) => {
   const { locale } = useRouter()
-  const ref = useRef(null)
+  const innerRef = useRef(null)
   const [session] = useSession()
   const user = session?.user
 
@@ -53,7 +53,7 @@ const CommentsSection = ({ objectId, objectType }) => {
 
   useEffect(() => document.addEventListener('click', handleClickOutside))
 
-  const getElementsByClassName = useCallback((className) => Array.from(ref?.current?.getElementsByClassName(className) ?? []), [])
+  const getElementsByClassName = useCallback((className) => Array.from(innerRef?.current?.getElementsByClassName(className) ?? []), [])
 
   const focusActiveElement = () => {
     const activeInput = document.activeElement.getElementsByClassName(INPUT_CLASSNAME)[FIRST_ELEMENT_INDEX]
@@ -74,25 +74,27 @@ const CommentsSection = ({ objectId, objectType }) => {
   }
 
   return (
-    <div id='comments-section' ref={ref} onClick={focusActiveElement}>
-      <CommentSection
-        commentData={data?.comments}
-        currentUser={user ? {
-          currentUserId: user.id,
-          currentUserImg: `https://ui-avatars.com/api/name=${user.name}&background=random`,
-          currentUserFullName: user.name
-        } : null}
-        logIn={{
-          loginLink: '/auth/signin',
-          signupLink: '/auth/signup'
-        }}
-        onSubmitAction={({ text, comId }) => {onCommentUpsertAction(text, comId)}}
-        onReplyAction={({ text, comId, repliedToCommentId }) => {onCommentUpsertAction(text, comId, repliedToCommentId)}}
-        onEditAction={({ text, comId }) => {onCommentUpsertAction(text, comId)}}
-        advancedInput
-        hrStyle={{ borderColor: '#dfdfea' }}
-        formStyle={{ backgroundColor: 'white' }}
-      />
+    <div ref={commentsSectionRef}>
+      <div id='comments-section' ref={innerRef} onClick={focusActiveElement}>
+        <CommentSection
+          commentData={data?.comments}
+          currentUser={user ? {
+            currentUserId: user.id,
+            currentUserImg: `https://ui-avatars.com/api/name=${user.name}&background=random`,
+            currentUserFullName: user.name
+          } : null}
+          logIn={{
+            loginLink: '/auth/signin',
+            signupLink: '/auth/signup'
+          }}
+          onSubmitAction={({ text, comId }) => {onCommentUpsertAction(text, comId)}}
+          onReplyAction={({ text, comId, repliedToCommentId }) => {onCommentUpsertAction(text, comId, repliedToCommentId)}}
+          onEditAction={({ text, comId }) => {onCommentUpsertAction(text, comId)}}
+          advancedInput
+          hrStyle={{ borderColor: '#dfdfea' }}
+          formStyle={{ backgroundColor: 'white' }}
+        />
+      </div>
     </div>
   )
 }

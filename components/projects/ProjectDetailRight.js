@@ -9,7 +9,7 @@ import ProjectDetailCountries from './ProjectDetailCountries'
 import ProjectDetailTags from './ProjectDetailTags'
 import ProjectDetailProducts from './ProjectDetailProduct'
 
-const ProjectDetailRight = ({ project, canEdit }) => {
+const ProjectDetailRight = ({ project, canEdit, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -42,7 +42,11 @@ const ProjectDetailRight = ({ project, canEdit }) => {
       {project.sectors && <ProjectDetailSectors project={project} canEdit={canEdit} />}
       {project.countries && <ProjectDetailCountries project={project} canEdit={canEdit} />}
       {project.tags && <ProjectDetailTags project={project} canEdit={canEdit} />}
-      <CommentsSection objectId={project.id} objectType={ObjectType.PROJECT} />
+      <CommentsSection
+        commentsSectionRef={commentsSectionRef}
+        objectId={project.id}
+        objectType={ObjectType.PROJECT}
+      />
     </div>
   )
 }

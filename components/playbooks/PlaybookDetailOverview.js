@@ -6,7 +6,7 @@ import { PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 
 export const OVERVIEW_SLUG_NAME = 'base-slug-overview-information'
 
-const PlaybookDetailOverview = ({ playbook, locale, allowEmbedCreation }) => {
+const PlaybookDetailOverview = ({ playbook, locale, allowEmbedCreation, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -32,7 +32,12 @@ const PlaybookDetailOverview = ({ playbook, locale, allowEmbedCreation }) => {
 
   return (
     <div className='flex flex-col gap-3 px-3' ref={ref}>
-      <PlaybookDetailMenu playbook={playbook} locale={locale} allowEmbedCreation={allowEmbedCreation} />
+      <PlaybookDetailMenu
+        playbook={playbook}
+        locale={locale}
+        allowEmbedCreation={allowEmbedCreation}
+        commentsSectionRef={commentsSectionRef}
+      />
       <div className='h4'>{format('playbooks.overview')}</div>
       <div className='fr-view tiny-editor text-dial-gray-dark'>
         {parse(playbook.playbookDescription.overview)}

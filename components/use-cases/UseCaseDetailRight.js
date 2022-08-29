@@ -11,7 +11,7 @@ import StepList from './steps/StepList'
 import UseCaseDetailSdgTargets from './UseCaseDetailSdgTargets'
 import UseCaseDetailTags from './UseCaseDetailTags'
 
-const UseCaseDetailRight = ({ useCase, canEdit }) => {
+const UseCaseDetailRight = ({ useCase, canEdit, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
   const [session] = useSession()
@@ -75,7 +75,11 @@ const UseCaseDetailRight = ({ useCase, canEdit }) => {
           </div>
       }
       {useCase.tags && <UseCaseDetailTags useCase={useCase} canEdit={canEdit} />}
-      <CommentsSection objectId={useCase.id} objectType={ObjectType.USE_CASE} />
+      <CommentsSection
+        commentsSectionRef={commentsSectionRef}
+        objectId={useCase.id}
+        objectType={ObjectType.USE_CASE}
+      />
     </div>
   )
 }

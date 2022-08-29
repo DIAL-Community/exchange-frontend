@@ -3,8 +3,10 @@ import { useSession } from 'next-auth/client'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
+import CommentsCount from '../shared/CommentsCount'
+import { ObjectType } from '../../lib/constants'
 
-const BuildingBlockDetailLeft = ({ buildingBlock }) => {
+const BuildingBlockDetailLeft = ({ buildingBlock, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
   const [session] = useSession()
@@ -30,8 +32,9 @@ const BuildingBlockDetailLeft = ({ buildingBlock }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-20'>
-        <div className='w-full'>
+        <div className='w-full inline-flex gap-3'>
           {session?.user.canEdit && <EditButton type='link' href={generateEditLink()}/>}
+          <CommentsCount commentsSectionRef={commentsSectionRef} objectId={buildingBlock.id} objectType={ObjectType.BUILDING_BLOCK}/>
         </div>
         <div className='h4 font-bold py-4'>{format('buildingBlock.label')}</div>
       </div>

@@ -28,7 +28,7 @@ const DynamicOfficeMarker = (props) => {
   return <OfficeMarker {...props} />
 }
 
-const OrganizationDetailRight = ({ organization }) => {
+const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -113,7 +113,11 @@ const OrganizationDetailRight = ({ organization }) => {
             <AggregatorCapability aggregatorId={organization.id} />
           </div>
       }
-      <CommentsSection objectId={organization.id} objectType={ObjectType.ORGANIZATION} />
+      <CommentsSection
+        commentsSectionRef={commentsSectionRef}
+        objectId={organization.id}
+        objectType={ObjectType.ORGANIZATION}
+      />
     </div>
   )
 }

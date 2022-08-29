@@ -5,7 +5,7 @@ import { ObjectType } from '../../lib/constants'
 import BuildingBlockDetailWorkflows from './BuildingBlockDetailWorkflows'
 import BuildingBlockDetailProducts from './BuildingBlockDetailProducts'
 
-const BuildingBlockDetailRight = ({ buildingBlock, canEdit }) => {
+const BuildingBlockDetailRight = ({ buildingBlock, canEdit, commentsSectionRef }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[buildingBlock.slug] = buildingBlock.name
@@ -23,7 +23,11 @@ const BuildingBlockDetailRight = ({ buildingBlock, canEdit }) => {
       </div>
       {buildingBlock.products && <BuildingBlockDetailProducts buildingBlock={buildingBlock} canEdit={canEdit} />}
       {buildingBlock.workflows && <BuildingBlockDetailWorkflows buildingBlock={buildingBlock} canEdit={canEdit} />}
-      <CommentsSection objectId={buildingBlock.id} objectType={ObjectType.BUILDING_BLOCK} />
+      <CommentsSection
+        commentsSectionRef={commentsSectionRef}
+        objectId={buildingBlock.id}
+        objectType={ObjectType.BUILDING_BLOCK}
+      />
     </div>
   )
 }
