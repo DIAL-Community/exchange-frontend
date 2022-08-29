@@ -1,31 +1,11 @@
-import { gql, useQuery } from '@apollo/client'
 import { useSession } from 'next-auth/client'
 import Link from 'next/link'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { Error, Loading } from '../shared/FetchStatus'
-import NotFound from '../shared/NotFound'
 import { PlaybookDetailContext, PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
 
-export const PLAYBOOK_QUERY = gql`
-  query Playbook($slug: String!) {
-    playbook(slug: $slug) {
-      id
-      slug
-      name
-      imageFile
-      playbookPlays {
-        id
-        playSlug
-        order
-      }
-      draft
-    }
-  }
-`
-
-const PlaybookDetailHeader = ({ slug }) => {
+const PlaybookDetailHeader = ({ playbook }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -39,42 +19,38 @@ const PlaybookDetailHeader = ({ slug }) => {
   const { currentSlug, slugHeights, slugIntersectionRatios } = useContext(PlaybookDetailContext)
   const { setDirect, setCurrentSlug } = useContext(PlaybookDetailDispatchContext)
 
-  const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
-    variables: { slug }
-  })
-
-  const isPlaybookPublished = !data?.playbook.draft
+  const isPlaybookPublished = !playbook.draft
 
   useEffect(() => {
-    playProgressNumbersRef.current = playProgressNumbersRef.current.slice(0, data?.playbook?.playbookPlays?.length)
-  }, [data])
+    playProgressNumbersRef.current = playProgressNumbersRef.current.slice(0, playbook?.playbookPlays?.length)
+  }, [playbook])
 
   useEffect(() => {
-    if (!data || !data.playbook) {
+    if (!playbook) {
       // Skip execution if we don't have the playbook play information.
       return
     }
 
-    const playSlugs = data.playbook.playbookPlays.map(play => play.playSlug)
+    const playSlugs = playbook.playbookPlays.map(play => play.playSlug)
     const barSegmentMultiplier = 100 / (playSlugs.length - 1)
 
     setPercentage(barSegmentMultiplier * currentSlugIndex)
-  }, [currentSlugIndex, slugIntersectionRatios, data])
+  }, [currentSlugIndex, slugIntersectionRatios, playbook])
 
   useEffect(() => {
-    if (!data || !data.playbook) {
+    if (!playbook) {
       // Skip execution if we don't have the playbook play information.
       return
     }
 
-    const playSlugs = data.playbook.playbookPlays.map(play => play.playSlug)
+    const playSlugs = playbook.playbookPlays.map(play => play.playSlug)
     const playIndex = playSlugs.indexOf(currentSlug)
 
     // Scroll into the current play if play progress bar is scrollable
     playProgressNumbersRef.current[playIndex]?.scrollIntoView({ block: 'nearest' })
 
     setCurrentSlugIndex(playIndex)
-  }, [currentSlug, setCurrentSlugIndex, data])
+  }, [currentSlug, setCurrentSlugIndex, playbook])
 
   const navigateToPlay = (e, slug) => {
     e.preventDefault()
@@ -82,12 +58,12 @@ const PlaybookDetailHeader = ({ slug }) => {
     setDirect(true)
     setCurrentSlug(slug)
 
-    if (!data || !data.playbook) {
+    if (!playbook) {
       // Skip execution if we don't have the playbook play information.
       return
     }
 
-    const playSlugs = data.playbook.playbookPlays.map(play => play.playSlug)
+    const playSlugs = playbook.playbookPlays.map(play => play.playSlug)
 
     let index = 0
     let height = 0
@@ -105,17 +81,6 @@ const PlaybookDetailHeader = ({ slug }) => {
     })
   }
 
-  // Loading and error handler section.
-  if (loading) {
-    return <Loading />
-  } else if (error) {
-    if (error.networkError) {
-      return <Error />
-    } else {
-      return <NotFound />
-    }
-  }
-
   return (
     <div className='bg-dial-yellow sticky sticky-under-header'>
       <div className='flex flex-wrap gap-3'>
@@ -124,17 +89,17 @@ const PlaybookDetailHeader = ({ slug }) => {
             <Link href='/playbooks'>
               <a href='back-to-playbooks'>
                 <img
-                  data-tip={format('tooltip.forEntity', { entity: format('playbooks.label'), name: data.playbook.name })}
+                  data-tip={format('tooltip.forEntity', { entity: format('playbooks.label'), name: playbook.name })}
                   className='m-auto h-6 inline mr-2'
-                  alt={format('image.alt.logoFor', { name: data.playbook.name })}
-                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + data.playbook.imageFile}
+                  alt={format('image.alt.logoFor', { name: playbook.name })}
+                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
                 />
                 {format('playbooks.label')}
               </a>
             </Link>
           </div>
           <div className='flex flex-col md:flex-row gap-x-2 text-2xl font-semibold'>
-            <div>{data.playbook.name}</div>
+            <div>{playbook.name}</div>
             {canEdit &&
               <div className='text-base font-base text-white md:self-center'>
                 ({format(isPlaybookPublished ? 'playbook.status.published' : 'playbook.status.draft')})
@@ -147,7 +112,7 @@ const PlaybookDetailHeader = ({ slug }) => {
             <div className='play-progress-bar-base' />
             <div className='play-progress-number'>
               {
-                data.playbook.playbookPlays.map((playbookPlay, index) => {
+                playbook.playbookPlays.map((playbookPlay, index) => {
                   return (
                     <a
                       key={index}

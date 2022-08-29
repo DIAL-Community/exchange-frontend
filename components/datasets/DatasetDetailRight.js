@@ -3,6 +3,8 @@ import { useSession } from 'next-auth/client'
 import IframeResizer from 'iframe-resizer-react'
 import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
+import CommentsSection from '../shared/CommentsSection'
+import { ObjectType } from '../../lib/constants'
 import DatasetDetailCountries from './DatasetDetailCountries'
 import DatasetDetailOrganizations from './DatasetDetailOrganizations'
 import DatasetDetailSectors from './DatasetDetailSectors'
@@ -134,6 +136,7 @@ const DatasetDetailRight = ({ dataset }) => {
           })}
         </div>
       </div>
+      <CommentsSection objectId={dataset.id} objectType={ObjectType.OPEN_DATA} />
     </div>
   )
 }

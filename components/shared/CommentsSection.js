@@ -20,7 +20,7 @@ const CommentsSection = ({ objectId, objectType }) => {
 
   const [createComment] = useMutation(CREATE_COMMENT)
 
-  const onCommentUpsertAction = (text, commentId, parentCommentId = '') => {
+  const onCommentUpsertAction = (text, commentId, parentCommentId = null) => {
     if (session) {
       const { userEmail, userToken } = session.user
 
