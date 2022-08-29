@@ -3,9 +3,10 @@ import { useSession } from 'next-auth/client'
 import { useCallback, useEffect, useRef } from 'react'
 import 'react-comments-section/dist/index.css'
 const CommentSection = dynamic(() => import('react-comments-section').then((module) => module.CommentSection), { ssr: false })
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { CREATE_COMMENT } from '../../mutations/comment'
+import { COMMENTS_QUERY } from '../../queries/comment'
 
 const INPUT_CLASSNAME = 'public-DraftStyleDefault-block'
 const INPUT_BORDERED_WRAPPER_CLASSNAME = 'advanced-border'
@@ -17,6 +18,13 @@ const CommentsSection = ({ objectId, objectType }) => {
   const ref = useRef(null)
   const [session] = useSession()
   const user = session?.user
+
+  const { data } = useQuery(COMMENTS_QUERY, {
+    variables: {
+      commentObjectId: parseInt(objectId),
+      commentObjectType: objectType
+    }
+  })
 
   const [createComment] = useMutation(CREATE_COMMENT)
 
@@ -45,7 +53,7 @@ const CommentsSection = ({ objectId, objectType }) => {
 
   useEffect(() => document.addEventListener('click', handleClickOutside))
 
-  const getElementsByClassName = useCallback((className) => Array.from(ref.current.getElementsByClassName(className)), [])
+  const getElementsByClassName = useCallback((className) => Array.from(ref?.current?.getElementsByClassName(className) ?? []), [])
 
   const focusActiveElement = () => {
     const activeInput = document.activeElement.getElementsByClassName(INPUT_CLASSNAME)[FIRST_ELEMENT_INDEX]
@@ -68,6 +76,7 @@ const CommentsSection = ({ objectId, objectType }) => {
   return (
     <div id='comments-section' ref={ref} onClick={focusActiveElement}>
       <CommentSection
+        commentData={data?.comments}
         currentUser={user ? {
           currentUserId: user.id,
           currentUserImg: `https://ui-avatars.com/api/name=${user.name}&background=random`,
