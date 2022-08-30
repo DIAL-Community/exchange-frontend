@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-const GovStackIssueForm = ({referer}) => {
+const GovStackIssueForm = ({ referer }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
