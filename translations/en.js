@@ -1414,5 +1414,14 @@ export const en = {
 
   'country.code': 'Country Alpha-2',
   'country.codeLonger': 'Country Alpha-3',
-  'country.map.latLongDesc': 'At'
+  'country.map.latLongDesc': 'At',
+
+  'govstack.feedback.header': 'GovStack feedback form',
+  'govstack.feedback.intro': 'Thank you for providing feedback. We have a short form that will allow you to submit your feedback and be linked to the processes we use to accept that feedback.',
+  'govstack.feedback.track': 'You can track your issue at ',
+  'govstack.feedback.link': 'this link',
+  'govstack.feedback.name': 'Your Name',
+  'govstack.feedback.email': 'Your Email',
+  'govstack.feedback.page': 'GovStack Page',
+  'govstack.feedback.issue': 'Describe the Issue',
 }
