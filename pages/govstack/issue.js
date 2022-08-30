@@ -34,8 +34,10 @@ const GovStackIssueForm = () => {
   const submitMessage = async (data) => {
     const { name, email, issuePage, issue } = data
 
+    const encodedEmail = Buffer.from(email).toString('base64')
+
     const issueBody = {
-      'title': 'Feedback on specifications, submitted by ' + name + '(' + email + ')',
+      'title': 'Feedback on specifications, submitted by ' + name + '(' + encodedEmail + ')',
       'body': '<h2>' + name + ' submitted the following feedback:</h2><br /><em>Looking at page: ' + issuePage + '</em><br />' + issue
     }
 
@@ -104,12 +106,14 @@ const GovStackIssueForm = () => {
                   {format('govstack.feedback.email')}
                 </label>
                 <input {...register('email', { required: true })} className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker' />
+                <div className='mt-2 text-dial-gray-dark text-sm'>{format('govstack.feedback.emailDisclaimer')}</div>
               </div>
               <div className='grid'>
                 <label className='block text-lg text-dial-blue mb-2' htmlFor='page'>
                   {format('govstack.feedback.page')}
                 </label>
-                <input {...register('issuePage', { required: true })} className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker' />
+                <input {...register('issuePage', { required: false })} className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker' />
+                <div className='mt-2 text-dial-gray-dark text-sm'>{format('govstack.feedback.pageDisclaimer')}</div>
               </div>
               <div className='grid'>
                 <label className='block text-lg text-dial-blue mb-2' htmlFor='name'>
@@ -121,7 +125,7 @@ const GovStackIssueForm = () => {
                 <button
                   type='submit' className='w-24 mr-2 bg-dial-blue text-dial-gray-light py-2 px-4 rounded disabled:opacity-50' disabled={thanks}
                 >
-                  {format('app.submit')}
+                  {format('govstack.feedback.submit')}
                 </button>
               </div>
             </div>

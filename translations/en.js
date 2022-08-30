@@ -1420,8 +1420,11 @@ export const en = {
   'govstack.feedback.intro': 'Thank you for providing feedback. We have a short form that will allow you to submit your feedback and be linked to the processes we use to accept that feedback.',
   'govstack.feedback.track': 'You can track your issue at ',
   'govstack.feedback.link': 'this link',
-  'govstack.feedback.name': 'Your Name',
-  'govstack.feedback.email': 'Your Email',
-  'govstack.feedback.page': 'GovStack Page',
-  'govstack.feedback.issue': 'Describe the Issue',
+  'govstack.feedback.name': 'What should we call you? *',
+  'govstack.feedback.email': 'What is your email address? *',
+  'govstack.feedback.emailDisclaimer': 'We will store your email address in an encoded format on our issue management systems. We may use it to ask for further information/clarification about your feedback.',
+  'govstack.feedback.page': 'What page are you interested in?',
+  'govstack.feedback.pageDisclaimer': 'We have pre-filled this with the page you were viewing when you clicked on the feedback link but you can change as necessary. We use this information to decide which of our maintainers would be able to help the most.',
+  'govstack.feedback.issue': 'What feedback do you have? *',
+  'govstack.feedback.submit': 'Send feedback'
 }
