@@ -1,17 +1,14 @@
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-const GovStackIssueForm = () => {
+const GovStackIssueForm = ({referer}) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
   const [thanks, setThanks] = useState(false)
   const [issueLink, setIssueLink] = useState()
-
-  const { query } = useRouter()
 
   const { handleSubmit, register, reset } = useForm({
     mode: 'onBlur',
@@ -20,8 +17,8 @@ const GovStackIssueForm = () => {
   })
 
   useEffect(() => {
-    reset({ issuePage: query.page } )
-  }, [query.page])
+    reset({ issuePage: referer } )
+  }, [referer])
 
   const getRepoUrl = (issuePage) => {
     const base_github_org = '/GovstackWorkingGroup/'
@@ -134,6 +131,14 @@ const GovStackIssueForm = () => {
       </div>
     </>
   )
+}
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      referer: context.req.headers?.referer ? context.req.headers.referer : null
+    }
+  }
 }
 
 export default GovStackIssueForm
