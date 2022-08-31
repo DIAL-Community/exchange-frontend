@@ -46,6 +46,7 @@ const PlaybookDetail = ({ slug, locale }) => {
               commentsSectionRef={commentsSectionElement}
               objectId={data?.playbook.id}
               objectType={ObjectType.PLAYBOOK}
+              className='pt-20'
             />
           </div>
         </div>

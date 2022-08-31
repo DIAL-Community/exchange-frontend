@@ -1,10 +1,11 @@
 import dynamic from 'next/dynamic'
 import { useSession } from 'next-auth/client'
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import 'react-comments-section/dist/index.css'
 const CommentSection = dynamic(() => import('react-comments-section').then((module) => module.CommentSection), { ssr: false })
 import { useMutation, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
+import classNames from 'classnames'
 import { CREATE_COMMENT } from '../../mutations/comment'
 import { COMMENTS_QUERY } from '../../queries/comment'
 
@@ -13,7 +14,7 @@ const INPUT_BORDERED_WRAPPER_CLASSNAME = 'advanced-border'
 const FOCUSED_CLASSNAME = 'focused'
 const FIRST_ELEMENT_INDEX = 0
 
-const CommentsSection = ({ objectId, objectType, commentsSectionRef }) => {
+const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }) => {
   const { locale } = useRouter()
   const innerRef = useRef(null)
   const [session] = useSession()
@@ -26,9 +27,9 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef }) => {
     }
   })
 
-  const [createComment] = useMutation(CREATE_COMMENT)
+  const [createComment] = useMutation(CREATE_COMMENT, { refetchQueries: ['CountComments'] })
 
-  const onCommentUpsertAction = (text, commentId, parentCommentId = null) => {
+  const onCommentUpsertAction = (text, commentId, parentCommentId = null, parentOfRepliedCommentId = null) => {
     if (session) {
       const { userEmail, userToken } = session.user
 
@@ -38,7 +39,7 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef }) => {
           commentObjectType: objectType,
           commentObjectId: parseInt(objectId),
           userId: user.id,
-          parentCommentId,
+          parentCommentId: parentOfRepliedCommentId ?? parentCommentId,
           text
         },
         context: {
@@ -73,13 +74,30 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef }) => {
     }
   }
 
+  const [commentData, setCommentData] = useState([])
+
+  useEffect(() => {
+    if (data?.comments) {
+      const commentData = []
+      // eslint-disable-next-line no-unused-vars
+      data.comments.forEach(({ replies, __typename, ...otherCommentProps }) => {
+        commentData.push({
+          // eslint-disable-next-line no-unused-vars
+          replies: replies.map(({ __typename, ...otherReplyProps }) => otherReplyProps),
+          ...otherCommentProps
+        })
+      })
+      setCommentData(commentData)
+    }
+  }, [data?.comments])
+
   return (
-    <div ref={commentsSectionRef}>
+    <div ref={commentsSectionRef} className={classNames(className)}>
       <div id='comments-section' ref={innerRef} onClick={focusActiveElement}>
         <CommentSection
-          commentData={data?.comments}
+          commentData={commentData}
           currentUser={user ? {
-            currentUserId: user.id,
+            currentUserId: String(user.id),
             currentUserImg: `https://ui-avatars.com/api/name=${user.name}&background=random`,
             currentUserFullName: user.name
           } : null}
@@ -87,9 +105,9 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef }) => {
             loginLink: '/auth/signin',
             signupLink: '/auth/signup'
           }}
-          onSubmitAction={({ text, comId }) => {onCommentUpsertAction(text, comId)}}
-          onReplyAction={({ text, comId, repliedToCommentId }) => {onCommentUpsertAction(text, comId, repliedToCommentId)}}
-          onEditAction={({ text, comId }) => {onCommentUpsertAction(text, comId)}}
+          onSubmitAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
+          onReplyAction={({ text, comId, repliedToCommentId, parentOfRepliedCommentId }) => onCommentUpsertAction(text, comId, repliedToCommentId, parentOfRepliedCommentId)}
+          onEditAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
           advancedInput
           hrStyle={{ borderColor: '#dfdfea' }}
           formStyle={{ backgroundColor: 'white' }}

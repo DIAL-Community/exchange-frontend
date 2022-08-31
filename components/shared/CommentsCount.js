@@ -15,7 +15,7 @@ const CommentCount = ({ objectId, objectType, commentsSectionRef }) => {
     }
   })
 
-  const scrollToCommentsSection = () => commentsSectionRef.current.scrollIntoView(false)
+  const scrollToCommentsSection = () => commentsSectionRef.current.scrollIntoView()
 
   return (
     <div className='inline-flex items-center text-dial-blue text-sm cursor-pointer' onClick={scrollToCommentsSection}>
