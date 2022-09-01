@@ -15,6 +15,7 @@ import ProductDetailOrganizations from './ProductDetailOrganizations'
 import RepositoryList from './repositories/RepositoryList'
 import ProductDetailTags from './ProductDetailTags'
 import ProductDetailSdgs from './ProductDetailSdgs'
+import ProductPricing from './ProductPricing'
 
 const ProductDetailRight = ({ product, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
@@ -36,17 +37,26 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
       <div className='hidden lg:block'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
-      {
-        product.website &&
-          <div className='mt-12'>
-            <div className='card-title mb-3 text-dial-gray-dark inline'>{format('product.website')}</div>
-            <div className='text-base text-dial-teal inline ml-3'>
-              <a href={`//${product.website}`} className='mt-2' target='_blank' rel='noreferrer'>
-                <div className='my-auto'>{product.website} ⧉</div>
-              </a>
-            </div>
+      {product.website &&
+        <div className='mt-8 mb-3 flex flex-col gap-3'>
+          <div className='card-title text-dial-gray-dark inline'>{format('product.website')}</div>
+          <div className='text-base text-dial-teal'>
+            <a href={`//${product.website}`} target='_blank' rel='noreferrer'>
+              <div className='my-auto'>{product.website} ⧉</div>
+            </a>
           </div>
+        </div>
       }
+      <div className='mt-8 flex flex-col gap-3 mb-3'>
+        <div className='card-title text-dial-gray-dark inline'>{format('product.license')}</div>
+        <div className='text-base text-sm'>
+          {
+            product.commercialProduct
+              ? format('product.pricing.commercial').toUpperCase()
+              : (product.mainRepository?.license || format('general.na')).toUpperCase()
+          }
+        </div>
+      </div>
       <div className='mt-8 card-title mb-3 text-dial-gray-dark'>{format('product.description')}
         {product.manualUpdate && (
           <div className='inline ml-5 h5'>{format('product.manualUpdate')}</div>
@@ -55,6 +65,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
       <div className='fr-view text-dial-gray-dark'>
         {product.productDescription && parse(product.productDescription.description)}
       </div>
+      <ProductPricing product={product} canEdit={false} />
       {product.sustainableDevelopmentGoals && <ProductDetailSdgs product={product} canEdit={canEdit} />}
       {product.buildingBlocks && <ProductDetailBuildingBlocks product={product} canEdit={canEdit} />}
       {product.sectors && <ProductDetailSectors product={product} canEdit={canEdit} />}

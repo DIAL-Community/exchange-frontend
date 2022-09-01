@@ -1416,6 +1416,20 @@ export const en = {
   'country.codeLonger': 'Country Alpha-3',
   'country.map.latLongDesc': 'At',
 
+  'filter.product.commercialProduct': 'Commercial product only',
+  'product.pricing.header': 'Pricing Information',
+  'product.pricing.commercial': 'Commercial',
+  'product.pricing.hostingModel': 'Hosting Model',
+  'product.pricing.pricingModel': 'Pricing Model',
+  'product.pricing.pricingDetails': 'Detail Pricing Information',
+
+  'spreadsheet.save': 'Save Spreadsheet',
+
+  'licenseType.label': 'Product License',
+  'licenseType.allType': 'All license types',
+  'licenseType.ossOnly': 'Open source product only',
+  'licenseType.commercialOnly': 'Commercial product only',
+
   'govstack.feedback.header': 'GovStack feedback form',
   'govstack.feedback.intro': 'Thank you for providing feedback. We have a short form that will allow you to submit your feedback and be linked to the processes we use to accept that feedback.',
   'govstack.feedback.track': 'You can track your issue at ',

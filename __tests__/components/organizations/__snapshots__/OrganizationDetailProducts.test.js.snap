@@ -274,9 +274,6 @@ exports[`Unit test for the OrganizationDetailProducts component. Should match sn
 "
               />
               <div
-                class="w-4/12 lg:w-2/12 text-right text-sm lg:text-base font-semibold text-dial-cyan my-auto"
-              />
-              <div
                 class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
               />
             </div>
@@ -519,9 +516,6 @@ exports[`Unit test for the OrganizationDetailProducts component. Should match sn
                 class="w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple 
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
 "
-              />
-              <div
-                class="w-4/12 lg:w-2/12 text-right text-sm lg:text-base font-semibold text-dial-cyan my-auto"
               />
               <div
                 class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"

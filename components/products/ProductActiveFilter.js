@@ -16,6 +16,7 @@ import { CountryFilters } from '../filter/element/Country'
 import { SectorFilters } from '../filter/element/Sector'
 import { OrganizationFilters } from '../filter/element/Organization'
 import Pill from '../shared/Pill'
+import { LicenseTypeFilters } from '../filter/element/LicenseType'
 
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
@@ -28,12 +29,12 @@ const ProductActiveFilter = () => {
 
   const {
     withMaturity, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, endorsers
+    useCases, workflows, buildingBlocks, endorsers, licenseTypes
   } = useContext(ProductFilterContext)
 
   const {
     setWithMaturity, setProductDeployable, setForCovid, setSectors, setCountries, setOrganizations,
-    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers
+    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers, setLicenseTypes
   } = useContext(ProductFilterDispatchContext)
 
   const toggleWithMaturity = () => {
@@ -50,7 +51,7 @@ const ProductActiveFilter = () => {
     count = productDeployable ? count + 1 : count
     count = count + countries.length + organizations.length + tags.length +
       sectors.length + origins.length + sdgs.length + useCases.length +
-      workflows.length + buildingBlocks.length + endorsers.length
+      workflows.length + buildingBlocks.length + endorsers.length + licenseTypes.length
 
     return count
   }
@@ -70,7 +71,7 @@ const ProductActiveFilter = () => {
     setWorkflows([])
     setBuildingBlocks([])
     setEndorsers([])
-
+    setLicenseTypes([])
     // router.push(router.pathname)
   }
 
@@ -90,12 +91,13 @@ const ProductActiveFilter = () => {
     const workflowFilters = workflows.map(workflow => `workflows=${workflow.value}--${workflow.label}`)
     const buildingBlockFilters = buildingBlocks.map(buildingBlock => `buildingBlocks=${buildingBlock.value}--${buildingBlock.label}`)
     const endorserFilters = endorsers.map(endorser => `endorsers=${endorser.value}--${endorser.label}`)
+    const licenseTypesFilter = licenseTypes.map(licenseType => `licenseTypes=${licenseType.value}--${licenseType.label}`)
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, maturityFilter, deployableFilter, ...originFilters, ...countryFilters,
-      ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters, ...useCaseFilters,
-      ...workflowFilters, ...buildingBlockFilters, ...endorserFilters
+      activeFilter, maturityFilter, licenseTypesFilter, deployableFilter, ...originFilters, ...countryFilters,
+      ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters, ...useCaseFilters, ...workflowFilters,
+      ...buildingBlockFilters, ...endorserFilters
     ].filter(f => f).join('&')
 
     return `${baseUrl}/${basePath}?${filterParameters}`
@@ -106,6 +108,7 @@ const ProductActiveFilter = () => {
     if (query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog && !interactionDetected) {
       setWithMaturity(query.withMaturity === 'true')
       setProductDeployable(query.productDeployable === 'true')
+      parseQuery(query, 'licenseTypes', licenseTypes, setLicenseTypes)
       parseQuery(query, 'origins', origins, setOrigins)
       parseQuery(query, 'countries', countries, setCountries)
       parseQuery(query, 'sectors', sectors, setSectors)
@@ -143,6 +146,7 @@ const ProductActiveFilter = () => {
         <WorkflowFilters {...{ workflows, setWorkflows }} />
         <BuildingBlockFilters {...{ buildingBlocks, setBuildingBlocks }} />
         <TagFilters {...{ tags, setTags }} />
+        <LicenseTypeFilters {...{ licenseTypes, setLicenseTypes }} />
         <OriginFilters {...{ origins, setOrigins }} />
         <EndorserFilters {...{ endorsers, setEndorsers }} />
         <CountryFilters {...{ countries, setCountries }} />
