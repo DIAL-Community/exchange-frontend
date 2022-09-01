@@ -1,16 +1,8 @@
-import { useApolloClient } from '@apollo/client'
 import { useRef } from 'react'
-import { PRODUCT_QUERY } from '../../queries/product'
 import ProductDetailLeft from './ProductDetailLeft'
 import ProductDetailRight from './ProductDetailRight'
 
-const ProductDetail = ({ slug }) => {
-  const client = useApolloClient()
-
-  const { product } = client.readQuery({
-    query: PRODUCT_QUERY,
-    variables: { slug }
-  })
+const ProductDetail = ({ product }) => {
 
   const commentsSectionElement = useRef()
 
