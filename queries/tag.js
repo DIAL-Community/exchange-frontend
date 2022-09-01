@@ -32,6 +32,10 @@ export const TAGS_LIST_QUERY = gql`
         id
         name
         slug
+        tagDescription {
+          description
+          locale
+        }
       }
     }
   }
