@@ -250,7 +250,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                             class="react-select__placeholder css-19jynah-placeholder"
                             id="react-select-3-placeholder"
                           >
-                            Filter by Organization
+                            Enter user organization
                           </div>
                           <div
                             class="react-select__input-container css-6j8wv5-Input"
@@ -375,7 +375,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                             class="react-select__placeholder css-19jynah-placeholder"
                             id="react-select-4-placeholder"
                           >
-                            Filter by Product
+                            Enter products owned by user
                           </div>
                           <div
                             class="react-select__input-container css-6j8wv5-Input"
@@ -779,7 +779,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                             class="react-select__placeholder css-19jynah-placeholder"
                             id="react-select-6-placeholder"
                           >
-                            Filter by Organization
+                            Enter user organization
                           </div>
                           <div
                             class="react-select__input-container css-6j8wv5-Input"
@@ -904,7 +904,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                             class="react-select__placeholder css-19jynah-placeholder"
                             id="react-select-7-placeholder"
                           >
-                            Filter by Product
+                            Enter products owned by user
                           </div>
                           <div
                             class="react-select__input-container css-6j8wv5-Input"
@@ -1303,7 +1303,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                             class="react-select__placeholder css-19jynah-placeholder"
                             id="react-select-15-placeholder"
                           >
-                            Filter by Organization
+                            Enter user organization
                           </div>
                           <div
                             class="react-select__input-container css-6j8wv5-Input"
@@ -1442,7 +1442,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                             class="react-select__placeholder css-19jynah-placeholder"
                             id="react-select-16-placeholder"
                           >
-                            Filter by Product
+                            Enter products owned by user
                           </div>
                           <div
                             class="react-select__input-container css-6j8wv5-Input"
@@ -1855,7 +1855,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                             class="react-select__placeholder css-19jynah-placeholder"
                             id="react-select-12-placeholder"
                           >
-                            Filter by Organization
+                            Enter user organization
                           </div>
                           <div
                             class="react-select__input-container css-6j8wv5-Input"
@@ -1994,7 +1994,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                             class="react-select__placeholder css-19jynah-placeholder"
                             id="react-select-13-placeholder"
                           >
-                            Filter by Product
+                            Enter products owned by user
                           </div>
                           <div
                             class="react-select__input-container css-6j8wv5-Input"
@@ -2407,7 +2407,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                             class="react-select__placeholder css-19jynah-placeholder"
                             id="react-select-9-placeholder"
                           >
-                            Filter by Organization
+                            Enter user organization
                           </div>
                           <div
                             class="react-select__input-container css-6j8wv5-Input"
@@ -2532,7 +2532,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                             class="react-select__placeholder css-19jynah-placeholder"
                             id="react-select-10-placeholder"
                           >
-                            Filter by Product
+                            Enter products owned by user
                           </div>
                           <div
                             class="react-select__input-container css-6j8wv5-Input"

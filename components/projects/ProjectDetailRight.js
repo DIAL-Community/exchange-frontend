@@ -1,13 +1,15 @@
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
+import CommentsSection from '../shared/CommentsSection'
+import { ObjectType } from '../../lib/constants'
 import ProjectDetailSectors from './ProjectDetailSectors'
 import ProjectDetailOrganizations from './ProjectDetailOrganizations'
 import ProjectDetailCountries from './ProjectDetailCountries'
 import ProjectDetailTags from './ProjectDetailTags'
 import ProjectDetailProducts from './ProjectDetailProduct'
 
-const ProjectDetailRight = ({ project, canEdit }) => {
+const ProjectDetailRight = ({ project, canEdit, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -40,6 +42,11 @@ const ProjectDetailRight = ({ project, canEdit }) => {
       {project.sectors && <ProjectDetailSectors project={project} canEdit={canEdit} />}
       {project.countries && <ProjectDetailCountries project={project} canEdit={canEdit} />}
       {project.tags && <ProjectDetailTags project={project} canEdit={canEdit} />}
+      <CommentsSection
+        commentsSectionRef={commentsSectionRef}
+        objectId={project.id}
+        objectType={ObjectType.PROJECT}
+      />
     </div>
   )
 }

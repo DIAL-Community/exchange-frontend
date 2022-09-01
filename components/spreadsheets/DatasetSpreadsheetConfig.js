@@ -1,10 +1,27 @@
+import { convertToKey, createSpreadsheetData, MINIMUM_ROW_COUNT } from './SpreadsheetCommon'
+
+const DEFAULT_SHEET_ASSOC_NAME = 'datasetName'
+
 // Sheet names of the dataset spreadsheet.
 export const DEFAULT_SHEET_NAMES = ['Datasets', 'Descriptions', 'Organizations', 'SDGs', 'Sectors']
+export const COLUMN_SOURCE_KEYS = DEFAULT_SHEET_NAMES.map(sheetName => convertToKey(sheetName))
 
 // Header on each sheet.
 const DATASET_HEADERS = [
-  'Name', 'Other Names', 'Website', 'Origins', 'Endorsers', 'License', 'Type', 'Tags', 'Data Format', 'Comments',
-  'Geographic Coverage', 'Time Range', 'Visualization URL', 'Languages'
+  'Name',
+  'Other Names',
+  'Website',
+  'Origins',
+  'Endorsers',
+  'License',
+  'Type',
+  'Tags',
+  'Data Format',
+  'Comments',
+  'Geographic Coverage',
+  'Time Range',
+  'Visualization URL',
+  'Languages'
 ]
 const DATASET_DESCRIPTION_HEADERS = ['Dataset Name', 'Locale', 'Description']
 const ORGANIZATION_HEADERS = ['Dataset Name', 'Organization Name']
@@ -19,22 +36,6 @@ export const DEFAULT_SHEET_HEADERS = [
   SDG_HEADERS,
   SECTOR_HEADERS
 ]
-
-const MINIMUM_ROW_COUNT = 1
-const createSpreadsheetData = (rowCount, columnCount) => {
-  const rows = []
-  for (let i = 0; i < rowCount; i++) {
-    const row = []
-
-    for (let j = 0; j < columnCount; j++) {
-      row.push(null)
-    }
-
-    rows.push(row)
-  }
-
-  return rows
-}
 
 // Column definition for each sheet.
 const DATASET_COLUMN_DEFINITION = [
@@ -62,27 +63,12 @@ const datasetDataDefinition = (spreadsheetProduct) => {
   return spreadsheetProduct.map(entry => {
     const dataset = entry.spreadsheetData
 
-    return [
-      dataset.name,
-      dataset.aliases,
-      dataset.website,
-      dataset.origins,
-      dataset.endorsers,
-      dataset.license,
-      dataset.type,
-      dataset.tags,
-      dataset.format,
-      dataset.comments,
-      dataset.geographicCoverage,
-      dataset.timeRange,
-      dataset.visualizationUrl,
-      dataset.languages
-    ]
+    return DATASET_COLUMN_DEFINITION.map(column => dataset[column.data])
   })
 }
 
 const DATASET_DESCRIPTION_COLUMN_DEFINITION = [
-  { data: 'datasetName' },
+  { data: DEFAULT_SHEET_ASSOC_NAME },
   { data: 'locale' },
   { data: 'description' }
 ]
@@ -96,21 +82,25 @@ const datasetDescriptionDataDefinition = (spreadsheetProduct) => {
   const descriptionData = [].concat.apply([], spreadsheetProduct.map(entry => {
     const dataset = entry.spreadsheetData
 
-    return dataset.descriptions.map(description => {
-      return [
-        dataset.name,
-        description.locale,
-        description.description
-      ]
-    })
+    if (!dataset.descriptions) {
+      return []
+    }
+
+    return dataset.descriptions
+      .map(description => [dataset.name].concat(
+        DATASET_DESCRIPTION_COLUMN_DEFINITION
+          .filter(column => column.data !== DEFAULT_SHEET_ASSOC_NAME)
+          .map(column => description[column.data])
+      ))
+      .sort(([, localeX], [, localeY]) => localeX.localeCompare(localeY))
   }))
 
   return descriptionData.length > 0 ? descriptionData : defaultData
 }
 
 const ORGANIZATION_COLUMN_DEFINITION = [
-  { data: 'datasetName' },
-  { data: 'organizationName' }
+  { data: DEFAULT_SHEET_ASSOC_NAME },
+  { data: 'name' }
 ]
 
 const datasetOrganizationDataDefinition = (spreadsheetProduct) => {
@@ -122,20 +112,25 @@ const datasetOrganizationDataDefinition = (spreadsheetProduct) => {
   const organizationData = [].concat.apply([], spreadsheetProduct.map(entry => {
     const dataset = entry.spreadsheetData
 
-    return dataset.organizations.map(organization => {
-      return [
-        dataset.name,
-        organization.name
-      ]
-    })
+    if (!dataset.organizations) {
+      return []
+    }
+
+    return dataset.organizations
+      .map(organization => [dataset.name].concat(
+        ORGANIZATION_COLUMN_DEFINITION
+          .filter(column => column.data !== DEFAULT_SHEET_ASSOC_NAME)
+          .map(column => organization[column.data])
+      ))
+      .sort(([, nameX], [, nameY]) => nameX.localeCompare(nameY))
   }))
 
   return organizationData.length > 0 ? organizationData : defaultData
 }
 
 const SECTOR_COLUMN_DEFINITION = [
-  { data: 'datasetName' },
-  { data: 'sectorName' }
+  { data: DEFAULT_SHEET_ASSOC_NAME },
+  { data: 'name' }
 ]
 
 const datasetSectorDataDefinition = (spreadsheetProduct) => {
@@ -147,20 +142,25 @@ const datasetSectorDataDefinition = (spreadsheetProduct) => {
   const sectorData = [].concat.apply([], spreadsheetProduct.map(entry => {
     const dataset = entry.spreadsheetData
 
-    return dataset.sectors.map(sector => {
-      return [
-        dataset.name,
-        sector.name
-      ]
-    })
+    if (!dataset.sectors) {
+      return []
+    }
+
+    return dataset.sectors
+      .map(sector => [dataset.name].concat(
+        SECTOR_COLUMN_DEFINITION
+          .filter(column => column.data !== DEFAULT_SHEET_ASSOC_NAME)
+          .map(column => sector[column.data])
+      ))
+      .sort(([, nameX], [, nameY]) => nameX.localeCompare(nameY))
   }))
 
   return sectorData.length > 0 ? sectorData : defaultData
 }
 
 const SDG_COLUMN_DEFINITION = [
-  { data: 'datasetName' },
-  { data: 'sdgNumber' }
+  { data: DEFAULT_SHEET_ASSOC_NAME },
+  { data: 'number' }
 ]
 
 const datasetSDGDefinition = (spreadsheetProduct) => {
@@ -172,25 +172,21 @@ const datasetSDGDefinition = (spreadsheetProduct) => {
   const sdgData = [].concat.apply([], spreadsheetProduct.map(entry => {
     const dataset = entry.spreadsheetData
 
-    return dataset.sdgs.map(sdg => {
-      return [
-        dataset.name,
-        sdg.number
-      ]
-    })
+    if (!dataset.sdgs) {
+      return []
+    }
+
+    return dataset.sdgs
+      .map(sdg => [dataset.name].concat(
+        SDG_COLUMN_DEFINITION
+          .filter(column => column.data !== DEFAULT_SHEET_ASSOC_NAME)
+          .map(column => sdg[column.data])
+      ))
+      .sort(([, numberX], [, numberY]) => numberX < numberY)
   }))
 
   return sdgData.length > 0 ? sdgData : defaultData
 }
-
-// All header configurations.
-export const DEFAULT_COLUMN_DEFINITIONS = [
-  DATASET_COLUMN_DEFINITION,
-  DATASET_DESCRIPTION_COLUMN_DEFINITION,
-  ORGANIZATION_COLUMN_DEFINITION,
-  SDG_COLUMN_DEFINITION,
-  SECTOR_COLUMN_DEFINITION
-]
 
 const DATA_DEFINITIONS = [
   datasetDataDefinition,
@@ -203,4 +199,3 @@ const DATA_DEFINITIONS = [
 export const mapSpreadsheetData = (spreadsheetProduct, sheetIndex) => {
   return DATA_DEFINITIONS[sheetIndex].call(this, spreadsheetProduct)
 }
-

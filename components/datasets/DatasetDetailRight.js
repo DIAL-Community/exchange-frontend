@@ -3,13 +3,15 @@ import { useSession } from 'next-auth/client'
 import IframeResizer from 'iframe-resizer-react'
 import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
+import CommentsSection from '../shared/CommentsSection'
+import { ObjectType } from '../../lib/constants'
 import DatasetDetailCountries from './DatasetDetailCountries'
 import DatasetDetailOrganizations from './DatasetDetailOrganizations'
 import DatasetDetailSectors from './DatasetDetailSectors'
 import DatasetDetailTags from './DatasetDetailTags'
 import DatasetDetailSdgs from './DatasetDetailSdgs'
 
-const DatasetDetailRight = ({ dataset }) => {
+const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -134,6 +136,11 @@ const DatasetDetailRight = ({ dataset }) => {
           })}
         </div>
       </div>
+      <CommentsSection
+        commentsSectionRef={commentsSectionRef}
+        objectId={dataset.id}
+        objectType={ObjectType.OPEN_DATA}
+      />
     </div>
   )
 }

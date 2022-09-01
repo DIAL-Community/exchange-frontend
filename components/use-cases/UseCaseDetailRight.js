@@ -5,11 +5,13 @@ import Breadcrumb from '../shared/breadcrumb'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import CreateButton from '../shared/CreateButton'
 import WorkflowCard from '../workflows/WorkflowCard'
+import CommentsSection from '../shared/CommentsSection'
+import { ObjectType } from '../../lib/constants'
 import StepList from './steps/StepList'
 import UseCaseDetailSdgTargets from './UseCaseDetailSdgTargets'
 import UseCaseDetailTags from './UseCaseDetailTags'
 
-const UseCaseDetailRight = ({ useCase, canEdit }) => {
+const UseCaseDetailRight = ({ useCase, canEdit, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
   const [session] = useSession()
@@ -73,6 +75,11 @@ const UseCaseDetailRight = ({ useCase, canEdit }) => {
           </div>
       }
       {useCase.tags && <UseCaseDetailTags useCase={useCase} canEdit={canEdit} />}
+      <CommentsSection
+        commentsSectionRef={commentsSectionRef}
+        objectId={useCase.id}
+        objectType={ObjectType.USE_CASE}
+      />
     </div>
   )
 }

@@ -49,7 +49,7 @@ const TagForm = ({ isOpen, onClose, tag }) => {
     shouldUnregister: true,
     defaultValues: {
       name: tag?.name,
-      description: tag?.description ?? ''
+      description: (tag?.tagDescription?.description) ?? ''
     }
   })
 

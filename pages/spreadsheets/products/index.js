@@ -2,8 +2,10 @@ import { useSession } from 'next-auth/client'
 import dynamic from 'next/dynamic'
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
+import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import ClientOnly from '../../../lib/ClientOnly'
+import { useUser } from '../../../lib/hooks'
 
 const ProductSpreadsheetWithoutSSR = dynamic(
   () => import('../../../components/spreadsheets/ProductSpreadsheet'),
@@ -12,18 +14,20 @@ const ProductSpreadsheetWithoutSSR = dynamic(
 
 const ProductSpreadsheet = () => {
   const [session] = useSession()
+  const { isAdminUser, loadingUserSession } = useUser(session)
 
   return (
     <>
       <QueryNotification />
       <Header />
-      <div className='max-w-catalog mx-auto' style={{ minHeight: '70vh' }}>
-        {session?.user?.canEdit &&
-          <ClientOnly>
-            <ProductSpreadsheetWithoutSSR />
-          </ClientOnly>
-        }
-      </div>
+      <ClientOnly>
+        <div className='max-w-catalog mx-auto' style={{ minHeight: '70vh' }}>
+          {loadingUserSession ?
+            <Loading /> :
+            isAdminUser ? <ProductSpreadsheetWithoutSSR /> : <Unauthorized />
+          }
+        </div>
+      </ClientOnly>
       <Footer />
     </>
   )

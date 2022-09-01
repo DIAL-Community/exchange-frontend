@@ -160,7 +160,7 @@ export const UserForm = ({ user, action }) => {
                 <div className={sectionStyle}>
                   <label className={sectionLabelStyle} htmlFor='name'>
                     <p>{format('user.organization')}</p>
-                    <OrganizationAutocomplete {...{ organizations, setOrganizations }} />
+                    <OrganizationAutocomplete {...{ organizations, setOrganizations, placeholder: format('user.organization.placeholder') }} />
                     {organizations.length > 0 &&
                     <div className='flex flex-wrap gap-3'>
                       <OrganizationFilters {...{ organizations, setOrganizations }} />
@@ -171,7 +171,7 @@ export const UserForm = ({ user, action }) => {
                 <div className={sectionStyle}>
                   <label className={sectionLabelStyle} htmlFor='name'>
                     <p>{format('user.products')}</p>
-                    <ProductAutocomplete {...{ products, setProducts }} />
+                    <ProductAutocomplete {...{ products, setProducts, placeholder: format('user.products.placeholder') } } />
                     {organizations.length > 0 &&
                       <div className='flex flex-wrap gap-3'>
                         <ProductFilters {...{ products, setProducts }} />

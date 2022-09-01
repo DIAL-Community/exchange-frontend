@@ -5,8 +5,10 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
+import CommentsCount from '../shared/CommentsCount'
+import { ObjectType } from '../../lib/constants'
 
-const DatasetDetailLeft = ({ dataset }) => {
+const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -35,14 +37,9 @@ const DatasetDetailLeft = ({ dataset }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-20'>
-        <div className='w-full'>
-          {session && (
-            <div className='inline'>
-              {session.user.canEdit && (
-                <EditButton type='link' href={generateEditLink()} />
-              )}
-            </div>
-          )}
+        <div className='w-full inline-flex gap-3'>
+          {session?.user.canEdit && <EditButton type='link' href={generateEditLink()}/>}
+          <CommentsCount commentsSectionRef={commentsSectionRef} objectId={dataset.id} objectType={ObjectType.OPEN_DATA}/>
         </div>
         <div className='h4 font-bold py-4'>{format('datasets.label')}</div>
       </div>
@@ -62,7 +59,7 @@ const DatasetDetailLeft = ({ dataset }) => {
             />
           </div>
         </div>
-        <div className='fr-view text-dial-gray-dark max-h-40 overflow-hidden'>
+        <div className='fr-view text-dial-gray-dark line-clamp-4'>
           {dataset.datasetDescription && parse(dataset.datasetDescription.description)}
         </div>
       </div>

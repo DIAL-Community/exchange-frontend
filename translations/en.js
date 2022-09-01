@@ -218,12 +218,7 @@ export const en = {
   'product.category-score': 'Category score',
   'product.indicator-score': 'Indicator score',
   'product.discussion': 'Discussion',
-  'product.discourse': 'View on Discourse',
-  'product.forum-desc-prod': 'The Catalog is linked to a Discourse forum to facilitate conversations about Products. In order to join these conversations, please create an account on the <a href="https://hub.osc.dial.community/c/catalog/products/68" target="_blank">Discourse Forum</a>. Once you have created an account, you can create and respond to posts directly from the Catalog.',
-  'product.forum-desc-bb': 'The Catalog is linked to a Discourse forum to facilitate conversations about Products. In order to join these conversations, please create an account on the <a href="https://discourse.govstack.global/c/building-blocks/7" target="_blank">Discourse Forum</a>. Once you have created an account, you can create and respond to posts directly from the Catalog.',
   'product.noforum': 'No posts or discussion topics to view',
-  'product.create-prod-topic': 'To start a conversation about this product, please visit the <a href="https://hub.osc.dial.community/c/catalog/products/68" target="_blank">Discourse Forum</a>',
-  'product.create-bb-topic': 'To start a conversation about this building block, please visit the <a href="https://discourse.govstack.global/c/building-blocks/7" target="_blank">Discourse Forum</a>',
   'product.post': 'Post',
   'product.forum.login': 'You must be logged in to post',
   'product.forum.createAccount': 'In order to create a new post, you must first create an account on our forum. Click the button below and register an account with the username',
@@ -329,6 +324,7 @@ export const en = {
   'sdg-target.header': 'SDG Targets',
   'sdg-target.label': 'SDG Target',
 
+  'use-case.header': 'Use Cases',
   'use-case.label': 'Use Case',
   'use-case.sdg-targets': 'SDG Targets',
   'use-case.workflow': 'Workflows',
@@ -557,7 +553,7 @@ export const en = {
   'filter.framework.title': 'Framework Filters',
   'filter.framework.subTitle': 'Use elements of the Digital Investment Framework to filter {entity}',
 
-  'filter.buildingBlock.matureOnly': 'Show only mature building blocks',
+  'filter.buildingBlock.matureOnly': 'Show only published building blocks',
 
   'filter.general.applied': '{count, plural, one {Filter Applied} other {Filters Applied}}',
   'filter.general.clearAll': 'Clear all',
@@ -1360,6 +1356,9 @@ export const en = {
   'shared.metadata.description.comprehensiveListOf': 'Comprehensive list of {entities} provided by DIAL\'s Catalog of Digital Solutions to support users in discovering digital technologies designed to address the Sustainable Development Goals (SDGs).',
   'shared.metadata.description.listOfKey': 'List of key {entities} provided by DIAL’s Catalog of Digital Solutions, to support users in the deployment of digital technologies designed to address the Sustainable Development Goals (SDGs).',
 
+  'seo.description.about': 'DIAL’s Catalog of Digital Solutions is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
+  'seo.description.maps': 'Interactive map views showing where specific digital platforms have been implemented as well as the countries where various digital development organizations work.',
+
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
   'validation.endDateEarlierThanStartDate': 'End Date cannot be earlier than Start Date',
@@ -1415,5 +1414,31 @@ export const en = {
 
   'country.code': 'Country Alpha-2',
   'country.codeLonger': 'Country Alpha-3',
-  'country.map.latLongDesc': 'At'
+  'country.map.latLongDesc': 'At',
+
+  'filter.product.commercialProduct': 'Commercial product only',
+  'product.pricing.header': 'Pricing Information',
+  'product.pricing.commercial': 'Commercial',
+  'product.pricing.hostingModel': 'Hosting Model',
+  'product.pricing.pricingModel': 'Pricing Model',
+  'product.pricing.pricingDetails': 'Detail Pricing Information',
+
+  'spreadsheet.save': 'Save Spreadsheet',
+
+  'licenseType.label': 'Product License',
+  'licenseType.allType': 'All license types',
+  'licenseType.ossOnly': 'Open source product only',
+  'licenseType.commercialOnly': 'Commercial product only',
+
+  'govstack.feedback.header': 'GovStack feedback form',
+  'govstack.feedback.intro': 'Thank you for providing feedback. We have a short form that will allow you to submit your feedback and be linked to the processes we use to accept that feedback.',
+  'govstack.feedback.track': 'You can track your issue at ',
+  'govstack.feedback.link': 'this link',
+  'govstack.feedback.name': 'What should we call you? *',
+  'govstack.feedback.email': 'What is your email address? *',
+  'govstack.feedback.emailDisclaimer': 'We will store your email address in an encoded format on our issue management systems. We may use it to ask for further information/clarification about your feedback.',
+  'govstack.feedback.page': 'What page are you interested in?',
+  'govstack.feedback.pageDisclaimer': 'We have pre-filled this with the page you were viewing when you clicked on the feedback link but you can change as necessary. We use this information to decide which of our maintainers would be able to help the most.',
+  'govstack.feedback.issue': 'What feedback do you have? *',
+  'govstack.feedback.submit': 'Send feedback'
 }

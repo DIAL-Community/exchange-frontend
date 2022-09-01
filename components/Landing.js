@@ -25,7 +25,7 @@ const Landing = () => {
         <div className='max-w-catalog mx-auto'>
           <div className='relative h-full z-70 pb-8'>
             <div className='grid grid-cols-5'>
-              <div className='col-span-5 md:col-span-4 lg:col-span-3 h-screen text-left grid lg:place-content-center mt-24 lg:mt-0 md:ml-12 lg:ml-0'>
+              <div className='col-span-5 lg:col-span-3 h-screen text-left lg:grid lg:place-content-center mt-24 lg:mt-0 lg:ml-0'>
                 <div>
                   <div className='px-4 text-lg text-dial-blue-darkest md:text-xl xl:text-2xl xl:leading-landing'>
                     {format('landing.subtitle')}
@@ -38,7 +38,7 @@ const Landing = () => {
                     {format('landing.blurb')}
                   </p>
                 </div>
-                <div className='px-4 mt-8 sm:mt-20 md:mt-20 sm:flex lg:justify-start sm:text-xs md:text-sm lg:text-lg'>
+                <div className='px-4 mt-8 pt-60 lg:pt-0 sm:flex md:justify-start sm:text-xs md:text-sm lg:text-lg'>
                   <div className='text-white lg:py-1'>
                     <Link href='/products'>
                       <a href='/products' className={`${buttonAnchorStyle} shadow-2xl px-10 text-white bg-dial-blue`}>
@@ -55,7 +55,7 @@ const Landing = () => {
                     </Link>
                   </div>
                 </div>
-                <div className='px-4 mt-2 sm:flex lg:justify-start sm:text-xs md:text-sm lg:text-lg'>
+                <div className='px-4 mt-3 sm:flex md:justify-start sm:text-xs md:text-sm lg:text-lg'>
                   <div className='text-white lg:py-1'>
                     <Link href='https://digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'>
                       <a target='_blank' rel='noreferrer' className={`${buttonAnchorStyle} shadow-2xl px-10 text-white bg-sdg-target`}>
@@ -71,10 +71,11 @@ const Landing = () => {
         <div>
           <Image
             layout='fill'
-            objectFit='contains'
+            objectFit='contain'
             className='h-screen object-cover'
             src='/images/hero-image/hero-image.png'
             alt='Banner of the catalog of digital solutions.'
+            priority
           />
         </div>
       </div>

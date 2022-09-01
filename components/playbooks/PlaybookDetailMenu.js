@@ -8,6 +8,8 @@ import { useIntl } from 'react-intl'
 import { ToastContext } from '../../lib/ToastContext'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
+import CommentsCount from '../shared/CommentsCount'
+import { ObjectType } from '../../lib/constants'
 
 const PlaybookEmbedDetail = ({ displayed, setDisplayed }) => {
   const { formatMessage } = useIntl()
@@ -94,7 +96,7 @@ const PlaybookEmbedDetail = ({ displayed, setDisplayed }) => {
   )
 }
 
-const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
+const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
@@ -129,13 +131,18 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation }) => {
         <div className='hidden lg:block'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
-        <div className='mt-4 ml-auto'>
-          <a href={generatePdfLink()} target='_blank' rel='noreferrer' className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
+        <div className='mt-4 ml-auto flex items-center'>
+          <CommentsCount
+            commentsSectionRef={commentsSectionRef}
+            objectId={playbook.id}
+            objectType={ObjectType.PLAYBOOK}
+          />
+          <a href={generatePdfLink()} target='_blank' rel='noreferrer' className='bg-dial-blue px-2 py-0.5 ml-3 rounded text-white mr-3'>
             <img src='/icons/pdf.svg' className='inline mr-2 pb-1' alt='Print PDF' height='12px' width='12px' />
             <span className='text-sm px-2'>{format('app.print-pdf')}</span>
           </a>
           {allowEmbedCreation &&
-            <a onClick={openEmbedDialog} className='cursor-pointer bg-dial-blue px-2 py-1 rounded text-white mr-5'>
+            <a onClick={openEmbedDialog} className='cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white mr-3'>
               <FaCode className='inline' />
               <span className='text-sm px-2'>{format('playbook.openEmbedDialog')}</span>
             </a>

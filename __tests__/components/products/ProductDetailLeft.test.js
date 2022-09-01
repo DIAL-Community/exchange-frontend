@@ -1,4 +1,3 @@
-import { DiscourseProvider } from '../../../components/context/DiscourseContext'
 import ProductDetailLeft from '../../../components/products/ProductDetailLeft'
 import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
@@ -21,9 +20,7 @@ describe('Unit test for the ProductDetailLeft component.', () => {
 
     const { queryByTestId } = render(
       <CustomMockedProvider>
-        <DiscourseProvider>
-          <ProductDetailLeft product={product} />
-        </DiscourseProvider>
+        <ProductDetailLeft product={product} />
       </CustomMockedProvider>
     )
 
@@ -35,9 +32,7 @@ describe('Unit test for the ProductDetailLeft component.', () => {
 
     const { getByTestId } = render(
       <CustomMockedProvider>
-        <DiscourseProvider>
-          <ProductDetailLeft product={product} />
-        </DiscourseProvider>
+        <ProductDetailLeft product={product} />
       </CustomMockedProvider>
     )
 
@@ -49,9 +44,7 @@ describe('Unit test for the ProductDetailLeft component.', () => {
 
     const { getByTestId } = render(
       <CustomMockedProvider>
-        <DiscourseProvider>
-          <ProductDetailLeft product={product} />
-        </DiscourseProvider>
+        <ProductDetailLeft product={product} />
       </CustomMockedProvider>
     )
 

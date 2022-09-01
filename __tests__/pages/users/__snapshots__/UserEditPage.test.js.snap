@@ -891,7 +891,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                               class="react-select__placeholder css-19jynah-placeholder"
                               id="react-select-3-placeholder"
                             >
-                              Filter by Organization
+                              Enter user organization
                             </div>
                             <div
                               class="react-select__input-container css-6j8wv5-Input"
@@ -1016,7 +1016,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                               class="react-select__placeholder css-19jynah-placeholder"
                               id="react-select-4-placeholder"
                             >
-                              Filter by Product
+                              Enter products owned by user
                             </div>
                             <div
                               class="react-select__input-container css-6j8wv5-Input"

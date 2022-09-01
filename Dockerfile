@@ -9,7 +9,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 COPY . .
 COPY --from=base /app/node_modules ./node_modules
-RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
+RUN yarn build && yarn sitemap && yarn install --production --ignore-scripts --prefer-offline
 
 FROM node:16.14-alpine AS prod
 ENV NODE_ENV=production

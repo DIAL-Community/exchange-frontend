@@ -1,14 +1,11 @@
-import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
-import { DiscourseForum } from '../shared/discourse'
+import CommentsSection from '../shared/CommentsSection'
+import { ObjectType } from '../../lib/constants'
 import BuildingBlockDetailWorkflows from './BuildingBlockDetailWorkflows'
 import BuildingBlockDetailProducts from './BuildingBlockDetailProducts'
 
-const BuildingBlockDetailRight = ({ buildingBlock, discourseRef, canEdit }) => {
-  const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, { ...values })
-
+const BuildingBlockDetailRight = ({ buildingBlock, canEdit, commentsSectionRef }) => {
   const slugNameMapping = (() => {
     const map = {}
     map[buildingBlock.slug] = buildingBlock.name
@@ -26,11 +23,11 @@ const BuildingBlockDetailRight = ({ buildingBlock, discourseRef, canEdit }) => {
       </div>
       {buildingBlock.products && <BuildingBlockDetailProducts buildingBlock={buildingBlock} canEdit={canEdit} />}
       {buildingBlock.workflows && <BuildingBlockDetailWorkflows buildingBlock={buildingBlock} canEdit={canEdit} />}
-      <div className='mt-12' ref={discourseRef}>
-        <div className='card-title mb-3'>{format('product.discussion')}</div>
-        <div className='text-sm text-dial-gray-dark pb-2 highlight-link' dangerouslySetInnerHTML={{ __html: format('product.forum-desc-bb') }} />
-        <DiscourseForum topicId={buildingBlock.discourseId} objType='bb' />
-      </div>
+      <CommentsSection
+        commentsSectionRef={commentsSectionRef}
+        objectId={buildingBlock.id}
+        objectType={ObjectType.BUILDING_BLOCK}
+      />
     </div>
   )
 }

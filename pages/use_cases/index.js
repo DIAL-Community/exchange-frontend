@@ -1,5 +1,7 @@
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
+import { NextSeo } from 'next-seo'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import QueryNotification from '../../components/shared/QueryNotification'
@@ -17,11 +19,17 @@ const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 const UseCaseListQuery = dynamic(() => import('../../components/use-cases/UseCaseList'), { ssr: false })
 
 const UseCases = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const { search } = useContext(UseCaseFilterContext)
   const { setSearch } = useContext(UseCaseFilterDispatchContext)
 
   return (
     <>
+      <NextSeo
+        title={format('use-case.header')}
+        description={format('shared.metadata.description.listOfKey', { entities: format('use-case.header')?.toLocaleLowerCase() })}
+      />
       <QueryNotification />
       <GradientBackground />
       <Header />

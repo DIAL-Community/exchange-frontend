@@ -33,7 +33,7 @@ const SDGs = () => {
           activeTab='filter.entity.products'
           filter={<SDGFilter />}
           content={<SDGListQuery />}
-          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.sdgs' />}
+          searchFilter={<SearchFilter {...{ search, setSearch }} createNew={false} hint='filter.entity.sdgs' />}
           activeFilter={<SDGActiveFilter />}
           hint={<SDGHint />}
         />

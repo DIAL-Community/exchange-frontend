@@ -7,7 +7,6 @@ export const BUILDING_BLOCK_DETAIL_QUERY = gql`
       name
       slug
       imageFile
-      discourseId
       specUrl
       buildingBlockDescription {
         description
