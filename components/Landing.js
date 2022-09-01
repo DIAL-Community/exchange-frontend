@@ -71,10 +71,11 @@ const Landing = () => {
         <div>
           <Image
             layout='fill'
-            objectFit='contains'
+            objectFit='contain'
             className='h-screen object-cover'
             src='/images/hero-image/hero-image.png'
             alt='Banner of the catalog of digital solutions.'
+            priority
           />
         </div>
       </div>
