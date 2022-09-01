@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { FixedSizeGrid, FixedSizeList } from 'react-window'
 import AutoSizer from 'react-virtualized-auto-sizer'
@@ -9,6 +9,7 @@ import { FilterContext } from '../context/FilterContext'
 import { ProductFilterContext } from '../context/ProductFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
 import NotFound from '../shared/NotFound'
+import { PRODUCTS_QUERY } from '../../queries/product'
 import ProductCard from './ProductCard'
 
 /* Default number of elements coming from graphql query. */
@@ -23,92 +24,11 @@ const PRODUCT_CARD_GUTTER_SIZE = 8
 /* Height of the product's single list element when viewing the list view. */
 const MIN_PRODUCT_LIST_SIZE = 80
 
-const PRODUCTS_QUERY = gql`
-query SearchProducts(
-  $first: Int,
-  $after: String,
-  $origins: [String!],
-  $sectors: [String!],
-  $countries: [String!],
-  $organizations: [String!],
-  $sdgs: [String!],
-  $tags: [String!],
-  $useCases: [String!],
-  $workflows: [String!],
-  $buildingBlocks: [String!],
-  $endorsers: [String!],
-  $productDeployable: Boolean,
-  $withMaturity: Boolean,
-  $search: String!
-  ) {
-  searchProducts(
-    first: $first,
-    after: $after,
-    origins: $origins,
-    sectors: $sectors,
-    countries: $countries,
-    organizations: $organizations,
-    sdgs: $sdgs,
-    tags: $tags,
-    useCases: $useCases,
-    workflows: $workflows,
-    buildingBlocks: $buildingBlocks,
-    endorsers: $endorsers,
-    productDeployable: $productDeployable,
-    withMaturity: $withMaturity,
-    search: $search
-  ) {
-    __typename
-    totalCount
-    pageInfo {
-      endCursor
-      startCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    nodes {
-      id
-      name
-      slug
-      imageFile
-      isLaunchable
-      maturityScore
-      productType
-      tags
-      endorsers {
-        name
-        slug
-      }
-      origins{
-        name
-        slug
-      }
-      buildingBlocks {
-        slug
-        name
-        imageFile
-      }
-      sustainableDevelopmentGoals {
-        slug
-        name
-      }
-      productDescription {
-        description
-        locale
-      }
-      mainRepository {
-        license
-      }
-    }
-  }
-}
-`
-
 const ProductListQuery = () => {
   const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const {
     origins, countries, sectors, organizations, sdgs, tags, useCases, workflows, buildingBlocks,
-    endorsers, productDeployable, withMaturity, search
+    endorsers, productDeployable, withMaturity, search, licenseTypes
   } = useContext(ProductFilterContext)
 
   const { locale } = useRouter()
@@ -128,6 +48,7 @@ const ProductListQuery = () => {
       workflows: workflows.map(workflow => workflow.value),
       buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
       endorsers: endorsers.map(endorser => endorser.value),
+      licenseTypes: licenseTypes.map(licenseType => licenseType.value),
       productDeployable,
       withMaturity,
       search
@@ -150,6 +71,7 @@ const ProductListQuery = () => {
         workflows: workflows.map(workflow => workflow.value),
         buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
         endorsers: endorsers.map(endorser => endorser.value),
+        licenseTypes: licenseTypes.map(licenseType => licenseType.value),
         productDeployable,
         withMaturity,
         search
@@ -172,13 +94,9 @@ const ProductListQuery = () => {
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error && error.networkError) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (error && !error.networkError) {
     return <NotFound />
   }
 
@@ -205,7 +123,7 @@ const ProductListQuery = () => {
               {format('origin.header').toUpperCase()}
             </div>
             <div className='hidden lg:block w-2/12 text-sm text-right px-2 font-semibold opacity-50'>
-              {format('product.card.dataset').toUpperCase()}
+              {format('product.license').toUpperCase()}
             </div>
           </div>
       }

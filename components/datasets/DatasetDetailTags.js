@@ -44,7 +44,6 @@ const DatasetDetailTags = ({ dataset, canEdit }) => {
   )
 
   const addTag = (tag) => {
-    console.log('Tag: ', tag)
     setTagNames([...tagNames.filter(tagName => tagName !== tag.name), tag.label])
     setIsDirty(true)
   }

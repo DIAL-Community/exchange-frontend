@@ -1,17 +1,19 @@
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
-import { waitFor } from '@testing-library/react'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { render } from '../../test-utils'
-import ProductSpreadsheet, { PRODUCT_SPREADSHEET_QUERY } from '../../../components/spreadsheets/ProductSpreadsheet'
-import { productSpreadsheet } from './data/ProductSpreadsheet'
+import { render, waitForAllEffects } from '../../test-utils'
+import { DEFAULT_SHEET_NAMES } from '../../../components/spreadsheets/ProductSpreadsheetConfig'
+import ProductSpreadsheet from '../../../components/spreadsheets/ProductSpreadsheet'
+import { PRODUCT_SPREADSHEET_QUERY } from '../../../queries/spreadsheet'
+import { mockedProductSpreadsheetData } from './data/ProductSpreadsheet'
 
 // Mock next-router calls.
 jest.mock('next/dist/client/router')
 // Mock the next-auth's useSession.
 jest.mock('next-auth/client')
+jest.setTimeout(10000)
 
-describe('Unit tests for playbook list interaction.', () => {
+describe('Unit tests for spreadsheet interaction.', () => {
   const pushSpy = jest.fn(() => Promise.resolve(true))
   beforeEach(() => {
     // Mocked router implementation.
@@ -43,13 +45,13 @@ describe('Unit tests for playbook list interaction.', () => {
       </CustomMockedProvider>
     )
     // Wait for all effect to be executed.
-    await waitFor(() => new Promise((res) => setTimeout(res, 0)))
+    await waitForAllEffects()
     expect(component).toMatchSnapshot()
   })
 
   test('Should render spreadsheet when apollo is not returning errors.', async () => {
     // Mock all apollo interaction
-    const mockProductSpreadsheetData = generateMockApolloData(PRODUCT_SPREADSHEET_QUERY, {}, null, productSpreadsheet)
+    const mockProductSpreadsheetData = generateMockApolloData(PRODUCT_SPREADSHEET_QUERY, {}, null, mockedProductSpreadsheetData)
     // Render the component and use screen to check them.
     const component = render(
       <CustomMockedProvider mocks={[mockProductSpreadsheetData]} addTypename={false}>
@@ -57,7 +59,16 @@ describe('Unit tests for playbook list interaction.', () => {
       </CustomMockedProvider>
     )
     // Wait for all effect to be executed.
-    await waitFor(() => new Promise((res) => setTimeout(res, 0)))
+    await waitForAllEffects(500)
+
+    // Should render the table header.
+    DEFAULT_SHEET_NAMES.map(sheetName => {
+      expect(component.getByText(sheetName)).toBeInTheDocument()
+    })
+
+    // Should render the table itself
+    expect(component.getByText('Product A')).toBeInTheDocument()
+
     expect(component).toMatchSnapshot()
   })
 })

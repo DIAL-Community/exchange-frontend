@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import { FilterContextProvider } from '../../../components/context/FilterContext'
 import { PlaybookFilterProvider } from '../../../components/context/PlaybookFilterContext'
 import PlaybookListQuery, { PLAYBOOKS_QUERY } from '../../../components/playbooks/PlaybookList'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { render } from '../../test-utils'
+import { render, waitForAllEffects } from '../../test-utils'
 import { searchPlaybooks } from './data/PlaybookList'
 
 // Mock next-router calls.
@@ -48,7 +48,7 @@ describe('Unit tests for playbook list interaction.', () => {
       </CustomMockedProvider>
     )
 
-    await waitFor(() => new Promise((res) => setTimeout(res, 0)))
+    await waitForAllEffects(500)
     expect(screen.getAllByText(/Error fetching data/).length).toEqual(1)
     // Ensure we're keeping the snapshot of the current UI.
     // This will throw errors if the UI is changing in the future.
@@ -69,7 +69,7 @@ describe('Unit tests for playbook list interaction.', () => {
       </CustomMockedProvider>
     )
 
-    await waitFor(() => new Promise((res) => setTimeout(res, 0)))
+    await waitForAllEffects(500)
 
     // Each section in the playbook detail should not show any error.
     const errorMessage = screen.queryByText(/Error fetching data/)
