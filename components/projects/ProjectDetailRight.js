@@ -31,7 +31,7 @@ const ProjectDetailRight = ({ project, canEdit, commentsSectionRef }) => {
       </div>
       <div className='pb-5 pr-5 pt-4 text-ellipsis overflow-hidden'>
         <div className='h5 pb-1'>{format('project.url')}</div>
-        <a className='text-dial-blue text-sm' href={`${project.projectUrl}`} target='_blank' rel='noreferrer'>{project.projectUrl}</a>
+        <a className='text-dial-blue text-sm' href={`${project.projectWebsite}`} target='_blank' rel='noreferrer'>{project.projectWebsite}</a>
       </div>
       <div className='pb-5 pr-5'>
         <div className='h5 pb-1'>{format('project.source')}</div>

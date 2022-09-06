@@ -14,7 +14,7 @@ const PROJECT_QUERY = gql`
       name
       slug
       tags
-      projectUrl
+      projectWebsite
       projectDescription {
         description
         locale
