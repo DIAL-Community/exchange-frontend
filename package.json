@@ -65,6 +65,7 @@
     "react-window": "^1.8.6",
     "react-window-infinite-loader": "^1.0.7",
     "sharp": "^0.30.7",
+    "styled-jsx": "^5.0.6",
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
