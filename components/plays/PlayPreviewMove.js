@@ -72,7 +72,7 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
                       <div className='font-semibold py-2'>{format('move.resources.header')}</div>
                       <div className='flex flex-wrap gap-3'>
                         {
-                          data?.move?.resources.map(resource => {
+                          data?.move?.resources.filter(resource => resource.url && resource.name).map(resource => {
                             return (
                               <Link key={resource.i} href={resource.url} passHref>
                                 <a target='_blank' rel='noreferrer'>
