@@ -4,9 +4,9 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import 'react-comments-section/dist/index.css'
 const CommentSection = dynamic(() => import('react-comments-section').then((module) => module.CommentSection), { ssr: false })
 import { useMutation, useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
 import classNames from 'classnames'
-import { CREATE_COMMENT } from '../../mutations/comment'
+import { useRouter } from 'next/router'
+import { CREATE_COMMENT, DELETE_COMMENT } from '../../mutations/comment'
 import { COMMENTS_QUERY } from '../../queries/comment'
 
 const INPUT_CLASSNAME = 'public-DraftStyleDefault-block'
@@ -28,6 +28,7 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
   })
 
   const [createComment] = useMutation(CREATE_COMMENT, { refetchQueries: ['CountComments'] })
+  const [deleteComment] = useMutation(DELETE_COMMENT, { refetchQueries: ['CountComments'] })
 
   const onCommentUpsertAction = (text, commentId, parentCommentId = null, parentOfRepliedCommentId = null) => {
     if (session) {
@@ -42,6 +43,22 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
           parentCommentId: parentOfRepliedCommentId ?? parentCommentId,
           text
         },
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
+    }
+  }
+
+  const onCommentDeleteAction = (commentId) => {
+    if (session) {
+      const { userEmail, userToken } = session.user
+
+      deleteComment({
+        variables: { commentId },
         context: {
           headers: {
             'Accept-Language': locale,
@@ -108,6 +125,7 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
           onSubmitAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
           onReplyAction={({ text, comId, repliedToCommentId, parentOfRepliedCommentId }) => onCommentUpsertAction(text, comId, repliedToCommentId, parentOfRepliedCommentId)}
           onEditAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
+          onDeleteAction={({ comIdToDelete }) => onCommentDeleteAction(comIdToDelete)}
           advancedInput
           hrStyle={{ borderColor: '#dfdfea' }}
           formStyle={{ backgroundColor: 'white' }}
