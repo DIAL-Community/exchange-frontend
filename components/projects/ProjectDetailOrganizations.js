@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { ToastContext } from '../../lib/ToastContext'
 import Select from '../shared/Select'
@@ -11,7 +10,7 @@ import OrganizationCard from '../organizations/OrganizationCard'
 import EditableSection from '../shared/EditableSection'
 import { ORGANIZATION_SEARCH_QUERY } from '../../queries/organization'
 import { UPDATE_PROJECT_ORGANIZATIONS } from '../../mutations/project'
-import { useOrganizationOwnerUser } from '../../lib/hooks'
+import { useOrganizationOwnerUser, useUser } from '../../lib/hooks'
 
 const ProductDetailOrganizations = ({ project, canEdit }) => {
 
@@ -20,13 +19,13 @@ const ProductDetailOrganizations = ({ project, canEdit }) => {
 
   const client = useApolloClient()
 
-  const [session] = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
   const [organizations, setOrganizations] = useState(project.organizations)
 
-  const { ownedOrganization } = useOrganizationOwnerUser(session)
+  const { ownedOrganization } = useOrganizationOwnerUser()
 
   const [isDirty, setIsDirty] = useState(false)
 
@@ -65,8 +64,8 @@ const ProductDetailOrganizations = ({ project, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateProjectOrganizations({
         variables: {

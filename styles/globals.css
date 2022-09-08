@@ -244,9 +244,12 @@ body {
   }
 
   /* CommentsSection - wrapper */
-  #comments-section .overlay {
-    @apply px-0;
+  #comments-section {
     @apply pt-20;
+  }
+  
+  #comments-section .overlay {
+    @apply p-0;
     @apply font;
   }
 

@@ -1,4 +1,3 @@
-import { useSession } from 'next-auth/client'
 import dynamic from 'next/dynamic'
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
@@ -13,8 +12,7 @@ const DatasetSpreadsheetWithoutSSR = dynamic(
 )
 
 const DatasetSpreadsheet = () => {
-  const [session] = useSession()
-  const { isAdminUser, loadingUserSession } = useUser(session)
+  const { isAdminUser, loadingUserSession } = useUser()
 
   return (
     <>

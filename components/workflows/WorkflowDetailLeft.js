@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
@@ -8,12 +7,11 @@ import { useUser } from '../../lib/hooks'
 const WorkflowDetailLeft = ({ workflow }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
-  const [session] = useSession()
 
-  const { isAdminUser } = useUser(session)
+  const { user, isAdminUser } = useUser()
 
   const generateEditLink = () => {
-    if (!session.user) {
+    if (!user) {
       return '/edit-not-available'
     }
 

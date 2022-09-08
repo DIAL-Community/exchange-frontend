@@ -1,13 +1,16 @@
 import dynamic from 'next/dynamic'
-import { useSession } from 'next-auth/client'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import 'react-comments-section/dist/index.css'
 const CommentSection = dynamic(() => import('react-comments-section').then((module) => module.CommentSection), { ssr: false })
 import { useMutation, useQuery } from '@apollo/client'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
-import { CREATE_COMMENT, DELETE_COMMENT } from '../../mutations/comment'
-import { COMMENTS_QUERY } from '../../queries/comment'
+import { CREATE_COMMENT, DELETE_COMMENT } from '../../../mutations/comment'
+import { COMMENTS_QUERY } from '../../../queries/comment'
+import { useUser } from '../../../lib/hooks'
+import { Loading } from '../FetchStatus'
+import EditButton from '../EditButton'
+import CommentsList from './CommentsList'
 
 const INPUT_CLASSNAME = 'public-DraftStyleDefault-block'
 const INPUT_BORDERED_WRAPPER_CLASSNAME = 'advanced-border'
@@ -17,22 +20,22 @@ const FIRST_ELEMENT_INDEX = 0
 const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }) => {
   const { locale } = useRouter()
   const innerRef = useRef(null)
-  const [session] = useSession()
-  const user = session?.user
+  const { loadingUserSession, user, isAdminUser } = useUser()
 
-  const { data } = useQuery(COMMENTS_QUERY, {
+  const { data, refetch, loading } = useQuery(COMMENTS_QUERY, {
     variables: {
       commentObjectId: parseInt(objectId),
       commentObjectType: objectType
-    }
+    },
+    notifyOnNetworkStatusChange: true
   })
 
   const [createComment] = useMutation(CREATE_COMMENT, { refetchQueries: ['CountComments'] })
   const [deleteComment] = useMutation(DELETE_COMMENT, { refetchQueries: ['CountComments'] })
 
   const onCommentUpsertAction = (text, commentId, parentCommentId = null, parentOfRepliedCommentId = null) => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       createComment({
         variables: {
@@ -54,8 +57,8 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
   }
 
   const onCommentDeleteAction = (commentId) => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       deleteComment({
         variables: { commentId },
@@ -86,8 +89,9 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
   }
 
   const handleClickOutside = ({ target }) => {
-    if (!getElementsByClassName(INPUT_CLASSNAME).some(element => element.contains(target))) {
-      getElementsByClassName(INPUT_BORDERED_WRAPPER_CLASSNAME).forEach(input => input.classList.remove(FOCUSED_CLASSNAME))
+    const inputs = getElementsByClassName(INPUT_BORDERED_WRAPPER_CLASSNAME)
+    if (!inputs.some(element => element.contains(target))) {
+      inputs.forEach(input => input.classList.remove(FOCUSED_CLASSNAME))
     }
   }
 
@@ -108,29 +112,48 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
     }
   }, [data?.comments])
 
+  const [isInEditMode, setIsInEditMode] = useState(false)
+
+  const toggleIsInEditMode = () => setIsInEditMode(!isInEditMode)
+
   return (
     <div ref={commentsSectionRef} className={classNames(className)}>
-      <div id='comments-section' ref={innerRef} onClick={focusActiveElement}>
-        <CommentSection
-          commentData={commentData}
-          currentUser={user ? {
-            currentUserId: String(user.id),
-            currentUserImg: `https://ui-avatars.com/api/name=${user.name}&background=random`,
-            currentUserFullName: user.name
-          } : null}
-          logIn={{
-            loginLink: '/auth/signin',
-            signupLink: '/auth/signup'
-          }}
-          onSubmitAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
-          onReplyAction={({ text, comId, repliedToCommentId, parentOfRepliedCommentId }) => onCommentUpsertAction(text, comId, repliedToCommentId, parentOfRepliedCommentId)}
-          onEditAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
-          onDeleteAction={({ comIdToDelete }) => onCommentDeleteAction(comIdToDelete)}
-          advancedInput
-          hrStyle={{ borderColor: '#dfdfea' }}
-          formStyle={{ backgroundColor: 'white' }}
+      {loadingUserSession && <Loading />}
+      {isInEditMode ? (
+        <CommentsList
+          comments={data?.comments}
+          refetch={refetch}
+          loading={loading}
+          onClose={toggleIsInEditMode}
         />
-      </div>
+      ) : (
+        <div id='comments-section' ref={innerRef} onClick={focusActiveElement}>
+          {isAdminUser && (
+            <div className='flex justify-end'>
+              <EditButton onClick={toggleIsInEditMode} />
+            </div>
+          )}
+          <CommentSection
+            commentData={commentData}
+            currentUser={user ? {
+              currentUserId: String(user.id),
+              currentUserImg: `https://ui-avatars.com/api/name=${user.name}&background=random`,
+              currentUserFullName: user.name
+            } : null}
+            logIn={{
+              loginLink: '/auth/signin',
+              signupLink: '/auth/signup'
+            }}
+            onSubmitAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
+            onReplyAction={({ text, comId, repliedToCommentId, parentOfRepliedCommentId }) => onCommentUpsertAction(text, comId, repliedToCommentId, parentOfRepliedCommentId)}
+            onEditAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
+            onDeleteAction={({ comIdToDelete }) => onCommentDeleteAction(comIdToDelete)}
+            advancedInput
+            hrStyle={{ borderColor: '#dfdfea' }}
+            formStyle={{ backgroundColor: 'white' }}
+          />
+        </div>
+      )}
     </div>
   )
 }

@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useMemo, useContext } from 'react'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
@@ -19,9 +18,8 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const [session] = useSession()
 
-  const { isAdminUser, loadingUserSession } = useUser(session)
+  const { user, isAdminUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -87,12 +85,12 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
   }, [useCaseStep, useCase, format])
 
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       setMutating(true)
 
       const stepNumber = parseInt(data.stepNumber)
 
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = user
 
       const { name, description } = data
 

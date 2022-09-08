@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import { useRef } from 'react'
 import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
@@ -15,9 +14,7 @@ const UseCaseDetail = ({ slug, locale }) => {
     skip: !slug
   })
 
-  const [session] = useSession()
-
-  const { isAdminUser: canEdit } = useUser(session)
+  const { isAdminUser: canEdit } = useUser()
 
   const commentsSectionElement = useRef()
 
