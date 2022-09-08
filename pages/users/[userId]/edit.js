@@ -1,4 +1,3 @@
-import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
 import ClientOnly from '../../../lib/ClientOnly'
@@ -41,8 +40,7 @@ const EditUserPageDefinition = ({ userId, locale }) => {
 
 const EditUser = () => {
   const router = useRouter()
-  const [session] = useSession()
-  const { isAdminUser, loadingUserSession } = useUser(session)
+  const { isAdminUser, loadingUserSession } = useUser()
 
   const { locale } = router
   const { userId } = router.query

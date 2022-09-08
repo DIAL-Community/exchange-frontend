@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { gql, useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
@@ -53,8 +52,7 @@ const EditFormProvider = ({ children }) => {
 function EditPlaybook () {
   const router = useRouter()
 
-  const [session] = useSession()
-  const { isAdminUser, loadingUserSession } = useUser(session)
+  const { isAdminUser, loadingUserSession } = useUser()
 
   const { locale } = router
   const { slug } = router.query

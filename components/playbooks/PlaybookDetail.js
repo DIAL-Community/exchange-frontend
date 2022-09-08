@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
-import CommentsSection from '../shared/CommentsSection'
+import CommentsSection from '../shared/comment/CommentsSection'
 import { PLAYBOOK_QUERY } from '../../queries/playbook'
 import { ObjectType } from '../../lib/constants'
 import { Error, Loading } from '../shared/FetchStatus'

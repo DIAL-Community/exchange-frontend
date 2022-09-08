@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 import { PRODUCT_SEARCH_QUERY } from '../../queries/product'
@@ -19,15 +18,13 @@ const ProjectDetailProducts = ({ project, canEdit }) => {
 
   const client = useApolloClient()
 
-  const [session] = useSession()
-
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)
 
   const [products, setProducts] = useState(project.products)
 
-  const { isAdminUser } = useUser(session)
+  const { user, isAdminUser } = useUser()
   const { ownedProducts } = useProductOwnerUser(null, products, isAdminUser)
 
   const ownedProjectProducts = ownedProducts.filter(({ slug: ownedProductSlug }) => products.some(({ slug }) => ownedProductSlug === slug))
@@ -66,8 +63,8 @@ const ProjectDetailProducts = ({ project, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateProjectProducts({
         variables: {

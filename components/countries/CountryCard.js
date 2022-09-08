@@ -1,11 +1,9 @@
-import { useSession } from 'next-auth/client'
 import Link from 'next/link'
 import { DisplayType } from '../../lib/constants'
 import { useUser } from '../../lib/hooks'
 
 const CountryCard = ({ country, listType }) => {
-  const [session] = useSession()
-  const { isAdminUser } = useUser(session)
+  const { isAdminUser } = useUser()
 
   const noAuthCardContent =
     <div className='bg-white border border-dial-gray card-drop-shadow'>

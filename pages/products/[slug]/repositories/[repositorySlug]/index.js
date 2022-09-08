@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
 import Link from 'next/link'
 import { gql, useQuery } from '@apollo/client'
 import RepositoryList from '../../../../../components/products/repositories/RepositoryList'
@@ -51,12 +50,10 @@ const PageDefinition = ({ slug, repositorySlug }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
-  const [session] = useSession()
+  const { isAdminUser } = useUser()
+  const { isProductOwner } = useProductOwnerUser(data?.product, [], isAdminUser)
 
-  const { isAdminUser } = useUser(session)
-  const { ownsProduct } = useProductOwnerUser(data?.product, [], isAdminUser)
-
-  const canEdit = isAdminUser || ownsProduct
+  const canEdit = isAdminUser || isProductOwner
 
   const { data, loading, error } = useQuery(PRODUCT_QUERY, { variables: { slug } })
 

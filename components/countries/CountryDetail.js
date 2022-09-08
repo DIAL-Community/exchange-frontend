@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl'
 import { useCallback, useMemo, useState } from 'react'
-import { useSession } from 'next-auth/client'
 import dynamic from 'next/dynamic'
 import { useUser } from '../../lib/hooks'
 import Breadcrumb from '../shared/breadcrumb'
@@ -24,8 +23,7 @@ const CountryDetail = ({ country }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
-  const { isAdminUser } = useUser(session)
+  const { isAdminUser } = useUser()
 
   const [isFormDialogOpen, setIsFormDialogOpen] = useState(false)
   const toggleFormDialog = () => setIsFormDialogOpen(!isFormDialogOpen)

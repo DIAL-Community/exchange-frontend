@@ -1,5 +1,4 @@
 import { gql, useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import { useEffect, useRef } from 'react'
 import { useOrganizationOwnerUser, useProductOwnerUser, useUser } from '../../lib/hooks'
 import { Error, Loading } from '../shared/FetchStatus'
@@ -59,9 +58,8 @@ const ProjectDetail = ({ slug, locale }) => {
     skip: !slug
   })
 
-  const [session] = useSession()
-  const { isAdminUser } = useUser(session)
-  const { ownsSomeOrganization } = useOrganizationOwnerUser(session, null, data?.project?.organizations)
+  const { isAdminUser } = useUser()
+  const { ownsSomeOrganization } = useOrganizationOwnerUser(null, data?.project?.organizations)
   const { ownsSomeProduct } = useProductOwnerUser(null, data?.project?.products, isAdminUser)
 
   const canEdit = isAdminUser || ownsSomeOrganization || ownsSomeProduct

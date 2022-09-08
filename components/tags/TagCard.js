@@ -1,4 +1,3 @@
-import { useSession } from 'next-auth/client'
 import { useIntl } from 'react-intl'
 import { useState } from 'react'
 import parse from 'html-react-parser'
@@ -11,8 +10,7 @@ const TagCard = ({ tag, listType, displayEditButtons = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
-  const [ session ] = useSession()
-  const { isAdminUser } = useUser(session)
+  const { isAdminUser } = useUser()
 
   const [isFormDialogOpen, setIsFormDialogOpen] = useState(false)
 

@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react'
-import { useSession } from 'next-auth/client'
 import dynamic from 'next/dynamic'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -14,8 +13,7 @@ import TagForm from '../../components/tags/TagForm'
 const TagsListQuery = dynamic(() => import('../../components/tags/TagList'), { ssr: false })
 
 const Tags = () => {
-  const [session] = useSession()
-  const { isAdminUser, loadingUserSession } = useUser(session)
+  const { isAdminUser, loadingUserSession } = useUser()
 
   const { search } = useContext(UserFilterContext)
   const { setSearch } = useContext(UserFilterDispatchContext)

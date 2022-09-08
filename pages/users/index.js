@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-import { useSession } from 'next-auth/client'
 import dynamic from 'next/dynamic'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -16,8 +15,7 @@ const Users = () => {
   const { search } = useContext(UserFilterContext)
   const { setSearch } = useContext(UserFilterDispatchContext)
 
-  const [session] = useSession()
-  const { isAdminUser, loadingUserSession } = useUser(session)
+  const { isAdminUser, loadingUserSession } = useUser()
 
   return (
     <>
