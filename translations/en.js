@@ -542,6 +542,7 @@ export const en = {
   'filter.entity.candidateOrganizations': 'Candidate Organizations',
   'filter.entity.candidateProducts': 'Candidate Products',
   'filter.entity.countries': 'Countries',
+  'filter.entity.rubric-categories': 'Rubric Categories',
 
   'filter.byEntity': 'Filter by {entity}',
   'filter.searchFor': 'Search for {entity}',
@@ -641,6 +642,9 @@ export const en = {
   'moves.addResource': 'Add Resource',
   'moves.deleteResource': 'Delete Resource',
   'move.assignedResources': 'Resources currently assigned. You can add or delete resources',
+
+  'rubric-categories.label': 'Rubric Categories',
+  'rubric-categories.weight': 'Weight: {weight}',
 
   'resource.name': 'Resource Name',
   'resource.description': 'Resource Description',
