@@ -23,7 +23,7 @@ const RubricCategories = () => {
 
   return (
     <>
-      <NextSeo title={format('rubric-categories.label')}/>
+      <NextSeo title={format('rubric-categories.header')}/>
       <Header />
       <ClientOnly>
         {loadingUserSession ? <Loading /> : isAdminUser ? (
