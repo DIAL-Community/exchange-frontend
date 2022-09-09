@@ -97,7 +97,7 @@ const BBFullScreen = () => {
         { currBBList().map((bb, i) => {
           return (
             <div key={i} className='m-2'>
-              <a href={getUrl(bb)}>
+              <a href={getUrl(bb)} target='_blank' rel='noreferrer'>
                 <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow card-drop-shadow'>
                   <div className={`text-2xl text-white font-semibold overflow-hidden h-1/5 w-full flex flex-row gap-x-1.5 p-2 border-b border-dial-gray product-card-header ${bb_status ? bb_status : 'future'}`}>
                     {bb.name}
