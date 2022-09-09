@@ -272,7 +272,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
               {
                 contactState === CONTACT_STATES[1] &&
                   <div className='mt-2'>
-                    <ReCAPTCHA sitekey='6LfAGscbAAAAAFW_hQyW5OxXPhI7v6X8Ul3FJrsa' onChange={updateContactInfo} ref={captchaRef} />
+                    <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} onChange={updateContactInfo} ref={captchaRef} />
                   </div>
               }
               {
