@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import CountryDetail from '../../../components/countries/CountryDetail'
@@ -31,8 +30,7 @@ const CountryPageDefinition = ({ slug, locale }) => {
 const Country = () => {
   const router = useRouter()
 
-  const [session] = useSession()
-  const { isAdminUser, loadingUserSession } = useUser(session)
+  const { isAdminUser, loadingUserSession } = useUser()
 
   const { locale, query } = router
   const { slug } = query

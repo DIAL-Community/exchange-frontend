@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
 import { useUser } from '../../lib/hooks'
@@ -14,8 +13,7 @@ const WorkflowDetail = ({ slug, locale }) => {
     skip: !slug
   })
 
-  const [session] = useSession()
-  const { isAdminUser: canEdit } = useUser(session)
+  const { isAdminUser: canEdit } = useUser()
 
   return (
     <>

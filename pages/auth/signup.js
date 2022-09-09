@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Link from 'next/link'
 import { FaRegQuestionCircle, FaSpinner } from 'react-icons/fa'
 import { gql, useApolloClient } from '@apollo/client'
@@ -11,6 +11,7 @@ import zxcvbn from 'zxcvbn'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import ClientOnly from '../../lib/ClientOnly'
+import { ToastContext } from '../../lib/ToastContext'
 
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
@@ -101,6 +102,8 @@ const SignUp = () => {
   const [organization, setOrganization] = useState('')
   const [captcha, setCaptcha] = useState('')
 
+  const { showToast } = useContext(ToastContext)
+
   const [textFields, handleTextChange, resetTextFields, fieldValidations] = TextFieldDefinition({
     email: '',
     password: '',
@@ -175,6 +178,16 @@ const SignUp = () => {
       setTimeout(() => {
         router.push('/')
       }, 3000)
+    } else {
+      const errorMsg = await response.json()
+      Object.entries(errorMsg).map(item => {
+        showToast(
+          JSON.stringify(item),
+          'error',
+          'top-center',
+          false
+        )
+      })
     }
 
     setLoading(false)

@@ -16,7 +16,7 @@ const moveSlug = 'considerations'
 
 jest.mock('next/dist/client/router')
 jest.mock('next-auth/client')
-jest.mock('../../../components/shared/CommentsSection', () => () => 'CommentsSection')
+jest.mock('../../../components/shared/comment/CommentsSection', () => () => 'CommentsSection')
 
 describe('Unit tests for playbook interaction.', () => {
   beforeEach(() => {

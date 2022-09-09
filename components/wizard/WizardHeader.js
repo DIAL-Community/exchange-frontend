@@ -6,22 +6,6 @@ const ProgressBar = ({ stage, setStage }) => {
 
   return (
     <div className='w-full lg:w-1/2 pt-3 lg:float-right'>
-      <style global jsx>{`
-        .progress-line {
-          width: calc(100% - 1.5rem - 1rem);
-          top: 50%;
-          transform: translate(-50%, -50%);
-        }
-        .progress-padding {
-          padding-top: 0.1rem;
-          padding-bottom: 0.1rem;
-        }
-        .progress-padding-complete {
-          padding-top: 0.2rem;
-          padding-bottom: 0.2rem;
-        }
-      `}
-      </style>
       <div className='flex'>
         <div className='w-1/4 cursor-pointer' onClick={() => setStage(1)}>
           <div className='relative mb-2'>
@@ -36,9 +20,9 @@ const ProgressBar = ({ stage, setStage }) => {
 
         <div className='w-1/4 cursor-pointer' onClick={() => setStage(2)}>
           <div className='relative mb-2'>
-            <div className='absolute flex align-center items-center align-middle content-center progress-line'>
+            <div className='absolute flex align-center items-center align-middle content-center wizard-progress-line'>
               <div className='w-full rounded items-center align-middle align-center flex-1'>
-                <div className={`w-0 bg-button-gray ${stage > 1 ? 'progress-padding-complete' : 'progress-padding'}`} style={{ width: '100%' }} />
+                <div className={`w-0 bg-button-gray ${stage > 1 ? 'wizard-progress-padding-complete' : 'wizard-progress-padding'}`} style={{ width: '100%' }} />
               </div>
             </div>
 
@@ -53,9 +37,9 @@ const ProgressBar = ({ stage, setStage }) => {
 
         <div className='w-1/4 cursor-pointer' onClick={() => setStage(3)}>
           <div className='relative mb-2'>
-            <div className='absolute flex align-center items-center align-middle content-center progress-line'>
+            <div className='absolute flex align-center items-center align-middle content-center wizard-progress-line'>
               <div className='w-full bg-gray-200 rounded items-center align-middle align-center flex-1'>
-                <div className={`w-0 bg-button-gray ${stage > 2 ? 'progress-padding-complete' : 'progress-padding'}`} style={{ width: '100%' }} />
+                <div className={`w-0 bg-button-gray ${stage > 2 ? 'wizard-progress-padding-complete' : 'wizard-progress-padding'}`} style={{ width: '100%' }} />
               </div>
             </div>
 
@@ -69,9 +53,9 @@ const ProgressBar = ({ stage, setStage }) => {
         </div>
         <div className='w-1/4 cursor-pointer' onClick={() => setStage(4)}>
           <div className='relative mb-2'>
-            <div className='absolute flex align-center items-center align-middle content-center progress-line'>
+            <div className='absolute flex align-center items-center align-middle content-center wizard-progress-line'>
               <div className='w-full bg-gray-200 rounded items-center align-middle align-center flex-1'>
-                <div className={`w-0 bg-button-gray ${stage > 3 ? 'progress-padding-complete' : 'progress-padding'}`} style={{ width: '100%' }} />
+                <div className={`w-0 bg-button-gray ${stage > 3 ? 'wizard-progress-padding-complete' : 'wizard-progress-padding'}`} style={{ width: '100%' }} />
               </div>
             </div>
 

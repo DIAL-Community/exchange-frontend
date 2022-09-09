@@ -1,4 +1,3 @@
-import { useSession } from 'next-auth/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import ClientOnly from '../../../lib/ClientOnly'
@@ -7,8 +6,7 @@ import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
 import { useUser } from '../../../lib/hooks'
 
 const CreateOrganization = () => {
-  const [session] = useSession()
-  const { isAdminUser, loadingUserSession } = useUser(session)
+  const { isAdminUser, loadingUserSession } = useUser()
 
   return (
     <>

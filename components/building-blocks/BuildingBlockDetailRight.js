@@ -1,6 +1,6 @@
 import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
-import CommentsSection from '../shared/CommentsSection'
+import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
 import BuildingBlockDetailWorkflows from './BuildingBlockDetailWorkflows'
 import BuildingBlockDetailProducts from './BuildingBlockDetailProducts'

@@ -542,6 +542,7 @@ export const en = {
   'filter.entity.candidateOrganizations': 'Candidate Organizations',
   'filter.entity.candidateProducts': 'Candidate Products',
   'filter.entity.countries': 'Countries',
+  'filter.entity.rubric-categories': 'Rubric Categories',
 
   'filter.byEntity': 'Filter by {entity}',
   'filter.searchFor': 'Search for {entity}',
@@ -641,6 +642,9 @@ export const en = {
   'moves.addResource': 'Add Resource',
   'moves.deleteResource': 'Delete Resource',
   'move.assignedResources': 'Resources currently assigned. You can add or delete resources',
+
+  'rubric-categories.header': 'Rubric Categories',
+  'rubric-categories.weight': 'Weight',
 
   'resource.name': 'Resource Name',
   'resource.description': 'Resource Description',
@@ -1355,6 +1359,9 @@ export const en = {
   'shared.maturity.published': 'PUBLISHED',
   'shared.metadata.description.comprehensiveListOf': 'Comprehensive list of {entities} provided by DIAL\'s Catalog of Digital Solutions to support users in discovering digital technologies designed to address the Sustainable Development Goals (SDGs).',
   'shared.metadata.description.listOfKey': 'List of key {entities} provided by DIAL’s Catalog of Digital Solutions, to support users in the deployment of digital technologies designed to address the Sustainable Development Goals (SDGs).',
+  'shared.comment.delete.confirm.message': 'Are you sure you want to delete this comment?',
+  'shared.comment.delete.confirm.header': 'Deleting a comment',
+  'shared.comment.no-comments': 'There are no comments',
 
   'seo.description.about': 'DIAL’s Catalog of Digital Solutions is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
   'seo.description.maps': 'Interactive map views showing where specific digital platforms have been implemented as well as the countries where various digital development organizations work.',
@@ -1402,6 +1409,8 @@ export const en = {
   'toast.user-profile.update.failure': 'Profile update failed',
   'toast.offices.update.success': 'Offices updated successfully',
   'toast.offices.update.failure': 'Offices update failed',
+  'toast.comment.delete.success': 'Comment deleted successfully',
+  'toast.comment.delete.failure': 'Comment deletion failed',
 
   'locale.label': 'Locale',
   'locale.english.label': 'English (en)',

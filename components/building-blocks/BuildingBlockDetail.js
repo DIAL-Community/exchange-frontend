@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import { useRef } from 'react'
 import { useUser } from '../../lib/hooks'
 import NotFound from '../shared/NotFound'
@@ -15,9 +14,7 @@ const BuildingBlockDetail = ({ slug, locale }) => {
     skip: !slug
   })
 
-  const [session] = useSession()
-
-  const { isAdminUser: canEdit } = useUser(session)
+  const { isAdminUser: canEdit } = useUser()
 
   const commentsSectionElement = useRef()
 

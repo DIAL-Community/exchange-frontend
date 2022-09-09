@@ -24,7 +24,7 @@ const BBFullScreen = () => {
       desc: 'Supports the creation, editing, publication and management of digital media and other information.' },
     { name: 'Data Collection', status: 'future',
       desc: 'Supports data collection from humans, sensors and other systems through digital interfaces.' },
-    { name: 'Digital Registries', status: 'published',
+    { name: 'Digital Registries', status: 'published', url: 'https://govstack.gitbook.io/specification/building-blocks/digital-registries',
       desc: 'Registries are centrally managed databases that uniquely identify persons, vendors, procedures, ' +
             'products and sites related to an organization or activity.' },
     { name: 'eLearning', status: 'future',
@@ -35,9 +35,9 @@ const BBFullScreen = () => {
     { name: 'Geographic Information Services (GIS)', status: 'future', slug: 'geographic_information_services',
       desc: 'Provides functionality to identify, tag and analyze geographic locations of an object, such as a ' +
             'water source, building, mobile phone or medical commodity.' },
-    { name: 'Identification and Authentication', status: 'published',
+    { name: 'Identification and Authentication', status: 'published', url: 'https://govstack.gitbook.io/specification/building-blocks/identity-and-verification',
       desc: 'Enables unique identification and authentication of users, organizations and other entities.' },
-    { name: 'Information Mediator', status: 'published',
+    { name: 'Information Mediator', status: 'published', url: 'https://govstack.gitbook.io/specification/building-blocks/information-mediation',
       desc: 'Provides a gateway between external digital apps & ICT Building Blocks, ensuring implementation of ' +
             'standards, for integrating various ICT Building Blocks & apps.' },
     { name: 'Messaging', status: 'working',
@@ -46,10 +46,10 @@ const BBFullScreen = () => {
     { name: 'Mobility Management', status: 'future',
       desc: 'Services to securely enable employees’ use and management of mobile devices and applications in a ' +
             'business context.' },
-    { name: 'Payments', status: 'published',
+    { name: 'Payments', status: 'published', url: 'https://govstack.gitbook.io/specification/building-blocks/payments',
       desc: 'Implements financial transactions (e.g., remittances, claims, purchases & payments, transactional ' +
             'info). Tracking costs utilities & audit trials.' },
-    { name: 'Registration', status: 'published',
+    { name: 'Registration', status: 'published', url: 'https://govstack.gitbook.io/specification/building-blocks/registration',
       desc: 'Records identifiers and general information about a person, place or entity, typically for the purpose ' +
             'of registration  in specific services or programmes and tracking of that entity over time.' },
     { name: 'Reporting and Dashboards', status: 'future',
@@ -58,7 +58,7 @@ const BBFullScreen = () => {
     { name: 'Scheduling', status: 'working',
       desc: 'Provides an engine for setting up events based on regular intervals or specific combinations of status ' +
             'of several parameters in order to trigger specific tasks in an automated business process.' },
-    { name: 'Security', status: 'published',
+    { name: 'Security', status: 'published', url: 'https://govstack.gitbook.io/specification/building-blocks/security-requirements',
       desc: 'Allows ICT admins to centrally configure & manage user access permissions to network ' +
             'resources, services, databases, apps and devices. Enables secure info exchange between apps.' },
     { name: 'Shared Data Repositories', status: 'future',
@@ -79,6 +79,11 @@ const BBFullScreen = () => {
       bb.name.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '_').replace(/^-+|-+$/g, '').substring(0,32)
   }
 
+  const getUrl = (bb) => {
+    return bb.url ? bb.url :
+      `https://solutions.dial.community/building_blocks/${getSlug(bb)}`
+  }
+
   const currBBList = () => {
     return all_bb_desc.filter( (bb) => {
       return bb.status === bb_status
@@ -92,7 +97,7 @@ const BBFullScreen = () => {
         { currBBList().map((bb, i) => {
           return (
             <div key={i} className='m-2'>
-              <a href={`https://solutions.dial.community/building_blocks/${getSlug(bb)}`}>
+              <a href={getUrl(bb)}>
                 <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow card-drop-shadow'>
                   <div className={`text-2xl text-white font-semibold overflow-hidden h-1/5 w-full flex flex-row gap-x-1.5 p-2 border-b border-dial-gray product-card-header ${bb_status ? bb_status : 'future'}`}>
                     {bb.name}
