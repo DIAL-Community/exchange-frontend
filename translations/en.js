@@ -643,8 +643,8 @@ export const en = {
   'moves.deleteResource': 'Delete Resource',
   'move.assignedResources': 'Resources currently assigned. You can add or delete resources',
 
-  'rubric-categories.label': 'Rubric Categories',
-  'rubric-categories.weight': 'Weight: {weight}',
+  'rubric-categories.header': 'Rubric Categories',
+  'rubric-categories.weight': 'Weight',
 
   'resource.name': 'Resource Name',
   'resource.description': 'Resource Description',

@@ -12,3 +12,19 @@ export const RUBRIC_CATEGORIES_LIST_QUERY = gql`
     }
   }
 `
+
+export const RUBRIC_CATEGORY_QUERY = gql`
+  query RubricCategory ($slug: String!) {
+    rubricCategory (slug: $slug) {
+      name
+      slug
+      weight
+      rubricCategoryDescription {
+        locale
+        id
+        description
+        rubricCategoryId
+      }
+    }
+  }
+`
