@@ -16,15 +16,19 @@ const RubricCategoryList = ({ rubricCategoryList }) => {
     <div className='grid grid-cols-1'>
       {rubricCategoryList.length
         ? rubricCategoryList.map((rubricCategory, rubricCategoryIdx) => (
-          <Card key={rubricCategoryIdx} className='grid-cols-2 font-semibold text-button-gray items-center'>
+          <Card
+            key={rubricCategoryIdx}
+            href={`rubric_categories/${rubricCategory.slug}`}
+            className='grid-cols-2 font-semibold text-button-gray items-center'
+          >
             {rubricCategory.name}
             <div className='text-button-gray-light text-sm pl-2'>
-              {format('rubric-categories.weight', { weight: rubricCategory.weight })}
+              {format('rubric-categories.weight')}: {rubricCategory.weight}
             </div>
           </Card>
         )) : (
           <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-6'>
-            {format('noResults.entity', { entity: format('rubric-categories.label') })}
+            {format('noResults.entity', { entity: format('rubric-categories.header') })}
           </div>
         )
       }

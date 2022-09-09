@@ -29,7 +29,8 @@ const basePathMappings = {
   plays: 'play.header',
   users: 'user.header',
   moves: 'move.header',
-  countries: 'country.header'
+  countries: 'country.header',
+  rubric_categories: 'rubric-categories.header'
 }
 
 const Breadcrumb = (props) => {
