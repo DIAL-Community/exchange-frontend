@@ -14,13 +14,17 @@ describe('Unit test for the RubricCategoryDetail component.', () => {
   beforeAll(mockRouterImplementation)
 
   test('Should render RubricCategoryDetail component', async () => {
-    const { container } = render(
+    const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockRubricCategory]}>
         <RubricCategoryDetail slug='rc_name'/>
       </CustomMockedProvider>
     )
 
     await waitForAllEffects()
+
+    expect(getByTestId('description')).toHaveTextContent('RC description')
+    expect(getByTestId('indicators')).toHaveTextContent('CI name')
+
     expect(container).toMatchSnapshot()
   })
 })

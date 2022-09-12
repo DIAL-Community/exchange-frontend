@@ -22,6 +22,10 @@ export const RUBRIC_CATEGORY_QUERY = gql`
       rubricCategoryDescription {
         description
       }
+      categoryIndicators {
+        name
+        slug
+      }
     }
   }
 `
