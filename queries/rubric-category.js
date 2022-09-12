@@ -20,10 +20,7 @@ export const RUBRIC_CATEGORY_QUERY = gql`
       slug
       weight
       rubricCategoryDescription {
-        locale
-        id
         description
-        rubricCategoryId
       }
     }
   }

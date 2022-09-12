@@ -1449,5 +1449,11 @@ export const en = {
   'govstack.feedback.page': 'What page are you interested in?',
   'govstack.feedback.pageDisclaimer': 'We have pre-filled this with the page you were viewing when you clicked on the feedback link but you can change as necessary. We use this information to decide which of our maintainers would be able to help the most.',
   'govstack.feedback.issue': 'What feedback do you have? *',
-  'govstack.feedback.submit': 'Send feedback'
+  'govstack.feedback.submit': 'Send feedback',
+
+  'categoryIndicators.header': 'Category Indicators',
+  'categoryIndicator.weight': 'Weight',
+  'categoryIndicator.indicatorType': 'Indicator type',
+  'categoryIndicator.dataSource': 'Data source',
+  'categoryIndicator.scriptName': 'Script name'
 }
