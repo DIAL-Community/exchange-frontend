@@ -2,7 +2,7 @@ import { mockRouterImplementation, render, waitForAllEffects } from '../../test-
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import RubricCategoryDetail from '../../../components/rubric-categories/RubricCategoryDetail'
 import { RUBRIC_CATEGORY_QUERY } from '../../../queries/rubric-category'
-import { rubricCategory } from './data/RubricCategory'
+import { rubricCategory } from './data/RubricCategoryDetail'
 
 jest.mock('next/dist/client/router')
 jest.mock('next-auth/client')
