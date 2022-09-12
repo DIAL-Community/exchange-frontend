@@ -646,6 +646,8 @@ export const en = {
   'rubric-categories.header': 'Rubric Categories',
   'rubric-categories.weight': 'Weight',
 
+  'category-indicators.label': 'Indicators',
+
   'resource.name': 'Resource Name',
   'resource.description': 'Resource Description',
   'resource.url': 'Resource URL',
