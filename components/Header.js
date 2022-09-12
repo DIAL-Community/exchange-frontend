@@ -58,21 +58,21 @@ const AdminMenu = ({ isCurrentOpenMenu, onToggle }) => {
         </div>
       </a>
       <div className={`${isCurrentOpenMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
-        <div className='py-1' role='none'>
+        <div className='py-1' role='none' data-testid='admin-menu-items'>
           <Link href='/users'>
-            <a href='/users' role='menuitem' className={dropdownMenuStyles}>
+            <a role='menuitem' className={dropdownMenuStyles}>
               {format('header.admin.users')}
             </a>
           </Link>
           <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/settings?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdownMenuStyles}>
             {format('header.admin.settings')}
           </a>
-          <Link href='/sectors' >
+          <Link href='/sectors'>
             <a role='menuitem' className={dropdownMenuStyles}>
               {format('header.admin.sectors')}
             </a>
           </Link>
-          <Link href='/countries' >
+          <Link href='/countries'>
             <a role='menuitem' className={dropdownMenuStyles}>
               {format('header.admin.countries')}
             </a>
@@ -100,6 +100,11 @@ const AdminMenu = ({ isCurrentOpenMenu, onToggle }) => {
           <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/maturity_rubrics?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdownMenuStyles}>
             {format('header.admin.maturity_rubrics')}
           </a>
+          <Link href='/rubric_categories'>
+            <a role='menuitem' className={dropdownMenuStyles}>
+              {format('rubric-categories.header')}
+            </a>
+          </Link>
         </div>
       </div>
     </>
