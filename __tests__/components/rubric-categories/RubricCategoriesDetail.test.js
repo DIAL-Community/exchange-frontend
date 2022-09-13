@@ -5,10 +5,8 @@ import { RUBRIC_CATEGORY_QUERY } from '../../../queries/rubric-category'
 import { rubricCategory } from './data/RubricCategoryDetail'
 
 jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
 
 describe('Unit test for the RubricCategoryDetail component.', () => {
-
   const mockRubricCategory = generateMockApolloData(RUBRIC_CATEGORY_QUERY, { slug: 'rc_name' }, null, rubricCategory)
 
   beforeAll(mockRouterImplementation)
@@ -19,7 +17,6 @@ describe('Unit test for the RubricCategoryDetail component.', () => {
         <RubricCategoryDetail slug='rc_name'/>
       </CustomMockedProvider>
     )
-
     await waitForAllEffects()
 
     expect(getByTestId('description')).toHaveTextContent('RC description')

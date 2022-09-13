@@ -23,7 +23,7 @@ const RubricCategoryList = ({ rubricCategoryList }) => {
           >
             {rubricCategory.name}
             <div className='text-button-gray-light text-sm pl-2'>
-              {format('rubric-categories.weight')}: {rubricCategory.weight}
+              {format('rubric-category.weight')}: {rubricCategory.weight}
             </div>
           </Card>
         )) : (
