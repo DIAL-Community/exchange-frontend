@@ -22,7 +22,7 @@ const RubricCategoryDetailCategoryIndicators = ({ categoryIndicators }) => {
               </Card>
             ))
             : (
-              <div className='col-span-1 sm:col-span-2 lg:col-span-3 px-6'>
+              <div className='col-span-1 sm:col-span-2 lg:col-span-3'>
                 {format('noResults.entity', { entity: format('category-indicators.label') })}
               </div>
             )

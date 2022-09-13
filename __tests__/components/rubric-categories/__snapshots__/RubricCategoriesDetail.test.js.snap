@@ -35,6 +35,9 @@ exports[`Unit test for the RubricCategoryDetail component. Should render RubricC
         </div>
       </div>
       <div
+        class="h-12 w-full"
+      />
+      <div
         class="bg-white border-2 border-dial-gray lg:mr-6 shadow-lg"
       >
         <div

@@ -644,7 +644,8 @@ export const en = {
   'move.assignedResources': 'Resources currently assigned. You can add or delete resources',
 
   'rubric-categories.header': 'Rubric Categories',
-  'rubric-categories.weight': 'Weight',
+  'rubric-category.label': 'Rubric Category',
+  'rubric-category.weight': 'Weight',
 
   'category-indicators.label': 'Indicators',
 
@@ -1413,6 +1414,8 @@ export const en = {
   'toast.offices.update.failure': 'Offices update failed',
   'toast.comment.delete.success': 'Comment deleted successfully',
   'toast.comment.delete.failure': 'Comment deletion failed',
+  'toast.rubric-category.submit.success': 'Rubric category submitted successfully',
+  'toast.rubric-category.submit.failure': 'Rubric category submission failed',
 
   'locale.label': 'Locale',
   'locale.english.label': 'English (en)',
