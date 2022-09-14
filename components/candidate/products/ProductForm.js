@@ -158,7 +158,7 @@ const ProductForm = () => {
                     control={control}
                     rules={{ required: format('validation.required') }}
                     render={({ field: { onChange, ref } }) => {
-                      return (<ReCAPTCHA sitekey='6LfAGscbAAAAAFW_hQyW5OxXPhI7v6X8Ul3FJrsa' ref={ref} onChange={onChange} />)
+                      return (<ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} ref={ref} onChange={onChange} />)
                     }}
                   />
                   {errors.captcha && <ValidationError value={errors.captcha?.message} />}
