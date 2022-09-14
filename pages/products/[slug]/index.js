@@ -7,12 +7,12 @@ import { addApolloState, initializeApollo } from '../../../lib/apolloClient'
 import { PRODUCT_QUERY } from '../../../queries/product'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
-const Product = ({ slug, locale }) => (
+const Product = ({ data }) => (
   <>
     <Header />
     <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
     <ClientOnly>
-      <ProductDetail slug={slug} locale={locale} />
+      <ProductDetail product={data.product} />
     </ClientOnly>
     <Footer />
   </>
@@ -21,14 +21,14 @@ const Product = ({ slug, locale }) => (
 export async function getServerSideProps(context) {
   const client = initializeApollo({})
   const { locale, params: { slug } } = context
-  await client.query({
+  const { data } = await client.query({
     query: PRODUCT_QUERY,
     variables: { slug },
     context: { headers: { 'Accept-Language': locale } }
   })
 
   return addApolloState(client, {
-    props: { slug, locale }
+    props: { data }
   })
 }
 

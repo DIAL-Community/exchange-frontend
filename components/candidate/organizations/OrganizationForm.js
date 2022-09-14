@@ -5,7 +5,6 @@ import { useMutation } from '@apollo/client'
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Controller, useForm } from 'react-hook-form'
-import { useSession } from 'next-auth/client'
 import { ToastContext } from '../../../lib/ToastContext'
 import { CREATE_CANDIDATE_ORGANIZATION } from '../../../mutations/organization'
 import Input from '../../shared/Input'
@@ -21,9 +20,7 @@ const OrganizationForm = () => {
 
   const router = useRouter()
 
-  const [session] = useSession()
-
-  const { loadingUserSession } = useUser(session)
+  const { user, loadingUserSession } = useUser()
 
   const { showToast } = useContext(ToastContext)
 
@@ -67,10 +64,10 @@ const OrganizationForm = () => {
   })
 
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       setMutating(true)
 
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = user
       const { name, description, organizationName, website, email, title, captcha } = data
       const variables = {
         name,
@@ -100,7 +97,7 @@ const OrganizationForm = () => {
   }
 
   return (
-    loadingUserSession ? <Loading /> : session ? (
+    loadingUserSession ? <Loading /> : user ? (
       <div className='flex flex-col'>
         <div className='py-8 px-8'>
           <div id='content' className='sm:px-0 max-w-full mx-auto'>

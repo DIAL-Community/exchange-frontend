@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useMemo, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
 import { useMutation, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
@@ -25,9 +24,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
 
   const router = useRouter()
 
-  const [session] = useSession()
-
-  const { isAdminUser, loadingUserSession } = useUser(session)
+  const { user, isAdminUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
 
@@ -108,9 +105,9 @@ const UseCaseForm = React.memo(({ useCase }) => {
   }, [useCase, format])
 
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       setMutating(true)
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = user
       const { name, sector, maturity, imageFile, description } = data
       const variables = {
         name,

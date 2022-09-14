@@ -1,4 +1,3 @@
-import { useSession } from 'next-auth/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import PlayPreview from '../../../components/plays/PlayPreview'
@@ -20,8 +19,7 @@ const CreateFormProvider = ({ children }) => {
 }
 
 function CreatePlaybook () {
-  const [session] = useSession()
-  const { isAdminUser, loadingUserSession } = useUser(session)
+  const { isAdminUser, loadingUserSession } = useUser()
 
   return (
     <>

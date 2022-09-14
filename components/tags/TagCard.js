@@ -1,6 +1,6 @@
-import { useSession } from 'next-auth/client'
 import { useIntl } from 'react-intl'
 import { useState } from 'react'
+import parse from 'html-react-parser'
 import { useUser } from '../../lib/hooks'
 import EditButton from '../shared/EditButton'
 import DeleteTag from './DeleteTag'
@@ -10,8 +10,7 @@ const TagCard = ({ tag, listType, displayEditButtons = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
-  const [ session ] = useSession()
-  const { isAdminUser } = useUser(session)
+  const { isAdminUser } = useUser()
 
   const [isFormDialogOpen, setIsFormDialogOpen] = useState(false)
 
@@ -34,6 +33,11 @@ const TagCard = ({ tag, listType, displayEditButtons = false }) => {
                     <span>{tag}</span>
                   )}
                 </div>
+                { tag.tagDescription && (
+                  <div className='inline-block text-sm w-1/2 overflow-hidden truncate'>
+                    {parse(tag.tagDescription.description)}
+                  </div>
+                )}
                 {isAdminUser && displayEditButtons && (
                   <div className='flex flex-row gap-3'>
                     <EditButton onClick={toggleFormDialog}/>

@@ -151,6 +151,26 @@ body {
   background-color: #f7fcff;
 }
 
+.repository-progress-padding {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+.wizard-progress-line {
+  width: calc(100% - 1.5rem - 1rem);
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wizard-progress-padding {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+.wizard-progress-padding-complete {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
 @layer components {
   /* native HTML inputs */
   input,
@@ -224,9 +244,12 @@ body {
   }
 
   /* CommentsSection - wrapper */
-  #comments-section .overlay {
-    @apply px-0;
+  #comments-section {
     @apply pt-20;
+  }
+  
+  #comments-section .overlay {
+    @apply p-0;
     @apply font;
   }
 

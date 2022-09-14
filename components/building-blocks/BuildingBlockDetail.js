@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/client'
+import { useRef } from 'react'
 import { useUser } from '../../lib/hooks'
 import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
@@ -14,9 +14,9 @@ const BuildingBlockDetail = ({ slug, locale }) => {
     skip: !slug
   })
 
-  const [session] = useSession()
+  const { isAdminUser: canEdit } = useUser()
 
-  const { isAdminUser: canEdit } = useUser(session)
+  const commentsSectionElement = useRef()
 
   return (
     <>
@@ -29,12 +29,14 @@ const BuildingBlockDetail = ({ slug, locale }) => {
             <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
               <BuildingBlockDetailLeft
                 buildingBlock={data.buildingBlock}
+                commentsSectionRef={commentsSectionElement}
               />
             </div>
             <div className='w-full lg:w-2/3 xl:w-3/4'>
               <BuildingBlockDetailRight
                 buildingBlock={data.buildingBlock}
                 canEdit={canEdit}
+                commentsSectionRef={commentsSectionElement}
               />
             </div>
           </div>

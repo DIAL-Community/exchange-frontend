@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
 import classNames from 'classnames'
 import { useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
@@ -14,8 +13,7 @@ const SectorCard = ({ sector, listType = DisplayType.LIST, displayEditButtons = 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
-  const [ session ] = useSession()
-  const { isAdminUser } = useUser(session)
+  const { isAdminUser } = useUser()
 
   const [isDetailDialogOpen, setIsDetailDialogOpen] = useState(false)
   const toggleSectorDetailDialog = () => setIsDetailDialogOpen(!isDetailDialogOpen)

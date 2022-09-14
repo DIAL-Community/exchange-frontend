@@ -9,3 +9,35 @@ export const PLAYBOOK_SEARCH_QUERY = gql`
     }
   }
 `
+
+export const PLAYBOOK_QUERY = gql`
+  query Playbook($slug: String!) {
+    playbook(slug: $slug) {
+      id
+      slug
+      name
+      playbookDescription {
+        id
+        overview
+        audience
+        outcomes
+      }
+      imageFile
+      playbookPlays {
+        id
+        playSlug
+        playName
+        order
+      }
+      plays {
+        id
+        slug
+        playMoves {
+          id
+          name
+        }
+      }
+      draft
+    }
+  }
+`

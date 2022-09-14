@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
 import { ORGANIZATION_QUERY } from '../../queries/organization'
@@ -17,6 +17,8 @@ const OrganizationDetail = ({ slug, locale }) => {
     refetch()
   }, [locale, refetch])
 
+  const commentsSectionElement = useRef()
+
   return (
     <>
       {loading && <Loading />}
@@ -26,10 +28,10 @@ const OrganizationDetail = ({ slug, locale }) => {
         data && data.organization &&
           <div className='flex flex-col lg:flex-row justify-between pb-8 max-w-catalog mx-auto'>
             <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
-              <OrganizationDetailLeft organization={data.organization} />
+              <OrganizationDetailLeft organization={data.organization}  commentsSectionRef={commentsSectionElement} />
             </div>
             <div className='w-full lg:w-2/3 xl:w-3/4'>
-              <OrganizationDetailRight organization={data.organization} />
+              <OrganizationDetailRight organization={data.organization} commentsSectionRef={commentsSectionElement} />
             </div>
           </div>
       }

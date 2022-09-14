@@ -1,6 +1,5 @@
 import { gql, useLazyQuery } from '@apollo/client'
 import parse from 'html-react-parser'
-import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
@@ -10,6 +9,8 @@ import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
 import { useProductOwnerUser, useUser } from '../../lib/hooks'
+import CommentsCount from '../shared/CommentsCount'
+import { ObjectType } from '../../lib/constants'
 
 const CANDIDATE_ROLE_QUERY = gql`
   query CandidateRole($email: String!, $productId: String!, $organizationId: String!) {
@@ -23,16 +24,15 @@ const CANDIDATE_ROLE_QUERY = gql`
 
 const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
 
-const ProductDetailLeft = ({ product }) => {
+const ProductDetailLeft = ({ product, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
-  const [session] = useSession()
   const router = useRouter()
   const { locale } = router
 
-  const { isAdminUser, loadingUserSession } = useUser(session)
-  const { ownsProduct } = useProductOwnerUser(product, [], loadingUserSession || isAdminUser)
+  const { user, isAdminUser, loadingUserSession } = useUser()
+  const { isProductOwner } = useProductOwnerUser(product, [], loadingUserSession || isAdminUser)
 
   const captchaRef = useRef()
   const [contactState, setContactState] = useState(CONTACT_STATES[0])
@@ -44,7 +44,7 @@ const ProductDetailLeft = ({ product }) => {
   const [ownershipText, setOwnershipText] = useState('')
 
   const generateEditLink = () => {
-    if (!session) {
+    if (!user) {
       return '/edit-not-available'
     }
 
@@ -53,14 +53,15 @@ const ProductDetailLeft = ({ product }) => {
 
   const [fetchCandidateRole, { data, error }] = useLazyQuery(CANDIDATE_ROLE_QUERY)
   useEffect(() => {
-    if (session) {
-      const { userEmail } = session.user
+    if (user) {
+      const { userEmail } = user
       fetchCandidateRole({
         variables:
           { email: userEmail, productId: product.id, organizationId: '' }
       })
     }
-  }, [session])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user])
 
   const displayApplyOwnershipLink = (user, data, appliedToBeOwner) => {
     if (!user) {
@@ -105,12 +106,13 @@ const ProductDetailLeft = ({ product }) => {
   }
 
   useEffect(() => {
-    setShowApplyLink(displayApplyOwnershipLink(session?.user, data, appliedToBeOwner))
-    setOwnershipText(staticOwnershipTextSelection(session?.user, data, appliedToBeOwner))
-  }, [session, data, error, appliedToBeOwner])
+    setShowApplyLink(displayApplyOwnershipLink(user, data, appliedToBeOwner))
+    setOwnershipText(staticOwnershipTextSelection(user, data, appliedToBeOwner))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, data, error, appliedToBeOwner])
 
   const updateContactInfo = async (captchaValue) => {
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = user
     const requestBody = {
       user_email: userEmail,
       user_token: userToken,
@@ -148,7 +150,7 @@ const ProductDetailLeft = ({ product }) => {
 
   const applyToBeProductOwner = async () => {
     setLoading(true)
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = user
     const requestBody = {
       candidate_role: {
         email: userEmail,
@@ -195,8 +197,9 @@ const ProductDetailLeft = ({ product }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-20'>
-        <div className='w-full'>
-          {(isAdminUser || ownsProduct) && <EditButton type='link' href={generateEditLink()} />}
+        <div className='w-full inline-flex gap-3'>
+          {(isAdminUser || isProductOwner) && <EditButton type='link' href={generateEditLink()} />}
+          <CommentsCount commentsSectionRef={commentsSectionRef} objectId={product.id} objectType={ObjectType.PRODUCT}/>
         </div>
         <div className='h4 font-bold py-4'>{format('products.label')}</div>
       </div>
@@ -251,7 +254,7 @@ const ProductDetailLeft = ({ product }) => {
               </>
           }
           {
-            session && product.owner && contactState === CONTACT_STATES[0] &&
+            user && product.owner && contactState === CONTACT_STATES[0] &&
               <>
                 <div className='border-l border-dial-gray-light mt-2' />
                 <button
@@ -264,7 +267,7 @@ const ProductDetailLeft = ({ product }) => {
           }
         </div>
         {
-          session && product.owner &&
+          user && product.owner &&
             <>
               {
                 contactState === CONTACT_STATES[1] &&

@@ -68,9 +68,6 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                           .join(', ')
                       }
                     </div>
-                    <div className='w-4/12 lg:w-2/12 text-right text-sm lg:text-base font-semibold text-dial-cyan my-auto'>
-                      {product.productType === 'dataset' ? format('product.card.dataset').toUpperCase() : ''}
-                    </div>
                     <div className='absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end'>
                       {
                         product.endorsers && product.endorsers.length > 0 &&
@@ -134,12 +131,6 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                           alt={format('image.alt.logoFor', { name: format('product.launchable') })}
                           data-tip={format('tooltip.launchable')} className='h-5' src='/icons/launchable/launchable.png'
                         />
-                    }
-                    {
-                      product.productType === 'dataset' &&
-                        <div className='ml-auto text-dial-cyan text-sm font-semibold'>
-                          {format('product.card.dataset').toUpperCase()}
-                        </div>
                     }
                   </div>
                   <div className='flex flex-col h-80 p-4'>
@@ -228,7 +219,11 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                       <div className='pl-3 py-3 flex-auto flex flex-col'>
                         <div className='text-base my-auto'>{format('product.card.license')}</div>
                         <div className='bg-white mt-1.5 mr-auto p-2 rounded text-sm font-semibold'>
-                          {(product.mainRepository?.license || format('general.na')).toUpperCase()}
+                          {
+                            product.commercialProduct
+                              ? format('product.pricing.commercial').toUpperCase()
+                              : (product.mainRepository?.license || format('general.na')).toUpperCase()
+                          }
                         </div>
                       </div>
                       {

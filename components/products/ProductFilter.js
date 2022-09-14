@@ -14,6 +14,7 @@ import { TagAutocomplete } from '../filter/element/Tag'
 import { UseCaseAutocomplete } from '../filter/element/UseCase'
 import { WorkflowAutocomplete } from '../filter/element/Workflow'
 import Checkbox from '../shared/Checkbox'
+import { LicenseTypeSelect } from '../filter/element/LicenseType'
 
 const ProductFilter = () => {
   const { formatMessage } = useIntl()
@@ -23,12 +24,12 @@ const ProductFilter = () => {
 
   const {
     withMaturity, productDeployable, forCovid, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, endorsers
+    useCases, workflows, buildingBlocks, endorsers, licenseTypes
   } = useContext(ProductFilterContext)
 
   const {
     setWithMaturity, setProductDeployable, setForCovid, setSectors, setCountries, setOrganizations,
-    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers
+    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers, setLicenseTypes
   } = useContext(ProductFilterDispatchContext)
 
   const toggleWithMaturity = () => {
@@ -90,7 +91,7 @@ const ProductFilter = () => {
                 <span className='ml-2'>{format('filter.product.withMaturity')}</span>
               </label>
             </div>
-            <div className='px-2 pb-2 flex'>
+            <div className='px-2 pb-2'>
               <label className='inline-flex items-center'>
                 <Checkbox onChange={toggleProductDeployable} value={productDeployable} />
                 <span className='ml-2'>{format('filter.product.launchable')}</span>
@@ -98,6 +99,7 @@ const ProductFilter = () => {
             </div>
           </div>
           <div className='text-sm text-dial-gray-light flex flex-row flex-wrap'>
+            <LicenseTypeSelect {...{ licenseTypes, setLicenseTypes }} containerStyles='px-2 pb-2' controlSize='20rem' />
             <OriginAutocomplete {...{ origins, setOrigins }} containerStyles='px-2 pb-2' controlSize='20rem' />
             <EndorserAutocomplete {...{ endorsers, setEndorsers }} containerStyles='px-2 pb-2' controlSize='20rem' />
             <CountryAutocomplete {...{ countries, setCountries }} containerStyles='px-2 pb-2' controlSize='20rem' />

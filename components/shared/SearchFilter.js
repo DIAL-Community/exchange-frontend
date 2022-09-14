@@ -1,5 +1,4 @@
 import { saveAs } from 'file-saver'
-import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useContext, useEffect, useState } from 'react'
@@ -30,18 +29,17 @@ const SearchFilter = ({
 
   const router = useRouter()
   const { locale } = useRouter()
-  const [session] = useSession()
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
   const [searchTerm, setSearchTerm] = useState(search)
 
-  const { isAdminUser } = useUser(session)
-  const { isOrganizationOwner } = useOrganizationOwnerUser(session)
-  const { isProductOwner } = useProductOwnerUser()
+  const { user, isAdminUser } = useUser()
+  const { ownsAnyOrganization } = useOrganizationOwnerUser()
+  const { ownsAnyProduct } = useProductOwnerUser()
 
-  const canEdit = isAdminUser || isOrganizationOwner || isProductOwner
+  const canEdit = isAdminUser || ownsAnyOrganization || ownsAnyProduct
 
   const linkPath = router.asPath.split('/')
   linkPath.shift()
@@ -63,16 +61,16 @@ const SearchFilter = ({
   }
 
   const generateCreateLink = () => {
-    if (!session.user) {
+    if (!user) {
       return '/create-not-available'
     }
 
-    if (!session.user.canEdit && linkPath.includes('candidate')) {
+    if (!user.canEdit && linkPath.includes('candidate')) {
       return `/candidate/${linkPath[1]}/create`
     }
 
     const withCandidatePaths = ['products', 'organizations']
-    if (!session.user.canEdit && withCandidatePaths.some(el => linkPath.includes(el))) {
+    if (!user.canEdit && withCandidatePaths.some(el => linkPath.includes(el))) {
       return `/candidate/${linkPath[0]}/create`
     }
 
@@ -82,14 +80,14 @@ const SearchFilter = ({
 
     const reactEditPaths = [
       'playbooks', 'plays', 'organizations', 'products', 'datasets', 'use_cases', 'building_blocks', 'workflows',
-      'countries'
+      'countries', 'rubric_categories'
     ]
     if (reactEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails
       return `/${linkPath[0]}/create`
     }
 
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = user
 
     return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/${linkPath[0]}/` +
       `new?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
@@ -162,7 +160,7 @@ const SearchFilter = ({
   const asyncExport = (e, fileType) => {
     e.preventDefault()
 
-    const { userEmail } = session.user
+    const { userEmail } = user
     const exportPath = process.env.NEXT_PUBLIC_AUTH_SERVER + `/api/v1/${linkPath[0]}.${fileType}`
     fetch(
       exportPath,
@@ -294,7 +292,7 @@ const SearchFilter = ({
         </div>
       </div>
       <div>
-        {session && session.user && (
+        {user && (
           <div className='text-xs mt-2'>
             <div className='flex justify-end px-3'>
               {createNew &&

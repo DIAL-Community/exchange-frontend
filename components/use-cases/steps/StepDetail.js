@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
-import { useSession } from 'next-auth/client'
 import Breadcrumb from '../../shared/breadcrumb'
 import { useUser } from '../../../lib/hooks'
 import { USE_CASE_STEP_QUERY } from '../../../queries/use-case-step'
@@ -37,9 +36,7 @@ const StepDetail = ({ stepSlug, locale }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const [session] = useSession()
-
-  const { isAdminUser: canEdit } = useUser(session)
+  const { isAdminUser: canEdit } = useUser()
 
   const { loading, data } = useQuery(USE_CASE_STEP_QUERY, {
     variables: { slug: stepSlug },

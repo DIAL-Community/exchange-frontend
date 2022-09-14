@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useMemo, useContext } from 'react'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
 import { useMutation, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
@@ -26,9 +25,7 @@ const ProjectForm = React.memo(({ project }) => {
 
   const router = useRouter()
 
-  const [session] = useSession()
-
-  const { isAdminUser, loadingUserSession } = useUser(session)
+  const { user, isAdminUser, loadingUserSession } = useUser()
 
   const { data: productsData } = useQuery(PRODUCT_SEARCH_QUERY, {
     variables: { search: '' },
@@ -36,8 +33,8 @@ const ProjectForm = React.memo(({ project }) => {
   })
 
   const {
-    isProductOwner,
     loadingOwnedProducts,
+    ownsAnyProduct,
     ownsSomeProduct,
     ownedProducts
   } = useProductOwnerUser(null, project?.products, loadingUserSession || isAdminUser)
@@ -56,10 +53,10 @@ const ProjectForm = React.memo(({ project }) => {
   })
 
   const {
-    isOrganizationOwner,
+    ownsAnyOrganization,
     ownsSomeOrganization,
     ownedOrganization
-  } = useOrganizationOwnerUser(session, null, project?.organizations)
+  } = useOrganizationOwnerUser(null, project?.organizations)
 
   const organizationOptions = organizationsData?.organizations?.map(
     ({ id, slug, name }) => ({
@@ -70,7 +67,7 @@ const ProjectForm = React.memo(({ project }) => {
   ) ?? []
 
   const isAuthorized =
-    isAdminUser || (project ? (ownsSomeProduct || ownsSomeOrganization) : (isProductOwner || isOrganizationOwner))
+    isAdminUser || (project ? (ownsSomeProduct || ownsSomeOrganization) : (ownsAnyProduct || ownsAnyOrganization))
 
   const [mutating, setMutating] = useState(false)
 
@@ -133,9 +130,9 @@ const ProjectForm = React.memo(({ project }) => {
   }, [project, format])
 
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       setMutating(true)
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = user
       const { name, startDate, endDate, projectUrl, description, organization, product } = data
       const variables = {
         name,
@@ -146,7 +143,7 @@ const ProjectForm = React.memo(({ project }) => {
         description
       }
       if (!slug) {
-        variables.organizationId = (!isAdminUser && isOrganizationOwner) ? ownedOrganization.id : organization?.value
+        variables.organizationId = (!isAdminUser && ownsAnyOrganization) ? ownedOrganization.id : organization?.value
         variables.productId = product?.value
       }
 
@@ -228,10 +225,10 @@ const ProjectForm = React.memo(({ project }) => {
                       </label>
                       <Input {...register('projectUrl')} placeholder={format('project.url')} />
                     </div>
-                    {!slug && (isAdminUser || isProductOwner) && (
+                    {!slug && (isAdminUser || ownsAnyProduct) && (
                       <div className='flex flex-col gap-y-2 mb-2' data-testid='project-product'>
                         <label className={classNames(
-                          { 'required-field': isProductOwner },
+                          { 'required-field': ownsAnyProduct },
                           'text-xl text-dial-blue'
                         )}>
                           {format('project.product')}
@@ -248,12 +245,12 @@ const ProjectForm = React.memo(({ project }) => {
                               isInvalid={errors.product}
                             />
                           )}
-                          rules={isProductOwner && { required: format('validation.required') }}
+                          rules={ownsAnyProduct && { required: format('validation.required') }}
                         />
                         {errors.product && <ValidationError value={errors.product?.message} />}
                       </div>
                     )}
-                    {!slug && (isAdminUser || isOrganizationOwner) && (
+                    {!slug && (isAdminUser || ownsAnyOrganization) && (
                       <div className='flex flex-col gap-y-2 mb-2' data-testid='project-organization'>
                         <label className='text-xl text-dial-blue'>
                           {format('project.organization')}
@@ -271,7 +268,7 @@ const ProjectForm = React.memo(({ project }) => {
                               />
                             )}
                           />
-                        ) : isOrganizationOwner && (
+                        ) : ownsAnyOrganization && (
                           <Input
                             value={ownedOrganization?.name}
                             placeholder={format('project.organization')}

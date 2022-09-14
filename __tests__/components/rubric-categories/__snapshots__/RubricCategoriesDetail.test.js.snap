@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the RubricCategoryDetail component. Should render RubricCategoryDetail component 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="flex flex-col lg:flex-row pb-8 max-w-catalog mx-auto"
+  >
+    <div
+      class="lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full p-4"
+    >
+      <div
+        class="block lg:hidden"
+      >
+        <div
+          class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+        >
+          <a
+            class="inline text-dial-blue h5"
+            href="/"
+          >
+            Home
+          </a>
+          <div
+            class="inline h5"
+          >
+             &gt; 
+            <a
+              class="text-dial-gray-dark"
+              href="/"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="h-12 w-full"
+      />
+      <div
+        class="bg-white border-2 border-dial-gray lg:mr-6 shadow-lg"
+      >
+        <div
+          class="flex flex-col p-4 text-dial-gray-dark"
+        >
+          <div
+            class="font-semibold text-lg"
+          >
+            RC name
+          </div>
+          <hr
+            class="my-2"
+          />
+          <div
+            class="text-sm"
+          >
+            <span
+              class="font-semibold"
+            >
+              Weight
+            </span>
+            : 1
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="w-full lg:w-2/3 xl:w-3/4"
+    >
+      <div
+        class="px-4"
+      >
+        <div
+          class="hidden lg:block"
+        >
+          <div
+            class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+          >
+            <a
+              class="inline text-dial-blue h5"
+              href="/"
+            >
+              Home
+            </a>
+            <div
+              class="inline h5"
+            >
+               &gt; 
+              <a
+                class="text-dial-gray-dark"
+                href="/"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-8 card-title mb-3 text-dial-gray-dark"
+        >
+          Description
+        </div>
+        <div
+          class="fr-view text-dial-gray-dark"
+          data-testid="description"
+        >
+          RC description
+        </div>
+        <div
+          class="mt-8 card-title mb-3 text-dial-gray-dark"
+        >
+          Indicators
+        </div>
+        <div
+          class="grid sm:grid-cols-1 lg:grid-cols-2"
+          data-testid="indicators"
+        >
+          <div
+            class="border-3 border-transparent hover:border-dial-yellow cursor-pointer"
+          >
+            <div
+              class="font-semibold text-button-gray items-center grid gap-x-4 py-4 px-8 w-full border border-dial-gray card-drop-shadow"
+            >
+              CI name
+            </div>
+          </div>
+          <div
+            class="border-3 border-transparent hover:border-dial-yellow cursor-pointer"
+          >
+            <div
+              class="font-semibold text-button-gray items-center grid gap-x-4 py-4 px-8 w-full border border-dial-gray card-drop-shadow"
+            >
+              CI name 2
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

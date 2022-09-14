@@ -80,18 +80,6 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
                   </div>
                   <div className='mb-2'>
                     <div className='progress flex'>
-                      <style global jsx>{`
-                        .progress-line {
-                          width: calc(100% - 1.5rem - 1rem);
-                          top: 50%;
-                          transform: translate(-50%, -50%);
-                        }
-                        .progress-padding {
-                          padding-top: 0.2rem;
-                          padding-bottom: 0.2rem;
-                        }
-                      `}
-                      </style>
                       {
                         languages && languages.map((language, i) => {
                           const langName = language.node.name
@@ -108,7 +96,7 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
                           }
 
                           return (
-                            <div key={i} className='progress-padding' style={styles} />
+                            <div key={i} className='repository-progress-padding' style={styles} />
                           )
                         })
                       }
