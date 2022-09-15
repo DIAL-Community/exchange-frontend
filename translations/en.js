@@ -541,6 +541,7 @@ export const en = {
   'filter.entity.tags': 'Tags',
   'filter.entity.candidateOrganizations': 'Candidate Organizations',
   'filter.entity.candidateProducts': 'Candidate Products',
+  'filter.entity.candidateRoles': 'Candidate Roles',
   'filter.entity.countries': 'Countries',
   'filter.entity.rubric-categories': 'Rubric Categories',
 
