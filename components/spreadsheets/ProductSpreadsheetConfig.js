@@ -137,7 +137,7 @@ const productDescriptionDataDefinition = (spreadsheetProduct) => {
           .filter(column => column.data !== DEFAULT_SHEET_ASSOC_NAME)
           .map(column => description[column.data])
       ))
-      .sort(([, localeX], [, localeY]) => localeX.localeCompare(localeY))
+      .sort(([, localeX], [, localeY]) => String(localeX).localeCompare(String(localeY)))
   }))
 
   return descriptionData.length > 0 ? descriptionData : defaultData
@@ -167,7 +167,7 @@ const productOrganizationDataDefinition = (spreadsheetProduct) => {
           .filter(column => column.data !== DEFAULT_SHEET_ASSOC_NAME)
           .map(column => organization[column.data])
       ))
-      .sort(([, nameX], [, nameY]) => nameX.localeCompare(nameY))
+      .sort(([, nameX], [, nameY]) => String(nameX).localeCompare(String(nameY)))
   }))
 
   return organizationData.length > 0 ? organizationData : defaultData
@@ -197,7 +197,7 @@ const productBuildingBlockDataDefinition = (spreadsheetProduct) => {
           .filter(column => column.data !== DEFAULT_SHEET_ASSOC_NAME)
           .map(column => buildingBlock[column.data])
       ))
-      .sort(([, nameX], [, nameY]) => nameX.localeCompare(nameY))
+      .sort(([, nameX], [, nameY]) => String(nameX).localeCompare(String(nameY)))
   }))
 
   return buildingBlockData.length > 0 ? buildingBlockData : defaultData
@@ -227,7 +227,7 @@ const productUseCaseStepDataDefinition = (spreadsheetProduct) => {
           .filter(column => column.data !== DEFAULT_SHEET_ASSOC_NAME)
           .map(column => useCaseStep[column.data])
       ))
-      .sort(([, nameX], [, nameY]) => nameX.localeCompare(nameY))
+      .sort(([, nameX], [, nameY]) => String(nameX).localeCompare(String(nameY)))
   }))
 
   return useCaseStepData.length > 0 ? useCaseStepData : defaultData
@@ -257,7 +257,7 @@ const productSectorDataDefinition = (spreadsheetProduct) => {
           .filter(column => column.data !== DEFAULT_SHEET_ASSOC_NAME)
           .map(column => sector[column.data])
       ))
-      .sort(([, nameX], [, nameY]) => nameX.localeCompare(nameY))
+      .sort(([, nameX], [, nameY]) => String(nameX).localeCompare(String(nameY)))
   }))
 
   return sectorData.length > 0 ? sectorData : defaultData
