@@ -84,7 +84,7 @@ describe('Unit tests for RubricCategoryForm component.', () => {
       await act(async () => {
         fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
       })
-      await screen.findByText('Rubric category submitted successfully')
+      await screen.findByText('Rubric Category submitted successfully')
       expect(container).toMatchSnapshot()
     })
 
@@ -110,7 +110,7 @@ describe('Unit tests for RubricCategoryForm component.', () => {
       await act(async () => {
         fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
       })
-      await screen.findByText('Rubric category submission failed')
+      await screen.findByText('Rubric Category submission failed')
       expect(container).toMatchSnapshot()
     })
   })

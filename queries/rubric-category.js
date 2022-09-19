@@ -19,6 +19,7 @@ export const RUBRIC_CATEGORY_QUERY = gql`
       name
       slug
       weight
+      id
       rubricCategoryDescription {
         description
       }
