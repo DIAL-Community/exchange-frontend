@@ -21,3 +21,11 @@ export const CREATE_RUBRIC_CATEGORY = gql`
     }
   }
 `
+
+export const DELETE_RUBRIC_CATEGORY = gql`
+  mutation DeleteRubricCategory ($id: ID!) {
+    deleteRubricCategory(id: $id) {
+      errors
+    }
+  }
+`
