@@ -19,7 +19,7 @@ exports[`Unit test for the Header component. Should match snapshot. 1`] = `
     class="
     block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
   "
-    href="http://localhost:3000//settings?user_email=undefined&user_token=undefined"
+    href="http://localhost:3000//settings?user_email=some-fake@email.com&user_token=some-fake-user-token"
     role="menuitem"
   >
     Settings
@@ -82,7 +82,7 @@ exports[`Unit test for the Header component. Should match snapshot. 1`] = `
     class="
     block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
   "
-    href="http://localhost:3000//deploys?user_email=undefined&user_token=undefined"
+    href="http://localhost:3000//deploys?user_email=some-fake@email.com&user_token=some-fake-user-token"
     role="menuitem"
   >
     Deploys
@@ -91,7 +91,7 @@ exports[`Unit test for the Header component. Should match snapshot. 1`] = `
     class="
     block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
   "
-    href="http://localhost:3000//portal_views?user_email=undefined&user_token=undefined"
+    href="http://localhost:3000//portal_views?user_email=some-fake@email.com&user_token=some-fake-user-token"
     role="menuitem"
   >
     Portal Views
@@ -100,7 +100,7 @@ exports[`Unit test for the Header component. Should match snapshot. 1`] = `
     class="
     block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
   "
-    href="http://localhost:3000//maturity_rubrics?user_email=undefined&user_token=undefined"
+    href="http://localhost:3000//maturity_rubrics?user_email=some-fake@email.com&user_token=some-fake-user-token"
     role="menuitem"
   >
     Maturity Rubrics

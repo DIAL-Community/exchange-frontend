@@ -1,25 +1,9 @@
-import { useRouter } from 'next/router'
 import { render } from '@testing-library/react'
 import CityCard from '../../../components/cities/CityCard'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the city card.', () => {
-  beforeEach(() => {
-    // Mocked router implementation.
-    useRouter.mockImplementation(() => ({
-      asPath: '/',
-      locale: 'en',
-      push: jest.fn(() => Promise.resolve(true)),
-      prefetch: jest.fn(() => Promise.resolve(true)),
-      events: {
-        on: jest.fn(),
-        off: jest.fn()
-      }
-    }))
-  })
-
   test('Check city card will display name on list mode.', () => {
     const city = {
       name: 'Fake City Name'

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client'
@@ -49,7 +49,7 @@ query SearchPlays(
 
 const PlayList = ({ playbook, playList, currentPlays, displayType, filterDisplayed, sourceType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const gridStyles = `grid ${displayType === 'card'
     ? `grid-cols-1 gap-4

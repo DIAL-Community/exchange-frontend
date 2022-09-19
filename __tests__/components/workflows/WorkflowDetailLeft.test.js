@@ -1,20 +1,15 @@
-import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
+import { render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
 import WorkflowDetailLeft from '../../../components/workflows/WorkflowDetailLeft'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { workflow } from './data/WorkflowForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the WorkflowDetailLeft component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-link'
 
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
-
   test('Should Edit button not be visible for user without admin or edit privileges', () => {
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
 
     const { queryByTestId } = render(
       <CustomMockedProvider>
@@ -26,7 +21,7 @@ describe('Unit test for the WorkflowDetailLeft component.', () => {
   })
 
   test('Should Edit button be visible for user with admin or edit privileges', () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
 
     const { getByTestId } = render(
       <CustomMockedProvider>
@@ -38,7 +33,7 @@ describe('Unit test for the WorkflowDetailLeft component.', () => {
   })
 
   test('Should redirect to workflow edit form', () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
 
     const { getByTestId } = render(
       <CustomMockedProvider>

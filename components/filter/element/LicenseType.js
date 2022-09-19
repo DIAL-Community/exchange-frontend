@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import Pill from '../../shared/Pill'
 import Select from '../../shared/Select'
 
@@ -12,7 +13,7 @@ export const LicenseTypeSelect = ({
   isSearch = false
 }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('licenseType.label') })
 
@@ -52,7 +53,7 @@ export const LicenseTypeFilters = (props) => {
   const { licenseTypes, setLicenseTypes } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeLicenseType = (licenseTypeValue) => {
     setLicenseTypes(licenseTypes.filter(({ value }) => value !== licenseTypeValue))

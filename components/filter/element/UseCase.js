@@ -1,5 +1,6 @@
 import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import classNames from 'classnames'
 import { USE_CASE_SEARCH_QUERY } from '../../../queries/use-case'
 import { fetchSelectOptionsWithMature } from '../../../queries/utils'
@@ -17,7 +18,7 @@ export const UseCaseAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('useCase.label') })
 
@@ -56,7 +57,7 @@ export const UseCaseFilters = (props) => {
   const { useCases, setUseCases } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeUseCase = (useCaseId) => {
     setUseCases(useCases.filter(({ slug }) => slug !== useCaseId))

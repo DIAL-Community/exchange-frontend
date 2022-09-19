@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useQuery } from '@apollo/client'
 import Link from 'next/link'
 import StepList from '../../../../../components/use-cases/steps/StepList'
@@ -17,7 +18,7 @@ import { USE_CASE_DETAIL_QUERY } from '../../../../../queries/use-case'
 
 const UseCaseHeader = ({ useCase }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='border'>
@@ -40,9 +41,9 @@ const UseCaseHeader = ({ useCase }) => {
 
 const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
   const { locale } = useRouter()
   const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug } })
 

@@ -1,15 +1,12 @@
 import { fireEvent } from '@testing-library/react'
 import DeleteButton from '../../../components/shared/DeleteButton'
-import { mockRouterImplementation, render } from '../../test-utils'
+import { render } from '../../test-utils'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the DeleteButton component.', () => {
   const DELETE_BUTTON_TEST_ID = 'delete-button'
   const DELETE_LINK_TEST_ID = 'delete-link'
-
-  beforeAll(mockRouterImplementation)
 
   test('Should match snapshot - type === "button".', () => {
     const { container, queryByTestId } = render(<DeleteButton />)
@@ -31,6 +28,6 @@ describe('Unit test for the DeleteButton component.', () => {
     const mockOnClick = jest.fn()
     const { getByTestId } = render(<DeleteButton onClick={mockOnClick}/>)
     fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID))
-    expect(mockOnClick).toBeCalled()
+    expect(mockOnClick).toHaveBeenCalled()
   })
 })

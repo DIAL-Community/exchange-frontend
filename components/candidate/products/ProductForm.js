@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client'
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Controller, useForm } from 'react-hook-form'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { ToastContext } from '../../../lib/ToastContext'
 import { CREATE_CANDIDATE_PRODUCT } from '../../../mutations/product'
 import Input from '../../shared/Input'
@@ -20,7 +20,7 @@ const ProductForm = () => {
 
   const router = useRouter()
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const { showToast } = useContext(ToastContext)
 

@@ -1,6 +1,8 @@
 import { render, fireEvent, screen } from '@testing-library/react'
 import Select from '../../../components/shared/Select'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 
+mockNextUseRouter()
 describe('Unit test for the Select component.', () => {
   const TEST_ID = 'select'
 
@@ -40,6 +42,6 @@ describe('Unit test for the Select component.', () => {
     fireEvent.keyDown(getByTestId(TEST_ID).firstChild, { key: 'ArrowDown' })
     await screen.findByText('test1')
     fireEvent.click(getByText('test1'))
-    expect(onChange).toBeCalledTimes(1)
+    expect(onChange).toHaveBeenCalledTimes(1)
   })
 })

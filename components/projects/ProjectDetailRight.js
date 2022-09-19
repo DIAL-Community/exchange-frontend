@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
 import CommentsSection from '../shared/comment/CommentsSection'
@@ -11,7 +12,7 @@ import ProjectDetailProducts from './ProjectDetailProduct'
 
 const ProjectDetailRight = ({ project, canEdit, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const slugNameMapping = (() => {
     const map = {}

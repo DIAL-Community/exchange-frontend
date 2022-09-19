@@ -1,15 +1,12 @@
 import { fireEvent, screen } from '@testing-library/react'
 import EditButton from '../../../components/shared/EditButton'
-import { mockRouterImplementation, render } from '../../test-utils'
+import { render } from '../../test-utils'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the EditButton component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const EDIT_LINK_TEST_ID = 'edit-link'
-
-  beforeAll(mockRouterImplementation)
 
   test('Should match snapshot - type === "button".', () => {
     const { container } = render(<EditButton />)
@@ -31,6 +28,6 @@ describe('Unit test for the EditButton component.', () => {
     const mockOnClick = jest.fn()
     const { getByTestId } = render(<EditButton onClick={mockOnClick}/>)
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
-    expect(mockOnClick).toBeCalled()
+    expect(mockOnClick).toHaveBeenCalled()
   })
 })

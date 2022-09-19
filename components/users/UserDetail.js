@@ -1,14 +1,14 @@
 import { useIntl } from 'react-intl'
-import { useMemo } from 'react'
-import { useSession } from 'next-auth/client'
+import { useCallback, useMemo } from 'react'
+import { useSession } from 'next-auth/react'
 import EditButton from '../shared/EditButton'
 import Breadcrumb from '../shared/breadcrumb'
 
 const UserDetail = ({ user }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
   const slugNameMapping = useMemo(() => ({ [user.id]: user.username }), [user])
 
   return (

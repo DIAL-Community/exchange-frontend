@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { Fragment, useContext, useState } from 'react'
 import { FaCode, FaCopy } from 'react-icons/fa'
@@ -100,7 +100,7 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation, commentsSect
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const [session] = useSession()
+  const { data: session } = useSession()
   const [displayEmbedDialog, setDisplayEmbedDialog] = useState(false)
 
   const generateEditLink = () => {

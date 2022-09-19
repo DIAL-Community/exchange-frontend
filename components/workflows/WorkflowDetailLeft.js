@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
@@ -6,7 +7,7 @@ import { useUser } from '../../lib/hooks'
 
 const WorkflowDetailLeft = ({ workflow }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { user, isAdminUser } = useUser()
 

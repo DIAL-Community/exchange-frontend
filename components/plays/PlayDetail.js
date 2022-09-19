@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
 import Breadcrumb from '../shared/breadcrumb'
@@ -12,7 +12,7 @@ const PlayDetail = ({ playbook, play }) => {
   const format = (id) => formatMessage({ id })
 
   const { locale } = useRouter()
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const generateEditLink = () => {
     if (!session.user) {

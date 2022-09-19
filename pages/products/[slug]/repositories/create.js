@@ -24,7 +24,7 @@ const PRODUCT_QUERY = gql`
 
 const ProductHeader = ({ product }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='border'>

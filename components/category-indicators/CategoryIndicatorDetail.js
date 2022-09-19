@@ -12,9 +12,15 @@ const CategoryIndicatorDetail = ({ slug, locale }) => {
     context: { headers: { 'Accept-Language': locale } }
   })
 
-  const slugNameMapping = useMemo(() => ({ [data?.categoryIndicator.slug]: data?.categoryIndicator.name }), [data?.categoryIndicator])
+  const slugNameMapping = useMemo(
+    () => ({ [data?.categoryIndicator.slug]: data?.categoryIndicator.name }),
+    [data?.categoryIndicator]
+  )
 
-  useEffect(refetch, [refetch, locale])
+  useEffect(
+    () => { refetch },
+    [refetch, locale]
+  )
 
   if (loading) {
     return <Loading />

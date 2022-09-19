@@ -2,16 +2,13 @@ import { fireEvent, screen } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import OrganizationDetailContacts from '../../../components/organizations/OrganizationDetailContacts'
 import { CONTACT_SEARCH_QUERY } from '../../../queries/contact'
-import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
+import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 import { contacts } from './data/OrganizationDetailContacts'
 import { organization } from './data/OrganizationForm'
 
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
-// Mock the next-auth's useSession.
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the OrganizationDetailContacts component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const PILL_TEST_ID = 'pill'
@@ -22,11 +19,6 @@ describe('Unit test for the OrganizationDetailContacts component.', () => {
   const TITLE_INPUT_TEST_ID = 'title-input'
 
   const mockContacts = generateMockApolloData(CONTACT_SEARCH_QUERY, { search: '' }, null, contacts)
-
-  beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
-  })
 
   test('Should assign button have text "Assign"', () => {
     const { container, getByTestId } = render(

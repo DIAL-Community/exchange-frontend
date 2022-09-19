@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { gql, useQuery } from '@apollo/client'
@@ -26,7 +27,7 @@ const PRODUCT_QUERY = gql`
 
 const ProductHeader = ({ product }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='border-t border-l border-r'>
@@ -48,7 +49,7 @@ const ProductHeader = ({ product }) => {
 
 const PageDefinition = ({ slug, repositorySlug }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser } = useUser()
   const { isProductOwner } = useProductOwnerUser(data?.product, [], isAdminUser)

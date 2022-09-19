@@ -1,5 +1,6 @@
 import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import classNames from 'classnames'
 import { fetchSelectOptions } from '../../../queries/utils'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../queries/building-block'
@@ -17,7 +18,7 @@ export const BuildingBlockAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('buildingBlock.label') })
 
@@ -56,7 +57,7 @@ export const BuildingBlockFilters = (props) => {
   const { buildingBlocks, setBuildingBlocks } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeBuildingBlock = (buildingBlockId) => {
     setBuildingBlocks(buildingBlocks.filter(({ slug }) => slug !== buildingBlockId))

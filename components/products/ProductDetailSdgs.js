@@ -1,5 +1,5 @@
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
@@ -44,7 +44,7 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
     }
   })
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const { locale } = useRouter()
 

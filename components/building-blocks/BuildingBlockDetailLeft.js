@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
@@ -9,7 +9,7 @@ import { ObjectType } from '../../lib/constants'
 const BuildingBlockDetailLeft = ({ buildingBlock, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const generateEditLink = () => {
     if (!session.user) {

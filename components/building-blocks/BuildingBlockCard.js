@@ -55,16 +55,13 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
       : filterDisplayed ? 'col-span-2 xl:col-span-1' : 'col-span-2 lg:col-span-1'
   }
 
-  const navClickHandler = () => {
-  }
-
   return (
     <Link href={`/${collectionPath}/${buildingBlock.slug}`}>
       <a {... newTab && { target: '_blank' }}>
         {
           listType === 'list'
             ? (
-              <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className={containerElementStyle}>
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                     <div className={`${nameColSpan(buildingBlock)} pr-3 text-base font-semibold ${ellipsisTextStyle}`}>
@@ -149,7 +146,6 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
             )
             : (
               <div
-                onClick={() => navClickHandler()}
                 className={`
                   border-3 border-transparent hover:border-dial-yellow
                   text-building-block hover:text-dial-yellow cursor-pointer

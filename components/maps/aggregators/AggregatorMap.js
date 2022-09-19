@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from 'react'
+import { useCallback, useContext, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { gql, useQuery } from '@apollo/client'
@@ -128,7 +128,7 @@ const AggregatorMap = () => {
   const { aggregators, operators, services } = useContext(MapFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading: loadingAggregators, data: aggregatorData } = useQuery(AGGREGATORS_QUERY, {
     variables: {

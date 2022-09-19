@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
 import { Dialog as DialogHeadlessui, Transition } from '@headlessui/react'
-import { Fragment, useRef } from 'react'
+import { Fragment, useCallback, useRef } from 'react'
 import classNames from 'classnames'
 
 export const DialogType = {
@@ -21,7 +21,7 @@ const Dialog = ({
   dialogType = DialogType.DETAILS
 }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const initialFocusRef = useRef(null)
 

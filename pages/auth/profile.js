@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
+import { useCallback } from 'react'
+import { useSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -7,9 +8,9 @@ const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const UserProfile = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   return (
     <>

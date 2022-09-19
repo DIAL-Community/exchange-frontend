@@ -1,7 +1,7 @@
 import { render, waitFor } from '@testing-library/react'
 import { IntlProvider } from 'react-intl'
-import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
+import { SessionProvider } from 'next-auth/react'
+import { act } from 'react-dom/test-utils'
 import * as translations from '../translations'
 import { ToastContextProvider } from '../lib/ToastContext'
 
@@ -12,7 +12,9 @@ const Providers = ({ children }) => {
   return (
     <IntlProvider locale={locale} defaultLocale='en' messages={messages}>
       <ToastContextProvider>
-        {children}
+        <SessionProvider session>
+          {children}
+        </SessionProvider>
       </ToastContextProvider>
     </IntlProvider>
   )
@@ -20,29 +22,13 @@ const Providers = ({ children }) => {
 
 const customRender = (ui, options = {}) => render(ui, { wrapper: Providers, ...options })
 
-// Mocked router implementation.
-export const mockRouterImplementation = (query = {}) => useRouter.mockImplementation(() => ({
-  asPath: '/',
-  locale: 'en',
-  push: jest.fn(() => Promise.resolve(true)),
-  prefetch: jest.fn(() => Promise.resolve(true)),
-  events: {
-    on: jest.fn(),
-    off: jest.fn()
-  },
-  query
-}))
-
-// Mocked session implementation.
-export const mockSessionImplementation = (canEdit = false, userProps = {}) => useSession.mockReturnValue([{ user: { ...userProps, canEdit } }, false])
-
-export const mockUnauthorizedUserSessionImplementation = () => useSession.mockReturnValue([false])
-
 const waitForReactSelectToLoad = (container) => (
   waitFor(() => expect(container.querySelector('.react-select__loading-indicator')).toBeNull())
 )
 
-export const waitForAllEffects = (waitTimeout = 0) => waitFor(() => new Promise((res) => setTimeout(res, waitTimeout)))
+export const waitForAllEffects = async (waitTimeout = 10) => (
+  await act(() => new Promise((resolve) => setTimeout(resolve, waitTimeout)))
+)
 
 export const waitForAllEffectsAndSelectToLoad = async (container) => (
   await waitForAllEffects().then(() => waitForReactSelectToLoad(container))

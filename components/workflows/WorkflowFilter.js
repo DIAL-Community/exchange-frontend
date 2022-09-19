@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { BsQuestionCircleFill } from 'react-icons/bs'
 import { FilterContext } from '../context/FilterContext'
@@ -8,7 +8,7 @@ import { UseCaseAutocomplete } from '../filter/element/UseCase'
 
 const WorkflowFilter = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { setHintDisplayed } = useContext(FilterContext)
 

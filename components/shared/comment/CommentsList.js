@@ -7,8 +7,12 @@ const CommentsList = ({ comments, refetch, loading, onClose }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id) => formatMessage({ id }), [formatMessage])
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(refetch, [])
+  useEffect(
+    () => {
+      refetch
+    },
+    [refetch]
+  )
 
   return (
     <div className='mt-28'>

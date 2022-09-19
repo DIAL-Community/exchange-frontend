@@ -1,4 +1,4 @@
-image: node
+image: node:lts-gallium
 
 stages:
   - lint
@@ -7,7 +7,6 @@ stages:
   - deploy
 
 variables:
-  NODE_OPTIONS: --openssl-legacy-provider
   SERVER_IP: "$SERVER_IP"
   SSH_PRIVATE_KEY: "$SSH_PRIVATE_KEY"
 

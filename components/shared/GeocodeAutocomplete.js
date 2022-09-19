@@ -36,18 +36,19 @@ const GeocodeAutocomplete = React.forwardRef(({ value, onChange }, ref) => {
   const setLocation = async (suggestion) => {
     if (suggestion) {
       const response = await geocode({ magicKey: suggestion.value, authentication })
-      const { x: longitude, y: latitude } = response.candidates[0]?.location
-      const {
-        address: {
-          CntryName: countryName,
-          CountryCode: countryCode,
-          Region: regionName,
-          City: cityName
-        }
-      } = await reverseGeocode({ longitude, latitude }, { authentication })
-      onChange({ countryName, countryCode, regionName, cityName, longitude, latitude })
-    } else {
-      onChange(null)
+      const [candidate] = response.candidates
+      if (candidate) {
+        const { x: longitude, y: latitude } = candidate.location
+        const {
+          address: {
+            CntryName: countryName,
+            CountryCode: countryCode,
+            Region: regionName,
+            City: cityName
+          }
+        } = await reverseGeocode({ longitude, latitude }, { authentication })
+        onChange({ countryName, countryCode, regionName, cityName, longitude, latitude })
+      }
     }
   }
 

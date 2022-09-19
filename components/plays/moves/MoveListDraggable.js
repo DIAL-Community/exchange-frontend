@@ -32,7 +32,7 @@ const UPDATE_MOVE_ORDER = gql`
 
 const DraggableCard = ({ id, move, index, swapMove, unassignMove, previewMove }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const ref = useRef(null)
 
@@ -170,7 +170,7 @@ const DraggableCard = ({ id, move, index, swapMove, unassignMove, previewMove })
 
 const MoveListDraggable = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [draggedMove, setDraggedMove] = useState([-1, -1])
   const [unassignedMove, setUnassignedMove] = useState('')

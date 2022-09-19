@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import classNames from 'classnames'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
 import { useUser } from '../../lib/hooks'
 import EditButton from '../shared/EditButton'
@@ -11,7 +11,7 @@ import SectorForm from './SectorForm'
 
 const SectorCard = ({ sector, listType = DisplayType.LIST, displayEditButtons = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser } = useUser()
 

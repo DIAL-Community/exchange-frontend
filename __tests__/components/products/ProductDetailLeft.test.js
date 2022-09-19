@@ -1,22 +1,15 @@
 import ProductDetailLeft from '../../../components/products/ProductDetailLeft'
-import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
+import { render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { product } from './data/ProductForm'
 
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
-// Mock the next-auth's useSession.
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the ProductDetailLeft component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-link'
 
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
-
   test('Should Edit button not be visible for user without admin or edit privileges', () => {
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
 
     const { queryByTestId } = render(
       <CustomMockedProvider>
@@ -28,7 +21,7 @@ describe('Unit test for the ProductDetailLeft component.', () => {
   })
 
   test('Should Edit button be visible for user with admin or edit privileges', () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
 
     const { getByTestId } = render(
       <CustomMockedProvider>
@@ -40,7 +33,7 @@ describe('Unit test for the ProductDetailLeft component.', () => {
   })
 
   test('Should redirect to product edit form', () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
 
     const { getByTestId } = render(
       <CustomMockedProvider>

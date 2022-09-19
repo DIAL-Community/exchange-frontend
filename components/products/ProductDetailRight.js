@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import parse from 'html-react-parser'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
@@ -19,9 +20,9 @@ import ProductPricing from './ProductPricing'
 
 const ProductDetailRight = ({ product, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const canEdit = session?.user?.canEdit || session?.user?.own?.product?.id === product.id
 

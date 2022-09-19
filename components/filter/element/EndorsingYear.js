@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import Pill from '../../shared/Pill'
 import Select from '../../shared/Select'
 
@@ -12,7 +13,7 @@ export const EndorsingYearSelect = ({
   isSearch = false
 }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('endorsingYear.label') })
 
@@ -59,7 +60,7 @@ export const EndorsingYearFilters = (props) => {
   const { years, setYears } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeYear = (yearValue) => {
     setYears(years.filter(({ value }) => value !== yearValue))

@@ -1,14 +1,13 @@
 import { fireEvent, screen } from '@testing-library/react'
 import ProductDetailProjects from '../../../components/products/ProductDetailProjects'
 import { PROJECT_SEARCH_QUERY } from '../../../queries/project'
-import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 import { projects } from './data/ProductDetailProjects'
 import { product } from './data/ProductForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for the ProductDetailProjects component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
@@ -19,11 +18,6 @@ describe('Unit tests for the ProductDetailProjects component.', () => {
   const PILL_TEST_ID = 'pill'
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
   const mockProjects = generateMockApolloData(PROJECT_SEARCH_QUERY, { search: '' }, null, projects)
-
-  beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
-  })
 
   test('Should match snapshot - without edit permission.', () => {
     const { container } = render(

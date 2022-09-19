@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react'
 import Head from 'next/head'
 import { ApolloProvider } from '@apollo/client'
-import { Provider } from 'next-auth/client'
+import { SessionProvider } from 'next-auth/react'
 import { IntlProvider, useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { DndProvider } from 'react-dnd'
@@ -110,13 +110,13 @@ const App = ({ Component, pageProps }) => {
       </Head>
       <IntlProvider locale={locale} defaultLocale='en' messages={messages}>
         <ApolloProvider client={client}>
-          <Provider session={pageProps.session}>
+          <SessionProvider session={pageProps.session} refetchInterval={5 * 60}>
             <DndProvider backend={HTML5Backend}>
               <ApplicationDefaultContexts>
                 <Component {...pageProps} />
               </ApplicationDefaultContexts>
             </DndProvider>
-          </Provider>
+          </SessionProvider>
         </ApolloProvider>
       </IntlProvider>
     </>

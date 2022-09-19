@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
@@ -27,7 +27,7 @@ const PUBLISHED_CHECKBOX_FIELD_NAME = 'published'
 
 const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { search, tags } = useContext(PlayFilterContext)
   const { setSearch, setTags } = useContext(PlayFilterDispatchContext)
@@ -108,7 +108,7 @@ const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
 
 const FormTextEditor = ({ control, name, placeholder = null, required = false, isInvalid = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='form-field-wrapper'>
@@ -143,7 +143,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)

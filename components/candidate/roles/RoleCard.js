@@ -1,5 +1,5 @@
-import { useSession } from 'next-auth/client'
-import { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { useCallback, useEffect, useState } from 'react'
 import { FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
@@ -8,9 +8,9 @@ const ellipsisTextStyle = 'my-auto'
 
 const RoleCard = ({ role, listType, filterDisplayed }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState('')
@@ -207,7 +207,7 @@ const RoleCard = ({ role, listType, filterDisplayed }) => {
 
 const CancelButton = ({ status, setStatus, loading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <button
@@ -227,7 +227,7 @@ const CancelButton = ({ status, setStatus, loading }) => {
 
 const ToggleApprovalButton = ({ style, setStatus, loading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <button
@@ -242,9 +242,9 @@ const ToggleApprovalButton = ({ style, setStatus, loading }) => {
 
 const ApproveButton = ({ role, status, setStatus, loading, setLoading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const approveCandidateRole = async (e) => {
     const { userEmail, userToken } = session.user
@@ -291,7 +291,7 @@ const ApproveButton = ({ role, status, setStatus, loading, setLoading }) => {
 
 const ToggleRejectionButton = ({ style, setStatus, loading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <button
@@ -306,9 +306,9 @@ const ToggleRejectionButton = ({ style, setStatus, loading }) => {
 
 const DeclineButton = ({ role, status, setStatus, loading, setLoading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const rejectCandidateRole = async (e) => {
     const { userEmail, userToken } = session.user

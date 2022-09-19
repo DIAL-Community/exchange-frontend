@@ -1,6 +1,8 @@
 import { render, fireEvent } from '@testing-library/react'
 import IconButton from '../../../components/shared/IconButton'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 
+mockNextUseRouter()
 describe('Unit test for the IconButton component.', () => {
   const TEST_ID = 'icon-button'
   const ICON = '+'
@@ -15,6 +17,6 @@ describe('Unit test for the IconButton component.', () => {
     const onClick = jest.fn()
     const button = render(<IconButton onClick={onClick} />).getByTestId(TEST_ID)
     fireEvent.click(button)
-    expect(onClick).toBeCalledTimes(1)
+    expect(onClick).toHaveBeenCalledTimes(1)
   })
 })

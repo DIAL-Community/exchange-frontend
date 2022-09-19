@@ -1,14 +1,13 @@
 import { fireEvent, screen } from '@testing-library/react'
 import ProjectDetailSectors from '../../../components/projects/ProjectDetailSectors'
 import { SECTOR_SEARCH_QUERY } from '../../../queries/sector'
-import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffects, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
+import { render, waitForAllEffects, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { project, organizationOwnerUserProps } from './data/ProjectForm'
 import { sectors } from './data/ProjectDetailSectors'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the ProjectDetailSectors component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
@@ -20,12 +19,8 @@ describe('Unit test for the ProjectDetailSectors component.', () => {
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
   const mockSectors = generateMockApolloData(SECTOR_SEARCH_QUERY, { search: '', locale: 'en' }, null, sectors)
 
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
-
   test('Should match snapshot - without edit permission.', () => {
-    mockSessionImplementation(false)
+    mockNextAuthUseSession(statuses.UNAUTHENTICATED)
     const { container } = render(
       <CustomMockedProvider mocks={[mockSectors]}>
         <ProjectDetailSectors
@@ -38,7 +33,7 @@ describe('Unit test for the ProjectDetailSectors component.', () => {
   })
 
   test('Should match snapshot - with edit permission.', () => {
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const { container } = render(
       <CustomMockedProvider mocks={[mockSectors]}>
         <ProjectDetailSectors
@@ -51,7 +46,7 @@ describe('Unit test for the ProjectDetailSectors component.', () => {
   })
 
   test('Should match snapshot - when user is Organization owner.', () => {
-    mockSessionImplementation(false, organizationOwnerUserProps)
+    mockNextAuthUseSession(false, organizationOwnerUserProps)
     const { container } = render(
       <CustomMockedProvider mocks={[mockSectors]}>
         <ProjectDetailSectors
@@ -64,7 +59,7 @@ describe('Unit test for the ProjectDetailSectors component.', () => {
   })
 
   test('Should match snapshot - with open editable section', async () => {
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockSectors]}>
         <ProjectDetailSectors
@@ -81,7 +76,7 @@ describe('Unit test for the ProjectDetailSectors component.', () => {
   })
 
   test('Should remove a pill', async () => {
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockSectors]}>
         <ProjectDetailSectors
@@ -99,7 +94,7 @@ describe('Unit test for the ProjectDetailSectors component.', () => {
   })
 
   test('Should add a pill and revert changes on "Cancel" button click', async () => {
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const { container, getByTestId, getByText } = render(
       <CustomMockedProvider mocks={[mockSectors]}>
         <ProjectDetailSectors

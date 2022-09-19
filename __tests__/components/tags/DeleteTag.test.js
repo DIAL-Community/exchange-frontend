@@ -1,18 +1,12 @@
 import { fireEvent } from '@testing-library/react'
+import { act } from 'react-dom/test-utils'
 import DeleteTag from '../../../components/tags/DeleteTag'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  mockObserverImplementation,
-  waitForAllEffects,
-  render
-} from '../../test-utils'
+import { mockObserverImplementation, render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { tag } from './data/TagCard'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for the DeletTag component.', () => {
   const DELETE_BUTTON_TEST_ID = 'delete-button'
   const CONFIRM_ACTION_DIALOG_TEST_ID = 'confirm-action-dialog'
@@ -20,8 +14,7 @@ describe('Unit tests for the DeletTag component.', () => {
   const CONFIRM_BUTTON_TEST_ID = 'confirm-button'
 
   beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     window.IntersectionObserver = mockObserverImplementation()
   })
 
@@ -31,9 +24,9 @@ describe('Unit tests for the DeletTag component.', () => {
         <DeleteTag tag={tag}/>
       </CustomMockedProvider>
     )
-    fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID))
-    await waitForAllEffects(container)
+    await act(() => fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID)))
     expect(getByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toBeVisible()
+    expect(container).toMatchSnapshot()
   })
 
   describe('Should close ConfirmActionDialog after clicks', () => {
@@ -43,13 +36,12 @@ describe('Unit tests for the DeletTag component.', () => {
           <DeleteTag tag={tag} />
         </CustomMockedProvider>
       )
-      fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID))
-      await waitForAllEffects(container)
+      await act(() => fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID)))
       expect(getByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toBeVisible()
 
-      fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID))
-      await waitForAllEffects(container)
+      await act(() => fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID)))
       expect(queryByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).not.toBeInTheDocument()
+      expect(container).toMatchSnapshot()
     })
 
     test('"Confirm" button', async () => {
@@ -58,13 +50,12 @@ describe('Unit tests for the DeletTag component.', () => {
           <DeleteTag tag={tag} />
         </CustomMockedProvider>
       )
-      fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID))
-      await waitForAllEffects(container)
+      await act(() => fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID)))
       expect(getByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toBeVisible()
 
-      fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID))
-      await waitForAllEffects(container)
+      await act(() => fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID)))
       expect(queryByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).not.toBeInTheDocument()
+      expect(container).toMatchSnapshot()
     })
   })
 })

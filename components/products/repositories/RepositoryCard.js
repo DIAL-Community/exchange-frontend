@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
 import { useIntl, FormattedDate } from 'react-intl'
 import { FaStar, FaCalendar, FaCalendarAlt } from 'react-icons/fa'
@@ -9,7 +9,7 @@ const repositoriesPath = convertToKey('Repositories')
 
 const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   useEffect(() => {
     ReactTooltip.rebuild()

@@ -1,5 +1,5 @@
 import { useCallback, useContext } from 'react'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
 import Header from '../../components/Header'
@@ -15,7 +15,7 @@ const RubricCategories = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
   const { isAdminUser, loadingUserSession } = useUser(session)
 
   const { search } = useContext(UserFilterContext)

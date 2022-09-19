@@ -1,23 +1,16 @@
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import OrganizationDetailLeft from '../../../components/organizations/OrganizationDetailLeft'
-import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
+import { render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { organization } from './data/OrganizationForm'
 import { user } from './data/OrganizationOwner'
 
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
-// Mock the next-auth's useSession.
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for the OrganizationDetailLeft component.', () => {
 
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
-
   test('Should match snapshot - unauthorized user.', () => {
-    mockSessionImplementation(false)
+    mockNextAuthUseSession(statuses.UNAUTHENTICATED)
     const { container } = render(
       <CustomMockedProvider>
         <OrganizationDetailLeft organization={organization}/>
@@ -37,7 +30,7 @@ describe('Unit tests for the OrganizationDetailLeft component.', () => {
   })
 
   test('Should match snapshot - user is admin.', () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const { container } = render(
       <CustomMockedProvider>
         <OrganizationDetailLeft organization={organization}/>

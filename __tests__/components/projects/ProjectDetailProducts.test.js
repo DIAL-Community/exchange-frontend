@@ -1,20 +1,12 @@
 import { fireEvent, screen } from '@testing-library/react'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad,
-} from '../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import ProjectDetailProducts from '../../../components/projects/ProjectDetailProduct'
 import { OWNED_PRODUCTS_QUERY, PRODUCT_SEARCH_QUERY } from '../../../queries/product'
+import { mockNextAuthUseSession, mockNextUseRouter } from '../../utils/nextMockImplementation'
 import { productOwnerUserProps, products, ownedProducts, projectProducts } from './data/ProjectDetailProducts'
 
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
-// Mock the next-auth's useSession.
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the ProjectDetailProducts component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
@@ -26,11 +18,6 @@ describe('Unit test for the ProjectDetailProducts component.', () => {
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
   const mockProducts = generateMockApolloData(PRODUCT_SEARCH_QUERY, { search: '' }, null, products)
   const mockOwnedProducts = generateMockApolloData(OWNED_PRODUCTS_QUERY, null, null, ownedProducts)
-
-  beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
-  })
 
   test('Should match snapshot - without edit permission.', () => {
     const { container } = render(
@@ -120,7 +107,7 @@ describe('Unit test for the ProjectDetailProducts component.', () => {
   })
 
   test('Should render Products with read only owned product pill', async () => {
-    mockSessionImplementation(false, productOwnerUserProps)
+    mockNextAuthUseSession(false, productOwnerUserProps)
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockOwnedProducts]}>
         <ProjectDetailProducts
@@ -141,7 +128,7 @@ describe('Unit test for the ProjectDetailProducts component.', () => {
   })
 
   test('Should add a owned product pill and allow to remove', async () => {
-    mockSessionImplementation(false, productOwnerUserProps)
+    mockNextAuthUseSession(false, productOwnerUserProps)
     const { container, getByTestId, getByText } = render(
       <CustomMockedProvider mocks={[mockOwnedProducts, mockProducts]}>
         <ProjectDetailProducts

@@ -1,5 +1,6 @@
 import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import classNames from 'classnames'
 import Select from '../../shared/Select'
 import { fetchSelectOptions } from '../../../queries/utils'
@@ -18,7 +19,7 @@ export const CapabilityAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('service.label') })
 
@@ -58,7 +59,7 @@ export const CapabilityFilters = (props) => {
   const { services, setServices } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeCapability = (serviceSlug) => {
     setServices(services.filter(({ slug }) => slug !== serviceSlug))

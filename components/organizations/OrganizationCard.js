@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { convertToKey } from '../context/FilterContext'
 
@@ -15,7 +16,7 @@ const containerElementStyle = `
 
 const OrganizationCard = ({ organization, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <>

@@ -12,8 +12,12 @@ const RubricCategoryDetail = ({ slug, locale }) => {
     context: { headers: { 'Accept-Language': locale } },
   })
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(refetch, [locale])
+  useEffect(
+    () => {
+      refetch()
+    },
+    [refetch, locale]
+  )
 
   const slugNameMapping = useMemo(() => ({ [data?.rubricCategory.slug]: data?.rubricCategory.name }), [data])
 

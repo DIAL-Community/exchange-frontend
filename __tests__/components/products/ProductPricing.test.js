@@ -1,19 +1,17 @@
-import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffects } from '../../test-utils'
+import { render, waitForAllEffects } from '../../test-utils'
 import ProductPricing from '../../../components/products/ProductPricing'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { commercialProduct } from './data/ProductPricing'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the ProductDetailOrganizations component.', () => {
   beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
   })
 
   test('Should render pricing data structure for commercial product.', async () => {
     const component = render(<ProductPricing product={commercialProduct} canEdit={false} />)
-    await waitForAllEffects(500)
+    await waitForAllEffects()
 
     // Commercial product will display pricing data etc.
     expect(component.getByText(/Hosting Model/)).toBeInTheDocument()

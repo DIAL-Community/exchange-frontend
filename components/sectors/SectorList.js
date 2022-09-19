@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -15,7 +15,7 @@ import SectorCard from './SectorCard'
 
 const SectorList = ({ displayType, sectorList }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className={classNames('grid', { 'grid-cols-1' : displayType === DisplayType.LIST })}>
@@ -41,7 +41,7 @@ const SectorListQuery = () => {
   const { locale } = useRouter()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data, fetchMore, refetch } = useQuery(SECTORS_LIST_QUERY, {
     variables: {
@@ -54,7 +54,10 @@ const SectorListQuery = () => {
     }
   })
 
-  useEffect(refetch, [refetch, locale])
+  useEffect(
+    () => { refetch() },
+    [refetch, locale]
+  )
 
   useEffect(() => ReactTooltip.rebuild(), [data])
 

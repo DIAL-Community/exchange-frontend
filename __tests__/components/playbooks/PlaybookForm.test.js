@@ -4,17 +4,16 @@ import { DndProvider } from 'react-dnd'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import { PlaybookForm } from '../../../components/playbooks/PlaybookForm'
 import { PlayListProvider } from '../../../components/plays/PlayListContext'
 import { PlayFilterProvider } from '../../../components/context/PlayFilterContext'
 import { PlayPreviewProvider } from '../../../components/plays/PlayPreviewContext'
 import { CREATE_PLAYBOOK } from '../../../mutations/playbook'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { createPlaybookSuccess, draftPlaybook, publishedPlaybook, testPlaybook } from './data/PlaybookForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for PlaybookForm component.', () => {
   const PUBLISHED_CHECKBOX_LABEL = 'Published'
   const PUBLISH_PLAYBOOK_SUBMIT_BUTTON_LABEL = 'Publish Playbook'
@@ -25,8 +24,7 @@ describe('Unit tests for PlaybookForm component.', () => {
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
 
   beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED)
   })
 
   test('Should match snapshot - create.', async () => {
@@ -110,7 +108,7 @@ describe('Unit tests for PlaybookForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test playbook name')
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await user.clear(screen.getByLabelText(/Name/))
+    await act(async () => waitFor(() => user.clear(screen.getByLabelText(/Name/))))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test playbook name 2')
@@ -156,8 +154,9 @@ describe('Unit tests for PlaybookForm component.', () => {
     await waitForAllEffectsAndSelectToLoad(container)
     await act(async () => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      await screen.findByText('Playbook submitted.')
     })
+    await screen.findByText('Playbook submitted.')
+    expect(container).toMatchSnapshot()
   })
 
   test('Should render unchecked "Published" checkbox and "Save as Draft" submit button by default - create Playbook.', async () => {

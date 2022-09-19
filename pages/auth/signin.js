@@ -1,6 +1,6 @@
-import { csrfToken } from 'next-auth/client'
+import { getCsrfToken } from 'next-auth/react'
 import { useIntl } from 'react-intl'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import Link from 'next/link'
 import Header from '../../components/Header'
@@ -8,7 +8,7 @@ import Footer from '../../components/Footer'
 
 export default function SignIn ({ csrfToken }) {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
   const formEl = useRef()
@@ -109,7 +109,7 @@ export async function getServerSideProps (ctx) {
 
   return {
     props: {
-      csrfToken: await csrfToken(ctx)
+      csrfToken: await getCsrfToken(ctx)
     }
   }
 }

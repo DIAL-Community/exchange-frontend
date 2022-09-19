@@ -2,7 +2,7 @@ import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 
 const EntityUpload = () => {
   const { formatMessage } = useIntl()
@@ -13,7 +13,7 @@ const EntityUpload = () => {
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
-  const [session] = useSession()
+  const { data: session } = useSession()
   const fileRef = useRef()
   const captchaRef = useRef()
 

@@ -2,7 +2,7 @@ import { createRef, Fragment, useEffect, useState } from 'react'
 import { Tab } from '@headlessui/react'
 import { useMutation, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { ContextMenu } from 'handsontable/plugins'
 import { HotTable } from '@handsontable/react'
 import { registerAllModules } from 'handsontable/registry'
@@ -25,7 +25,7 @@ const ProductSpreadsheet = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   const { locale } = useRouter()
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const [updateAssocData] = useMutation(CREATE_SPREADSHEET_MUTATION)
   const [saveSpreadsheetData] = useMutation(CREATE_SPREADSHEET_MUTATION, { refetchQueries: [PRODUCT_SPREADSHEET_QUERY] })

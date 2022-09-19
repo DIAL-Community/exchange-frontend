@@ -1,10 +1,11 @@
 import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
+import { useCallback } from 'react'
 
 const MaturityCategory = ({ category }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const numIndicators = category.indicator_scores.length
 
   return (
@@ -45,7 +46,7 @@ const MaturityCategory = ({ category }) => {
 
 const RubricAccordion = ({ maturityScores, overallScore }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <>

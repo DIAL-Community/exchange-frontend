@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { MdClose } from 'react-icons/md'
 import { useRouter } from 'next/router'
@@ -22,7 +22,7 @@ const ProductFilter = (props) => {
   const filterDisplayed = props.filterDisplayed
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { query } = useRouter()
   const { interactionDetected } = useContext(QueryParamContext)

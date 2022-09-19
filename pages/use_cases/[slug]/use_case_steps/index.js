@@ -1,8 +1,9 @@
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
 import Breadcrumb from '../../../../components/shared/breadcrumb'
@@ -16,7 +17,7 @@ import CreateButton from '../../../../components/shared/CreateButton'
 // Create the top left header of the step list.
 const UseCaseHeader = ({ useCase }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='border'>
@@ -39,9 +40,9 @@ const UseCaseHeader = ({ useCase }) => {
 
 const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug } })
 

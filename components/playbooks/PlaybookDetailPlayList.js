@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -55,7 +55,7 @@ export const PLAYBOOK_PLAYS_QUERY = gql`
 
 const Play = ({ play, index }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { updateSlugInformation, setWindowHeight } = useContext(PlaybookDetailDispatchContext)
 
@@ -135,7 +135,7 @@ const Play = ({ play, index }) => {
 
 const PlaybookDetailPlayList = ({ slug, locale }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data, fetchMore, refetch } = useQuery(PLAYBOOK_PLAYS_QUERY, {
     variables: {

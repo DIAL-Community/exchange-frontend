@@ -1,5 +1,6 @@
 import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import classNames from 'classnames'
 import Pill from '../../shared/Pill'
 import Select from '../../shared/Select'
@@ -17,7 +18,7 @@ export const SDGAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('sdg.shortLabel') })
 
@@ -56,7 +57,7 @@ export const SDGFilters = (props) => {
   const { sdgs, setSDGs } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeSDG = (sdgId) => {
     setSDGs(sdgs.filter(sdg => sdg.value !== sdgId))

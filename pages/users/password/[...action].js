@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
@@ -22,7 +22,7 @@ const PasswordAction = () => {
   const { reset_password_token: resetToken } = router.query
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
   const [applied, setApplied] = useState(false)

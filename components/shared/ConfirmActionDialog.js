@@ -1,11 +1,11 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useRef } from 'react'
+import { Fragment, useCallback, useRef } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 
 const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isConfirming }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   // Dialog should contain at least one focusable element - documentation of @headlessui/react
   let initialFocusRef = useRef(null)

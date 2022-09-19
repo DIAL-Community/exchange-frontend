@@ -1,53 +1,11 @@
-import { useRouter } from 'next/router'
 import { screen } from '@testing-library/react'
 import { render } from '../../test-utils'
 import BuildingBlockCard from '../../../components/building-blocks/BuildingBlockCard'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
+import { completeBuildingBlock, minimalBuildingBlock } from './data/BuildingBlockCard'
 
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
-
-const completeBuildingBlock = {
-  name: 'Fake Building Block',
-  slug: 'fake_bb',
-  maturity: 'beta',
-  imageFile: '/fake_bb.png',
-  products: [{
-    slug: 'product_a',
-    name: 'Product A'
-  }, {
-    slug: 'product_b',
-    name: 'Product B'
-  }],
-  workflows: [{
-    slug: 'workflow_a',
-    name: 'Workflow A'
-  }, {
-    slug: 'workflow_b',
-    name: 'Workflow B'
-  }]
-}
-
-const minimalBuildingBlock = {
-  name: 'Fake Building Block',
-  slug: 'fake_bb',
-  maturity: 'beta'
-}
-
+mockNextUseRouter()
 describe('Unit tests for the building block card.', () => {
-  beforeEach(() => {
-    // Mocked router implementation.
-    useRouter.mockImplementation(() => ({
-      asPath: '/',
-      locale: 'en',
-      push: jest.fn(() => Promise.resolve(true)),
-      prefetch: jest.fn(() => Promise.resolve(true)),
-      events: {
-        on: jest.fn(),
-        off: jest.fn()
-      }
-    }))
-  })
-
   test('Should render complete building block in list view.', () => {
     render(<BuildingBlockCard buildingBlock={completeBuildingBlock} listType='list' />)
     expect(screen.getByText(completeBuildingBlock.name)).toBeInTheDocument()

@@ -1,15 +1,10 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import { PlayForm } from '../../../components/plays/PlayForm'
 import { CREATE_PLAY } from '../../../mutations/play'
 import { PlayListProvider } from '../../../components/plays/PlayListContext'
@@ -17,11 +12,10 @@ import { PlayFilterProvider } from '../../../components/context/PlayFilterContex
 import { PlayPreviewProvider } from '../../../components/plays/PlayPreviewContext'
 import { MoveListProvider } from '../../../components/plays/moves/MoveListContext'
 import { MovePreviewProvider } from '../../../components/plays/moves/MovePreviewContext'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { playbook, play, createPlaySuccess } from './data/PlayForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('PlayForm component.', () => {
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
   const PLAYBOOK_NAME_TEST_ID = 'play-name'
@@ -47,11 +41,6 @@ describe('PlayForm component.', () => {
       </PlayFilterProvider>
     </PlayListProvider>
   )
-
-  beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
-  })
 
   describe('Should match snapshot', () => {
     test('Create.', async () => {
@@ -119,7 +108,7 @@ describe('PlayForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test play name')
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await user.clear(screen.getByLabelText(/Name/))
+    await act(async () => waitFor(() => user.clear(screen.getByLabelText(/Name/))))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test play name 2')
@@ -133,7 +122,7 @@ describe('PlayForm component.', () => {
   })
 
   test('Should display success toast on submit.', async () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const mockCreatePlay = generateMockApolloData(
       CREATE_PLAY,
       mockCreatePlayVariables,
@@ -153,7 +142,8 @@ describe('PlayForm component.', () => {
 
     await act(async () => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      await screen.findByText('Play saved.')
     })
+    await screen.findByText('Play saved.')
+    expect(container).toMatchSnapshot()
   })
 })

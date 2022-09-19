@@ -3,18 +3,12 @@ import { fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import { UserForm } from '../../../components/users/UserForm'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { user } from './data/UserForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for the UserForm component.', () => {
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
   const EMAIL_INPUT_TEST_ID = 'email-input'
@@ -27,8 +21,7 @@ describe('Unit tests for the UserForm component.', () => {
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
 
   beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
   })
 
   test('Should match snapshot - edit.', async () => {
@@ -49,13 +42,16 @@ describe('Unit tests for the UserForm component.', () => {
         <UserForm user={user} action='update' />
       </CustomMockedProvider>
     )
+    await waitForAllEffectsAndSelectToLoad(container)
 
     await someUser.type(getByTestId(EMAIL_INPUT_TEST_ID), 'user_test@web.com')
     await someUser.type(getByTestId(USER_NAME_INPUT_TEST_ID), 'User Test')
     expect(getByTestId(EMAIL_INPUT_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USER_NAME_INPUT_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await waitForAllEffectsAndSelectToLoad(container)
+
     expect(getByTestId(EMAIL_LABEL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USER_NAME_LABEL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(container).toMatchSnapshot()
@@ -68,11 +64,12 @@ describe('Unit tests for the UserForm component.', () => {
         <UserForm user={user} action='update'/>
       </CustomMockedProvider>
     )
+    await waitForAllEffectsAndSelectToLoad(container)
+
     await someUser.clear(getByTestId(EMAIL_INPUT_TEST_ID))
     await someUser.clear(getByTestId(USER_NAME_INPUT_TEST_ID))
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
-
+    act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     await waitForAllEffectsAndSelectToLoad(container)
 
     expect(getByTestId(EMAIL_LABEL_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)

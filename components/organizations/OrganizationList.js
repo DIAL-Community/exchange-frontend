@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { FixedSizeGrid, FixedSizeList } from 'react-window'
@@ -75,7 +75,7 @@ const OrganizationListQuery = () => {
   const { aggregator, endorser, endorserLevel, countries, sectors, years, search } = useContext(OrganizationFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data, fetchMore } = useQuery(ORGANIZATIONS_QUERY, {
     variables: {

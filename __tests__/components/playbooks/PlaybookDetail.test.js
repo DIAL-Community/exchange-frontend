@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
 import { fireEvent, screen } from '@testing-library/react'
 import { PlaybookDetailProvider } from '../../../components/playbooks/PlaybookDetailContext'
 import { PLAYBOOK_QUERY } from '../../../queries/playbook'
@@ -7,35 +5,18 @@ import { PLAYBOOK_PLAYS_QUERY } from '../../../components/playbooks/PlaybookDeta
 import { MOVE_QUERY } from '../../../components/plays/PlayPreviewMove'
 import PlaybookDetail from '../../../components/playbooks/PlaybookDetail'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { render, waitForAllEffects } from '../../test-utils'
 import { playbook, searchPlaysResult, move } from './data/PlaybookDetail'
 
 const slug = 'example_playbook'
 const playSlug = 'd4d_understand_the_problem'
 const moveSlug = 'considerations'
-
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
 jest.mock('../../../components/shared/comment/CommentsSection', () => () => 'CommentsSection')
 
+mockNextUseRouter()
 describe('Unit tests for playbook interaction.', () => {
   beforeEach(() => {
-    // Mocked router implementation.
-    useRouter.mockImplementation(() => ({
-      asPath: '/',
-      locale: 'en',
-      push: jest.fn(() => Promise.resolve(true)),
-      prefetch: jest.fn(() => Promise.resolve(true)),
-      events: {
-        on: jest.fn(),
-        off: jest.fn()
-      }
-    }))
-    // Mocked session implementation.
-    const mockSession = {
-      user: { canEdit: false }
-    }
-    useSession.mockReturnValue([mockSession, false])
     // Mock intersection observer. We're using this in the playbook detail page.
     window.IntersectionObserver = jest.fn(() => ({
       observe: jest.fn(),
@@ -56,13 +37,14 @@ describe('Unit tests for playbook interaction.', () => {
       </CustomMockedProvider>
     )
     // Wait for all effect to be executed.
-    await waitForAllEffects(500)
+    await waitForAllEffects()
     // Each section in the playbook detail should show error.
     expect(screen.getAllByText(/Error fetching data/).length).toEqual(1)
     expect(component).toMatchSnapshot()
   })
 
   test('Should render playbook data when apollo query returning playbook data.', async () => {
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
     // Mock all apollo interaction
     const mockPlaybook = generateMockApolloData(PLAYBOOK_QUERY, { slug }, null, playbook)
     const mockPlays = generateMockApolloData(PLAYBOOK_PLAYS_QUERY, { first: 10, slug }, null, searchPlaysResult)
@@ -76,7 +58,7 @@ describe('Unit tests for playbook interaction.', () => {
       </CustomMockedProvider>
     )
     // Wait for all effect to be executed.
-    await waitForAllEffects(500)
+    await waitForAllEffects()
 
     // Each section in the playbook detail should not show any error.
     const errorMessage = screen.queryByText(/Error fetching data/)
@@ -100,10 +82,7 @@ describe('Unit tests for playbook interaction.', () => {
   })
 
   test('Privileged user should be able to edit the playbook.', async () => {
-    const mockSession = {
-      user: { canEdit: true }
-    }
-    useSession.mockReturnValue([mockSession, false])
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     // Mock all apollo interaction
     const mockPlaybook = generateMockApolloData(PLAYBOOK_QUERY, { slug }, null, playbook)
     const mockPlays = generateMockApolloData(PLAYBOOK_PLAYS_QUERY, { first: 10, slug }, null, searchPlaysResult)
@@ -117,7 +96,7 @@ describe('Unit tests for playbook interaction.', () => {
       </CustomMockedProvider>
     )
     // Wait for all effect to be executed.
-    await waitForAllEffects(500)
+    await waitForAllEffects()
     // Playbook detail should have edit link for privileged users.
     expect(screen.getByText('Edit')).toBeInTheDocument()
     expect(screen.getByText('Edit').closest('a')).toHaveAttribute('href', `/en/playbooks/${slug}/edit`)

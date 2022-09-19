@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
+import { useCallback } from 'react'
 import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion'
 import { useIntl } from 'react-intl'
 
@@ -139,7 +140,7 @@ const CountryCapability = (props) => {
 
 const AggregatorCapability = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { aggregatorId } = props
   const { loading: loadingCountryData, data: countryData } = useQuery(COUNTRIES_QUERY)

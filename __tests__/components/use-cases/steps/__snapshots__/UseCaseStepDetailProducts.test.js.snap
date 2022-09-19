@@ -71,7 +71,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-4-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 0; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -248,8 +248,8 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
               <div
                 class="w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative"
               >
-                <div
-                  style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
+                <span
+                  style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
                 >
                   <img
                     alt="Logo for: Test Product"
@@ -259,7 +259,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
                     style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
                   />
                   <noscript />
-                </div>
+                </span>
                 <div
                   class="ml-8 w-4/5 h-3/5 font-semibold relative 
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
@@ -356,7 +356,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-2-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -492,8 +492,8 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
               <div
                 class="w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative"
               >
-                <div
-                  style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
+                <span
+                  style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
                 >
                   <img
                     alt="Logo for: Test Product"
@@ -503,7 +503,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
                     style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
                   />
                   <noscript />
-                </div>
+                </span>
                 <div
                   class="ml-8 w-4/5 h-3/5 font-semibold relative 
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
@@ -600,7 +600,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should remove a 
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-3-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
