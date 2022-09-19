@@ -647,6 +647,8 @@ export const en = {
   'rubric-categories.header': 'Rubric Categories',
   'rubric-category.label': 'Rubric Category',
   'rubric-category.weight': 'Weight',
+  'rubric-category.delete.confirm.message': 'Are you sure you want to delete this Rubric Category?',
+
 
   'category-indicators.label': 'Indicators',
 
@@ -1415,8 +1417,10 @@ export const en = {
   'toast.offices.update.failure': 'Offices update failed',
   'toast.comment.delete.success': 'Comment deleted successfully',
   'toast.comment.delete.failure': 'Comment deletion failed',
-  'toast.rubric-category.submit.success': 'Rubric category submitted successfully',
-  'toast.rubric-category.submit.failure': 'Rubric category submission failed',
+  'toast.rubric-category.submit.success': 'Rubric Category submitted successfully',
+  'toast.rubric-category.submit.failure': 'Rubric Category submission failed',
+  'toast.rubric-category.delete.success': 'Rubric Category deleted successfully',
+  'toast.rubric-category.delete.failure': 'Rubric Category deletion failed',
 
   'locale.label': 'Locale',
   'locale.english.label': 'English (en)',

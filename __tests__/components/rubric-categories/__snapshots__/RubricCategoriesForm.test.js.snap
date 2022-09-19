@@ -37,7 +37,7 @@ exports[`Unit tests for RubricCategoryForm component. Should display toast on su
               class="flex flex-col"
             >
               <span>
-                Rubric category submission failed
+                Rubric Category submission failed
               </span>
               <span>
                 undefined
@@ -257,7 +257,7 @@ exports[`Unit tests for RubricCategoryForm component. Should display toast on su
             </svg>
           </div>
           <div>
-            Rubric category submitted successfully
+            Rubric Category submitted successfully
           </div>
         </div>
         <button

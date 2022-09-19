@@ -1,6 +1,7 @@
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
+import { useRouter } from 'next/router'
 import { FilterContext } from '../context/FilterContext'
 import { UserFilterContext } from '../context/UserFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
@@ -40,12 +41,20 @@ const RubricCategoryListQuery = () => {
   const { resultCounts, setResultCounts } = useContext(FilterContext)
   const { search } = useContext(UserFilterContext)
 
-  const { loading, error, data } = useQuery(RUBRIC_CATEGORIES_LIST_QUERY, {
+  const { locale } = useRouter()
+
+  const { loading, error, data, refetch } = useQuery(RUBRIC_CATEGORIES_LIST_QUERY, {
     variables: { search },
     onCompleted: (data) => {
       setResultCounts({ ...resultCounts, ...{ [['filter.entity.rubric-categories']]: data.rubricCategories.totalCount } })
-    }
+    },
+    fetchPolicy: 'network-only',
+    nextFetchPolicy: 'cache-first'
   })
+
+  useEffect(() => {
+    refetch()
+  }, [refetch, locale])
 
   if (loading) {
     return <Loading />
