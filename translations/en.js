@@ -112,7 +112,7 @@ export const en = {
   'definition.sections.who': 'Who is it For?',
   'definition.sections.how': 'How can I use it?',
   'definition.sections.approach': 'The Catalog\'s approach',
-  'definition.sections.featured': 'Featured this month',
+  'definition.sections.featured': 'Featured this quarter',
   'definition.sections.contact': 'Contact us',
   'definition.buttons.learn': 'Learn More',
   'definition.buttons.tutorials': 'View All Tutorials',
@@ -135,18 +135,18 @@ export const en = {
       This approach is rooted in the SDG Digital Investment Framework, developed by DIAL and ITU.
       `,
   'definition.featured': `
-      New! Playbooks are guides that provide step-by-step instructions and 
-      highlight key technical and operational considerations for your 
-      #digitaltransformation projects. 
+      More Data! In many sectors, access to open data and and content is a critical part 
+      of any digital project. The Catalog has a new tab called 'Open Data' that 
+      provides links to over a hundred different open datasets allowing users to find valuable
+      information on population, agriculture, climate, and much more.
       <br /><br />
-      Hola! Olá! Habari! We recently added these 3 new languages to the 
-      Catalog of Digital Solutions
+      Read our <a href='https://dial.global/using-open-datasets-to-fertilize-agriculture-development-announcing-the-catalogs-newest-feature/' target='_blank' rel='noreferrer'>blog</a> to learn more about the open datasets feature
       <br /><br />
-      For product owners: You can now update your logo, create and edit 
-      important information about your software, or even list your contact 
-      details to help users get in touch with your team.
-      <br /><br />
-      Read our <a href='https://dial.global/announcing-catalog-of-digital-solutions-release-playbooks-enhanced-filtering-seamless-product-page-editing-and-more/' target='_blank' rel='noreferrer'>blog</a> to learn more about new features
+      We are also happy to introduce new commenting and dialog functionality in the Catalog. Users
+      can now easily ask questions, post comments, and engage in dialog about digital products,
+      use cases, or building blocks. The Catalog community has immense knowledge and
+      experience in digital development, and this new feature allows users to share advice,
+      resources and best practices with each other.
       `,
   'definition.contact': 'We welcome questions or feedback on the Catalog of Digital Solutions. Please feel free to reach out to us.',
   'definition.tutorial.intro': 'Tutorial: Introduction',
@@ -691,21 +691,7 @@ export const en = {
 
   'dataset.hint.subtitle': 'Open data is data that anyone can easily access, use, analyze, share, and redistribute.',
   'dataset.hint.descriptionTitle': 'Description',
-  'dataset.hint.description': `
-  <div className='flex flex-col gap-2'>
-    <div>
-      Open data presents a key opportunity to attain the Sustainable Development Goal(s) by helping accelerate technical
-      innovation by allowing software and AI models to be more precise and therefore deepen their potential positive impact
-      on development. With greater access to data, policymakers can be equipped with the information and knowledge to make
-      informed decisions while fostering greater accountability and transparency.
-    </div>
-    <div>
-      In this tab, you can find links to freely available datasets that can help with your own digital transformation
-      initiatives. Key documentation is also available including a description of the dataset, the organization which is
-      maintaining it, information on updates and licenses, the sector it provides data for, geographic coverage, etc.
-    </div>
-  </div>
-  `,
+  'dataset.hint.description': `<div className='flex flex-col gap-2'><div>Open data presents a key opportunity to attain the Sustainable Development Goal(s) by helping accelerate technical innovation by allowing software and AI models to be more precise and therefore deepen their potential positive impact on development. With greater access to data, policymakers can be equipped with the information and knowledge to make informed decisions while fostering greater accountability and transparency.</div><div>In this tab, you can find links to freely available datasets that can help with your own digital transformation initiatives. Key documentation is also available including a description of the dataset, the organization which is maintaining it, information on updates and licenses, the sector it provides data for, geographic coverage, etc.</div></div>`,
 
   'map.aggregator.loadingData': 'Loading map\'s aggregator data ...',
   'map.project.loadingData': 'Loading map\'s project data ...',
@@ -716,123 +702,44 @@ export const en = {
 
   'product.hint.characteristicTitle': 'Reading the Product Cards',
   'product.hint.descriptionTitle': 'Icons used on the product cards',
-  'product.hint.subtitle': `
-    A Product is a specific technology offering that is designed to implement one or more Building Blocks.
-  `,
-  'product.hint.characteristics': `
-    The product cards provide a quick overview of each digital tool, including information on the SDGs that the
-    product is designed to support, as well as any building blocks that may be supported by the product. The cards show
-    how the product is licensed as well as information about our sources of information for the product. 
-  `,
-  'product.hint.description': `
-    <ul>
-      <li><img class='m-1.5 h-5 inline' src='/icons/check/check.png' /><span class='inline p-2'>Indicates that the product has been endorsed by a vetting organization</span></li>
-      <li><img class='m-1.5 h-5 inline' src='/icons/digiprins/digiprins.png' /><span class='inline p-2'>Indicates that the product is maintained by a Digital Principles endorser </span></li>
-      <li><img class='m-1.5 h-5 inline' src='/icons/coronavirus/coronavirus.png' /><span class='inline p-2'>Indicates that the product can be used to support COVID-19 response</span></li>
-    </ul>
-  `,
+  'product.hint.subtitle': `A Product is a specific technology offering that is designed to implement one or more Building Blocks.`,
+  'product.hint.characteristics': `The product cards provide a quick overview of each digital tool, including information on the SDGs that the product is designed to support, as well as any building blocks that may be supported by the product. The cards show how the product is licensed as well as information about our sources of information for the product.`,
+  'product.hint.description': `<ul><li><img class='m-1.5 h-5 inline' src='/icons/check/check.png' /><span class='inline p-2'>Indicates that the product has been endorsed by a vetting organization</span></li><li><img class='m-1.5 h-5 inline' src='/icons/digiprins/digiprins.png' /><span class='inline p-2'>Indicates that the product is maintained by a Digital Principles endorser </span></li><li><img class='m-1.5 h-5 inline' src='/icons/coronavirus/coronavirus.png' /><span class='inline p-2'>Indicates that the product can be used to support COVID-19 response</span></li></ul>`,
 
   'project.hint.characteristicTitle': 'Description',
   'project.hint.descriptionTitle': 'Project Sources',
-  'project.hint.subtitle': `
-    A Project is an implementation of a digital platform in a specific context and/or sector.
-  `,
-  'project.hint.characteristics': `
-    Projects provide insight into where specific digital technologies have been deployed. Users of the Catalog can 
-    search and filter projects by country or sector. 
-  `,
-  'project.hint.description': `
-    Project data is sourced from many different partners, including the World Health Organization's Digital Health Atlas,
-    the Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ), and New America.
-  `,
+  'project.hint.subtitle': `A Project is an implementation of a digital platform in a specific context and/or sector.`,
+  'project.hint.characteristics': `Projects provide insight into where specific digital technologies have been deployed. Users of the Catalog can search and filter projects by country or sector.`,
+  'project.hint.description': `Project data is sourced from many different partners, including the World Health Organization's Digital Health Atlas, the Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ), and New America.`,
 
-  'playbook.hint.subtitle': `
-  Playbooks are tactical guides that  help different actors approach common digital initiatives. They provide step-by-step instructions and highlight key technical and operational considerations.
-  `,
+  'playbook.hint.subtitle': `Playbooks are tactical guides that  help different actors approach common digital initiatives. They provide step-by-step instructions and highlight key technical and operational considerations.`,
   'playbook.hint.characteristicTitle': 'Description',
   'playbook.hint.descriptionTitle': 'Sources',
-  'playbook.hint.characteristics': `
-      Playbooks help answer common questions such as how to address a use case, apply a workflow, deploy a product, work with a partner, or even build capacity within a team. They have several components:
-      <ul>
-        <li>Audience: the intended user of the guidance material</li>
-        <li>Outcomes: the intended outcome of the playbook</li>
-        <li>Plays: the combination of tasks (moves) that a group must do to carry out an action. Each playbook can have a series of plays. Plays are reusable and can be added to multiple playbooks.</li>
-        <li>Moves: the individual tasks that comprise a play. Each play can have multiple moves, and moves can also link to external sources.</li>
-    </ul>
-  `,
-  'playbook.hint.description': `
-    Each playbook has a unique source, as listed. If you have content you would like to turn into a playbook, contact our team at issues@solutions.dial.community
-  `,
+  'playbook.hint.characteristics': `Playbooks help answer common questions such as how to address a use case, apply a workflow, deploy a product, work with a partner, or even build capacity within a team. They have several components:<ul><li>Audience: the intended user of the guidance material</li><li>Outcomes: the intended outcome of the playbook</li><li>Plays: the combination of tasks (moves) that a group must do to carry out an action. Each playbook can have a series of plays. Plays are reusable and can be added to multiple playbooks.</li><li>Moves: the individual tasks that comprise a play. Each play can have multiple moves, and moves can also link to external sources.</li></ul>`,
+  'playbook.hint.description': `Each playbook has a unique source, as listed. If you have content you would like to turn into a playbook, contact our team at issues@solutions.dial.community`,
   'playbook.hint.createPlaybooks': 'Sign up or login to create playbooks',
 
   'organization.hint.characteristicTitle': 'Description',
   'organization.hint.descriptionTitle': 'Types of Organizations',
-  'organization.hint.subtitle': `
-    An Organization supports the development and/or implementation of digital technologies to address the SDGs.
-  `,
-  'organization.hint.characteristics': `
-    The product cards provide a quick overview of each digital tool, including information on the SDGs that the
-    product is designed to support, as well as any building blocks that may be supported by the product. The cards show
-    how the product is licensed as well as information about our sources of information for the product. 
-  `,
-  'organization.hint.description': `
-    The Catalog tracks several different types of organizations:
-
-    <ul>
-      <li>Organizations that have endorsed the Principles for Digital Development</li>
-      <li>Mobile Network Aggregators</li>
-      <li>Funders and Maintainers of open source tools (products)</li>
-    </ul>
-  `,
+  'organization.hint.subtitle': `An Organization supports the development and/or implementation of digital technologies to address the SDGs.`,
+  'organization.hint.characteristics': `The organization cards provide a quick overview of each organization, including information on the products they support, the projects or work they have been connected to, the sectors they are engaged with and the countries in which they work.`,
+  'organization.hint.description': `The Catalog tracks several different types of organizations:<ul><li>Organizations that have endorsed the Principles for Digital Development</li><li>Mobile Network Aggregators</li><li>Funders and Maintainers of open source tools (products)</li></ul>`,
 
   'useCase.hint.characteristicTitle': 'Characteristics',
   'useCase.hint.descriptionTitle': 'Description',
-  'useCase.hint.subtitle': `
-    A Use Case defines the steps that an individual or system will undertake in order
-    to achieve a business objective.
-  `,
-  'useCase.hint.characteristics': `
-    <ul>
-      <li>User-centric description of the steps or user journeys required to deliver an outcome</li>
-      <li>Identifies one or more SDG Targets as its business objective</li>
-      <li>Describes the generic WorkFlows and business processes involved in each step in the Use Case</li>
-      <li>Typically sector-specific</li>
-      <li>Able to be improved through digital technology</li>
-    </ul>
-  `,
-  'useCase.hint.description': `
-    Each Use Case model describes primary actors, key steps involved in achieving a specified business
-    objective, descriptions of the WorkFlows and ICT Building Blocks involved in each step, and mappings
-    to SDG Targets. The list of Use Case models is not exhaustive and more will be added in future releases.
-  `,
+  'useCase.hint.subtitle': `A Use Case defines the steps that an individual or system will undertake in order to achieve a business objective.`,
+  'useCase.hint.characteristics': `<ul><li>User-centric description of the steps or user journeys required to deliver an outcome</li><li>Identifies one or more SDG Targets as its business objective</li><li>Describes the generic WorkFlows and business processes involved in each step in the Use Case</li><li>Typically sector-specific</li><li>Able to be improved through digital technology</li></ul>`,
+  'useCase.hint.description': `Each Use Case model describes primary actors, key steps involved in achieving a specified business objective, descriptions of the WorkFlows and ICT Building Blocks involved in each step, and mappings to SDG Targets. The list of Use Case models is not exhaustive and more will be added in future releases.`,
 
   'workflow.hint.characteristicTitle': 'Characteristics',
   'workflow.hint.descriptionTitle': 'Description',
-  'workflow.hint.characteristics': `
-    <ul>
-      <li>Common business process used to help an organization carry out its overall function</li>
-      <li>Applicable to multiple Use Cases in various sectors</li>
-      <li>Powered by one or more ICT Building Blocks</li>
-    </ul>
-  `,
-  'workflow.hint.description': `
-    Each WorkFlow includes a description, sector-specific examples, and mappings to Use Cases defined
-    in this framework. The list of WorkFlows is not exhaustive, and more will be added in future releases.
-  `,
-  'workflow.hint.subtitle': `A WorkFlow is a generic business process that can be applied to SDG Use Cases
-    across multiple sectors.
-  `,
+  'workflow.hint.characteristics': `<ul><li>Common business process used to help an organization carry out its overall function</li><li>Applicable to multiple Use Cases in various sectors</li><li>Powered by one or more ICT Building Blocks</li></ul>`,
+  'workflow.hint.description': `Each WorkFlow includes a description, sector-specific examples, and mappings to Use Cases defined in this framework. The list of WorkFlows is not exhaustive, and more will be added in future releases.`,
+  'workflow.hint.subtitle': `A WorkFlow is a generic business process that can be applied to SDG Use Cases across multiple sectors.`,
 
-  'sdg.hint.subtitle': `
-    The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to
-    achieve sustainable development.
-  `,
+  'sdg.hint.subtitle': `The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to achieve sustainable development.`,
   'sdg.hint.descriptionTitle': 'Description',
-  'sdg.hint.description': `
-    The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to 
-    achieve sustainable development. The SDGs were set in 2015 by the United Nations General Assembly and
-    intended to be achieved by the year 2030.
-  `,
+  'sdg.hint.description': `The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to achieve sustainable development. The SDGs were set in 2015 by the United Nations General Assembly and intended to be achieved by the year 2030.`,
 
   'image.alt.logoFor': 'Logo for: {name}',
   'tooltip.ellipsisFor': 'View more in the detail page of this {entity}.',
@@ -900,98 +807,7 @@ export const en = {
   'consent.essential': 'Essential Cookies',
   'consent.statistics': 'Statistics Cookies',
   'consent.save': 'Save',
-  'consent.privacyPolicy.content': `
-    <div class='mx-4 py-8'>
-      <div class='content centerContentMaxWidth'>
-      <div class='h1 py-4'>Privacy &amp; Legal</div>
-      <p>The United Nations Foundation is the legal fiduciary and host organization of the Digital Impact Alliance. The Digital Impact Alliance follows all regulations and responsibilities of our host organization <a href='https://unfoundation.org/privacy-policy/' target='_blank' rel='noopener'>https://unfoundation.org/privacy-policy/</a></p>
-      <p>The Digital Impact Alliance is committed to the privacy of those individuals who visit and interact with <a href='http://www.govstack.global/' target='_blank' rel='noopener'>http://www.govstack.global/</a> (website). This Privacy Policy is meant to help you understand what information we collect, why we collect it and how you can update, retrieve and request removal of your information.</p>
-      <p>By visiting our website, you are accepting the practices described in this Privacy Policy. If you do not agree to the terms of this Privacy Policy, please do not use the website.</p>
-      <p>Please note that the practices described in this Privacy Policy apply only to information gathered online on our website. They do not apply to information that you may submit to other <a href='https://unfoundation.org/what-we-do/initiatives/' target='_blank' rel='noopener'>websites owned and managed by the UN Foundation</a>, to us offline, to websites maintained by other companies or organizations to which we may link.</p>
-      <p>The Digital Impact Alliance is the sole owner of the information collected on govstack.global. We do not share your personal information with companies, organizations or individuals outside of the organization.</p>
-      <div class='h2 py-3'>Personal information we collect</div>
-      <p>Generally, you are free to visit the <a href='https://solutions.dial.community' target='_blank' rel='noopener'>solutions.dial.community</a> website without submitting data that identifies you personally. However, we do ask you to provide some personal data for certain interactions within our website. This data varies depending on the interaction, but may include name, address, email address and other similar information (“Personal Information”). We do not request sensitive information such as social security numbers.</p>
-      <div class='h2 py-3'>Cookies</div>
-      <p>Like many websites, we use 'cookies', which are small text files that are stored on your computer or equipment when you visit certain online pages that record your preferences. We use cookies to track use of our website and online services. We may also use cookies to monitor traffic, improve the website and make it easier and/or relevant for your use. This website is functional without the retention of cookies. You have the ability to accept or decline cookies. Most web browsers automatically accept cookies, but, if you prefer, you can usually modify your browser setting to decline cookies.</p>
-      <div class='h2 py-3'>When we collect Personal Information</div>
-      <p>Below are the ways in which we collect your Personal Information through specific actions and circumstances. <strong>By choosing to participate in any of the following activities, you consent to our collection and use of your Personal Information.</strong></p>
-      <ul>
-      <li>When you sign up to receive email newsletters from us;</li>
-      <li>When you participate in surveys;</li>
-      <li>When you complete an advocacy activity or survey online;</li>
-      <li>When you register for and participate in our programs, activities, initiatives and events;</li>
-      <li>When you request information or assistance;</li>
-      <li>In conjunction with processing your grant applications;</li>
-      <li>In conjunction with your employment inquiries or applications;</li>
-      <li>When you participate with social media and peer to peer accounts involving the Digital Impact Alliance</li>
-      <li>When you participate in online communities;</li><li>In conjunction with any verification of your account information;</li>
-      <li>In conjunction with investigations into any activity that may violate the law or the website's terms and conditions;</li>
-      <li>When you communicate with us through the website;</li>
-      <li>When you provide user-generated content on any part of the website that permits it; and</li>
-      <li>In conjunction with any other place on the website where you knowingly volunteer personal information</li>
-      </ul>
-      <div class='h2 py-3'>Non-Identifying Information</div>
-      <p>In addition, when you interact with the website, our servers may keep an activity log that does not identify you individually (“Non-Personal Information”). Generally, we collect the following categories of Non-Personal Information:</p>
-      <ul>
-      <li>We may collect certain demographic data such as age, gender and postal code as part of collecting personal information;</li>
-      <li>We collect and store certain device information about your computer, mobile device or other device that you use to access the website. This information may include IP address, geolocation information, unique device identifiers, browser type, browser language and other transactional information;</li>
-      <li>We automatically log certain usage information about your use of the website. This information includes a reading history of the pages you view. We use this information to provide you with a more customized experience on the website;</li>
-      <li>We collect and store additional 'traffic data' such as time of access, date of access, software crash reports, session identification number, access times and referring website addresses; and</li><li>We collect and store your search terms and search results.</li></ul>
-      <div class='h2 py-3'>How we use your data</div>
-      <p>We use the information we learn from you to help us personalize and continually improve your experience on the website. With your consent we may use your Personal and Non-Personal Information in the following ways:</p>
-      <p><strong>General Uses</strong></p>
-      <ul><li>For editorial purposes;</li>
-      <li>Responding to your inquiries;</li>
-      <li>Communicating with you about your interactions and sending you information about features on our website or about the organization;</li>
-      <li>Communicating with you about changes to our policies;</li>
-      <li>Sending you newsletters, mailings, and information about programs, initiatives, activities and events by e-mail or another medium;</li>
-      <li>Processing your employment application;</li>
-      <li>Event or program registration;</li>
-      <li>Optimizing or improving our programs, services and operations;</li>
-      <li>Research and development;</li>
-      <li>Detecting, investigating, and preventing activities that may violate our policies or be illegal;</li>
-      <li>Advocating to decision makers on specific issues;</li>
-      <li>Performing statistical, demographic and marketing analyses of users of the website and their usage patterns; and</li>
-      <li>Managing our organization.</li>
-      </ul>
-      <div class='h2 py-3'>How we protect your data</div>
-      <p>The Digital Impact Alliance intends to protect the quality and integrity of your personally identifiable information. We have implemented appropriate physical, technical and organizational measures, including industry-standard encryption for transmission of credit card information, to help keep your information secure, accurate, current and complete.</p>
-      <p>If you have any concerns about the security and confidentiality of your Personal Information, please contact <a href='mailto:info@digitalimpactalliance.org'><strong>info@digitalimpactalliance.org</strong></a></p>
-      <div class='h2 py-3'>Compliance with the EU GDPR data regulations</div>
-      <p>The General Data Protection Regulation (GDPR) (EU) 2016/679 is a regulation in EU law on data protection and privacy for all individuals within the European Union. It also addresses the export of personal data outside the EU.</p>
-      <p>We will use reasonable efforts to securely process all personal information in line with the rights specified under the GDPR, in particular those related to the following requests:</p>
-      <ul><li>Access to your Personal Information;</li>
-      <li>Correction of the Personal Information we hold;</li>
-      <li>Deletion of your Personal Information;</li>
-      <li>A restriction of processing of your Personal Information;</li>
-      <li>Transfer of your Personal Information to another party; or,</li>
-      <li>Objection to processing of your Personal Information based on the Digital Impact Alliance's legitimate interests (or those of a third party) to use it.</li>
-      </ul>
-      <p>Please send an email to <a href='mailto:info@digitalimpactalliance.org'><strong>info@digitalimpactalliance.org</strong></a> if any of the following apply:</p>
-      <ul><li>You have any questions or requests regarding this policy;</li>
-      <li>You would like to remove all Personal Information from our database;</li>
-      <li>You would like to view Personal Information you shared with us;</li>
-      <li>You would like to change your account preferences;</li>
-      <li>You no longer wish to receive email updates from the Digital Impact Alliance;</li>
-      <li>You believe the Digital Impact Alliance has erroneous or incomplete information about you; or,</li>
-      <li>You believe a child below the age of 16 years may have submitted Personal Information without the consent of a parent or guardian.</li>
-      </ul>
-      <p>For more information about your rights under the GDPR, please visit <a href='https://gdpr-info.eu'><strong>https://gdpr-info.eu</strong></a>.</p>
-      <div class='h2 py-3'>How we communicate updates to this Privacy Policy with you</div>
-      <p>If the Digital Impact Alliance decides to change our privacy policy, we will post those changes to this page, so you are always aware of what information we collect and how we use it. You will have a choice as to whether we use your information in this different manner.</p>
-      <p>Your continued use of our website following the posting of changes to this Privacy Policy will mean you accept those changes. Our most up-to-date privacy policy will always be available here.</p>
-      <p>Questions and comments should be directed to <a href='mailto:info@digitalimpactalliance.org'><strong>info@digitalimpactalliance.org</strong></a></p>
-      <div class='h2 py-3'>Advisories</div>
-      <p><strong>Email Scams</strong></p>
-      <p>Several deceptive emails claiming to be from or associated with the Digital Impact Alliance or United Nations Foundation, Kathy Calvin, Rick Parnell, Ted Turner and Timothy Wirth are circulating on the Internet. These emails often include our logo, photos, links or other information from our Web site.</p>
-      <p>Some emails claim the recipient has won a lottery or other prize and request detailed personal information or a payment of some kind in order to receive the winnings. Some mention other foundations and organizations based in the United Kingdom none of which are a part of these scams. Other emails direct recipients to Web sites that promise large returns on investments and claim a portion of returns will be donated to the foundation.</p>
-      <p>The sources and contents of these emails, websites, and accompanying materials are in no way associated with the Digital Impact Alliance or United Nations Foundation, Kathy Calvin, Rick Parnell, Ted Turner and Timothy Wirth. For your own protection, we strongly recommend not responding to emails making such claims.</p>
-      <p>The UN Foundation has reported, and will continue to report, these deceptive spam emails to the Federal Trade Commission (FTC), the Internet Crime Complaint Center (IC3) and the Federal Bureau of Investigation (FBI). For more information about the FTC’s efforts against deceptive spam, please visit <a href="https://www.consumer.ftc.gov/articles/0038-spam"><strong>https://www.consumer.ftc.gov/articles/0038-spam</strong></a>. For more information about the IC3, please visit <a href="http://www.ic3.gov/"><strong>www.ic3.gov</strong></a>. For information on the FBI, please visit <a href="http://www.fbi.gov/"><strong>www.fbi.gov</strong></a>, or contact your local FBI office.</p>
-      <p>You can also email your inquiries about scam email, letters, and phone calls to <a href="mailto:action@unfoundation.org"><strong>action@unfoundation.org</strong></a> or <a href="mailto:info@digitalimpactalliance.org"><strong>info@digitalimpactalliance.org</strong></a></p>
-      <p><strong>Webmaster</strong><br> <strong>Digital Impact Alliance</strong><br> <strong>1750 Pennsylvania Avenue NW, Suite 300</strong><br> <strong>Washington, D.C. 20006</strong><br> <strong>202.887.9040 phone</strong><br> <strong>202.887.9021 fax</strong><br> <a href="mailto:info@digitalimpactalliance.org"><strong>info@digitalimpactalliance.org</strong></a></p>
-      </div>
-    </div>
-  `,
+  'consent.privacyPolicy.content': `<div class='mx-4 py-8'><div class='content centerContentMaxWidth'><div class='h1 py-4'>Privacy &amp; Legal</div><p>The United Nations Foundation is the legal fiduciary and host organization of the Digital Impact Alliance. The Digital Impact Alliance follows all regulations and responsibilities of our host organization <a href='https://unfoundation.org/privacy-policy/' target='_blank' rel='noopener'>https://unfoundation.org/privacy-policy/</a></p><p>The Digital Impact Alliance is committed to the privacy of those individuals who visit and interact with <a href='http://www.govstack.global/' target='_blank' rel='noopener'>http://www.govstack.global/</a> (website). This Privacy Policy is meant to help you understand what information we collect, why we collect it and how you can update, retrieve and request removal of your information.</p><p>By visiting our website, you are accepting the practices described in this Privacy Policy. If you do not agree to the terms of this Privacy Policy, please do not use the website.</p><p>Please note that the practices described in this Privacy Policy apply only to information gathered online on our website. They do not apply to information that you may submit to other <a href='https://unfoundation.org/what-we-do/initiatives/' target='_blank' rel='noopener'>websites owned and managed by the UN Foundation</a>, to us offline, to websites maintained by other companies or organizations to which we may link.</p><p>The Digital Impact Alliance is the sole owner of the information collected on govstack.global. We do not share your personal information with companies, organizations or individuals outside of the organization.</p><div class='h2 py-3'>Personal information we collect</div><p>Generally, you are free to visit the <a href='https://solutions.dial.community' target='_blank' rel='noopener'>solutions.dial.community</a> website without submitting data that identifies you personally. However, we do ask you to provide some personal data for certain interactions within our website. This data varies depending on the interaction, but may include name, address, email address and other similar information (“Personal Information”). We do not request sensitive information such as social security numbers.</p><div class='h2 py-3'>Cookies</div><p>Like many websites, we use 'cookies', which are small text files that are stored on your computer or equipment when you visit certain online pages that record your preferences. We use cookies to track use of our website and online services. We may also use cookies to monitor traffic, improve the website and make it easier and/or relevant for your use. This website is functional without the retention of cookies. You have the ability to accept or decline cookies. Most web browsers automatically accept cookies, but, if you prefer, you can usually modify your browser setting to decline cookies.</p><div class='h2 py-3'>When we collect Personal Information</div><p>Below are the ways in which we collect your Personal Information through specific actions and circumstances. <strong>By choosing to participate in any of the following activities, you consent to our collection and use of your Personal Information.</strong></p><ul><li>When you sign up to receive email newsletters from us;</li><li>When you participate in surveys;</li><li>When you complete an advocacy activity or survey online;</li><li>When you register for and participate in our programs, activities, initiatives and events;</li><li>When you request information or assistance;</li><li>In conjunction with processing your grant applications;</li><li>In conjunction with your employment inquiries or applications;</li><li>When you participate with social media and peer to peer accounts involving the Digital Impact Alliance</li><li>When you participate in online communities;</li><li>In conjunction with any verification of your account information;</li><li>In conjunction with investigations into any activity that may violate the law or the website's terms and conditions;</li><li>When you communicate with us through the website;</li><li>When you provide user-generated content on any part of the website that permits it; and</li><li>In conjunction with any other place on the website where you knowingly volunteer personal information</li></ul><div class='h2 py-3'>Non-Identifying Information</div><p>In addition, when you interact with the website, our servers may keep an activity log that does not identify you individually (“Non-Personal Information”). Generally, we collect the following categories of Non-Personal Information:</p><ul><li>We may collect certain demographic data such as age, gender and postal code as part of collecting personal information;</li<li>We collect and store certain device information about your computer, mobile device or other device that you use to access the website. This information may include IP address, geolocation information, unique device identifiers, browser type, browser language and other transactional information;</li><li>We automatically log certain usage information about your use of the website. This information includes a reading history of the pages you view. We use this information to provide you with a more customized experience on the website;</li><li>We collect and store additional 'traffic data' such as time of access, date of access, software crash reports, session identification number, access times and referring website addresses; and</li><li>We collect and store your search terms and search results.</li></ul><div class='h2 py-3'>How we use your data</div><p>We use the information we learn from you to help us personalize and continually improve your experience on the website. With your consent we may use your Personal and Non-Personal Information in the following ways:</p><p><strong>General Uses</strong></p><ul><li>For editorial purposes;</li><li>Responding to your inquiries;</li><li>Communicating with you about your interactions and sending you information about features on our website or about the organization;</li><li>Communicating with you about changes to our policies;</li><li>Sending you newsletters, mailings, and information about programs, initiatives, activities and events by e-mail or another medium;</li><li>Processing your employment application;</li><li>Event or program registration;</li><li>Optimizing or improving our programs, services and operations;</li><li>Research and development;</li><li>Detecting, investigating, and preventing activities that may violate our policies or be illegal;</li><li>Advocating to decision makers on specific issues;</li><li>Performing statistical, demographic and marketing analyses of users of the website and their usage patterns; and</li><li>Managing our organization.</li></ul><div class='h2 py-3'>How we protect your data</div><p>The Digital Impact Alliance intends to protect the quality and integrity of your personally identifiable information. We have implemented appropriate physical, technical and organizational measures, including industry-standard encryption for transmission of credit card information, to help keep your information secure, accurate, current and complete.</p><p>If you have any concerns about the security and confidentiality of your Personal Information, please contact <a href='mailto:info@digitalimpactalliance.org'><strong>info@digitalimpactalliance.org</strong></a></p><div class='h2 py-3'>Compliance with the EU GDPR data regulations</div><p>The General Data Protection Regulation (GDPR) (EU) 2016/679 is a regulation in EU law on data protection and privacy for all individuals within the European Union. It also addresses the export of personal data outside the EU.</p><p>We will use reasonable efforts to securely process all personal information in line with the rights specified under the GDPR, in particular those related to the following requests:</p><ul><li>Access to your Personal Information;</li><li>Correction of the Personal Information we hold;</li><li>Deletion of your Personal Information;</li><li>A restriction of processing of your Personal Information;</li><li>Transfer of your Personal Information to another party; or,</li><li>Objection to processing of your Personal Information based on the Digital Impact Alliance's legitimate interests (or those of a third party) to use it.</li></ul><p>Please send an email to <a href='mailto:info@digitalimpactalliance.org'><strong>info@digitalimpactalliance.org</strong></a> if any of the following apply:</p><ul><li>You have any questions or requests regarding this policy;</li><li>You would like to remove all Personal Information from our database;</li><li>You would like to view Personal Information you shared with us;</li><li>You would like to change your account preferences;</li><li>You no longer wish to receive email updates from the Digital Impact Alliance;</li><li>You believe the Digital Impact Alliance has erroneous or incomplete information about you; or,</li><li>You believe a child below the age of 16 years may have submitted Personal Information without the consent of a parent or guardian.</li></ul><p>For more information about your rights under the GDPR, please visit <a href='https://gdpr-info.eu'><strong>https://gdpr-info.eu</strong></a>.</p><div class='h2 py-3'>How we communicate updates to this Privacy Policy with you</div><p>If the Digital Impact Alliance decides to change our privacy policy, we will post those changes to this page, so you are always aware of what information we collect and how we use it. You will have a choice as to whether we use your information in this different manner.</p><p>Your continued use of our website following the posting of changes to this Privacy Policy will mean you accept those changes. Our most up-to-date privacy policy will always be available here.</p><p>Questions and comments should be directed to <a href='mailto:info@digitalimpactalliance.org'><strong>info@digitalimpactalliance.org</strong></a></p<div class='h2 py-3'>Advisories</div><p><strong>Email Scams</strong></p><p>Several deceptive emails claiming to be from or associated with the Digital Impact Alliance or United Nations Foundation, Kathy Calvin, Rick Parnell, Ted Turner and Timothy Wirth are circulating on the Internet. These emails often include our logo, photos, links or other information from our Web site.</p><p>Some emails claim the recipient has won a lottery or other prize and request detailed personal information or a payment of some kind in order to receive the winnings. Some mention other foundations and organizations based in the United Kingdom none of which are a part of these scams. Other emails direct recipients to Web sites that promise large returns on investments and claim a portion of returns will be donated to the foundation.</p><p>The sources and contents of these emails, websites, and accompanying materials are in no way associated with the Digital Impact Alliance or United Nations Foundation, Kathy Calvin, Rick Parnell, Ted Turner and Timothy Wirth. For your own protection, we strongly recommend not responding to emails making such claims.</p><p>The UN Foundation has reported, and will continue to report, these deceptive spam emails to the Federal Trade Commission (FTC), the Internet Crime Complaint Center (IC3) and the Federal Bureau of Investigation (FBI). For more information about the FTC’s efforts against deceptive spam, please visit <a href="https://www.consumer.ftc.gov/articles/0038-spam"><strong>https://www.consumer.ftc.gov/articles/0038-spam</strong></a>. For more information about the IC3, please visit <a href="http://www.ic3.gov/"><strong>www.ic3.gov</strong></a>. For information on the FBI, please visit <a href="http://www.fbi.gov/"><strong>www.fbi.gov</strong></a>, or contact your local FBI office.</p><p>You can also email your inquiries about scam email, letters, and phone calls to <a href="mailto:action@unfoundation.org"><strong>action@unfoundation.org</strong></a> or <a href="mailto:info@digitalimpactalliance.org"><strong>info@digitalimpactalliance.org</strong></a></p><p><strong>Webmaster</strong><br> <strong>Digital Impact Alliance</strong><br> <strong>1750 Pennsylvania Avenue NW, Suite 300</strong><br> <strong>Washington, D.C. 20006</strong><br> <strong>202.887.9040 phone</strong><br> <strong>202.887.9021 fax</strong><br> <a href="mailto:info@digitalimpactalliance.org"><strong>info@digitalimpactalliance.org</strong></a></p></div></div>`,
   'app.shareLink': 'Create sharable link',
   'app.shareSuccess': 'Sharable link copied to your clipboard. Use Ctrl+V to paste it from your clipboard.',
   'app.shareFailed': 'Unable to copy sharable link to your clipboard.',
@@ -1011,163 +827,25 @@ export const en = {
   'footer.contactUs': 'Contact Us',
 
   'covid.title': 'DIAL Support for COVID-19',
-  'covid.description': `
-    COVID-19 has become the greatest public health crisis of our time. The Digital Impact Alliance
-    (DIAL) has developed this online resource to support organizations and governments in their
-    COVID-19 response. Though this tool was originally developed for the evaluation and deployment
-    of open source digital tools, it can also be leveraged specifically to respond to COVID-19 in
-    three areas:
-  `,
-  'covid.description.firstArea': `
-    Quickly identify software platforms that can be used to support frontline health workers
-    and organizations who are tracking COVID-19 outbreaks.
-  `,
+  'covid.description': `COVID-19 has become the greatest public health crisis of our time. The Digital Impact Alliance (DIAL) has developed this online resource to support organizations and governments in their COVID-19 response. Though this tool was originally developed for the evaluation and deployment of open source digital tools, it can also be leveraged specifically to respond to COVID-19 in three areas:`,
+  'covid.description.firstArea': `Quickly identify software platforms that can be used to support frontline health workers and organizations who are tracking COVID-19 outbreaks.`,
   'covid.description.secondArea': 'Provide tools to quickly set up messaging platforms.',
   'covid.description.thirdArea': 'Link to other resources developed by partner organizations.',
 
   'covid.exploreCatalog': 'Explore the Catalog',
 
   'covid.firstArea.title': 'Using the Online Catalog for Product Discovery',
-  'covid.firstArea.firstText': `
-    <p>
-      Governments and organizations are looking for digital tools to help with COVID-19 surveillance, diagnosis,
-      prevention and treatment.
-    </p>
-    <p>
-      However, they may not know that there are mature open source solutions that are ready to be deployed to
-      support these needs.
-    </p>
-    <p>
-      <firstLink>The Online Catalog</firstLink> contains a list of open source products that support the SDGs.
-    </p>
-    <p>
-      Users can filter products by the SDGs that they are designed to address, the use cases that they are connected
-      to, or the building blocks that they support.
-    </p>
-  `,
-  'covid.firstArea.secondText': `
-    <p>
-      Several of the products in the catalog have been tagged as supporting specific functionality needed for
-      COVID-19 response.
-    </p>
-    <p>
-      To see these products, use the "<b>COVID-19</b>" tag in the filter section.
-    </p>
-    <p>
-      Click on a specific product to get detailed information about the product.
-    </p>
-  `,
-  'covid.firstArea.thirdText': `
-    <p>
-      The product details page will provide a description of the product, links to the product website and code
-      repository, as well as other relevant data about the product.
-    </p>
-  `,
-
+  'covid.firstArea.firstText': `<p>Governments and organizations are looking for digital tools to help with COVID-19 surveillance, diagnosis, prevention and treatment.</p><p>However, they may not know that there are mature open source solutions that are ready to be deployed to support these needs.</p><p><firstLink>The Online Catalog</firstLink> contains a list of open source products that support the SDGs.</p><p>Users can filter products by the SDGs that they are designed to address, the use cases that they are connected to, or the building blocks that they support.</p>`,
+  'covid.firstArea.secondText': `<p>Several of the products in the catalog have been tagged as supporting specific functionality needed for COVID-19 response.</p><p>To see these products, use the "<b>COVID-19</b>" tag in the filter section.</p><p>Click on a specific product to get detailed information about the product.</p>`,
+  'covid.firstArea.thirdText': `<p>The product details page will provide a description of the product, links to the product website and code repository, as well as other relevant data about the product.</p>`,
   'covid.secondArea.title': 'Using the Online Catalog for Mobile Messaging Response',
-  'covid.secondArea.firstText': `
-    <p>
-      Governments and organizations need to provide regular information to their constituents.
-      Mobile messaging channels are extremely effective, but can be time-consuming and expensive
-      to set up.
-    </p>
-    <p>
-      But DIAL can help. We have developed relationships with several mobile network aggregators
-      around the world. These aggregators have established relationships with mobile network
-      operators and can configure mobile services very quickly and easily. A mobile messaging
-      solution can be established in a matter of hours.
-    </p>
-    <p>
-      The DIAL online catalog lists mobile network service integrators that provide mobile
-      service delivery around the world and services offered.
-    </p>
-    <p>
-      Click on this link to see the <firstLink>aggregator map</firstLink>.
-    </p>
-    <p>
-      You can also navigate to <secondLink>the main product page</secondLink>, click the "<b>Maps</b>"
-      section on the filter tab and click on"<b>Map of Aggregator & Operator</b>".
-    </p>
-  `,
-  'covid.secondArea.secondText': `
-    <p>
-      On the map page, click on a country to show which aggregators work in that country. Click
-      on an aggregator in that list to see detailed information about the services that they
-      offer and which network operators they partner with.
-    </p>
-  `,
-  'covid.secondArea.thirdText': `
-    <p>
-      Select an aggregator to view the details for that provider. The Operators section
-      shows which services are available by country and which network operators provide those
-      services.
-    </p>
-    <p>
-      For example, if you are looking for Bulk SMS services in Kenya, you can expand the SMS
-      menu and see that these services are offered by this aggregator through Safaricom.
-    </p>
-  `,
-  'covid.secondArea.fourthText': `
-    <p>
-      Alternatively, <firstLink>this link</firstLink> will display a page that shows all of the
-      mobile aggregators in the catalog. Select any aggregator to see which countries they work
-      in, which mobile network operators they partner with, and the specific service offerings they provide.
-    </p>
-  `,
+  'covid.secondArea.firstText': `<p>Governments and organizations need to provide regular information to their constituents. Mobile messaging channels are extremely effective, but can be time-consuming and expensive to set up.</p><p>But DIAL can help. We have developed relationships with several mobile network aggregators around the world. These aggregators have established relationships with mobile network operators and can configure mobile services very quickly and easily. A mobile messaging solution can be established in a matter of hours.</p><p>The DIAL online catalog lists mobile network service integrators that provide mobile service delivery around the world and services offered.</p><p>Click on this link to see the <firstLink>aggregator map</firstLink>.</p><p>You can also navigate to <secondLink>the main product page</secondLink>, click the "<b>Maps</b>"section on the filter tab and click on"<b>Map of Aggregator & Operator</b>".</p>`,
+  'covid.secondArea.secondText': `<p>On the map page, click on a country to show which aggregators work in that country. Click on an aggregator in that list to see detailed information about the services that they offer and which network operators they partner with.</p>`,
+  'covid.secondArea.thirdText': `<p>Select an aggregator to view the details for that provider. The Operators section shows which services are available by country and which network operators provide those services.</p><p>For example, if you are looking for Bulk SMS services in Kenya, you can expand the SMS menu and see that these services are offered by this aggregator through Safaricom.</p>`,
+  'covid.secondArea.fourthText': `<p>Alternatively, <firstLink>this link</firstLink> will display a page that shows all of the mobile aggregators in the catalog. Select any aggregator to see which countries they work in, which mobile network operators they partner with, and the specific service offerings they provide.</p>`,
 
   'covid.thirdArea.title': 'Other COVID- 19 Resources',
-  'covid.thirdArea.firstText': `
-    <div>
-      Johns Hopkins Researchers have published an assessment of Digital Tools for COVID-19
-      response that can be used by low- and middle-income countries
-    </div>
-    <ul>
-      <li>
-        <jsphLink>View the report here</jsphLink>
-      </li>
-    </ul>
-    <div>
-      The CDC has created a Guide to Digital Tools for COVID-19 response
-    </div>
-    <ul>
-      <li>
-        <cdcLink>View the guide here</cdcLink>
-      </li>
-    </ul>
-    <div>
-      Digital Square has a number of resources available to support organizations in their COVID response.
-    </div>
-    <ul>
-      <li>
-        <pathLink>Watch webinar on global goods that have been adapted for COVID-19 response.</pathLink>
-      </li>
-      <li>
-        <deckLink>View slide deck from webinar.</deckLink>
-      </li>
-      <li>
-        <digiSquareLink>
-          See the global goods supported by Digital Square and how they have been adapted for COVID-19.
-        </digiSquareLink>
-      </li>
-    </ul>
-    <div>
-      The New America Foundation has created a Pandemic Response Repository listing digital
-      resources to support governments in COVID response
-    </div>
-    <ul>
-      <li>
-        <newAmericaLink>View the repository here</newAmericaLink>
-      </li>
-    </ul>
-    <div>
-      UNDESA has created a Compendium of Digital Government Initiatives in response to the COVID-19 Pandemic
-    </div>
-    <ul>
-      <li>
-        <unPandemicLink>View the document here</unPandemicLink>
-      </li>
-    </ul>
-  `,
+  'covid.thirdArea.firstText': `<div>Johns Hopkins Researchers have published an assessment of Digital Tools for COVID-19 response that can be used by low- and middle-income countries</div><ul><li><jsphLink>View the report here</jsphLink></li></ul><div>The CDC has created a Guide to Digital Tools for COVID-19 response</div><ul><li><cdcLink>View the guide here</cdcLink></li></ul><div>Digital Square has a number of resources available to support organizations in their COVID response.</div><ul><li><pathLink>Watch webinar on global goods that have been adapted for COVID-19 response.</pathLink></li><li><deckLink>View slide deck from webinar.</deckLink></li><li><digiSquareLink>See the global goods supported by Digital Square and how they have been adapted for COVID-19.</digiSquareLink></li></ul><div>The New America Foundation has created a Pandemic Response Repository listing digital resources to support governments in COVID response</div><ul><li><newAmericaLink>View the repository here</newAmericaLink></li></ul><div>UNDESA has created a Compendium of Digital Government Initiatives in response to the COVID-19 Pandemic</div><ul><li><unPandemicLink>View the document here</unPandemicLink></li></ul>`,
   'ownership.apply': 'Apply as Owner',
   'ownership.applied': 'Applied to Own',
   'ownership.owned': 'Owner',
