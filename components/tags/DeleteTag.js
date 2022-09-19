@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { useContext, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { ToastContext } from '../../lib/ToastContext'
 import { DELETE_TAG } from '../../mutations/tag'
@@ -10,13 +10,13 @@ import DeleteButton from '../shared/DeleteButton'
 
 const DeleteTag = ({ tag }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
 
   const { locale } = useRouter()
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const { showToast } = useContext(ToastContext)
 

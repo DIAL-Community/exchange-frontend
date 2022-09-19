@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { Controller, useForm } from 'react-hook-form'
 import { Dialog, Transition } from '@headlessui/react'
@@ -6,7 +6,7 @@ import Select from 'react-select'
 
 const ReportIssue = ({ showForm, setShowForm, formTitle }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [thanks, setThanks] = useState(false)
 

@@ -16,6 +16,7 @@ export const organizations = {
       {
         id: 3,
         name: 'Another Organization',
+        imageFile: 'fake-image.png',
         slug: 'ao',
       },
     ]

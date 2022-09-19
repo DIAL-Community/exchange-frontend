@@ -1,10 +1,11 @@
 import { useIntl, FormattedDate } from 'react-intl'
 import { FaStar, FaEye, FaFile, FaCalendar, FaCalendarAlt, FaCode, FaCheck } from 'react-icons/fa'
 import { CgGitFork } from 'react-icons/cg'
+import { useCallback } from 'react'
 
 const RepositoryDetail = ({ repositoryData, languageData }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const lastUpdated = repositoryData && new Date(repositoryData.updatedAt)
   const lastThreeMonths = new Date()

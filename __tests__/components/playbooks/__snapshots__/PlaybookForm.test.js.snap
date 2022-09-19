@@ -1,5 +1,501 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Unit tests for PlaybookForm component. Should display success toast on submit. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  >
+    <div
+      class="Toastify__toast-container Toastify__toast-container--top-center"
+      style="width: auto;"
+    >
+      <div
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify--animate Toastify__slide-enter--top-center"
+        id="toastId"
+        style="--nth: 1; --len: 1;"
+      >
+        <div
+          class="Toastify__toast-body"
+          role="alert"
+        >
+          <div
+            class="Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter"
+          >
+            <svg
+              fill="var(--toastify-icon-color-success)"
+              height="100%"
+              viewBox="0 0 24 24"
+              width="100%"
+            >
+              <path
+                d="M12 0a12 12 0 1012 12A12.014 12.014 0 0012 0zm6.927 8.2l-6.845 9.289a1.011 1.011 0 01-1.43.188l-4.888-3.908a1 1 0 111.25-1.562l4.076 3.261 6.227-8.451a1 1 0 111.61 1.183z"
+              />
+            </svg>
+          </div>
+          <div>
+            Playbook submitted.
+          </div>
+        </div>
+        <button
+          aria-label="close"
+          class="Toastify__close-button Toastify__close-button--light"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 14 16"
+          >
+            <path
+              d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <div
+          aria-hidden="true"
+          aria-label="notification timer"
+          class="Toastify__progress-bar Toastify__progress-bar--animated Toastify__progress-bar-theme--light Toastify__progress-bar--success"
+          role="progressbar"
+          style="animation-duration: 500ms; animation-play-state: paused; opacity: 0;"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="flex flex-col"
+  >
+    <div
+      class="hidden lg:block px-8"
+    >
+      <div
+        class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+      >
+        <a
+          class="inline text-dial-blue h5"
+          href="/"
+        >
+          Home
+        </a>
+        <div
+          class="inline h5"
+        >
+           &gt; 
+          <a
+            class="text-dial-gray-dark"
+            href="/"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="pb-8 px-8"
+    >
+      <div
+        class="sm:px-0 max-w-full mx-auto"
+        id="content"
+      >
+        <form>
+          <div
+            class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
+          >
+            <div
+              class="text-2xl font-bold text-dial-blue pb-4"
+            >
+              Edit Test Playbook
+            </div>
+            <div
+              class="flex flex-col lg:flex-row gap-4"
+            >
+              <div
+                class="w-full lg:w-1/3 flex flex-col gap-y-3"
+              >
+                <div
+                  class="form-field-wrapper"
+                  data-testid="playbook-name"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="name"
+                  >
+                    Name
+                  </label>
+                  <input
+                    class="w-full"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                >
+                  <label
+                    class="form-field-label"
+                  >
+                    Playbook Cover
+                  </label>
+                  <label
+                    class="flex items-center"
+                  >
+                    <input
+                      class="bg-white file:hidden w-full pr-10"
+                      data-testid="file-uploader"
+                      name="cover"
+                      type="file"
+                    />
+                    <div
+                      class="-ml-11 flex p-1"
+                    >
+                      <span
+                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                      >
+                        <svg
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          version="1.1"
+                          viewBox="0 0 16 16"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M13 14h-10v-2l3-5 4.109 5 2.891-2v4z"
+                          />
+                          <path
+                            d="M13 7.5c0 0.828-0.672 1.5-1.5 1.5s-1.5-0.672-1.5-1.5 0.672-1.5 1.5-1.5c0.828 0 1.5 0.672 1.5 1.5z"
+                          />
+                          <path
+                            d="M14.341 3.579c-0.347-0.473-0.831-1.027-1.362-1.558s-1.085-1.015-1.558-1.362c-0.806-0.591-1.197-0.659-1.421-0.659h-7.75c-0.689 0-1.25 0.561-1.25 1.25v13.5c0 0.689 0.561 1.25 1.25 1.25h11.5c0.689 0 1.25-0.561 1.25-1.25v-9.75c0-0.224-0.068-0.615-0.659-1.421zM12.271 2.729c0.48 0.48 0.856 0.912 1.134 1.271h-2.406v-2.405c0.359 0.278 0.792 0.654 1.271 1.134zM14 14.75c0 0.136-0.114 0.25-0.25 0.25h-11.5c-0.135 0-0.25-0.114-0.25-0.25v-13.5c0-0.135 0.115-0.25 0.25-0.25 0 0 7.749-0 7.75 0v3.5c0 0.276 0.224 0.5 0.5 0.5h3.5v9.75z"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </label>
+                </div>
+                <div
+                  class="form-field-wrapper"
+                >
+                  <label
+                    class="form-field-label"
+                  >
+                    Playbook Author
+                  </label>
+                  <input
+                    class="w-full"
+                    name="author"
+                    placeholder="Playbook Author"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                >
+                  <label
+                    class="form-field-label"
+                  >
+                    Tags
+                  </label>
+                  <div
+                    class="mb-2"
+                  >
+                    <div
+                      class=" css-l45kjq-container"
+                    >
+                      <span
+                        class="css-1f43avz-a11yText-A11yText"
+                        id="react-select-6-live-region"
+                      />
+                      <span
+                        aria-atomic="false"
+                        aria-live="polite"
+                        aria-relevant="additions text"
+                        class="css-1f43avz-a11yText-A11yText"
+                      />
+                      <div
+                        class="react-select__control css-19jej77-control"
+                      >
+                        <div
+                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                        >
+                          <div
+                            class="react-select__placeholder css-19jynah-placeholder"
+                            id="react-select-6-placeholder"
+                          >
+                            Add tag for this playbook.
+                          </div>
+                          <div
+                            class="react-select__input-container css-6j8wv5-Input"
+                            data-value=""
+                          >
+                            <input
+                              aria-autocomplete="list"
+                              aria-describedby="react-select-6-placeholder"
+                              aria-expanded="false"
+                              aria-haspopup="true"
+                              aria-label="Filter by Tag"
+                              autocapitalize="none"
+                              autocomplete="off"
+                              autocorrect="off"
+                              class="react-select__input"
+                              id="async-select-id-undefined"
+                              role="combobox"
+                              spellcheck="false"
+                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                              tabindex="0"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                        >
+                          <span
+                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          />
+                          <div
+                            aria-hidden="true"
+                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          >
+                            <svg
+                              class="text-2xl"
+                              fill="none"
+                              height="1em"
+                              stroke="currentColor"
+                              stroke-width="0"
+                              viewBox="0 0 24 24"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-wrap gap-3"
+                  />
+                </div>
+              </div>
+              <div
+                class="w-full lg:w-2/3"
+                data-testid="playbook-overview"
+              >
+                <div
+                  class="form-field-wrapper"
+                >
+                  <label
+                    class="required-field form-field-label"
+                  >
+                    Overview
+                  </label>
+                  <div
+                    class="relative"
+                  >
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="htmlEditor"
+                    >
+                      <textarea
+                        id="overview-editor"
+                        style="visibility: hidden;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex flex-col lg:flex-row gap-x-4"
+            >
+              <div
+                class="w-full lg:w-1/2"
+              >
+                <div
+                  class="form-field-wrapper"
+                >
+                  <label
+                    class="form-field-label"
+                  >
+                    Audience
+                  </label>
+                  <div
+                    class="relative"
+                  >
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="htmlEditor"
+                    >
+                      <textarea
+                        id="audience-editor"
+                        style="visibility: hidden;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="w-full lg:w-1/2"
+              >
+                <div
+                  class="form-field-wrapper"
+                >
+                  <label
+                    class="form-field-label"
+                  >
+                    Outcomes
+                  </label>
+                  <div
+                    class="relative"
+                  >
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="htmlEditor"
+                    >
+                      <textarea
+                        id="outcomes-editor"
+                        style="visibility: hidden;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex flex-col gap-y-2 mt-4"
+            >
+              <div
+                class="text-xl text-dial-blue font-bold"
+              >
+                Plays
+              </div>
+              <div
+                class="text-sm text-dial-blue"
+              >
+                Plays currently assigned. You can preview, re-order, unnassign Plays, or add new Plays.
+              </div>
+              <div
+                class="flex flex-col gap-2 text-dial-purple-light"
+              >
+                <div
+                  class="text-sm font-medium opacity-80"
+                >
+                  No play results found
+                </div>
+              </div>
+            </div>
+            <div
+              class="font-semibold text-sm ml-auto"
+            >
+              <button
+                class="bg-blue-500 text-dial-gray-light py-2 px-4 rounded"
+                type="button"
+              >
+                Assign Play
+              </button>
+            </div>
+            <label
+              class="flex gap-x-2 mb-2 items-center self-start form-field-label"
+            >
+              <input
+                class="h-8 w-8"
+                data-testid="checkbox"
+                name="published"
+                type="checkbox"
+              />
+              Published
+            </label>
+            <div
+              class="flex font-semibold text-xl gap-3"
+            >
+              <button
+                class="submit-button"
+                data-testid="submit-button"
+                disabled=""
+                type="submit"
+              >
+                Save as Draft
+                <svg
+                  class="spinner ml-3 inline"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+              </button>
+              <button
+                class="cancel-button"
+                disabled=""
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 1`] = `
 <div>
   <div
@@ -185,7 +681,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                               autocomplete="off"
                               autocorrect="off"
                               class="react-select__input"
-                              id="react-select-2-input"
+                              id="async-select-id-undefined"
                               role="combobox"
                               spellcheck="false"
                               style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -609,7 +1105,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                               autocomplete="off"
                               autocorrect="off"
                               class="react-select__input"
-                              id="react-select-3-input"
+                              id="async-select-id-undefined"
                               role="combobox"
                               spellcheck="false"
                               style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"

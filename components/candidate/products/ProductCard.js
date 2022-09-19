@@ -1,5 +1,5 @@
-import { useSession } from 'next-auth/client'
-import { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { useCallback, useEffect, useState } from 'react'
 import { FaCode, FaHome, FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
@@ -9,9 +9,9 @@ const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-ye
 
 const ProductCard = ({ product, listType, filterDisplayed }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState('')
@@ -232,7 +232,7 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
 
 const CancelButton = ({ status, setStatus, loading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <button
@@ -252,7 +252,7 @@ const CancelButton = ({ status, setStatus, loading }) => {
 
 const ToggleApprovalButton = ({ style, setStatus, loading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <button
@@ -267,9 +267,9 @@ const ToggleApprovalButton = ({ style, setStatus, loading }) => {
 
 const ApproveButton = ({ product, status, setStatus, loading, setLoading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const approveCandidateProduct = async (e) => {
     const { userEmail, userToken } = session.user
@@ -316,7 +316,7 @@ const ApproveButton = ({ product, status, setStatus, loading, setLoading }) => {
 
 const ToggleRejectionButton = ({ style, setStatus, loading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <button
@@ -331,9 +331,9 @@ const ToggleRejectionButton = ({ style, setStatus, loading }) => {
 
 const DeclineButton = ({ product, status, setStatus, loading, setLoading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const rejectCandidateProduct = async (e) => {
     const { userEmail, userToken } = session.user

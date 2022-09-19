@@ -1,23 +1,15 @@
 import { fireEvent } from '@testing-library/dom'
-import {
-  mockRouterImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../../utils/CustomMockedProvider'
 import { BuildingBlockAutocomplete } from '../../../../components/filter/element/BuildingBlock'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../../queries/building-block'
+import { mockNextUseRouter } from '../../../utils/nextMockImplementation'
 import { buildingBlocks } from './data/BuildingBlockAutocomplete'
 
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the BuildingBlockAutocomplete component.', () => {
   const mockBuildingBlocks = generateMockApolloData(BUILDING_BLOCK_SEARCH_QUERY, { search: '' }, null, buildingBlocks)
   const BUILDING_BLOCK_SEARCH_TEST_ID = 'building-block-search'
-
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
 
   test('Should match snapshot', async () => {
     const { container } = render(

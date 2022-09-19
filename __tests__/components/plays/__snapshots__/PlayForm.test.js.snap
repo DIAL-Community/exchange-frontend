@@ -1,5 +1,494 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`PlayForm component. Should display success toast on submit. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  >
+    <div
+      class="Toastify__toast-container Toastify__toast-container--top-center"
+      style="width: auto;"
+    >
+      <div
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify--animate Toastify__slide-enter--top-center"
+        id="toastId"
+        style="--nth: 1; --len: 1;"
+      >
+        <div
+          class="Toastify__toast-body"
+          role="alert"
+        >
+          <div
+            class="Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter"
+          >
+            <svg
+              fill="var(--toastify-icon-color-success)"
+              height="100%"
+              viewBox="0 0 24 24"
+              width="100%"
+            >
+              <path
+                d="M12 0a12 12 0 1012 12A12.014 12.014 0 0012 0zm6.927 8.2l-6.845 9.289a1.011 1.011 0 01-1.43.188l-4.888-3.908a1 1 0 111.25-1.562l4.076 3.261 6.227-8.451a1 1 0 111.61 1.183z"
+              />
+            </svg>
+          </div>
+          <div>
+            Play saved.
+          </div>
+        </div>
+        <button
+          aria-label="close"
+          class="Toastify__close-button Toastify__close-button--light"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 14 16"
+          >
+            <path
+              d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <div
+          aria-hidden="true"
+          aria-label="notification timer"
+          class="Toastify__progress-bar Toastify__progress-bar--animated Toastify__progress-bar-theme--light Toastify__progress-bar--success"
+          role="progressbar"
+          style="animation-duration: 1000ms; animation-play-state: paused; opacity: 0;"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="flex flex-col"
+  >
+    <div
+      class="hidden lg:block px-8"
+    >
+      <div
+        class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+      >
+        <a
+          class="inline text-dial-blue h5"
+          href="/"
+        >
+          Home
+        </a>
+        <div
+          class="inline h5"
+        >
+           &gt; 
+          <a
+            class="text-dial-gray-dark"
+            href="/"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="pb-8 px-8"
+    >
+      <div
+        class="sm:px-0 max-w-full mx-auto"
+        id="content"
+      >
+        <form>
+          <div
+            class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
+          >
+            <div
+              class="text-2xl font-bold text-dial-blue pb-4"
+            >
+              Edit Play
+            </div>
+            <div
+              class="flex flex-col lg:flex-row gap-4"
+            >
+              <div
+                class="w-full lg:w-1/3 flex flex-col gap-y-3"
+                data-testid="play-name"
+              >
+                <label
+                  class="flex flex-col gap-y-2 text-xl text-dial-blue mb-2"
+                >
+                  <p
+                    class="required-field"
+                  >
+                    Name
+                  </p>
+                  <input
+                    class="w-full"
+                    name="name"
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                </label>
+                <div
+                  class="flex flex-col gap-y-2"
+                  data-testid="play-tags"
+                >
+                  <label
+                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    for="name"
+                  >
+                    Tags
+                    <div
+                      class=""
+                    >
+                      <div
+                        class=" css-l45kjq-container"
+                      >
+                        <span
+                          class="css-1f43avz-a11yText-A11yText"
+                          id="react-select-6-live-region"
+                        />
+                        <span
+                          aria-atomic="false"
+                          aria-live="polite"
+                          aria-relevant="additions text"
+                          class="css-1f43avz-a11yText-A11yText"
+                        />
+                        <div
+                          class="react-select__control css-1sda1v0-control"
+                        >
+                          <div
+                            class="react-select__value-container css-3tzzl5-ValueContainer"
+                          >
+                            <div
+                              class="react-select__placeholder css-19jynah-placeholder"
+                              id="react-select-6-placeholder"
+                            >
+                              Add tag for this play.
+                            </div>
+                            <div
+                              class="react-select__input-container css-6j8wv5-Input"
+                              data-value=""
+                            >
+                              <input
+                                aria-autocomplete="list"
+                                aria-describedby="react-select-6-placeholder"
+                                aria-expanded="false"
+                                aria-haspopup="true"
+                                aria-label="Filter by Tag"
+                                autocapitalize="none"
+                                autocomplete="off"
+                                autocorrect="off"
+                                class="react-select__input"
+                                id="async-select-id-undefined"
+                                role="combobox"
+                                spellcheck="false"
+                                style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                                tabindex="0"
+                                type="text"
+                                value=""
+                              />
+                            </div>
+                          </div>
+                          <div
+                            class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                          >
+                            <span
+                              class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            />
+                            <div
+                              aria-hidden="true"
+                              class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="css-tj5bde-Svg"
+                                focusable="false"
+                                height="20"
+                                viewBox="0 0 20 20"
+                                width="20"
+                              >
+                                <path
+                                  d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </label>
+                  <div
+                    class="flex flex-wrap gap-1"
+                  >
+                    <div
+                      class="py-1"
+                    >
+                      <div
+                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                        data-testid="pill"
+                      >
+                        Tag: tag_1
+                        <svg
+                          class="ml-3 text-2xl cursor-pointer"
+                          data-testid="remove-button"
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          />
+                          <path
+                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      class="py-1"
+                    >
+                      <div
+                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                        data-testid="pill"
+                      >
+                        Tag: tag_2
+                        <svg
+                          class="ml-3 text-2xl cursor-pointer"
+                          data-testid="remove-button"
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          />
+                          <path
+                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="w-full lg:w-2/3"
+                data-testid="play-description"
+                style="min-height: 20rem;"
+              >
+                <label
+                  class="block text-xl text-dial-blue flex flex-col gap-y-2"
+                >
+                  <p
+                    class="required-field"
+                  >
+                     
+                    Description
+                  </p>
+                  <div
+                    class="relative"
+                  >
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="htmlEditor"
+                    >
+                      <textarea
+                        id="-editor"
+                        style="visibility: hidden;"
+                      />
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div
+              class="flex flex-col gap-y-2 mt-4"
+            >
+              <div
+                class="text-xl text-dial-blue font-bold"
+              >
+                Moves
+              </div>
+              <div
+                class="text-sm text-dial-blue"
+              >
+                Moves currently assigned. You can preview, re-order, unnassign moves, or add a new move.
+              </div>
+              <div
+                class="flex flex-col gap-2 text-dial-purple-light"
+              >
+                <div>
+                  <div
+                    class="inline overflow-hidden"
+                    data-handler-id="T2"
+                  >
+                    <div
+                      class="flex flex-row gap-3"
+                    >
+                      <div
+                        class="py-4 font-semibold text-lg"
+                      >
+                        1
+                        )
+                      </div>
+                      <div
+                        class="w-full"
+                      >
+                        <div
+                          class="
+    bg-white cursor-move card-drop-shadow overflow-hidden
+    border border-dial-gray border-transparent hover:border-dial-purple-light border-opacity-80
+   flex flex-row gap-3 px-3 py-4 h-16 w-full"
+                          draggable="true"
+                        >
+                          <div
+                            class="w-3/12 font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis"
+                          >
+                            test
+                          </div>
+                          <div
+                            class="w-6/12 single-line-description whitespace-nowrap overflow-hidden text-ellipsis fr-view my-1"
+                          />
+                          <div
+                            class="w-3/12 my-auto flex gap-2 text-sm"
+                          >
+                            <button
+                              class="ml-auto bg-dial-orange-light text-dial-purple py-1.5 px-3 rounded disabled:opacity-50"
+                              type="button"
+                            >
+                              Preview
+                            </button>
+                            <button
+                              class="bg-dial-purple-light text-dial-gray-light py-1.5 px-3 rounded disabled:opacity-50"
+                              type="button"
+                            >
+                              Unassign
+                            </button>
+                            <img
+                              alt="Logo for: Move Order."
+                              class="h-6 my-auto"
+                              src="/icons/move/move.png"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="block"
+            >
+              <button
+                class="flex gap-2"
+              >
+                <svg
+                  class="ml-3 my-auto"
+                  color="#3f9edd"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  style="color: rgb(63, 158, 221);"
+                  viewBox="0 0 512 512"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"
+                  />
+                </svg>
+                <div
+                  class="text-dial-blue"
+                >
+                  Create New Move
+                </div>
+              </button>
+            </div>
+            <div
+              class="flex flex-wrap font-semibold text-xl lg:mt-8 gap-3"
+            >
+              <button
+                class="submit-button"
+                data-testid="submit-button"
+                disabled=""
+                type="submit"
+              >
+                Submit Play
+                <svg
+                  class="spinner ml-3 inline"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+              </button>
+              <button
+                class="submit-button"
+                disabled=""
+                type="submit"
+              >
+                Submit and Assign Play
+                <svg
+                  class="spinner ml-3 inline"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+              </button>
+              <button
+                class="cancel-button"
+                disabled=""
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`PlayForm component. Should match snapshot Create. 1`] = `
 <div>
   <div
@@ -121,7 +610,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                                 autocomplete="off"
                                 autocorrect="off"
                                 class="react-select__input"
-                                id="react-select-2-input"
+                                id="async-select-id-undefined"
                                 role="combobox"
                                 spellcheck="false"
                                 style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -411,7 +900,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                                 autocomplete="off"
                                 autocorrect="off"
                                 class="react-select__input"
-                                id="react-select-3-input"
+                                id="async-select-id-undefined"
                                 role="combobox"
                                 spellcheck="false"
                                 style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"

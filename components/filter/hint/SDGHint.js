@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import Image from 'next/image'
 import { FilterContext } from '../../context/FilterContext'
 
@@ -7,7 +8,7 @@ const SDGHint = () => {
   const { setHintDisplayed } = useContext(FilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <>

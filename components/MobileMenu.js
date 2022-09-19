@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { signIn, signOut, useSession } from 'next-auth/react'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
@@ -154,7 +154,7 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const [session] = useSession()
+  const { data: session } = useSession()
   const { pathname, asPath, query } = useRouter()
   const router = useRouter()
 
@@ -259,7 +259,7 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
   const format = (id, values) => formatMessage({ id }, { ...values })
   const { locale } = useRouter()
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const openSubMenu = (e, selectedParent) => {
     e.preventDefault()

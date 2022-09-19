@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 import { FaSpinner, FaPlusCircle } from 'react-icons/fa'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { HtmlEditor } from '../shared/HtmlEditor'
 import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
 import Breadcrumb from '../shared/breadcrumb'
@@ -20,7 +20,7 @@ export const PlayForm = ({ playbook, play }) => {
 
   const router = useRouter()
   const { locale } = router
-  const [session] = useSession()
+  const { data: session } = useSession()
   const { showToast } = useContext(ToastContext)
 
   const [mutating, setMutating] = useState(false)

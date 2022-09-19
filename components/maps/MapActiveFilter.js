@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
 import { SectorFilters } from '../filter/element/Sector'
@@ -14,7 +14,7 @@ const MapActiveFilter = () => {
   const router = useRouter()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const {
     aggregators, operators, services, orgSectors, years, sectors, products, tags

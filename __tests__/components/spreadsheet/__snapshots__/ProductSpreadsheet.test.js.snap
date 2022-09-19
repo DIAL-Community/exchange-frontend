@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Unit tests for spreadsheet interaction. Should render error message when the apollo is returning errors. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -118,7 +118,7 @@ Object {
 `;
 
 exports[`Unit tests for spreadsheet interaction. Should render spreadsheet when apollo is not returning errors. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -134,80 +134,88 @@ Object {
           role="tablist"
         >
           <div
-            aria-controls="headlessui-tabs-panel-undefined"
+            aria-controls="headlessui-tabs-panel-:r8:"
             aria-selected="true"
             class="w-40 px-3 py-2 text-sm font-medium text-white text-center border-b-4 border-green-500"
-            id="headlessui-tabs-tab-1"
+            data-headlessui-state="selected"
+            id="headlessui-tabs-tab-:r0:"
             role="tab"
             tabindex="0"
           >
             Products
           </div>
           <div
-            aria-controls="headlessui-tabs-panel-undefined"
+            aria-controls="headlessui-tabs-panel-:r9:"
             aria-selected="false"
             class="w-40 px-3 py-2 text-sm font-medium text-white text-center cursor-pointer hover:bg-white/[0.12] hover:text-white"
-            id="headlessui-tabs-tab-2"
+            data-headlessui-state=""
+            id="headlessui-tabs-tab-:r1:"
             role="tab"
             tabindex="-1"
           >
             Descriptions
           </div>
           <div
-            aria-controls="headlessui-tabs-panel-undefined"
+            aria-controls="headlessui-tabs-panel-:ra:"
             aria-selected="false"
             class="w-40 px-3 py-2 text-sm font-medium text-white text-center cursor-pointer hover:bg-white/[0.12] hover:text-white"
-            id="headlessui-tabs-tab-3"
+            data-headlessui-state=""
+            id="headlessui-tabs-tab-:r2:"
             role="tab"
             tabindex="-1"
           >
             Organizations
           </div>
           <div
-            aria-controls="headlessui-tabs-panel-undefined"
+            aria-controls="headlessui-tabs-panel-:rb:"
             aria-selected="false"
             class="w-40 px-3 py-2 text-sm font-medium text-white text-center cursor-pointer hover:bg-white/[0.12] hover:text-white"
-            id="headlessui-tabs-tab-4"
+            data-headlessui-state=""
+            id="headlessui-tabs-tab-:r3:"
             role="tab"
             tabindex="-1"
           >
             SDGs
           </div>
           <div
-            aria-controls="headlessui-tabs-panel-undefined"
+            aria-controls="headlessui-tabs-panel-:rc:"
             aria-selected="false"
             class="w-40 px-3 py-2 text-sm font-medium text-white text-center cursor-pointer hover:bg-white/[0.12] hover:text-white"
-            id="headlessui-tabs-tab-5"
+            data-headlessui-state=""
+            id="headlessui-tabs-tab-:r4:"
             role="tab"
             tabindex="-1"
           >
             Sectors
           </div>
           <div
-            aria-controls="headlessui-tabs-panel-undefined"
+            aria-controls="headlessui-tabs-panel-:rd:"
             aria-selected="false"
             class="w-40 px-3 py-2 text-sm font-medium text-white text-center cursor-pointer hover:bg-white/[0.12] hover:text-white"
-            id="headlessui-tabs-tab-6"
+            data-headlessui-state=""
+            id="headlessui-tabs-tab-:r5:"
             role="tab"
             tabindex="-1"
           >
             Use Cases Steps
           </div>
           <div
-            aria-controls="headlessui-tabs-panel-undefined"
+            aria-controls="headlessui-tabs-panel-:re:"
             aria-selected="false"
             class="w-40 px-3 py-2 text-sm font-medium text-white text-center cursor-pointer hover:bg-white/[0.12] hover:text-white"
-            id="headlessui-tabs-tab-7"
+            data-headlessui-state=""
+            id="headlessui-tabs-tab-:r6:"
             role="tab"
             tabindex="-1"
           >
             Building Blocks
           </div>
           <div
-            aria-controls="headlessui-tabs-panel-undefined"
+            aria-controls="headlessui-tabs-panel-:rf:"
             aria-selected="false"
             class="w-40 px-3 py-2 text-sm font-medium text-white text-center cursor-pointer hover:bg-white/[0.12] hover:text-white"
-            id="headlessui-tabs-tab-8"
+            data-headlessui-state=""
+            id="headlessui-tabs-tab-:r7:"
             role="tab"
             tabindex="-1"
           >
@@ -219,8 +227,9 @@ Object {
           style="min-height: 70vh;"
         >
           <div
-            aria-labelledby="headlessui-tabs-tab-undefined"
-            id="headlessui-tabs-panel-9"
+            aria-labelledby="headlessui-tabs-tab-:r0:"
+            data-headlessui-state="selected"
+            id="headlessui-tabs-panel-:r8:"
             role="tabpanel"
             tabindex="0"
           >
@@ -760,6 +769,55 @@ Object {
               </div>
             </div>
           </div>
+          <span
+            aria-labelledby="headlessui-tabs-tab-:r1:"
+            id="headlessui-tabs-panel-:r9:"
+            role="tabpanel"
+            style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+            tabindex="-1"
+          />
+          <span
+            aria-labelledby="headlessui-tabs-tab-:r2:"
+            id="headlessui-tabs-panel-:ra:"
+            role="tabpanel"
+            style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+            tabindex="-1"
+          />
+          <span
+            aria-labelledby="headlessui-tabs-tab-:r3:"
+            id="headlessui-tabs-panel-:rb:"
+            role="tabpanel"
+            style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+            tabindex="-1"
+          />
+          <span
+            aria-labelledby="headlessui-tabs-tab-:r4:"
+            id="headlessui-tabs-panel-:rc:"
+            role="tabpanel"
+            style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+            tabindex="-1"
+          />
+          <span
+            aria-labelledby="headlessui-tabs-tab-:r5:"
+            id="headlessui-tabs-panel-:rd:"
+            role="tabpanel"
+            style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+            tabindex="-1"
+          />
+          <span
+            aria-labelledby="headlessui-tabs-tab-:r6:"
+            id="headlessui-tabs-panel-:re:"
+            role="tabpanel"
+            style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+            tabindex="-1"
+          />
+          <span
+            aria-labelledby="headlessui-tabs-tab-:r7:"
+            id="headlessui-tabs-panel-:rf:"
+            role="tabpanel"
+            style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+            tabindex="-1"
+          />
         </div>
       </div>
     </div>
@@ -780,80 +838,88 @@ Object {
         role="tablist"
       >
         <div
-          aria-controls="headlessui-tabs-panel-undefined"
+          aria-controls="headlessui-tabs-panel-:r8:"
           aria-selected="true"
           class="w-40 px-3 py-2 text-sm font-medium text-white text-center border-b-4 border-green-500"
-          id="headlessui-tabs-tab-1"
+          data-headlessui-state="selected"
+          id="headlessui-tabs-tab-:r0:"
           role="tab"
           tabindex="0"
         >
           Products
         </div>
         <div
-          aria-controls="headlessui-tabs-panel-undefined"
+          aria-controls="headlessui-tabs-panel-:r9:"
           aria-selected="false"
           class="w-40 px-3 py-2 text-sm font-medium text-white text-center cursor-pointer hover:bg-white/[0.12] hover:text-white"
-          id="headlessui-tabs-tab-2"
+          data-headlessui-state=""
+          id="headlessui-tabs-tab-:r1:"
           role="tab"
           tabindex="-1"
         >
           Descriptions
         </div>
         <div
-          aria-controls="headlessui-tabs-panel-undefined"
+          aria-controls="headlessui-tabs-panel-:ra:"
           aria-selected="false"
           class="w-40 px-3 py-2 text-sm font-medium text-white text-center cursor-pointer hover:bg-white/[0.12] hover:text-white"
-          id="headlessui-tabs-tab-3"
+          data-headlessui-state=""
+          id="headlessui-tabs-tab-:r2:"
           role="tab"
           tabindex="-1"
         >
           Organizations
         </div>
         <div
-          aria-controls="headlessui-tabs-panel-undefined"
+          aria-controls="headlessui-tabs-panel-:rb:"
           aria-selected="false"
           class="w-40 px-3 py-2 text-sm font-medium text-white text-center cursor-pointer hover:bg-white/[0.12] hover:text-white"
-          id="headlessui-tabs-tab-4"
+          data-headlessui-state=""
+          id="headlessui-tabs-tab-:r3:"
           role="tab"
           tabindex="-1"
         >
           SDGs
         </div>
         <div
-          aria-controls="headlessui-tabs-panel-undefined"
+          aria-controls="headlessui-tabs-panel-:rc:"
           aria-selected="false"
           class="w-40 px-3 py-2 text-sm font-medium text-white text-center cursor-pointer hover:bg-white/[0.12] hover:text-white"
-          id="headlessui-tabs-tab-5"
+          data-headlessui-state=""
+          id="headlessui-tabs-tab-:r4:"
           role="tab"
           tabindex="-1"
         >
           Sectors
         </div>
         <div
-          aria-controls="headlessui-tabs-panel-undefined"
+          aria-controls="headlessui-tabs-panel-:rd:"
           aria-selected="false"
           class="w-40 px-3 py-2 text-sm font-medium text-white text-center cursor-pointer hover:bg-white/[0.12] hover:text-white"
-          id="headlessui-tabs-tab-6"
+          data-headlessui-state=""
+          id="headlessui-tabs-tab-:r5:"
           role="tab"
           tabindex="-1"
         >
           Use Cases Steps
         </div>
         <div
-          aria-controls="headlessui-tabs-panel-undefined"
+          aria-controls="headlessui-tabs-panel-:re:"
           aria-selected="false"
           class="w-40 px-3 py-2 text-sm font-medium text-white text-center cursor-pointer hover:bg-white/[0.12] hover:text-white"
-          id="headlessui-tabs-tab-7"
+          data-headlessui-state=""
+          id="headlessui-tabs-tab-:r6:"
           role="tab"
           tabindex="-1"
         >
           Building Blocks
         </div>
         <div
-          aria-controls="headlessui-tabs-panel-undefined"
+          aria-controls="headlessui-tabs-panel-:rf:"
           aria-selected="false"
           class="w-40 px-3 py-2 text-sm font-medium text-white text-center cursor-pointer hover:bg-white/[0.12] hover:text-white"
-          id="headlessui-tabs-tab-8"
+          data-headlessui-state=""
+          id="headlessui-tabs-tab-:r7:"
           role="tab"
           tabindex="-1"
         >
@@ -865,8 +931,9 @@ Object {
         style="min-height: 70vh;"
       >
         <div
-          aria-labelledby="headlessui-tabs-tab-undefined"
-          id="headlessui-tabs-panel-9"
+          aria-labelledby="headlessui-tabs-tab-:r0:"
+          data-headlessui-state="selected"
+          id="headlessui-tabs-panel-:r8:"
           role="tabpanel"
           tabindex="0"
         >
@@ -1406,6 +1473,55 @@ Object {
             </div>
           </div>
         </div>
+        <span
+          aria-labelledby="headlessui-tabs-tab-:r1:"
+          id="headlessui-tabs-panel-:r9:"
+          role="tabpanel"
+          style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+          tabindex="-1"
+        />
+        <span
+          aria-labelledby="headlessui-tabs-tab-:r2:"
+          id="headlessui-tabs-panel-:ra:"
+          role="tabpanel"
+          style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+          tabindex="-1"
+        />
+        <span
+          aria-labelledby="headlessui-tabs-tab-:r3:"
+          id="headlessui-tabs-panel-:rb:"
+          role="tabpanel"
+          style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+          tabindex="-1"
+        />
+        <span
+          aria-labelledby="headlessui-tabs-tab-:r4:"
+          id="headlessui-tabs-panel-:rc:"
+          role="tabpanel"
+          style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+          tabindex="-1"
+        />
+        <span
+          aria-labelledby="headlessui-tabs-tab-:r5:"
+          id="headlessui-tabs-panel-:rd:"
+          role="tabpanel"
+          style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+          tabindex="-1"
+        />
+        <span
+          aria-labelledby="headlessui-tabs-tab-:r6:"
+          id="headlessui-tabs-panel-:re:"
+          role="tabpanel"
+          style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+          tabindex="-1"
+        />
+        <span
+          aria-labelledby="headlessui-tabs-tab-:r7:"
+          id="headlessui-tabs-panel-:rf:"
+          role="tabpanel"
+          style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;"
+          tabindex="-1"
+        />
       </div>
     </div>
   </div>,

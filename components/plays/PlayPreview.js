@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useState } from 'react'
+import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
 import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
@@ -68,7 +68,7 @@ const PlayPreview = () => {
   const { setPreviewDisplayed } = useContext(PlayPreviewDispatchContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [duplicatePlay, { data: duplicatedPlay }] = useMutation(DUPLICATE_PLAY)
   const [fetchPlayDetail, { data }] = useLazyQuery(PLAY_QUERY, {

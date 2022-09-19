@@ -1,22 +1,17 @@
-import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
+import { render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
 import TagCard from '../../../components/tags/TagCard'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { tag } from './data/TagCard'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the TagCard component', () => {
   const CARD_TEST_ID = 'tag-card'
   const DELETE_BUTTON_TEST_ID = 'delete-button'
 
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
-
   describe('Should match snapshot -', () => {
     test('user is NOT an admin, displayEditButtons not passed.', () => {
-      mockSessionImplementation()
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
       const { container, getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
           <TagCard
@@ -31,7 +26,7 @@ describe('Unit test for the TagCard component', () => {
     })
 
     test('user is NOT an admin, displayEditButtons passed.', () => {
-      mockSessionImplementation()
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
       const { container, getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
           <TagCard
@@ -47,7 +42,7 @@ describe('Unit test for the TagCard component', () => {
     })
 
     test('user is an admin, displayEditButtons not passed.', () => {
-      mockSessionImplementation(true)
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
       const { container, getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
           <TagCard
@@ -62,7 +57,7 @@ describe('Unit test for the TagCard component', () => {
     })
 
     test('user is an admin, displayEditButtons passed.', () => {
-      mockSessionImplementation(true)
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
       const { container, getByTestId } = render(
         <CustomMockedProvider>
           <TagCard

@@ -67,6 +67,17 @@ exports[`Unit test for the SectorDetail component Should match snapshot - for se
 </div>
 `;
 
+exports[`Unit test for the SectorDetail component Should match snapshot - for sector with parent sector. 2`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: none;"
+  />
+</div>
+`;
+
 exports[`Unit test for the SectorDetail component Should match snapshot - for sector without parent sector. 1`] = `
 <div
   class="flex flex-col gap-3"
@@ -116,5 +127,16 @@ exports[`Unit test for the SectorDetail component Should match snapshot - for se
       </p>
     </div>
   </div>
+</div>
+`;
+
+exports[`Unit test for the SectorDetail component Should match snapshot - for sector without parent sector. 2`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: none;"
+  />
 </div>
 `;

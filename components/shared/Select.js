@@ -8,6 +8,7 @@ import classNames from 'classnames'
 const AsyncReactSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
 const Select = React.forwardRef(({
+  name,
   value,
   options,
   onChange,
@@ -83,6 +84,7 @@ const Select = React.forwardRef(({
     async ? (
       <AsyncReactSelect
         {...otherProps}
+        inputId={`async-select-id-${name}`}
         innerRef={ref}
         value={value}
         placeholder={placeholder}
@@ -97,6 +99,7 @@ const Select = React.forwardRef(({
     ) : (
       <ReactSelect
         {...otherProps}
+        inputId={`react-select-id-${name}`}
         innerRef={ref}
         value={value}
         placeholder={placeholder}

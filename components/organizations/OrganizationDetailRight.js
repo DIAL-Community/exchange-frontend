@@ -1,8 +1,8 @@
 import { FormattedDate, useIntl } from 'react-intl'
 import parse from 'html-react-parser'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import Breadcrumb from '../shared/breadcrumb'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
@@ -30,9 +30,9 @@ const DynamicOfficeMarker = (props) => {
 
 const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const canEdit = session?.user?.canEdit || session?.user?.own?.organization?.id === organization.id
 

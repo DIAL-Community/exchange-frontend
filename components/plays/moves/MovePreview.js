@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useState } from 'react'
+import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
 import { gql, useLazyQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -35,7 +35,7 @@ const MovePreview = () => {
   const [playbookSlug, playSlug] = previewContext
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [fetchPlayDetail, { data }] = useLazyQuery(MOVE_QUERY, {
     variables: {

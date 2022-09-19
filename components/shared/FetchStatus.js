@@ -1,9 +1,10 @@
 import { useIntl } from 'react-intl'
 import { FaSpinner, FaExclamationCircle, FaDownload } from 'react-icons/fa'
+import { useCallback } from 'react'
 
 export const Loading = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='text-button-gray text-lg' style={{ marginTop: '10%' }}>
@@ -15,7 +16,7 @@ export const Loading = () => {
 
 export const Error = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='text-button-gray text-lg' style={{ marginTop: '10%' }}>
@@ -27,7 +28,7 @@ export const Error = () => {
 
 export const Unauthorized = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='text-button-gray text-lg' style={{ marginTop: '10%', marginBottom: '10%' }}>
@@ -39,7 +40,7 @@ export const Unauthorized = () => {
 
 export const ReadyToDownload = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='text-button-gray text-lg' style={{ marginTop: '10%' }}>

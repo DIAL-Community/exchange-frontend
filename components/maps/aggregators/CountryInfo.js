@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 
 const CountryInfo = (props) => {
@@ -9,7 +9,7 @@ const CountryInfo = (props) => {
   const [active, setActive] = useState(country?.aggregators[0].slug)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   // Just return empty fragment when there's no country selected.
   if (!country) {

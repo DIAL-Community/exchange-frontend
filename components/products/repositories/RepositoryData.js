@@ -1,7 +1,7 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import RepositoryDetail from '../RepositoryDetail'
@@ -42,7 +42,7 @@ const RepositoryInformation = ({ productRepository }) => {
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const router = useRouter()
-  const [session] = useSession()
+  const { data: session } = useSession()
   const [deleteProductRepository, { data }] = useMutation(DELETE_PRODUCT_REPOSITORY)
 
   useEffect(() => {

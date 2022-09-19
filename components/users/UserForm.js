@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { useContext, useMemo, useState } from 'react'
+import { useCallback, useContext, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
@@ -21,7 +21,7 @@ const sectionLabelStyle = 'form-field-wrapper form-field-label'
 
 export const UserForm = ({ user, action }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
   const [organizations, setOrganizations] = useState((user?.organization) ? [{ label: user.organization.name, slug: user.organization.slug }] : [])

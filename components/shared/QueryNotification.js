@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { QueryParamContext } from '../context/QueryParamContext'
 
 const QueryNotification = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { query } = useRouter()
 

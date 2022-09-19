@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 
 const EndorserInfo = (props) => {
@@ -7,7 +7,7 @@ const EndorserInfo = (props) => {
 
   const router = useRouter()
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [active, setActive] = useState(city?.organizations[0].slug)
 

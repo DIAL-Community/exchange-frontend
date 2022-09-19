@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import Link from 'next/link'
 import { HiChevronDown, HiChevronUp, HiQuestionMarkCircle } from 'react-icons/hi'
 import { gql, useQuery } from '@apollo/client'
@@ -38,7 +38,7 @@ const mappedUrls = MAPPED_FILTER_ITEMS_URL
 
 const Filter = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const activeTab = filterItems.indexOf(props.activeTab)
   const [hintDisplayed, setHintDisplayed] = useState(false)

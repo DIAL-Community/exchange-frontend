@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { useState, useEffect, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { Controller, useForm } from 'react-hook-form'
 import Pill from '../shared/Pill'
 import { Input } from '../shared/Input'
@@ -24,7 +24,7 @@ const OrganizationDetailContacts = ({ organization }) => {
 
   const [updateOrganizationContacts, { data, loading }] = useMutation(UPDATE_ORGANIZATION_CONTACTS)
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const { locale } = useRouter()
 

@@ -1,23 +1,15 @@
 import { fireEvent } from '@testing-library/dom'
-import {
-  mockRouterImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../../utils/CustomMockedProvider'
 import { WorkflowAutocomplete } from '../../../../components/filter/element/Workflow'
 import { WORKFLOW_SEARCH_QUERY } from '../../../../queries/workflow'
+import { mockNextUseRouter } from '../../../utils/nextMockImplementation'
 import { workflows } from './data/WorkflowAutocomplete'
 
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the WorkflowAutocomplete component.', () => {
   const mockWorkflows = generateMockApolloData(WORKFLOW_SEARCH_QUERY, { search: '' }, null, workflows)
   const WORKFLOWS_SEARCH_TEST_ID = 'workflow-search'
-
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
 
   test('Should match snapshot', async () => {
     const { container } = render(

@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useCallback, useContext } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -14,7 +14,7 @@ import { HtmlEditor } from '../shared/HtmlEditor'
 const TagForm = ({ isOpen, onClose, tag }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)

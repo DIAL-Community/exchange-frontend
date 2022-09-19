@@ -1,19 +1,12 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import OrganizationForm from '../../../../components/candidate/organizations/OrganizationForm'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  mockUnauthorizedUserSessionImplementation,
-  render,
-  waitForAllEffects
-} from '../../../test-utils'
+import { render, waitForAllEffects } from '../../../test-utils'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../../utils/nextMockImplementation'
 import CustomMockedProvider from '../../../utils/CustomMockedProvider'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for the OrganizationForm component.', () => {
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
   const CANDIDATE_ORGANIZATION_NAME_TEST_ID = 'candidate-organization-name'
@@ -24,12 +17,8 @@ describe('Unit tests for the OrganizationForm component.', () => {
   const CANDIDATE_ORGANIZATION_DESCRIPTION_TEST_ID = 'candidate-organization-description'
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
 
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
-
   test('Should match snapshot - candidate organization.', () => {
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED)
     const { container } = render(
       <CustomMockedProvider>
         <OrganizationForm />
@@ -39,7 +28,7 @@ describe('Unit tests for the OrganizationForm component.', () => {
   })
 
   test('Should render Unauthorized component for unauthorized user.', async () => {
-    mockUnauthorizedUserSessionImplementation()
+    mockNextAuthUseSession(statuses.UNAUTHENTICATED)
     const { container } = render(
       <CustomMockedProvider>
         <OrganizationForm />
@@ -50,7 +39,7 @@ describe('Unit tests for the OrganizationForm component.', () => {
   })
 
   test('Should not show validation errors for mandatory fields.', async () => {
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED)
     const user = userEvent.setup()
     const { getByTestId } = render(
       <CustomMockedProvider>
@@ -73,7 +62,7 @@ describe('Unit tests for the OrganizationForm component.', () => {
   })
 
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED)
     const user = userEvent.setup()
     const { getByTestId } = render(
       <CustomMockedProvider>
@@ -92,7 +81,7 @@ describe('Unit tests for the OrganizationForm component.', () => {
 
     await user.type(screen.getByLabelText(/Your Name/), 'test organization name')
     expect(getByTestId(CANDIDATE_ORGANIZATION_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await user.clear(screen.getByLabelText(/Your Name/))
+    await act(async () => waitFor(() => user.clear(screen.getByLabelText(/Your Name/))))
     expect(getByTestId(CANDIDATE_ORGANIZATION_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Your Name/), 'test organziation name 2')

@@ -1,12 +1,12 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import parse from 'html-react-parser'
 import Breadcrumb from '../../shared/breadcrumb'
 
 const MoveDetail = ({ play, move }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const generateEditLink = () => {
     if (!session.user) {

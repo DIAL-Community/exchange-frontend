@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { useState, useContext } from 'react'
+import { useState, useContext, useCallback } from 'react'
 import Link from 'next/link'
 import { FaRegQuestionCircle, FaSpinner } from 'react-icons/fa'
 import { gql, useApolloClient } from '@apollo/client'
@@ -94,7 +94,7 @@ const SignUp = () => {
   const router = useRouter()
   const client = useApolloClient()
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
   const [created, setCreated] = useState(false)

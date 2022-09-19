@@ -1,11 +1,11 @@
 import { useIntl } from 'react-intl'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import EditButton from '../shared/EditButton'
 
 const EditableSection = ({ canEdit, sectionHeader, editModeBody, displayModeBody, isDirty, isMutating, onSubmit, onCancel }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [isInEditMode, setIsInEditMode] = useState(false)
 

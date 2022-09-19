@@ -1,18 +1,12 @@
 import { fireEvent, screen } from '@testing-library/react'
+import { act } from 'react-dom/test-utils'
 import OrganizationDetailOffices from '../../../components/organizations/OrganizationDetailOffices'
-import {
-  mockArcGisToken,
-  mockRouterImplementation,
-  mockSessionImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../test-utils'
+import { mockArcGisToken, render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { organization } from './data/OrganizationForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the OrganizationDetailOffices component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const PILL_TEST_ID = 'pill'
@@ -20,8 +14,7 @@ describe('Unit test for the OrganizationDetailOffices component.', () => {
 
   beforeAll(() => {
     mockArcGisToken()
-    mockRouterImplementation()
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
   })
 
   describe('Should match snapshot', () => {
@@ -58,7 +51,7 @@ describe('Unit test for the OrganizationDetailOffices component.', () => {
           />
         </CustomMockedProvider>
       )
-      fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
+      await act(async () => { fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID)) })
       await waitForAllEffectsAndSelectToLoad(container)
       expect(container).toMatchSnapshot()
     })
@@ -73,9 +66,9 @@ describe('Unit test for the OrganizationDetailOffices component.', () => {
         />
       </CustomMockedProvider>
     )
-    fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
+    await act(async () => { fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID)) })
     await waitForAllEffectsAndSelectToLoad(container)
-    fireEvent.click(getByTestId(PILL_REMOVE_BUTTON_TEST_ID))
+    await act(async () => { fireEvent.click(getByTestId(PILL_REMOVE_BUTTON_TEST_ID)) })
     expect(screen.queryByTestId(PILL_TEST_ID)).toBeNull()
   })
 })

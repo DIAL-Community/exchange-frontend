@@ -1,26 +1,16 @@
 import UseCaseDetailLeft from '../../../components/use-cases/UseCaseDetailLeft'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  mockUnauthorizedUserSessionImplementation,
-  render
-} from '../../test-utils'
+import { render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { useCase } from './data/UseCaseForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('UseCaseDetailLeft component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-link'
 
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
-
   describe('Edit button', () => {
     test('Should not be visible for user who is not an admin.', () => {
-      mockUnauthorizedUserSessionImplementation()
+      mockNextAuthUseSession(statuses.UNAUTHENTICATED)
       const { queryByTestId } = render(
         <CustomMockedProvider>
           <UseCaseDetailLeft useCase={useCase} />
@@ -31,7 +21,7 @@ describe('UseCaseDetailLeft component.', () => {
     })
 
     test('Should be visible for authorized user.', async () => {
-      mockSessionImplementation()
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
       const { getByTestId } = render(
         <CustomMockedProvider>
           <UseCaseDetailLeft
@@ -44,7 +34,7 @@ describe('UseCaseDetailLeft component.', () => {
       expect(getByTestId(EDIT_BUTTON_TEST_ID)).toBeInTheDocument()
     })
     test('Should have specific href attribute.', () => {
-      mockSessionImplementation()
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
       const { getByTestId } = render(
         <CustomMockedProvider>
           <UseCaseDetailLeft

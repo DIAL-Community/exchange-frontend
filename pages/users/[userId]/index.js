@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useQuery } from '@apollo/client'
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
@@ -47,7 +47,7 @@ const UserPageDefinition = ({ userId, locale }) => {
 
 const User = () => {
   const router = useRouter()
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   if (session && !session.user.roles.includes('admin')) {
     return <Unauthorized />

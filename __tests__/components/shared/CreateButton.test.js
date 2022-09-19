@@ -1,16 +1,13 @@
 import { fireEvent } from '@testing-library/react'
 import CreateButton from '../../../components/shared/CreateButton'
-import { mockRouterImplementation, render } from '../../test-utils'
+import { render } from '../../test-utils'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the CreateButton component.', () => {
   const CREATE_BUTTON_TEST_ID = 'create-button'
   const CREATE_LINK_TEST_ID = 'create-link'
   const CREATE_BUTTON_LABEL = 'Create'
-
-  beforeAll(mockRouterImplementation)
 
   test('Should match snapshot - type === "button".', () => {
     const { container, queryByTestId } = render(<CreateButton label={CREATE_BUTTON_LABEL}/>)
@@ -32,6 +29,6 @@ describe('Unit test for the CreateButton component.', () => {
     const mockOnClick = jest.fn()
     const { getByTestId } = render(<CreateButton onClick={mockOnClick}/>)
     fireEvent.click(getByTestId(CREATE_BUTTON_TEST_ID))
-    expect(mockOnClick).toBeCalled()
+    expect(mockOnClick).toHaveBeenCalled()
   })
 })

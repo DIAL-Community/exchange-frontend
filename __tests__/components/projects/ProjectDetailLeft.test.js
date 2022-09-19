@@ -1,20 +1,15 @@
 import ProjectDetailLeft from '../../../components/projects/ProjectDetailLeft'
-import { mockRouterImplementation, mockSessionImplementation, mockUnauthorizedUserSessionImplementation, render } from '../../test-utils'
+import { render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { project } from './data/ProjectForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the ProjectDetailLeft component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-link'
 
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
-
   test('Should Edit button not be visible for user who is neither an admin, nor Organization owner, nor Product owner.', () => {
-    mockUnauthorizedUserSessionImplementation()
+    mockNextAuthUseSession(statuses.UNAUTHENTICATED)
     const { queryByTestId } = render(
       <CustomMockedProvider>
         <ProjectDetailLeft project={project} />
@@ -25,7 +20,7 @@ describe('Unit test for the ProjectDetailLeft component.', () => {
   })
 
   test('Should Edit button be visible for authorized user.', async () => {
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const { getByTestId } = render(
       <CustomMockedProvider>
         <ProjectDetailLeft
@@ -39,7 +34,7 @@ describe('Unit test for the ProjectDetailLeft component.', () => {
   })
 
   test('Edit button should to have specific href attribute.', () => {
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const { getByTestId } = render(
       <CustomMockedProvider>
         <ProjectDetailLeft

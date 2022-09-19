@@ -1,21 +1,13 @@
 import { fireEvent, screen } from '@testing-library/react'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { SDG_TARGET_SEARCH_QUERY } from '../../../queries/sdg-target'
 import UseCaseDetailSdgTargets from '../../../components/use-cases/UseCaseDetailSdgTargets'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 import { useCase } from './data/UseCaseForm'
 import { sdgTargets } from './data/UseCaseDetailSdgTargets'
 
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
-// Mock the next-auth's useSession.
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for the ProductDetailSdgTargets component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
@@ -26,11 +18,6 @@ describe('Unit tests for the ProductDetailSdgTargets component.', () => {
   const PILL_TEST_ID = 'pill'
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
   const mockSdgTargets = generateMockApolloData(SDG_TARGET_SEARCH_QUERY, { search: '' }, null, sdgTargets)
-
-  beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
-  })
 
   test('Should match snapshot - without edit permission.', () => {
     const { container } = render(

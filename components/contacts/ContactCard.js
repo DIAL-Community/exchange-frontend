@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 
 const contactJustifyStyle = 'flex my-4 px-4 h-8'
@@ -5,7 +6,7 @@ const contactTextStyle = 'inline-block font-semibold text-button-gray'
 
 const ContactCard = ({ contact, listType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     listType === 'list'

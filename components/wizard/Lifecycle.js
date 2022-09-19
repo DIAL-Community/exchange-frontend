@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 import DigitalPrinciple from '../principles/DigitalPrinciple'
 import Resource from '../resources/Resource'
 
 const Lifecycle = ({ wizardData, objType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const [openTab, setOpenTab] = useState(objType === 'principles' ? 0 : 1)
 
   const tabClickHandler = (e, tabNumber) => {

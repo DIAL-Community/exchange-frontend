@@ -1,23 +1,15 @@
 import { fireEvent } from '@testing-library/dom'
-import {
-  mockRouterImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../../utils/CustomMockedProvider'
 import { OriginAutocomplete } from '../../../../components/filter/element/Origin'
 import { ORIGIN_SEARCH_QUERY } from '../../../../queries/origin'
+import { mockNextUseRouter } from '../../../utils/nextMockImplementation'
 import { origins } from './data/OriginAutocomplete'
 
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the OriginAutocomplete component.', () => {
   const mockOrigins = generateMockApolloData(ORIGIN_SEARCH_QUERY, { search: '' }, null, origins)
   const ORIGINS_SEARCH_TEST_ID = 'origin-search'
-
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
 
   test('Should match snapshot.', async () => {
     const { container } = render(

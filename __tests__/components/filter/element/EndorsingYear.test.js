@@ -1,21 +1,13 @@
 import { fireEvent } from '@testing-library/dom'
-import {
-  mockRouterImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../../test-utils'
 import CustomMockedProvider from '../../../utils/CustomMockedProvider'
 import { EndorsingYearSelect } from '../../../../components/filter/element/EndorsingYear'
+import { mockNextUseRouter } from '../../../utils/nextMockImplementation'
 import { years } from './data/EndorsingYearSelect'
 
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the EndorsingYearSelect component.', () => {
   const ENDORSING_YEAR_SEARCH_TEST_ID = 'endorsing-year-search'
-
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
 
   test('Should match snapshot.', async () => {
     const { container } = render(

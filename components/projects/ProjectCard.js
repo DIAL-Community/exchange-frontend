@@ -35,16 +35,13 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
     ReactTooltip.rebuild()
   })
 
-  const navClickHandler = () => {
-  }
-
   return (
     <Link className='card-link' href={`/${collectionPath}/${project.slug}`}>
       <a {... newTab && { target: '_blank' }}>
         {
           listType === 'list'
             ? (
-              <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className={containerElementStyle}>
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 justify-between' style={{ minHeight: '4.5rem' }}>
                     <div className={`w-10/12 lg:w-3/12 my-auto font-semibold ${ellipsisTextStyle}`}>
@@ -82,7 +79,7 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
               </div>
             )
             : (
-              <div onClick={() => navClickHandler()} className={`group ${containerElementStyle}`}>
+              <div className={`group ${containerElementStyle}`}>
                 <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow card-drop-shadow'>
                   <div className='border-b text-2xl p-4 group-hover:text-dial-yellow' style={{ minHeight: '97px' }}>
                     <div className='text-xl 2xl:text-2xl' style={{ maxHeight: '64px' }}>

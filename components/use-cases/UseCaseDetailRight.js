@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import parse from 'html-react-parser'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import Breadcrumb from '../shared/breadcrumb'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import CreateButton from '../shared/CreateButton'
@@ -13,8 +14,8 @@ import UseCaseDetailTags from './UseCaseDetailTags'
 
 const UseCaseDetailRight = ({ useCase, canEdit, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-  const [session] = useSession()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+  const { data: session } = useSession()
 
   const generateCreateStepLink = () => {
     if (!session.user) {

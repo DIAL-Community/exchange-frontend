@@ -1,10 +1,10 @@
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 
 const RepositoryInfo = ({ product }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   useEffect(() => {
     ReactTooltip.rebuild()

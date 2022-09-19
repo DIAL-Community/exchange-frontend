@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import ProductCard from '../../products/ProductCard'
 import { Loading, Error } from '../../shared/FetchStatus'
@@ -48,7 +48,7 @@ const PRODUCTS_QUERY = gql`
 
 const PagedProductList = ({ buildingBlocks, countries, sectors, subSectors, tags, productSortHint }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [itemOffset, setItemOffset] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
@@ -98,7 +98,9 @@ const PagedProductList = ({ buildingBlocks, countries, sectors, subSectors, tags
   return (
     <>
       <div className='pb-4 text-sm'>
-        {data.paginatedProducts.nodes && data.paginatedProducts.nodes.length ? format('wizard.results.productsDesc') : format('wizard.results.noProducts')}
+        {data.paginatedProducts.nodes && data.paginatedProducts.nodes.length
+          ? format('wizard.results.productsDesc')
+          : format('wizard.results.noProducts')}
       </div>
       {
         data.paginatedProducts.nodes && data.paginatedProducts.nodes.map((product) => {

@@ -1,27 +1,19 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import OrganizationForm from '../../../components/organizations/OrganizationForm'
-import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
+import { render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 import { organization } from './data/OrganizationForm'
 
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
-// Mock the next-auth's useSession.
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for the OrganizationForm component.', () => {
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
   const ORGANIZATION_NAME_TEST_ID = 'organization-name'
   const ORGANIZATION_WEBSITE_TEST_ID = 'organization-website'
   const ORGANIZATION_DESCRIPTION_TEST_ID = 'organization-description'
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
-
-  beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
-  })
 
   test('Should match snapshot - create.', () => {
     const { container } = render(
@@ -74,7 +66,7 @@ describe('Unit tests for the OrganizationForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test organization name')
     expect(getByTestId(ORGANIZATION_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await user.clear(screen.getByLabelText(/Name/))
+    await act(async () => waitFor(() => user.clear(screen.getByLabelText(/Name/))))
     expect(getByTestId(ORGANIZATION_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test organization name 2')

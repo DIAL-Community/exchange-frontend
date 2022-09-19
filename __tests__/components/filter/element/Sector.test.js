@@ -1,23 +1,15 @@
 import { fireEvent } from '@testing-library/dom'
-import {
-  mockRouterImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../../utils/CustomMockedProvider'
 import { SectorAutocomplete } from '../../../../components/filter/element/Sector'
 import { SECTOR_SEARCH_QUERY } from '../../../../queries/sector'
+import { mockNextUseRouter } from '../../../utils/nextMockImplementation'
 import { sectors } from './data/SectorAutocomplete'
 
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the SectorAutocomplete component.', () => {
   const mockSectors = generateMockApolloData(SECTOR_SEARCH_QUERY, { search: '', locale: 'en' }, null, sectors)
   const SECTOR_SEARCH_TEST_ID = 'sector-search'
-
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
 
   test('Should match snapshot', async () => {
     const { container } = render(

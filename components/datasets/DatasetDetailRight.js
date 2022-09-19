@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
+import { useCallback } from 'react'
+import { useSession } from 'next-auth/react'
 import IframeResizer from 'iframe-resizer-react'
 import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
@@ -13,9 +14,9 @@ import DatasetDetailSdgs from './DatasetDetailSdgs'
 
 const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
   const canEdit = session?.user?.canEdit
   const slugNameMapping = (() => {
     const map = {}

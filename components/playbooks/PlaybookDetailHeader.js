@@ -1,4 +1,4 @@
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
@@ -9,7 +9,7 @@ const PlaybookDetailHeader = ({ playbook }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const canEdit = session?.user?.canEdit
 

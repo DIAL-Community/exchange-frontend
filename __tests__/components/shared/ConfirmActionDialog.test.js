@@ -1,10 +1,9 @@
 import { fireEvent } from '@testing-library/react'
 import ConfirmActionDialog from '../../../components/shared/ConfirmActionDialog'
-import { mockObserverImplementation, mockRouterImplementation, render } from '../../test-utils'
+import { mockObserverImplementation, render } from '../../test-utils'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the ConfirmActionDialog component.', () => {
   const CONFIRM_BUTTON_TEST_ID = 'confirm-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
@@ -18,7 +17,6 @@ describe('Unit test for the ConfirmActionDialog component.', () => {
   const CONFIRM_ACTION_DIALOG_TEST_ID = 'confirm-action-dialog'
 
   beforeAll(
-    mockRouterImplementation,
     window.IntersectionObserver = mockObserverImplementation()
   )
 
@@ -50,7 +48,7 @@ describe('Unit test for the ConfirmActionDialog component.', () => {
       />
     )
     fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID))
-    expect(mockSetIsDialogOpen).toBeCalled()
+    expect(mockSetIsDialogOpen).toHaveBeenCalled()
   })
 
   test('Should call the onConfirm function after clicking the "Confirm" button.', () => {
@@ -64,6 +62,6 @@ describe('Unit test for the ConfirmActionDialog component.', () => {
       />
     )
     fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID))
-    expect(mockOnConfirm).toBeCalled()
+    expect(mockOnConfirm).toHaveBeenCalled()
   })
 })

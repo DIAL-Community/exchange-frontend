@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { FaSpinner } from 'react-icons/fa'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { gql, useLazyQuery } from '@apollo/client'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
@@ -23,9 +23,9 @@ const CANDIDATE_ROLE_QUERY = gql`
 
 const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
   const { locale } = useRouter()
 
   const [loading, setLoading] = useState(false)

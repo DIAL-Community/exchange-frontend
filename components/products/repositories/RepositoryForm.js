@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import { ToastContext } from '../../../lib/ToastContext'
 import {
@@ -16,7 +16,7 @@ import Checkbox from '../../shared/Checkbox'
 
 const RepositoryForm = ({ productRepository, productSlug }) => {
   const router = useRouter()
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })

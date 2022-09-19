@@ -1,23 +1,15 @@
 import { fireEvent } from '@testing-library/dom'
-import {
-  mockRouterImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../../utils/CustomMockedProvider'
 import { SDGAutocomplete } from '../../../../components/filter/element/SDG'
 import { SDG_SEARCH_QUERY } from '../../../../queries/sdg'
+import { mockNextUseRouter } from '../../../utils/nextMockImplementation'
 import { sdgs } from './data/SDGAutocomlete'
 
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the SDGAutocomplete component.', () => {
   const mockSdgs = generateMockApolloData(SDG_SEARCH_QUERY, { search: '' }, null, sdgs)
   const SGD_SEARCH_TEST_ID = 'sdg-search'
-
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
 
   test('Should match snapshot', async () => {
     const { container } = render(

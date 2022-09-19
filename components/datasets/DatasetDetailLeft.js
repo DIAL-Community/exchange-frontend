@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
+import { useCallback } from 'react'
+import { useSession } from 'next-auth/react'
 import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
@@ -10,9 +11,9 @@ import { ObjectType } from '../../lib/constants'
 
 const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
   const router = useRouter()
   const { locale } = router
 

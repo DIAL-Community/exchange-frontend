@@ -1,6 +1,7 @@
 import { useApolloClient } from '@apollo/client'
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { PRODUCT_SEARCH_QUERY } from '../../../queries/product'
 import { fetchSelectOptions } from '../../../queries/utils'
 import Pill from '../../shared/Pill'
@@ -17,7 +18,7 @@ export const ProductAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('product.label') })
 
@@ -56,7 +57,7 @@ export const ProductFilters = (props) => {
   const { products, setProducts } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeProduct = (productSlug) => {
     setProducts(products.filter(({ slug }) => slug !== productSlug))

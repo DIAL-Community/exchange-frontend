@@ -1,22 +1,14 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import userEvent from '@testing-library/user-event'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  mockUnauthorizedUserSessionImplementation,
-  render,
-  waitForAllEffects,
-  waitForAllEffectsAndSelectToLoad
-} from '../../test-utils'
+import { render, waitForAllEffects, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import BuildingBlockForm from '../../../components/building-blocks/BuildingBlockForm'
 import { CREATE_BUILDING_BLOCK } from '../../../mutations/building-block'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { buildingBlock, createBuildingBlockSuccess } from './data/BuildingBlockForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for BuildingBlockForm component.', () => {
   const BUILDING_BLOCK_NAME_TEST_ID = 'building-block-name'
   const BUILDING_BLOCK_MATURITY_TEST_ID = 'building-block-maturity'
@@ -25,13 +17,9 @@ describe('Unit tests for BuildingBlockForm component.', () => {
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
 
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
-
   describe('Should render Unauthorized component for', () => {
     test('unauthorized user.', async () => {
-      mockUnauthorizedUserSessionImplementation()
+      mockNextAuthUseSession(statuses.UNAUTHENTICATED)
       const { container } = render(
         <CustomMockedProvider>
           <BuildingBlockForm />
@@ -42,7 +30,7 @@ describe('Unit tests for BuildingBlockForm component.', () => {
     })
 
     test('user who is not an admin.', async () => {
-      mockSessionImplementation()
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
       const { container } = render(
         <CustomMockedProvider>
           <BuildingBlockForm />
@@ -54,7 +42,7 @@ describe('Unit tests for BuildingBlockForm component.', () => {
   })
 
   test('Should render BuildingBlockForm component for admin user.', async () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const { container } = render(
       <CustomMockedProvider>
         <BuildingBlockForm />
@@ -66,7 +54,7 @@ describe('Unit tests for BuildingBlockForm component.', () => {
 
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
     const user = userEvent.setup()
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const { container, getByTestId, getByText } = render(
       <CustomMockedProvider>
         <BuildingBlockForm />
@@ -80,7 +68,7 @@ describe('Unit tests for BuildingBlockForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test building block name')
     expect(getByTestId(BUILDING_BLOCK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await user.clear(screen.getByLabelText(/Name/))
+    await act(async () => waitFor(() => user.clear(screen.getByLabelText(/Name/))))
     expect(getByTestId(BUILDING_BLOCK_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test building block name 2')
@@ -100,7 +88,7 @@ describe('Unit tests for BuildingBlockForm component.', () => {
 
   describe('Should display toast on submit -', () => {
     test('Success.', async () => {
-      mockSessionImplementation(true)
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
       const mockCreateBuildingBlock = generateMockApolloData(
         CREATE_BUILDING_BLOCK,
         {
@@ -121,12 +109,13 @@ describe('Unit tests for BuildingBlockForm component.', () => {
       await waitForAllEffectsAndSelectToLoad(container)
       await act(async () => {
         fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-        await screen.findByText('Building Block submitted successfully')
       })
+      await screen.findByText('Building Block submitted successfully')
+      expect(container).toMatchSnapshot()
     })
 
     test('Failure.', async () => {
-      mockSessionImplementation(true)
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
       const errorMessage = 'An error occurred'
       const mockCreateBuildingBlock = generateMockApolloData(
         CREATE_BUILDING_BLOCK,
@@ -147,9 +136,10 @@ describe('Unit tests for BuildingBlockForm component.', () => {
       await waitForAllEffectsAndSelectToLoad(container)
       await act(async () => {
         fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-        await screen.findByText('Building Block submission failed')
-        await screen.findByText(errorMessage)
       })
+      await screen.findByText('Building Block submission failed')
+      await screen.findByText(errorMessage)
+      expect(container).toMatchSnapshot()
     })
   })
 })

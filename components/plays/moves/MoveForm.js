@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { gql, useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
@@ -74,7 +74,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
   const { locale } = useRouter()
   const [createResource, { data }] = useMutation(CREATE_RESOURCE)
   const { showToast } = useContext(ToastContext)
@@ -251,7 +251,7 @@ const ResourceRenderer = (props) => {
 
 const FormTextEditor = ({ control, fieldLabel, fieldName }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
@@ -280,7 +280,7 @@ export const MoveForm = ({ playbook, play, move }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const [session] = useSession()
+  const { data: session } = useSession()
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 

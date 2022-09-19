@@ -1,19 +1,13 @@
 import { fireEvent, screen } from '@testing-library/react'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { WORKFLOW_SEARCH_QUERY } from '../../../queries/workflow'
 import BuildingBlockDetailWorkflows from '../../../components/building-blocks/BuildingBlockDetailWorkflows'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 import { workflows } from './data/BuildingBlockDetailWorkflows'
 import { buildingBlock } from './data/BuildingBlockForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the BuildingBlockDetailWorkflows component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
@@ -23,11 +17,6 @@ describe('Unit test for the BuildingBlockDetailWorkflows component.', () => {
   const PILL_TEST_ID = 'pill'
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
   const mockWorkflows = generateMockApolloData(WORKFLOW_SEARCH_QUERY, { search: '' }, null, workflows)
-
-  beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
-  })
 
   test('Should match snapshot - without edit permission.', () => {
     const { container } = render(

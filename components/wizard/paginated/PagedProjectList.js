@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import ProjectCard from '../../projects/ProjectCard'
 import { Loading, Error } from '../../shared/FetchStatus'
@@ -60,7 +60,7 @@ const PRODUCTS_QUERY = gql`
 
 const PagedProjectList = ({ countries, sectors, subSectors, tags, projectSortHint }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [itemOffset, setItemOffset] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
@@ -108,7 +108,9 @@ const PagedProjectList = ({ countries, sectors, subSectors, tags, projectSortHin
   return (
     <>
       <div className='pb-4 text-sm'>
-        {data.paginatedProjects.nodes && data.paginatedProjects.nodes.length ? format('wizard.results.similarProjectsDesc') : format('wizard.results.noProjects')}
+        {data.paginatedProjects.nodes && data.paginatedProjects.nodes.length
+          ? format('wizard.results.similarProjectsDesc')
+          : format('wizard.results.noProjects')}
       </div>
       {
         data.paginatedProjects.nodes && data.paginatedProjects.nodes.map((project) => {

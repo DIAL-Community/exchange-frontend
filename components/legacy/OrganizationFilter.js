@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { MdClose } from 'react-icons/md'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
@@ -18,7 +18,7 @@ const OrganizationFilter = (props) => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { aggregator, endorser, sectors, countries, years } = useContext(OrganizationFilterContext)
   const { setAggregator, setEndorser, setSectors, setCountries, setYears } = useContext(OrganizationFilterDispatchContext)
