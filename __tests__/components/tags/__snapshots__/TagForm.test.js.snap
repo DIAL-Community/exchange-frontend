@@ -177,7 +177,7 @@ exports[`Unit tests for the TagForm component. Should match snapshot - edit. 1`]
     class="fixed inset-0 flex items-center justify-center"
   >
     <div
-      class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col ease-out duration-300 opacity-0 scale-95"
+      class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col opacity-100 scale-100"
       data-headlessui-state="open"
       id="headlessui-dialog-panel-:r4:"
     >
