@@ -5,11 +5,12 @@ export const CATEGORY_INDICATOR_QUERY = gql`
     categoryIndicator(slug: $slug) {
       slug
       name
+      id
       indicatorType
       weight
       dataSource
       scriptName
-      categoryIndicatorDescription {
+      categoryIndicatorDescription  {
         description
       } 
     }

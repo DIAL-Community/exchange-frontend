@@ -1099,6 +1099,8 @@ export const en = {
   'toast.rubric-category.submit.failure': 'Rubric Category submission failed',
   'toast.rubric-category.delete.success': 'Rubric Category deleted successfully',
   'toast.rubric-category.delete.failure': 'Rubric Category deletion failed',
+  'toast.category-indicator.delete.success': 'Category Indicator deleted successfully',
+  'toast.category-indicator.delete.failure': 'Category Indicator deletion failed',
 
   'locale.label': 'Locale',
   'locale.english.label': 'English (en)',
@@ -1143,5 +1145,6 @@ export const en = {
   'categoryIndicator.weight': 'Weight',
   'categoryIndicator.indicatorType': 'Indicator type',
   'categoryIndicator.dataSource': 'Data source',
-  'categoryIndicator.scriptName': 'Script name'
+  'categoryIndicator.scriptName': 'Script name',
+  'categoryIndicator.delete.confirm.message': 'Are you sure you want to delete this Category Indicator?'
 }
