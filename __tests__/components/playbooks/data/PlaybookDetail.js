@@ -18,6 +18,7 @@ module.exports = {
             id: 10,
             slug: 'd4d_understand_the_problem',
             name: 'D4D: Understand the Problem',
+            author: 'Test Author',
             imageFile: '/assets/playbooks/playbook_placeholder.png',
             playDescription: {
               id: 10,
@@ -69,6 +70,7 @@ module.exports = {
         slug: 'example_playbook',
         name: 'Example Playbook',
         imageFile: '/assets/playbooks/playbook_placeholder.png',
+        author: 'Test Author',
         playbookDescription: {
           id: 4,
           overview: 'Just an example of playbook.',

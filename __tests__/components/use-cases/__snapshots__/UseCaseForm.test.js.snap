@@ -323,6 +323,7 @@ exports[`Unit tests for UseCaseForm component. Should display failure toast on s
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -357,6 +358,11 @@ exports[`Unit tests for UseCaseForm component. Should display failure toast on s
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
               </div>
               <div
@@ -739,6 +745,7 @@ exports[`Unit tests for UseCaseForm component. Should display success toast on s
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -773,6 +780,11 @@ exports[`Unit tests for UseCaseForm component. Should display success toast on s
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
               </div>
               <div
@@ -1149,6 +1161,7 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -1183,6 +1196,11 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
               </div>
               <div
@@ -1555,6 +1573,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -1589,6 +1608,11 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
               </div>
               <div
@@ -1939,6 +1963,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -1973,6 +1998,11 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
               </div>
               <div

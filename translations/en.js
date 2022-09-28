@@ -901,6 +901,7 @@ export const en = {
   'candidate-organization.submit.success': 'Candidate Organization submitted successfully',
   'candidate-organization.submit.failure': 'Candidate Organization submission failed',
 
+  'candidate.header': 'Candidate',
   'candidate.rejected': 'Declined',
   'candidate.approved': 'Approved',
   'candidate.reject': 'Decline',
@@ -916,6 +917,8 @@ export const en = {
   'entity.process': 'Start Processing File',
   'entity.filename': 'File Name',
   'entity.uploaded': 'File uploaded and processed successfully.',
+
+  'upload.supportedFormats': 'Note: Supported file types are jpg, png, and bmp',
 
   'app.exporting': 'Exporting Data ...',
   'app.exportAsJson': 'Export Data (JSON)',
@@ -1011,7 +1014,7 @@ export const en = {
 
   'playbook.submittedToCreatePlay': 'Playbook saved. Navigating to create play ...',
   'playbook.autoSaved': 'Playbook saved ...',
-  'playbook.author': 'Playbook Author',
+  'playbook.author': 'Playbook Author(s)',
   'playbook.cover': 'Playbook Cover',
 
   'playbook.openEmbedDialog': 'Create Embed',

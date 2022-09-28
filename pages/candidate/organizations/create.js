@@ -10,9 +10,11 @@ const CreateOrganization = () => (
     <QueryNotification />
     <GradientBackground />
     <Header />
-    <ClientOnly>
-      <OrganizationForm />
-    </ClientOnly>
+    <div className='max-w-catalog mx-auto'>
+      <ClientOnly>
+        <OrganizationForm />
+      </ClientOnly>
+    </div>
     <Footer />
   </>
 )
