@@ -107,7 +107,7 @@ const ProjectForm = React.memo(({ project }) => {
       name: project?.name,
       startDate: project?.startDate ?? null,
       endDate: project?.endDate ?? null,
-      projectUrl: project?.projectUrl,
+      projectUrl: project?.projectWebsite,
       description: project?.projectDescription?.description
     }
   })
@@ -137,8 +137,8 @@ const ProjectForm = React.memo(({ project }) => {
       const variables = {
         name,
         slug,
-        startDate,
-        endDate,
+        startDate: startDate || null,
+        endDate: endDate || null,
         projectUrl,
         description
       }
