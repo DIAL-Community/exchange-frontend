@@ -2,7 +2,7 @@ import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 
 const EntityUpload = () => {
   const { formatMessage } = useIntl()
@@ -13,7 +13,7 @@ const EntityUpload = () => {
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
-  const [session] = useSession()
+  const { data: session } = useSession()
   const fileRef = useRef()
   const captchaRef = useRef()
 
@@ -75,7 +75,7 @@ const EntityUpload = () => {
                   className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
                 />
               </div>
-              <ReCAPTCHA sitekey='6LfAGscbAAAAAFW_hQyW5OxXPhI7v6X8Ul3FJrsa' onChange={setCaptcha} ref={captchaRef} />
+              <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} onChange={setCaptcha} ref={captchaRef} />
               <div className={`flex items-center justify-between font-semibold text-sm mt-4 ${file ? '' : 'pb-4'}`}>
                 <div className='flex'>
                   <button

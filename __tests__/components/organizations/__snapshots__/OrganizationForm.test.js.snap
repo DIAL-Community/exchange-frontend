@@ -148,6 +148,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -182,6 +183,11 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
                 <label
                   class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
@@ -257,7 +263,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                             autocomplete="off"
                             autocorrect="off"
                             class="react-select__input"
-                            id="react-select-2-input"
+                            id="react-select-id-endorserLevel"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -292,11 +298,6 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                         </div>
                       </div>
                     </div>
-                    <input
-                      name="endorserLevel"
-                      type="hidden"
-                      value="none"
-                    />
                   </div>
                 </div>
                 <label
@@ -584,6 +585,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -618,6 +620,11 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
                 <label
                   class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
@@ -693,7 +700,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                             autocomplete="off"
                             autocorrect="off"
                             class="react-select__input"
-                            id="react-select-3-input"
+                            id="react-select-id-endorserLevel"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -728,11 +735,6 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                         </div>
                       </div>
                     </div>
-                    <input
-                      name="endorserLevel"
-                      type="hidden"
-                      value="none"
-                    />
                   </div>
                 </div>
                 <label

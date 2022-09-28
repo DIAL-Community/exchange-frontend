@@ -1,7 +1,7 @@
 import { saveAs } from 'file-saver'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { FilterContext } from '../context/FilterContext'
 import { ProductFilterContext } from '../context/ProductFilterContext'
@@ -31,7 +31,7 @@ const SearchFilter = ({
   const { locale } = useRouter()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [searchTerm, setSearchTerm] = useState(search)
 
@@ -80,7 +80,7 @@ const SearchFilter = ({
 
     const reactEditPaths = [
       'playbooks', 'plays', 'organizations', 'products', 'datasets', 'use_cases', 'building_blocks', 'workflows',
-      'countries'
+      'countries', 'rubric_categories'
     ]
     if (reactEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails

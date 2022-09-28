@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { createRef, useEffect, useState } from 'react'
+import { createRef, useCallback, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 import Image from 'next/image'
@@ -17,7 +17,7 @@ const containerElementStyle = `
 
 const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, { ...values })
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const sdgTargetContainer = createRef()
   const [sdgTargetOverflow, setSdgTargetOverflow] = useState(false)
@@ -71,16 +71,13 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
       : filterDisplayed ? 'col-span-9 lg:col-span-10 xl:col-span-4' : 'col-span-9 md:col-span-10 lg:col-span-4'
   }
 
-  const navClickHandler = () => {
-  }
-
   return (
     <Link href={`/${collectionPath}/${useCase.slug}`}>
       <a {... newTab && { target: '_blank' }}>
         {
           listType === 'list'
             ? (
-              <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className={containerElementStyle}>
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                     <div className={`${nameColSpan(useCase)} text-base font-semibold ${ellipsisTextStyle}`}>
@@ -162,7 +159,7 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
               </div>
             )
             : (
-              <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className={containerElementStyle}>
                 <div className='border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='flex flex-row p-1.5 border-b border-dial-gray'>
                     <div className='ml-auto text-button-gray-light text-sm font-semibold'>

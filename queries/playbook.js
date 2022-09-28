@@ -16,6 +16,7 @@ export const PLAYBOOK_QUERY = gql`
       id
       slug
       name
+      author
       playbookDescription {
         id
         overview

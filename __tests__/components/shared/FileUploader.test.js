@@ -1,6 +1,9 @@
-import { render, fireEvent } from '@testing-library/react'
+import { fireEvent } from '@testing-library/react'
+import { render } from '../../test-utils'
 import FileUploader from '../../../components/shared/FileUploader'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 
+mockNextUseRouter()
 describe('Unit test for the FileUploader component.', () => {
   const TEST_ID = 'file-uploader'
 
@@ -13,6 +16,6 @@ describe('Unit test for the FileUploader component.', () => {
     const onChange = jest.fn()
     const input = render(<FileUploader onChange={onChange} />).getByTestId(TEST_ID)
     fireEvent.change(input, 'test-filename')
-    expect(onChange).toBeCalledTimes(1)
+    expect(onChange).toHaveBeenCalledTimes(1)
   })
 })

@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { useState, useEffect, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 import EditableSection from '../shared/EditableSection'
@@ -23,7 +23,7 @@ const DatasetDetailCountries = ({ dataset, canEdit }) => {
 
   const [updateDatasetCountries, { data, loading }] = useMutation(UPDATE_DATASET_ORGANIZATIONS)
 
-  const [session] = useSession()
+  const { data: session } = useSession()
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)
 

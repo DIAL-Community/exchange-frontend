@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Unit test for the ProductDetailOrganizations component. Should render pricing data structure for commercial product. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>

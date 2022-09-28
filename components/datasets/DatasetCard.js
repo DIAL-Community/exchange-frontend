@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
 import Image from 'next/image'
 import { ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
@@ -16,10 +16,7 @@ const containerElementStyle = `
 
 const DatasetCard = ({ dataset, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-
-  const navClickHandler = () => {
-  }
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   useEffect(() => {
     ReactTooltip.rebuild()
@@ -31,7 +28,7 @@ const DatasetCard = ({ dataset, listType, newTab = false }) => {
         {
           listType === 'list'
             ? (
-              <div onClick={() => navClickHandler()} className={`${containerElementStyle}`}>
+              <div className={`${containerElementStyle}`}>
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='flex flex-row flex-wrap lg:gap-x-4 px-4' style={{ minHeight: '4.5rem' }}>
                     <div className={`w-full lg:w-4/12 font-semibold my-auto relative ${ellipsisTextStyle}`}>
@@ -61,7 +58,7 @@ const DatasetCard = ({ dataset, listType, newTab = false }) => {
               </div>
             )
             : (
-              <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className={containerElementStyle}>
                 <div className='h-full flex flex-col border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='flex flex-row gap-x-1.5 p-1.5 border-b border-dial-gray dataset-card-header'>
                     {

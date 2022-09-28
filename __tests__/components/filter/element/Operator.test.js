@@ -1,23 +1,15 @@
 import { fireEvent } from '@testing-library/dom'
-import {
-  mockRouterImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../../utils/CustomMockedProvider'
 import { OperatorAutocomplete } from '../../../../components/filter/element/Operator'
 import { OPERATOR_SEARCH_QUERY } from '../../../../queries/operator'
+import { mockNextUseRouter } from '../../../utils/nextMockImplementation'
 import { operatorServiceOnly } from './data/OperatorAutocomplete'
 
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the OperatorAutocomplete component.', () => {
   const mockOperators = generateMockApolloData(OPERATOR_SEARCH_QUERY, { search: '' }, null, operatorServiceOnly)
   const OPERATOR_SEARCH_TEST_ID = 'operator-search'
-
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
 
   test('Should match snapshot', async () => {
     const { container } = render(

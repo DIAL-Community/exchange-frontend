@@ -178,6 +178,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
                         defaultValue={sectorOptions.find(({ slug }) => slug === useCase?.sector.slug)}
                         render={({ field }) => (
                           <Select
+                            name='use-case-sector'
                             {...field}
                             isSearch
                             options={sectorOptions}
@@ -198,6 +199,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
                         rules={{ required: format('validation.required') }}
                         render={({ field }) => (
                           <Select
+                            name='use-case-maturity'
                             {...field}
                             isSearch
                             options={maturityOptions}
@@ -267,6 +269,6 @@ const UseCaseForm = React.memo(({ useCase }) => {
   )
 })
 
-UseCaseForm.displayName = 'ProjectForm'
+UseCaseForm.displayName = 'UseCaseForm'
 
 export default UseCaseForm

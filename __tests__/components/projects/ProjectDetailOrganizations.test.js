@@ -1,21 +1,13 @@
 import { fireEvent, screen } from '@testing-library/react'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad,
-} from '../../test-utils'
+import { render, waitForAllEffects, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { ORGANIZATION_SEARCH_QUERY } from '../../../queries/organization'
 import ProjectDetailOrganizations from '../../../components/projects/ProjectDetailOrganizations'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { organizations, organizationOwnerUserProps } from './data/ProjectDetailOrganizations'
 import { projectOrganization } from './data/ProjectForm'
 
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
-// Mock the next-auth's useSession.
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the ProjectDetailOrganizations component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
@@ -27,12 +19,7 @@ describe('Unit test for the ProjectDetailOrganizations component.', () => {
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
   const mockOrganizations = generateMockApolloData(ORGANIZATION_SEARCH_QUERY, { search: '' }, null, organizations)
 
-  beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
-  })
-
-  test('Should match snapshot - without edit permission.', () => {
+  test('Should match snapshot - without edit permission.', async () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockOrganizations]}>
         <ProjectDetailOrganizations
@@ -41,10 +28,11 @@ describe('Unit test for the ProjectDetailOrganizations component.', () => {
         />
       </CustomMockedProvider>
     )
+    await waitForAllEffects()
     expect(container).toMatchSnapshot()
   })
 
-  test('Should match snapshot - with edit permission.', () => {
+  test('Should match snapshot - with edit permission.', async () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockOrganizations]}>
         <ProjectDetailOrganizations
@@ -53,6 +41,7 @@ describe('Unit test for the ProjectDetailOrganizations component.', () => {
         />
       </CustomMockedProvider>
     )
+    await waitForAllEffects()
     expect(container).toMatchSnapshot()
   })
 
@@ -65,6 +54,9 @@ describe('Unit test for the ProjectDetailOrganizations component.', () => {
         />
       </CustomMockedProvider>
     )
+
+    await waitForAllEffects()
+
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await waitForAllEffectsAndSelectToLoad(container)
     expect(container).toMatchSnapshot()
@@ -79,6 +71,9 @@ describe('Unit test for the ProjectDetailOrganizations component.', () => {
         />
       </CustomMockedProvider>
     )
+
+    await waitForAllEffects()
+
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await waitForAllEffectsAndSelectToLoad(container)
     await screen.findByText(PROJECT_TEST_ORGANIZATION_LABEL)
@@ -96,6 +91,9 @@ describe('Unit test for the ProjectDetailOrganizations component.', () => {
         />
       </CustomMockedProvider>
     )
+
+    await waitForAllEffects()
+
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await waitForAllEffectsAndSelectToLoad(container)
 
@@ -120,7 +118,7 @@ describe('Unit test for the ProjectDetailOrganizations component.', () => {
   })
 
   test('Should render Organizations with read only owned organization pill', async () => {
-    mockSessionImplementation(false, organizationOwnerUserProps)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, organizationOwnerUserProps)
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockOrganizations]}>
         <ProjectDetailOrganizations
@@ -129,6 +127,9 @@ describe('Unit test for the ProjectDetailOrganizations component.', () => {
         />
       </CustomMockedProvider>
     )
+
+    await waitForAllEffects()
+
     fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
     await waitForAllEffectsAndSelectToLoad(container)
 

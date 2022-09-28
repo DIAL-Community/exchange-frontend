@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Unit tests for playbook interaction. Privileged user should be able to edit the playbook. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -281,6 +281,18 @@ Object {
                 class="fr-view tiny-editor text-dial-gray-dark"
               >
                 The outcome of this playbook is expected.
+              </div>
+              <div
+                class="h4"
+              >
+                Playbook Author(s)
+                :
+              </div>
+              <div
+                class="text-dial-gray-dark"
+              >
+                 
+                Test Author
               </div>
             </div>
             <div
@@ -717,6 +729,18 @@ Object {
             >
               The outcome of this playbook is expected.
             </div>
+            <div
+              class="h4"
+            >
+              Playbook Author(s)
+              :
+            </div>
+            <div
+              class="text-dial-gray-dark"
+            >
+               
+              Test Author
+            </div>
           </div>
           <div
             class="infinite-scroll-component__outerdiv"
@@ -928,7 +952,7 @@ Object {
 `;
 
 exports[`Unit tests for playbook interaction. Should render error message when the apollo is returning errors. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -1045,7 +1069,7 @@ Object {
 `;
 
 exports[`Unit tests for playbook interaction. Should render playbook data when apollo query returning playbook data. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -1301,6 +1325,18 @@ Object {
                 class="fr-view tiny-editor text-dial-gray-dark"
               >
                 The outcome of this playbook is expected.
+              </div>
+              <div
+                class="h4"
+              >
+                Playbook Author(s)
+                :
+              </div>
+              <div
+                class="text-dial-gray-dark"
+              >
+                 
+                Test Author
               </div>
             </div>
             <div
@@ -1712,6 +1748,18 @@ Object {
               class="fr-view tiny-editor text-dial-gray-dark"
             >
               The outcome of this playbook is expected.
+            </div>
+            <div
+              class="h4"
+            >
+              Playbook Author(s)
+              :
+            </div>
+            <div
+              class="text-dial-gray-dark"
+            >
+               
+              Test Author
             </div>
           </div>
           <div

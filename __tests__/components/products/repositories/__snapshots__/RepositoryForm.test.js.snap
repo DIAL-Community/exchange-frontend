@@ -1,5 +1,207 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`RepositoryForm component. Should display success toast on submit. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  >
+    <div
+      class="Toastify__toast-container Toastify__toast-container--top-center"
+      style="width: auto;"
+    >
+      <div
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify--animate Toastify__slide-enter--top-center"
+        id="toastId"
+        style="--nth: 1; --len: 1;"
+      >
+        <div
+          class="Toastify__toast-body"
+          role="alert"
+        >
+          <div
+            class="Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter"
+          >
+            <svg
+              fill="var(--toastify-icon-color-success)"
+              height="100%"
+              viewBox="0 0 24 24"
+              width="100%"
+            >
+              <path
+                d="M12 0a12 12 0 1012 12A12.014 12.014 0 0012 0zm6.927 8.2l-6.845 9.289a1.011 1.011 0 01-1.43.188l-4.888-3.908a1 1 0 111.25-1.562l4.076 3.261 6.227-8.451a1 1 0 111.61 1.183z"
+              />
+            </svg>
+          </div>
+          <div>
+            Repository submitted successfully
+          </div>
+        </div>
+        <button
+          aria-label="close"
+          class="Toastify__close-button Toastify__close-button--light"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 14 16"
+          >
+            <path
+              d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <div
+          aria-hidden="true"
+          aria-label="notification timer"
+          class="Toastify__progress-bar Toastify__progress-bar--animated Toastify__progress-bar-theme--light Toastify__progress-bar--success"
+          role="progressbar"
+          style="animation-duration: 1000ms; animation-play-state: paused; opacity: 0;"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="block"
+  >
+    <div
+      class="px-4 sm:px-0 max-w-full sm:max-w-prose mr-auto"
+      id="content"
+    >
+      <form>
+        <div
+          class="bg-edit border-t shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col"
+        >
+          <div
+            class="text-2xl font-bold text-dial-blue pb-4"
+          >
+            Edit Repository 1
+          </div>
+          <div
+            class="mb-4"
+          >
+            <div
+              class="flex flex-col lg:flex-col gap-4"
+            >
+              <div
+                class="w-full lg:w-full flex flex-col gap-y-3"
+                data-testid="product-repository-name"
+              >
+                <label
+                  class="form-field-wrapper form-field-label"
+                >
+                  <p
+                    class="required-field"
+                  >
+                    Repository Name
+                  </p>
+                  <input
+                    class="w-full"
+                    name="name"
+                    placeholder="Name of this repository."
+                    type="text"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div
+                class="w-full lg:w-full flex flex-col gap-y-3"
+              >
+                <label
+                  class="form-field-wrapper form-field-label"
+                >
+                  <p>
+                    Repository Location
+                  </p>
+                  <input
+                    class="w-full"
+                    name="absoluteUrl"
+                    placeholder="Abolute path / url of the repository."
+                    type="text"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div
+                class="w-full lg:w-full flex flex-col gap-y-3"
+              >
+                <label
+                  class="form-field-wrapper form-field-label"
+                >
+                  <p>
+                    Repository Description
+                  </p>
+                  <input
+                    class="w-full"
+                    name="description"
+                    placeholder="Short description of this repository."
+                    type="text"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div
+                class="w-full lg:w-full flex flex-col gap-y-3"
+              >
+                <label
+                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  data-testid="organization-is-mni"
+                >
+                  <input
+                    class="h-8 w-8"
+                    data-testid="checkbox"
+                    name="mainRepository"
+                    type="checkbox"
+                  />
+                  This is main repository.
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            class="font-semibold flex flex-row gap-2 text-sm mt-2"
+          >
+            <div
+              class="flex flex-wrap text-xl gap-3"
+            >
+              <button
+                class="submit-button"
+                data-testid="submit-button"
+                disabled=""
+                type="submit"
+              >
+                Submit
+                <svg
+                  class="spinner ml-3"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+              </button>
+              <button
+                class="cancel-button"
+                disabled=""
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`RepositoryForm component. Should match snapshot: Create. 1`] = `
 <div>
   <div

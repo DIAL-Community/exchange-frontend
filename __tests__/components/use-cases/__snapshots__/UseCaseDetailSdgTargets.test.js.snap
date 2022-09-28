@@ -73,7 +73,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-4-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -250,7 +250,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
     >
       <div
         class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
-        href="/sdgs/ts"
+        href="/sdgs/sdg_target_slug_1"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -273,7 +273,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
       </div>
       <div
         class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
-        href="/sdgs/as"
+        href="/sdgs/sdg_target_slug_2"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -370,7 +370,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-2-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -513,7 +513,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
     >
       <div
         class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
-        href="/sdgs/ts"
+        href="/sdgs/sdg_target_slug_1"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -536,7 +536,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
       </div>
       <div
         class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
-        href="/sdgs/as"
+        href="/sdgs/sdg_target_slug_2"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -633,7 +633,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should remove a p
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-3-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"

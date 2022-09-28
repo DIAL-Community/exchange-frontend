@@ -1,5 +1,6 @@
 import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import classNames from 'classnames'
 import { COUNTRY_SEARCH_QUERY } from '../../../queries/country'
 import { fetchSelectOptions } from '../../../queries/utils'
@@ -17,7 +18,7 @@ export const CountryAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('country.label') })
 
@@ -56,7 +57,7 @@ export const CountryFilters = (props) => {
   const { countries, setCountries } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeCountry = (countrySlug) => {
     setCountries(countries.filter(({ slug }) => slug !== countrySlug))

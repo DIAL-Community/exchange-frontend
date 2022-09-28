@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useCallback, useContext } from 'react'
 import { useForm } from 'react-hook-form'
@@ -13,7 +13,7 @@ import { CREATE_COUNTRY } from '../../mutations/country'
 const CountryForm = ({ isOpen, onClose, country }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)

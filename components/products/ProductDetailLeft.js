@@ -1,7 +1,7 @@
 import { gql, useLazyQuery } from '@apollo/client'
 import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
@@ -26,7 +26,7 @@ const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
 
 const ProductDetailLeft = ({ product, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
   const { locale } = router
@@ -272,7 +272,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
               {
                 contactState === CONTACT_STATES[1] &&
                   <div className='mt-2'>
-                    <ReCAPTCHA sitekey='6LfAGscbAAAAAFW_hQyW5OxXPhI7v6X8Ul3FJrsa' onChange={updateContactInfo} ref={captchaRef} />
+                    <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} onChange={updateContactInfo} ref={captchaRef} />
                   </div>
               }
               {

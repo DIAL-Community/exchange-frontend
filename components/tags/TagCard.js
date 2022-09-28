@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import parse from 'html-react-parser'
 import { useUser } from '../../lib/hooks'
 import EditButton from '../shared/EditButton'
@@ -8,7 +8,7 @@ import TagForm from './TagForm'
 
 const TagCard = ({ tag, listType, displayEditButtons = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser } = useUser()
 

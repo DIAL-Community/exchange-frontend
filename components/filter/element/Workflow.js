@@ -1,5 +1,6 @@
 import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import classNames from 'classnames'
 import { WORKFLOW_SEARCH_QUERY } from '../../../queries/workflow'
 import Select from '../../shared/Select'
@@ -17,7 +18,7 @@ export const WorkflowAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('workflow.label') })
 
@@ -56,7 +57,7 @@ export const WorkflowFilters = (props) => {
   const { workflows, setWorkflows } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeWorkflow = (workflowId) => {
     setWorkflows(workflows.filter(({ slug }) => slug !== workflowId))

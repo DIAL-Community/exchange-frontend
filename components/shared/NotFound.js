@@ -1,9 +1,10 @@
 import { useIntl } from 'react-intl'
 import { FaExclamationCircle } from 'react-icons/fa'
+import { useCallback } from 'react'
 
 const NotFound = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='grid place-items-center bg-gradient-to-b from-dial-gray-light to-white'>

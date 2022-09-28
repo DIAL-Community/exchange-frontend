@@ -49,7 +49,11 @@ const EditUser = () => {
     <>
       <Header />
       <ClientOnly>
-        {loadingUserSession ? <Loading /> : isAdminUser ? <EditUserPageDefinition userId={userId} locale={locale} /> : <Unauthorized />}
+        {loadingUserSession
+          ? <Loading />
+          : isAdminUser
+            ? <EditUserPageDefinition userId={userId} locale={locale} />
+            : <Unauthorized />}
       </ClientOnly>
       <Footer />
     </>

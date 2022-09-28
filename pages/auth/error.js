@@ -1,10 +1,11 @@
 import Link from 'next/link'
+import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Header from '../../components/Header'
 
 export default function Error () {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <>

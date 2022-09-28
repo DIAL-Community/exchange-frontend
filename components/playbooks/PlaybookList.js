@@ -1,9 +1,9 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { Loading, Error } from '../shared/FetchStatus'
 import { FilterContext } from '../context/FilterContext'
 import { PlaybookFilterContext } from '../context/PlaybookFilterContext'
@@ -52,9 +52,9 @@ export const PLAYBOOKS_QUERY = gql`
 
 const PlaybookList = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const canEdit = session?.user?.canEdit
 

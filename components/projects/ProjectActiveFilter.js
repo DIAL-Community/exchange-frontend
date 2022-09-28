@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
@@ -19,7 +19,7 @@ const ProjectActiveFilter = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { sectors, countries, organizations, products, origins, sdgs, tags } = useContext(ProjectFilterContext)
   const { setSectors, setCountries, setOrganizations, setProducts, setOrigins, setSDGs, setTags } = useContext(ProjectFilterDispatchContext)

@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from 'react'
+import { useCallback, useContext, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { gql, useQuery } from '@apollo/client'
@@ -76,7 +76,7 @@ query SearchOrganizations(
 
 const EndorserPageInformation = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [selectedCity, setSelectedCity] = useState('')
   const [organization, setOrganization] = useState()

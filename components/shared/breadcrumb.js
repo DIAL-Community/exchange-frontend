@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
@@ -30,7 +30,8 @@ const basePathMappings = {
   users: 'user.header',
   moves: 'move.header',
   countries: 'country.header',
-  rubric_categories: 'rubric-categories.header'
+  rubric_categories: 'rubric-categories.header',
+  category_indicators: 'categoryIndicators.header'
 }
 
 const Breadcrumb = (props) => {
@@ -40,7 +41,7 @@ const Breadcrumb = (props) => {
   const [breadcrumbs, setBreadcrumbs] = useState([])
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   useEffect(() => {
     const linkPath = router.asPath.split('/')

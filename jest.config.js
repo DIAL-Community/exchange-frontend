@@ -32,7 +32,7 @@ module.exports = {
     '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
   },
   transformIgnorePatterns: [
-    '/node_modules/',
+    '/node_modules/(?!(somePkg)|react-dnd|dnd-core|@react-dnd)',
     '^.+\\.module\\.(css|sass|scss)$',
   ],
 }

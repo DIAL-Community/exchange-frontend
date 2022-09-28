@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { ToastContext } from '../../lib/ToastContext'
 
@@ -33,7 +33,7 @@ const SharableLink = ({ sharableLink }) => {
   const [shareStatus, setShareStatus] = useState('')
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { showToast } = useContext(ToastContext)
 

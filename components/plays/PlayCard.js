@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { gql, useMutation } from '@apollo/client'
@@ -29,7 +29,7 @@ const UPDATE_PLAY_ORDER = gql`
 
 const PlayCard = ({ playbook, play, sourceType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { currentPlays } = useContext(PlayListContext)
   const { setCurrentPlays } = useContext(PlayListDispatchContext)

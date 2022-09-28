@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the Header component. Should match snapshot. 1`] = `
+<div
+  class="py-1"
+  data-testid="admin-menu-items"
+  role="none"
+>
+  <a
+    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+    href="/users"
+    role="menuitem"
+  >
+    Users
+  </a>
+  <a
+    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+    href="http://localhost:3000//settings?user_email=some-fake@email.com&user_token=some-fake-user-token"
+    role="menuitem"
+  >
+    Settings
+  </a>
+  <a
+    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+    href="/sectors"
+    role="menuitem"
+  >
+    Sectors
+  </a>
+  <a
+    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+    href="/countries"
+    role="menuitem"
+  >
+    Countries
+  </a>
+  <a
+    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+    href="/tags"
+    role="menuitem"
+  >
+    Tags
+  </a>
+  <a
+    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+    href="/candidate/organizations"
+    role="menuitem"
+  >
+    Candidate Orgs
+  </a>
+  <a
+    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+    href="/candidate/products"
+    role="menuitem"
+  >
+    Candidate Products
+  </a>
+  <a
+    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+    href="/candidate/roles"
+    role="menuitem"
+  >
+    Candidate Roles
+  </a>
+  <a
+    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+    href="http://localhost:3000//deploys?user_email=some-fake@email.com&user_token=some-fake-user-token"
+    role="menuitem"
+  >
+    Deploys
+  </a>
+  <a
+    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+    href="http://localhost:3000//portal_views?user_email=some-fake@email.com&user_token=some-fake-user-token"
+    role="menuitem"
+  >
+    Portal Views
+  </a>
+  <a
+    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+    href="http://localhost:3000//maturity_rubrics?user_email=some-fake@email.com&user_token=some-fake-user-token"
+    role="menuitem"
+  >
+    Maturity Rubrics
+  </a>
+  <a
+    class="
+    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+  "
+    href="/rubric_categories"
+    role="menuitem"
+  >
+    Rubric Categories
+  </a>
+</div>
+`;

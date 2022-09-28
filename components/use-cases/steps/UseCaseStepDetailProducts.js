@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import Pill from '../../shared/Pill'
 import Select from '../../shared/Select'
 import { PRODUCT_SEARCH_QUERY } from '../../../queries/product'
@@ -22,7 +22,7 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const { locale } = useRouter()
 

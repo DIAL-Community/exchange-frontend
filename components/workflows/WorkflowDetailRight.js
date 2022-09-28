@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
 import UseCaseCard from '../use-cases/UseCaseCard'
@@ -6,7 +7,7 @@ import WorkflowDetailBuildingBlocks from './WorkflowDetailBuildingBlocks'
 
 const WorkflowDetailRight = ({ workflow, canEdit }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const useCases = (() => {
     if (!workflow.useCaseSteps) {

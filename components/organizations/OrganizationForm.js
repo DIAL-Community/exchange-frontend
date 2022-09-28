@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner, FaPlus, FaMinus } from 'react-icons/fa'
@@ -21,7 +21,7 @@ const OrganizationForm = React.memo(({ organization }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -118,7 +118,7 @@ const OrganizationForm = React.memo(({ organization }) => {
         aliases: aliases.map(({ value }) => value),
         website,
         isEndorser,
-        whenEndorsed,
+        whenEndorsed: whenEndorsed || null,
         endorserLevel: endorserLevel.value,
         isMni,
         description

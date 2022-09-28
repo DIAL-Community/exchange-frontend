@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from 'react'
+import { useCallback, useContext, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
@@ -69,7 +69,7 @@ const ProjectMap = () => {
   const { sectors, tags, products } = useContext(MapFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading: loadingProjects, data: projectData } = useQuery(PROJECTS_QUERY, {
     variables: {

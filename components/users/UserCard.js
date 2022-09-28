@@ -19,16 +19,13 @@ const UserCard = ({ user, listType, newTab = false }) => {
     ReactTooltip.rebuild()
   })
 
-  const navClickHandler = () => {
-  }
-
   return (
     <Link href={`/${collectionPath}/${user.id}`}>
       <a {... newTab && { target: '_blank' }}>
         {
           listType === 'list'
             ? (
-              <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className={containerElementStyle}>
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
                     <div className={`col-span-8 text-base font-semibold ${ellipsisTextStyle}`}>
@@ -45,7 +42,7 @@ const UserCard = ({ user, listType, newTab = false }) => {
               </div>
             )
             : (
-              <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className={containerElementStyle}>
                 <div className='border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='flex flex-row p-1.5 border-b border-dial-gray'>
                     <div className='ml-auto text-button-gray-light text-sm font-semibold'>

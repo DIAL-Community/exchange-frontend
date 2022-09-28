@@ -1,4 +1,4 @@
-import { createRef, useContext, useState } from 'react'
+import { createRef, useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { createPopper } from '@popperjs/core'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
@@ -6,7 +6,7 @@ import { FilterContext } from '../context/FilterContext'
 
 const MobileDrawer = ({ filter, hint, activeTab }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [showFilters, setShowFilters] = useState(false)
   const { hintDisplayed } = useContext(FilterContext)

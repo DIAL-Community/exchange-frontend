@@ -1,10 +1,9 @@
 import { fireEvent, screen } from '@testing-library/react'
 import EditableSection from '../../../components/shared/EditableSection'
-import { mockRouterImplementation, render } from '../../test-utils'
+import { render } from '../../test-utils'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the Editable Section component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
@@ -15,8 +14,6 @@ describe('Unit test for the Editable Section component.', () => {
   const mockDisplayModeBody = 'display mode body'
   const mockOnSubmit = jest.fn()
   const mockOnCancel = jest.fn()
-
-  beforeAll(mockRouterImplementation)
 
   test('Should match snapshot - without edit permission.', () => {
     const { container } = render(
@@ -61,7 +58,7 @@ describe('Unit test for the Editable Section component.', () => {
     expect(container).toMatchSnapshot()
 
     fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID))
-    expect(mockOnCancel).toBeCalled()
+    expect(mockOnCancel).toHaveBeenCalled()
     expect(screen.getByText(mockDisplayModeBody)).toBeInTheDocument()
     expect(screen.queryByText(mockEditModeBody)).toBeNull()
   })
@@ -81,7 +78,7 @@ describe('Unit test for the Editable Section component.', () => {
     const submitButton = getByTestId(SUBMIT_BUTTON_TEST_ID)
     expect(submitButton).toBeDisabled()
     fireEvent.click(submitButton)
-    expect(mockOnSubmit).not.toBeCalled()
+    expect(mockOnSubmit).not.toHaveBeenCalled()
   })
 
   test('Should "Submit" button be enabled when changes are made.', () => {
@@ -99,7 +96,7 @@ describe('Unit test for the Editable Section component.', () => {
     const submitButton = getByTestId(SUBMIT_BUTTON_TEST_ID)
     expect(submitButton).not.toBeDisabled()
     fireEvent.click(submitButton)
-    expect(mockOnSubmit).toBeCalled()
+    expect(mockOnSubmit).toHaveBeenCalled()
   })
 
   test('Should "Submit" button become disabled and spinner should appear on "Submit" button click.', () => {
@@ -119,7 +116,7 @@ describe('Unit test for the Editable Section component.', () => {
     expect(screen.queryByTestId(SUBMIT_SPINNER_TEST_ID)).toBeNull()
 
     fireEvent.click(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    expect(mockOnSubmit).toBeCalled()
+    expect(mockOnSubmit).toHaveBeenCalled()
     expect(getByTestId(SUBMIT_BUTTON_TEST_ID)).toHaveTextContent('Submitting')
     expect(screen.queryByTestId(SUBMIT_SPINNER_TEST_ID)).toBeInTheDocument()
   })

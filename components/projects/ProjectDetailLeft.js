@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
+import { useCallback } from 'react'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
@@ -8,8 +9,8 @@ import CommentsCount from '../shared/CommentsCount'
 
 const ProjectDetailLeft = ({ project, canEdit, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-  const [session] = useSession()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+  const { data: session } = useSession()
   const { locale } = useRouter()
 
   const generateEditLink = () => {

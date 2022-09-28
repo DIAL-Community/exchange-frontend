@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { ToastContext } from '../../lib/ToastContext'
 import Select from '../shared/Select'
@@ -37,7 +37,7 @@ const UseCaseDetailTags = ({ useCase, canEdit }) => {
     }
   })
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const { locale } = useRouter()
 

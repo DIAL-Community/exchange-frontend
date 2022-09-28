@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import Pill from '../../shared/Pill'
 import Select from '../../shared/Select'
 import EditableSection from '../../shared/EditableSection'
@@ -35,7 +35,7 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit }) => {
     }
   })
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const { locale } = useRouter()
 

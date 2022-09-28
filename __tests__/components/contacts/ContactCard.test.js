@@ -1,10 +1,7 @@
 import '@testing-library/react'
-import { useRouter } from 'next/router'
 import { render } from '../../test-utils'
 import ContactCard from '../../../components/contacts/ContactCard'
-
-// Mock next-router calls.
-jest.mock('next/dist/client/router')
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 
 const mockContactData =
   {
@@ -13,21 +10,8 @@ const mockContactData =
     title: 'example title'
   }
 
+mockNextUseRouter()
 describe('Unit test for the contact card', () => {
-  beforeEach(() => {
-    // Mocked router implementation.
-    useRouter.mockImplementation(() => ({
-      asPath: '/',
-      locale: 'en',
-      push: jest.fn(() => Promise.resolve(true)),
-      prefetch: jest.fn(() => Promise.resolve(true)),
-      events: {
-        on: jest.fn(),
-        off: jest.fn()
-      }
-    }))
-  })
-
   test('Check contact card will display name, email, title on "list" mode.', () => {
 
     const component = render(<ContactCard contact={mockContactData} listType="list" />)

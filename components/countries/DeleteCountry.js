@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
-import { useContext, useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { useCallback, useContext, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import DeleteButton from '../shared/DeleteButton'
@@ -10,14 +10,14 @@ import { DELETE_COUNTRY } from '../../mutations/country'
 
 const DeleteCountry = ({ country }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { showToast } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false)
 

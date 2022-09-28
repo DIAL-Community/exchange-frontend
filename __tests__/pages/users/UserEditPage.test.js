@@ -1,28 +1,18 @@
 import EditUser from '../../../pages/users/[userId]/edit'
 import { USER_QUERY } from '../../../queries/user'
-import {
-  waitForAllEffectsAndSelectToLoad,
-  mockSessionImplementation,
-  mockRouterImplementation,
-  render
-} from '../../test-utils'
+import { waitForAllEffectsAndSelectToLoad, render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { user } from './data/UserEditPage'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the EditUser component.', () => {
   const userId = '1'
   const mockUser = generateMockApolloData(USER_QUERY, { userId, locale: 'en' }, null, user)
 
-  beforeAll(() => {
-    mockRouterImplementation({ userId })
-  })
-
   describe('Should match snapshot', () => {
     test('- unauthorized.', async () => {
-      mockSessionImplementation()
+      mockNextAuthUseSession(statuses.UNAUTHENTICATED)
       const { container, getByText } = render(
         <CustomMockedProvider>
           <EditUser />
@@ -34,7 +24,7 @@ describe('Unit test for the EditUser component.', () => {
     })
 
     test('- edit.', async () => {
-      mockSessionImplementation(true)
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
       const { container, queryByText } = render(
         <CustomMockedProvider mocks={[mockUser]}>
           <EditUser />

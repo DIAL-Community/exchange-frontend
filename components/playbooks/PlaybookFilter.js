@@ -1,7 +1,7 @@
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { gql } from '@apollo/client'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { BsQuestionCircleFill } from 'react-icons/bs'
 import { FilterContext } from '../context/FilterContext'
 import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../context/PlaybookFilterContext'
@@ -20,9 +20,9 @@ const SEARCH_PLAYBOOK_TAGS_QUERY = gql`
 
 const PlaybookFilter = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
   const { setHintDisplayed } = useContext(FilterContext)
 
   const { tags, products } = useContext(PlaybookFilterContext)

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Unit test for the UserDetail component should not render 0 for user not owning any product. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -278,7 +278,7 @@ Object {
 `;
 
 exports[`Unit test for the UserDetail component should render element of basic user not owning product or organization. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -541,7 +541,7 @@ Object {
 `;
 
 exports[`Unit test for the UserDetail component should render element of the user owning product. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>

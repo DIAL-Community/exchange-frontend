@@ -1,19 +1,13 @@
 import { fireEvent, screen } from '@testing-library/react'
 import ProductDetailSdgs from '../../../components/products/ProductDetailSdgs'
 import { SDG_SEARCH_QUERY } from '../../../queries/sdg'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  waitForAllEffectsAndSelectToLoad,
-  render
-} from '../../test-utils'
+import { waitForAllEffectsAndSelectToLoad, render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 import { product } from './data/ProductForm'
 import { sdgs } from './data/ProductDetailSdgs'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for the ProductDetailSDGs component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
@@ -24,11 +18,6 @@ describe('Unit tests for the ProductDetailSDGs component.', () => {
   const PILL_TEST_ID = 'pill'
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
   const mockSDGs = generateMockApolloData(SDG_SEARCH_QUERY, { search: '' }, null, sdgs)
-
-  beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
-  })
 
   test('Should match snapshot - without edit permission.', () => {
     const { container } = render(

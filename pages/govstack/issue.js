@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 
 const GovStackIssueForm = ({ referer }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [thanks, setThanks] = useState(false)
   const [issueLink, setIssueLink] = useState()

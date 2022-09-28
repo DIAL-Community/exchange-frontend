@@ -1,5 +1,5 @@
-import { useSession } from 'next-auth/client'
-import { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { useCallback, useEffect, useState } from 'react'
 import { FaHome, FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
@@ -9,9 +9,9 @@ const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-ye
 
 const OrganizationCard = ({ organization, listType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState('')

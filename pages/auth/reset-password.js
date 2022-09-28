@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
 import dynamic from 'next/dynamic'
@@ -12,7 +12,7 @@ const ResetPassword = () => {
   const router = useRouter()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
   const [created, setCreated] = useState(false)

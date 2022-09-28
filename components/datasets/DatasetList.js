@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
@@ -88,7 +88,7 @@ const DatasetListQuery = () => {
 
   const { locale } = useRouter()
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data, fetchMore, refetch } = useQuery(DATASETS_QUERY, {
     variables: {

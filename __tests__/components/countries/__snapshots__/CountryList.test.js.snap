@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Unit test for the CountryList component Should render error message when apollo returning error. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -118,7 +118,7 @@ Object {
 `;
 
 exports[`Unit test for the CountryList component Should render list of countries. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -291,7 +291,7 @@ Object {
 `;
 
 exports[`Unit test for the CountryList component Should render text with anchor for authorized users 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -464,7 +464,7 @@ Object {
 `;
 
 exports[`Unit test for the CountryList component Should render text without anchor for unauthorized users 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>

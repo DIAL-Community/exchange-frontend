@@ -39,10 +39,10 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
       class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
-        class="border-3 border-transparent hover:border-dial-yellow hover:text-dial-yellow cursor-pointer"
+        class="border-3 border-transparent"
       >
         <div
-          class="border border-dial-gray hover:border-transparent card-drop-shadow"
+          class="border border-dial-gray card-drop-shadow"
         >
           <div
             class="my-4 px-4"
@@ -130,7 +130,7 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-2-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -247,10 +247,10 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
       class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
-        class="border-3 border-transparent hover:border-dial-yellow hover:text-dial-yellow cursor-pointer"
+        class="border-3 border-transparent"
       >
         <div
-          class="border border-dial-gray hover:border-transparent card-drop-shadow"
+          class="border border-dial-gray card-drop-shadow"
         >
           <div
             class="my-4 px-4"

@@ -1,14 +1,13 @@
 import { fireEvent, screen } from '@testing-library/react'
-import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { TAG_SEARCH_QUERY } from '../../../queries/tag'
 import UseCaseDetailTags from '../../../components/use-cases/UseCaseDetailTags'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 import { tags } from './data/UseCaseDetailTags'
 import { useCase } from './data/UseCaseForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the UseCaseDetailTags component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
@@ -18,11 +17,6 @@ describe('Unit test for the UseCaseDetailTags component.', () => {
   const PILL_TEST_ID = 'pill'
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
   const mockTags = generateMockApolloData(TAG_SEARCH_QUERY, { search: '' }, null, tags)
-
-  beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
-  })
 
   test('Should match snapshot - without edit permission.', () => {
     const { container } = render(

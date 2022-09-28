@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useMutation } from '@apollo/client'
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Controller, useForm } from 'react-hook-form'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { ToastContext } from '../../../lib/ToastContext'
 import { CREATE_CANDIDATE_PRODUCT } from '../../../mutations/product'
 import Input from '../../shared/Input'
@@ -20,7 +21,7 @@ const ProductForm = () => {
 
   const router = useRouter()
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const { showToast } = useContext(ToastContext)
 
@@ -49,7 +50,7 @@ const ProductForm = () => {
   })
 
   const { handleSubmit, register, control, formState: { errors } } = useForm({
-    mode: 'onBlur',
+    mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
@@ -96,6 +97,21 @@ const ProductForm = () => {
 
   return session ? (
     <div className='flex flex-col'>
+      <div className='hidden lg:block px-8'>
+        <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
+          <Link href='/'>
+            <a className='inline text-dial-blue h5'>{format('app.home')}</a>
+          </Link>
+          <div className='inline h5'>
+            &nbsp;&gt;&nbsp;
+            <Link href='/products'>
+              <a className='text-dial-blue'>
+                {format('product.header')}
+              </a>
+            </Link>
+          </div>
+        </div>
+      </div>
       <div className='py-8 px-8'>
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>
@@ -158,7 +174,7 @@ const ProductForm = () => {
                     control={control}
                     rules={{ required: format('validation.required') }}
                     render={({ field: { onChange, ref } }) => {
-                      return (<ReCAPTCHA sitekey='6LfAGscbAAAAAFW_hQyW5OxXPhI7v6X8Ul3FJrsa' ref={ref} onChange={onChange} />)
+                      return (<ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} ref={ref} onChange={onChange} />)
                     }}
                   />
                   {errors.captcha && <ValidationError value={errors.captcha?.message} />}

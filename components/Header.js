@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { signIn, signOut, useSession } from 'next-auth/client'
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { signIn, signOut, useSession } from 'next-auth/react'
+import { useState, useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 import MobileMenu from './MobileMenu'
@@ -31,7 +31,7 @@ const dropdownPanelStyles = `
 const AdminMenu = ({ isCurrentOpenMenu, onToggle }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const buttonRef = useRef()
   const popoverRef = useRef()
@@ -58,21 +58,21 @@ const AdminMenu = ({ isCurrentOpenMenu, onToggle }) => {
         </div>
       </a>
       <div className={`${isCurrentOpenMenu ? 'block' : 'hidden'} ${dropdownPanelStyles}`} ref={popoverRef} role='menu'>
-        <div className='py-1' role='none'>
+        <div className='py-1' role='none' data-testid='admin-menu-items'>
           <Link href='/users'>
-            <a href='/users' role='menuitem' className={dropdownMenuStyles}>
+            <a role='menuitem' className={dropdownMenuStyles}>
               {format('header.admin.users')}
             </a>
           </Link>
           <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/settings?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdownMenuStyles}>
             {format('header.admin.settings')}
           </a>
-          <Link href='/sectors' >
+          <Link href='/sectors'>
             <a role='menuitem' className={dropdownMenuStyles}>
               {format('header.admin.sectors')}
             </a>
           </Link>
-          <Link href='/countries' >
+          <Link href='/countries'>
             <a role='menuitem' className={dropdownMenuStyles}>
               {format('header.admin.countries')}
             </a>
@@ -100,6 +100,11 @@ const AdminMenu = ({ isCurrentOpenMenu, onToggle }) => {
           <a href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/maturity_rubrics?user_email=${userEmail}&user_token=${userToken}`} role='menuitem' className={dropdownMenuStyles}>
             {format('header.admin.maturity_rubrics')}
           </a>
+          <Link href='/rubric_categories'>
+            <a role='menuitem' className={dropdownMenuStyles}>
+              {format('rubric-categories.header')}
+            </a>
+          </Link>
         </div>
       </div>
     </>
@@ -110,7 +115,7 @@ const UserMenu = ({ isCurrentOpenMenu, onToggle }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   const userName = session.user && session.user.name && session.user.name.toUpperCase()
 
@@ -159,7 +164,7 @@ const UserMenu = ({ isCurrentOpenMenu, onToggle }) => {
 }
 
 const Header = () => {
-  const [session] = useSession()
+  const { data: session } = useSession()
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
@@ -192,40 +197,41 @@ const Header = () => {
 
   const isAdmin = session?.user?.roles?.includes('admin')
 
-  const handleClickOutside = useCallback((event) => {
+  // TODO: Check on this commented code.
+  // const handleClickOutside = useCallback((event) => {
 
-    const clickedMenu = event.target.getAttribute('id')
-    if (clickedMenu === RESOURCE_MENU && currentOpenMenu !== RESOURCE_MENU) {
-      setCurrentOpenMenu(RESOURCE_MENU)
-    } else if (clickedMenu === ABOUT_MENU && currentOpenMenu !== ABOUT_MENU) {
-      setCurrentOpenMenu(ABOUT_MENU)
-    } else if (clickedMenu === HELP_MENU && currentOpenMenu !== HELP_MENU) {
-      setCurrentOpenMenu(HELP_MENU)
-    } else if (clickedMenu === LANGUAGE_MENU && currentOpenMenu !== LANGUAGE_MENU) {
-      setCurrentOpenMenu(LANGUAGE_MENU)
-    } else if (clickedMenu === ADMIN_MENU && currentOpenMenu !== ADMIN_MENU) {
-      setCurrentOpenMenu(ADMIN_MENU)
-    } else if (clickedMenu === USER_MENU && currentOpenMenu !== USER_MENU) {
-      setCurrentOpenMenu(USER_MENU)
-    } else {
-      setCurrentOpenMenu(NONE)
-    }
-  }, [currentOpenMenu])
+  //   const clickedMenu = event.target.getAttribute('id')
+  //   if (clickedMenu === RESOURCE_MENU && currentOpenMenu !== RESOURCE_MENU) {
+  //     setCurrentOpenMenu(RESOURCE_MENU)
+  //   } else if (clickedMenu === ABOUT_MENU && currentOpenMenu !== ABOUT_MENU) {
+  //     setCurrentOpenMenu(ABOUT_MENU)
+  //   } else if (clickedMenu === HELP_MENU && currentOpenMenu !== HELP_MENU) {
+  //     setCurrentOpenMenu(HELP_MENU)
+  //   } else if (clickedMenu === LANGUAGE_MENU && currentOpenMenu !== LANGUAGE_MENU) {
+  //     setCurrentOpenMenu(LANGUAGE_MENU)
+  //   } else if (clickedMenu === ADMIN_MENU && currentOpenMenu !== ADMIN_MENU) {
+  //     setCurrentOpenMenu(ADMIN_MENU)
+  //   } else if (clickedMenu === USER_MENU && currentOpenMenu !== USER_MENU) {
+  //     setCurrentOpenMenu(USER_MENU)
+  //   } else {
+  //     setCurrentOpenMenu(NONE)
+  //   }
+  // }, [currentOpenMenu])
 
-  useEffect(() => {
-    // call addEventListener() only when menu dropdown is open
-    if (currentOpenMenu !== NONE) {
-      // whenever user clicks somewhere on the page - fire handleClickOutside
-      // so that the current menu is closed and, if clicked, another menu is opened
-      // e.g. About menu -> Help menu
-      document.addEventListener('click', handleClickOutside)
+  // useEffect(() => {
+  //   // call addEventListener() only when menu dropdown is open
+  //   if (currentOpenMenu !== NONE) {
+  //     // whenever user clicks somewhere on the page - fire handleClickOutside
+  //     // so that the current menu is closed and, if clicked, another menu is opened
+  //     // e.g. About menu -> Help menu
+  //     document.addEventListener('click', handleClickOutside)
 
-      // whenever currentOpenMenu changes - remove the listener
-      return () => {
-        document.removeEventListener('click', handleClickOutside)
-      }
-    }
-  }, [handleClickOutside, currentOpenMenu])
+  //     // whenever currentOpenMenu changes - remove the listener
+  //     return () => {
+  //       document.removeEventListener('click', handleClickOutside)
+  //     }
+  //   }
+  // }, [handleClickOutside, currentOpenMenu])
 
   const showFeedbackForm = () => {
     setShowForm(true)

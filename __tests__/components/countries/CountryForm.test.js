@@ -2,19 +2,12 @@ import { act } from 'react-dom/test-utils'
 import { fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import CountryForm from '../../../components/countries/CountryForm'
-import {
-  mockObserverImplementation,
-  mockRouterImplementation,
-  mockSessionImplementation,
-  waitForAllEffects,
-  render
-} from '../../test-utils'
+import { mockObserverImplementation, waitForAllEffects, render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { country } from './data/CountryForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for the CountryForm component.', () => {
   const DIALOG_FORM_TEST_ID = 'dialog'
   const COUNTRY_NAME_TEST_ID = 'country-name'
@@ -23,8 +16,7 @@ describe('Unit tests for the CountryForm component.', () => {
   const mockOnClose = jest.fn()
 
   beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     window.IntersectionObserver = mockObserverImplementation()
   })
 
@@ -38,7 +30,7 @@ describe('Unit tests for the CountryForm component.', () => {
           />
         </CustomMockedProvider>
       )
-      await waitForAllEffects(500)
+      await waitForAllEffects(100)
       expect(getByTestId(DIALOG_FORM_TEST_ID)).toMatchSnapshot()
     })
 
@@ -52,14 +44,14 @@ describe('Unit tests for the CountryForm component.', () => {
           />
         </CustomMockedProvider>
       )
-      await waitForAllEffects(500)
+      await waitForAllEffects(100)
       expect(getByTestId(DIALOG_FORM_TEST_ID)).toMatchSnapshot()
     })
   })
 
   describe('For mandatory field -', () => {
     test('should show validation errors.', async () => {
-      const { container, getByTestId, getByText } = render(
+      const { getByTestId, getByText } = render(
         <CustomMockedProvider>
           <CountryForm
             isOpen={mockIsDialogOpen}
@@ -67,14 +59,14 @@ describe('Unit tests for the CountryForm component.', () => {
           />
         </CustomMockedProvider>
       )
-      await waitForAllEffects(container)
+      await waitForAllEffects()
       await act(async () => fireEvent.click(getByText('Submit')))
       expect(getByTestId(COUNTRY_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     })
 
     test('should show validation errors and hide them on input value change.', async () => {
       const user = userEvent.setup()
-      const { container, getByTestId, getByText } = render(
+      const { getByTestId, getByText } = render(
         <CustomMockedProvider >
           <CountryForm
             isOpen={mockIsDialogOpen}
@@ -82,7 +74,7 @@ describe('Unit tests for the CountryForm component.', () => {
           />
         </CustomMockedProvider>
       )
-      await waitForAllEffects(container)
+      await waitForAllEffects()
       await act(async () => fireEvent.click(getByText('Submit')))
       expect(getByTestId(COUNTRY_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 

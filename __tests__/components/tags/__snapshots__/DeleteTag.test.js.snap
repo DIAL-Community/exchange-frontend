@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for the DeletTag component. Should close ConfirmActionDialog after clicks "Cancel" button. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <button
+    class="delete-button gap-x-1.5"
+    data-testid="delete-button"
+    type="button"
+  >
+    <svg
+      class="text-sm"
+      fill="currentColor"
+      height="1em"
+      stroke="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+      />
+      <path
+        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+        fill-rule="evenodd"
+      />
+    </svg>
+    <span
+      class="text-sm"
+    >
+      Delete
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Unit tests for the DeletTag component. Should close ConfirmActionDialog after clicks "Confirm" button 1`] = `
+<div>
+  <div
+    class="Toastify"
+  >
+    <div
+      class="Toastify__toast-container Toastify__toast-container--top-center"
+      style="width: auto;"
+    >
+      <div
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--error Toastify--animate Toastify__slide-enter--top-center"
+        id="toastId"
+        style="--nth: 1; --len: 1;"
+      >
+        <div
+          class="Toastify__toast-body"
+          role="alert"
+        >
+          <div
+            class="Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter"
+          >
+            <svg
+              fill="var(--toastify-icon-color-error)"
+              height="100%"
+              viewBox="0 0 24 24"
+              width="100%"
+            >
+              <path
+                d="M11.983 0a12.206 12.206 0 00-8.51 3.653A11.8 11.8 0 000 12.207 11.779 11.779 0 0011.8 24h.214A12.111 12.111 0 0024 11.791 11.766 11.766 0 0011.983 0zM10.5 16.542a1.476 1.476 0 011.449-1.53h.027a1.527 1.527 0 011.523 1.47 1.475 1.475 0 01-1.449 1.53h-.027a1.529 1.529 0 01-1.523-1.47zM11 12.5v-6a1 1 0 012 0v6a1 1 0 11-2 0z"
+              />
+            </svg>
+          </div>
+          <div>
+            Tag deletion failed
+          </div>
+        </div>
+        <button
+          aria-label="close"
+          class="Toastify__close-button Toastify__close-button--light"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 14 16"
+          >
+            <path
+              d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <div
+          aria-hidden="true"
+          aria-label="notification timer"
+          class="Toastify__progress-bar Toastify__progress-bar--animated Toastify__progress-bar-theme--light Toastify__progress-bar--error"
+          role="progressbar"
+          style="animation-duration: 500ms; animation-play-state: paused; opacity: 0;"
+        />
+      </div>
+    </div>
+  </div>
+  <button
+    class="delete-button gap-x-1.5"
+    data-testid="delete-button"
+    type="button"
+  >
+    <svg
+      class="text-sm"
+      fill="currentColor"
+      height="1em"
+      stroke="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+      />
+      <path
+        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+        fill-rule="evenodd"
+      />
+    </svg>
+    <span
+      class="text-sm"
+    >
+      Delete
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Unit tests for the DeletTag component. Should open ConfirmActionDialog after clicks "Delete" button. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <button
+    class="delete-button gap-x-1.5"
+    data-testid="delete-button"
+    type="button"
+  >
+    <svg
+      class="text-sm"
+      fill="currentColor"
+      height="1em"
+      stroke="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+      />
+      <path
+        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+        fill-rule="evenodd"
+      />
+    </svg>
+    <span
+      class="text-sm"
+    >
+      Delete
+    </span>
+  </button>
+  <div
+    style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: none;"
+  />
+</div>
+`;

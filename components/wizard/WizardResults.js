@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { gql, useLazyQuery } from '@apollo/client'
 import Select from '../shared/Select'
 import UseCaseCard from '../use-cases/UseCaseCard'
@@ -67,7 +67,7 @@ query Wizard(
 
 const LeftMenu = ({ currentSection, clickHandler }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='block py-3 float-right w-3/4 hidden lg:block'>
@@ -133,7 +133,7 @@ const LeftMenu = ({ currentSection, clickHandler }) => {
 
 const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const router = useRouter()
   const [currentSection, setCurrentSection] = useState(0)
   const [wizardData, setWizardData] = useState()

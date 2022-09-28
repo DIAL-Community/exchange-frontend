@@ -1,6 +1,7 @@
 import { useApolloClient } from '@apollo/client'
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { ORGANIZATION_SEARCH_QUERY } from '../../../queries/organization'
 import Pill from '../../shared/Pill'
 import Select from '../../shared/Select'
@@ -17,7 +18,7 @@ export const OrganizationAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const controlPlaceholder = placeholder ??
     format('filter.byEntity', {
@@ -82,7 +83,7 @@ export const OrganizationFilters = (props) => {
   const { aggregatorOnly, organizations, setOrganizations } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeOrganization = (organizationSlug) => {
     setOrganizations(organizations.filter(({ slug }) => slug !== organizationSlug))

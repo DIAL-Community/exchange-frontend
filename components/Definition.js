@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import dynamic from 'next/dynamic'
@@ -7,7 +7,7 @@ const LiteYoutubeEmbed = dynamic(() => import('react-lite-yt-embed').then((modul
 
 const Description = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const [openTab, setOpenTab] = useState(0)
 
   const tabClickHandler = (e, tabNumber) => {

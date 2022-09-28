@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { MdClose } from 'react-icons/md'
@@ -18,7 +18,7 @@ const BuildingBlockFilter = (props) => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const {
     showMature, sdgs, useCases, workflows

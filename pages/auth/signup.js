@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { useState, useContext } from 'react'
+import { useState, useContext, useCallback } from 'react'
 import Link from 'next/link'
 import { FaRegQuestionCircle, FaSpinner } from 'react-icons/fa'
 import { gql, useApolloClient } from '@apollo/client'
@@ -94,7 +94,7 @@ const SignUp = () => {
   const router = useRouter()
   const client = useApolloClient()
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
   const [created, setCreated] = useState(false)
@@ -147,8 +147,7 @@ const SignUp = () => {
         username: textFields.email.split('@')[0],
         password: textFields.password,
         password_confirmation: textFields.passwordConfirmation
-      },
-      'g-recaptcha-response': captcha
+      }
     }
 
     if (organization) {
@@ -317,12 +316,12 @@ const SignUp = () => {
                         })
                     }
                   </div>
-                  <ReCAPTCHA sitekey='6LfAGscbAAAAAFW_hQyW5OxXPhI7v6X8Ul3FJrsa' onChange={setCaptcha} />
+                  <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} onChange={setCaptcha} />
                   <div className='flex items-center justify-between font-semibold text-sm mt-2'>
                     <div className='flex'>
                       <button
                         className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                        type='submit' disabled={loading || fieldValidations.password < 2 || !fieldValidations.passwordConfirmation}
+                        type='submit' disabled={loading || fieldValidations.password < 2 || !fieldValidations.passwordConfirmation || !captcha}
                       >
                         {format('app.signUp')}
                         {loading && <FaSpinner className='spinner ml-3' />}

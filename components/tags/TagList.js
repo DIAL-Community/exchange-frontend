@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -13,7 +13,7 @@ import TagCard from './TagCard'
 
 const TagList = ({ tagList, displayType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className={classNames('grid', { 'grid-cols-1' : displayType === DisplayType.LIST })}>
@@ -36,7 +36,7 @@ const TagsListQuery = () => {
   const { search } = useContext(UserFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data, fetchMore } = useQuery(TAGS_LIST_QUERY, {
     variables: {

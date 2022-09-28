@@ -1,10 +1,11 @@
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 
 const SDGDetailLeft = ({ sdg }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const slugNameMapping = (() => {
     const map = {}

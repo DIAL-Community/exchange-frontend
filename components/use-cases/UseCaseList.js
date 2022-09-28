@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -60,7 +60,7 @@ query SearchUseCases(
 `
 const UseCaseList = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
@@ -121,7 +121,7 @@ const UseCaseListQuery = () => {
   const { sdgs, showBeta, search } = useContext(UseCaseFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data, fetchMore } = useQuery(USE_CASES_QUERY, {
     variables: {

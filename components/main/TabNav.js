@@ -1,16 +1,14 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { HiQuestionMarkCircle } from 'react-icons/hi'
 import { FILTER_ITEMS, MAPPED_FILTER_ITEMS_URL } from '../context/FilterContext'
 
 const TabNav = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const activeTab = FILTER_ITEMS.indexOf(props.activeTab)
-
-  const navClickHandler = () => {
-  }
 
   return (
     <>
@@ -67,7 +65,7 @@ const TabNav = (props) => {
                           // Adding click handler to NextJS Link tag.
                           // https://github.com/vercel/next.js/issues/1490#issuecomment-360227918
                         }
-                        <span onClick={() => navClickHandler(format(filterItem))}>
+                        <span>
                           <div
                             className={`
                               ${index === activeTab ? '' : 'truncate'}

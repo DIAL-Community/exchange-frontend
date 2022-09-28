@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
@@ -14,7 +14,7 @@ const UseCaseActiveFilter = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { sdgs, showBeta } = useContext(UseCaseFilterContext)
   const { setSDGs, setShowBeta } = useContext(UseCaseFilterDispatchContext)
