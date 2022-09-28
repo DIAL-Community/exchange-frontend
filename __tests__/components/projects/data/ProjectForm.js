@@ -83,7 +83,7 @@ export const project = {
   slug: 'test_project',
   startDate: '2000-01-01',
   endDate: '2001-01-01',
-  projectUrl: 'testproject.com',
+  projectWebsite: 'testproject.com',
   projectDescription: {
     description: '<p>test project description</p>',
     locale: 'en'

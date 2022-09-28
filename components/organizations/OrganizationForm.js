@@ -118,7 +118,7 @@ const OrganizationForm = React.memo(({ organization }) => {
         aliases: aliases.map(({ value }) => value),
         website,
         isEndorser,
-        whenEndorsed,
+        whenEndorsed: whenEndorsed || null,
         endorserLevel: endorserLevel.value,
         isMni,
         description
