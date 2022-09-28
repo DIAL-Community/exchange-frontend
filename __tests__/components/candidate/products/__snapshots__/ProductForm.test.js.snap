@@ -9,6 +9,31 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - candi
     class="flex flex-col"
   >
     <div
+      class="hidden lg:block px-8"
+    >
+      <div
+        class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+      >
+        <a
+          class="inline text-dial-blue h5"
+          href="/"
+        >
+          Home
+        </a>
+        <div
+          class="inline h5"
+        >
+           &gt; 
+          <a
+            class="text-dial-blue"
+            href="/products"
+          >
+            Products
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
       class="py-8 px-8"
     >
       <div

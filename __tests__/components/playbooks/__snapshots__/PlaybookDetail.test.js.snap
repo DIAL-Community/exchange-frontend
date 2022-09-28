@@ -282,6 +282,18 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
               >
                 The outcome of this playbook is expected.
               </div>
+              <div
+                class="h4"
+              >
+                Playbook Author(s)
+                :
+              </div>
+              <div
+                class="text-dial-gray-dark"
+              >
+                 
+                Test Author
+              </div>
             </div>
             <div
               class="infinite-scroll-component__outerdiv"
@@ -716,6 +728,18 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
               class="fr-view tiny-editor text-dial-gray-dark"
             >
               The outcome of this playbook is expected.
+            </div>
+            <div
+              class="h4"
+            >
+              Playbook Author(s)
+              :
+            </div>
+            <div
+              class="text-dial-gray-dark"
+            >
+               
+              Test Author
             </div>
           </div>
           <div
@@ -1302,6 +1326,18 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
               >
                 The outcome of this playbook is expected.
               </div>
+              <div
+                class="h4"
+              >
+                Playbook Author(s)
+                :
+              </div>
+              <div
+                class="text-dial-gray-dark"
+              >
+                 
+                Test Author
+              </div>
             </div>
             <div
               class="infinite-scroll-component__outerdiv"
@@ -1712,6 +1748,18 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
               class="fr-view tiny-editor text-dial-gray-dark"
             >
               The outcome of this playbook is expected.
+            </div>
+            <div
+              class="h4"
+            >
+              Playbook Author(s)
+              :
+            </div>
+            <div
+              class="text-dial-gray-dark"
+            >
+               
+              Test Author
             </div>
           </div>
           <div

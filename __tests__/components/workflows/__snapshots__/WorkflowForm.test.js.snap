@@ -149,6 +149,7 @@ exports[`Unit tests for WorkflowForm component. Should display toast on submit -
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -183,6 +184,11 @@ exports[`Unit tests for WorkflowForm component. Should display toast on submit -
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
               </div>
               <div
@@ -391,6 +397,7 @@ exports[`Unit tests for WorkflowForm component. Should display toast on submit -
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -425,6 +432,11 @@ exports[`Unit tests for WorkflowForm component. Should display toast on submit -
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
               </div>
               <div
@@ -657,6 +669,7 @@ exports[`Unit tests for WorkflowForm component. Should render WorkflowForm compo
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -691,6 +704,11 @@ exports[`Unit tests for WorkflowForm component. Should render WorkflowForm compo
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
               </div>
               <div
@@ -843,6 +861,7 @@ exports[`Unit tests for WorkflowForm component. Should show validation errors fo
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -877,6 +896,11 @@ exports[`Unit tests for WorkflowForm component. Should show validation errors fo
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
               </div>
               <div

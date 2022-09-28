@@ -39,10 +39,10 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
       class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
-        class="border-3 border-transparent hover:border-dial-yellow hover:text-dial-yellow cursor-pointer"
+        class="border-3 border-transparent"
       >
         <div
-          class="border border-dial-gray hover:border-transparent card-drop-shadow"
+          class="border border-dial-gray card-drop-shadow"
         >
           <div
             class="my-4 px-4"
@@ -247,10 +247,10 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
       class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
-        class="border-3 border-transparent hover:border-dial-yellow hover:text-dial-yellow cursor-pointer"
+        class="border-3 border-transparent"
       >
         <div
-          class="border border-dial-gray hover:border-transparent card-drop-shadow"
+          class="border border-dial-gray card-drop-shadow"
         >
           <div
             class="my-4 px-4"
