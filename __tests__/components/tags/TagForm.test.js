@@ -30,7 +30,7 @@ describe('Unit tests for the TagForm component.', () => {
           />
         </CustomMockedProvider>
       )
-      await waitForAllEffects()
+      await waitForAllEffects(1000)
       expect(getByTestId(DIALOG_FORM_TEST_ID)).toMatchSnapshot()
       expect(container).toMatchSnapshot()
     })

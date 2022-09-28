@@ -45,7 +45,7 @@ describe('Unit tests for playbook list interaction.', () => {
         </PlaybookFilterProvider>
       </CustomMockedProvider>
     )
-    await waitForAllEffects()
+    await waitForAllEffects(1000)
     // Each section in the playbook detail should not show any error.
     expect(screen.queryByText(/Error fetching data/)).toBeNull()
     expect(screen.getByText('CDR Analytics for COVID-19 with FlowKit')).toBeInTheDocument()
