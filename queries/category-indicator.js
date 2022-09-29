@@ -10,7 +10,8 @@ export const CATEGORY_INDICATOR_QUERY = gql`
       weight
       dataSource
       scriptName
-      categoryIndicatorDescription  {
+      rubricCategoryId
+      categoryIndicatorDescription {
         description
       } 
     }

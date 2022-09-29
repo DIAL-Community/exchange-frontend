@@ -1,12 +1,12 @@
 import { useIntl } from 'react-intl'
+import { useRouter } from 'next/router'
 import Breadcrumb from '../shared/breadcrumb'
-import { useUser } from '../../lib/hooks'
+import EditButton from '../shared/EditButton'
 import DeleteCategoryIndicator from './DeleteCategoryIndicator'
 
 const CategoryIndicatorDetailLeft = ({ categoryIndicator, slugNameMapping }) => {
   const { formatMessage } = useIntl()
-
-  const { isAdminUser } = useUser()
+  const { query: { slug } } = useRouter()
 
   return (
     <>
@@ -14,7 +14,8 @@ const CategoryIndicatorDetailLeft = ({ categoryIndicator, slugNameMapping }) => 
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='h-12 w-full inline-flex gap-3 items-center'>
-        {isAdminUser && <DeleteCategoryIndicator categoryIndicator={categoryIndicator} />}
+        <DeleteCategoryIndicator categoryIndicator={categoryIndicator} />
+        <EditButton type='link' href={`/rubric_categories/${slug}/${categoryIndicator.slug}/edit`}/>
       </div>
       <div className='bg-white border-2 border-dial-gray lg:mr-6 shadow-lg'>
         <div className='flex flex-col p-4 text-dial-gray-dark'>

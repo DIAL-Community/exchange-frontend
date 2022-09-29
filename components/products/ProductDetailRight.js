@@ -1,12 +1,12 @@
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import parse from 'html-react-parser'
-import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
+import { useProductOwnerUser, useUser } from '../../lib/hooks'
 import MaturityAccordion from './Maturity'
 import ProductCard from './ProductCard'
 import ProductDetailBuildingBlocks from './ProductDetailBuildingBlocks'
@@ -22,9 +22,9 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data: session } = useSession()
-
-  const canEdit = session?.user?.canEdit || session?.user?.own?.product?.id === product.id
+  const { isAdminUser, loadingUserSession } = useUser()
+  const { isProductOwner } = useProductOwnerUser(product, [], loadingUserSession || isAdminUser)
+  const canEdit = isAdminUser || isProductOwner
 
   const slugNameMapping = (() => {
     const map = {}
@@ -68,7 +68,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
       </div>
       <ProductPricing product={product} canEdit={false} />
       {product.sustainableDevelopmentGoals && <ProductDetailSdgs product={product} canEdit={canEdit} />}
-      {product.buildingBlocks && <ProductDetailBuildingBlocks product={product} canEdit={canEdit} />}
+      {product.buildingBlocks && <ProductDetailBuildingBlocks product={product} canEdit={isAdminUser} />}
       {product.sectors && <ProductDetailSectors product={product} canEdit={canEdit} />}
       {product.organizations && <ProductDetailOrganizations product={product} canEdit={canEdit} />}
       {product.currentProjects && <ProductDetailProjects product={product} canEdit={canEdit} />}

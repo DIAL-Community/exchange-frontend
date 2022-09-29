@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useMutation } from '@apollo/client'
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
@@ -49,7 +50,7 @@ const ProductForm = () => {
   })
 
   const { handleSubmit, register, control, formState: { errors } } = useForm({
-    mode: 'onBlur',
+    mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
@@ -96,6 +97,21 @@ const ProductForm = () => {
 
   return session ? (
     <div className='flex flex-col'>
+      <div className='hidden lg:block px-8'>
+        <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
+          <Link href='/'>
+            <a className='inline text-dial-blue h5'>{format('app.home')}</a>
+          </Link>
+          <div className='inline h5'>
+            &nbsp;&gt;&nbsp;
+            <Link href='/products'>
+              <a className='text-dial-blue'>
+                {format('product.header')}
+              </a>
+            </Link>
+          </div>
+        </div>
+      </div>
       <div className='py-8 px-8'>
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>

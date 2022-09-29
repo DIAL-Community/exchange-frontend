@@ -1,4 +1,5 @@
-import { render, fireEvent } from '@testing-library/react'
+import { fireEvent } from '@testing-library/react'
+import { render } from '../../test-utils'
 import FileUploader from '../../../components/shared/FileUploader'
 import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 
