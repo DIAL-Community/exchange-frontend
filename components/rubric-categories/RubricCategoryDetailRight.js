@@ -13,11 +13,16 @@ const RubricCategoryDetailRight = ({ rubricCategory, slugNameMapping }) => {
       <div className='hidden lg:block'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
-      <div className='mt-8 card-title mb-3 text-dial-gray-dark'>{format('product.description')}</div>
+      <div className='card-title mb-3 text-dial-gray-dark'>{format('product.description')}</div>
       <div className='fr-view text-dial-gray-dark' data-testid='description'>
         {rubricCategory?.rubricCategoryDescription && parse(rubricCategory.rubricCategoryDescription.description)}
       </div>
-      {rubricCategory?.categoryIndicators && <RubricCategoryDetailCategoryIndicators categoryIndicators={rubricCategory.categoryIndicators} />}
+      {rubricCategory?.categoryIndicators &&
+        <RubricCategoryDetailCategoryIndicators
+          categoryIndicators={rubricCategory.categoryIndicators}
+          rubricCategorySlug={rubricCategory.slug}
+        />
+      }
     </div>
   )
 }

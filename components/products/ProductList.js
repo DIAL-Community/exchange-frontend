@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect } from 'react'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
@@ -35,7 +35,7 @@ const ProductListQuery = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data, fetchMore, refetch } = useQuery(PRODUCTS_QUERY, {
+  const { loading, error, data, fetchMore } = useQuery(PRODUCTS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       origins: origins.map(origin => origin.value),
@@ -53,7 +53,13 @@ const ProductListQuery = () => {
       withMaturity,
       search
     },
-    context: { headers: { 'Accept-Language': locale } }
+    context: { headers: { 'Accept-Language': locale } },
+    onCompleted: (data) => {
+      setResultCounts({
+        ...resultCounts,
+        ...{ [['filter.entity.products']]: data.searchProducts.totalCount }
+      })
+    }
   })
 
   const handleLoadMore = () => {
@@ -78,19 +84,6 @@ const ProductListQuery = () => {
       }
     })
   }
-
-  useEffect(() => {
-    refetch()
-  }, [locale, refetch])
-
-  useEffect(() => {
-    if (data) {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.products']]: data.searchProducts.totalCount }
-      })
-    }
-  }, [data])
 
   if (loading) {
     return <Loading />
@@ -127,7 +120,7 @@ const ProductListQuery = () => {
             </div>
           </div>
       }
-      <div className='block pr-2' style={{ height: '80vh' }}>
+      <div className='block pr-2' style={{ height: 'calc(100vh + 600px)' }}>
         <AutoSizer>
           {({ height, width }) => (
             <InfiniteLoader

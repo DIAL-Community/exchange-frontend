@@ -17,6 +17,7 @@ import ProductListQuery from '../components/products/ProductList'
 import SearchFilter from '../components/shared/SearchFilter'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../components/context/ProductFilterContext'
 import ClientOnly from '../lib/ClientOnly'
+import QueryNotification from '../components/shared/QueryNotification'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const HomePage = () => {
@@ -31,6 +32,7 @@ const HomePage = () => {
       <Carousel />
       <WizardDescription />
       <CatalogTitle />
+      <QueryNotification />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <TabNav activeTab='filter.entity.products' />
       <MobileNav activeTab='filter.entity.products' />

@@ -17,6 +17,7 @@ module.exports = withTM({
   images: {
     domains: ['localhost','solutions-dev.dial.community','solutions.dial.community']
   },
+  swcMinify: true,
   async headers() {
     return [
       {
