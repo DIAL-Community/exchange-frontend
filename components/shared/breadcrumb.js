@@ -30,8 +30,7 @@ const basePathMappings = {
   users: 'user.header',
   moves: 'move.header',
   countries: 'country.header',
-  rubric_categories: 'rubric-categories.header',
-  category_indicators: 'categoryIndicators.header'
+  rubric_categories: 'rubric-categories.header'
 }
 
 const Breadcrumb = (props) => {

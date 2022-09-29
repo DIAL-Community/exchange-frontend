@@ -2,10 +2,14 @@
 
 exports[`Unit test for the FileUploader component. Should match snapshot. 1`] = `
 <div>
+  <div
+    class="Toastify"
+  />
   <label
     class="flex items-center"
   >
     <input
+      accept=".jpg,.jpeg,.png,.bmp"
       class="bg-white file:hidden w-full pr-10"
       data-testid="file-uploader"
       type="file"
@@ -39,5 +43,10 @@ exports[`Unit test for the FileUploader component. Should match snapshot. 1`] = 
       </span>
     </div>
   </label>
+  <div
+    class="h5 w-full pl-2 text-dial-gray-dark"
+  >
+    Note: Supported file types are jpg, png, and bmp
+  </div>
 </div>
 `;

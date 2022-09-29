@@ -28,7 +28,7 @@ const CreateUseCaseStep = () => {
     return <NotFound />
   }
 
-  return(
+  return (
     <>
       <Header />
       {data?.useCase &&

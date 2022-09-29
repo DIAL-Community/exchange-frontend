@@ -140,6 +140,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="cover"
@@ -174,6 +175,11 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
                 <div
                   class="form-field-wrapper"
@@ -181,12 +187,12 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                   <label
                     class="form-field-label"
                   >
-                    Playbook Author
+                    Playbook Author(s)
                   </label>
                   <input
                     class="w-full"
                     name="author"
-                    placeholder="Playbook Author"
+                    placeholder="Playbook Author(s)"
                     type="text"
                     value=""
                   />
@@ -580,6 +586,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="cover"
@@ -614,6 +621,11 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
                 <div
                   class="form-field-wrapper"
@@ -621,12 +633,12 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                   <label
                     class="form-field-label"
                   >
-                    Playbook Author
+                    Playbook Author(s)
                   </label>
                   <input
                     class="w-full"
                     name="author"
-                    placeholder="Playbook Author"
+                    placeholder="Playbook Author(s)"
                     type="text"
                     value=""
                   />
@@ -1004,6 +1016,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="cover"
@@ -1038,6 +1051,11 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
                 <div
                   class="form-field-wrapper"
@@ -1045,12 +1063,12 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                   <label
                     class="form-field-label"
                   >
-                    Playbook Author
+                    Playbook Author(s)
                   </label>
                   <input
                     class="w-full"
                     name="author"
-                    placeholder="Playbook Author"
+                    placeholder="Playbook Author(s)"
                     type="text"
                     value=""
                   />

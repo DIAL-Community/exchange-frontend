@@ -309,7 +309,7 @@ export const en = {
   'contact.name.label': 'Name:',
   'contact.email.label': 'Email:',
   'contact.title.label': 'Title:',
-  
+
   'sector.header': 'Sectors',
   'sector.label': 'Sector',
   'sector.parent-sector.label': 'Parent Sector',
@@ -649,7 +649,6 @@ export const en = {
   'rubric-category.weight': 'Weight',
   'rubric-category.delete.confirm.message': 'Are you sure you want to delete this Rubric Category?',
 
-
   'category-indicators.label': 'Indicators',
 
   'resource.name': 'Resource Name',
@@ -901,6 +900,7 @@ export const en = {
   'candidate-organization.submit.success': 'Candidate Organization submitted successfully',
   'candidate-organization.submit.failure': 'Candidate Organization submission failed',
 
+  'candidate.header': 'Candidate',
   'candidate.rejected': 'Declined',
   'candidate.approved': 'Approved',
   'candidate.reject': 'Decline',
@@ -916,6 +916,8 @@ export const en = {
   'entity.process': 'Start Processing File',
   'entity.filename': 'File Name',
   'entity.uploaded': 'File uploaded and processed successfully.',
+
+  'upload.supportedFormats': 'Note: Supported file types are jpg, png, and bmp',
 
   'app.exporting': 'Exporting Data ...',
   'app.exportAsJson': 'Export Data (JSON)',
@@ -1011,7 +1013,7 @@ export const en = {
 
   'playbook.submittedToCreatePlay': 'Playbook saved. Navigating to create play ...',
   'playbook.autoSaved': 'Playbook saved ...',
-  'playbook.author': 'Playbook Author',
+  'playbook.author': 'Playbook Author(s)',
   'playbook.cover': 'Playbook Cover',
 
   'playbook.openEmbedDialog': 'Create Embed',
@@ -1046,6 +1048,9 @@ export const en = {
   'shared.comment.delete.confirm.message': 'Are you sure you want to delete this comment?',
   'shared.comment.delete.confirm.header': 'Deleting a comment',
   'shared.comment.no-comments': 'There are no comments',
+  'shared.category-indicator.type.numeric': 'numeric',
+  'shared.category-indicator.type.scale': 'scale',
+  'shared.category-indicator.type.boolean': 'boolean',
 
   'seo.description.about': 'DIAL’s Catalog of Digital Solutions is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
   'seo.description.maps': 'Interactive map views showing where specific digital platforms have been implemented as well as the countries where various digital development organizations work.',
@@ -1101,6 +1106,8 @@ export const en = {
   'toast.rubric-category.delete.failure': 'Rubric Category deletion failed',
   'toast.category-indicator.delete.success': 'Category Indicator deleted successfully',
   'toast.category-indicator.delete.failure': 'Category Indicator deletion failed',
+  'toast.category-indicator.submit.success': 'Category Indicator submitted successfully',
+  'toast.category-indicator.submit.failure': 'Category Indicator submission failed',
 
   'locale.label': 'Locale',
   'locale.english.label': 'English (en)',
@@ -1142,6 +1149,8 @@ export const en = {
   'govstack.feedback.submit': 'Send feedback',
 
   'categoryIndicators.header': 'Category Indicators',
+  'categoryIndicator.create': 'Create Category Indicator',
+  'categoryIndicator.label': 'Category Indicator',
   'categoryIndicator.weight': 'Weight',
   'categoryIndicator.indicatorType': 'Indicator type',
   'categoryIndicator.dataSource': 'Data source',

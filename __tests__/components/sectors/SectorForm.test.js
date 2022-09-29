@@ -32,7 +32,7 @@ describe('Unit tests for the SectorForm component.', () => {
           />
         </CustomMockedProvider>
       )
-      await waitForAllEffects(100)
+      await waitForAllEffects(1000)
       expect(getByTestId(DIALOG_FORM_TEST_ID)).toMatchSnapshot()
     })
 

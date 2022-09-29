@@ -3,6 +3,7 @@ module.exports = {
     id: 1,
     slug: 'example_playbook',
     name: 'Example Playbook',
+    author: 'Test Author',
     draft: true,
     playbookDescription: {
       id: 1,
@@ -43,6 +44,7 @@ module.exports = {
     id: 2,
     slug: 'example_playbook',
     name: 'Example Playbook',
+    author: 'Test Author',
     draft: false,
     playbookDescription: {
       id: 1,

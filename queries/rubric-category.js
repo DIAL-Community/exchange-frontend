@@ -18,6 +18,7 @@ export const RUBRIC_CATEGORY_QUERY = gql`
     rubricCategory (slug: $slug) {
       name
       slug
+      id
       weight
       id
       rubricCategoryDescription {

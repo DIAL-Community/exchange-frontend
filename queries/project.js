@@ -21,7 +21,7 @@ export const PROJECT_QUERY = gql`
       slug
       startDate
       endDate
-      projectUrl
+      projectWebsite
       projectDescription {
         description
         locale
