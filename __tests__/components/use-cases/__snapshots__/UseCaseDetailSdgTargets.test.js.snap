@@ -250,7 +250,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
     >
       <div
         class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
-        href="/sdgs/ts"
+        href="/sdgs/sdg_target_slug_1"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -273,7 +273,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
       </div>
       <div
         class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
-        href="/sdgs/as"
+        href="/sdgs/sdg_target_slug_2"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -513,7 +513,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
     >
       <div
         class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
-        href="/sdgs/ts"
+        href="/sdgs/sdg_target_slug_1"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -536,7 +536,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
       </div>
       <div
         class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
-        href="/sdgs/as"
+        href="/sdgs/sdg_target_slug_2"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"

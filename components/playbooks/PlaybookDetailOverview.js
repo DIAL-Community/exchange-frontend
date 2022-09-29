@@ -50,6 +50,7 @@ const PlaybookDetailOverview = ({ playbook, locale, allowEmbedCreation, comments
       <div className='fr-view tiny-editor text-dial-gray-dark'>
         {parse(playbook.playbookDescription.outcomes)}
       </div>
+      {playbook.author && <><div className='h4'>{format('playbook.author')}:</div><div className='text-dial-gray-dark'>&nbsp;{playbook.author}</div></>}
     </div>
   )
 }

@@ -236,6 +236,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -270,6 +271,11 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
                 <div
                   class="form-field-wrapper"
@@ -581,6 +587,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -615,6 +622,11 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
                 <div
                   class="form-field-wrapper"
@@ -888,6 +900,7 @@ exports[`Unit tests for BuildingBlockForm component. Should render BuildingBlock
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -922,6 +935,11 @@ exports[`Unit tests for BuildingBlockForm component. Should render BuildingBlock
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="h5 w-full pl-2 text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
                 <div
                   class="form-field-wrapper"
