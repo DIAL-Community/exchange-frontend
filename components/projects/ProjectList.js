@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect } from 'react'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { FixedSizeGrid, FixedSizeList } from 'react-window'
@@ -98,6 +98,12 @@ const ProjectListQuery = () => {
       sdgs: sdgs.map(sdg => sdg.value),
       tags: tags.map(tag => tag.label),
       search
+    },
+    onCompleted: (data) => {
+      setResultCounts({
+        ...resultCounts,
+        ...{ [['filter.entity.projects']]: data.searchProjects.totalCount }
+      })
     }
   })
 
@@ -118,24 +124,11 @@ const ProjectListQuery = () => {
     })
   }
 
-  useEffect(() => {
-    if (data) {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.projects']]: data.searchProjects.totalCount }
-      })
-    }
-  }, [data])
-
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error && error.networkError) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (error && !error.networkError) {
     return <NotFound />
   }
 
@@ -166,7 +159,7 @@ const ProjectListQuery = () => {
             </div>
           </div>
       }
-      <div className='block pr-2' style={{ height: '80vh' }}>
+      <div className='block pr-2' style={{ height: 'calc(100vh + 600px)' }}>
         <AutoSizer>
           {({ height, width }) => (
             <InfiniteLoader
