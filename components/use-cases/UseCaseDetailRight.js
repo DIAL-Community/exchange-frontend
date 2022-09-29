@@ -22,7 +22,7 @@ const UseCaseDetailRight = ({ useCase, canEdit, commentsSectionRef }) => {
       return '/edit-not-available'
     }
 
-    return`/use_cases/${useCase.slug}/use_case_steps/create`
+    return `/use_cases/${useCase.slug}/use_case_steps/create`
   }
 
   const slugNameMapping = (() => {

@@ -12,7 +12,7 @@ describe('Unit test for the CategoryIndicatorDetail component.', () => {
   test('Should render CategoryIndicatorDetail component', async () => {
     const { container } = render(
       <CustomMockedProvider mocks={[mockCategoryIndicator]}>
-        <CategoryIndicatorDetail slug='test_category_indicator'/>
+        <CategoryIndicatorDetail categoryIndicatorSlug='test_category_indicator'/>
       </CustomMockedProvider>
     )
     await waitForAllEffects()
