@@ -16,6 +16,8 @@ import { WorkflowAutocomplete } from '../filter/element/Workflow'
 import Checkbox from '../shared/Checkbox'
 import { LicenseTypeSelect } from '../filter/element/LicenseType'
 
+const COVID_19_LABEL = 'COVID-19'
+
 const ProductFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
@@ -23,33 +25,34 @@ const ProductFilter = () => {
   const { setHintDisplayed } = useContext(FilterContext)
 
   const {
-    withMaturity, productDeployable, forCovid, sectors, countries, organizations, origins, sdgs, tags,
+    withMaturity, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
     useCases, workflows, buildingBlocks, endorsers, licenseTypes
   } = useContext(ProductFilterContext)
 
   const {
-    setWithMaturity, setProductDeployable, setForCovid, setSectors, setCountries, setOrganizations,
+    setWithMaturity, setProductDeployable, setSectors, setCountries, setOrganizations,
     setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers, setLicenseTypes
   } = useContext(ProductFilterDispatchContext)
 
-  const toggleWithMaturity = () => {
-    setWithMaturity(!withMaturity)
-  }
+  const toggleWithMaturity = () => setWithMaturity(!withMaturity)
 
-  const toggleProductDeployable = () => {
-    setProductDeployable(!productDeployable)
-  }
+  const toggleProductDeployable = () => setProductDeployable(!productDeployable)
 
-  const toggleForCovid = () => {
-    !forCovid
-      ? setTags([...tags.filter(s => s.value !== 'COVID-19'), { label: 'COVID-19', value: 'COVID-19', slug: 'COVID-19' }])
-      : setTags(tags.filter(tag => tag.value !== 'COVID-19'))
+  const isCovid19TagActive = tags.some(({ slug }) => slug === COVID_19_LABEL)
 
-    setForCovid(!forCovid)
+  const toggleCovid19Tag = () => {
+    const tagsWithoutCovid19 = tags.filter(({ slug }) => slug !== COVID_19_LABEL)
+    setTags(isCovid19TagActive
+      ? tagsWithoutCovid19
+      : [
+        ...tagsWithoutCovid19,
+        { label: COVID_19_LABEL, value: COVID_19_LABEL, slug: COVID_19_LABEL }
+      ]
+    )
   }
 
   return (
-    <div className='px-4 py-4'>
+    <div className='p-4'>
       <div className='text-dial-gray-dark'>
         <div className='px-2 mb-4 text-xs'>
           <a className='cursor-pointer font-semibold flex gap-1' onClick={() => setHintDisplayed(true)}>
@@ -81,20 +84,26 @@ const ProductFilter = () => {
           <div className='text-sm flex flex-col'>
             <div className='px-2 pb-2'>
               <label className='inline-flex items-center'>
-                <Checkbox onChange={toggleForCovid} value={forCovid} />
-                <span className='ml-2'>{format('filter.product.forCovid')}</span>
+                <Checkbox onChange={toggleCovid19Tag} value={isCovid19TagActive} />
+                <span className='ml-2'>
+                  {format('filter.product.forCovid')}
+                </span>
               </label>
             </div>
             <div className='px-2 pb-2'>
               <label className='inline-flex items-center'>
                 <Checkbox onChange={toggleWithMaturity} value={withMaturity} />
-                <span className='ml-2'>{format('filter.product.withMaturity')}</span>
+                <span className='ml-2'>
+                  {format('filter.product.withMaturity')}
+                </span>
               </label>
             </div>
             <div className='px-2 pb-2'>
               <label className='inline-flex items-center'>
                 <Checkbox onChange={toggleProductDeployable} value={productDeployable} />
-                <span className='ml-2'>{format('filter.product.launchable')}</span>
+                <span className='ml-2'>
+                  {format('filter.product.launchable')}
+                </span>
               </label>
             </div>
           </div>
