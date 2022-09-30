@@ -21,6 +21,7 @@
     "@esri/arcgis-rest-request": "^4.0.3",
     "@handsontable/react": "^12.0.1",
     "@headlessui/react": "^1.5.0",
+    "@next/env": "^12.3.1",
     "@popperjs/core": "^2.9.1",
     "@react-pdf/renderer": "^3.0.0",
     "@tailwindcss/line-clamp": "^0.4.0",
@@ -35,6 +36,7 @@
     "html-react-parser": "^3.0.4",
     "iframe-resizer-react": "^1.1.0",
     "immutability-helper": "^3.1.1",
+    "immutable": "^4.1.0",
     "isomorphic-unfetch": "^3.1.0",
     "leaflet": "^1.7.1",
     "next": "^12.3.0",
@@ -69,6 +71,7 @@
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.19.3",
     "@tailwindcss/forms": "^0.5.0",
     "@testing-library/dom": "^8.1.0",
     "@testing-library/jest-dom": "^5.14.1",
@@ -96,7 +99,8 @@
     "postcss": "^8.4.12",
     "prettier": "^2.6.1",
     "standard": "^17.0.0",
-    "tailwindcss": "^3.0.23"
+    "tailwindcss": "^3.0.23",
+    "typescript": "^4.8.4"
   },
   "standard": {
     "globals": [
