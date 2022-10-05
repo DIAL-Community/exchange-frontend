@@ -29,6 +29,7 @@ export const en = {
   'app.name': 'Name',
   'app.description': 'Description',
   'app.internal-server-error': "500 - Internal Server Error",
+  'app.menu': 'Menu',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -49,6 +50,7 @@ export const en = {
   'user.products': 'Products',
   'user.products.placeholder': 'Enter products owned by user',
   'user.confirmed': 'User account confirmed',
+  'user.iconImage': 'User icon image',
 
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
