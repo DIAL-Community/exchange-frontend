@@ -4,7 +4,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { Dialog, Transition } from '@headlessui/react'
 import Select from 'react-select'
 
-const ReportIssue = ({ showForm, setShowForm, formTitle }) => {
+const ReportIssue = ({ showForm, hideFeedbackForm, formTitle }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -16,7 +16,11 @@ const ReportIssue = ({ showForm, setShowForm, formTitle }) => {
     shouldUnregister: true
   })
 
-  const options = [{ label: format('report.positive'), value: 'positive' }, { label: format('report.bug'), value: 'bug' }, { label: format('report.suggest'), value: 'suggestion' }]
+  const options = [
+    { label: format('report.positive'), value: 'positive' },
+    { label: format('report.bug'), value: 'bug' },
+    { label: format('report.suggest'), value: 'suggestion' }
+  ]
 
   const submitMessage = async (data) => {
     const { name, email, issueType, issue } = data
@@ -40,14 +44,14 @@ const ReportIssue = ({ showForm, setShowForm, formTitle }) => {
     })
     setThanks(true)
     setTimeout(() => {
-      setShowForm(false)
+      hideFeedbackForm()
     }, 3000)
   }
 
   return (
     <>
       <Transition appear show={showForm} as={Fragment}>
-        <Dialog as='div' className='fixed inset-0 z-100 overflow-y-auto' onClose={() => setShowForm(false)}>
+        <Dialog as='div' className='fixed inset-0 z-100 overflow-y-auto' onClose={hideFeedbackForm}>
           <div className='min-h-screen px-4 text-center'>
             <Transition.Child
               as={Fragment}
@@ -128,7 +132,7 @@ const ReportIssue = ({ showForm, setShowForm, formTitle }) => {
                         </button>
                         <button
                           type='button' className='w-24 ml-2 bg-button-gray-light text-white py-2 px-4 rounded disabled:opacity-50'
-                          onClick={() => setShowForm(false)}
+                          onClick={hideFeedbackForm}
                         >
                           {format('general.close')}
                         </button>

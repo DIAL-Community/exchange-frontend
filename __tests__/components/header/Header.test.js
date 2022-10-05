@@ -6,8 +6,8 @@ import CustomMockedProvider from '../../utils/CustomMockedProvider'
 
 mockNextUseRouter()
 describe('Unit test for the Header component.', () => {
-  const ADMIN_MENU_TEST_ID = 'admin-menu'
-  const ADMIN_MENU_ITEMS_TEST_ID = 'admin-menu-items'
+  const ADMIN_MENU_TEST_ID = 'menu-admin'
+  const ADMIN_MENU_ITEMS_TEST_ID = 'menu-admin-items'
 
   test('Should match snapshot.', () => {
     mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true, roles: 'admin' })
