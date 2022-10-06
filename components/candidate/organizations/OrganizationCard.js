@@ -170,7 +170,7 @@ const OrganizationCard = ({ organization, listType }) => {
             </div>
           )
           : (
-            <div className='border-3 border-transparent hover:border-dial-gray text-dial-purple cursor-pointer h-full'>
+            <div className='border-3 border-transparent hover:border-dial-gray text-dial-purple h-full'>
               <div className='h-full flex flex-col border border-dial-gray card-drop-shadow'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
                   {
