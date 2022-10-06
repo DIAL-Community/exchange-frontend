@@ -1,9 +1,10 @@
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { signIn, signOut } from 'next-auth/react'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import { useUser } from '../lib/hooks'
 
 const subMenus = {
   'admin.links': {
@@ -66,6 +67,11 @@ const subMenus = {
         label: 'header.dialResourcesPortal',
         link: '//resources.dial.community/',
         external: true
+      },
+      {
+        label: 'header.SDGFramework',
+        link: '//digitalimpactalliance.org/research/sdg-digital-investment-framework/',
+        external: true
       }
     ]
   },
@@ -122,11 +128,9 @@ const ExternalLink = ({ menuExpanded, setMenuExpanded, link, label }) => {
 
   return (
     <li className='py-3'>
-      <Link href={link}>
-        <a className='mx-8' href={link} target='_blank' rel='noreferrer' onClick={closeMenu}>
-          {format(label)}
-        </a>
-      </Link>
+      <a className='mx-8' href={link} target='_blank' rel='noreferrer' onClick={closeMenu}>
+        {format(label)}
+      </a>
     </li>
   )
 }
@@ -154,9 +158,10 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const { data: session } = useSession()
   const { pathname, asPath, query } = useRouter()
   const router = useRouter()
+
+  const { user, isAdminUser } = useUser()
 
   const switchLanguage = (e, localeCode) => {
     e.preventDefault()
@@ -175,15 +180,11 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
     signOut()
   }
 
-  const closeMenu = () => {
-    setMenuExpanded(!menuExpanded)
-  }
-
   return (
     <>
       {
         parent &&
-          <ul className='block lg:hidden mt-6 text-sm' style={{ minHeight: session ? '405px' : '370px' }}>
+          <ul className='block lg:hidden mt-6 text-sm' style={{ minHeight: user ? '405px' : '370px' }}>
             <li className='py-4 border-b'>
               <a className='mx-3 font-semibold' href='/main-menu' onClick={transitionToParent}>
                 <RiArrowLeftSLine className='inline mr-2 text-base' />
@@ -192,7 +193,7 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
             </li>
             <li className='py-3'>
               <div className='mx-8 font-semibold'>
-                {parent === 'current.user' ? session.user && session.user.userName && session.user.userName.toUpperCase() : format(parent)}
+                {parent === 'current.user' ? user.name.toUpperCase() : format(parent)}
               </div>
             </li>
             {
@@ -220,26 +221,15 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
                       </a>
                     </li>
                   )
-                } else if (subMenus[parent].type === 'admin' && session.user) {
-                  const { userEmail, userToken } = session.user.user
-
+                } else if (subMenus[parent].type === 'admin' && isAdminUser) {
                   return (
                     <>
                       <li key={index} className='py-4 border-b'>
-                        <a
-                          href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/users?user_email=${userEmail}&user_token=${userToken}`}
-                          className='mx-8' onClick={closeMenu}
-                        >
-                          {format('header.admin.users')}
-                        </a>
-                      </li>
-                      <li key={index} className='py-4 border-b'>
-                        <a
-                          href={`${process.env.NEXT_PUBLIC_RAILS_SERVER}/settings?user_email=${userEmail}&user_token=${userToken}`}
-                          className='mx-8' onClick={closeMenu}
-                        >
-                          {format('header.admin.settings')}
-                        </a>
+                        <Link href='/users'>
+                          <a role='menuitem' className='mx-8'>
+                            {format('header.admin.users')}
+                          </a>
+                        </Link>
                       </li>
                     </>
                   )
@@ -259,7 +249,7 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
   const format = (id, values) => formatMessage({ id }, { ...values })
   const { locale } = useRouter()
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const openSubMenu = (e, selectedParent) => {
     e.preventDefault()
@@ -276,7 +266,7 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
     <>
       {
         !parent &&
-          <ul className='block lg:hidden mt-6 text-sm' style={{ minHeight: session ? '405px' : '370px' }}>
+          <ul className='block lg:hidden mt-6 text-sm' style={{ minHeight: user ? '405px' : '370px' }}>
             <li className='py-4 border-b'>
               <a
                 className='mx-6 font-semibold' href='/switch-language'
@@ -315,7 +305,7 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
               </Link>
             </li>
             {
-              session
+              user
                 ? (
                   <>
                     <li className='py-4 border-b font-semibold'>
@@ -331,7 +321,7 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
                       >
                         <img src='/icons/user.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
                         <div className='inline text-sm'>
-                          {session.user && session.user.userName && session.user.userName.toUpperCase()}
+                          {user.name.toLowerCase()}
                         </div>
                         <RiArrowRightSLine className='text-base inline ml-2' />
                       </a>
