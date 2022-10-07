@@ -1,7 +1,9 @@
 import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
+import ReactTooltip from 'react-tooltip'
+import Dialog from '../shared/Dialog'
 
 const MaturityCategory = ({ category }) => {
   const { formatMessage } = useIntl()
@@ -48,18 +50,36 @@ const RubricAccordion = ({ maturityScores, overallScore }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const [isMaturityScoreDetailsDialogOpen, setIsMaturityScoreDetailsDialogOpen] = useState(false)
+  const toggleMaturityScoreDetailsDialog = () => setIsMaturityScoreDetailsDialogOpen(!isMaturityScoreDetailsDialogOpen)
+
   return (
     <>
       <div className='pb-5 mr-6 h4'>{format('product.overall-score')}: {overallScore} / 100</div>
-      <Accordion allowMultipleExpanded allowZeroExpanded>
-        {maturityScores.map((category, i) => {
-          if (category.overall_score > 0) {
-            return (<MaturityCategory key={i} category={category} />)
-          }
-
-          return <div key={i} />
-        })}
-      </Accordion>
+      <div className='cursor-pointer bg-dial-gray h-32'
+        data-tip={format('product.maturity-chart-tooltip')}
+        onClick={toggleMaturityScoreDetailsDialog}
+      >
+        Maturity spider chart placeholder
+      </div>
+      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Dialog
+        isOpen={isMaturityScoreDetailsDialogOpen}
+        onClose={toggleMaturityScoreDetailsDialog}
+        closeButton
+      >
+        <div className='flex flex-col w-full'>
+          <div className='h4 inline mb-2'>
+            {format('product.maturity-details-label')}
+          </div>
+          <Accordion allowMultipleExpanded allowZeroExpanded className='max-h-[60vh] pb-10 overflow-auto'>
+            {maturityScores
+              .filter(({ overall_score }) => overall_score > 0)
+              .map((category, categoryIdx) => <MaturityCategory key={categoryIdx} category={category} />)
+            }
+          </Accordion>
+        </div>
+      </Dialog>
     </>
   )
 }
