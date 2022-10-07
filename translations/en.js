@@ -216,6 +216,8 @@ export const en = {
   'product.maturity-scores': 'Product maturity scores',
   'product.maturity-desc': 'These maturity scores have been sourced from organizations such as Digital Square and DIAL Open Source Center. These maturity scores are not an endorsement, but a reflection of ratings given by various organizations. For more information visit the <a href="https://docs.osc.dial.community/projects/product-registry/en/latest/maturity.html" target="_blank">Catalog Documentation</a>',
   'product.no-maturity': 'We do not have any Maturity information for this Product.',
+  'product.maturity-chart-tooltip': 'Click to see maturity score details',
+  'product.maturity-details-label': 'Maturity score details',
   'product.overall-score': 'Overall maturity score',
   'product.category-score': 'Category score',
   'product.indicator-score': 'Indicator score',
