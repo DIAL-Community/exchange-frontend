@@ -18,8 +18,7 @@ Chart.register(
   Legend
 )
 
-const RadarChart = ({ axes, values, title }) => {
-
+const RadarChart = ({ axes, values, title, maxScaleValue }) => {
   const radarData = {
     labels: axes,
     datasets: [
@@ -34,21 +33,28 @@ const RadarChart = ({ axes, values, title }) => {
   }
 
   const radarOptions = {
+    maintainAspectRatio: false,
     scale: {
-      ticks: {
-        min: 0,
-        max: 4,
-        stepSize: 3,
-        showLabelBackdrop: false,
-        backdropColor: 'rgba(203, 197, 11, 1)'
+      max: maxScaleValue
+    },
+    scales: {
+      r: {
+        pointLabels: {
+          font: {
+            size: 16
+          },
+          color: '#46465a',
+          padding: 10
+        },
+        beginAtZero: true
+      }
+    },
+    plugins: {
+      legend: {
+        display: false
       },
-      angleLines: {
-        color: 'rgba(255, 255, 255, .3)',
-        lineWidth: 5
-      },
-      gridLines: {
-        color: 'rgba(255, 255, 255, .3)',
-        circular: true
+      tooltip: {
+        enabled: false
       }
     }
   }
