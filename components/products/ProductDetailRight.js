@@ -17,6 +17,7 @@ import RepositoryList from './repositories/RepositoryList'
 import ProductDetailTags from './ProductDetailTags'
 import ProductDetailSdgs from './ProductDetailSdgs'
 import ProductPricing from './ProductPricing'
+import ProductDetailLanguages from './ProductDetailLanguages'
 
 const ProductDetailRight = ({ product, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
@@ -131,6 +132,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           />
         )}
       </div>
+      {product.languages && <ProductDetailLanguages languages={product.languages} />}
       <RepositoryList productSlug={product.slug} />
       <div className='mt-12 grid grid-cols-1 xl:grid-cols-2 gap-y-12 xl:gap-y-0'>
         <div>
