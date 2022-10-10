@@ -482,21 +482,29 @@ exports[`Unit test for the CountryList component Should render text without anch
             class="grid grid-cols-1"
           >
             <div
-              class="bg-white border border-dial-gray card-drop-shadow"
+              class="border-3 border-transparent"
             >
               <div
-                class="p-4 font-semibold text-button-gray"
+                class="bg-white border border-dial-gray card-drop-shadow"
               >
-                Afghanistan
+                <div
+                  class="p-4 font-semibold text-button-gray"
+                >
+                  Afghanistan
+                </div>
               </div>
             </div>
             <div
-              class="bg-white border border-dial-gray card-drop-shadow"
+              class="border-3 border-transparent"
             >
               <div
-                class="p-4 font-semibold text-button-gray"
+                class="bg-white border border-dial-gray card-drop-shadow"
               >
-                Albania
+                <div
+                  class="p-4 font-semibold text-button-gray"
+                >
+                  Albania
+                </div>
               </div>
             </div>
           </div>
@@ -524,21 +532,29 @@ exports[`Unit test for the CountryList component Should render text without anch
           class="grid grid-cols-1"
         >
           <div
-            class="bg-white border border-dial-gray card-drop-shadow"
+            class="border-3 border-transparent"
           >
             <div
-              class="p-4 font-semibold text-button-gray"
+              class="bg-white border border-dial-gray card-drop-shadow"
             >
-              Afghanistan
+              <div
+                class="p-4 font-semibold text-button-gray"
+              >
+                Afghanistan
+              </div>
             </div>
           </div>
           <div
-            class="bg-white border border-dial-gray card-drop-shadow"
+            class="border-3 border-transparent"
           >
             <div
-              class="p-4 font-semibold text-button-gray"
+              class="bg-white border border-dial-gray card-drop-shadow"
             >
-              Albania
+              <div
+                class="p-4 font-semibold text-button-gray"
+              >
+                Albania
+              </div>
             </div>
           </div>
         </div>
