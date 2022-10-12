@@ -87,6 +87,7 @@ export const PRODUCT_QUERY = gql`
         mainRepository
         name
         slug
+        license
       }
     }
   }
