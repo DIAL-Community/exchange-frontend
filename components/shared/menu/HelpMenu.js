@@ -16,7 +16,8 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
   const helpPopoverButton = useRef(null)
   const helpPopover = useRef(null)
 
-  const showFeedbackForm = () => {
+  const showFeedbackForm = (e) => {
+    e.preventDefault()
     setShowForm(true)
   }
 
@@ -44,7 +45,11 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
             >
               {format('header.documentation')}
             </a>
-            <a href='reportIssue' className={DEFAULT_DROPDOWN_MENU_STYLES} onClick={showFeedbackForm}>
+            <a
+              href='reportIssue'
+              className={DEFAULT_DROPDOWN_MENU_STYLES}
+              onClick={(e) => showFeedbackForm(e)}
+            >
               {format('app.reportIssue')}
             </a>
           </div>
