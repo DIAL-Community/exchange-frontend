@@ -4,7 +4,7 @@ import { useCallback, useRef } from 'react'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
-import { NONE, USER_MENU } from './MenuCommon'
+import { USER_MENU } from './MenuCommon'
 import { DEFAULT_DROPDOWN_MENU_STYLES, DEFAULT_DROPDOWN_PANEL_STYLES } from './MenuStyleCommon'
 
 const UserMenu = ({ currentOpenMenu, onToggleDropdown }) => {
@@ -39,7 +39,6 @@ const UserMenu = ({ currentOpenMenu, onToggleDropdown }) => {
         `}
         ref={buttonRef}
         onClick={toggleSwitcher}
-        onBlur={() => onToggleDropdown(NONE)}
       >
         <img src='/icons/user.svg' className='inline mx-2' alt={format('user.iconImage')} height='20px' width='20px' />
         <div id={USER_MENU} className='inline text-xs'>
