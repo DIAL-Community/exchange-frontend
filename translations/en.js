@@ -29,6 +29,7 @@ export const en = {
   'app.name': 'Name',
   'app.description': 'Description',
   'app.internal-server-error': "500 - Internal Server Error",
+  'app.menu': 'Menu',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -49,6 +50,7 @@ export const en = {
   'user.products': 'Products',
   'user.products.placeholder': 'Enter products owned by user',
   'user.confirmed': 'User account confirmed',
+  'user.iconImage': 'User icon image',
 
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
@@ -214,6 +216,8 @@ export const en = {
   'product.maturity-scores': 'Product maturity scores',
   'product.maturity-desc': 'These maturity scores have been sourced from organizations such as Digital Square and DIAL Open Source Center. These maturity scores are not an endorsement, but a reflection of ratings given by various organizations. For more information visit the <a href="https://docs.osc.dial.community/projects/product-registry/en/latest/maturity.html" target="_blank">Catalog Documentation</a>',
   'product.no-maturity': 'We do not have any Maturity information for this Product.',
+  'product.maturity-chart-tooltip': 'Click to see maturity score details',
+  'product.maturity-details-label': 'Maturity score details',
   'product.overall-score': 'Overall maturity score',
   'product.category-score': 'Category score',
   'product.indicator-score': 'Indicator score',

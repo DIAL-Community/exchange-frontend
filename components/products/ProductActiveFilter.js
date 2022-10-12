@@ -33,7 +33,7 @@ const ProductActiveFilter = () => {
   } = useContext(ProductFilterContext)
 
   const {
-    setWithMaturity, setProductDeployable, setForCovid, setSectors, setCountries, setOrganizations,
+    setWithMaturity, setProductDeployable, setSectors, setCountries, setOrganizations,
     setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers, setLicenseTypes
   } = useContext(ProductFilterDispatchContext)
 
@@ -60,7 +60,6 @@ const ProductActiveFilter = () => {
     e.preventDefault()
     setWithMaturity(false)
     setProductDeployable(false)
-    setForCovid(false)
     setOrigins([])
     setCountries([])
     setSectors([])

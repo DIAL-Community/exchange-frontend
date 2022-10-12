@@ -2,41 +2,29 @@
 
 exports[`Unit test for the Header component. Should match snapshot. 1`] = `
 <div
-  class="py-1"
-  data-testid="admin-menu-items"
-  role="none"
+  class="
+  origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+  ring-1 ring-black ring-opacity-5 focus:outline-none z-30
+"
+  data-testid="menu-admin-items"
+  role="menu"
 >
   <a
     class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
     href="/users"
     role="menuitem"
   >
     Users
   </a>
+  <hr
+    class="mx-4 border border-gray-200"
+  />
   <a
     class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-    href="http://localhost:3000//settings?user_email=some-fake@email.com&user_token=some-fake-user-token"
-    role="menuitem"
-  >
-    Settings
-  </a>
-  <a
-    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-    href="/sectors"
-    role="menuitem"
-  >
-    Sectors
-  </a>
-  <a
-    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
     href="/countries"
     role="menuitem"
   >
@@ -44,17 +32,29 @@ exports[`Unit test for the Header component. Should match snapshot. 1`] = `
   </a>
   <a
     class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
+    href="/sectors"
+    role="menuitem"
+  >
+    Sectors
+  </a>
+  <a
+    class="
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
     href="/tags"
     role="menuitem"
   >
     Tags
   </a>
+  <hr
+    class="mx-4 border border-gray-200"
+  />
   <a
     class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
     href="/candidate/organizations"
     role="menuitem"
   >
@@ -62,8 +62,8 @@ exports[`Unit test for the Header component. Should match snapshot. 1`] = `
   </a>
   <a
     class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
     href="/candidate/products"
     role="menuitem"
   >
@@ -71,44 +71,20 @@ exports[`Unit test for the Header component. Should match snapshot. 1`] = `
   </a>
   <a
     class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
     href="/candidate/roles"
     role="menuitem"
   >
     Candidate Roles
   </a>
+  <hr
+    class="mx-4 border border-gray-200"
+  />
   <a
     class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-    href="http://localhost:3000//deploys?user_email=some-fake@email.com&user_token=some-fake-user-token"
-    role="menuitem"
-  >
-    Deploys
-  </a>
-  <a
-    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-    href="http://localhost:3000//portal_views?user_email=some-fake@email.com&user_token=some-fake-user-token"
-    role="menuitem"
-  >
-    Portal Views
-  </a>
-  <a
-    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-    href="http://localhost:3000//maturity_rubrics?user_email=some-fake@email.com&user_token=some-fake-user-token"
-    role="menuitem"
-  >
-    Maturity Rubrics
-  </a>
-  <a
-    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
     href="/rubric_categories"
     role="menuitem"
   >

@@ -48,6 +48,7 @@ const sessionDefaultValues = {
     user: {
       userEmail: 'some-fake@email.com',
       userToken: 'some-fake-user-token',
+      name: 'some-fake-username',
       canEdit: true
     }
   },

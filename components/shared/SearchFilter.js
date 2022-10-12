@@ -78,6 +78,10 @@ const SearchFilter = ({
       return 'projects/create'
     }
 
+    if (user.canEdit && linkPath.includes('candidate')) {
+      return `/candidate/${linkPath[1]}/create`
+    }
+
     const reactEditPaths = [
       'playbooks', 'plays', 'organizations', 'products', 'datasets', 'use_cases', 'building_blocks', 'workflows',
       'countries', 'rubric_categories'

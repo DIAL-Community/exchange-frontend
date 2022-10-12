@@ -14,6 +14,7 @@ export const PRODUCT_QUERY = gql`
       pricingModel
       pricingDetails
       hostingModel
+      languages
       productDescription {
         description
         locale
@@ -86,6 +87,7 @@ export const PRODUCT_QUERY = gql`
         mainRepository
         name
         slug
+        license
       }
     }
   }

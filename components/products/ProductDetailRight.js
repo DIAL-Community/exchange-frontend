@@ -7,7 +7,6 @@ import EditButton from '../shared/EditButton'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
 import { useProductOwnerUser, useUser } from '../../lib/hooks'
-import MaturityAccordion from './Maturity'
 import ProductCard from './ProductCard'
 import ProductDetailBuildingBlocks from './ProductDetailBuildingBlocks'
 import ProductDetailProjects from './ProductDetailProjects'
@@ -17,6 +16,8 @@ import RepositoryList from './repositories/RepositoryList'
 import ProductDetailTags from './ProductDetailTags'
 import ProductDetailSdgs from './ProductDetailSdgs'
 import ProductPricing from './ProductPricing'
+import ProductDetailLanguages from './ProductDetailLanguages'
+import ProductDetailMaturityScores from './ProductDetailMaturityScores'
 
 const ProductDetailRight = ({ product, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
@@ -131,6 +132,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           />
         )}
       </div>
+      {product.languages && <ProductDetailLanguages languages={product.languages} />}
       <RepositoryList productSlug={product.slug} />
       <div className='mt-12 grid grid-cols-1 xl:grid-cols-2 gap-y-12 xl:gap-y-0'>
         <div>
@@ -162,19 +164,9 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           }
         </div>
       </div>
-      <div className='mt-12'>
-        <div className='card-title mb-3 text-dial-gray-dark'>{format('product.maturity-scores')}</div>
-        {
-          product.maturityScore
-            ? (
-              <>
-                <div className='text-sm mb-3 text-dial-gray-dark highlight-link' dangerouslySetInnerHTML={{ __html: format('product.maturity-desc') }} />
-                <MaturityAccordion maturityScores={product.maturityScores} overallScore={product.maturityScore} />
-              </>
-            )
-            : <div className='text-sm pb-5 text-button-gray'>{format('product.no-maturity')}</div>
-        }
-      </div>
+      {product?.maturityScores && (
+        <ProductDetailMaturityScores maturityScores={product.maturityScores} overallMaturityScore={product.maturityScore} />
+      )}
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={product.id}
