@@ -25,7 +25,6 @@ query SearchWorkflows(
     useCases: $useCases,
     search: $search
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor

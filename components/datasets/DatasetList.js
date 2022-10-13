@@ -48,7 +48,6 @@ query SearchDatasets(
     datasetTypes: $datasetTypes,
     search: $search
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor

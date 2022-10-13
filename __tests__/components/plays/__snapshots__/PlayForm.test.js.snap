@@ -436,27 +436,6 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                 disabled=""
                 type="submit"
               >
-                Submit Play
-                <svg
-                  class="spinner ml-3 inline"
-                  fill="currentColor"
-                  height="1em"
-                  stroke="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 512 512"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
-                  />
-                </svg>
-              </button>
-              <button
-                class="submit-button"
-                disabled=""
-                type="submit"
-              >
                 Submit and Assign Play
                 <svg
                   class="spinner ml-3 inline"
@@ -754,12 +733,6 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
               <button
                 class="submit-button"
                 data-testid="submit-button"
-                type="submit"
-              >
-                Submit Play
-              </button>
-              <button
-                class="submit-button"
                 type="submit"
               >
                 Submit and Assign Play
@@ -1156,12 +1129,6 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
               <button
                 class="submit-button"
                 data-testid="submit-button"
-                type="submit"
-              >
-                Submit Play
-              </button>
-              <button
-                class="submit-button"
                 type="submit"
               >
                 Submit and Assign Play

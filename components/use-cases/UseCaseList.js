@@ -25,7 +25,6 @@ query SearchUseCases(
     showBeta: $showBeta,
     search: $search
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor

@@ -21,7 +21,6 @@ query SearchCandidateRoles(
     after: $after,
     search: $search
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor

@@ -20,7 +20,6 @@ const AGGREGATORS_QUERY = gql`
       services: $services,
       search: $search
     ) {
-      __typename
       totalCount
       pageInfo {
         endCursor

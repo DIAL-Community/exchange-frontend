@@ -45,7 +45,6 @@ query SearchOrganizations(
     years: $years,
     search: $search
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor

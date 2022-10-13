@@ -1,10 +1,11 @@
 import { screen } from '@testing-library/react'
 import { FilterContextProvider } from '../../../components/context/FilterContext'
 import { PlaybookFilterProvider } from '../../../components/context/PlaybookFilterContext'
-import PlaybookListQuery, { PLAYBOOKS_QUERY } from '../../../components/playbooks/PlaybookList'
+import PlaybookListQuery from '../../../components/playbooks/PlaybookList'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { render, waitForAllEffects } from '../../test-utils'
 import { mockNextUseRouter } from '../../utils/nextMockImplementation'
+import { PLAYBOOKS_QUERY } from '../../../queries/playbook'
 import { searchPlaybooks } from './data/PlaybookList'
 
 describe('Unit tests for playbook list interaction.', () => {

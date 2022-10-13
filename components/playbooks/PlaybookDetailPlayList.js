@@ -14,7 +14,6 @@ const DEFAULT_PAGE_SIZE = 10
 export const PLAYBOOK_PLAYS_QUERY = gql`
   query SearchPlaybookPlays($first: Int, $after: String, $slug: String!) {
     searchPlaybookPlays(first: $first, after: $after, slug: $slug) {
-      __typename
       totalCount
       pageInfo {
         endCursor
