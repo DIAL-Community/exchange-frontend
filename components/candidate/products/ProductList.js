@@ -21,7 +21,6 @@ query SearchCandidateProducts(
     after: $after,
     search: $search
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor

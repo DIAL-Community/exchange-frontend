@@ -26,7 +26,6 @@ export const PlayForm = ({ playbook, play }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
   const [navigateToMove, setNavigateToMove] = useState(false)
-  const [assigningToPlaybook, setAssigningToPlaybook] = useState(false)
 
   const [createPlay] = useMutation(CREATE_PLAY, {
     onError: (error) => {
@@ -108,11 +107,7 @@ export const PlayForm = ({ playbook, play }) => {
         slug,
         description,
         tags: tags.map(tag => tag.label),
-        playbookSlug: ''
-      }
-
-      if (assigningToPlaybook) {
-        variables.playbookSlug = playbook.slug
+        playbookSlug: playbook.slug
       }
 
       createPlay({
@@ -182,17 +177,10 @@ export const PlayForm = ({ playbook, play }) => {
 
   const saveAndCreateMove = () => {
     setNavigateToMove(true)
-    setAssigningToPlaybook(false)
-  }
-
-  const savePlay = () => {
-    setNavigateToMove(false)
-    setAssigningToPlaybook(false)
   }
 
   const saveAndAssignPlay = () => {
     setNavigateToMove(false)
-    setAssigningToPlaybook(true)
   }
 
   return (
@@ -271,15 +259,6 @@ export const PlayForm = ({ playbook, play }) => {
                 <button
                   type='submit'
                   data-testid='submit-button'
-                  onClick={savePlay}
-                  className='submit-button'
-                  disabled={mutating || reverting}
-                >
-                  {`${format('app.submit')} ${format('plays.label')}`}
-                  {mutating && <FaSpinner className='spinner ml-3 inline' />}
-                </button>
-                <button
-                  type='submit'
                   onClick={saveAndAssignPlay}
                   className='submit-button'
                   disabled={mutating || reverting}

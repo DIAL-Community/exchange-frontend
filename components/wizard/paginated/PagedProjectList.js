@@ -25,7 +25,6 @@ const PRODUCTS_QUERY = gql`
       tags: $tags,
       projectSortHint: $projectSortHint
     ) {
-      __typename
       totalCount
       pageInfo {
         endCursor

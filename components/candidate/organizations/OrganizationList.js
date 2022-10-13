@@ -21,7 +21,6 @@ query SearchCandidateOrganizations(
     after: $after,
     search: $search
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor

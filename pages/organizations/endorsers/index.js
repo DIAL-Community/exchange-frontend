@@ -41,7 +41,6 @@ query SearchOrganizations(
     search: $search,
     mapView: $mapView
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor

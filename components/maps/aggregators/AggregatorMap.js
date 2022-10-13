@@ -29,7 +29,6 @@ query SearchOrganizations(
     aggregators: $aggregators,
     mapView: $mapView
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor

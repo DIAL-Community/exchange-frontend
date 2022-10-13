@@ -30,7 +30,6 @@ query SearchProjects(
     products: $products
     mapView: $mapView
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor
