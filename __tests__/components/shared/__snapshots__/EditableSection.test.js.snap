@@ -17,23 +17,27 @@ exports[`Unit test for the Editable Section component. Should match snapshot - w
       >
         Mock Section Header
       </div>
-      <button
-        class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-        data-testid="edit-button"
-        type="button"
+      <div
+        class="gap-3"
       >
-        <img
-          alt="Edit"
-          height="12px"
-          src="/icons/edit.svg"
-          width="12px"
-        />
-        <span
-          class="text-sm"
+        <button
+          class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          data-testid="edit-button"
+          type="button"
         >
-          Edit
-        </span>
-      </button>
+          <img
+            alt="Edit"
+            height="12px"
+            src="/icons/edit.svg"
+            width="12px"
+          />
+          <span
+            class="text-sm"
+          >
+            Edit
+          </span>
+        </button>
+      </div>
     </div>
     display mode body
   </div>
@@ -57,6 +61,9 @@ exports[`Unit test for the Editable Section component. Should match snapshot - w
       >
         Mock Section Header
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     display mode body
   </div>
@@ -80,6 +87,9 @@ exports[`Unit test for the Editable Section component. Should switch to edit mod
       >
         Mock Section Header
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"

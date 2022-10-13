@@ -17,6 +17,9 @@ exports[`Unit test for the UseCaseStepDetailWorkflows component. Should add a pi
       >
         Workflows
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -207,6 +210,9 @@ exports[`Unit test for the UseCaseStepDetailWorkflows component. Should match sn
       >
         Workflows
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="flex flex-col gap-2"
@@ -300,6 +306,9 @@ exports[`Unit test for the UseCaseStepDetailWorkflows component. Should match sn
       >
         Workflows
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -466,6 +475,9 @@ exports[`Unit test for the UseCaseStepDetailWorkflows component. Should match sn
       >
         Workflows
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="flex flex-col gap-2"
@@ -559,6 +571,9 @@ exports[`Unit test for the UseCaseStepDetailWorkflows component. Should remove a
       >
         Workflows
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
