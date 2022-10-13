@@ -17,6 +17,9 @@ exports[`Unit tests for the ProductDetailProjects component. Should add a pill a
       >
         Projects
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -232,23 +235,27 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
       >
         Projects
       </div>
-      <button
-        class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-        data-testid="edit-button"
-        type="button"
+      <div
+        class="gap-3"
       >
-        <img
-          alt="Edit"
-          height="12px"
-          src="/icons/edit.svg"
-          width="12px"
-        />
-        <span
-          class="text-sm"
+        <button
+          class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          data-testid="edit-button"
+          type="button"
         >
-          Edit
-        </span>
-      </button>
+          <img
+            alt="Edit"
+            height="12px"
+            src="/icons/edit.svg"
+            width="12px"
+          />
+          <span
+            class="text-sm"
+          >
+            Edit
+          </span>
+        </button>
+      </div>
     </div>
     <div
       class="grid grid-cols-1"
@@ -317,6 +324,9 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
       >
         Projects
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -483,6 +493,9 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
       >
         Projects
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="grid grid-cols-1"
@@ -551,6 +564,9 @@ exports[`Unit tests for the ProductDetailProjects component. Should remove a pil
       >
         Projects
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"

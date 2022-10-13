@@ -29,3 +29,24 @@ export const DELETE_RUBRIC_CATEGORY = gql`
     }
   }
 `
+
+export const UPDATE_RUBRIC_CATEGORY_INDICATORS = gql`
+  mutation UpdateRubricCategoryIndicators (
+    $categoryIndicatorSlugs: [String!]!
+    $rubricCategorySlug: String!
+  ) {
+    updateRubricCategoryIndicators (
+      categoryIndicatorSlugs: $categoryIndicatorSlugs
+      rubricCategorySlug: $rubricCategorySlug
+    ) {
+      rubricCategory {
+        categoryIndicators {
+          slug
+          name
+          rubricCategoryId
+        }
+      } 
+      errors
+    }
+  }
+`

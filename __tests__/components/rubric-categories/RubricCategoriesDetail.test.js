@@ -19,7 +19,6 @@ describe('Unit test for the RubricCategoryDetail component.', () => {
     await waitForAllEffects()
 
     expect(getByTestId('description')).toHaveTextContent('RC description')
-    expect(getByTestId('indicators')).toHaveTextContent('CI name')
 
     expect(container).toMatchSnapshot()
   })

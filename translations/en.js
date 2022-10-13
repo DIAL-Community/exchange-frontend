@@ -652,6 +652,7 @@ export const en = {
   'rubric-category.label': 'Rubric Category',
   'rubric-category.weight': 'Weight',
   'rubric-category.delete.confirm.message': 'Are you sure you want to delete this Rubric Category?',
+  'rubric-category.no-indicator': 'We do not have any Indicator information for this Rubric Category.',
 
   'category-indicators.label': 'Indicators',
 
@@ -1112,6 +1113,8 @@ export const en = {
   'toast.category-indicator.delete.failure': 'Category Indicator deletion failed',
   'toast.category-indicator.submit.success': 'Category Indicator submitted successfully',
   'toast.category-indicator.submit.failure': 'Category Indicator submission failed',
+  'toast.category-indicator.update.success': 'Category Indicators updated successfully',
+  'toast.category-indicator.update.failure': 'Category Indicators update failed',
 
   'locale.label': 'Locale',
   'locale.english.label': 'English (en)',

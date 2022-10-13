@@ -150,7 +150,6 @@ export const PRODUCTS_QUERY = gql`
       licenseTypes: $licenseTypes
       search: $search
     ) {
-      __typename
       totalCount
       pageInfo {
         endCursor
