@@ -20,6 +20,9 @@ exports[`Unit test for the ProductDetailOrganizations component. Should render p
           >
             Pricing Information
           </div>
+          <div
+            class="gap-3"
+          />
         </div>
         <div
           class="flex flex-wrap gap-2 text-sm"
@@ -89,6 +92,9 @@ exports[`Unit test for the ProductDetailOrganizations component. Should render p
         >
           Pricing Information
         </div>
+        <div
+          class="gap-3"
+        />
       </div>
       <div
         class="flex flex-wrap gap-2 text-sm"
