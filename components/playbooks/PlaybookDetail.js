@@ -33,7 +33,7 @@ const PlaybookDetail = ({ slug, locale }) => {
         <div className='hidden lg:block w-1/4'>
           <PlaybookDetailNavigation playbook={data?.playbook} />
         </div>
-        <div className='flex flex-col gap-3 w-full max-w-screen-lg'>
+        <div className='flex flex-col gap-3 w-full max-w-screen-2xl'>
           <PlaybookDetailOverview
             playbook={data?.playbook}
             locale={locale}
