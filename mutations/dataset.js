@@ -46,12 +46,12 @@ export const UPDATE_DATASET_COUNTRIES = gql`
   mutation UpdateDatasetCountries($slug: String!, $countrySlugs: [String!]!) {
     updateDatasetCountries(slug: $slug, countrySlugs: $countrySlugs) {
       dataset {
-        sectors {
-          id,
-          name,
+        countries {
+          id
+          name
           slug
         }
-      },
+      }
       errors
     }
   }
