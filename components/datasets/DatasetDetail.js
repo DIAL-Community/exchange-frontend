@@ -1,60 +1,10 @@
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useEffect, useRef } from 'react'
 import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
+import { DATASET_QUERY } from '../../queries/dataset'
 import DatasetDetailLeft from './DatasetDetailLeft'
 import DatasetDetailRight from './DatasetDetailRight'
-
-const DATASET_QUERY = gql`
-  query Dataset($slug: String!) {
-    dataset(slug: $slug) {
-      id
-      name
-      slug
-      imageFile
-      website
-      visualizationUrl
-      geographicCoverage
-      timeRange
-      license
-      languages
-      datasetType
-      dataFormat
-      tags
-      datasetDescription {
-        description
-        locale
-      }
-      origins {
-        name
-        slug
-      }
-      organizations {
-        name
-        slug
-        imageFile
-        isEndorser
-        whenEndorsed
-      }
-      sustainableDevelopmentGoalMapping
-      sustainableDevelopmentGoals {
-        id
-        name
-        slug
-        imageFile
-      }
-      sectors {
-        name
-        slug
-        isDisplayable
-      }
-      countries {
-        name
-      }
-      manualUpdate
-    }
-  }
-`
 
 const DatasetDetail = ({ slug, locale }) => {
 
