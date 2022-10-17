@@ -11,8 +11,17 @@ const Footer = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
+  const [formTitle, setFormTitle] = useState('')
   const [showForm, setShowForm] = useState(false)
-  const [showContact, setShowContact] = useState(false)
+
+  const showFeedbackForm = (title) => {
+    setFormTitle(title)
+    setShowForm(true)
+  }
+
+  const hideFeedbackForm = () => {
+    setShowForm(false)
+  }
 
   return (
     <footer>
@@ -178,17 +187,28 @@ const Footer = () => {
                 {format('footer.privacyPolicy').toUpperCase()}
               </a>
             </div>
-            <div className='py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer' onClick={() => setShowForm(true)}>
+            <div
+              className='py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer'
+              onClick={() => showFeedbackForm('app.reportIssue')}
+            >
               {format('app.reportIssue').toUpperCase()}
-              {showForm && <ReportIssue showForm={showForm} setShowForm={setShowForm} formTitle={format('report.reportIssue')} />}
             </div>
-            <div className='py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer' onClick={() => setShowContact(true)}>
+            <div
+              className='py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer'
+              onClick={() => showFeedbackForm('footer.contactUs')}
+            >
               {format('footer.contactUs').toUpperCase()}
-              {showContact && <ReportIssue showForm={showContact} setShowForm={setShowContact} formTitle={format('footer.contactUs')} />}
             </div>
           </div>
         </div>
       </div>
+      {showForm &&
+        <ReportIssue
+          showForm={showForm}
+          hideFeedbackForm={() => hideFeedbackForm()}
+          formTitle={format(formTitle)}
+        />
+      }
     </footer>
   )
 }
