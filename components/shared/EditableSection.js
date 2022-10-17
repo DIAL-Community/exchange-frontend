@@ -2,8 +2,9 @@ import { useIntl } from 'react-intl'
 import { useState, useEffect, useCallback } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import EditButton from '../shared/EditButton'
+import CreateButton from './CreateButton'
 
-const EditableSection = ({ canEdit, sectionHeader, editModeBody, displayModeBody, isDirty, isMutating, onSubmit, onCancel }) => {
+const EditableSection = ({ canEdit, sectionHeader, editModeBody, displayModeBody, isDirty, isMutating, onSubmit, onCancel, createAction = null }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -23,7 +24,10 @@ const EditableSection = ({ canEdit, sectionHeader, editModeBody, displayModeBody
     <div className='mt-12' data-testid='editable-section'>
       <div className='flex justify-between items-center mb-3'>
         <div className='card-title text-dial-gray-dark'>{sectionHeader}</div>
-        {canEdit && !isInEditMode && <EditButton onClick={() => setIsInEditMode(true)} className='mr-2' />}
+        <div className='gap-3'>
+          {canEdit && !isInEditMode && <EditButton onClick={() => setIsInEditMode(true)} className='mr-2' />}
+          {createAction && !isInEditMode && <CreateButton label={format('app.create-new')} onClick={createAction} className='mr-2' />}
+        </div>
       </div>
       {isInEditMode
         ? (

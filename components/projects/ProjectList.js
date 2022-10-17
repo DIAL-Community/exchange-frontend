@@ -47,7 +47,6 @@ query SearchProjects(
     tags: $tags,
     search: $search
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor

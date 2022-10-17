@@ -23,7 +23,7 @@ variables:
 eslint:
   stage: lint
   tags:
-    - test
+    - docker
   script:
     # Install eslint
     - |
@@ -46,7 +46,7 @@ cache:
 
 build_react:
   tags:
-    - test
+    - docker
   stage: build
   script:
     - yarn install
@@ -58,7 +58,7 @@ build_react:
 
 test:
   tags:
-    - test
+    - docker
   stage: test
   script:
     - yarn test

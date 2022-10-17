@@ -17,3 +17,15 @@ export const CATEGORY_INDICATOR_QUERY = gql`
     }
   }
 `
+
+export const CATEGORY_INDICATORS_SEARCH_QUERY = gql`
+  query CategoryIndicators($search: String) {
+    categoryIndicators(search: $search) {
+      slug
+      name
+      id
+      rubricCategoryId
+    }
+  }
+`
+

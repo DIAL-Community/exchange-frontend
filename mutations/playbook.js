@@ -52,3 +52,19 @@ const generatePlaybookMutation = (mutationName) =>
 export const CREATE_PLAYBOOK = gql(generatePlaybookMutation('createPlaybook'))
 
 export const AUTOSAVE_PLAYBOOK = gql(generatePlaybookMutation('autoSavePlaybook'))
+
+export const DELETE_PLAYBOOK = gql`
+  mutation DeletePlaybook(
+    $id: ID!
+  ) {
+    deletePlaybook(
+      id: $id
+    ) {
+      playbook {
+       id
+       slug
+       name
+      }
+    }
+  }
+`

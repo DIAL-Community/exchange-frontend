@@ -23,7 +23,6 @@ query SearchSDGs(
     sdgs: $sdgs,
     search: $search
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor

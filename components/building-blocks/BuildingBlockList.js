@@ -29,7 +29,6 @@ query SearchBuildingBlocks(
     showMature: $showMature,
     search: $search
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor
