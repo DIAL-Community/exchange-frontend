@@ -65,7 +65,7 @@ const RubricCategoryListQuery = () => {
   }
 
   return (
-    <div className='px-2 mt-3 pb-8 max-w-catalog mx-auto'>
+    <div className='px-2 mt-3 pb-8'>
       <RubricCategoryList rubricCategoryList={data.rubricCategories.nodes} />
     </div>
   )

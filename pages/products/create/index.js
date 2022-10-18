@@ -11,11 +11,9 @@ const CreateProduct = () => {
   return (
     <>
       <Header/>
-      <div className='max-w-catalog mx-auto'>
-        <ClientOnly>
-          {loadingUserSession ? <Loading /> : isAuthorized ? <ProductForm /> : <Unauthorized />}
-        </ClientOnly>
-      </div>
+      <ClientOnly>
+        {loadingUserSession ? <Loading /> : isAuthorized ? <ProductForm /> : <Unauthorized />}
+      </ClientOnly>
       <Footer/>
     </>
   )

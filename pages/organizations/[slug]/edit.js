@@ -62,11 +62,13 @@ const EditOrganization = () => {
     <>
       <Header />
       {data && data.organization && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            {loadingUserSession ? <Loading /> : canEdit ? <OrganizationForm organization={data.organization} /> : <Unauthorized />}
-          </ClientOnly>
-        </div>
+        <ClientOnly>
+          {loadingUserSession
+            ? <Loading />
+            : canEdit
+              ? <OrganizationForm organization={data.organization} />
+              : <Unauthorized />}
+        </ClientOnly>
       )}
       <Footer />
     </>

@@ -18,7 +18,7 @@ const EmbeddedPlaybook = () => {
       <EmbeddedHeader />
       <ClientOnly>
         <PlaybookDetailProvider>
-          <div className='flex flex-col max-w-catalog mx-auto'>
+          <div className='flex flex-col'>
             <PlaybookDetailHeader slug={slug} />
             <div className='flex gap-x-3'>
               <div className='hidden lg:block w-1/4'>

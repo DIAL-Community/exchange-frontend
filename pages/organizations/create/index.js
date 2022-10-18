@@ -11,11 +11,13 @@ const CreateOrganization = () => {
   return (
     <>
       <Header />
-      <div className='max-w-catalog mx-auto'>
-        <ClientOnly>
-          {loadingUserSession ? <Loading /> : isAdminUser ? <OrganizationForm /> : <Unauthorized />}
-        </ClientOnly>
-      </div>
+      <ClientOnly>
+        {loadingUserSession
+          ? <Loading />
+          : isAdminUser
+            ? <OrganizationForm />
+            : <Unauthorized />}
+      </ClientOnly>
       <Footer />
     </>
   )

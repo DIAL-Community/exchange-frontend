@@ -6,11 +6,9 @@ import ProjectForm from '../../../components/projects/ProjectForm'
 const CreateProject = () => (
   <>
     <Header />
-    <div className='max-w-catalog mx-auto'>
-      <ClientOnly>
-        <ProjectForm />
-      </ClientOnly>
-    </div>
+    <ClientOnly>
+      <ProjectForm />
+    </ClientOnly>
     <Footer />
   </>
 )

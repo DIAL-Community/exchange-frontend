@@ -6,11 +6,9 @@ import UseCaseForm from '../../../components/use-cases/UseCaseForm'
 const CreateUseCase = () => (
   <>
     <Header />
-    <div className='max-w-catalog mx-auto'>
-      <ClientOnly>
-        <UseCaseForm />
-      </ClientOnly>
-    </div>
+    <ClientOnly>
+      <UseCaseForm />
+    </ClientOnly>
     <Footer />
   </>
 )

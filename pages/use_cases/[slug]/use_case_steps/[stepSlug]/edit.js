@@ -30,11 +30,9 @@ const EditUseCaseStep = () => {
     <>
       <Header />
       {data?.useCaseStep && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            <StepForm useCaseStep={data.useCaseStep} useCase={useCase}/>
-          </ClientOnly>
-        </div>
+        <ClientOnly>
+          <StepForm useCaseStep={data.useCaseStep} useCase={useCase}/>
+        </ClientOnly>
       )}
       <Footer />
     </>

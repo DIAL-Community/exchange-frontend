@@ -10,11 +10,9 @@ const CreateProduct = () => (
     <QueryNotification />
     <GradientBackground />
     <Header />
-    <div className='max-w-catalog mx-auto'>
-      <ClientOnly>
-        <ProductForm />
-      </ClientOnly>
-    </div>
+    <ClientOnly>
+      <ProductForm />
+    </ClientOnly>
     <Footer />
   </>
 )

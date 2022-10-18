@@ -84,7 +84,7 @@ const TabNav = (props) => {
           </ul>
         </div>
       </div>
-      <div className='hidden md:block max-w-catalog mx-auto md:sticky md:sticky-bar filter card-drop-shadow-lg'>
+      <div className='hidden md:block md:sticky md:sticky-bar filter card-drop-shadow-lg'>
         <div className='border-b-8 border-dial-yellow' />
       </div>
     </>
