@@ -9,7 +9,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
         class="Toastify"
       />
       <div
-        class="sticky sticky-under-header flex flex-col max-w-catalog mx-auto"
+        class="sticky sticky-under-header flex flex-col"
       >
         <div
           class="bg-dial-yellow sticky sticky-under-header"
@@ -299,7 +299,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
               class="infinite-scroll-component__outerdiv"
             >
               <div
-                class="infinite-scroll-component relative px-2 py-4 max-w-catalog mx-auto"
+                class="infinite-scroll-component relative px-2 py-4"
                 style="height: auto; overflow: auto;"
               >
                 <div
@@ -456,7 +456,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
       class="Toastify"
     />
     <div
-      class="sticky sticky-under-header flex flex-col max-w-catalog mx-auto"
+      class="sticky sticky-under-header flex flex-col"
     >
       <div
         class="bg-dial-yellow sticky sticky-under-header"
@@ -746,7 +746,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
             class="infinite-scroll-component__outerdiv"
           >
             <div
-              class="infinite-scroll-component relative px-2 py-4 max-w-catalog mx-auto"
+              class="infinite-scroll-component relative px-2 py-4"
               style="height: auto; overflow: auto;"
             >
               <div
@@ -1077,7 +1077,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
         class="Toastify"
       />
       <div
-        class="sticky sticky-under-header flex flex-col max-w-catalog mx-auto"
+        class="sticky sticky-under-header flex flex-col"
       >
         <div
           class="bg-dial-yellow sticky sticky-under-header"
@@ -1343,7 +1343,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
               class="infinite-scroll-component__outerdiv"
             >
               <div
-                class="infinite-scroll-component relative px-2 py-4 max-w-catalog mx-auto"
+                class="infinite-scroll-component relative px-2 py-4"
                 style="height: auto; overflow: auto;"
               >
                 <div
@@ -1500,7 +1500,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
       class="Toastify"
     />
     <div
-      class="sticky sticky-under-header flex flex-col max-w-catalog mx-auto"
+      class="sticky sticky-under-header flex flex-col"
     >
       <div
         class="bg-dial-yellow sticky sticky-under-header"
@@ -1766,7 +1766,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
             class="infinite-scroll-component__outerdiv"
           >
             <div
-              class="infinite-scroll-component relative px-2 py-4 max-w-catalog mx-auto"
+              class="infinite-scroll-component relative px-2 py-4"
               style="height: auto; overflow: auto;"
             >
               <div

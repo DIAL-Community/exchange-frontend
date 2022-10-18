@@ -31,11 +31,9 @@ const CreateBuildingBlock = () => {
     <>
       <Header />
       {data?.buildingBlock && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            <BuildingBlockForm buildingBlock={data.buildingBlock} />
-          </ClientOnly>
-        </div>
+        <ClientOnly>
+          <BuildingBlockForm buildingBlock={data.buildingBlock} />
+        </ClientOnly>
       )}
       <Footer />
     </>

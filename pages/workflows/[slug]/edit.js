@@ -32,11 +32,9 @@ const CreateWorkflow = () => {
     <>
       <Header />
       {data?.workflow && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            <WorkflowForm workflow={data.workflow} />
-          </ClientOnly>
-        </div>
+        <ClientOnly>
+          <WorkflowForm workflow={data.workflow} />
+        </ClientOnly>
       )}
       <Footer />
     </>

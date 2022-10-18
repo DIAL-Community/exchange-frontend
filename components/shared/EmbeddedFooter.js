@@ -15,7 +15,7 @@ const EmbeddedFooter = () => {
     <footer>
       <Consent />
       <div className='relative w-full bg-dial-gray text-dial-purple-light leading-none text-base'>
-        <div className='px-4 pt-4 pb-8 lg:px-10 2xl:px-24 2xl:pt-8 2xl:pb-12 flex flex-row flex-wrap mx-auto max-w-catalog'>
+        <div className='px-4 pt-4 pb-8 lg:px-10 2xl:px-24 2xl:pt-8 2xl:pb-12 flex flex-row flex-wrap mx-auto'>
           <div className='w-full flex flex-row flex-wrap gap-3 leading-none text-base place-content-center'>
             <div className='py-2 px-0 2xl:px-2 text-center'>
               <span>{format('footer.icons')} </span>

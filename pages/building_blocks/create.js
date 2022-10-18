@@ -6,11 +6,9 @@ import BuildingBlockForm from '../../components/building-blocks/BuildingBlockFor
 const CreateBuildingBlock = () => (
   <>
     <Header />
-    <div className='max-w-catalog mx-auto'>
-      <ClientOnly>
-        <BuildingBlockForm />
-      </ClientOnly>
-    </div>
+    <ClientOnly>
+      <BuildingBlockForm />
+    </ClientOnly>
     <Footer />
   </>
 )

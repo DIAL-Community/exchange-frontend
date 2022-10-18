@@ -63,7 +63,7 @@ const MoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
     <>
       {
         data && data.move && data.play && data.playbook &&
-        <div className='px-8 mx-auto max-w-catalog'>
+        <div className='px-8'>
           <MoveDetail playbook={data.playbook} play={data.play} move={data.move} />
         </div>
       }

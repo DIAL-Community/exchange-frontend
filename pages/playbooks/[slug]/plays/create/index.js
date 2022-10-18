@@ -53,12 +53,10 @@ const CreatePlayInformation = ({ slug, locale }) => {
     <>
       {
         data?.playbook &&
-          <div className='max-w-catalog mx-auto'>
-            <CreateFormProvider>
-              <MovePreview />
-              <PlayForm playbook={data.playbook} />
-            </CreateFormProvider>
-          </div>
+          <CreateFormProvider>
+            <MovePreview />
+            <PlayForm playbook={data.playbook} />
+          </CreateFormProvider>
       }
     </>
   )
