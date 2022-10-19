@@ -31,10 +31,13 @@ export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, edi
               code visualblocks visualchars fullscreen image link media template codesample
               table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount
               help charmap quickbars emoticons`,
-            toolbar: `undo redo | bold italic underline strikethrough | fontselect fontsizeselect |
-              alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist |
-              forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen preview |
-              insertfile image media link anchor codesample | ltr rtl`,
+            toolbar: `undo redo | fontfamily fontsize |
+              bold italic underline strikethrough forecolor backcolor |
+              link insertfile image media codesample |
+              alignleft aligncenter alignright alignjustify |
+              numlist bullist outdent indent | removeformat |
+              ltr rtl | charmap emoticons`,
+            contextmenu: 'cut copy paste',
             toolbar_sticky: true,
             content_style: `
               body { font-family: Arial; font-size: 18px }
