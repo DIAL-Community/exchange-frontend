@@ -5,9 +5,11 @@ import { useCallback, useMemo, useState } from 'react'
 import ReactTooltip from 'react-tooltip'
 import Dialog from '../shared/Dialog'
 import RadarChart from '../shared/RadarChart'
+import BarChart from '../shared/BarChart'
 
 const MATURITY_SCORE_MULTIPLIER = 10
 const MAX_MATURITY_SCORE = 100
+const MIN_RADAR_CHART_CATEGORIES = 2
 
 const MaturityCategory = ({ category }) => {
   const { formatMessage } = useIntl()
@@ -62,9 +64,9 @@ const ProductDetailMaturityScores = ({ maturityScores, overallMaturityScore }) =
 
   const validMaturityScores = useMemo(() => maturityScores.filter(({ overall_score }) => overall_score > 0), [maturityScores])
 
-  const radarChartAxes = useMemo(() => validMaturityScores.map(({ name }) => name), [validMaturityScores])
+  const chartLabels = useMemo(() => validMaturityScores.map(({ name }) => name), [validMaturityScores])
 
-  const radarChartValues = useMemo(() => validMaturityScores.map(({ overall_score }) => overall_score * MATURITY_SCORE_MULTIPLIER), [validMaturityScores])
+  const chartValues = useMemo(() => validMaturityScores.map(({ overall_score }) => overall_score * MATURITY_SCORE_MULTIPLIER), [validMaturityScores])
 
   return (
     <div className='mt-12'>
@@ -81,7 +83,10 @@ const ProductDetailMaturityScores = ({ maturityScores, overallMaturityScore }) =
             onClick={toggleMaturityScoreDetailsDialog}
             data-testid='maturity-scores-chart'
           >
-            <RadarChart title={format('product.maturity-scores')} axes={radarChartAxes} values={radarChartValues} maxScaleValue={MAX_MATURITY_SCORE} />
+            {validMaturityScores.length <= MIN_RADAR_CHART_CATEGORIES
+              ? <BarChart labels={chartLabels} values={chartValues} maxScaleValue={MAX_MATURITY_SCORE} horizontal />
+              : <RadarChart labels={chartLabels} values={chartValues} maxScaleValue={MAX_MATURITY_SCORE} />
+            }
           </div>
           <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
           <Dialog
