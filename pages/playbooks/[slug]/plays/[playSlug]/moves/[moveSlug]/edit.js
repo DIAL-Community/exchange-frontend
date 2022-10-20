@@ -56,10 +56,8 @@ const EditMoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
   return (
     <>
       {
-        data && data.move && data.play && data.playbook &&
-        <div className='max-w-catalog mx-auto'>
+        data?.move && data?.play && data?.playbook &&
           <MoveForm playbook={data.playbook} play={data.play} move={data.move} />
-        </div>
       }
     </>
   )

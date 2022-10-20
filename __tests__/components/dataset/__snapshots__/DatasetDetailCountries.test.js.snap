@@ -1,0 +1,607 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the DatasetDetailCountries component. Should add a pill and revert changes on "Cancel" button click 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="mt-12"
+    data-testid="editable-section"
+  >
+    <div
+      class="flex justify-between items-center mb-3"
+    >
+      <div
+        class="card-title text-dial-gray-dark"
+      >
+        Countries
+      </div>
+      <div
+        class="gap-3"
+      />
+    </div>
+    <div
+      class="bg-edit p-6"
+    >
+      <p
+        class="card-title text-dial-blue mb-3"
+      >
+        Assign
+         
+        Countries
+      </p>
+      <label
+        class="flex flex-col gap-y-2 mb-2"
+        data-testid="country-search"
+      >
+        Search and Assign Countries
+        <div
+          class=" css-l45kjq-container"
+        >
+          <span
+            class="css-1f43avz-a11yText-A11yText"
+            id="react-select-4-live-region"
+          />
+          <span
+            aria-atomic="false"
+            aria-live="polite"
+            aria-relevant="additions text"
+            class="css-1f43avz-a11yText-A11yText"
+          />
+          <div
+            class="react-select__control css-19jej77-control"
+          >
+            <div
+              class="react-select__value-container css-3tzzl5-ValueContainer"
+            >
+              <div
+                class="react-select__placeholder css-19jynah-placeholder"
+                id="react-select-4-placeholder"
+              >
+                Type to search...
+              </div>
+              <div
+                class="react-select__input-container css-6j8wv5-Input"
+                data-value=""
+              >
+                <input
+                  aria-autocomplete="list"
+                  aria-describedby="react-select-4-placeholder"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  autocapitalize="none"
+                  autocomplete="off"
+                  autocorrect="off"
+                  class="react-select__input"
+                  id="async-select-id-undefined"
+                  role="combobox"
+                  spellcheck="false"
+                  style="opacity: 0; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                  tabindex="0"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+            >
+              <span
+                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+              />
+              <div
+                aria-hidden="true"
+                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+              >
+                <svg
+                  class="text-2xl"
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </label>
+      <div
+        class="flex flex-wrap gap-3 mt-5"
+      >
+        <div
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          data-testid="pill"
+        >
+          Test Country
+          <svg
+            class="ml-3 text-2xl cursor-pointer"
+            data-testid="remove-button"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+          </svg>
+        </div>
+        <div
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          data-testid="pill"
+        >
+          Another Country
+          <svg
+            class="ml-3 text-2xl cursor-pointer"
+            data-testid="remove-button"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        class="flex justify-end mt-8 gap-3 text-xl"
+      >
+        <button
+          class="submit-button"
+          data-testid="submit-button"
+          type="submit"
+        >
+          Submit
+        </button>
+        <button
+          class="cancel-button"
+          data-testid="cancel-button"
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit test for the DatasetDetailCountries component. Should match snapshot - with edit permission. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="mt-12"
+    data-testid="editable-section"
+  >
+    <div
+      class="flex justify-between items-center mb-3"
+    >
+      <div
+        class="card-title text-dial-gray-dark"
+      >
+        Countries
+      </div>
+      <div
+        class="gap-3"
+      >
+        <button
+          class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          data-testid="edit-button"
+          type="button"
+        >
+          <img
+            alt="Edit"
+            height="12px"
+            src="/icons/edit.svg"
+            width="12px"
+          />
+          <span
+            class="text-sm"
+          >
+            Edit
+          </span>
+        </button>
+      </div>
+    </div>
+    <div
+      class="grid grid-cols-1 lg:grid-cols-2"
+    >
+      <div
+        class="border-3 border-transparent"
+      >
+        <div
+          class="bg-white border border-dial-gray card-drop-shadow"
+        >
+          <div
+            class="p-4 font-semibold text-button-gray"
+          >
+            Test Country
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit test for the DatasetDetailCountries component. Should match snapshot - with open editable section 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="mt-12"
+    data-testid="editable-section"
+  >
+    <div
+      class="flex justify-between items-center mb-3"
+    >
+      <div
+        class="card-title text-dial-gray-dark"
+      >
+        Countries
+      </div>
+      <div
+        class="gap-3"
+      />
+    </div>
+    <div
+      class="bg-edit p-6"
+    >
+      <p
+        class="card-title text-dial-blue mb-3"
+      >
+        Assign
+         
+        Countries
+      </p>
+      <label
+        class="flex flex-col gap-y-2 mb-2"
+        data-testid="country-search"
+      >
+        Search and Assign Countries
+        <div
+          class=" css-l45kjq-container"
+        >
+          <span
+            class="css-1f43avz-a11yText-A11yText"
+            id="react-select-2-live-region"
+          />
+          <span
+            aria-atomic="false"
+            aria-live="polite"
+            aria-relevant="additions text"
+            class="css-1f43avz-a11yText-A11yText"
+          />
+          <div
+            class="react-select__control css-19jej77-control"
+          >
+            <div
+              class="react-select__value-container css-3tzzl5-ValueContainer"
+            >
+              <div
+                class="react-select__placeholder css-19jynah-placeholder"
+                id="react-select-2-placeholder"
+              >
+                Type to search...
+              </div>
+              <div
+                class="react-select__input-container css-6j8wv5-Input"
+                data-value=""
+              >
+                <input
+                  aria-autocomplete="list"
+                  aria-describedby="react-select-2-placeholder"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  autocapitalize="none"
+                  autocomplete="off"
+                  autocorrect="off"
+                  class="react-select__input"
+                  id="async-select-id-undefined"
+                  role="combobox"
+                  spellcheck="false"
+                  style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                  tabindex="0"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+            >
+              <span
+                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+              />
+              <div
+                aria-hidden="true"
+                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+              >
+                <svg
+                  class="text-2xl"
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </label>
+      <div
+        class="flex flex-wrap gap-3 mt-5"
+      >
+        <div
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          data-testid="pill"
+        >
+          Test Country
+          <svg
+            class="ml-3 text-2xl cursor-pointer"
+            data-testid="remove-button"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        class="flex justify-end mt-8 gap-3 text-xl"
+      >
+        <button
+          class="submit-button"
+          data-testid="submit-button"
+          disabled=""
+          type="submit"
+        >
+          Submit
+        </button>
+        <button
+          class="cancel-button"
+          data-testid="cancel-button"
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit test for the DatasetDetailCountries component. Should match snapshot - without edit permission. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="mt-12"
+    data-testid="editable-section"
+  >
+    <div
+      class="flex justify-between items-center mb-3"
+    >
+      <div
+        class="card-title text-dial-gray-dark"
+      >
+        Countries
+      </div>
+      <div
+        class="gap-3"
+      />
+    </div>
+    <div
+      class="grid grid-cols-1 lg:grid-cols-2"
+    >
+      <div
+        class="border-3 border-transparent"
+      >
+        <div
+          class="bg-white border border-dial-gray card-drop-shadow"
+        >
+          <div
+            class="p-4 font-semibold text-button-gray"
+          >
+            Test Country
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit test for the DatasetDetailCountries component. Should remove a pill 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="mt-12"
+    data-testid="editable-section"
+  >
+    <div
+      class="flex justify-between items-center mb-3"
+    >
+      <div
+        class="card-title text-dial-gray-dark"
+      >
+        Countries
+      </div>
+      <div
+        class="gap-3"
+      />
+    </div>
+    <div
+      class="bg-edit p-6"
+    >
+      <p
+        class="card-title text-dial-blue mb-3"
+      >
+        Assign
+         
+        Countries
+      </p>
+      <label
+        class="flex flex-col gap-y-2 mb-2"
+        data-testid="country-search"
+      >
+        Search and Assign Countries
+        <div
+          class=" css-l45kjq-container"
+        >
+          <span
+            class="css-1f43avz-a11yText-A11yText"
+            id="react-select-3-live-region"
+          />
+          <span
+            aria-atomic="false"
+            aria-live="polite"
+            aria-relevant="additions text"
+            class="css-1f43avz-a11yText-A11yText"
+          />
+          <div
+            class="react-select__control css-19jej77-control"
+          >
+            <div
+              class="react-select__value-container css-3tzzl5-ValueContainer"
+            >
+              <div
+                class="react-select__placeholder css-19jynah-placeholder"
+                id="react-select-3-placeholder"
+              >
+                Type to search...
+              </div>
+              <div
+                class="react-select__input-container css-6j8wv5-Input"
+                data-value=""
+              >
+                <input
+                  aria-autocomplete="list"
+                  aria-describedby="react-select-3-placeholder"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  autocapitalize="none"
+                  autocomplete="off"
+                  autocorrect="off"
+                  class="react-select__input"
+                  id="async-select-id-undefined"
+                  role="combobox"
+                  spellcheck="false"
+                  style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                  tabindex="0"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+            >
+              <span
+                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+              />
+              <div
+                aria-hidden="true"
+                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+              >
+                <svg
+                  class="text-2xl"
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </label>
+      <div
+        class="flex flex-wrap gap-3 mt-5"
+      />
+      <div
+        class="flex justify-end mt-8 gap-3 text-xl"
+      >
+        <button
+          class="submit-button"
+          data-testid="submit-button"
+          type="submit"
+        >
+          Submit
+        </button>
+        <button
+          class="cancel-button"
+          data-testid="cancel-button"
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

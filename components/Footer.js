@@ -11,14 +11,23 @@ const Footer = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
+  const [formTitle, setFormTitle] = useState('')
   const [showForm, setShowForm] = useState(false)
-  const [showContact, setShowContact] = useState(false)
+
+  const showFeedbackForm = (title) => {
+    setFormTitle(title)
+    setShowForm(true)
+  }
+
+  const hideFeedbackForm = () => {
+    setShowForm(false)
+  }
 
   return (
     <footer>
       <Consent />
       <div className='relative w-full bg-dial-gray-light text-dial-purple-light'>
-        <div className='px-4 2xl:px-24 pt-8 2xl:pb-8 lg:flex lg:flex-row flex-wrap justify-center 2xl:justify-start mx-auto max-w-catalog'>
+        <div className='px-4 2xl:px-24 pt-8 2xl:pb-8 lg:flex lg:flex-row flex-wrap justify-center 2xl:justify-start max-w-catalog mx-auto'>
           <div className='max-w-prose sm:w-full lg:flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto text-center 2xl:text-left'>
             {format('footer.text.firstLine')}
           </div>
@@ -63,7 +72,7 @@ const Footer = () => {
         <div className='2xl:px-24 my-3 xl:my-0'>
           <div className='border border-t-0 border-dial-gray' />
         </div>
-        <div className='px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap justify-center 2xl:justify-start mx-auto max-w-catalog'>
+        <div className='px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap justify-center 2xl:justify-start max-w-catalog mx-auto'>
           <div className='w-full lg:max-w-2/4 2xl:max-w-prose flex-auto my-auto md:text-center 2xl:text-left'>
             {format('footer.text.secondLine')}
           </div>
@@ -86,7 +95,7 @@ const Footer = () => {
         </div>
       </div>
       <div className='relative w-full bg-dial-gray text-dial-purple-light leading-none text-base'>
-        <div className='px-4 pb-4 pt-8 lg:px-10 2xl:pt-12 2xl:pb-8 2xl:px-24 flex flex-row flex-wrap mx-auto max-w-catalog'>
+        <div className='px-4 pb-4 pt-8 lg:px-10 2xl:pt-12 2xl:pb-8 2xl:px-24 flex flex-row flex-wrap max-w-catalog mx-auto'>
           <div className='py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light'>
             <a
               href='https://digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'
@@ -146,7 +155,7 @@ const Footer = () => {
         <div className='2xl:px-24'>
           <div className='border border-t-0 border-dial-gray-light' />
         </div>
-        <div className='px-4 pt-4 pb-8 lg:px-10 2xl:px-24 2xl:pt-8 2xl:pb-12 flex flex-row flex-wrap mx-auto max-w-catalog'>
+        <div className='px-4 pt-4 pb-8 lg:px-10 2xl:px-24 2xl:pt-8 2xl:pb-12 flex flex-row flex-wrap'>
           <div className='w-full flex flex-row flex-wrap gap-3 leading-none text-base place-content-center'>
             <div className='py-2 px-0 2xl:px-2 text-center'>
               <span>{format('footer.icons')} </span>
@@ -178,17 +187,28 @@ const Footer = () => {
                 {format('footer.privacyPolicy').toUpperCase()}
               </a>
             </div>
-            <div className='py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer' onClick={() => setShowForm(true)}>
+            <div
+              className='py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer'
+              onClick={() => showFeedbackForm('app.reportIssue')}
+            >
               {format('app.reportIssue').toUpperCase()}
-              {showForm && <ReportIssue showForm={showForm} setShowForm={setShowForm} formTitle={format('report.reportIssue')} />}
             </div>
-            <div className='py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer' onClick={() => setShowContact(true)}>
+            <div
+              className='py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer'
+              onClick={() => showFeedbackForm('footer.contactUs')}
+            >
               {format('footer.contactUs').toUpperCase()}
-              {showContact && <ReportIssue showForm={showContact} setShowForm={setShowContact} formTitle={format('footer.contactUs')} />}
             </div>
           </div>
         </div>
       </div>
+      {showForm &&
+        <ReportIssue
+          showForm={showForm}
+          hideFeedbackForm={() => hideFeedbackForm()}
+          formTitle={format(formTitle)}
+        />
+      }
     </footer>
   )
 }

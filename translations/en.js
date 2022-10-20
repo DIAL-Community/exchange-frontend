@@ -589,6 +589,7 @@ export const en = {
   'use-case-step.submit.failure': 'Use Case Step submission failed',
   'use-case-step.submit.success': 'Use Case Step submitted successfully',
   'use-case-step.no-workflow': 'We do not have any Workflow information for this Use Case Step.',
+  'use-case-step.no-dataset': 'We do not have any Dataset information for this Use Case Step.',
   'use-case-step.no-product': 'We do not have any Product information for this Use Case Step.',
   'use-case-step.no-building-block': 'We do not have any Building Block information for this Use Case Step.',
 
@@ -619,6 +620,7 @@ export const en = {
   'playbook.saveAsDraft': 'Save as Draft',
   'playbook.status.draft': 'Draft',
   'playbook.status.published': 'Published',
+  'playbook.delete.confirm.message': 'Are you sure you want to delete this Playbook?',
 
   'play.header': 'Plays',
   'plays.label': 'Play',
@@ -1095,6 +1097,8 @@ export const en = {
   'toast.sdgs.update.failure': 'SDGs update failed',
   'toast.products.update.success': 'Products updated successfully',
   'toast.products.update.failure': 'Products update failed',
+  'toast.datasets.update.success': 'Datasets updated successfully',
+  'toast.datasets.update.failure': 'Datasets update failed',
   'toast.sdgTargets.update.success': 'SDG Targets updated successfully',
   'toast.sdgTargets.update.failure': 'SDG Targets update failed',
   'toast.workflows.update.success': 'Workflows updated successfully',
@@ -1115,6 +1119,8 @@ export const en = {
   'toast.category-indicator.submit.failure': 'Category Indicator submission failed',
   'toast.category-indicator.update.success': 'Category Indicators updated successfully',
   'toast.category-indicator.update.failure': 'Category Indicators update failed',
+  'toast.playbook.delete.success': 'Playbook deleted successfully',
+  'toast.playbook.delete.failure': 'Playbook deletion failed',
 
   'locale.label': 'Locale',
   'locale.english.label': 'English (en)',

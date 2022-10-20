@@ -82,16 +82,14 @@ function EditPlaybook () {
     <>
       <Header />
       {data?.playbook && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            {loadingUserSession ? <Loading /> : isAdminUser ? (
-              <EditFormProvider>
-                <PlayPreview />
-                <PlaybookForm playbook={data.playbook} />
-              </EditFormProvider>
-            ) : <Unauthorized />}
-          </ClientOnly>
-        </div>
+        <ClientOnly>
+          {loadingUserSession ? <Loading /> : isAdminUser ? (
+            <EditFormProvider>
+              <PlayPreview />
+              <PlaybookForm playbook={data.playbook} />
+            </EditFormProvider>
+          ) : <Unauthorized />}
+        </ClientOnly>
       )}
       <Footer />
     </>

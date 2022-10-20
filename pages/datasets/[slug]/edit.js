@@ -57,11 +57,9 @@ const EditOrganization = () => {
     <>
       <Header />
       {data && data.dataset && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            <DatasetForm dataset={data.dataset} />
-          </ClientOnly>
-        </div>
+        <ClientOnly>
+          <DatasetForm dataset={data.dataset} />
+        </ClientOnly>
       )}
       <Footer />
     </>

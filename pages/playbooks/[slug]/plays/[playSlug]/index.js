@@ -66,9 +66,7 @@ const PlayInformation = ({ slug, playSlug, locale }) => {
     <>
       {
         data && data.play && data.playbook &&
-          <div className='px-8 max-w-catalog mx-auto'>
-            <PlayDetail playbook={data.playbook} play={data.play} />
-          </div>
+          <PlayDetail playbook={data.playbook} play={data.play} />
       }
     </>
   )

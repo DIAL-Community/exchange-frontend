@@ -76,12 +76,10 @@ const EditPlayInformation = ({ slug, playSlug, locale }) => {
     <>
       {
         data && data.play && data.playbook &&
-          <div className='max-w-catalog mx-auto'>
-            <EditFormProvider>
-              <MovePreview />
-              <PlayForm playbook={data.playbook} play={data.play} />
-            </EditFormProvider>
-          </div>
+          <EditFormProvider>
+            <MovePreview />
+            <PlayForm playbook={data.playbook} play={data.play} />
+          </EditFormProvider>
       }
     </>
   )

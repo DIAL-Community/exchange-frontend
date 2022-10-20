@@ -36,11 +36,9 @@ const EditUseCase = () => {
     <>
       <Header />
       {data?.useCase && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            <UseCaseForm useCase={data.useCase} />
-          </ClientOnly>
-        </div>
+        <ClientOnly>
+          <UseCaseForm useCase={data.useCase} />
+        </ClientOnly>
       )}
       <Footer />
     </>
