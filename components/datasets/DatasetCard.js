@@ -31,15 +31,18 @@ const DatasetCard = ({ dataset, listType, newTab = false }) => {
               <div className={`${containerElementStyle}`}>
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='flex flex-row flex-wrap lg:gap-x-4 px-4' style={{ minHeight: '4.5rem' }}>
-                    <div className={`w-full lg:w-4/12 font-semibold my-auto relative ${ellipsisTextStyle}`}>
+                    <div className='w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative'>
                       <Image
                         layout='fill'
-                        objectFit='contain'
-                        className='inline pr-3' width='50' height='50'
+                        objectFit='scale-down'
+                        objectPosition='left'
+                        sizes='1vw'
                         alt={format('image.alt.logoFor', { name: dataset.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
                       />
-                      {dataset.name}
+                      <div className={`ml-8 w-4/5 h-3/5 font-semibold relative ${ellipsisTextStyle}`}>
+                        {dataset.name}
+                      </div>
                     </div>
                     <div className={`w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple ${ellipsisTextStyle}`}>
                       {dataset.origins && dataset.origins.length === 0 && format('general.na')}

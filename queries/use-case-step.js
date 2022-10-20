@@ -55,6 +55,11 @@ export const USE_CASE_STEP_QUERY = gql`
         slug
         imageFile
       }
+      datasets {
+        name
+        slug
+        imageFile
+      }
       buildingBlocks {
         name
         slug
