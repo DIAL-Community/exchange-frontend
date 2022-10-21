@@ -13,7 +13,7 @@ import ValidationError from '../../shared/ValidationError'
 import { HtmlEditor } from '../../shared/HtmlEditor'
 import { emailRegex } from '../../shared/emailRegex'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
-import { useUser } from '../../../lib/hooks'
+import { createLink, useUser } from '../../../lib/hooks'
 
 const OrganizationForm = () => {
   const { formatMessage } = useIntl()
@@ -69,10 +69,12 @@ const OrganizationForm = () => {
       setMutating(true)
 
       const { userEmail, userToken } = user
-      const { name, description, organizationName, website, email, title, captcha } = data
+      const { name, description, organizationName, email, title, captcha } = data
+      const websiteLink = createLink(data.website)
+
       const variables = {
         name,
-        website,
+        website: websiteLink,
         organizationName,
         description,
         email,
