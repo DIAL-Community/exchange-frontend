@@ -47,7 +47,7 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                         {product.name}
                       </div>
                       <div className={`col-span-12 lg:col-span-3 my-auto ${ellipsisTextStyle}`}>
-                        {websiteLink}
+                        {product.website}
                       </div>
                       <div className={`col-span-12 lg:col-span-3 my-auto ${ellipsisTextStyle}`}>
                         {product.submitterEmail}

@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from 'react'
 import { FaHome, FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
-import { createLink } from '../../../lib/hooks'
 
 const ellipsisTextStyle = 'whitespace-nowrap text-ellipsis overflow-hidden my-auto'
 const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
@@ -16,8 +15,6 @@ const OrganizationCard = ({ organization, listType }) => {
 
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState('')
-
-  const websiteLink = createLink(organization.website)
 
   useEffect(() => {
     ReactTooltip.rebuild()
@@ -96,7 +93,7 @@ const OrganizationCard = ({ organization, listType }) => {
                   <div className={`col-span-12 lg:col-span-4 my-auto ${ellipsisTextStyle}`}>
                     {organization.name}
                     <div className='block lg:hidden font-semibold text-sm'>
-                      {websiteLink}
+                      {organization.website}
                     </div>
                     {
                       String(organization.rejected) === 'null' && session && session.user && status === '' &&
@@ -133,7 +130,7 @@ const OrganizationCard = ({ organization, listType }) => {
                     }
                   </div>
                   <div className='hidden lg:block lg:col-span-4'>
-                    {websiteLink}
+                    {organization.website}
                   </div>
                   {
                     String(organization.rejected) === 'null' && status === '' && session?.user?.canEdit &&
@@ -205,8 +202,8 @@ const OrganizationCard = ({ organization, listType }) => {
                       </div>
                       <div className={`mx-2 my-auto px-2 py-1 bg-white ${ellipsisTextStyle} ${hoverEffectTextStyle}`}>
                         {
-                          websiteLink
-                            ? <a href={`//${websiteLink}`} target='_blank' rel='noreferrer'>{websiteLink}</a>
+                          organization.website
+                            ? <a href={`//${organization.website}`} target='_blank' rel='noreferrer'>{organization.website}</a>
                             : format('general.na')
                         }
                       </div>
