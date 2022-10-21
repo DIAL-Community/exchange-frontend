@@ -14,6 +14,7 @@ import ValidationError from '../../shared/ValidationError'
 import { HtmlEditor } from '../../shared/HtmlEditor'
 import { emailRegex } from '../../shared/emailRegex'
 import { Unauthorized } from '../../shared/FetchStatus'
+import { createLink } from '../../../lib/hooks'
 
 const ProductForm = () => {
   const { formatMessage } = useIntl()
@@ -68,11 +69,15 @@ const ProductForm = () => {
       setMutating(true)
 
       const { userEmail, userToken } = session.user
-      const { name, description, repository, website, email, captcha } = data
+      const { name, description, email, captcha } = data
+
+      const websiteLink = createLink(data.website)
+      const repositoryLink = createLink(data.repository)
+
       const variables = {
         name,
-        website,
-        repository,
+        website: websiteLink,
+        repository: repositoryLink,
         description,
         email,
         captcha
