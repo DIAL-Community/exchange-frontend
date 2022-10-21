@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from 'react'
 import { FaCode, FaHome, FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
-import { createLink } from '../../../lib/hooks'
 
 const ellipsisTextStyle = 'my-auto'
 const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
@@ -17,9 +16,6 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState('')
   const [comment, setComment] = useState('')
-
-  const repositoryLink = createLink(product.repository)
-  const websiteLink = createLink(product.website)
 
   useEffect(() => {
     ReactTooltip.rebuild()
@@ -157,8 +153,8 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                         </div>
                         <div className={`mx-2 my-auto px-2 py-1 bg-white ${ellipsisTextStyle} ${hoverEffectTextStyle}`}>
                           {
-                            websiteLink
-                              ? <a href={`//${websiteLink}`} target='_blank' rel='noreferrer'>{websiteLink}</a>
+                            product.website
+                              ? <a href={`//${product.website}`} target='_blank' rel='noreferrer'>{product.website}</a>
                               : format('general.na')
                           }
                         </div>
@@ -169,8 +165,8 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                         </div>
                         <div className={`mx-2 my-auto px-2 py-1 bg-white ${ellipsisTextStyle} ${hoverEffectTextStyle}`}>
                           {
-                            repositoryLink
-                              ? <a href={`//${repositoryLink}`} target='_blank' rel='noreferrer'>{repositoryLink}</a>
+                            product.repository
+                              ? <a href={`//${product.repository}`} target='_blank' rel='noreferrer'>{product.repository}</a>
                               : format('general.na')
                           }
                         </div>
