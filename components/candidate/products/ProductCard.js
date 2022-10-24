@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { FaCode, FaHome, FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
+import { purgeLink } from '../../../lib/utilities'
 
 const ellipsisTextStyle = 'my-auto'
 const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
@@ -16,6 +17,9 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState('')
   const [comment, setComment] = useState('')
+
+  const repositoryLink = purgeLink(product.repository)
+  const websiteLink = purgeLink(product.website)
 
   useEffect(() => {
     ReactTooltip.rebuild()
@@ -43,7 +47,7 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                         {product.name}
                       </div>
                       <div className={`col-span-12 lg:col-span-3 my-auto ${ellipsisTextStyle}`}>
-                        {product.website}
+                        {websiteLink}
                       </div>
                       <div className={`col-span-12 lg:col-span-3 my-auto ${ellipsisTextStyle}`}>
                         {product.submitterEmail}
@@ -153,8 +157,8 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                         </div>
                         <div className={`mx-2 my-auto px-2 py-1 bg-white ${ellipsisTextStyle} ${hoverEffectTextStyle}`}>
                           {
-                            product.website
-                              ? <a href={`//${product.website}`} target='_blank' rel='noreferrer'>{product.website}</a>
+                            websiteLink
+                              ? <a href={`//${websiteLink}`} target='_blank' rel='noreferrer'>{websiteLink}</a>
                               : format('general.na')
                           }
                         </div>
@@ -165,8 +169,8 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                         </div>
                         <div className={`mx-2 my-auto px-2 py-1 bg-white ${ellipsisTextStyle} ${hoverEffectTextStyle}`}>
                           {
-                            product.repository
-                              ? <a href={`//${product.repository}`} target='_blank' rel='noreferrer'>{product.repository}</a>
+                            repositoryLink
+                              ? <a href={`//${repositoryLink}`} target='_blank' rel='noreferrer'>{repositoryLink}</a>
                               : format('general.na')
                           }
                         </div>
