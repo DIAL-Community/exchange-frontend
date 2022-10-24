@@ -18,7 +18,7 @@ const EditableSection = ({ canEdit, sectionHeader, editModeBody, displayModeBody
       setIsInEditMode(false)
       setIsSubmitInProgress(false)
     }
-  }, [isSubmitInProgress, isMutating])
+  }, [isMutating]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className='mt-12' data-testid='editable-section'>
