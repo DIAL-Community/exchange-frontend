@@ -83,7 +83,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
         listType === 'list'
           ? (
             <div className={containerElementStyle}>
-              <div className='bg-white border border-dial-gray hover:border-transparent'>
+              <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                 <div className='grid grid-cols-1 lg:grid-cols-6 gap-x-4 py-4 px-4'>
                   <div className={`${nameColSpan()} text-base text-sdg font-semibold ${ellipsisTextStyle} relative`}>
                     <Image
@@ -92,7 +92,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                       objectPosition='left'
                       sizes='2vw'
                       src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`}
-                      alt={format('image.alt.logoFor', { name: sdg.name })} width='40' height='40'
+                      alt={format('image.alt.logoFor', { name: sdg.name })}
                     />
                     <div className='ml-10'>
                       {sdg.name}

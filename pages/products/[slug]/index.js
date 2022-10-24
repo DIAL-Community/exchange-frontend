@@ -4,7 +4,7 @@ import Footer from '../../../components/Footer'
 import ProductDetail from '../../../components/products/ProductDetail'
 import ClientOnly from '../../../lib/ClientOnly'
 import { addApolloState, initializeApollo } from '../../../lib/apolloClient'
-import { PRODUCT_QUERY } from '../../../queries/product'
+import { PRODUCT_CATEGORY_INDICATORS_QUERY, PRODUCT_MATURITY_SCORES_QUERY, PRODUCT_QUERY } from '../../../queries/product'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const Product = ({ data }) => (
@@ -21,14 +21,22 @@ const Product = ({ data }) => (
 export async function getServerSideProps(context) {
   const client = initializeApollo({})
   const { locale, params: { slug } } = context
-  const { data } = await client.query({
+  const { data: productData } = await client.query({
     query: PRODUCT_QUERY,
     variables: { slug },
     context: { headers: { 'Accept-Language': locale } }
   })
+  const { data: maturityScoresData } = await client.query({
+    query: PRODUCT_MATURITY_SCORES_QUERY,
+    variables: { slug }
+  })
+  const { data: categoryIndicatorsData } = await client.query({
+    query: PRODUCT_CATEGORY_INDICATORS_QUERY,
+    variables: { slug }
+  })
 
   return addApolloState(client, {
-    props: { data }
+    props: { data: productData, maturityScoresData, categoryIndicatorsData }
   })
 }
 

@@ -80,8 +80,6 @@ export const PRODUCT_QUERY = gql`
         slug
         isDisplayable
       }
-      maturityScore
-      maturityScores
       manualUpdate
       mainRepository {
         mainRepository
@@ -191,6 +189,51 @@ export const PRODUCTS_QUERY = gql`
           license
         }
       }
+    }
+  }
+`
+
+export const PRODUCT_CATEGORY_INDICATORS_QUERY = gql`
+  query Product($slug: String!) {
+    product(slug: $slug) {
+      id
+      productIndicators {
+        indicatorValue
+        categoryIndicator {
+          slug
+          name
+          indicatorType
+          categoryIndicatorDescription {
+            description
+          }
+          rubricCategory {
+            id
+            name
+          }
+        }
+      }
+      notAssignedCategoryIndicators {
+        slug
+        name
+        indicatorType
+        categoryIndicatorDescription {
+          description
+        }
+        rubricCategory {
+          id
+          name
+        }
+      }
+    }
+  }
+`
+
+export const PRODUCT_MATURITY_SCORES_QUERY = gql`
+  query Product($slug: String!) {
+    product(slug: $slug) {
+      id
+      maturityScore
+      maturityScores
     }
   }
 `
