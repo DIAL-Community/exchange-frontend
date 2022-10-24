@@ -43,16 +43,17 @@ const ProductCard = ({ product, listType, newTab = false }) => {
               <div className={`${containerElementStyle}`}>
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4' style={{ minHeight: '4.5rem' }}>
-                    <div className='w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative'>
-                      <Image
-                        layout='fill'
-                        objectFit='scale-down'
-                        objectPosition='left'
-                        sizes='1vw'
-                        alt={format('image.alt.logoFor', { name: product.name })}
-                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
-                      />
-                      <div className={`ml-8 w-4/5 h-3/5 font-semibold relative ${ellipsisTextStyle}`}>
+                    <div className='w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative'>
+                      <div className='block w-8 relative'>
+                        <Image
+                          layout='fill'
+                          objectFit='scale-down'
+                          objectPosition='left'
+                          alt={format('image.alt.logoFor', { name: product.name })}
+                          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+                        />
+                      </div>
+                      <div className={`ml-2 mt-0.5 w-full h-3/5 ${ellipsisTextStyle}`}>
                         {product.name}
                       </div>
                     </div>
