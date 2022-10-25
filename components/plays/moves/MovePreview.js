@@ -109,7 +109,7 @@ const MovePreview = () => {
                     </Dialog.Title>
 
                     <div className='flex flex-col gap-4 w-5/6 px-4 pb-4'>
-                      <div className='fr-view tinyEditor text-dial-gray-dark'>
+                      <div className='fr-view tiny-editor text-dial-gray-dark'>
                         {data.move?.moveDescription && parse(data.move.moveDescription.description)}
                       </div>
                       {
