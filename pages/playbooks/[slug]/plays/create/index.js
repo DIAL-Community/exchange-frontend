@@ -6,9 +6,10 @@ import { PlayForm } from '../../../../../components/plays/PlayForm'
 import { MoveListProvider } from '../../../../../components/plays/moves/MoveListContext'
 import { MovePreviewProvider } from '../../../../../components/plays/moves/MovePreviewContext'
 import MovePreview from '../../../../../components/plays/moves/MovePreview'
-import { Loading, Error } from '../../../../../components/shared/FetchStatus'
+import { Loading, Error, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import ClientOnly from '../../../../../lib/ClientOnly'
 import NotFound from '../../../../../components/shared/NotFound'
+import { useUser } from '../../../../../lib/hooks'
 
 const PLAY_QUERY = gql`
   query Play($playbookSlug: String!) {
@@ -39,13 +40,9 @@ const CreatePlayInformation = ({ slug, locale }) => {
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error && error.networkError) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (error && !error.networkError) {
     return <NotFound />
   }
 
@@ -65,6 +62,8 @@ const CreatePlayInformation = ({ slug, locale }) => {
 }
 
 function CreatePlay () {
+  const { isAdminUser, loadingUserSession } = useUser()
+
   const router = useRouter()
   const { locale } = router
   const { slug } = router.query
@@ -73,7 +72,11 @@ function CreatePlay () {
     <>
       <Header />
       <ClientOnly>
-        <CreatePlayInformation slug={slug} locale={locale} />
+        {loadingUserSession
+          ? <Loading />
+          : isAdminUser
+            ? <CreatePlayInformation slug={slug} locale={locale} />
+            : <Unauthorized />}
       </ClientOnly>
       <Footer />
     </>

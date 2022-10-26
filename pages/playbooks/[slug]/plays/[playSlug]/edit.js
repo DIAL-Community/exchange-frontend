@@ -1,43 +1,17 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
-import { Loading, Error } from '../../../../../components/shared/FetchStatus'
+import { Loading, Error, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import { PlayForm } from '../../../../../components/plays/PlayForm'
 import { MovePreviewProvider } from '../../../../../components/plays/moves/MovePreviewContext'
 import { MoveListProvider } from '../../../../../components/plays/moves/MoveListContext'
 import MovePreview from '../../../../../components/plays/moves/MovePreview'
 import ClientOnly from '../../../../../lib/ClientOnly'
 import NotFound from '../../../../../components/shared/NotFound'
-
-const PLAY_QUERY = gql`
-query Play($playbookSlug: String!, $playSlug: String!) {
-  play(slug: $playSlug) {
-    id
-    name
-    slug
-    tags
-    playDescription {
-      id
-      description
-    }
-    playMoves {
-      id
-      name
-      slug
-      moveDescription {
-        description
-      }
-    }
-  }
-  playbook(slug: $playbookSlug) {
-    id
-    name
-    slug
-  }
-}
-`
+import { useUser } from '../../../../../lib/hooks'
+import { PLAY_QUERY } from '../../../../../queries/play'
 
 const EditFormProvider = ({ children }) => {
   return (
@@ -62,13 +36,9 @@ const EditPlayInformation = ({ slug, playSlug, locale }) => {
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error && error.networkError) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (error && !error.networkError) {
     return <NotFound />
   }
 
@@ -88,7 +58,8 @@ const EditPlayInformation = ({ slug, playSlug, locale }) => {
 
 }
 
-function EditPlay () {
+function EditPlay() {
+  const { isAdminUser, loadingUserSession } = useUser()
   const router = useRouter()
 
   const { locale } = router
@@ -98,7 +69,11 @@ function EditPlay () {
     <>
       <Header />
       <ClientOnly>
-        <EditPlayInformation slug={slug} playSlug={playSlug} locale={locale} />
+        {loadingUserSession
+          ? <Loading />
+          : isAdminUser
+            ? <EditPlayInformation slug={slug} playSlug={playSlug} locale={locale} />
+            : <Unauthorized />}
       </ClientOnly>
       <Footer />
     </>
