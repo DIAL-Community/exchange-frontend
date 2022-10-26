@@ -1,32 +1,12 @@
-import { useRef, useCallback, useContext, useEffect, useState } from 'react'
+import { useRef, useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { useDrag, useDrop } from 'react-dnd'
 import parse from 'html-react-parser'
 import update from 'immutability-helper'
+import { UPDATE_PLAY_ORDER } from '../../mutations/play'
 import { PlayPreviewDispatchContext } from './PlayPreviewContext'
 import { PlayListContext, PlayListDispatchContext } from './PlayListContext'
-
-const UPDATE_PLAY_ORDER = gql`
-  mutation (
-    $playbookSlug: String!,
-    $playSlug: String!,
-    $operation: String!,
-    $distance: Int!
-  ) {
-    updatePlayOrder (
-      playbookSlug: $playbookSlug,
-      playSlug: $playSlug,
-      operation: $operation,
-      distance: $distance
-    ) {
-      play {
-        id
-        slug
-      }
-    }
-  }
-`
 
 const DraggableCard = ({ id, play, index, movePlay, unassignPlay, previewPlay }) => {
   const { formatMessage } = useIntl()
@@ -146,7 +126,7 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay, previewPlay })
               <button
                 type='button'
                 className='bg-dial-purple-light text-dial-gray-light py-1.5 px-3 rounded disabled:opacity-50'
-                onClick={() => unassignPlay(play)}
+                onClick={() => unassignPlay(play, index)}
               >
                 {format('play.unassign')}
               </button>
@@ -166,52 +146,27 @@ const PlayListDraggable = ({ playbook }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [draggedPlay, setDraggedPlay] = useState([-1, -1])
-  const [unassignedPlay, setUnassignedPlay] = useState('')
-
   const { currentPlays } = useContext(PlayListContext)
   const { setCurrentPlays } = useContext(PlayListDispatchContext)
   const { setPreviewSlug, setPreviewContext, setPreviewDisplayed } = useContext(PlayPreviewDispatchContext)
 
   const [updatePlayOrder] = useMutation(UPDATE_PLAY_ORDER)
 
-  useEffect(() => {
-    // Watch the unassigned play and delete them after render.
-    if (unassignedPlay) {
-      setCurrentPlays(currentPlays.filter(
-        currentPlay => currentPlay.slug !== unassignedPlay.slug)
-      )
-      if (playbook) {
-        updatePlayOrder({
-          variables: {
-            playbookSlug: playbook.slug,
-            playSlug: unassignedPlay.slug,
-            operation: 'UNASSIGN',
-            distance: 0
-          }
-        })
-      }
-    }
-  }, [unassignedPlay])
-
-  useEffect(() => {
-    const [dragIndex, hoverIndex] = draggedPlay
-    if (playbook && dragIndex >= 0 && hoverIndex >= 0) {
+  const unassignPlay = useCallback((play, index) => {
+    setCurrentPlays(currentPlays.filter(
+      currentPlay => currentPlay.slug !== play.slug)
+    )
+    if (playbook) {
       updatePlayOrder({
         variables: {
           playbookSlug: playbook.slug,
-          playSlug: currentPlays[hoverIndex].slug,
-          operation: 'SWAP',
-          distance: hoverIndex - dragIndex
+          playSlug: play.slug,
+          playOrder: index,
+          operation: 'UNASSIGN'
         }
       })
     }
-  }, [draggedPlay])
-
-  const unassignPlay = (play) => {
-    // Mark play as un-assigned. This will trigger deletion from the context component.
-    setUnassignedPlay(play)
-  }
+  }, [currentPlays, setCurrentPlays, playbook, updatePlayOrder])
 
   const previewPlay = useCallback((play) => {
     setPreviewDisplayed(true)
@@ -226,12 +181,22 @@ const PlayListDraggable = ({ playbook }) => {
         [hoverIndex, 0, prevCards[dragIndex]]
       ]
     }))
-    setDraggedPlay([dragIndex, hoverIndex])
-  }, [setCurrentPlays])
+    if (playbook && dragIndex >= 0 && hoverIndex >= 0) {
+      updatePlayOrder({
+        variables: {
+          playbookSlug: playbook.slug,
+          playSlug: currentPlays[dragIndex].slug,
+          playOrder: dragIndex,
+          operation: 'SWAP',
+          distance: hoverIndex - dragIndex
+        }
+      })
+    }
+  }, [currentPlays, setCurrentPlays, playbook, updatePlayOrder])
 
   const renderCard = useCallback((play, index) => (
     <DraggableCard key={index} id={play.id} {...{ index, play, movePlay, unassignPlay, previewPlay }} />
-  ), [movePlay, previewPlay])
+  ), [movePlay, previewPlay, unassignPlay])
 
   useEffect(() => {
     if (playbook) {

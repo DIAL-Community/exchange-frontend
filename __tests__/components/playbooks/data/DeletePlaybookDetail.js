@@ -9,6 +9,7 @@ export const playbookDetail = {
     overview: 'Just an example of playbook.',
     audience: 'The audience of this playbook is you.',
     outcomes: 'The outcome of this playbook is expected.',
+    locale: 'en'
   },
   playbookPlays: [{
     id: 827,
@@ -18,7 +19,12 @@ export const playbookDetail = {
   }],
   plays: [{
     id: 10,
+    name: 'D4D: Understand the Problem',
     slug: 'd4d_understand_the_problem',
+    playDescription: {
+      id: 11,
+      description: 'Some example of description.'
+    },
     playMoves: [{
       id: 7,
       name: 'Considerations',

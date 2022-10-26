@@ -16,12 +16,14 @@ export const PLAYBOOK_QUERY = gql`
       id
       slug
       name
+      tags
       author
       playbookDescription {
         id
         overview
         audience
         outcomes
+        locale
       }
       imageFile
       playbookPlays {
@@ -32,10 +34,15 @@ export const PLAYBOOK_QUERY = gql`
       }
       plays {
         id
+        name
         slug
         playMoves {
           id
           name
+        }
+        playDescription {
+          id
+          description
         }
       }
       draft
