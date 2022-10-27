@@ -71,7 +71,7 @@ const GovStackIssueForm = ({ referer }) => {
     })
 
     const responseBody = await response.json()
-    setIssueLink(responseBody.data?.self)
+    setIssueLink('https://govstack-global.atlassian.net/browse/'+responseBody?.data?.key)
     setThanks(true)
   }
 
