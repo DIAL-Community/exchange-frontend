@@ -527,7 +527,7 @@ export const en = {
   'filter.hint.text.an': 'What is an ',
 
   'digiInvestment.title': 'Digital Investment Framework',
-  'digiInvestment.tooltip': 'The SDG Digital Investment Framework developed by DIAL and ITU advocates for re-usable, cross-sectoral building blocks. The Catalog illustrates how use cases are composed of generic workflows which can by implemented by building blocks. Users can also explore existing products that may provide necessary functionality for each building block.',
+  'digiInvestment.tooltip': 'The SDG Digital Investment Framework developed by DIAL and ITU advocates for re-usable, cross-sectoral building blocks. The Catalog illustrates how use cases are composed of generic workflows which can be implemented by building blocks. Users can also explore existing products that may provide necessary functionality for each building block.',
 
   'filter.entity.sdgs': 'SDGs',
   'filter.entity.useCases': 'Use Cases',
@@ -746,7 +746,7 @@ export const en = {
 
   'sdg.hint.subtitle': `The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to achieve sustainable development.`,
   'sdg.hint.descriptionTitle': 'Description',
-  'sdg.hint.description': `The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to achieve sustainable development. The SDGs were set in 2015 by the United Nations General Assembly and intended to be achieved by the year 2030.`,
+  'sdg.hint.description': `The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to achieve sustainable development. The SDGs were set in 2015 by the United Nations General Assembly and are intended to be achieved by the year 2030.`,
 
   'image.alt.logoFor': 'Logo for: {name}',
   'tooltip.ellipsisFor': 'View more in the detail page of this {entity}.',
