@@ -1,34 +1,12 @@
-import { useRef, useCallback, useContext, useEffect, useState } from 'react'
+import { useRef, useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { useDrag, useDrop } from 'react-dnd'
 import update from 'immutability-helper'
 import parse from 'html-react-parser'
+import { UPDATE_MOVE_ORDER } from '../../../mutations/move'
 import { MovePreviewDispatchContext } from './MovePreviewContext'
 import { MoveListContext, MoveListDispatchContext } from './MoveListContext'
-
-const UPDATE_MOVE_ORDER = gql`
-  mutation (
-    $playSlug: String!,
-    $moveSlug: String!,
-    $operation: String!,
-    $distance: Int!
-  ) {
-    updateMoveOrder (
-      playSlug: $playSlug,
-      moveSlug: $moveSlug,
-      operation: $operation,
-      distance: $distance
-    ) {
-      move {
-        id
-        slug
-        name
-      }
-      errors
-    }
-  }
-`
 
 const DraggableCard = ({ id, move, index, swapMove, unassignMove, previewMove }) => {
   const { formatMessage } = useIntl()
@@ -172,52 +150,28 @@ const MoveListDraggable = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [draggedMove, setDraggedMove] = useState([-1, -1])
-  const [unassignedMove, setUnassignedMove] = useState('')
-
   const { currentMoves } = useContext(MoveListContext)
   const { setCurrentMoves } = useContext(MoveListDispatchContext)
   const { setPreviewSlug, setPreviewContext, setPreviewDisplayed } = useContext(MovePreviewDispatchContext)
 
   const [updateMoveOrder] = useMutation(UPDATE_MOVE_ORDER)
 
-  useEffect(() => {
-    // Watch the unassigned move and delete them after render.
-    if (unassignedMove) {
-      setCurrentMoves(currentMoves.filter(
-        currentMove => currentMove.slug !== unassignedMove.slug)
-      )
-      if (unassignedMove) {
-        updateMoveOrder({
-          variables: {
-            playSlug: play.slug,
-            moveSlug: unassignedMove.slug,
-            operation: 'UNASSIGN',
-            distance: 0
-          }
-        })
-      }
-    }
-  }, [unassignedMove])
-
-  useEffect(() => {
-    const [dragIndex, hoverIndex] = draggedMove
-    if (play && dragIndex >= 0 && hoverIndex >= 0) {
+  const unassignMove = useCallback((move) => {
+    // Mark move as un-assigned. This will trigger deletion from the context component.
+    setCurrentMoves(currentMoves.filter(
+      currentMove => currentMove.slug !== move.slug)
+    )
+    if (move) {
       updateMoveOrder({
         variables: {
           playSlug: play.slug,
-          moveSlug: currentMoves[hoverIndex].slug,
-          operation: 'SWAP',
-          distance: hoverIndex - dragIndex
+          moveSlug: move.slug,
+          operation: 'UNASSIGN',
+          distance: 0
         }
       })
     }
-  }, [draggedMove])
-
-  const unassignMove = (move) => {
-    // Mark move as un-assigned. This will trigger deletion from the context component.
-    setUnassignedMove(move)
-  }
+  }, [currentMoves, setCurrentMoves, play, updateMoveOrder])
 
   const previewMove = useCallback((move) => {
     setPreviewDisplayed(true)
@@ -232,14 +186,23 @@ const MoveListDraggable = ({ playbook, play }) => {
         [hoverIndex, 0, prevCards[dragIndex]]
       ]
     }))
-    setDraggedMove([dragIndex, hoverIndex])
-  }, [setCurrentMoves])
+    if (play && dragIndex >= 0 && hoverIndex >= 0) {
+      updateMoveOrder({
+        variables: {
+          playSlug: play.slug,
+          moveSlug: currentMoves[dragIndex].slug,
+          operation: 'SWAP',
+          distance: hoverIndex - dragIndex
+        }
+      })
+    }
+  }, [currentMoves, setCurrentMoves, play, updateMoveOrder])
 
   const renderCard = useCallback((move, index) => (
     <div key={index}>
       <DraggableCard id={move.id} {...{ index, move, swapMove, unassignMove, previewMove }} />
     </div>
-  ), [swapMove, previewMove])
+  ), [swapMove, previewMove, unassignMove])
 
   useEffect(() => {
     if (play) {

@@ -346,7 +346,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                       Play 1. D4D: Understand the Problem
                     </div>
                     <div
-                      class="fr-view tinyEditor text-dial-gray-dark"
+                      class="fr-view tiny-editor text-dial-gray-dark"
                     >
                       The play description goes here.
                     </div>
@@ -822,7 +822,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                     Play 1. D4D: Understand the Problem
                   </div>
                   <div
-                    class="fr-view tinyEditor text-dial-gray-dark"
+                    class="fr-view tiny-editor text-dial-gray-dark"
                   >
                     The play description goes here.
                   </div>
@@ -1419,7 +1419,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                       Play 1. D4D: Understand the Problem
                     </div>
                     <div
-                      class="fr-view tinyEditor text-dial-gray-dark"
+                      class="fr-view tiny-editor text-dial-gray-dark"
                     >
                       The play description goes here.
                     </div>
@@ -1842,7 +1842,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                     Play 1. D4D: Understand the Problem
                   </div>
                   <div
-                    class="fr-view tinyEditor text-dial-gray-dark"
+                    class="fr-view tiny-editor text-dial-gray-dark"
                   >
                     The play description goes here.
                   </div>

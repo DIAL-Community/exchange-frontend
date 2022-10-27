@@ -1,31 +1,11 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
+import { UPDATE_PLAY_ORDER } from '../../mutations/play'
 import { PlayPreviewDispatchContext } from './PlayPreviewContext'
 import { PlayListContext, PlayListDispatchContext } from './PlayListContext'
 import { SOURCE_TYPE_ASSIGNING } from './PlayList'
-
-const UPDATE_PLAY_ORDER = gql`
-  mutation (
-    $playbookSlug: String!,
-    $playSlug: String!,
-    $operation: String!,
-    $distance: Int!
-  ) {
-    updatePlayOrder (
-      playbookSlug: $playbookSlug,
-      playSlug: $playSlug,
-      operation: $operation,
-      distance: $distance
-    ) {
-      play {
-        id
-        slug
-      }
-    }
-  }
-`
 
 const PlayCard = ({ playbook, play, sourceType }) => {
   const { formatMessage } = useIntl()
@@ -50,8 +30,7 @@ const PlayCard = ({ playbook, play, sourceType }) => {
         variables: {
           playbookSlug: playbook.slug,
           playSlug: play.slug,
-          operation: 'ASSIGN',
-          distance: 0
+          operation: 'ASSIGN'
         }
       })
     }
