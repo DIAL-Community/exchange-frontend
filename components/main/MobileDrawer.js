@@ -36,7 +36,7 @@ const MobileDrawer = ({ filter, hint, activeTab }) => {
 
     <>
       <div
-        className='md:hidden sticky bg-dial-gray-light max-w-catalog mx-auto border-b-2'
+        className='md:hidden sticky bg-dial-gray-light border-b-2'
         ref={filterPopoverButton}
       >
         <div className='w-full h-full'>

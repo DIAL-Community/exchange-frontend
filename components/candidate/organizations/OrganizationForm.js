@@ -14,6 +14,7 @@ import { HtmlEditor } from '../../shared/HtmlEditor'
 import { emailRegex } from '../../shared/emailRegex'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { useUser } from '../../../lib/hooks'
+import { purgeLink } from '../../../lib/utilities'
 
 const OrganizationForm = () => {
   const { formatMessage } = useIntl()
@@ -69,10 +70,12 @@ const OrganizationForm = () => {
       setMutating(true)
 
       const { userEmail, userToken } = user
-      const { name, description, organizationName, website, email, title, captcha } = data
+      const { name, description, organizationName, email, title, captcha } = data
+      const websiteLink = purgeLink(data.website)
+
       const variables = {
         name,
-        website,
+        website: websiteLink,
         organizationName,
         description,
         email,

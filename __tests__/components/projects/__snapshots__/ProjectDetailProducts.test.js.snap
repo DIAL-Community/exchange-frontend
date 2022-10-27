@@ -496,22 +496,26 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
               >
-                <span
-                  style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-                >
-                  <img
-                    alt="Logo for: Product 1"
-                    data-nimg="fill"
-                    decoding="async"
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                  />
-                  <noscript />
-                </span>
                 <div
-                  class="ml-8 w-4/5 h-3/5 font-semibold relative 
+                  class="block w-8 relative"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                  >
+                    <img
+                      alt="Logo for: Product 1"
+                      data-nimg="fill"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                    />
+                    <noscript />
+                  </span>
+                </div>
+                <div
+                  class="ml-2 mt-0.5 w-full h-3/5 
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
 "
                 >
@@ -548,22 +552,26 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
               >
-                <span
-                  style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-                >
-                  <img
-                    alt="Logo for: Product 3"
-                    data-nimg="fill"
-                    decoding="async"
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                  />
-                  <noscript />
-                </span>
                 <div
-                  class="ml-8 w-4/5 h-3/5 font-semibold relative 
+                  class="block w-8 relative"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                  >
+                    <img
+                      alt="Logo for: Product 3"
+                      data-nimg="fill"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                    />
+                    <noscript />
+                  </span>
+                </div>
+                <div
+                  class="ml-2 mt-0.5 w-full h-3/5 
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
 "
                 >
@@ -823,22 +831,26 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
               >
-                <span
-                  style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-                >
-                  <img
-                    alt="Logo for: Product 1"
-                    data-nimg="fill"
-                    decoding="async"
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                  />
-                  <noscript />
-                </span>
                 <div
-                  class="ml-8 w-4/5 h-3/5 font-semibold relative 
+                  class="block w-8 relative"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                  >
+                    <img
+                      alt="Logo for: Product 1"
+                      data-nimg="fill"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                    />
+                    <noscript />
+                  </span>
+                </div>
+                <div
+                  class="ml-2 mt-0.5 w-full h-3/5 
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
 "
                 >
@@ -875,22 +887,26 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
               >
-                <span
-                  style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-                >
-                  <img
-                    alt="Logo for: Product 3"
-                    data-nimg="fill"
-                    decoding="async"
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                  />
-                  <noscript />
-                </span>
                 <div
-                  class="ml-8 w-4/5 h-3/5 font-semibold relative 
+                  class="block w-8 relative"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                  >
+                    <img
+                      alt="Logo for: Product 3"
+                      data-nimg="fill"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                    />
+                    <noscript />
+                  </span>
+                </div>
+                <div
+                  class="ml-2 mt-0.5 w-full h-3/5 
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
 "
                 >

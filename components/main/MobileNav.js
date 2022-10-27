@@ -36,7 +36,7 @@ const MobileNav = ({ activeTab }) => {
   return (
     <>
       <div
-        className='md:hidden sticky bg-transparent sticky-under-header max-w-catalog mx-auto'
+        className='md:hidden sticky bg-transparent sticky-under-header'
         ref={tabPopoverButton} onClick={toggleTabs}
       >
         <div className='w-full'>

@@ -79,14 +79,17 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
         <div className='pb-5 pr-5'>
           {product.origins.map((origin, i) => {
             return (
-              <div key={i}>
-                <Image
-                  height={20} width={20}
-                  src={'/images/origins/' + origin.slug + '.png'}
-                  className='inline'
-                  alt={format('image.alt.logoFor', { name: origin.name })}
-                />
-                <div key={i} className='inline ml-2 text-sm'>{origin.name}</div>
+              <div key={i} className='flex gap-2 my-auto relative'>
+                <div className='block w-8 relative'>
+                  <Image
+                    layout='fill'
+                    objectFit='scale-down'
+                    objectPosition='left'
+                    src={'/images/origins/' + origin.slug + '.png'}
+                    alt={format('image.alt.logoFor', { name: origin.name })}
+                  />
+                </div>
+                <div key={i} className='inline mt-0.5 text-sm'>{origin.name}</div>
                 {origin.slug === 'dpga' && product.endorsers.length === 0 && (
                   <div className='inline ml-2 h5'>{format('product.nominee')}</div>
                 )}
@@ -164,9 +167,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           }
         </div>
       </div>
-      {product?.maturityScores && (
-        <ProductDetailMaturityScores maturityScores={product.maturityScores} overallMaturityScore={product.maturityScore} />
-      )}
+      <ProductDetailMaturityScores slug={product.slug} />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={product.id}

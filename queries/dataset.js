@@ -51,3 +51,13 @@ export const DATASET_QUERY = gql`
     }
   }
 `
+
+export const DATASET_SEARCH_QUERY = gql`
+  query Datasets($search: String!) {
+    datasets(search: $search) {
+      id
+      name
+      slug
+    }
+  }
+`

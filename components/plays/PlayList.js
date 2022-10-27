@@ -106,7 +106,7 @@ const PlayListQuery = ({ playbook, sourceType }) => {
   return (
     <>
       <InfiniteScroll
-        className='bg-white relative px-6 pb-8 pt-4 max-w-catalog mx-auto'
+        className='bg-white relative px-6 pb-8 pt-4'
         dataLength={nodes.length}
         next={handleLoadMore}
         hasMore={pageInfo.hasNextPage}

@@ -29,11 +29,9 @@ const EditProject = () => {
     <>
       <Header />
       {data?.project && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            <ProjectForm project={data.project} />
-          </ClientOnly>
-        </div>
+        <ClientOnly>
+          <ProjectForm project={data.project} />
+        </ClientOnly>
       )}
       <Footer />
     </>
