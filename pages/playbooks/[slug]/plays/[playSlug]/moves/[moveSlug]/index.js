@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useEffect } from 'react'
 import Header from '../../../../../../../components/Header'
 import Footer from '../../../../../../../components/Footer'
@@ -7,30 +7,7 @@ import NotFound from '../../../../../../../components/shared/NotFound'
 import MoveDetail from '../../../../../../../components/plays/moves/MoveDetail'
 import { Loading, Error } from '../../../../../../../components/shared/FetchStatus'
 import ClientOnly from '../../../../../../../lib/ClientOnly'
-
-const MOVE_QUERY = gql`
-  query Move($playbookSlug: String!, $playSlug: String!, $moveSlug: String!) {
-    move(playSlug: $playSlug, slug: $moveSlug) {
-      id
-      name
-      slug
-      moveDescription {
-        description
-        locale
-      }
-    }
-    play(slug: $playSlug) {
-      id
-      name
-      slug
-    }
-    playbook(slug: $playbookSlug) {
-      id
-      name
-      slug
-    }
-  }
-`
+import { MOVE_QUERY } from '../../../../../../../queries/move'
 
 const MoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
   const { loading, error, data, refetch } = useQuery(MOVE_QUERY, {
@@ -49,13 +26,9 @@ const MoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error && error.networkError) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (error && !error.networkError) {
     return <NotFound />
   }
 

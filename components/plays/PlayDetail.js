@@ -57,7 +57,7 @@ const PlayDetail = ({ playbook, play }) => {
         <div className='font-semibold text-2xl py-3'>
           {`${format('plays.label')}: ${play.name}`}
         </div>
-        <div className='fr-view text-dial-gray-dark'>
+        <div className='fr-view tiny-editor text-dial-gray-dark'>
           {parse(play.playDescription?.description)}
         </div>
         <div className='flex flex-col gap-3'>

@@ -10,6 +10,7 @@ module.exports = {
       overview: 'Just an example of playbook.',
       audience: 'The audience of this playbook is you.',
       outcomes: 'The outcome of this playbook is expected.',
+      locale: 'en',
       __typename: 'PlaybookDescription'
     },
     playbookPlays: [{
@@ -21,7 +22,12 @@ module.exports = {
     }],
     plays: [{
       id: 10,
+      name: 'D4D: Understand the Problem',
       slug: 'd4d_understand_the_problem',
+      playDescription: {
+        id: 10,
+        description: 'The play description goes here.',
+      },
       playMoves: [{
         id: 7,
         name: 'Considerations',
@@ -51,6 +57,7 @@ module.exports = {
       overview: 'Just an example of playbook.',
       audience: 'The audience of this playbook is you.',
       outcomes: 'The outcome of this playbook is expected.',
+      locale: 'en',
       __typename: 'PlaybookDescription'
     },
     playbookPlays: [{
@@ -62,7 +69,12 @@ module.exports = {
     }],
     plays: [{
       id: 10,
+      name: 'D4D: Understand the Problem',
       slug: 'd4d_understand_the_problem',
+      playDescription: {
+        id: 10,
+        description: 'The play description goes here.',
+      },
       playMoves: [{
         id: 7,
         name: 'Considerations',
