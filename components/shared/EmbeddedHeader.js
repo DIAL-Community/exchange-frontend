@@ -85,7 +85,7 @@ const EmbeddedHeader = () => {
 
   return (
     <header className='z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white'>
-      <div className='flex flex-wrap justify-center items-center py-3 lg:py-0 max-w-catalog header-min-height mx-auto'>
+      <div className='flex flex-wrap justify-center items-center py-3 lg:py-0 header-min-height'>
         <div className='flex-1 flex my-auto'>
           <a href='' className='text-center mx-auto'>
             <div className='text-dial-blue-darkest text-xs'>

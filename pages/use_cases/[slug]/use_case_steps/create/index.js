@@ -32,11 +32,9 @@ const CreateUseCaseStep = () => {
     <>
       <Header />
       {data?.useCase &&
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            <StepForm useCase={data.useCase}/>
-          </ClientOnly>
-        </div>
+        <ClientOnly>
+          <StepForm useCase={data.useCase}/>
+        </ClientOnly>
       }
       <Footer />
     </>

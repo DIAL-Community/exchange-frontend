@@ -19,7 +19,7 @@ const DatasetSpreadsheet = () => {
       <QueryNotification />
       <Header />
       <ClientOnly>
-        <div className='max-w-catalog mx-auto' style={{ minHeight: '70vh' }}>
+        <div style={{ minHeight: '70vh' }}>
           {loadingUserSession ?
             <Loading /> :
             isAdminUser ? <DatasetSpreadsheetWithoutSSR /> : <Unauthorized />

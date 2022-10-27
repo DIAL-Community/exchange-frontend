@@ -129,7 +129,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
         class="infinite-scroll-component__outerdiv"
       >
         <div
-          class="infinite-scroll-component relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height"
+          class="infinite-scroll-component relative px-2 mt-3 pb-8 infinite-scroll-default-height"
           style="height: auto; overflow: auto;"
         >
           <div
@@ -377,7 +377,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
       class="infinite-scroll-component__outerdiv"
     >
       <div
-        class="infinite-scroll-component relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height"
+        class="infinite-scroll-component relative px-2 mt-3 pb-8 infinite-scroll-default-height"
         style="height: auto; overflow: auto;"
       >
         <div

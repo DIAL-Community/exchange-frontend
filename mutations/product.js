@@ -215,3 +215,17 @@ const generateProductRepositoryMutation = (mutationName) => `
 export const CREATE_PRODUCT_REPOSITORY = gql(generateProductRepositoryMutation('createProductRepository'))
 
 export const UPDATE_PRODUCT_REPOSITORY = gql(generateProductRepositoryMutation('updateProductRepository'))
+
+export const UPDATE_PRODUCT_CATEGORY_INDICATORS = gql`
+  mutation UpdateProductIndicators(
+    $slug: String!
+    $indicatorsData: [JSON!]!
+  ) {
+    updateProductIndicators(
+      slug: $slug
+      indicatorsData: $indicatorsData
+    ) {
+      errors
+    }  
+  }
+`

@@ -36,13 +36,16 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
 
   const canEdit = session?.user?.canEdit || session?.user?.own?.organization?.id === organization.id
 
+  const isEndorser = organization?.whenEndorsed
+
   const marker = organization.offices.length > 0
     ? {
       position: [parseFloat(organization.offices[0].latitude), parseFloat(organization.offices[0].longitude)],
       title: organization.name,
       body: organization.offices[0].name,
       markerImage: '/icons/digiprins/digiprins.png',
-      markerImageAltText: formatMessage({ id: 'image.alt.logoFor' }, { name: format('digitalPrinciple.title') })
+      markerImageAltText: formatMessage({ id: 'image.alt.logoFor' }, { name: format('digitalPrinciple.title') }),
+      isEndorser
     }
     : undefined
 

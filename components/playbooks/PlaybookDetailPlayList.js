@@ -173,7 +173,7 @@ const PlaybookDetailPlayList = ({ slug, locale }) => {
 
   return (
     <InfiniteScroll
-      className='relative px-2 py-4 max-w-catalog mx-auto'
+      className='relative px-2 py-4'
       dataLength={nodes.length}
       next={handleLoadMore}
       scrollThreshold='60%'

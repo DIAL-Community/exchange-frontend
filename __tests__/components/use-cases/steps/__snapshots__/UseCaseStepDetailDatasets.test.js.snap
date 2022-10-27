@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pill and revert changes on "Cancel" button click 1`] = `
+exports[`Unit test for the UseCaseStepDetailDatasets component. Should add a pill and revert changes on "Cancel" button click 1`] = `
 <div>
   <div
     class="Toastify"
@@ -15,7 +15,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
       <div
         class="card-title text-dial-gray-dark"
       >
-        Products
+        Open Data
       </div>
       <div
         class="gap-3"
@@ -29,13 +29,13 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
       >
         Assign
          
-        Products
+        Open Data
       </p>
       <label
         class="flex flex-col gap-y-2 mb-2"
-        data-testid="product-search"
+        data-testid="dataset-search"
       >
-        Search and Assign Products
+        Search and Assign Open Data
         <div
           class=" css-l45kjq-container"
         >
@@ -123,7 +123,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
           class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
           data-testid="pill"
         >
-          Test Product
+          Test Dataset
           <svg
             class="ml-3 text-2xl cursor-pointer"
             data-testid="remove-button"
@@ -148,7 +148,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
           class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
           data-testid="pill"
         >
-          Product 2
+          Dataset 2
           <svg
             class="ml-3 text-2xl cursor-pointer"
             data-testid="remove-button"
@@ -193,7 +193,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
 </div>
 `;
 
-exports[`Unit test for the UseCaseStepDetailProducts component. Should match snapshot - with edit permission. 1`] = `
+exports[`Unit test for the UseCaseStepDetailDatasets component. Should match snapshot - with edit permission. 1`] = `
 <div>
   <div
     class="Toastify"
@@ -208,7 +208,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
       <div
         class="card-title text-dial-gray-dark"
       >
-        Products
+        Open Data
       </div>
       <div
         class="gap-3"
@@ -236,47 +236,43 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
       class="grid grid-cols-1"
     >
       <a
-        href="/products/tp"
+        href="/datasets/td"
       >
         <div
           class="
   border-3 cursor-pointer
   border-transparent hover:border-dial-yellow
-  text-product hover:text-dial-yellow
+  text-dataset hover:text-dial-yellow
 "
         >
           <div
             class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
+              class="flex flex-row flex-wrap lg:gap-x-4 px-4"
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative"
               >
-                <div
-                  class="block w-8 relative"
+                <span
+                  style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
                 >
-                  <span
-                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-                  >
-                    <img
-                      alt="Logo for: Test Product"
-                      data-nimg="fill"
-                      decoding="async"
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                    />
-                    <noscript />
-                  </span>
-                </div>
+                  <img
+                    alt="Logo for: Test Dataset"
+                    data-nimg="fill"
+                    decoding="async"
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                  />
+                  <noscript />
+                </span>
                 <div
-                  class="ml-2 mt-0.5 w-full h-3/5 
+                  class="ml-8 w-4/5 h-3/5 font-semibold relative 
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
 "
                 >
-                  Test Product
+                  Test Dataset
                 </div>
               </div>
               <div
@@ -285,7 +281,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
 "
               />
               <div
-                class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
+                class="w-4/12 lg:w-2/12 text-right text-sm lg:text-base font-semibold text-dial-cyan my-auto"
               />
             </div>
           </div>
@@ -296,7 +292,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
 </div>
 `;
 
-exports[`Unit test for the UseCaseStepDetailProducts component. Should match snapshot - with open editable section 1`] = `
+exports[`Unit test for the UseCaseStepDetailDatasets component. Should match snapshot - with open editable section 1`] = `
 <div>
   <div
     class="Toastify"
@@ -311,7 +307,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
       <div
         class="card-title text-dial-gray-dark"
       >
-        Products
+        Open Data
       </div>
       <div
         class="gap-3"
@@ -325,13 +321,13 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
       >
         Assign
          
-        Products
+        Open Data
       </p>
       <label
         class="flex flex-col gap-y-2 mb-2"
-        data-testid="product-search"
+        data-testid="dataset-search"
       >
-        Search and Assign Products
+        Search and Assign Open Data
         <div
           class=" css-l45kjq-container"
         >
@@ -419,7 +415,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
           class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
           data-testid="pill"
         >
-          Test Product
+          Test Dataset
           <svg
             class="ml-3 text-2xl cursor-pointer"
             data-testid="remove-button"
@@ -465,7 +461,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
 </div>
 `;
 
-exports[`Unit test for the UseCaseStepDetailProducts component. Should match snapshot - without edit permission. 1`] = `
+exports[`Unit test for the UseCaseStepDetailDatasets component. Should match snapshot - without edit permission. 1`] = `
 <div>
   <div
     class="Toastify"
@@ -480,7 +476,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
       <div
         class="card-title text-dial-gray-dark"
       >
-        Products
+        Open Data
       </div>
       <div
         class="gap-3"
@@ -490,47 +486,43 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
       class="grid grid-cols-1"
     >
       <a
-        href="/products/tp"
+        href="/datasets/td"
       >
         <div
           class="
   border-3 cursor-pointer
   border-transparent hover:border-dial-yellow
-  text-product hover:text-dial-yellow
+  text-dataset hover:text-dial-yellow
 "
         >
           <div
             class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
+              class="flex flex-row flex-wrap lg:gap-x-4 px-4"
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative"
               >
-                <div
-                  class="block w-8 relative"
+                <span
+                  style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
                 >
-                  <span
-                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-                  >
-                    <img
-                      alt="Logo for: Test Product"
-                      data-nimg="fill"
-                      decoding="async"
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                    />
-                    <noscript />
-                  </span>
-                </div>
+                  <img
+                    alt="Logo for: Test Dataset"
+                    data-nimg="fill"
+                    decoding="async"
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                  />
+                  <noscript />
+                </span>
                 <div
-                  class="ml-2 mt-0.5 w-full h-3/5 
+                  class="ml-8 w-4/5 h-3/5 font-semibold relative 
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
 "
                 >
-                  Test Product
+                  Test Dataset
                 </div>
               </div>
               <div
@@ -539,7 +531,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
 "
               />
               <div
-                class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
+                class="w-4/12 lg:w-2/12 text-right text-sm lg:text-base font-semibold text-dial-cyan my-auto"
               />
             </div>
           </div>
@@ -550,7 +542,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
 </div>
 `;
 
-exports[`Unit test for the UseCaseStepDetailProducts component. Should remove a pill 1`] = `
+exports[`Unit test for the UseCaseStepDetailDatasets component. Should remove a pill 1`] = `
 <div>
   <div
     class="Toastify"
@@ -565,7 +557,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should remove a 
       <div
         class="card-title text-dial-gray-dark"
       >
-        Products
+        Open Data
       </div>
       <div
         class="gap-3"
@@ -579,13 +571,13 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should remove a 
       >
         Assign
          
-        Products
+        Open Data
       </p>
       <label
         class="flex flex-col gap-y-2 mb-2"
-        data-testid="product-search"
+        data-testid="dataset-search"
       >
-        Search and Assign Products
+        Search and Assign Open Data
         <div
           class=" css-l45kjq-container"
         >

@@ -16,6 +16,13 @@ export const useCaseStep = {
       slug: 'tp'
     }
   ],
+  datasets: [
+    {
+      id: 1,
+      name: 'Test Dataset',
+      slug: 'td'
+    }
+  ],
   buildingBlocks: [
     {
       id: 1,

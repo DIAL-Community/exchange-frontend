@@ -32,10 +32,8 @@ const CreateMoveInformation = ({ slug, playSlug, locale }) => {
   return (
     <>
       {
-        data && data.play && data.playbook &&
-          <div className='max-w-catalog mx-auto'>
-            <MoveForm playbook={data.playbook} play={data.play} />
-          </div>
+        data?.play && data?.playbook &&
+          <MoveForm playbook={data.playbook} play={data.play} />
       }
     </>
   )

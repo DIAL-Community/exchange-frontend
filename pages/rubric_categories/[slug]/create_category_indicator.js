@@ -31,16 +31,14 @@ const CreateCategoryIndicator = () => {
   return (
     <>
       <Header />
-      <div className='max-w-catalog mx-auto'>
-        <ClientOnly>
-          {loadingUserSession
-            ? <Loading />
-            : isAdminUser
-              ? <CategoryIndicatorForm rubricCategory={data?.rubricCategory} />
-              : <Unauthorized />
-          }
-        </ClientOnly>
-      </div>
+      <ClientOnly>
+        {loadingUserSession
+          ? <Loading />
+          : isAdminUser
+            ? <CategoryIndicatorForm rubricCategory={data?.rubricCategory} />
+            : <Unauthorized />
+        }
+      </ClientOnly>
       <Footer />
     </>
   )
