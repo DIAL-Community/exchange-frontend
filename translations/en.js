@@ -1058,6 +1058,13 @@ export const en = {
   'shared.category-indicator.type.numeric': 'numeric',
   'shared.category-indicator.type.scale': 'scale',
   'shared.category-indicator.type.boolean': 'boolean',
+  'shared.category-indicator.type.scale.low': 'low',
+  'shared.category-indicator.type.scale.medium': 'medium',
+  'shared.category-indicator.type.scale.high': 'high',
+  'shared.category-indicator.type.boolean.true': 'true',
+  'shared.category-indicator.type.boolean.false': 'false',
+  'shared.category-indicator.assigned': 'Category Indicators with data',
+  'shared.category-indicator.notAssigned': 'Category Indicators without data',
 
   'seo.description.about': 'DIAL’s Catalog of Digital Solutions is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
   'seo.description.maps': 'Interactive map views showing where specific digital platforms have been implemented as well as the countries where various digital development organizations work.',
