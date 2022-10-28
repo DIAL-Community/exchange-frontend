@@ -66,6 +66,14 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                           .join(', ')
                       }
                     </div>
+                    {product.commercialProduct !== undefined && (
+                      <div className={`text-sm lg:text-base text-dial-purple ${ellipsisTextStyle}`}>
+                        {product.commercialProduct
+                          ? format('product.pricing.commercial').toUpperCase()
+                          : product.mainRepository?.license?.toUpperCase() || format('general.na')
+                        }
+                      </div>
+                    )}
                     <div className='absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end'>
                       {
                         product.endorsers && product.endorsers.length > 0 &&
@@ -225,15 +233,14 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                         </div>
                       </div>
                       {
-                        product.maturityScore &&
-                          <div className='pl-3 py-3 flex-auto flex flex-col'>
-                            <div className='text-base m-auto'>
-                              {format('product.card.maturityScore')}
-                            </div>
-                            <div className='bg-dial-cyan mt-1.5 mx-auto px-3 py-2 rounded text-sm text-white'>
-                              {product.maturityScore || format('general.na')}
-                            </div>
+                        <div className='pl-3 py-3 flex-auto flex flex-col'>
+                          <div className='text-base m-auto'>
+                            {format('product.card.maturityScore')}
                           </div>
+                          <div className='bg-dial-cyan mt-1.5 mx-auto px-3 py-2 rounded text-sm text-white'>
+                            {product.maturityScore || format('general.na')}
+                          </div>
+                        </div>
                       }
                       <div className='pr-3 py-3 flex-auto flex flex-col'>
                         <div className='text-base text-right my-auto'>Sources</div>

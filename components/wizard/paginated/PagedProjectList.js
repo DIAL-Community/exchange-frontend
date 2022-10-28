@@ -113,7 +113,7 @@ const PagedProjectList = ({ countries, sectors, subSectors, tags, projectSortHin
       </div>
       {
         data.paginatedProjects.nodes && data.paginatedProjects.nodes.map((project) => {
-          return (<ProjectCard key={project.name} project={project} listType='list' newTab />)
+          return (<ProjectCard key={project.id} project={project} listType='list' newTab />)
         })
       }
       <ReactPaginate

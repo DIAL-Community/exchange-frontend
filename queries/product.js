@@ -188,6 +188,9 @@ export const PRODUCTS_QUERY = gql`
         mainRepository {
           license
         }
+        organizations {
+          isEndorser
+        }
       }
     }
   }

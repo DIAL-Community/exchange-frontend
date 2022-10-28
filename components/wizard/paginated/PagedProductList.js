@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import ProductCard from '../../products/ProductCard'
 import { Loading, Error } from '../../shared/FetchStatus'
+import { LicenseTypeFilter } from '../../../lib/utilities'
 
 const DEFAULT_PAGE_SIZE = 5
 const PRODUCTS_QUERY = gql`
@@ -16,6 +17,7 @@ const PRODUCTS_QUERY = gql`
     $subSectors: [String!],
     $tags: [String!],
     $productSortHint: String!
+    $commercialProduct: Boolean
   ) {
     paginatedProducts(
       first: $first,
@@ -26,6 +28,7 @@ const PRODUCTS_QUERY = gql`
       subSectors: $subSectors,
       tags: $tags,
       productSortHint: $productSortHint
+      commercialProduct: $commercialProduct
     ) {
       totalCount
       pageInfo {
@@ -40,17 +43,37 @@ const PRODUCTS_QUERY = gql`
         slug
         imageFile
         website
+        endorsers {
+          name
+          slug
+        }
+        origins {
+          name
+          slug
+        }
+        isLaunchable
+        commercialProduct
+        mainRepository {
+          license
+        }
       }
     }
   }
 `
 
-const PagedProductList = ({ buildingBlocks, countries, sectors, subSectors, tags, productSortHint }) => {
+const PagedProductList = ({ buildingBlocks, countries, sectors, subSectors, tags, productSortHint, licenseTypeFilter }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [itemOffset, setItemOffset] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
+  const commercialProduct =
+    licenseTypeFilter === LicenseTypeFilter.COMMERCIAL
+      ? true
+      : licenseTypeFilter === LicenseTypeFilter.OPEN_SOURCE
+        ? false
+        : null
+
   const { loading, error, data, fetchMore } = useQuery(PRODUCTS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
@@ -60,26 +83,32 @@ const PagedProductList = ({ buildingBlocks, countries, sectors, subSectors, tags
       sectors,
       subSectors,
       tags,
-      productSortHint
+      productSortHint,
+      commercialProduct
     }
   })
 
   useEffect(() => {
-    if (itemOffset) {
-      fetchMore({
-        variables: {
-          first: DEFAULT_PAGE_SIZE,
-          offset: itemOffset,
-          buildingBlocks,
-          countries,
-          sectors,
-          subSectors,
-          tags,
-          productSortHint
-        }
-      })
-    }
-  }, [itemOffset])
+    setCurrentPage(0)
+    setItemOffset(0)
+  }, [licenseTypeFilter])
+
+  useEffect(() => {
+    fetchMore({
+      variables: {
+        first: DEFAULT_PAGE_SIZE,
+        offset: itemOffset,
+        buildingBlocks,
+        countries,
+        sectors,
+        subSectors,
+        tags,
+        productSortHint,
+        commercialProduct
+      }
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemOffset, commercialProduct])
 
   const handlePageClick = (event) => {
     setCurrentPage(event.selected)
@@ -103,7 +132,7 @@ const PagedProductList = ({ buildingBlocks, countries, sectors, subSectors, tags
       </div>
       {
         data.paginatedProducts.nodes && data.paginatedProducts.nodes.map((product) => {
-          return (<ProductCard key={product.name} product={product} listType='list' newTab />)
+          return (<ProductCard key={product.id} product={product} listType='list' newTab />)
         })
       }
       <ReactPaginate
