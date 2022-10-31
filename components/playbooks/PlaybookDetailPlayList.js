@@ -96,7 +96,7 @@ const Play = ({ play, index }) => {
       <div className='font-semibold text-2xl py-4'>
         {`${format('plays.label')} ${index + 1}. ${play.name}`}
       </div>
-      <div className='fr-view tinyEditor text-dial-gray-dark'>
+      <div className='fr-view tiny-editor text-dial-gray-dark'>
         {parse(play.playDescription.description)}
       </div>
       <div className='flex flex-col gap-3'>
@@ -173,7 +173,7 @@ const PlaybookDetailPlayList = ({ slug, locale }) => {
 
   return (
     <InfiniteScroll
-      className='relative px-2 py-4 max-w-catalog mx-auto'
+      className='relative px-2 py-4'
       dataLength={nodes.length}
       next={handleLoadMore}
       scrollThreshold='60%'

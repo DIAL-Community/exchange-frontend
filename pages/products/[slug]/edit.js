@@ -52,11 +52,9 @@ const EditProduct = () => {
     <>
       <Header />
       {data?.product && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            {loadingUserSession ? <Loading /> : isAuthorized ? <ProductForm product={data.product} /> : <Unauthorized />}
-          </ClientOnly>
-        </div>
+        <ClientOnly>
+          {loadingUserSession ? <Loading /> : isAuthorized ? <ProductForm product={data.product} /> : <Unauthorized />}
+        </ClientOnly>
       )}
       <Footer />
     </>

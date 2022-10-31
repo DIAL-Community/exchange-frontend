@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useEffect } from 'react'
 import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
@@ -7,36 +7,7 @@ import NotFound from '../../../../../components/shared/NotFound'
 import PlayDetail from '../../../../../components/plays/PlayDetail'
 import { Loading, Error } from '../../../../../components/shared/FetchStatus'
 import ClientOnly from '../../../../../lib/ClientOnly'
-
-const PLAY_QUERY = gql`
-  query Play($playbookSlug: String!, $playSlug: String!) {
-    play(slug: $playSlug) {
-      id
-      name
-      slug
-      tags
-      imageFile
-      playDescription {
-        description
-        locale
-      }
-      playMoves {
-        name
-        slug
-        resources
-        moveDescription {
-          description
-          locale
-        }
-      }
-    }
-    playbook(slug: $playbookSlug) {
-      id
-      name
-      slug
-    }
-  }
-`
+import { PLAY_QUERY } from '../../../../../queries/play'
 
 const PlayInformation = ({ slug, playSlug, locale }) => {
 
@@ -52,13 +23,9 @@ const PlayInformation = ({ slug, playSlug, locale }) => {
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error && error.networkError) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (error && !error.networkError) {
     return <NotFound />
   }
 
@@ -66,9 +33,7 @@ const PlayInformation = ({ slug, playSlug, locale }) => {
     <>
       {
         data && data.play && data.playbook &&
-          <div className='px-8 max-w-catalog mx-auto'>
-            <PlayDetail playbook={data.playbook} play={data.play} />
-          </div>
+          <PlayDetail playbook={data.playbook} play={data.play} />
       }
     </>
   )

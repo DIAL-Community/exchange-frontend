@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { gql, useLazyQuery } from '@apollo/client'
 import Select from '../shared/Select'
 import UseCaseCard from '../use-cases/UseCaseCard'
@@ -8,6 +8,7 @@ import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import { Loading, Error } from '../shared/FetchStatus'
 import PaginatedBuildingBlockList from '../building-blocks/PaginatedBuildingBlockList'
 import PaginatedUseCaseList from '../use-cases/PaginatedUseCaseList'
+import { getLicenseTypeOptions } from '../../lib/utilities'
 import Lifecycle from './Lifecycle'
 import PagedAggregatorsList from './paginated/PagedAggregatorsList'
 import PagedProductList from './paginated/PagedProductList'
@@ -138,6 +139,8 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const [currentSection, setCurrentSection] = useState(0)
   const [wizardData, setWizardData] = useState()
 
+  const licenseTypeOptions = useMemo(() => getLicenseTypeOptions(format), [format])
+
   const vars = {
     phase: allValues.projectPhase,
     sector: allValues.sector,
@@ -249,7 +252,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           <Lifecycle wizardData={wizardData} objType='principles' />
         </div>
         <div className='text-dial-gray-dark' ref={projectsRef}>
-          <div className='flex w-3/4 justify-between'>
+          <div className='flex w-3/4 justify-between items-center mb-2'>
             <div className='text-2xl font-bold'>
               {format('wizard.results.similarProjects')}
             </div>
@@ -257,6 +260,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
               onChange={(val) => setAllValues(prevValues => { return { ...prevValues, projectSortHint: val && val.value } })}
               options={sortHintOptions}
               placeholder={format('wizard.project.sortHint')}
+              className='w-72'
             />
           </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
@@ -270,15 +274,23 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           </div>
         </div>
         <div className='text-dial-gray-dark' ref={productsRef}>
-          <div className='flex w-3/4 justify-between'>
+          <div className='flex w-3/4 justify-between items-center mb-2'>
             <div className='text-2xl font-bold'>
               {format('wizard.results.products')}
             </div>
-            <Select
-              onChange={(val) => setAllValues(prevValues => { return { ...prevValues, productSortHint: val && val.value } })}
-              options={sortHintOptions.filter(x => x.value !== 'country')}
-              placeholder={format('wizard.product.sortHint')}
-            />
+            <div className='grid grid-cols-2 gap-3'>
+              <Select
+                onChange={option => setAllValues(prevValues => ({ ...prevValues, licenseTypeFilter: option?.value }))}
+                options={licenseTypeOptions}
+                defaultValue={licenseTypeOptions[0]}
+                className='w-72'
+              />
+              <Select
+                onChange={option => setAllValues(prevValues => ({ ...prevValues, productSortHint: option?.value }))}
+                options={sortHintOptions.filter(({ value }) => value !== 'country')}
+                placeholder={format('wizard.product.sortHint')}
+              />
+            </div>
           </div>
           <div className='pb-6 grid grid-cols-1 w-3/4'>
             <PagedProductList
@@ -288,6 +300,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
               subSectors={[allValues.subsector]}
               tags={allValues.tags}
               productSortHint={allValues.productSortHint}
+              licenseTypeFilter={allValues.licenseTypeFilter}
             />
           </div>
         </div>

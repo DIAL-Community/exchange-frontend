@@ -34,20 +34,19 @@ const EditCategoryIndicator = () => {
   return (
     <>
       <Header />
-      <div className='max-w-catalog mx-auto'>
-        <ClientOnly>
-          {loadingUserSession
-            ? <Loading />
-            : isAdminUser
-              ? (
-                <CategoryIndicatorForm
-                  rubricCategory={rubricCategoryData?.rubricCategory}
-                  categoryIndicator={categoryIndicatorData?.categoryIndicator}
-                />
-              ) : <Unauthorized />
-          }
-        </ClientOnly>
-      </div>
+      <ClientOnly>
+        {loadingUserSession
+          ? <Loading />
+          : isAdminUser
+            ? (
+              <CategoryIndicatorForm
+                rubricCategory={rubricCategoryData?.rubricCategory}
+                categoryIndicator={categoryIndicatorData?.categoryIndicator}
+              />
+            )
+            : <Unauthorized />
+        }
+      </ClientOnly>
       <Footer />
     </>
   )

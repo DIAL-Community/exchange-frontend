@@ -153,7 +153,7 @@ const PlaybookContent = ({ format, data, locale }) => {
                 <div className='font-semibold text-2xl py-4'>
                   <Text style={styles.h1}>{`${format('plays.label')} ${index + 1}. ${play.name}`}</Text>
                 </div>
-                <div className='fr-view tinyEditor text-dial-gray-dark'>
+                <div className='fr-view tiny-editor text-dial-gray-dark'>
                   <Text style={styles.desc}>{parse(play.playDescription.description)}</Text>
                 </div>
                 <div className='flex flex-col gap-3'>

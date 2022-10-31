@@ -4,6 +4,7 @@ import parse from 'html-react-parser'
 import Breadcrumb from '../../shared/breadcrumb'
 import { useUser } from '../../../lib/hooks'
 import { USE_CASE_STEP_QUERY } from '../../../queries/use-case-step'
+import UseCaseStepDetailDatasets from './UseCaseStepDetailDatasets'
 import UseCaseStepDetailProducts from './UseCaseStepDetailProducts'
 import UseCaseStepDetailWorkflows from './UseCaseStepDetailWorkflows'
 import UseCaseStepDetailBuildingBlocks from './UseCaseStepDetailBuildingBlocks'
@@ -27,6 +28,7 @@ const UseCaseStepInformation = ({ useCaseStep, canEdit }) => {
       </div>
       {useCaseStep.workflows && <UseCaseStepDetailWorkflows useCaseStep={useCaseStep} canEdit={canEdit} />}
       {useCaseStep.buildingBlocks && <UseCaseStepDetailBuildingBlocks useCaseStep={useCaseStep} canEdit={canEdit} />}
+      {useCaseStep.datasets && <UseCaseStepDetailDatasets useCaseStep={useCaseStep} canEdit={canEdit} />}
       {useCaseStep.products && <UseCaseStepDetailProducts useCaseStep={useCaseStep} canEdit={canEdit} />}
     </div>
   )

@@ -20,12 +20,28 @@ const GovStackIssueForm = ({ referer }) => {
     reset({ issuePage: referer } )
   }, [referer])
 
-  const getRepoUrl = (issuePage) => {
-    const base_github_org = '/GovstackWorkingGroup/'
-
+  const getProjectKey = (issuePage) => {
+    const projectKeys = new Map([
+      ['bb-information-mediator', 'IM'],
+      ['bb-consent', 'CON'],
+      ['bb-digital-registries', 'DR'],
+      ['bb-identity', 'ID'],
+      ['bb-messaging', 'MSG'],
+      ['bb-payments', 'PAY'],
+      ['bb-registration', 'REG'],
+      ['bb-scheduler', 'SKD'],
+      ['bb-workflow', 'WF'],
+      ['bb-ux', 'UX'],
+      ['bb-esignature', 'SIG'],
+      ['bb-emarketplace', 'MKT'],
+      ['bb-cloud-infrastructure-hosting', 'INF'],
+    ])
     const match = issuePage.match('(bb-[a-z|-]*)')
 
-    return match ? base_github_org + match[0] : base_github_org + 'specifications'
+    if (!match)
+      return 'PRD'
+
+    return projectKeys.get(match[0])
   }
 
   const submitMessage = async (data) => {
@@ -33,35 +49,36 @@ const GovStackIssueForm = ({ referer }) => {
 
     const encodedEmail = Buffer.from(email).toString('base64')
 
-    const issueBody = {
-      'title': 'Feedback on specifications, submitted by ' + name + '(' + encodedEmail + ')',
-      'body': '<h2>' + name + ' submitted the following feedback:</h2><br /><em>Looking at page: ' + issuePage + '</em><br />' + issue
-    }
+    const projectKey = getProjectKey(issuePage)
 
-    const authToken = process.env.NEXT_PUBLIC_GITHUB_TOKEN
-
-    getRepoUrl(issuePage)
-    const response = await fetch(`https://api.github.com/repos${getRepoUrl(issuePage)}/issues`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_RAILS_SERVER}/create_issue?project_key=${projectKey}`, {
       method: 'POST',
       mode: 'cors',
       headers: {
-        Accept: 'application/vnd.github+json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': 'token ' + authToken
+        'X-Requested-With': 'XMLHttpRequest',
+        'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_RAILS_SERVER,
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Headers': 'Set-Cookie'
       },
-      body: JSON.stringify(issueBody)
+      body: JSON.stringify({
+        name,
+        encoded_email: encodedEmail,
+        issue_page: issuePage,
+        issue
+      })
     })
 
-    const responseJson = await response.json()
-    setIssueLink(responseJson.html_url)
-
+    const responseBody = await response.json()
+    setIssueLink('https://govstack-global.atlassian.net/browse/'+responseBody?.data?.key)
     setThanks(true)
   }
 
   return (
     <>
       <header className='z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white'>
-        <div className='flex flex-wrap justify-center items-center py-3 lg:py-0 max-w-catalog header-min-height mx-auto'>
+        <div className='flex flex-wrap justify-center items-center py-3 lg:py-0 header-min-height'>
           <div className='flex-1 flex my-auto'>
             <Link href='https://govstack.global' passHref>
               <div className='px-12 lg:px-16 my-4 text-blue-900 hover:cursor-pointer'>
@@ -120,7 +137,7 @@ const GovStackIssueForm = ({ referer }) => {
               </div>
               <div className='flex'>
                 <button
-                  type='submit' className='w-24 mr-2 bg-dial-blue text-dial-gray-light py-2 px-4 rounded disabled:opacity-50' disabled={thanks}
+                  type='submit' className='w-40 mr-2 bg-dial-blue text-dial-gray-light py-2 px-4 rounded disabled:opacity-50' disabled={thanks}
                 >
                   {format('govstack.feedback.submit')}
                 </button>

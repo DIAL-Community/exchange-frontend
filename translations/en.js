@@ -527,7 +527,7 @@ export const en = {
   'filter.hint.text.an': 'What is an ',
 
   'digiInvestment.title': 'Digital Investment Framework',
-  'digiInvestment.tooltip': 'The SDG Digital Investment Framework developed by DIAL and ITU advocates for re-usable, cross-sectoral building blocks. The Catalog illustrates how use cases are composed of generic workflows which can by implemented by building blocks. Users can also explore existing products that may provide necessary functionality for each building block.',
+  'digiInvestment.tooltip': 'The SDG Digital Investment Framework developed by DIAL and ITU advocates for re-usable, cross-sectoral building blocks. The Catalog illustrates how use cases are composed of generic workflows which can be implemented by building blocks. Users can also explore existing products that may provide necessary functionality for each building block.',
 
   'filter.entity.sdgs': 'SDGs',
   'filter.entity.useCases': 'Use Cases',
@@ -589,6 +589,7 @@ export const en = {
   'use-case-step.submit.failure': 'Use Case Step submission failed',
   'use-case-step.submit.success': 'Use Case Step submitted successfully',
   'use-case-step.no-workflow': 'We do not have any Workflow information for this Use Case Step.',
+  'use-case-step.no-dataset': 'We do not have any Dataset information for this Use Case Step.',
   'use-case-step.no-product': 'We do not have any Product information for this Use Case Step.',
   'use-case-step.no-building-block': 'We do not have any Building Block information for this Use Case Step.',
 
@@ -746,7 +747,7 @@ export const en = {
 
   'sdg.hint.subtitle': `The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to achieve sustainable development.`,
   'sdg.hint.descriptionTitle': 'Description',
-  'sdg.hint.description': `The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to achieve sustainable development. The SDGs were set in 2015 by the United Nations General Assembly and intended to be achieved by the year 2030.`,
+  'sdg.hint.description': `The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to achieve sustainable development. The SDGs were set in 2015 by the United Nations General Assembly and are intended to be achieved by the year 2030.`,
 
   'image.alt.logoFor': 'Logo for: {name}',
   'tooltip.ellipsisFor': 'View more in the detail page of this {entity}.',
@@ -1057,6 +1058,13 @@ export const en = {
   'shared.category-indicator.type.numeric': 'numeric',
   'shared.category-indicator.type.scale': 'scale',
   'shared.category-indicator.type.boolean': 'boolean',
+  'shared.category-indicator.type.scale.low': 'low',
+  'shared.category-indicator.type.scale.medium': 'medium',
+  'shared.category-indicator.type.scale.high': 'high',
+  'shared.category-indicator.type.boolean.true': 'true',
+  'shared.category-indicator.type.boolean.false': 'false',
+  'shared.category-indicator.assigned': 'Category Indicators with data',
+  'shared.category-indicator.notAssigned': 'Category Indicators without data',
 
   'seo.description.about': 'DIAL’s Catalog of Digital Solutions is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
   'seo.description.maps': 'Interactive map views showing where specific digital platforms have been implemented as well as the countries where various digital development organizations work.',
@@ -1096,6 +1104,8 @@ export const en = {
   'toast.sdgs.update.failure': 'SDGs update failed',
   'toast.products.update.success': 'Products updated successfully',
   'toast.products.update.failure': 'Products update failed',
+  'toast.datasets.update.success': 'Datasets updated successfully',
+  'toast.datasets.update.failure': 'Datasets update failed',
   'toast.sdgTargets.update.success': 'SDG Targets updated successfully',
   'toast.sdgTargets.update.failure': 'SDG Targets update failed',
   'toast.workflows.update.success': 'Workflows updated successfully',
@@ -1143,8 +1153,8 @@ export const en = {
 
   'licenseType.label': 'Product License',
   'licenseType.allType': 'All license types',
-  'licenseType.ossOnly': 'Open source product only',
-  'licenseType.commercialOnly': 'Commercial product only',
+  'licenseType.ossOnly': 'Open source only',
+  'licenseType.commercialOnly': 'Commercial only',
 
   'govstack.feedback.header': 'GovStack feedback form',
   'govstack.feedback.intro': 'Thank you for providing feedback. We have a short form that will allow you to submit your feedback and be linked to the processes we use to accept that feedback.',

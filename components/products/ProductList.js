@@ -115,7 +115,7 @@ const ProductListQuery = () => {
             <div className='hidden lg:block w-4/12 text-sm font-semibold opacity-50'>
               {format('origin.header').toUpperCase()}
             </div>
-            <div className='hidden lg:block w-2/12 text-sm text-right px-2 font-semibold opacity-50'>
+            <div className='hidden lg:block w-2/12 text-sm font-semibold opacity-50'>
               {format('product.license').toUpperCase()}
             </div>
           </div>

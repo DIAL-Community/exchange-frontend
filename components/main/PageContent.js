@@ -3,7 +3,7 @@ import MobileDrawer from './MobileDrawer'
 
 const PageContent = ({ activeTab, filter, content, searchFilter, activeFilter, hint }) => {
   return (
-    <div className='flex max-w-catalog mx-auto'>
+    <div className='flex'>
       {
         // Left drawer with filters. Pages will pass filter object to the left drawer and render it.
         // This will be hidden on phone.
