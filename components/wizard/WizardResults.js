@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
-import { gql, useLazyQuery } from '@apollo/client'
+import { useLazyQuery } from '@apollo/client'
 import Select from '../shared/Select'
 import UseCaseCard from '../use-cases/UseCaseCard'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
@@ -9,6 +9,7 @@ import { Loading, Error } from '../shared/FetchStatus'
 import PaginatedBuildingBlockList from '../building-blocks/PaginatedBuildingBlockList'
 import PaginatedUseCaseList from '../use-cases/PaginatedUseCaseList'
 import { getLicenseTypeOptions } from '../../lib/utilities'
+import { WIZARD_QUERY } from '../../queries/wizard'
 import Lifecycle from './Lifecycle'
 import PagedAggregatorsList from './paginated/PagedAggregatorsList'
 import PagedProductList from './paginated/PagedProductList'
@@ -20,51 +21,6 @@ const sortHintOptions = [
   { value: 'sector', label: 'Sort by Sector' },
   { value: 'tag', label: 'Sort by Tag' }
 ]
-
-const WIZARD_QUERY = gql`
-query Wizard(
-  $sector: String,
-  $subsector: String,
-  $sdg: String,
-  $buildingBlocks: [String!]
-) {
-  wizard(
-    sector: $sector,
-    subsector: $subsector,
-    sdg: $sdg,
-    buildingBlocks: $buildingBlocks
-  ) {
-    digitalPrinciples {
-      phase
-      name
-      slug
-      url
-    }
-    useCases {
-      name
-      imageFile
-      maturity
-      slug
-      useCaseDescription {
-        description
-      }
-    }
-    buildingBlocks {
-      name
-      imageFile
-      maturity
-      slug
-    }
-    resources {
-      phase
-      name
-      imageUrl
-      link
-      description
-    }
-  }
-}
-`
 
 const LeftMenu = ({ currentSection, clickHandler }) => {
   const { formatMessage } = useIntl()
@@ -144,7 +100,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const vars = {
     phase: allValues.projectPhase,
     sector: allValues.sector,
-    subsector: allValues.subsector,
+    useCase: allValues.useCase,
     sdg: allValues.sdg,
     buildingBlocks: allValues.buildingBlocks
   }
@@ -257,7 +213,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
               {format('wizard.results.similarProjects')}
             </div>
             <Select
-              onChange={(val) => setAllValues(prevValues => { return { ...prevValues, projectSortHint: val && val.value } })}
+              onChange={(val) => setAllValues(prevValues => ({ ...prevValues, projectSortHint: val?.value }))}
               options={sortHintOptions}
               placeholder={format('wizard.project.sortHint')}
               className='w-72'
@@ -267,7 +223,6 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             <PagedProjectList
               countries={allValues.countries}
               sectors={[allValues.sector]}
-              subSectors={[allValues.subsector]}
               tags={allValues.tags}
               projectSortHint={allValues.projectSortHint}
             />
@@ -297,7 +252,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
               buildingBlocks={allValues.buildingBlocks}
               countries={allValues.countries}
               sectors={[allValues.sector]}
-              subSectors={[allValues.subsector]}
+              useCases={[allValues.useCase]}
               tags={allValues.tags}
               productSortHint={allValues.productSortHint}
               licenseTypeFilter={allValues.licenseTypeFilter}
@@ -309,7 +264,11 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             {format('wizard.results.useCases')}
           </div>
           <div className='pb-6 w-3/4 text-sm'>
-            {(wizardData.useCases && wizardData.useCases.length ? format('wizard.results.useCasesDesc') : format('wizard.results.noUseCases'))}
+            {(wizardData.useCases && wizardData.useCases.length
+              ? allValues.useCase
+                ? format('wizard.results.useCaseDesc')
+                : format('wizard.results.useCasesDesc')
+              : format('wizard.results.noUseCases'))}
             {
               wizardData.useCases && !wizardData.useCases.length &&
                 <a
@@ -372,7 +331,6 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           <div className='pb-6 grid grid-cols-1 w-3/4'>
             <PagedAggregatorsList
               sectors={[allValues.sectors]}
-              subSectors={[allValues.subSectors]}
               countries={allValues.countries}
               services={allValues.mobileServices}
             />

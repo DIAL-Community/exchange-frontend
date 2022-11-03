@@ -1,20 +1,16 @@
 import { useIntl } from 'react-intl'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
+import { useQuery } from '@apollo/client'
 import Select from '../shared/Select'
 import Pill from '../shared/Pill'
 import Checkbox from '../shared/Checkbox'
+import { WIZARD_USE_CASES_FOR_SECTOR } from '../../queries/wizard'
 
 export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [subSectors, setSubsectors] = useState()
-
-  const updateSubsectors = (val) => {
-    const currSector = projData.sectors.find(sector => sector.value === val.value)
-    setSubsectors(currSector.subSectors.map((sector) => { return { label: sector.name.split(':')[1], value: sector.name.split(':')[1] } }))
-    setAllValues(prevValues => { return { ...prevValues, sector: val.value } })
-  }
+  const { data } = useQuery(WIZARD_USE_CASES_FOR_SECTOR, { variables: { sectorSlug: allValues.sectorSlug } })
 
   return (
     <div className='lg:flex gap-12'>
@@ -25,19 +21,19 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
         <Select
           options={projData.sectors}
           value={allValues.sector && { value: allValues.sector, label: allValues.sector }}
-          onChange={(val) => updateSubsectors(val)}
+          onChange={(sector) =>  setAllValues(prevValues => ({ ...prevValues, sector: sector.value, sectorSlug: sector.slug, useCase: '' }))}
           placeholder={format('wizard.sectorPlaceholder')}
         />
       </div>
       <div className='lg:w-1/4 mt-6 lg:mt-auto'>
         <div className='text-sm my-2 grid content-end'>
-          {format('wizard.selectSubsector')}
+          {format('wizard.selectUseCase')}
         </div>
         <Select
-          options={subSectors}
-          value={allValues.subsector && { value: allValues.subsector, label: allValues.subsector }}
-          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, subsector: val && val.value } })}
-          placeholder={format('wizard.subsectorPlaceholder')}
+          options={data?.useCasesForSector?.map((useCase) => ({ label: useCase.name }))}
+          value={allValues.useCase && { label: allValues.useCase }}
+          onChange={(useCase) => setAllValues(prevValues => ({ ...prevValues, useCase: useCase?.label ?? '' }))}
+          placeholder={format('wizard.useCasePlaceholder')}
           isClearable
         />
       </div>
@@ -48,7 +44,7 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
         <Select
           options={projData.sdgs}
           value={allValues.sdg && { value: allValues.sdg, label: allValues.sdg }}
-          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, sdg: val.value } })}
+          onChange={(val) => setAllValues(prevValues => ({ ...prevValues, sdg: val.value }))}
           placeholder={format('wizard.sdgPlaceholder')}
         />
       </div>
