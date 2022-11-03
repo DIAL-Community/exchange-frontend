@@ -3,11 +3,9 @@ export const projData = {
     {
       slug: 'sector1',
       name: 'Sector1',
-      subSectors: 'Sector1'
     },
     {
       name: 'Sector2',
-      subSectors: 'Sector2'
     }
   ],
   useCases: [
@@ -35,9 +33,8 @@ export const projData = {
 export const allValues = {
   projectPhase: 'projectPhase',
   sector: 'sector',
-  subsector: 'subsector',
   sdg: 'Sdg1',
-  useCase: '',
+  useCase: 'useCase',
   countries: [],
   tags: [],
   mobileServices: [],
