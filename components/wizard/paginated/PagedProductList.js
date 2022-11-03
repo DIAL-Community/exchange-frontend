@@ -1,67 +1,15 @@
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { useCallback, useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import ProductCard from '../../products/ProductCard'
 import { Loading, Error } from '../../shared/FetchStatus'
 import { LicenseTypeFilter } from '../../../lib/utilities'
+import { WIZARD_PAGINATED_PRODUCTS } from '../../../queries/wizard'
 
 const DEFAULT_PAGE_SIZE = 5
-const PRODUCTS_QUERY = gql`
-  query PaginatedProducts(
-    $first: Int!,
-    $offset: Int!,
-    $buildingBlocks: [String!],
-    $countries: [String!],
-    $sectors: [String!],
-    $subSectors: [String!],
-    $tags: [String!],
-    $productSortHint: String!
-    $commercialProduct: Boolean
-  ) {
-    paginatedProducts(
-      first: $first,
-      offsetAttributes: { offset: $offset},
-      buildingBlocks: $buildingBlocks,
-      countries: $countries,
-      sectors: $sectors,
-      subSectors: $subSectors,
-      tags: $tags,
-      productSortHint: $productSortHint
-      commercialProduct: $commercialProduct
-    ) {
-      totalCount
-      pageInfo {
-        endCursor
-        startCursor
-        hasPreviousPage
-        hasNextPage
-      }
-      nodes {
-        id
-        name
-        slug
-        imageFile
-        website
-        endorsers {
-          name
-          slug
-        }
-        origins {
-          name
-          slug
-        }
-        isLaunchable
-        commercialProduct
-        mainRepository {
-          license
-        }
-      }
-    }
-  }
-`
 
-const PagedProductList = ({ buildingBlocks, countries, sectors, subSectors, tags, productSortHint, licenseTypeFilter }) => {
+const PagedProductList = ({ buildingBlocks, countries, sectors, tags, productSortHint, licenseTypeFilter, useCases }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -74,14 +22,14 @@ const PagedProductList = ({ buildingBlocks, countries, sectors, subSectors, tags
         ? false
         : null
 
-  const { loading, error, data, fetchMore } = useQuery(PRODUCTS_QUERY, {
+  const { loading, error, data, fetchMore } = useQuery(WIZARD_PAGINATED_PRODUCTS, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       offset: itemOffset,
       buildingBlocks,
       countries,
       sectors,
-      subSectors,
+      useCases,
       tags,
       productSortHint,
       commercialProduct
@@ -101,7 +49,7 @@ const PagedProductList = ({ buildingBlocks, countries, sectors, subSectors, tags
         buildingBlocks,
         countries,
         sectors,
-        subSectors,
+        useCases,
         tags,
         productSortHint,
         commercialProduct
