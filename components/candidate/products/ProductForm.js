@@ -7,12 +7,12 @@ import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Controller, useForm } from 'react-hook-form'
 import { useSession } from 'next-auth/react'
+import { validate } from 'email-validator'
 import { ToastContext } from '../../../lib/ToastContext'
 import { CREATE_CANDIDATE_PRODUCT } from '../../../mutations/product'
 import Input from '../../shared/Input'
 import ValidationError from '../../shared/ValidationError'
 import { HtmlEditor } from '../../shared/HtmlEditor'
-import { emailRegex } from '../../shared/emailRegex'
 import { Unauthorized } from '../../shared/FetchStatus'
 import { purgeLink } from '../../../lib/utilities'
 
@@ -166,7 +166,7 @@ const ProductForm = () => {
                       type='email'
                       {...register('email', {
                         required: format('validation.required'),
-                        pattern: { value: emailRegex , message: format('validation.email') }
+                        validate: value => validate(value) || format('validation.email')
                       })}
                       id='email'
                       placeholder={format('candidateProduct.email.placeholder')}

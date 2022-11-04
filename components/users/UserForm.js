@@ -1,4 +1,5 @@
 import { useMutation } from '@apollo/client'
+import { validate } from 'email-validator'
 import { useRouter } from 'next/router'
 import { useCallback, useContext, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -10,7 +11,6 @@ import { OrganizationAutocomplete, OrganizationFilters } from '../filter/element
 import { ProductAutocomplete, ProductFilters } from '../filter/element/Product'
 import Breadcrumb from '../shared/breadcrumb'
 import Checkbox from '../shared/Checkbox'
-import { emailRegex } from '../shared/emailRegex'
 import Input from '../shared/Input'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
@@ -116,7 +116,7 @@ export const UserForm = ({ user, action }) => {
                     <Input
                       {...register('email', {
                         required: format('validation.required'),
-                        pattern: { value: emailRegex, message: format('validation.email') }
+                        validate: value => validate(value) || format('validation.email')
                       })}
                       isInvalid={errors.email}
                       data-testid='email-input'
