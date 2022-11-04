@@ -159,6 +159,39 @@ export const WIZARD_PAGINATED_PROJECTS = gql`
   }
 `
 
+export const WIZARD_PAGINATED_PLAYBOOKS = gql`
+  query PaginatedPlaybooks(
+    $first: Int!
+    $offset: Int!
+    $sector: String
+    $tags: [String!]
+    $playbookSortHint: String!
+  ) {
+    paginatedPlaybooks(
+      first: $first
+      offsetAttributes: { offset: $offset }
+      sector: $sector
+      tags: $tags
+      playbookSortHint: $playbookSortHint
+    ) {
+      totalCount
+      pageInfo {
+        endCursor
+        startCursor
+        hasPreviousPage
+        hasNextPage
+      }
+      nodes {
+        id
+        name
+        slug
+        imageFile
+        tags
+      }
+    }
+  }
+`
+
 export const WIZARD_SDG_QUERY = gql`
   query SDGs {
     sdgs {

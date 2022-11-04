@@ -370,6 +370,9 @@ export const en = {
   'wizard.results.products': 'Candidate Products',
   'wizard.results.productsDesc': 'Here are products that are aligned with the building blocks, sector, or tags for the project',
   'wizard.results.noProducts': 'We cannot provide recommendations on specific products or tools based on the information provided.',
+  'wizard.results.playbooks': 'Playbooks',
+  'wizard.results.playbooksDesc': 'Here are playbooks that are aligned with the sector and tags for the project.',
+  'wizard.results.noPlaybooks': 'We cannot provide recommendations on specific playbooks based on the information provided.',
   'wizard.results.aggregators': 'Mobile Network Aggregators',
   'wizard.results.aggregatorsDesc': 'If your project requires mobile network services, these Aggregators may help you set up mobile solutions quickly.',
   'wizard.results.phases': 'Other Project Phases',
@@ -978,6 +981,7 @@ export const en = {
 
   'wizard.project.sortHint': 'Sort Projects',
   'wizard.product.sortHint': 'Sort Products',
+  'wizard.playbook.sortHint': 'Sort Playbooks',
 
   'move.resources.label': 'Resource',
   'move.resources.header': 'Resources',
@@ -1181,5 +1185,8 @@ export const en = {
   'categoryIndicator.indicatorType': 'Indicator type',
   'categoryIndicator.dataSource': 'Data source',
   'categoryIndicator.scriptName': 'Script name',
-  'categoryIndicator.delete.confirm.message': 'Are you sure you want to delete this Category Indicator?'
+  'categoryIndicator.delete.confirm.message': 'Are you sure you want to delete this Category Indicator?',
+
+  'paginatedSection.page.previous.label': '< Previous',
+  'paginatedSection.page.next.label': 'Next >'
 }

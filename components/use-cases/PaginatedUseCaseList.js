@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
+import { useIntl } from 'react-intl'
 import UseCaseCard from './UseCaseCard'
 
 const PaginatedUseCaseList = ({ itemsPerPage, items }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id) => formatMessage({ id }), [formatMessage])
+
   const [currentItems, setCurrentItems] = useState(null)
   const [pageCount, setPageCount] = useState(0)
   const [itemOffset, setItemOffset] = useState(0)
@@ -27,11 +31,11 @@ const PaginatedUseCaseList = ({ itemsPerPage, items }) => {
       }
       <ReactPaginate
         breakLabel='...'
-        nextLabel='Next >'
+        nextLabel={format('paginatedSection.page.next.label')}
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={pageCount}
-        previousLabel='< Previous'
+        previousLabel={format('paginatedSection.page.previous.label')}
         renderOnZeroPageCount={null}
         containerClassName='flex mb-3 mt-3 ml-auto border-3 border-transparent'
         pageLinkClassName='relative block py-1.5 px-3 border border-dial-gray -ml-px'
