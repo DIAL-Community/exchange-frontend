@@ -2,15 +2,15 @@ import { gql } from '@apollo/client'
 
 export const WIZARD_QUERY = gql`
   query Wizard(
-    $sector: String,
-    $useCase: String,
-    $sdg: String,
+    $sector: String
+    $useCase: String
+    $sdg: String
     $buildingBlocks: [String!]
   ) {
     wizard(
-      sector: $sector,
-      useCase: $useCase,
-      sdg: $sdg,
+      sector: $sector
+      useCase: $useCase
+      sdg: $sdg
       buildingBlocks: $buildingBlocks
     ) {
       digitalPrinciples {

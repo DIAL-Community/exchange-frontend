@@ -30,6 +30,7 @@ export const en = {
   'app.description': 'Description',
   'app.internal-server-error': "500 - Internal Server Error",
   'app.menu': 'Menu',
+  'app.email': 'Email Address',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -402,6 +403,8 @@ export const en = {
   'wizard.bb.scheduling': 'Will the project require scheduling of events, such as appointments?',
   'wizard.bb.contentmanagement': 'Will the project require users to be able to create and manage content?',
   'wizard.bb.emarketplace': 'Will the project include an online marketplace that connects buyers and sellers?',
+  'wizard.request-additional-support': 'Request additional support',
+  'wizard.request-additional-support.message': 'Message',
 
   'landing.subtitle': 'Digital Impact Alliance',
   'landing.title.firstLine': 'Catalog of',
@@ -1073,6 +1076,8 @@ export const en = {
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
   'validation.endDateEarlierThanStartDate': 'End Date cannot be earlier than Start Date',
+  'validation.min-length': 'Message must be at least {minLength} characters',
+  'validation.max-length': 'Message cannot be more than {maxLength} characters',
   'organization.validation.contact.uniqueName': 'This contact is already assigned to this organization',
 
   'toast.buildingBlocks.update.success': 'Building Blocks updated successfully',

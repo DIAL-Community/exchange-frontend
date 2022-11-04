@@ -6,12 +6,12 @@ import { useMutation } from '@apollo/client'
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Controller, useForm } from 'react-hook-form'
+import { validate } from 'email-validator'
 import { ToastContext } from '../../../lib/ToastContext'
 import { CREATE_CANDIDATE_ORGANIZATION } from '../../../mutations/organization'
 import Input from '../../shared/Input'
 import ValidationError from '../../shared/ValidationError'
 import { HtmlEditor } from '../../shared/HtmlEditor'
-import { emailRegex } from '../../shared/emailRegex'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { useUser } from '../../../lib/hooks'
 import { purgeLink } from '../../../lib/utilities'
@@ -172,7 +172,7 @@ const OrganizationForm = () => {
                         {...register('email',
                           {
                             required: format('validation.required'),
-                            pattern: { value: emailRegex , message: format('validation.email') }
+                            validate: value => validate(value) || format('validation.email')
                           }
                         )}
                         id='email'

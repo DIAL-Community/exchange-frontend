@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import { useSession } from 'next-auth/react'
 import { Controller, useForm } from 'react-hook-form'
+import { validate } from 'email-validator'
 import Pill from '../shared/Pill'
 import { Input } from '../shared/Input'
 import { ToastContext } from '../../lib/ToastContext'
@@ -11,7 +12,6 @@ import ContactCard from '../contacts/ContactCard'
 import EditableSection from '../shared/EditableSection'
 import { UPDATE_ORGANIZATION_CONTACTS } from '../../mutations/organization'
 import ValidationError from '../shared/ValidationError'
-import { emailRegex } from '../shared/emailRegex'
 
 const inputSectionStyle = 'flex flex-col gap-y-2 mb-2 mx-4 w-full'
 
@@ -131,7 +131,7 @@ const OrganizationDetailContacts = ({ organization }) => {
               )}
               rules={{
                 required: format('validation.required'),
-                pattern: { value: emailRegex, message: format('validation.email') }
+                validate: value => validate(value) || format('validation.email')
               }}
             />
             {errors.email && <ValidationError value={errors.email?.message} />}

@@ -14,6 +14,7 @@ import Lifecycle from './Lifecycle'
 import PagedAggregatorsList from './paginated/PagedAggregatorsList'
 import PagedProductList from './paginated/PagedProductList'
 import PagedProjectList from './paginated/PagedProjectList'
+import WizardRequestAdditionalSupportDialog from './WizardRequestAdditionalSupportDialog'
 
 const sortHintOptions = [
   { value: 'name', label: 'Sort by Name' },
@@ -27,7 +28,7 @@ const LeftMenu = ({ currentSection, clickHandler }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='block py-3 float-right w-3/4 hidden lg:block'>
+    <div className='self-end py-3 w-3/4'>
       <div
         className={`${(currentSection === 0) && 'bg-button-gray border-l-2 border-dial-gray-light'} cursor-pointer`}
         onClick={() => { clickHandler(0) }}
@@ -94,6 +95,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const router = useRouter()
   const [currentSection, setCurrentSection] = useState(0)
   const [wizardData, setWizardData] = useState()
+  const [isRequestAdditionalSupportDialogOpen, setIsRequestAdditionalSupportDialogOpen] = useState(false)
 
   const licenseTypeOptions = useMemo(() => getLicenseTypeOptions(format), [format])
 
@@ -181,163 +183,177 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
     return <div><Loading /></div>
   }
 
+  const wizardButtonStyle = 'bg-button-gray border border-dial-yellow rounded p-4 my-4 text-button-gray-light'
+
   return (
-    <div className='lg:flex w-full relative wizard-content'>
-      <div className='bg-dial-gray-dark text-dial-gray-light p-6 lg:w-1/4'>
-        <div className='block text-2xl px-6 py-3'>{format('wizard.results')}</div>
-        <div className='block py-3 px-6'>{format('wizard.resultsDesc')}</div>
-        <LeftMenu currentSection={currentSection} clickHandler={clickHandler} />
-        <div className='float-left w-full py-4 px-6 hidden lg:block'>
-          <button onClick={() => { stage > 0 && setStage(stage - 1) }} className='bg-button-gray border border-dial-yellow rounded p-4 my-4 mr-4 text-button-gray-light'>
-            <img src='/icons/left-arrow.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
-            {format('wizard.back')}
+    <>
+      <div className='lg:flex w-full relative wizard-content'>
+        <div className='bg-dial-gray-dark text-dial-gray-light p-6 lg:w-1/4'>
+          <div className='block text-2xl px-6 py-3'>{format('wizard.results')}</div>
+          <div className='block py-3 px-6'>{format('wizard.resultsDesc')}</div>
+          <div className='hidden lg:flex flex-col'>
+            <LeftMenu currentSection={currentSection} clickHandler={clickHandler} />
+            <div className='flex flex-wrap justify-between mt-10'>
+              <button onClick={() => { stage > 0 && setStage(stage - 1) }} className={wizardButtonStyle}>
+                <img src='/icons/left-arrow.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
+                {format('wizard.back')}
+              </button>
+              <button onClick={() => setIsRequestAdditionalSupportDialogOpen(true)} className={wizardButtonStyle}>
+                {format('wizard.request-additional-support')}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div ref={parentRef} className='bg-dial-gray-light text-button-gray-light p-6 lg:w-3/4 h-screen overflow-y-scroll wizard-content'>
+          <button
+            className='bg-dial-gray p-4 float-right rounded text-button-gray-light'
+            onClick={() => { router.push('/products') }}
+          >
+            <img src='/icons/close.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
+            {format('wizard.close')}
           </button>
-        </div>
-      </div>
-      <div ref={parentRef} className='bg-dial-gray-light text-button-gray-light p-6 lg:w-3/4 h-screen overflow-y-scroll wizard-content'>
-        <button
-          className='bg-dial-gray p-4 float-right rounded text-button-gray-light'
-          onClick={() => { router.push('/products') }}
-        >
-          <img src='/icons/close.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
-          {format('wizard.close')}
-        </button>
-        <div className='text-dial-gray-dark' ref={principlesRef}>
-          <div className='text-2xl font-bold py-4'>{format('wizard.results.principles')}</div>
-          <div className='pb-4 text-sm'>{format('wizard.results.principlesDesc')}</div>
-          <Lifecycle wizardData={wizardData} objType='principles' />
-        </div>
-        <div className='text-dial-gray-dark' ref={projectsRef}>
-          <div className='flex w-3/4 justify-between items-center mb-2'>
-            <div className='text-2xl font-bold'>
-              {format('wizard.results.similarProjects')}
-            </div>
-            <Select
-              onChange={(val) => setAllValues(prevValues => ({ ...prevValues, projectSortHint: val?.value }))}
-              options={sortHintOptions}
-              placeholder={format('wizard.project.sortHint')}
-              className='w-72'
-            />
+          <div className='text-dial-gray-dark' ref={principlesRef}>
+            <div className='text-2xl font-bold py-4'>{format('wizard.results.principles')}</div>
+            <div className='pb-4 text-sm'>{format('wizard.results.principlesDesc')}</div>
+            <Lifecycle wizardData={wizardData} objType='principles' />
           </div>
-          <div className='pb-6 grid grid-cols-1 w-3/4'>
-            <PagedProjectList
-              countries={allValues.countries}
-              sectors={[allValues.sector]}
-              tags={allValues.tags}
-              projectSortHint={allValues.projectSortHint}
-            />
-          </div>
-        </div>
-        <div className='text-dial-gray-dark' ref={productsRef}>
-          <div className='flex w-3/4 justify-between items-center mb-2'>
-            <div className='text-2xl font-bold'>
-              {format('wizard.results.products')}
-            </div>
-            <div className='grid grid-cols-2 gap-3'>
+          <div className='text-dial-gray-dark' ref={projectsRef}>
+            <div className='flex w-3/4 justify-between items-center mb-2'>
+              <div className='text-2xl font-bold'>
+                {format('wizard.results.similarProjects')}
+              </div>
               <Select
-                onChange={option => setAllValues(prevValues => ({ ...prevValues, licenseTypeFilter: option?.value }))}
-                options={licenseTypeOptions}
-                defaultValue={licenseTypeOptions[0]}
+                onChange={(val) => setAllValues(prevValues => ({ ...prevValues, projectSortHint: val?.value }))}
+                options={sortHintOptions}
+                placeholder={format('wizard.project.sortHint')}
                 className='w-72'
               />
-              <Select
-                onChange={option => setAllValues(prevValues => ({ ...prevValues, productSortHint: option?.value }))}
-                options={sortHintOptions.filter(({ value }) => value !== 'country')}
-                placeholder={format('wizard.product.sortHint')}
+            </div>
+            <div className='pb-6 grid grid-cols-1 w-3/4'>
+              <PagedProjectList
+                countries={allValues.countries}
+                sectors={[allValues.sector]}
+                tags={allValues.tags}
+                projectSortHint={allValues.projectSortHint}
               />
             </div>
           </div>
-          <div className='pb-6 grid grid-cols-1 w-3/4'>
-            <PagedProductList
-              buildingBlocks={allValues.buildingBlocks}
-              countries={allValues.countries}
-              sectors={[allValues.sector]}
-              useCases={[allValues.useCase]}
-              tags={allValues.tags}
-              productSortHint={allValues.productSortHint}
-              licenseTypeFilter={allValues.licenseTypeFilter}
-            />
+          <div className='text-dial-gray-dark' ref={productsRef}>
+            <div className='flex w-3/4 justify-between items-center mb-2'>
+              <div className='text-2xl font-bold'>
+                {format('wizard.results.products')}
+              </div>
+              <div className='grid grid-cols-2 gap-3'>
+                <Select
+                  onChange={option => setAllValues(prevValues => ({ ...prevValues, licenseTypeFilter: option?.value }))}
+                  options={licenseTypeOptions}
+                  defaultValue={licenseTypeOptions[0]}
+                  className='w-72'
+                />
+                <Select
+                  onChange={option => setAllValues(prevValues => ({ ...prevValues, productSortHint: option?.value }))}
+                  options={sortHintOptions.filter(({ value }) => value !== 'country')}
+                  placeholder={format('wizard.product.sortHint')}
+                />
+              </div>
+            </div>
+            <div className='pb-6 grid grid-cols-1 w-3/4'>
+              <PagedProductList
+                buildingBlocks={allValues.buildingBlocks}
+                countries={allValues.countries}
+                sectors={[allValues.sector]}
+                useCases={[allValues.useCase]}
+                tags={allValues.tags}
+                productSortHint={allValues.productSortHint}
+                licenseTypeFilter={allValues.licenseTypeFilter}
+              />
+            </div>
           </div>
-        </div>
-        <div className='text-dial-gray-dark' ref={useCasesRef}>
-          <div className='text-2xl font-bold py-4'>
-            {format('wizard.results.useCases')}
-          </div>
-          <div className='pb-6 w-3/4 text-sm'>
-            {(wizardData.useCases && wizardData.useCases.length
-              ? allValues.useCase
-                ? format('wizard.results.useCaseDesc')
-                : format('wizard.results.useCasesDesc')
-              : format('wizard.results.noUseCases'))}
-            {
-              wizardData.useCases && !wizardData.useCases.length &&
+          <div className='text-dial-gray-dark' ref={useCasesRef}>
+            <div className='text-2xl font-bold py-4'>
+              {format('wizard.results.useCases')}
+            </div>
+            <div className='pb-6 w-3/4 text-sm'>
+              {(wizardData.useCases?.length
+                ? allValues.useCase
+                  ? format('wizard.results.useCaseDesc')
+                  : format('wizard.results.useCasesDesc')
+                : format('wizard.results.noUseCases')
+              )}
+              {
+                wizardData.useCases && !wizardData.useCases.length &&
                 <a
                   className='text-dial-teal'
                   href='https://solutions.dial.community/use_cases' target='_blank' rel='noreferrer'
                 >
                   {format('wizard.results.clickHere')}
                 </a>
-            }
-          </div>
-          <div className='pb-6 grid grid-cols-1 w-3/4'>
-            {
-              wizardData.useCases && wizardData.useCases.length > 5 &&
+              }
+            </div>
+            <div className='pb-6 grid grid-cols-1 w-3/4'>
+              {
+                wizardData.useCases && wizardData.useCases.length > 5 &&
                 <PaginatedUseCaseList itemsPerPage={5} items={wizardData.useCases} />
-            }
-            {
-              wizardData.useCases && wizardData.useCases.length <= 5 &&
+              }
+              {
+                wizardData.useCases && wizardData.useCases.length <= 5 &&
                 wizardData.useCases.map((useCase) => {
                   return (<UseCaseCard key={`${useCase.name}`} useCase={useCase} listType='list' newTab />)
                 })
-            }
+              }
+            </div>
           </div>
-        </div>
-        <div className='text-dial-gray-dark' ref={buildingBlocksRef}>
-          <div className='text-2xl font-bold py-4'>
-            {format('wizard.results.buildingBlocks')}
-          </div>
-          <div className='pb-4 text-sm'>
-            {wizardData.buildingBlocks && wizardData.buildingBlocks.length ? format('wizard.results.buildingBlocksDesc') : format('wizard.results.noBuildingBlocks')}
-          </div>
-          <div className='pb-6 grid grid-cols-1 w-3/4'>
-            {
-              wizardData.buildingBlocks && wizardData.buildingBlocks.length > 5 &&
+          <div className='text-dial-gray-dark' ref={buildingBlocksRef}>
+            <div className='text-2xl font-bold py-4'>
+              {format('wizard.results.buildingBlocks')}
+            </div>
+            <div className='pb-4 text-sm'>
+              {wizardData.buildingBlocks && wizardData.buildingBlocks.length ? format('wizard.results.buildingBlocksDesc') : format('wizard.results.noBuildingBlocks')}
+            </div>
+            <div className='pb-6 grid grid-cols-1 w-3/4'>
+              {
+                wizardData.buildingBlocks && wizardData.buildingBlocks.length > 5 &&
                 <PaginatedBuildingBlockList itemsPerPage={5} items={wizardData.buildingBlocks} />
-            }
-            {
-              wizardData.buildingBlocks && wizardData.buildingBlocks.length <= 5 &&
+              }
+              {
+                wizardData.buildingBlocks && wizardData.buildingBlocks.length <= 5 &&
                 wizardData.buildingBlocks.map((bb) => {
                   return (<BuildingBlockCard key={`${bb.name}`} buildingBlock={bb} listType='list' newTab />)
                 })
-            }
+              }
+            </div>
           </div>
-        </div>
-        <div className='text-dial-gray-dark' ref={resourcesRef}>
-          <div className='text-2xl font-bold py-4'>
-            {format('wizard.results.resources')}
+          <div className='text-dial-gray-dark' ref={resourcesRef}>
+            <div className='text-2xl font-bold py-4'>
+              {format('wizard.results.resources')}
+            </div>
+            <div className='pb-4 text-sm'>
+              {format('wizard.results.resourcesDesc')}
+            </div>
+            <Lifecycle wizardData={wizardData} objType='resources' />
           </div>
-          <div className='pb-4 text-sm'>
-            {format('wizard.results.resourcesDesc')}
-          </div>
-          <Lifecycle wizardData={wizardData} objType='resources' />
-        </div>
-        <div className='text-dial-gray-dark' ref={aggregatorsRef}>
-          <div className='text-2xl font-bold py-4'>
-            {format('wizard.results.aggregators')}
-          </div>
-          <div className='pb-4 text-sm'>
-            {format('wizard.results.aggregatorsDesc')}
-          </div>
-          <div className='pb-6 grid grid-cols-1 w-3/4'>
-            <PagedAggregatorsList
-              sectors={[allValues.sectors]}
-              countries={allValues.countries}
-              services={allValues.mobileServices}
-            />
+          <div className='text-dial-gray-dark' ref={aggregatorsRef}>
+            <div className='text-2xl font-bold py-4'>
+              {format('wizard.results.aggregators')}
+            </div>
+            <div className='pb-4 text-sm'>
+              {format('wizard.results.aggregatorsDesc')}
+            </div>
+            <div className='pb-6 grid grid-cols-1 w-3/4'>
+              <PagedAggregatorsList
+                sectors={[allValues.sectors]}
+                countries={allValues.countries}
+                services={allValues.mobileServices}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <WizardRequestAdditionalSupportDialog
+        isOpen={isRequestAdditionalSupportDialogOpen}
+        onClose={() => setIsRequestAdditionalSupportDialogOpen(false)}
+      />
+    </>
   )
 }
 
