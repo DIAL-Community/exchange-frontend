@@ -192,6 +192,43 @@ export const WIZARD_PAGINATED_PLAYBOOKS = gql`
   }
 `
 
+export const WIZARD_PAGINATED_DATASETS = gql`
+  query PaginatedDatasets (
+    $first: Int!
+    $offset: Int!
+    $sectors: [String!]
+    $tags: [String!]
+    $datasetSortHint: String!
+  ) {
+    paginatedDatasets (
+      first: $first
+      offsetAttributes: { offset: $offset }
+      sectors: $sectors
+      tags: $tags
+      datasetSortHint: $datasetSortHint
+    ) {
+      totalCount
+      pageInfo {
+        endCursor
+        startCursor
+        hasPreviousPage
+        hasNextPage
+      }
+      nodes {
+        id
+        name
+        slug
+        imageFile
+        origins {
+          name
+          slug
+        }
+        datasetType
+      }
+    }
+  }
+`
+
 export const WIZARD_SDG_QUERY = gql`
   query SDGs {
     sdgs {
