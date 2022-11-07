@@ -39,7 +39,7 @@ const GovStackIssueForm = ({ referer }) => {
     const match = issuePage.match('(bb-[a-z|-]*)')
 
     if (!match)
-      return 'PRD'
+      return issuePage.match('(govstack-implementation-playbook)') ? 'GSCIJ' : 'PRD'
 
     return projectKeys.get(match[0])
   }
