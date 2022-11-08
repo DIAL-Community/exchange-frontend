@@ -17,6 +17,7 @@ import PagedProductList from './paginated/PagedProductList'
 import PagedProjectList from './paginated/PagedProjectList'
 import WizardRequestAdditionalSupportDialog from './WizardRequestAdditionalSupportDialog'
 import PagedPlaybookList from './paginated/PagedPlaybookList'
+import PagedDatasetList from './paginated/PagedDatasetList'
 
 const OFFSET_TOP_VALUE = 210
 
@@ -28,6 +29,7 @@ const sortHintOptions = [
 ]
 
 const playbookSortHintOptions = [
+  { value: 'name', label: 'Sort by Name' },
   { value: 'sector', label: 'Sort by Sector' },
   { value: 'tag', label: 'Sort by Tag' }
 ]
@@ -62,20 +64,25 @@ const LeftMenu = ({ currentSection, clickHandler }) => {
       </div>
       <div className={sectionStyle(4)} onClick={() => clickHandler(4)}>
         <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
-          {format('wizard.results.useCases')}
+          {format('wizard.results.datasets')}
         </div>
       </div>
       <div className={sectionStyle(5)} onClick={() => clickHandler(5)}>
         <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
-          {format('wizard.results.buildingBlocks')}
+          {format('wizard.results.useCases')}
         </div>
       </div>
       <div className={sectionStyle(6)} onClick={() => clickHandler(6)}>
         <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
-          {format('wizard.results.resources')}
+          {format('wizard.results.buildingBlocks')}
         </div>
       </div>
       <div className={sectionStyle(7)} onClick={() => clickHandler(7)}>
+        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+          {format('wizard.results.resources')}
+        </div>
+      </div>
+      <div className={sectionStyle(8)} onClick={() => clickHandler(8)}>
         <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
           {format('wizard.results.aggregators')}
         </div>
@@ -114,6 +121,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const projectsRef = useRef(null)
   const productsRef = useRef(null)
   const playbookRef = useRef(null)
+  const datasetRef = useRef(null)
   const useCasesRef = useRef(null)
   const buildingBlocksRef = useRef(null)
   const resourcesRef = useRef(null)
@@ -152,23 +160,29 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
       break
     case 4:
       parentRef.current.scrollTo({
-        top: useCasesRef.current.offsetTop - OFFSET_TOP_VALUE,
+        top: datasetRef.current.offsetTop - OFFSET_TOP_VALUE,
         behavior: 'smooth'
       })
       break
     case 5:
       parentRef.current.scrollTo({
-        top: buildingBlocksRef.current.offsetTop - OFFSET_TOP_VALUE,
+        top: useCasesRef.current.offsetTop - OFFSET_TOP_VALUE,
         behavior: 'smooth'
       })
       break
     case 6:
       parentRef.current.scrollTo({
-        top: resourcesRef.current.offsetTop - OFFSET_TOP_VALUE,
+        top: buildingBlocksRef.current.offsetTop - OFFSET_TOP_VALUE,
         behavior: 'smooth'
       })
       break
     case 7:
+      parentRef.current.scrollTo({
+        top: resourcesRef.current.offsetTop - OFFSET_TOP_VALUE,
+        behavior: 'smooth'
+      })
+      break
+    case 8:
       parentRef.current.scrollTo({
         top: aggregatorsRef.current.offsetTop - OFFSET_TOP_VALUE,
         behavior: 'smooth'
@@ -288,6 +302,26 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
                 sector={allValues.sector}
                 tags={allValues.tags}
                 playbookSortHint={allValues.playbookSortHint}
+              />
+            </div>
+          </div>
+          <div className='text-dial-gray-dark' ref={datasetRef}>
+            <div className='flex w-3/4 justify-between items-center mb-2'>
+              <div className='text-2xl font-bold'>
+                {format('wizard.results.datasets')}
+              </div>
+              <Select
+                onChange={option => setAllValues(prevValues => ({ ...prevValues, datasetSortHint: option?.value }))}
+                options={sortHintOptions.filter(({ value }) => value !== 'country')}
+                placeholder={format('wizard.dataset.sortHint')}
+                className='w-72'
+              />
+            </div>
+            <div className='pb-6 grid grid-cols-1 w-3/4'>
+              <PagedDatasetList
+                sectors={[allValues.sector]}
+                tags={allValues.tags}
+                datasetSortHint={allValues.datasetSortHint}
               />
             </div>
           </div>

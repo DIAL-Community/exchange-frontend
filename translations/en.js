@@ -373,6 +373,9 @@ export const en = {
   'wizard.results.playbooks': 'Playbooks',
   'wizard.results.playbooksDesc': 'Here are playbooks that are aligned with the sector and tags for the project.',
   'wizard.results.noPlaybooks': 'We cannot provide recommendations on specific playbooks based on the information provided.',
+  'wizard.results.datasets': 'Candidate Open Data',
+  'wizard.results.datasetsDesc': 'The following open data (datasets, content, AI models) may be relevant for the project.',
+  'wizard.results.noDatasets': 'We cannot provide recommendations on specific open data based on the information provided.',
   'wizard.results.aggregators': 'Mobile Network Aggregators',
   'wizard.results.aggregatorsDesc': 'If your project requires mobile network services, these Aggregators may help you set up mobile solutions quickly.',
   'wizard.results.phases': 'Other Project Phases',
@@ -982,6 +985,7 @@ export const en = {
   'wizard.project.sortHint': 'Sort Projects',
   'wizard.product.sortHint': 'Sort Products',
   'wizard.playbook.sortHint': 'Sort Playbooks',
+  'wizard.dataset.sortHint': 'Sort Open Data',
 
   'move.resources.label': 'Resource',
   'move.resources.header': 'Resources',
