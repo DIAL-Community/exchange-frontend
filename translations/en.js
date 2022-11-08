@@ -1192,5 +1192,17 @@ export const en = {
   'categoryIndicator.delete.confirm.message': 'Are you sure you want to delete this Category Indicator?',
 
   'paginatedSection.page.previous.label': '< Previous',
-  'paginatedSection.page.next.label': 'Next >'
+  'paginatedSection.page.next.label': 'Next >',
+
+  'intro.overview.startTour': 'Take a Tour',
+  'intro.overview': "Let's start with a quick product tour to get acquainted with the platform.",
+  'intro.overview.sdgFramework': 'Explore data and content on different nodes of the SDG Digital Investment Framework.',
+  'intro.overview.entityProduct': 'Discover important information on different solutions and tools.',
+  'intro.overview.entityHelp': 'Need more information on the tab? Click here.',
+  'intro.overview.search': 'Search by key words.',
+  'intro.overview.filter': 'Or use filters to narrow your search.',
+  'intro.overview.cardView': 'Click on a card for detailed information.',
+  'intro.overview.entityPlaybook': 'Find guidance resources contributed by our community of users.',
+  'intro.overview.wizard': 'Need more help? Try our recommendations wizard.',
+  'intro.overview.signUp': 'Start today by signing up for an account to access more features.'
 }

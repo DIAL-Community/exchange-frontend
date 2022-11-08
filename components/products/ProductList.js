@@ -134,6 +134,40 @@ const ProductListQuery = () => {
                   columnCount = 1
                 }
 
+                // On grid, organize the element to match the column count.
+                const onGridItemsRenderedHandler = ({
+                  overscanColumnStartIndex,
+                  overscanColumnStopIndex,
+                  overscanRowStartIndex,
+                  overscanRowStopIndex,
+                  visibleColumnStartIndex,
+                  visibleColumnStopIndex,
+                  visibleRowStartIndex,
+                  visibleRowStopIndex
+                }) => {
+                  onItemsRendered({
+                    overscanStartIndex: overscanColumnStartIndex + overscanRowStartIndex * columnCount,
+                    overscanStopIndex: overscanColumnStopIndex + overscanRowStopIndex * columnCount,
+                    visibleStartIndex: visibleColumnStartIndex + visibleRowStartIndex * columnCount,
+                    visibleStopIndex: visibleColumnStopIndex + visibleRowStopIndex * columnCount
+                  })
+                }
+
+                // On list, just go down the list of single column.
+                const onListItemsRenderedHandler = ({
+                  overscanStartIndex,
+                  overscanStopIndex,
+                  visibleStartIndex,
+                  visibleStopIndex
+                }) => {
+                  onItemsRendered({
+                    overscanStartIndex,
+                    overscanStopIndex,
+                    visibleStartIndex,
+                    visibleStopIndex
+                  })
+                }
+
                 return (
                   <>
                     {
@@ -146,23 +180,7 @@ const ProductListQuery = () => {
                         columnWidth={width / columnCount}
                         rowCount={Math.floor(totalCount / columnCount) + 1}
                         columnCount={columnCount}
-                        onItemsRendered={({
-                          overscanColumnStartIndex,
-                          overscanColumnStopIndex,
-                          overscanRowStartIndex,
-                          overscanRowStopIndex,
-                          visibleColumnStartIndex,
-                          visibleColumnStopIndex,
-                          visibleRowStartIndex,
-                          visibleRowStopIndex
-                        }) => {
-                          onItemsRendered({
-                            overscanStartIndex: overscanColumnStartIndex + overscanRowStartIndex * columnCount,
-                            overscanStopIndex: overscanColumnStopIndex + overscanRowStopIndex * columnCount,
-                            visibleStartIndex: visibleColumnStartIndex + visibleRowStartIndex * columnCount,
-                            visibleStopIndex: visibleColumnStopIndex + visibleRowStopIndex * columnCount
-                          })
-                        }}
+                        onItemsRendered={onGridItemsRenderedHandler}
                         ref={ref}
                       >
                         {({ columnIndex, rowIndex, style }) => {
@@ -181,7 +199,7 @@ const ProductListQuery = () => {
                             >
                               {
                                 currentIndex < nodes.length && product &&
-                                <ProductCard listType={displayType} {...{ product, filterDisplayed }} />
+                                  <ProductCard listType={displayType} {...{ product, filterDisplayed }} />
                               }
                               {currentIndex < nodes.length && !product && <Loading />}
                             </div>
@@ -198,19 +216,7 @@ const ProductListQuery = () => {
                         itemSize={(MIN_PRODUCT_LIST_SIZE)}
                         columnWidth={width / columnCount}
                         itemCount={totalCount}
-                        onItemsRendered={({
-                          overscanStartIndex,
-                          overscanStopIndex,
-                          visibleStartIndex,
-                          visibleStopIndex
-                        }) => {
-                          onItemsRendered({
-                            overscanStartIndex,
-                            overscanStopIndex,
-                            visibleStartIndex,
-                            visibleStopIndex
-                          })
-                        }}
+                        onItemsRendered={onListItemsRenderedHandler}
                         ref={ref}
                       >
                         {({ index, style }) => {
@@ -220,7 +226,7 @@ const ProductListQuery = () => {
                             <div style={style}>
                               {
                                 index < nodes.length && product &&
-                                <ProductCard listType={displayType} {...{ product, filterDisplayed }} />
+                                  <ProductCard listType={displayType} {...{ product, filterDisplayed }} />
                               }
                               {index < nodes.length && !product && <Loading />}
                             </div>

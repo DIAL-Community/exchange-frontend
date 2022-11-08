@@ -323,7 +323,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               </a>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right"
+              class="relative mt-2 lg:mt-0 text-right intro-overview-signup"
             >
               <a
                 class="lg:p-3 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
@@ -351,7 +351,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               </a>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right"
+              class="relative mt-2 lg:mt-0 text-right intro-overview-signup"
             >
               <a
                 class="
@@ -1186,7 +1186,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               </a>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right"
+              class="relative mt-2 lg:mt-0 text-right intro-overview-signup"
             >
               <a
                 class="

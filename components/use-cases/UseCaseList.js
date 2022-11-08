@@ -162,15 +162,17 @@ const UseCaseListQuery = () => {
   const { searchUseCases: { nodes, pageInfo } } = data
 
   return (
-    <InfiniteScroll
-      className='relative px-2 mt-3 pb-8 infinite-scroll-default-height'
-      dataLength={nodes.length}
-      next={handleLoadMore}
-      hasMore={pageInfo.hasNextPage}
-      loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
-    >
-      <UseCaseList useCaseList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
-    </InfiniteScroll>
+    <>
+      <InfiniteScroll
+        className='relative px-2 mt-3 pb-8 infinite-scroll-default-height'
+        dataLength={nodes.length}
+        next={handleLoadMore}
+        hasMore={pageInfo.hasNextPage}
+        loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
+      >
+        <UseCaseList useCaseList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
+      </InfiniteScroll>
+    </>
   )
 }
 
