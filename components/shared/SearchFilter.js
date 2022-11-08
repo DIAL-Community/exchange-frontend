@@ -225,13 +225,16 @@ const SearchFilter = ({
     <div className='bg-dial-gray-light md:bg-transparent w-full pt-1 md:pt-2'>
       <div className='flex flex-wrap gap-x-4 px-3'>
         <div className='flex flex-wrap gap-x-4 gap-y-4 lg:gap-x-8 xl:gap-20'>
-          <div className='hidden md:flex items-center ml-auto text-xl font-semibold my-auto animated-drawer'>
-            <h1>{format(hint)}</h1>
-            <span data-testid='list-counter' className='ml-2 px-2 py-1.5 text-base rounded text-dial-gray-dark bg-dial-yellow'>
+          <div className='hidden md:flex items-center ml-auto text-xl font-semibold my-auto animated-drawer intro-overview-card-view'>
+            <div className='h1'>{format(hint)}</div>
+            <span
+              data-testid='list-counter'
+              className='ml-2 px-2 py-1.5 text-base rounded text-dial-gray-dark bg-dial-yellow'
+            >
               {resultCounts[hint]}
             </span>
           </div>
-          <div className='ml-auto flex gap-x-3'>
+          <div className='intro-overview-search ml-auto flex gap-x-3'>
             <label className='my-auto'>
               <span className='sr-only'>{format('search.input.label')}</span>
               <SearchInput

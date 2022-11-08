@@ -106,17 +106,17 @@ const Header = () => {
                 user
                   ? (
                     <>
-                      <li className='relative mt-2 lg:mt-0 text-right'>
+                      <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
                         {isAdminUser
                           && (<AdminMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />)}
                       </li>
-                      <li className='relative mt-2 lg:mt-0 text-right'>
+                      <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
                         <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                       </li>
                     </>
                   )
                   : (
-                    <li className='relative mt-2 lg:mt-0 text-right'>
+                    <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
                       <a
                         data-testid='login'
                         href='signin'

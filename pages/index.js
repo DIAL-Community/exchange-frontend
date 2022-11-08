@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import dynamic from 'next/dynamic'
+import cookie from 'react-cookies'
 import Header from '../components/Header'
 import Landing from '../components/Landing'
 import Definition from '../components/Definition'
@@ -17,12 +18,16 @@ import ProductListQuery from '../components/products/ProductList'
 import SearchFilter from '../components/shared/SearchFilter'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../components/context/ProductFilterContext'
 import ClientOnly from '../lib/ClientOnly'
+import Intro, { OVERVIEW_INTRO_KEY, OVERVIEW_INTRO_STEPS } from '../components/Intro'
 import QueryNotification from '../components/shared/QueryNotification'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const HomePage = () => {
   const { search } = useContext(ProductFilterContext)
   const { setSearch } = useContext(ProductFilterDispatchContext)
+
+  const STEP_INDEX_START = 0
+  const STEP_INDEX_END = OVERVIEW_INTRO_STEPS.length - 1
 
   return (
     <>
@@ -44,6 +49,13 @@ const HomePage = () => {
           searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.products' />}
           activeFilter={<ProductActiveFilter />}
           hint={<ProductHint />}
+        />
+        <Intro
+          enabled={String(cookie.load(OVERVIEW_INTRO_KEY)) !== 'true'}
+          steps={OVERVIEW_INTRO_STEPS}
+          startIndex={STEP_INDEX_START}
+          endIndex={STEP_INDEX_END}
+          completedKey={OVERVIEW_INTRO_KEY}
         />
       </ClientOnly>
       <Footer />

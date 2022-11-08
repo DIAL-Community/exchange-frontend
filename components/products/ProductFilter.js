@@ -55,7 +55,10 @@ const ProductFilter = () => {
     <div className='p-4'>
       <div className='text-dial-gray-dark'>
         <div className='px-2 mb-4 text-base'>
-          <a className='cursor-pointer items-center font-semibold hover:underline decoration-2 decoration-dial-yellow' onClick={() => setHintDisplayed(true)}>
+          <a
+            className='cursor-pointer items-center font-semibold hover:underline decoration-2 decoration-dial-yellow intro-overview-entity-help'
+            onClick={() => setHintDisplayed(true)}
+          >
             <span className='mr-1'>{format('filter.hint.text')} {format('product.label')}</span>
             <BsQuestionCircleFill className='inline text-xl mb-1 fill-dial-yellow' />
           </a>
@@ -70,7 +73,7 @@ const ProductFilter = () => {
             {format('filter.framework.subTitle', { entity: format('product.header') })}
           </div>
         </div>
-        <div className='text-sm flex flex-row flex-wrap'>
+        <div className='text-sm flex flex-row flex-wrap intro-overview-filter'>
           <SDGAutocomplete {...{ sdgs, setSDGs }} containerStyles='px-2 pb-2' controlSize='20rem' />
           <UseCaseAutocomplete {...{ useCases, setUseCases }} containerStyles='px-2 pb-2' controlSize='20rem' />
           <WorkflowAutocomplete {...{ workflows, setWorkflows }} containerStyles='px-2 pb-2' controlSize='20rem' />

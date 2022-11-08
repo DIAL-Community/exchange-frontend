@@ -16,7 +16,7 @@ const TabNav = (props) => {
         <div className='invisible xl:visible max-w-1/2'>
           <div className='px-5 mt-3 py-2 border-t border-r border-l border-gray-300 rounded-t' />
           <div className='text-center -mt-7' style={{ lineHeight: 0.1 }}>
-            <span className='bg-white px-3'>
+            <span className='bg-white px-3 intro-overview-sdg-framework'>
               <span className='text-sm font-bold text-gray-500'>{format('digiInvestment.title')}</span>
               <HiQuestionMarkCircle className='ml-1 inline' data-tip={format('digiInvestment.tooltip')} data-html />
             </span>
@@ -35,7 +35,7 @@ const TabNav = (props) => {
       </div>
       <div className='hidden md:block relative md:sticky bg-white px-2 md:sticky-filter max-w-catalog mx-auto'>
         <div className='w-full'>
-          <ul className='flex flex-row mb-0 list-none pt-2'>
+          <ul className='flex flex-row mb-0 list-none pt-2 gap-x-2'>
             {
               FILTER_ITEMS.map((filterItem, index) => {
                 let href = MAPPED_FILTER_ITEMS_URL[filterItem]
@@ -48,7 +48,6 @@ const TabNav = (props) => {
                     key={`menu-${filterItem}`}
                     className={`
                       -mb-px whitespace-nowrap
-                      ${index === FILTER_ITEMS.length - 1 ? 'mr-0' : 'mr-2'}
                       ${index === activeTab ? 'bg-dial-yellow rounded-t' : 'pb-2 overflow-hidden'}
                     `}
                     style={{ flex: '1 1 0px' }}
@@ -56,25 +55,22 @@ const TabNav = (props) => {
                     <Link href={`/${href}`}>
                       <a
                         className={`
-                          block px-3 py-1
+                          block px-3 py-3
                           ${index === activeTab ? 'bg-dial-yellow rounded-t' : 'bg-dial-gray-light rounded'}
                         `}
-                        data-toggle='tab' href={`/${href}`}
+                        data-toggle='tab'
+                        href={`/${href}`}
                       >
-                        {
-                          // Adding click handler to NextJS Link tag.
-                          // https://github.com/vercel/next.js/issues/1490#issuecomment-360227918
-                        }
-                        <span>
-                          <div
-                            className={`
-                              ${index === activeTab ? '' : 'truncate'}
-                              font-semibold my-2 mx-1 text-dial-gray-dark
-                            `}
-                          >
-                            {format(filterItem)}
-                          </div>
-                        </span>
+                        <div
+                          className={`
+                            ${index === activeTab ? '' : 'truncate'}
+                            ${filterItem === 'filter.entity.products' ? 'intro-overview-entity-product' : ''}
+                            ${filterItem === 'filter.entity.playbooks' ? 'intro-overview-entity-playbook' : ''}
+                            text-center font-semibold text-dial-gray-dark
+                          `}
+                        >
+                          {format(filterItem)}
+                        </div>
                       </a>
                     </Link>
                   </li>
