@@ -28,7 +28,7 @@ const ProductListQuery = () => {
   const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const {
     origins, countries, sectors, organizations, sdgs, tags, useCases, workflows, buildingBlocks,
-    endorsers, productDeployable, withMaturity, search, licenseTypes
+    endorsers, productDeployable, isEndorsed, search, licenseTypes
   } = useContext(ProductFilterContext)
 
   const { locale } = useRouter()
@@ -50,7 +50,7 @@ const ProductListQuery = () => {
       endorsers: endorsers.map(endorser => endorser.value),
       licenseTypes: licenseTypes.map(licenseType => licenseType.value),
       productDeployable,
-      withMaturity,
+      isEndorsed,
       search
     },
     context: { headers: { 'Accept-Language': locale } },
@@ -79,7 +79,7 @@ const ProductListQuery = () => {
         endorsers: endorsers.map(endorser => endorser.value),
         licenseTypes: licenseTypes.map(licenseType => licenseType.value),
         productDeployable,
-        withMaturity,
+        isEndorsed,
         search
       }
     })

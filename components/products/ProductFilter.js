@@ -25,16 +25,16 @@ const ProductFilter = () => {
   const { setHintDisplayed } = useContext(FilterContext)
 
   const {
-    withMaturity, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
+    isEndorsed, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
     useCases, workflows, buildingBlocks, endorsers, licenseTypes
   } = useContext(ProductFilterContext)
 
   const {
-    setWithMaturity, setProductDeployable, setSectors, setCountries, setOrganizations,
+    setIsEndorsed, setProductDeployable, setSectors, setCountries, setOrganizations,
     setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers, setLicenseTypes
   } = useContext(ProductFilterDispatchContext)
 
-  const toggleWithMaturity = () => setWithMaturity(!withMaturity)
+  const toggleIsEndorsed = () => setIsEndorsed(!isEndorsed)
 
   const toggleProductDeployable = () => setProductDeployable(!productDeployable)
 
@@ -95,9 +95,9 @@ const ProductFilter = () => {
             </div>
             <div className='px-2 pb-2'>
               <label className='inline-flex items-center'>
-                <Checkbox onChange={toggleWithMaturity} value={withMaturity} />
+                <Checkbox onChange={toggleIsEndorsed} value={isEndorsed} />
                 <span className='ml-2'>
-                  {format('filter.product.withMaturity')}
+                  {format('filter.product.endorsed')}
                 </span>
               </label>
             </div>
