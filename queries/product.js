@@ -87,6 +87,8 @@ export const PRODUCT_QUERY = gql`
         slug
         license
       }
+      maturityScore
+      maturityScoreDetails
     }
   }
 `
@@ -227,16 +229,6 @@ export const PRODUCT_CATEGORY_INDICATORS_QUERY = gql`
           name
         }
       }
-    }
-  }
-`
-
-export const PRODUCT_MATURITY_SCORES_QUERY = gql`
-  query Product($slug: String!) {
-    product(slug: $slug) {
-      id
-      maturityScore
-      maturityScores
     }
   }
 `
