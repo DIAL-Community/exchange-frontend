@@ -128,7 +128,7 @@ export const PRODUCTS_QUERY = gql`
     $buildingBlocks: [String!]
     $endorsers: [String!]
     $productDeployable: Boolean
-    $withMaturity: Boolean
+    $isEndorsed: Boolean
     $licenseTypes: [String!]
     $search: String!
   ) {
@@ -146,7 +146,7 @@ export const PRODUCTS_QUERY = gql`
       buildingBlocks: $buildingBlocks
       endorsers: $endorsers
       productDeployable: $productDeployable
-      withMaturity: $withMaturity
+      isEndorsed: $isEndorsed
       licenseTypes: $licenseTypes
       search: $search
     ) {

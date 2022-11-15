@@ -579,7 +579,7 @@ export const en = {
   'filter.useCase.showBeta': 'Show Beta (non-Validated) Use Cases',
 
   'filter.product.forCovid': 'COVID-19 Tools',
-  'filter.product.withMaturity': 'Product with maturity assessment',
+  'filter.product.endorsed': 'Show endorsed products',
   'filter.product.launchable': 'Product can be deployed and launched',
   'filter.launchWizard': 'Launch Recommendations Wizard',
 
