@@ -167,7 +167,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           }
         </div>
       </div>
-      <ProductDetailMaturityScores slug={product.slug} />
+      <ProductDetailMaturityScores slug={product.slug} maturityScore={product.maturityScore} maturityScoreDetails={product.maturityScoreDetails} />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={product.id}
