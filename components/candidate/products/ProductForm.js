@@ -14,7 +14,7 @@ import Input from '../../shared/Input'
 import ValidationError from '../../shared/ValidationError'
 import { HtmlEditor } from '../../shared/HtmlEditor'
 import { Unauthorized } from '../../shared/FetchStatus'
-import { purgeLink } from '../../../lib/utilities'
+import UrlInput from '../../shared/UrlInput'
 
 const ProductForm = () => {
   const { formatMessage } = useIntl()
@@ -69,15 +69,12 @@ const ProductForm = () => {
       setMutating(true)
 
       const { userEmail, userToken } = session.user
-      const { name, description, email, captcha } = data
-
-      const websiteLink = purgeLink(data.website)
-      const repositoryLink = purgeLink(data.repository)
+      const { name, description, email, captcha, website, repository } = data
 
       const variables = {
         name,
-        website: websiteLink,
-        repository: repositoryLink,
+        website,
+        repository,
         description,
         email,
         captcha
@@ -142,10 +139,17 @@ const ProductForm = () => {
                     <label className='form-field-label' htmlFor='website'>
                       {format('candidateProduct.website')}
                     </label>
-                    <Input
-                      {...register('website')}
-                      id='website'
-                      placeholder={format('candidateProduct.website.placeholder')}
+                    <Controller
+                      name='website'
+                      control={control}
+                      render={({ field: { value, onChange } }) => (
+                        <UrlInput
+                          value={value}
+                          onChange={onChange}
+                          id='website'
+                          placeholder={format('candidateProduct.website.placeholder')}
+                        />
+                      )}
                     />
                   </div>
                   <div className='form-field-wrapper' data-testid='candidate-product-repository'>

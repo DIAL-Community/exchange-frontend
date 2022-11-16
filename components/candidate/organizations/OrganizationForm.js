@@ -14,7 +14,7 @@ import ValidationError from '../../shared/ValidationError'
 import { HtmlEditor } from '../../shared/HtmlEditor'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { useUser } from '../../../lib/hooks'
-import { purgeLink } from '../../../lib/utilities'
+import UrlInput from '../../shared/UrlInput'
 
 const OrganizationForm = () => {
   const { formatMessage } = useIntl()
@@ -70,12 +70,11 @@ const OrganizationForm = () => {
       setMutating(true)
 
       const { userEmail, userToken } = user
-      const { name, description, organizationName, email, title, captcha } = data
-      const websiteLink = purgeLink(data.website)
+      const { name, description, organizationName, email, title, captcha, website } = data
 
       const variables = {
         name,
-        website: websiteLink,
+        website,
         organizationName,
         description,
         email,
@@ -143,11 +142,19 @@ const OrganizationForm = () => {
                       <label className='form-field-label required-field' htmlFor='website'>
                         {format('candidateOrganization.website')}
                       </label>
-                      <Input
-                        {...register('website', { required: format('validation.required') })}
-                        id='website'
-                        placeholder={format('candidateOrganization.website.placeholder')}
-                        isInvalid={errors.website}
+                      <Controller
+                        name='website'
+                        control={control}
+                        render={({ field: { value, onChange } }) => (
+                          <UrlInput
+                            value={value}
+                            onChange={onChange}
+                            id='website'
+                            isInvalid={errors.website}
+                            placeholder={format('candidateOrganization.website.placeholder')}
+                          />
+                        )}
+                        rules={{ required: format('validation.required') }}
                       />
                       {errors.website && <ValidationError value={errors.website?.message} />}
                     </div>

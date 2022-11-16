@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { FaCode, FaHome, FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
-import { purgeLink } from '../../../lib/utilities'
+import { prependUrlWithProtocol } from '../../../lib/utilities'
 
 const ellipsisTextStyle = 'my-auto'
 const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
@@ -18,9 +18,6 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
   const [status, setStatus] = useState('')
   const [comment, setComment] = useState('')
 
-  const repositoryLink = purgeLink(product.repository)
-  const websiteLink = purgeLink(product.website)
-
   useEffect(() => {
     ReactTooltip.rebuild()
   })
@@ -31,14 +28,14 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
         listType === 'list'
           ? (
             <div className={`card ${status === 'rejection' || status === 'approval' ? 'flip-horizontal' : ''}`}>
-              <div className='card-body border-3 border-transparent hover:border-dial-gray text-workflow cursor-pointer'>
+              <div className='card-body border-3 border-transparent hover:border-dial-gray text-workflow'>
                 <div className={`
                   ${String(product.rejected) === 'true' || status === 'rejected'
                   ? 'bg-red-50'
                   : String(product.rejected) === 'false' || status === 'approved'
                     ? 'bg-emerald-50'
                     : 'bg-white'}
-                  card-front border border-dial-gray hover:border-transparent shadow-sm
+                  card-front border border-dial-gray card-drop-shadow
                 `}
                 >
                   <div className='grid grid-cols-12 gap-x-4 gap-y-2 my-4 px-4 text-product'>
@@ -47,7 +44,7 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                         {product.name}
                       </div>
                       <div className={`col-span-12 lg:col-span-3 my-auto ${ellipsisTextStyle}`}>
-                        {websiteLink}
+                        <a href={prependUrlWithProtocol(product.website)}>{product.website}</a>
                       </div>
                       <div className={`col-span-12 lg:col-span-3 my-auto ${ellipsisTextStyle}`}>
                         {product.submitterEmail}
@@ -157,8 +154,8 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                         </div>
                         <div className={`mx-2 my-auto px-2 py-1 bg-white ${ellipsisTextStyle} ${hoverEffectTextStyle}`}>
                           {
-                            websiteLink
-                              ? <a href={`//${websiteLink}`} target='_blank' rel='noreferrer'>{websiteLink}</a>
+                            product.website
+                              ? <a href={prependUrlWithProtocol(product.website)} target='_blank' rel='noreferrer'>{product.website}</a>
                               : format('general.na')
                           }
                         </div>
@@ -169,8 +166,8 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
                         </div>
                         <div className={`mx-2 my-auto px-2 py-1 bg-white ${ellipsisTextStyle} ${hoverEffectTextStyle}`}>
                           {
-                            repositoryLink
-                              ? <a href={`//${repositoryLink}`} target='_blank' rel='noreferrer'>{repositoryLink}</a>
+                            product.repository
+                              ? <a href={prependUrlWithProtocol(product.repository)} target='_blank' rel='noreferrer'>{product.repository}</a>
                               : format('general.na')
                           }
                         </div>

@@ -7,6 +7,7 @@ import EditButton from '../shared/EditButton'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
 import { useProductOwnerUser, useUser } from '../../lib/hooks'
+import { prependUrlWithProtocol } from '../../lib/utilities'
 import ProductCard from './ProductCard'
 import ProductDetailBuildingBlocks from './ProductDetailBuildingBlocks'
 import ProductDetailProjects from './ProductDetailProjects'
@@ -43,7 +44,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
         <div className='mt-8 mb-3 flex flex-col gap-3'>
           <div className='card-title text-dial-gray-dark inline'>{format('product.website')}</div>
           <div className='text-base text-dial-teal'>
-            <a href={`//${product.website}`} target='_blank' rel='noreferrer'>
+            <a href={prependUrlWithProtocol(product.website)} target='_blank' rel='noreferrer'>
               <div className='my-auto'>{product.website} ⧉</div>
             </a>
           </div>
