@@ -1,8 +1,9 @@
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import Pill from '../../shared/Pill'
 import Select from '../../shared/Select'
+import { getLicenseTypeOptions } from '../../../lib/utilities'
 
 export const LicenseTypeSelect = ({
   licenseTypes,
@@ -21,11 +22,7 @@ export const LicenseTypeSelect = ({
     setLicenseTypes([...licenseTypes.filter(({ value }) => value !== licenseType.value), licenseType])
   }
 
-  const options = [
-    { value: 'all_license', label: format('licenseType.allType') },
-    { value: 'commercial_only', label: format('licenseType.commercialOnly') },
-    { value: 'oss_only', label: format('licenseType.ossOnly') }
-  ]
+  const options = useMemo(() => getLicenseTypeOptions(format), [format])
 
   const fetchOptions = async (input) => {
     return options.filter(({ label }) => label.indexOf(input) >= 0)

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import WizardHeader from '../components/wizard/WizardHeader'
@@ -8,57 +8,15 @@ import WizardContent from '../components/wizard/WizardContent'
 import WizardResults from '../components/wizard/WizardResults'
 import ClientOnly from '../lib/ClientOnly'
 import { Loading, Error } from '../components/shared/FetchStatus'
-
-const SECTOR_QUERY = gql`
-query SectorsWithSubs($locale: String) {
-  sectorsWithSubs(locale: $locale) {
-    id
-    name
-    slug
-    subSectors {
-      id
-      name
-      slug
-    }
-  }
-}
-`
-const SDG_QUERY = gql`
-query SDGs {
-  sdgs {
-    id
-    name
-    slug
-  }
-}
-`
-
-const COUNTRY_QUERY = gql`
-query Countries {
-  countries {
-    id
-    name
-    slug
-  }
-}
-`
-
-const TAG_QUERY = gql`
-query Tags {
-  tags {
-    id
-    name
-    slug
-  }
-}
-`
+import { SECTOR_SEARCH_QUERY } from '../queries/sector'
+import { WIZARD_COUNTRY_QUERY, WIZARD_SDG_QUERY, WIZARD_TAG_QUERY } from '../queries/wizard'
 
 const WizardPageDefinition = () => {
   const [stage, setStage] = useState(0)
   const [allValues, setAllValues] = useState({
     projectPhase: '',
     sector: '',
-    subsector: '',
+    sectorSlug: null,
     sdg: '',
     useCase: '',
     countries: [],
@@ -66,26 +24,28 @@ const WizardPageDefinition = () => {
     mobileServices: [],
     buildingBlocks: [],
     productSortHint: '',
-    projectSortHint: ''
+    projectSortHint: '',
+    playbookSortHint: '',
+    datasetSortHint: ''
   })
   const router = useRouter()
   const { locale } = router
 
-  const { loading: sectorLoading, error: sectorError, data: sectorData } = useQuery(SECTOR_QUERY, { variables: { locale } })
-  const { loading: sdgLoading, error: sdgError, data: sdgData } = useQuery(SDG_QUERY)
-  const { loading: countryLoading, error: countryError, data: countryData } = useQuery(COUNTRY_QUERY)
-  const { loading: tagLoading, error: tagError, data: tagData } = useQuery(TAG_QUERY)
+  const { loading: sectorLoading, error: sectorError, data: sectorData } = useQuery(SECTOR_SEARCH_QUERY, { variables: { locale, search: '' } })
+  const { loading: sdgLoading, error: sdgError, data: sdgData } = useQuery(WIZARD_SDG_QUERY)
+  const { loading: countryLoading, error: countryError, data: countryData } = useQuery(WIZARD_COUNTRY_QUERY)
+  const { loading: tagLoading, error: tagError, data: tagData } = useQuery(WIZARD_TAG_QUERY)
   if (sectorLoading || sdgLoading || countryLoading || tagLoading) {
-    return <><Header /><div><Loading /></div><Footer /></>
+    return <Loading />
   }
 
   if (sectorError || sdgError || countryError || tagError) {
-    return <div><Error /></div>
+    return <Error />
   }
 
   const mobileServices = ['Airtime', 'API', 'HS', 'Mobile-Internet', 'Mobile-Money', 'Ops-Maintenance', 'OTT', 'SLA', 'SMS', 'User-Interface', 'USSD', 'Voice']
-  const projData = { sectors: [], useCases: [], countries: [], mobileServices: [], tags: [], buildingBlocks: [] }
-  projData.sectors = sectorData.sectorsWithSubs.map((sector) => { return { label: sector.name, value: sector.name, subSectors: sector.subSectors } })
+  const projData = { sectors: [], countries: [], mobileServices: [], tags: [], buildingBlocks: [] }
+  projData.sectors = sectorData?.sectors.map((sector) => { return { label: sector.name, value: sector.name, slug: sector.slug } })
   projData.sdgs = sdgData.sdgs.map((sdg) => { return { label: sdg.name, value: sdg.name } })
   projData.countries = countryData.countries.map((country) => { return { label: country.name, value: country.name } })
   projData.tags = tagData.tags.map((tag) => { return { label: tag.name, value: tag.name } })

@@ -206,7 +206,7 @@ const SignUp = () => {
 
   return (
     <>
-      <Header />
+      <Header isOnAuthPage />
       <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <ClientOnly>
         <div className='bg-dial-gray-dark'>

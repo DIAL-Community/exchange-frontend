@@ -30,6 +30,7 @@ export const en = {
   'app.description': 'Description',
   'app.internal-server-error': "500 - Internal Server Error",
   'app.menu': 'Menu',
+  'app.email': 'Email Address',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -358,6 +359,7 @@ export const en = {
   'wizard.results.noProjects': 'We could not find any projects that connect to the sector or tags that you selected. Please provide additional information if possible.',
   'wizard.results.useCases': 'Use Cases',
   'wizard.results.useCasesDesc': 'The following use cases may be applicable to your project. A use case provides a breakdown of all of the steps that may be required as well as the workflows or business processes that will be needed at each step.',
+  'wizard.results.useCaseDesc': 'The following use case was selected and provides a breakdown of all of the steps that may be required as well as the workflows or business processes that will be needed at each step.',
   'wizard.results.noUseCases': 'We do not have any uses cases that are applicable to this project. We encourage you to create a new use case in the Catalog of Digital Solutions.',
   'wizard.results.clickHere': ' Click Here',
   'wizard.results.buildingBlocks': 'Building Blocks',
@@ -368,6 +370,12 @@ export const en = {
   'wizard.results.products': 'Candidate Products',
   'wizard.results.productsDesc': 'Here are products that are aligned with the building blocks, sector, or tags for the project',
   'wizard.results.noProducts': 'We cannot provide recommendations on specific products or tools based on the information provided.',
+  'wizard.results.playbooks': 'Playbooks',
+  'wizard.results.playbooksDesc': 'Here are playbooks that are aligned with the sector and tags for the project.',
+  'wizard.results.noPlaybooks': 'We cannot provide recommendations on specific playbooks based on the information provided.',
+  'wizard.results.datasets': 'Candidate Open Data',
+  'wizard.results.datasetsDesc': 'The following open data (datasets, content, AI models) may be relevant for the project.',
+  'wizard.results.noDatasets': 'We cannot provide recommendations on specific open data based on the information provided.',
   'wizard.results.aggregators': 'Mobile Network Aggregators',
   'wizard.results.aggregatorsDesc': 'If your project requires mobile network services, these Aggregators may help you set up mobile solutions quickly.',
   'wizard.results.phases': 'Other Project Phases',
@@ -381,13 +389,13 @@ export const en = {
   'wizard.monitoring': 'Evaluation and Monitoring',
   'wizard.monitoringDesc': 'Working with partners to implement all aspects of the project',
   'wizard.selectSector': 'Select the sector that your project supports',
-  'wizard.selectSubsector': 'Select a specific subsector, if applicable',
+  'wizard.selectUseCase': 'Select a specific use case, if applicable',
   'wizard.selectSDG': 'Select any SDG that the project is designed to support',
   'wizard.selectCountry': 'What country/countries will this project be implemented in?',
   'wizard.selectTags': 'Select any tags that are applicable to this project',
   'wizard.selectMobile': 'Will mobile services be required for this project?',
   'wizard.sectorPlaceholder': 'Select a Sector',
-  'wizard.subsectorPlaceholder': 'Select a Subsector',
+  'wizard.useCasePlaceholder': 'Select a Use Case',
   'wizard.sdgPlaceholder': 'Select an SDG',
   'wizard.countryPlaceholder': 'Select a Country',
   'wizard.tagPlaceholder': 'Select a Tag',
@@ -401,6 +409,8 @@ export const en = {
   'wizard.bb.scheduling': 'Will the project require scheduling of events, such as appointments?',
   'wizard.bb.contentmanagement': 'Will the project require users to be able to create and manage content?',
   'wizard.bb.emarketplace': 'Will the project include an online marketplace that connects buyers and sellers?',
+  'wizard.request-additional-support': 'Request additional support',
+  'wizard.request-additional-support.message': 'Message',
 
   'landing.subtitle': 'Digital Impact Alliance',
   'landing.title.firstLine': 'Catalog of',
@@ -527,7 +537,7 @@ export const en = {
   'filter.hint.text.an': 'What is an ',
 
   'digiInvestment.title': 'Digital Investment Framework',
-  'digiInvestment.tooltip': 'The SDG Digital Investment Framework developed by DIAL and ITU advocates for re-usable, cross-sectoral building blocks. The Catalog illustrates how use cases are composed of generic workflows which can by implemented by building blocks. Users can also explore existing products that may provide necessary functionality for each building block.',
+  'digiInvestment.tooltip': 'The SDG Digital Investment Framework developed by DIAL and ITU advocates for re-usable, cross-sectoral building blocks. The Catalog illustrates how use cases are composed of generic workflows which can be implemented by building blocks. Users can also explore existing products that may provide necessary functionality for each building block.',
 
   'filter.entity.sdgs': 'SDGs',
   'filter.entity.useCases': 'Use Cases',
@@ -569,7 +579,7 @@ export const en = {
   'filter.useCase.showBeta': 'Show Beta (non-Validated) Use Cases',
 
   'filter.product.forCovid': 'COVID-19 Tools',
-  'filter.product.withMaturity': 'Product with maturity assessment',
+  'filter.product.endorsed': 'Show endorsed products',
   'filter.product.launchable': 'Product can be deployed and launched',
   'filter.launchWizard': 'Launch Recommendations Wizard',
 
@@ -747,7 +757,7 @@ export const en = {
 
   'sdg.hint.subtitle': `The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to achieve sustainable development.`,
   'sdg.hint.descriptionTitle': 'Description',
-  'sdg.hint.description': `The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to achieve sustainable development. The SDGs were set in 2015 by the United Nations General Assembly and intended to be achieved by the year 2030.`,
+  'sdg.hint.description': `The SDGs comprise 17 goals and 169 targets representing global priorities for investment in order to achieve sustainable development. The SDGs were set in 2015 by the United Nations General Assembly and are intended to be achieved by the year 2030.`,
 
   'image.alt.logoFor': 'Logo for: {name}',
   'tooltip.ellipsisFor': 'View more in the detail page of this {entity}.',
@@ -974,6 +984,8 @@ export const en = {
 
   'wizard.project.sortHint': 'Sort Projects',
   'wizard.product.sortHint': 'Sort Products',
+  'wizard.playbook.sortHint': 'Sort Playbooks',
+  'wizard.dataset.sortHint': 'Sort Open Data',
 
   'move.resources.label': 'Resource',
   'move.resources.header': 'Resources',
@@ -1072,6 +1084,8 @@ export const en = {
   'validation.required': 'This field is required',
   'validation.email': 'Please enter a valid email address',
   'validation.endDateEarlierThanStartDate': 'End Date cannot be earlier than Start Date',
+  'validation.min-length': 'Message must be at least {minLength} characters',
+  'validation.max-length': 'Message cannot be more than {maxLength} characters',
   'organization.validation.contact.uniqueName': 'This contact is already assigned to this organization',
 
   'toast.buildingBlocks.update.success': 'Building Blocks updated successfully',
@@ -1153,8 +1167,8 @@ export const en = {
 
   'licenseType.label': 'Product License',
   'licenseType.allType': 'All license types',
-  'licenseType.ossOnly': 'Open source product only',
-  'licenseType.commercialOnly': 'Commercial product only',
+  'licenseType.ossOnly': 'Open source only',
+  'licenseType.commercialOnly': 'Commercial only',
 
   'govstack.feedback.header': 'GovStack feedback form',
   'govstack.feedback.intro': 'Thank you for providing feedback. We have a short form that will allow you to submit your feedback and be linked to the processes we use to accept that feedback.',
@@ -1175,5 +1189,20 @@ export const en = {
   'categoryIndicator.indicatorType': 'Indicator type',
   'categoryIndicator.dataSource': 'Data source',
   'categoryIndicator.scriptName': 'Script name',
-  'categoryIndicator.delete.confirm.message': 'Are you sure you want to delete this Category Indicator?'
+  'categoryIndicator.delete.confirm.message': 'Are you sure you want to delete this Category Indicator?',
+
+  'paginatedSection.page.previous.label': '< Previous',
+  'paginatedSection.page.next.label': 'Next >',
+
+  'intro.overview.startTour': 'Take a Tour',
+  'intro.overview': "Let's start with a quick product tour to get acquainted with the platform.",
+  'intro.overview.sdgFramework': 'Explore data and content on different nodes of the SDG Digital Investment Framework.',
+  'intro.overview.entityProduct': 'Discover important information on different solutions and tools.',
+  'intro.overview.entityHelp': 'Need more information on the tab? Click here.',
+  'intro.overview.search': 'Search by key words.',
+  'intro.overview.filter': 'Or use filters to narrow your search.',
+  'intro.overview.cardView': 'Click on a card for detailed information.',
+  'intro.overview.entityPlaybook': 'Find guidance resources contributed by our community of users.',
+  'intro.overview.wizard': 'Need more help? Try our recommendations wizard.',
+  'intro.overview.signUp': 'Start today by signing up for an account to access more features.'
 }

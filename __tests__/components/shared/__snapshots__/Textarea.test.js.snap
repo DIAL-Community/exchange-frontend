@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the Textarea component. Should match snapshot 10 rows high. 1`] = `
+<div>
+  <textarea
+    class="textarea w-full"
+    placeholder="test placeholder"
+    rows="10"
+  >
+    test value
+  </textarea>
+</div>
+`;
+
+exports[`Unit test for the Textarea component. Should match snapshot invalid. 1`] = `
+<div>
+  <textarea
+    class="validation-error textarea w-full"
+    placeholder="test placeholder"
+  >
+    test value
+  </textarea>
+</div>
+`;
+
+exports[`Unit test for the Textarea component. Should match snapshot valid. 1`] = `
+<div>
+  <textarea
+    class="textarea w-full"
+    placeholder="test placeholder"
+  >
+    test value
+  </textarea>
+</div>
+`;

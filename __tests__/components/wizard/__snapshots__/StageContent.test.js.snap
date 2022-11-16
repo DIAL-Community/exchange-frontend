@@ -97,7 +97,7 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
       <div
         class="text-sm my-2 grid content-end"
       >
-        Select a specific subsector, if applicable
+        Select a specific use case, if applicable
       </div>
       <div
         class=" css-l45kjq-container"
@@ -121,7 +121,7 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
             <div
               class="react-select__single-value css-qc6sy-singleValue"
             >
-              subsector
+              useCase
             </div>
             <div
               class="react-select__input-container css-6j8wv5-Input"
