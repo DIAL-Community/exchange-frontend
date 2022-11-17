@@ -13,6 +13,7 @@ import IconButton from '../shared/IconButton'
 import { ToastContext } from '../../lib/ToastContext'
 import ValidationError from '../shared/ValidationError'
 import { CREATE_PRODUCT } from '../../mutations/product'
+import UrlInput from '../shared/UrlInput'
 
 const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
@@ -190,13 +191,18 @@ const ProductForm = React.memo(({ product }) => {
                     <label className='text-xl text-dial-blue' htmlFor='website'>
                       {format('product.website')}
                     </label>
-                    <Input
-                      {...register('website')}
-                      id='website'
-                      placeholder={format('product.website')}
-                      isInvalid={errors.website}
+                    <Controller
+                      name='website'
+                      control={control}
+                      render={({ field: { value, onChange } }) => (
+                        <UrlInput
+                          value={value}
+                          onChange={onChange}
+                          id='website'
+                          placeholder={format('product.website')}
+                        />
+                      )}
                     />
-                    {errors.website && <ValidationError value={errors.website?.message} />}
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2'>
                     <label className='text-xl text-dial-blue'>
