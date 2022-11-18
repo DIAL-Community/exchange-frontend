@@ -28,17 +28,17 @@ const ProductActiveFilter = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const {
-    withMaturity, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
+    isEndorsed, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
     useCases, workflows, buildingBlocks, endorsers, licenseTypes
   } = useContext(ProductFilterContext)
 
   const {
-    setWithMaturity, setProductDeployable, setSectors, setCountries, setOrganizations,
+    setIsEndorsed, setProductDeployable, setSectors, setCountries, setOrganizations,
     setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers, setLicenseTypes
   } = useContext(ProductFilterDispatchContext)
 
-  const toggleWithMaturity = () => {
-    setWithMaturity(!withMaturity)
+  const toggleIsEndorsed = () => {
+    setIsEndorsed(!isEndorsed)
   }
 
   const toggleProductDeployable = () => {
@@ -47,7 +47,7 @@ const ProductActiveFilter = () => {
 
   const filterCount = () => {
     let count = 0
-    count = withMaturity ? count + 1 : count
+    count = isEndorsed ? count + 1 : count
     count = productDeployable ? count + 1 : count
     count = count + countries.length + organizations.length + tags.length +
       sectors.length + origins.length + sdgs.length + useCases.length +
@@ -58,7 +58,7 @@ const ProductActiveFilter = () => {
 
   const clearFilter = (e) => {
     e.preventDefault()
-    setWithMaturity(false)
+    setIsEndorsed(false)
     setProductDeployable(false)
     setOrigins([])
     setCountries([])
@@ -78,7 +78,7 @@ const ProductActiveFilter = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
     const basePath = 'products'
 
-    const maturityFilter = withMaturity ? 'withMaturity=true' : ''
+    const endorsedFilter = isEndorsed ? 'isEndorsed=true' : ''
     const deployableFilter = productDeployable ? 'productDeployable=true' : ''
     const originFilters = origins.map(origin => `origins=${origin.value}--${origin.label}`)
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
@@ -94,7 +94,7 @@ const ProductActiveFilter = () => {
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, maturityFilter, licenseTypesFilter, deployableFilter, ...originFilters, ...countryFilters,
+      activeFilter, endorsedFilter, licenseTypesFilter, deployableFilter, ...originFilters, ...countryFilters,
       ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters, ...useCaseFilters, ...workflowFilters,
       ...buildingBlockFilters, ...endorserFilters
     ].filter(f => f).join('&')
@@ -105,7 +105,7 @@ const ProductActiveFilter = () => {
   useEffect(() => {
     // Only apply this if the use have not interact with the UI and the url is a sharable link
     if (query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog && !interactionDetected) {
-      setWithMaturity(query.withMaturity === 'true')
+      setIsEndorsed(query.isEndorsed === 'true')
       setProductDeployable(query.productDeployable === 'true')
       parseQuery(query, 'licenseTypes', licenseTypes, setLicenseTypes)
       parseQuery(query, 'origins', origins, setOrigins)
@@ -124,11 +124,11 @@ const ProductActiveFilter = () => {
   return (
     <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
       <div className='flex flex-row flex-wrap px-3 gap-2'>
-        {withMaturity && (
+        {isEndorsed && (
           <div className='py-1'>
             <Pill
-              label={format('filter.product.withMaturity')}
-              onRemove={toggleWithMaturity}
+              label={format('filter.product.endorsed')}
+              onRemove={toggleIsEndorsed}
             />
           </div>
         )}

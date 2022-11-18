@@ -12,7 +12,7 @@ import BarChart from '../shared/BarChart'
 import { useUser } from '../../lib/hooks'
 import EditableSection from '../shared/EditableSection'
 import Card from '../shared/Card'
-import { PRODUCT_CATEGORY_INDICATORS_QUERY, PRODUCT_MATURITY_SCORES_QUERY } from '../../queries/product'
+import { PRODUCT_CATEGORY_INDICATORS_QUERY } from '../../queries/product'
 import { getCategoryIndicatorBooleanOptions, getCategoryIndicatorNumericOptions, getCategoryIndicatorScaleOptions } from '../../lib/utilities'
 import { CategoryIndicatorType } from '../../lib/constants'
 import Select from '../shared/Select'
@@ -71,7 +71,7 @@ const MaturityCategory = ({ category }) => {
   )
 }
 
-const ProductDetailMaturityScores = ({ slug }) => {
+const ProductDetailMaturityScores = ({ slug, maturityScore, maturityScoreDetails }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id) => formatMessage({ id }), [formatMessage])
 
@@ -99,26 +99,12 @@ const ProductDetailMaturityScores = ({ slug }) => {
   const [isMaturityScoreDetailsDialogOpen, setIsMaturityScoreDetailsDialogOpen] = useState(false)
   const toggleMaturityScoreDetailsDialog = () => setIsMaturityScoreDetailsDialogOpen(!isMaturityScoreDetailsDialogOpen)
 
-  const {
-    loading: loadingMaturityScores,
-    data: maturityScoresData,
-    refetch: refetchMaturityScores,
-  } = useQuery(PRODUCT_MATURITY_SCORES_QUERY, {
-    variables: { slug },
-    notifyOnNetworkStatusChange: true
-  })
+  const [overallMaturityScore, setOverallMaturityScore] = useState(maturityScore?.overallScore)
 
-  const overallMaturityScore = useMemo(
-    () => maturityScoresData?.product?.maturityScore,
-    [maturityScoresData?.product?.maturityScore]
-  )
+  const sortMaturityScoreDetails = useCallback((data) => data?.filter(({ overall_score }) => overall_score > 0)
+    .sort((categoryA, categoryB) => categoryA.name.localeCompare(categoryB.name)), [])
 
-  const validMaturityScores = useMemo(
-    () => maturityScoresData?.product?.maturityScores
-      .filter(({ overall_score }) => overall_score > 0)
-      .sort((categoryA, categoryB) => categoryA.name.localeCompare(categoryB.name)),
-    [maturityScoresData?.product?.maturityScores]
-  )
+  const [validMaturityScores, setValidMaturityScores] = useState(sortMaturityScoreDetails(maturityScoreDetails))
 
   const chartLabels = useMemo(() => validMaturityScores?.map(({ name }) => name), [validMaturityScores])
 
@@ -190,14 +176,14 @@ const ProductDetailMaturityScores = ({ slug }) => {
   useEffect(() => setValue(CATEGORY_INDICATORS_FIELD_ARRAY_NAME, defaultCategoryIndicators), [defaultCategoryIndicators, setValue])
 
   const [updateProductIndicators, { loading: isMutating }] = useMutation(UPDATE_PRODUCT_CATEGORY_INDICATORS, {
-    onCompleted: () => {
-      refetchMaturityScores()
+    onCompleted: (data) => {
       refetchCategoryIndicators()
+      setValidMaturityScores(sortMaturityScoreDetails(data.updateProductIndicators.product.maturityScoreDetails))
+      setOverallMaturityScore(data.updateProductIndicators.product.maturityScore.overallScore)
       setIsDirty(false)
       showToast(format('toast.category-indicator.update.success'), 'success', 'top-center')
     },
     onError: () => {
-      refetchMaturityScores()
       setValue(CATEGORY_INDICATORS_FIELD_ARRAY_NAME, defaultCategoryIndicators)
       setIsDirty(false)
       showToast(format('toast.category-indicator.update.failure'), 'error', 'top-center')
@@ -244,7 +230,7 @@ const ProductDetailMaturityScores = ({ slug }) => {
   const displayModeBody = (
     <>
       <div className='text-sm mb-3 text-dial-gray-dark highlight-link' dangerouslySetInnerHTML={{ __html: format('product.maturity-desc') }} />
-      {loadingMaturityScores ? <Loading /> : validMaturityScores?.length ? (
+      {validMaturityScores?.length ? (
         <>
           <div className='pb-5 mr-6 h4' data-testid='maturity-overall-score'>
             {format('product.overall-score')}: {overallMaturityScore} / {MAX_MATURITY_SCORE}

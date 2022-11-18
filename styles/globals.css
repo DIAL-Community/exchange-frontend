@@ -173,9 +173,10 @@ body {
 
 @layer components {
   /* native HTML inputs */
-  input,
+  input:not(.url),
   input[type]:not(.react-select__input),
-  textarea.textarea {
+  textarea.textarea,
+  .url-input {
     @apply border-0;
     @apply text-lg;
     @apply text-dial-gray-dark;
@@ -192,18 +193,21 @@ body {
   }
 
   input:not(.validation-error),
-  textarea.textarea:not(.validation-error) {
+  textarea.textarea:not(.validation-error),
+  .url-input:not(.validation-error) {
     @apply outline-button-gray;
   }
 
   input.validation-error,
-  textarea.textarea.validation-error {
+  textarea.textarea.validation-error,
+  .url-input.validation-error {
     @apply outline-validation-error;
   }
 
   input:focus,
   input[type]:focus,
-  textarea.textarea:focus {
+  textarea.textarea:focus,
+  .url-input:focus-within {
     @apply outline;
     @apply outline-offset-0;
     @apply outline-[3px];

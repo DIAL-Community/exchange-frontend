@@ -225,6 +225,10 @@ export const UPDATE_PRODUCT_CATEGORY_INDICATORS = gql`
       slug: $slug
       indicatorsData: $indicatorsData
     ) {
+      product {
+        maturityScore
+        maturityScoreDetails
+      }
       errors
     }  
   }

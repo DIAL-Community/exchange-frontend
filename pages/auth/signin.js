@@ -25,7 +25,7 @@ export default function SignIn ({ csrfToken }) {
 
   return (
     <>
-      <Header />
+      <Header isOnAuthPage />
       <div className='bg-dial-gray-dark pt-40 pb-40'>
         <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
           <form ref={formEl} method='post' onSubmit={handleSubmit} action={process.env.NEXT_PUBLIC_AUTH_TYPE === 'auth0' ? '/api/auth/signin/auth0' : '/api/auth/callback/credentials'}>

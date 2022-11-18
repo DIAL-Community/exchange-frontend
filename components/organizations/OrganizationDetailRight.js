@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react'
 import Breadcrumb from '../shared/breadcrumb'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
+import { prependUrlWithProtocol } from '../../lib/utilities'
 import AggregatorCapability from './AggregatorCapability'
 import OrganizationDetailCountries from './OrganizationDetailCountries'
 import OrganizationDetailSectors from './OrganizationDetailSectors'
@@ -67,7 +68,7 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
             {format('organization.detail.website').toUpperCase()}
           </div>
           <div className='text-base text-dial-teal' data-testid='organization-website'>
-            <a href={`//${organization.website}`} className='flex flex-row' target='_blank' rel='noreferrer'>
+            <a href={prependUrlWithProtocol(organization.website)} className='flex flex-row' target='_blank' rel='noreferrer'>
               <div className='my-auto'>{organization.website} ⧉</div>
             </a>
           </div>

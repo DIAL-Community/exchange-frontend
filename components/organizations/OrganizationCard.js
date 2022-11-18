@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { prependUrlWithProtocol } from '../../lib/utilities'
 import { convertToKey } from '../context/FilterContext'
 
 const collectionPath = convertToKey('Organizations')
@@ -123,7 +124,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
                     <div className='bg-dial-blue hover:bg-dial-yellow text-white mt-auto'>
                       <div className='py-3'>
                         <a
-                          href={`//${organization.website}`} className='flex flex-row justify-center'
+                          href={prependUrlWithProtocol(organization.website)} className='flex flex-row justify-center'
                           target='_blank' rel='noreferrer'
                         >
                           <div className='my-auto'>{format('organization.visitWebsite')}</div>
