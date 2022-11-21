@@ -4,7 +4,7 @@ const SITE_URL = 'https://solutions.dial.community'
 
 const config = {
   siteUrl: SITE_URL,
-  generateRobotsTxt: true,
+  generateRobotsTxt: process.env.ENABLE_CRAWLERS,
   robotsTxtOptions: {
     policies: [
       { userAgent: '*', disallow: '/users' },
