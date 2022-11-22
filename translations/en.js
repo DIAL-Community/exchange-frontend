@@ -52,6 +52,7 @@ export const en = {
   'user.products.placeholder': 'Enter products owned by user',
   'user.confirmed': 'User account confirmed',
   'user.iconImage': 'User icon image',
+  'user.tokenExpired': 'Session token has expired. Logout will occur in 5 seconds. Please log in again.',
 
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
