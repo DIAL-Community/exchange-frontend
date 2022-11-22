@@ -8,6 +8,7 @@ import { MdClose } from 'react-icons/md'
 import { useRouter } from 'next/router'
 import ReCAPTCHA from 'react-google-recaptcha'
 import zxcvbn from 'zxcvbn'
+import { getCsrfToken, getSession } from 'next-auth/react'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import ClientOnly from '../../lib/ClientOnly'
@@ -362,3 +363,21 @@ const SignUp = () => {
 }
 
 export default SignUp
+
+export async function getServerSideProps (ctx) {
+  const session = await getSession(ctx)
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/'
+      }
+    }
+  }
+
+  return {
+    props: {
+      csrfToken: await getCsrfToken(ctx)
+    }
+  }
+}

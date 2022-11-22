@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
 import dynamic from 'next/dynamic'
+import { getCsrfToken, getSession } from 'next-auth/react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
@@ -109,3 +110,21 @@ const ResetPassword = () => {
 }
 
 export default ResetPassword
+
+export async function getServerSideProps (ctx) {
+  const session = await getSession(ctx)
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/'
+      }
+    }
+  }
+
+  return {
+    props: {
+      csrfToken: await getCsrfToken(ctx)
+    }
+  }
+}

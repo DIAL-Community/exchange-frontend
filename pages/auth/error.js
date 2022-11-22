@@ -1,3 +1,4 @@
+import { getCsrfToken, getSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
@@ -37,4 +38,22 @@ export default function Error () {
       </div>
     </>
   )
+}
+
+export async function getServerSideProps (ctx) {
+  const session = await getSession(ctx)
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/'
+      }
+    }
+  }
+
+  return {
+    props: {
+      csrfToken: await getCsrfToken(ctx)
+    }
+  }
 }
