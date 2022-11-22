@@ -1,8 +1,11 @@
 import Link from 'next/link'
-import { signIn } from 'next-auth/react'
-import { useEffect, useState } from 'react'
+import { signIn, signOut } from 'next-auth/react'
+import { useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useQuery } from '@apollo/client'
 import { useUser } from '../lib/hooks'
+import { ToastContext } from '../lib/ToastContext'
+import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../queries/user'
 import MobileMenu from './MobileMenu'
 import AdminMenu from './shared/menu/AdminMenu'
 import UserMenu from './shared/menu/UserMenu'
@@ -19,6 +22,8 @@ const dropdownMenuStyles = `
 const Header = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
+
+  const { showToast } = useContext(ToastContext)
 
   const { user, isAdminUser } = useUser()
 
@@ -59,6 +64,28 @@ const Header = ({ isOnAuthPage = false }) => {
       document.removeEventListener('click', handleClick)
     }
   }, [currentOpenMenu])
+
+  const { data: dataUserToken } = useQuery(USER_AUTHENTICATION_TOKEN_CHECK_QUERY, {
+    variables: {
+      userId: user?.id,
+      userAuthenticationToken: user?.userToken
+    },
+    skip: !user,
+  })
+
+  if (dataUserToken?.userAuthenticationTokenCheck === false) {
+    showToast(
+      format('user.tokenExpired'),
+      'error',
+      'top-center',
+      5000,
+      null,
+      () => {
+        signOut({ redirect: false })
+        signIn()
+      },
+    )
+  }
 
   return (
     <header className='z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white'>

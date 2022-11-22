@@ -50,3 +50,15 @@ export const USER_QUERY = gql`
     }
   }
 `
+
+export const USER_AUTHENTICATION_TOKEN_CHECK_QUERY = gql`
+  query UserAuthenticationTokenCheck(
+    $userId: Int!
+    $userAuthenticationToken: String!
+  ) {
+    userAuthenticationTokenCheck(
+      userId: $userId
+      userAuthenticationToken: $userAuthenticationToken
+    )
+  }
+`
