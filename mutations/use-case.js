@@ -5,8 +5,9 @@ export const CREATE_USE_CASE_STEP = gql`
     $name: String!,
     $slug: String!,
     $stepNumber: Int!,
-    $description: String!
+    $description: String
     $useCaseId: Int!
+    $markdownUrl: String
   ) {
     createUseCaseStep(
       name: $name
@@ -14,6 +15,7 @@ export const CREATE_USE_CASE_STEP = gql`
       stepNumber: $stepNumber
       description: $description
       useCaseId: $useCaseId
+      markdownUrl: $markdownUrl
     ) {
       useCaseStep {
         slug

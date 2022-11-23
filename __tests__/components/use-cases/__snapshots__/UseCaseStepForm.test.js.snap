@@ -149,6 +149,25 @@ exports[`Unit tests for UseCaseStepForm component. Should display failure toast 
                     value=""
                   />
                 </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="use-case-step-markdown-url"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="markdownUrl"
+                  >
+                    Markdown Filename
+                  </label>
+                  <input
+                    class="w-full"
+                    id="markdownUrl"
+                    name="markdownUrl"
+                    placeholder="Markdown Filename"
+                    type="text"
+                    value=""
+                  />
+                </div>
               </div>
               <div
                 class="w-full lg:w-1/2"
@@ -363,6 +382,25 @@ exports[`Unit tests for UseCaseStepForm component. Should display success toast 
                     value=""
                   />
                 </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="use-case-step-markdown-url"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="markdownUrl"
+                  >
+                    Markdown Filename
+                  </label>
+                  <input
+                    class="w-full"
+                    id="markdownUrl"
+                    name="markdownUrl"
+                    placeholder="Markdown Filename"
+                    type="text"
+                    value=""
+                  />
+                </div>
               </div>
               <div
                 class="w-full lg:w-1/2"
@@ -534,6 +572,25 @@ exports[`Unit tests for UseCaseStepForm component. Should render StepForm compon
                     name="stepNumber"
                     placeholder="Step Number"
                     type="number"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="use-case-step-markdown-url"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="markdownUrl"
+                  >
+                    Markdown Filename
+                  </label>
+                  <input
+                    class="w-full"
+                    id="markdownUrl"
+                    name="markdownUrl"
+                    placeholder="Markdown Filename"
+                    type="text"
                     value=""
                   />
                 </div>
