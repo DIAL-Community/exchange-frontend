@@ -403,6 +403,21 @@ body {
     @apply disabled:bg-dial-gray;
   }
 
+  button.secondary-button {
+    @apply flex;
+    @apply items-center;
+    @apply py-2;
+    @apply px-5;
+    @apply rounded-md;
+    @apply border-2;
+    @apply border-dial-blue;
+    @apply hover:border-transparent;
+    @apply text-dial-blue;
+    @apply hover:bg-dial-blue;
+    @apply hover:text-white;
+    @apply disabled:opacity-50;
+  }
+
   button.cancel-button,
   button.close-button {
     @apply flex;

@@ -7,6 +7,8 @@ export const en = {
   'app.comment': 'Comments',
   'app.nocomment': 'Start a Conversation',
   'app.home': 'Home',
+  'app.save': 'Save',
+  'app.saving': 'Saving',
   'app.submit': 'Submit',
   'app.submitting': 'Submitting',
   'app.search': 'Search',
@@ -31,6 +33,8 @@ export const en = {
   'app.internal-server-error': "500 - Internal Server Error",
   'app.menu': 'Menu',
   'app.email': 'Email Address',
+  'app.lastUpdated': 'Updated: {lastUpdated}.',
+  'general.pastSuffix': 'ago',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -595,6 +599,7 @@ export const en = {
   'use-case-step.create': 'Add Use Case Step',
   'use-case-step.label': 'Use Case Step',
   'use-case-step.name': 'Name',
+  'use-case-step.markdownUrl': 'Markdown Filename',
   'use-case-step.description': 'Description',
   'use-case-step.step-number': 'Step Number',
   'use-case-step.submit.failure': 'Use Case Step submission failed',
@@ -1143,6 +1148,9 @@ export const en = {
   'toast.category-indicator.update.failure': 'Category Indicators update failed',
   'toast.playbook.delete.success': 'Playbook deleted successfully',
   'toast.playbook.delete.failure': 'Playbook deletion failed',
+
+  'toast.markdown.submit.success': 'Changes saved successfully.',
+  'toast.markdown.submit.failure': 'Unable to save changes. Please try again later.',
 
   'locale.label': 'Locale',
   'locale.english.label': 'English (en)',
