@@ -96,20 +96,20 @@ const Footer = () => {
       </div>
       <div className='relative w-full bg-dial-gray text-dial-purple-light leading-none text-base'>
         <div className='px-4 pb-4 pt-8 lg:px-10 2xl:pt-12 2xl:pb-8 2xl:px-24 flex flex-row flex-wrap max-w-catalog mx-auto'>
-          <div className='py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light'>
+          <div className='group py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light hover:cursor-pointer'>
             <a
               href='https://digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'
               target='_blank' rel='noreferrer'
-              className='border-b-2 border-transparent hover:border-dial-yellow'
+              className='border-b-2 border-transparent group-hover:border-dial-yellow'
             >
               {format('footer.sign-up').toUpperCase()}
             </a>
           </div>
-          <div className='py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light'>
+          <div className='group py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light hover:cursor-pointer'>
             <a
               href='https://gitlab.com/dial/online-catalog/product-registry'
               target='_blank' rel='noreferrer'
-              className='border-b-2 border-transparent hover:border-dial-yellow'
+              className='border-b-2 border-transparent group-hover:border-dial-yellow'
             >
               {format('footer.view-gitlab').toUpperCase()}
             </a>
@@ -178,26 +178,30 @@ const Footer = () => {
             <div className='py-2 order-last xl:order-first'>
               &copy; {new Date().getFullYear()} {format('footer.organizationName').toUpperCase()}
             </div>
-            <div className='py-2 px-3 rounded-md bg-dial-gray-light'>
+            <div className='group py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer'>
               <a
                 href='/privacy-policy'
                 target='_blank' rel='noreferrer'
-                className='border-b-2 border-transparent hover:border-dial-yellow'
+                className='border-b-2 border-transparent group-hover:border-dial-yellow'
               >
                 {format('footer.privacyPolicy').toUpperCase()}
               </a>
             </div>
-            <div
-              className='py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer'
-              onClick={() => showFeedbackForm('app.reportIssue')}
-            >
-              {format('app.reportIssue').toUpperCase()}
+            <div className='group py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer'>
+              <a
+                onClick={(e) => { e.preventDefault(); showFeedbackForm('app.reportIssue') }}
+                className='border-b-2 border-transparent group-hover:border-dial-yellow'
+              >
+                {format('app.reportIssue').toUpperCase()}
+              </a>
             </div>
-            <div
-              className='py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer'
-              onClick={() => showFeedbackForm('footer.contactUs')}
-            >
-              {format('footer.contactUs').toUpperCase()}
+            <div className='group py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer'>
+              <a
+                onClick={(e) => { e.preventDefault(); showFeedbackForm('footer.contactUs') }}
+                className='border-b-2 border-transparent group-hover:border-dial-yellow'
+              >
+                {format('footer.contactUs').toUpperCase()}
+              </a>
             </div>
           </div>
         </div>

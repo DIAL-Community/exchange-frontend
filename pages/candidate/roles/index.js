@@ -29,7 +29,7 @@ const Roles = () => {
       <MobileNav activeTab='filter.entity.candidateRoles' />
       <ClientOnly>
         <PageContent
-          activeTab='filter.entity.candidateProducts'
+          activeTab='filter.entity.candidateRoles'
           content={<RoleListQuery displayType='list' />}
           searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.candidateRoles' />}
         />

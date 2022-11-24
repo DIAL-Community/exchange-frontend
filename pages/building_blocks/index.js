@@ -40,7 +40,7 @@ const BuildingBlocks = () => {
       <MobileNav activeTab='filter.entity.buildingBlocks' />
       <ClientOnly>
         <PageContent
-          activeTab='filter.entity.products'
+          activeTab='filter.entity.buildingBlocks'
           filter={<BuildingBlockFilter />}
           content={<BuildingBlockListQuery />}
           searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.buildingBlocks' />}
