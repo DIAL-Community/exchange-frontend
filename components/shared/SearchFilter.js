@@ -240,7 +240,7 @@ const SearchFilter = ({
               <SearchInput
                 value={searchTerm} onChange={handleChange}
                 className={`
-                  form-input py-2 px-3 text-sm rounded-md w-96 2xl:w-[32rem]
+                  form-input py-2 px-3 text-sm rounded-md md:w-80 lg:w-96 2xl:w-[32rem]
                   placeholder-dial-gray-dark placeholder-opacity-40 border border-dial-gray-dark focus:border-dial-yellow
                 `}
                 placeholder={`${format('app.search')} ${format(hint).toString().toLowerCase()}`}
