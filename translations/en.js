@@ -817,12 +817,8 @@ export const en = {
   'signUp.passwordConfirmation': 'Password Confirmation',
   'signUp.passwordConfirmation.hint': 'Please re-enter your password',
   'signUp.moreSecure': 'Please enter a more secure password',
-  'signUp.organization': 'Owner of this organization',
-  'signUp.products': 'Owner of these products',
   'signUp.privacy': 'Note: By signing up, you agree to the terms in our',
   'signUp.privacyLink': 'Privacy Policy',
-  'signUp.tooltip.organizationOwner': 'Apply to be the owner for the organization which will allow you to update the organization information.',
-  'signUp.tooltip.productOwner': 'Optionally apply as a product owner. You will need to be verified by our team member to do this.',
 
   'consent.text': 'Cookies help us deliver our services. By using our services, you agree to our use of cookies.',
   'consent.privacyPolicy': 'Privacy Policy',

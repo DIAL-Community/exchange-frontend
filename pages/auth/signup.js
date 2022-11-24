@@ -1,10 +1,8 @@
 import { useIntl } from 'react-intl'
 import { useState, useContext, useCallback } from 'react'
 import Link from 'next/link'
-import { FaRegQuestionCircle, FaSpinner } from 'react-icons/fa'
-import { gql, useApolloClient } from '@apollo/client'
+import { FaSpinner } from 'react-icons/fa'
 import dynamic from 'next/dynamic'
-import { MdClose } from 'react-icons/md'
 import { useRouter } from 'next/router'
 import ReCAPTCHA from 'react-google-recaptcha'
 import zxcvbn from 'zxcvbn'
@@ -15,25 +13,6 @@ import ClientOnly from '../../lib/ClientOnly'
 import { ToastContext } from '../../lib/ToastContext'
 
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
-const AsyncSelect = dynamic(() => import('react-select/async'), { ssr: false })
-
-const ORGANIZATION_SEARCH_QUERY = gql`
-  query Organizations($search: String!) {
-    organizations(search: $search) {
-      id
-      name
-    }
-  }
-`
-
-const PRODUCT_SEARCH_QUERY = gql`
-  query Products($search: String!) {
-    products(search: $search) {
-      id
-      name
-    }
-  }
-`
 
 const TextFieldDefinition = (initialState) => {
   const [fields, setFields] = useState(initialState)
@@ -71,18 +50,6 @@ const TextFieldDefinition = (initialState) => {
   ]
 }
 
-const customStyles = {
-  control: (provided) => ({
-    ...provided,
-    width: 'auto',
-    cursor: 'pointer'
-  }),
-  option: (provided) => ({
-    ...provided,
-    cursor: 'pointer'
-  })
-}
-
 const strengthClasses = {
   0: 'strength-meh',
   1: 'strength-weak',
@@ -93,14 +60,11 @@ const strengthClasses = {
 
 const SignUp = () => {
   const router = useRouter()
-  const client = useApolloClient()
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
   const [created, setCreated] = useState(false)
-  const [products, setProducts] = useState('')
-  const [organization, setOrganization] = useState('')
   const [captcha, setCaptcha] = useState('')
 
   const { showToast } = useContext(ToastContext)
@@ -110,33 +74,6 @@ const SignUp = () => {
     password: '',
     passwordConfirmation: ''
   })
-
-  const fetchOptions = async (input, callback, query) => {
-    if (input && input.trim().length < 1) {
-      return []
-    }
-
-    const response = await client.query({
-      query,
-      variables: {
-        search: input
-      }
-    })
-
-    if (response.data && response.data.organizations) {
-      return response.data.organizations.map((organization) => ({
-        label: organization.name,
-        value: organization.id
-      }))
-    } else if (response.data && response.data.products) {
-      return response.data.products.map((product) => ({
-        label: product.name,
-        value: product.id
-      }))
-    }
-
-    return []
-  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -149,14 +86,6 @@ const SignUp = () => {
         password: textFields.password,
         password_confirmation: textFields.passwordConfirmation
       }
-    }
-
-    if (organization) {
-      signUpBody.user.organization_id = parseInt(organization.value)
-    }
-
-    if (products && products.length > 0) {
-      signUpBody.user.user_products = products.map(product => parseInt(product.value))
     }
 
     const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/authenticate/signup', {
@@ -191,10 +120,6 @@ const SignUp = () => {
     }
 
     setLoading(false)
-  }
-
-  const removeProduct = (product) => {
-    setProducts(products.filter(p => p.value !== product.value))
   }
 
   const strengthColor = (strength) => {
@@ -257,65 +182,6 @@ const SignUp = () => {
                       value={textFields.passwordConfirmation} onChange={handleTextChange}
                     />
                     <p className='text-red text-xs italic mt-2'>{format('signUp.passwordConfirmation.hint')}</p>
-                  </div>
-                  <div className='mb-4 text-gray-dark flex'>
-                    <label className='block w-full'>
-                      <span className='block text-grey-darker text-sm font-bold mb-2'>
-                        {format('organization.label')}
-                        <FaRegQuestionCircle
-                          className='ml-3 float-right'
-                          data-tip={format('signUp.tooltip.organizationOwner')}
-                        />
-                      </span>
-                      <AsyncSelect
-                        className='rounded text-sm text-dial-gray-dark block w-full'
-                        cacheOptions
-                        defaultOptions
-                        loadOptions={(input, callback) => fetchOptions(input, callback, ORGANIZATION_SEARCH_QUERY)}
-                        noOptionsMessage={() => format('filter.searchFor', { entity: format('organization.label') })}
-                        onChange={setOrganization}
-                        placeholder={format('signUp.organization')}
-                        styles={customStyles}
-                        value={organization}
-                        isClearable
-                      />
-                    </label>
-                  </div>
-                  <div className='text-gray-dark flex'>
-                    <label className='block w-full'>
-                      <span className='block text-grey-darker text-sm font-bold mb-2'>
-                        {format('product.label')}
-                        <FaRegQuestionCircle
-                          className='ml-3 float-right'
-                          data-tip={format('signUp.tooltip.productOwner')}
-                        />
-                      </span>
-                      <AsyncSelect
-                        className='rounded text-sm text-dial-gray-dark my-auto'
-                        cacheOptions
-                        defaultOptions
-                        loadOptions={(input, callback) => fetchOptions(input, callback, PRODUCT_SEARCH_QUERY)}
-                        noOptionsMessage={() => format('filter.searchFor', { entity: format('product.header') })}
-                        onChange={(e) => setProducts([...products, e])}
-                        placeholder={format('signUp.products')}
-                        menuPlacement='top'
-                        styles={customStyles}
-                        value={products[products.length - 1]}
-                      />
-                    </label>
-                  </div>
-                  <div className='flex flex-row flex-wrap mb-4'>
-                    {
-                      products && products.length > 0 &&
-                        products.map((product, index) => {
-                          return (
-                            <div className='text-xs rounded text-dial-gray-dark bg-dial-yellow px-2 py-1 mr-2 mt-2' key={index}>
-                              {product.label}
-                              <MdClose className='ml-2 inline cursor-pointer' onClick={() => removeProduct(product)} />
-                            </div>
-                          )
-                        })
-                    }
                   </div>
                   <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} onChange={setCaptcha} />
                   <div className='flex items-center justify-between font-semibold text-sm mt-2'>
