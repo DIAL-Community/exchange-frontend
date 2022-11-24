@@ -62,3 +62,15 @@ export const USER_AUTHENTICATION_TOKEN_CHECK_QUERY = gql`
     )
   }
 `
+
+export const USER_ROLES = gql`
+  query UserRoles {
+    userRoles
+  }
+`
+
+export const USER_EMAIL_CHECK = gql`
+  query UserEmailCheck ($email: String!) {
+    userEmailCheck (email: $email)
+  }
+`
