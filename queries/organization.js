@@ -6,6 +6,7 @@ export const ORGANIZATION_SEARCH_QUERY = gql`
       id
       name
       slug
+      website
     }
   }
 `

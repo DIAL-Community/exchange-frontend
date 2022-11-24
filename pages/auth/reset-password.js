@@ -49,7 +49,7 @@ const ResetPassword = () => {
 
   return (
     <>
-      <Header />
+      <Header isOnAuthPage />
       <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <div className='bg-dial-gray-dark pt-28 simple-form-height'>
         <div className={`mx-4 ${created ? 'visible' : 'invisible'} text-center bg-dial-gray-dark`}>
