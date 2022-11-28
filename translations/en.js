@@ -1207,14 +1207,14 @@ export const en = {
   'paginatedSection.page.next.label': 'Next >',
 
   'intro.overview.startTour': 'Take a Tour',
-  'intro.overview': "Let's start with a quick product tour to get acquainted with the platform.",
-  'intro.overview.sdgFramework': 'Explore data and content on different nodes of the SDG Digital Investment Framework.',
-  'intro.overview.entityProduct': 'Discover important information on different solutions and tools.',
-  'intro.overview.entityHelp': 'Need more information on the tab? Click here.',
-  'intro.overview.search': 'Search by key words.',
-  'intro.overview.filter': 'Or use filters to narrow your search.',
-  'intro.overview.cardView': 'Click on a card for detailed information.',
-  'intro.overview.entityPlaybook': 'Find guidance resources contributed by our community of users.',
+  'intro.overview': "Welcome to the Catalog of Digital Solutions.<br /><br />Let's start with a quick product tour to get acquainted with the platform.<br /><br /><div class='text-xs'>You can exit this tour at any time by clicking the 'X' in the top right corner.</div>",
+  'intro.overview.sdgFramework': 'The Catalog leverages the SDG Digitial Investment Framework developed by DIAL and ITU. You can see different aspects of the Framework by clicking on the various tabs.',
+  'intro.overview.entityProduct': 'The Products Tab is used to discover information on different solutions and tools.',
+  'intro.overview.entityHelp': 'Need more information on what a product is? Click here.',
+  'intro.overview.search': 'The Catalog makes it easy to search and find specific products. Use this search bar to find a product by key words.',
+  'intro.overview.filter': 'Or use these filters to narrow your search.',
+  'intro.overview.cardView': 'Click on one of the cards below for detailed information about that product.',
+  'intro.overview.entityPlaybook': 'The Playbooks tab allows you to find guidance and resources contributed by DIAL and our community of users.',
   'intro.overview.wizard': 'Need more help? Try our recommendations wizard.',
-  'intro.overview.signUp': 'Start today by signing up for an account to access more features.'
+  'intro.overview.signUp': 'Start using the Catalog today by signing up for an account, which allows you to access even more great features.'
 }
