@@ -1,3 +1,4 @@
+import { getCsrfToken, getSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
@@ -9,7 +10,7 @@ export default function Error () {
 
   return (
     <>
-      <Header />
+      <Header isOnAuthPage />
       <div className='bg-dial-gray-dark pt-40 h-screen'>
         <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
           <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
@@ -37,4 +38,22 @@ export default function Error () {
       </div>
     </>
   )
+}
+
+export async function getServerSideProps (ctx) {
+  const session = await getSession(ctx)
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/'
+      }
+    }
+  }
+
+  return {
+    props: {
+      csrfToken: await getCsrfToken(ctx)
+    }
+  }
 }

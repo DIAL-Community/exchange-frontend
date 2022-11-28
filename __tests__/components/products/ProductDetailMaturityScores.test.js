@@ -1,10 +1,10 @@
 import { fireEvent } from '@testing-library/dom'
 import ProductDetailMaturityScores from '../../../components/products/ProductDetailMaturityScores'
-import { PRODUCT_CATEGORY_INDICATORS_QUERY, PRODUCT_MATURITY_SCORES_QUERY } from '../../../queries/product'
+import { PRODUCT_CATEGORY_INDICATORS_QUERY } from '../../../queries/product'
 import { mockObserverImplementation, render, waitForAllEffects } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
-import { categoryIndicators, maturityScores } from './data/ProductDetailMaturityScores'
+import { categoryIndicators, maturityScoreDetails, maturityScore } from './data/ProductDetailMaturityScores'
 
 mockNextUseRouter()
 
@@ -13,7 +13,6 @@ describe('Unit test for the ProductDetailMaturityScores component.', () => {
   const DIALOG_TEST_ID = 'dialog'
   const PRODUCT_SLUG = 'test'
   const EDIT_BUTTON_TEST_ID = 'edit-button'
-  const mockMaturityScores = generateMockApolloData(PRODUCT_MATURITY_SCORES_QUERY, { slug: PRODUCT_SLUG }, null, maturityScores)
   const mockCategoryIndicators = generateMockApolloData(PRODUCT_CATEGORY_INDICATORS_QUERY, { slug: PRODUCT_SLUG }, null, categoryIndicators)
 
   beforeAll(() => {
@@ -24,8 +23,12 @@ describe('Unit test for the ProductDetailMaturityScores component.', () => {
   describe('Should match snapshot', () => {
     test('maturity scores radar chart.', async () => {
       const { getByTestId } = render(
-        <CustomMockedProvider mocks={[mockMaturityScores]}>
-          <ProductDetailMaturityScores slug={PRODUCT_SLUG} />
+        <CustomMockedProvider>
+          <ProductDetailMaturityScores
+            slug={PRODUCT_SLUG}
+            maturityScore={maturityScore}
+            maturityScoreDetails={maturityScoreDetails}
+          />
         </CustomMockedProvider>
       )
       await waitForAllEffects()
@@ -35,8 +38,12 @@ describe('Unit test for the ProductDetailMaturityScores component.', () => {
 
     test('maturity scores accordion in a dialog.', async () => {
       const { getByTestId } = render(
-        <CustomMockedProvider mocks={[mockMaturityScores]}>
-          <ProductDetailMaturityScores slug={PRODUCT_SLUG} />
+        <CustomMockedProvider>
+          <ProductDetailMaturityScores
+            slug={PRODUCT_SLUG}
+            maturityScore={maturityScore}
+            maturityScoreDetails={maturityScoreDetails}
+          />
         </CustomMockedProvider>
       )
       await waitForAllEffects()
@@ -50,7 +57,11 @@ describe('Unit test for the ProductDetailMaturityScores component.', () => {
     mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const { getByTestId, container } = render(
       <CustomMockedProvider mocks={[mockCategoryIndicators]}>
-        <ProductDetailMaturityScores slug={PRODUCT_SLUG} />
+        <ProductDetailMaturityScores
+          slug={PRODUCT_SLUG}
+          maturityScore={maturityScore}
+          maturityScoreDetails={maturityScoreDetails}
+        />
       </CustomMockedProvider>
     )
     await waitForAllEffects()

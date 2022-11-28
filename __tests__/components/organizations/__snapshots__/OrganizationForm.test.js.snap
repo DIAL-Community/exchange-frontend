@@ -126,14 +126,16 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   >
                     Website
                   </label>
-                  <input
-                    class="w-full"
-                    id="website"
-                    name="website"
-                    placeholder="Website"
-                    type="text"
-                    value=""
-                  />
+                  <div
+                    class="url-input bg-white flex items-center"
+                  >
+                    <input
+                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      id="website"
+                      placeholder="Website"
+                      value=""
+                    />
+                  </div>
                 </div>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
@@ -563,14 +565,21 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   >
                     Website
                   </label>
-                  <input
-                    class="w-full"
-                    id="website"
-                    name="website"
-                    placeholder="Website"
-                    type="text"
-                    value=""
-                  />
+                  <div
+                    class="url-input bg-white flex items-center"
+                  >
+                    <span
+                      class="select-none text-dial-gray"
+                    >
+                      https://
+                    </span>
+                    <input
+                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      id="website"
+                      placeholder="Website"
+                      value="testorganization.com"
+                    />
+                  </div>
                 </div>
                 <div
                   class="flex flex-col gap-y-2 mb-2"

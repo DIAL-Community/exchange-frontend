@@ -2,15 +2,15 @@ import { gql } from '@apollo/client'
 
 export const WIZARD_QUERY = gql`
   query Wizard(
-    $sector: String,
-    $useCase: String,
-    $sdg: String,
+    $sector: String
+    $useCase: String
+    $sdg: String
     $buildingBlocks: [String!]
   ) {
     wizard(
-      sector: $sector,
-      useCase: $useCase,
-      sdg: $sdg,
+      sector: $sector
+      useCase: $useCase
+      sdg: $sdg
       buildingBlocks: $buildingBlocks
     ) {
       digitalPrinciples {
@@ -154,6 +154,76 @@ export const WIZARD_PAGINATED_PROJECTS = gql`
           slug
           name
         }
+      }
+    }
+  }
+`
+
+export const WIZARD_PAGINATED_PLAYBOOKS = gql`
+  query PaginatedPlaybooks(
+    $first: Int!
+    $offset: Int!
+    $sector: String
+    $tags: [String!]
+    $playbookSortHint: String!
+  ) {
+    paginatedPlaybooks(
+      first: $first
+      offsetAttributes: { offset: $offset }
+      sector: $sector
+      tags: $tags
+      playbookSortHint: $playbookSortHint
+    ) {
+      totalCount
+      pageInfo {
+        endCursor
+        startCursor
+        hasPreviousPage
+        hasNextPage
+      }
+      nodes {
+        id
+        name
+        slug
+        imageFile
+        tags
+      }
+    }
+  }
+`
+
+export const WIZARD_PAGINATED_DATASETS = gql`
+  query PaginatedDatasets (
+    $first: Int!
+    $offset: Int!
+    $sectors: [String!]
+    $tags: [String!]
+    $datasetSortHint: String!
+  ) {
+    paginatedDatasets (
+      first: $first
+      offsetAttributes: { offset: $offset }
+      sectors: $sectors
+      tags: $tags
+      datasetSortHint: $datasetSortHint
+    ) {
+      totalCount
+      pageInfo {
+        endCursor
+        startCursor
+        hasPreviousPage
+        hasNextPage
+      }
+      nodes {
+        id
+        name
+        slug
+        imageFile
+        origins {
+          name
+          slug
+        }
+        datasetType
       }
     }
   }

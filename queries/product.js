@@ -87,6 +87,8 @@ export const PRODUCT_QUERY = gql`
         slug
         license
       }
+      maturityScore
+      maturityScoreDetails
     }
   }
 `
@@ -126,7 +128,7 @@ export const PRODUCTS_QUERY = gql`
     $buildingBlocks: [String!]
     $endorsers: [String!]
     $productDeployable: Boolean
-    $withMaturity: Boolean
+    $isEndorsed: Boolean
     $licenseTypes: [String!]
     $search: String!
   ) {
@@ -144,7 +146,7 @@ export const PRODUCTS_QUERY = gql`
       buildingBlocks: $buildingBlocks
       endorsers: $endorsers
       productDeployable: $productDeployable
-      withMaturity: $withMaturity
+      isEndorsed: $isEndorsed
       licenseTypes: $licenseTypes
       search: $search
     ) {
@@ -227,16 +229,6 @@ export const PRODUCT_CATEGORY_INDICATORS_QUERY = gql`
           name
         }
       }
-    }
-  }
-`
-
-export const PRODUCT_MATURITY_SCORES_QUERY = gql`
-  query Product($slug: String!) {
-    product(slug: $slug) {
-      id
-      maturityScore
-      maturityScores
     }
   }
 `

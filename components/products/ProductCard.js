@@ -238,7 +238,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                             {format('product.card.maturityScore')}
                           </div>
                           <div className='bg-dial-cyan mt-1.5 mx-auto px-3 py-2 rounded text-sm text-white'>
-                            {product.maturityScore || format('general.na')}
+                            {product.maturityScore?.overallScore || format('general.na')}
                           </div>
                         </div>
                       }

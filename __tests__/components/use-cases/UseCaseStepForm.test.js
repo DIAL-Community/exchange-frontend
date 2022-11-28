@@ -19,6 +19,7 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     name: 'Test Use Case Step',
     slug: 'test_use_case_step',
     stepNumber: 1,
+    markdownUrl: '',
     description: 'test Use Case Step description',
     useCaseId: 17
   }

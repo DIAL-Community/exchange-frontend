@@ -150,7 +150,9 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   const [navigateToPlay, setNavigateToPlay] = useState(false)
 
   const { locale } = useRouter()
-  const [updatePlaybook, { data }] = useMutation(CREATE_PLAYBOOK)
+  const [updatePlaybook, { data }] = useMutation(CREATE_PLAYBOOK, {
+    refetchQueries: ['Playbook']
+  })
   const [autoSavePlaybook, { data: autoSaveData }] = useMutation(AUTOSAVE_PLAYBOOK)
   const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
     mode: 'onSubmit',

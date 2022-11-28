@@ -24,7 +24,9 @@ const WizardPageDefinition = () => {
     mobileServices: [],
     buildingBlocks: [],
     productSortHint: '',
-    projectSortHint: ''
+    projectSortHint: '',
+    playbookSortHint: '',
+    datasetSortHint: ''
   })
   const router = useRouter()
   const { locale } = router

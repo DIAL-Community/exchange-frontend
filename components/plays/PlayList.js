@@ -26,7 +26,7 @@ const PlayList = ({ playbook, playList, currentPlays, displayType, filterDisplay
     }`
 
   return (
-    <div className={`${gridStyles}`}>
+    <div className={gridStyles} >
       {
         displayType === 'list' && sourceType !== SOURCE_TYPE_ASSIGNING &&
           <div className='flex flex-row gap-4 px-3 py-4 h-16 w-full opacity-70'>
@@ -73,14 +73,20 @@ const PlayListQuery = ({ playbook, sourceType }) => {
     },
     context: { headers: { 'Accept-Language': locale } },
     onCompleted: (data) => {
-      if (data) {
-        setResultCounts({
-          ...resultCounts,
-          ...{ [['filter.entity.plays']]: data.searchPlays.totalCount }
-        })
-      }
+      setResultCounts({
+        ...resultCounts,
+        ...{ [['filter.entity.plays']]: data.searchPlays.totalCount }
+      })
     }
   })
+
+  if (loading) {
+    return <Loading />
+  } else if (error && error.networkError) {
+    return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
+  }
 
   const handleLoadMore = () => {
     fetchMore({
@@ -92,14 +98,6 @@ const PlayListQuery = ({ playbook, sourceType }) => {
     })
   }
 
-  if (loading) {
-    return <Loading />
-  } else if (error && error.networkError) {
-    return <Error />
-  } else if (error && !error.networkError) {
-    return <NotFound />
-  }
-
   const viewType = 'list'
   const { searchPlays: { nodes, pageInfo } } = data
 
@@ -107,10 +105,11 @@ const PlayListQuery = ({ playbook, sourceType }) => {
     <>
       <InfiniteScroll
         className='bg-white relative px-6 pb-8 pt-4'
+        height='50vh'
         dataLength={nodes.length}
         next={handleLoadMore}
         hasMore={pageInfo.hasNextPage}
-        loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
+        loader={<div className='text-center mt-3'>{format('general.loadingData')}</div>}
       >
         <PlayList playList={nodes} displayType={viewType} {...{ playbook, currentPlays, filterDisplayed, sourceType }} />
       </InfiniteScroll>

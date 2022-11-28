@@ -85,12 +85,12 @@ const PagedProductList = ({ buildingBlocks, countries, sectors, tags, productSor
       }
       <ReactPaginate
         breakLabel='...'
-        nextLabel='Next >'
+        nextLabel={format('paginatedSection.page.next.label')}
         forcePage={currentPage}
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={Math.ceil((itemOffset + data.paginatedProducts.totalCount) / DEFAULT_PAGE_SIZE)}
-        previousLabel='< Previous'
+        previousLabel={format('paginatedSection.page.previous.label')}
         renderOnZeroPageCount={null}
         breakLinkClassName='relative block py-1.5 px-3 border border-dial-gray -ml-px'
         containerClassName='flex mb-3 mt-3 ml-auto border-3 border-transparent'

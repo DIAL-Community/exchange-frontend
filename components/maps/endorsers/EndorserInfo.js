@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { prependUrlWithProtocol } from '../../../lib/utilities'
 
 const EndorserInfo = (props) => {
   const { city, setOrganization } = props
@@ -52,7 +53,7 @@ const EndorserInfo = (props) => {
                             {
                               organization.website &&
                                 <div className='text-xs flex-grow text-dial-blue my-2'>
-                                  <a href={`//${organization.website}`} target='_blank' rel='noreferrer'>
+                                  <a href={prependUrlWithProtocol(organization.website)} target='_blank' rel='noreferrer'>
                                     {organization.website} ⧉
                                   </a>
                                 </div>

@@ -84,14 +84,16 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - candi
                   >
                     Website
                   </label>
-                  <input
-                    class="w-full"
-                    id="website"
-                    name="website"
-                    placeholder="Website of the candidate product."
-                    type="text"
-                    value=""
-                  />
+                  <div
+                    class="url-input bg-white flex items-center"
+                  >
+                    <input
+                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      id="website"
+                      placeholder="Website of the candidate product."
+                      value=""
+                    />
+                  </div>
                 </div>
                 <div
                   class="form-field-wrapper"

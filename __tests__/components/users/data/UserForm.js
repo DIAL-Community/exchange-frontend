@@ -30,3 +30,35 @@ export const user = {
     'content_editor'
   ]
 }
+
+export const userRoles = {
+  data: {
+    userRoles: [
+      'admin',
+      'ict4sdg',
+      'principle',
+      'user',
+      'org_user',
+      'org_product_user',
+      'product_user',
+      'mni',
+      'content_writer',
+      'content_editor'
+    ]
+  }
+}
+
+export const organization = {
+  data: {
+    organizations: [
+      {
+        id: 2,
+        name: 'Organization 1',
+        imageFile: 'fake-image.png',
+        slug: 'Organization 1',
+        __typename: 'Organization',
+        website: 'test@gmail.com'
+      },
+    ]
+  }
+}

@@ -6,15 +6,15 @@ import { useMutation } from '@apollo/client'
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Controller, useForm } from 'react-hook-form'
+import { validate } from 'email-validator'
 import { ToastContext } from '../../../lib/ToastContext'
 import { CREATE_CANDIDATE_ORGANIZATION } from '../../../mutations/organization'
 import Input from '../../shared/Input'
 import ValidationError from '../../shared/ValidationError'
 import { HtmlEditor } from '../../shared/HtmlEditor'
-import { emailRegex } from '../../shared/emailRegex'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { useUser } from '../../../lib/hooks'
-import { purgeLink } from '../../../lib/utilities'
+import UrlInput from '../../shared/UrlInput'
 
 const OrganizationForm = () => {
   const { formatMessage } = useIntl()
@@ -70,12 +70,11 @@ const OrganizationForm = () => {
       setMutating(true)
 
       const { userEmail, userToken } = user
-      const { name, description, organizationName, email, title, captcha } = data
-      const websiteLink = purgeLink(data.website)
+      const { name, description, organizationName, email, title, captcha, website } = data
 
       const variables = {
         name,
-        website: websiteLink,
+        website,
         organizationName,
         description,
         email,
@@ -143,11 +142,19 @@ const OrganizationForm = () => {
                       <label className='form-field-label required-field' htmlFor='website'>
                         {format('candidateOrganization.website')}
                       </label>
-                      <Input
-                        {...register('website', { required: format('validation.required') })}
-                        id='website'
-                        placeholder={format('candidateOrganization.website.placeholder')}
-                        isInvalid={errors.website}
+                      <Controller
+                        name='website'
+                        control={control}
+                        render={({ field: { value, onChange } }) => (
+                          <UrlInput
+                            value={value}
+                            onChange={onChange}
+                            id='website'
+                            isInvalid={errors.website}
+                            placeholder={format('candidateOrganization.website.placeholder')}
+                          />
+                        )}
+                        rules={{ required: format('validation.required') }}
                       />
                       {errors.website && <ValidationError value={errors.website?.message} />}
                     </div>
@@ -172,7 +179,7 @@ const OrganizationForm = () => {
                         {...register('email',
                           {
                             required: format('validation.required'),
-                            pattern: { value: emailRegex , message: format('validation.email') }
+                            validate: value => validate(value) || format('validation.email')
                           }
                         )}
                         id='email'
