@@ -22,7 +22,7 @@
     "@esri/arcgis-rest-request": "^4.0.3",
     "@handsontable/react": "^12.0.1",
     "@headlessui/react": "^1.5.0",
-    "@octokit/core": "^4.0.5",
+    "@octokit/core": "^4.1.0",
     "@popperjs/core": "^2.9.1",
     "@react-pdf/renderer": "^3.0.0",
     "@tailwindcss/line-clamp": "^0.4.0",
@@ -50,6 +50,7 @@
     "next-seo": "^5.5.0",
     "next-sitemap": "^3.1.16",
     "next-transpile-modules": "^9.0.0",
+    "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-accessible-accordion": "^5.0.0",
     "react-chartjs-2": "^4.3.1",
@@ -67,6 +68,7 @@
     "react-lite-yt-embed": "^1.2.7",
     "react-paginate": "^8.1.0",
     "react-select": "^5.1.0",
+    "react-simple-code-editor": "^0.13.1",
     "react-toastify": "^9.0.8",
     "react-tooltip": "^4.2.19",
     "react-virtualized-auto-sizer": "^1.0.6",
@@ -74,6 +76,7 @@
     "react-window-infinite-loader": "^1.0.7",
     "sharp": "^0.31.0",
     "styled-jsx": "^5.0.6",
+    "swagger-ui-react": "^4.15.2",
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
