@@ -1208,7 +1208,7 @@ export const en = {
 
   'intro.overview.startTour': 'Take a Tour',
   'intro.overview': "Welcome to the Catalog of Digital Solutions.<br /><br />Let's start with a quick product tour to get acquainted with the platform.<br /><br /><div class='text-xs'>You can exit this tour at any time by clicking the 'X' in the top right corner.</div>",
-  'intro.overview.sdgFramework': 'The Catalog leverages the SDG Digitial Investment Framework developed by DIAL and ITU. You can see different aspects of the Framework by clicking on the various tabs.',
+  'intro.overview.sdgFramework': 'The Catalog leverages the SDG Digital Investment Framework developed by DIAL and ITU. You can see different aspects of the Framework by clicking on the various tabs.',
   'intro.overview.entityProduct': 'The Products Tab is used to discover information on different solutions and tools.',
   'intro.overview.entityHelp': 'Need more information on what a product is? Click here.',
   'intro.overview.search': 'The Catalog makes it easy to search and find specific products. Use this search bar to find a product by key words.',
