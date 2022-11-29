@@ -49,7 +49,19 @@ export const product = {
     slug: 'test_sdg',
     number: 1
   }],
-  sustainableDevelopmentGoalsMappingStatus: 'SELF-REPORTED'
+  sustainableDevelopmentGoalsMappingStatus: 'SELF-REPORTED',
+  playbooks: [
+    {
+      id: 1,
+      name: 'Playbook 1',
+      slug: 'playbook_1'
+    },
+    {
+      id: 2,
+      name: 'Playbook 2',
+      slug: 'playbook_2'
+    }
+  ]
 }
 
 export const createProductSuccess = {
