@@ -19,6 +19,7 @@ import ProductDetailSdgs from './ProductDetailSdgs'
 import ProductPricing from './ProductPricing'
 import ProductDetailLanguages from './ProductDetailLanguages'
 import ProductDetailMaturityScores from './ProductDetailMaturityScores'
+import ProductDetailPlaybooks from './ProductDetailPlaybooks'
 
 const ProductDetailRight = ({ product, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
@@ -75,6 +76,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
       {product.organizations && <ProductDetailOrganizations product={product} canEdit={canEdit} />}
       {product.currentProjects && <ProductDetailProjects product={product} canEdit={canEdit} />}
       {product.tags && <ProductDetailTags product={product} canEdit={canEdit} />}
+      {product.playbooks.length > 0 && <ProductDetailPlaybooks product={product} />}
       <div className='mt-12 card-title mb-3 text-dial-gray-dark'>{format('product.source')}</div>
       <div className='grid grid-cols-3'>
         <div className='pb-5 pr-5'>
