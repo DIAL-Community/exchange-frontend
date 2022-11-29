@@ -28,26 +28,3 @@ const generatePlayMutation = (mutationName) => `
 export const CREATE_PLAY = gql(generatePlayMutation('createPlay'))
 
 export const AUTOSAVE_PLAY = gql(generatePlayMutation('autoSavePlay'))
-
-export const UPDATE_PLAY_ORDER = gql`
-  mutation (
-    $playbookSlug: String!
-    $playSlug: String!
-    $playOrder: Int
-    $operation: String!
-    $distance: Int
-  ) {
-    updatePlayOrder (
-      playbookSlug: $playbookSlug
-      playSlug: $playSlug
-      playOrder: $playOrder
-      operation: $operation
-      distance: $distance
-    ) {
-      play {
-        id
-        slug
-      }
-    }
-  }
-`
