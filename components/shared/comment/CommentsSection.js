@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import 'react-comments-section/dist/index.css'
 const CommentSection = dynamic(() => import('react-comments-section').then((module) => module.CommentSection), { ssr: false })
 import { useMutation, useQuery } from '@apollo/client'
 import classNames from 'classnames'
