@@ -1,10 +1,8 @@
 import { useRef, useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
 import { useDrag, useDrop } from 'react-dnd'
 import parse from 'html-react-parser'
 import update from 'immutability-helper'
-import { UPDATE_PLAY_ORDER } from '../../mutations/play'
 import { PlayPreviewDispatchContext } from './PlayPreviewContext'
 import { PlayListContext, PlayListDispatchContext } from './PlayListContext'
 
@@ -126,7 +124,7 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay, previewPlay })
               <button
                 type='button'
                 className='bg-dial-purple-light text-dial-gray-light py-1.5 px-3 rounded disabled:opacity-50'
-                onClick={() => unassignPlay(play, index)}
+                onClick={() => unassignPlay(play)}
               >
                 {format('play.unassign')}
               </button>
@@ -150,23 +148,10 @@ const PlayListDraggable = ({ playbook }) => {
   const { setCurrentPlays } = useContext(PlayListDispatchContext)
   const { setPreviewSlug, setPreviewContext, setPreviewDisplayed } = useContext(PlayPreviewDispatchContext)
 
-  const [updatePlayOrder] = useMutation(UPDATE_PLAY_ORDER)
-
-  const unassignPlay = useCallback((play, index) => {
-    setCurrentPlays(currentPlays.filter(
-      currentPlay => currentPlay.slug !== play.slug)
-    )
-    if (playbook) {
-      updatePlayOrder({
-        variables: {
-          playbookSlug: playbook.slug,
-          playSlug: play.slug,
-          playOrder: index,
-          operation: 'UNASSIGN'
-        }
-      })
-    }
-  }, [currentPlays, setCurrentPlays, playbook, updatePlayOrder])
+  const unassignPlay = useCallback(
+    (play) => setCurrentPlays(currentPlays.filter((currentPlay) => currentPlay.slug !== play.slug)),
+    [currentPlays, setCurrentPlays]
+  )
 
   const previewPlay = useCallback((play) => {
     setPreviewDisplayed(true)
@@ -174,25 +159,18 @@ const PlayListDraggable = ({ playbook }) => {
     setPreviewSlug(play.slug)
   }, [playbook, setPreviewContext, setPreviewSlug, setPreviewDisplayed])
 
-  const movePlay = useCallback((dragIndex, hoverIndex) => {
-    setCurrentPlays((prevCards) => update(prevCards, {
-      $splice: [
-        [dragIndex, 1],
-        [hoverIndex, 0, prevCards[dragIndex]]
-      ]
-    }))
-    if (playbook && dragIndex >= 0 && hoverIndex >= 0) {
-      updatePlayOrder({
-        variables: {
-          playbookSlug: playbook.slug,
-          playSlug: currentPlays[dragIndex].slug,
-          playOrder: dragIndex,
-          operation: 'SWAP',
-          distance: hoverIndex - dragIndex
-        }
-      })
-    }
-  }, [currentPlays, setCurrentPlays, playbook, updatePlayOrder])
+  const movePlay = useCallback(
+    (dragIndex, hoverIndex) =>
+      setCurrentPlays((prevCards) =>
+        update(prevCards, {
+          $splice: [
+            [dragIndex, 1],
+            [hoverIndex, 0, prevCards[dragIndex]]
+          ]
+        })
+      ),
+    [setCurrentPlays]
+  )
 
   const renderCard = useCallback((play, index) => (
     <DraggableCard key={index} id={play.id} {...{ index, play, movePlay, unassignPlay, previewPlay }} />
