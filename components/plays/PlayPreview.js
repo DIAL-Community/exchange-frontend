@@ -185,11 +185,13 @@ const PlayPreview = () => {
                               className='text-sm'
                               dangerouslySetInnerHTML={{ __html: format('play.buildingBlocks.subtitle') }}
                             />
-                            {
-                              data.play.buildingBlocks.map((bb, i) =>
-                                <BuildingBlockCard key={i} buildingBlock={bb} listType='list' />
-                              )
-                            }
+                            <div className='max-h-[25vh] overflow-auto'>
+                              {
+                                data.play.buildingBlocks.map((bb, i) =>
+                                  <BuildingBlockCard key={i} buildingBlock={bb} listType='list' />
+                                )
+                              }
+                            </div>
                           </div>
                       }
                       {
@@ -200,11 +202,13 @@ const PlayPreview = () => {
                               className='text-sm'
                               dangerouslySetInnerHTML={{ __html: format('play.products.subtitle') }}
                             />
-                            {
-                              data.play.products.map((product, i) =>
-                                <ProductCard key={i} product={product} listType='list' />
-                              )
-                            }
+                            <div className='max-h-[25vh] overflow-auto'>
+                              {
+                                data.play.products.map((product, i) =>
+                                  <ProductCard key={i} product={product} listType='list' />
+                                )
+                              }
+                            </div>
                           </div>
                       }
                     </div>

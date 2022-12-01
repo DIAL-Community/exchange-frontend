@@ -114,7 +114,9 @@ const Play = ({ play, index }) => {
               className='text-sm'
               dangerouslySetInnerHTML={{ __html: format('play.buildingBlocks.subtitle') }}
             />
-            {play.buildingBlocks.map((bb, i) => <BuildingBlockCard key={i} buildingBlock={bb} listType='list' />)}
+            <div className='grid grid-cols-1 md:grid-cols-2'>
+              {play.buildingBlocks.map((bb, bbIdx) => <BuildingBlockCard key={bbIdx} buildingBlock={bb} listType='list' />)}
+            </div>
           </div>
       }
       {
@@ -125,7 +127,9 @@ const Play = ({ play, index }) => {
               className='text-sm'
               dangerouslySetInnerHTML={{ __html: format('play.products.subtitle') }}
             />
-            {play.products.map((product, i) => <ProductCard key={i} product={product} listType='list' />)}
+            <div className='grid grid-cols-1 md:grid-cols-2'>
+              {play.products.map((product, productIdx) => <ProductCard key={productIdx} product={product} listType='list' />)}
+            </div>
           </div>
       }
     </div>
