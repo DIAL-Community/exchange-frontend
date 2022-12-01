@@ -71,7 +71,7 @@ export const TagFilters = (props) => {
   return (
     <>
       {tags?.map((tag, tagIdx) => (
-        <div className='py-1' key={tagIdx}>
+        <div key={tagIdx}>
           <Pill
             key={`filter-${tagIdx}`}
             label={`${format('tag.label')}: ${tag.label}`}

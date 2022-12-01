@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for the ProductDetailPlaybooks component. Should match snapshot 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="mt-12"
+    data-testid="editable-section"
+  >
+    <div
+      class="flex justify-between items-center mb-3"
+    >
+      <div
+        class="card-title text-dial-gray-dark"
+      >
+        Playbooks
+      </div>
+      <div
+        class="gap-3"
+      />
+    </div>
+    <div
+      class="grid grid-cols-1"
+    >
+      <a
+        href="/playbooks/playbook_1"
+        target="_blank"
+      >
+        <div
+          class="group 
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+"
+        >
+          <div
+            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+          >
+            <div
+              class="flex flex-col md:flex-row flex-wrap my-5 px-4 gap-2"
+            >
+              <div
+                class=" 
+   whitespace-nowrap text-ellipsis overflow-hidden my-auto
+ pr-3 text-base font-semibold group-hover:text-dial-yellow"
+              >
+                <div
+                  class="m-auto w-3/5 h-3/5 relative"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                  >
+                    <img
+                      alt="Logo for: Playbook 1"
+                      data-nimg="fill"
+                      data-tip="Playbook: Playbook 1"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                    />
+                    <noscript />
+                  </span>
+                </div>
+                Playbook 1
+              </div>
+              <div
+                class="flex gap-1.5 text-sm lg:ml-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </a>
+      <a
+        href="/playbooks/playbook_2"
+        target="_blank"
+      >
+        <div
+          class="group 
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+"
+        >
+          <div
+            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+          >
+            <div
+              class="flex flex-col md:flex-row flex-wrap my-5 px-4 gap-2"
+            >
+              <div
+                class=" 
+   whitespace-nowrap text-ellipsis overflow-hidden my-auto
+ pr-3 text-base font-semibold group-hover:text-dial-yellow"
+              >
+                <div
+                  class="m-auto w-3/5 h-3/5 relative"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                  >
+                    <img
+                      alt="Logo for: Playbook 2"
+                      data-nimg="fill"
+                      data-tip="Playbook: Playbook 2"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                    />
+                    <noscript />
+                  </span>
+                </div>
+                Playbook 2
+              </div>
+              <div
+                class="flex gap-1.5 text-sm lg:ml-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+`;

@@ -7,6 +7,8 @@ const generatePlayMutation = (mutationName) => `
       $description: String!
       $tags: JSON!
       $playbookSlug: String
+      $productsSlugs: [String!]
+      $buildingBlocksSlugs: [String!]
     ) {
       ${mutationName} (
         name: $name
@@ -14,6 +16,8 @@ const generatePlayMutation = (mutationName) => `
         description: $description
         tags: $tags
         playbookSlug: $playbookSlug
+        productsSlugs: $productsSlugs
+        buildingBlocksSlugs: $buildingBlocksSlugs
       ) {
         play {
           id
@@ -28,26 +32,3 @@ const generatePlayMutation = (mutationName) => `
 export const CREATE_PLAY = gql(generatePlayMutation('createPlay'))
 
 export const AUTOSAVE_PLAY = gql(generatePlayMutation('autoSavePlay'))
-
-export const UPDATE_PLAY_ORDER = gql`
-  mutation (
-    $playbookSlug: String!
-    $playSlug: String!
-    $playOrder: Int
-    $operation: String!
-    $distance: Int
-  ) {
-    updatePlayOrder (
-      playbookSlug: $playbookSlug
-      playSlug: $playSlug
-      playOrder: $playOrder
-      operation: $operation
-      distance: $distance
-    ) {
-      play {
-        id
-        slug
-      }
-    }
-  }
-`

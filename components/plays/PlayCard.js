@@ -1,8 +1,6 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
-import { useMutation } from '@apollo/client'
-import { UPDATE_PLAY_ORDER } from '../../mutations/play'
 import { PlayPreviewDispatchContext } from './PlayPreviewContext'
 import { PlayListContext, PlayListDispatchContext } from './PlayListContext'
 import { SOURCE_TYPE_ASSIGNING } from './PlayList'
@@ -15,26 +13,13 @@ const PlayCard = ({ playbook, play, sourceType }) => {
   const { setCurrentPlays } = useContext(PlayListDispatchContext)
   const { setPreviewSlug, setPreviewContext, setPreviewDisplayed } = useContext(PlayPreviewDispatchContext)
 
-  const [updatePlayOrder] = useMutation(UPDATE_PLAY_ORDER)
-
   const openPlayPreview = (playbook, play) => {
     setPreviewSlug(play.slug)
     setPreviewContext(playbook.slug)
     setPreviewDisplayed(true)
   }
 
-  const assignPlay = (playbook, play) => {
-    setCurrentPlays([...currentPlays, play])
-    if (playbook) {
-      updatePlayOrder({
-        variables: {
-          playbookSlug: playbook.slug,
-          playSlug: play.slug,
-          operation: 'ASSIGN'
-        }
-      })
-    }
-  }
+  const assignPlay = (play) => setCurrentPlays([...currentPlays, play])
 
   return (
     <div className='bg-white border border-dial-gray border-opacity-50 card-drop-shadow'>
@@ -58,7 +43,7 @@ const PlayCard = ({ playbook, play, sourceType }) => {
               <button
                 type='button'
                 className='bg-dial-blue text-dial-gray-light py-1.5 px-3 rounded disabled:opacity-50'
-                onClick={() => assignPlay(playbook, play)}
+                onClick={() => assignPlay(play)}
               >
                 {format('play.assign')}
               </button>
