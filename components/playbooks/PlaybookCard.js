@@ -5,6 +5,7 @@ import ReactTooltip from 'react-tooltip'
 import parse from 'html-react-parser'
 import Image from 'next/image'
 import { convertToKey } from '../context/FilterContext'
+import HorizontalItemList from '../shared/HorizontalItemList'
 const collectionPath = convertToKey('Playbooks')
 
 const ellipsisTextStyle = `
@@ -21,9 +22,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed, newTab = false, can
 
   const isPlaybookPublished = !playbook.draft
 
-  useEffect(() => {
-    ReactTooltip.rebuild()
-  })
+  useEffect(ReactTooltip.rebuild)
 
   return (
     <Link href={`/${collectionPath}/${playbook.slug}`}>
@@ -57,7 +56,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed, newTab = false, can
             </div>
           </div>
         ) : (
-          <div className={`group ${containerElementStyle}`}>
+          <div className={`group ${containerElementStyle} h-full`}>
             <div className='border border-dial-gray hover:border-transparent card-drop-shadow h-full'>
               <div className='flex flex-col h-full'>
                 {canEdit &&
@@ -84,17 +83,21 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed, newTab = false, can
                       {playbook.playbookDescription && parse(playbook.playbookDescription.overview)}
                     </div>
                   </div>
-                  {playbook.tags && playbook.tags.length > 0 &&
-                  <div className='flex flex-col bg-dial-gray-light px-3 py-3 text-sm gap-1'>
-                    <div className='font-semibold'>{format('tag.header')}</div>
-                    <div className='flex flex-row gap-1'>
-                      {playbook.tags.map((tag, index) => {
-                        return (<div key={index} className='bg-white px-2 py-1.5 rounded'>{tag}</div>)
-                      })
-                      }
+                  {playbook?.tags.length > 0 && (
+                    <div className='flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1'>
+                      <div className='font-semibold'>{format('tag.header')}</div>
+                      <HorizontalItemList restTooltipMessage={format('tooltip.ellipsisFor', { entity: format('playbooks.label') })}>
+                        {playbook.tags.map((tag, tagIdx) => (
+                          <div
+                            key={`playbook-${tagIdx}`}
+                            className='bg-white px-2 py-1.5 rounded'
+                          >
+                            {tag}
+                          </div>
+                        ))}
+                      </HorizontalItemList>
                     </div>
-                  </div>
-                  }
+                  )}
                 </div>
               </div>
             </div>

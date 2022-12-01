@@ -32,6 +32,7 @@ export const en = {
   'app.description': 'Description',
   'app.internal-server-error': "500 - Internal Server Error",
   'app.menu': 'Menu',
+  'app.back': 'Back',
   'app.email': 'Email Address',
   'app.lastUpdated': 'Updated: {lastUpdated}.',
   'general.pastSuffix': 'ago',
@@ -1004,6 +1005,7 @@ export const en = {
   'play.unassign': 'Unassign',
   'play.error': 'Play err!',
   'play.form.tags': 'Add tag for this play.',
+  'play.form.products': 'Add product for this play.',
 
   'playbook.form.tags': 'Add tag for this playbook.',
   'playbook.assignAnotherPlay': 'Assign another play',
@@ -1208,7 +1210,7 @@ export const en = {
 
   'intro.overview.startTour': 'Take a Tour',
   'intro.overview': "Welcome to the Catalog of Digital Solutions.<br /><br />Let's start with a quick product tour to get acquainted with the platform.<br /><br /><div class='text-xs'>You can exit this tour at any time by clicking the 'X' in the top right corner.</div>",
-  'intro.overview.sdgFramework': 'The Catalog leverages the SDG Digitial Investment Framework developed by DIAL and ITU. You can see different aspects of the Framework by clicking on the various tabs.',
+  'intro.overview.sdgFramework': 'The Catalog leverages the SDG Digital Investment Framework developed by DIAL and ITU. You can see different aspects of the Framework by clicking on the various tabs.',
   'intro.overview.entityProduct': 'The Products Tab is used to discover information on different solutions and tools.',
   'intro.overview.entityHelp': 'Need more information on what a product is? Click here.',
   'intro.overview.search': 'The Catalog makes it easy to search and find specific products. Use this search bar to find a product by key words.',
@@ -1216,5 +1218,12 @@ export const en = {
   'intro.overview.cardView': 'Click on one of the cards below for detailed information about that product.',
   'intro.overview.entityPlaybook': 'The Playbooks tab allows you to find guidance and resources contributed by DIAL and our community of users.',
   'intro.overview.wizard': 'Need more help? Try our recommendations wizard.',
-  'intro.overview.signUp': 'Start using the Catalog today by signing up for an account, which allows you to access even more great features.'
+  'intro.overview.signUp': 'Start using the Catalog today by signing up for an account, which allows you to access even more great features.',
+
+  'govstack.api.repositories': 'Govstack API Repositories',
+  'govstack.api.branch': 'Branch',
+  'govstack.api.editorTitle': 'YAML Editor',
+
+  'toast.edit.submit.success': 'Changes saved successfully.',
+  'toast.edit.submit.failure': 'Unable to save changes. Please try again later.',
 }

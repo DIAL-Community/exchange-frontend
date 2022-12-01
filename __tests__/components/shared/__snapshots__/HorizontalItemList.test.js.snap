@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for the HorizontalItemList component. Should match snapshot - when children length is equal to 0. 1`] = `
+<div
+  class="flex flex-row"
+  data-testid="horizontal-items-list"
+>
+  <div
+    class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
+  >
+    <div
+      class="bg-white p-2 rounded"
+      data-testid="items-not-applicable"
+    >
+      N/A
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit test for the HorizontalItemList component. Should match snapshot - when container of items is not overflowing. 1`] = `
+<div
+  class="flex flex-row"
+  data-testid="horizontal-items-list"
+>
+  <div
+    class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
+  >
+    Mock Component Body
+  </div>
+</div>
+`;
+
+exports[`Unit test for the HorizontalItemList component. Should match snapshot - when container of items is overflowing. 1`] = `
+<div
+  class="flex flex-row"
+  data-testid="horizontal-items-list"
+>
+  <div
+    class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
+  >
+    Mock Component Body
+  </div>
+  <div
+    class="bg-white px-2 ml-2 py-0.5 rounded h-full"
+    data-testid="items-rest-marker"
+  >
+    <span
+      class="font-semibold bg-white"
+    >
+      …
+    </span>
+  </div>
+</div>
+`;
