@@ -1006,6 +1006,7 @@ export const en = {
   'play.error': 'Play err!',
   'play.form.tags': 'Add tag for this play.',
   'play.form.products': 'Add product for this play.',
+  'play.form.buildingBlocks': 'Add building block for this play.',
 
   'playbook.form.tags': 'Add tag for this playbook.',
   'playbook.assignAnotherPlay': 'Assign another play',

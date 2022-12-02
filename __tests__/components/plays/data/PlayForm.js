@@ -17,7 +17,16 @@ export const play = {
       slug: 'product_2'
     }
   ],
-  buildingBlocks: [],
+  buildingBlocks: [
+    {
+      name: 'bb 1',
+      slug: 'bb_1'
+    },
+    {
+      name: 'bb 2',
+      slug: 'bb_2'
+    }
+  ],
   playMoves: [{
     name: 'test',
     slug: 'test',

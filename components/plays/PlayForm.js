@@ -16,6 +16,7 @@ import Select from '../shared/Select'
 import { PRODUCT_SEARCH_QUERY } from '../../queries/product'
 import Pill from '../shared/Pill'
 import { fetchSelectOptions } from '../../queries/utils'
+import { BUILDING_BLOCK_SEARCH_QUERY } from '../../queries/building-block'
 import MoveListDraggable from './moves/MoveListDraggable'
 
 export const PlayForm = ({ playbook, play }) => {
@@ -37,6 +38,13 @@ export const PlayForm = ({ playbook, play }) => {
     data?.products?.map((product) => ({
       label: product.name,
       slug: product.slug
+    }))
+  )
+
+  const fetchedBuildingBlocksCallback = (data) => (
+    data?.buildingBlocks?.map((buildingBlock) => ({
+      label: buildingBlock.name,
+      slug: buildingBlock.slug
     }))
   )
 
@@ -94,6 +102,7 @@ export const PlayForm = ({ playbook, play }) => {
   const [slug] = useState(play?.slug ?? '')
   const [tags, setTags] = useState(play?.tags.map(tag => ({ label: tag })) ?? [])
   const [products, setProducts] = useState(play?.products?.map(product => ({ name: product.name, slug: product.slug })) ?? [])
+  const [buildingBlocks, setBuildingBlocks] = useState(play?.buildingBlocks?.map(buildingBlock => ({ name: buildingBlock.name, slug: buildingBlock.slug })) ?? [])
 
   const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
     mode: 'onBlur',
@@ -118,7 +127,7 @@ export const PlayForm = ({ playbook, play }) => {
         tags: tags.map(tag => tag.label),
         playbookSlug: playbook.slug,
         productsSlugs: products.map(({ slug }) => slug),
-        buildingBlocksSlugs: []
+        buildingBlocksSlugs: buildingBlocks.map(({ slug }) => slug)
       }
 
       createPlay({
@@ -147,7 +156,7 @@ export const PlayForm = ({ playbook, play }) => {
           description,
           tags: tags.map(tag => tag.label),
           productsSlugs: products.map(({ slug }) => slug),
-          buildingBlocksSlugs: []
+          buildingBlocksSlugs: buildingBlocks.map(({ slug }) => slug)
         }
         autoSavePlay({
           variables,
@@ -168,7 +177,7 @@ export const PlayForm = ({ playbook, play }) => {
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [session, slug, tags, products, router, watch, autoSavePlay])
+  }, [session, slug, tags, products, buildingBlocks, router, watch, autoSavePlay])
 
   const cancelForm = () => {
     setReverting(true)
@@ -199,6 +208,10 @@ export const PlayForm = ({ playbook, play }) => {
   const addProduct = (product) => setProducts([...products.filter(({ slug }) => slug !== product.slug), { name: product.label, slug: product.slug }])
 
   const removeProduct = (product) => setProducts([...products.filter(({ slug }) => slug !== product.slug)])
+
+  const addBuildingBlock = (buildingBlock) => setBuildingBlocks([...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug), { name: buildingBlock.label, slug: buildingBlock.slug }])
+
+  const removeBuildingBlock = (buildingBlock) => setBuildingBlocks([...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug)])
 
   return (
     <div className='flex flex-col'>
@@ -254,6 +267,31 @@ export const PlayForm = ({ playbook, play }) => {
                           key={`product-${productIdx}`}
                           label={product.name}
                           onRemove={() => removeProduct(product)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <div className='flex flex-col gap-y-2' data-testid='play-buildingBlocks'>
+                    <label className='text-xl text-dial-blue flex flex-col gap-y-2'>
+                      {format('plays.buildingBlocks')}
+                      <Select
+                        async
+                        isSearch
+                        defaultOptions
+                        cacheOptions
+                        placeholder={format('play.form.buildingBlocks')}
+                        loadOptions={(input) => fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)}
+                        noOptionsMessage={() => format('filter.searchFor', { entity: format('buildingBlocks.header') })}
+                        onChange={addBuildingBlock}
+                        value={null}
+                      />
+                    </label>
+                    <div className='flex flex-wrap gap-3 mt-2'>
+                      {buildingBlocks?.map((buildingBlock, buildingBlockIdx) =>(
+                        <Pill
+                          key={`buildingBlock-${buildingBlockIdx}`}
+                          label={buildingBlock.name}
+                          onRemove={() => removeBuildingBlock(buildingBlock)}
                         />
                       ))}
                     </div>

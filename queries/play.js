@@ -64,6 +64,10 @@ export const PLAY_QUERY = gql`
         name
         slug
       }
+      buildingBlocks {
+        name
+        slug
+      }
     }
     playbook(slug: $playbookSlug) {
       id

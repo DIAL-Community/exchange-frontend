@@ -143,7 +143,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                       >
                         <span
                           class="css-1f43avz-a11yText-A11yText"
-                          id="react-select-10-live-region"
+                          id="react-select-14-live-region"
                         />
                         <span
                           aria-atomic="false"
@@ -159,7 +159,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                           >
                             <div
                               class="react-select__placeholder css-19jynah-placeholder"
-                              id="react-select-10-placeholder"
+                              id="react-select-14-placeholder"
                             >
                               Add tag for this play.
                             </div>
@@ -169,7 +169,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                             >
                               <input
                                 aria-autocomplete="list"
-                                aria-describedby="react-select-10-placeholder"
+                                aria-describedby="react-select-14-placeholder"
                                 aria-expanded="false"
                                 aria-haspopup="true"
                                 aria-label="Filter by Tag"
@@ -287,7 +287,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-11-live-region"
+                        id="react-select-15-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -303,7 +303,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                         >
                           <div
                             class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-11-placeholder"
+                            id="react-select-15-placeholder"
                           >
                             Add product for this play.
                           </div>
@@ -313,7 +313,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-11-placeholder"
+                              aria-describedby="react-select-15-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
                               autocapitalize="none"
@@ -395,6 +395,149 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                       data-testid="pill"
                     >
                       product 2
+                      <svg
+                        class="ml-3 text-2xl cursor-pointer"
+                        data-testid="remove-button"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-2"
+                  data-testid="play-buildingBlocks"
+                >
+                  <label
+                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                  >
+                    Building Blocks
+                    <div
+                      class=" css-l45kjq-container"
+                    >
+                      <span
+                        class="css-1f43avz-a11yText-A11yText"
+                        id="react-select-16-live-region"
+                      />
+                      <span
+                        aria-atomic="false"
+                        aria-live="polite"
+                        aria-relevant="additions text"
+                        class="css-1f43avz-a11yText-A11yText"
+                      />
+                      <div
+                        class="react-select__control css-19jej77-control"
+                      >
+                        <div
+                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                        >
+                          <div
+                            class="react-select__placeholder css-19jynah-placeholder"
+                            id="react-select-16-placeholder"
+                          >
+                            Add building block for this play.
+                          </div>
+                          <div
+                            class="react-select__input-container css-6j8wv5-Input"
+                            data-value=""
+                          >
+                            <input
+                              aria-autocomplete="list"
+                              aria-describedby="react-select-16-placeholder"
+                              aria-expanded="false"
+                              aria-haspopup="true"
+                              autocapitalize="none"
+                              autocomplete="off"
+                              autocorrect="off"
+                              class="react-select__input"
+                              id="async-select-id-undefined"
+                              role="combobox"
+                              spellcheck="false"
+                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                              tabindex="0"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                        >
+                          <span
+                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          />
+                          <div
+                            aria-hidden="true"
+                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          >
+                            <svg
+                              class="text-2xl"
+                              fill="none"
+                              height="1em"
+                              stroke="currentColor"
+                              stroke-width="0"
+                              viewBox="0 0 24 24"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </label>
+                  <div
+                    class="flex flex-wrap gap-3 mt-2"
+                  >
+                    <div
+                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      data-testid="pill"
+                    >
+                      bb 1
+                      <svg
+                        class="ml-3 text-2xl cursor-pointer"
+                        data-testid="remove-button"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      data-testid="pill"
+                    >
+                      bb 2
                       <svg
                         class="ml-3 text-2xl cursor-pointer"
                         data-testid="remove-button"
@@ -862,6 +1005,98 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                     class="flex flex-wrap gap-3 mt-2"
                   />
                 </div>
+                <div
+                  class="flex flex-col gap-y-2"
+                  data-testid="play-buildingBlocks"
+                >
+                  <label
+                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                  >
+                    Building Blocks
+                    <div
+                      class=" css-l45kjq-container"
+                    >
+                      <span
+                        class="css-1f43avz-a11yText-A11yText"
+                        id="react-select-4-live-region"
+                      />
+                      <span
+                        aria-atomic="false"
+                        aria-live="polite"
+                        aria-relevant="additions text"
+                        class="css-1f43avz-a11yText-A11yText"
+                      />
+                      <div
+                        class="react-select__control css-19jej77-control"
+                      >
+                        <div
+                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                        >
+                          <div
+                            class="react-select__placeholder css-19jynah-placeholder"
+                            id="react-select-4-placeholder"
+                          >
+                            Add building block for this play.
+                          </div>
+                          <div
+                            class="react-select__input-container css-6j8wv5-Input"
+                            data-value=""
+                          >
+                            <input
+                              aria-autocomplete="list"
+                              aria-describedby="react-select-4-placeholder"
+                              aria-expanded="false"
+                              aria-haspopup="true"
+                              autocapitalize="none"
+                              autocomplete="off"
+                              autocorrect="off"
+                              class="react-select__input"
+                              id="async-select-id-undefined"
+                              role="combobox"
+                              spellcheck="false"
+                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                              tabindex="0"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                        >
+                          <span
+                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          />
+                          <div
+                            aria-hidden="true"
+                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          >
+                            <svg
+                              class="text-2xl"
+                              fill="none"
+                              height="1em"
+                              stroke="currentColor"
+                              stroke-width="0"
+                              viewBox="0 0 24 24"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </label>
+                  <div
+                    class="flex flex-wrap gap-3 mt-2"
+                  />
+                </div>
               </div>
               <div
                 class="w-full lg:w-2/3"
@@ -1070,7 +1305,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                       >
                         <span
                           class="css-1f43avz-a11yText-A11yText"
-                          id="react-select-4-live-region"
+                          id="react-select-5-live-region"
                         />
                         <span
                           aria-atomic="false"
@@ -1086,7 +1321,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                           >
                             <div
                               class="react-select__placeholder css-19jynah-placeholder"
-                              id="react-select-4-placeholder"
+                              id="react-select-5-placeholder"
                             >
                               Add tag for this play.
                             </div>
@@ -1096,7 +1331,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                             >
                               <input
                                 aria-autocomplete="list"
-                                aria-describedby="react-select-4-placeholder"
+                                aria-describedby="react-select-5-placeholder"
                                 aria-expanded="false"
                                 aria-haspopup="true"
                                 aria-label="Filter by Tag"
@@ -1214,7 +1449,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-5-live-region"
+                        id="react-select-6-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -1230,7 +1465,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                         >
                           <div
                             class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-5-placeholder"
+                            id="react-select-6-placeholder"
                           >
                             Add product for this play.
                           </div>
@@ -1240,7 +1475,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-5-placeholder"
+                              aria-describedby="react-select-6-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
                               autocapitalize="none"
@@ -1322,6 +1557,149 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                       data-testid="pill"
                     >
                       product 2
+                      <svg
+                        class="ml-3 text-2xl cursor-pointer"
+                        data-testid="remove-button"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-2"
+                  data-testid="play-buildingBlocks"
+                >
+                  <label
+                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                  >
+                    Building Blocks
+                    <div
+                      class=" css-l45kjq-container"
+                    >
+                      <span
+                        class="css-1f43avz-a11yText-A11yText"
+                        id="react-select-7-live-region"
+                      />
+                      <span
+                        aria-atomic="false"
+                        aria-live="polite"
+                        aria-relevant="additions text"
+                        class="css-1f43avz-a11yText-A11yText"
+                      />
+                      <div
+                        class="react-select__control css-19jej77-control"
+                      >
+                        <div
+                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                        >
+                          <div
+                            class="react-select__placeholder css-19jynah-placeholder"
+                            id="react-select-7-placeholder"
+                          >
+                            Add building block for this play.
+                          </div>
+                          <div
+                            class="react-select__input-container css-6j8wv5-Input"
+                            data-value=""
+                          >
+                            <input
+                              aria-autocomplete="list"
+                              aria-describedby="react-select-7-placeholder"
+                              aria-expanded="false"
+                              aria-haspopup="true"
+                              autocapitalize="none"
+                              autocomplete="off"
+                              autocorrect="off"
+                              class="react-select__input"
+                              id="async-select-id-undefined"
+                              role="combobox"
+                              spellcheck="false"
+                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                              tabindex="0"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                        >
+                          <span
+                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          />
+                          <div
+                            aria-hidden="true"
+                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          >
+                            <svg
+                              class="text-2xl"
+                              fill="none"
+                              height="1em"
+                              stroke="currentColor"
+                              stroke-width="0"
+                              viewBox="0 0 24 24"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </label>
+                  <div
+                    class="flex flex-wrap gap-3 mt-2"
+                  >
+                    <div
+                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      data-testid="pill"
+                    >
+                      bb 1
+                      <svg
+                        class="ml-3 text-2xl cursor-pointer"
+                        data-testid="remove-button"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      data-testid="pill"
+                    >
+                      bb 2
                       <svg
                         class="ml-3 text-2xl cursor-pointer"
                         data-testid="remove-button"
