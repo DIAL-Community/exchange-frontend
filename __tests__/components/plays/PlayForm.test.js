@@ -28,7 +28,7 @@ describe('PlayForm component.', () => {
     tags: ['tag_1','tag_2'],
     playbookSlug: playbook.slug,
     productsSlugs: ['product_1', 'product_2'],
-    buildingBlocksSlugs: []
+    buildingBlocksSlugs: ['bb_1', 'bb_2']
   }
   const PlayAndMoveProviders = ({ children }) => (
     <PlayListProvider>
