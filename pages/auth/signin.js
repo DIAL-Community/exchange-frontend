@@ -1,4 +1,4 @@
-import { getCsrfToken } from 'next-auth/react'
+import { getCsrfToken, getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { FaSpinner } from 'react-icons/fa'
@@ -92,6 +92,8 @@ export default function SignIn ({ csrfToken }) {
 export async function getServerSideProps (ctx) {
   const { resolvedUrl, query, locale } = ctx
 
+  const session = await getSession(ctx)
+
   if (query && query.callbackUrl) {
     const callbackUrl = new URL(query.callbackUrl)
     const [, cbLang] = callbackUrl.pathname.split('/')
@@ -103,6 +105,12 @@ export async function getServerSideProps (ctx) {
         redirect: {
           destination: `/${cbLang}${path}?callbackUrl=${callbackUrl}`
         }
+      }
+    }
+  } else if (session) {
+    return {
+      redirect: {
+        destination: '/'
       }
     }
   }

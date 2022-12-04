@@ -37,12 +37,25 @@ export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, edi
               alignleft aligncenter alignright alignjustify |
               numlist bullist outdent indent | removeformat |
               ltr rtl | charmap emoticons`,
-            contextmenu: 'cut copy paste',
+            contextmenu: false,
             toolbar_sticky: true,
             content_style: `
+              html {
+                height: 100%
+              }
               body { font-family: Arial; font-size: 18px }
+              .mce-content-body {
+                margin: 0;
+                padding: 1rem;
+                height: calc(100% - 2rem);
+              }
               .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
+                margin-left: 1rem;
                 color: #dfdfea;
+              }
+              .mce-content-body > p {
+                margin: 0;
+                padding-bottom: 1rem;
               }
             `,
             init_instance_callback: initInstanceCallback,
@@ -55,7 +68,8 @@ export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, edi
               editor.on('focus', () => editor.container?.classList.add('focused'))
               editor.on('blur', () => editor.container?.classList.remove('focused'))
             },
-            placeholder
+            placeholder,
+            browser_spellcheck: true
           }}
         />
       </div>

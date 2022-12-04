@@ -128,11 +128,11 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation, commentsSect
   return (
     <>
       <PlaybookEmbedDetail displayed={displayEmbedDialog} setDisplayed={setDisplayEmbedDialog} />
-      <div className='flex'>
+      <div className='flex flex-col xl:flex-row'>
         <div className='hidden lg:block'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
-        <div className='mt-4 ml-auto flex items-center gap-3'>
+        <div className='ml-auto flex items-center gap-3'>
           <CommentsCount
             commentsSectionRef={commentsSectionRef}
             objectId={playbook.id}

@@ -27,6 +27,10 @@ export const PLAYS_QUERY = gql`
           id
           description
         }
+        products {
+          name
+          slug
+        }
       }
     }
   }
@@ -55,6 +59,14 @@ export const PLAY_QUERY = gql`
           description
           locale
         }
+      }
+      products {
+        name
+        slug
+      }
+      buildingBlocks {
+        name
+        slug
       }
     }
     playbook(slug: $playbookSlug) {

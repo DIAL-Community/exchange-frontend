@@ -38,7 +38,7 @@ const Workflows = () => {
       <MobileNav activeTab='filter.entity.workflows' />
       <ClientOnly>
         <PageContent
-          activeTab='filter.entity.products'
+          activeTab='filter.entity.workflows'
           filter={<WorkflowFilter />}
           content={<WorkflowListQuery />}
           searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.workflows' />}

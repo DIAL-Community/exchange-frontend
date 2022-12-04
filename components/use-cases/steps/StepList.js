@@ -10,7 +10,8 @@ const StepList = ({ useCaseSlug, stepSlug, listStyle, shadowOnContainer }) => {
   const { loading, data } = useQuery(USE_CASE_STEPS_QUERY, {
     variables: {
       slug: useCaseSlug
-    }
+    },
+    skip: !useCaseSlug
   })
 
   return (

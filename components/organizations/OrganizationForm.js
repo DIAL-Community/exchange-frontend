@@ -15,6 +15,7 @@ import Select from '../shared/Select'
 import { ToastContext } from '../../lib/ToastContext'
 import ValidationError from '../shared/ValidationError'
 import { CREATE_ORGANIZATION } from '../../mutations/organization'
+import UrlInput from '../shared/UrlInput'
 
 const OrganizationForm = React.memo(({ organization }) => {
   const { formatMessage } = useIntl()
@@ -212,11 +213,19 @@ const OrganizationForm = React.memo(({ organization }) => {
                     <label className='text-xl text-dial-blue required-field' htmlFor='website'>
                       {format('organization.website')}
                     </label>
-                    <Input
-                      {...register('website', { required: format('validation.required') })}
-                      id='website'
-                      placeholder={format('organization.website')}
-                      isInvalid={errors.website}
+                    <Controller
+                      name='website'
+                      control={control}
+                      render={({ field: { value, onChange } }) => (
+                        <UrlInput
+                          value={value}
+                          onChange={onChange}
+                          id='website'
+                          isInvalid={errors.website}
+                          placeholder={format('organization.website')}
+                        />
+                      )}
+                      rules={{ required: format('validation.required') }}
                     />
                     {errors.website && <ValidationError value={errors.website?.message} />}
                   </div>

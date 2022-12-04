@@ -9,13 +9,13 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
     class="z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white"
   >
     <div
-      class="flex flex-wrap justify-center items-center py-3 lg:py-0 header-min-height max-w-catalog mx-auto"
+      class="flex flex-wrap py-3 lg:py-0 header-min-height max-w-catalog mx-auto"
     >
       <div
-        class="flex-1 flex my-auto"
+        class="flex flex-1 my-auto"
       >
         <a
-          class="px-6 lg:px-8"
+          class="px-4 xl:px-8"
           href="/"
         >
           <div
@@ -37,7 +37,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
         </a>
       </div>
       <label
-        class="pointer-cursor block lg:hidden px-8"
+        class="ml-auto my-auto pointer-cursor block lg:hidden px-8"
         for="menu-toggle"
       >
         <svg
@@ -61,7 +61,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
         type="checkbox"
       />
       <div
-        class="hidden lg:flex lg:items-center lg:w-auto w-full"
+        class="hidden lg:flex lg:items-center lg:w-auto w-full ml-auto mx-2"
         id="menu"
       >
         <nav>
@@ -270,7 +270,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               class="relative mt-2 lg:mt-0 text-right"
             >
               <a
-                class="lg:p-3 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
                 data-testid="menu-resource"
                 href="menu-resource"
                 id="menu-resource"
@@ -298,7 +298,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               class="relative mt-2 lg:mt-0 text-right"
             >
               <a
-                class="lg:p-3 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
                 data-testid="menu-about"
                 href="menu-about"
                 id="menu-about"
@@ -326,7 +326,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               class="relative mt-2 lg:mt-0 text-right intro-overview-signup"
             >
               <a
-                class="lg:p-3 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
                 data-testid="menu-admin"
                 href="menu-admin"
                 id="menu-admin"
@@ -397,7 +397,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               class="relative mt-2 lg:mt-0 text-right"
             >
               <a
-                class="lg:p-3 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
                 data-testid="menu-help"
                 href="menu-help"
                 id="menu-help"
@@ -430,7 +430,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               class="relative mt-2 lg:mt-0 text-right"
             >
               <a
-                class="lg:p-3 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
                 data-testid="menu-language"
                 href="menu-language"
                 id="menu-language"
@@ -460,12 +460,90 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
     </div>
   </header>
   <div
-    class="max-w-catalog mx-auto"
+    class="max-w-catalog mx-auto pr-2"
   />
   <footer>
     <div
       class="block"
-    />
+    >
+      <div
+        class="w-full bg-dial-gray-dark fixed bottom-0 right-0 left-0 z-80"
+      >
+        <div
+          class="flex flex-col md:flex-row justify-center py-4 mx-4 gap-3"
+        >
+          <div
+            class="text-dial-gray-light my-auto"
+          >
+            Cookies help us deliver our services. By using our services, you agree to our use of cookies.
+          </div>
+          <div
+            class="flex justify-center gap-4"
+          >
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Accept All
+            </button>
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Cookie Details
+            </button>
+            <a
+              class="my-auto text-dial-yellow border-b-2 border-transparent hover:border-dial-yellow"
+              href="/privacy-policy"
+              target="_blank"
+            >
+              Privacy Policy
+            </a>
+          </div>
+        </div>
+        <div
+          class="hidden"
+        >
+          <div
+            class="flex flex-col md:flex-row justify-center py-4 mx-4 gap-3"
+          >
+            <label
+              class="inline-flex items-center"
+            >
+              <input
+                checked=""
+                class="h-4 w-4 form-checkbox text-white"
+                name="essential"
+                type="checkbox"
+              />
+              <span
+                class="ml-2 text-white"
+              >
+                Essential Cookies
+              </span>
+            </label>
+            <label
+              class="inline-flex items-center"
+            >
+              <input
+                checked=""
+                class="h-4 w-4 form-checkbox text-white"
+                name="essential"
+                type="checkbox"
+              />
+              <span
+                class="ml-2 text-white"
+              >
+                Statistics Cookies
+              </span>
+            </label>
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div
       class="relative w-full bg-dial-gray-light text-dial-purple-light"
     >
@@ -710,10 +788,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
         class="px-4 pb-4 pt-8 lg:px-10 2xl:pt-12 2xl:pb-8 2xl:px-24 flex flex-row flex-wrap max-w-catalog mx-auto"
       >
         <div
-          class="py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light"
+          class="group py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light hover:cursor-pointer"
         >
           <a
-            class="border-b-2 border-transparent hover:border-dial-yellow"
+            class="border-b-2 border-transparent group-hover:border-dial-yellow"
             href="https://digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5"
             rel="noreferrer"
             target="_blank"
@@ -722,10 +800,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
           </a>
         </div>
         <div
-          class="py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light"
+          class="group py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light hover:cursor-pointer"
         >
           <a
-            class="border-b-2 border-transparent hover:border-dial-yellow"
+            class="border-b-2 border-transparent group-hover:border-dial-yellow"
             href="https://gitlab.com/dial/online-catalog/product-registry"
             rel="noreferrer"
             target="_blank"
@@ -896,10 +974,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
             DIGITAL IMPACT ALLIANCE
           </div>
           <div
-            class="py-2 px-3 rounded-md bg-dial-gray-light"
+            class="group py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
           >
             <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
+              class="border-b-2 border-transparent group-hover:border-dial-yellow"
               href="/privacy-policy"
               rel="noreferrer"
               target="_blank"
@@ -908,14 +986,22 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
             </a>
           </div>
           <div
-            class="py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
+            class="group py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
           >
-            REPORT ISSUE
+            <a
+              class="border-b-2 border-transparent group-hover:border-dial-yellow"
+            >
+              REPORT ISSUE
+            </a>
           </div>
           <div
-            class="py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
+            class="group py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
           >
-            CONTACT US
+            <a
+              class="border-b-2 border-transparent group-hover:border-dial-yellow"
+            >
+              CONTACT US
+            </a>
           </div>
         </div>
       </div>
@@ -933,13 +1019,13 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
     class="z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white"
   >
     <div
-      class="flex flex-wrap justify-center items-center py-3 lg:py-0 header-min-height max-w-catalog mx-auto"
+      class="flex flex-wrap py-3 lg:py-0 header-min-height max-w-catalog mx-auto"
     >
       <div
-        class="flex-1 flex my-auto"
+        class="flex flex-1 my-auto"
       >
         <a
-          class="px-6 lg:px-8"
+          class="px-4 xl:px-8"
           href="/"
         >
           <div
@@ -961,7 +1047,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
         </a>
       </div>
       <label
-        class="pointer-cursor block lg:hidden px-8"
+        class="ml-auto my-auto pointer-cursor block lg:hidden px-8"
         for="menu-toggle"
       >
         <svg
@@ -985,7 +1071,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
         type="checkbox"
       />
       <div
-        class="hidden lg:flex lg:items-center lg:w-auto w-full"
+        class="hidden lg:flex lg:items-center lg:w-auto w-full ml-auto mx-2"
         id="menu"
       >
         <nav>
@@ -1133,7 +1219,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               class="relative mt-2 lg:mt-0 text-right"
             >
               <a
-                class="lg:p-3 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
                 data-testid="menu-resource"
                 href="menu-resource"
                 id="menu-resource"
@@ -1161,7 +1247,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               class="relative mt-2 lg:mt-0 text-right"
             >
               <a
-                class="lg:p-3 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
                 data-testid="menu-about"
                 href="menu-about"
                 id="menu-about"
@@ -1203,7 +1289,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               class="relative mt-2 lg:mt-0 text-right"
             >
               <a
-                class="lg:p-3 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
                 data-testid="menu-help"
                 href="menu-help"
                 id="menu-help"
@@ -1236,7 +1322,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               class="relative mt-2 lg:mt-0 text-right"
             >
               <a
-                class="lg:p-3 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
                 data-testid="menu-language"
                 href="menu-language"
                 id="menu-language"
@@ -1266,7 +1352,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
     </div>
   </header>
   <div
-    class="max-w-catalog mx-auto"
+    class="max-w-catalog mx-auto pr-2"
   >
     <div
       class="text-button-gray text-lg"
@@ -1296,7 +1382,85 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
   <footer>
     <div
       class="block"
-    />
+    >
+      <div
+        class="w-full bg-dial-gray-dark fixed bottom-0 right-0 left-0 z-80"
+      >
+        <div
+          class="flex flex-col md:flex-row justify-center py-4 mx-4 gap-3"
+        >
+          <div
+            class="text-dial-gray-light my-auto"
+          >
+            Cookies help us deliver our services. By using our services, you agree to our use of cookies.
+          </div>
+          <div
+            class="flex justify-center gap-4"
+          >
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Accept All
+            </button>
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Cookie Details
+            </button>
+            <a
+              class="my-auto text-dial-yellow border-b-2 border-transparent hover:border-dial-yellow"
+              href="/privacy-policy"
+              target="_blank"
+            >
+              Privacy Policy
+            </a>
+          </div>
+        </div>
+        <div
+          class="hidden"
+        >
+          <div
+            class="flex flex-col md:flex-row justify-center py-4 mx-4 gap-3"
+          >
+            <label
+              class="inline-flex items-center"
+            >
+              <input
+                checked=""
+                class="h-4 w-4 form-checkbox text-white"
+                name="essential"
+                type="checkbox"
+              />
+              <span
+                class="ml-2 text-white"
+              >
+                Essential Cookies
+              </span>
+            </label>
+            <label
+              class="inline-flex items-center"
+            >
+              <input
+                checked=""
+                class="h-4 w-4 form-checkbox text-white"
+                name="essential"
+                type="checkbox"
+              />
+              <span
+                class="ml-2 text-white"
+              >
+                Statistics Cookies
+              </span>
+            </label>
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div
       class="relative w-full bg-dial-gray-light text-dial-purple-light"
     >
@@ -1541,10 +1705,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
         class="px-4 pb-4 pt-8 lg:px-10 2xl:pt-12 2xl:pb-8 2xl:px-24 flex flex-row flex-wrap max-w-catalog mx-auto"
       >
         <div
-          class="py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light"
+          class="group py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light hover:cursor-pointer"
         >
           <a
-            class="border-b-2 border-transparent hover:border-dial-yellow"
+            class="border-b-2 border-transparent group-hover:border-dial-yellow"
             href="https://digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5"
             rel="noreferrer"
             target="_blank"
@@ -1553,10 +1717,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
           </a>
         </div>
         <div
-          class="py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light"
+          class="group py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light hover:cursor-pointer"
         >
           <a
-            class="border-b-2 border-transparent hover:border-dial-yellow"
+            class="border-b-2 border-transparent group-hover:border-dial-yellow"
             href="https://gitlab.com/dial/online-catalog/product-registry"
             rel="noreferrer"
             target="_blank"
@@ -1727,10 +1891,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
             DIGITAL IMPACT ALLIANCE
           </div>
           <div
-            class="py-2 px-3 rounded-md bg-dial-gray-light"
+            class="group py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
           >
             <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
+              class="border-b-2 border-transparent group-hover:border-dial-yellow"
               href="/privacy-policy"
               rel="noreferrer"
               target="_blank"
@@ -1739,14 +1903,22 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
             </a>
           </div>
           <div
-            class="py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
+            class="group py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
           >
-            REPORT ISSUE
+            <a
+              class="border-b-2 border-transparent group-hover:border-dial-yellow"
+            >
+              REPORT ISSUE
+            </a>
           </div>
           <div
-            class="py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
+            class="group py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
           >
-            CONTACT US
+            <a
+              class="border-b-2 border-transparent group-hover:border-dial-yellow"
+            >
+              CONTACT US
+            </a>
           </div>
         </div>
       </div>

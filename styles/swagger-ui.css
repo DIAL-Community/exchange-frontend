@@ -1,0 +1,6 @@
+/* Swagger css override to make header closer to the top */
+
+.swagger-ui .info {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}

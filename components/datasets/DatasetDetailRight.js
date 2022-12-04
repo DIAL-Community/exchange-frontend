@@ -6,6 +6,7 @@ import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
+import { prependUrlWithProtocol } from '../../lib/utilities'
 import DatasetDetailCountries from './DatasetDetailCountries'
 import DatasetDetailOrganizations from './DatasetDetailOrganizations'
 import DatasetDetailSectors from './DatasetDetailSectors'
@@ -35,7 +36,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
           <div className='mt-12'>
             <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.website')}</div>
             <div className='text-base text-dial-teal inline ml-3'>
-              <a href={`//${dataset.website}`} className='mt-2' target='_blank' rel='noreferrer'>
+              <a href={prependUrlWithProtocol(dataset.website)} className='mt-2' target='_blank' rel='noreferrer'>
                 <div className='my-auto'>{dataset.website} ⧉</div>
               </a>
             </div>

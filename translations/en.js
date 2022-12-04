@@ -7,6 +7,8 @@ export const en = {
   'app.comment': 'Comments',
   'app.nocomment': 'Start a Conversation',
   'app.home': 'Home',
+  'app.save': 'Save',
+  'app.saving': 'Saving',
   'app.submit': 'Submit',
   'app.submitting': 'Submitting',
   'app.search': 'Search',
@@ -30,7 +32,10 @@ export const en = {
   'app.description': 'Description',
   'app.internal-server-error': "500 - Internal Server Error",
   'app.menu': 'Menu',
+  'app.back': 'Back',
   'app.email': 'Email Address',
+  'app.lastUpdated': 'Updated: {lastUpdated}.',
+  'general.pastSuffix': 'ago',
 
   'profile.profile': 'User Profile for ',
   'profile.username': 'Username',
@@ -44,14 +49,18 @@ export const en = {
   'user.email': 'Email',
   'user.email.placeholder': 'Enter email address',
   'user.username': 'Username',
+  'user.username.placeholder': 'Enter username',
   'user.roles': 'Roles',
   'user.roles.placeholder': 'Select user roles',
   'user.organization': 'Organization',
+  'user.organization.inform.message': 'NOTE: Select an organization only if this user will be an organization owner. The email address of the user must match the organization’s domain.',
   'user.organization.placeholder': 'Enter user organization',
   'user.products': 'Products',
   'user.products.placeholder': 'Enter products owned by user',
   'user.confirmed': 'User account confirmed',
   'user.iconImage': 'User icon image',
+  'user.tokenExpired': 'Session token has expired. Logout will occur in 5 seconds. Please log in again.',
+  'user.submit': 'Submit User',
 
   'header.signIn': 'Sign Up or Log In',
   'header.signOut': 'Sign Out',
@@ -594,6 +603,7 @@ export const en = {
   'use-case-step.create': 'Add Use Case Step',
   'use-case-step.label': 'Use Case Step',
   'use-case-step.name': 'Name',
+  'use-case-step.markdownUrl': 'Markdown Filename',
   'use-case-step.description': 'Description',
   'use-case-step.step-number': 'Step Number',
   'use-case-step.submit.failure': 'Use Case Step submission failed',
@@ -811,12 +821,8 @@ export const en = {
   'signUp.passwordConfirmation': 'Password Confirmation',
   'signUp.passwordConfirmation.hint': 'Please re-enter your password',
   'signUp.moreSecure': 'Please enter a more secure password',
-  'signUp.organization': 'Owner of this organization',
-  'signUp.products': 'Owner of these products',
   'signUp.privacy': 'Note: By signing up, you agree to the terms in our',
   'signUp.privacyLink': 'Privacy Policy',
-  'signUp.tooltip.organizationOwner': 'Apply to be the owner for the organization which will allow you to update the organization information.',
-  'signUp.tooltip.productOwner': 'Optionally apply as a product owner. You will need to be verified by our team member to do this.',
 
   'consent.text': 'Cookies help us deliver our services. By using our services, you agree to our use of cookies.',
   'consent.privacyPolicy': 'Privacy Policy',
@@ -825,7 +831,251 @@ export const en = {
   'consent.essential': 'Essential Cookies',
   'consent.statistics': 'Statistics Cookies',
   'consent.save': 'Save',
-  'consent.privacyPolicy.content': `<div class='mx-4 py-8'><div class='content centerContentMaxWidth'><div class='h1 py-4'>Privacy &amp; Legal</div><p>The United Nations Foundation is the legal fiduciary and host organization of the Digital Impact Alliance. The Digital Impact Alliance follows all regulations and responsibilities of our host organization <a href='https://unfoundation.org/privacy-policy/' target='_blank' rel='noopener'>https://unfoundation.org/privacy-policy/</a></p><p>The Digital Impact Alliance is committed to the privacy of those individuals who visit and interact with <a href='http://www.govstack.global/' target='_blank' rel='noopener'>http://www.govstack.global/</a> (website). This Privacy Policy is meant to help you understand what information we collect, why we collect it and how you can update, retrieve and request removal of your information.</p><p>By visiting our website, you are accepting the practices described in this Privacy Policy. If you do not agree to the terms of this Privacy Policy, please do not use the website.</p><p>Please note that the practices described in this Privacy Policy apply only to information gathered online on our website. They do not apply to information that you may submit to other <a href='https://unfoundation.org/what-we-do/initiatives/' target='_blank' rel='noopener'>websites owned and managed by the UN Foundation</a>, to us offline, to websites maintained by other companies or organizations to which we may link.</p><p>The Digital Impact Alliance is the sole owner of the information collected on govstack.global. We do not share your personal information with companies, organizations or individuals outside of the organization.</p><div class='h2 py-3'>Personal information we collect</div><p>Generally, you are free to visit the <a href='https://solutions.dial.community' target='_blank' rel='noopener'>solutions.dial.community</a> website without submitting data that identifies you personally. However, we do ask you to provide some personal data for certain interactions within our website. This data varies depending on the interaction, but may include name, address, email address and other similar information (“Personal Information”). We do not request sensitive information such as social security numbers.</p><div class='h2 py-3'>Cookies</div><p>Like many websites, we use 'cookies', which are small text files that are stored on your computer or equipment when you visit certain online pages that record your preferences. We use cookies to track use of our website and online services. We may also use cookies to monitor traffic, improve the website and make it easier and/or relevant for your use. This website is functional without the retention of cookies. You have the ability to accept or decline cookies. Most web browsers automatically accept cookies, but, if you prefer, you can usually modify your browser setting to decline cookies.</p><div class='h2 py-3'>When we collect Personal Information</div><p>Below are the ways in which we collect your Personal Information through specific actions and circumstances. <strong>By choosing to participate in any of the following activities, you consent to our collection and use of your Personal Information.</strong></p><ul><li>When you sign up to receive email newsletters from us;</li><li>When you participate in surveys;</li><li>When you complete an advocacy activity or survey online;</li><li>When you register for and participate in our programs, activities, initiatives and events;</li><li>When you request information or assistance;</li><li>In conjunction with processing your grant applications;</li><li>In conjunction with your employment inquiries or applications;</li><li>When you participate with social media and peer to peer accounts involving the Digital Impact Alliance</li><li>When you participate in online communities;</li><li>In conjunction with any verification of your account information;</li><li>In conjunction with investigations into any activity that may violate the law or the website's terms and conditions;</li><li>When you communicate with us through the website;</li><li>When you provide user-generated content on any part of the website that permits it; and</li><li>In conjunction with any other place on the website where you knowingly volunteer personal information</li></ul><div class='h2 py-3'>Non-Identifying Information</div><p>In addition, when you interact with the website, our servers may keep an activity log that does not identify you individually (“Non-Personal Information”). Generally, we collect the following categories of Non-Personal Information:</p><ul><li>We may collect certain demographic data such as age, gender and postal code as part of collecting personal information;</li<li>We collect and store certain device information about your computer, mobile device or other device that you use to access the website. This information may include IP address, geolocation information, unique device identifiers, browser type, browser language and other transactional information;</li><li>We automatically log certain usage information about your use of the website. This information includes a reading history of the pages you view. We use this information to provide you with a more customized experience on the website;</li><li>We collect and store additional 'traffic data' such as time of access, date of access, software crash reports, session identification number, access times and referring website addresses; and</li><li>We collect and store your search terms and search results.</li></ul><div class='h2 py-3'>How we use your data</div><p>We use the information we learn from you to help us personalize and continually improve your experience on the website. With your consent we may use your Personal and Non-Personal Information in the following ways:</p><p><strong>General Uses</strong></p><ul><li>For editorial purposes;</li><li>Responding to your inquiries;</li><li>Communicating with you about your interactions and sending you information about features on our website or about the organization;</li><li>Communicating with you about changes to our policies;</li><li>Sending you newsletters, mailings, and information about programs, initiatives, activities and events by e-mail or another medium;</li><li>Processing your employment application;</li><li>Event or program registration;</li><li>Optimizing or improving our programs, services and operations;</li><li>Research and development;</li><li>Detecting, investigating, and preventing activities that may violate our policies or be illegal;</li><li>Advocating to decision makers on specific issues;</li><li>Performing statistical, demographic and marketing analyses of users of the website and their usage patterns; and</li><li>Managing our organization.</li></ul><div class='h2 py-3'>How we protect your data</div><p>The Digital Impact Alliance intends to protect the quality and integrity of your personally identifiable information. We have implemented appropriate physical, technical and organizational measures, including industry-standard encryption for transmission of credit card information, to help keep your information secure, accurate, current and complete.</p><p>If you have any concerns about the security and confidentiality of your Personal Information, please contact <a href='mailto:info@digitalimpactalliance.org'><strong>info@digitalimpactalliance.org</strong></a></p><div class='h2 py-3'>Compliance with the EU GDPR data regulations</div><p>The General Data Protection Regulation (GDPR) (EU) 2016/679 is a regulation in EU law on data protection and privacy for all individuals within the European Union. It also addresses the export of personal data outside the EU.</p><p>We will use reasonable efforts to securely process all personal information in line with the rights specified under the GDPR, in particular those related to the following requests:</p><ul><li>Access to your Personal Information;</li><li>Correction of the Personal Information we hold;</li><li>Deletion of your Personal Information;</li><li>A restriction of processing of your Personal Information;</li><li>Transfer of your Personal Information to another party; or,</li><li>Objection to processing of your Personal Information based on the Digital Impact Alliance's legitimate interests (or those of a third party) to use it.</li></ul><p>Please send an email to <a href='mailto:info@digitalimpactalliance.org'><strong>info@digitalimpactalliance.org</strong></a> if any of the following apply:</p><ul><li>You have any questions or requests regarding this policy;</li><li>You would like to remove all Personal Information from our database;</li><li>You would like to view Personal Information you shared with us;</li><li>You would like to change your account preferences;</li><li>You no longer wish to receive email updates from the Digital Impact Alliance;</li><li>You believe the Digital Impact Alliance has erroneous or incomplete information about you; or,</li><li>You believe a child below the age of 16 years may have submitted Personal Information without the consent of a parent or guardian.</li></ul><p>For more information about your rights under the GDPR, please visit <a href='https://gdpr-info.eu'><strong>https://gdpr-info.eu</strong></a>.</p><div class='h2 py-3'>How we communicate updates to this Privacy Policy with you</div><p>If the Digital Impact Alliance decides to change our privacy policy, we will post those changes to this page, so you are always aware of what information we collect and how we use it. You will have a choice as to whether we use your information in this different manner.</p><p>Your continued use of our website following the posting of changes to this Privacy Policy will mean you accept those changes. Our most up-to-date privacy policy will always be available here.</p><p>Questions and comments should be directed to <a href='mailto:info@digitalimpactalliance.org'><strong>info@digitalimpactalliance.org</strong></a></p<div class='h2 py-3'>Advisories</div><p><strong>Email Scams</strong></p><p>Several deceptive emails claiming to be from or associated with the Digital Impact Alliance or United Nations Foundation, Kathy Calvin, Rick Parnell, Ted Turner and Timothy Wirth are circulating on the Internet. These emails often include our logo, photos, links or other information from our Web site.</p><p>Some emails claim the recipient has won a lottery or other prize and request detailed personal information or a payment of some kind in order to receive the winnings. Some mention other foundations and organizations based in the United Kingdom none of which are a part of these scams. Other emails direct recipients to Web sites that promise large returns on investments and claim a portion of returns will be donated to the foundation.</p><p>The sources and contents of these emails, websites, and accompanying materials are in no way associated with the Digital Impact Alliance or United Nations Foundation, Kathy Calvin, Rick Parnell, Ted Turner and Timothy Wirth. For your own protection, we strongly recommend not responding to emails making such claims.</p><p>The UN Foundation has reported, and will continue to report, these deceptive spam emails to the Federal Trade Commission (FTC), the Internet Crime Complaint Center (IC3) and the Federal Bureau of Investigation (FBI). For more information about the FTC’s efforts against deceptive spam, please visit <a href="https://www.consumer.ftc.gov/articles/0038-spam"><strong>https://www.consumer.ftc.gov/articles/0038-spam</strong></a>. For more information about the IC3, please visit <a href="http://www.ic3.gov/"><strong>www.ic3.gov</strong></a>. For information on the FBI, please visit <a href="http://www.fbi.gov/"><strong>www.fbi.gov</strong></a>, or contact your local FBI office.</p><p>You can also email your inquiries about scam email, letters, and phone calls to <a href="mailto:action@unfoundation.org"><strong>action@unfoundation.org</strong></a> or <a href="mailto:info@digitalimpactalliance.org"><strong>info@digitalimpactalliance.org</strong></a></p><p><strong>Webmaster</strong><br> <strong>Digital Impact Alliance</strong><br> <strong>1750 Pennsylvania Avenue NW, Suite 300</strong><br> <strong>Washington, D.C. 20006</strong><br> <strong>202.887.9040 phone</strong><br> <strong>202.887.9021 fax</strong><br> <a href="mailto:info@digitalimpactalliance.org"><strong>info@digitalimpactalliance.org</strong></a></p></div></div>`,
+  'consent.privacyPolicy.content': `
+    <div class='mx-4 px-8 py-12'>
+      <div class='content max-w-catalog mx-auto flex flex-col gap-3'>
+        <div class='h1 py-4'>Privacy &amp; Legal</div>
+        <p>
+          The United Nations Foundation is the legal fiduciary and host organization of the Digital Impact Alliance. The
+          Digital Impact Alliance follows all regulations and responsibilities of our host organization
+          <a
+            href='https://unfoundation.org/privacy-policy/'
+            target='_blank'
+            rel='noopener'
+          >
+            https://unfoundation.org/privacy-policy/
+          </a>
+        </p>
+        <p>
+          The Digital Impact Alliance is committed to the privacy of those individuals who visit and interact with
+          <a
+            href='http://www.govstack.global/'
+            target='_blank'
+            rel='noopener'
+          >
+            http://www.govstack.global/
+          </a> (website).
+          This Privacy Policy is meant to help you understand what information we collect, why we collect it and how you can
+          update, retrieve and request removal of your information.
+        </p>
+        <p>
+          By visiting our website, you are accepting the practices described in this Privacy Policy. If you do not agree to
+          the terms of this Privacy Policy, please do not use the website.
+        </p>
+        <p>
+          Please note that the practices described in this Privacy Policy apply only to information gathered online on our
+          website. They do not apply to information that you may submit to other <a
+            href='https://unfoundation.org/what-we-do/initiatives/' target='_blank' rel='noopener'>websites owned and
+            managed by the UN Foundation</a>, to us offline, to websites maintained by other companies or organizations to
+          which we may link.
+        </p>
+        <p>
+          The Digital Impact Alliance is the sole owner of the information collected on govstack.global. We do not share
+          your personal information with companies, organizations or individuals outside of the organization.
+        </p>
+        <div class='h2 py-3'>Personal information we collect</div>
+        <p>
+          Generally, you are free to visit the
+          <a
+            href='https://solutions.dial.community'
+            target='_blank'
+            rel='noopener'
+          >
+            solutions.dial.community
+          </a>
+          website without submitting data that identifies you personally.
+        </p>
+        <p>
+          However, we do ask you to provide some personal data for certain interactions within our website. This data varies
+          depending on the interaction, but may include name, address, email address and other similar information
+          (“Personal Information”). We do not request sensitive information such as social security numbers.
+        </p>
+        <div class='h2 py-3'>Cookies</div>
+        <p>
+          Like many websites, we use 'cookies', which are small text files that are stored on your computer or equipment
+          when you visit certain online pages that record your preferences. We use cookies to track use of our website and
+          online services. We may also use cookies to monitor traffic, improve the website and make it easier and/or
+          relevant for your use. This website is functional without the retention of cookies. You have the ability to accept
+          or decline cookies. Most web browsers automatically accept cookies, but, if you prefer, you can usually modify
+          your browser setting to decline cookies.
+        </p>
+        <div class='h2 py-3'>When we collect Personal Information</div>
+        <p>
+          Below are the ways in which we collect your Personal Information through specific actions and circumstances.
+          <strong>
+            By choosing to participate in any of the following activities, you consent to our collection and use of
+            your Personal Information.
+          </strong>
+        </p>
+        <ul class="list-disc ml-4">
+          <li>When you sign up to receive email newsletters from us;</li>
+          <li>When you participate in surveys;</li>
+          <li>When you complete an advocacy activity or survey online;</li>
+          <li>When you register for and participate in our programs, activities, initiatives and events;</li>
+          <li>When you request information or assistance;</li>
+          <li>In conjunction with processing your grant applications;</li>
+          <li>In conjunction with your employment inquiries or applications;</li>
+          <li>When you participate with social media and peer to peer accounts involving the Digital Impact Alliance</li>
+          <li>When you participate in online communities;</li>
+          <li>In conjunction with any verification of your account information;</li>
+          <li>In conjunction with investigations into any activity that may violate the law or the website's terms and conditions;</li>
+          <li>When you communicate with us through the website;</li>
+          <li>When you provide user-generated content on any part of the website that permits it; and</li>
+          <li>In conjunction with any other place on the website where you knowingly volunteer personal information</li>
+        </ul>
+        <div class='h2 py-3'>Non-Identifying Information</div>
+        <p>In addition, when you interact with the website, our servers may keep an activity log that does not identify you
+          individually (“Non-Personal Information”). Generally, we collect the following categories of Non-Personal
+          Information:
+        </p>
+        <ul class="list-disc ml-4">
+          <li>We may collect certain demographic data such as age, gender and postal code as part of collecting personal
+            information;</li<li>We collect and store certain device information about your computer, mobile device or other
+            device that you use to access the website. This information may include IP address, geolocation information,
+            unique device identifiers, browser type, browser language and other transactional information;</li>
+          <li>We automatically log certain usage information about your use of the website. This information includes a
+            reading history of the pages you view. We use this information to provide you with a more customized experience
+            on the website;</li>
+          <li>We collect and store additional 'traffic data' such as time of access, date of access, software crash reports,
+            session identification number, access times and referring website addresses; and</li>
+          <li>We collect and store your search terms and search results.</li>
+        </ul>
+        <div class='h2 py-3'>How we use your data</div>
+        <p>We use the information we learn from you to help us personalize and continually improve your experience on the
+          website. With your consent we may use your Personal and Non-Personal Information in the following ways:</p>
+        <p><strong>General Uses</strong></p>
+        <ul class="list-disc ml-4">
+          <li>For editorial purposes;</li>
+          <li>Responding to your inquiries;</li>
+          <li>Communicating with you about your interactions and sending you information about features on our website or about the organization;</li>
+          <li>Communicating with you about changes to our policies;</li>
+          <li>Sending you newsletters, mailings, and information about programs, initiatives, activities and events by e-mail or another medium;</li>
+          <li>Processing your employment application;</li>
+          <li>Event or program registration;</li>
+          <li>Optimizing or improving our programs, services and operations;</li>
+          <li>Research and development;</li>
+          <li>Detecting, investigating, and preventing activities that may violate our policies or be illegal;</li>
+          <li>Advocating to decision makers on specific issues;</li>
+          <li>Performing statistical, demographic and marketing analyses of users of the website and their usage patterns; and</li>
+          <li>Managing our organization.</li>
+        </ul>
+        <div class='h2 py-3'>How we protect your data</div>
+        <p>
+          The Digital Impact Alliance intends to protect the quality and integrity of your personally identifiable
+          information. We have implemented appropriate physical, technical and organizational measures, including
+          industry-standard encryption for transmission of credit card information, to help keep your information secure,
+          accurate, current and complete.
+        </p>
+        <p>If you have any concerns about the security and confidentiality of your Personal Information, please contact <a
+            href='mailto:info@digitalimpactalliance.org'><strong>info@digitalimpactalliance.org</strong></a></p>
+        <div class='h2 py-3'>Compliance with the EU GDPR data regulations</div>
+        <p>The General Data Protection Regulation (GDPR) (EU) 2016/679 is a regulation in EU law on data protection and
+          privacy for all individuals within the European Union. It also addresses the export of personal data outside the
+          EU.</p>
+        <p>We will use reasonable efforts to securely process all personal information in line with the rights specified
+          under the GDPR, in particular those related to the following requests:</p>
+        <ul class="list-disc ml-4">
+          <li>Access to your Personal Information;</li>
+          <li>Correction of the Personal Information we hold;</li>
+          <li>Deletion of your Personal Information;</li>
+          <li>A restriction of processing of your Personal Information;</li>
+          <li>Transfer of your Personal Information to another party; or,</li>
+          <li>Objection to processing of your Personal Information based on the Digital Impact Alliance's legitimate
+            interests (or those of a third party) to use it.</li>
+        </ul>
+        <p>
+          Please send an email to
+          <a href='mailto:info@digitalimpactalliance.org'>
+            <strong>info@digitalimpactalliance.org</strong>
+          </a>
+          if any of the following apply:
+        </p>
+        <ul class="list-disc ml-4">
+          <li>You have any questions or requests regarding this policy;</li>
+          <li>You would like to remove all Personal Information from our database;</li>
+          <li>You would like to view Personal Information you shared with us;</li>
+          <li>You would like to change your account preferences;</li>
+          <li>You no longer wish to receive email updates from the Digital Impact Alliance;</li>
+          <li>You believe the Digital Impact Alliance has erroneous or incomplete information about you; or,</li>
+          <li>You believe a child below the age of 16 years may have submitted Personal Information without the consent of a parent or guardian.</li>
+        </ul>
+        <p>
+          For more information about your rights under the GDPR, please visit
+          <a href='https://gdpr-info.eu'><strong>https://gdpr-info.eu</strong></a>.
+        </p>
+        <div class='h2 py-3'>How we communicate updates to this Privacy Policy with you</div>
+        <p>
+          If the Digital Impact Alliance decides to change our privacy policy, we will post those changes to this page, so
+          you are always aware of what information we collect and how we use it. You will have a choice as to whether we use
+          your information in this different manner.
+        </p>
+        <p>
+          Your continued use of our website following the posting of changes to this Privacy Policy will mean you accept
+          those changes. Our most up-to-date privacy policy will always be available here.
+        </p>
+        <p>
+          Questions and comments should be directed to
+          <a href='mailto:info@digitalimpactalliance.org'>
+            <strong>info@digitalimpactalliance.org</strong>
+          </a>
+        </p>
+        <div class='h2 py-3'>Advisories</div>
+        <p><strong>Email Scams</strong></p>
+        <p>
+          Several deceptive emails claiming to be from or associated with the Digital Impact Alliance or United Nations
+          Foundation, Kathy Calvin, Rick Parnell, Ted Turner and Timothy Wirth are circulating on the Internet. These emails
+          often include our logo, photos, links or other information from our Web site.
+        </p>
+        <p>
+          Some emails claim the recipient has won a lottery or other prize and request detailed personal information or a
+          payment of some kind in order to receive the winnings. Some mention other foundations and organizations based in
+          the United Kingdom none of which are a part of these scams. Other emails direct recipients to Web sites that
+          promise large returns on investments and claim a portion of returns will be donated to the foundation.
+        </p>
+        <p>
+          The sources and contents of these emails, websites, and accompanying materials are in no way associated with the
+          Digital Impact Alliance or United Nations Foundation, Kathy Calvin, Rick Parnell, Ted Turner and Timothy Wirth.
+          For your own protection, we strongly recommend not responding to emails making such claims.
+        </p>
+        <p>
+          The UN Foundation has reported, and will continue to report, these deceptive spam emails to the Federal Trade
+          Commission (FTC), the Internet Crime Complaint Center (IC3) and the Federal Bureau of Investigation (FBI). For
+          more information about the FTC’s efforts against deceptive spam, please visit
+          <a href="https://www.consumer.ftc.gov/articles/0038-spam">
+            <strong>https://www.consumer.ftc.gov/articles/0038-spam</strong>
+          </a>.
+        </p>
+        <p>
+          For more information about the IC3, please visit
+          <a href="http://www.ic3.gov/"><strong>www.ic3.gov</strong></a>.
+          For information on the FBI, please visit
+          <a href="http://www.fbi.gov/"><strong>www.fbi.gov</strong></a>, or
+          contact your local FBI office.
+        </p>
+        <p>
+          You can also email your inquiries about scam email, letters, and phone calls to
+          <a href="mailto:action@unfoundation.org">
+            <strong>action@unfoundation.org</strong>
+          </a>
+          or
+          <a href="mailto:info@digitalimpactalliance.org">
+            <strong>info@digitalimpactalliance.org</strong>
+          </a>
+        </p>
+        <p>
+          <strong>Webmaster</strong><br>
+          <strong>Digital Impact Alliance</strong><br>
+          <strong>1750 Pennsylvania Avenue NW, Suite 300</strong><br>
+          <strong>Washington, D.C. 20006</strong><br>
+          <strong>202.887.9040 phone</strong><br>
+          <strong>202.887.9021 fax</strong><br>
+          <a href="mailto:info@digitalimpactalliance.org">
+            <strong>info@digitalimpactalliance.org</strong>
+          </a>
+        </p>
+      </div>
+    </div>
+  `,
   'app.shareLink': 'Create sharable link',
   'app.shareSuccess': 'Sharable link copied to your clipboard. Use Ctrl+V to paste it from your clipboard.',
   'app.shareFailed': 'Unable to copy sharable link to your clipboard.',
@@ -999,6 +1249,8 @@ export const en = {
   'play.unassign': 'Unassign',
   'play.error': 'Play err!',
   'play.form.tags': 'Add tag for this play.',
+  'play.form.products': 'Add product for this play.',
+  'play.form.buildingBlocks': 'Add building block for this play.',
 
   'playbook.form.tags': 'Add tag for this playbook.',
   'playbook.assignAnotherPlay': 'Assign another play',
@@ -1086,6 +1338,8 @@ export const en = {
   'validation.endDateEarlierThanStartDate': 'End Date cannot be earlier than Start Date',
   'validation.min-length': 'Message must be at least {minLength} characters',
   'validation.max-length': 'Message cannot be more than {maxLength} characters',
+  'validation.unique-email': 'This email is already assigned',
+  'validation.organization-domain': 'The email address of the user must match the organization’s domain',
   'organization.validation.contact.uniqueName': 'This contact is already assigned to this organization',
 
   'toast.buildingBlocks.update.success': 'Building Blocks updated successfully',
@@ -1124,8 +1378,10 @@ export const en = {
   'toast.sdgTargets.update.failure': 'SDG Targets update failed',
   'toast.workflows.update.success': 'Workflows updated successfully',
   'toast.workflows.update.failure': 'Workflows update failed',
-  'toast.user-profile.update.success': 'Profile updated successfully',
-  'toast.user-profile.update.failure': 'Profile update failed',
+  'toast.user-profile.submit.success': 'User created successfully',
+  'toast.user-profile.submit.failure': 'User submission failed',
+  'toast.user-profile.update.success': 'User updated successfully',
+  'toast.user-profile.update.failure': 'User update failed',
   'toast.offices.update.success': 'Offices updated successfully',
   'toast.offices.update.failure': 'Offices update failed',
   'toast.comment.delete.success': 'Comment deleted successfully',
@@ -1142,6 +1398,9 @@ export const en = {
   'toast.category-indicator.update.failure': 'Category Indicators update failed',
   'toast.playbook.delete.success': 'Playbook deleted successfully',
   'toast.playbook.delete.failure': 'Playbook deletion failed',
+
+  'toast.markdown.submit.success': 'Changes saved successfully.',
+  'toast.markdown.submit.failure': 'Unable to save changes. Please try again later.',
 
   'locale.label': 'Locale',
   'locale.english.label': 'English (en)',
@@ -1195,14 +1454,21 @@ export const en = {
   'paginatedSection.page.next.label': 'Next >',
 
   'intro.overview.startTour': 'Take a Tour',
-  'intro.overview': "Let's start with a quick product tour to get acquainted with the platform.",
-  'intro.overview.sdgFramework': 'Explore data and content on different nodes of the SDG Digital Investment Framework.',
-  'intro.overview.entityProduct': 'Discover important information on different solutions and tools.',
-  'intro.overview.entityHelp': 'Need more information on the tab? Click here.',
-  'intro.overview.search': 'Search by key words.',
-  'intro.overview.filter': 'Or use filters to narrow your search.',
-  'intro.overview.cardView': 'Click on a card for detailed information.',
-  'intro.overview.entityPlaybook': 'Find guidance resources contributed by our community of users.',
+  'intro.overview': "Welcome to the Catalog of Digital Solutions.<br /><br />Let's start with a quick product tour to get acquainted with the platform.<br /><br /><div class='text-xs'>You can exit this tour at any time by clicking the 'X' in the top right corner.</div>",
+  'intro.overview.sdgFramework': 'The Catalog leverages the SDG Digital Investment Framework developed by DIAL and ITU. You can see different aspects of the Framework by clicking on the various tabs.',
+  'intro.overview.entityProduct': 'The Products Tab is used to discover information on different solutions and tools.',
+  'intro.overview.entityHelp': 'Need more information on what a product is? Click here.',
+  'intro.overview.search': 'The Catalog makes it easy to search and find specific products. Use this search bar to find a product by key words.',
+  'intro.overview.filter': 'Or use these filters to narrow your search.',
+  'intro.overview.cardView': 'Click on one of the cards below for detailed information about that product.',
+  'intro.overview.entityPlaybook': 'The Playbooks tab allows you to find guidance and resources contributed by DIAL and our community of users.',
   'intro.overview.wizard': 'Need more help? Try our recommendations wizard.',
-  'intro.overview.signUp': 'Start today by signing up for an account to access more features.'
+  'intro.overview.signUp': 'Start using the Catalog today by signing up for an account, which allows you to access even more great features.',
+
+  'govstack.api.repositories': 'Govstack API Repositories',
+  'govstack.api.branch': 'Branch',
+  'govstack.api.editorTitle': 'YAML Editor',
+
+  'toast.edit.submit.success': 'Changes saved successfully.',
+  'toast.edit.submit.failure': 'Unable to save changes. Please try again later.',
 }

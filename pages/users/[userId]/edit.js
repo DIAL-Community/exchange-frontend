@@ -32,7 +32,7 @@ const EditUserPageDefinition = ({ userId, locale }) => {
     <>
       {
         data && data.user &&
-          <UserForm user={data.user} action='update' />
+          <UserForm user={data.user} />
       }
     </>
   )

@@ -60,7 +60,7 @@ describe('Unit test for the WizardRequestAdditionalSupportDialog component.', ()
       </CustomMockedProvider>
     )
     fireEvent.click(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    await waitForAllEffects()
+    await waitForAllEffects(1000)
     expect(getByTestId(NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(EMAIL_ADDRESS_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(MESSAGE_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)

@@ -1,5 +1,404 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Unit tests for the UserForm component. Should match snapshot - create. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="flex flex-col"
+  >
+    <div
+      class="lg:w-2/5 mx-auto px-4 font-bold text-xl text-dial-blue"
+    >
+      <div
+        class="hidden lg:block"
+      >
+        <div
+          class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+        >
+          <a
+            class="inline text-dial-blue h5"
+            href="/"
+          >
+            Home
+          </a>
+          <div
+            class="inline h5"
+          >
+             &gt; 
+            <a
+              class="text-dial-gray-dark"
+              href="/"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="pb-8 px-8"
+    >
+      <div
+        class="sm:px-0 mx-auto"
+        id="content"
+      >
+        <form>
+          <div
+            class="sm:w-full md:w-2/3 lg:w-2/5 bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 mx-auto flex flex-col gap-3"
+          >
+            <div
+              class="text-2xl font-bold text-dial-blue pb-4"
+            >
+              Create New User
+            </div>
+            <div
+              class="flex flex-col lg:flex-col gap-4"
+            >
+              <div
+                class="form-field-wrapper"
+                data-testid="email-label"
+              >
+                <label
+                  class="form-field-label required-field"
+                  for="email"
+                >
+                  Email
+                </label>
+                <input
+                  class="w-full"
+                  data-testid="email-input"
+                  name="email"
+                  placeholder="Enter email address"
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="form-field-wrapper"
+                data-testid="username-label"
+              >
+                <label
+                  class="form-field-label required-field"
+                  for="username"
+                >
+                  Username
+                </label>
+                <input
+                  class="w-full"
+                  data-testid="username-input"
+                  name="username"
+                  placeholder="Enter username"
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="form-field-wrapper"
+              >
+                <label
+                  class="form-field-label"
+                  for="roles"
+                >
+                  Roles
+                </label>
+                <div
+                  class=" css-l45kjq-container"
+                >
+                  <span
+                    class="css-1f43avz-a11yText-A11yText"
+                    id="react-select-2-live-region"
+                  />
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
+                  <div
+                    class="react-select__control css-19jej77-control"
+                  >
+                    <div
+                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                    >
+                      <div
+                        class="react-select__placeholder css-19jynah-placeholder"
+                        id="react-select-2-placeholder"
+                      >
+                        Select user roles
+                      </div>
+                      <div
+                        class="react-select__input-container css-6j8wv5-Input"
+                        data-value=""
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          aria-describedby="react-select-2-placeholder"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          autocapitalize="none"
+                          autocomplete="off"
+                          autocorrect="off"
+                          class="react-select__input"
+                          id="react-select-id-undefined"
+                          role="combobox"
+                          spellcheck="false"
+                          style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                          tabindex="0"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                    >
+                      <span
+                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                      />
+                      <div
+                        aria-hidden="true"
+                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="css-tj5bde-Svg"
+                          focusable="false"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          width="20"
+                        >
+                          <path
+                            d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="form-field-wrapper"
+              >
+                <label
+                  class="form-field-label"
+                  data-testid="organization-search"
+                  for="organization"
+                >
+                  Organization
+                </label>
+                <div
+                  class=" css-l45kjq-container"
+                >
+                  <span
+                    class="css-1f43avz-a11yText-A11yText"
+                    id="react-select-3-live-region"
+                  />
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
+                  <div
+                    class="react-select__control css-19jej77-control"
+                  >
+                    <div
+                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                    >
+                      <div
+                        class="react-select__placeholder css-19jynah-placeholder"
+                        id="react-select-3-placeholder"
+                      >
+                        Enter user organization
+                      </div>
+                      <div
+                        class="react-select__input-container css-6j8wv5-Input"
+                        data-value=""
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          aria-describedby="react-select-3-placeholder"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          autocapitalize="none"
+                          autocomplete="off"
+                          autocorrect="off"
+                          class="react-select__input"
+                          id="react-select-id-organization"
+                          role="combobox"
+                          spellcheck="false"
+                          style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                          tabindex="0"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                    >
+                      <span
+                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                      />
+                      <div
+                        aria-hidden="true"
+                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                      >
+                        <svg
+                          class="text-2xl"
+                          fill="none"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="h5 w-full pl-2 text-dial-gray-dark normal-case"
+                >
+                  NOTE: Select an organization only if this user will be an organization owner. The email address of the user must match the organization’s domain.
+                </div>
+              </div>
+              <div
+                class="form-field-wrapper"
+              >
+                <label
+                  class="form-field-label"
+                  for="product"
+                >
+                  Products
+                </label>
+                <div
+                  class=""
+                  data-testid="product-search"
+                >
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-4-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-19jej77-control"
+                    >
+                      <div
+                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                      >
+                        <div
+                          class="react-select__placeholder css-19jynah-placeholder"
+                          id="react-select-4-placeholder"
+                        >
+                          Enter products owned by user
+                        </div>
+                        <div
+                          class="react-select__input-container css-6j8wv5-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-describedby="react-select-4-placeholder"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            aria-label="Filter by Product"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="async-select-id-undefined"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="css-tj5bde-Svg"
+                            focusable="false"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            width="20"
+                          >
+                            <path
+                              d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <label
+                class="flex gap-x-2 items-center form-field-label my-auto"
+                data-testid="user-is-confirmed"
+              >
+                <input
+                  class="h-8 w-8"
+                  data-testid="checkbox"
+                  name="confirmed"
+                  type="checkbox"
+                />
+                User account confirmed
+              </label>
+              <div
+                class="flex flex-wrap text-xl mt-8 gap-3"
+              >
+                <button
+                  class="submit-button"
+                  data-testid="submit-button"
+                  type="submit"
+                >
+                  Submit User
+                </button>
+                <button
+                  class="cancel-button"
+                  type="button"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`] = `
 <div>
   <div
@@ -55,65 +454,265 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
               class="flex flex-col lg:flex-col gap-4"
             >
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
+                data-testid="email-label"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  data-testid="email-label"
-                  for="name"
+                  class="form-field-label required-field"
+                  for="email"
                 >
-                  <p
-                    class="required-field"
-                  >
-                    Email
-                  </p>
-                  <input
-                    class="w-full"
-                    data-testid="email-input"
-                    name="email"
-                    type="text"
-                    value=""
-                  />
+                  Email
                 </label>
+                <input
+                  class="w-full"
+                  data-testid="email-input"
+                  name="email"
+                  placeholder="Enter email address"
+                  type="text"
+                  value=""
+                />
               </div>
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
+                data-testid="username-label"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  data-testid="username-label"
-                  for="name"
+                  class="form-field-label required-field"
+                  for="username"
                 >
-                  <p
-                    class="required-field"
-                  >
-                    Username
-                  </p>
-                  <input
-                    class="w-full"
-                    data-testid="username-input"
-                    name="username"
-                    type="text"
-                    value=""
-                  />
+                  Username
                 </label>
+                <input
+                  class="w-full"
+                  data-testid="username-input"
+                  name="username"
+                  placeholder="Enter username"
+                  type="text"
+                  value=""
+                />
               </div>
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
+                  class="form-field-label"
+                  for="roles"
                 >
-                  <p>
-                    Roles
-                  </p>
+                  Roles
+                </label>
+                <div
+                  class=" css-l45kjq-container"
+                >
+                  <span
+                    class="css-1f43avz-a11yText-A11yText"
+                    id="react-select-5-live-region"
+                  />
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
+                  <div
+                    class="react-select__control css-19jej77-control"
+                  >
+                    <div
+                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                    >
+                      <div
+                        class="react-select__placeholder css-19jynah-placeholder"
+                        id="react-select-5-placeholder"
+                      >
+                        Select user roles
+                      </div>
+                      <div
+                        class="react-select__input-container css-6j8wv5-Input"
+                        data-value=""
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          aria-describedby="react-select-5-placeholder"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          autocapitalize="none"
+                          autocomplete="off"
+                          autocorrect="off"
+                          class="react-select__input"
+                          id="react-select-id-undefined"
+                          role="combobox"
+                          spellcheck="false"
+                          style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                          tabindex="0"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                    >
+                      <span
+                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                      />
+                      <div
+                        aria-hidden="true"
+                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="css-tj5bde-Svg"
+                          focusable="false"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          width="20"
+                        >
+                          <path
+                            d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-wrap gap-3"
+                >
+                  <div
+                    class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                    data-testid="pill"
+                  >
+                    user
+                    <svg
+                      class="ml-3 text-2xl cursor-pointer"
+                      data-testid="remove-button"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 24 24"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      />
+                      <path
+                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="form-field-wrapper"
+              >
+                <label
+                  class="form-field-label"
+                  data-testid="organization-search"
+                  for="organization"
+                >
+                  Organization
+                </label>
+                <div
+                  class=" css-l45kjq-container"
+                >
+                  <span
+                    class="css-1f43avz-a11yText-A11yText"
+                    id="react-select-6-live-region"
+                  />
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
+                  <div
+                    class="react-select__control css-19jej77-control"
+                  >
+                    <div
+                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                    >
+                      <div
+                        class="react-select__placeholder css-19jynah-placeholder"
+                        id="react-select-6-placeholder"
+                      >
+                        Enter user organization
+                      </div>
+                      <div
+                        class="react-select__input-container css-6j8wv5-Input"
+                        data-value=""
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          aria-describedby="react-select-6-placeholder"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          autocapitalize="none"
+                          autocomplete="off"
+                          autocorrect="off"
+                          class="react-select__input"
+                          id="react-select-id-organization"
+                          role="combobox"
+                          spellcheck="false"
+                          style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                          tabindex="0"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                    >
+                      <span
+                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                      />
+                      <div
+                        aria-hidden="true"
+                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                      >
+                        <svg
+                          class="text-2xl"
+                          fill="none"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="form-field-wrapper"
+              >
+                <label
+                  class="form-field-label"
+                  for="product"
+                >
+                  Products
+                </label>
+                <div
+                  class=""
+                  data-testid="product-search"
+                >
                   <div
                     class=" css-l45kjq-container"
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-2-live-region"
+                      id="react-select-7-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -129,9 +728,9 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-2-placeholder"
+                          id="react-select-7-placeholder"
                         >
-                          Select user roles
+                          Enter products owned by user
                         </div>
                         <div
                           class="react-select__input-container css-6j8wv5-Input"
@@ -139,14 +738,15 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-2-placeholder"
+                            aria-describedby="react-select-7-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
+                            aria-label="Filter by Product"
                             autocapitalize="none"
                             autocomplete="off"
                             autocorrect="off"
                             class="react-select__input"
-                            id="react-select-id-undefined"
+                            id="async-select-id-undefined"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -182,14 +782,18 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                       </div>
                     </div>
                   </div>
+                </div>
+                <div
+                  class="flex flex-wrap gap-x-3"
+                >
                   <div
-                    class="flex flex-wrap gap-3"
+                    class="py-1"
                   >
                     <div
                       class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
                       data-testid="pill"
                     >
-                      user
+                      Product: product 1
                       <svg
                         class="ml-3 text-2xl cursor-pointer"
                         data-testid="remove-button"
@@ -211,286 +815,36 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                       </svg>
                     </div>
                   </div>
-                </label>
-              </div>
-              <div
-                class="w-full flex flex-col"
-              >
-                <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
-                >
-                  <p>
-                    Organization
-                  </p>
                   <div
-                    class=""
-                    data-testid="organization-search"
+                    class="py-1"
                   >
                     <div
-                      class=" css-l45kjq-container"
+                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      data-testid="pill"
                     >
-                      <span
-                        class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-3-live-region"
-                      />
-                      <span
-                        aria-atomic="false"
-                        aria-live="polite"
-                        aria-relevant="additions text"
-                        class="css-1f43avz-a11yText-A11yText"
-                      />
-                      <div
-                        class="react-select__control css-19jej77-control"
+                      Product: product 2
+                      <svg
+                        class="ml-3 text-2xl cursor-pointer"
+                        data-testid="remove-button"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
-                        >
-                          <div
-                            class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-3-placeholder"
-                          >
-                            Enter user organization
-                          </div>
-                          <div
-                            class="react-select__input-container css-6j8wv5-Input"
-                            data-value=""
-                          >
-                            <input
-                              aria-autocomplete="list"
-                              aria-describedby="react-select-3-placeholder"
-                              aria-expanded="false"
-                              aria-haspopup="true"
-                              aria-label="Filter by Organization"
-                              autocapitalize="none"
-                              autocomplete="off"
-                              autocorrect="off"
-                              class="react-select__input"
-                              id="async-select-id-undefined"
-                              role="combobox"
-                              spellcheck="false"
-                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                              tabindex="0"
-                              type="text"
-                              value=""
-                            />
-                          </div>
-                        </div>
-                        <div
-                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                        >
-                          <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
-                          />
-                          <div
-                            aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="css-tj5bde-Svg"
-                              focusable="false"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              width="20"
-                            >
-                              <path
-                                d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        />
+                      </svg>
                     </div>
                   </div>
-                  <div
-                    class="flex flex-wrap gap-3"
-                  >
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Organization: Organization 1
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </label>
-              </div>
-              <div
-                class="w-full flex flex-col"
-              >
-                <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
-                >
-                  <p>
-                    Products
-                  </p>
-                  <div
-                    class=""
-                    data-testid="product-search"
-                  >
-                    <div
-                      class=" css-l45kjq-container"
-                    >
-                      <span
-                        class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-4-live-region"
-                      />
-                      <span
-                        aria-atomic="false"
-                        aria-live="polite"
-                        aria-relevant="additions text"
-                        class="css-1f43avz-a11yText-A11yText"
-                      />
-                      <div
-                        class="react-select__control css-19jej77-control"
-                      >
-                        <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
-                        >
-                          <div
-                            class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-4-placeholder"
-                          >
-                            Enter products owned by user
-                          </div>
-                          <div
-                            class="react-select__input-container css-6j8wv5-Input"
-                            data-value=""
-                          >
-                            <input
-                              aria-autocomplete="list"
-                              aria-describedby="react-select-4-placeholder"
-                              aria-expanded="false"
-                              aria-haspopup="true"
-                              aria-label="Filter by Product"
-                              autocapitalize="none"
-                              autocomplete="off"
-                              autocorrect="off"
-                              class="react-select__input"
-                              id="async-select-id-undefined"
-                              role="combobox"
-                              spellcheck="false"
-                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                              tabindex="0"
-                              type="text"
-                              value=""
-                            />
-                          </div>
-                        </div>
-                        <div
-                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                        >
-                          <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
-                          />
-                          <div
-                            aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="css-tj5bde-Svg"
-                              focusable="false"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              width="20"
-                            >
-                              <path
-                                d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="flex flex-wrap gap-3"
-                  >
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Product: product 1
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Product: product 2
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </label>
+                </div>
               </div>
               <label
                 class="flex gap-x-2 items-center form-field-label my-auto"
@@ -512,7 +866,13 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                   data-testid="submit-button"
                   type="submit"
                 >
-                  Submit
+                  Submit User
+                </button>
+                <button
+                  class="cancel-button"
+                  type="button"
+                >
+                  Cancel
                 </button>
               </div>
             </div>
@@ -573,76 +933,250 @@ exports[`Unit tests for the UserForm component. Should not show validation error
             <div
               class="text-2xl font-bold text-dial-blue pb-4"
             >
-              Edit User Test
+              Create New User
             </div>
             <div
               class="flex flex-col lg:flex-col gap-4"
             >
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
+                data-testid="email-label"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  data-testid="email-label"
-                  for="name"
+                  class="form-field-label required-field"
+                  for="email"
                 >
-                  <p
-                    class="required-field"
-                  >
-                    Email
-                  </p>
-                  <input
-                    class="validation-error w-full"
-                    data-testid="email-input"
-                    name="email"
-                    type="text"
-                    value=""
-                  />
-                  <p
-                    class="text-sm text-validation-error"
-                  >
-                    Please enter a valid email address
-                  </p>
+                  Email
                 </label>
+                <input
+                  class="validation-error w-full"
+                  data-testid="email-input"
+                  name="email"
+                  placeholder="Enter email address"
+                  type="text"
+                  value=""
+                />
+                <p
+                  class="text-sm text-validation-error"
+                />
               </div>
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
+                data-testid="username-label"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  data-testid="username-label"
-                  for="name"
+                  class="form-field-label required-field"
+                  for="username"
                 >
-                  <p
-                    class="required-field"
-                  >
-                    Username
-                  </p>
-                  <input
-                    class="w-full"
-                    data-testid="username-input"
-                    name="username"
-                    type="text"
-                    value=""
-                  />
+                  Username
                 </label>
+                <input
+                  class="w-full"
+                  data-testid="username-input"
+                  name="username"
+                  placeholder="Enter username"
+                  type="text"
+                  value=""
+                />
               </div>
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
+                  class="form-field-label"
+                  for="roles"
                 >
-                  <p>
-                    Roles
-                  </p>
+                  Roles
+                </label>
+                <div
+                  class=" css-l45kjq-container"
+                >
+                  <span
+                    class="css-1f43avz-a11yText-A11yText"
+                    id="react-select-8-live-region"
+                  />
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
+                  <div
+                    class="react-select__control css-19jej77-control"
+                  >
+                    <div
+                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                    >
+                      <div
+                        class="react-select__placeholder css-19jynah-placeholder"
+                        id="react-select-8-placeholder"
+                      >
+                        Select user roles
+                      </div>
+                      <div
+                        class="react-select__input-container css-6j8wv5-Input"
+                        data-value=""
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          aria-describedby="react-select-8-placeholder"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          autocapitalize="none"
+                          autocomplete="off"
+                          autocorrect="off"
+                          class="react-select__input"
+                          id="react-select-id-undefined"
+                          role="combobox"
+                          spellcheck="false"
+                          style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                          tabindex="0"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                    >
+                      <span
+                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                      />
+                      <div
+                        aria-hidden="true"
+                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="css-tj5bde-Svg"
+                          focusable="false"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          width="20"
+                        >
+                          <path
+                            d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="form-field-wrapper"
+              >
+                <label
+                  class="form-field-label"
+                  data-testid="organization-search"
+                  for="organization"
+                >
+                  Organization
+                </label>
+                <div
+                  class=" css-l45kjq-container"
+                >
+                  <span
+                    class="css-1f43avz-a11yText-A11yText"
+                    id="react-select-9-live-region"
+                  />
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
+                  <div
+                    class="react-select__control css-19jej77-control"
+                  >
+                    <div
+                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                    >
+                      <div
+                        class="react-select__placeholder css-19jynah-placeholder"
+                        id="react-select-9-placeholder"
+                      >
+                        Enter user organization
+                      </div>
+                      <div
+                        class="react-select__input-container css-6j8wv5-Input"
+                        data-value=""
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          aria-describedby="react-select-9-placeholder"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          autocapitalize="none"
+                          autocomplete="off"
+                          autocorrect="off"
+                          class="react-select__input"
+                          id="react-select-id-organization"
+                          role="combobox"
+                          spellcheck="false"
+                          style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                          tabindex="0"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                    >
+                      <span
+                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                      />
+                      <div
+                        aria-hidden="true"
+                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                      >
+                        <svg
+                          class="text-2xl"
+                          fill="none"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="h5 w-full pl-2 text-dial-gray-dark normal-case"
+                >
+                  NOTE: Select an organization only if this user will be an organization owner. The email address of the user must match the organization’s domain.
+                </div>
+              </div>
+              <div
+                class="form-field-wrapper"
+              >
+                <label
+                  class="form-field-label"
+                  for="product"
+                >
+                  Products
+                </label>
+                <div
+                  class=""
+                  data-testid="product-search"
+                >
                   <div
                     class=" css-l45kjq-container"
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-5-live-region"
+                      id="react-select-10-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -658,9 +1192,9 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-5-placeholder"
+                          id="react-select-10-placeholder"
                         >
-                          Select user roles
+                          Enter products owned by user
                         </div>
                         <div
                           class="react-select__input-container css-6j8wv5-Input"
@@ -668,14 +1202,15 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-5-placeholder"
+                            aria-describedby="react-select-10-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
+                            aria-label="Filter by Product"
                             autocapitalize="none"
                             autocomplete="off"
                             autocorrect="off"
                             class="react-select__input"
-                            id="react-select-id-undefined"
+                            id="async-select-id-undefined"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -711,315 +1246,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="flex flex-wrap gap-3"
-                  >
-                    <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                      data-testid="pill"
-                    >
-                      user
-                      <svg
-                        class="ml-3 text-2xl cursor-pointer"
-                        data-testid="remove-button"
-                        fill="currentColor"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </label>
-              </div>
-              <div
-                class="w-full flex flex-col"
-              >
-                <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
-                >
-                  <p>
-                    Organization
-                  </p>
-                  <div
-                    class=""
-                    data-testid="organization-search"
-                  >
-                    <div
-                      class=" css-l45kjq-container"
-                    >
-                      <span
-                        class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-6-live-region"
-                      />
-                      <span
-                        aria-atomic="false"
-                        aria-live="polite"
-                        aria-relevant="additions text"
-                        class="css-1f43avz-a11yText-A11yText"
-                      />
-                      <div
-                        class="react-select__control css-19jej77-control"
-                      >
-                        <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
-                        >
-                          <div
-                            class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-6-placeholder"
-                          >
-                            Enter user organization
-                          </div>
-                          <div
-                            class="react-select__input-container css-6j8wv5-Input"
-                            data-value=""
-                          >
-                            <input
-                              aria-autocomplete="list"
-                              aria-describedby="react-select-6-placeholder"
-                              aria-expanded="false"
-                              aria-haspopup="true"
-                              aria-label="Filter by Organization"
-                              autocapitalize="none"
-                              autocomplete="off"
-                              autocorrect="off"
-                              class="react-select__input"
-                              id="async-select-id-undefined"
-                              role="combobox"
-                              spellcheck="false"
-                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                              tabindex="0"
-                              type="text"
-                              value=""
-                            />
-                          </div>
-                        </div>
-                        <div
-                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                        >
-                          <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
-                          />
-                          <div
-                            aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="css-tj5bde-Svg"
-                              focusable="false"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              width="20"
-                            >
-                              <path
-                                d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="flex flex-wrap gap-3"
-                  >
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Organization: Organization 1
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </label>
-              </div>
-              <div
-                class="w-full flex flex-col"
-              >
-                <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
-                >
-                  <p>
-                    Products
-                  </p>
-                  <div
-                    class=""
-                    data-testid="product-search"
-                  >
-                    <div
-                      class=" css-l45kjq-container"
-                    >
-                      <span
-                        class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-7-live-region"
-                      />
-                      <span
-                        aria-atomic="false"
-                        aria-live="polite"
-                        aria-relevant="additions text"
-                        class="css-1f43avz-a11yText-A11yText"
-                      />
-                      <div
-                        class="react-select__control css-19jej77-control"
-                      >
-                        <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
-                        >
-                          <div
-                            class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-7-placeholder"
-                          >
-                            Enter products owned by user
-                          </div>
-                          <div
-                            class="react-select__input-container css-6j8wv5-Input"
-                            data-value=""
-                          >
-                            <input
-                              aria-autocomplete="list"
-                              aria-describedby="react-select-7-placeholder"
-                              aria-expanded="false"
-                              aria-haspopup="true"
-                              aria-label="Filter by Product"
-                              autocapitalize="none"
-                              autocomplete="off"
-                              autocorrect="off"
-                              class="react-select__input"
-                              id="async-select-id-undefined"
-                              role="combobox"
-                              spellcheck="false"
-                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                              tabindex="0"
-                              type="text"
-                              value=""
-                            />
-                          </div>
-                        </div>
-                        <div
-                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                        >
-                          <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
-                          />
-                          <div
-                            aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="css-tj5bde-Svg"
-                              focusable="false"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              width="20"
-                            >
-                              <path
-                                d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="flex flex-wrap gap-3"
-                  >
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Product: product 1
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Product: product 2
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </label>
+                </div>
               </div>
               <label
                 class="flex gap-x-2 items-center form-field-label my-auto"
@@ -1041,7 +1268,13 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                   data-testid="submit-button"
                   type="submit"
                 >
-                  Submit
+                  Submit User
+                </button>
+                <button
+                  class="cancel-button"
+                  type="button"
+                >
+                  Cancel
                 </button>
               </div>
             </div>
@@ -1108,65 +1341,265 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
               class="flex flex-col lg:flex-col gap-4"
             >
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
+                data-testid="email-label"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  data-testid="email-label"
-                  for="name"
+                  class="form-field-label required-field"
+                  for="email"
                 >
-                  <p
-                    class="required-field"
-                  >
-                    Email
-                  </p>
-                  <input
-                    class="w-full"
-                    data-testid="email-input"
-                    name="email"
-                    type="text"
-                    value=""
-                  />
+                  Email
                 </label>
+                <input
+                  class="w-full"
+                  data-testid="email-input"
+                  name="email"
+                  placeholder="Enter email address"
+                  type="text"
+                  value=""
+                />
               </div>
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
+                data-testid="username-label"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  data-testid="username-label"
-                  for="name"
+                  class="form-field-label required-field"
+                  for="username"
                 >
-                  <p
-                    class="required-field"
-                  >
-                    Username
-                  </p>
-                  <input
-                    class="w-full"
-                    data-testid="username-input"
-                    name="username"
-                    type="text"
-                    value=""
-                  />
+                  Username
                 </label>
+                <input
+                  class="w-full"
+                  data-testid="username-input"
+                  name="username"
+                  placeholder="Enter username"
+                  type="text"
+                  value=""
+                />
               </div>
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
+                  class="form-field-label"
+                  for="roles"
                 >
-                  <p>
-                    Roles
-                  </p>
+                  Roles
+                </label>
+                <div
+                  class=" css-l45kjq-container"
+                >
+                  <span
+                    class="css-1f43avz-a11yText-A11yText"
+                    id="react-select-17-live-region"
+                  />
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
+                  <div
+                    class="react-select__control css-19jej77-control"
+                  >
+                    <div
+                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                    >
+                      <div
+                        class="react-select__placeholder css-19jynah-placeholder"
+                        id="react-select-17-placeholder"
+                      >
+                        Select user roles
+                      </div>
+                      <div
+                        class="react-select__input-container css-6j8wv5-Input"
+                        data-value=""
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          aria-describedby="react-select-17-placeholder"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          autocapitalize="none"
+                          autocomplete="off"
+                          autocorrect="off"
+                          class="react-select__input"
+                          id="react-select-id-undefined"
+                          role="combobox"
+                          spellcheck="false"
+                          style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                          tabindex="0"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                    >
+                      <span
+                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                      />
+                      <div
+                        aria-hidden="true"
+                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="css-tj5bde-Svg"
+                          focusable="false"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          width="20"
+                        >
+                          <path
+                            d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-wrap gap-3"
+                >
+                  <div
+                    class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                    data-testid="pill"
+                  >
+                    user
+                    <svg
+                      class="ml-3 text-2xl cursor-pointer"
+                      data-testid="remove-button"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 24 24"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      />
+                      <path
+                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="form-field-wrapper"
+              >
+                <label
+                  class="form-field-label"
+                  data-testid="organization-search"
+                  for="organization"
+                >
+                  Organization
+                </label>
+                <div
+                  class=" css-l45kjq-container"
+                >
+                  <span
+                    class="css-1f43avz-a11yText-A11yText"
+                    id="react-select-18-live-region"
+                  />
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
+                  <div
+                    class="react-select__control css-19jej77-control"
+                  >
+                    <div
+                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                    >
+                      <div
+                        class="react-select__placeholder css-19jynah-placeholder"
+                        id="react-select-18-placeholder"
+                      >
+                        Enter user organization
+                      </div>
+                      <div
+                        class="react-select__input-container css-6j8wv5-Input"
+                        data-value=""
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          aria-describedby="react-select-18-placeholder"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          autocapitalize="none"
+                          autocomplete="off"
+                          autocorrect="off"
+                          class="react-select__input"
+                          id="react-select-id-organization"
+                          role="combobox"
+                          spellcheck="false"
+                          style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                          tabindex="0"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                    >
+                      <span
+                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                      />
+                      <div
+                        aria-hidden="true"
+                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                      >
+                        <svg
+                          class="text-2xl"
+                          fill="none"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="form-field-wrapper"
+              >
+                <label
+                  class="form-field-label"
+                  for="product"
+                >
+                  Products
+                </label>
+                <div
+                  class=""
+                  data-testid="product-search"
+                >
                   <div
                     class=" css-l45kjq-container"
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-14-live-region"
+                      id="react-select-19-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -1182,9 +1615,9 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-14-placeholder"
+                          id="react-select-19-placeholder"
                         >
-                          Select user roles
+                          Enter products owned by user
                         </div>
                         <div
                           class="react-select__input-container css-6j8wv5-Input"
@@ -1192,14 +1625,15 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-14-placeholder"
+                            aria-describedby="react-select-19-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
+                            aria-label="Filter by Product"
                             autocapitalize="none"
                             autocomplete="off"
                             autocorrect="off"
                             class="react-select__input"
-                            id="react-select-id-undefined"
+                            id="async-select-id-undefined"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -1212,6 +1646,20 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                       <div
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__loading-indicator css-at12u2-loadingIndicator"
+                        >
+                          <span
+                            class="css-1xtdfmb-LoadingDot"
+                          />
+                          <span
+                            class="css-zoievk-LoadingDot"
+                          />
+                          <span
+                            class="css-x748d8-LoadingDot"
+                          />
+                        </div>
                         <span
                           class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
                         />
@@ -1235,14 +1683,18 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                       </div>
                     </div>
                   </div>
+                </div>
+                <div
+                  class="flex flex-wrap gap-x-3"
+                >
                   <div
-                    class="flex flex-wrap gap-3"
+                    class="py-1"
                   >
                     <div
                       class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
                       data-testid="pill"
                     >
-                      user
+                      Product: product 1
                       <svg
                         class="ml-3 text-2xl cursor-pointer"
                         data-testid="remove-button"
@@ -1264,314 +1716,36 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                       </svg>
                     </div>
                   </div>
-                </label>
-              </div>
-              <div
-                class="w-full flex flex-col"
-              >
-                <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
-                >
-                  <p>
-                    Organization
-                  </p>
                   <div
-                    class=""
-                    data-testid="organization-search"
+                    class="py-1"
                   >
                     <div
-                      class=" css-l45kjq-container"
+                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      data-testid="pill"
                     >
-                      <span
-                        class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-15-live-region"
-                      />
-                      <span
-                        aria-atomic="false"
-                        aria-live="polite"
-                        aria-relevant="additions text"
-                        class="css-1f43avz-a11yText-A11yText"
-                      />
-                      <div
-                        class="react-select__control css-19jej77-control"
+                      Product: product 2
+                      <svg
+                        class="ml-3 text-2xl cursor-pointer"
+                        data-testid="remove-button"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
-                        >
-                          <div
-                            class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-15-placeholder"
-                          >
-                            Enter user organization
-                          </div>
-                          <div
-                            class="react-select__input-container css-6j8wv5-Input"
-                            data-value=""
-                          >
-                            <input
-                              aria-autocomplete="list"
-                              aria-describedby="react-select-15-placeholder"
-                              aria-expanded="false"
-                              aria-haspopup="true"
-                              aria-label="Filter by Organization"
-                              autocapitalize="none"
-                              autocomplete="off"
-                              autocorrect="off"
-                              class="react-select__input"
-                              id="async-select-id-undefined"
-                              role="combobox"
-                              spellcheck="false"
-                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                              tabindex="0"
-                              type="text"
-                              value=""
-                            />
-                          </div>
-                        </div>
-                        <div
-                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                        >
-                          <div
-                            aria-hidden="true"
-                            class="react-select__indicator react-select__loading-indicator css-at12u2-loadingIndicator"
-                          >
-                            <span
-                              class="css-1xtdfmb-LoadingDot"
-                            />
-                            <span
-                              class="css-zoievk-LoadingDot"
-                            />
-                            <span
-                              class="css-x748d8-LoadingDot"
-                            />
-                          </div>
-                          <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
-                          />
-                          <div
-                            aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="css-tj5bde-Svg"
-                              focusable="false"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              width="20"
-                            >
-                              <path
-                                d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        />
+                      </svg>
                     </div>
                   </div>
-                  <div
-                    class="flex flex-wrap gap-3"
-                  >
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Organization: Organization 1
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </label>
-              </div>
-              <div
-                class="w-full flex flex-col"
-              >
-                <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
-                >
-                  <p>
-                    Products
-                  </p>
-                  <div
-                    class=""
-                    data-testid="product-search"
-                  >
-                    <div
-                      class=" css-l45kjq-container"
-                    >
-                      <span
-                        class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-16-live-region"
-                      />
-                      <span
-                        aria-atomic="false"
-                        aria-live="polite"
-                        aria-relevant="additions text"
-                        class="css-1f43avz-a11yText-A11yText"
-                      />
-                      <div
-                        class="react-select__control css-19jej77-control"
-                      >
-                        <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
-                        >
-                          <div
-                            class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-16-placeholder"
-                          >
-                            Enter products owned by user
-                          </div>
-                          <div
-                            class="react-select__input-container css-6j8wv5-Input"
-                            data-value=""
-                          >
-                            <input
-                              aria-autocomplete="list"
-                              aria-describedby="react-select-16-placeholder"
-                              aria-expanded="false"
-                              aria-haspopup="true"
-                              aria-label="Filter by Product"
-                              autocapitalize="none"
-                              autocomplete="off"
-                              autocorrect="off"
-                              class="react-select__input"
-                              id="async-select-id-undefined"
-                              role="combobox"
-                              spellcheck="false"
-                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                              tabindex="0"
-                              type="text"
-                              value=""
-                            />
-                          </div>
-                        </div>
-                        <div
-                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                        >
-                          <div
-                            aria-hidden="true"
-                            class="react-select__indicator react-select__loading-indicator css-at12u2-loadingIndicator"
-                          >
-                            <span
-                              class="css-1xtdfmb-LoadingDot"
-                            />
-                            <span
-                              class="css-zoievk-LoadingDot"
-                            />
-                            <span
-                              class="css-x748d8-LoadingDot"
-                            />
-                          </div>
-                          <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
-                          />
-                          <div
-                            aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="css-tj5bde-Svg"
-                              focusable="false"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              width="20"
-                            >
-                              <path
-                                d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="flex flex-wrap gap-3"
-                  >
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Product: product 1
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Product: product 2
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </label>
+                </div>
               </div>
               <label
                 class="flex gap-x-2 items-center form-field-label my-auto"
@@ -1593,7 +1767,13 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                   data-testid="submit-button"
                   type="submit"
                 >
-                  Submit
+                  Submit User
+                </button>
+                <button
+                  class="cancel-button"
+                  type="button"
+                >
+                  Cancel
                 </button>
               </div>
             </div>
@@ -1660,65 +1840,265 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
               class="flex flex-col lg:flex-col gap-4"
             >
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
+                data-testid="email-label"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  data-testid="email-label"
-                  for="name"
+                  class="form-field-label required-field"
+                  for="email"
                 >
-                  <p
-                    class="required-field"
-                  >
-                    Email
-                  </p>
-                  <input
-                    class="w-full"
-                    data-testid="email-input"
-                    name="email"
-                    type="text"
-                    value=""
-                  />
+                  Email
                 </label>
+                <input
+                  class="w-full"
+                  data-testid="email-input"
+                  name="email"
+                  placeholder="Enter email address"
+                  type="text"
+                  value=""
+                />
               </div>
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
+                data-testid="username-label"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  data-testid="username-label"
-                  for="name"
+                  class="form-field-label required-field"
+                  for="username"
                 >
-                  <p
-                    class="required-field"
-                  >
-                    Username
-                  </p>
-                  <input
-                    class="w-full"
-                    data-testid="username-input"
-                    name="username"
-                    type="text"
-                    value=""
-                  />
+                  Username
                 </label>
+                <input
+                  class="w-full"
+                  data-testid="username-input"
+                  name="username"
+                  placeholder="Enter username"
+                  type="text"
+                  value=""
+                />
               </div>
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
+                  class="form-field-label"
+                  for="roles"
                 >
-                  <p>
-                    Roles
-                  </p>
+                  Roles
+                </label>
+                <div
+                  class=" css-l45kjq-container"
+                >
+                  <span
+                    class="css-1f43avz-a11yText-A11yText"
+                    id="react-select-14-live-region"
+                  />
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
+                  <div
+                    class="react-select__control css-19jej77-control"
+                  >
+                    <div
+                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                    >
+                      <div
+                        class="react-select__placeholder css-19jynah-placeholder"
+                        id="react-select-14-placeholder"
+                      >
+                        Select user roles
+                      </div>
+                      <div
+                        class="react-select__input-container css-6j8wv5-Input"
+                        data-value=""
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          aria-describedby="react-select-14-placeholder"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          autocapitalize="none"
+                          autocomplete="off"
+                          autocorrect="off"
+                          class="react-select__input"
+                          id="react-select-id-undefined"
+                          role="combobox"
+                          spellcheck="false"
+                          style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                          tabindex="0"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                    >
+                      <span
+                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                      />
+                      <div
+                        aria-hidden="true"
+                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="css-tj5bde-Svg"
+                          focusable="false"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          width="20"
+                        >
+                          <path
+                            d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-wrap gap-3"
+                >
+                  <div
+                    class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                    data-testid="pill"
+                  >
+                    user
+                    <svg
+                      class="ml-3 text-2xl cursor-pointer"
+                      data-testid="remove-button"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 24 24"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      />
+                      <path
+                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="form-field-wrapper"
+              >
+                <label
+                  class="form-field-label"
+                  data-testid="organization-search"
+                  for="organization"
+                >
+                  Organization
+                </label>
+                <div
+                  class=" css-l45kjq-container"
+                >
+                  <span
+                    class="css-1f43avz-a11yText-A11yText"
+                    id="react-select-15-live-region"
+                  />
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
+                  <div
+                    class="react-select__control css-19jej77-control"
+                  >
+                    <div
+                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                    >
+                      <div
+                        class="react-select__placeholder css-19jynah-placeholder"
+                        id="react-select-15-placeholder"
+                      >
+                        Enter user organization
+                      </div>
+                      <div
+                        class="react-select__input-container css-6j8wv5-Input"
+                        data-value=""
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          aria-describedby="react-select-15-placeholder"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          autocapitalize="none"
+                          autocomplete="off"
+                          autocorrect="off"
+                          class="react-select__input"
+                          id="react-select-id-organization"
+                          role="combobox"
+                          spellcheck="false"
+                          style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                          tabindex="0"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                    >
+                      <span
+                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                      />
+                      <div
+                        aria-hidden="true"
+                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                      >
+                        <svg
+                          class="text-2xl"
+                          fill="none"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="form-field-wrapper"
+              >
+                <label
+                  class="form-field-label"
+                  for="product"
+                >
+                  Products
+                </label>
+                <div
+                  class=""
+                  data-testid="product-search"
+                >
                   <div
                     class=" css-l45kjq-container"
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-11-live-region"
+                      id="react-select-16-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -1734,9 +2114,9 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-11-placeholder"
+                          id="react-select-16-placeholder"
                         >
-                          Select user roles
+                          Enter products owned by user
                         </div>
                         <div
                           class="react-select__input-container css-6j8wv5-Input"
@@ -1744,14 +2124,15 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-11-placeholder"
+                            aria-describedby="react-select-16-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
+                            aria-label="Filter by Product"
                             autocapitalize="none"
                             autocomplete="off"
                             autocorrect="off"
                             class="react-select__input"
-                            id="react-select-id-undefined"
+                            id="async-select-id-undefined"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -1764,6 +2145,20 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                       <div
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__loading-indicator css-at12u2-loadingIndicator"
+                        >
+                          <span
+                            class="css-1xtdfmb-LoadingDot"
+                          />
+                          <span
+                            class="css-zoievk-LoadingDot"
+                          />
+                          <span
+                            class="css-x748d8-LoadingDot"
+                          />
+                        </div>
                         <span
                           class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
                         />
@@ -1787,14 +2182,18 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                       </div>
                     </div>
                   </div>
+                </div>
+                <div
+                  class="flex flex-wrap gap-x-3"
+                >
                   <div
-                    class="flex flex-wrap gap-3"
+                    class="py-1"
                   >
                     <div
                       class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
                       data-testid="pill"
                     >
-                      user
+                      Product: product 1
                       <svg
                         class="ml-3 text-2xl cursor-pointer"
                         data-testid="remove-button"
@@ -1816,314 +2215,36 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                       </svg>
                     </div>
                   </div>
-                </label>
-              </div>
-              <div
-                class="w-full flex flex-col"
-              >
-                <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
-                >
-                  <p>
-                    Organization
-                  </p>
                   <div
-                    class=""
-                    data-testid="organization-search"
+                    class="py-1"
                   >
                     <div
-                      class=" css-l45kjq-container"
+                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      data-testid="pill"
                     >
-                      <span
-                        class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-12-live-region"
-                      />
-                      <span
-                        aria-atomic="false"
-                        aria-live="polite"
-                        aria-relevant="additions text"
-                        class="css-1f43avz-a11yText-A11yText"
-                      />
-                      <div
-                        class="react-select__control css-19jej77-control"
+                      Product: product 2
+                      <svg
+                        class="ml-3 text-2xl cursor-pointer"
+                        data-testid="remove-button"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
-                        >
-                          <div
-                            class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-12-placeholder"
-                          >
-                            Enter user organization
-                          </div>
-                          <div
-                            class="react-select__input-container css-6j8wv5-Input"
-                            data-value=""
-                          >
-                            <input
-                              aria-autocomplete="list"
-                              aria-describedby="react-select-12-placeholder"
-                              aria-expanded="false"
-                              aria-haspopup="true"
-                              aria-label="Filter by Organization"
-                              autocapitalize="none"
-                              autocomplete="off"
-                              autocorrect="off"
-                              class="react-select__input"
-                              id="async-select-id-undefined"
-                              role="combobox"
-                              spellcheck="false"
-                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                              tabindex="0"
-                              type="text"
-                              value=""
-                            />
-                          </div>
-                        </div>
-                        <div
-                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                        >
-                          <div
-                            aria-hidden="true"
-                            class="react-select__indicator react-select__loading-indicator css-at12u2-loadingIndicator"
-                          >
-                            <span
-                              class="css-1xtdfmb-LoadingDot"
-                            />
-                            <span
-                              class="css-zoievk-LoadingDot"
-                            />
-                            <span
-                              class="css-x748d8-LoadingDot"
-                            />
-                          </div>
-                          <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
-                          />
-                          <div
-                            aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="css-tj5bde-Svg"
-                              focusable="false"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              width="20"
-                            >
-                              <path
-                                d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        />
+                      </svg>
                     </div>
                   </div>
-                  <div
-                    class="flex flex-wrap gap-3"
-                  >
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Organization: Organization 1
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </label>
-              </div>
-              <div
-                class="w-full flex flex-col"
-              >
-                <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
-                >
-                  <p>
-                    Products
-                  </p>
-                  <div
-                    class=""
-                    data-testid="product-search"
-                  >
-                    <div
-                      class=" css-l45kjq-container"
-                    >
-                      <span
-                        class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-13-live-region"
-                      />
-                      <span
-                        aria-atomic="false"
-                        aria-live="polite"
-                        aria-relevant="additions text"
-                        class="css-1f43avz-a11yText-A11yText"
-                      />
-                      <div
-                        class="react-select__control css-19jej77-control"
-                      >
-                        <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
-                        >
-                          <div
-                            class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-13-placeholder"
-                          >
-                            Enter products owned by user
-                          </div>
-                          <div
-                            class="react-select__input-container css-6j8wv5-Input"
-                            data-value=""
-                          >
-                            <input
-                              aria-autocomplete="list"
-                              aria-describedby="react-select-13-placeholder"
-                              aria-expanded="false"
-                              aria-haspopup="true"
-                              aria-label="Filter by Product"
-                              autocapitalize="none"
-                              autocomplete="off"
-                              autocorrect="off"
-                              class="react-select__input"
-                              id="async-select-id-undefined"
-                              role="combobox"
-                              spellcheck="false"
-                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                              tabindex="0"
-                              type="text"
-                              value=""
-                            />
-                          </div>
-                        </div>
-                        <div
-                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                        >
-                          <div
-                            aria-hidden="true"
-                            class="react-select__indicator react-select__loading-indicator css-at12u2-loadingIndicator"
-                          >
-                            <span
-                              class="css-1xtdfmb-LoadingDot"
-                            />
-                            <span
-                              class="css-zoievk-LoadingDot"
-                            />
-                            <span
-                              class="css-x748d8-LoadingDot"
-                            />
-                          </div>
-                          <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
-                          />
-                          <div
-                            aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="css-tj5bde-Svg"
-                              focusable="false"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              width="20"
-                            >
-                              <path
-                                d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="flex flex-wrap gap-3"
-                  >
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Product: product 1
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Product: product 2
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </label>
+                </div>
               </div>
               <label
                 class="flex gap-x-2 items-center form-field-label my-auto"
@@ -2145,7 +2266,13 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                   data-testid="submit-button"
                   type="submit"
                 >
-                  Submit
+                  Submit User
+                </button>
+                <button
+                  class="cancel-button"
+                  type="button"
+                >
+                  Cancel
                 </button>
               </div>
             </div>
@@ -2206,71 +2333,250 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
             <div
               class="text-2xl font-bold text-dial-blue pb-4"
             >
-              Edit User Test
+              Create New User
             </div>
             <div
               class="flex flex-col lg:flex-col gap-4"
             >
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
+                data-testid="email-label"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  data-testid="email-label"
-                  for="name"
+                  class="form-field-label required-field"
+                  for="email"
                 >
-                  <p
-                    class="required-field"
-                  >
-                    Email
-                  </p>
-                  <input
-                    class="w-full"
-                    data-testid="email-input"
-                    name="email"
-                    type="text"
-                    value=""
-                  />
+                  Email
                 </label>
+                <input
+                  class="validation-error w-full"
+                  data-testid="email-input"
+                  name="email"
+                  placeholder="Enter email address"
+                  type="text"
+                  value=""
+                />
+                <p
+                  class="text-sm text-validation-error"
+                />
               </div>
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
+                data-testid="username-label"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  data-testid="username-label"
-                  for="name"
+                  class="form-field-label required-field"
+                  for="username"
                 >
-                  <p
-                    class="required-field"
-                  >
-                    Username
-                  </p>
-                  <input
-                    class="w-full"
-                    data-testid="username-input"
-                    name="username"
-                    type="text"
-                    value=""
-                  />
+                  Username
                 </label>
+                <input
+                  class="w-full"
+                  data-testid="username-input"
+                  name="username"
+                  placeholder="Enter username"
+                  type="text"
+                  value=""
+                />
               </div>
               <div
-                class="w-full flex flex-col"
+                class="form-field-wrapper"
               >
                 <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
+                  class="form-field-label"
+                  for="roles"
                 >
-                  <p>
-                    Roles
-                  </p>
+                  Roles
+                </label>
+                <div
+                  class=" css-l45kjq-container"
+                >
+                  <span
+                    class="css-1f43avz-a11yText-A11yText"
+                    id="react-select-11-live-region"
+                  />
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
+                  <div
+                    class="react-select__control css-19jej77-control"
+                  >
+                    <div
+                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                    >
+                      <div
+                        class="react-select__placeholder css-19jynah-placeholder"
+                        id="react-select-11-placeholder"
+                      >
+                        Select user roles
+                      </div>
+                      <div
+                        class="react-select__input-container css-6j8wv5-Input"
+                        data-value=""
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          aria-describedby="react-select-11-placeholder"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          autocapitalize="none"
+                          autocomplete="off"
+                          autocorrect="off"
+                          class="react-select__input"
+                          id="react-select-id-undefined"
+                          role="combobox"
+                          spellcheck="false"
+                          style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                          tabindex="0"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                    >
+                      <span
+                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                      />
+                      <div
+                        aria-hidden="true"
+                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="css-tj5bde-Svg"
+                          focusable="false"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          width="20"
+                        >
+                          <path
+                            d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="form-field-wrapper"
+              >
+                <label
+                  class="form-field-label"
+                  data-testid="organization-search"
+                  for="organization"
+                >
+                  Organization
+                </label>
+                <div
+                  class=" css-l45kjq-container"
+                >
+                  <span
+                    class="css-1f43avz-a11yText-A11yText"
+                    id="react-select-12-live-region"
+                  />
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
+                  <div
+                    class="react-select__control css-19jej77-control"
+                  >
+                    <div
+                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                    >
+                      <div
+                        class="react-select__placeholder css-19jynah-placeholder"
+                        id="react-select-12-placeholder"
+                      >
+                        Enter user organization
+                      </div>
+                      <div
+                        class="react-select__input-container css-6j8wv5-Input"
+                        data-value=""
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          aria-describedby="react-select-12-placeholder"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          autocapitalize="none"
+                          autocomplete="off"
+                          autocorrect="off"
+                          class="react-select__input"
+                          id="react-select-id-organization"
+                          role="combobox"
+                          spellcheck="false"
+                          style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                          tabindex="0"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                    >
+                      <span
+                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                      />
+                      <div
+                        aria-hidden="true"
+                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                      >
+                        <svg
+                          class="text-2xl"
+                          fill="none"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="h5 w-full pl-2 text-dial-gray-dark normal-case"
+                >
+                  NOTE: Select an organization only if this user will be an organization owner. The email address of the user must match the organization’s domain.
+                </div>
+              </div>
+              <div
+                class="form-field-wrapper"
+              >
+                <label
+                  class="form-field-label"
+                  for="product"
+                >
+                  Products
+                </label>
+                <div
+                  class=""
+                  data-testid="product-search"
+                >
                   <div
                     class=" css-l45kjq-container"
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-8-live-region"
+                      id="react-select-13-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -2286,9 +2592,9 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-8-placeholder"
+                          id="react-select-13-placeholder"
                         >
-                          Select user roles
+                          Enter products owned by user
                         </div>
                         <div
                           class="react-select__input-container css-6j8wv5-Input"
@@ -2296,14 +2602,15 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-8-placeholder"
+                            aria-describedby="react-select-13-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
+                            aria-label="Filter by Product"
                             autocapitalize="none"
                             autocomplete="off"
                             autocorrect="off"
                             class="react-select__input"
-                            id="react-select-id-undefined"
+                            id="async-select-id-undefined"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -2339,315 +2646,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="flex flex-wrap gap-3"
-                  >
-                    <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                      data-testid="pill"
-                    >
-                      user
-                      <svg
-                        class="ml-3 text-2xl cursor-pointer"
-                        data-testid="remove-button"
-                        fill="currentColor"
-                        height="1em"
-                        stroke="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </label>
-              </div>
-              <div
-                class="w-full flex flex-col"
-              >
-                <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
-                >
-                  <p>
-                    Organization
-                  </p>
-                  <div
-                    class=""
-                    data-testid="organization-search"
-                  >
-                    <div
-                      class=" css-l45kjq-container"
-                    >
-                      <span
-                        class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-9-live-region"
-                      />
-                      <span
-                        aria-atomic="false"
-                        aria-live="polite"
-                        aria-relevant="additions text"
-                        class="css-1f43avz-a11yText-A11yText"
-                      />
-                      <div
-                        class="react-select__control css-19jej77-control"
-                      >
-                        <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
-                        >
-                          <div
-                            class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-9-placeholder"
-                          >
-                            Enter user organization
-                          </div>
-                          <div
-                            class="react-select__input-container css-6j8wv5-Input"
-                            data-value=""
-                          >
-                            <input
-                              aria-autocomplete="list"
-                              aria-describedby="react-select-9-placeholder"
-                              aria-expanded="false"
-                              aria-haspopup="true"
-                              aria-label="Filter by Organization"
-                              autocapitalize="none"
-                              autocomplete="off"
-                              autocorrect="off"
-                              class="react-select__input"
-                              id="async-select-id-undefined"
-                              role="combobox"
-                              spellcheck="false"
-                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                              tabindex="0"
-                              type="text"
-                              value=""
-                            />
-                          </div>
-                        </div>
-                        <div
-                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                        >
-                          <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
-                          />
-                          <div
-                            aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="css-tj5bde-Svg"
-                              focusable="false"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              width="20"
-                            >
-                              <path
-                                d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="flex flex-wrap gap-3"
-                  >
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Organization: Organization 1
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </label>
-              </div>
-              <div
-                class="w-full flex flex-col"
-              >
-                <label
-                  class="form-field-wrapper form-field-label"
-                  for="name"
-                >
-                  <p>
-                    Products
-                  </p>
-                  <div
-                    class=""
-                    data-testid="product-search"
-                  >
-                    <div
-                      class=" css-l45kjq-container"
-                    >
-                      <span
-                        class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-10-live-region"
-                      />
-                      <span
-                        aria-atomic="false"
-                        aria-live="polite"
-                        aria-relevant="additions text"
-                        class="css-1f43avz-a11yText-A11yText"
-                      />
-                      <div
-                        class="react-select__control css-19jej77-control"
-                      >
-                        <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
-                        >
-                          <div
-                            class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-10-placeholder"
-                          >
-                            Enter products owned by user
-                          </div>
-                          <div
-                            class="react-select__input-container css-6j8wv5-Input"
-                            data-value=""
-                          >
-                            <input
-                              aria-autocomplete="list"
-                              aria-describedby="react-select-10-placeholder"
-                              aria-expanded="false"
-                              aria-haspopup="true"
-                              aria-label="Filter by Product"
-                              autocapitalize="none"
-                              autocomplete="off"
-                              autocorrect="off"
-                              class="react-select__input"
-                              id="async-select-id-undefined"
-                              role="combobox"
-                              spellcheck="false"
-                              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                              tabindex="0"
-                              type="text"
-                              value=""
-                            />
-                          </div>
-                        </div>
-                        <div
-                          class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                        >
-                          <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
-                          />
-                          <div
-                            aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="css-tj5bde-Svg"
-                              focusable="false"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              width="20"
-                            >
-                              <path
-                                d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="flex flex-wrap gap-3"
-                  >
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Product: product 1
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div
-                      class="py-1"
-                    >
-                      <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                        data-testid="pill"
-                      >
-                        Product: product 2
-                        <svg
-                          class="ml-3 text-2xl cursor-pointer"
-                          data-testid="remove-button"
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </label>
+                </div>
               </div>
               <label
                 class="flex gap-x-2 items-center form-field-label my-auto"
@@ -2669,7 +2668,13 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                   data-testid="submit-button"
                   type="submit"
                 >
-                  Submit
+                  Submit User
+                </button>
+                <button
+                  class="cancel-button"
+                  type="button"
+                >
+                  Cancel
                 </button>
               </div>
             </div>

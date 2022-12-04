@@ -23,7 +23,7 @@ export const MenuHeader = forwardRef(({ id, href, title, onToggleDropdown, curre
     <a
       id={id}
       href={href ?? id}
-      className='lg:p-3 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer'
+      className='lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer'
       ref={ref}
       onClick={onClickHandler}
       data-testid={id}

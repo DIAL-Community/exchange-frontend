@@ -30,7 +30,7 @@ const SDGs = () => {
       <MobileNav activeTab='filter.entity.sdgs' />
       <ClientOnly>
         <PageContent
-          activeTab='filter.entity.products'
+          activeTab='filter.entity.sdgs'
           filter={<SDGFilter />}
           content={<SDGListQuery />}
           searchFilter={<SearchFilter {...{ search, setSearch }} createNew={false} hint='filter.entity.sdgs' />}

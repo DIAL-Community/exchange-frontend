@@ -89,6 +89,12 @@ export const PRODUCT_QUERY = gql`
       }
       maturityScore
       maturityScoreDetails
+      playbooks {
+        name
+        slug
+        imageFile
+        tags
+      }
     }
   }
 `

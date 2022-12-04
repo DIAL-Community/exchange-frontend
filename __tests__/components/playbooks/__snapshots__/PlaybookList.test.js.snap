@@ -143,7 +143,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                 class="group 
   border-3 cursor-pointer
   border-transparent hover:border-dial-yellow
-"
+ h-full"
               >
                 <div
                   class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
@@ -189,7 +189,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                         </div>
                       </div>
                       <div
-                        class="flex flex-col bg-dial-gray-light px-3 py-3 text-sm gap-1"
+                        class="flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1"
                       >
                         <div
                           class="font-semibold"
@@ -197,17 +197,22 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                           Tags
                         </div>
                         <div
-                          class="flex flex-row gap-1"
+                          class="flex flex-row"
+                          data-testid="horizontal-items-list"
                         >
                           <div
-                            class="bg-white px-2 py-1.5 rounded"
+                            class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
                           >
-                            COVID-19
-                          </div>
-                          <div
-                            class="bg-white px-2 py-1.5 rounded"
-                          >
-                            Chip cards
+                            <div
+                              class="bg-white px-2 py-1.5 rounded"
+                            >
+                              COVID-19
+                            </div>
+                            <div
+                              class="bg-white px-2 py-1.5 rounded"
+                            >
+                              Chip cards
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -223,7 +228,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                 class="group 
   border-3 cursor-pointer
   border-transparent hover:border-dial-yellow
-"
+ h-full"
               >
                 <div
                   class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
@@ -269,7 +274,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                         </div>
                       </div>
                       <div
-                        class="flex flex-col bg-dial-gray-light px-3 py-3 text-sm gap-1"
+                        class="flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1"
                       >
                         <div
                           class="font-semibold"
@@ -277,17 +282,22 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                           Tags
                         </div>
                         <div
-                          class="flex flex-row gap-1"
+                          class="flex flex-row"
+                          data-testid="horizontal-items-list"
                         >
                           <div
-                            class="bg-white px-2 py-1.5 rounded"
+                            class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
                           >
-                            SMS services
-                          </div>
-                          <div
-                            class="bg-white px-2 py-1.5 rounded"
-                          >
-                            Artificial Intelligence
+                            <div
+                              class="bg-white px-2 py-1.5 rounded"
+                            >
+                              SMS services
+                            </div>
+                            <div
+                              class="bg-white px-2 py-1.5 rounded"
+                            >
+                              Artificial Intelligence
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -303,7 +313,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                 class="group 
   border-3 cursor-pointer
   border-transparent hover:border-dial-yellow
-"
+ h-full"
               >
                 <div
                   class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
@@ -349,7 +359,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                         </div>
                       </div>
                       <div
-                        class="flex flex-col bg-dial-gray-light px-3 py-3 text-sm gap-1"
+                        class="flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1"
                       >
                         <div
                           class="font-semibold"
@@ -357,17 +367,22 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                           Tags
                         </div>
                         <div
-                          class="flex flex-row gap-1"
+                          class="flex flex-row"
+                          data-testid="horizontal-items-list"
                         >
                           <div
-                            class="bg-white px-2 py-1.5 rounded"
+                            class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
                           >
-                            3D Printers
-                          </div>
-                          <div
-                            class="bg-white px-2 py-1.5 rounded"
-                          >
-                            Apps
+                            <div
+                              class="bg-white px-2 py-1.5 rounded"
+                            >
+                              3D Printers
+                            </div>
+                            <div
+                              class="bg-white px-2 py-1.5 rounded"
+                            >
+                              Apps
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -403,7 +418,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
               class="group 
   border-3 cursor-pointer
   border-transparent hover:border-dial-yellow
-"
+ h-full"
             >
               <div
                 class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
@@ -449,7 +464,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                       </div>
                     </div>
                     <div
-                      class="flex flex-col bg-dial-gray-light px-3 py-3 text-sm gap-1"
+                      class="flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1"
                     >
                       <div
                         class="font-semibold"
@@ -457,17 +472,22 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                         Tags
                       </div>
                       <div
-                        class="flex flex-row gap-1"
+                        class="flex flex-row"
+                        data-testid="horizontal-items-list"
                       >
                         <div
-                          class="bg-white px-2 py-1.5 rounded"
+                          class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
                         >
-                          COVID-19
-                        </div>
-                        <div
-                          class="bg-white px-2 py-1.5 rounded"
-                        >
-                          Chip cards
+                          <div
+                            class="bg-white px-2 py-1.5 rounded"
+                          >
+                            COVID-19
+                          </div>
+                          <div
+                            class="bg-white px-2 py-1.5 rounded"
+                          >
+                            Chip cards
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -483,7 +503,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
               class="group 
   border-3 cursor-pointer
   border-transparent hover:border-dial-yellow
-"
+ h-full"
             >
               <div
                 class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
@@ -529,7 +549,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                       </div>
                     </div>
                     <div
-                      class="flex flex-col bg-dial-gray-light px-3 py-3 text-sm gap-1"
+                      class="flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1"
                     >
                       <div
                         class="font-semibold"
@@ -537,17 +557,22 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                         Tags
                       </div>
                       <div
-                        class="flex flex-row gap-1"
+                        class="flex flex-row"
+                        data-testid="horizontal-items-list"
                       >
                         <div
-                          class="bg-white px-2 py-1.5 rounded"
+                          class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
                         >
-                          SMS services
-                        </div>
-                        <div
-                          class="bg-white px-2 py-1.5 rounded"
-                        >
-                          Artificial Intelligence
+                          <div
+                            class="bg-white px-2 py-1.5 rounded"
+                          >
+                            SMS services
+                          </div>
+                          <div
+                            class="bg-white px-2 py-1.5 rounded"
+                          >
+                            Artificial Intelligence
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -563,7 +588,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
               class="group 
   border-3 cursor-pointer
   border-transparent hover:border-dial-yellow
-"
+ h-full"
             >
               <div
                 class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
@@ -609,7 +634,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                       </div>
                     </div>
                     <div
-                      class="flex flex-col bg-dial-gray-light px-3 py-3 text-sm gap-1"
+                      class="flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1"
                     >
                       <div
                         class="font-semibold"
@@ -617,17 +642,22 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                         Tags
                       </div>
                       <div
-                        class="flex flex-row gap-1"
+                        class="flex flex-row"
+                        data-testid="horizontal-items-list"
                       >
                         <div
-                          class="bg-white px-2 py-1.5 rounded"
+                          class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
                         >
-                          3D Printers
-                        </div>
-                        <div
-                          class="bg-white px-2 py-1.5 rounded"
-                        >
-                          Apps
+                          <div
+                            class="bg-white px-2 py-1.5 rounded"
+                          >
+                            3D Printers
+                          </div>
+                          <div
+                            class="bg-white px-2 py-1.5 rounded"
+                          >
+                            Apps
+                          </div>
                         </div>
                       </div>
                     </div>
