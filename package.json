@@ -28,7 +28,7 @@
     "@tailwindcss/line-clamp": "^0.4.0",
     "@tinymce/tinymce-react": "^4.0.0",
     "@uiw/react-md-editor": "^3.18.1",
-    "@use-cookie-consent/core": "^0.4.0-dev.1",
+    "@use-cookie-consent/react": "^0.3.7",
     "apollo-upload-client": "^17.0.0",
     "chart.js": "^3.9.1",
     "classnames": "^2.3.1",

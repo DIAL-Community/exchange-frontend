@@ -2815,13 +2815,19 @@
     "@uiw/react-markdown-preview" "^4.0.24"
     rehype "~12.0.1"
 
-"@use-cookie-consent/core@^0.4.0-dev.1":
-  version "0.4.0-dev.1"
-  resolved "https://registry.yarnpkg.com/@use-cookie-consent/core/-/core-0.4.0-dev.1.tgz#ae5b7962ca16a80b7fd934215e8e229f2d5f190f"
-  integrity sha512-ZbIn+VuMjYN+5dwUNUSV/LigYKGeqVTUBaRZ59ZkMNb4DsFEflsVkG0/TAg+BLvpcKKYcWxUk957XzUedNM/kQ==
+"@use-cookie-consent/core@^0.3.6":
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@use-cookie-consent/core/-/core-0.3.6.tgz#5de64fc57b33cab9bb86ed71a85e926b210c77bb"
+  integrity sha512-fFDqPzJIr83Z2pJ5rCsi996BB+tYhdkNnyNzA9Dxp8Jpxn/QJyJ3TiIIAxqxutkEHc3IkcWBGWf7CKwwYRv5gw==
   dependencies:
-    glob-parent "^6.0.2"
     js-cookie "^2"
+
+"@use-cookie-consent/react@^0.3.7":
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/@use-cookie-consent/react/-/react-0.3.7.tgz#adb6dc3a30dad56ec6ccd7019eff487a9ade1860"
+  integrity sha512-IcxOJuprgWlOuED/ILFRFPxqLUV4bNOeyvM+tfpR8rlm+xUTa44ZCwTxA1BPXOpMBd0xYXDzhShn0Hl5n0jUAQ==
+  dependencies:
+    "@use-cookie-consent/core" "^0.3.6"
 
 "@wry/context@^0.6.0":
   version "0.6.1"

@@ -465,7 +465,85 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
   <footer>
     <div
       class="block"
-    />
+    >
+      <div
+        class="w-full bg-dial-gray-dark fixed bottom-0 right-0 left-0 z-80"
+      >
+        <div
+          class="flex flex-col md:flex-row justify-center py-4 mx-4 gap-3"
+        >
+          <div
+            class="text-dial-gray-light my-auto"
+          >
+            Cookies help us deliver our services. By using our services, you agree to our use of cookies.
+          </div>
+          <div
+            class="flex justify-center gap-4"
+          >
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Accept All
+            </button>
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Cookie Details
+            </button>
+            <a
+              class="my-auto text-dial-yellow border-b-2 border-transparent hover:border-dial-yellow"
+              href="/privacy-policy"
+              target="_blank"
+            >
+              Privacy Policy
+            </a>
+          </div>
+        </div>
+        <div
+          class="hidden"
+        >
+          <div
+            class="flex flex-col md:flex-row justify-center py-4 mx-4 gap-3"
+          >
+            <label
+              class="inline-flex items-center"
+            >
+              <input
+                checked=""
+                class="h-4 w-4 form-checkbox text-white"
+                name="essential"
+                type="checkbox"
+              />
+              <span
+                class="ml-2 text-white"
+              >
+                Essential Cookies
+              </span>
+            </label>
+            <label
+              class="inline-flex items-center"
+            >
+              <input
+                checked=""
+                class="h-4 w-4 form-checkbox text-white"
+                name="essential"
+                type="checkbox"
+              />
+              <span
+                class="ml-2 text-white"
+              >
+                Statistics Cookies
+              </span>
+            </label>
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div
       class="relative w-full bg-dial-gray-light text-dial-purple-light"
     >
@@ -1304,7 +1382,85 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
   <footer>
     <div
       class="block"
-    />
+    >
+      <div
+        class="w-full bg-dial-gray-dark fixed bottom-0 right-0 left-0 z-80"
+      >
+        <div
+          class="flex flex-col md:flex-row justify-center py-4 mx-4 gap-3"
+        >
+          <div
+            class="text-dial-gray-light my-auto"
+          >
+            Cookies help us deliver our services. By using our services, you agree to our use of cookies.
+          </div>
+          <div
+            class="flex justify-center gap-4"
+          >
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Accept All
+            </button>
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Cookie Details
+            </button>
+            <a
+              class="my-auto text-dial-yellow border-b-2 border-transparent hover:border-dial-yellow"
+              href="/privacy-policy"
+              target="_blank"
+            >
+              Privacy Policy
+            </a>
+          </div>
+        </div>
+        <div
+          class="hidden"
+        >
+          <div
+            class="flex flex-col md:flex-row justify-center py-4 mx-4 gap-3"
+          >
+            <label
+              class="inline-flex items-center"
+            >
+              <input
+                checked=""
+                class="h-4 w-4 form-checkbox text-white"
+                name="essential"
+                type="checkbox"
+              />
+              <span
+                class="ml-2 text-white"
+              >
+                Essential Cookies
+              </span>
+            </label>
+            <label
+              class="inline-flex items-center"
+            >
+              <input
+                checked=""
+                class="h-4 w-4 form-checkbox text-white"
+                name="essential"
+                type="checkbox"
+              />
+              <span
+                class="ml-2 text-white"
+              >
+                Statistics Cookies
+              </span>
+            </label>
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div
       class="relative w-full bg-dial-gray-light text-dial-purple-light"
     >
