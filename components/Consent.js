@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { useCookieConsent } from '@use-cookie-consent/core'
+import { useCookieConsentContext } from '@use-cookie-consent/react'
 import { useState } from 'react'
 import cookie from 'react-cookies'
 
@@ -10,35 +10,39 @@ const Consent = () => {
   const [showCookies, setshowCookies] = useState(false)
   const [essential, setEssential] = useState(true)
   const [statistics, setStatistics] = useState(true)
-  const { consent, acceptAllCookies, acceptCookies } = useCookieConsent()
+  const { consent, acceptAllCookies, acceptCookies } = useCookieConsentContext()
 
   const handleAccept = () => {
     acceptAllCookies()
-    // acceptCookies({ thirdParty: true })
   }
 
-  const toggleEssential = (e) => {
-    e.preventDefault()
+  const toggleEssential = () => {
     setEssential(!essential)
   }
 
-  const toggleStatistics = (e) => {
-    e.preventDefault()
+  const toggleStatistics = () => {
     setStatistics(!statistics)
   }
 
-  const toggleShowCookies = (e) => {
-    e.preventDefault()
+  const toggleShowCookies = () => {
     setshowCookies(!showCookies)
   }
 
-  const saveCookies = (e) => {
-    e.preventDefault()
-    acceptCookies({ necessary: essential, session: essential, firstParty: essential, thirdParty: statistics, statistics })
+  const saveCookies = () => {
+    acceptCookies({
+      session: essential,
+      persistence: essential,
+      necessary: essential,
+      preference: essential,
+      firstParty: essential,
+      thirdParty: statistics,
+      marketing: statistics,
+      statistics
+    })
     if (!statistics) {
       // Disable Google Analytics if they do not accept statistics
       cookie.remove('_ga', { path: '/' })
-      cookie.remove('_gat_gtag_' + process.env.NEXT_PUBLIC_GOOGLE_ANALYTIC_ID.replaceAll('-', '_'), { path: '/' })
+      cookie.remove(`_ga_${process.env.NEXT_PUBLIC_GOOGLE_ANALYTIC_ID.replaceAll('-', '_')}`, { path: '/' })
       cookie.remove('_gid', { path: '/' })
     }
   }
@@ -46,7 +50,7 @@ const Consent = () => {
   return (
     <div className='block'>
       {
-        Object.keys(consent).length === 0 &&
+        typeof consent.firstParty === 'undefined' &&
           <div className='w-full bg-dial-gray-dark fixed bottom-0 right-0 left-0 z-80'>
             <div className='flex flex-col md:flex-row justify-center py-4 mx-4 gap-3'>
               <div className='text-dial-gray-light my-auto'>

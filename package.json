@@ -16,8 +16,8 @@
     "sitemap": "next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
-    "@babel/core": "^7.19.3",
     "@apollo/client": "^3.5.8",
+    "@babel/core": "^7.19.3",
     "@esri/arcgis-rest-geocoding": "^4.0.2",
     "@esri/arcgis-rest-request": "^4.0.3",
     "@handsontable/react": "^12.0.1",
@@ -28,7 +28,7 @@
     "@tailwindcss/line-clamp": "^0.4.0",
     "@tinymce/tinymce-react": "^4.0.0",
     "@uiw/react-md-editor": "^3.18.1",
-    "@use-cookie-consent/core": "^0.4.0-dev.1",
+    "@use-cookie-consent/react": "^0.3.7",
     "apollo-upload-client": "^17.0.0",
     "chart.js": "^3.9.1",
     "classnames": "^2.3.1",

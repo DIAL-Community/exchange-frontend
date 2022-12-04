@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DefaultSeo } from 'next-seo'
+import { CookieConsentProvider } from '@use-cookie-consent/react'
 import * as translations from '../translations'
 import * as gtag from '../lib/gtag'
 import * as matomo from '../lib/matomo'
@@ -116,11 +117,13 @@ const App = ({ Component, pageProps }) => {
       <IntlProvider locale={locale} defaultLocale='en' messages={messages}>
         <ApolloProvider client={client}>
           <SessionProvider session={pageProps.session} refetchInterval={5 * 60}>
-            <DndProvider backend={HTML5Backend}>
-              <ApplicationDefaultContexts>
-                <Component {...pageProps} />
-              </ApplicationDefaultContexts>
-            </DndProvider>
+            <CookieConsentProvider>
+              <DndProvider backend={HTML5Backend}>
+                <ApplicationDefaultContexts>
+                  <Component {...pageProps} />
+                </ApplicationDefaultContexts>
+              </DndProvider>
+            </CookieConsentProvider>
           </SessionProvider>
         </ApolloProvider>
       </IntlProvider>
