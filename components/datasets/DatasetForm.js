@@ -13,6 +13,7 @@ import { ToastContext } from '../../lib/ToastContext'
 import ValidationError from '../shared/ValidationError'
 import { CREATE_DATASET } from '../../mutations/dataset'
 import Select from '../shared/Select'
+import FileUploader from '../shared/FileUploader'
 
 const DatasetForm = React.memo(({ dataset }) => {
   const { formatMessage } = useIntl()
@@ -111,7 +112,20 @@ const DatasetForm = React.memo(({ dataset }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = session.user
-      const { name, aliases, website, visualizationUrl, geographicCoverage, timeRange, datasetType, license, languages, dataFormat, description } = data
+      const {
+        name,
+        aliases,
+        website,
+        visualizationUrl,
+        geographicCoverage,
+        timeRange,
+        datasetType,
+        license,
+        languages,
+        dataFormat,
+        description,
+        imageFile
+      } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
@@ -126,6 +140,9 @@ const DatasetForm = React.memo(({ dataset }) => {
         languages,
         dataFormat,
         description
+      }
+      if (imageFile) {
+        variables.imageFile = imageFile[0]
       }
 
       updateDataset({
@@ -167,8 +184,8 @@ const DatasetForm = React.memo(({ dataset }) => {
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
-                  <div className='flex flex-col gap-y-2 mb-2' data-testid='dataset-name'>
-                    <label className='text-xl text-dial-blue required-field' htmlFor='name'>
+                  <div className='form-field-wrapper' data-testid='dataset-name'>
+                    <label className='form-field-label required-field' htmlFor='name'>
                       {format('dataset.name')}
                     </label>
                     <Input
@@ -176,11 +193,12 @@ const DatasetForm = React.memo(({ dataset }) => {
                       id='name'
                       placeholder={format('dataset.name')}
                       isInvalid={errors.name}
+                      data-testid='dataset-name-input'
                     />
                     {errors.name && <ValidationError value={errors.name?.message} />}
                   </div>
-                  <div className='flex flex-col gap-y-2 mb-2'>
-                    <label className='text-xl text-dial-blue'>
+                  <div className='form-field-wrapper'>
+                    <label className='form-field-label'>
                       {format('dataset.aliases')}
                     </label>
                     {aliases.map((alias, aliasIdx) => (
@@ -204,8 +222,8 @@ const DatasetForm = React.memo(({ dataset }) => {
                       </div>
                     ))}
                   </div>
-                  <div className='flex flex-col gap-y-2 mb-2' data-testid='dataset-website'>
-                    <label className='text-xl text-dial-blue required-field' htmlFor='website'>
+                  <div className='form-field-wrapper' data-testid='dataset-website'>
+                    <label className='form-field-label required-field' htmlFor='website'>
                       {format('dataset.website')}
                     </label>
                     <Input
@@ -216,8 +234,8 @@ const DatasetForm = React.memo(({ dataset }) => {
                     />
                     {errors.website && <ValidationError value={errors.website?.message} />}
                   </div>
-                  <div className='flex flex-col gap-y-2 mb-2' data-testid='dataset-visualizationUrl'>
-                    <label className='text-xl text-dial-blue' htmlFor='visualizationUrl'>
+                  <div className='form-field-wrapper' data-testid='dataset-visualizationUrl'>
+                    <label className='form-field-label' htmlFor='visualizationUrl'>
                       {format('dataset.visualizationUrl')}
                     </label>
                     <Input
@@ -226,8 +244,8 @@ const DatasetForm = React.memo(({ dataset }) => {
                       placeholder={format('dataset.visualizationUrl')}
                     />
                   </div>
-                  <div className='flex flex-col gap-y-2 mb-2'>
-                    <label className='text-xl text-dial-blue'>
+                  <div className='form-field-wrapper'>
+                    <label className='form-field-label'>
                       {format('dataset.datasetType')}
                     </label>
                     <Controller
@@ -238,8 +256,14 @@ const DatasetForm = React.memo(({ dataset }) => {
                       }
                     />
                   </div>
-                  <div className='flex flex-col gap-y-2 mb-2' data-testid='dataset-geographicCoverage'>
-                    <label className='text-xl text-dial-blue' htmlFor='geographicCoverage'>
+                  <div className='form-field-wrapper' data-testid='dataset-logo'>
+                    <label className='form-field-label'>
+                      {format('dataset.imageFile')}
+                    </label>
+                    <FileUploader {...register('imageFile')} />
+                  </div>
+                  <div className='form-field-wrapper' data-testid='dataset-geographicCoverage'>
+                    <label className='form-field-label' htmlFor='geographicCoverage'>
                       {format('dataset.coverage')}
                     </label>
                     <Input
@@ -248,8 +272,8 @@ const DatasetForm = React.memo(({ dataset }) => {
                       placeholder={format('dataset.coverage')}
                     />
                   </div>
-                  <div className='flex flex-col gap-y-2 mb-2' data-testid='dataset-timeRange'>
-                    <label className='text-xl text-dial-blue' htmlFor='timeRange'>
+                  <div className='form-field-wrapper' data-testid='dataset-timeRange'>
+                    <label className='form-field-label' htmlFor='timeRange'>
                       {format('dataset.timeRange')}
                     </label>
                     <Input
@@ -258,8 +282,8 @@ const DatasetForm = React.memo(({ dataset }) => {
                       placeholder={format('dataset.timeRange')}
                     />
                   </div>
-                  <div className='flex flex-col gap-y-2 mb-2' data-testid='dataset-license'>
-                    <label className='text-xl text-dial-blue' htmlFor='license'>
+                  <div className='form-field-wrapper' data-testid='dataset-license'>
+                    <label className='form-field-label' htmlFor='license'>
                       {format('dataset.license')}
                     </label>
                     <Input
@@ -268,8 +292,8 @@ const DatasetForm = React.memo(({ dataset }) => {
                       placeholder={format('dataset.license')}
                     />
                   </div>
-                  <div className='flex flex-col gap-y-2 mb-2' data-testid='dataset-languages'>
-                    <label className='text-xl text-dial-blue' htmlFor='languages'>
+                  <div className='form-field-wrapper' data-testid='dataset-languages'>
+                    <label className='form-field-label' htmlFor='languages'>
                       {format('dataset.languages')}
                     </label>
                     <Input
@@ -278,8 +302,8 @@ const DatasetForm = React.memo(({ dataset }) => {
                       placeholder={format('dataset.languages')}
                     />
                   </div>
-                  <div className='flex flex-col gap-y-2 mb-2' data-testid='dataset-dataFormat'>
-                    <label className='text-xl text-dial-blue' htmlFor='dataFormat'>
+                  <div className='form-field-wrapper' data-testid='dataset-dataFormat'>
+                    <label className='form-field-label' htmlFor='dataFormat'>
                       {format('dataset.dataFormat')}
                     </label>
                     <Input
@@ -290,8 +314,8 @@ const DatasetForm = React.memo(({ dataset }) => {
                   </div>
                 </div>
                 <div className='w-full lg:w-1/2'>
-                  <div className='block flex flex-col gap-y-2' data-testid='dataset-description'>
-                    <label className='text-xl text-dial-blue required-field'>
+                  <div className='form-field-wrapper' data-testid='dataset-description'>
+                    <label className='form-field-label required-field'>
                       {format('dataset.description')}
                     </label>
                     <Controller

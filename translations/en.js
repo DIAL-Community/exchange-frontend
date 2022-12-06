@@ -456,6 +456,7 @@ export const en = {
   'dataset.card.dataset': 'Dataset',
   'dataset.card.content': 'Content',
   'dataset.card.coronavirusTagValue': 'COVID-19',
+  'dataset.imageFile': 'Logo',
 
   'general.close': 'Close',
   'general.na': 'N/A',
