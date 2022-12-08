@@ -2,9 +2,9 @@ import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
 import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
 import { Dialog, Transition } from '@headlessui/react'
 import { FaSpinner } from 'react-icons/fa'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import ProductCard from '../products/ProductCard'
 import { PlayPreviewContext, PlayPreviewDispatchContext } from './PlayPreviewContext'
@@ -166,10 +166,11 @@ const PlayPreview = () => {
                       </div>
                     </Dialog.Title>
 
-                    <div className='flex flex-col gap-4 w-5/6 px-4 pb-4'>
-                      <div className='fr-view tiny-editor text-dial-gray-dark'>
-                        {data.play.playDescription && parse(data.play.playDescription?.description)}
-                      </div>
+                    <div className='flex flex-col gap-4 px-4 pb-4'>
+                      <HtmlViewer
+                        initialContent={data.play?.playDescription?.description}
+                        editorId='play-preview'
+                      />
                       <div className='flex flex-col gap-3'>
                         {
                           data.play.playMoves.map((move, i) =>

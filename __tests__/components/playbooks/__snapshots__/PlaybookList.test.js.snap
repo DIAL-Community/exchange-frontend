@@ -183,7 +183,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                         class="px-3 py-3 text-sm"
                       >
                         <div
-                          class="max-h-16 playbook-description overflow-hidden"
+                          class="line-clamp-3"
                         >
                           Overview of CDR Analytics for COVID-19 with FlowKit.
                         </div>
@@ -268,7 +268,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                         class="px-3 py-3 text-sm"
                       >
                         <div
-                          class="max-h-16 playbook-description overflow-hidden"
+                          class="line-clamp-3"
                         >
                           D4D Diagnostic Toolkit
                         </div>
@@ -353,7 +353,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                         class="px-3 py-3 text-sm"
                       >
                         <div
-                          class="max-h-16 playbook-description overflow-hidden"
+                          class="line-clamp-3"
                         >
                           Just an example of playbook.
                         </div>
@@ -458,7 +458,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                       class="px-3 py-3 text-sm"
                     >
                       <div
-                        class="max-h-16 playbook-description overflow-hidden"
+                        class="line-clamp-3"
                       >
                         Overview of CDR Analytics for COVID-19 with FlowKit.
                       </div>
@@ -543,7 +543,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                       class="px-3 py-3 text-sm"
                     >
                       <div
-                        class="max-h-16 playbook-description overflow-hidden"
+                        class="line-clamp-3"
                       >
                         D4D Diagnostic Toolkit
                       </div>
@@ -628,7 +628,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
                       class="px-3 py-3 text-sm"
                     >
                       <div
-                        class="max-h-16 playbook-description overflow-hidden"
+                        class="line-clamp-3"
                       >
                         Just an example of playbook.
                       </div>

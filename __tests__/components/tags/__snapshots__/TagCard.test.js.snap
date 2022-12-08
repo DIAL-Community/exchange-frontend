@@ -13,15 +13,18 @@ exports[`Unit test for the TagCard component Should match snapshot - user is NOT
       class="border border-dial-gray card-drop-shadow"
     >
       <div
-        class="flex justify-between my-5 px-4"
+        class="flex gap-3 my-5 px-4"
       >
         <div
-          class="inline-block card-title text-button-gray"
+          class="w-2/6 card-title text-button-gray"
         >
           <span>
             Example Tag
           </span>
         </div>
+        <div
+          class="w-1/2 line-clamp-1"
+        />
       </div>
     </div>
   </div>
@@ -41,15 +44,18 @@ exports[`Unit test for the TagCard component Should match snapshot - user is NOT
       class="border border-dial-gray card-drop-shadow"
     >
       <div
-        class="flex justify-between my-5 px-4"
+        class="flex gap-3 my-5 px-4"
       >
         <div
-          class="inline-block card-title text-button-gray"
+          class="w-2/6 card-title text-button-gray"
         >
           <span>
             Example Tag
           </span>
         </div>
+        <div
+          class="w-1/2 line-clamp-1"
+        />
       </div>
     </div>
   </div>
@@ -69,15 +75,18 @@ exports[`Unit test for the TagCard component Should match snapshot - user is an 
       class="border border-dial-gray card-drop-shadow"
     >
       <div
-        class="flex justify-between my-5 px-4"
+        class="flex gap-3 my-5 px-4"
       >
         <div
-          class="inline-block card-title text-button-gray"
+          class="w-2/6 card-title text-button-gray"
         >
           <span>
             Example Tag
           </span>
         </div>
+        <div
+          class="w-1/2 line-clamp-1"
+        />
       </div>
     </div>
   </div>
@@ -97,17 +106,20 @@ exports[`Unit test for the TagCard component Should match snapshot - user is an 
       class="border border-dial-gray card-drop-shadow"
     >
       <div
-        class="flex justify-between my-5 px-4"
+        class="flex gap-3 my-5 px-4"
       >
         <div
-          class="inline-block card-title text-button-gray"
+          class="w-2/6 card-title text-button-gray"
         >
           <span>
             Example Tag
           </span>
         </div>
         <div
-          class="flex flex-row gap-3"
+          class="w-1/2 line-clamp-1"
+        />
+        <div
+          class="flex flex-row gap-3 ml-auto"
         >
           <button
             class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"

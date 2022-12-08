@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/react'
-import parse from 'html-react-parser'
 import Breadcrumb from '../../shared/breadcrumb'
+import { HtmlViewer } from '../../shared/HtmlViewer'
 
 const MoveDetail = ({ play, move }) => {
   const { formatMessage } = useIntl()
@@ -47,13 +47,14 @@ const MoveDetail = ({ play, move }) => {
           }
         </div>
       </div>
-      <div className='h4 font-bold py-4'>
+      <div className='h4 font-bold'>
         {format('move.label')}: {move.name}
       </div>
       {format('moves.description')}
-      <div className='fr-view text-dial-gray-dark'>
-        {parse(move.moveDescription?.description)}
-      </div>
+      <HtmlViewer
+        initialContent={move?.moveDescription?.description}
+        editorId='move-detail'
+      />
     </div>
   )
 }

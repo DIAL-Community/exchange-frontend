@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl'
 import { useSession } from 'next-auth/react'
-import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
 import Breadcrumb from '../shared/breadcrumb'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import ProductCard from '../products/ProductCard'
 import PlayPreviewMove from './PlayPreviewMove'
@@ -57,9 +57,11 @@ const PlayDetail = ({ playbook, play }) => {
         <div className='font-semibold text-2xl py-3'>
           {`${format('plays.label')}: ${play.name}`}
         </div>
-        <div className='fr-view tiny-editor text-dial-gray-dark'>
-          {parse(play.playDescription?.description)}
-        </div>
+        <HtmlViewer
+          initialContent={play?.playDescription?.description}
+          editorId='play-detail'
+          className='-mt-4'
+        />
         <div className='flex flex-col gap-3'>
           {
             play.playMoves.map((move, i) =>

@@ -6,6 +6,7 @@ import Breadcrumb from '../shared/breadcrumb'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import CreateButton from '../shared/CreateButton'
 import WorkflowCard from '../workflows/WorkflowCard'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
 import StepList from './steps/StepList'
@@ -38,9 +39,10 @@ const UseCaseDetailRight = ({ useCase, canEdit, commentsSectionRef }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='card-title mb-3 text-dial-gray-dark'>{format('useCase.description')}</div>
-      <div className='fr-view text-dial-gray-dark'>
-        {useCase.useCaseDescription && parse(useCase.useCaseDescription.description)}
-      </div>
+      <HtmlViewer
+        initialContent={useCase?.useCaseDescription?.description}
+        editorId='use-case-detail'
+      />
       <div className='mt-12'>
         <div className='self-center place-self-end text-sm'>
         </div>

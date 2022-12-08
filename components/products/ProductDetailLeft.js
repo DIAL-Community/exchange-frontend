@@ -217,7 +217,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
             />
           </div>
         </div>
-        <div className='fr-view text-dial-gray-dark max-h-40 overflow-hidden'>
+        <div className='fr-view text-dial-gray-dark line-clamp-5'>
           {product.productDescription && parse(product.productDescription.description)}
         </div>
       </div>
