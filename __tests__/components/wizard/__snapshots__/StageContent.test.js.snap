@@ -23,7 +23,7 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
       >
         <span
           class="css-1f43avz-a11yText-A11yText"
-          id="react-select-2-live-region"
+          id="react-select-:r0:-live-region"
         />
         <span
           aria-atomic="false"
@@ -104,7 +104,7 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
       >
         <span
           class="css-1f43avz-a11yText-A11yText"
-          id="react-select-3-live-region"
+          id="react-select-:r1:-live-region"
         />
         <span
           aria-atomic="false"
@@ -202,7 +202,7 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
       >
         <span
           class="css-1f43avz-a11yText-A11yText"
-          id="react-select-4-live-region"
+          id="react-select-:r2:-live-region"
         />
         <span
           aria-atomic="false"
@@ -295,7 +295,7 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
       >
         <span
           class="css-1f43avz-a11yText-A11yText"
-          id="react-select-5-live-region"
+          id="react-select-:r3:-live-region"
         />
         <span
           aria-atomic="false"
@@ -311,7 +311,7 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
           >
             <div
               class="react-select__placeholder css-19jynah-placeholder"
-              id="react-select-5-placeholder"
+              id="react-select-:r3:-placeholder"
             >
               Select a Tag
             </div>
@@ -321,7 +321,7 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
             >
               <input
                 aria-autocomplete="list"
-                aria-describedby="react-select-5-placeholder"
+                aria-describedby="react-select-:r3:-placeholder"
                 aria-expanded="false"
                 aria-haspopup="true"
                 autocapitalize="none"
@@ -381,7 +381,7 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
       >
         <span
           class="css-1f43avz-a11yText-A11yText"
-          id="react-select-6-live-region"
+          id="react-select-:r4:-live-region"
         />
         <span
           aria-atomic="false"
@@ -397,7 +397,7 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
           >
             <div
               class="react-select__placeholder css-19jynah-placeholder"
-              id="react-select-6-placeholder"
+              id="react-select-:r4:-placeholder"
             >
               Select a Country
             </div>
@@ -407,7 +407,7 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
             >
               <input
                 aria-autocomplete="list"
-                aria-describedby="react-select-6-placeholder"
+                aria-describedby="react-select-:r4:-placeholder"
                 aria-expanded="false"
                 aria-haspopup="true"
                 autocapitalize="none"

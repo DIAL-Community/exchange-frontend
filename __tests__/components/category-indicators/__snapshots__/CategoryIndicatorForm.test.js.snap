@@ -86,7 +86,7 @@ exports[`Unit tests for CategoryIndicatorForm component. Should render CategoryI
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-2-live-region"
+                      id="react-select-:r0:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -102,7 +102,7 @@ exports[`Unit tests for CategoryIndicatorForm component. Should render CategoryI
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-2-placeholder"
+                          id="react-select-:r0:-placeholder"
                         >
                           Indicator type
                         </div>
@@ -112,7 +112,7 @@ exports[`Unit tests for CategoryIndicatorForm component. Should render CategoryI
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-2-placeholder"
+                            aria-describedby="react-select-:r0:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"

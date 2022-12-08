@@ -41,7 +41,7 @@ exports[`Unit test for the ProjectDetailCountries component. Should add a pill a
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-4-live-region"
+            id="react-select-:r2:-live-region"
           />
           <span
             aria-atomic="false"
@@ -57,7 +57,7 @@ exports[`Unit test for the ProjectDetailCountries component. Should add a pill a
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-4-placeholder"
+                id="react-select-:r2:-placeholder"
               >
                 Type to search...
               </div>
@@ -67,7 +67,7 @@ exports[`Unit test for the ProjectDetailCountries component. Should add a pill a
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-4-placeholder"
+                  aria-describedby="react-select-:r2:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
@@ -294,7 +294,7 @@ exports[`Unit test for the ProjectDetailCountries component. Should match snapsh
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-2-live-region"
+            id="react-select-:r0:-live-region"
           />
           <span
             aria-atomic="false"
@@ -310,7 +310,7 @@ exports[`Unit test for the ProjectDetailCountries component. Should match snapsh
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-2-placeholder"
+                id="react-select-:r0:-placeholder"
               >
                 Type to search...
               </div>
@@ -320,7 +320,7 @@ exports[`Unit test for the ProjectDetailCountries component. Should match snapsh
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-2-placeholder"
+                  aria-describedby="react-select-:r0:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
@@ -505,7 +505,7 @@ exports[`Unit test for the ProjectDetailCountries component. Should remove a pil
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-3-live-region"
+            id="react-select-:r1:-live-region"
           />
           <span
             aria-atomic="false"
@@ -521,7 +521,7 @@ exports[`Unit test for the ProjectDetailCountries component. Should remove a pil
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-3-placeholder"
+                id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
@@ -531,7 +531,7 @@ exports[`Unit test for the ProjectDetailCountries component. Should remove a pil
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-3-placeholder"
+                  aria-describedby="react-select-:r1:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"

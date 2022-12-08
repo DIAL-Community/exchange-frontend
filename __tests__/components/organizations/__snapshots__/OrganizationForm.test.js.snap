@@ -234,7 +234,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-2-live-region"
+                      id="react-select-:r0:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -678,7 +678,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-3-live-region"
+                      id="react-select-:r1:-live-region"
                     />
                     <span
                       aria-atomic="false"

@@ -41,7 +41,7 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should add a pil
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-4-live-region"
+            id="react-select-:r2:-live-region"
           />
           <span
             aria-atomic="false"
@@ -57,7 +57,7 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should add a pil
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-4-placeholder"
+                id="react-select-:r2:-placeholder"
               >
                 Type to search...
               </div>
@@ -67,7 +67,7 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should add a pil
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-4-placeholder"
+                  aria-describedby="react-select-:r2:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
@@ -333,7 +333,7 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should match sna
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-2-live-region"
+            id="react-select-:r0:-live-region"
           />
           <span
             aria-atomic="false"
@@ -349,7 +349,7 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should match sna
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-2-placeholder"
+                id="react-select-:r0:-placeholder"
               >
                 Type to search...
               </div>
@@ -359,7 +359,7 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should match sna
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-2-placeholder"
+                  aria-describedby="react-select-:r0:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
@@ -583,7 +583,7 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should remove a 
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-3-live-region"
+            id="react-select-:r1:-live-region"
           />
           <span
             aria-atomic="false"
@@ -599,7 +599,7 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should remove a 
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-3-placeholder"
+                id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
@@ -609,7 +609,7 @@ exports[`Unit test for the UseCaseStepDetailDatasets component. Should remove a 
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-3-placeholder"
+                  aria-describedby="react-select-:r1:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
