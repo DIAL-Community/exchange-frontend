@@ -11,15 +11,14 @@ describe('Unit test for the RubricCategoryDetail component.', () => {
 
   test('Should render RubricCategoryDetail component', async () => {
     mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
-    const { container, getByTestId } = render(
+    const { container, getByText } = render(
       <CustomMockedProvider mocks={[mockRubricCategory]}>
         <RubricCategoryDetail slug='rc_name'/>
       </CustomMockedProvider>
     )
+
     await waitForAllEffects()
-
-    expect(getByTestId('description')).toHaveTextContent('RC description')
-
+    expect(getByText('RC name')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 })

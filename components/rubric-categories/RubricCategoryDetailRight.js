@@ -1,7 +1,7 @@
-import parse from 'html-react-parser'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import Breadcrumb from '../shared/breadcrumb'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import RubricCategoryDetailCategoryIndicators from './RubricCategoryDetailCategoryIndicators'
 
 const RubricCategoryDetailRight = ({ rubricCategory, slugNameMapping }) => {
@@ -14,9 +14,10 @@ const RubricCategoryDetailRight = ({ rubricCategory, slugNameMapping }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       <div className='card-title mb-3 text-dial-gray-dark'>{format('product.description')}</div>
-      <div className='fr-view text-dial-gray-dark' data-testid='description'>
-        {rubricCategory?.rubricCategoryDescription && parse(rubricCategory.rubricCategoryDescription.description)}
-      </div>
+      <HtmlViewer
+        initialContent={rubricCategory?.rubricCategoryDescription?.description}
+        editorId='rubric-category-detail'
+      />
       {rubricCategory?.categoryIndicators &&
         <RubricCategoryDetailCategoryIndicators
           categoryIndicators={rubricCategory.categoryIndicators}

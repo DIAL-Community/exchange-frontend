@@ -2,8 +2,8 @@ import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 import IframeResizer from 'iframe-resizer-react'
-import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
 import { prependUrlWithProtocol } from '../../lib/utilities'
@@ -88,14 +88,16 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
             </div>
         }
       </div>
-      <div className='mt-8 card-title mb-3 text-dial-gray-dark'>{format('dataset.description')}
+      <div className='mt-8 card-title mb-3 text-dial-gray-dark'>
+        {format('dataset.description')}
         {dataset.manualUpdate && (
           <div className='inline ml-5 h5'>{format('dataset.manualUpdate')}</div>
         )}
       </div>
-      <div className='fr-view text-dial-gray-dark'>
-        {dataset.datasetDescription && parse(dataset.datasetDescription.description)}
-      </div>
+      <HtmlViewer
+        initialContent={dataset?.datasetDescription?.description}
+        className='-mt-4'
+      />
       {
         dataset.visualizationUrl &&
           <div className='mt-3 v

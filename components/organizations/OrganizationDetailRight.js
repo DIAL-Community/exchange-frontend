@@ -1,9 +1,9 @@
 import { FormattedDate, useIntl } from 'react-intl'
-import parse from 'html-react-parser'
 import { useCallback, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useSession } from 'next-auth/react'
 import Breadcrumb from '../shared/breadcrumb'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
 import { prependUrlWithProtocol } from '../../lib/utilities'
@@ -101,9 +101,10 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
         }
       </div>
       <div className={`mt-8 ${sectionHeaderStyle}`}>{format('product.description')}</div>
-      <div className='fr-view text-dial-gray-dark p-3' data-testid='organization-description'>
-        {organization.organizationDescription && parse(organization.organizationDescription.description)}
-      </div>
+      <HtmlViewer
+        initialContent={organization?.organizationDescription?.description}
+        className='-mt-4'
+      />
       {canEdit && <OrganizationDetailOffices organization={organization} canEdit={canEdit} />}
       {canEdit && <OrganizationDetailContacts organization={organization}/>}
       {organization.sectors && <OrganizationDetailSectors organization={organization} canEdit={canEdit} />}

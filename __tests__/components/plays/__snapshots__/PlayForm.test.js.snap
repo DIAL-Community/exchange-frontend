@@ -650,7 +650,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                             test
                           </div>
                           <div
-                            class="w-6/12 single-line-description whitespace-nowrap overflow-hidden text-ellipsis fr-view my-1"
+                            class="w-6/12 fr-view line-clamp-1 my-1"
                           />
                           <div
                             class="w-3/12 my-auto flex gap-2 text-sm"
@@ -1812,7 +1812,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                             test
                           </div>
                           <div
-                            class="w-6/12 single-line-description whitespace-nowrap overflow-hidden text-ellipsis fr-view my-1"
+                            class="w-6/12 fr-view line-clamp-1 my-1"
                           />
                           <div
                             class="w-3/12 my-auto flex gap-2 text-sm"

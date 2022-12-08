@@ -25,21 +25,19 @@ const TagCard = ({ tag, listType, displayEditButtons = false }) => {
             data-testid='tag-card'
           >
             <div className='border border-dial-gray card-drop-shadow'>
-              <div className='flex justify-between my-5 px-4'>
-                <div className='inline-block card-title text-button-gray'>
+              <div className='flex gap-3 my-5 px-4'>
+                <div className='w-2/6 card-title text-button-gray'>
                   {isAdminUser && displayEditButtons ? (
                     <span>{tag.name}</span>
                   ) : (
                     <span>{tag}</span>
                   )}
                 </div>
-                { tag.tagDescription && (
-                  <div className='inline-block text-sm w-1/2 overflow-hidden truncate'>
-                    {parse(tag.tagDescription.description)}
-                  </div>
-                )}
+                <div className='w-1/2 line-clamp-1'>
+                  {tag.tagDescription && parse(tag.tagDescription.description)}
+                </div>
                 {isAdminUser && displayEditButtons && (
-                  <div className='flex flex-row gap-3'>
+                  <div className='flex flex-row gap-3 ml-auto'>
                     <EditButton onClick={toggleFormDialog}/>
                     <DeleteTag tag={tag} />
                   </div>

@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
-import parse from 'html-react-parser'
 import { HiExternalLink } from 'react-icons/hi'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
+import { HtmlViewer } from '../shared/HtmlViewer'
 
 export const MOVE_QUERY = gql`
   query Move($playSlug: String!, $slug: String!) {
@@ -63,9 +63,10 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
             </div>
             <div className={`move-body ${openingDetail ? 'slide-down' : 'slide-up'}`}>
               <div className='px-4 py-4'>
-                <div className='fr-view text-dial-gray-dark'>
-                  {data?.move?.moveDescription && parse(data.move.moveDescription.description)}
-                </div>
+                <HtmlViewer
+                  initialContent={data.move?.moveDescription?.description}
+                  editorId={`move-${moveSlug}-desc`}
+                />
                 {
                   data?.move?.resources && data?.move?.resources.length > 0 &&
                     <>

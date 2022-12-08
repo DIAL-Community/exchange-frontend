@@ -79,7 +79,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed, newTab = false, can
                 </div>
                 <div className='bg-dial-gray-light flex flex-col h-full'>
                   <div className='px-3 py-3 text-sm'>
-                    <div className='max-h-16 playbook-description overflow-hidden'>
+                    <div className='line-clamp-3'>
                       {playbook.playbookDescription && parse(playbook.playbookDescription.overview)}
                     </div>
                   </div>

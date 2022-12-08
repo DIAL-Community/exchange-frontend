@@ -36,9 +36,9 @@ const MoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
     <>
       {
         data && data.move && data.play && data.playbook &&
-        <div className='px-8'>
-          <MoveDetail playbook={data.playbook} play={data.play} move={data.move} />
-        </div>
+          <div className='px-8'>
+            <MoveDetail playbook={data.playbook} play={data.play} move={data.move} />
+          </div>
       }
     </>
   )
