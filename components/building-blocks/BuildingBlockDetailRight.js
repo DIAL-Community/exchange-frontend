@@ -1,5 +1,5 @@
-import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
 import BuildingBlockDetailWorkflows from './BuildingBlockDetailWorkflows'
@@ -18,9 +18,10 @@ const BuildingBlockDetailRight = ({ buildingBlock, canEdit, commentsSectionRef }
       <div className='hidden lg:block'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
-      <div className='fr-view text-dial-gray-dark'>
-        {buildingBlock.buildingBlockDescription && parse(buildingBlock.buildingBlockDescription.description)}
-      </div>
+      <HtmlViewer
+        initialContent={buildingBlock?.buildingBlockDescription?.description}
+        className='px-4 border border-dial-gray card-drop-shadow'
+      />
       {buildingBlock.products && <BuildingBlockDetailProducts buildingBlock={buildingBlock} canEdit={canEdit} />}
       {buildingBlock.workflows && <BuildingBlockDetailWorkflows buildingBlock={buildingBlock} canEdit={canEdit} />}
       <CommentsSection

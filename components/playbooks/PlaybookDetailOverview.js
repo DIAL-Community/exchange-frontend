@@ -1,6 +1,6 @@
 import { createRef, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import PlaybookDetailMenu from './PlaybookDetailMenu'
 import { PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 
@@ -39,18 +39,30 @@ const PlaybookDetailOverview = ({ playbook, locale, allowEmbedCreation, comments
         commentsSectionRef={commentsSectionRef}
       />
       <div className='h4'>{format('playbooks.overview')}</div>
-      <div className='fr-view tiny-editor text-dial-gray-dark'>
-        {parse(playbook.playbookDescription.overview)}
-      </div>
+      <HtmlViewer
+        initialContent={playbook?.playbookDescription?.overview}
+        editorId='playbook-overview'
+        className='-mt-4'
+      />
       <div className='h4'>{format('playbooks.audience')}</div>
-      <div className='fr-view tiny-editor text-dial-gray-dark'>
-        {parse(playbook.playbookDescription.audience)}
-      </div>
+      <HtmlViewer
+        initialContent={playbook.playbookDescription.audience}
+        editorId='playbook-audience'
+        className='-mt-4'
+      />
       <div className='h4'>{format('playbooks.outcomes')}</div>
-      <div className='fr-view tiny-editor text-dial-gray-dark'>
-        {parse(playbook.playbookDescription.outcomes)}
-      </div>
-      {playbook.author && <><div className='h4'>{format('playbook.author')}:</div><div className='text-dial-gray-dark'>&nbsp;{playbook.author}</div></>}
+      <HtmlViewer
+        initialContent={playbook.playbookDescription.outcomes}
+        editorId='playbook-outcomes'
+        className='-mt-4'
+      />
+      {
+        playbook.author &&
+          <>
+            <div className='h4'>{format('playbook.author')}:</div>
+            <div className='text-dial-gray-dark'>&nbsp;{playbook.author}</div>
+          </>
+      }
     </div>
   )
 }

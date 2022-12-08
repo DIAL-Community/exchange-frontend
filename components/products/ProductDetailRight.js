@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
-import parse from 'html-react-parser'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import EditButton from '../shared/EditButton'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
@@ -66,9 +66,10 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           <div className='inline ml-5 h5'>{format('product.manualUpdate')}</div>
         )}
       </div>
-      <div className='fr-view text-dial-gray-dark'>
-        {product.productDescription && parse(product.productDescription.description)}
-      </div>
+      <HtmlViewer
+        initialContent={product?.productDescription?.description}
+        editorId='product-detail'
+      />
       <ProductPricing product={product} canEdit={false} />
       {product.sustainableDevelopmentGoals && <ProductDetailSdgs product={product} canEdit={canEdit} />}
       {product.buildingBlocks && <ProductDetailBuildingBlocks product={product} canEdit={isAdminUser} />}

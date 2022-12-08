@@ -1,11 +1,11 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
 import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import RepositoryDetail from '../RepositoryDetail'
 import Breadcrumb from '../../shared/breadcrumb'
+import { HtmlViewer } from '../../shared/HtmlViewer'
 
 const REPOSITORY_QUERY = gql`
   query ProductRepository($slug: String!) {
@@ -99,9 +99,10 @@ const RepositoryInformation = ({ productRepository }) => {
       <div className='text-sm font-semibold'>
         {format('productRepository.description')}
       </div>
-      <div className='text-sm text-dial-gray-dark'>
-        {parse(productRepository.description)}
-      </div>
+      <HtmlViewer
+        initialContent={productRepository?.description}
+        editorId='repository-data'
+      />
       <div className='w-full xl:w-4/5 mt-3 py-3 border-b border-gray-300'>
         <RepositoryDetail
           repositoryData={productRepository.statisticalData.data?.repository}

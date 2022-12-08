@@ -74,12 +74,13 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed, newTab = false, can
                       objectFit='contain'
                       alt={format('image.alt.logoFor', { name: playbook.name })}
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
+                      data-testid={`playbook-card-image-${playbook.id}`}
                     />
                   </div>
                 </div>
                 <div className='bg-dial-gray-light flex flex-col h-full'>
                   <div className='px-3 py-3 text-sm'>
-                    <div className='max-h-16 playbook-description overflow-hidden'>
+                    <div className='line-clamp-3'>
                       {playbook.playbookDescription && parse(playbook.playbookDescription.overview)}
                     </div>
                   </div>

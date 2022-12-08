@@ -3,10 +3,10 @@ import { gql, useLazyQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
 import { HiExternalLink } from 'react-icons/hi'
 import { Dialog, Transition } from '@headlessui/react'
 import { FaSpinner } from 'react-icons/fa'
+import { HtmlViewer } from '../../shared/HtmlViewer'
 import { MovePreviewContext, MovePreviewDispatchContext } from './MovePreviewContext'
 
 const MOVE_QUERY = gql`
@@ -108,10 +108,11 @@ const MovePreview = () => {
                       </div>
                     </Dialog.Title>
 
-                    <div className='flex flex-col gap-4 w-5/6 px-4 pb-4'>
-                      <div className='fr-view tiny-editor text-dial-gray-dark'>
-                        {data.move?.moveDescription && parse(data.move.moveDescription.description)}
-                      </div>
+                    <div className='flex flex-col gap-4 px-4 pb-4'>
+                      <HtmlViewer
+                        initialContent={data.move?.moveDescription?.description}
+                        editorId='move-preview'
+                      />
                       {
                         data.move?.resources && data?.move?.resources.length > 0 &&
                           <>

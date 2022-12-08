@@ -73,7 +73,9 @@ describe('Unit tests for the ProductForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test product name')
     expect(getByTestId(CANDIDATE_PRODUCT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => user.clear(screen.getByLabelText(/Name/))))
+    await act(async () => waitFor(() => {
+      user.clear(screen.getByLabelText(/Name/))
+    }))
     expect(getByTestId(CANDIDATE_PRODUCT_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test product name 2')

@@ -27,12 +27,14 @@ export const organizations = {
       {
         id: 1,
         name: 'Organization 1',
-        slug: 'organization_1'
+        slug: 'organization_1',
+        website: 'organization_1@gmail.com'
       },
       {
         id: 2,
         name: 'Organization 2',
-        slug: 'organization_2'
+        slug: 'organization_2',
+        website: 'organization_2@gmail.com'
       },
     ]
   }

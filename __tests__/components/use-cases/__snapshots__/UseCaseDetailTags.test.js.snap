@@ -243,15 +243,18 @@ exports[`Unit test for the UseCaseDetailTags component. Should match snapshot - 
           class="border border-dial-gray card-drop-shadow"
         >
           <div
-            class="flex justify-between my-5 px-4"
+            class="flex gap-3 my-5 px-4"
           >
             <div
-              class="inline-block card-title text-button-gray"
+              class="w-2/6 card-title text-button-gray"
             >
               <span>
                 Test Tag
               </span>
             </div>
+            <div
+              class="w-1/2 line-clamp-1"
+            />
           </div>
         </div>
       </div>
@@ -461,15 +464,18 @@ exports[`Unit test for the UseCaseDetailTags component. Should match snapshot - 
           class="border border-dial-gray card-drop-shadow"
         >
           <div
-            class="flex justify-between my-5 px-4"
+            class="flex gap-3 my-5 px-4"
           >
             <div
-              class="inline-block card-title text-button-gray"
+              class="w-2/6 card-title text-button-gray"
             >
               <span>
                 Test Tag
               </span>
             </div>
+            <div
+              class="w-1/2 line-clamp-1"
+            />
           </div>
         </div>
       </div>

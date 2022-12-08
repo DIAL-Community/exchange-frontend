@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import { PlayPreviewDispatchContext } from './PlayPreviewContext'
 import { PlayListContext, PlayListDispatchContext } from './PlayListContext'
 import { SOURCE_TYPE_ASSIGNING } from './PlayList'
@@ -27,9 +27,10 @@ const PlayCard = ({ playbook, play, sourceType }) => {
         <div className='w-2/6 font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
           {play.name}
         </div>
-        <div className='w-full playbook-list-description overflow-hidden fr-view my-1'>
-          {play.playDescription && parse(play.playDescription.description)}
-        </div>
+        <HtmlViewer
+          initialContent={play.playDescription?.description}
+          editorId='repository-data'
+        />
         {
           sourceType === SOURCE_TYPE_ASSIGNING &&
             <div className='w-2/6 my-auto flex gap-2 text-sm'>

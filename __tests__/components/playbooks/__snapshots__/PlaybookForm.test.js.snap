@@ -1338,7 +1338,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                           D4D: Understand the Problem
                         </div>
                         <div
-                          class="w-full single-line-description whitespace-nowrap overflow-hidden text-ellipsis fr-view my-1"
+                          class="w-full line-clamp-1 fr-view my-1"
                         >
                           The play description goes here.
                         </div>
