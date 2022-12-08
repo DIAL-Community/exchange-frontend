@@ -68,7 +68,9 @@ describe('Unit tests for BuildingBlockForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test building block name')
     expect(getByTestId(BUILDING_BLOCK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => user.clear(screen.getByLabelText(/Name/))))
+    await act(async () => waitFor(() => {
+      user.clear(screen.getByLabelText(/Name/))
+    }))
     expect(getByTestId(BUILDING_BLOCK_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test building block name 2')

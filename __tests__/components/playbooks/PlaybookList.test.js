@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 import { FilterContextProvider } from '../../../components/context/FilterContext'
 import { PlaybookFilterProvider } from '../../../components/context/PlaybookFilterContext'
 import PlaybookListQuery from '../../../components/playbooks/PlaybookList'
@@ -7,6 +7,8 @@ import { render, waitForAllEffects } from '../../test-utils'
 import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 import { PLAYBOOKS_QUERY } from '../../../queries/playbook'
 import { searchPlaybooks } from './data/PlaybookList'
+
+const NEXT_IMAGE_CUSTOM_PROPS = ['src', 'srcset', 'sizes']
 
 describe('Unit tests for playbook list interaction.', () => {
   const eventsOnSpy = jest.fn()
@@ -46,7 +48,11 @@ describe('Unit tests for playbook list interaction.', () => {
         </PlaybookFilterProvider>
       </CustomMockedProvider>
     )
-    await waitForAllEffects(1000)
+    await waitFor(() => {
+      NEXT_IMAGE_CUSTOM_PROPS.forEach(prop => {
+        expect(screen.getByTestId(`playbook-card-image-${searchPlaybooks.data.searchPlaybooks.nodes?.[0]?.id}`)).toHaveAttribute(prop)
+      })
+    })
     // Each section in the playbook detail should not show any error.
     expect(screen.queryByText(/Error fetching data/)).toBeNull()
     expect(screen.getByText('CDR Analytics for COVID-19 with FlowKit')).toBeInTheDocument()

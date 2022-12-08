@@ -74,6 +74,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed, newTab = false, can
                       objectFit='contain'
                       alt={format('image.alt.logoFor', { name: playbook.name })}
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
+                      data-testid={`playbook-card-image-${playbook.id}`}
                     />
                   </div>
                 </div>

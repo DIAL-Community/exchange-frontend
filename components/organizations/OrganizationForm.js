@@ -45,7 +45,7 @@ const OrganizationForm = React.memo(({ organization }) => {
     defaultValues: {
       name: organization?.name,
       aliases: organization?.aliases?.length ? organization?.aliases.map(value => ({ value })) : [{ value: '' }],
-      website: organization?.website,
+      website: organization?.website ?? '',
       isEndorser: organization?.isEndorser,
       whenEndorsed: organization?.whenEndorsed ?? null,
       endorserLevel: endorserLevelOptions.find(({ value }) => value === organization?.endorserLevel) ?? endorserLevelOptions[0],

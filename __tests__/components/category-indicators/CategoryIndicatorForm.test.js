@@ -52,7 +52,9 @@ describe('Unit tests for CategoryIndicatorForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test category indicator name')
     expect(getByTestId(CATEGORY_INDICATOR_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => user.clear(screen.getByLabelText(/Name/))))
+    await act(async () => waitFor(() => {
+      user.clear(screen.getByLabelText(/Name/))
+    }))
     expect(getByTestId(CATEGORY_INDICATOR_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test category indicator name 2')
@@ -103,7 +105,7 @@ describe('Unit tests for CategoryIndicatorForm component.', () => {
       await act(async () => {
         fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
       })
-      await screen.findByText('Category Indicator submitted successfully')
+      expect(await screen.findByText('Category Indicator submitted successfully')).toBeInTheDocument()
     })
 
     test('Failure.', async () => {
@@ -131,7 +133,7 @@ describe('Unit tests for CategoryIndicatorForm component.', () => {
       await act(async () => {
         fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
       })
-      await screen.findByText('Category Indicator submission failed')
+      expect(await screen.findByText('Category Indicator submission failed')).toBeInTheDocument()
     })
   })
 })
