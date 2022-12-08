@@ -7,7 +7,11 @@ export const rubricCategory = {
       weight: 1,
       rubricCategoryDescription: {
         description: 'RC description'
-      }
+      },
+      categoryIndicators: [{
+        name: '',
+        slug: ''
+      }]
     }
   }
 }

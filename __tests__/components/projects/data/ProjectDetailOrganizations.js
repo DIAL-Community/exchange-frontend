@@ -18,6 +18,7 @@ export const organizations = {
         name: 'Another Organization',
         imageFile: 'fake-image.png',
         slug: 'ao',
+        website: 'another_rganization@gmail.com'
       },
     ]
   }
