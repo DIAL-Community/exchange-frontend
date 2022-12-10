@@ -1470,6 +1470,12 @@ export const en = {
   'govstack.api.branch': 'Branch',
   'govstack.api.editorTitle': 'YAML Editor',
 
+  'github.commit.branch': 'Save Location',
+  'github.commit.message': 'Changes Comment',
+  'github.commit.messagePlaceholder': 'Comment for the current changes.',
+  'github.commit.defaultMessage': 'Updating definition on {path}.',
+  'github.pr.defaultTitle': 'Data updates from {branch}.',
+
   'toast.edit.submit.success': 'Changes saved successfully.',
   'toast.edit.submit.failure': 'Unable to save changes. Please try again later.',
 }
