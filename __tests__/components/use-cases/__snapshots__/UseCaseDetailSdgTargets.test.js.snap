@@ -41,7 +41,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-4-live-region"
+            id="react-select-:r2:-live-region"
           />
           <span
             aria-atomic="false"
@@ -57,7 +57,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-4-placeholder"
+                id="react-select-:r2:-placeholder"
               >
                 Type to search...
               </div>
@@ -67,11 +67,11 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
               >
                 <input
                   aria-autocomplete="list"
-                  aria-controls="react-select-4-listbox"
-                  aria-describedby="react-select-4-placeholder"
+                  aria-controls="react-select-:r2:-listbox"
+                  aria-describedby="react-select-:r2:-placeholder"
                   aria-expanded="true"
                   aria-haspopup="true"
-                  aria-owns="react-select-4-listbox"
+                  aria-owns="react-select-:r2:-listbox"
                   autocapitalize="none"
                   autocomplete="off"
                   autocorrect="off"
@@ -118,7 +118,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
           </div>
           <div
             class="react-select__menu css-1jtw5r9-menu"
-            id="react-select-4-listbox"
+            id="react-select-:r2:-listbox"
           >
             <div
               class="react-select__menu-list css-4ljt47-MenuList"
@@ -126,7 +126,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
               <div
                 aria-disabled="false"
                 class="react-select__option react-select__option--is-focused css-llk42x-option"
-                id="react-select-4-option-0"
+                id="react-select-:r2:-option-0"
                 tabindex="-1"
               >
                 3: Another SDG Target
@@ -347,7 +347,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-2-live-region"
+            id="react-select-:r0:-live-region"
           />
           <span
             aria-atomic="false"
@@ -363,7 +363,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-2-placeholder"
+                id="react-select-:r0:-placeholder"
               >
                 Type to search...
               </div>
@@ -373,7 +373,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-2-placeholder"
+                  aria-describedby="react-select-:r0:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
@@ -616,7 +616,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should remove a p
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-3-live-region"
+            id="react-select-:r1:-live-region"
           />
           <span
             aria-atomic="false"
@@ -632,7 +632,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should remove a p
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-3-placeholder"
+                id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
@@ -642,7 +642,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should remove a p
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-3-placeholder"
+                  aria-describedby="react-select-:r1:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
