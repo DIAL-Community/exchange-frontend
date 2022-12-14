@@ -1399,6 +1399,7 @@ export const en = {
   'toast.category-indicator.update.failure': 'Category Indicators update failed',
   'toast.playbook.delete.success': 'Playbook deleted successfully',
   'toast.playbook.delete.failure': 'Playbook deletion failed',
+  'toast.applyAsOwner.submit.success': 'Applied as {entity} Owner',
 
   'toast.markdown.submit.success': 'Changes saved successfully.',
   'toast.markdown.submit.failure': 'Unable to save changes. Please try again later.',
