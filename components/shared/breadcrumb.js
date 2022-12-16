@@ -33,6 +33,8 @@ const basePathMappings = {
   rubric_categories: 'rubric-categories.header'
 }
 
+export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>
+
 const Breadcrumb = (props) => {
   const { slugNameMapping } = props
 
@@ -68,7 +70,7 @@ const Breadcrumb = (props) => {
       {breadcrumbs.map((breadcrumb, i) => {
         return (
           <div key={i} className='inline h5'>
-            &nbsp;&gt;&nbsp;
+            {BREADCRUMB_SEPARATOR}
             <Link href={breadcrumb.href}>
               <a className={`${i === breadcrumbs.length - 1 ? 'text-dial-gray-dark' : 'text-dial-blue'}`}>
                 {convertBreadcrumb(breadcrumb.breadcrumb)}

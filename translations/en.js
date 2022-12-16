@@ -1134,6 +1134,7 @@ export const en = {
 
   'candidateProduct.label': 'Candidate Product',
   'candidateOrganization.label': 'Candidate Organization',
+  'candidateDataset.label': 'Candidate Open Data',
 
   'candidateProduct.name': 'Name',
   'candidateProduct.name.placeholder': 'Name of the candidate product.',
@@ -1167,6 +1168,10 @@ export const en = {
   'candidateOrganization.submit': 'Submit Candidate Organization',
   'candidate-organization.submit.success': 'Candidate Organization submitted successfully',
   'candidate-organization.submit.failure': 'Candidate Organization submission failed',
+
+  'candidate-dataset.submit': 'Submit Candidate Open Data',
+  'candidate-dataset.submit.success': 'Candidate Open Data submitted successfully',
+  'candidate-dataset.submit.failure': 'Candidate Open Data submission failed',
 
   'candidate.header': 'Candidate',
   'candidate.rejected': 'Declined',

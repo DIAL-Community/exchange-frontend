@@ -15,6 +15,7 @@ import { HtmlEditor } from '../../shared/HtmlEditor'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { useUser } from '../../../lib/hooks'
 import UrlInput from '../../shared/UrlInput'
+import { BREADCRUMB_SEPARATOR } from '../../shared/breadcrumb'
 
 const OrganizationForm = () => {
   const { formatMessage } = useIntl()
@@ -108,12 +109,16 @@ const OrganizationForm = () => {
               <a className='inline text-dial-blue h5'>{format('app.home')}</a>
             </Link>
             <div className='inline h5'>
-              &nbsp;&gt;&nbsp;
+              {BREADCRUMB_SEPARATOR}
               <Link href='/organizations'>
                 <a className='text-dial-blue'>
                   {format('organization.header')}
                 </a>
               </Link>
+              {BREADCRUMB_SEPARATOR}
+              <span className='text-dial-gray-dark'>
+                {format('app.create')}
+              </span>
             </div>
           </div>
         </div>
@@ -241,7 +246,7 @@ const OrganizationForm = () => {
                     className='submit-button'
                     disabled={mutating || reverting}
                   >
-                    {format('candidateProduct.submit')}
+                    {format('candidateOrganization.submit')}
                     {mutating && <FaSpinner className='spinner ml-3 inline' />}
                   </button>
                   <button

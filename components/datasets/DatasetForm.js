@@ -14,6 +14,7 @@ import ValidationError from '../shared/ValidationError'
 import { CREATE_DATASET } from '../../mutations/dataset'
 import Select from '../shared/Select'
 import FileUploader from '../shared/FileUploader'
+import { getDatasetTypeOptions } from '../../lib/utilities'
 
 const DatasetForm = React.memo(({ dataset }) => {
   const { formatMessage } = useIntl()
@@ -29,12 +30,7 @@ const DatasetForm = React.memo(({ dataset }) => {
   const { locale } = useRouter()
   const [updateDataset, { data }] = useMutation(CREATE_DATASET)
 
-  const datasetTypeOptions = [
-    { label: format('dataset.type.dataset'), value: 'dataset' },
-    { label: format('dataset.type.content'), value: 'content' },
-    { label: format('dataset.type.standard'), value: 'standard' },
-    { label: format('dataset.type.aiModel'), value: 'ai_model' }
-  ]
+  const datasetTypeOptions = useMemo(() => getDatasetTypeOptions(format), [format])
 
   const { handleSubmit, register, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
