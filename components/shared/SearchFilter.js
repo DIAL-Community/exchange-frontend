@@ -69,7 +69,7 @@ const SearchFilter = ({
       return `/candidate/${linkPath[1]}/create`
     }
 
-    const withCandidatePaths = ['products', 'organizations']
+    const withCandidatePaths = ['products', 'organizations', 'datasets']
     if (!user.canEdit && withCandidatePaths.some(el => linkPath.includes(el))) {
       return `/candidate/${linkPath[0]}/create`
     }

@@ -30,6 +30,12 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - candi
           >
             Products
           </a>
+           &gt; 
+          <span
+            class="text-dial-gray-dark"
+          >
+            Create
+          </span>
         </div>
       </div>
     </div>

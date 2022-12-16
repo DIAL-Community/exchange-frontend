@@ -149,3 +149,36 @@ export const UPDATE_DATASET_TAGS = gql`
     }
   }
 `
+
+export const CREATE_CANDIDATE_DATASET = gql`
+  mutation CreateCandidateDataset(
+    $name: String!
+    $slug: String!
+    $dataUrl: String!
+    $dataVisualizationUrl: String
+    $dataType: String!
+    $submitterEmail: String!
+    $description: String!
+    $captcha: String!
+  ) {
+    createCandidateDataset (
+      name: $name
+      slug: $slug
+      dataUrl: $dataUrl
+      dataVisualizationUrl: $dataVisualizationUrl
+      dataType: $dataType
+      submitterEmail: $submitterEmail
+      description: $description
+      captcha: $captcha
+    ) {
+      candidateDataset {
+        name
+        slug
+        dataUrl
+        dataVisualizationUrl
+        description
+      }
+      errors
+    }
+  }  
+`
