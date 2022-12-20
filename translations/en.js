@@ -1134,6 +1134,7 @@ export const en = {
 
   'candidateProduct.label': 'Candidate Product',
   'candidateOrganization.label': 'Candidate Organization',
+  'candidateDataset.label': 'Candidate Open Data',
 
   'candidateProduct.name': 'Name',
   'candidateProduct.name.placeholder': 'Name of the candidate product.',
@@ -1167,6 +1168,10 @@ export const en = {
   'candidateOrganization.submit': 'Submit Candidate Organization',
   'candidate-organization.submit.success': 'Candidate Organization submitted successfully',
   'candidate-organization.submit.failure': 'Candidate Organization submission failed',
+
+  'candidate-dataset.submit': 'Submit Candidate Open Data',
+  'candidate-dataset.submit.success': 'Candidate Open Data submitted successfully',
+  'candidate-dataset.submit.failure': 'Candidate Open Data submission failed',
 
   'candidate.header': 'Candidate',
   'candidate.rejected': 'Declined',
@@ -1399,6 +1404,7 @@ export const en = {
   'toast.category-indicator.update.failure': 'Category Indicators update failed',
   'toast.playbook.delete.success': 'Playbook deleted successfully',
   'toast.playbook.delete.failure': 'Playbook deletion failed',
+  'toast.applyAsOwner.submit.success': 'Applied as {entity} Owner',
 
   'toast.markdown.submit.success': 'Changes saved successfully.',
   'toast.markdown.submit.failure': 'Unable to save changes. Please try again later.',
@@ -1469,6 +1475,12 @@ export const en = {
   'govstack.api.repositories': 'Govstack API Repositories',
   'govstack.api.branch': 'Branch',
   'govstack.api.editorTitle': 'YAML Editor',
+
+  'github.commit.branch': 'Save Location',
+  'github.commit.message': 'Changes Comment',
+  'github.commit.messagePlaceholder': 'Comment for the current changes.',
+  'github.commit.defaultMessage': 'Updating definition on {path}.',
+  'github.pr.defaultTitle': 'Data updates from {branch}.',
 
   'toast.edit.submit.success': 'Changes saved successfully.',
   'toast.edit.submit.failure': 'Unable to save changes. Please try again later.',

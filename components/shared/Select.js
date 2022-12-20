@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useId } from 'react'
 import dynamic from 'next/dynamic'
 import ReactSelect, { components } from 'react-select'
 import { HiOutlineSearch } from 'react-icons/hi'
@@ -80,10 +80,13 @@ const Select = React.forwardRef(({
     </components.DropdownIndicator>
   )
 
+  const id = useId()
+
   return (
     async ? (
       <AsyncReactSelect
         {...otherProps}
+        instanceId={id}
         inputId={`async-select-id-${name}`}
         innerRef={ref}
         value={value}
@@ -99,6 +102,7 @@ const Select = React.forwardRef(({
     ) : (
       <ReactSelect
         {...otherProps}
+        instanceId={id}
         inputId={`react-select-id-${name}`}
         innerRef={ref}
         value={value}

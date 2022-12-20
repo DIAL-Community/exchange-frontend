@@ -293,15 +293,6 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
       >
         Find more information here
       </a>
-      <div
-        class="border-l border-dial-gray-light mt-2"
-      />
-      <button
-        class="text-dial-yellow block mt-2 border-b border-transparent hover:border-dial-yellow"
-        href="/apply-product-owner"
-      >
-        Apply as Owner
-      </button>
     </div>
   </div>
 </div>

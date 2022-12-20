@@ -2,46 +2,37 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import 'swagger-ui-react/swagger-ui.css'
-import { Octokit } from '@octokit/core'
 import EditButton from '../shared/EditButton'
-import { BUILDING_BLOCK_YAML_KEYS, DEFAULT_BRANCH_NAME, DEFAULT_REPO_OWNER } from './common'
+import { EditorContext, EditorContextDispatch } from '../shared/github/EditorContext'
+import TypeYamlEditor from '../shared/github/TypeYamlEditor'
+import { MetadataContext } from './MetadataContext'
 
 const SwaggerUI = dynamic(() => import('swagger-ui-react'), { ssr: false })
 
-const ApiViewer = ({ repoName }) => {
+const ApiViewer = ({ repositoryName }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id) => formatMessage({ id }), [formatMessage])
 
-  const [url, setUrl] = useState()
+  const { downloadUrl } = useContext(EditorContext)
+  const { setContentPath, setContentRepository } = useContext(EditorContextDispatch)
 
-  const octokit = useMemo(() => new Octokit({ auth: process.env.NEXT_PUBLIC_UCMD_REPO_TOKEN }), [])
-
-  const fetchDefinitionData = useCallback(async () => {
-    if (repoName) {
-      const [yamlData] = BUILDING_BLOCK_YAML_KEYS.filter(({ label }) => label === repoName)
-      const requestString = 'GET /repos/{owner}/{repo}/contents/{path}'
-      const requestParams = {
-        owner: DEFAULT_REPO_OWNER,
-        repo: repoName,
-        path: yamlData.value,
-        ref: DEFAULT_BRANCH_NAME
-      }
-      try {
-        const { data: { download_url } } = await octokit.request(requestString, requestParams)
-        setUrl(download_url)
-      } catch (e) {
-        setUrl('')
-      }
-    }
-  }, [repoName, octokit])
+  const { apiMetadata } = useContext(MetadataContext)
 
   useEffect(() => {
-    if (repoName) {
-      fetchDefinitionData(repoName)
+    setContentRepository(repositoryName)
+    if (apiMetadata) {
+      const [apiMetadataKey] = Object.keys(apiMetadata['api-mappings']).filter(key => {
+        const apiMapping = apiMetadata['api-mappings'][key]
+
+        return apiMapping.label === repositoryName
+      })
+      if (apiMetadataKey) {
+        setContentPath(apiMetadata['api-mappings'][apiMetadataKey].value)
+      }
     }
-  }, [repoName, fetchDefinitionData])
+  }, [apiMetadata, repositoryName, setContentPath, setContentRepository])
 
   return (
     <div className='flex flex-col gap-3 my-4'>
@@ -56,11 +47,12 @@ const ApiViewer = ({ repoName }) => {
             </a>
           </Link>
           <div className='ml-auto my-auto'>
-            <EditButton type='link' href={`${repoName}/edit`} />
+            <EditButton type='link' href={`${repositoryName}/edit`} />
           </div>
         </div>
       </div>
-      <SwaggerUI url={url} />
+      <TypeYamlEditor allowEditing={false} />
+      <SwaggerUI url={downloadUrl} />
     </div>
   )
 }

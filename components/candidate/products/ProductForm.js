@@ -15,6 +15,7 @@ import ValidationError from '../../shared/ValidationError'
 import { HtmlEditor } from '../../shared/HtmlEditor'
 import { Unauthorized } from '../../shared/FetchStatus'
 import UrlInput from '../../shared/UrlInput'
+import { BREADCRUMB_SEPARATOR } from '../../shared/breadcrumb'
 
 const ProductForm = () => {
   const { formatMessage } = useIntl()
@@ -105,12 +106,16 @@ const ProductForm = () => {
             <a className='inline text-dial-blue h5'>{format('app.home')}</a>
           </Link>
           <div className='inline h5'>
-            &nbsp;&gt;&nbsp;
+            {BREADCRUMB_SEPARATOR}
             <Link href='/products'>
               <a className='text-dial-blue'>
                 {format('product.header')}
               </a>
             </Link>
+            {BREADCRUMB_SEPARATOR}
+            <span className='text-dial-gray-dark'>
+              {format('app.create')}
+            </span>
           </div>
         </div>
       </div>

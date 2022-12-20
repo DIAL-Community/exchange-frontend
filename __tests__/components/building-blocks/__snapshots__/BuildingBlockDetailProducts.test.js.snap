@@ -40,7 +40,7 @@ exports[`Unit test for the BuildingBlockDetailProducts component. Should add a p
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-6-live-region"
+            id="react-select-:r4:-live-region"
           />
           <span
             aria-atomic="false"
@@ -118,7 +118,7 @@ exports[`Unit test for the BuildingBlockDetailProducts component. Should add a p
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-7-live-region"
+            id="react-select-:r5:-live-region"
           />
           <span
             aria-atomic="false"
@@ -134,7 +134,7 @@ exports[`Unit test for the BuildingBlockDetailProducts component. Should add a p
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-7-placeholder"
+                id="react-select-:r5:-placeholder"
               >
                 Type to search...
               </div>
@@ -144,7 +144,7 @@ exports[`Unit test for the BuildingBlockDetailProducts component. Should add a p
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-7-placeholder"
+                  aria-describedby="react-select-:r5:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
@@ -413,7 +413,7 @@ exports[`Unit test for the BuildingBlockDetailProducts component. Should match s
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-2-live-region"
+            id="react-select-:r0:-live-region"
           />
           <span
             aria-atomic="false"
@@ -491,7 +491,7 @@ exports[`Unit test for the BuildingBlockDetailProducts component. Should match s
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-3-live-region"
+            id="react-select-:r1:-live-region"
           />
           <span
             aria-atomic="false"
@@ -507,7 +507,7 @@ exports[`Unit test for the BuildingBlockDetailProducts component. Should match s
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-3-placeholder"
+                id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
@@ -517,7 +517,7 @@ exports[`Unit test for the BuildingBlockDetailProducts component. Should match s
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-3-placeholder"
+                  aria-describedby="react-select-:r1:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
@@ -744,7 +744,7 @@ exports[`Unit test for the BuildingBlockDetailProducts component. Should remove 
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-4-live-region"
+            id="react-select-:r2:-live-region"
           />
           <span
             aria-atomic="false"
@@ -822,7 +822,7 @@ exports[`Unit test for the BuildingBlockDetailProducts component. Should remove 
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-5-live-region"
+            id="react-select-:r3:-live-region"
           />
           <span
             aria-atomic="false"
@@ -838,7 +838,7 @@ exports[`Unit test for the BuildingBlockDetailProducts component. Should remove 
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-5-placeholder"
+                id="react-select-:r3:-placeholder"
               >
                 Type to search...
               </div>
@@ -848,7 +848,7 @@ exports[`Unit test for the BuildingBlockDetailProducts component. Should remove 
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-5-placeholder"
+                  aria-describedby="react-select-:r3:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"

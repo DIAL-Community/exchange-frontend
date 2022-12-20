@@ -151,7 +151,7 @@ exports[`Unit tests for UseCaseForm component. Should display failure toast on s
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-10-live-region"
+                      id="react-select-:r8:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -238,7 +238,7 @@ exports[`Unit tests for UseCaseForm component. Should display failure toast on s
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-11-live-region"
+                      id="react-select-:r9:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -573,7 +573,7 @@ exports[`Unit tests for UseCaseForm component. Should display success toast on s
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-8-live-region"
+                      id="react-select-:r6:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -660,7 +660,7 @@ exports[`Unit tests for UseCaseForm component. Should display success toast on s
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-9-live-region"
+                      id="react-select-:r7:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -987,7 +987,7 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-2-live-region"
+                      id="react-select-:r0:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -1003,7 +1003,7 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-2-placeholder"
+                          id="react-select-:r0:-placeholder"
                         >
                           Sector
                         </div>
@@ -1013,7 +1013,7 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-2-placeholder"
+                            aria-describedby="react-select-:r0:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"
@@ -1076,7 +1076,7 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-3-live-region"
+                      id="react-select-:r1:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -1387,7 +1387,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-6-live-region"
+                      id="react-select-:r4:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -1403,7 +1403,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-6-placeholder"
+                          id="react-select-:r4:-placeholder"
                         >
                           Sector
                         </div>
@@ -1413,7 +1413,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-6-placeholder"
+                            aria-describedby="react-select-:r4:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"
@@ -1481,7 +1481,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-7-live-region"
+                      id="react-select-:r5:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -1497,7 +1497,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-7-placeholder"
+                          id="react-select-:r5:-placeholder"
                         >
                           Maturity
                         </div>
@@ -1507,7 +1507,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-7-placeholder"
+                            aria-describedby="react-select-:r5:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"
@@ -1777,7 +1777,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-4-live-region"
+                      id="react-select-:r2:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -1793,7 +1793,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-4-placeholder"
+                          id="react-select-:r2:-placeholder"
                         >
                           Sector
                         </div>
@@ -1803,7 +1803,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-4-placeholder"
+                            aria-describedby="react-select-:r2:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"
@@ -1871,7 +1871,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-5-live-region"
+                      id="react-select-:r3:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -1887,7 +1887,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-5-placeholder"
+                          id="react-select-:r3:-placeholder"
                         >
                           Maturity
                         </div>
@@ -1897,7 +1897,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-5-placeholder"
+                            aria-describedby="react-select-:r3:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"

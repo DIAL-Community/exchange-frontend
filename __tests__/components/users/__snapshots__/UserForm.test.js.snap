@@ -106,7 +106,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-2-live-region"
+                    id="react-select-:r0:-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -122,7 +122,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                     >
                       <div
                         class="react-select__placeholder css-19jynah-placeholder"
-                        id="react-select-2-placeholder"
+                        id="react-select-:r0:-placeholder"
                       >
                         Select user roles
                       </div>
@@ -132,7 +132,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-describedby="react-select-2-placeholder"
+                          aria-describedby="react-select-:r0:-placeholder"
                           aria-expanded="false"
                           aria-haspopup="true"
                           autocapitalize="none"
@@ -191,7 +191,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-3-live-region"
+                    id="react-select-:r1:-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -207,7 +207,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                     >
                       <div
                         class="react-select__placeholder css-19jynah-placeholder"
-                        id="react-select-3-placeholder"
+                        id="react-select-:r1:-placeholder"
                       >
                         Enter user organization
                       </div>
@@ -217,7 +217,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-describedby="react-select-3-placeholder"
+                          aria-describedby="react-select-:r1:-placeholder"
                           aria-expanded="false"
                           aria-haspopup="true"
                           autocapitalize="none"
@@ -289,7 +289,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-4-live-region"
+                      id="react-select-:r2:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -305,7 +305,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-4-placeholder"
+                          id="react-select-:r2:-placeholder"
                         >
                           Enter products owned by user
                         </div>
@@ -315,7 +315,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-4-placeholder"
+                            aria-describedby="react-select-:r2:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             aria-label="Filter by Product"
@@ -505,7 +505,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-5-live-region"
+                    id="react-select-:r3:-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -521,7 +521,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                     >
                       <div
                         class="react-select__placeholder css-19jynah-placeholder"
-                        id="react-select-5-placeholder"
+                        id="react-select-:r3:-placeholder"
                       >
                         Select user roles
                       </div>
@@ -531,7 +531,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-describedby="react-select-5-placeholder"
+                          aria-describedby="react-select-:r3:-placeholder"
                           aria-expanded="false"
                           aria-haspopup="true"
                           autocapitalize="none"
@@ -619,7 +619,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-6-live-region"
+                    id="react-select-:r4:-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -635,7 +635,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                     >
                       <div
                         class="react-select__placeholder css-19jynah-placeholder"
-                        id="react-select-6-placeholder"
+                        id="react-select-:r4:-placeholder"
                       >
                         Enter user organization
                       </div>
@@ -645,7 +645,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-describedby="react-select-6-placeholder"
+                          aria-describedby="react-select-:r4:-placeholder"
                           aria-expanded="false"
                           aria-haspopup="true"
                           autocapitalize="none"
@@ -712,7 +712,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-7-live-region"
+                      id="react-select-:r5:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -728,7 +728,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-7-placeholder"
+                          id="react-select-:r5:-placeholder"
                         >
                           Enter products owned by user
                         </div>
@@ -738,7 +738,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-7-placeholder"
+                            aria-describedby="react-select-:r5:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             aria-label="Filter by Product"
@@ -993,7 +993,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-8-live-region"
+                    id="react-select-:r6:-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -1009,7 +1009,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                     >
                       <div
                         class="react-select__placeholder css-19jynah-placeholder"
-                        id="react-select-8-placeholder"
+                        id="react-select-:r6:-placeholder"
                       >
                         Select user roles
                       </div>
@@ -1019,7 +1019,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-describedby="react-select-8-placeholder"
+                          aria-describedby="react-select-:r6:-placeholder"
                           aria-expanded="false"
                           aria-haspopup="true"
                           autocapitalize="none"
@@ -1078,7 +1078,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-9-live-region"
+                    id="react-select-:r7:-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -1094,7 +1094,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                     >
                       <div
                         class="react-select__placeholder css-19jynah-placeholder"
-                        id="react-select-9-placeholder"
+                        id="react-select-:r7:-placeholder"
                       >
                         Enter user organization
                       </div>
@@ -1104,7 +1104,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-describedby="react-select-9-placeholder"
+                          aria-describedby="react-select-:r7:-placeholder"
                           aria-expanded="false"
                           aria-haspopup="true"
                           autocapitalize="none"
@@ -1176,7 +1176,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-10-live-region"
+                      id="react-select-:r8:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -1192,7 +1192,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-10-placeholder"
+                          id="react-select-:r8:-placeholder"
                         >
                           Enter products owned by user
                         </div>
@@ -1202,7 +1202,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-10-placeholder"
+                            aria-describedby="react-select-:r8:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             aria-label="Filter by Product"
@@ -1392,7 +1392,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-17-live-region"
+                    id="react-select-:rf:-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -1408,7 +1408,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                     >
                       <div
                         class="react-select__placeholder css-19jynah-placeholder"
-                        id="react-select-17-placeholder"
+                        id="react-select-:rf:-placeholder"
                       >
                         Select user roles
                       </div>
@@ -1418,7 +1418,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-describedby="react-select-17-placeholder"
+                          aria-describedby="react-select-:rf:-placeholder"
                           aria-expanded="false"
                           aria-haspopup="true"
                           autocapitalize="none"
@@ -1506,7 +1506,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-18-live-region"
+                    id="react-select-:rg:-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -1522,7 +1522,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                     >
                       <div
                         class="react-select__placeholder css-19jynah-placeholder"
-                        id="react-select-18-placeholder"
+                        id="react-select-:rg:-placeholder"
                       >
                         Enter user organization
                       </div>
@@ -1532,7 +1532,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-describedby="react-select-18-placeholder"
+                          aria-describedby="react-select-:rg:-placeholder"
                           aria-expanded="false"
                           aria-haspopup="true"
                           autocapitalize="none"
@@ -1599,7 +1599,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-19-live-region"
+                      id="react-select-:rh:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -1615,7 +1615,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-19-placeholder"
+                          id="react-select-:rh:-placeholder"
                         >
                           Enter products owned by user
                         </div>
@@ -1625,7 +1625,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-19-placeholder"
+                            aria-describedby="react-select-:rh:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             aria-label="Filter by Product"
@@ -1891,7 +1891,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-14-live-region"
+                    id="react-select-:rc:-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -1907,7 +1907,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                     >
                       <div
                         class="react-select__placeholder css-19jynah-placeholder"
-                        id="react-select-14-placeholder"
+                        id="react-select-:rc:-placeholder"
                       >
                         Select user roles
                       </div>
@@ -1917,7 +1917,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-describedby="react-select-14-placeholder"
+                          aria-describedby="react-select-:rc:-placeholder"
                           aria-expanded="false"
                           aria-haspopup="true"
                           autocapitalize="none"
@@ -2005,7 +2005,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-15-live-region"
+                    id="react-select-:rd:-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -2021,7 +2021,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                     >
                       <div
                         class="react-select__placeholder css-19jynah-placeholder"
-                        id="react-select-15-placeholder"
+                        id="react-select-:rd:-placeholder"
                       >
                         Enter user organization
                       </div>
@@ -2031,7 +2031,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-describedby="react-select-15-placeholder"
+                          aria-describedby="react-select-:rd:-placeholder"
                           aria-expanded="false"
                           aria-haspopup="true"
                           autocapitalize="none"
@@ -2098,7 +2098,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-16-live-region"
+                      id="react-select-:re:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -2114,7 +2114,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-16-placeholder"
+                          id="react-select-:re:-placeholder"
                         >
                           Enter products owned by user
                         </div>
@@ -2124,7 +2124,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-16-placeholder"
+                            aria-describedby="react-select-:re:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             aria-label="Filter by Product"
@@ -2393,7 +2393,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-11-live-region"
+                    id="react-select-:r9:-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -2409,7 +2409,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                     >
                       <div
                         class="react-select__placeholder css-19jynah-placeholder"
-                        id="react-select-11-placeholder"
+                        id="react-select-:r9:-placeholder"
                       >
                         Select user roles
                       </div>
@@ -2419,7 +2419,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-describedby="react-select-11-placeholder"
+                          aria-describedby="react-select-:r9:-placeholder"
                           aria-expanded="false"
                           aria-haspopup="true"
                           autocapitalize="none"
@@ -2478,7 +2478,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                 >
                   <span
                     class="css-1f43avz-a11yText-A11yText"
-                    id="react-select-12-live-region"
+                    id="react-select-:ra:-live-region"
                   />
                   <span
                     aria-atomic="false"
@@ -2494,7 +2494,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                     >
                       <div
                         class="react-select__placeholder css-19jynah-placeholder"
-                        id="react-select-12-placeholder"
+                        id="react-select-:ra:-placeholder"
                       >
                         Enter user organization
                       </div>
@@ -2504,7 +2504,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                       >
                         <input
                           aria-autocomplete="list"
-                          aria-describedby="react-select-12-placeholder"
+                          aria-describedby="react-select-:ra:-placeholder"
                           aria-expanded="false"
                           aria-haspopup="true"
                           autocapitalize="none"
@@ -2576,7 +2576,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-13-live-region"
+                      id="react-select-:rb:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -2592,7 +2592,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-13-placeholder"
+                          id="react-select-:rb:-placeholder"
                         >
                           Enter products owned by user
                         </div>
@@ -2602,7 +2602,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-13-placeholder"
+                            aria-describedby="react-select-:rb:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             aria-label="Filter by Product"

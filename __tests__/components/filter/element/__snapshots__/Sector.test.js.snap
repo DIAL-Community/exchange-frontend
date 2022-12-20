@@ -14,7 +14,7 @@ exports[`Unit test for the SectorAutocomplete component. Should match snapshot 1
     >
       <span
         class="css-1f43avz-a11yText-A11yText"
-        id="react-select-2-live-region"
+        id="react-select-:r0:-live-region"
       />
       <span
         aria-atomic="false"
@@ -30,7 +30,7 @@ exports[`Unit test for the SectorAutocomplete component. Should match snapshot 1
         >
           <div
             class="react-select__placeholder css-19jynah-placeholder"
-            id="react-select-2-placeholder"
+            id="react-select-:r0:-placeholder"
           >
             Filter by Sector
           </div>
@@ -40,7 +40,7 @@ exports[`Unit test for the SectorAutocomplete component. Should match snapshot 1
           >
             <input
               aria-autocomplete="list"
-              aria-describedby="react-select-2-placeholder"
+              aria-describedby="react-select-:r0:-placeholder"
               aria-expanded="false"
               aria-haspopup="true"
               aria-label="Filter by Sector"
@@ -102,7 +102,7 @@ exports[`Unit test for the SectorAutocomplete component. Should render a drop do
     >
       <span
         class="css-1f43avz-a11yText-A11yText"
-        id="react-select-3-live-region"
+        id="react-select-:r1:-live-region"
       />
       <span
         aria-atomic="false"
@@ -118,7 +118,7 @@ exports[`Unit test for the SectorAutocomplete component. Should render a drop do
         >
           <div
             class="react-select__placeholder css-19jynah-placeholder"
-            id="react-select-3-placeholder"
+            id="react-select-:r1:-placeholder"
           >
             Filter by Sector
           </div>
@@ -128,12 +128,12 @@ exports[`Unit test for the SectorAutocomplete component. Should render a drop do
           >
             <input
               aria-autocomplete="list"
-              aria-controls="react-select-3-listbox"
-              aria-describedby="react-select-3-placeholder"
+              aria-controls="react-select-:r1:-listbox"
+              aria-describedby="react-select-:r1:-placeholder"
               aria-expanded="true"
               aria-haspopup="true"
               aria-label="Filter by Sector"
-              aria-owns="react-select-3-listbox"
+              aria-owns="react-select-:r1:-listbox"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
@@ -175,7 +175,7 @@ exports[`Unit test for the SectorAutocomplete component. Should render a drop do
       </div>
       <div
         class="react-select__menu css-1jtw5r9-menu"
-        id="react-select-3-listbox"
+        id="react-select-:r1:-listbox"
       >
         <div
           class="react-select__menu-list css-4ljt47-MenuList"
@@ -183,7 +183,7 @@ exports[`Unit test for the SectorAutocomplete component. Should render a drop do
           <div
             aria-disabled="false"
             class="react-select__option react-select__option--is-focused css-llk42x-option"
-            id="react-select-3-option-0"
+            id="react-select-:r1:-option-0"
             tabindex="-1"
           >
             Sector 1
@@ -191,7 +191,7 @@ exports[`Unit test for the SectorAutocomplete component. Should render a drop do
           <div
             aria-disabled="false"
             class="react-select__option css-19r0ri3-option"
-            id="react-select-3-option-1"
+            id="react-select-:r1:-option-1"
             tabindex="-1"
           >
             Sector 2

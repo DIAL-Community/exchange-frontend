@@ -1,7 +1,7 @@
-import { gql, useLazyQuery } from '@apollo/client'
+import { useLazyQuery, useMutation } from '@apollo/client'
 import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
@@ -11,22 +11,16 @@ import EditButton from '../shared/EditButton'
 import { useProductOwnerUser, useUser } from '../../lib/hooks'
 import CommentsCount from '../shared/CommentsCount'
 import { ObjectType } from '../../lib/constants'
-
-const CANDIDATE_ROLE_QUERY = gql`
-  query CandidateRole($email: String!, $productId: String!, $organizationId: String!) {
-    candidateRole(email: $email, productId: $productId, organizationId: $organizationId) {
-      id
-      productId
-      organizationId
-    }
-  }
-`
+import { APPLY_AS_OWNER } from '../../mutations/users'
+import { ToastContext } from '../../lib/ToastContext'
+import { CANDIDATE_ROLE_QUERY } from '../../queries/candidate'
 
 const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
 
 const ProductDetailLeft = ({ product, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+  const { showToast } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -39,7 +33,6 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
   const [emailAddress, setEmailAddress] = useState('')
 
   const [loading, setLoading] = useState(false)
-  const [appliedToBeOwner, setAppliedToBeOwner] = useState(false)
   const [showApplyLink, setShowApplyLink] = useState(false)
   const [ownershipText, setOwnershipText] = useState('')
 
@@ -63,53 +56,42 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
-  const displayApplyOwnershipLink = (user, data, appliedToBeOwner) => {
+  const displayApplyOwnershipLink = (user) => {
     if (!user) {
       // Not logged in, don't display the link.
       return false
     }
 
-    const filteredProducts = user.own && user.own.products.filter(item => {
-      return `${item}` === `${product.id}`
-    })
-
-    if (filteredProducts && filteredProducts.length > 0) {
+    if (isProductOwner) {
       return false
     }
 
-    if (!appliedToBeOwner && !data?.candidateRole) {
-      // Have not apply to be one or if searching in the db return no data.
+    if (data?.candidateRole === null || data?.candidateRole?.rejected) {
       return true
     }
-
-    return false
   }
 
-  const staticOwnershipTextSelection = (user, data, appliedToBeOwner) => {
+  const staticOwnershipTextSelection = (user) => {
     if (!user) {
       // Not logged in, don't display anything.
       return ''
     }
 
-    const filteredProducts = user.own && user.own?.products.filter(item => {
-      return `${item}` === `${product.id}`
-    })
-
-    if (filteredProducts && filteredProducts.length > 0) {
+    if (isProductOwner) {
       return 'owner'
     }
 
-    if (appliedToBeOwner || (data && `${data.candidateRole?.productId}` === `${product.id}`)) {
+    if (data?.candidateRole?.rejected === null) {
       // Applying to be the owner of the organization
       return 'applied-to-own'
     }
   }
 
   useEffect(() => {
-    setShowApplyLink(displayApplyOwnershipLink(user, data, appliedToBeOwner))
-    setOwnershipText(staticOwnershipTextSelection(user, data, appliedToBeOwner))
+    setShowApplyLink(displayApplyOwnershipLink(user))
+    setOwnershipText(staticOwnershipTextSelection(user))
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, data, error, appliedToBeOwner])
+  }, [user, error, data])
 
   const updateContactInfo = async (captchaValue) => {
     const { userEmail, userToken } = user
@@ -148,39 +130,59 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
     }
   }
 
-  const applyToBeProductOwner = async () => {
-    setLoading(true)
-    const { userEmail, userToken } = user
-    const requestBody = {
-      candidate_role: {
-        email: userEmail,
-        description: 'Product ownership requested from the new UX.',
-        product_id: product.id
-      },
-      user_email: userEmail,
-      user_token: userToken
-    }
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_RAILS_SERVER}/candidate_roles`,
-      {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'omit',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-          'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_RAILS_SERVER,
-          'Access-Control-Allow-Credentials': true,
-          'Access-Control-Allow-Headers': 'Set-Cookie'
-        },
-        body: JSON.stringify(requestBody)
+  const [applyAsOwner] = useMutation(APPLY_AS_OWNER, {
+    refetchQueries: ['CandidateRole'],
+    onCompleted: (data) => {
+      if (data.applyAsOwner.errors.length) {
+        showToast(
+          <div className='flex flex-col'>
+            <span>{data.applyAsOwner.errors[0]}</span>
+          </div>,
+          'error',
+          'top-center',
+          null,
+          () => setLoading(false)
+        )
+      } else {
+        showToast(
+          format('toast.applyAsOwner.submit.success', { entity: format('product.label') }),
+          'success',
+          'top-center',
+          null,
+          () => setLoading(false)
+        )
       }
-    )
+    },
+    onError: (error) => {
+      showToast(
+        <div className='flex flex-col'>
+          <span>{error?.message}</span>
+        </div>,
+        'error',
+        'top-center',
+        null,
+        () => setLoading(false)
+      )
+    }
+  })
 
-    if (response) {
-      setLoading(false)
-      setAppliedToBeOwner(response.status === 201)
+  const onSubmit = () => {
+    if (user) {
+      const { userEmail, userToken } = user
+      setLoading(true)
+
+      applyAsOwner({
+        variables: {
+          entity: ObjectType.PRODUCT,
+          entityId: parseInt(product.id)
+        },
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
     }
   }
 
@@ -237,7 +239,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
                 <div className='border-l border-dial-gray-light mt-2' />
                 <button
                   className='text-dial-yellow block mt-2 border-b border-transparent hover:border-dial-yellow'
-                  href='/apply-product-owner' onClick={applyToBeProductOwner} disabled={loading}
+                  onClick={onSubmit} disabled={loading}
                 >
                   {format('ownership.apply')}
                   {loading && <FaSpinner className='inline spinner ml-1' />}

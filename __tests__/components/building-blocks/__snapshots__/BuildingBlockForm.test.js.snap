@@ -151,7 +151,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-5-live-region"
+                      id="react-select-:r3:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -502,7 +502,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-4-live-region"
+                      id="react-select-:r2:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -813,7 +813,7 @@ exports[`Unit tests for BuildingBlockForm component. Should render BuildingBlock
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-2-live-region"
+                      id="react-select-:r0:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -829,7 +829,7 @@ exports[`Unit tests for BuildingBlockForm component. Should render BuildingBlock
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-2-placeholder"
+                          id="react-select-:r0:-placeholder"
                         >
                           Maturity
                         </div>
@@ -839,7 +839,7 @@ exports[`Unit tests for BuildingBlockForm component. Should render BuildingBlock
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-2-placeholder"
+                            aria-describedby="react-select-:r0:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"

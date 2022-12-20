@@ -78,7 +78,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - create
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-2-live-region"
+                      id="react-select-:r3:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -166,7 +166,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - create
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-3-live-region"
+                      id="react-select-:r4:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -182,7 +182,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - create
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-3-placeholder"
+                          id="react-select-:r4:-placeholder"
                         >
                           Parent Sector
                         </div>
@@ -192,7 +192,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - create
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-3-placeholder"
+                            aria-describedby="react-select-:r4:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"
@@ -289,12 +289,12 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - create
 
 exports[`Unit tests for the SectorForm component. Should match snapshot - edit for sector which has parent sector. 1`] = `
 <div
-  aria-describedby="headlessui-description-:r5:"
+  aria-describedby="headlessui-description-:r7:"
   aria-modal="true"
   class="fixed z-100"
   data-headlessui-state="open"
   data-testid="dialog"
-  id="headlessui-dialog-:r3:"
+  id="headlessui-dialog-:r5:"
   role="dialog"
 >
   <div
@@ -306,12 +306,12 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
     <div
       class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col opacity-100 scale-100"
       data-headlessui-state="open"
-      id="headlessui-dialog-panel-:r4:"
+      id="headlessui-dialog-panel-:r6:"
     >
       <div
         class="bg-edit overflow-auto py-4 px-8 flex flex-col gap-3"
         data-headlessui-state="open"
-        id="headlessui-description-:r5:"
+        id="headlessui-description-:r7:"
       >
         <div
           class="flex justify-start text-xl"
@@ -365,7 +365,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-4-live-region"
+                      id="react-select-:r8:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -453,7 +453,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-5-live-region"
+                      id="react-select-:r9:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -469,7 +469,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-5-placeholder"
+                          id="react-select-:r9:-placeholder"
                         >
                           Parent Sector
                         </div>
@@ -479,7 +479,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-5-placeholder"
+                            aria-describedby="react-select-:r9:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"
@@ -576,12 +576,12 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
 
 exports[`Unit tests for the SectorForm component. Should match snapshot - edit for which does not have parent sector. 1`] = `
 <div
-  aria-describedby="headlessui-description-:r8:"
+  aria-describedby="headlessui-description-:rc:"
   aria-modal="true"
   class="fixed z-100"
   data-headlessui-state="open"
   data-testid="dialog"
-  id="headlessui-dialog-:r6:"
+  id="headlessui-dialog-:ra:"
   role="dialog"
 >
   <div
@@ -593,12 +593,12 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
     <div
       class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col opacity-100 scale-100"
       data-headlessui-state="open"
-      id="headlessui-dialog-panel-:r7:"
+      id="headlessui-dialog-panel-:rb:"
     >
       <div
         class="bg-edit overflow-auto py-4 px-8 flex flex-col gap-3"
         data-headlessui-state="open"
-        id="headlessui-description-:r8:"
+        id="headlessui-description-:rc:"
       >
         <div
           class="flex justify-start text-xl"
@@ -652,7 +652,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-6-live-region"
+                      id="react-select-:rd:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -740,7 +740,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-7-live-region"
+                      id="react-select-:re:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -756,7 +756,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                       >
                         <div
                           class="react-select__placeholder css-19jynah-placeholder"
-                          id="react-select-7-placeholder"
+                          id="react-select-:re:-placeholder"
                         >
                           Parent Sector
                         </div>
@@ -766,7 +766,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-7-placeholder"
+                            aria-describedby="react-select-:re:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"
