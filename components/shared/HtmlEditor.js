@@ -60,9 +60,7 @@ export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, edi
             `,
             init_instance_callback: initInstanceCallback,
             image_title: true,
-            automatic_uploads: true,
             file_picker_types: 'image',
-            images_upload_url: process.env.NEXT_PUBLIC_RAILS_SERVER + '/images/upload',
             branding: false,
             setup(editor) {
               editor.on('focus', () => editor.container?.classList.add('focused'))
