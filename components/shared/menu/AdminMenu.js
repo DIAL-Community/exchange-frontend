@@ -66,6 +66,17 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
                 {format('rubric-categories.header')}
               </a>
             </Link>
+            <hr className='mx-4 border border-gray-200' />
+            <Link href='/spreadsheets/products'>
+              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+                {format('spreadsheet.product.header')}
+              </a>
+            </Link>
+            <Link href='/spreadsheets/datasets'>
+              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+                {format('spreadsheet.dataset.header')}
+              </a>
+            </Link>
           </div>
       }
     </>
