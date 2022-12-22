@@ -1424,6 +1424,8 @@ export const en = {
   'product.pricing.pricingDetails': 'Detail Pricing Information',
 
   'spreadsheet.save': 'Save Spreadsheet',
+  'spreadsheet.product.header': 'Product Spreadsheet',
+  'spreadsheet.dataset.header': 'Dataset Spreadsheet',
 
   'licenseType.label': 'Product License',
   'licenseType.allType': 'All license types',

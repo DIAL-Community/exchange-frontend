@@ -294,7 +294,7 @@ const DatasetSpreadsheet = () => {
   return (
     <div className='w-full'>
       <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-        <Tab.List className='flex flex px-8 bg-dial-gray-dark'>
+        <Tab.List className='flex flex px-8 bg-dial-gray-dark -mr-2'>
           {DEFAULT_SHEET_NAMES.map((name) => (
             <Tab key={name} as={Fragment}>
               {({ selected }) => (
@@ -314,7 +314,7 @@ const DatasetSpreadsheet = () => {
             </Tab>
           ))}
         </Tab.List>
-        <Tab.Panels className='pt-2 pl-8 pr-4' style={{ minHeight: '70vh' }}>
+        <Tab.Panels className='pt-2 pb-4 ml-4 mr-2 overflow-auto'>
           {DEFAULT_SHEET_HEADERS.map((header, index) => (
             <Tab.Panel key={index}>
               <HotTable
@@ -330,6 +330,7 @@ const DatasetSpreadsheet = () => {
                 rowHeaders={true}
                 stretchH='all'
                 width='100%'
+                height='70vh'
                 style={{ zIndex: 19 }}
                 afterChange={afterChangeHandler}
                 afterPaste={afterPasteHandler}
