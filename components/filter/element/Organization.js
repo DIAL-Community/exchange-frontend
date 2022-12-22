@@ -50,8 +50,7 @@ export const OrganizationAutocomplete = ({
   }
 
   const addOrganization = (organization) => {
-    setOrganizations([...organizations.filter(({ label }) => label !== organization.label),
-      { slug: organization.slug, label: organization.label }])
+    setOrganizations([...organizations.filter(({ label }) => label !== organization.label), organization])
   }
 
   return (
