@@ -246,14 +246,14 @@ exports[`Unit test for the UseCaseDetailTags component. Should match snapshot - 
             class="flex gap-3 my-5 px-4"
           >
             <div
-              class="w-2/6 card-title text-button-gray"
+              class="card-title text-button-gray"
             >
               <span>
                 Test Tag
               </span>
             </div>
             <div
-              class="w-1/2 line-clamp-1"
+              class="line-clamp-1"
             />
           </div>
         </div>
@@ -467,14 +467,14 @@ exports[`Unit test for the UseCaseDetailTags component. Should match snapshot - 
             class="flex gap-3 my-5 px-4"
           >
             <div
-              class="w-2/6 card-title text-button-gray"
+              class="card-title text-button-gray"
             >
               <span>
                 Test Tag
               </span>
             </div>
             <div
-              class="w-1/2 line-clamp-1"
+              class="line-clamp-1"
             />
           </div>
         </div>
