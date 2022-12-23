@@ -386,6 +386,62 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                  
                 Test Author
               </div>
+              <div
+                class="h4 mt-3"
+              >
+                Playbook Tags
+                :
+              </div>
+              <div
+                class="grid grid-cols-1 md:grid-cols-2"
+              >
+                <div
+                  class="border-3 border-transparent text-button-gray"
+                  data-testid="tag-card"
+                >
+                  <div
+                    class="border border-dial-gray card-drop-shadow"
+                  >
+                    <div
+                      class="flex gap-3 my-5 px-4"
+                    >
+                      <div
+                        class="card-title text-button-gray"
+                      >
+                        <span>
+                          Apps
+                        </span>
+                      </div>
+                      <div
+                        class="line-clamp-1"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="border-3 border-transparent text-button-gray"
+                  data-testid="tag-card"
+                >
+                  <div
+                    class="border border-dial-gray card-drop-shadow"
+                  >
+                    <div
+                      class="flex gap-3 my-5 px-4"
+                    >
+                      <div
+                        class="card-title text-button-gray"
+                      >
+                        <span>
+                          Tag 2
+                        </span>
+                      </div>
+                      <div
+                        class="line-clamp-1"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div
               class="infinite-scroll-component__outerdiv"
@@ -966,6 +1022,62 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
             >
                
               Test Author
+            </div>
+            <div
+              class="h4 mt-3"
+            >
+              Playbook Tags
+              :
+            </div>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2"
+            >
+              <div
+                class="border-3 border-transparent text-button-gray"
+                data-testid="tag-card"
+              >
+                <div
+                  class="border border-dial-gray card-drop-shadow"
+                >
+                  <div
+                    class="flex gap-3 my-5 px-4"
+                  >
+                    <div
+                      class="card-title text-button-gray"
+                    >
+                      <span>
+                        Apps
+                      </span>
+                    </div>
+                    <div
+                      class="line-clamp-1"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="border-3 border-transparent text-button-gray"
+                data-testid="tag-card"
+              >
+                <div
+                  class="border border-dial-gray card-drop-shadow"
+                >
+                  <div
+                    class="flex gap-3 my-5 px-4"
+                  >
+                    <div
+                      class="card-title text-button-gray"
+                    >
+                      <span>
+                        Tag 2
+                      </span>
+                    </div>
+                    <div
+                      class="line-clamp-1"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div
@@ -1669,6 +1781,62 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                  
                 Test Author
               </div>
+              <div
+                class="h4 mt-3"
+              >
+                Playbook Tags
+                :
+              </div>
+              <div
+                class="grid grid-cols-1 md:grid-cols-2"
+              >
+                <div
+                  class="border-3 border-transparent text-button-gray"
+                  data-testid="tag-card"
+                >
+                  <div
+                    class="border border-dial-gray card-drop-shadow"
+                  >
+                    <div
+                      class="flex gap-3 my-5 px-4"
+                    >
+                      <div
+                        class="card-title text-button-gray"
+                      >
+                        <span>
+                          Apps
+                        </span>
+                      </div>
+                      <div
+                        class="line-clamp-1"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="border-3 border-transparent text-button-gray"
+                  data-testid="tag-card"
+                >
+                  <div
+                    class="border border-dial-gray card-drop-shadow"
+                  >
+                    <div
+                      class="flex gap-3 my-5 px-4"
+                    >
+                      <div
+                        class="card-title text-button-gray"
+                      >
+                        <span>
+                          Tag 2
+                        </span>
+                      </div>
+                      <div
+                        class="line-clamp-1"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div
               class="infinite-scroll-component__outerdiv"
@@ -2196,6 +2364,62 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
             >
                
               Test Author
+            </div>
+            <div
+              class="h4 mt-3"
+            >
+              Playbook Tags
+              :
+            </div>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2"
+            >
+              <div
+                class="border-3 border-transparent text-button-gray"
+                data-testid="tag-card"
+              >
+                <div
+                  class="border border-dial-gray card-drop-shadow"
+                >
+                  <div
+                    class="flex gap-3 my-5 px-4"
+                  >
+                    <div
+                      class="card-title text-button-gray"
+                    >
+                      <span>
+                        Apps
+                      </span>
+                    </div>
+                    <div
+                      class="line-clamp-1"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="border-3 border-transparent text-button-gray"
+                data-testid="tag-card"
+              >
+                <div
+                  class="border border-dial-gray card-drop-shadow"
+                >
+                  <div
+                    class="flex gap-3 my-5 px-4"
+                  >
+                    <div
+                      class="card-title text-button-gray"
+                    >
+                      <span>
+                        Tag 2
+                      </span>
+                    </div>
+                    <div
+                      class="line-clamp-1"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div

@@ -1292,6 +1292,7 @@ export const en = {
   'playbook.autoSaved': 'Playbook saved ...',
   'playbook.author': 'Playbook Author(s)',
   'playbook.cover': 'Playbook Cover',
+  'playbook.tags': 'Playbook Tags',
 
   'playbook.openEmbedDialog': 'Create Embed',
   'playbook.embed.title': 'Embed Playbook',
