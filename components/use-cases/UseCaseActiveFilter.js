@@ -63,7 +63,7 @@ const UseCaseActiveFilter = () => {
         {showBeta && (
           <div className='py-1'>
             <Pill
-              label={format('filter.useCase.showBeta')}
+              label={format('filter.useCase.showDraft')}
               onRemove={toggleShowBeta}
             />
           </div>

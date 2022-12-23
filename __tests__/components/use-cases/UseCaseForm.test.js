@@ -22,7 +22,7 @@ describe('Unit tests for UseCaseForm component.', () => {
     name: 'Test Use Case',
     slug: 'test_use_case',
     sectorSlug: 'test_sector',
-    maturity: 'BETA',
+    maturity: 'DRAFT',
     description: 'Test Use Case Description'
   }
 

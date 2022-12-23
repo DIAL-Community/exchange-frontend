@@ -7,7 +7,7 @@ export const useCase = {
     name: 'Test Sector',
     slug: 'test_sector'
   },
-  maturity: 'BETA',
+  maturity: 'DRAFT',
   useCaseDescription: {
     description: 'Test Use Case Description'
   },

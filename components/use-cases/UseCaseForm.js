@@ -15,6 +15,7 @@ import { SECTOR_SEARCH_QUERY } from '../../queries/sector'
 import { CREATE_USE_CASE } from '../../mutations/use-case'
 import FileUploader from '../shared/FileUploader'
 import { useUser } from '../../lib/hooks'
+import { getMaturityOptions } from '../../lib/utilities'
 
 const UseCaseForm = React.memo(({ useCase }) => {
   const { formatMessage } = useIntl()
@@ -48,10 +49,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
     ) ?? []
   ), [sectorsData])
 
-  const maturityOptions = [
-    { label: format('useCase.maturity.beta'), value: 'BETA' },
-    { label: format('useCase.maturity.mature'), value: 'MATURE' }
-  ]
+  const maturityOptions = useMemo(() => getMaturityOptions(format), [format])
 
   const [updateUseCase] = useMutation(CREATE_USE_CASE, {
     onCompleted: (data) => showToast(

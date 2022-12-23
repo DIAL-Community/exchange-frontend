@@ -586,7 +586,7 @@ export const en = {
 
   'filter.organization.aggregatorOnly': 'Only Aggregators',
   'filter.organization.endorserOnly': 'Only Endorser Organizations',
-  'filter.useCase.showBeta': 'Show Beta (non-Validated) Use Cases',
+  'filter.useCase.showDraft': 'Show Draft (non-Validated) Use Cases',
 
   'filter.product.forCovid': 'COVID-19 Tools',
   'filter.product.endorsed': 'Show endorsed products',
@@ -1318,8 +1318,8 @@ export const en = {
   'shared.mappingStatus.mature': 'Mature',
   'shared.mappingStatus.selfReported': 'Self Reported',
   'shared.mappingStatus.validated': 'Validated',
-  'shared.maturity.beta': 'BETA',
-  'shared.maturity.published': 'PUBLISHED',
+  'shared.maturity.draft': 'Draft',
+  'shared.maturity.published': 'Published',
   'shared.metadata.description.comprehensiveListOf': 'Comprehensive list of {entities} provided by DIAL\'s Catalog of Digital Solutions to support users in discovering digital technologies designed to address the Sustainable Development Goals (SDGs).',
   'shared.metadata.description.listOfKey': 'List of key {entities} provided by DIAL’s Catalog of Digital Solutions, to support users in the deployment of digital technologies designed to address the Sustainable Development Goals (SDGs).',
   'shared.comment.delete.confirm.message': 'Are you sure you want to delete this comment?',

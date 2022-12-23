@@ -12,7 +12,7 @@ mockNextUseRouter()
 describe('Unit tests for BuildingBlockForm component.', () => {
   const BUILDING_BLOCK_NAME_TEST_ID = 'building-block-name'
   const BUILDING_BLOCK_MATURITY_TEST_ID = 'building-block-maturity'
-  const BUILDING_BLOCK_MATURITY_OPTION_LABEL = 'BETA'
+  const BUILDING_BLOCK_MATURITY_OPTION_LABEL = 'Draft'
   const BUILDING_BLOCK_DESCRIPTION_TEST_ID = 'building-block-description'
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
@@ -96,7 +96,7 @@ describe('Unit tests for BuildingBlockForm component.', () => {
         {
           name: 'Test Building Block',
           slug: 'test_buidling_block',
-          maturity: 'BETA',
+          maturity: 'DRAFT',
           specUrl: 'testbuidlingblock.com',
           description: '<p>test building block description</p>'
         },
@@ -124,7 +124,7 @@ describe('Unit tests for BuildingBlockForm component.', () => {
         {
           name: 'Test Building Block',
           slug: 'test_buidling_block',
-          maturity: 'BETA',
+          maturity: 'DRAFT',
           specUrl: 'testbuidlingblock.com',
           description: '<p>test building block description</p>'
         },
