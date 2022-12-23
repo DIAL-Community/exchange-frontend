@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { useCallback, useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
 import Image from 'next/image'
-import { ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
+import { ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/constants'
 
 const ellipsisTextStyle = `
   whitespace-nowrap text-ellipsis overflow-hidden my-auto

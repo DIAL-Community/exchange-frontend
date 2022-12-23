@@ -3,8 +3,9 @@ import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 import Image from 'next/image'
-import { ORIGIN_ACRONYMS, truncate } from '../../lib/utilities'
+import { truncate } from '../../lib/utilities'
 import { convertToKey } from '../context/FilterContext'
+import { ORIGIN_ACRONYMS } from '../../lib/constants'
 const collectionPath = convertToKey('Projects')
 
 const ellipsisTextStyle = `

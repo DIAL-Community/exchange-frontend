@@ -168,7 +168,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                         <div
                           class="react-select__single-value css-qc6sy-singleValue"
                         >
-                          BETA
+                          Draft
                         </div>
                         <div
                           class="react-select__input-container css-6j8wv5-Input"
@@ -519,7 +519,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                         <div
                           class="react-select__single-value css-qc6sy-singleValue"
                         >
-                          BETA
+                          Draft
                         </div>
                         <div
                           class="react-select__input-container css-6j8wv5-Input"

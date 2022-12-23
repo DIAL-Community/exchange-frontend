@@ -53,7 +53,7 @@ const UseCaseFilter = () => {
             <div className='px-2 pb-2'>
               <label className='inline-flex items-center'>
                 <Checkbox onChange={toggleShowBeta} value={showBeta} />
-                <span className='ml-2'>{format('filter.useCase.showBeta')}</span>
+                <span className='ml-2'>{format('filter.useCase.showDraft')}</span>
               </label>
             </div>
           </div>
