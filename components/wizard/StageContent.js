@@ -163,26 +163,27 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
         <div className='text-sm pt-2 pb-2 bb-content overflow-y-auto'>
           {projData.buildingBlocks.map((bb) => {
             return (
-              <div key={bb} className='flex flex-row items-center'>
+              <div key={bb.id} className='flex flex-row items-center'>
                 <button
                   onClick={() => {
-                    allValues.buildingBlocks.push(bb) &&
-                    setAllValues(prevValues => { return { ...prevValues, buildingBlocks: allValues.buildingBlocks } })
+                    allValues.buildingBlocks.push(bb.name) &&
+                    setAllValues(prevValues => ({ ...prevValues, buildingBlocks: allValues.buildingBlocks }))
                   }}
-                  className={allValues.buildingBlocks.includes(bb) ? classNameSelected : classNameNotSelected}
+                  className={allValues.buildingBlocks.includes(bb.name) ? classNameSelected : classNameNotSelected}
                 >
                   {format('wizard.yes')}
                 </button>
                 <button
-                  onClick={() => { setAllValues(prevValues => { return { ...prevValues, buildingBlocks: allValues.buildingBlocks.filter(val => val !== bb) } }) }}
-                  className={allValues.buildingBlocks.includes(bb) ? classNameNotSelected : classNameSelected}
+                  onClick={() => setAllValues(prevValues => ({ ...prevValues, buildingBlocks: allValues.buildingBlocks.filter(val => val !== bb.name) }))}
+                  className={allValues.buildingBlocks.includes(bb.name) ? classNameNotSelected : classNameSelected}
                 >
                   {format('wizard.no')}
                 </button>
                 <div className='inline-block my-2'>
-                  {bb.toUpperCase()}
+                  {bb.name.toUpperCase()}
+                  <span className='ml-1 capitalize'>({bb.maturity.toLowerCase()})</span>
                   <br />
-                  {format('wizard.bb.' + bb.replace(/\s+/g, '').toLowerCase())}
+                  {format('wizard.bb.' + bb.name.replace(/\s+/g, '').toLowerCase())}
                 </div>
               </div>
             )
