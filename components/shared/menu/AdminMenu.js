@@ -55,6 +55,11 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
                 {format('header.admin.candidate_products')}
               </a>
             </Link>
+            <Link href='/candidate/datasets'>
+              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+                {format('header.admin.candidate_datasets')}
+              </a>
+            </Link>
             <Link href='/candidate/roles'>
               <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
                 {format('header.admin.candidate_roles')}

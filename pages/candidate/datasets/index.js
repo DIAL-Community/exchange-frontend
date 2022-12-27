@@ -4,22 +4,22 @@ import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import QueryNotification from '../../../components/shared/QueryNotification'
 import GradientBackground from '../../../components/shared/GradientBackground'
-import TabNav from '../../../components/main/TabNav'
-import MobileNav from '../../../components/main/MobileNav'
-import PageContent from '../../../components/main/PageContent'
 import SearchFilter from '../../../components/shared/SearchFilter'
-import { OrganizationFilterContext, OrganizationFilterDispatchContext }
-  from '../../../components/context/candidate/OrganizationFilterContext'
+import { DatasetFilterContext, DatasetFilterDispatchContext }
+  from '../../../components/context/candidate/DatasetFilterContext'
+import PageContent from '../../../components/main/PageContent'
+import TabNav from '../../../components/main/TabNav'
 import ClientOnly from '../../../lib/ClientOnly'
-import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
 import { useUser } from '../../../lib/hooks'
-const OrganizationListQuery = dynamic(() =>
-  import('../../../components/candidate/organizations/OrganizationList'), { ssr: false })
+import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
+import MobileNav from '../../../components/main/MobileNav'
+const DatasetListQuery = dynamic(() =>
+  import('../../../components/candidate/datasets/DatasetList'), { ssr: false })
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
-const Organizations = () => {
-  const { search } = useContext(OrganizationFilterContext)
-  const { setSearch } = useContext(OrganizationFilterDispatchContext)
+const Datasets = () => {
+  const { search } = useContext(DatasetFilterContext)
+  const { setSearch } = useContext(DatasetFilterDispatchContext)
 
   const { isAdminUser, loadingUserSession } = useUser()
 
@@ -31,16 +31,16 @@ const Organizations = () => {
       <Header />
       { loadingUserSession ? <Loading /> : isAdminUser ? (
         <>
-          <TabNav activeTab='filter.entity.candidateOrganizations' />
-          <MobileNav activeTab='filter.entity.candidateOrganizations' />
+          <TabNav activeTab='filter.entity.candidateDatasets' />
+          <MobileNav activeTab='filter.entity.candidateDatasets' />
           <ClientOnly>
             <PageContent
-              activeTab='filter.entity.candidateOrganizations'
-              content={<OrganizationListQuery />}
+              activeTab='filter.entity.candidateDatasets'
+              content={<DatasetListQuery />}
               searchFilter={
                 <SearchFilter
                   {...{ search, setSearch }}
-                  hint='filter.entity.candidateOrganizations'
+                  hint='filter.entity.candidateDatasets'
                 />
               }
             />
@@ -52,4 +52,4 @@ const Organizations = () => {
   )
 }
 
-export default Organizations
+export default Datasets
