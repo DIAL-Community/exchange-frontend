@@ -17,8 +17,7 @@ const WizardPageDefinition = () => {
   const [stage, setStage] = useState(0)
   const [allValues, setAllValues] = useState({
     projectPhase: '',
-    sector: '',
-    sectorSlug: null,
+    sectors: [],
     sdg: '',
     useCase: '',
     countries: [],

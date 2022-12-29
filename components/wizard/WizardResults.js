@@ -101,9 +101,11 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
 
   const licenseTypeOptions = useMemo(() => getLicenseTypeOptions(format), [format])
 
+  const sectorValues = useMemo(() => allValues?.sectors?.map((sector) => sector.label), [allValues.sectors])
+
   const vars = {
     phase: allValues.projectPhase,
-    sector: allValues.sector,
+    sectors: sectorValues,
     useCase: allValues.useCase,
     sdg: allValues.sdg,
     buildingBlocks: allValues.buildingBlocks
@@ -248,7 +250,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             <div className='pb-6 grid grid-cols-1 w-3/4'>
               <PagedProjectList
                 countries={allValues.countries}
-                sectors={[allValues.sector]}
+                sectors={sectorValues}
                 tags={allValues.tags}
                 projectSortHint={allValues.projectSortHint}
               />
@@ -277,7 +279,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
               <PagedProductList
                 buildingBlocks={allValues.buildingBlocks}
                 countries={allValues.countries}
-                sectors={[allValues.sector]}
+                sectors={sectorValues}
                 useCases={[allValues.useCase]}
                 tags={allValues.tags}
                 productSortHint={allValues.productSortHint}
@@ -299,7 +301,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             </div>
             <div className='pb-6 grid grid-cols-1 w-3/4'>
               <PagedPlaybookList
-                sector={allValues.sector}
+                sectors={sectorValues}
                 tags={allValues.tags}
                 playbookSortHint={allValues.playbookSortHint}
               />
@@ -319,7 +321,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             </div>
             <div className='pb-6 grid grid-cols-1 w-3/4'>
               <PagedDatasetList
-                sectors={[allValues.sector]}
+                sectors={sectorValues}
                 tags={allValues.tags}
                 datasetSortHint={allValues.datasetSortHint}
               />
