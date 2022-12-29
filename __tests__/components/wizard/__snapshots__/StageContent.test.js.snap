@@ -9,7 +9,7 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
     class="lg:flex gap-12"
   >
     <div
-      class="lg:w-1/4 lg:mt-auto"
+      class="lg:w-1/4 mt-6"
     >
       <div
         class="text-sm my-2 grid content-end"
@@ -35,12 +35,13 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
           class="react-select__control css-19jej77-control"
         >
           <div
-            class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+            class="react-select__value-container css-3tzzl5-ValueContainer"
           >
             <div
-              class="react-select__single-value css-qc6sy-singleValue"
+              class="react-select__placeholder css-19jynah-placeholder"
+              id="react-select-:r0:-placeholder"
             >
-              sector
+              Select a Sector
             </div>
             <div
               class="react-select__input-container css-6j8wv5-Input"
@@ -48,6 +49,7 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
             >
               <input
                 aria-autocomplete="list"
+                aria-describedby="react-select-:r0:-placeholder"
                 aria-expanded="false"
                 aria-haspopup="true"
                 autocapitalize="none"
@@ -90,9 +92,63 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
           </div>
         </div>
       </div>
+      <div
+        class="flex flex-wrap gap-3 mt-5"
+      >
+        <div
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          data-testid="pill"
+        >
+          sector 1
+          <svg
+            class="ml-3 text-2xl cursor-pointer"
+            data-testid="remove-button"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+          </svg>
+        </div>
+        <div
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          data-testid="pill"
+        >
+          sector 2
+          <svg
+            class="ml-3 text-2xl cursor-pointer"
+            data-testid="remove-button"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+          </svg>
+        </div>
+      </div>
     </div>
     <div
-      class="lg:w-1/4 mt-6 lg:mt-auto"
+      class="lg:w-1/4 mt-6"
     >
       <div
         class="text-sm my-2 grid content-end"
@@ -190,7 +246,7 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
       </div>
     </div>
     <div
-      class="lg:w-1/4 mt-6 lg:mt-auto"
+      class="lg:w-1/4 mt-6"
     >
       <div
         class="text-sm my-2 grid content-end"
