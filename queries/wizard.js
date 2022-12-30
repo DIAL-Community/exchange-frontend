@@ -4,13 +4,13 @@ export const WIZARD_QUERY = gql`
   query Wizard(
     $sectors: [String!]
     $useCase: String
-    $sdg: String
+    $sdgs: [String!]
     $buildingBlocks: [String!]
   ) {
     wizard(
       sectors: $sectors
       useCase: $useCase
-      sdg: $sdg
+      sdgs: $sdgs
       buildingBlocks: $buildingBlocks
     ) {
       digitalPrinciples {

@@ -42,7 +42,16 @@ export const allValues = {
       slug: 'sector_2'
     }
   ],
-  sdg: 'Sdg1',
+  sdgs: [
+    {
+      label: 'sdg 1',
+      slug: 'sdg1'
+    },
+    {
+      label: 'sdg 2',
+      slug: 'sdg_2'
+    }
+  ],
   useCase: 'useCase',
   countries: [],
   tags: [],

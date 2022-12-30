@@ -18,7 +18,7 @@ const WizardPageDefinition = () => {
   const [allValues, setAllValues] = useState({
     projectPhase: '',
     sectors: [],
-    sdg: '',
+    sdgs: [],
     useCase: '',
     countries: [],
     tags: [],
@@ -53,7 +53,7 @@ const WizardPageDefinition = () => {
   const mobileServices = ['Airtime', 'API', 'HS', 'Mobile-Internet', 'Mobile-Money', 'Ops-Maintenance', 'OTT', 'SLA', 'SMS', 'User-Interface', 'USSD', 'Voice']
   const projData = {
     sectors: sectorData?.sectors.map((sector) => ({ label: sector.name, value: sector.name, slug: sector.slug })) ?? [],
-    sdgs: sdgData.sdgs.map((sdg) => ({ label: sdg.name, value: sdg.name })) ?? [],
+    sdgs: sdgData.sdgs.map((sdg) => ({ label: sdg.name, value: sdg.name, slug: sdg.slug })) ?? [],
     countries: countryData.countries.map((country) => ({ label: country.name, value: country.name })) ?? [],
     mobileServices: mobileServices.map((service) => ({ label: service, value: service })) ?? [],
     tags: tagData.tags.map((tag) => ({ label: tag.name, value: tag.name })) ?? [],

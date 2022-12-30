@@ -103,11 +103,13 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
 
   const sectorValues = useMemo(() => allValues?.sectors?.map((sector) => sector.label), [allValues.sectors])
 
+  const sdgValues = useMemo(() => allValues?.sdgs?.map((sdg) => sdg.label), [allValues.sdgs])
+
   const vars = {
     phase: allValues.projectPhase,
     sectors: sectorValues,
     useCase: allValues.useCase,
-    sdg: allValues.sdg,
+    sdgs: sdgValues,
     buildingBlocks: allValues.buildingBlocks
   }
 
