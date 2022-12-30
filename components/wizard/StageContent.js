@@ -18,6 +18,10 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
 
   const removeSector = (sector) => setAllValues(prevValues => ({ ...prevValues, sectors: allValues.sectors.filter(value => value !== sector) }))
 
+  const addSdg = (sdg) => setAllValues(prevValues => ({ ...prevValues, sdgs: [...allValues.sdgs.filter(({ slug }) => slug !== sdg.slug), sdg] }))
+
+  const removeSdg = (sdg) => setAllValues(prevValues => ({ ...prevValues, sdgs: allValues.sdgs.filter(value => value !== sdg) }))
+
   return (
     <div className='lg:flex gap-12'>
       <div className='lg:w-1/4 mt-6'>
@@ -58,10 +62,19 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
         </div>
         <Select
           options={projData.sdgs}
-          value={allValues.sdg && { value: allValues.sdg, label: allValues.sdg }}
-          onChange={(val) => setAllValues(prevValues => ({ ...prevValues, sdg: val.value }))}
+          value={null}
+          onChange={(sdg) => addSdg(sdg)}
           placeholder={format('wizard.sdgPlaceholder')}
         />
+        <div className='flex flex-wrap gap-3 mt-5'>
+          {allValues.sdgs?.map((sdg, sdgIdx) => (
+            <Pill
+              key={`sdg-${sdgIdx}`}
+              label={sdg.label}
+              onRemove={() => removeSdg(sdg)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
