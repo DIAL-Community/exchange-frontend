@@ -969,7 +969,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
             class="py-2 order-last xl:order-first"
           >
             © 
-            2022
+            2023
              
             DIGITAL IMPACT ALLIANCE
           </div>
@@ -1886,7 +1886,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
             class="py-2 order-last xl:order-first"
           >
             © 
-            2022
+            2023
              
             DIGITAL IMPACT ALLIANCE
           </div>
