@@ -4,8 +4,8 @@ import { useCallback, useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import ProductCard from '../../products/ProductCard'
 import { Loading, Error } from '../../shared/FetchStatus'
-import { LicenseTypeFilter } from '../../../lib/utilities'
 import { WIZARD_PAGINATED_PRODUCTS } from '../../../queries/wizard'
+import { LicenseTypeFilter } from '../../../lib/constants'
 
 const DEFAULT_PAGE_SIZE = 5
 

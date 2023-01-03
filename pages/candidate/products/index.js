@@ -11,6 +11,8 @@ import MobileNav from '../../../components/main/MobileNav'
 import PageContent from '../../../components/main/PageContent'
 import TabNav from '../../../components/main/TabNav'
 import ClientOnly from '../../../lib/ClientOnly'
+import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
+import { useUser } from '../../../lib/hooks'
 const ProductListQuery = dynamic(() =>
   import('../../../components/candidate/products/ProductList'), { ssr: false })
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
@@ -19,21 +21,32 @@ const Products = () => {
   const { search } = useContext(ProductFilterContext)
   const { setSearch } = useContext(ProductFilterDispatchContext)
 
+  const { isAdminUser, loadingUserSession } = useUser()
+
   return (
     <>
       <QueryNotification />
       <GradientBackground />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Header />
-      <TabNav activeTab='filter.entity.candidateProducts' />
-      <MobileNav activeTab='filter.entity.candidateProducts' />
-      <ClientOnly>
-        <PageContent
-          activeTab='filter.entity.candidateProducts'
-          content={<ProductListQuery />}
-          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.candidateProducts' />}
-        />
-      </ClientOnly>
+      { loadingUserSession ? <Loading /> : isAdminUser ? (
+        <>
+          <TabNav activeTab='filter.entity.candidateProducts' />
+          <MobileNav activeTab='filter.entity.candidateProducts' />
+          <ClientOnly>
+            <PageContent
+              activeTab='filter.entity.candidateProducts'
+              content={<ProductListQuery />}
+              searchFilter={
+                <SearchFilter
+                  {...{ search, setSearch }}
+                  hint='filter.entity.candidateProducts'
+                />
+              }
+            />
+          </ClientOnly>
+        </>
+      ) : <Unauthorized />}
       <Footer />
     </>
   )

@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useCallback, useState } from 'react'
 import parse from 'html-react-parser'
+import classNames from 'classnames'
 import { useUser } from '../../lib/hooks'
 import EditButton from '../shared/EditButton'
 import DeleteTag from './DeleteTag'
@@ -26,14 +27,14 @@ const TagCard = ({ tag, listType, displayEditButtons = false }) => {
           >
             <div className='border border-dial-gray card-drop-shadow'>
               <div className='flex gap-3 my-5 px-4'>
-                <div className='w-2/6 card-title text-button-gray'>
+                <div className={classNames('card-title text-button-gray', { 'w-2/6': displayEditButtons })}>
                   {isAdminUser && displayEditButtons ? (
                     <span>{tag.name}</span>
                   ) : (
                     <span>{tag}</span>
                   )}
                 </div>
-                <div className='w-1/2 line-clamp-1'>
+                <div className={classNames('line-clamp-1', { 'w-1/3': tag.tagDescription })}>
                   {tag.tagDescription && parse(tag.tagDescription.description)}
                 </div>
                 {isAdminUser && displayEditButtons && (

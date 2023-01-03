@@ -244,6 +244,14 @@ exports[`Unit test for the EndorsingYearSelect component. Should render a drop d
           >
             2022
           </div>
+          <div
+            aria-disabled="false"
+            class="react-select__option css-19r0ri3-option"
+            id="react-select-:r1:-option-8"
+            tabindex="-1"
+          >
+            2023
+          </div>
         </div>
       </div>
     </div>

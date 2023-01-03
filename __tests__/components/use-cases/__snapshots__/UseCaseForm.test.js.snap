@@ -255,7 +255,7 @@ exports[`Unit tests for UseCaseForm component. Should display failure toast on s
                         <div
                           class="react-select__single-value css-qc6sy-singleValue"
                         >
-                          BETA
+                          Draft
                         </div>
                         <div
                           class="react-select__input-container css-6j8wv5-Input"
@@ -677,7 +677,7 @@ exports[`Unit tests for UseCaseForm component. Should display success toast on s
                         <div
                           class="react-select__single-value css-qc6sy-singleValue"
                         >
-                          BETA
+                          Draft
                         </div>
                         <div
                           class="react-select__input-container css-6j8wv5-Input"
@@ -1093,7 +1093,7 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                         <div
                           class="react-select__single-value css-qc6sy-singleValue"
                         >
-                          BETA
+                          Draft
                         </div>
                         <div
                           class="react-select__input-container css-6j8wv5-Input"

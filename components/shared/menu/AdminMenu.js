@@ -55,6 +55,11 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
                 {format('header.admin.candidate_products')}
               </a>
             </Link>
+            <Link href='/candidate/datasets'>
+              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+                {format('header.admin.candidate_datasets')}
+              </a>
+            </Link>
             <Link href='/candidate/roles'>
               <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
                 {format('header.admin.candidate_roles')}
@@ -64,6 +69,17 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
             <Link href='/rubric_categories'>
               <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
                 {format('rubric-categories.header')}
+              </a>
+            </Link>
+            <hr className='mx-4 border border-gray-200' />
+            <Link href='/spreadsheets/products'>
+              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+                {format('spreadsheet.product.header')}
+              </a>
+            </Link>
+            <Link href='/spreadsheets/datasets'>
+              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+                {format('spreadsheet.dataset.header')}
               </a>
             </Link>
           </div>

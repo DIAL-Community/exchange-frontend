@@ -32,8 +32,26 @@ export const projData = {
 
 export const allValues = {
   projectPhase: 'projectPhase',
-  sector: 'sector',
-  sdg: 'Sdg1',
+  sectors: [
+    {
+      label: 'sector 1',
+      slug: 'sector_1'
+    },
+    {
+      label: 'sector 2',
+      slug: 'sector_2'
+    }
+  ],
+  sdgs: [
+    {
+      label: 'sdg 1',
+      slug: 'sdg1'
+    },
+    {
+      label: 'sdg 2',
+      slug: 'sdg_2'
+    }
+  ],
   useCase: 'useCase',
   countries: [],
   tags: [],

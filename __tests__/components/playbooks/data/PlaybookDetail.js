@@ -65,7 +65,7 @@ export const playbook = {
       name: 'Example Playbook',
       imageFile: '/assets/playbooks/playbook_placeholder.png',
       author: 'Test Author',
-      tags: [],
+      tags: ['Apps', 'Tag 2'],
       playbookDescription: {
         id: 4,
         overview: 'Just an example of playbook.',

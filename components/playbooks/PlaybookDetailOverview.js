@@ -1,6 +1,7 @@
 import { createRef, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { HtmlViewer } from '../shared/HtmlViewer'
+import TagCard from '../tags/TagCard'
 import PlaybookDetailMenu from './PlaybookDetailMenu'
 import { PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 
@@ -62,6 +63,15 @@ const PlaybookDetailOverview = ({ playbook, locale, allowEmbedCreation, comments
             <div className='h4'>{format('playbook.author')}:</div>
             <div className='text-dial-gray-dark'>&nbsp;{playbook.author}</div>
           </>
+      }
+      {
+        playbook.tags.length > 0 &&
+        <>
+          <div className='h4 mt-3'>{format('playbook.tags')}:</div>
+          <div className='grid grid-cols-1 md:grid-cols-2'>
+            {playbook.tags.map((tag, tagIdx) => <TagCard tag={tag} listType='list' key={tagIdx} />)}
+          </div>
+        </>
       }
     </div>
   )

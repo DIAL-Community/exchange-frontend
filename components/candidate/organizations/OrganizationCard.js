@@ -1,9 +1,11 @@
-import { useSession } from 'next-auth/react'
 import { useCallback, useEffect, useState } from 'react'
 import { FaHome, FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
+import classNames from 'classnames'
 import { prependUrlWithProtocol } from '../../../lib/utilities'
+import { CandidateStatusType } from '../../../lib/constants'
+import { useUser } from '../../../lib/hooks'
 
 const ellipsisTextStyle = 'whitespace-nowrap text-ellipsis overflow-hidden my-auto'
 const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
@@ -12,7 +14,7 @@ const OrganizationCard = ({ organization, listType }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState('')
@@ -22,7 +24,7 @@ const OrganizationCard = ({ organization, listType }) => {
   })
 
   const approveCandidateOrganization = async (e) => {
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = user
 
     e.preventDefault()
     setLoading(true)
@@ -42,14 +44,14 @@ const OrganizationCard = ({ organization, listType }) => {
     })
 
     if (response.status === 200) {
-      setStatus('approved')
+      setStatus(CandidateStatusType.APPROVED)
     }
 
     setLoading(false)
   }
 
   const rejectCandidateOrganization = async (e) => {
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = user
 
     e.preventDefault()
     setLoading(true)
@@ -69,7 +71,7 @@ const OrganizationCard = ({ organization, listType }) => {
     })
 
     if (response.status === 200) {
-      setStatus('rejected')
+      setStatus(CandidateStatusType.REJECTED)
     }
 
     setLoading(false)
@@ -80,31 +82,24 @@ const OrganizationCard = ({ organization, listType }) => {
       {
         listType === 'list'
           ? (
-            <div className='border-3 border-transparent hover:border-dial-gray text-workflow cursor-pointer'>
-              <div className={`
-                ${String(organization.rejected) === 'true' || status === 'rejected'
-                ? 'bg-red-50'
-                : String(organization.rejected) === 'false' || status === 'approved'
-                  ? 'bg-emerald-50'
-                  : 'bg-white'}
-                border border-dial-gray hover:border-transparent card-drop-shadow
-              `}
+            <div className='border-3 border-transparent hover:border-dial-gray cursor-pointer'>
+              <div className={classNames('border border-dial-gray hover:border-transparent card-drop-shadow bg-white',
+                { 'bg-red-50': organization.rejected === true || status === CandidateStatusType.REJECTED },
+                { 'bg-emerald-50': organization.rejected === false || status === CandidateStatusType.APPROVED }
+              )}
               >
                 <div className='grid grid-cols-12 gap-4 py-4 px-4 text-organization'>
-                  <div className={`col-span-12 lg:col-span-4 my-auto ${ellipsisTextStyle}`}>
+                  <div className={classNames('col-span-12 lg:col-span-4 my-auto', ellipsisTextStyle)}>
                     {organization.name}
                     <div className='block lg:hidden font-semibold text-sm'>
                       {organization.website}
                     </div>
                     {
-                      String(organization.rejected) === 'null' && session && session.user && status === '' &&
+                      organization.rejected === null && status === '' &&
                         <div className='flex lg:hidden mt-3 flex-row'>
                           <button
-                            className={`
-                                  my-auto px-3 py-1 text-sm font-semibold ml-auto
-                                  border border-dial-gray-dark text-dial-gray-dark rounded
-                                  hover:bg-opacity-20 hover:bg-dial-gray-dark
-                                `}
+                            className='my-auto px-3 py-1 text-sm font-semibold ml-auto border border-dial-gray-dark
+                             text-dial-gray-dark rounded hover:bg-opacity-20 hover:bg-dial-gray-dark'
                             onClick={rejectCandidateOrganization}
                             disabled={loading}
                           >
@@ -114,11 +109,8 @@ const OrganizationCard = ({ organization, listType }) => {
                             <FaRegTimesCircle className='ml-1 inline text-xl text-red-500' />
                           </button>
                           <button
-                            className={`
-                                  ml-3 my-auto px-3 py-1 text-sm font-semibold bg-dial-gray-dark text-white
-                                  border-2 border-dial-gray-dark bg-dial-gray-dark text-white rounded
-                                  hover:bg-opacity-80
-                                `}
+                            className='ml-3 my-auto px-3 py-1 text-sm font-semibold bg-dial-gray-dark text-white
+                                  border-2 border-dial-gray-dark bg-dial-gray-dark text-white rounded hover:bg-opacity-80'
                             onClick={approveCandidateOrganization}
                             disabled={loading}
                           >
@@ -134,14 +126,11 @@ const OrganizationCard = ({ organization, listType }) => {
                     {organization.website}
                   </div>
                   {
-                    String(organization.rejected) === 'null' && status === '' && session?.user?.canEdit &&
+                    organization.rejected === null && status === '' &&
                       <div className='hidden lg:flex lg:col-span-4 flex-row'>
                         <button
-                          className={`
-                                my-auto px-3 py-1 text-sm font-semibold ml-auto
-                                border border-dial-gray-dark text-dial-gray-dark rounded
-                                hover:bg-opacity-20 hover:bg-dial-gray-dark
-                              `}
+                          className='my-auto px-3 py-1 text-sm font-semibold ml-auto border border-dial-gray-dark
+                          text-dial-gray-dark rounded hover:bg-opacity-20 hover:bg-dial-gray-dark'
                           onClick={rejectCandidateOrganization}
                           disabled={loading}
                         >
@@ -151,11 +140,8 @@ const OrganizationCard = ({ organization, listType }) => {
                           <FaRegTimesCircle className='ml-1 inline text-xl text-red-500' />
                         </button>
                         <button
-                          className={`
-                                mx-3 my-auto px-3 py-1 text-sm font-semibold bg-dial-gray-dark text-white
-                                border-2 border-dial-gray-dark bg-dial-gray-dark text-white rounded
-                                hover:bg-opacity-80
-                              `}
+                          className='mx-3 my-auto px-3 py-1 text-sm font-semibold bg-dial-gray-dark text-white
+                                border-2 border-dial-gray-dark bg-dial-gray-dark text-white rounded hover:bg-opacity-80'
                           onClick={approveCandidateOrganization}
                           disabled={loading}
                         >
@@ -175,23 +161,23 @@ const OrganizationCard = ({ organization, listType }) => {
               <div className='h-full flex flex-col border border-dial-gray card-drop-shadow'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
                   {
-                    (String(organization.rejected) === 'true' || status === 'rejected') &&
+                    (organization.rejected === true || status === CandidateStatusType.REJECTED) &&
                       <div className='bg-red-500 py-1 px-2 rounded text-white text-sm font-semibold'>
                         {format('candidate.rejected').toUpperCase()}
                       </div>
                   }
                   {
-                    (String(organization.rejected) === 'false' || status === 'approved') &&
+                    (organization.rejected === false || status === CandidateStatusType.APPROVED) &&
                       <div className='bg-emerald-500 py-1 px-2 rounded text-white text-sm font-semibold'>
                         {format('candidate.approved').toUpperCase()}
                       </div>
                   }
                 </div>
                 <div className='flex flex-col h-80 p-4'>
-                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
+                  <div className='text-2xl font-semibold'>
                     {organization.name}
                   </div>
-                  <div className='m-auto w-40'>
+                  <div className='mt-3 overflow-y-auto'>
                     {organization.description}
                   </div>
                 </div>
@@ -201,7 +187,7 @@ const OrganizationCard = ({ organization, listType }) => {
                       <div className='w-6 my-auto'>
                         <FaHome className='text-xl' data-tip={format('candidateOrganization.website.hint')} />
                       </div>
-                      <div className={`mx-2 my-auto px-2 py-1 bg-white ${ellipsisTextStyle} ${hoverEffectTextStyle}`}>
+                      <div className={classNames('mx-2 my-auto px-2 py-1 bg-white', ellipsisTextStyle, hoverEffectTextStyle)}>
                         {
                           organization.website
                             ? <a href={prependUrlWithProtocol(organization.website)} target='_blank' rel='noreferrer'>{organization.website}</a>
@@ -210,25 +196,19 @@ const OrganizationCard = ({ organization, listType }) => {
                       </div>
                     </div>
                     {
-                      String(organization.rejected) === 'null' && status === '' && session?.user?.canEdit &&
+                      organization.rejected === null && status === '' &&
                         <div className='pl-3 py-2 flex flex-row'>
                           <button
-                            className={`
-                                my-auto px-3 py-1 text-sm font-semibold mr-auto
-                                border border-dial-gray-dark text-dial-gray-dark rounded
-                                hover:bg-opacity-20 hover:bg-dial-gray-dark
-                              `}
+                            className='my-auto px-3 py-1 text-sm font-semibold mr-auto border border-dial-gray-dark
+                             text-dial-gray-dark rounded hover:bg-opacity-20 hover:bg-dial-gray-dark'
                             onClick={rejectCandidateOrganization}
                             disabled={loading}
                           >
                             {format('candidate.reject')}  <FaRegTimesCircle className='ml-1 inline text-xl text-red-500' />
                           </button>
                           <button
-                            className={`
-                                mx-3 my-auto px-3 py-1 text-sm font-semibold ml-auto bg-dial-gray-dark text-white
-                                border-2 border-dial-gray-dark bg-dial-gray-dark text-white rounded
-                                hover:bg-opacity-80
-                              `}
+                            className='mx-3 my-auto px-3 py-1 text-sm font-semibold ml-auto bg-dial-gray-dark text-white
+                                border-2 border-dial-gray-dark bg-dial-gray-dark text-white rounded hover:bg-opacity-80'
                             onClick={approveCandidateOrganization}
                             disabled={loading}
                           >
