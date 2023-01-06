@@ -64,7 +64,7 @@ const ProductList = (props) => {
                 {format('product.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='hidden xl:blockcol-span-3 text-sm font-semibold opacity-50'>
+              <div className='hidden xl:block col-span-3 text-sm font-semibold opacity-50'>
                 {format('product.website').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
