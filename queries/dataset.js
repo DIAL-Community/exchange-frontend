@@ -61,3 +61,13 @@ export const DATASET_SEARCH_QUERY = gql`
     }
   }
 `
+
+export const OWNED_DATASETS_QUERY = gql`
+  query OwnedDatasets {
+    ownedDatasets {
+      id
+      name
+      slug
+    }
+  }
+`

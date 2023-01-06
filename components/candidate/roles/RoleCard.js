@@ -1,8 +1,13 @@
+import { useMutation } from '@apollo/client'
 import { useSession } from 'next-auth/react'
-import { useCallback, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
+import { CandidateActionType } from '../../../lib/constants'
+import { ToastContext } from '../../../lib/ToastContext'
+import { APPROVE_CANDIDATE_ROLE, REJECT_CANDIDATE_ROLE } from '../../../mutations/candidate'
 
 const ellipsisTextStyle = 'my-auto'
 
@@ -42,7 +47,15 @@ const RoleCard = ({ role, listType, filterDisplayed }) => {
                         {format('candidate.email')}: {role.email}
                       </div>
                       <div className={`col-span-12 lg:col-span-3 my-auto ${ellipsisTextStyle}`}>
-                        {format('candidate.applied')}: {role.roles} - {role.product?.name}{role.organization?.name}
+                        ${`
+                          ${format('candidate.applied')}:
+                          ${role.roles} -
+                          ${
+                            role.product ? role.product.name :
+                              role.organization ? role.organization.name :
+                                role.dataset ? role.dataset.name : ''
+                          }
+                        `}
                       </div>
                       <div className={`col-span-12 lg:col-span-3 my-auto ${ellipsisTextStyle}`}>
                         {role.description}
@@ -240,11 +253,25 @@ const ToggleApprovalButton = ({ style, setStatus, loading }) => {
   )
 }
 
-const ApproveButton = ({ role, status, setStatus, loading, setLoading }) => {
+const ApproveButton = ({ role, status, setStatus, setLoading }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { data: session } = useSession()
+  const { locale } = useRouter()
+  const { showToast } = useContext(ToastContext)
+
+  const [executeMutation, { loading }] = useMutation(APPROVE_CANDIDATE_ROLE, {
+    onCompleted: () => {
+      setLoading(false)
+      setStatus('approved')
+      showToast(format('candidate.role.update.success'), 'success', 'top-center')
+    },
+    onError: () => {
+      setLoading(false)
+      showToast(format('candidate.role.update.failure'), 'error', 'top-center')
+    }
+  })
 
   const approveCandidateRole = async (e) => {
     const { userEmail, userToken } = session.user
@@ -252,25 +279,18 @@ const ApproveButton = ({ role, status, setStatus, loading, setLoading }) => {
     e.preventDefault()
     setLoading(true)
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_RAILS_SERVER}/candidate_roles/${role.id}/approve` +
-      `?user_email=${userEmail}&user_token=${userToken}`, {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
-        'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_RAILS_SERVER,
-        'Access-Control-Allow-Credentials': true,
-        'Access-Control-Allow-Headers': 'Set-Cookie'
+    executeMutation({
+      variables: {
+        candidateRoleId: role.id,
+        action: CandidateActionType.APPROVE
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale,
+          Authorization: `${userEmail} ${userToken}`
+        }
       }
     })
-
-    if (response.status === 200) {
-      setStatus('approved')
-    }
-
-    setLoading(false)
   }
 
   return (
@@ -304,11 +324,25 @@ const ToggleRejectionButton = ({ style, setStatus, loading }) => {
   )
 }
 
-const DeclineButton = ({ role, status, setStatus, loading, setLoading }) => {
+const DeclineButton = ({ role, status, setStatus, setLoading }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { data: session } = useSession()
+  const { locale } = useRouter()
+  const { showToast } = useContext(ToastContext)
+
+  const [executeMutation, { loading }] = useMutation(REJECT_CANDIDATE_ROLE, {
+    onCompleted: () => {
+      setLoading(false)
+      setStatus('approved')
+      showToast(format('candidate.role.update.success'), 'success', 'top-center')
+    },
+    onError: () => {
+      setLoading(false)
+      showToast(format('candidate.role.update.failure'), 'error', 'top-center')
+    }
+  })
 
   const rejectCandidateRole = async (e) => {
     const { userEmail, userToken } = session.user
@@ -316,25 +350,18 @@ const DeclineButton = ({ role, status, setStatus, loading, setLoading }) => {
     e.preventDefault()
     setLoading(true)
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_RAILS_SERVER}/candidate_roles/${role.id}/reject` +
-      `?user_email=${userEmail}&user_token=${userToken}`, {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
-        'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_RAILS_SERVER,
-        'Access-Control-Allow-Credentials': true,
-        'Access-Control-Allow-Headers': 'Set-Cookie'
+    executeMutation({
+      variables: {
+        candidateRoleId: role.id,
+        action: CandidateActionType.REJECT
+      },
+      context: {
+        headers: {
+          'Accept-Language': locale,
+          Authorization: `${userEmail} ${userToken}`
+        }
       }
     })
-
-    if (response.status === 200) {
-      setStatus('rejected')
-    }
-
-    setLoading(false)
   }
 
   return (

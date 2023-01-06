@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useContext, useEffect } from 'react'
+import React, { useState, useCallback, useMemo, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import { useMutation } from '@apollo/client'
@@ -28,7 +28,45 @@ const DatasetForm = React.memo(({ dataset }) => {
 
   const { showToast } = useContext(ToastContext)
   const { locale } = useRouter()
-  const [updateDataset, { data }] = useMutation(CREATE_DATASET)
+  const [updateDataset] = useMutation(CREATE_DATASET, {
+    onCompleted: (data) => {
+      const { createDataset } = data
+      if (createDataset.errors.length <= 0 && createDataset.dataset) {
+        setMutating(false)
+        showToast(
+          format('dataset.submit.success'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => router.push(`/${router.locale}/datasets/${data.createDataset.dataset.slug}`)
+        )
+      } else if (createDataset.errors.length > 0) {
+        setMutating(false)
+        showToast(
+          <div className='flex flex-col'>
+            <span>{format('dataset.submit.failure')}</span>
+            {data?.createDataset?.errors.map((error, errorIdx) => (
+              <span key={errorIdx}>{error}</span>
+            ))}
+          </div>,
+          'error',
+          'top-center'
+        )
+      }
+    },
+    onError: (error) => {
+      setMutating(false)
+      showToast(
+        <div className='flex flex-col'>
+          <span>{format('dataset.submit.failure')}</span>
+          <span>{error?.message}</span>
+        </div>,
+        'error',
+        'top-center'
+      )
+    }
+  })
 
   const datasetTypeOptions = useMemo(() => getDatasetTypeOptions(format), [format])
 
@@ -75,32 +113,6 @@ const DatasetForm = React.memo(({ dataset }) => {
 
     return map
   }, [dataset, format])
-
-  useEffect(() => {
-    if (!data?.createDataset?.errors.length && data?.createDataset?.dataset) {
-      showToast(
-        format('dataset.submit.success'),
-        'success',
-        'top-center',
-        1000,
-        null,
-        () => router.push(`/${router.locale}/datasets/${data.createDataset.dataset.slug}`)
-      )
-    } else if (data?.createDataset?.errors.length) {
-      setMutating(false)
-      showToast(
-        <div className='flex flex-col'>
-          <span>{format('dataset.submit.failure')}</span>
-          {data?.createDataset?.errors.map((error, errorIdx) => (
-            <span key={errorIdx}>{error}</span>
-          ))}
-        </div>,
-        'error',
-        'top-center',
-        false
-      )
-    }
-  }, [data, format, router, showToast])
 
   const doUpsert = async (data) => {
     if (session) {

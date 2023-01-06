@@ -5,15 +5,18 @@ export const CANDIDATE_ROLE_QUERY = gql`
     $email: String!
     $productId: String!
     $organizationId: String!
+    $datasetId: String!
   ) {
     candidateRole(
       email: $email
       productId: $productId
       organizationId: $organizationId
+      datasetId: $datasetId
     ) {
       id
       productId
       organizationId
+      datasetId
       rejected
     }
   }

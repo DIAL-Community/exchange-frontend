@@ -40,6 +40,9 @@ query SearchCandidateRoles(
       organization {
         name
       }
+      dataset {
+        name
+      }
     }
   }
 }
@@ -61,14 +64,14 @@ const RoleList = (props) => {
     <>
       <div className={gridStyles}>
         {
-          displayType === 'list' &&
+          props.roleList.length > 0 && displayType === 'list' &&
             <div className='grid grid-cols-12 gap-x-4 my-3 px-4'>
               <div className='col-span-3 ml-2 text-sm font-semibold opacity-70'>
-                {format('product.header').toUpperCase()}
+                {format('candidate.role.name').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='hidden xl:blockcol-span-3 text-sm font-semibold opacity-50'>
-                {format('product.website').toUpperCase()}
+              <div className='hidden xl:block col-span-3 text-sm font-semibold opacity-50'>
+                {format('candidate.role.description').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
             </div>
@@ -80,7 +83,7 @@ const RoleList = (props) => {
             ))
             : (
               <div className='flex justify-self-center text-dial-gray-dark'>{
-                format('noResults.entity', { entity: format('products.label') })
+                format('noResults.entity', { entity: format('candidate.role.label').toLowerCase() })
               }
               </div>
             )

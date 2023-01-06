@@ -472,6 +472,7 @@ export const en = {
   'dataset.card.content': 'Content',
   'dataset.card.coronavirusTagValue': 'COVID-19',
   'dataset.imageFile': 'Logo',
+  'dataset.owner': 'If you are the owner of this dataset, you can update this dataset information.',
 
   'general.close': 'Close',
   'general.na': 'N/A',
@@ -1201,6 +1202,12 @@ export const en = {
   'candidate.cancel': 'Cancel',
   'candidate.email': 'Email',
   'candidate.applied': 'Applied For',
+
+  'candidate.role.label': 'Requested candidate roles',
+  'candidate.role.name': 'Requested Role',
+  'candidate.role.description': 'Role Description',
+  'candidate.role.update.success': 'Candidate role record updated successfully',
+  'candidate.role.update.failure': 'Failed to update candidate role record.',
 
   'entity.file': 'File to Process',
   'entity.process': 'Start Processing File',
