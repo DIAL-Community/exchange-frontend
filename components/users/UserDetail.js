@@ -38,22 +38,26 @@ const UserDetail = ({ user }) => {
             <Breadcrumb slugNameMapping={slugNameMapping} />
           </div>
           <div className='flex flex-col gap-3'>
-            <div className='h3'>
-              {format('profile.profile')}{user.username}
+            <div className='flex flex-row gap-2'>
+              <div className='font-semibold'>{format('profile.profile')}:</div>
+              <div>{user.username}</div>
             </div>
-            <div className='h4'>
-              {format('profile.roles')} {user.roles.map(role => role.toUpperCase()).join(', ')}
+            <div className='flex flex-row gap-2'>
+              <div className='font-semibold'>{format('profile.roles')}:</div>
+              <div>{user.roles.map(role => role.toUpperCase()).join(', ')}</div>
             </div>
             {
               user?.products?.length > 0 &&
-                <div className='h4'>
-                  {format('profile.products')} {user.products.map(prod => prod.name).join(', ')}
+                <div className='flex flex-row gap-2'>
+                  <div className='font-semibold'>{format('profile.products')}:</div>
+                  <div>{user.products.map(prod => prod.name).join(', ')}</div>
                 </div>
             }
             {
               user?.organization &&
-                <div className='h4'>
-                  {format('profile.organization')} {user.organization.name}
+                <div className='flex flex-row gap-2'>
+                  <div className='font-semibold'>{format('profile.organization')}:</div>
+                  <div>{user.organization.name}</div>
                 </div>
             }
           </div>

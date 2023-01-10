@@ -1,20 +1,19 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { FaFile, FaHome, FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
+import { FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import parse from 'html-react-parser'
 import classNames from 'classnames'
-import { getDatasetTypeOptions, prependUrlWithProtocol, truncate } from '../../../lib/utilities'
+import { getDatasetTypeOptions, prependUrlWithProtocol } from '../../../lib/utilities'
 import { CANDIDATE_DATASET_ACTION } from '../../../queries/candidate'
 import { useUser } from '../../../lib/hooks'
 import { CandidateActionType, CandidateStatusType } from '../../../lib/constants'
 
-const ellipsisTextStyle = 'my-auto'
 const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
 
-const DatasetCard = ({ dataset, listType, filterDisplayed }) => {
+const DatasetCard = ({ dataset, listType }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -30,80 +29,90 @@ const DatasetCard = ({ dataset, listType, filterDisplayed }) => {
     ReactTooltip.rebuild()
   })
 
+  const shouldFlipCard = (status) => [CandidateStatusType.REJECTION, CandidateStatusType.APPROVAL].indexOf(status) >= 0
+
   return (
     <>
       {
         listType === 'list'
           ? (
-            <div className={classNames('card', { 'flip-horizontal':  status === CandidateStatusType.REJECTION || status === CandidateStatusType.APPROVAL })}>
-              <div className='card-body border-3 border-transparent hover:border-dial-gray'>
+            <div className={classNames('card', { 'flip-horizontal':  shouldFlipCard(status) })}>
+              <div className='card-body border-3 border-transparent'>
                 <div className={classNames('card-front border border-dial-gray card-drop-shadow bg-white',
                   { 'bg-red-50': dataset.rejected === true || status === CandidateStatusType.REJECTED },
                   { 'bg-emerald-50': dataset.rejected === false || status === CandidateStatusType.APPROVED }
                 )}>
-                  <div className='grid grid-cols-12 gap-x-4 gap-y-2 my-4 px-4 text-dataset'>
-                    <div className={classNames('col-span-12', { 'lg:col-span-3': filterDisplayed })}>
-                      <div className={classNames('col-span-12 lg:col-span-3 my-auto', ellipsisTextStyle)}>
+                  <div className='flex flex-col xl:flex-row gap-3 p-3'>
+                    <div className='flex flex-col gap-3 w-full xl:w-2/3 '>
+                      <div className='my-auto line-clamp-1 font-semibold'>
                         {dataset.name}
                       </div>
-                      <div className={classNames('col-span-12 lg:col-span-3 my-auto', ellipsisTextStyle)}>
-                        <a href={prependUrlWithProtocol(dataset.dataUrl)}>{dataset.dataUrl}</a>
+                      <div className='my-auto line-clamp-1 text-dial-blue'>
+                        <a href={prependUrlWithProtocol(dataset.dataUrl)} target='_blank' rel='noreferrer'>
+                          {dataset.dataUrl} ⧉
+                        </a>
                       </div>
-                      <div className={classNames('col-span-12 lg:col-span-3 my-auto', ellipsisTextStyle)}>
+                      <div className='line-clamp-2'>
+                        {dataset.description && parse(dataset.description)}
+                      </div>
+                      <div className='line-clamp-1'>
                         {dataset.submitterEmail}
                       </div>
                     </div>
-                    <div
-                      className={classNames('col-span-12 lg:col-span-3', ellipsisTextStyle)}
-                      data-tip={parse(dataset.description).props.children}
-                    >
-                      {parse(truncate(dataset.description, 140, true, true))}
+                    <div className='absolute right-3 text-sm text-dial-cyan font-semibold'>
+                      <div className='px-2 py-1 border border-dial-cyan rounded'>
+                        {datasetType.label.toUpperCase()}
+                      </div>
                     </div>
-                    <div className={classNames('col-span-12 my-auto', { 'lg:col-span-3': filterDisplayed })}>
-                      {datasetType.label}
-                    </div>
-                    <div className='col-span-12 lg:col-span-3 my-auto'>
+                    <div className='ml-auto mt-auto'>
                       {
-                        dataset.rejected === null && status === '' &&
-                          <div className='lg:col-span-3 flex flex-row'>
-                            <ToggleRejectionButton
-                              {...{ setStatus, loading }}
-                              style='my-auto px-3 py-1 text-sm font-semibold ml-auto border border-dial-gray-dark
-                              text-dial-gray-dark rounded hover:bg-opacity-20 hover:bg-dial-gray-dark'
-                            />
-                            <ToggleApprovalButton
-                              {...{ setStatus, loading }}
-                              style='ml-3 my-auto px-3 py-1 text-sm font-semibold bg-dial-gray-dark text-white
-                                border border-dial-gray-dark bg-dial-gray-dark text-white rounded hover:bg-opacity-80'
-                            />
+                        dataset.rejected === null &&
+                        status !== CandidateStatusType.APPROVED &&
+                        status !== CandidateStatusType.REJECTED &&
+                          <div className='ml-auto flex flex-row gap-3'>
+                            <ToggleRejectionButton {...{ setStatus, loading }} style='text-sm secondary-button' />
+                            <ToggleApprovalButton {...{ setStatus, loading }} style='text-sm submit-button' />
                           </div>
                       }
                     </div>
                   </div>
                 </div>
-                <div className={classNames('card-back flip-horizontal border border-dial-gray hover:border-transparent shadow-sm bg-dial-gray',
+                <div className={classNames(
+                  'card-back flip-horizontal border border-dial-gray shadow-sm bg-dial-gray h-full',
                   { 'bg-red-50': dataset.rejected === true || status === CandidateStatusType.REJECTED },
                   { 'bg-emerald-50': dataset.rejected === false || status === CandidateStatusType.APPROVED }
                 )}>
-                  <div className='grid grid-cols-12 gap-x-4 gap-y-2 px-4 h-full text-dataset'>
-                    <div className='col-span-12 lg:col-span-8 my-auto'>
-                      <label className='block'>
-                        <span className='sr-only text-gray-700'>{format('candidate.feedback')}</span>
-                        <input
-                          className='form-textarea w-full'
-                          type='text'
-                          placeholder={format('candidate.feedback.placeholder')}
-                          value={comment}
-                          onChange={(e) => setComment(e.target.value)}
-                        />
-                      </label>
-                    </div>
-                    <div className='col-span-12 lg:col-span-4 my-auto'>
-                      <div className='flex flex-row'>
-                        <CancelButton {...{ status, setStatus, loading }} />
-                        <DeclineButton {...{ status, setStatus, loading, setLoading, dataset }} />
-                        <ApproveButton {...{ status, setStatus, loading, setLoading, dataset }} />
+                  <div className='flex flex-col gap-3 p-3 h-full'>
+                    <div className='flex flex-row xl:hidden text-dial-gray-dark text-sm font-semibold'>
+                      <div className='ml-auto my-auto p-1.5 border border-dial-gray-dark rounded'>
+                        {datasetType.label.toUpperCase()}
                       </div>
+                    </div>
+                    <label className='block'>
+                      <span className='sr-only text-gray-700'>{format('candidate.feedback')}</span>
+                      <input
+                        className='w-full'
+                        type='text'
+                        placeholder={format('candidate.feedback.placeholder')}
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                      />
+                    </label>
+                    <div className='ml-auto mt-auto flex flex-row gap-3'>
+                      {
+                        status === CandidateStatusType.REJECTION &&
+                        <>
+                          <CancelButton {...{ status, setStatus, loading }} />
+                          <DeclineButton {...{ status, setStatus, loading, setLoading, dataset }} />
+                        </>
+                      }
+                      {
+                        status === CandidateStatusType.APPROVAL &&
+                        <>
+                          <CancelButton {...{ status, setStatus, loading }} />
+                          <ApproveButton {...{ status, setStatus, loading, setLoading, dataset }} />
+                        </>
+                      }
                     </div>
                   </div>
                 </div>
@@ -111,8 +120,8 @@ const DatasetCard = ({ dataset, listType, filterDisplayed }) => {
             </div>
           )
           : (
-            <div className={classNames('card', { 'flip-vertical':  status === CandidateStatusType.REJECTION || status === CandidateStatusType.APPROVAL })}>
-              <div className='card-body border-3 border-transparent hover:border-dial-gray text-dial-purple h-full'>
+            <div className={classNames('card', { 'flip-vertical':  shouldFlipCard(status) })}>
+              <div className='card-body border-3 border-transparent text-dial-purple h-full'>
                 <div className='card-front h-full flex flex-col border border-dial-gray card-drop-shadow'>
                   <div className='flex flex-row p-1.5 border-b border-dial-gray dataset-card-header'>
                     {
@@ -127,85 +136,99 @@ const DatasetCard = ({ dataset, listType, filterDisplayed }) => {
                           {format('candidate.approved').toUpperCase()}
                         </div>
                     }
-                    <div className='ml-auto my-auto text-dial-cyan text-sm font-semibold'>
-                      {format('candidateDataset.label').toUpperCase()}
-                    </div>
+                    {
+                      dataset.rejected === null &&
+                        <div className='ml-auto my-auto py-1 px-2 text-dial-cyan text-sm font-semibold'>
+                          {format('candidateDataset.label').toUpperCase()}
+                        </div>
+                    }
                   </div>
-                  <div className='flex flex-col h-80 p-4'>
+                  <div className='flex flex-col h-64 p-4'>
                     <div className='text-2xl font-semibold'>
                       {dataset.name}
                     </div>
-                    <div className='mt-3 overflow-y-auto'>
-                      {parse(dataset.description)}
+                    <div className='mt-3 line-clamp-6'>
+                      {dataset.description && parse(dataset.description)}
                     </div>
                   </div>
-                  <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark mt-auto'>
-                    <div className='flex flex-col border-b border-dial-gray px-3'>
+                  <div className='py-3 flex flex-col gap-3 bg-dial-gray-light text-dial-gray-dark mt-auto'>
+                    <div className='px-3 ml-auto'>
                       {dataset.submitterEmail}
                     </div>
-                  </div>
-                  <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark'>
-                    <div className='flex flex-col border-b border-dial-gray'>
-                      <div className='pl-3 py-2 flex flex-row border-b'>
-                        <div className='w-6 my-auto'>
-                          <FaHome className='text-xl' data-tip={format('candidateDataset.website.hint')} />
-                        </div>
-                        <div className={classNames('mx-2 my-auto px-2 py-1 bg-white', ellipsisTextStyle, hoverEffectTextStyle)}>
-                          {
-                            dataset.dataUrl
-                              ? <a href={prependUrlWithProtocol(dataset.dataUrl)} target='_blank' rel='noreferrer'>{dataset.dataUrl}</a>
-                              : format('general.na')
-                          }
-                        </div>
-                      </div>
-                      <div className={classNames('pl-3 flex flex-row py-2', { 'border-b': dataset.rejected === null })}>
-                        <div className='w-6 my-auto'>
-                          <FaFile className='text-xl' data-tip={format('candidateDataset.datasetType.hint')} />
-                        </div>
-                        <div className={classNames('mx-2 my-auto px-2 py-1 bg-white', ellipsisTextStyle, hoverEffectTextStyle)}>
-                          {datasetType.label}
-                        </div>
-                      </div>
+                    <div className='px-3 ml-auto flex flex-row'>
                       {
-                        dataset.rejected === null && status === '' &&
-                          <div className='pl-3 py-2 flex flex-row'>
-                            <ToggleRejectionButton
-                              {...{ setStatus, loading }}
-                              style='my-auto px-3 py-1 text-sm font-semibold mr-auto border border-dial-gray-dark
-                              text-dial-gray-dark rounded hover:bg-opacity-20 hover:bg-dial-gray-dark'
-                            />
-                            <ToggleApprovalButton
-                              {...{ setStatus, loading }}
-                              style='mx-3 my-auto px-3 py-1 text-sm font-semibold ml-auto bg-dial-gray-dark text-white
-                                border border-dial-gray-dark bg-dial-gray-dark text-white rounded hover:bg-opacity-80'
-                            />
-                          </div>
+                        dataset.dataUrl
+                          ? (
+                            <a
+                              href={prependUrlWithProtocol(dataset.dataUrl)}
+                              target='_blank'
+                              rel='noreferrer'
+                              className={'py-1 px-2 bg-white text-dial-blue break-all line-clamp-1'}
+                            >
+                              <span className={hoverEffectTextStyle}>
+                                {dataset.dataUrl} ⧉
+                              </span>
+                            </a>
+                          )
+                          : (
+                            <div className='py-1 px-2 bg-white line-clamp-1'>
+                              {format('general.na')}
+                            </div>
+                          )
                       }
                     </div>
+                    <div className='px-3 my-auto flex flex-row'>
+                      <div className='ml-auto px-2 py-1 bg-white'>
+                        {datasetType.label}
+                      </div>
+                    </div>
+                    {
+                      dataset.rejected === null &&
+                      status !== CandidateStatusType.APPROVED &&
+                      status !== CandidateStatusType.REJECTED &&
+                        <>
+                          <div className='border-t'></div>
+                          <div className='ml-auto flex flex-row gap-3 mx-3'>
+                            <ToggleRejectionButton {...{ setStatus, loading }} style='text-sm secondary-button' />
+                            <ToggleApprovalButton {...{ setStatus, loading }} style='text-sm submit-button' />
+                          </div>
+                        </>
+                    }
                   </div>
                 </div>
-                <div className='card-back flip-vertical h-full flex flex-col border border-dial-gray bg-dial-gray shadow-lg'>
-                  <div className='flex flex-row p-1.5 border-b border-dial-gray-dark bg-dial-gray-dark dataset-card-header'>
+                <div className='card-back flip-vertical flex flex-col border border-dial-gray bg-dial-gray shadow-lg h-full'>
+                  <div className='flex flex-row p-1.5 bg-dial-gray-dark'>
                     <div className='ml-auto my-auto text-dial-cyan text-sm font-semibold'>
                       {format('candidateDataset.label').toUpperCase()}
                     </div>
                   </div>
-                  <div className='h-full p-3'>
+                  <div className='flex flex-col gap-3 p-3 h-full'>
                     <label className='block'>
                       <span className='text-gray-700'>{format('candidate.feedback')}</span>
                       <textarea
-                        className='form-textarea mt-1 block w-full'
-                        rows='6'
+                        className='w-full'
+                        rows={8}
                         style={{ resize: 'none' }}
                         placeholder={format('candidate.feedback.placeholder')}
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                       />
                     </label>
-                    <div className='py-2 flex flex-row'>
-                      <CancelButton {...{ status, setStatus, loading }} />
-                      <DeclineButton {...{ status, setStatus, loading, setLoading, dataset }} />
-                      <ApproveButton {...{ status, setStatus, loading, setLoading, dataset }} />
+                    <div className='ml-auto mt-auto flex flex-row gap-3'>
+                      {
+                        status === CandidateStatusType.REJECTION &&
+                          <>
+                            <CancelButton {...{ status, setStatus, loading }} />
+                            <DeclineButton {...{ status, setStatus, loading, setLoading, dataset }} />
+                          </>
+                      }
+                      {
+                        status === CandidateStatusType.APPROVAL &&
+                        <>
+                          <CancelButton {...{ status, setStatus, loading }} />
+                          <ApproveButton {...{ status, setStatus, loading, setLoading, dataset }} />
+                        </>
+                      }
                     </div>
                   </div>
                 </div>
@@ -223,7 +246,8 @@ const CancelButton = ({ status, setStatus, loading }) => {
 
   return (
     <button
-      className={classNames('ml-auto my-auto px-3 py-1 text-sm font-semibold border border-dial-gray-dark text-dial-gray-dark rounded hover:bg-opacity-20 hover:bg-dial-gray-dark',
+      className={classNames(
+        'text-sm secondary-button',
         { 'block': status !== '' }, { 'hidden': status === '' }
       )}
       onClick={() => setStatus('')}
@@ -244,12 +268,13 @@ const ToggleApprovalButton = ({ style, setStatus, loading }) => {
       onClick={() => setStatus(CandidateStatusType.APPROVAL)}
       disabled={loading}
     >
-      {format('candidate.approve')} <FaRegCheckCircle className='ml-1 inline text-xl text-emerald-500' />
+      {format('candidate.approve')}
+      <FaRegCheckCircle className='ml-1 inline text-xl' />
     </button>
   )
 }
 
-const ApproveButton = ({ dataset, status, setStatus, loading, setLoading }) => {
+const ApproveButton = ({ dataset, setStatus, loading, setLoading }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -285,14 +310,8 @@ const ApproveButton = ({ dataset, status, setStatus, loading, setLoading }) => {
   }
 
   return (
-    <button
-      className={classNames(' ml-2 my-auto px-3 py-1 text-sm font-semibold border border-dial-gray-dark bg-dial-gray-dark text-white rounded hover:bg-opacity-80',
-        { 'block': status === CandidateStatusType.APPROVAL }, { 'hidden': status !== CandidateStatusType.APPROVAL }
-      )}
-      onClick={approveDataset}
-      disabled={loading}
-    >
-      {format('candidate.approve')} <FaRegCheckCircle className='ml-1 inline text-xl text-emerald-500' />
+    <button className='text-sm submit-button' onClick={approveDataset} disabled={loading}>
+      {format('candidate.approve')}<FaRegCheckCircle className='ml-1 inline text-xl' />
     </button>
   )
 }
@@ -307,12 +326,13 @@ const ToggleRejectionButton = ({ style, setStatus, loading }) => {
       onClick={() => setStatus(CandidateStatusType.REJECTION)}
       disabled={loading}
     >
-      {format('candidate.reject')}  <FaRegTimesCircle className='ml-1 inline text-xl text-red-500' />
+      {format('candidate.reject')}
+      <FaRegTimesCircle className='ml-1 inline text-xl text-red-500' />
     </button>
   )
 }
 
-const DeclineButton = ({ dataset, status, setStatus, loading, setLoading }) => {
+const DeclineButton = ({ dataset, setStatus, loading, setLoading }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -326,6 +346,7 @@ const DeclineButton = ({ dataset, status, setStatus, loading, setLoading }) => {
     },
     onError: () => setLoading(false)
   })
+
   const rejectDataset = async () => {
     if (user) {
       setLoading(true)
@@ -348,14 +369,9 @@ const DeclineButton = ({ dataset, status, setStatus, loading, setLoading }) => {
   }
 
   return (
-    <button
-      className={classNames(' ml-2 my-auto px-3 py-1 text-sm font-semibold border border-dial-gray-dark text-dial-gray-dark rounded hover:bg-opacity-20 hover:bg-dial-gray-dark',
-        { 'block': status === CandidateStatusType.REJECTION }, { 'hidden': status !== CandidateStatusType.REJECTION }
-      )}
-      onClick={rejectDataset}
-      disabled={loading}
-    >
-      {format('candidate.reject')}  <FaRegTimesCircle className='ml-1 inline text-xl text-red-500' />
+    <button className='text-sm submit-button' onClick={rejectDataset} disabled={loading}>
+      {format('candidate.reject')}
+      <FaRegTimesCircle className='ml-1 inline text-xl text-red-500' />
     </button>
   )
 }
