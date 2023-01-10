@@ -36,7 +36,7 @@ const Roles = () => {
           <ClientOnly>
             <PageContent
               activeTab='filter.entity.candidateRoles'
-              content={<RoleListQuery displayType='list' />}
+              content={<RoleListQuery />}
               searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.candidateRoles' />}
             />
           </ClientOnly>

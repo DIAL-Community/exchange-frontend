@@ -188,7 +188,11 @@ export const CREATE_CANDIDATE_PRODUCT = gql`
       description: $description
       email: $email
       captcha: $captcha
-    ) { slug }
+    ) {
+      candidateProduct {
+        id
+      }
+    }
   }
 `
 

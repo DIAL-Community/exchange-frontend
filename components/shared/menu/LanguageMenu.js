@@ -5,13 +5,13 @@ import { LANGUAGE_MENU, MenuHeader, NONE } from './MenuCommon'
 import { DEFAULT_DROPDOWN_MENU_STYLES, DEFAULT_DROPDOWN_PANEL_STYLES } from './MenuStyleCommon'
 
 const SUPPORTED_LANGUAGES = {
-  en: 'header.english',
+  cs: 'header.czech',
   de: 'header.german',
+  en: 'header.english',
   es: 'header.spanish',
   fr: 'header.french',
-  pt: 'header.portuguese',
   sw: 'header.swahili',
-  cs: 'header.czech'
+  pt: 'header.portuguese'
 }
 
 const LanguageMenu = ({ currentOpenMenu, onToggleDropdown }) => {

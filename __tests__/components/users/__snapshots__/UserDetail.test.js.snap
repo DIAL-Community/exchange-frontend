@@ -90,24 +90,43 @@ exports[`Unit test for the UserDetail component should not render 0 for user not
             class="flex flex-col gap-3"
           >
             <div
-              class="h3"
+              class="flex flex-row gap-2"
             >
-              User Profile for 
-              Some User
+              <div
+                class="font-semibold"
+              >
+                User Profile
+                :
+              </div>
+              <div>
+                Some User
+              </div>
             </div>
             <div
-              class="h4"
+              class="flex flex-row gap-2"
             >
-              Roles: 
-               
-              ORG_USER
+              <div
+                class="font-semibold"
+              >
+                Roles
+                :
+              </div>
+              <div>
+                ORG_USER
+              </div>
             </div>
             <div
-              class="h4"
+              class="flex flex-row gap-2"
             >
-              Organization: 
-               
-              Some Organization
+              <div
+                class="font-semibold"
+              >
+                Organization
+                :
+              </div>
+              <div>
+                Some Organization
+              </div>
             </div>
           </div>
         </div>
@@ -200,24 +219,43 @@ exports[`Unit test for the UserDetail component should not render 0 for user not
           class="flex flex-col gap-3"
         >
           <div
-            class="h3"
+            class="flex flex-row gap-2"
           >
-            User Profile for 
-            Some User
+            <div
+              class="font-semibold"
+            >
+              User Profile
+              :
+            </div>
+            <div>
+              Some User
+            </div>
           </div>
           <div
-            class="h4"
+            class="flex flex-row gap-2"
           >
-            Roles: 
-             
-            ORG_USER
+            <div
+              class="font-semibold"
+            >
+              Roles
+              :
+            </div>
+            <div>
+              ORG_USER
+            </div>
           </div>
           <div
-            class="h4"
+            class="flex flex-row gap-2"
           >
-            Organization: 
-             
-            Some Organization
+            <div
+              class="font-semibold"
+            >
+              Organization
+              :
+            </div>
+            <div>
+              Some Organization
+            </div>
           </div>
         </div>
       </div>
@@ -367,17 +405,30 @@ exports[`Unit test for the UserDetail component should render element of basic u
             class="flex flex-col gap-3"
           >
             <div
-              class="h3"
+              class="flex flex-row gap-2"
             >
-              User Profile for 
-              Some User
+              <div
+                class="font-semibold"
+              >
+                User Profile
+                :
+              </div>
+              <div>
+                Some User
+              </div>
             </div>
             <div
-              class="h4"
+              class="flex flex-row gap-2"
             >
-              Roles: 
-               
-              USER
+              <div
+                class="font-semibold"
+              >
+                Roles
+                :
+              </div>
+              <div>
+                USER
+              </div>
             </div>
           </div>
         </div>
@@ -470,17 +521,30 @@ exports[`Unit test for the UserDetail component should render element of basic u
           class="flex flex-col gap-3"
         >
           <div
-            class="h3"
+            class="flex flex-row gap-2"
           >
-            User Profile for 
-            Some User
+            <div
+              class="font-semibold"
+            >
+              User Profile
+              :
+            </div>
+            <div>
+              Some User
+            </div>
           </div>
           <div
-            class="h4"
+            class="flex flex-row gap-2"
           >
-            Roles: 
-             
-            USER
+            <div
+              class="font-semibold"
+            >
+              Roles
+              :
+            </div>
+            <div>
+              USER
+            </div>
           </div>
         </div>
       </div>
@@ -630,31 +694,56 @@ exports[`Unit test for the UserDetail component should render element of the use
             class="flex flex-col gap-3"
           >
             <div
-              class="h3"
+              class="flex flex-row gap-2"
             >
-              User Profile for 
-              Some User
+              <div
+                class="font-semibold"
+              >
+                User Profile
+                :
+              </div>
+              <div>
+                Some User
+              </div>
             </div>
             <div
-              class="h4"
+              class="flex flex-row gap-2"
             >
-              Roles: 
-               
-              ORG_USER, PRODUCT_USER
+              <div
+                class="font-semibold"
+              >
+                Roles
+                :
+              </div>
+              <div>
+                ORG_USER, PRODUCT_USER
+              </div>
             </div>
             <div
-              class="h4"
+              class="flex flex-row gap-2"
             >
-              Products: 
-               
-              Some Product
+              <div
+                class="font-semibold"
+              >
+                Products
+                :
+              </div>
+              <div>
+                Some Product
+              </div>
             </div>
             <div
-              class="h4"
+              class="flex flex-row gap-2"
             >
-              Organization: 
-               
-              Some Organization
+              <div
+                class="font-semibold"
+              >
+                Organization
+                :
+              </div>
+              <div>
+                Some Organization
+              </div>
             </div>
           </div>
         </div>
@@ -747,31 +836,56 @@ exports[`Unit test for the UserDetail component should render element of the use
           class="flex flex-col gap-3"
         >
           <div
-            class="h3"
+            class="flex flex-row gap-2"
           >
-            User Profile for 
-            Some User
+            <div
+              class="font-semibold"
+            >
+              User Profile
+              :
+            </div>
+            <div>
+              Some User
+            </div>
           </div>
           <div
-            class="h4"
+            class="flex flex-row gap-2"
           >
-            Roles: 
-             
-            ORG_USER, PRODUCT_USER
+            <div
+              class="font-semibold"
+            >
+              Roles
+              :
+            </div>
+            <div>
+              ORG_USER, PRODUCT_USER
+            </div>
           </div>
           <div
-            class="h4"
+            class="flex flex-row gap-2"
           >
-            Products: 
-             
-            Some Product
+            <div
+              class="font-semibold"
+            >
+              Products
+              :
+            </div>
+            <div>
+              Some Product
+            </div>
           </div>
           <div
-            class="h4"
+            class="flex flex-row gap-2"
           >
-            Organization: 
-             
-            Some Organization
+            <div
+              class="font-semibold"
+            >
+              Organization
+              :
+            </div>
+            <div>
+              Some Organization
+            </div>
           </div>
         </div>
       </div>

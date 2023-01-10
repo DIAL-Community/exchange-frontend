@@ -32,6 +32,7 @@ const OrganizationForm = () => {
 
   const [createCandidateOrganization] = useMutation(CREATE_CANDIDATE_ORGANIZATION, {
     onError: () => {
+      setMutating(false)
       showToast(
         format('candidate-organization.submit.failure'),
         'error',
@@ -40,6 +41,7 @@ const OrganizationForm = () => {
       )
     },
     onCompleted: () => {
+      setMutating(false)
       showToast(
         format('candidate-organization.submit.success'),
         'success',

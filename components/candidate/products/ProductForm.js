@@ -32,6 +32,7 @@ const ProductForm = () => {
 
   const [createCandidateProduct] = useMutation(CREATE_CANDIDATE_PRODUCT, {
     onError: () => {
+      setMutating(false)
       showToast(
         format('candidate-product.submit.failure'),
         'error',
@@ -40,6 +41,7 @@ const ProductForm = () => {
       )
     },
     onCompleted: () => {
+      setMutating(false)
       showToast(
         format('candidate-product.submit.success'),
         'success',

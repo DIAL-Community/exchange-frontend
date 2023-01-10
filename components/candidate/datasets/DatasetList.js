@@ -24,15 +24,9 @@ const DatasetList = ({ datasetList, displayType, filterDisplayed }) => {
       <div className={gridStyles}>
         {
           displayType === 'list' &&
-            <div className='grid grid-cols-12 gap-x-4 my-3 px-4'>
-              <div className='col-span-3 ml-2 text-sm font-semibold opacity-70'>
+            <div className='flex flex-row gap-3 px-3'>
+              <div className='w-1/2 opacity-70'>
                 {format('dataset.header').toUpperCase()}
-              </div>
-              <div className='col-span-3 text-sm font-semibold opacity-70'>
-                {format('dataset.description').toUpperCase()}
-              </div>
-              <div className='col-span-3 text-sm font-semibold opacity-70'>
-                {format('dataset.datasetType').toUpperCase()}
               </div>
             </div>
         }
