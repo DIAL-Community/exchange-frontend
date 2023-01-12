@@ -237,3 +237,15 @@ export const UPDATE_PRODUCT_CATEGORY_INDICATORS = gql`
     }  
   }
 `
+
+export const DELETE_PRODUCT = gql`
+  mutation DeleteProduct($id: ID!) {
+    deleteProduct(id: $id) {
+      product {
+       id
+       slug
+       name
+      }
+    }
+  }
+`

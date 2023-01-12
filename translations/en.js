@@ -319,6 +319,26 @@ export const en = {
   'building-block.submit.failure': 'Building Block submission failed',
   'building-block.no-workflow': 'We do not have any Workflow information for this Building Block.',
 
+  'building-block.delete.confirm.message': 'Are you sure you want to delete this building block?',
+  'toast.building-block.delete.success': 'Building block deleted successfully.',
+  'toast.building-block.delete.failure': 'Building block deletion failed.',
+
+  'dataset.delete.confirm.message': 'Are you sure you want to delete this open data record?',
+  'toast.dataset.delete.success': 'Open data record deleted successfully.',
+  'toast.dataset.delete.failure': 'Open data record deletion failed.',
+
+  'product.delete.confirm.message': 'Are you sure you want to delete this product record?',
+  'toast.product.delete.success': 'Product record deleted successfully.',
+  'toast.product.delete.failure': 'Product record deletion failed.',
+
+  'use-case.delete.confirm.message': 'Are you sure you want to delete this use case record?',
+  'toast.use-case.delete.success': 'Use case record deleted successfully.',
+  'toast.use-case.delete.failure': 'Use case record deletion failed.',
+
+  'workflow.delete.confirm.message': 'Are you sure you want to delete this workflow record?',
+  'toast.workflow.delete.success': 'Workflow record deleted successfully.',
+  'toast.workflow.delete.failure': 'Workflow record deletion failed.',
+
   'contact.header': 'Contacts',
   'contact.label': 'Contact',
   'contact.name.label': 'Name:',

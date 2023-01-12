@@ -14,6 +14,7 @@ import { APPLY_AS_OWNER } from '../../mutations/users'
 import { useDatasetOwnerUser, useUser } from '../../lib/hooks'
 import { CANDIDATE_ROLE_QUERY } from '../../queries/candidate'
 import { ToastContext } from '../../lib/ToastContext'
+import DeleteDataset from './DeleteDataset'
 
 const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
@@ -156,6 +157,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
       <div className='h-20'>
         <div className='w-full inline-flex gap-3'>
           {(isAdminUser || isDatasetOwner) && <EditButton type='link' href={generateEditLink()} />}
+          {isAdminUser && <DeleteDataset dataset={dataset} />}
           <CommentsCount commentsSectionRef={commentsSectionRef} objectId={dataset.id} objectType={ObjectType.OPEN_DATA}/>
         </div>
         <div className='h4 font-bold py-4'>{format('datasets.label')}</div>

@@ -69,3 +69,15 @@ export const UPDATE_BUILDING_BLOCK_PRODUCTS = gql`
     }
   }
 `
+
+export const DELETE_BUILDING_BLOCK = gql`
+  mutation DeleteBuildingBlock($id: ID!) {
+    deleteBuildingBlock(id: $id) {
+      buildingBlock {
+       id
+       slug
+       name
+      }
+    }
+  }
+`
