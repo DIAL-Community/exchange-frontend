@@ -94,3 +94,15 @@ export const UPDATE_USE_CASE_TAGS = gql`
     }  
   }
 `
+
+export const DELETE_USE_CASE = gql`
+  mutation DeleteUseCase($id: ID!) {
+    deleteUseCase(id: $id) {
+      useCase {
+       id
+       slug
+       name
+      }
+    }
+  }
+`

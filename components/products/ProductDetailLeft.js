@@ -14,6 +14,7 @@ import { ObjectType } from '../../lib/constants'
 import { APPLY_AS_OWNER } from '../../mutations/users'
 import { ToastContext } from '../../lib/ToastContext'
 import { CANDIDATE_ROLE_QUERY } from '../../queries/candidate'
+import DeleteProduct from './DeleteProduct'
 
 const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
 
@@ -201,11 +202,12 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
       <div className='h-20'>
         <div className='w-full inline-flex gap-3'>
           {(isAdminUser || isProductOwner) && <EditButton type='link' href={generateEditLink()} />}
+          {isAdminUser && <DeleteProduct product={product} />}
           <CommentsCount commentsSectionRef={commentsSectionRef} objectId={product.id} objectType={ObjectType.PRODUCT}/>
         </div>
         <div className='h4 font-bold py-4'>{format('products.label')}</div>
       </div>
-      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 lg:mr-6 shadow-lg'>
+      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 shadow-lg'>
         <div id='header' className='flex flex-col h-80 p-2'>
           <div className='h1 p-2 text-dial-purple'>
             {product.name}
@@ -223,7 +225,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
           {product.productDescription && parse(product.productDescription.description)}
         </div>
       </div>
-      <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 lg:mr-6 shadow-lg border-b-2 border-dial-gray'>
+      <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 shadow-lg border-b-2 border-dial-gray'>
         {format('product.owner')}
         <div className='flex flex-row gap-3'>
           <a

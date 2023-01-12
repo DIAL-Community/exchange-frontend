@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import parse from 'html-react-parser'
-import { useSession } from 'next-auth/react'
 import Breadcrumb from '../shared/breadcrumb'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import CreateButton from '../shared/CreateButton'
@@ -9,6 +8,7 @@ import WorkflowCard from '../workflows/WorkflowCard'
 import { HtmlViewer } from '../shared/HtmlViewer'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
+import { useUser } from '../../lib/hooks'
 import StepList from './steps/StepList'
 import UseCaseDetailSdgTargets from './UseCaseDetailSdgTargets'
 import UseCaseDetailTags from './UseCaseDetailTags'
@@ -16,10 +16,11 @@ import UseCaseDetailTags from './UseCaseDetailTags'
 const UseCaseDetailRight = ({ useCase, canEdit, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-  const { data: session } = useSession()
+
+  const { user, isAdminUser } = useUser()
 
   const generateCreateStepLink = () => {
-    if (!session.user) {
+    if (!user) {
       return '/edit-not-available'
     }
 
@@ -48,7 +49,13 @@ const UseCaseDetailRight = ({ useCase, canEdit, commentsSectionRef }) => {
         </div>
         <div className='flex justify-between mb-2'>
           <div className='card-title text-dial-gray-dark self-center'>{format('useCaseStep.header')}</div>
-          {canEdit && <CreateButton type='link' label={format('use-case-step.create')} href={generateCreateStepLink()}/>}
+          {isAdminUser &&
+            <CreateButton
+              type='link'
+              label={format('use-case-step.create')}
+              href={generateCreateStepLink()}
+            />
+          }
         </div>
         {
           useCase.useCaseHeaders && useCase.useCaseHeaders.length > 0 &&
@@ -73,7 +80,9 @@ const UseCaseDetailRight = ({ useCase, canEdit, commentsSectionRef }) => {
           <div className='mt-12 mb-4'>
             <div className='card-title mb-3 text-dial-gray-dark'>{format('building-block.header')}</div>
             <div className='grid grid-cols-1'>
-              {useCase.buildingBlocks.map((buildingBlock, i) => <BuildingBlockCard key={i} buildingBlock={buildingBlock} listType='list' />)}
+              {useCase.buildingBlocks.map(
+                (buildingBlock, i) => <BuildingBlockCard key={i} buildingBlock={buildingBlock} listType='list' />
+              )}
             </div>
           </div>
       }
