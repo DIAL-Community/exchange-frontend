@@ -44,7 +44,10 @@ const DatasetDetailOrganizations = ({ dataset, canEdit }) => {
   )
 
   const addOrganization = (organization) => {
-    setOrganizations([...organizations.filter(({ slug }) => slug !== organization.slug), { name: organization.label, slug: organization.slug }])
+    setOrganizations([
+      ...organizations.filter(({ slug }) => slug !== organization.slug),
+      { name: organization.label, slug: organization.slug }
+    ])
     setIsDirty(true)
   }
 
@@ -80,7 +83,10 @@ const DatasetDetailOrganizations = ({ dataset, canEdit }) => {
   const displayModeBody = organizations.length > 0
     ? (
       <div className='flex flex-col gap-2'>
-        {organizations.map((organization, organizationIdx) => <OrganizationCard key={organizationIdx} organization={organization} listType='list' />)}
+        {organizations.map(
+          (organization, organizationIdx) =>
+            <OrganizationCard key={organizationIdx} organization={organization} listType='list' />
+        )}
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
@@ -101,7 +107,14 @@ const DatasetDetailOrganizations = ({ dataset, canEdit }) => {
           defaultOptions
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-          loadOptions={(input) => fetchSelectOptions(client, input, ORGANIZATION_SEARCH_QUERY, fetchedOrganizationsCallback, locale)}
+          loadOptions={(input) =>
+            fetchSelectOptions(
+              client,
+              input,
+              ORGANIZATION_SEARCH_QUERY,
+              fetchedOrganizationsCallback, locale
+            )
+          }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('organization.header') })}
           onChange={addOrganization}
           value={null}

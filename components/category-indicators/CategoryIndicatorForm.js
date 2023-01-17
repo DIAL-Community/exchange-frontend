@@ -39,7 +39,10 @@ const CategoryIndicatorForm = ({ rubricCategory, categoryIndicator }) => {
       'top-center',
       1000,
       null,
-      () => router.push(`/${locale}/rubric_categories/${rubricCategory.slug}/${data.createCategoryIndicator.categoryIndicator.slug}`)
+      () => router.push(
+        `/${locale}/rubric_categories/${rubricCategory.slug}/` +
+        `${data.createCategoryIndicator.categoryIndicator.slug}`
+      )
     ),
     onError: (error) => {
       setMutating(false)
@@ -61,7 +64,9 @@ const CategoryIndicatorForm = ({ rubricCategory, categoryIndicator }) => {
     defaultValues: {
       name: categoryIndicator?.name,
       weight: categoryIndicator?.weight,
-      indicatorType: categoryIndicatorTypes.find(({ value: indicatorType }) => indicatorType === categoryIndicator?.indicatorType),
+      indicatorType: categoryIndicatorTypes.find(
+        ({ value: indicatorType }) => indicatorType === categoryIndicator?.indicatorType
+      ),
       dataSource: categoryIndicator?.dataSource,
       scriptName: categoryIndicator?.scriptName,
       description: categoryIndicator?.categoryIndicatorDescription?.description

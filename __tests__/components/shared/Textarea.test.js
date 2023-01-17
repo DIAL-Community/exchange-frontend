@@ -15,12 +15,16 @@ describe('Unit test for the Textarea component.', () => {
     })
 
     test('invalid.', () => {
-      const { container } = render(<Textarea value='test value' placeholder='test placeholder' onChange={mockOnChange} isInvalid />)
+      const { container } = render(
+        <Textarea value='test value' placeholder='test placeholder' onChange={mockOnChange} isInvalid />
+      )
       expect(container).toMatchSnapshot()
     })
 
     test('10 rows high.', () => {
-      const { container } = render(<Textarea value='test value' placeholder='test placeholder' onChange={mockOnChange} rows={10} />)
+      const { container } = render(
+        <Textarea value='test value' placeholder='test placeholder' onChange={mockOnChange} rows={10} />
+      )
       expect(container).toMatchSnapshot()
     })
   })

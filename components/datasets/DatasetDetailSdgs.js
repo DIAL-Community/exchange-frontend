@@ -90,7 +90,10 @@ const DatasetDetailSdgs = ({ dataset, canEdit }) => {
   const onCancel = () => {
     setSdgs(data?.updateDatasetSdgs?.dataset?.sustainableDevelopmentGoals ?? dataset.sustainableDevelopmentGoals)
     setMappingStatus(mappingStatusOptions.find(({ value: mappingStatus }) =>
-      mappingStatus === (data?.updateDatasetSdgs?.dataset?.sustainableDevelopmentGoalMapping ?? dataset.sustainableDevelopmentGoalMapping)
+      mappingStatus === (
+        data?.updateDatasetSdgs?.dataset?.sustainableDevelopmentGoalMapping ??
+        dataset.sustainableDevelopmentGoalMapping
+      )
     ))
     setIsDirty(false)
   }

@@ -239,7 +239,12 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
                                   <Image
                                     height={20}
                                     width={20}
-                                    data-tip={format('tooltip.forEntity', { entity: format('buildingBlock.label'), name: b.name })}
+                                    data-tip={
+                                      format(
+                                        'tooltip.forEntity',
+                                        { entity: format('buildingBlock.label'), name: b.name }
+                                      )
+                                    }
                                     className='building-block-filter' alt={format('image.alt.logoFor', { name: b.name })}
                                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + b.imageFile}
                                   />

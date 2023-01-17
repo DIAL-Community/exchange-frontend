@@ -25,7 +25,11 @@ const QueryNotification = () => {
           <div className='z-100 bg-black fixed top-0 left-0 w-full h-full bg-opacity-60'>
             <div className='w-full h-full flex flex-col justify-center items-center'>
               <div className='text-white'>{format('overlay.message')}</div>
-              <a className='rounded text-white bg-blue-500 px-4 py-3 my-4 text-lg shadow-xl' href='/dismiss-notification-overlay' onClick={closeNotification}>
+              <a
+                className='rounded text-white bg-blue-500 px-4 py-3 my-4 text-lg shadow-xl'
+                href='/dismiss-notification-overlay'
+                onClick={closeNotification}
+              >
                 {format('overlay.close')}
               </a>
             </div>

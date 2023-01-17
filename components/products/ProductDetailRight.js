@@ -46,13 +46,17 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           <div className='card-title text-dial-gray-dark inline'>{format('product.website')}</div>
           <div className='text-base text-dial-teal'>
             <a href={prependUrlWithProtocol(product.website)} target='_blank' rel='noreferrer'>
-              <div className='my-auto'>{product.website} ⧉</div>
+              <div className='my-auto'>
+                {product.website} ⧉
+              </div>
             </a>
           </div>
         </div>
       }
       <div className='mt-8 flex flex-col gap-3 mb-3'>
-        <div className='card-title text-dial-gray-dark inline'>{format('product.license')}</div>
+        <div className='card-title text-dial-gray-dark inline'>
+          {format('product.license')}
+        </div>
         <div className='text-base text-sm'>
           {
             product.commercialProduct
@@ -61,10 +65,13 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           }
         </div>
       </div>
-      <div className='mt-8 card-title mb-3 text-dial-gray-dark'>{format('product.description')}
-        {product.manualUpdate && (
-          <div className='inline ml-5 h5'>{format('product.manualUpdate')}</div>
-        )}
+      <div className='mt-8 card-title mb-3 text-dial-gray-dark'>
+        {format('product.description')}
+        {product.manualUpdate &&
+          <div className='inline ml-5 h5'>
+            {format('product.manualUpdate')}
+          </div>
+        }
       </div>
       <HtmlViewer
         initialContent={product?.productDescription?.description}
@@ -78,7 +85,9 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
       {product.currentProjects && <ProductDetailProjects product={product} canEdit={canEdit} />}
       {product.tags && <ProductDetailTags product={product} canEdit={canEdit} />}
       {product.playbooks.length > 0 && <ProductDetailPlaybooks product={product} />}
-      <div className='mt-12 card-title mb-3 text-dial-gray-dark'>{format('product.source')}</div>
+      <div className='mt-12 card-title mb-3 text-dial-gray-dark'>
+        {format('product.source')}
+      </div>
       <div className='grid grid-cols-3'>
         <div className='pb-5 pr-5'>
           {product.origins.map((origin, i) => {
@@ -93,13 +102,24 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
                     alt={format('image.alt.logoFor', { name: origin.name })}
                   />
                 </div>
-                <div key={i} className='inline mt-0.5 text-sm'>{origin.name}</div>
-                {origin.slug === 'dpga' && product.endorsers.length === 0 && (
-                  <div className='inline ml-2 h5'>{format('product.nominee')}</div>
-                )}
+                <div key={i} className='inline mt-0.5 text-sm'>
+                  {origin.name}
+                </div>
+                {origin.slug === 'dpga' && product.endorsers.length === 0 &&
+                  <div className='inline ml-2 h5'>
+                    {format('product.nominee')}
+                  </div>
+                }
                 {origin.slug === 'dpga' && (
-                  <a className='block ml-3' href={'https://digitalpublicgoods.net/registry/' + product.slug.replaceAll('_', '-')} target='_blank' rel='noreferrer'>
-                    <div className='inline ml-4 text-dial-teal text-sm'>{format('product.view-DPGA-data')}</div>
+                  <a
+                    className='block ml-3'
+                    href={`https://digitalpublicgoods.net/registry/${product.slug.replaceAll('_', '-')}`}
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    <div className='inline ml-4 text-dial-teal text-sm'>
+                      {format('product.view-DPGA-data')}
+                    </div>
                   </a>
                 )}
               </div>
@@ -107,7 +127,11 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           })}
         </div>
         <div className='pb-5 pr-5 col-span-2'>
-          {product.endorsers.length > 0 && <div className='h5 pb-1'>{format('product.endorsers')}</div>}
+          {product.endorsers.length > 0 &&
+            <div className='h5 pb-1'>
+              {format('product.endorsers')}
+            </div>
+          }
           {product.endorsers.length > 0 && product.endorsers.map((endorser, i) => {
             return (
               <div key={i}>
@@ -119,7 +143,9 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
                     src={'/images/origins/' + endorser.slug + '.png'}
                     className='inline'
                   />
-                  <div key={i} className='text-sm inline ml-2'>{format('product.endorsed-by') + endorser.name}</div>
+                  <div key={i} className='text-sm inline ml-2'>
+                    {format('product.endorsed-by') + endorser.name}
+                  </div>
                 </div>
               </div>
             )
@@ -143,35 +169,43 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
       <RepositoryList productSlug={product.slug} />
       <div className='mt-12 grid grid-cols-1 xl:grid-cols-2 gap-y-12 xl:gap-y-0'>
         <div>
-          <div className='card-title mb-3 text-dial-gray-dark'>{format('product.interoperable')}</div>
+          <div className='card-title mb-3 text-dial-gray-dark'>
+            {format('product.interoperable')}
+          </div>
           {
             (product.interoperatesWith.length > 0)
-              ? product.interoperatesWith.map((interopProd, index) => {
-                return (
-                  <div key={index} className='pb-5 mr-6'>
-                    <ProductCard product={interopProd} listType='list' />
-                  </div>
-                )
-              })
-              : (<div className='text-sm pb-5 text-button-gray'>{format('product.no-interop')}</div>)
+              ? product.interoperatesWith.map((interopProd, index) =>
+                <div key={index} className='pb-5 mr-6'>
+                  <ProductCard product={interopProd} listType='list' />
+                </div>
+              )
+              : <div className='text-sm pb-5 text-button-gray'>
+                {format('product.no-interop')}
+              </div>
           }
         </div>
         <div>
-          <div className='card-title mb-3 text-dial-gray-dark'>{format('product.included')}</div>
+          <div className='card-title mb-3 text-dial-gray-dark'>
+            {format('product.included')}
+          </div>
           {
             (product.includes.length > 0)
-              ? product.includes.map((includeProd, index) => {
-                return (
-                  <div key={index} className='pb-5 mr-6'>
-                    <ProductCard product={includeProd} listType='list' />
-                  </div>
-                )
-              })
-              : (<div className='text-sm pb-5 text-button-gray'>{format('product.no-include')}</div>)
+              ? product.includes.map((includeProd, index) =>
+                <div key={index} className='pb-5 mr-6'>
+                  <ProductCard product={includeProd} listType='list' />
+                </div>
+              )
+              : <div className='text-sm pb-5 text-button-gray'>
+                {format('product.no-include')}
+              </div>
           }
         </div>
       </div>
-      <ProductDetailMaturityScores slug={product.slug} maturityScore={product.maturityScore} maturityScoreDetails={product.maturityScoreDetails} />
+      <ProductDetailMaturityScores
+        slug={product.slug}
+        maturityScore={product.maturityScore}
+        maturityScoreDetails={product.maturityScoreDetails}
+      />
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={product.id}

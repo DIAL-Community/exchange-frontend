@@ -212,12 +212,21 @@ const OrganizationForm = () => {
                       control={control}
                       rules={{ required: format('validation.required') }}
                       render={({ field: { onChange, ref } }) => {
-                        return (<ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} ref={ref} onChange={onChange} />)
+                        return (
+                          <ReCAPTCHA
+                            sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+                            ref={ref} onChange={onChange}
+                          />
+                        )
                       }}
                     />
                     {errors.captcha && <ValidationError value={errors.captcha?.message} />}
                   </div>
-                  <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }} data-testid='candidate-organization-description'>
+                  <div
+                    className='w-full lg:w-2/3'
+                    style={{ minHeight: '20rem' }}
+                    data-testid='candidate-organization-description'
+                  >
                     <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
                       <p className='required-field'> {format('candidateOrganization.description')}</p>
                       <Controller

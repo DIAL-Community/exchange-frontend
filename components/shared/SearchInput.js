@@ -4,7 +4,15 @@ import classNames from 'classnames'
 
 const EMPTY_VALUE = ''
 
-export const SearchInput = ({ value, placeholder, onChange, onBlur, onSearchIconClick = null, className, ...otherProps }) => (
+export const SearchInput = ({
+  value,
+  placeholder,
+  onChange,
+  onBlur,
+  onSearchIconClick = null,
+  className,
+  ...otherProps
+}) => (
   <div className='flex items-center'>
     <input
       {...otherProps}

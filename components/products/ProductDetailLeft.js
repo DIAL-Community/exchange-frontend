@@ -273,11 +273,13 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
         {
           user && product.owner &&
             <>
-              {
-                contactState === CONTACT_STATES[1] &&
-                  <div className='mt-2'>
-                    <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} onChange={updateContactInfo} ref={captchaRef} />
-                  </div>
+              {contactState === CONTACT_STATES[1] &&
+                <div className='mt-2'>
+                  <ReCAPTCHA
+                    sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+                    onChange={updateContactInfo} ref={captchaRef}
+                  />
+                </div>
               }
               {
                 contactState === CONTACT_STATES[2] &&
@@ -285,7 +287,9 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
                     {format('ownership.label')}:
                     <a
                       className='text-dial-yellow mx-2 mt-2 border-b border-transparent hover:border-dial-yellow'
-                      href={`mailto:${emailAddress}`} target='_blank' rel='noreferrer'
+                      href={`mailto:${emailAddress}`}
+                      target='_blank'
+                      rel='noreferrer'
                     >
                       {emailAddress}
                     </a>

@@ -125,7 +125,10 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
         {sdgTargets.map((sdgTarget, sdgTargetIdx) => (
           <Pill
             key={`sdgTargets-${sdgTargetIdx}`}
-            label={`${sdgTarget.targetNumber}: ${sdgTarget.name.substring(SDG_TARGET_NAME_INDEX_START, SDG_TARGET_NAME_INDEX_END)}...`}
+            label={
+              `${sdgTarget.targetNumber}: ` +
+              `${sdgTarget.name.substring(SDG_TARGET_NAME_INDEX_START, SDG_TARGET_NAME_INDEX_END)}...`
+            }
             onRemove={() => removeSdgTargets(sdgTarget)}
           />
         ))}

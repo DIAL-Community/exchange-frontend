@@ -3,7 +3,10 @@ import classNames from 'classnames'
 
 const Card = ({ onClick, href, children, className }) => {
 
-  const cardContainerStyles = classNames('border-3 border-transparent', { 'hover:border-dial-yellow cursor-pointer': onClick || href })
+  const cardContainerStyles = classNames(
+    'border-3 border-transparent',
+    { 'hover:border-dial-yellow cursor-pointer': onClick || href }
+  )
 
   const CardBody = () => (
     <div className={classNames(className, 'grid gap-x-4 py-4 px-8 w-full border border-dial-gray card-drop-shadow')}>

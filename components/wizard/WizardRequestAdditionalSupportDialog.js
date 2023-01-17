@@ -38,7 +38,8 @@ const WizardRequestAdditionalSupportDialog = ({ isOpen, onClose }) => {
     shouldUnregister: true
   })
 
-  const doUpsert = async ({ name, emailAddress, message }) => createWizardGuidanceMail({ variables: { name, emailAddress, message } })
+  const doUpsert = async ({ name, emailAddress, message }) =>
+    createWizardGuidanceMail({ variables: { name, emailAddress, message } })
 
   return (
     <Dialog
@@ -92,8 +93,20 @@ const WizardRequestAdditionalSupportDialog = ({ isOpen, onClose }) => {
                 {...register('message',
                   {
                     required: format('validation.required'),
-                    minLength: { value: MESSAGE_MIN_LENGTH, message: format('validation.min-length', { minLength: MESSAGE_MIN_LENGTH }) },
-                    maxLength: { value: MESSAGE_MAX_LENGTH, message: format('validation.max-length', { maxLength: MESSAGE_MAX_LENGTH }) }
+                    minLength: {
+                      value: MESSAGE_MIN_LENGTH,
+                      message: format(
+                        'validation.min-length',
+                        { minLength: MESSAGE_MIN_LENGTH }
+                      )
+                    },
+                    maxLength: {
+                      value: MESSAGE_MAX_LENGTH,
+                      message: format(
+                        'validation.max-length',
+                        { maxLength: MESSAGE_MAX_LENGTH }
+                      )
+                    }
                   }
                 )}
                 id='message'

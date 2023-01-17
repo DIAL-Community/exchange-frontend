@@ -14,13 +14,29 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
     variables: { sectorsSlugs: allValues?.sectors?.map((sector) => sector.slug) } }
   )
 
-  const addSector = (sector) => setAllValues(prevValues => ({ ...prevValues, sectors: [...allValues.sectors.filter(({ slug }) => slug !== sector.slug), sector] }))
+  const addSector = (sector) =>
+    setAllValues(prevValues => ({
+      ...prevValues,
+      sectors: [...allValues.sectors.filter(({ slug }) => slug !== sector.slug), sector]
+    }))
 
-  const removeSector = (sector) => setAllValues(prevValues => ({ ...prevValues, sectors: allValues.sectors.filter(value => value !== sector) }))
+  const removeSector = (sector) =>
+    setAllValues(prevValues => ({
+      ...prevValues,
+      sectors: allValues.sectors.filter(value => value !== sector)
+    }))
 
-  const addSdg = (sdg) => setAllValues(prevValues => ({ ...prevValues, sdgs: [...allValues.sdgs.filter(({ slug }) => slug !== sdg.slug), sdg] }))
+  const addSdg = (sdg) =>
+    setAllValues(prevValues => ({
+      ...prevValues,
+      sdgs: [...allValues.sdgs.filter(({ slug }) => slug !== sdg.slug), sdg]
+    }))
 
-  const removeSdg = (sdg) => setAllValues(prevValues => ({ ...prevValues, sdgs: allValues.sdgs.filter(value => value !== sdg) }))
+  const removeSdg = (sdg) =>
+    setAllValues(prevValues => ({
+      ...prevValues,
+      sdgs: allValues.sdgs.filter(value => value !== sdg)
+    }))
 
   return (
     <div className='lg:flex gap-12'>
@@ -103,7 +119,12 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
   }
 
   const removeCountry = (countryValue) => {
-    setAllValues(prevValues => { return { ...prevValues, countries: allValues.countries.filter(val => val !== countryValue) } })
+    setAllValues(prevValues => {
+      return {
+        ...prevValues,
+        countries: allValues.countries.filter(val => val !== countryValue)
+      }
+    })
   }
 
   return (
@@ -159,8 +180,18 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
                 <Checkbox
                   onChange={(e) => e.currentTarget.checked
                     ? allValues.mobileServices.push(service.value) &&
-                        setAllValues(prevValues => { return { ...prevValues, mobileServices: allValues.mobileServices } })
-                    : setAllValues(prevValues => { return { ...prevValues, mobileServices: allValues.mobileServices.filter(val => val !== service.value) } })}
+                        setAllValues(prevValues => {
+                          return {
+                            ...prevValues,
+                            mobileServices: allValues.mobileServices
+                          }
+                        })
+                    : setAllValues(prevValues => {
+                      return {
+                        ...prevValues,
+                        mobileServices: allValues.mobileServices.filter(val => val !== service.value)
+                      }
+                    })}
                 />
                 <span className='pl-2'>
                   {service.label}
@@ -202,7 +233,12 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
                   {format('wizard.yes')}
                 </button>
                 <button
-                  onClick={() => setAllValues(prevValues => ({ ...prevValues, buildingBlocks: allValues.buildingBlocks.filter(val => val !== bb.name) }))}
+                  onClick={() => setAllValues(
+                    prevValues => ({
+                      ...prevValues,
+                      buildingBlocks: allValues.buildingBlocks.filter(val => val !== bb.name)
+                    })
+                  )}
                   className={allValues.buildingBlocks.includes(bb.name) ? classNameNotSelected : classNameSelected}
                 >
                   {format('wizard.no')}

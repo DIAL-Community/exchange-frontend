@@ -71,7 +71,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                       class="h5 float-right inline"
                     >
                       Category score
-                      : 
+                      :
                       90
                        / 
                       100
@@ -391,7 +391,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                       class="h5 float-right inline"
                     >
                       Category score
-                      : 
+                      :
                       80
                        / 
                       100
@@ -711,7 +711,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                       class="h5 float-right inline"
                     >
                       Category score
-                      : 
+                      :
                       90
                        / 
                       100
@@ -1137,15 +1137,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     <div
                       class="text-sm text-dial-gray-dark"
                     >
-                      <p>
-                        The code is released under one of the preferred copyleft licenses explained in our 
-                        <a
-                          href="https://www.osc.dial.community/licensing-principles"
-                        >
-                          Licensing Principles
-                        </a>
-                        .
-                      </p>
+                      Another description text.
                     </div>
                   </div>
                   <div
@@ -1260,9 +1252,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     <div
                       class="text-sm text-dial-gray-dark"
                     >
-                      <p>
-                        Libraries that are mandatory dependencies of the project's code do not create more restrictions than the project's license does.
-                      </p>
+                      Another description text.
                     </div>
                   </div>
                   <div
@@ -1671,9 +1661,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     <div
                       class="text-sm text-dial-gray-dark"
                     >
-                      <p>
-                        The project is open and honest about the quality of its code. Various levels of quality and maturity for various modules are natural and acceptable as long as they are clearly communicated.
-                      </p>
+                      Another description text.
                     </div>
                   </div>
                   <div
@@ -1788,9 +1776,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     <div
                       class="text-sm text-dial-gray-dark"
                     >
-                      <p>
-                        In particular, there are either no monoliths or god classes, or they are known and there is a roadmap to refactor them.
-                      </p>
+                      Another description text.
                     </div>
                   </div>
                   <div
@@ -2056,9 +2042,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     <div
                       class="text-sm text-dial-gray-dark"
                     >
-                      <p>
-                        Releases consist of source code, distributed using standard and open archive formats that are expected to stay readable in the long term.
-                      </p>
+                      Another description text.
                     </div>
                   </div>
                   <div
@@ -2173,9 +2157,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     <div
                       class="text-sm text-dial-gray-dark"
                     >
-                      <p>
-                        Releases are signed and/or distributed along with digests that can be reliably used to validate the downloaded archives.
-                      </p>
+                      Another description text.
                     </div>
                   </div>
                   <div

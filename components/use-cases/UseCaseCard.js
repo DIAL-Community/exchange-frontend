@@ -32,13 +32,17 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
   useEffect(() => {
     const wc = workflowContainer.current
     if (wc) {
-      const workflowOverflow = wc.offsetHeight < wc.scrollHeight || wc.offsetWidth < wc.scrollWidth
+      const workflowOverflow =
+        wc.offsetHeight < wc.scrollHeight ||
+        wc.offsetWidth < wc.scrollWidth
       setWorkflowOverflow(workflowOverflow)
     }
 
     const sc = sdgTargetContainer.current
     if (sc) {
-      const sdgTargetOverflow = sc.offsetHeight < sc.scrollHeight || sc.offsetWidth < sc.scrollWidth
+      const sdgTargetOverflow =
+        sc.offsetHeight < sc.scrollHeight ||
+        sc.offsetWidth < sc.scrollWidth
       setSdgTargetOverflow(sdgTargetOverflow)
     }
   }, [workflowOverflow, sdgTargetOverflow])
@@ -68,7 +72,9 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
   const nameColSpan = (useCase) => {
     return !useCase.sdgTargets && !workflows
       ? 'col-span-9 lg:col-span-10'
-      : filterDisplayed ? 'col-span-9 lg:col-span-10 xl:col-span-4' : 'col-span-9 md:col-span-10 lg:col-span-4'
+      : filterDisplayed
+        ? 'col-span-9 lg:col-span-10 xl:col-span-4'
+        : 'col-span-9 md:col-span-10 lg:col-span-4'
   }
 
   return (
@@ -84,15 +90,19 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
                       <Image
                         height={20}
                         width={20}
-                        alt={format('image.alt.logoFor', { name: useCase.name })} className='use-case-filter'
+                        alt={format('image.alt.logoFor', { name: useCase.name })}
+                        className='use-case-filter'
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
                       />
                       <span className='ml-4'>
                         {useCase.name}
                       </span>
-                      {
-                        useCase.sdgTargets &&
-                        <div className={`block ${filterDisplayed ? 'xl:hidden' : 'lg:hidden'} flex flex-row mt-1`}>
+                      {useCase.sdgTargets &&
+                        <div
+                          className={`
+                            block ${filterDisplayed ? 'xl:hidden' : 'lg:hidden'}
+                            flex flex-row mt-1`}
+                        >
                           <div className='text-sm font-normal'>
                             {format('sdg.sdgTargets')}:
                           </div>
@@ -105,9 +115,14 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
                           </div>
                         </div>
                       }
-                      {
-                        workflows &&
-                        <div className={`block ${filterDisplayed ? 'xl:hidden' : 'lg:hidden'} text-workflow flex flex-row mt-1`}>
+                      {workflows &&
+                        <div
+                          className={`
+                            block
+                            ${filterDisplayed ? 'xl:hidden' : 'lg:hidden'}
+                            text-workflow flex flex-row mt-1
+                          `}
+                        >
                           <div className='text-sm font-normal'>
                             {format('workflow.header')}:
                           </div>
@@ -130,9 +145,8 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
                         `}
                       >
                         {useCase.sdgTargets.length === 0 && format('general.na')}
-                        {
-                          useCase.sdgTargets.length > 0 &&
-                            useCase.sdgTargets.map(u => u.targetNumber).join(', ')
+                        {useCase.sdgTargets.length > 0 &&
+                          useCase.sdgTargets.map(u => u.targetNumber).join(', ')
                         }
                       </div>
                     }
@@ -145,13 +159,14 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
                         `}
                       >
                         {workflows.length === 0 && format('general.na')}
-                        {
-                          workflows.length > 0 &&
-                            workflows.map(b => b.name).join(', ')
+                        {workflows.length > 0 &&
+                          workflows.map(b => b.name).join(', ')
                         }
                       </div>
                     }
-                    <div className='col-span-2 lg:col-span-1 text-right font-semibold opacity-50 justify-end'>
+                    <div
+                      className='col-span-2 lg:col-span-1 text-right font-semibold opacity-50 justify-end'
+                    >
                       {useCase.maturity}
                     </div>
                   </div>
@@ -174,7 +189,8 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
                       <Image
                         layout='fill'
                         objectFit='contain'
-                        alt={format('image.alt.logoFor', { name: useCase.name })} className='use-case-filter'
+                        alt={format('image.alt.logoFor', { name: useCase.name })}
+                        className='use-case-filter'
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
                       />
                     </div>
@@ -182,84 +198,95 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
                   <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark '>
                     <div className='flex flex-row border-b border-dial-gray'>
                       <div className='pl-3 py-3 text-dial-teal-light flex flex-row'>
-                        <div className='text-base my-auto whitespace-nowrap text-sdg-target mr-2'>{format('use-case.sdg-targets')}</div>
+                        <div className='text-base my-auto whitespace-nowrap text-sdg-target mr-2'>
+                          {format('use-case.sdg-targets')}
+                        </div>
                         <div className='flex flex-row'>
                           <div
                             className='pl-3 flex flex-row flex-wrap font-semibold overflow-hidden'
                             style={{ maxHeight: '40px' }}
                             ref={sdgTargetContainer}
                           >
-                            {
-                              useCase.sdgTargets.length === 0 &&
+                            {useCase.sdgTargets.length === 0 &&
                               <div className='bg-white p-2 text-use-case rounded text-base'>
                                 {format('general.na')}
                               </div>
                             }
-                            {
-                              useCase.sdgTargets
-                                .map(s => (
-                                  <div key={`${useCase.id}-${s.id}`} className='bg-white rounded text-sdg-target p-2 mr-1.5 cursor-default' data-tip={`${s.name}.`}>
-                                    {s.targetNumber}
-                                  </div>
-                                ))
+                            {useCase.sdgTargets
+                              .map(s =>
+                                <div
+                                  key={`${useCase.id}-${s.id}`}
+                                  className='bg-white rounded text-sdg-target p-2 mr-1.5 cursor-default'
+                                  data-tip={`${s.name}.`}
+                                >
+                                  {s.targetNumber}
+                                </div>
+                              )
                             }
                           </div>
-                          {
-                            sdgTargetOverflow && (
-                              <div className='bg-white mr-3 px-2 rounded text-sm text-sdg-target'>
-                                <span
-                                  className='text-xl bg-white leading-normal'
-                                  data-tip={format('tooltip.ellipsisFor', { entity: format('useCase.label') })}
-                                >
-                                &hellip;
-                                </span>
-                              </div>
-                            )
+                          {sdgTargetOverflow &&
+                            <div className='bg-white mr-3 px-2 rounded text-sm text-sdg-target'>
+                              <span
+                                className='text-xl bg-white leading-normal'
+                                data-tip={format(
+                                  'tooltip.ellipsisFor',
+                                  { entity: format('useCase.label') })
+                                }
+                              >
+                              &hellip;
+                              </span>
+                            </div>
                           }
                         </div>
                       </div>
                     </div>
                     <div className='flex flex-row text-dial-gray-dark'>
                       <div className='py-3 flex flex-row'>
-                        <div className='pl-3 text-base text-workflow my-auto'>{format('use-case.workflow')}</div>
+                        <div className='pl-3 text-base text-workflow my-auto'>
+                          {format('use-case.workflow')}
+                        </div>
                         <div className='flex flex-row'>
                           <div
                             className='pl-3 flex flex-row flex-wrap font-semibold overflow-hidden'
                             style={{ maxHeight: '40px' }}
                             ref={workflowContainer}
                           >
-                            {
-                              workflows.length === 0 &&
+                            {workflows.length === 0 &&
                               <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
                                 {format('general.na')}
                               </div>
                             }
-                            {
-                              workflows
-                                .map(w => (
-                                  <div key={`${useCase.id}-${w.id}`} className='bg-white rounded p-2 mr-1 cursor-default'>
-                                    <Image
-                                      height={20}
-                                      width={20}
-                                      data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: w.name })}
-                                      className='workflow-filter' alt={format('image.alt.logoFor', { name: w.name })}
-                                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + w.imageFile}
-                                    />
-                                  </div>
-                                ))
+                            {workflows
+                              .map(w =>
+                                <div key={`${useCase.id}-${w.id}`}
+                                  className='bg-white rounded p-2 mr-1 cursor-default'
+                                >
+                                  <Image
+                                    height={20}
+                                    width={20}
+                                    data-tip={
+                                      format(
+                                        'tooltip.forEntity',
+                                        { entity: format('workflow.label'), name: w.name }
+                                      )
+                                    }
+                                    className='workflow-filter'
+                                    alt={format('image.alt.logoFor', { name: w.name })}
+                                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + w.imageFile}
+                                  />
+                                </div>
+                              )
                             }
                           </div>
-                          {
-                            workflowOverflow && (
-                              <div className='bg-white mr-3 px-2 rounded text-sm'>
-                                <span
-                                  className='text-xl text-workflow bg-white leading-normal'
-                                  data-tip={format('tooltip.ellipsisFor', { entity: format('useCase.label') })}
-                                >
-                                &hellip;
-                                </span>
-                              </div>
-                            )
+                          {workflowOverflow &&
+                            <div className='bg-white mr-3 px-2 rounded text-sm'>
+                              <span
+                                className='text-xl text-workflow bg-white leading-normal'
+                                data-tip={format('tooltip.ellipsisFor', { entity: format('useCase.label') })}
+                              >
+                              &hellip;
+                              </span>
+                            </div>
                           }
                         </div>
                       </div>

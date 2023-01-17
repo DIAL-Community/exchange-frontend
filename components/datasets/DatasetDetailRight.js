@@ -131,7 +131,12 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
                 />
                 <div key={i} className='inline ml-2 text-sm'>{origin.name}</div>
                 {origin.slug === 'dpga' && (
-                  <a className='block ml-3' href={'https://digitalpublicgoods.net/registry/' + dataset.slug.replaceAll('_', '-')} target='_blank' rel='noreferrer'>
+                  <a
+                    className='block ml-3'
+                    href={`https://digitalpublicgoods.net/registry/${dataset.slug.replaceAll('_', '-')}`}
+                    target='_blank'
+                    rel='noreferrer'
+                  >
                     <div className='inline ml-4 text-dial-teal text-sm'>{format('dataset.view-DPGA-data')}</div>
                   </a>
                 )}

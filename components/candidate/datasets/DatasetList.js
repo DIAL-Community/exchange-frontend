@@ -60,7 +60,10 @@ const DatasetListQuery = () => {
       search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.candidateDatasets']]: data.searchCandidateDatasets.totalCount } })
+      setResultCounts({
+        ...resultCounts,
+        ...{ [['filter.entity.candidateDatasets']]: data.searchCandidateDatasets.totalCount }
+      })
     }
   })
 

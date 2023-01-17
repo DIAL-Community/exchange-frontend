@@ -548,10 +548,16 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
       class="relative w-full bg-dial-gray-light text-dial-purple-light"
     >
       <div
-        class="px-4 2xl:px-24 pt-8 2xl:pb-8 lg:flex lg:flex-row flex-wrap justify-center 2xl:justify-start max-w-catalog mx-auto"
+        class="
+            px-4 2xl:px-24 pt-8 2xl:pb-8 lg:flex lg:flex-row flex-wrap
+            justify-center 2xl:justify-start max-w-catalog mx-auto
+          "
       >
         <div
-          class="max-w-prose sm:w-full lg:flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto text-center 2xl:text-left"
+          class="
+              max-w-prose sm:w-full lg:flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto
+              text-center 2xl:text-left
+            "
         >
           
     The Digital Impact Alliance is a partnership amongst some of the world’s most active
@@ -703,10 +709,16 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
         />
       </div>
       <div
-        class="px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap justify-center 2xl:justify-start max-w-catalog mx-auto"
+        class="
+            px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap
+            justify-center 2xl:justify-start max-w-catalog mx-auto
+          "
       >
         <div
-          class="w-full lg:max-w-2/4 2xl:max-w-prose flex-auto my-auto md:text-center 2xl:text-left"
+          class="
+              w-full lg:max-w-2/4 2xl:max-w-prose flex-auto my-auto md:text-center
+              2xl:text-left
+            "
         >
           
     We are also thankful for direct support for this Catalog of Digital Solutions provided
@@ -1465,10 +1477,16 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
       class="relative w-full bg-dial-gray-light text-dial-purple-light"
     >
       <div
-        class="px-4 2xl:px-24 pt-8 2xl:pb-8 lg:flex lg:flex-row flex-wrap justify-center 2xl:justify-start max-w-catalog mx-auto"
+        class="
+            px-4 2xl:px-24 pt-8 2xl:pb-8 lg:flex lg:flex-row flex-wrap
+            justify-center 2xl:justify-start max-w-catalog mx-auto
+          "
       >
         <div
-          class="max-w-prose sm:w-full lg:flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto text-center 2xl:text-left"
+          class="
+              max-w-prose sm:w-full lg:flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto
+              text-center 2xl:text-left
+            "
         >
           
     The Digital Impact Alliance is a partnership amongst some of the world’s most active
@@ -1620,10 +1638,16 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
         />
       </div>
       <div
-        class="px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap justify-center 2xl:justify-start max-w-catalog mx-auto"
+        class="
+            px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap
+            justify-center 2xl:justify-start max-w-catalog mx-auto
+          "
       >
         <div
-          class="w-full lg:max-w-2/4 2xl:max-w-prose flex-auto my-auto md:text-center 2xl:text-left"
+          class="
+              w-full lg:max-w-2/4 2xl:max-w-prose flex-auto my-auto md:text-center
+              2xl:text-left
+            "
         >
           
     We are also thankful for direct support for this Catalog of Digital Solutions provided

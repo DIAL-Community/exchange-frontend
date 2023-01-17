@@ -28,7 +28,12 @@ const UseCases = () => {
     <>
       <NextSeo
         title={format('use-case.header')}
-        description={format('shared.metadata.description.listOfKey', { entities: format('use-case.header')?.toLocaleLowerCase() })}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('use-case.header')?.toLocaleLowerCase() }
+          )
+        }
       />
       <QueryNotification />
       <GradientBackground />

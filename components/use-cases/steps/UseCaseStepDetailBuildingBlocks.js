@@ -28,18 +28,20 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateUseCaseStepBuildingBlocks, { data, loading }] = useMutation(UPDATE_USE_CASE_STEP_BUILDING_BLOCKS, {
-    onCompleted: (data) => {
-      setBuildingBlocks(data.updateUseCaseStepBuildingBlocks.useCaseStep.buildingBlocks)
-      setIsDirty(false)
-      showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
-    },
-    onError: () => {
-      setBuildingBlocks(useCaseStep.buildingBlocks)
-      setIsDirty(false)
-      showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+  const [updateUseCaseStepBuildingBlocks, { data, loading }] = useMutation(
+    UPDATE_USE_CASE_STEP_BUILDING_BLOCKS, {
+      onCompleted: (data) => {
+        setBuildingBlocks(data.updateUseCaseStepBuildingBlocks.useCaseStep.buildingBlocks)
+        setIsDirty(false)
+        showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
+      },
+      onError: () => {
+        setBuildingBlocks(useCaseStep.buildingBlocks)
+        setIsDirty(false)
+        showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+      }
     }
-  })
+  )
 
   const fetchedBuildingBlocksCallback = (data) => (
     data.buildingBlocks.map((buildingBlock) => ({
@@ -81,7 +83,10 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
   }
 
   const onCancel = () => {
-    setBuildingBlocks(data?.updateUseCaseStepBuildingBlocks?.useCaseStep?.buildingBlocks ?? useCaseStep.buildingBlocks)
+    setBuildingBlocks(
+      data?.updateUseCaseStepBuildingBlocks?.useCaseStep?.buildingBlocks ??
+      useCaseStep.buildingBlocks
+    )
     setIsDirty(false)
   }
 
@@ -90,7 +95,11 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
       {buildingBlocks.length ? (
         <div className='grid grid-cols-1'>
           {buildingBlocks.map((buildingBlock, buildingBlockIdx) =>
-            <BuildingBlockCard key={buildingBlockIdx} buildingBlock={buildingBlock} listType='list' />
+            <BuildingBlockCard
+              key={buildingBlockIdx}
+              buildingBlock={buildingBlock}
+              listType='list'
+            />
           )}
         </div>
       ) : (
@@ -113,8 +122,18 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
           defaultOptions
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-          loadOptions={(input) => fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('building-block.header') })}
+          loadOptions={
+            (input) =>
+              fetchSelectOptions(
+                client,
+                input,
+                BUILDING_BLOCK_SEARCH_QUERY,
+                fetchedBuildingBlocksCallback
+              )
+          }
+          noOptionsMessage={() =>
+            format('filter.searchFor', { entity: format('building-block.header') })
+          }
           onChange={addBuildingBlock}
           value={null}
         />

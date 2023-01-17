@@ -138,7 +138,10 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
                   </label>
                 </div>
                 <div className='w-full lg:w-full flex flex-col gap-y-3'>
-                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue' data-testid='organization-is-mni'>
+                  <label
+                    className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'
+                    data-testid='organization-is-mni'
+                  >
                     <Checkbox {...register('mainRepository')} />
                     {format('productRepository.mainRepository.label')}
                   </label>

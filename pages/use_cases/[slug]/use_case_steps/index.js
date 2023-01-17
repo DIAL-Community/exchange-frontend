@@ -70,7 +70,13 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
         <div className='w-full mb-2'>
-          {session?.user && <CreateButton type='link' label={format('use-case-step.create')} href={`/use_cases/${data.useCase.slug}/use_case_steps/create`} />}
+          {session?.user &&
+            <CreateButton
+              type='link'
+              label={format('use-case-step.create')}
+              href={`/use_cases/${data.useCase.slug}/use_case_steps/create`}
+            />
+          }
         </div>
         {data?.useCase && <UseCaseHeader useCase={data.useCase} />}
         <StepList useCaseSlug={slug} stepSlug={stepSlug} listStyle='compact' shadowOnContainer />

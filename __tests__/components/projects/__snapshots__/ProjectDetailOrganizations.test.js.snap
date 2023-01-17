@@ -278,9 +278,12 @@ exports[`Unit test for the ProjectDetailOrganizations component. Should match sn
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-6/12 text-base font-semibold text-dial-gray-dark my-auto  
+                class="
+                          w-10/12 lg:w-6/12 text-base font-semibold text-dial-gray-dark my-auto
+                          
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+
+                        "
               >
                 <img
                   alt="Logo for: Test Organization"
@@ -323,9 +326,12 @@ exports[`Unit test for the ProjectDetailOrganizations component. Should match sn
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-6/12 text-base font-semibold text-dial-gray-dark my-auto  
+                class="
+                          w-10/12 lg:w-6/12 text-base font-semibold text-dial-gray-dark my-auto
+                          
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+
+                        "
               >
                 <img
                   alt="Logo for: owned organization"
@@ -591,9 +597,12 @@ exports[`Unit test for the ProjectDetailOrganizations component. Should match sn
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-6/12 text-base font-semibold text-dial-gray-dark my-auto  
+                class="
+                          w-10/12 lg:w-6/12 text-base font-semibold text-dial-gray-dark my-auto
+                          
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+
+                        "
               >
                 <img
                   alt="Logo for: Test Organization"
@@ -636,9 +645,12 @@ exports[`Unit test for the ProjectDetailOrganizations component. Should match sn
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-6/12 text-base font-semibold text-dial-gray-dark my-auto  
+                class="
+                          w-10/12 lg:w-6/12 text-base font-semibold text-dial-gray-dark my-auto
+                          
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+
+                        "
               >
                 <img
                   alt="Logo for: owned organization"

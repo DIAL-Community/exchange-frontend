@@ -38,7 +38,11 @@ const LeftMenu = ({ currentSection, clickHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const sectionStyle = (sectionPosition) => classNames({ 'bg-button-gray border-l-2 border-dial-gray-light': currentSection === sectionPosition }, 'cursor-pointer')
+  const sectionStyle = (sectionPosition) =>
+    classNames(
+      { 'bg-button-gray border-l-2 border-dial-gray-light': currentSection === sectionPosition },
+      'cursor-pointer'
+    )
 
   return (
     <div className='self-end py-3 w-3/4'>
@@ -224,7 +228,10 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
             </div>
           </div>
         </div>
-        <div ref={parentRef} className='bg-dial-gray-light text-button-gray-light p-6 lg:w-3/4 h-screen overflow-y-scroll wizard-content'>
+        <div
+          ref={parentRef}
+          className='bg-dial-gray-light text-button-gray-light p-6 lg:w-3/4 h-screen overflow-y-scroll wizard-content'
+        >
           <button
             className='bg-dial-gray p-4 float-right rounded text-button-gray-light'
             onClick={() => { router.push('/products') }}
@@ -368,7 +375,11 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
               {format('wizard.results.buildingBlocks')}
             </div>
             <div className='pb-4 text-sm'>
-              {wizardData.buildingBlocks && wizardData.buildingBlocks.length ? format('wizard.results.buildingBlocksDesc') : format('wizard.results.noBuildingBlocks')}
+              {wizardData.buildingBlocks &&
+                wizardData.buildingBlocks.length
+                ? format('wizard.results.buildingBlocksDesc')
+                : format('wizard.results.noBuildingBlocks')
+              }
             </div>
             <div className='pb-6 grid grid-cols-1 w-3/4'>
               {

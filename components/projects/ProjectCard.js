@@ -44,7 +44,10 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
             ? (
               <div className={containerElementStyle}>
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
-                  <div className='flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 justify-between' style={{ minHeight: '4.5rem' }}>
+                  <div
+                    className='flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 justify-between'
+                    style={{ minHeight: '4.5rem' }}
+                  >
                     <div className={`w-10/12 lg:w-3/12 my-auto font-semibold ${ellipsisTextStyle}`}>
                       {project.name}
                     </div>

@@ -152,7 +152,9 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                 <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark cursor-default'>
                   <div className='flex flex-row border-b border-dial-gray'>
                     <div className='pl-3 py-3 text-dial-teal-light flex flex-row'>
-                      <div className='text-base whitespace-nowrap my-auto text-sdg-target mr-2'>{format('sdg.sdgTargets')}</div>
+                      <div className='text-base whitespace-nowrap my-auto text-sdg-target mr-2'>
+                        {format('sdg.sdgTargets')}
+                      </div>
                       <div className='flex flex-row'>
                         <div
                           className='flex flex-row flex-wrap font-semibold overflow-hidden'
@@ -214,8 +216,14 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                                   <Image
                                     height={20}
                                     width={20}
-                                    data-tip={format('tooltip.forEntity', { entity: format('useCase.label'), name: useCase.name })}
-                                    className='m-auto h-6 use-case-filter' alt={format('image.alt.logoFor', { name: useCase.name })}
+                                    data-tip={
+                                      format(
+                                        'tooltip.forEntity',
+                                        { entity: format('useCase.label'), name: useCase.name }
+                                      )
+                                    }
+                                    className='m-auto h-6 use-case-filter'
+                                    alt={format('image.alt.logoFor', { name: useCase.name })}
                                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
                                   />
                                 </div>

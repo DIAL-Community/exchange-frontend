@@ -19,7 +19,9 @@ const CountryMarkers = (props) => {
 
   const markerClickHandler = (e, countryId) => {
     countryMarkerGroup.current.eachLayer(layer => {
-      const layerOpacity = layer._leaflet_id === e.target._leaflet_id ? SELECTED_OPACITY : NON_SELECTED_OPACITY
+      const layerOpacity = layer._leaflet_id === e.target._leaflet_id
+        ? SELECTED_OPACITY
+        : NON_SELECTED_OPACITY
       layer.setOpacity(layerOpacity)
     })
     setSelectedCountry(countryId)

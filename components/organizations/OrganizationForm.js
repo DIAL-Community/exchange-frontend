@@ -48,7 +48,9 @@ const OrganizationForm = React.memo(({ organization }) => {
       website: organization?.website ?? '',
       isEndorser: organization?.isEndorser,
       whenEndorsed: organization?.whenEndorsed ?? null,
-      endorserLevel: endorserLevelOptions.find(({ value }) => value === organization?.endorserLevel) ?? endorserLevelOptions[0],
+      endorserLevel:
+        endorserLevelOptions.find(({ value }) => value === organization?.endorserLevel) ??
+        [endorserLevelOptions],
       isMni: organization?.isMni,
       description: organization?.organizationDescription?.description
     }
@@ -235,7 +237,10 @@ const OrganizationForm = React.memo(({ organization }) => {
                     </label>
                     <FileUploader {...register('imageFile')} />
                   </div>
-                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue' data-testid='organization-is-endorser'>
+                  <label
+                    className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'
+                    data-testid='organization-is-endorser'
+                  >
                     <Checkbox {...register('isEndorser')} />
                     {format('organization.isEndorser')}
                   </label>
@@ -257,10 +262,20 @@ const OrganizationForm = React.memo(({ organization }) => {
                     <Controller
                       name='endorserLevel'
                       control={control}
-                      render={({ field }) => <Select {...field} options={endorserLevelOptions} placeholder={format('organization.endorserLevel')} />}
+                      render={
+                        ({ field }) =>
+                          <Select
+                            {...field}
+                            options={endorserLevelOptions}
+                            placeholder={format('organization.endorserLevel')}
+                          />
+                      }
                     />
                   </div>
-                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue' data-testid='organization-is-mni'>
+                  <label
+                    className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'
+                    data-testid='organization-is-mni'
+                  >
                     <Checkbox {...register('isMni')} />
                     {format('organization.isMni')}
                   </label>

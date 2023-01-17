@@ -47,7 +47,12 @@ const RepositoryList = ({ productSlug, repositorySlug, listStyle, shadowOnContai
           </div>
         ) :
         data?.productRepositories.map((productRepository, index) => (
-          <RepositoryCard key={index} productRepository={productRepository} repositorySlug={repositorySlug} listStyle={listStyle} />
+          <RepositoryCard
+            key={index}
+            productRepository={productRepository}
+            repositorySlug={repositorySlug}
+            listStyle={listStyle}
+          />
         ))}
     </div>
   )

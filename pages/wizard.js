@@ -32,7 +32,8 @@ const WizardPageDefinition = () => {
   const router = useRouter()
   const { locale } = router
 
-  const { loading: sectorLoading, error: sectorError, data: sectorData } = useQuery(SECTOR_SEARCH_QUERY, { variables: { locale, search: '' } })
+  const { loading: sectorLoading, error: sectorError, data: sectorData }
+    = useQuery(SECTOR_SEARCH_QUERY, { variables: { locale, search: '' } })
   const { loading: sdgLoading, error: sdgError, data: sdgData } = useQuery(WIZARD_SDG_QUERY)
   const { loading: countryLoading, error: countryError, data: countryData } = useQuery(WIZARD_COUNTRY_QUERY)
   const { loading: tagLoading, error: tagError, data: tagData } = useQuery(WIZARD_TAG_QUERY)
@@ -50,7 +51,20 @@ const WizardPageDefinition = () => {
     return <Error />
   }
 
-  const mobileServices = ['Airtime', 'API', 'HS', 'Mobile-Internet', 'Mobile-Money', 'Ops-Maintenance', 'OTT', 'SLA', 'SMS', 'User-Interface', 'USSD', 'Voice']
+  const mobileServices = [
+    'Airtime',
+    'API',
+    'HS',
+    'Mobile-Internet',
+    'Mobile-Money',
+    'Ops-Maintenance',
+    'OTT',
+    'SLA',
+    'SMS',
+    'User-Interface',
+    'USSD',
+    'Voice'
+  ]
   const projData = {
     sectors: sectorData?.sectors.map((sector) => ({ label: sector.name, value: sector.name, slug: sector.slug })) ?? [],
     sdgs: sdgData.sdgs.map((sdg) => ({ label: sdg.name, value: sdg.name, slug: sdg.slug })) ?? [],
@@ -67,8 +81,20 @@ const WizardPageDefinition = () => {
     <>
       <WizardHeader stage={stage} setStage={setStage} />
       {stage < 4
-        ? <WizardContent stage={stage} setStage={setStage} projData={projData} allValues={allValues} setAllValues={setAllValues} />
-        : <WizardResults stage={stage} setStage={setStage} allValues={allValues} setAllValues={setAllValues} />}
+        ? <WizardContent
+          stage={stage}
+          setStage={setStage}
+          projData={projData}
+          allValues={allValues}
+          setAllValues={setAllValues}
+        />
+        : <WizardResults
+          stage={stage}
+          setStage={setStage}
+          allValues={allValues}
+          setAllValues={setAllValues}
+        />
+      }
     </>
   )
 }
