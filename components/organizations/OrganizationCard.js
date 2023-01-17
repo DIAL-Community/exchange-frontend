@@ -28,8 +28,16 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
               <a {...newTab && { target: '_blank' }}>
                 <div className={containerElementStyle}>
                   <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
-                    <div className='relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4' style={{ minHeight: '4.5rem' }}>
-                      <div className={`w-10/12 lg:w-6/12 text-base font-semibold text-dial-gray-dark my-auto  ${ellipsisTextStyle}`}>
+                    <div
+                      className='relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4'
+                      style={{ minHeight: '4.5rem' }}
+                    >
+                      <div
+                        className={`
+                          w-10/12 lg:w-6/12 text-base font-semibold text-dial-gray-dark my-auto
+                          ${ellipsisTextStyle}
+                        `}
+                      >
                         <img
                           className='inline pr-3 w-8'
                           alt={format('image.alt.logoFor', { name: organization.name })}

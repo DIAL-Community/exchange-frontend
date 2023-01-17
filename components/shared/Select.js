@@ -65,7 +65,8 @@ const Select = React.forwardRef(({
       fontSize: '1.125rem'
     }),
     menuPortal: (provided) => ({
-      ...provided, zIndex: 30,
+      ...provided,
+      zIndex: 30,
       color: 'red'
     }),
     menu: (provided) => ({

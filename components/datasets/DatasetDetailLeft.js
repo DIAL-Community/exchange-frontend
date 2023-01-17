@@ -158,11 +158,15 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
         <div className='w-full inline-flex gap-3'>
           {(isAdminUser || isDatasetOwner) && <EditButton type='link' href={generateEditLink()} />}
           {isAdminUser && <DeleteDataset dataset={dataset} />}
-          <CommentsCount commentsSectionRef={commentsSectionRef} objectId={dataset.id} objectType={ObjectType.OPEN_DATA}/>
+          <CommentsCount
+            commentsSectionRef={commentsSectionRef}
+            objectId={dataset.id}
+            objectType={ObjectType.OPEN_DATA}
+          />
         </div>
         <div className='h4 font-bold py-4'>{format('datasets.label')}</div>
       </div>
-      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 lg:mr-6 shadow-lg'>
+      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 shadow-lg'>
         <div id='header' className='flex flex-col h-80 p-2'>
           <div className='h1 p-2 text-dial-purple'>
             {dataset.name}
@@ -182,7 +186,12 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
           {dataset.datasetDescription && parse(dataset.datasetDescription.description)}
         </div>
       </div>
-      <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 lg:mr-6 shadow-lg border-b-2 border-dial-gray'>
+      <div
+        className={`
+          bg-dial-gray-dark text-xs text-dial-gray-light p-6
+          shadow-lg border-b-2 border-dial-gray
+        `}
+      >
         {format('dataset.owner')}
         <div className='flex flex-row gap-3'>
           {
@@ -195,13 +204,13 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
                 {loading && <FaSpinner className='inline spinner ml-1' />}
               </button>
           }
-          {
-            ownershipText &&
-            <>
-              <div className='text-dial-gray-light block mt-2'>
-                {ownershipText === 'owner' ? format('ownership.owned') : format('ownership.applied')}
-              </div>
-            </>
+          {ownershipText &&
+            <div className='text-dial-gray-light block mt-2'>
+              {ownershipText === 'owner'
+                ? format('ownership.owned')
+                : format('ownership.applied')
+              }
+            </div>
           }
         </div>
       </div>

@@ -17,13 +17,18 @@ const OrganizationDetail = ({ slug, locale }) => {
     refetch()
   }, [locale, refetch])
 
+  if (loading) {
+    return <Loading />
+  } else if (error && error.networkError) {
+    return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
+  }
+
   const commentsSectionElement = useRef()
 
   return (
     <>
-      {loading && <Loading />}
-      {error && error.networkError && <Error />}
-      {error && !error.networkError && <NotFound />}
       {
         data && data.organization &&
           <div className='flex flex-col lg:flex-row justify-between pb-8'>

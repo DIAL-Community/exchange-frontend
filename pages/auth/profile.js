@@ -1,53 +1,63 @@
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
-import { useSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import { useUser } from '../../lib/hooks'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const UserProfile = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data: session } = useSession()
+  const { user } = useUser()
+
+  console.log('User data: ', user)
 
   return (
     <>
       <Header />
       <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
-      {session &&
-        <div className='flex flex-col lg:flex-row justify-between pb-8'>
+      {user &&
+        <div className='flex flex-col lg:flex-row gap-3 xl:pb-8'>
           <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
-            <div className='bg-white border-2 border-dial-gray lg:mr-6 shadow-lg'>
+            <div className='bg-white border-2 border-dial-gray shadow-lg'>
               <div className='flex flex-col h-80 p-4'>
-                <div className='text-2xl font-semibold absolute w-4/5 md:w-auto lg:w-64 2xl:w-80 bg-white bg-opacity-80 text-dial-purple'>
-                  {format('profile.username')} : {session.user.name}
+                <div className='text-2xl font-semibold absolute line-clamp-1 text-dial-purple'>
+                  {user.name}
                 </div>
                 <div className='pt-8 m-auto align-middle w-48'>
                   <img
-                    alt={format('image.alt.logoFor', { name: session.user.name })}
-                    src={session.user.image}
+                    className='w-24 m-auto'
+                    alt={format('image.alt.logoFor', { name: user.userName })}
+                    src='/icons/user.svg'
                   />
                 </div>
                 <div className='text-sm text-center text-dial-gray-dark'>
-                  {format('profile.email')} : {session.user.email}
+                  {format('profile.email')}: {user.userEmail}
                 </div>
               </div>
             </div>
           </div>
-          <div className='w-full lg:w-2/3 xl:w-3/4'>
-            <div className='my-4 h2'>
-              {format('profile.profile')}{session.user.name}
+          <div className='p-4 flex flex-col gap-3 w-full'>
+            <div className='text-xl'>
+              {format('profile.profile')}
             </div>
-            <div className='my-3 h4'>
-              {format('profile.roles')} {session.user.roles}
+            <div className='flex flex-row gap-3'>
+              <div className='font-semibold w-1/3 xl:w-1/5'>{format('profile.roles')}:</div>
+              <div className=''>{user.roles.join(', ')}</div>
             </div>
-            <div className='my-3 h4'>
-              {format('profile.products')} {session?.user?.own && session.user.own.products}
+            <div className='flex flex-row gap-3'>
+              <div className='font-semibold w-1/3 xl:w-1/5'>
+                {format('profile.products')}:
+              </div>
+              <div className=''>{user?.own && user.own.products}</div>
             </div>
-            <div className='my-3 h4'>
-              {format('profile.organization')} {session?.user?.own && session.user.own.organization && session.user.own.organization.name}
+            <div className='flex flex-row gap-3'>
+              <div className='font-semibold w-1/3 xl:w-1/5'>
+                {format('profile.organization')}:
+              </div>
+              <div>{user?.own && user.own.organization && user.own.organization.name}</div>
             </div>
           </div>
         </div>}

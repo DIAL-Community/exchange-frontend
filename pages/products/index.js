@@ -28,7 +28,12 @@ const Products = () => {
     <>
       <NextSeo
         title={format('products.header')}
-        description={format('shared.metadata.description.comprehensiveListOf', { entities: format('products.header')?.toLocaleLowerCase() })}
+        description={
+          format(
+            'shared.metadata.description.comprehensiveListOf',
+            { entities: format('products.header')?.toLocaleLowerCase() }
+          )
+        }
       />
       <QueryNotification />
       <GradientBackground />

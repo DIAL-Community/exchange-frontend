@@ -100,7 +100,10 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
   const onCancel = () => {
     setSdgs(data?.updateProductSdgs?.product?.sustainableDevelopmentGoals ?? product.sustainableDevelopmentGoals)
     setMappingStatus(mappingStatusOptions.find(({ value: mappingStatus }) =>
-      mappingStatus === (data?.updateProductSdgs?.product?.sustainableDevelopmentGoalsMappingStatus ?? product.sustainableDevelopmentGoalsMappingStatus)
+      mappingStatus === (
+        data?.updateProductSdgs?.product?.sustainableDevelopmentGoalsMappingStatus ??
+        product.sustainableDevelopmentGoalsMappingStatus
+      )
     ))
     setIsDirty(false)
   }

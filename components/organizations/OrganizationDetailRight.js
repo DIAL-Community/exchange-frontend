@@ -68,7 +68,12 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
             {format('organization.detail.website').toUpperCase()}
           </div>
           <div className='text-base text-dial-teal' data-testid='organization-website'>
-            <a href={prependUrlWithProtocol(organization.website)} className='flex flex-row' target='_blank' rel='noreferrer'>
+            <a
+              href={prependUrlWithProtocol(organization.website)}
+              className='flex flex-row'
+              target='_blank'
+              rel='noreferrer'
+            >
               <div className='my-auto'>{organization.website} ⧉</div>
             </a>
           </div>

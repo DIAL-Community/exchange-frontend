@@ -187,8 +187,14 @@ const SignUp = () => {
                   <div className='flex items-center justify-between font-semibold text-sm mt-2'>
                     <div className='flex'>
                       <button
-                        className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                        type='submit' disabled={loading || fieldValidations.password < 2 || !fieldValidations.passwordConfirmation || !captcha}
+                        className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex disabled:opacity-50'
+                        type='submit'
+                        disabled={
+                          loading ||
+                          fieldValidations.password < 2 ||
+                          !fieldValidations.passwordConfirmation ||
+                          !captcha
+                        }
                       >
                         {format('app.signUp')}
                         {loading && <FaSpinner className='spinner ml-3' />}
@@ -215,7 +221,10 @@ const SignUp = () => {
                     </div>
                   </div>
                   <div className='h5 mt-2'>
-                    {format('signUp.privacy')} <Link href='/privacy-policy'><a className='text-dial-yellow'>{format('signUp.privacyLink')}</a></Link>
+                    {format('signUp.privacy')}
+                    <Link href='/privacy-policy'>
+                      <a className='text-dial-yellow'>{format('signUp.privacyLink')}</a>
+                    </Link>
                   </div>
                 </div>
               </form>

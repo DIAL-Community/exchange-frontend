@@ -52,7 +52,8 @@ const ProductDetailProjects = ({ product, canEdit }) => {
 
   const addProject = (project) => {
     setProjects([
-      ...projects.filter(({ slug }) => slug !== project.slug), { name: project.label, slug: project.slug, origin: project.origin }
+      ...projects.filter(({ slug }) => slug !== project.slug),
+      { name: project.label, slug: project.slug, origin: project.origin }
     ])
     setIsDirty(true)
   }

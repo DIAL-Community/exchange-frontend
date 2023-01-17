@@ -53,7 +53,7 @@ const MapActiveFilter = () => {
   }
 
   return (
-    <div className={`flex flex-row py-4 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
+    <div className={`flex flex-row py-4 ${filterCount() > 0 ? 'block' : 'hidden'}`}>
       <div className='flex flex-row flex-wrap gap-2'>
         {
           router.pathname.indexOf('projects') >= 0 &&

@@ -68,7 +68,8 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
                       {
                         buildingBlock.imageFile &&
                           <Image
-                            alt={format('image.alt.logoFor', { name: buildingBlock.name })} className='building-block-filter inline mr-2 '
+                            alt={format('image.alt.logoFor', { name: buildingBlock.name })}
+                            className='building-block-filter inline mr-2 '
                             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
                             height='20' width='20'
                           />
@@ -199,7 +200,10 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
                                     <Image
                                       width={20} height={20}
                                       className='m-auto h-6 workflow-filter'
-                                      data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: workflow.name })}
+                                      data-tip={format(
+                                        'tooltip.forEntity',
+                                        { entity: format('workflow.label'), name: workflow.name }
+                                      )}
                                       alt={format('image.alt.logoFor', { name: workflow.name })}
                                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
                                     />
@@ -243,7 +247,10 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
                                   <div
                                     key={`product-${product.slug}`}
                                     className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded cursor-default'
-                                    data-tip={format('tooltip.forEntity', { entity: format('product.label'), name: product.name })}
+                                    data-tip={format(
+                                      'tooltip.forEntity',
+                                      { entity: format('product.label'), name: product.name }
+                                    )}
                                   >
                                     {product.name}
                                   </div>

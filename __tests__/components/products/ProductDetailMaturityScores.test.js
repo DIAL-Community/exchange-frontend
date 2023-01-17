@@ -13,7 +13,12 @@ describe('Unit test for the ProductDetailMaturityScores component.', () => {
   const DIALOG_TEST_ID = 'dialog'
   const PRODUCT_SLUG = 'test'
   const EDIT_BUTTON_TEST_ID = 'edit-button'
-  const mockCategoryIndicators = generateMockApolloData(PRODUCT_CATEGORY_INDICATORS_QUERY, { slug: PRODUCT_SLUG }, null, categoryIndicators)
+  const mockCategoryIndicators = generateMockApolloData(
+    PRODUCT_CATEGORY_INDICATORS_QUERY,
+    { slug: PRODUCT_SLUG },
+    null,
+    categoryIndicators
+  )
 
   beforeAll(() => {
     window.ResizeObserver = mockObserverImplementation()

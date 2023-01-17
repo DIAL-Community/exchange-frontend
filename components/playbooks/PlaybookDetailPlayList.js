@@ -130,7 +130,10 @@ const Play = ({ play, index }) => {
               dangerouslySetInnerHTML={{ __html: format('play.products.subtitle') }}
             />
             <div className='grid grid-cols-1 md:grid-cols-2'>
-              {play.products.map((product, productIdx) => <ProductCard key={productIdx} product={product} listType='list' />)}
+              {play.products.map(
+                (product, productIdx) =>
+                  <ProductCard key={productIdx} product={product} listType='list' />
+              )}
             </div>
           </div>
       }

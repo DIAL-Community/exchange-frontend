@@ -1,4 +1,10 @@
-import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel
+} from 'react-accessible-accordion'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
@@ -13,7 +19,11 @@ import { useUser } from '../../lib/hooks'
 import EditableSection from '../shared/EditableSection'
 import Card from '../shared/Card'
 import { PRODUCT_CATEGORY_INDICATORS_QUERY } from '../../queries/product'
-import { getCategoryIndicatorBooleanOptions, getCategoryIndicatorNumericOptions, getCategoryIndicatorScaleOptions } from '../../lib/utilities'
+import {
+  getCategoryIndicatorBooleanOptions,
+  getCategoryIndicatorNumericOptions,
+  getCategoryIndicatorScaleOptions
+} from '../../lib/utilities'
 import { CategoryIndicatorType } from '../../lib/constants'
 import Select from '../shared/Select'
 import { Loading } from '../shared/FetchStatus'
@@ -37,7 +47,8 @@ const MaturityCategory = ({ category }) => {
         <AccordionItemButton>
           <div className='h5 inline'>{category.name}</div>
           <div className='h5 float-right inline'>
-            {format('product.category-score')}: {Math.round(category.overall_score * MATURITY_SCORE_MULTIPLIER)} / {MAX_MATURITY_SCORE}
+            {format('product.category-score')}:
+            {Math.round(category.overall_score * MATURITY_SCORE_MULTIPLIER)} / {MAX_MATURITY_SCORE}
           </div>
         </AccordionItemButton>
       </AccordionItemHeading>
@@ -173,7 +184,10 @@ const ProductDetailMaturityScores = ({ slug, maturityScore, maturityScoreDetails
     return []
   }, [categoryIndicatorsData?.product])
 
-  useEffect(() => setValue(CATEGORY_INDICATORS_FIELD_ARRAY_NAME, defaultCategoryIndicators), [defaultCategoryIndicators, setValue])
+  useEffect(
+    () => setValue(CATEGORY_INDICATORS_FIELD_ARRAY_NAME, defaultCategoryIndicators),
+    [defaultCategoryIndicators, setValue]
+  )
 
   const [updateProductIndicators, { loading: isMutating }] = useMutation(UPDATE_PRODUCT_CATEGORY_INDICATORS, {
     onCompleted: (data) => {
@@ -196,12 +210,20 @@ const ProductDetailMaturityScores = ({ slug, maturityScore, maturityScoreDetails
       const dirtyIndicators = []
       data.categoryIndicators.forEach(({ indicators }, categoryIdx) => {
         indicators[ASSIGNED_INDICATORS_ARRAY_NAME].forEach(({ slug, indicatorValue }, indicatorIdx) => {
-          if (indicatorValue !== defaultCategoryIndicators[categoryIdx].indicators[ASSIGNED_INDICATORS_ARRAY_NAME][indicatorIdx].indicatorValue) {
+          if (indicatorValue !==
+            defaultCategoryIndicators[categoryIdx]
+              .indicators[ASSIGNED_INDICATORS_ARRAY_NAME][indicatorIdx]
+              .indicatorValue
+          ) {
             dirtyIndicators.push({ category_indicator_slug: slug, value: indicatorValue })
           }
         })
         indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME].forEach(({ slug, indicatorValue }, indicatorIdx) => {
-          if (indicatorValue !== defaultCategoryIndicators[categoryIdx].indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME][indicatorIdx].indicatorValue) {
+          if (indicatorValue !==
+            defaultCategoryIndicators[categoryIdx]
+              .indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME][indicatorIdx]
+              .indicatorValue
+          ) {
             dirtyIndicators.push({ category_indicator_slug: slug, value: indicatorValue })
           }
         })
@@ -229,7 +251,10 @@ const ProductDetailMaturityScores = ({ slug, maturityScore, maturityScoreDetails
 
   const displayModeBody = (
     <>
-      <div className='text-sm mb-3 text-dial-gray-dark highlight-link' dangerouslySetInnerHTML={{ __html: format('product.maturity-desc') }} />
+      <div
+        className='text-sm mb-3 text-dial-gray-dark highlight-link'
+        dangerouslySetInnerHTML={{ __html: format('product.maturity-desc') }}
+      />
       {validMaturityScores?.length ? (
         <>
           <div className='pb-5 mr-6 h4' data-testid='maturity-overall-score'>
@@ -285,7 +310,14 @@ const ProductDetailMaturityScores = ({ slug, maturityScore, maturityScoreDetails
                 </div>
                 <div className="col-span-1">
                   <Controller
-                    name={`${CATEGORY_INDICATORS_FIELD_ARRAY_NAME}.${categoryIdx}.indicators.${indicatorsGroup}.${indicatorIdx}.indicatorValue`}
+                    name={
+                      `${CATEGORY_INDICATORS_FIELD_ARRAY_NAME}.` +
+                      `${categoryIdx}.` +
+                      'indicators.' +
+                      `${indicatorsGroup}.` +
+                      `${indicatorIdx}.` +
+                      'indicatorValue'
+                    }
                     control={control}
                     render={({ field: { onChange, value } }) => (
                       <Select
@@ -335,9 +367,11 @@ const ProductDetailMaturityScores = ({ slug, maturityScore, maturityScoreDetails
               {!!indicators[ASSIGNED_INDICATORS_ARRAY_NAME].length && (
                 <IndicatorsList categoryIdx={categoryIdx} indicators={indicators} />
               )}
-              {!!indicators[ASSIGNED_INDICATORS_ARRAY_NAME].length && !!indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME].length && (
-                <hr className="my-5" />
-              )}
+              {
+                !!indicators[ASSIGNED_INDICATORS_ARRAY_NAME].length &&
+                !!indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME].length &&
+                  <hr className="my-5" />
+              }
               {!!indicators[NOT_ASSIGNED_INDICATORS_ARRAY_NAME].length && (
                 <IndicatorsList categoryIdx={categoryIdx} indicators={indicators} isAssignedIndicatorsList={false} />
               )}

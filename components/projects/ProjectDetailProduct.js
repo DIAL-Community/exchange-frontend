@@ -27,7 +27,9 @@ const ProjectDetailProducts = ({ project, canEdit }) => {
   const { user, isAdminUser } = useUser()
   const { ownedProducts } = useProductOwnerUser(null, products, isAdminUser)
 
-  const ownedProjectProducts = ownedProducts.filter(({ slug: ownedProductSlug }) => products.some(({ slug }) => ownedProductSlug === slug))
+  const ownedProjectProducts = ownedProducts.filter(
+    ({ slug: ownedProductSlug }) => products.some(({ slug }) => ownedProductSlug === slug)
+  )
 
   const [isDirty, setIsDirty] = useState(false)
 

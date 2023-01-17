@@ -30,7 +30,12 @@ const BuildingBlocks = () => {
     <>
       <NextSeo
         title={format('building-block.header')}
-        description={format('shared.metadata.description.listOfKey', { entities: format('building-block.header')?.toLocaleLowerCase() })}
+        description={
+          format(
+            'shared.metadata.description.listOfKey',
+            { entities: format('building-block.header')?.toLocaleLowerCase() }
+          )
+        }
       />
       <QueryNotification />
       <GradientBackground />

@@ -3,7 +3,15 @@ import { Editor } from '@tinymce/tinymce-react'
 import classNames from 'classnames'
 import { FaSpinner } from 'react-icons/fa'
 
-export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, editorId, placeholder, className, isInvalid = false }) => {
+export const HtmlEditor = ({
+  onChange,
+  initialContent,
+  initInstanceCallback,
+  editorId,
+  placeholder,
+  className,
+  isInvalid = false
+}) => {
   const editorRef = useRef(null)
   const handleEditorChange = (editor) => onChange(editor)
 

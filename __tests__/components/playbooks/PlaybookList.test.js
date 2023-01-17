@@ -50,7 +50,9 @@ describe('Unit tests for playbook list interaction.', () => {
     )
     await waitFor(() => {
       NEXT_IMAGE_CUSTOM_PROPS.forEach(prop => {
-        expect(screen.getByTestId(`playbook-card-image-${searchPlaybooks.data.searchPlaybooks.nodes?.[0]?.id}`)).toHaveAttribute(prop)
+        expect(
+          screen.getByTestId(`playbook-card-image-${searchPlaybooks.data.searchPlaybooks.nodes?.[0]?.id}`)
+        ).toHaveAttribute(prop)
       })
     })
     // Each section in the playbook detail should not show any error.

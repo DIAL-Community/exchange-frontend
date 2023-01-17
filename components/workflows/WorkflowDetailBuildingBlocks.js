@@ -28,18 +28,20 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateWorkflowBuildingBlocks, { data, loading }] = useMutation(UPDATE_WORKFLOW_BUILDING_BLOCKS, {
-    onCompleted: (data) => {
-      setBuildingBlocks(data.updateWorkflowBuildingBlocks.workflow.buildingBlocks)
-      setIsDirty(false)
-      showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
-    },
-    onError: () => {
-      setBuildingBlocks(workflow.buildingBlocks)
-      setIsDirty(false)
-      showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+  const [updateWorkflowBuildingBlocks, { data, loading }] = useMutation(
+    UPDATE_WORKFLOW_BUILDING_BLOCKS, {
+      onCompleted: (data) => {
+        setBuildingBlocks(data.updateWorkflowBuildingBlocks.workflow.buildingBlocks)
+        setIsDirty(false)
+        showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
+      },
+      onError: () => {
+        setBuildingBlocks(workflow.buildingBlocks)
+        setIsDirty(false)
+        showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+      }
     }
-  })
+  )
 
   const fetchedBuildingBlocksCallback = (data) => (
     data.buildingBlocks.map((buildingBlock) => ({
@@ -81,7 +83,10 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit }) => {
   }
 
   const onCancel = () => {
-    setBuildingBlocks(data?.updateWorkflowBuildingBlocks?.workflow?.buildingBlocks ?? workflow.buildingBlocks)
+    setBuildingBlocks(
+      data?.updateWorkflowBuildingBlocks?.workflow?.buildingBlocks ??
+      workflow.buildingBlocks
+    )
     setIsDirty(false)
   }
 
@@ -113,8 +118,20 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit }) => {
           defaultOptions
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-          loadOptions={(input) => fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('building-block.header') })}
+          loadOptions={
+            (input) => fetchSelectOptions(
+              client,
+              input,
+              BUILDING_BLOCK_SEARCH_QUERY,
+              fetchedBuildingBlocksCallback
+            )
+          }
+          noOptionsMessage={
+            () => format(
+              'filter.searchFor',
+              { entity: format('building-block.header') }
+            )
+          }
           onChange={addBuildingBlock}
           value={null}
         />

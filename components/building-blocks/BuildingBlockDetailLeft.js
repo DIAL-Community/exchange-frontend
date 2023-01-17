@@ -37,7 +37,11 @@ const BuildingBlockDetailLeft = ({ buildingBlock, commentsSectionRef }) => {
         <div className='w-full inline-flex gap-3'>
           {isAdminUser && <EditButton type='link' href={generateEditLink()} />}
           {isAdminUser && <DeleteBuildingBlock buildingBlock={buildingBlock} />}
-          <CommentsCount commentsSectionRef={commentsSectionRef} objectId={buildingBlock.id} objectType={ObjectType.BUILDING_BLOCK}/>
+          <CommentsCount
+            commentsSectionRef={commentsSectionRef}
+            objectId={buildingBlock.id}
+            objectType={ObjectType.BUILDING_BLOCK}
+          />
         </div>
         <div className='h4 font-bold py-4'>{format('buildingBlock.label')}</div>
       </div>

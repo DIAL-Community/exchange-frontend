@@ -47,7 +47,11 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
         'top-center',
         1000,
         null,
-        () => router.push(`/${router.locale}/use_cases/${data.createUseCaseStep.useCaseStep.useCase.slug}/use_case_steps/${data.createUseCaseStep.useCaseStep.slug}`)
+        () => router.push(
+          `/${router.locale}` +
+          `/use_cases/${data.createUseCaseStep.useCaseStep.useCase.slug}` +
+          `/use_case_steps/${data.createUseCaseStep.useCaseStep.slug}`
+        )
       )
     }
   })

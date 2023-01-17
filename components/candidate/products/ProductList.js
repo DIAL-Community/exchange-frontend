@@ -100,7 +100,10 @@ const ProductListQuery = () => {
       search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.candidateProducts']]: data.searchCandidateProducts.totalCount } })
+      setResultCounts({
+        ...resultCounts,
+        ...{ [['filter.entity.candidateProducts']]: data.searchCandidateProducts.totalCount }
+      })
     }
   })
 

@@ -58,7 +58,12 @@ const PagedPlaybookList = ({ sector, tags, playbookSortHint }) => {
           ? format('wizard.results.playbooksDesc')
           : format('wizard.results.noPlaybooks')}
       </div>
-      {data.paginatedPlaybooks.nodes?.map((playbook) => <PlaybookCard key={playbook.id} playbook={playbook} filterDisplayed listType='list' newTab />)}
+      {
+        data.paginatedPlaybooks.nodes?.map(
+          (playbook) =>
+            <PlaybookCard key={playbook.id} playbook={playbook} filterDisplayed listType='list' newTab />
+        )
+      }
       <ReactPaginate
         breakLabel='...'
         nextLabel={format('paginatedSection.page.next.label')}

@@ -36,7 +36,9 @@ describe('Unit test for the SearchInput component.', () => {
   test('Should call onSearchIconClick function.', () => {
     const onChange = jest.fn()
     const onSearchIconClick = jest.fn()
-    const searchIconButton = render(<SearchInput value='test' onChange={onChange} onSearchIconClick={onSearchIconClick} />).getByTestId('search-icon-button')
+    const searchIconButton = render(
+      <SearchInput value='test' onChange={onChange} onSearchIconClick={onSearchIconClick} />
+    ).getByTestId('search-icon-button')
     fireEvent.click(searchIconButton)
     expect(onSearchIconClick).toHaveBeenCalledTimes(1)
   })

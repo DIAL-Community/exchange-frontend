@@ -70,7 +70,12 @@ const SDGList = (props) => {
         {
           displayType === 'list' &&
             <div className='grid grid-cols-1 md:grid-cols-6 gap-4 my-3 px-4'>
-              <div className='col-span-5 md:col-span-3 lg:col-span-2 whitespace-nowrap text-sm font-semibold text-sdg opacity-80'>
+              <div
+                className={`
+                  col-span-5 md:col-span-3 lg:col-span-2 whitespace-nowrap
+                  text-sm font-semibold text-sdg opacity-80
+                `}
+              >
                 {format('sdg.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>

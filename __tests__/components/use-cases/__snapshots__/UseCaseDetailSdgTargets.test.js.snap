@@ -256,7 +256,10 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
       class="grid grid-cols-1"
     >
       <div
-        class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
+        class="
+          border-3 border-transparent hover:border-dial-yellow text-use-case
+          hover:text-dial-yellow cursor-pointer
+        "
         href="/sdgs/sdg_target_slug_1"
       >
         <div
@@ -279,7 +282,10 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         </div>
       </div>
       <div
-        class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
+        class="
+          border-3 border-transparent hover:border-dial-yellow text-use-case
+          hover:text-dial-yellow cursor-pointer
+        "
         href="/sdgs/sdg_target_slug_2"
       >
         <div
@@ -525,7 +531,10 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
       class="grid grid-cols-1"
     >
       <div
-        class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
+        class="
+          border-3 border-transparent hover:border-dial-yellow text-use-case
+          hover:text-dial-yellow cursor-pointer
+        "
         href="/sdgs/sdg_target_slug_1"
       >
         <div
@@ -548,7 +557,10 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         </div>
       </div>
       <div
-        class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
+        class="
+          border-3 border-transparent hover:border-dial-yellow text-use-case
+          hover:text-dial-yellow cursor-pointer
+        "
         href="/sdgs/sdg_target_slug_2"
       >
         <div

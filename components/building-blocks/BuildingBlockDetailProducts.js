@@ -27,8 +27,13 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
 
   const [products, setProducts] = useState(buildingBlock.products)
 
-  const mappingStatusOptions = getMappingStatusOptions(format).filter((status) =>
-    status.label === `${format('shared.mappingStatus.beta')}` || status.label === `${format('shared.mappingStatus.validated')}`)
+  const mappingStatusOptions =
+    getMappingStatusOptions(format)
+      .filter(
+        (status) =>
+          status.label === `${format('shared.mappingStatus.beta')}` ||
+          status.label === `${format('shared.mappingStatus.validated')}`
+      )
 
   const [mappingStatus, setMappingStatus] = useState(
     mappingStatusOptions.find(({ value: mappingStatus }) =>
@@ -96,7 +101,10 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
   const onCancel = () => {
     setProducts(data?.updateBuildingBlockProducts?.buildingBlock?.products ?? buildingBlock.products)
     setMappingStatus(mappingStatusOptions.find(({ value: mappingStatus }) =>
-      mappingStatus === (data?.updateBuildingBlockProducts?.buildingBlock?.products.buildingBlocksMappingStatus ?? buildingBlock.products.buildingBlocksMappingStatus)
+      mappingStatus === (
+        data?.updateBuildingBlockProducts?.buildingBlock?.products.buildingBlocksMappingStatus ??
+        buildingBlock.products.buildingBlocksMappingStatus
+      )
     ))
     setIsDirty(false)
   }

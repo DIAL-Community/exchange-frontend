@@ -8,16 +8,19 @@ mockNextUseRouter()
 describe('Unit test for the ProjectDetailLeft component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-link'
 
-  test('Should Edit button not be visible for user who is neither an admin, nor Organization owner, nor Product owner.', () => {
-    mockNextAuthUseSession(statuses.UNAUTHENTICATED)
-    const { queryByTestId } = render(
-      <CustomMockedProvider>
-        <ProjectDetailLeft project={project} />
-      </CustomMockedProvider>
-    )
+  test(
+    'Should Edit button not be visible for user who is neither an admin, nor Organization owner, nor Product owner.',
+    () => {
+      mockNextAuthUseSession(statuses.UNAUTHENTICATED)
+      const { queryByTestId } = render(
+        <CustomMockedProvider>
+          <ProjectDetailLeft project={project} />
+        </CustomMockedProvider>
+      )
 
-    expect(queryByTestId(EDIT_BUTTON_TEST_ID)).toBeNull()
-  })
+      expect(queryByTestId(EDIT_BUTTON_TEST_ID)).toBeNull()
+    }
+  )
 
   test('Should Edit button be visible for authorized user.', async () => {
     mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })

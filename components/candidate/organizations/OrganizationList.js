@@ -98,7 +98,10 @@ const OrganizationListQuery = () => {
       search
     },
     onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.candidateOrganizations']]: data.searchCandidateOrganizations.totalCount } })
+      setResultCounts({
+        ...resultCounts,
+        ...{ [['filter.entity.candidateOrganizations']]: data.searchCandidateOrganizations.totalCount }
+      })
     }
   })
 

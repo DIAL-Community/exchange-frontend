@@ -26,7 +26,12 @@ describe('Unit tests for spreadsheet interaction.', () => {
 
   test('Should render spreadsheet when apollo is not returning errors.', async () => {
     // Mock all apollo interaction
-    const mockProductSpreadsheetData = generateMockApolloData(PRODUCT_SPREADSHEET_QUERY, {}, null, mockedProductSpreadsheetData)
+    const mockProductSpreadsheetData = generateMockApolloData(
+      PRODUCT_SPREADSHEET_QUERY,
+      {},
+      null,
+      mockedProductSpreadsheetData
+    )
     // Render the component and use screen to check them.
     const component = render(
       <CustomMockedProvider mocks={[mockProductSpreadsheetData]} addTypename={false}>

@@ -70,11 +70,16 @@ const ProjectDetail = ({ slug, locale }) => {
 
   const commentsSectionElement = useRef()
 
+  if (loading) {
+    return <Loading />
+  } else if (error && error.networkError) {
+    return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
+  }
+
   return (
     <>
-      {loading && <Loading />}
-      {error && error.networkError && <Error />}
-      {error && !error.networkError && <NotFound />}
       {
         data && data.project &&
           <div className='flex flex-col lg:flex-row justify-between pb-8'>

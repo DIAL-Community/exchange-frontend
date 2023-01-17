@@ -12,7 +12,8 @@ import OrganizationFilter from '../../components/organizations/OrganizationFilte
 import OrganizationActiveFilter from '../../components/organizations/OrganizationActiveFilter'
 import OrganizationHint from '../../components/filter/hint/OrganizationHint'
 import SearchFilter from '../../components/shared/SearchFilter'
-import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../../components/context/OrganizationFilterContext'
+import { OrganizationFilterContext, OrganizationFilterDispatchContext }
+  from '../../components/context/OrganizationFilterContext'
 import MobileNav from '../../components/main/MobileNav'
 import ClientOnly from '../../lib/ClientOnly'
 
@@ -27,7 +28,12 @@ const Organizations = () => {
     <>
       <NextSeo
         title={format('organization.header')}
-        description={format('shared.metadata.description.comprehensiveListOf', { entities: format('organization.header')?.toLocaleLowerCase() })}
+        description={
+          format(
+            'shared.metadata.description.comprehensiveListOf',
+            { entities: format('organization.header')?.toLocaleLowerCase() }
+          )
+        }
       />
       <QueryNotification />
       <GradientBackground />

@@ -42,7 +42,12 @@ const Lifecycle = ({ wizardData, objType }) => {
                 ))
               }
             </ul>
-            <div className='col-span-2 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded-b bg-gradient-to-r from-dial-gray to-dial-gray-light'>
+            <div
+              className={`
+                col-span-2 relative flex flex-col min-w-0 break-words bg-white w-full mb-6
+                rounded-b bg-gradient-to-r from-dial-gray to-dial-gray-light
+              `}
+            >
               <div className='px-4 py-2'>
                 <div className='tab-content tab-space'>
                   {['Ideation', 'Planning', 'Implementation', 'Evaluation'].map((phase, index) => {

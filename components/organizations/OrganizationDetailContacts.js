@@ -30,7 +30,9 @@ const OrganizationDetailContacts = ({ organization }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const isContactNameUnique = (name) => !contacts.some(contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase())
+  const isContactNameUnique =
+    (name) =>
+      !contacts.some(contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase())
 
   const { handleSubmit, control, reset, formState: { errors } } = useForm({
     mode: 'onSubmit',

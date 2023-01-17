@@ -75,18 +75,28 @@ const WizardContent = ({ stage, setStage, projData, allValues, setAllValues }) =
             <div className='text-button-gray-light absolute bottom-8'>
               <button
                 onClick={() => { stage > 0 && setStage(stage - 1) }}
-                className={`${hideBack() === true && 'hidden'} bg-button-gray border border-dial-yellow rounded p-4 my-4 mr-4`}
+                className={`
+                  ${hideBack() === true && 'hidden'}
+                  bg-button-gray border border-dial-yellow rounded p-4 my-4 mr-4
+                `}
               >
                 <img src='/icons/left-arrow.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
                 {format('wizard.back')}
               </button>
               <button
                 onClick={() => { stage < 4 && setStage(stage + 1) }}
-                className={`${hideNext() === true && 'hidden'} bg-button-gray border border-dial-yellow rounded p-4 my-4 lg:mr-4`}
+                className={`
+                  ${hideNext() === true && 'hidden'}
+                  bg-button-gray border border-dial-yellow rounded p-4 my-4 lg:mr-4
+                `}
               >
                 {stage === 3
                   ? format('wizard.seeResults')
-                  : <div>{format('wizard.next')}<img src='/icons/right-arrow.svg' className='inline ml-2' alt='Next' height='20px' width='20px' /></div>}
+                  : <div>
+                    {format('wizard.next')}
+                    <img src='/icons/right-arrow.svg' className='inline ml-2' alt='Next' height='20px' width='20px' />
+                  </div>
+                }
               </button>
             </div>
           </div>

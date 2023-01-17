@@ -28,7 +28,12 @@ const Projects = () => {
     <>
       <NextSeo
         title={format('project.header')}
-        description={format('shared.metadata.description.comprehensiveListOf', { entities: format('project.header')?.toLocaleLowerCase() })}
+        description={
+          format(
+            'shared.metadata.description.comprehensiveListOf',
+            { entities: format('project.header')?.toLocaleLowerCase() }
+          )
+        }
       />
       <QueryNotification />
       <GradientBackground />

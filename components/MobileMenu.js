@@ -223,15 +223,13 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
                   )
                 } else if (subMenus[parent].type === 'admin' && isAdminUser) {
                   return (
-                    <>
-                      <li key={index} className='py-4 border-b'>
-                        <Link href='/users'>
-                          <a role='menuitem' className='mx-8'>
-                            {format('header.admin.users')}
-                          </a>
-                        </Link>
-                      </li>
-                    </>
+                    <li key={index} className='py-4 border-b'>
+                      <Link href='/users'>
+                        <a role='menuitem' className='mx-8'>
+                          {format('header.admin.users')}
+                        </a>
+                      </Link>
+                    </li>
                   )
                 }
 

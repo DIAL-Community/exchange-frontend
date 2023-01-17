@@ -28,7 +28,12 @@ const SDGDetailLeft = ({ sdg }) => {
       </div>
       <div className='bg-white border-2 border-dial-gray lg:mr-6 shadow-lg'>
         <div className='flex flex-col h-80 p-4'>
-          <div className='text-2xl font-semibold absolute w-4/5 md:w-auto lg:w-64 2xl:w-80 bg-white bg-opacity-80 text-dial-purple'>
+          <div
+            className={`
+              text-2xl font-semibold absolute w-4/5 md:w-auto lg:w-64 2xl:w-80
+              bg-white bg-opacity-80 text-dial-purple
+            `}
+          >
             {sdg.name}
           </div>
           <div className='m-auto w-3/5 h-3/5 relative' >

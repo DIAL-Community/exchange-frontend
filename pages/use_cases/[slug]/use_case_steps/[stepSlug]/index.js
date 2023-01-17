@@ -81,7 +81,11 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
         {session?.user &&
           <div className='flex flex-row justify-between mb-2'>
             <EditButton type='link' href={generateEditLink()} />
-            <CreateButton type='link' label={format('use-case-step.create')} href={`/use_cases/${data.useCase.slug}/use_case_steps/create`}/>
+            <CreateButton
+              type='link'
+              label={format('use-case-step.create')}
+              href={`/use_cases/${data.useCase.slug}/use_case_steps/create`}
+            />
           </div>
         }
         {data?.useCase && <UseCaseHeader useCase={data.useCase} />}
