@@ -91,8 +91,9 @@ describe('Unit tests for the ProductForm component.', () => {
         website: 'testproduct.com',
         description: '<p>test product description</p>',
         commercialProduct: false,
-        hostingModel: '',
-        pricingModel: '',
+        hostingModel: null,
+        pricingModel: null,
+        pricingDetails: null
       },
       null,
       createProductSuccess
@@ -120,8 +121,9 @@ describe('Unit tests for the ProductForm component.', () => {
         website: 'testproduct.com',
         description: '<p>test product description</p>',
         commercialProduct: false,
-        hostingModel: '',
-        pricingModel: '',
+        hostingModel: null,
+        pricingModel: null,
+        pricingDetails: null
       },
       null,
       createProductFailure
