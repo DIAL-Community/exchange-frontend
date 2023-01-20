@@ -30,15 +30,16 @@ const OrganizationForm = () => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const [createCandidateOrganization] = useMutation(CREATE_CANDIDATE_ORGANIZATION, {
+  const [createCandidateOrganization, { reset }] = useMutation(CREATE_CANDIDATE_ORGANIZATION, {
     onError: () => {
       setMutating(false)
       showToast(
         format('candidate-organization.submit.failure'),
         'error',
         'top-center',
-        false
+        1000
       )
+      reset()
     },
     onCompleted: () => {
       setMutating(false)

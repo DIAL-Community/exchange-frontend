@@ -27,7 +27,7 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
   const { showToast } = useContext(ToastContext)
   const { locale } = useRouter()
 
-  const [updateUseCaseStep] = useMutation(CREATE_USE_CASE_STEP, {
+  const [updateUseCaseStep, { reset }] = useMutation(CREATE_USE_CASE_STEP, {
     onError: (error) => {
       setMutating(false)
       showToast(
@@ -37,8 +37,9 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
         </div>,
         'error',
         'top-center',
-        false
+        1000
       )
+      reset()
     },
     onCompleted: (data) => {
       showToast(

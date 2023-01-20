@@ -102,6 +102,7 @@ const RepositoryInformation = ({ productRepository }) => {
       <HtmlViewer
         initialContent={productRepository?.description}
         editorId='repository-data'
+        className='-mb-12'
       />
       <div className='w-full xl:w-4/5 mt-3 py-3 border-b border-gray-300'>
         <RepositoryDetail

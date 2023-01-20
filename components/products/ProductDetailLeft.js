@@ -50,8 +50,12 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
     if (user) {
       const { userEmail } = user
       fetchCandidateRole({
-        variables:
-          { email: userEmail, productId: product.id, organizationId: '' }
+        variables: {
+          email: userEmail,
+          productId: product.id,
+          organizationId: '',
+          datasetId: ''
+        }
       })
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

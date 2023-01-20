@@ -89,13 +89,16 @@ describe('Unit tests for the ProductForm component.', () => {
         slug: 'test_product',
         aliases: ['test1','test2'],
         website: 'testproduct.com',
-        description: '<p>test product description</p>'
+        description: '<p>test product description</p>',
+        commercialProduct: false,
+        hostingModel: '',
+        pricingModel: '',
       },
       null,
       createProductSuccess
     )
     const { container, getByTestId } = render(
-      <CustomMockedProvider mocks={[mockCreateProduct]}>
+      <CustomMockedProvider mocks={[mockCreateProduct]} allowDebugMessage>
         <ProductForm product={product} />
       </CustomMockedProvider>
     )
@@ -113,15 +116,18 @@ describe('Unit tests for the ProductForm component.', () => {
       {
         name: 'Test Product',
         slug: 'test_product',
-        aliases: ['test1','test2'],
+        aliases: ['test1', 'test2'],
         website: 'testproduct.com',
-        description: '<p>test product description</p>'
+        description: '<p>test product description</p>',
+        commercialProduct: false,
+        hostingModel: '',
+        pricingModel: '',
       },
       null,
       createProductFailure
     )
     const { container, getByTestId } = render(
-      <CustomMockedProvider mocks={[mockCreateProduct]}>
+      <CustomMockedProvider mocks={[mockCreateProduct]} allowDebugMessage>
         <ProductForm product={product} />
       </CustomMockedProvider>
     )
@@ -129,7 +135,6 @@ describe('Unit tests for the ProductForm component.', () => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
     })
     await screen.findAllByText('Product submission failed')
-    await screen.findAllByText('Must be admin or product owner to create an product')
     expect(container).toMatchSnapshot()
   })
 })

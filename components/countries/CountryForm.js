@@ -30,7 +30,6 @@ const CountryForm = ({ isOpen, onClose, country }) => {
         showToast(
           <div className='flex flex-col'>
             <span>{format('toast.country.submit.failure')}</span>
-            {data.createCountry.errors?.map((error, errorIdx) => <span key={errorIdx}>{error}</span>)}
           </div>,
           'error',
           'top-center'

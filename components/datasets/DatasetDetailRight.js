@@ -35,8 +35,13 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
         dataset.website &&
           <div className='mt-12'>
             <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.website')}</div>
-            <div className='text-base text-dial-teal inline ml-3'>
-              <a href={prependUrlWithProtocol(dataset.website)} className='mt-2' target='_blank' rel='noreferrer'>
+            <div className='text-base text-dial-teal flex'>
+              <a
+                href={prependUrlWithProtocol(dataset.website)}
+                className='border-b-2 border-transparent hover:border-dial-yellow'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <div className='my-auto'>{dataset.website} ⧉</div>
               </a>
             </div>
@@ -88,7 +93,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
             </div>
         }
       </div>
-      <div className='mt-8 card-title mb-3 text-dial-gray-dark'>
+      <div className='mt-12 card-title mb-3 text-dial-gray-dark'>
         {format('dataset.description')}
         {dataset.manualUpdate && (
           <div className='inline ml-5 h5'>{format('dataset.manualUpdate')}</div>
@@ -96,7 +101,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
       </div>
       <HtmlViewer
         initialContent={dataset?.datasetDescription?.description}
-        className='-mt-4'
+        className='-mb-12'
       />
       {
         dataset.visualizationUrl &&

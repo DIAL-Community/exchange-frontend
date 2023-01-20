@@ -14,7 +14,7 @@ export const HtmlViewer = ({ initialContent, editorId, className }) => {
       )}
       <div className={classNames(className, 'html-viewer')}>
         <Editor
-          id={editorId || 'TinyMCE-Editor'}
+          id={editorId || 'tinymce-editor'}
           apiKey={process.env.NEXT_PUBLIC_EDITOR_KEY}
           onInit={(_, editor) => {
             setLoading(false)
@@ -22,13 +22,33 @@ export const HtmlViewer = ({ initialContent, editorId, className }) => {
           }}
           value={initialContent}
           init={{
-            selector: '#' + editorId ?? 'TinyMCE-Editor',
+            min_height: 72,
+            selector: '#' + editorId ?? 'tinymce-editor',
             menubar: false,
             toolbar: false,
             statusbar: false,
-            plugins: 'wordcount autoresize',
-            branding: false,
-            content_style: 'body { margin: 0px !important;}',
+            plugins: 'autoresize',
+            content_style: `
+              html {
+              }
+              
+              body {
+                margin: 0;
+                font-family: Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+                  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+                font-size: 16px
+              }
+
+              .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
+                margin-left: 1rem;
+                color: #dfdfea;
+              }
+
+              .mce-content-body > p:first-child {
+                margin: 0;
+              }
+            `,
+            branding: false
           }}
           disabled
         />

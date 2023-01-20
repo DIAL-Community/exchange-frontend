@@ -163,7 +163,7 @@ exports[`Unit test for the RubricCategoryDetail component. Should render RubricC
             />
           </svg>
           <div
-            class="html-viewer"
+            class="-mb-12 html-viewer"
           >
             <textarea
               id="rubric-category-detail"

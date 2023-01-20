@@ -7,6 +7,8 @@ import OrganizationDetailLeft from './OrganizationDetailLeft'
 import OrganizationDetailRight from './OrganizationDetailRight'
 
 const OrganizationDetail = ({ slug, locale }) => {
+  const commentsSectionElement = useRef()
+
   const { loading, error, data, refetch } = useQuery(ORGANIZATION_QUERY, {
     variables: { slug },
     context: { headers: { 'Accept-Language': locale } },
@@ -24,8 +26,6 @@ const OrganizationDetail = ({ slug, locale }) => {
   } else if (error && !error.networkError) {
     return <NotFound />
   }
-
-  const commentsSectionElement = useRef()
 
   return (
     <>

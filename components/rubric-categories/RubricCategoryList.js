@@ -20,11 +20,13 @@ const RubricCategoryList = ({ rubricCategoryList }) => {
           <Card
             key={rubricCategoryIdx}
             href={`rubric_categories/${rubricCategory.slug}`}
-            className='grid-cols-2 font-semibold text-button-gray items-center'
+            className='flex flex-col font-semibold text-button-gray items-center'
           >
-            {rubricCategory.name}
-            <div className='text-button-gray-light text-sm pl-2'>
-              {format('rubric-category.weight')}: {rubricCategory.weight}
+            <div className='flex flex-row gap-3'>
+              {rubricCategory.name}
+              <div className='text-button-gray-light text-sm ml-auto'>
+                {format('rubric-category.weight')}: {rubricCategory.weight}
+              </div>
             </div>
           </Card>
         )) : (

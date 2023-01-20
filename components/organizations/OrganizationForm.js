@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useContext, useEffect } from 'react'
+import React, { useState, useCallback, useMemo, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import { useMutation } from '@apollo/client'
@@ -29,7 +29,34 @@ const OrganizationForm = React.memo(({ organization }) => {
 
   const { showToast } = useContext(ToastContext)
   const { locale } = useRouter()
-  const [updateOrganization, { data }] = useMutation(CREATE_ORGANIZATION)
+  const [updateOrganization, { data, reset }] = useMutation(CREATE_ORGANIZATION, {
+    onCompleted: () => {
+      setMutating(false)
+      showToast(
+        format('organization.submit.success'),
+        'success',
+        'top-center',
+        1000,
+        null,
+        () => router.push(
+          `/${router.locale}` +
+          `/organizations/${data.createOrganization.organization.slug}`
+        )
+      )
+    },
+    onError: () => {
+      setMutating(false)
+      showToast(
+        <div className='flex flex-col'>
+          <span>{format('organization.submit.failure')}</span>
+        </div>,
+        'error',
+        'top-center',
+        1000
+      )
+      reset()
+    }
+  })
 
   const endorserLevelOptions = [
     { label: format('organization.endorserLevel.none'), value: 'none' },
@@ -80,32 +107,6 @@ const OrganizationForm = React.memo(({ organization }) => {
 
     return map
   }, [organization, format])
-
-  useEffect(() => {
-    if (!data?.createOrganization?.errors.length && data?.createOrganization?.organization) {
-      showToast(
-        format('organization.submit.success'),
-        'success',
-        'top-center',
-        1000,
-        null,
-        () => router.push(`/${router.locale}/organizations/${data.createOrganization.organization.slug}`)
-      )
-    } else if (data?.createOrganization?.errors.length) {
-      setMutating(false)
-      showToast(
-        <div className='flex flex-col'>
-          <span>{format('organization.submit.failure')}</span>
-          {data?.createOrganization?.errors.map((error, errorIdx) => (
-            <span key={errorIdx}>{error}</span>
-          ))}
-        </div>,
-        'error',
-        'top-center',
-        false
-      )
-    }
-  }, [data, format, router, showToast])
 
   const doUpsert = async (data) => {
     if (session) {

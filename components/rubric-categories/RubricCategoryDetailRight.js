@@ -17,6 +17,7 @@ const RubricCategoryDetailRight = ({ rubricCategory, slugNameMapping }) => {
       <HtmlViewer
         initialContent={rubricCategory?.rubricCategoryDescription?.description}
         editorId='rubric-category-detail'
+        className='-mb-12'
       />
       {rubricCategory?.categoryIndicators &&
         <RubricCategoryDetailCategoryIndicators

@@ -16,6 +16,10 @@ const PRODUCT_QUERY = gql`
       slug
       website
       aliases
+      hostingModel
+      pricingModel
+      pricingDetails
+      commercialProduct
       productDescription {
         description
         locale
@@ -53,7 +57,12 @@ const EditProduct = () => {
       <Header />
       {data?.product && (
         <ClientOnly>
-          {loadingUserSession ? <Loading /> : isAuthorized ? <ProductForm product={data.product} /> : <Unauthorized />}
+          {loadingUserSession
+            ? <Loading />
+            : isAuthorized
+              ? <ProductForm product={data.product} />
+              : <Unauthorized />
+          }
         </ClientOnly>
       )}
       <Footer />

@@ -41,8 +41,12 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
     if (user) {
       const { userEmail } = user
       fetchCandidateRole({
-        variables:
-          { email: userEmail, productId: '', organizationId: organization.id }
+        variables: {
+          email: userEmail,
+          productId: '',
+          datasetId: '',
+          organizationId: organization.id
+        }
       })
     }
   }, [user])

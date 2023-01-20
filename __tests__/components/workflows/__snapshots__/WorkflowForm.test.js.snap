@@ -185,7 +185,7 @@ exports[`Unit tests for WorkflowForm component. Should display toast on submit -
                     </div>
                   </label>
                   <div
-                    class="h5 w-full pl-2 text-dial-gray-dark"
+                    class="text-sm w-full text-dial-gray-dark"
                   >
                     Note: Supported file types are jpg, png, and bmp
                   </div>
@@ -433,7 +433,7 @@ exports[`Unit tests for WorkflowForm component. Should display toast on submit -
                     </div>
                   </label>
                   <div
-                    class="h5 w-full pl-2 text-dial-gray-dark"
+                    class="text-sm w-full text-dial-gray-dark"
                   >
                     Note: Supported file types are jpg, png, and bmp
                   </div>
@@ -705,7 +705,7 @@ exports[`Unit tests for WorkflowForm component. Should render WorkflowForm compo
                     </div>
                   </label>
                   <div
-                    class="h5 w-full pl-2 text-dial-gray-dark"
+                    class="text-sm w-full text-dial-gray-dark"
                   >
                     Note: Supported file types are jpg, png, and bmp
                   </div>
@@ -897,7 +897,7 @@ exports[`Unit tests for WorkflowForm component. Should show validation errors fo
                     </div>
                   </label>
                   <div
-                    class="h5 w-full pl-2 text-dial-gray-dark"
+                    class="text-sm w-full text-dial-gray-dark"
                   >
                     Note: Supported file types are jpg, png, and bmp
                   </div>

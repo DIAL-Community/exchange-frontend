@@ -43,6 +43,7 @@ const UseCaseDetailRight = ({ useCase, canEdit, commentsSectionRef }) => {
       <HtmlViewer
         initialContent={useCase?.useCaseDescription?.description}
         editorId='use-case-detail'
+        className='-mb-12'
       />
       <div className='mt-12'>
         <div className='self-center place-self-end text-sm'>

@@ -27,7 +27,7 @@ const UseCaseStepInformation = ({ useCaseStep, canEdit }) => {
       {!useCaseStep.markdownUrl &&
         <HtmlViewer
           initialContent={useCaseStep?.useCaseStepDescription?.description}
-          className='px-4 border border-dial-gray card-drop-shadow'
+          className='px-6 pt-6 border border-dial-gray card-drop-shadow'
         />
       }
       {useCaseStep.markdownUrl && <RepositoryMarkdown entityWithMarkdown={useCaseStep} canEdit={canEdit} />}
