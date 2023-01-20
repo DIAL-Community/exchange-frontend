@@ -8,6 +8,11 @@ export const CREATE_PRODUCT = gql`
     $imageFile: Upload
     $website: String
     $description: String!
+    $pricingUrl: String
+    $pricingDetails: String
+    $pricingModel: String
+    $hostingModel: String
+    $commercialProduct: Boolean
   ) {
     createProduct(
       name: $name
@@ -16,6 +21,11 @@ export const CREATE_PRODUCT = gql`
       website: $website
       imageFile: $imageFile
       description: $description
+      pricingUrl: $pricingUrl
+      pricingDetails: $pricingDetails
+      pricingModel: $pricingModel
+      hostingModel: $hostingModel
+      commercialProduct: $commercialProduct
     ) {
       product {
         name

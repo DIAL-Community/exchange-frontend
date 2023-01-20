@@ -21,7 +21,6 @@ describe('Unit test for the ProductDetailOrganizations component.', () => {
     expect(component.getByText(/SUBSCRIPTION/)).toBeInTheDocument()
 
     expect(component.getByText(/Detail Pricing Information/)).toBeInTheDocument()
-    expect(component.getByText(/Detail info on pricing./)).toBeInTheDocument()
 
     expect(component).toMatchSnapshot()
   })

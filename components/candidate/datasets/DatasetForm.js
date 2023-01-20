@@ -33,18 +33,19 @@ const DatasetForm = () => {
   const { showToast } = useContext(ToastContext)
   const { locale } = useRouter()
 
-  const [createCandidateDataset] = useMutation(CREATE_CANDIDATE_DATASET, {
+  const [createCandidateDataset, { reset }] = useMutation(CREATE_CANDIDATE_DATASET, {
     onError: () => {
+      setMutating(false)
       showToast(
         format('candidate-dataset.submit.failure'),
         'error',
         'top-center',
-        false,
-        null,
-        () => setMutating(false)
+        1000
       )
+      reset()
     },
     onCompleted: () => {
+      setMutating(false)
       showToast(
         format('candidate-dataset.submit.success'),
         'success',

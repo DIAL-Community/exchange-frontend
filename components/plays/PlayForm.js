@@ -48,16 +48,18 @@ export const PlayForm = ({ playbook, play }) => {
     }))
   )
 
-  const [createPlay] = useMutation(CREATE_PLAY, {
+  const [createPlay, { reset }] = useMutation(CREATE_PLAY, {
     onError: (error) => {
+      setMutating(false)
       showToast(
         <div className='flex flex-col'>
           <span>{error?.message}</span>
         </div>,
         'error',
         'top-center',
-        false
+        1000
       )
+      reset()
     },
     onCompleted: (data) => {
       if (!navigateToMove) {
@@ -86,16 +88,18 @@ export const PlayForm = ({ playbook, play }) => {
     }
   })
 
-  const [autoSavePlay] = useMutation(AUTOSAVE_PLAY, {
+  const [autoSavePlay, { reset: resetAutoSave }] = useMutation(AUTOSAVE_PLAY, {
     onError: (error) => {
+      setMutating(false)
       showToast(
         <div className='flex flex-col'>
           <span>{error?.message}</span>
         </div>,
         'error',
         'top-center',
-        false
+        1000
       )
+      resetAutoSave()
     },
     onCompleted: () => {
       setMutating(false)

@@ -1,6 +1,8 @@
 import { useIntl } from 'react-intl'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import Image from 'next/image'
+import ReactTooltip from 'react-tooltip'
+import { BsQuestionCircleFill } from 'react-icons/bs'
 import Breadcrumb from '../shared/breadcrumb'
 import { HtmlViewer } from '../shared/HtmlViewer'
 import EditButton from '../shared/EditButton'
@@ -36,6 +38,8 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
     return map
   })()
 
+  useEffect(() => ReactTooltip.rebuild(), [])
+
   return (
     <div className='px-4'>
       <div className='hidden lg:block'>
@@ -44,9 +48,9 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
       {product.website &&
         <div className='mt-8 mb-3 flex flex-col gap-3'>
           <div className='card-title text-dial-gray-dark inline'>{format('product.website')}</div>
-          <div className='text-base text-dial-teal'>
+          <div className='text-base text-dial-teal flex'>
             <a href={prependUrlWithProtocol(product.website)} target='_blank' rel='noreferrer'>
-              <div className='my-auto'>
+              <div className='border-b-2 border-transparent hover:border-dial-yellow'>
                 {product.website} ⧉
               </div>
             </a>
@@ -57,7 +61,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
         <div className='card-title text-dial-gray-dark inline'>
           {format('product.license')}
         </div>
-        <div className='text-base text-sm'>
+        <div className='inline'>
           {
             product.commercialProduct
               ? format('product.pricing.commercial').toUpperCase()
@@ -68,12 +72,13 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
       <div className='mt-8 card-title mb-3 text-dial-gray-dark'>
         {format('product.description')}
         {product.manualUpdate &&
-          <div className='inline ml-5 h5'>
+          <div className='inline ml-5 text-xs font-normal'>
             {format('product.manualUpdate')}
           </div>
         }
       </div>
       <HtmlViewer
+        className='-mb-12'
         initialContent={product?.productDescription?.description}
         editorId='product-detail'
       />
@@ -88,11 +93,11 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
       <div className='mt-12 card-title mb-3 text-dial-gray-dark'>
         {format('product.source')}
       </div>
-      <div className='grid grid-cols-3'>
-        <div className='pb-5 pr-5'>
-          {product.origins.map((origin, i) => {
-            return (
-              <div key={i} className='flex gap-2 my-auto relative'>
+      <div className='flex flex-col gap-3'>
+        {product.origins.map((origin, i) => {
+          return (
+            <div key={i} className='flex gap-2 my-auto relative'>
+              <div className='flex flex-row gap-3'>
                 <div className='block w-8 relative'>
                   <Image
                     layout='fill'
@@ -102,40 +107,39 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
                     alt={format('image.alt.logoFor', { name: origin.name })}
                   />
                 </div>
-                <div key={i} className='inline mt-0.5 text-sm'>
+                <div className='inline mt-0.5 text-sm'>
                   {origin.name}
                 </div>
-                {origin.slug === 'dpga' && product.endorsers.length === 0 &&
-                  <div className='inline ml-2 h5'>
-                    {format('product.nominee')}
-                  </div>
-                }
-                {origin.slug === 'dpga' && (
-                  <a
-                    className='block ml-3'
-                    href={`https://digitalpublicgoods.net/registry/${product.slug.replaceAll('_', '-')}`}
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    <div className='inline ml-4 text-dial-teal text-sm'>
-                      {format('product.view-DPGA-data')}
-                    </div>
-                  </a>
-                )}
               </div>
-            )
-          })}
-        </div>
-        <div className='pb-5 pr-5 col-span-2'>
-          {product.endorsers.length > 0 &&
-            <div className='h5 pb-1'>
-              {format('product.endorsers')}
+              {origin.slug === 'dpga' && product.endorsers.length === 0 &&
+                <div className='inline ml-2 h5'>
+                  {format('product.nominee')}
+                </div>
+              }
+              {origin.slug === 'dpga' && (
+                <a
+                  href={`https://digitalpublicgoods.net/registry/${product.slug.replaceAll('_', '-')}`}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  <div className='inline text-dial-teal text-sm' data-tip={format('product.view-DPGA-data')}>
+                    <BsQuestionCircleFill className='inline text-xl mb-1 fill-dial-yellow' />
+                  </div>
+                </a>
+              )}
             </div>
-          }
-          {product.endorsers.length > 0 && product.endorsers.map((endorser, i) => {
-            return (
-              <div key={i}>
-                <div>
+          )
+        })}
+      </div>
+      {product.endorsers.length > 0 &&
+        <div className='flex flex-col gap-3 mt-12'>
+          <div className='card-title'>
+            {format('product.endorsers')}
+          </div>
+          <div className='flex gap-2'>
+            {product.endorsers.map((endorser, i) => {
+              return (
+                <div  key={i} className='flex gap-2'>
                   <Image
                     height={20} width={20}
                     alt={format('image.alt.logoFor', { name: endorser.name })}
@@ -143,15 +147,15 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
                     src={'/images/origins/' + endorser.slug + '.png'}
                     className='inline'
                   />
-                  <div key={i} className='text-sm inline ml-2'>
+                  <div className='text-sm inline'>
                     {format('product.endorsed-by') + endorser.name}
                   </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
         </div>
-      </div>
+      }
       <div className='flex justify-between mt-12 mb-3'>
         <span className='text-dial-gray-dark border-b-2 border-transparent card-title'>
           {format('product.repository')}

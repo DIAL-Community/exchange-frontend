@@ -30,15 +30,16 @@ const ProductForm = () => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const [createCandidateProduct] = useMutation(CREATE_CANDIDATE_PRODUCT, {
+  const [createCandidateProduct, { reset }] = useMutation(CREATE_CANDIDATE_PRODUCT, {
     onError: () => {
       setMutating(false)
       showToast(
         format('candidate-product.submit.failure'),
         'error',
         'top-center',
-        false
+        1000
       )
+      reset()
     },
     onCompleted: () => {
       setMutating(false)

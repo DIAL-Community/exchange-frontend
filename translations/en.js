@@ -253,6 +253,14 @@ export const en = {
   'product.no-project': 'We do not have any Project information for this Product.',
   'product.no-sdgs': 'We do not have any Sustainable Development Goal information for this Product.',
 
+  'product.pricingInformation': 'Product Pricing Information',
+  'product.commercialProduct': 'This product is commercial product.',
+  'product.pricingUrl': 'Link to Pricing Information',
+  'product.hostingModel': 'Hosting Model',
+  'product.pricingModel': 'Pricing Model',
+  'product.pricing.details': 'Pricing Details',
+
+
   'project.header': 'Projects',
   'project.label': 'Project',
   'project.url': 'Project URL',

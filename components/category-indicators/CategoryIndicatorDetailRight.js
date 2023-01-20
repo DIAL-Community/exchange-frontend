@@ -30,7 +30,7 @@ const CategoryIndicatorDetailRight = ({ categoryIndicator, slugNameMapping }) =>
         </div>
         <HtmlViewer
           initialContent={categoryIndicator?.categoryIndicatorDescription?.description}
-          className='-my-4'
+          className='-mb-12'
         />
       </div>
     </div>

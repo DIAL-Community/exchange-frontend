@@ -16,6 +16,10 @@ const PRODUCT_QUERY = gql`
       slug
       website
       aliases
+      hostingModel
+      pricingModel
+      pricingDetails
+      commercialProduct
       productDescription {
         description
         locale

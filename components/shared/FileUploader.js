@@ -31,7 +31,9 @@ const FileUploader = React.forwardRef(({ onChange, onBlur, isInvalid = false, cl
           </span>
         </div>
       </label>
-      <div className='h5 w-full pl-2 text-dial-gray-dark'>{format('upload.supportedFormats')}</div>
+      <div className='text-sm w-full text-dial-gray-dark'>
+        {format('upload.supportedFormats')}
+      </div>
     </>
   )
 })
