@@ -1,62 +1,16 @@
 import { useContext, useEffect } from 'react'
 import { useIntl, FormattedMessage } from 'react-intl'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { HiSortAscending } from 'react-icons/hi'
 import { BuildingBlockFilterContext } from '../context/BuildingBlockFilterContext'
 import { FilterContext } from '../context/FilterContext'
+import NotFound from '../shared/NotFound'
 import { Loading, Error } from '../shared/FetchStatus'
+import { BUILDING_BLOCKS_QUERY } from '../../queries/building-block'
 import BuildingBlockCard from './BuildingBlockCard'
 
 const DEFAULT_PAGE_SIZE = 20
-
-const BUILDING_BLOCKS_QUERY = gql`
-query SearchBuildingBlocks(
-  $first: Int,
-  $after: String,
-  $sdgs: [String!],
-  $useCases: [String!],
-  $workflows: [String!],
-  $showMature: Boolean,
-  $search: String!
-  ) {
-  searchBuildingBlocks(
-    first: $first,
-    after: $after,
-    sdgs: $sdgs,
-    useCases: $useCases,
-    workflows: $workflows,
-    showMature: $showMature,
-    search: $search
-  ) {
-    totalCount
-    pageInfo {
-      endCursor
-      startCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    nodes {
-      id
-      name
-      slug
-      imageFile
-      maturity
-      specUrl
-      workflows {
-        slug
-        name
-        imageFile
-      }
-      products {
-        slug
-        name
-        imageFile
-      }
-    }
-  }
-}
-`
 
 const BuildingBlockList = (props) => {
   const { formatMessage } = useIntl()
@@ -117,7 +71,7 @@ const BuildingBlockList = (props) => {
 }
 
 const BuildingBlockListQuery = () => {
-  const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const { sdgs, useCases, workflows, showMature, search } = useContext(BuildingBlockFilterContext)
 
   const format = (id, value = {}) => <FormattedMessage id={id} values={{ ...value }} />
@@ -130,7 +84,9 @@ const BuildingBlockListQuery = () => {
       workflows: workflows.map(workflow => workflow.value),
       showMature,
       search
-    }
+    },
+    fetchPolicy: 'network-only',
+    nextFetchPolicy: 'cache-first'
   })
 
   const handleLoadMore = () => {
@@ -149,19 +105,21 @@ const BuildingBlockListQuery = () => {
 
   useEffect(() => {
     if (data) {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.buildingBlocks']]: data.searchBuildingBlocks.totalCount }
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.buildingBlocks']]: data.searchBuildingBlocks.totalCount }
+        }
       })
     }
-  }, [data])
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error) {
+  } else if (error && error.networkError) {
     return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
   }
 
   const { searchBuildingBlocks: { nodes, pageInfo } } = data

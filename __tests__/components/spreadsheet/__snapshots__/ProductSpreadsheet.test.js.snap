@@ -10,7 +10,7 @@ exports[`Unit tests for spreadsheet interaction. Should render error message whe
       />
       <div
         class="text-button-gray text-lg"
-        style="margin-top: 10%;"
+        style="margin-top: 10%; margin-bottom: 10%;"
       >
         <svg
           class="w-full mb-5"
@@ -40,7 +40,7 @@ exports[`Unit tests for spreadsheet interaction. Should render error message whe
     />
     <div
       class="text-button-gray text-lg"
-      style="margin-top: 10%;"
+      style="margin-top: 10%; margin-bottom: 10%;"
     >
       <svg
         class="w-full mb-5"

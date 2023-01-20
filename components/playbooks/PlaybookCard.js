@@ -22,7 +22,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed, newTab = false, can
 
   const isPlaybookPublished = !playbook.draft
 
-  useEffect(ReactTooltip.rebuild)
+  useEffect(() => ReactTooltip.rebuild(), [])
 
   return (
     <Link href={`/${collectionPath}/${playbook.slug}`}>

@@ -1,14 +1,14 @@
 import { useIntl } from 'react-intl'
 import { useCallback, useMemo } from 'react'
-import { useSession } from 'next-auth/react'
 import EditButton from '../shared/EditButton'
 import Breadcrumb from '../shared/breadcrumb'
+import { useUser } from '../../lib/hooks'
 
 const UserDetail = ({ user }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data: session } = useSession()
+  const { isAdminUser } = useUser()
   const slugNameMapping = useMemo(() => ({ [user.id]: user.username }), [user])
 
   return (
@@ -16,7 +16,7 @@ const UserDetail = ({ user }) => {
       <div className='flex flex-col lg:flex-row justify-between pb-8'>
         <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
           <div className='pb-4'>
-            {session?.user.canEdit && <EditButton type='link' href={`/users/${user.id}/edit`} />}
+            {isAdminUser && <EditButton type='link' href={`/users/${user.id}/edit`} />}
           </div>
           <div className='bg-white border-2 border-dial-gray lg:mr-6 shadow-lg'>
             <div className='flex flex-col h-80 p-4'>

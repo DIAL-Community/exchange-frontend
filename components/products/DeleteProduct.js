@@ -7,6 +7,7 @@ import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import { DELETE_PRODUCT } from '../../mutations/product'
 import { useUser } from '../../lib/hooks'
+import { PRODUCT_QUERY } from '../../queries/product'
 
 const DeleteProduct = ({ product }) => {
   const { formatMessage } = useIntl()
@@ -23,6 +24,10 @@ const DeleteProduct = ({ product }) => {
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
 
   const [deleteProduct, { called, reset }] = useMutation(DELETE_PRODUCT, {
+    refetchQueries: [{
+      query: PRODUCT_QUERY,
+      variables: { slug: product.slug }
+    }],
     onCompleted: () => {
       setDisplayConfirmDialog(false)
       showToast(
@@ -47,17 +52,6 @@ const DeleteProduct = ({ product }) => {
       deleteProduct({
         variables: {
           id: product.id
-        },
-        update(cache, { data }) {
-          if (data) {
-            const identity = {
-              id: data.product.id,
-              __typename: 'Product'
-            }
-            const normalizedId = cache.identify(identity)
-            cache.evict({ id: normalizedId })
-            cache.gc()
-          }
         },
         context: {
           headers: {

@@ -26,20 +26,18 @@ const EditUseCase = () => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.useCase) {
     return <NotFound />
   }
 
   return (
     <>
       <Header />
-      {data?.useCase && (
-        <ClientOnly>
-          <UseCaseForm useCase={data.useCase} />
-        </ClientOnly>
-      )}
+      <ClientOnly>
+        { data?.useCase && <UseCaseForm useCase={data.useCase} /> }
+      </ClientOnly>
       <Footer />
     </>
   )

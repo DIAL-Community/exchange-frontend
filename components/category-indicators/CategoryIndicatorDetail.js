@@ -29,9 +29,9 @@ const CategoryIndicatorDetail = ({ rubricCategorySlug, categoryIndicatorSlug, lo
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!categoryIndicatorData?.categoryIndicator) {
     return <NotFound />
   }
 

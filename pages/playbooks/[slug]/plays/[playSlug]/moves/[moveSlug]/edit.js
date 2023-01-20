@@ -22,17 +22,16 @@ const EditMoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.move && !data?.play && !data?.playbook) {
     return <NotFound />
   }
 
   return (
     <>
-      {
-        data?.move && data?.play && data?.playbook &&
-          <MoveForm playbook={data.playbook} play={data.play} move={data.move} />
+      {data?.move && data?.play && data?.playbook &&
+        <MoveForm playbook={data.playbook} play={data.play} move={data.move} />
       }
     </>
   )

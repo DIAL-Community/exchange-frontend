@@ -23,19 +23,18 @@ const PlayInformation = ({ slug, playSlug, locale }) => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.play && !data?.playbook) {
     return <NotFound />
   }
 
   return (
     <>
-      {
-        data && data.play && data.playbook &&
-          <div className='px-8'>
-            <PlayDetail playbook={data.playbook} play={data.play} />
-          </div>
+      {data?.play && data?.playbook &&
+        <div className='px-8'>
+          <PlayDetail playbook={data.playbook} play={data.play} />
+        </div>
       }
     </>
   )

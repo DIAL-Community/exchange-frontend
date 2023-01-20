@@ -21,20 +21,18 @@ const CreateBuildingBlock = () => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.buildingBlock) {
     return <NotFound />
   }
 
   return (
     <>
       <Header />
-      {data?.buildingBlock && (
-        <ClientOnly>
-          <BuildingBlockForm buildingBlock={data.buildingBlock} />
-        </ClientOnly>
-      )}
+      <ClientOnly>
+        { data?.buildingBlock && <BuildingBlockForm buildingBlock={data.buildingBlock} /> }
+      </ClientOnly>
       <Footer />
     </>
   )

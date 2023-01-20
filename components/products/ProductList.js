@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
@@ -25,7 +25,7 @@ const PRODUCT_CARD_GUTTER_SIZE = 8
 const MIN_PRODUCT_LIST_SIZE = 80
 
 const ProductListQuery = () => {
-  const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const {
     origins, countries, sectors, organizations, sdgs, tags, useCases, workflows, buildingBlocks,
     endorsers, productDeployable, isEndorsed, search, licenseTypes
@@ -54,12 +54,8 @@ const ProductListQuery = () => {
       search
     },
     context: { headers: { 'Accept-Language': locale } },
-    onCompleted: (data) => {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.products']]: data.searchProducts.totalCount }
-      })
-    }
+    fetchPolicy: 'network-only',
+    nextFetchPolicy: 'cache-first'
   })
 
   const handleLoadMore = () => {
@@ -84,6 +80,17 @@ const ProductListQuery = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.products']]: data.searchProducts.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />

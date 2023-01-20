@@ -20,20 +20,18 @@ const EditUseCaseStep = () => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.useCaseStep) {
     return <NotFound />
   }
 
   return (
     <>
       <Header />
-      {data?.useCaseStep && (
-        <ClientOnly>
-          <StepForm useCaseStep={data.useCaseStep} useCase={useCase}/>
-        </ClientOnly>
-      )}
+      <ClientOnly>
+        { data?.useCaseStep && <StepForm useCaseStep={data.useCaseStep} useCase={useCase}/> }
+      </ClientOnly>
       <Footer />
     </>
   )

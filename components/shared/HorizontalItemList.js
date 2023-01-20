@@ -17,11 +17,12 @@ const HorizontalItemList = ({ restTooltipMessage, children }) => {
     }
   }, [])
 
-  useEffect(getContainerSize, [])
+  useEffect(() => {
+    getContainerSize()
+    window.addEventListener('resize', debounce(getContainerSize, 200))
+  }, [getContainerSize])
 
-  useEffect(() => window.addEventListener('resize', debounce(getContainerSize, 200)), [getContainerSize])
-
-  useEffect(ReactTooltip.rebuild)
+  useEffect(() => ReactTooltip.rebuild, [])
 
   return (
     <div className='flex flex-row' data-testid='horizontal-items-list'>

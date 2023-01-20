@@ -41,7 +41,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, filterDisplayed, newTab = 
       const productOverflow = pc.offsetHeight < pc.scrollHeight || pc.offsetWidth < pc.scrollWidth
       setProductOverflow(productOverflow)
     }
-  }, [workflowOverflow, productOverflow])
+  }, [workflowOverflow, workflowContainer, productOverflow, productContainer])
 
   const nameColSpan = (buildingBlock) => {
     return !buildingBlock.products && !buildingBlock.workflows

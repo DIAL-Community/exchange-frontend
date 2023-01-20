@@ -43,9 +43,10 @@ export const mockNextUseRouter = (values = {}) => {
 /**
  * Default properties of mocked useSession implementation.
  */
-const sessionDefaultValues = {
+export const sessionDefaultValues = {
   data: {
     user: {
+      id: 1,
       userEmail: 'some-fake@email.com',
       userToken: 'some-fake-user-token',
       name: 'some-fake-username',

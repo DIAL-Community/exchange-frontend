@@ -7,6 +7,7 @@ import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import { DELETE_DATASET } from '../../mutations/dataset'
 import { useUser } from '../../lib/hooks'
+import { DATASET_QUERY } from '../../queries/dataset'
 
 const DeleteDataset = ({ dataset }) => {
   const { formatMessage } = useIntl()
@@ -23,6 +24,10 @@ const DeleteDataset = ({ dataset }) => {
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
 
   const [deleteDataset, { called, reset }] = useMutation(DELETE_DATASET, {
+    refetchQueries: [{
+      query: DATASET_QUERY,
+      variables: { slug: dataset.slug }
+    }],
     onCompleted: () => {
       setDisplayConfirmDialog(false)
       showToast(
@@ -47,17 +52,6 @@ const DeleteDataset = ({ dataset }) => {
       deleteDataset({
         variables: {
           id: dataset.id
-        },
-        update(cache, { data }) {
-          if (data) {
-            const identity = {
-              id: data.dataset.id,
-              __typename: 'Dataset'
-            }
-            const normalizedId = cache.identify(identity)
-            cache.evict({ id: normalizedId })
-            cache.gc()
-          }
         },
         context: {
           headers: {

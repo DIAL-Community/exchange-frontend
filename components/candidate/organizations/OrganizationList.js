@@ -1,10 +1,11 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { HiSortAscending } from 'react-icons/hi'
 import { OrganizationFilterContext } from '../../context/candidate/OrganizationFilterContext'
 import { FilterContext } from '../../context/FilterContext'
+import NotFound from '../../shared/NotFound'
 import { Loading, Error } from '../../shared/FetchStatus'
 import OrganizationCard from './OrganizationCard'
 
@@ -90,32 +91,16 @@ const OrganizationListQuery = () => {
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const { search } = useContext(OrganizationFilterContext)
-  const { filterDisplayed, resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
 
   const { loading, error, data, fetchMore } = useQuery(ORGANIZATIONS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       search
-    },
-    onCompleted: (data) => {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.candidateOrganizations']]: data.searchCandidateOrganizations.totalCount }
-      })
     }
   })
 
-  if (loading) {
-    return <Loading />
-  }
-
-  if (error) {
-    return <Error />
-  }
-
-  const { searchCandidateOrganizations: { nodes, pageInfo } } = data
-
-  function handleLoadMore () {
+  function handleLoadMore() {
     fetchMore({
       variables: {
         first: DEFAULT_PAGE_SIZE,
@@ -124,6 +109,27 @@ const OrganizationListQuery = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.candidateOrganizations']]: data.searchCandidateOrganizations.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
+
+  if (loading) {
+    return <Loading />
+  } else if (error && error.networkError) {
+    return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
+  }
+
+  const { searchCandidateOrganizations: { nodes, pageInfo } } = data
 
   return (
     <InfiniteScroll

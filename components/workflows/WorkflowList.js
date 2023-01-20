@@ -1,63 +1,16 @@
 import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { HiSortAscending } from 'react-icons/hi'
 import { FilterContext } from '../context/FilterContext'
 import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
+import NotFound from '../shared/NotFound'
 import { Loading, Error } from '../shared/FetchStatus'
+import { WORKFLOWS_QUERY } from '../../queries/workflow'
 import WorkflowCard from './WorkflowCard'
 
 const DEFAULT_PAGE_SIZE = 20
-
-const WORKFLOWS_QUERY = gql`
-query SearchWorkflows(
-  $first: Int,
-  $after: String,
-  $sdgs: [String!],
-  $useCases: [String!],
-  $search: String!
-  ) {
-  searchWorkflows(
-    first: $first,
-    after: $after,
-    sdgs: $sdgs,
-    useCases: $useCases,
-    search: $search
-  ) {
-    totalCount
-    pageInfo {
-      endCursor
-      startCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    nodes {
-      id
-      name
-      slug
-      imageFile
-      useCaseSteps {
-        id
-        slug
-        name
-        useCase {
-          id
-          slug
-          name
-          imageFile
-        }
-      }
-      buildingBlocks {
-        id
-        slug
-        name
-        imageFile
-      }
-    }
-  }
-}
-`
 
 const WorkflowList = (props) => {
   const { formatMessage } = useIntl()
@@ -118,7 +71,7 @@ const WorkflowList = (props) => {
 }
 
 const WorkflowListQuery = () => {
-  const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const { sdgs, useCases, search } = useContext(WorkflowFilterContext)
 
   const { formatMessage } = useIntl()
@@ -130,7 +83,9 @@ const WorkflowListQuery = () => {
       sdgs: sdgs.map(sdg => sdg.value),
       useCases: useCases.map(useCase => useCase.value),
       search
-    }
+    },
+    fetchPolicy: 'network-only',
+    nextFetchPolicy: 'cache-first'
   })
 
   const handleLoadMore = () => {
@@ -147,19 +102,21 @@ const WorkflowListQuery = () => {
 
   useEffect(() => {
     if (data) {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.workflows']]: data.searchWorkflows.totalCount }
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.workflows']]: data.searchWorkflows.totalCount }
+        }
       })
     }
-  }, [data])
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error) {
+  } else if (error && error.networkError) {
     return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
   }
 
   const { searchWorkflows: { nodes, pageInfo } } = data

@@ -1,9 +1,10 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { RoleFilterContext } from '../../context/candidate/RoleFilterContext'
 import { FilterContext } from '../../context/FilterContext'
+import NotFound from '../../shared/NotFound'
 import { Loading, Error } from '../../shared/FetchStatus'
 import RoleCard from './RoleCard'
 
@@ -92,29 +93,16 @@ const RoleListQuery = () => {
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const { search } = useContext(RoleFilterContext)
-  const { filterDisplayed, resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
 
   const { loading, error, data, fetchMore } = useQuery(ROLES_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       search
-    },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.candidateRoles']]: data.searchCandidateRoles.totalCount } })
     }
   })
 
-  if (loading) {
-    return <Loading />
-  }
-
-  if (error) {
-    return <Error />
-  }
-
-  const { searchCandidateRoles: { nodes, pageInfo } } = data
-
-  function handleLoadMore () {
+  function handleLoadMore() {
     fetchMore({
       variables: {
         first: DEFAULT_PAGE_SIZE,
@@ -123,6 +111,27 @@ const RoleListQuery = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.candidateRoles']]: data.searchCandidateRoles.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
+
+  if (loading) {
+    return <Loading />
+  } else if (error && error.networkError) {
+    return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
+  }
+
+  const { searchCandidateRoles: { nodes, pageInfo } } = data
 
   return (
     <InfiniteScroll

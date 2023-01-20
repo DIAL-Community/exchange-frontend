@@ -7,6 +7,7 @@ import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import { DELETE_BUILDING_BLOCK } from '../../mutations/building-block'
 import { useUser } from '../../lib/hooks'
+import { BUILDING_BLOCK_DETAIL_QUERY } from '../../queries/building-block'
 
 const DeleteBuildingBlock = ({ buildingBlock }) => {
   const { formatMessage } = useIntl()
@@ -23,6 +24,10 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
 
   const [deleteBuildingBlock, { called, reset }] = useMutation(DELETE_BUILDING_BLOCK, {
+    refetchQueries: [{
+      query: BUILDING_BLOCK_DETAIL_QUERY,
+      variables: { slug: buildingBlock.slug }
+    }],
     onCompleted: () => {
       setDisplayConfirmDialog(false)
       showToast(
@@ -47,17 +52,6 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
       deleteBuildingBlock({
         variables: {
           id: buildingBlock.id
-        },
-        update(cache, { data }) {
-          if (data) {
-            const identity = {
-              id: data.buildingBlock.id,
-              __typename: 'BuildingBlock'
-            }
-            const normalizedId = cache.identify(identity)
-            cache.evict({ id: normalizedId })
-            cache.gc()
-          }
         },
         context: {
           headers: {

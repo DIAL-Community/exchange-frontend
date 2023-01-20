@@ -7,6 +7,7 @@ import DeleteButton from '../shared/DeleteButton'
 import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import { ToastContext } from '../../lib/ToastContext'
 import { DELETE_COUNTRY } from '../../mutations/country'
+import { COUNTRY_DETAIL_QUERY } from '../../queries/country'
 
 const DeleteCountry = ({ country }) => {
   const { formatMessage } = useIntl()
@@ -26,6 +27,10 @@ const DeleteCountry = ({ country }) => {
   }
 
   const [deleteCountry, { called, reset }] = useMutation(DELETE_COUNTRY, {
+    refetchQueries: [{
+      query: COUNTRY_DETAIL_QUERY,
+      variables: { slug: country.slug }
+    }],
     onCompleted: () => {
       showToast(
         format('toast.country.delete.success'),
