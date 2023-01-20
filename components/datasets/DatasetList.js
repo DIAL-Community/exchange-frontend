@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { FixedSizeGrid, FixedSizeList } from 'react-window'
 import AutoSizer from 'react-virtualized-auto-sizer'
@@ -9,6 +9,7 @@ import { FilterContext } from '../context/FilterContext'
 import { DatasetFilterContext } from '../context/DatasetFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
 import NotFound from '../shared/NotFound'
+import { DATASETS_QUERY } from '../../queries/dataset'
 import DatasetCard from './DatasetCard'
 
 /* Default number of elements coming from graphql query. */
@@ -23,64 +24,8 @@ const PRODUCT_CARD_GUTTER_SIZE = 8
 /* Height of the dataset's single list element when viewing the list view. */
 const MIN_PRODUCT_LIST_SIZE = 80
 
-const DATASETS_QUERY = gql`
-query SearchDatasets(
-  $first: Int,
-  $after: String,
-  $origins: [String!],
-  $sectors: [String!],
-  $countries: [String!],
-  $organizations: [String!],
-  $sdgs: [String!],
-  $tags: [String!],
-  $datasetTypes: [String!],
-  $search: String!
-  ) {
-  searchDatasets(
-    first: $first,
-    after: $after,
-    origins: $origins,
-    sectors: $sectors,
-    countries: $countries,
-    organizations: $organizations,
-    sdgs: $sdgs,
-    tags: $tags,
-    datasetTypes: $datasetTypes,
-    search: $search
-  ) {
-    totalCount
-    pageInfo {
-      endCursor
-      startCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    nodes {
-      id
-      name
-      slug
-      imageFile
-      datasetType
-      tags
-      origins{
-        name
-        slug
-      }
-      sustainableDevelopmentGoals {
-        slug
-        name
-      }
-      datasetDescription {
-        description
-        locale
-      }
-    }
-  }
-}
-`
-
 const DatasetListQuery = () => {
-  const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const {
     origins, countries, sectors, organizations, sdgs, tags, datasetTypes, search
   } = useContext(DatasetFilterContext)
@@ -89,7 +34,7 @@ const DatasetListQuery = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data, fetchMore, refetch } = useQuery(DATASETS_QUERY, {
+  const { loading, error, data, fetchMore } = useQuery(DATASETS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       origins: origins.map(origin => origin.value),
@@ -101,7 +46,9 @@ const DatasetListQuery = () => {
       datasetTypes: datasetTypes.map(datasetType => datasetType.value),
       search
     },
-    context: { headers: { 'Accept-Language': locale } }
+    context: { headers: { 'Accept-Language': locale } },
+    fetchPolicy: 'network-only',
+    nextFetchPolicy: 'cache-first'
   })
 
   const handleLoadMore = () => {
@@ -122,27 +69,21 @@ const DatasetListQuery = () => {
   }
 
   useEffect(() => {
-    refetch()
-  }, [locale, refetch])
-
-  useEffect(() => {
     if (data) {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.datasets']]: data.searchDatasets.totalCount }
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.datasets']]: data.searchDatasets.totalCount }
+        }
       })
     }
-  }, [data])
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error && error.networkError) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (error && !error.networkError) {
     return <NotFound />
   }
 

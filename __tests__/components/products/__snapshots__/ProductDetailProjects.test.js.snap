@@ -293,7 +293,7 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
                 />
                 <div
                   class="block xl:hidden text-right text-sm font-semibold text-dial-cyan"
-                  data-tip="Origin: "
+                  data-tip="Origin: Origin"
                 >
                   ORIGIN_SLUG
                 </div>
@@ -533,7 +533,7 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
                 />
                 <div
                   class="block xl:hidden text-right text-sm font-semibold text-dial-cyan"
-                  data-tip="Origin: "
+                  data-tip="Origin: Origin"
                 >
                   ORIGIN_SLUG
                 </div>

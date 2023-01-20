@@ -7,6 +7,7 @@ import DeleteButton from '../shared/DeleteButton'
 import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import { ToastContext } from '../../lib/ToastContext'
 import { DELETE_PLAYBOOK } from '../../mutations/playbook'
+import { PLAYBOOK_QUERY } from '../../queries/playbook'
 
 const DeletePlaybook = ({ playbook }) => {
   const { formatMessage } = useIntl()
@@ -25,6 +26,10 @@ const DeletePlaybook = ({ playbook }) => {
   }
 
   const [deletePlaybook, { called, reset }] = useMutation(DELETE_PLAYBOOK, {
+    refetchQueries: [{
+      query: PLAYBOOK_QUERY,
+      variables: { slug: playbook.slug }
+    }],
     onCompleted: () => {
       showToast(
         format('toast.playbook.delete.success'),

@@ -5,6 +5,7 @@ import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import { DELETE_ORGANIZATION } from '../../mutations/organization'
+import { ORGANIZATION_QUERY } from '../../queries/organization'
 import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import DeleteButton from '../shared/DeleteButton'
 
@@ -21,6 +22,10 @@ const DeleteOrganization = ({ organization }) => {
   const { showToast } = useContext(ToastContext)
 
   const [deleteOrganization, { called, reset }] = useMutation(DELETE_ORGANIZATION, {
+    refetchQueries: [{
+      query: ORGANIZATION_QUERY,
+      variables: { slug: organization.slug }
+    }],
     onCompleted: () => {
       showToast(
         format('toast.organization.delete.success'),

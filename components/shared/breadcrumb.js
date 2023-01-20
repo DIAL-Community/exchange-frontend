@@ -38,14 +38,14 @@ export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>
 const Breadcrumb = (props) => {
   const { slugNameMapping } = props
 
-  const router = useRouter()
+  const { asPath } = useRouter()
   const [breadcrumbs, setBreadcrumbs] = useState([])
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   useEffect(() => {
-    const linkPath = router.asPath.split('/')
+    const linkPath = asPath.split('/')
     linkPath.shift()
 
     const pathArray = linkPath.map((path, i) => {

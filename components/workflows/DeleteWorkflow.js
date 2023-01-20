@@ -7,6 +7,7 @@ import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import { DELETE_WORKFLOW } from '../../mutations/workflow'
 import { useUser } from '../../lib/hooks'
+import { WORKFLOW_DETAIL_QUERY } from '../../queries/workflow'
 
 const DeleteWorkflow = ({ workflow }) => {
   const { formatMessage } = useIntl()
@@ -23,6 +24,10 @@ const DeleteWorkflow = ({ workflow }) => {
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
 
   const [deleteWorkflow, { called, reset }] = useMutation(DELETE_WORKFLOW, {
+    refetchQueries: [{
+      query: WORKFLOW_DETAIL_QUERY,
+      variables: { slug: workflow.slug }
+    }],
     onCompleted: () => {
       setDisplayConfirmDialog(false)
       showToast(
@@ -47,17 +52,6 @@ const DeleteWorkflow = ({ workflow }) => {
       deleteWorkflow({
         variables: {
           id: workflow.id
-        },
-        update(cache, { data }) {
-          if (data) {
-            const identity = {
-              id: data.workflow.id,
-              __typename: 'Workflow'
-            }
-            const normalizedId = cache.identify(identity)
-            cache.evict({ id: normalizedId })
-            cache.gc()
-          }
         },
         context: {
           headers: {

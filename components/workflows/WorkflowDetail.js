@@ -19,7 +19,7 @@ const WorkflowDetail = ({ slug, locale }) => {
     return <Loading />
   } else if (error && error.networkError) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.workflow) {
     return <NotFound />
   }
 

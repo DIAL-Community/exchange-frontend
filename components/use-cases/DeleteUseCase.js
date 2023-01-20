@@ -7,6 +7,7 @@ import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import { DELETE_USE_CASE } from '../../mutations/use-case'
 import { useUser } from '../../lib/hooks'
+import { USE_CASE_DETAIL_QUERY } from '../../queries/use-case'
 
 const DeleteUseCase = ({ useCase }) => {
   const { formatMessage } = useIntl()
@@ -23,6 +24,10 @@ const DeleteUseCase = ({ useCase }) => {
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
 
   const [deleteUseCase, { called, reset }] = useMutation(DELETE_USE_CASE, {
+    refetchQueries: [{
+      query: USE_CASE_DETAIL_QUERY,
+      variables: { slug: useCase.slug }
+    }],
     onCompleted: () => {
       setDisplayConfirmDialog(false)
       showToast(
@@ -47,17 +52,6 @@ const DeleteUseCase = ({ useCase }) => {
       deleteUseCase({
         variables: {
           id: useCase.id
-        },
-        update(cache, { data }) {
-          if (data) {
-            const identity = {
-              id: data.useCase.id,
-              __typename: 'UseCase'
-            }
-            const normalizedId = cache.identify(identity)
-            cache.evict({ id: normalizedId })
-            cache.gc()
-          }
         },
         context: {
           headers: {

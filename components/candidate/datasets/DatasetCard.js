@@ -22,14 +22,16 @@ const DatasetCard = ({ dataset, listType }) => {
   const [comment, setComment] = useState('')
 
   const datasetType = useMemo(() =>
-    getDatasetTypeOptions(format).find(((datasetOption) => dataset.dataType === datasetOption.value))
+    getDatasetTypeOptions(format)
+      .find((datasetOption) => dataset.dataType === datasetOption.value)
   , [dataset.dataType, format])
 
   useEffect(() => {
     ReactTooltip.rebuild()
   })
 
-  const shouldFlipCard = (status) => [CandidateStatusType.REJECTION, CandidateStatusType.APPROVAL].indexOf(status) >= 0
+  const shouldFlipCard = (status) =>
+    [CandidateStatusType.REJECTION, CandidateStatusType.APPROVAL].indexOf(status) >= 0
 
   return (
     <>

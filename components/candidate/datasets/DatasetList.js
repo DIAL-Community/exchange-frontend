@@ -1,9 +1,10 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { DatasetFilterContext } from '../../context/candidate/DatasetFilterContext'
 import { FilterContext } from '../../context/FilterContext'
+import NotFound from '../../shared/NotFound'
 import { Loading, Error } from '../../shared/FetchStatus'
 import { CANDIDATE_DATASETS_QUERY } from '../../../queries/candidate'
 import { DEFAULT_PAGE_SIZE } from '../../../lib/constants'
@@ -52,30 +53,14 @@ const DatasetListQuery = () => {
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const { search } = useContext(DatasetFilterContext)
-  const { filterDisplayed, resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
 
   const { loading, error, data, fetchMore } = useQuery(CANDIDATE_DATASETS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       search
-    },
-    onCompleted: (data) => {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.candidateDatasets']]: data.searchCandidateDatasets.totalCount }
-      })
     }
   })
-
-  if (loading) {
-    return <Loading />
-  }
-
-  if (error) {
-    return <Error />
-  }
-
-  const { searchCandidateDatasets: { nodes, pageInfo } } = data
 
   const handleLoadMore = () => {
     fetchMore({
@@ -86,6 +71,27 @@ const DatasetListQuery = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.candidateDatasets']]: data.searchCandidateDatasets.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
+
+  if (loading) {
+    return <Loading />
+  } else if (error && error.networkError) {
+    return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
+  }
+
+  const { searchCandidateDatasets: { nodes, pageInfo } } = data
 
   return (
     <InfiniteScroll

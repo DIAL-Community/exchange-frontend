@@ -7,6 +7,7 @@ export const workflow = {
     locale: 'en'
   },
   imageFile: './test.jpg',
+  useCaseSteps: [],
   buildingBlocks: [
     {
       id: 3,

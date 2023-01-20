@@ -41,7 +41,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
       const sdgTargetOverflow = sc.offsetHeight < sc.scrollHeight || sc.offsetWidth < sc.scrollWidth
       setSdgTargetOverflow(sdgTargetOverflow)
     }
-  }, [useCaseOverflow, sdgTargetOverflow])
+  }, [useCaseOverflow, useCaseContainer, sdgTargetOverflow, sdgTargetContainer])
 
   const useCases = (() => {
     if (!sdg.sdgTargets) {
@@ -71,7 +71,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
       : filterDisplayed ? 'col-span-6 xl:col-span-2' : 'col-span-5 md:col-span-3 lg:col-span-2'
   }
 
-  const useCaseColSpan = () => {
+  const caseColSpan = () => {
     return !useCases
       ? 'hidden'
       : filterDisplayed ? 'hidden xl:block 2xl:col-span-4' : 'hidden lg:block lg:col-span-3 lg:col-span-4'
@@ -120,7 +120,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                         </div>
                     }
                   </div>
-                  <div className={`${useCaseColSpan()} text-base text-use-case ${ellipsisTextStyle}`}>
+                  <div className={`${caseColSpan()} text-base text-use-case ${ellipsisTextStyle}`}>
                     {
                       useCases && useCases.length === 0 && format('general.na')
                     }

@@ -45,7 +45,7 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
         sc.offsetWidth < sc.scrollWidth
       setSdgTargetOverflow(sdgTargetOverflow)
     }
-  }, [workflowOverflow, sdgTargetOverflow])
+  }, [workflowOverflow, workflowContainer, sdgTargetOverflow, sdgTargetContainer])
 
   const workflows = (() => {
     if (!useCase.useCaseSteps) {

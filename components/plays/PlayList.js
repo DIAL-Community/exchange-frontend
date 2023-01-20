@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
@@ -62,7 +62,7 @@ const PlayListQuery = ({ playbook, sourceType }) => {
   const { locale } = useRouter()
 
   const { currentPlays } = useContext(PlayListContext)
-  const { filterDisplayed, resultCounts, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, setResultCounts } = useContext(FilterContext)
 
   const { search, tags } = useContext(PlayFilterContext)
   const { loading, error, data, fetchMore } = useQuery(PLAYS_QUERY, {
@@ -71,22 +71,8 @@ const PlayListQuery = ({ playbook, sourceType }) => {
       tags,
       search
     },
-    context: { headers: { 'Accept-Language': locale } },
-    onCompleted: (data) => {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.plays']]: data.searchPlays.totalCount }
-      })
-    }
+    context: { headers: { 'Accept-Language': locale } }
   })
-
-  if (loading) {
-    return <Loading />
-  } else if (error && error.networkError) {
-    return <Error />
-  } else if (error && !error.networkError) {
-    return <NotFound />
-  }
 
   const handleLoadMore = () => {
     fetchMore({
@@ -96,6 +82,25 @@ const PlayListQuery = ({ playbook, sourceType }) => {
         search
       }
     })
+  }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.plays']]: data.searchPlays.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
+
+  if (loading) {
+    return <Loading />
+  } else if (error && error.networkError) {
+    return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
   }
 
   const viewType = 'list'

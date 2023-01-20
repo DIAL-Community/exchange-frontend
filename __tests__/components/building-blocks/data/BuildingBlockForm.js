@@ -2,19 +2,28 @@ export const buildingBlock = {
   id: 1,
   name: 'Test Building Block',
   slug: 'test_buidling_block',
+  imageFile: '',
   maturity: 'DRAFT',
   specUrl: 'testbuidlingblock.com',
   buildingBlockDescription: {
     description: '<p>test building block description</p>',
     locale: 'en'
   },
-  workflows: [
+  products: [
     {
       id: 1,
-      name: 'Test Workflow',
-      slug: 'tw'
+      name: 'Product 1',
+      slug: 'product_1',
+      imageFile: '',
+      buildingBlocksMappingStatus: ''
     }
-  ]
+  ],
+  workflows: [{
+    id: 1,
+    name: 'Test Workflow',
+    slug: 'tw',
+    imageFile: ''
+  }]
 }
 
 export const createBuildingBlockSuccess = {

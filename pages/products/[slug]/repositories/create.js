@@ -52,13 +52,9 @@ const PageDefinition = ({ slug }) => {
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (!data?.product) {
     return <NotFound />
   }
 

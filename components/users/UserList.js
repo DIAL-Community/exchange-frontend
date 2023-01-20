@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -32,7 +32,7 @@ const UserList = ({ userList, displayType }) => {
 }
 
 const UserListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterContext)
+  const { setResultCounts } = useContext(FilterContext)
   const { search } = useContext(UserFilterContext)
 
   const { formatMessage } = useIntl()
@@ -42,11 +42,19 @@ const UserListQuery = () => {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       search
-    },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.users']]: data.searchUsers.totalCount } })
     }
   })
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.users']]: data.searchUsers.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />

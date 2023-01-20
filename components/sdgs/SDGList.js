@@ -5,6 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { HiSortAscending } from 'react-icons/hi'
 import { FilterContext } from '../context/FilterContext'
 import { SDGFilterContext } from '../context/SDGFilterContext'
+import NotFound from '../shared/NotFound'
 import { Loading, Error } from '../shared/FetchStatus'
 import SDGCard from './SDGCard'
 
@@ -107,7 +108,7 @@ const SDGList = (props) => {
 }
 
 const SDGListQuery = () => {
-  const { displayType, filterDisplayed, resultCounts, setResultCounts } = useContext(FilterContext)
+  const { displayType, filterDisplayed, setResultCounts } = useContext(FilterContext)
   const { sdgs, search } = useContext(SDGFilterContext)
 
   const { formatMessage } = useIntl()
@@ -134,19 +135,21 @@ const SDGListQuery = () => {
 
   useEffect(() => {
     if (data) {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.sdgs']]: data.searchSdgs.totalCount }
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.sdgs']]: data.searchSdgs.totalCount }
+        }
       })
     }
-  }, [data])
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error) {
+  } else if (error && error.networkError) {
     return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
   }
 
   const { searchSdgs: { nodes, pageInfo } } = data

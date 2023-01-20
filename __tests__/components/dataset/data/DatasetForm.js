@@ -14,5 +14,13 @@ export const dataset = {
   datasetDescription: {
     description: 'Test Description',
     locale: 'en'
-  }
+  },
+  countries: [],
+  organizations: [],
+  origins: [],
+  sectors: [],
+  sustainableDevelopmentGoalMapping: 'BETA',
+  sustainableDevelopmentGoals: [],
+  tags: [],
+  manualUpdate: false
 }

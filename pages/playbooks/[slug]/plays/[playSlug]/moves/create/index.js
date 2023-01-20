@@ -23,18 +23,15 @@ const CreateMoveInformation = ({ slug, playSlug, locale }) => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.playbook && !data?.play) {
     return <NotFound />
   }
 
   return (
     <>
-      {
-        data?.play && data?.playbook &&
-          <MoveForm playbook={data.playbook} play={data.play} />
-      }
+      { data?.play && data?.playbook && <MoveForm playbook={data.playbook} play={data.play} /> }
     </>
   )
 }

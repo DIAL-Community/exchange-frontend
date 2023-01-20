@@ -36,20 +36,19 @@ const EditPlayInformation = ({ slug, playSlug, locale }) => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.play && !data?.playbook) {
     return <NotFound />
   }
 
   return (
     <>
-      {
-        data && data.play && data.playbook &&
-          <EditFormProvider>
-            <MovePreview />
-            <PlayForm playbook={data.playbook} play={data.play} />
-          </EditFormProvider>
+      {data?.play && data?.playbook &&
+        <EditFormProvider>
+          <MovePreview />
+          <PlayForm playbook={data.playbook} play={data.play} />
+        </EditFormProvider>
       }
     </>
   )

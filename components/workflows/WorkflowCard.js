@@ -41,7 +41,7 @@ const WorkflowCard = ({ workflow, listType, filterDisplayed }) => {
       const buildingBlockOverflow = bc.offsetHeight < bc.scrollHeight || bc.offsetWidth < bc.scrollWidth
       setBuildingBlockOverflow(buildingBlockOverflow)
     }
-  }, [useCaseOverflow, buildingBlockOverflow])
+  }, [useCaseOverflow, useCaseContainer, buildingBlockOverflow, buildingBlockContainer])
 
   // Get associated use cases through use case steps.
   const useCases = (() => {

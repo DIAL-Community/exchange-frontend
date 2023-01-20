@@ -1,4 +1,4 @@
-import { useCallback, useContext, useMemo, useState } from 'react'
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { gql, useQuery } from '@apollo/client'
@@ -85,7 +85,7 @@ const EndorserPageInformation = () => {
   const [years, setYears] = useState([])
   const [sectors, setSectors] = useState([])
 
-  const { resultCounts, setResultCounts, displayType } = useContext(FilterContext)
+  const { setResultCounts, displayType } = useContext(FilterContext)
 
   const toggleEndorserLevel = () => {
     setEndorserLevel(endorserLevel === 'gold' ? '' : 'gold')
@@ -100,11 +100,19 @@ const EndorserPageInformation = () => {
       endorserLevel,
       search,
       mapView: true
-    },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.organizations']]: data.searchOrganizations.totalCount } })
     }
   })
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.organizations']]: data.searchOrganizations.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
 
   // Group project into map of countries with projects
   const cities = (() => {
