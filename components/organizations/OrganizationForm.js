@@ -12,7 +12,7 @@ import FileUploader from '../shared/FileUploader'
 import Checkbox from '../shared/Checkbox'
 import IconButton from '../shared/IconButton'
 import Select from '../shared/Select'
-import { ToastContext } from '../../lib/ToastContext'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import ValidationError from '../shared/ValidationError'
 import { CREATE_ORGANIZATION } from '../../mutations/organization'
 import UrlInput from '../shared/UrlInput'
@@ -29,31 +29,28 @@ const OrganizationForm = React.memo(({ organization }) => {
 
   const { showToast } = useContext(ToastContext)
   const { locale } = useRouter()
-  const [updateOrganization, { data, reset }] = useMutation(CREATE_ORGANIZATION, {
-    onCompleted: () => {
+  const [updateOrganization, { reset }] = useMutation(CREATE_ORGANIZATION, {
+    onCompleted: (data) => {
       setMutating(false)
-      showToast(
-        format('organization.submit.success'),
-        'success',
-        'top-center',
-        1000,
-        null,
-        () => router.push(
-          `/${router.locale}` +
-          `/organizations/${data.createOrganization.organization.slug}`
+      if (data?.createOrganization?.organization && data?.createOrganization?.errors?.length === 0) {
+        showToast(
+          format('organization.submit.success'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push(
+            `/${router.locale}` +
+            `/organizations/${data.createOrganization.organization.slug}`
+          )
         )
-      )
+      } else {
+        showToast(format('organization.submit.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setMutating(false)
-      showToast(
-        <div className='flex flex-col'>
-          <span>{format('organization.submit.failure')}</span>
-        </div>,
-        'error',
-        'top-center',
-        1000
-      )
+      showToast(format('organization.submit.failure'), 'error', 'top-center')
       reset()
     }
   })
