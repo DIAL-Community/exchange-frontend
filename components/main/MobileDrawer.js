@@ -54,7 +54,10 @@ const MobileDrawer = ({ filter, hint, activeTab }) => {
         // List of navigations to be shown when you click the div.
       }
       <div
-        className={`${showFilters ? 'block md:hidden' : 'hidden'} border-b-2 border-dial-gray z-20 bg-dial-gray-light h-full`}
+        className={`
+          ${showFilters ? 'block md:hidden' : 'hidden'}
+          border-b-2 border-dial-gray z-20 bg-dial-gray-light h-full
+        `}
         ref={filterPopover} role='menu'
       >
         <div className={`card ${hintDisplayed ? 'flip-vertical' : ''}`}>

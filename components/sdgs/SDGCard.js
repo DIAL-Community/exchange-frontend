@@ -41,7 +41,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
       const sdgTargetOverflow = sc.offsetHeight < sc.scrollHeight || sc.offsetWidth < sc.scrollWidth
       setSdgTargetOverflow(sdgTargetOverflow)
     }
-  }, [useCaseOverflow, sdgTargetOverflow])
+  }, [useCaseOverflow, useCaseContainer, sdgTargetOverflow, sdgTargetContainer])
 
   const useCases = (() => {
     if (!sdg.sdgTargets) {
@@ -71,7 +71,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
       : filterDisplayed ? 'col-span-6 xl:col-span-2' : 'col-span-5 md:col-span-3 lg:col-span-2'
   }
 
-  const useCaseColSpan = () => {
+  const caseColSpan = () => {
     return !useCases
       ? 'hidden'
       : filterDisplayed ? 'hidden xl:block 2xl:col-span-4' : 'hidden lg:block lg:col-span-3 lg:col-span-4'
@@ -120,7 +120,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                         </div>
                     }
                   </div>
-                  <div className={`${useCaseColSpan()} text-base text-use-case ${ellipsisTextStyle}`}>
+                  <div className={`${caseColSpan()} text-base text-use-case ${ellipsisTextStyle}`}>
                     {
                       useCases && useCases.length === 0 && format('general.na')
                     }
@@ -152,7 +152,9 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                 <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark cursor-default'>
                   <div className='flex flex-row border-b border-dial-gray'>
                     <div className='pl-3 py-3 text-dial-teal-light flex flex-row'>
-                      <div className='text-base whitespace-nowrap my-auto text-sdg-target mr-2'>{format('sdg.sdgTargets')}</div>
+                      <div className='text-base whitespace-nowrap my-auto text-sdg-target mr-2'>
+                        {format('sdg.sdgTargets')}
+                      </div>
                       <div className='flex flex-row'>
                         <div
                           className='flex flex-row flex-wrap font-semibold overflow-hidden'
@@ -214,8 +216,14 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                                   <Image
                                     height={20}
                                     width={20}
-                                    data-tip={format('tooltip.forEntity', { entity: format('useCase.label'), name: useCase.name })}
-                                    className='m-auto h-6 use-case-filter' alt={format('image.alt.logoFor', { name: useCase.name })}
+                                    data-tip={
+                                      format(
+                                        'tooltip.forEntity',
+                                        { entity: format('useCase.label'), name: useCase.name }
+                                      )
+                                    }
+                                    className='m-auto h-6 use-case-filter'
+                                    alt={format('image.alt.logoFor', { name: useCase.name })}
                                     src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
                                   />
                                 </div>

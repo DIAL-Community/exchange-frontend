@@ -22,11 +22,17 @@ const ProjectActiveFilter = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { sectors, countries, organizations, products, origins, sdgs, tags } = useContext(ProjectFilterContext)
-  const { setSectors, setCountries, setOrganizations, setProducts, setOrigins, setSDGs, setTags } = useContext(ProjectFilterDispatchContext)
+  const { setSectors, setCountries, setOrganizations, setProducts, setOrigins, setSDGs, setTags } =
+    useContext(ProjectFilterDispatchContext)
 
-  const filterCount = () => {
-    return countries.length + organizations.length + products.length + sectors.length + origins.length + sdgs.length + tags.length
-  }
+  const filterCount = () =>
+    countries.length +
+    organizations.length +
+    products.length +
+    sectors.length +
+    origins.length +
+    sdgs.length +
+    tags.length
 
   const clearFilter = (e) => {
     e.preventDefault()
@@ -47,7 +53,9 @@ const ProjectActiveFilter = () => {
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
     const productFilters = products.map(product => `products=${product.value}--${product.label}`)
     const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
-    const organizationFilters = organizations.map(organization => `organizations=${organization.value}--${organization.label}`)
+    const organizationFilters = organizations.map(
+      organization => `organizations=${organization.value}--${organization.label}`
+    )
     const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
     const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
 
@@ -74,7 +82,7 @@ const ProjectActiveFilter = () => {
   })
 
   return (
-    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
+    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`}>
       <div className='flex flex-row flex-wrap px-3 gap-2'>
         <SDGFilters {...{ sdgs, setSDGs }} />
         <OriginFilters {...{ origins, setOrigins }} />

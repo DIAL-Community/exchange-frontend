@@ -146,14 +146,14 @@ export const maturityScoreDetails = [
         id: 72,
         name: 'IM10',
         weight: '0.5',
-        description: 'The project should be used in real applications and not just in demos. Because not all real-world implementations may be inspected publicly, in such cases statements providing as much details as possible about these implementations should be made.',
+        description: 'Description text.',
         score: 0
       },
       {
         id: 73,
         name: 'IM20',
         weight: '0.5',
-        description: 'The project should be able to clearly make the case for its importance in the Development and/or Humanitarian sector(s).',
+        description: 'Another description text.',
         score: 0
       }
     ],
@@ -164,7 +164,7 @@ export const maturityScoreDetails = [
     id: 12,
     name: 'Financial Sustainability',
     weight: '1.0',
-    description: '\n\nThis category measures whether a product is financially viable - is the project generating\nsufficient revenue to sustain operations and are costs well managed\n\n\n  Short description: Revenue generation and cost management\n  Is core category: Unknown\n  Priority: Deprioritized by DIAL\n\n\n',
+    description: 'Another description text.',
     indicator_scores: [],
     missing_score: 0,
     overall_score: 0
@@ -183,7 +183,7 @@ export const categoryIndicators = {
             name: 'LC10',
             indicatorType: 'boolean',
             categoryIndicatorDescription: {
-              description: '<p>The code is released under one of the preferred copyleft licenses explained in our <a href=https://www.osc.dial.community/licensing-principles>Licensing Principles</a>.</p>'
+              description: 'Another description text.'
             },
             rubricCategory: {
               id: '5',
@@ -198,7 +198,7 @@ export const categoryIndicators = {
             name: 'LC20',
             indicatorType: 'boolean',
             categoryIndicatorDescription: {
-              description: '<p>Libraries that are mandatory dependencies of the project&#39;s code do not create more restrictions than the project&#39;s license does.</p>'
+              description: 'Another description text.'
             },
             rubricCategory: {
               id: '5',
@@ -213,7 +213,7 @@ export const categoryIndicators = {
             name: 'RE10',
             indicatorType: 'scale',
             categoryIndicatorDescription: {
-              description: '<p>Releases consist of source code, distributed using standard and open archive formats that are expected to stay readable in the long term.</p>'
+              description: 'Another description text.'
             },
             rubricCategory: {
               id: '6',
@@ -228,7 +228,7 @@ export const categoryIndicators = {
             name: 'RE30',
             indicatorType: 'scale',
             categoryIndicatorDescription: {
-              description: '<p>Releases are signed and/or distributed along with digests that can be reliably used to validate the downloaded archives.</p>'
+              description: 'Another description text.'
             },
             rubricCategory: {
               id: '6',
@@ -243,7 +243,7 @@ export const categoryIndicators = {
             name: 'QU10',
             indicatorType: 'numeric',
             categoryIndicatorDescription: {
-              description: '<p>The project is open and honest about the quality of its code. Various levels of quality and maturity for various modules are natural and acceptable as long as they are clearly communicated.</p>'
+              description: 'Another description text.'
             },
             rubricCategory: {
               id: '7',
@@ -258,7 +258,7 @@ export const categoryIndicators = {
             name: 'QU11',
             indicatorType: 'numeric',
             categoryIndicatorDescription: {
-              description: '<p>In particular, there are either no monoliths or god classes, or they are known and there is a roadmap to refactor them.</p>'
+              description: 'Another description text.'
             },
             rubricCategory: {
               id: '7',

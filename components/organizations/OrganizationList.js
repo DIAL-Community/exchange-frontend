@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { FixedSizeGrid, FixedSizeList } from 'react-window'
@@ -70,7 +70,7 @@ query SearchOrganizations(
 `
 
 const OrganizationListQuery = () => {
-  const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const { aggregator, endorser, endorserLevel, countries, sectors, years, search } = useContext(OrganizationFilterContext)
 
   const { formatMessage } = useIntl()
@@ -86,12 +86,6 @@ const OrganizationListQuery = () => {
       endorserOnly: endorser,
       endorserLevel,
       search
-    },
-    onCompleted: (data) => {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.organizations']]: data.searchOrganizations.totalCount }
-      })
     },
     fetchPolicy: 'network-only',
     nextFetchPolicy: 'cache-first'
@@ -112,6 +106,17 @@ const OrganizationListQuery = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.organizations']]: data.searchOrganizations.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />

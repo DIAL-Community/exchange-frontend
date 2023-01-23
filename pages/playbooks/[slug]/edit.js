@@ -42,9 +42,9 @@ function EditPlaybook () {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.playbook) {
     return <NotFound />
   }
 
@@ -53,12 +53,16 @@ function EditPlaybook () {
       <Header />
       {data?.playbook && (
         <ClientOnly>
-          {loadingUserSession ? <Loading /> : isAdminUser ? (
-            <EditFormProvider>
-              <PlayPreview />
-              <PlaybookForm playbook={data.playbook} />
-            </EditFormProvider>
-          ) : <Unauthorized />}
+          {loadingUserSession
+            ? <Loading />
+            : isAdminUser
+              ? (
+                <EditFormProvider>
+                  <PlayPreview />
+                  <PlaybookForm playbook={data.playbook} />
+                </EditFormProvider>
+              )
+              : <Unauthorized />}
         </ClientOnly>
       )}
       <Footer />

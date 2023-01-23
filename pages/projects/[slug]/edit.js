@@ -19,20 +19,18 @@ const EditProject = () => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.project) {
     return <NotFound />
   }
 
   return (
     <>
       <Header />
-      {data?.project && (
-        <ClientOnly>
-          <ProjectForm project={data.project} />
-        </ClientOnly>
-      )}
+      <ClientOnly>
+        { data?.project && <ProjectForm project={data.project} /> }
+      </ClientOnly>
       <Footer />
     </>
   )

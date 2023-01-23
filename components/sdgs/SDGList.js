@@ -5,6 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { HiSortAscending } from 'react-icons/hi'
 import { FilterContext } from '../context/FilterContext'
 import { SDGFilterContext } from '../context/SDGFilterContext'
+import NotFound from '../shared/NotFound'
 import { Loading, Error } from '../shared/FetchStatus'
 import SDGCard from './SDGCard'
 
@@ -70,7 +71,12 @@ const SDGList = (props) => {
         {
           displayType === 'list' &&
             <div className='grid grid-cols-1 md:grid-cols-6 gap-4 my-3 px-4'>
-              <div className='col-span-5 md:col-span-3 lg:col-span-2 whitespace-nowrap text-sm font-semibold text-sdg opacity-80'>
+              <div
+                className={`
+                  col-span-5 md:col-span-3 lg:col-span-2 whitespace-nowrap
+                  text-sm font-semibold text-sdg opacity-80
+                `}
+              >
                 {format('sdg.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
@@ -102,7 +108,7 @@ const SDGList = (props) => {
 }
 
 const SDGListQuery = () => {
-  const { displayType, filterDisplayed, resultCounts, setResultCounts } = useContext(FilterContext)
+  const { displayType, filterDisplayed, setResultCounts } = useContext(FilterContext)
   const { sdgs, search } = useContext(SDGFilterContext)
 
   const { formatMessage } = useIntl()
@@ -129,19 +135,21 @@ const SDGListQuery = () => {
 
   useEffect(() => {
     if (data) {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.sdgs']]: data.searchSdgs.totalCount }
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.sdgs']]: data.searchSdgs.totalCount }
+        }
       })
     }
-  }, [data])
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error) {
+  } else if (error && error.networkError) {
     return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
   }
 
   const { searchSdgs: { nodes, pageInfo } } = data

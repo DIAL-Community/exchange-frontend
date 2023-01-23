@@ -1,7 +1,6 @@
 import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
 import { FilterContext } from '../context/FilterContext'
 import { UserFilterContext } from '../context/UserFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
@@ -20,11 +19,13 @@ const RubricCategoryList = ({ rubricCategoryList }) => {
           <Card
             key={rubricCategoryIdx}
             href={`rubric_categories/${rubricCategory.slug}`}
-            className='grid-cols-2 font-semibold text-button-gray items-center'
+            className='flex flex-col font-semibold text-button-gray items-center'
           >
-            {rubricCategory.name}
-            <div className='text-button-gray-light text-sm pl-2'>
-              {format('rubric-category.weight')}: {rubricCategory.weight}
+            <div className='flex flex-row gap-3'>
+              {rubricCategory.name}
+              <div className='text-button-gray-light text-sm ml-auto'>
+                {format('rubric-category.weight')}: {rubricCategory.weight}
+              </div>
             </div>
           </Card>
         )) : (
@@ -38,23 +39,25 @@ const RubricCategoryList = ({ rubricCategoryList }) => {
 }
 
 const RubricCategoryListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterContext)
+  const { setResultCounts } = useContext(FilterContext)
   const { search } = useContext(UserFilterContext)
 
-  const { locale } = useRouter()
-
-  const { loading, error, data, refetch } = useQuery(RUBRIC_CATEGORIES_LIST_QUERY, {
+  const { loading, error, data } = useQuery(RUBRIC_CATEGORIES_LIST_QUERY, {
     variables: { search },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.rubric-categories']]: data.rubricCategories.totalCount } })
-    },
     fetchPolicy: 'network-only',
     nextFetchPolicy: 'cache-first'
   })
 
   useEffect(() => {
-    refetch()
-  }, [refetch, locale])
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.rubric-categories']]: data.rubricCategories.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />

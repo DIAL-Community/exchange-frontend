@@ -18,7 +18,11 @@ const CategoryIndicator = () => {
         {loadingUserSession
           ? <Loading />
           : isAdminUser
-            ? <CategoryIndicatorDetail rubricCategorySlug={slug} categoryIndicatorSlug={categoryIndicatorSlug} locale={locale} />
+            ? <CategoryIndicatorDetail
+              rubricCategorySlug={slug}
+              categoryIndicatorSlug={categoryIndicatorSlug}
+              locale={locale}
+            />
             : <Unauthorized />}
       </ClientOnly>
       <Footer />

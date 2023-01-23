@@ -1,4 +1,4 @@
-import { createRef, useEffect, useState } from 'react'
+import { createRef, useCallback, useEffect, useState } from 'react'
 import 'leaflet/dist/leaflet.css'
 import { MapContainer, Marker, TileLayer, LayerGroup, useMap, useMapEvents } from 'react-leaflet'
 import L from 'leaflet'
@@ -17,7 +17,7 @@ const popupTemplate = (title, content) => {
 
 const EndorserMarkers = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, { ...values })
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const map = useMap()
 
   const [zooming, setZooming] = useState(false)
@@ -47,7 +47,7 @@ const EndorserMarkers = (props) => {
         countryMarkerGroup.current.addLayer(marker)
       })
     }
-  }, [organization])
+  }, [organization, format, countryMarkerGroup])
 
   const markerClickHandler = (e, cityName) => {
     cityMarkerGroup.current.eachLayer(layer => {
@@ -117,7 +117,10 @@ const EndorserMarkerMaps = (props) => {
   let attribution = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   if (props.defaultMap && props.defaultMap === 'principles') {
     url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
-    attribution = 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+    attribution = `
+      Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan,
+      METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012
+    `
   }
 
   return (

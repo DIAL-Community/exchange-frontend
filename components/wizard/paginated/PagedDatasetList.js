@@ -58,7 +58,12 @@ const PagedDatasetList = ({ sectors, tags, datasetSortHint }) => {
           ? format('wizard.results.datasetsDesc')
           : format('wizard.results.noDatasets')}
       </div>
-      {data.paginatedDatasets.nodes?.map((dataset) => <DatasetCard key={dataset.id} dataset={dataset} filterDisplayed listType='list' newTab />)}
+      {
+        data.paginatedDatasets.nodes?.map(
+          (dataset) =>
+            <DatasetCard key={dataset.id} dataset={dataset} filterDisplayed listType='list' newTab />
+        )
+      }
       <ReactPaginate
         breakLabel='...'
         nextLabel={format('paginatedSection.page.next.label')}

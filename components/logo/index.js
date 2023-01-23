@@ -1,8 +1,0 @@
-export { default as BuildingBlockLogo } from './BuildingBlockLogo'
-export { default as MapLogo } from './MapLogo'
-export { default as OrganizationLogo } from './OrganizationLogo'
-export { default as ProductLogo } from './ProductLogo'
-export { default as ProjectLogo } from './ProjectLogo'
-export { default as SDGLogo } from './SDGLogo'
-export { default as UseCaseLogo } from './UseCaseLogo'
-export { default as WorkflowLogo } from './WorkflowLogo'

@@ -41,8 +41,12 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
     if (user) {
       const { userEmail } = user
       fetchCandidateRole({
-        variables:
-          { email: userEmail, productId: '', organizationId: organization.id }
+        variables: {
+          email: userEmail,
+          productId: '',
+          datasetId: '',
+          organizationId: organization.id
+        }
       })
     }
   }, [user])
@@ -156,7 +160,11 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
         <div className='w-full inline-flex gap-3'>
           {isAdminUser && <DeleteOrganization organization={organization} />}
           {(isOrganizationOwner || isAdminUser) && <EditButton type='link' href={generateEditLink()}/>}
-          <CommentsCount commentsSectionRef={commentsSectionRef} objectId={organization.id} objectType={ObjectType.ORGANIZATION}/>
+          <CommentsCount
+            commentsSectionRef={commentsSectionRef}
+            objectId={organization.id}
+            objectType={ObjectType.ORGANIZATION}
+          />
         </div>
         <div className='h4 font-bold py-4'>{format('organization.label')}</div>
       </div>

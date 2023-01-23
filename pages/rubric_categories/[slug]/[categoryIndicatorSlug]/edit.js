@@ -25,9 +25,9 @@ const EditCategoryIndicator = () => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!rubricCategoryData?.rubricCategory && !categoryIndicatorData?.categoryIndicator) {
     return <NotFound />
   }
 
@@ -38,12 +38,10 @@ const EditCategoryIndicator = () => {
         {loadingUserSession
           ? <Loading />
           : isAdminUser
-            ? (
-              <CategoryIndicatorForm
-                rubricCategory={rubricCategoryData?.rubricCategory}
-                categoryIndicator={categoryIndicatorData?.categoryIndicator}
-              />
-            )
+            ? <CategoryIndicatorForm
+              rubricCategory={rubricCategoryData?.rubricCategory}
+              categoryIndicator={categoryIndicatorData?.categoryIndicator}
+            />
             : <Unauthorized />
         }
       </ClientOnly>

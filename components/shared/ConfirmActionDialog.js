@@ -36,11 +36,23 @@ const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isCon
                 {message}
               </span>
               <div className='flex justify-center sm:justify-end gap-3 text-xl'>
-                <button type='button' className='submit-button' onClick={onConfirm} data-testid='confirm-button' disabled={isConfirming}>
+                <button
+                  type='button'
+                  className='submit-button'
+                  onClick={onConfirm}
+                  data-testid='confirm-button'
+                  disabled={isConfirming}
+                >
                   {format('app.confirm')}
                   {isConfirming && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
-                <button ref={initialFocusRef} type='button' className='cancel-button' onClick={onClose} data-testid='cancel-button'>
+                <button
+                  ref={initialFocusRef}
+                  type='button'
+                  className='cancel-button'
+                  onClick={onClose}
+                  data-testid='cancel-button'
+                >
                   {format('app.cancel')}
                 </button>
               </div>

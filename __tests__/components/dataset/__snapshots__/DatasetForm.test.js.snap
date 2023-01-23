@@ -280,7 +280,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                     </div>
                   </label>
                   <div
-                    class="h5 w-full pl-2 text-dial-gray-dark"
+                    class="text-sm w-full text-dial-gray-dark"
                   >
                     Note: Supported file types are jpg, png, and bmp
                   </div>
@@ -727,7 +727,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                     </div>
                   </label>
                   <div
-                    class="h5 w-full pl-2 text-dial-gray-dark"
+                    class="text-sm w-full text-dial-gray-dark"
                   >
                     Note: Supported file types are jpg, png, and bmp
                   </div>

@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
@@ -61,7 +61,7 @@ const PlaybookListQuery = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { displayType, filterDisplayed, resultCounts, setResultCounts } = useContext(FilterContext)
+  const { displayType, filterDisplayed, setResultCounts } = useContext(FilterContext)
   const { search, tags, products } = useContext(PlaybookFilterContext)
 
   const { loading, error, data, fetchMore } = useQuery(PLAYBOOKS_QUERY, {
@@ -71,15 +71,7 @@ const PlaybookListQuery = () => {
       products: products.map(product => product.value),
       tags: tags.map(tag => tag.label)
     },
-    context: { headers: { 'Accept-Language': locale } },
-    onCompleted: (data) => {
-      if (data) {
-        setResultCounts({
-          ...resultCounts,
-          ...{ [['filter.entity.playbooks']]: data.searchPlaybooks.totalCount }
-        })
-      }
-    }
+    context: { headers: { 'Accept-Language': locale } }
   })
 
   const handleLoadMore = () => {
@@ -93,6 +85,17 @@ const PlaybookListQuery = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.playbooks']]: data.searchPlaybooks.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useContext, useEffect } from 'react'
+import React, { useState, useCallback, useMemo, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import { useMutation } from '@apollo/client'
@@ -14,6 +14,7 @@ import { ToastContext } from '../../lib/ToastContext'
 import ValidationError from '../shared/ValidationError'
 import { CREATE_PRODUCT } from '../../mutations/product'
 import UrlInput from '../shared/UrlInput'
+import Checkbox from '../shared/Checkbox'
 
 const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
@@ -27,7 +28,45 @@ const ProductForm = React.memo(({ product }) => {
 
   const { showToast } = useContext(ToastContext)
   const { locale } = useRouter()
-  const [updateProduct, { data }] = useMutation(CREATE_PRODUCT)
+
+  const [updateProduct, { reset }] = useMutation(CREATE_PRODUCT, {
+    onCompleted: (data) => {
+      if (data.createProduct.product && data.createProduct.errors.length === 0) {
+        setMutating(false)
+        showToast(
+          format('product.submit.success'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => router.push(`/${router.locale}/products/${data.createProduct.product.slug}`)
+        )
+      } else {
+        setMutating(false)
+        showToast(
+          <div className='flex flex-col'>
+            <span>{format('product.submit.failure')}</span>
+          </div>,
+          'error',
+          'top-center',
+          1000,
+        )
+        reset()
+      }
+    },
+    onError: () => {
+      setMutating(false)
+      showToast(
+        <div className='flex flex-col'>
+          <span>{format('product.submit.failure')}</span>
+        </div>,
+        'error',
+        'top-center',
+        1000,
+      )
+      reset()
+    }
+  })
 
   const { handleSubmit, register, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
@@ -37,7 +76,12 @@ const ProductForm = React.memo(({ product }) => {
       name: product?.name,
       aliases: product?.aliases?.length ? product?.aliases.map(value => ({ value })) : [{ value: '' }],
       website: product?.website,
-      description: product?.productDescription?.description
+      description: product?.productDescription?.description,
+      commercialProduct: product?.commercialProduct,
+      hostingModel: product?.hostingModel,
+      pricingModel: product?.pricingModel,
+      pricingDetails: product?.pricingDetails,
+      pricingUrl: product?.pricingUrl
     }
   })
 
@@ -66,46 +110,36 @@ const ProductForm = React.memo(({ product }) => {
     return map
   }, [product, format])
 
-  useEffect(() => {
-    if (!data?.createProduct?.errors.length && data?.createProduct?.product) {
-      showToast(
-        format('product.submit.success'),
-        'success',
-        'top-center',
-        1000,
-        null,
-        () => router.push(`/${router.locale}/products/${data.createProduct.product.slug}`)
-      )
-    } else if (data?.createProduct?.errors.length) {
-      setMutating(false)
-      showToast(
-        <div className='flex flex-col'>
-          <span>{format('product.submit.failure')}</span>
-          {data?.createProduct?.errors.map((error, errorIdx) => (
-            <span key={errorIdx}>{error}</span>
-          ))}
-        </div>,
-        'error',
-        'top-center',
-        false
-      )
-    }
-  }, [data, format, router, showToast])
-
   const doUpsert = async (data) => {
     if (session) {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = session.user
-      const { name, imageFile, website, description, aliases } = data
+      const {
+        name,
+        imageFile,
+        website,
+        description,
+        aliases,
+        commercialProduct,
+        pricingUrl,
+        hostingModel,
+        pricingModel,
+        pricingDetails
+      } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
         slug,
         aliases: aliases.map(({ value }) => value),
         website,
-        description
+        description,
+        commercialProduct,
+        pricingUrl,
+        hostingModel,
+        pricingModel,
+        pricingDetails
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -141,14 +175,14 @@ const ProductForm = React.memo(({ product }) => {
       <div className='pb-8 px-8'>
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>
-            <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
+            <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 flex flex-col gap-3'>
               <div className='text-2xl font-bold text-dial-blue pb-4'>
                 {product
                   ? format('app.edit-entity', { entity: product.name })
                   : `${format('app.create-new')} ${format('product.label')}`
                 }
               </div>
-              <div className='flex flex-col lg:flex-row gap-4'>
+              <div className='flex flex-col lg:flex-row gap-x-16'>
                 <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
                   <div className='flex flex-col gap-y-2 mb-2' data-testid='product-name'>
                     <label className='text-xl text-dial-blue required-field' htmlFor='name'>
@@ -231,6 +265,75 @@ const ProductForm = React.memo(({ product }) => {
                       rules={{ required: format('validation.required') }}
                     />
                     {errors.description && <ValidationError value={errors.description?.message} />}
+                  </div>
+                </div>
+              </div>
+              <hr className='my-2'/>
+              <div className='text-2xl font-bold text-dial-blue pb-4'>
+                {format('product.pricingInformation')}
+              </div>
+              <div className='flex flex-col lg:flex-row gap-x-16'>
+                <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
+                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'>
+                    <Checkbox {...register('commercialProduct')} />
+                    {format('product.commercialProduct')}
+                  </label>
+                  <div className='flex flex-col gap-y-2 mb-2'>
+                    <label className='text-xl text-dial-blue' htmlFor='pricingUrl'>
+                      {format('product.pricingUrl')}
+                    </label>
+                    <Controller
+                      name='pricingUrl'
+                      control={control}
+                      render={({ field: { value, onChange } }) => (
+                        <UrlInput
+                          value={value}
+                          onChange={onChange}
+                          id='pricingUrl'
+                          placeholder={format('product.pricingUrl')}
+                        />
+                      )}
+                    />
+                  </div>
+                  <div className='flex flex-col gap-y-2 mb-2'>
+                    <label className='text-xl text-dial-blue' htmlFor='hostingModel'>
+                      {format('product.hostingModel')}
+                    </label>
+                    <Input
+                      {...register('hostingModel')}
+                      id='hostingModel'
+                      placeholder={format('product.hostingModel')}
+                    />
+                  </div>
+                  <div className='flex flex-col gap-y-2 mb-2'>
+                    <label className='text-xl text-dial-blue' htmlFor='pricingModel'>
+                      {format('product.pricingModel')}
+                    </label>
+                    <Input
+                      {...register('pricingModel')}
+                      id='pricingModel'
+                      placeholder={format('product.pricingModel')}
+                    />
+                  </div>
+                </div>
+                <div className='w-full lg:w-1/2'>
+                  <div className='block flex flex-col gap-y-2'>
+                    <label className='text-xl text-dial-blue'>
+                      {format('product.pricing.details')}
+                    </label>
+                    <Controller
+                      name='pricingDetails'
+                      control={control}
+                      render={({ field: { value, onChange } }) => (
+                        <HtmlEditor
+                          editorId='pricing-details-editor'
+                          onChange={onChange}
+                          initialContent={value}
+                          placeholder={format('product.pricing.details')}
+                          isInvalid={errors.pricingDetails}
+                        />
+                      )}
+                    />
                   </div>
                 </div>
               </div>

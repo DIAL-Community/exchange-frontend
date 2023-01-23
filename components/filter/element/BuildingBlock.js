@@ -41,7 +41,9 @@ export const BuildingBlockAutocomplete = ({
         aria-label={format('filter.byEntity', { entity: format('buildingBlock.label') })}
         cacheOptions
         defaultOptions
-        loadOptions={(input) => fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)}
+        loadOptions={(input) =>
+          fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)
+        }
         noOptionsMessage={() => format('filter.searchFor', { entity: format('building-block.header') })}
         onChange={selectBuildingBlock}
         placeholder={controlPlaceholder}

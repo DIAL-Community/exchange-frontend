@@ -30,7 +30,15 @@ const ProductDetailLanguages = ({ languages }) => {
         <div className='grid sm:grid-cols-2 xl:flex xl:justify-between '>
           {legends.map(({ color, percentage, name }, legendIdx) => (
             <div key={legendIdx} className='inline'>
-              <svg className='inline' fill={color} xmlns='http://www.w3.org/2000/svg' version='1.1' width='16' height='16' aria-hidden='true'>
+              <svg
+                className='inline'
+                fill={color}
+                xmlns='http://www.w3.org/2000/svg'
+                version='1.1'
+                width='16'
+                height='16'
+                aria-hidden='true'
+              >
                 <path d='M8 4a4 4 0 100 8 4 4 0 000-8z' />
               </svg>
               <span className='text-gray-dark text-sm mx-2'>{name}</span>

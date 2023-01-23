@@ -33,12 +33,28 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
   const [hoverStyle, containerStyle] = cardContainerStyles()
 
   return (
-    <Link href={`/${productsPath}/${productRepository.product.slug}/${repositoriesPath}/${productRepository.slug}`} passHref>
+    <Link
+      href={
+        `/${productsPath}/${productRepository.product.slug}` +
+        `/${repositoriesPath}/${productRepository.slug}`
+      }
+      passHref
+    >
       <div className={hoverStyle}>
         <div className={containerStyle}>
           <div className='flex flex-row justify-between'>
             <div className='flex justify-self-start'>
-              <div className={`py-4 ${repositorySlug && repositorySlug === productRepository.slug ? 'bg-product' : 'bg-transparent'}`} style={{ width: '4px' }}>
+              <div
+                className={`
+                  py-4
+                  ${
+                    repositorySlug && repositorySlug === productRepository.slug
+                      ? 'bg-product'
+                      : 'bg-transparent'
+                  }
+                `}
+                style={{ width: '4px' }}
+              >
                 &nbsp;
               </div>
               <div className='py-4 px-4 flex flex-col'>

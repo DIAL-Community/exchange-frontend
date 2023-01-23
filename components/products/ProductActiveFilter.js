@@ -34,7 +34,8 @@ const ProductActiveFilter = () => {
 
   const {
     setIsEndorsed, setProductDeployable, setSectors, setCountries, setOrganizations,
-    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers, setLicenseTypes
+    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers,
+    setLicenseTypes
   } = useContext(ProductFilterDispatchContext)
 
   const toggleIsEndorsed = () => {
@@ -83,20 +84,26 @@ const ProductActiveFilter = () => {
     const originFilters = origins.map(origin => `origins=${origin.value}--${origin.label}`)
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
     const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
-    const organizationFilters = organizations.map(organization => `organizations=${organization.value}--${organization.label}`)
+    const organizationFilters = organizations.map(
+      organization => `organizations=${organization.value}--${organization.label}`
+    )
     const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
     const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
     const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
     const workflowFilters = workflows.map(workflow => `workflows=${workflow.value}--${workflow.label}`)
-    const buildingBlockFilters = buildingBlocks.map(buildingBlock => `buildingBlocks=${buildingBlock.value}--${buildingBlock.label}`)
+    const buildingBlockFilters = buildingBlocks.map(
+      buildingBlock => `buildingBlocks=${buildingBlock.value}--${buildingBlock.label}`
+    )
     const endorserFilters = endorsers.map(endorser => `endorsers=${endorser.value}--${endorser.label}`)
-    const licenseTypesFilter = licenseTypes.map(licenseType => `licenseTypes=${licenseType.value}--${licenseType.label}`)
+    const licenseTypesFilter = licenseTypes.map(
+      licenseType => `licenseTypes=${licenseType.value}--${licenseType.label}`
+    )
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, endorsedFilter, licenseTypesFilter, deployableFilter, ...originFilters, ...countryFilters,
-      ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters, ...useCaseFilters, ...workflowFilters,
-      ...buildingBlockFilters, ...endorserFilters
+      activeFilter, endorsedFilter, licenseTypesFilter, deployableFilter, ...originFilters,
+      ...countryFilters, ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters,
+      ...useCaseFilters, ...workflowFilters, ...buildingBlockFilters, ...endorserFilters
     ].filter(f => f).join('&')
 
     return `${baseUrl}/${basePath}?${filterParameters}`
@@ -104,7 +111,11 @@ const ProductActiveFilter = () => {
 
   useEffect(() => {
     // Only apply this if the use have not interact with the UI and the url is a sharable link
-    if (query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog && !interactionDetected) {
+    if (
+      query &&
+      Object.getOwnPropertyNames(query).length > 1 &&
+      query.shareCatalog && !interactionDetected
+    ) {
       setIsEndorsed(query.isEndorsed === 'true')
       setProductDeployable(query.productDeployable === 'true')
       parseQuery(query, 'licenseTypes', licenseTypes, setLicenseTypes)
@@ -122,7 +133,7 @@ const ProductActiveFilter = () => {
   })
 
   return (
-    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
+    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`}>
       <div className='flex flex-row flex-wrap px-3 gap-2'>
         {isEndorsed && (
           <div className='py-1'>

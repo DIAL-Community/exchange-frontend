@@ -29,11 +29,26 @@ const SectorForm = ({ isOpen, onClose, sector }) => {
 
   const localeOptions = useMemo(() => getLanguageOptions(format), [format])
 
-  const sectorLocale = useMemo(() => sector && localeOptions.find(({ value }) => value === sector.locale), [sector, localeOptions])
+  const sectorLocale = useMemo(
+    () => sector && localeOptions.find(
+      ({ value }) => value === sector.locale
+    ),
+    [sector, localeOptions]
+  )
 
-  const parentSectorOptions = useMemo(() => data?.sectors.map(({ id, name, slug }) => ({ id, label: name, slug, value: slug })) ?? [], [data?.sectors])
+  const parentSectorOptions = useMemo(
+    () => data?.sectors.map(
+      ({ id, name, slug }) => ({ id, label: name, slug, value: slug })
+    ) ?? [],
+    [data?.sectors]
+  )
 
-  const parentSector = useMemo(() => parentSectorOptions.find(({ id }) => id === sector?.parentSectorId?.toString()), [parentSectorOptions, sector?.parentSectorId])
+  const parentSector = useMemo(
+    () => parentSectorOptions.find(
+      ({ id }) => id === sector?.parentSectorId?.toString()
+    ),
+    [parentSectorOptions, sector?.parentSectorId]
+  )
 
   const [updateSector, { called: isSubmitInProgress, reset }] = useMutation(CREATE_SECTOR, {
     refetchQueries:['SearchSectors'],

@@ -5,7 +5,7 @@ import BuildingBlockDetailProducts from '../../../components/building-blocks/Bui
 import { PRODUCT_SEARCH_QUERY } from '../../../queries/product'
 import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 import { products } from './data/BuildingBlockDetailProducts'
-import { buildingBlock } from './data/BuldingBlockForm'
+import { buildingBlock } from './data/BuildingBlockForm'
 
 mockNextUseRouter()
 describe('Unit test for the BuildingBlockDetailProducts component.', () => {

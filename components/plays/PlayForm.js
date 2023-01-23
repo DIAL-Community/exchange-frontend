@@ -48,16 +48,18 @@ export const PlayForm = ({ playbook, play }) => {
     }))
   )
 
-  const [createPlay] = useMutation(CREATE_PLAY, {
+  const [createPlay, { reset }] = useMutation(CREATE_PLAY, {
     onError: (error) => {
+      setMutating(false)
       showToast(
         <div className='flex flex-col'>
           <span>{error?.message}</span>
         </div>,
         'error',
         'top-center',
-        false
+        1000
       )
+      reset()
     },
     onCompleted: (data) => {
       if (!navigateToMove) {
@@ -76,22 +78,28 @@ export const PlayForm = ({ playbook, play }) => {
           'top-center',
           1000,
           null,
-          () => router.push(`/${locale}/playbooks/${playbook.slug}/plays/${data.createPlay.play.slug}/moves/create`)
+          () => router.push(
+            `/${locale}` +
+            `/playbooks/${playbook.slug}` +
+            `/plays/${data.createPlay.play.slug}/moves/create`
+          )
         )
       }
     }
   })
 
-  const [autoSavePlay] = useMutation(AUTOSAVE_PLAY, {
+  const [autoSavePlay, { reset: resetAutoSave }] = useMutation(AUTOSAVE_PLAY, {
     onError: (error) => {
+      setMutating(false)
       showToast(
         <div className='flex flex-col'>
           <span>{error?.message}</span>
         </div>,
         'error',
         'top-center',
-        false
+        1000
       )
+      resetAutoSave()
     },
     onCompleted: () => {
       setMutating(false)
@@ -101,8 +109,16 @@ export const PlayForm = ({ playbook, play }) => {
 
   const [slug] = useState(play?.slug ?? '')
   const [tags, setTags] = useState(play?.tags.map(tag => ({ label: tag })) ?? [])
-  const [products, setProducts] = useState(play?.products?.map(product => ({ name: product.name, slug: product.slug })) ?? [])
-  const [buildingBlocks, setBuildingBlocks] = useState(play?.buildingBlocks?.map(buildingBlock => ({ name: buildingBlock.name, slug: buildingBlock.slug })) ?? [])
+  const [products, setProducts] = useState(
+    play?.products?.map(
+      product => ({ name: product.name, slug: product.slug })) ??
+    []
+  )
+  const [buildingBlocks, setBuildingBlocks] = useState(
+    play?.buildingBlocks?.map(
+      buildingBlock => ({ name: buildingBlock.name, slug: buildingBlock.slug })) ??
+    []
+  )
 
   const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
     mode: 'onBlur',
@@ -205,13 +221,31 @@ export const PlayForm = ({ playbook, play }) => {
     setNavigateToMove(false)
   }
 
-  const addProduct = (product) => setProducts([...products.filter(({ slug }) => slug !== product.slug), { name: product.label, slug: product.slug }])
+  const addProduct =
+    (product) =>
+      setProducts([
+        ...products.filter(({ slug }) => slug !== product.slug),
+        { name: product.label, slug: product.slug }
+      ])
 
-  const removeProduct = (product) => setProducts([...products.filter(({ slug }) => slug !== product.slug)])
+  const removeProduct =
+    (product) =>
+      setProducts([
+        ...products.filter(({ slug }) => slug !== product.slug)
+      ])
 
-  const addBuildingBlock = (buildingBlock) => setBuildingBlocks([...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug), { name: buildingBlock.label, slug: buildingBlock.slug }])
+  const addBuildingBlock =
+    (buildingBlock) =>
+      setBuildingBlocks([
+        ...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug),
+        { name: buildingBlock.label, slug: buildingBlock.slug }
+      ])
 
-  const removeBuildingBlock = (buildingBlock) => setBuildingBlocks([...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug)])
+  const removeBuildingBlock =
+    (buildingBlock) =>
+      setBuildingBlocks([
+        ...buildingBlocks.filter(({ slug }) => slug !== buildingBlock.slug)
+      ])
 
   return (
     <div className='flex flex-col'>
@@ -240,7 +274,11 @@ export const PlayForm = ({ playbook, play }) => {
                   <div className='flex flex-col gap-y-2' data-testid='play-tags'>
                     <label className='text-xl text-dial-blue flex flex-col gap-y-2' htmlFor='name'>
                       {format('plays.tags')}
-                      <TagAutocomplete {...{ tags, setTags }} controlSize='100%' placeholder={format('play.form.tags')} />
+                      <TagAutocomplete
+                        {...{ tags, setTags }}
+                        controlSize='100%'
+                        placeholder={format('play.form.tags')}
+                      />
                     </label>
                     <div className='flex flex-wrap gap-3 mt-2'>
                       <TagFilters {...{ tags, setTags }} />
@@ -255,8 +293,18 @@ export const PlayForm = ({ playbook, play }) => {
                         defaultOptions
                         cacheOptions
                         placeholder={format('play.form.products')}
-                        loadOptions={(input) => fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchedProductsCallback)}
-                        noOptionsMessage={() => format('filter.searchFor', { entity: format('product.header') })}
+                        loadOptions={
+                          (input) =>
+                            fetchSelectOptions(
+                              client,
+                              input,
+                              PRODUCT_SEARCH_QUERY,
+                              fetchedProductsCallback
+                            )
+                        }
+                        noOptionsMessage={() =>
+                          format('filter.searchFor', { entity: format('product.header') })
+                        }
                         onChange={addProduct}
                         value={null}
                       />
@@ -280,8 +328,18 @@ export const PlayForm = ({ playbook, play }) => {
                         defaultOptions
                         cacheOptions
                         placeholder={format('play.form.buildingBlocks')}
-                        loadOptions={(input) => fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)}
-                        noOptionsMessage={() => format('filter.searchFor', { entity: format('buildingBlocks.header') })}
+                        loadOptions={
+                          (input) =>
+                            fetchSelectOptions(
+                              client,
+                              input,
+                              BUILDING_BLOCK_SEARCH_QUERY,
+                              fetchedBuildingBlocksCallback
+                            )
+                        }
+                        noOptionsMessage={() =>
+                          format('filter.searchFor', { entity: format('buildingBlocks.header') })
+                        }
                         onChange={addBuildingBlock}
                         value={null}
                       />
@@ -297,7 +355,11 @@ export const PlayForm = ({ playbook, play }) => {
                     </div>
                   </div>
                 </div>
-                <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }} data-testid='play-description'>
+                <div
+                  className='w-full lg:w-2/3'
+                  style={{ minHeight: '20rem' }}
+                  data-testid='play-description'
+                >
                   <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
                     <p className='required-field'> {format('plays.description')}</p>
                     <Controller
@@ -316,7 +378,9 @@ export const PlayForm = ({ playbook, play }) => {
                         )
                       }}
                     />
-                    {errors.description && <ValidationError value={errors.description?.message} />}
+                    {errors.description &&
+                      <ValidationError value={errors.description?.message} />
+                    }
                   </label>
                 </div>
               </div>
@@ -332,7 +396,9 @@ export const PlayForm = ({ playbook, play }) => {
               <div className='block'>
                 <button className='flex gap-2' onClick={saveAndCreateMove}>
                   <FaPlusCircle className='ml-3 my-auto' color='#3f9edd' />
-                  <div className='text-dial-blue'>{`${format('app.create-new')} ${format('move.label')}`}</div>
+                  <div className='text-dial-blue'>
+                    {`${format('app.create-new')} ${format('move.label')}`}
+                  </div>
                 </button>
               </div>
               <div className='flex flex-wrap font-semibold text-xl lg:mt-8 gap-3'>

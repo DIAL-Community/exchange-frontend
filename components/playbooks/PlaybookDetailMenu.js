@@ -138,7 +138,12 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation, commentsSect
             objectId={playbook.id}
             objectType={ObjectType.PLAYBOOK}
           />
-          <a href={generatePdfLink()} target='_blank' rel='noreferrer' className='bg-dial-blue px-2 py-0.5 rounded text-white'>
+          <a
+            href={generatePdfLink()}
+            target='_blank'
+            rel='noreferrer'
+            className='bg-dial-blue px-2 py-0.5 rounded text-white'
+          >
             <img src='/icons/pdf.svg' className='inline mr-2 pb-1' alt='Print PDF' height='12px' width='12px' />
             <span className='text-sm px-2'>{format('app.print-pdf')}</span>
           </a>

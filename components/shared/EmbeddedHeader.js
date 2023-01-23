@@ -93,7 +93,9 @@ const EmbeddedHeader = () => {
             </div>
             <div className='font-bold text-xl text-dial-blue-darkest'>
               <span className='block'>
-                <a href='https://solutions.dial.community' target='_blank' rel='noreferrer'>DIAL Catalog of Digital Solutions</a>
+                <a href='https://solutions.dial.community' target='_blank' rel='noreferrer'>
+                  {format('app.title')}
+                </a>
               </span>
             </div>
           </a>

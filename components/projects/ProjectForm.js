@@ -211,7 +211,11 @@ const ProjectForm = React.memo(({ project }) => {
                       <Input
                         {...register(
                           'endDate',
-                          { validate: (endDate) => isEndDateValid(endDate) || format('validation.endDateEarlierThanStartDate') }
+                          { validate:
+                              (endDate) =>
+                                isEndDateValid(endDate) ||
+                                format('validation.endDateEarlierThanStartDate')
+                          }
                         )}
                         type='date'
                         placeholder={format('project.endDate')}
@@ -247,7 +251,9 @@ const ProjectForm = React.memo(({ project }) => {
                           )}
                           rules={ownsAnyProduct && { required: format('validation.required') }}
                         />
-                        {errors.product && <ValidationError value={errors.product?.message} />}
+                        {errors.product &&
+                          <ValidationError value={errors.product?.message} />
+                        }
                       </div>
                     )}
                     {!slug && (isAdminUser || ownsAnyOrganization) && (
@@ -297,7 +303,9 @@ const ProjectForm = React.memo(({ project }) => {
                         )}
                         rules={{ required: format('validation.required') }}
                       />
-                      {errors.description && <ValidationError value={errors.description?.message} />}
+                      {errors.description &&
+                        <ValidationError value={errors.description?.message} />
+                      }
                     </div>
                   </div>
                 </div>

@@ -1,18 +1,20 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
 import CommentsCount from '../shared/CommentsCount'
 import { ObjectType } from '../../lib/constants'
+import { useUser } from '../../lib/hooks'
+import DeleteBuildingBlock from './DeleteBuildingBlock'
 
 const BuildingBlockDetailLeft = ({ buildingBlock, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
-  const { data: session } = useSession()
+
+  const { user, isAdminUser } = useUser()
 
   const generateEditLink = () => {
-    if (!session.user) {
+    if (!user) {
       return '/edit-not-available'
     }
 
@@ -33,12 +35,17 @@ const BuildingBlockDetailLeft = ({ buildingBlock, commentsSectionRef }) => {
       </div>
       <div className='h-20'>
         <div className='w-full inline-flex gap-3'>
-          {session?.user.canEdit && <EditButton type='link' href={generateEditLink()}/>}
-          <CommentsCount commentsSectionRef={commentsSectionRef} objectId={buildingBlock.id} objectType={ObjectType.BUILDING_BLOCK}/>
+          {isAdminUser && <EditButton type='link' href={generateEditLink()} />}
+          {isAdminUser && <DeleteBuildingBlock buildingBlock={buildingBlock} />}
+          <CommentsCount
+            commentsSectionRef={commentsSectionRef}
+            objectId={buildingBlock.id}
+            objectType={ObjectType.BUILDING_BLOCK}
+          />
         </div>
         <div className='h4 font-bold py-4'>{format('buildingBlock.label')}</div>
       </div>
-      <div className='bg-white border-2 border-dial-gray lg:mr-6 shadow-lg'>
+      <div className='bg-white border-2 border-dial-gray shadow-lg'>
         <div className='flex flex-col h-80 p-4'>
           <div className='text-2xl font-semibold absolute w-4/5 md:w-auto lg:w-64 2xl:w-80 pr-2 text-building-block'>
             {buildingBlock.name}

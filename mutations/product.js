@@ -8,6 +8,11 @@ export const CREATE_PRODUCT = gql`
     $imageFile: Upload
     $website: String
     $description: String!
+    $pricingUrl: String
+    $pricingDetails: String
+    $pricingModel: String
+    $hostingModel: String
+    $commercialProduct: Boolean
   ) {
     createProduct(
       name: $name
@@ -16,6 +21,11 @@ export const CREATE_PRODUCT = gql`
       website: $website
       imageFile: $imageFile
       description: $description
+      pricingUrl: $pricingUrl
+      pricingDetails: $pricingDetails
+      pricingModel: $pricingModel
+      hostingModel: $hostingModel
+      commercialProduct: $commercialProduct
     ) {
       product {
         name
@@ -188,7 +198,11 @@ export const CREATE_CANDIDATE_PRODUCT = gql`
       description: $description
       email: $email
       captcha: $captcha
-    ) { slug }
+    ) {
+      candidateProduct {
+        id
+      }
+    }
   }
 `
 
@@ -231,5 +245,17 @@ export const UPDATE_PRODUCT_CATEGORY_INDICATORS = gql`
       }
       errors
     }  
+  }
+`
+
+export const DELETE_PRODUCT = gql`
+  mutation DeleteProduct($id: ID!) {
+    deleteProduct(id: $id) {
+      product {
+       id
+       slug
+       name
+      }
+    }
   }
 `

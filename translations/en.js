@@ -37,12 +37,12 @@ export const en = {
   'app.lastUpdated': 'Updated: {lastUpdated}.',
   'general.pastSuffix': 'ago',
 
-  'profile.profile': 'User Profile for ',
+  'profile.profile': 'User Profile',
   'profile.username': 'Username',
   'profile.email': 'Email',
-  'profile.roles': 'Roles: ',
-  'profile.products': 'Products: ',
-  'profile.organization': 'Organization: ',
+  'profile.roles': 'Roles',
+  'profile.products': 'Products',
+  'profile.organization': 'Organization',
 
   'user.header': 'Users',
   'user.label': 'User',
@@ -88,7 +88,7 @@ export const en = {
   'header.admin.sectors': 'Sectors',
   'header.admin.tags': 'Tags',
   'header.admin.countries': 'Countries',
-  'header.admin.candidate_orgs': 'Candidate Orgs',
+  'header.admin.candidate_orgs': 'Candidate Organizations',
   'header.admin.candidate_products': 'Candidate Products',
   'header.admin.candidate_datasets': 'Candidate Open Data',
   'header.admin.candidate_roles': 'Candidate Roles',
@@ -253,6 +253,14 @@ export const en = {
   'product.no-project': 'We do not have any Project information for this Product.',
   'product.no-sdgs': 'We do not have any Sustainable Development Goal information for this Product.',
 
+  'product.pricingInformation': 'Product Pricing Information',
+  'product.commercialProduct': 'This product is commercial product.',
+  'product.pricingUrl': 'Link to Pricing Information',
+  'product.hostingModel': 'Hosting Model',
+  'product.pricingModel': 'Pricing Model',
+  'product.pricing.details': 'Pricing Details',
+
+
   'project.header': 'Projects',
   'project.label': 'Project',
   'project.url': 'Project URL',
@@ -318,6 +326,26 @@ export const en = {
   'building-block.submit.success': 'Building Block submitted successfully',
   'building-block.submit.failure': 'Building Block submission failed',
   'building-block.no-workflow': 'We do not have any Workflow information for this Building Block.',
+
+  'building-block.delete.confirm.message': 'Are you sure you want to delete this building block?',
+  'toast.building-block.delete.success': 'Building block deleted successfully.',
+  'toast.building-block.delete.failure': 'Building block deletion failed.',
+
+  'dataset.delete.confirm.message': 'Are you sure you want to delete this open data record?',
+  'toast.dataset.delete.success': 'Open data record deleted successfully.',
+  'toast.dataset.delete.failure': 'Open data record deletion failed.',
+
+  'product.delete.confirm.message': 'Are you sure you want to delete this product record?',
+  'toast.product.delete.success': 'Product record deleted successfully.',
+  'toast.product.delete.failure': 'Product record deletion failed.',
+
+  'use-case.delete.confirm.message': 'Are you sure you want to delete this use case record?',
+  'toast.use-case.delete.success': 'Use case record deleted successfully.',
+  'toast.use-case.delete.failure': 'Use case record deletion failed.',
+
+  'workflow.delete.confirm.message': 'Are you sure you want to delete this workflow record?',
+  'toast.workflow.delete.success': 'Workflow record deleted successfully.',
+  'toast.workflow.delete.failure': 'Workflow record deletion failed.',
 
   'contact.header': 'Contacts',
   'contact.label': 'Contact',
@@ -472,6 +500,7 @@ export const en = {
   'dataset.card.content': 'Content',
   'dataset.card.coronavirusTagValue': 'COVID-19',
   'dataset.imageFile': 'Logo',
+  'dataset.owner': 'If you are the owner of this dataset, you can update this dataset information.',
 
   'general.close': 'Close',
   'general.na': 'N/A',
@@ -1201,6 +1230,13 @@ export const en = {
   'candidate.cancel': 'Cancel',
   'candidate.email': 'Email',
   'candidate.applied': 'Applied For',
+
+  'candidate.role.header': 'Candidate Role',
+  'candidate.role.label': 'Candidate Roles',
+  'candidate.role.name': 'Requested Role',
+  'candidate.role.description': 'Role Description',
+  'candidate.role.update.success': 'Candidate role record updated successfully',
+  'candidate.role.update.failure': 'Failed to update candidate role record.',
 
   'entity.file': 'File to Process',
   'entity.process': 'Start Processing File',

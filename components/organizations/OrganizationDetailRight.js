@@ -67,8 +67,13 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
           <div className='text-sm text-dial-purple-light leading-6 tracking-wide'>
             {format('organization.detail.website').toUpperCase()}
           </div>
-          <div className='text-base text-dial-teal' data-testid='organization-website'>
-            <a href={prependUrlWithProtocol(organization.website)} className='flex flex-row' target='_blank' rel='noreferrer'>
+          <div className='text-base text-dial-teal flex' data-testid='organization-website'>
+            <a
+              href={prependUrlWithProtocol(organization.website)}
+              className='border-b-2 border-transparent hover:border-dial-yellow'
+              target='_blank'
+              rel='noreferrer'
+            >
               <div className='my-auto'>{organization.website} ⧉</div>
             </a>
           </div>
@@ -103,7 +108,7 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
       <div className={`mt-8 ${sectionHeaderStyle}`}>{format('product.description')}</div>
       <HtmlViewer
         initialContent={organization?.organizationDescription?.description}
-        className='-mt-4'
+        className='-mb-12'
       />
       {canEdit && <OrganizationDetailOffices organization={organization} canEdit={canEdit} />}
       {canEdit && <OrganizationDetailContacts organization={organization}/>}

@@ -29,19 +29,25 @@ const CategoryIndicatorDetail = ({ rubricCategorySlug, categoryIndicatorSlug, lo
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!categoryIndicatorData?.categoryIndicator) {
     return <NotFound />
   }
 
   return (
     <div className='flex flex-col lg:flex-row pb-8'>
       <div className='lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full p-4'>
-        <CategoryIndicatorDetailLeft categoryIndicator={categoryIndicatorData?.categoryIndicator} slugNameMapping={slugNameMapping} />
+        <CategoryIndicatorDetailLeft
+          categoryIndicator={categoryIndicatorData?.categoryIndicator}
+          slugNameMapping={slugNameMapping}
+        />
       </div>
       <div className='w-full lg:w-2/3 xl:w-3/4'>
-        <CategoryIndicatorDetailRight categoryIndicator={categoryIndicatorData?.categoryIndicator} slugNameMapping={slugNameMapping} />
+        <CategoryIndicatorDetailRight
+          categoryIndicator={categoryIndicatorData?.categoryIndicator}
+          slugNameMapping={slugNameMapping}
+        />
       </div>
     </div>
   )

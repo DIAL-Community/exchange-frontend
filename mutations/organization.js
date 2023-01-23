@@ -188,7 +188,11 @@ export const CREATE_CANDIDATE_ORGANIZATION = gql`
       email: $email,
       title: $title,
       captcha: $captcha
-    ) { slug }
+    ) {
+      candidateOrganization {
+        id
+      }
+    }
   }
 `
 

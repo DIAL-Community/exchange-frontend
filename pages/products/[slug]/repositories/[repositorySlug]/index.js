@@ -60,9 +60,9 @@ const PageDefinition = ({ slug, repositorySlug }) => {
 
   if (loading) {
     return <Loading/>
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error/>
-  } else if (error && !error.networkError) {
+  } else if (!data?.product) {
     return <NotFound/>
   }
 
@@ -94,7 +94,7 @@ const PageDefinition = ({ slug, repositorySlug }) => {
   )
 }
 
-const ProductStep = () => {
+const ProductRepository = () => {
   const router = useRouter()
   const { query } = router
   const { slug, repositorySlug } = query
@@ -110,4 +110,4 @@ const ProductStep = () => {
   )
 }
 
-export default ProductStep
+export default ProductRepository

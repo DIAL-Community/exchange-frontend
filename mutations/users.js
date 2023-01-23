@@ -51,6 +51,7 @@ export const APPLY_AS_OWNER = gql`
         description
         productId
         organizationId
+        datasetId
       }
       errors
     }

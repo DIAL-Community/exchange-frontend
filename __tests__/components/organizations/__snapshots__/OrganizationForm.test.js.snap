@@ -186,7 +186,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     </div>
                   </label>
                   <div
-                    class="h5 w-full pl-2 text-dial-gray-dark"
+                    class="text-sm w-full text-dial-gray-dark"
                   >
                     Note: Supported file types are jpg, png, and bmp
                   </div>
@@ -250,9 +250,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       >
                         <div
                           class="react-select__single-value css-qc6sy-singleValue"
-                        >
-                          None
-                        </div>
+                        />
                         <div
                           class="react-select__input-container css-6j8wv5-Input"
                           data-value=""
@@ -630,7 +628,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     </div>
                   </label>
                   <div
-                    class="h5 w-full pl-2 text-dial-gray-dark"
+                    class="text-sm w-full text-dial-gray-dark"
                   >
                     Note: Supported file types are jpg, png, and bmp
                   </div>

@@ -22,20 +22,18 @@ const CreateWorkflow = () => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.workflow) {
     return <NotFound />
   }
 
   return (
     <>
       <Header />
-      {data?.workflow && (
-        <ClientOnly>
-          <WorkflowForm workflow={data.workflow} />
-        </ClientOnly>
-      )}
+      <ClientOnly>
+        {data?.workflow && <WorkflowForm workflow={data.workflow} />}
+      </ClientOnly>
       <Footer />
     </>
   )

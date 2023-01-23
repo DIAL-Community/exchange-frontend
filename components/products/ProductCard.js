@@ -41,9 +41,16 @@ const ProductCard = ({ product, listType, newTab = false }) => {
           listType === 'list'
             ? (
               <div className={`${containerElementStyle}`}>
-                <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
-                  <div className='relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4' style={{ minHeight: '4.5rem' }}>
-                    <div className='w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative'>
+                <div
+                  className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'
+                >
+                  <div
+                    className='relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4'
+                    style={{ minHeight: '4.5rem' }}
+                  >
+                    <div
+                      className='w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative'
+                    >
                       <div className='block w-8 relative'>
                         <Image
                           layout='fill'
@@ -79,26 +86,34 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                         product.endorsers && product.endorsers.length > 0 &&
                           <img
                             alt={format('image.alt.logoFor', { name: format('endorsed.title') })}
-                            data-tip={format('tooltip.endorsed')} className='h-5' src='/icons/check/check.png'
+                            data-tip={format('tooltip.endorsed')}
+                            className='h-5'
+                            src='/icons/check/check.png'
                           />
                       }
                       {
                         isEndorsingOrg() &&
                           <img
                             alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
-                            data-tip={format('tooltip.digiprins')} className='h-5' src='/icons/digiprins/digiprins.png'
+                            data-tip={format('tooltip.digiprins')}
+                            className='h-5'
+                            src='/icons/digiprins/digiprins.png'
                           />
                       }
                       {
-                        product.tags && product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
+                        product.tags &&
+                        product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
                           <img
                             alt={format('image.alt.logoFor', { name: format('coronavirus.title') })}
-                            data-tip={format('tooltip.covid')} className='h-5' src='/icons/coronavirus/coronavirus.png'
+                            data-tip={format('tooltip.covid')}
+                            className='h-5' src='/icons/coronavirus/coronavirus.png'
                           />
                       }
                       {product.isLaunchable &&
                         <img
-                          data-tip={format('tooltip.launchable')} className='h-5' src='/icons/launchable/launchable.png'
+                          data-tip={format('tooltip.launchable')}
+                          className='h-5'
+                          src='/icons/launchable/launchable.png'
                           alt={format('image.alt.logoFor', { name: format('product.launchable') })}
                         />}
                     </div>
@@ -114,28 +129,36 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                       product.endorsers && product.endorsers.length > 0 &&
                         <img
                           alt={format('image.alt.logoFor', { name: format('endorsed.title') })}
-                          data-tip={format('tooltip.endorsed')} className='h-5' src='/icons/check/check.png'
+                          data-tip={format('tooltip.endorsed')}
+                          className='h-5'
+                          src='/icons/check/check.png'
                         />
                     }
                     {
                       isEndorsingOrg() &&
                         <img
                           alt={format('image.alt.logoFor', { name: format('digitalPrinciple.title') })}
-                          data-tip={format('tooltip.digiprins')} className='h-5' src='/icons/digiprins/digiprins.png'
+                          data-tip={format('tooltip.digiprins')}
+                          className='h-5'
+                          src='/icons/digiprins/digiprins.png'
                         />
                     }
                     {
                       product.tags.indexOf(format('product.card.coronavirusTagValue').toLowerCase()) >= 0 &&
                         <img
                           alt={format('image.alt.logoFor', { name: format('coronavirus.title') })}
-                          data-tip={format('tooltip.covid')} className='h-5' src='/icons/coronavirus/coronavirus.png'
+                          data-tip={format('tooltip.covid')}
+                          className='h-5'
+                          src='/icons/coronavirus/coronavirus.png'
                         />
                     }
                     {
                       product.isLaunchable &&
                         <img
                           alt={format('image.alt.logoFor', { name: format('product.launchable') })}
-                          data-tip={format('tooltip.launchable')} className='h-5' src='/icons/launchable/launchable.png'
+                          data-tip={format('tooltip.launchable')}
+                          className='h-5'
+                          src='/icons/launchable/launchable.png'
                         />
                     }
                   </div>
@@ -207,7 +230,12 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                               .map(bb => (
                                 <Image
                                   height={30} width={30}
-                                  data-tip={format('tooltip.forEntity', { entity: format('buildingBlock.label'), name: bb.name })}
+                                  data-tip={
+                                    format(
+                                      'tooltip.forEntity',
+                                      { entity: format('buildingBlock.label'), name: bb.name }
+                                    )
+                                  }
                                   key={`sdg-${bb.slug}`} className='w-8 building-block-filter cursor-default'
                                   alt={format('image.alt.logoFor', { name: bb.name })}
                                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + bb.imageFile}
@@ -255,8 +283,14 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                             product.origins
                               .filter((_, index) => index <= 2)
                               .map(origin => {
-                                const nominee = origin.slug === 'dpga' && product.endorsers.length === 0 ? ' ' + format('product.nominee') : ''
-                                const toolTip = (product.endorsers && product.endorsers.filter(endorser => endorser.slug === origin.slug).length > 0)
+                                const nominee =
+                                  origin.slug === 'dpga' &&
+                                  product.endorsers.length === 0
+                                    ? ' ' + format('product.nominee')
+                                    : ''
+                                const toolTip = (
+                                  product.endorsers &&
+                                  product.endorsers.filter(endorser => endorser.slug === origin.slug).length > 0)
                                   ? format('product.endorsed-by') + origin.name
                                   : format('tooltip.forEntity', {
                                     entity: format('origin.label'),
@@ -265,7 +299,8 @@ const ProductCard = ({ product, listType, newTab = false }) => {
 
                                 return (
                                   <div
-                                    key={`origin-${origin.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
+                                    key={`origin-${origin.slug}`}
+                                    className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
                                     data-tip={toolTip}
                                   >
                                     {(ORIGIN_ACRONYMS[origin.slug.toLowerCase()] || origin.slug).toUpperCase()}

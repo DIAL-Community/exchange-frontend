@@ -7,6 +7,7 @@ import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import DeleteButton from '../shared/DeleteButton'
 import { DELETE_RUBRIC_CATEGORY } from '../../mutations/rubric-category'
+import { RUBRIC_CATEGORY_QUERY } from '../../queries/rubric-category'
 
 const DeleteRubricCategory = ({ rubricCategory }) => {
   const { formatMessage } = useIntl()
@@ -21,6 +22,10 @@ const DeleteRubricCategory = ({ rubricCategory }) => {
   const { showToast } = useContext(ToastContext)
 
   const [deleteRubricCategory, { called, reset }] = useMutation(DELETE_RUBRIC_CATEGORY, {
+    refetchQueries: [{
+      query: RUBRIC_CATEGORY_QUERY,
+      variables: { slug: rubricCategory.slug }
+    }],
     onCompleted: () => {
       showToast(
         format('toast.rubric-category.delete.success'),

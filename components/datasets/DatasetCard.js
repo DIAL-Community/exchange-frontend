@@ -151,7 +151,8 @@ const DatasetCard = ({ dataset, listType, newTab = false }) => {
                               .map(origin => {
                                 return (
                                   <div
-                                    key={`origin-${origin.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
+                                    key={`origin-${origin.slug}`}
+                                    className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
                                   >
                                     {(ORIGIN_ACRONYMS[origin.slug.toLowerCase()] || origin.slug).toUpperCase()}
                                   </div>

@@ -9,7 +9,10 @@ const ProductDetailPlaybooks = ({ product }) => {
 
   const displayModeBody = (
     <div className='grid grid-cols-1'>
-      {product.playbooks.map((playbook, playbookIdx) => <PlaybookCard key={playbookIdx} playbook={playbook} listType='list' filterDisplayed newTab/>)}
+      {product.playbooks.map(
+        (playbook, playbookIdx) =>
+          <PlaybookCard key={playbookIdx} playbook={playbook} listType='list' filterDisplayed newTab/>)
+      }
     </div>
   )
 

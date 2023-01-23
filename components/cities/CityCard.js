@@ -7,7 +7,7 @@ const CityCard = ({ city, listType }) => {
             <div className='border-3 border-transparent'>
               <div className='border border-dial-gray card-drop-shadow'>
                 <div className='my-4 px-4'>
-                  <div className='pr-3 text-base font-semibold whitespace-nowrap text-ellipsis overflow-hidden text-button-gray'>
+                  <div className='pr-3 font-semibold line-clamp-1 text-button-gray'>
                     {city.name}
                   </div>
                 </div>

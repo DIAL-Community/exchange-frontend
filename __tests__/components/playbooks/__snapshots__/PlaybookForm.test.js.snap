@@ -176,7 +176,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                     </div>
                   </label>
                   <div
-                    class="h5 w-full pl-2 text-dial-gray-dark"
+                    class="text-sm w-full text-dial-gray-dark"
                   >
                     Note: Supported file types are jpg, png, and bmp
                   </div>
@@ -622,7 +622,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                     </div>
                   </label>
                   <div
-                    class="h5 w-full pl-2 text-dial-gray-dark"
+                    class="text-sm w-full text-dial-gray-dark"
                   >
                     Note: Supported file types are jpg, png, and bmp
                   </div>
@@ -1052,7 +1052,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                     </div>
                   </label>
                   <div
-                    class="h5 w-full pl-2 text-dial-gray-dark"
+                    class="text-sm w-full text-dial-gray-dark"
                   >
                     Note: Supported file types are jpg, png, and bmp
                   </div>

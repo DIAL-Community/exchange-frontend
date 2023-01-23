@@ -3,7 +3,15 @@ import { Editor } from '@tinymce/tinymce-react'
 import classNames from 'classnames'
 import { FaSpinner } from 'react-icons/fa'
 
-export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, editorId, placeholder, className, isInvalid = false }) => {
+export const HtmlEditor = ({
+  onChange,
+  initialContent,
+  initInstanceCallback,
+  editorId,
+  placeholder,
+  className,
+  isInvalid = false
+}) => {
   const editorRef = useRef(null)
   const handleEditorChange = (editor) => onChange(editor)
 
@@ -16,7 +24,7 @@ export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, edi
       )}
       <div className={classNames({ 'validation-error': isInvalid }, className, 'htmlEditor')}>
         <Editor
-          id={editorId || 'TinyMCE-Editor'}
+          id={editorId || 'tinymce-editor'}
           apiKey={process.env.NEXT_PUBLIC_EDITOR_KEY}
           onInit={(_, editor) => {
             setLoading(false)
@@ -25,29 +33,37 @@ export const HtmlEditor = ({ onChange, initialContent, initInstanceCallback, edi
           value={initialContent}
           onEditorChange={handleEditorChange}
           init={{
-            selector: '#' + editorId ?? 'TinyMCE-Editor',
+            max_height: 400,
+            min_height: 240,
+            autoresize_overflow_padding: 16,
+            selector: '#' + editorId ?? 'tinymce-editor',
             menubar: false,
             plugins: `preview importcss searchreplace autolink autosave save directionality
               code visualblocks visualchars fullscreen image link media template codesample
               table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount
-              help charmap quickbars emoticons`,
-            toolbar: `undo redo | fontfamily fontsize |
+              help charmap quickbars emoticons autoresize
+            `,
+            toolbar: `
+              undo redo |
+              fontfamily fontsize |
               bold italic underline strikethrough forecolor backcolor |
               link insertfile image media codesample |
               alignleft aligncenter alignright alignjustify |
-              numlist bullist outdent indent | removeformat |
-              ltr rtl | charmap emoticons`,
+              numlist bullist outdent indent |
+              removeformat |
+              ltr rtl |
+              charmap emoticons
+            `,
             contextmenu: false,
             toolbar_sticky: true,
             content_style: `
               html {
                 height: 100%
               }
-              body { font-family: Arial; font-size: 18px }
-              .mce-content-body {
-                margin: 0;
-                padding: 1rem;
-                height: calc(100% - 2rem);
+              body {
+                font-family: Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+                  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+                font-size: 16px
               }
               .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
                 margin-left: 1rem;

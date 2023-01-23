@@ -7,6 +7,7 @@ import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import DeleteButton from '../shared/DeleteButton'
 import { DELETE_CATEGORY_INDICATOR } from '../../mutations/category-indicator'
+import { CATEGORY_INDICATOR_QUERY } from '../../queries/category-indicator'
 
 const DeleteCategoryIndicator = ({ categoryIndicator }) => {
   const { formatMessage } = useIntl()
@@ -21,6 +22,10 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
   const { showToast } = useContext(ToastContext)
 
   const [deleteCategoryIndicator, { called, reset }] = useMutation(DELETE_CATEGORY_INDICATOR, {
+    refetchQueries: [{
+      query: CATEGORY_INDICATOR_QUERY,
+      variables: { slug: categoryIndicator.slug }
+    }],
     onCompleted: (data) => {
       showToast(
         format('toast.category-indicator.delete.success'),

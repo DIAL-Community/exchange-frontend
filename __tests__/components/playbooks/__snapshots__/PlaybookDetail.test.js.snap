@@ -583,7 +583,10 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                                 target="_blank"
                               >
                                 <div
-                                  class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                                  class="
+                                      group border-2 border-gray-300 hover:border-dial-yellow
+                                      card-drop-shadow
+                                    "
                                 >
                                   <div
                                     class="flex"
@@ -1220,7 +1223,10 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                               target="_blank"
                             >
                               <div
-                                class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                                class="
+                                      group border-2 border-gray-300 hover:border-dial-yellow
+                                      card-drop-shadow
+                                    "
                               >
                                 <div
                                   class="flex"
@@ -1341,7 +1347,7 @@ exports[`Unit tests for playbook interaction. Should render error message when t
       />
       <div
         class="text-button-gray text-lg"
-        style="margin-top: 10%;"
+        style="margin-top: 10%; margin-bottom: 10%;"
       >
         <svg
           class="w-full mb-5"
@@ -1371,7 +1377,7 @@ exports[`Unit tests for playbook interaction. Should render error message when t
     />
     <div
       class="text-button-gray text-lg"
-      style="margin-top: 10%;"
+      style="margin-top: 10%; margin-bottom: 10%;"
     >
       <svg
         class="w-full mb-5"
@@ -1978,7 +1984,10 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                                 target="_blank"
                               >
                                 <div
-                                  class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                                  class="
+                                      group border-2 border-gray-300 hover:border-dial-yellow
+                                      card-drop-shadow
+                                    "
                                 >
                                   <div
                                     class="flex"
@@ -2562,7 +2571,10 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                               target="_blank"
                             >
                               <div
-                                class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                                class="
+                                      group border-2 border-gray-300 hover:border-dial-yellow
+                                      card-drop-shadow
+                                    "
                               >
                                 <div
                                   class="flex"

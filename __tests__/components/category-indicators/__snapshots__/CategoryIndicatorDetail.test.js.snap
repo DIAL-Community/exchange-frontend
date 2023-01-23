@@ -196,10 +196,10 @@ exports[`Unit test for the CategoryIndicatorDetail component. Should render Cate
               />
             </svg>
             <div
-              class="-my-4 html-viewer"
+              class="-mb-12 html-viewer"
             >
               <textarea
-                id="TinyMCE-Editor"
+                id="tinymce-editor"
                 style="visibility: hidden;"
               />
             </div>
