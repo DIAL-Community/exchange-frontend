@@ -1,12 +1,12 @@
 import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { gql } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { BsQuestionCircleFill } from 'react-icons/bs'
 import { FilterContext } from '../context/FilterContext'
 import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../context/PlaybookFilterContext'
 import { ProductAutocomplete } from '../filter/element/Product'
 import { TagAutocomplete } from '../filter/element/Tag'
+import { useUser } from '../../lib/hooks'
 
 const SEARCH_PLAYBOOK_TAGS_QUERY = gql`
   query SearchPlaybookTags($search: String!) {
@@ -22,7 +22,7 @@ const PlaybookFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data: session } = useSession()
+  const { user } = useUser()
   const { setHintDisplayed } = useContext(FilterContext)
 
   const { tags, products } = useContext(PlaybookFilterContext)
@@ -43,7 +43,7 @@ const PlaybookFilter = () => {
             <BsQuestionCircleFill className='inline text-xl mb-1 fill-dial-yellow' />
           </a>
         </div>
-        { !session?.user && (
+        { !user && (
           <div className='px-2 mb-4 text-xs'>
             {format('playbook.hint.createPlaybooks')}
           </div>

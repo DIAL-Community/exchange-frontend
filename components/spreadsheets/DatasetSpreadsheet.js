@@ -2,10 +2,10 @@ import { createRef, Fragment, useEffect, useState } from 'react'
 import { Tab } from '@headlessui/react'
 import { useMutation, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/react'
 import { ContextMenu } from 'handsontable/plugins'
 import { HotTable } from '@handsontable/react'
 import { registerAllModules } from 'handsontable/registry'
+import { useUser } from '../../lib/hooks'
 import { Error, Loading } from '../shared/FetchStatus'
 import NotFound from '../shared/NotFound'
 import { CREATE_SPREADSHEET_MUTATION, DELETE_SPREADSHEET_MUTATION } from '../../mutations/spreadsheet'
@@ -24,7 +24,7 @@ const DatasetSpreadsheet = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   const { locale } = useRouter()
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const [updateAssocData] = useMutation(CREATE_SPREADSHEET_MUTATION)
   const [saveSpreadsheetData] = useMutation(CREATE_SPREADSHEET_MUTATION, { refetchQueries: [DATASET_SPREADSHEET_QUERY] })
@@ -53,7 +53,7 @@ const DatasetSpreadsheet = () => {
       spreadsheetType: 'dataset',
       assoc: COLUMN_SOURCE_KEYS[selectedIndex]
     }
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = user
     mutationFunction.apply(this, [{
       variables,
       context: {

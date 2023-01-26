@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import Pill from '../../shared/Pill'
 import Select from '../../shared/Select'
 import { PRODUCT_SEARCH_QUERY } from '../../../queries/product'
@@ -11,6 +10,7 @@ import { ToastContext } from '../../../lib/ToastContext'
 import { fetchSelectOptions } from '../../../queries/utils'
 import ProductCard from '../../products/ProductCard'
 import { UPDATE_USE_CASE_STEP_PRODUCTS } from '../../../mutations/useCaseStep'
+import { useUser } from '../../../lib/hooks'
 
 const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -22,7 +22,7 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -60,8 +60,8 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateUseCaseStepProducts({
         variables: {

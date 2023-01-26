@@ -3,8 +3,8 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useSession } from 'next-auth/react'
 import NotFound from '../shared/NotFound'
+import { useUser } from '../../lib/hooks'
 import { Loading, Error } from '../shared/FetchStatus'
 import { FilterContext } from '../context/FilterContext'
 import { PlaybookFilterContext } from '../context/PlaybookFilterContext'
@@ -16,15 +16,17 @@ const PlaybookList = (props) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data: session } = useSession()
-
-  const canEdit = session?.user?.canEdit
+  const { isAdminUser } = useUser()
 
   const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card'
     ? `grid-cols-1 gap-4
-       ${filterDisplayed ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'}`
+      ${
+        filterDisplayed
+          ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'
+          : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'
+      }`
     : 'grid-cols-1'
     }`
 
@@ -44,7 +46,12 @@ const PlaybookList = (props) => {
       {
         props.playbookList.length > 0
           ? props.playbookList.map((playbook) => (
-            <PlaybookCard key={playbook.id} listType={displayType} {...{ playbook, filterDisplayed }} canEdit={canEdit} />
+            <PlaybookCard
+              key={playbook.id}
+              listType={displayType}
+              canEdit={isAdminUser}
+              {...{ playbook, filterDisplayed }}
+            />
           ))
           : (
             <div className='text-sm font-medium opacity-80'>

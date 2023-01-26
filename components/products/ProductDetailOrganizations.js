@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { ToastContext } from '../../lib/ToastContext'
 import Select from '../shared/Select'
@@ -11,6 +10,7 @@ import OrganizationCard from '../organizations/OrganizationCard'
 import EditableSection from '../shared/EditableSection'
 import { UPDATE_PRODUCT_ORGANIZATION } from '../../mutations/product'
 import { ORGANIZATION_SEARCH_QUERY } from '../../queries/organization'
+import { useUser } from '../../lib/hooks'
 
 const ProductDetailOrganizations = ({ product, canEdit }) => {
 
@@ -38,7 +38,7 @@ const ProductDetailOrganizations = ({ product, canEdit }) => {
     }
   })
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -65,8 +65,8 @@ const ProductDetailOrganizations = ({ product, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateProductOrganizations({
         variables: {

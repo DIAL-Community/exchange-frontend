@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useMemo, useContext } from 'react'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/react'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner, FaPlus, FaMinus } from 'react-icons/fa'
@@ -15,13 +14,14 @@ import { CREATE_DATASET } from '../../mutations/dataset'
 import Select from '../shared/Select'
 import FileUploader from '../shared/FileUploader'
 import { getDatasetTypeOptions } from '../../lib/utilities'
+import { useUser } from '../../lib/hooks'
 
 const DatasetForm = React.memo(({ dataset }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -115,11 +115,11 @@ const DatasetForm = React.memo(({ dataset }) => {
   }, [dataset, format])
 
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = user
       const {
         name,
         aliases,

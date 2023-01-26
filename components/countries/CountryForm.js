@@ -1,5 +1,4 @@
 import { useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useCallback, useContext } from 'react'
 import { useForm } from 'react-hook-form'
@@ -9,11 +8,12 @@ import Input from '../shared/Input'
 import ValidationError from '../shared/ValidationError'
 import Dialog, { DialogType } from '../shared/Dialog'
 import { CREATE_COUNTRY } from '../../mutations/country'
+import { useUser } from '../../lib/hooks'
 
 const CountryForm = ({ isOpen, onClose, country }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)
@@ -61,8 +61,8 @@ const CountryForm = ({ isOpen, onClose, country }) => {
   const slug = country?.slug ?? ''
 
   const doUpsert = async (data) => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
       const { name } = data
 
       updateCountry({

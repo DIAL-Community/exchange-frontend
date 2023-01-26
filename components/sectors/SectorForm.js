@@ -1,5 +1,4 @@
 import { useMutation, useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useCallback, useContext, useEffect, useMemo } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -13,11 +12,12 @@ import Select from '../shared/Select'
 import { SECTOR_SEARCH_QUERY } from '../../queries/sector'
 import { CREATE_SECTOR } from '../../mutations/sectors'
 import { getLanguageOptions } from '../../lib/utilities'
+import { useUser } from '../../lib/hooks'
 
 const SectorForm = ({ isOpen, onClose, sector }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -107,8 +107,8 @@ const SectorForm = ({ isOpen, onClose, sector }) => {
   const slug = sector?.slug ?? ''
 
   const doUpsert = async (data) => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
       const { name, locale, parentSector, isDisplayable } = data
       const variables = {
         name,

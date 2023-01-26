@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import Pill from '../../shared/Pill'
 import Select from '../../shared/Select'
 import { DATASET_SEARCH_QUERY } from '../../../queries/dataset'
@@ -11,13 +10,15 @@ import { ToastContext } from '../../../lib/ToastContext'
 import { fetchSelectOptions } from '../../../queries/utils'
 import DatasetCard from '../../datasets/DatasetCard'
 import { UPDATE_USE_CASE_STEP_DATASETS } from '../../../mutations/useCaseStep'
+import { useUser } from '../../../lib/hooks'
 
 const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { locale } = useRouter()
-  const { data: session } = useSession()
+
+  const { user } = useUser()
 
   const client = useApolloClient()
 
@@ -57,8 +58,8 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateUseCaseStepDatasets({
         variables: {

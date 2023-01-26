@@ -1,8 +1,8 @@
 import { useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import router, { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useUser } from '../../lib/hooks'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import { DELETE_ORGANIZATION } from '../../mutations/organization'
 import { ORGANIZATION_QUERY } from '../../queries/organization'
@@ -17,7 +17,7 @@ const DeleteOrganization = ({ organization }) => {
 
   const { locale } = useRouter()
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { showToast } = useContext(ToastContext)
 
@@ -44,8 +44,8 @@ const DeleteOrganization = ({ organization }) => {
   })
 
   const onConfirmDelete = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       deleteOrganization({
         variables: {

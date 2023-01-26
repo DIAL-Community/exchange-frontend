@@ -1,5 +1,4 @@
 import { useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import router, { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
@@ -8,6 +7,7 @@ import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import DeleteButton from '../shared/DeleteButton'
 import { DELETE_RUBRIC_CATEGORY } from '../../mutations/rubric-category'
 import { RUBRIC_CATEGORY_QUERY } from '../../queries/rubric-category'
+import { useUser } from '../../lib/hooks'
 
 const DeleteRubricCategory = ({ rubricCategory }) => {
   const { formatMessage } = useIntl()
@@ -17,7 +17,7 @@ const DeleteRubricCategory = ({ rubricCategory }) => {
 
   const { locale } = useRouter()
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { showToast } = useContext(ToastContext)
 
@@ -44,8 +44,8 @@ const DeleteRubricCategory = ({ rubricCategory }) => {
   })
 
   const onConfirmDelete = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       deleteRubricCategory({
         variables: { id: rubricCategory.id },

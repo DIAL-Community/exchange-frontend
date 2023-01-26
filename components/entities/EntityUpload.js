@@ -2,7 +2,7 @@ import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/react'
+import { useUser } from '../../lib/hooks'
 
 const EntityUpload = () => {
   const { formatMessage } = useIntl()
@@ -13,7 +13,7 @@ const EntityUpload = () => {
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
-  const { data: session } = useSession()
+  const { user } = useUser()
   const fileRef = useRef()
   const captchaRef = useRef()
 
@@ -21,7 +21,7 @@ const EntityUpload = () => {
     setLoading(true)
 
     event.preventDefault()
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = user
 
     const formData = new FormData()
     formData.append('entity_file', file, file.name)
@@ -83,7 +83,7 @@ const EntityUpload = () => {
                       bg-dial-gray-dark text-dial-gray-light py-2 px-4
                       rounded inline-flex items-center disabled:opacity-50
                     `}
-                    type='submit' disabled={loading || !captcha || !session || !session.user}
+                    type='submit' disabled={loading || !captcha || !user}
                   >
                     {format('entity.process')}
                     {loading && <FaSpinner className='spinner ml-3' />}

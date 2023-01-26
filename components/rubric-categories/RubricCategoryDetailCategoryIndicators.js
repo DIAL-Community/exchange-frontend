@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import Card from '../shared/Card'
 import { ToastContext } from '../../lib/ToastContext'
@@ -24,7 +23,7 @@ const RubricCategoryDetailCategoryIndicators = ({ categoryIndicators, rubricCate
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const router = useRouter()
 
@@ -76,8 +75,8 @@ const RubricCategoryDetailCategoryIndicators = ({ categoryIndicators, rubricCate
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateRubricCategoryIndicators({
         variables: {

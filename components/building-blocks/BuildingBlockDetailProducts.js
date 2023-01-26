@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 import { PRODUCT_SEARCH_QUERY } from '../../queries/product'
@@ -12,6 +11,7 @@ import { fetchSelectOptions } from '../../queries/utils'
 import ProductCard from '../products/ProductCard'
 import { UPDATE_BUILDING_BLOCK_PRODUCTS } from '../../mutations/building-block'
 import { getMappingStatusOptions } from '../../lib/utilities'
+import { useUser } from '../../lib/hooks'
 
 const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -19,7 +19,7 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
 
   const client = useApolloClient()
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -79,8 +79,8 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateBuildingBlockProducts({
         variables: {

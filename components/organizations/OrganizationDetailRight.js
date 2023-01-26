@@ -1,12 +1,12 @@
 import { FormattedDate, useIntl } from 'react-intl'
 import { useCallback, useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import { useSession } from 'next-auth/react'
 import Breadcrumb from '../shared/breadcrumb'
 import { HtmlViewer } from '../shared/HtmlViewer'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
 import { prependUrlWithProtocol } from '../../lib/utilities'
+import { useOrganizationOwnerUser, useUser } from '../../lib/hooks'
 import AggregatorCapability from './AggregatorCapability'
 import OrganizationDetailCountries from './OrganizationDetailCountries'
 import OrganizationDetailSectors from './OrganizationDetailSectors'
@@ -33,9 +33,10 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data: session } = useSession()
+  const { isAdminUser } = useUser()
+  const { isOrganizationOwner } = useOrganizationOwnerUser(organization)
 
-  const canEdit = session?.user?.canEdit || session?.user?.own?.organization?.id === organization.id
+  const canEdit = isAdminUser || isOrganizationOwner
 
   const isEndorser = organization?.whenEndorsed
 

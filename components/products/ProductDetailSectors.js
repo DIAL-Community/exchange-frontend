@@ -1,8 +1,8 @@
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import { UPDATE_PRODUCT_SECTORS } from '../../mutations/product'
 import { SECTOR_SEARCH_QUERY } from '../../queries/sector'
@@ -22,7 +22,7 @@ const ProductDetailSectors = ({ product, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -60,8 +60,8 @@ const ProductDetailSectors = ({ product, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateProductsSectors({
         variables: {

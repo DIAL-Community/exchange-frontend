@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 import CountryCard from '../countries/CountryCard'
@@ -11,6 +10,7 @@ import EditableSection from '../shared/EditableSection'
 import { ToastContext } from '../../lib/ToastContext'
 import { UPDATE_PROJECT_COUNTRIES } from '../../mutations/project'
 import { fetchSelectOptions } from '../../queries/utils'
+import { useUser } from '../../lib/hooks'
 
 const ProjectDetailCountries = ({ project, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -22,7 +22,7 @@ const ProjectDetailCountries = ({ project, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -60,8 +60,8 @@ const ProjectDetailCountries = ({ project, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateProjectCountries({
         variables: {
