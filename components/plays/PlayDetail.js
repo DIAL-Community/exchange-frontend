@@ -1,10 +1,10 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import Breadcrumb from '../shared/breadcrumb'
 import { HtmlViewer } from '../shared/HtmlViewer'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import ProductCard from '../products/ProductCard'
+import { useUser } from '../../lib/hooks'
 import PlayPreviewMove from './PlayPreviewMove'
 
 const PlayDetail = ({ playbook, play }) => {
@@ -12,10 +12,10 @@ const PlayDetail = ({ playbook, play }) => {
   const format = (id) => formatMessage({ id })
 
   const { locale } = useRouter()
-  const { data: session } = useSession()
+  const { user, isAdminUser } = useUser()
 
   const generateEditLink = () => {
-    if (!session.user) {
+    if (!user) {
       return '/edit-not-available'
     }
 
@@ -39,10 +39,10 @@ const PlayDetail = ({ playbook, play }) => {
           </div>
           <div className='w-full flex justify-end mt-4'>
             {
-              session && (
+              user && (
                 <div className='inline'>
                   {
-                    session.user.canEdit && (
+                    isAdminUser && (
                       <a href={generateEditLink()} className='bg-dial-blue px-2 py-1 rounded text-white mr-5'>
                         <img src='/icons/edit.svg' className='inline mr-2 pb-1' alt='Edit' height='12px' width='12px' />
                         <span className='text-sm px-2'>{format('app.edit')}</span>

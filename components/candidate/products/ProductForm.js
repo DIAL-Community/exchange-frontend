@@ -6,7 +6,6 @@ import { useMutation } from '@apollo/client'
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Controller, useForm } from 'react-hook-form'
-import { useSession } from 'next-auth/react'
 import { validate } from 'email-validator'
 import { ToastContext } from '../../../lib/ToastContext'
 import { CREATE_CANDIDATE_PRODUCT } from '../../../mutations/product'
@@ -16,6 +15,7 @@ import { HtmlEditor } from '../../shared/HtmlEditor'
 import { Unauthorized } from '../../shared/FetchStatus'
 import UrlInput from '../../shared/UrlInput'
 import { BREADCRUMB_SEPARATOR } from '../../shared/breadcrumb'
+import { useUser } from '../../../lib/hooks'
 
 const ProductForm = () => {
   const { formatMessage } = useIntl()
@@ -23,7 +23,7 @@ const ProductForm = () => {
 
   const router = useRouter()
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { showToast } = useContext(ToastContext)
 
@@ -69,10 +69,10 @@ const ProductForm = () => {
   })
 
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       setMutating(true)
 
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = user
       const { name, description, email, captcha, website, repository } = data
 
       const variables = {
@@ -101,7 +101,7 @@ const ProductForm = () => {
     router.push('/products')
   }
 
-  return session ? (
+  return user ? (
     <div className='flex flex-col'>
       <div className='hidden lg:block px-8'>
         <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>

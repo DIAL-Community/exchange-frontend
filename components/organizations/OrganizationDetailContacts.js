@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useEffect, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { Controller, useForm } from 'react-hook-form'
 import { validate } from 'email-validator'
 import Pill from '../shared/Pill'
@@ -12,6 +11,7 @@ import ContactCard from '../contacts/ContactCard'
 import EditableSection from '../shared/EditableSection'
 import { UPDATE_ORGANIZATION_CONTACTS } from '../../mutations/organization'
 import ValidationError from '../shared/ValidationError'
+import { useUser } from '../../lib/hooks'
 
 const inputSectionStyle = 'flex flex-col gap-y-2 mb-2 mx-4 w-full'
 
@@ -24,7 +24,7 @@ const OrganizationDetailContacts = ({ organization }) => {
 
   const [updateOrganizationContacts, { data, loading }] = useMutation(UPDATE_ORGANIZATION_CONTACTS)
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -70,8 +70,8 @@ const OrganizationDetailContacts = ({ organization }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateOrganizationContacts({
         variables: {

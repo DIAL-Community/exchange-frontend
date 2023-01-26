@@ -1,12 +1,12 @@
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
-import { useSession } from 'next-auth/react'
 import IframeResizer from 'iframe-resizer-react'
 import Breadcrumb from '../shared/breadcrumb'
 import { HtmlViewer } from '../shared/HtmlViewer'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
 import { prependUrlWithProtocol } from '../../lib/utilities'
+import { useUser } from '../../lib/hooks'
 import DatasetDetailCountries from './DatasetDetailCountries'
 import DatasetDetailOrganizations from './DatasetDetailOrganizations'
 import DatasetDetailSectors from './DatasetDetailSectors'
@@ -17,8 +17,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data: session } = useSession()
-  const canEdit = session?.user?.canEdit
+  const { isAdminUser: canEdit } = useUser()
   const slugNameMapping = (() => {
     const map = {}
     map[dataset.slug] = dataset.name

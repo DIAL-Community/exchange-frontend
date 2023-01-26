@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useEffect, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 import EditableSection from '../shared/EditableSection'
@@ -11,6 +10,7 @@ import { UPDATE_DATASET_ORGANIZATIONS } from '../../mutations/dataset'
 import { fetchSelectOptions } from '../../queries/utils'
 import OrganizationCard from '../organizations/OrganizationCard'
 import { ORGANIZATION_SEARCH_QUERY } from '../../queries/organization'
+import { useUser } from '../../lib/hooks'
 
 const DatasetDetailOrganizations = ({ dataset, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -23,7 +23,7 @@ const DatasetDetailOrganizations = ({ dataset, canEdit }) => {
 
   const [updateDatasetOrganizations, { data, loading }] = useMutation(UPDATE_DATASET_ORGANIZATIONS)
 
-  const { data: session } = useSession()
+  const { user } = useUser()
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)
 
@@ -57,8 +57,8 @@ const DatasetDetailOrganizations = ({ dataset, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateDatasetOrganizations({
         variables: {

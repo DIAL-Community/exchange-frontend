@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/react'
 import { useCallback, useContext, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
@@ -7,6 +6,7 @@ import DeleteButton from '../shared/DeleteButton'
 import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import { ToastContext } from '../../lib/ToastContext'
 import { DELETE_SECTOR } from '../../mutations/sectors'
+import { useUser } from '../../lib/hooks'
 
 const DeleteSector = ({ sector }) => {
   const { formatMessage } = useIntl()
@@ -18,7 +18,7 @@ const DeleteSector = ({ sector }) => {
 
   const { locale } = router
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
 
@@ -38,8 +38,8 @@ const DeleteSector = ({ sector }) => {
   })
 
   const onConfirmDelete = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       deleteSector({
         variables: {

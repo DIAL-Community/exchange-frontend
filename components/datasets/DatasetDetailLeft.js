@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl'
 import { useCallback, useContext, useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
 import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
@@ -21,7 +20,6 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const { showToast } = useContext(ToastContext)
 
-  const { data: session } = useSession()
   const router = useRouter()
   const { locale } = router
 
@@ -42,7 +40,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
   const [ownershipText, setOwnershipText] = useState('')
 
   const generateEditLink = () => {
-    if (!session) {
+    if (!user) {
       return '/edit-not-available'
     }
 

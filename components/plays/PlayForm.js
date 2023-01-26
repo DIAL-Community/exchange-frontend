@@ -4,7 +4,6 @@ import { useApolloClient, useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 import { FaSpinner, FaPlusCircle } from 'react-icons/fa'
-import { useSession } from 'next-auth/react'
 import { HtmlEditor } from '../shared/HtmlEditor'
 import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
 import Breadcrumb from '../shared/breadcrumb'
@@ -17,6 +16,7 @@ import { PRODUCT_SEARCH_QUERY } from '../../queries/product'
 import Pill from '../shared/Pill'
 import { fetchSelectOptions } from '../../queries/utils'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../queries/building-block'
+import { useUser } from '../../lib/hooks'
 import MoveListDraggable from './moves/MoveListDraggable'
 
 export const PlayForm = ({ playbook, play }) => {
@@ -27,7 +27,7 @@ export const PlayForm = ({ playbook, play }) => {
 
   const router = useRouter()
   const { locale } = router
-  const { data: session } = useSession()
+  const { user } = useUser()
   const { showToast } = useContext(ToastContext)
 
   const [mutating, setMutating] = useState(false)
@@ -131,10 +131,10 @@ export const PlayForm = ({ playbook, play }) => {
   })
 
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       setMutating(true)
 
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = user
       const { name, description } = data
       const variables = {
         name,
@@ -161,10 +161,10 @@ export const PlayForm = ({ playbook, play }) => {
   useEffect(() => {
     const doAutoSave = () => {
       const { locale } = router
-      if (session) {
+      if (user) {
         setMutating(true)
 
-        const { userEmail, userToken } = session.user
+        const { userEmail, userToken } = user
         const { name, description } = watch()
         const variables = {
           name,
@@ -193,7 +193,7 @@ export const PlayForm = ({ playbook, play }) => {
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [session, slug, tags, products, buildingBlocks, router, watch, autoSavePlay])
+  }, [user, slug, tags, products, buildingBlocks, router, watch, autoSavePlay])
 
   const cancelForm = () => {
     setReverting(true)

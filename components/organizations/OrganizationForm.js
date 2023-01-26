@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useMemo, useContext } from 'react'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/react'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner, FaPlus, FaMinus } from 'react-icons/fa'
@@ -16,13 +15,14 @@ import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import ValidationError from '../shared/ValidationError'
 import { CREATE_ORGANIZATION } from '../../mutations/organization'
 import UrlInput from '../shared/UrlInput'
+import { useUser } from '../../lib/hooks'
 
 const OrganizationForm = React.memo(({ organization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -106,11 +106,11 @@ const OrganizationForm = React.memo(({ organization }) => {
   }, [organization, format])
 
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = user
       const { name, imageFile, website, isEndorser, whenEndorsed, endorserLevel, isMni, description, aliases } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {

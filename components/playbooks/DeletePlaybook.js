@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/react'
 import { useCallback, useContext, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
@@ -8,6 +7,7 @@ import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import { ToastContext } from '../../lib/ToastContext'
 import { DELETE_PLAYBOOK } from '../../mutations/playbook'
 import { PLAYBOOK_QUERY } from '../../queries/playbook'
+import { useUser } from '../../lib/hooks'
 
 const DeletePlaybook = ({ playbook }) => {
   const { formatMessage } = useIntl()
@@ -18,7 +18,7 @@ const DeletePlaybook = ({ playbook }) => {
   const router = useRouter()
   const { locale } = router
 
-  const { data: session } = useSession()
+  const { user } = useUser()
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false)
 
   const toggleConfirmDialog = () => {
@@ -48,8 +48,8 @@ const DeletePlaybook = ({ playbook }) => {
   })
 
   const onConfirmDelete = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       deletePlaybook({
         variables: {
