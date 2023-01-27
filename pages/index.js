@@ -19,6 +19,7 @@ import { ProductFilterContext, ProductFilterDispatchContext } from '../component
 import ClientOnly from '../lib/ClientOnly'
 import Intro, { OVERVIEW_INTRO_KEY, OVERVIEW_INTRO_STEPS } from '../components/Intro'
 import QueryNotification from '../components/shared/QueryNotification'
+import HeroSection from '../components/Hero'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const HomePage = () => {
@@ -31,6 +32,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
+      <HeroSection />
       <Definition />
       <Carousel />
       <WizardDescription />

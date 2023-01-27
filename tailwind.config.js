@@ -6,8 +6,12 @@ module.exports = {
         3: '3px'
       },
       colors: {
+        // Part of the UX refresh.
         'dial-sapphire': {
           DEFAULT: '#2e3192'
+        },
+        'dial-white-beech': {
+          DEFAULT: '#faf4ef'
         },
         'dial-gray': {
           light: '#f5f6fa',
