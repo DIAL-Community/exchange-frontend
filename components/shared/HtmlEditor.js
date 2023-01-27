@@ -61,8 +61,7 @@ export const HtmlEditor = ({
                 height: 100%
               }
               body {
-                font-family: Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-                  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+                font-family: Poppins
                 font-size: 16px
               }
               .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {

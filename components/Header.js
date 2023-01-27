@@ -88,19 +88,12 @@ const Header = ({ isOnAuthPage = false }) => {
   }
 
   return (
-    <header className='z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white'>
+    <header className='z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-dial-sapphire'>
       <div className='flex flex-wrap py-3 lg:py-0 header-min-height max-w-catalog mx-auto'>
         <div className='flex flex-1 my-auto'>
           <Link href='/'>
             <a className='px-4 xl:px-8'>
-              <div className='text-dial-blue-darkest text-xs'>
-                {format('landing.subtitle')}
-              </div>
-              <div className='font-bold text-base text-dial-blue-darkest'>
-                <span className='block'>
-                  {format('landing.title.firstLine')} {format('landing.title.secondLine')}
-                </span>
-              </div>
+              <img src='/assets/2023-refresh/exchange-logo.png' alt='Digital Impact Exchage Logo.' />
             </a>
           </Link>
         </div>

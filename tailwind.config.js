@@ -6,6 +6,9 @@ module.exports = {
         3: '3px'
       },
       colors: {
+        'dial-sapphire': {
+          DEFAULT: '#2e3192'
+        },
         'dial-gray': {
           light: '#f5f6fa',
           DEFAULT: '#dfdfea',
@@ -112,10 +115,7 @@ module.exports = {
         '66px': '66px'
       },
       fontFamily: {
-        DEFAULT: `
-          Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif
-        `
+        DEFAULT: 'Poppins'
       }
     }
   },

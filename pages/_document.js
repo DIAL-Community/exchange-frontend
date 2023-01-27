@@ -37,6 +37,7 @@ export default class MyDocument extends Document {
               `
             }}
           />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&display=optional" />
         </Head>
         <body>
           <Main />

@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import dynamic from 'next/dynamic'
 import cookie from 'react-cookies'
 import Header from '../components/Header'
-import Landing from '../components/Landing'
 import Definition from '../components/Definition'
 import WizardDescription from '../components/WizardDescription'
 import Carousel from '../components/Carousel'
@@ -31,7 +30,6 @@ const HomePage = () => {
 
   return (
     <>
-      <Landing />
       <Header />
       <Definition />
       <Carousel />
