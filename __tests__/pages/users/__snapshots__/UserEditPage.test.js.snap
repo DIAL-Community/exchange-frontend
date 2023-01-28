@@ -11,19 +11,15 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
     <div
       class="flex flex-wrap header-min-height max-w-catalog mx-auto"
     >
-      <div
-        class="flex"
+      <a
+        class="flex px-8 xl:px-24 py-6"
+        href="/"
       >
-        <a
-          class="px-8 xl:px-24 py-6"
-          href="/"
-        >
-          <img
-            alt="Digital Impact Exchage Logo."
-            src="/assets/2023-refresh/exchange-logo.png"
-          />
-        </a>
-      </div>
+        <img
+          alt="Digital Impact Exchage Logo."
+          src="/assets/2023-refresh/exchange-logo.png"
+        />
+      </a>
       <label
         class="ml-auto my-auto pointer-cursor block lg:hidden px-8"
         for="menu-toggle"
@@ -252,7 +248,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
             </li>
           </ul>
           <ul
-            class="hidden lg:flex items-center text-dial-blue-darkest pt-4 lg:pt-0 sm:gap-x-6 lg:gap-x-2"
+            class="hidden lg:flex items-center text-dial-white-beech pt-4 lg:pt-0 sm:gap-x-6 lg:gap-x-2"
           >
             <li
               class="relative mt-2 lg:mt-0 text-right"
@@ -1502,19 +1498,15 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
     <div
       class="flex flex-wrap header-min-height max-w-catalog mx-auto"
     >
-      <div
-        class="flex"
+      <a
+        class="flex px-8 xl:px-24 py-6"
+        href="/"
       >
-        <a
-          class="px-8 xl:px-24 py-6"
-          href="/"
-        >
-          <img
-            alt="Digital Impact Exchage Logo."
-            src="/assets/2023-refresh/exchange-logo.png"
-          />
-        </a>
-      </div>
+        <img
+          alt="Digital Impact Exchage Logo."
+          src="/assets/2023-refresh/exchange-logo.png"
+        />
+      </a>
       <label
         class="ml-auto my-auto pointer-cursor block lg:hidden px-8"
         for="menu-toggle"
@@ -1682,7 +1674,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
             </li>
           </ul>
           <ul
-            class="hidden lg:flex items-center text-dial-blue-darkest pt-4 lg:pt-0 sm:gap-x-6 lg:gap-x-2"
+            class="hidden lg:flex items-center text-dial-white-beech pt-4 lg:pt-0 sm:gap-x-6 lg:gap-x-2"
           >
             <li
               class="relative mt-2 lg:mt-0 text-right"

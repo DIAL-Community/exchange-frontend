@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 
@@ -6,7 +7,13 @@ const WizardDescription = () => {
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   return (
-    <div className='relative w-full bg-gradient-to-r text-white from-dial-purple to-dial-purple-light'>
+    <div
+      className={classNames(
+        'relative w-full',
+        'bg-gradient-to-r text-white from-dial-purple to-dial-purple-light',
+        'max-w-catalog mx-auto'
+      )}
+    >
       <div className='max-w-4xl mx-auto py-12'>
         <div className='text-4xl font-semibold text-center px-2'>
           {format('landing.wizard.whereToStart')}

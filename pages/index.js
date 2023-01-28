@@ -2,9 +2,7 @@ import { useContext } from 'react'
 import dynamic from 'next/dynamic'
 import cookie from 'react-cookies'
 import Header from '../components/Header'
-import Definition from '../components/Definition'
 import WizardDescription from '../components/WizardDescription'
-import Carousel from '../components/Carousel'
 import CatalogTitle from '../components/CatalogTitle'
 import Footer from '../components/Footer'
 import TabNav from '../components/main/TabNav'
@@ -33,8 +31,6 @@ const HomePage = () => {
     <>
       <Header />
       <HeroSection />
-      <Definition />
-      <Carousel />
       <WizardDescription />
       <CatalogTitle />
       <QueryNotification />

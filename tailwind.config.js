@@ -100,7 +100,7 @@ module.exports = {
         '1/4': '25%',
         '1/2': '50%',
         '3/4': '75%',
-        catalog: '120rem'
+        catalog: '2120px'
       },
       maxHeight: {
         lg: '28rem',
