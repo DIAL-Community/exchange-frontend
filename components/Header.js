@@ -87,16 +87,39 @@ const Header = ({ isOnAuthPage = false }) => {
     )
   }
 
+  const withUser =
+    <>
+      <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
+        {isAdminUser &&
+          <AdminMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+        }
+      </li>
+      <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
+        <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+      </li>
+    </>
+
+  const withoutUser =
+    <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
+      <a
+        data-testid='login'
+        href='signin'
+        role='menuitem'
+        className={dropdownMenuStyles}
+        onClick={signInUser}
+      >
+        {format('header.signIn')}
+      </a>
+    </li>
+
   return (
     <header className='z-70 sticky top-0 bg-dial-sapphire'>
       <div className='flex flex-wrap header-min-height max-w-catalog mx-auto'>
-        <div className='flex'>
-          <Link href='/'>
-            <a className='px-8 xl:px-24 py-6'>
-              <img src='/assets/2023-refresh/exchange-logo.png' alt='Digital Impact Exchage Logo.' />
-            </a>
-          </Link>
-        </div>
+        <Link href='/'>
+          <a className='flex px-8 xl:px-24 py-6'>
+            <img src='/assets/2023-refresh/exchange-logo.png' alt='Digital Impact Exchage Logo.' />
+          </a>
+        </Link>
         <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block lg:hidden px-8'>
           <svg
             className='fill-current text-gray-900'
@@ -113,7 +136,7 @@ const Header = ({ isOnAuthPage = false }) => {
         <div className='hidden lg:flex lg:items-center lg:w-auto w-full ml-auto mx-2' id='menu'>
           <nav>
             <MobileMenu menuExpanded={menuExpanded} setMenuExpanded={setMenuExpanded} />
-            <ul className='hidden lg:flex items-center text-dial-blue-darkest pt-4 lg:pt-0 sm:gap-x-6 lg:gap-x-2'>
+            <ul className='hidden lg:flex items-center text-dial-white-beech pt-4 lg:pt-0 sm:gap-x-6 lg:gap-x-2'>
               {!isOnAuthPage
                 && (
                   <>
@@ -123,38 +146,14 @@ const Header = ({ isOnAuthPage = false }) => {
                     <li className='relative mt-2 lg:mt-0 text-right'>
                       <AboutMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
-                    {
-                      user
-                        ? (
-                          <>
-                            <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
-                              {isAdminUser &&
-                                <AdminMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-                              }
-                            </li>
-                            <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
-                              <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-                            </li>
-                          </>
-                        ) : (
-                          <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
-                            <a
-                              data-testid='login'
-                              href='signin'
-                              role='menuitem'
-                              className={dropdownMenuStyles}
-                              onClick={signInUser}
-                            >
-                              {format('header.signIn')}
-                            </a>
-                          </li>
-                        )
-                    }
+                    { user ? withUser : withoutUser }
                     <li className='relative mt-2 lg:mt-0 text-right'>
                       <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
                     <li><div className='border border-gray-400 border-t-0 lg:border-l-0 lg:h-9' /></li>
-                  </>)}
+                  </>
+                )
+              }
               <li className='relative mt-2 lg:mt-0 text-right'>
                 <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
