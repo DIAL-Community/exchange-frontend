@@ -18,6 +18,8 @@ const LanguageMenu = ({ currentOpenMenu, onToggleDropdown }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const { locale } = useRouter()
+
   const router = useRouter()
   const { pathname, asPath, query } = router
 
@@ -35,7 +37,7 @@ const LanguageMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       <MenuHeader
         id={LANGUAGE_MENU}
         ref={languagePopoverButton}
-        title='header.selectLanguage'
+        title={SUPPORTED_LANGUAGES[locale]}
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
       />

@@ -74,7 +74,7 @@ export const en = {
   'header.about': 'About',
   'header.documentation': 'Documentation Portal',
   'header.confluence': 'Catalog Wiki Page',
-  'header.admin': 'Admin Menu',
+  'header.admin': 'Admin',
   'header.selectLanguage': 'Select Language',
   'header.english': 'English (en)',
   'header.german': 'Deutsch (de)',
