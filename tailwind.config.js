@@ -119,7 +119,7 @@ module.exports = {
         '66px': '66px'
       },
       fontFamily: {
-        DEFAULT: 'Poppins'
+        DEFAULT: '"Poppins", sans-serif'
       }
     }
   },

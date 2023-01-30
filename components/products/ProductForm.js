@@ -226,6 +226,7 @@ const ProductForm = React.memo(({ product }) => {
                       {format('product.website')}
                     </label>
                     <Controller
+                      id='website'
                       name='website'
                       control={control}
                       render={({ field: { value, onChange } }) => (

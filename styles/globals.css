@@ -2,11 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Poppins';
+  src: url('/public/assets/fonts/Poppins/Poppins-Regular.ttf');
+  src: url('/public/assets/fonts/Poppins/Poppins-SemiBold.ttf');
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Poppins'
+  font-family: 'Poppins', sans-serif;
 }
 
 .h1 {
@@ -91,10 +97,6 @@ body {
   background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='gray' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
 }
 
-.form-checkbox:checked {
-  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='gray' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
-}
-
 .card-link:hover {
   cursor: pointer;
   border: 2px solid #fab230;
@@ -169,6 +171,8 @@ body {
   textarea.textarea,
   .url-input {
     @apply border-0;
+    @apply border-transparent;
+    @apply hover:border-blue-500;
     @apply text-lg;
     @apply text-dial-gray-dark;
     @apply shadow-md;
@@ -178,6 +182,10 @@ body {
     @apply py-2;
     @apply disabled:outline-button-gray-light;
     @apply disabled:text-button-gray-light;
+  }
+
+  .url-input:has(input:focus) {
+    @apply border-blue-500;
   }
 
   input:not(.validation-error),
@@ -194,8 +202,8 @@ body {
 
   input:focus,
   input[type]:focus,
-  textarea.textarea:focus,
-  .url-input:focus-within {
+  textarea.textarea:focus {
+    @apply outline;
   }
 
   /* native HTML button */
@@ -209,17 +217,19 @@ body {
   }
 
   /* TinyMCE HTML editor - textarea */
-  .htmlEditor .tox-tinymce {
+  .html-editor .tox-tinymce {
     @apply border-0;
     @apply shadow-md;
     @apply rounded-md;
   }
 
-  .htmlEditor .tox-tinymce.focused,
-  .htmlEditor.validation-error .tox-tinymce.focused {
+  .html-editor .tox-tinymce.focused,
+  .html-editor.validation-error .tox-tinymce.focused {
+    @apply border;
+    @apply hover:border-blue-500;
   }
 
-  .htmlEditor.validation-error .tox-tinymce {
+  .html-editor.validation-error .tox-tinymce {
     @apply outline-validation-error;
   }
 

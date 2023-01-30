@@ -34,7 +34,7 @@ export const HtmlViewer = ({ initialContent, editorId, className }) => {
               
               body {
                 margin: 0;
-                font-family: Poppins
+                font-family: 'Poppins', sans-serif;
                 font-size: 16px
               }
 
