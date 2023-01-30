@@ -411,7 +411,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -858,7 +858,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"

@@ -206,7 +206,7 @@ exports[`Unit tests for UseCaseStepForm component. Should display failure toast 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -439,7 +439,7 @@ exports[`Unit tests for UseCaseStepForm component. Should display success toast 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -632,7 +632,7 @@ exports[`Unit tests for UseCaseStepForm component. Should render StepForm compon
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"

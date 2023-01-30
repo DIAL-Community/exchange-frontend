@@ -221,7 +221,7 @@ exports[`Unit tests for WorkflowForm component. Should display toast on submit -
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -469,7 +469,7 @@ exports[`Unit tests for WorkflowForm component. Should display toast on submit -
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -741,7 +741,7 @@ exports[`Unit tests for WorkflowForm component. Should render WorkflowForm compo
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -933,7 +933,7 @@ exports[`Unit tests for WorkflowForm component. Should show validation errors fo
                       />
                     </svg>
                     <div
-                      class="validation-error htmlEditor"
+                      class="validation-error html-editor"
                     >
                       <textarea
                         id="description-editor"

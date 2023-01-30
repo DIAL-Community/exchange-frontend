@@ -244,7 +244,7 @@ exports[`Unit tests for CategoryIndicatorForm component. Should render CategoryI
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"

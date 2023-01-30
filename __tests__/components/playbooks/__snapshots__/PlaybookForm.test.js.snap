@@ -324,7 +324,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="overview-editor"
@@ -367,7 +367,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="audience-editor"
@@ -406,7 +406,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="outcomes-editor"
@@ -770,7 +770,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="overview-editor"
@@ -813,7 +813,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="audience-editor"
@@ -852,7 +852,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="outcomes-editor"
@@ -1200,7 +1200,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="overview-editor"
@@ -1243,7 +1243,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="audience-editor"
@@ -1282,7 +1282,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="outcomes-editor"

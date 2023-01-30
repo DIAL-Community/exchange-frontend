@@ -324,7 +324,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -675,7 +675,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -988,7 +988,7 @@ exports[`Unit tests for BuildingBlockForm component. Should render BuildingBlock
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"

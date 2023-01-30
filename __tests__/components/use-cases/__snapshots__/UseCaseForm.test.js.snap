@@ -395,7 +395,7 @@ exports[`Unit tests for UseCaseForm component. Should display failure toast on s
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -817,7 +817,7 @@ exports[`Unit tests for UseCaseForm component. Should display success toast on s
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -1233,7 +1233,7 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -1645,7 +1645,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                       />
                     </svg>
                     <div
-                      class="validation-error htmlEditor"
+                      class="validation-error html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -2035,7 +2035,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                       />
                     </svg>
                     <div
-                      class="validation-error htmlEditor"
+                      class="validation-error html-editor"
                     >
                       <textarea
                         id="description-editor"

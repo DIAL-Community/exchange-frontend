@@ -188,7 +188,7 @@ exports[`Unit tests for RubricCategoryForm component. Should display toast on su
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -403,7 +403,7 @@ exports[`Unit tests for RubricCategoryForm component. Should display toast on su
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -578,7 +578,7 @@ exports[`Unit tests for RubricCategoryForm component. Should render RubricCatego
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"

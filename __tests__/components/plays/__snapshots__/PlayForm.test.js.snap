@@ -593,7 +593,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="-editor"
@@ -1130,7 +1130,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="-editor"
@@ -1755,7 +1755,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="-editor"

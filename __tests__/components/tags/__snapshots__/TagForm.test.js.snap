@@ -111,7 +111,7 @@ exports[`Unit tests for the TagForm component. Should match snapshot - create. 1
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -249,7 +249,7 @@ exports[`Unit tests for the TagForm component. Should match snapshot - edit. 1`]
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"

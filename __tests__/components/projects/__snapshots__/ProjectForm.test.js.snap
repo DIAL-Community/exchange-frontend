@@ -216,7 +216,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -459,7 +459,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -902,7 +902,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -1267,7 +1267,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -1648,7 +1648,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -1944,7 +1944,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                       />
                     </svg>
                     <div
-                      class="validation-error htmlEditor"
+                      class="validation-error html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -2314,7 +2314,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                       />
                     </svg>
                     <div
-                      class="validation-error htmlEditor"
+                      class="validation-error html-editor"
                     >
                       <textarea
                         id="description-editor"
