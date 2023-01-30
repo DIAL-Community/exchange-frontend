@@ -12,7 +12,7 @@ const menuItemStyles = `
   `
 
 const dropdownMenuStyles = `
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+    block px-4 py-2 text-base text-white-beech hover:bg-gray-100 hover:text-gray-900
   `
 
 const dropdownPanelStyles = `

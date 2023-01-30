@@ -20,7 +20,7 @@ import LanguageMenu from './shared/menu/LanguageMenu'
 import { NONE } from './shared/menu/MenuCommon'
 
 const dropdownMenuStyles = `
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+    block px-4 py-2 text-base text-white-beech hover:bg-gray-100 hover:text-gray-900
   `
 
 const Header = ({ isOnAuthPage = false }) => {
