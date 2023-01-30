@@ -166,13 +166,12 @@ body {
 
 @layer components {
   /* native HTML inputs */
-  input:not(.react-select__input, .url),
-  input[type]:not(.react-select__input),
+  input:not(.url, [type=checkbox], [type=radio]),
   textarea.textarea,
   .url-input {
-    @apply border-0;
+    @apply border;
     @apply border-transparent;
-    @apply hover:border-blue-500;
+    @apply hover:border-dial-blue;
     @apply text-lg;
     @apply text-dial-gray-dark;
     @apply shadow-md;
@@ -185,7 +184,7 @@ body {
   }
 
   .url-input:has(input:focus) {
-    @apply border-blue-500;
+    @apply border-dial-blue;
   }
 
   input:not(.validation-error),
@@ -200,10 +199,31 @@ body {
     @apply outline-validation-error;
   }
 
+  input[role=combobox]:focus {
+    @apply ring-0;
+  }
+
+  input[type=checkbox] {
+    @apply border;
+    @apply border-dial-blue;
+    @apply shadow-md;
+    @apply rounded-md;
+  }
+
+  input[type=checkbox]:focus {
+    outline: 1px solid transparent;
+    @apply ring-offset-[-1px];
+  }
+
+  input[type=file]:focus {
+    @apply outline-0;
+  }
+
   input:focus,
   input[type]:focus,
   textarea.textarea:focus {
-    @apply outline;
+    @apply ring-offset-[-1px];
+    @apply border-dial-blue
   }
 
   /* native HTML button */
@@ -221,12 +241,14 @@ body {
     @apply border-0;
     @apply shadow-md;
     @apply rounded-md;
+    @apply border;
+    @apply border-transparent;
+    @apply hover:border-dial-blue;
   }
 
   .html-editor .tox-tinymce.focused,
   .html-editor.validation-error .tox-tinymce.focused {
-    @apply border;
-    @apply hover:border-blue-500;
+    @apply border-dial-blue;
   }
 
   .html-editor.validation-error .tox-tinymce {
