@@ -15,7 +15,6 @@ const CreateBuildingBlock = () => {
   const { slug } = router.query
   const { loading, error, data } = useQuery(BUILDING_BLOCK_QUERY, {
     variables: { slug, locale },
-    skip: !slug,
     context: { headers: { 'Accept-Language': locale } }
   })
 

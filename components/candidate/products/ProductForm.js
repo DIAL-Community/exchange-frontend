@@ -33,24 +33,26 @@ const ProductForm = () => {
   const [createCandidateProduct, { reset }] = useMutation(CREATE_CANDIDATE_PRODUCT, {
     onError: () => {
       setMutating(false)
-      showToast(
-        format('candidate-product.submit.failure'),
-        'error',
-        'top-center',
-        1000
-      )
+      showToast(format('candidate-product.submit.failure'), 'error', 'top-center')
       reset()
     },
-    onCompleted: () => {
-      setMutating(false)
-      showToast(
-        format('candidate-product.submit.success'),
-        'success',
-        'top-center',
-        1000,
-        null,
-        () => router.push('/products')
-      )
+    onCompleted: (data) => {
+      const { createCandidateProduct: response } = data
+      if (response?.errors?.length === 0) {
+        setMutating(false)
+        showToast(
+          format('candidate-product.submit.success'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => router.push('/products')
+        )
+      } else {
+        setMutating(false)
+        showToast(format('candidate-product.submit.failure'), 'error', 'top-center')
+        reset()
+      }
     }
   })
 

@@ -22,8 +22,9 @@ export const CREATE_PROJECT = gql`
       organizationId: $organizationId
     ) {
       project {
+        id
         slug
-      },
+      }
       errors
     }
   }
@@ -39,12 +40,13 @@ export const UPDATE_PROJECT_SECTORS = gql`
       sectorsSlugs: $sectorsSlugs
     ) {
       project {
+        id
         sectors {
           id
           name
           slug
         }
-      },
+      }
       errors
     }
   }
@@ -60,9 +62,10 @@ export const UPDATE_PROJECT_TAGS = gql`
       tags: $tags
     ) {
       project {
+        id
         slug
         tags
-      },
+      }
       errors
     }  
   }
@@ -78,6 +81,7 @@ export const UPDATE_PROJECT_ORGANIZATIONS = gql`
       organizationsSlugs: $organizationsSlugs
     ) {
       project {
+        id
         organizations {
           id
           name
@@ -88,7 +92,7 @@ export const UPDATE_PROJECT_ORGANIZATIONS = gql`
             name
           }
         }
-      },
+      }
       errors
     }
   }
@@ -104,6 +108,7 @@ export const UPDATE_PROJECT_COUNTRIES = gql`
       countriesSlugs: $countriesSlugs
     ) {
       project {
+        id
         slug
         name
         countries {
@@ -111,7 +116,7 @@ export const UPDATE_PROJECT_COUNTRIES = gql`
           name
           slug
         }
-      },
+      }
       errors
     }
   }
@@ -127,13 +132,14 @@ export const UPDATE_PROJECT_PRODUCTS = gql`
       productsSlugs: $productsSlugs
     ) {
       project {
+        id
         products {
           id
           name
           slug
           imageFile
         }
-      },
+      }
       errors
     }
   }

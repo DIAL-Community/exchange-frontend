@@ -31,15 +31,22 @@ const DeleteCountry = ({ country }) => {
       query: COUNTRY_DETAIL_QUERY,
       variables: { slug: country.slug }
     }],
-    onCompleted: () => {
-      showToast(
-        format('toast.country.delete.success'),
-        'success',
-        'top-center',
-        null,
-        () => router.push(`/${locale}/countries`)
-      )
-      setIsConfirmDialogOpen(false)
+    onCompleted: (data) => {
+      const { deleteCountry: response } = data
+      if (response?.country && response?.errors?.length === 0) {
+        showToast(
+          format('toast.country.delete.success'),
+          'success',
+          'top-center',
+          null,
+          () => router.push(`/${locale}/countries`)
+        )
+        setIsConfirmDialogOpen(false)
+      } else {
+        showToast(format('toast.country.delete.failure'), 'error', 'top-center')
+        setIsConfirmDialogOpen(false)
+        reset()
+      }
     },
     onError: () => {
       showToast(format('toast.country.delete.failure'), 'error', 'top-center')

@@ -23,17 +23,15 @@ const UseCaseForm = React.memo(({ useCase }) => {
 
   const slug = useCase?.slug ?? ''
 
-  const router = useRouter()
-
   const { user, isAdminUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
-
   const [reverting, setReverting] = useState(false)
 
   const { showToast } = useContext(ToastContext)
 
-  const { locale } = useRouter()
+  const router = useRouter()
+  const { locale } = router
 
   const { data: sectorsData, loading: loadingSectors } = useQuery(SECTOR_SEARCH_QUERY, {
     variables: { search: '', locale }
@@ -51,15 +49,25 @@ const UseCaseForm = React.memo(({ useCase }) => {
 
   const maturityOptions = useMemo(() => getMaturityOptions(format), [format])
 
-  const [updateUseCase] = useMutation(CREATE_USE_CASE, {
-    onCompleted: (data) => showToast(
-      format('useCase.submit.success'),
-      'success',
-      'top-center',
-      1000,
-      null,
-      () => router.push(`/${router.locale}/use_cases/${data.createUseCase.useCase.slug}`)
-    ),
+  const [updateUseCase, { reset }] = useMutation(CREATE_USE_CASE, {
+    onCompleted: (data) => {
+      const { createUseCase: response } = data
+      if (response?.useCase && response?.errors?.length === 0) {
+        setMutating(false)
+        showToast(
+          format('useCase.submit.success'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => router.push(`/${router.locale}/use_cases/${response?.useCase?.slug}`)
+        )
+      } else {
+        setMutating(false)
+        showToast(format('useCase.submit.failure'), 'error', 'top-center')
+        reset()
+      }
+    },
     onError: (error) => {
       setMutating(false)
       showToast(
@@ -70,6 +78,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
         'error',
         'top-center'
       )
+      reset()
     }
   })
 

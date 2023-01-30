@@ -19,19 +19,27 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit }) => {
   const client = useApolloClient()
 
   const [workflows, setWorkflows] = useState(useCaseStep.workflows)
-
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateUseCaseStepWorkflows, { data, loading }] = useMutation(UPDATE_USE_CASE_STEP_WORKFLOWS, {
+  const [updateUseCaseStepWorkflows, { data, loading, reset }] = useMutation(UPDATE_USE_CASE_STEP_WORKFLOWS, {
     onCompleted: (data) => {
-      setWorkflows(data.updateUseCaseStepWorkflows.useCaseStep.workflows)
-      setIsDirty(false)
-      showToast(format('toast.workflows.update.success'), 'success', 'top-center')
+      const { updateUseCaseStepWorkflows: response } = data
+      if (response?.useCaseStep && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setWorkflows(response?.useCaseStep?.workflows)
+        showToast(format('toast.workflows.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setWorkflows(useCaseStep.workflows)
+        showToast(format('toast.workflows.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setWorkflows(useCaseStep.workflows)
       setIsDirty(false)
+      setWorkflows(useCaseStep.workflows)
       showToast(format('toast.workflows.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 

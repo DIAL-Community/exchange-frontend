@@ -178,7 +178,7 @@ const ProductDetailMaturityScores = ({ slug, maturityScore, maturityScoreDetails
 
           return groupedIndicators
         }, [])
-        .sort(((categoryA, categoryB) => categoryA.rubricCategoryName.localeCompare(categoryB.rubricCategoryName)))
+        .sort((categoryA, categoryB) => categoryA.rubricCategoryName.localeCompare(categoryB.rubricCategoryName))
     }
 
     return []
@@ -189,20 +189,31 @@ const ProductDetailMaturityScores = ({ slug, maturityScore, maturityScoreDetails
     [defaultCategoryIndicators, setValue]
   )
 
-  const [updateProductIndicators, { loading: isMutating }] = useMutation(UPDATE_PRODUCT_CATEGORY_INDICATORS, {
-    onCompleted: (data) => {
-      refetchCategoryIndicators()
-      setValidMaturityScores(sortMaturityScoreDetails(data.updateProductIndicators.product.maturityScoreDetails))
-      setOverallMaturityScore(data.updateProductIndicators.product.maturityScore.overallScore)
-      setIsDirty(false)
-      showToast(format('toast.category-indicator.update.success'), 'success', 'top-center')
-    },
-    onError: () => {
-      setValue(CATEGORY_INDICATORS_FIELD_ARRAY_NAME, defaultCategoryIndicators)
-      setIsDirty(false)
-      showToast(format('toast.category-indicator.update.failure'), 'error', 'top-center')
+  const [updateProductIndicators, { loading: isMutating, reset: resetMutation }] = useMutation(
+    UPDATE_PRODUCT_CATEGORY_INDICATORS, {
+      onCompleted: (data) => {
+        const { updateProductIndicators: response } = data
+        if (response?.product && response?.errors?.length === 0) {
+          refetchCategoryIndicators()
+          setValidMaturityScores(sortMaturityScoreDetails(data.updateProductIndicators.product.maturityScoreDetails))
+          setOverallMaturityScore(data.updateProductIndicators.product.maturityScore.overallScore)
+          showToast(format('toast.category-indicator.update.success'), 'success', 'top-center')
+          setIsDirty(false)
+        } else {
+          setValue(CATEGORY_INDICATORS_FIELD_ARRAY_NAME, defaultCategoryIndicators)
+          showToast(format('toast.category-indicator.update.failure'), 'error', 'top-center')
+          setIsDirty(false)
+          resetMutation()
+        }
+      },
+      onError: () => {
+        setValue(CATEGORY_INDICATORS_FIELD_ARRAY_NAME, defaultCategoryIndicators)
+        showToast(format('toast.category-indicator.update.failure'), 'error', 'top-center')
+        setIsDirty(false)
+        resetMutation()
+      }
     }
-  })
+  )
 
   const doUpsert = async (data) => {
     if (user) {

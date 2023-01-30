@@ -191,6 +191,7 @@ export const DELETE_DATASET = gql`
        slug
        name
       }
+      errors
     }
   }
 `

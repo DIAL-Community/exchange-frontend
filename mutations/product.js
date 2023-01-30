@@ -55,6 +55,7 @@ export const UPDATE_PRODUCT_BUILDING_BLOCKS = gql`
       mappingStatus: $mappingStatus
     ) {
       product {
+        id
         buildingBlocks {
           name
           slug
@@ -78,6 +79,7 @@ export const UPDATE_PRODUCT_SECTORS = gql`
       sectorsSlugs: $sectorsSlugs
     ) {
       product {
+        id
         sectors {
           id
           name
@@ -99,6 +101,7 @@ export const UPDATE_PRODUCT_PROJECTS = gql`
       projectsSlugs: $projectsSlugs
     ) {
       product {
+        id
         slug
         projects {
           id
@@ -124,6 +127,7 @@ export const UPDATE_PRODUCT_ORGANIZATION = gql`
       organizationsSlugs: $organizationsSlugs
     ) {
       product {
+        id
         organizations {
           id
           name
@@ -150,6 +154,7 @@ export const UPDATE_PRODUCT_TAGS = gql`
       tags: $tags
     ) {
       product {
+        id
         slug
         tags
       }
@@ -170,6 +175,7 @@ export const UPDATE_PRODUCT_SDGS = gql`
       mappingStatus: $mappingStatus
     ) {
       product {
+        id
         slug
         sustainableDevelopmentGoals {
           slug
@@ -178,6 +184,7 @@ export const UPDATE_PRODUCT_SDGS = gql`
         }
         sustainableDevelopmentGoalsMappingStatus
       }
+      errors
     }  
   }
 `
@@ -202,6 +209,7 @@ export const CREATE_CANDIDATE_PRODUCT = gql`
       candidateProduct {
         id
       }
+      errors
     }
   }
 `
@@ -240,6 +248,7 @@ export const UPDATE_PRODUCT_CATEGORY_INDICATORS = gql`
       indicatorsData: $indicatorsData
     ) {
       product {
+        id
         maturityScore
         maturityScoreDetails
       }
@@ -256,6 +265,7 @@ export const DELETE_PRODUCT = gql`
        slug
        name
       }
+      errors
     }
   }
 `

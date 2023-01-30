@@ -19,7 +19,6 @@ const ProductDetailSectors = ({ product, canEdit }) => {
   const client = useApolloClient()
 
   const [sectors, setSectors] = useState(product.sectors)
-
   const [isDirty, setIsDirty] = useState(false)
 
   const { user } = useUser()
@@ -28,16 +27,25 @@ const ProductDetailSectors = ({ product, canEdit }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateProductsSectors, { data, loading }] = useMutation(UPDATE_PRODUCT_SECTORS, {
+  const [updateProductsSectors, { data, loading, reset }] = useMutation(UPDATE_PRODUCT_SECTORS, {
     onCompleted: (data) => {
-      setSectors(data.updateProductSectors.product.sectors)
-      setIsDirty(false)
-      showToast(format('toast.sectors.update.success'), 'success', 'top-center')
+      const { updateProductSectors: response } = data
+      if (response?.product && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setSectors(data.updateProductSectors.product.sectors)
+        showToast(format('toast.sectors.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setSectors(product.sectors)
+        showToast(format('toast.sectors.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setSectors(product.sectors)
       setIsDirty(false)
+      setSectors(product.sectors)
       showToast(format('toast.sectors.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 

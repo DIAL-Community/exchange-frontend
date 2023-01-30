@@ -19,7 +19,6 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
   const client = useApolloClient()
 
   const [buildingBlocks, setBuildingBlocks] = useState(useCaseStep.buildingBlocks)
-
   const [isDirty, setIsDirty] = useState(false)
 
   const { user } = useUser()
@@ -28,17 +27,26 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateUseCaseStepBuildingBlocks, { data, loading }] = useMutation(
+  const [updateUseCaseStepBuildingBlocks, { data, loading, reset }] = useMutation(
     UPDATE_USE_CASE_STEP_BUILDING_BLOCKS, {
       onCompleted: (data) => {
-        setBuildingBlocks(data.updateUseCaseStepBuildingBlocks.useCaseStep.buildingBlocks)
-        setIsDirty(false)
-        showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
+        const { updateUseCaseStepBuildingBlocks: response } = data
+        if (response?.useCaseStep && response?.errors?.length === 0) {
+          setIsDirty(false)
+          setBuildingBlocks(response?.useCaseStep?.buildingBlocks)
+          showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
+        } else {
+          setIsDirty(false)
+          setBuildingBlocks(useCaseStep.buildingBlocks)
+          showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+          reset()
+        }
       },
       onError: () => {
-        setBuildingBlocks(useCaseStep.buildingBlocks)
         setIsDirty(false)
+        setBuildingBlocks(useCaseStep.buildingBlocks)
         showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+        reset()
       }
     }
   )

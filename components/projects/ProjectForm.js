@@ -24,7 +24,6 @@ const ProjectForm = React.memo(({ project }) => {
   const slug = project?.slug ?? ''
 
   const router = useRouter()
-
   const { user, isAdminUser, loadingUserSession } = useUser()
 
   const { data: productsData } = useQuery(PRODUCT_SEARCH_QUERY, {
@@ -70,22 +69,31 @@ const ProjectForm = React.memo(({ project }) => {
     isAdminUser || (project ? (ownsSomeProduct || ownsSomeOrganization) : (ownsAnyProduct || ownsAnyOrganization))
 
   const [mutating, setMutating] = useState(false)
-
   const [reverting, setReverting] = useState(false)
 
   const { showToast } = useContext(ToastContext)
 
   const { locale } = useRouter()
 
-  const [updateProject] = useMutation(CREATE_PROJECT, {
-    onCompleted: (data) => showToast(
-      format('project.submit.success'),
-      'success',
-      'top-center',
-      1000,
-      null,
-      () => router.push(`/${router.locale}/projects/${data.createProject.project.slug}`)
-    ),
+  const [updateProject, { reset }] = useMutation(CREATE_PROJECT, {
+    onCompleted: (data) => {
+      const { createProject: response } = data
+      if (response?.project && response?.errors?.length === 0) {
+        setMutating(false)
+        showToast(
+          format('project.submit.success'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => router.push(`/${router.locale}/projects/${response?.project?.slug}`)
+        )
+      } else {
+        setMutating(false)
+        showToast(format('project.submit.failure'), 'error', 'top-center')
+        reset()
+      }
+    },
     onError: (error) => {
       setMutating(false)
       showToast(
@@ -96,6 +104,7 @@ const ProjectForm = React.memo(({ project }) => {
         'error',
         'top-center'
       )
+      reset()
     }
   })
 

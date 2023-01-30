@@ -6,7 +6,7 @@ import { render, waitForAllEffects, waitForAllEffectsAndSelectToLoad } from '../
 import BuildingBlockForm from '../../../components/building-blocks/BuildingBlockForm'
 import { CREATE_BUILDING_BLOCK } from '../../../mutations/building-block'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
-import { buildingBlock, createBuildingBlockSuccess } from './data/BuildingBlockForm'
+import { buildingBlock, createBuildingBlockSuccess, createBuildingBlockFailure } from './data/BuildingBlockForm'
 
 mockNextUseRouter()
 describe('Unit tests for BuildingBlockForm component.', () => {
@@ -116,7 +116,7 @@ describe('Unit tests for BuildingBlockForm component.', () => {
       expect(container).toMatchSnapshot()
     })
 
-    test('Failure.', async () => {
+    test('Failure with graph error (non 200 status).', async () => {
       mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
       const errorMessage = 'An error occurred'
       const mockCreateBuildingBlock = generateMockApolloData(
@@ -141,6 +141,33 @@ describe('Unit tests for BuildingBlockForm component.', () => {
       })
       await screen.findByText('Building Block submission failed')
       await screen.findByText(errorMessage)
+      expect(container).toMatchSnapshot()
+    })
+
+    test('Failure with 200 status.', async () => {
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      const mockCreateBuildingBlock = generateMockApolloData(
+        CREATE_BUILDING_BLOCK,
+        {
+          name: 'Test Building Block',
+          slug: 'test_buidling_block',
+          maturity: 'DRAFT',
+          specUrl: 'testbuidlingblock.com',
+          description: '<p>test building block description</p>'
+        },
+        null,
+        createBuildingBlockFailure
+      )
+      const { container, getByTestId } = render(
+        <CustomMockedProvider mocks={[mockCreateBuildingBlock]}>
+          <BuildingBlockForm buildingBlock={buildingBlock} allowDebugMessage />
+        </CustomMockedProvider>
+      )
+      await waitForAllEffectsAndSelectToLoad(container)
+      await act(async () => {
+        fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
+      })
+      await screen.findByText('Building Block submission failed')
       expect(container).toMatchSnapshot()
     })
   })
