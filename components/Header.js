@@ -1,4 +1,7 @@
 import Link from 'next/link'
+import cookie from 'react-cookies'
+import classNames from 'classnames'
+import { useRouter } from 'next/router'
 import { signIn, signOut } from 'next-auth/react'
 import { useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
@@ -6,6 +9,7 @@ import { useQuery } from '@apollo/client'
 import { useUser } from '../lib/hooks'
 import { ToastContext } from '../lib/ToastContext'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../queries/user'
+import { OVERVIEW_INTRO_KEY } from './Intro'
 import MobileMenu from './MobileMenu'
 import AdminMenu from './shared/menu/AdminMenu'
 import UserMenu from './shared/menu/UserMenu'
@@ -25,6 +29,7 @@ const Header = ({ isOnAuthPage = false }) => {
 
   const { showToast } = useContext(ToastContext)
 
+  const router = useRouter()
   const { user, isAdminUser } = useUser()
 
   const signInUser = (e) => {
@@ -87,6 +92,12 @@ const Header = ({ isOnAuthPage = false }) => {
     )
   }
 
+  const startOverviewTour = (e) => {
+    e.preventDefault()
+    cookie.save(OVERVIEW_INTRO_KEY, false)
+    router.push('/')
+  }
+
   const withUser =
     <>
       <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
@@ -141,16 +152,27 @@ const Header = ({ isOnAuthPage = false }) => {
                 && (
                   <>
                     <li className='relative mt-2 lg:mt-0 text-right'>
-                      <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                      <a
+                        href='startOverviewTour'
+                        className={classNames(
+                          'lg:p-2 px-0 lg:mb-0 mb-2 cursor-pointer',
+                          'border-b-2 border-transparent hover:border-dial-yellow'
+                        )}
+                        onClick={(e) => startOverviewTour(e)}
+                      >
+                        {format('intro.overview.startTour')}
+                      </a>
                     </li>
                     <li className='relative mt-2 lg:mt-0 text-right'>
                       <AboutMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
-                    { user ? withUser : withoutUser }
                     <li className='relative mt-2 lg:mt-0 text-right'>
                       <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
-                    <li><div className='border border-gray-400 border-t-0 lg:border-l-0 lg:h-9' /></li>
+                    <li className='relative mt-2 lg:mt-0 text-right'>
+                      <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                    </li>
+                    { user ? withUser : withoutUser }
                   </>
                 )
               }

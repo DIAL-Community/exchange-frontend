@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import cookie from 'react-cookies'
 import Header from '../components/Header'
@@ -27,6 +27,12 @@ const HomePage = () => {
   const STEP_INDEX_START = 0
   const STEP_INDEX_END = OVERVIEW_INTRO_STEPS.length - 1
 
+  const [enableIntro, setEnableIntro] = useState(false)
+  useEffect(() => {
+    const enableIntro = String(cookie.load(OVERVIEW_INTRO_KEY)) !== 'true'
+    setEnableIntro(enableIntro)
+  }, [setEnableIntro])
+
   return (
     <>
       <Header />
@@ -47,7 +53,7 @@ const HomePage = () => {
           hint={<ProductHint />}
         />
         <Intro
-          enabled={String(cookie.load(OVERVIEW_INTRO_KEY)) !== 'true'}
+          enabled={enableIntro}
           steps={OVERVIEW_INTRO_STEPS}
           startIndex={STEP_INDEX_START}
           endIndex={STEP_INDEX_END}

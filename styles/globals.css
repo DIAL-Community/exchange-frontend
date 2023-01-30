@@ -452,4 +452,16 @@ body {
   button.create-button {
     @apply bg-dial-blue;
   }
+
+  .username-avatar {
+    @apply relative;
+    @apply inline-flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply w-10;
+    @apply h-10;
+    @apply overflow-hidden;
+    @apply bg-dial-white-beech;
+    @apply rounded-full;
+  }
 }
