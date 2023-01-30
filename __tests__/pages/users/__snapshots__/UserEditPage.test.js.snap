@@ -6,10 +6,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
     class="Toastify"
   />
   <header
-    class="z-70 sticky top-0 bg-dial-sapphire"
+    class="z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto"
   >
     <div
-      class="flex flex-wrap header-min-height max-w-catalog mx-auto"
+      class="flex flex-wrap header-min-height"
     >
       <a
         class="flex px-8 xl:px-24 py-6"
@@ -1493,10 +1493,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
     class="Toastify"
   />
   <header
-    class="z-70 sticky top-0 bg-dial-sapphire"
+    class="z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto"
   >
     <div
-      class="flex flex-wrap header-min-height max-w-catalog mx-auto"
+      class="flex flex-wrap header-min-height"
     >
       <a
         class="flex px-8 xl:px-24 py-6"

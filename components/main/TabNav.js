@@ -33,7 +33,7 @@ const TabNav = (props) => {
           </Link>
         </div>
       </div>
-      <div className='hidden md:block relative md:sticky bg-white pl-2 pr-4 md:sticky-filter max-w-catalog mx-auto'>
+      <div className='hidden md:block relative md:sticky bg-white md:sticky-filter max-w-catalog mx-auto'>
         <div className='w-full'>
           <ul className='flex flex-row mb-0 list-none pt-2 gap-x-2'>
             {
@@ -81,7 +81,7 @@ const TabNav = (props) => {
         </div>
       </div>
       <div className='hidden md:block md:sticky md:sticky-bar filter card-drop-shadow-lg'>
-        <div className='border-b-8 border-dial-yellow' />
+        <div className='border-b-8 border-dial-yellow max-w-catalog mx-auto' />
       </div>
     </>
   )

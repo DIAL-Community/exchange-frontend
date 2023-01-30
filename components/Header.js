@@ -113,8 +113,8 @@ const Header = ({ isOnAuthPage = false }) => {
     </li>
 
   return (
-    <header className='z-70 sticky top-0 bg-dial-sapphire'>
-      <div className='flex flex-wrap header-min-height max-w-catalog mx-auto'>
+    <header className='z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
+      <div className='flex flex-wrap header-min-height'>
         <Link href='/'>
           <a className='flex px-8 xl:px-24 py-6'>
             <img src='/assets/2023-refresh/exchange-logo.png' alt='Digital Impact Exchage Logo.' />

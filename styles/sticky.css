@@ -23,7 +23,7 @@
     /*
       This is sticking under the above. So the top value will be minHeight + height of the above element.
     */
-    top: 103px;
+    top: 129px;
     /* Header have z-index of 30. This will prevent this part clipping the language dropdown. */
     z-index: 20;
   }
@@ -32,7 +32,7 @@
     /*
       This is sticking under the above. So the top value will be minHeight + height of the above element.
     */
-    top: 166px;
+    top: 192px;
     /* Header have z-index of 30. This will prevent this part clipping the language dropdown. */
     z-index: 20;
   }
