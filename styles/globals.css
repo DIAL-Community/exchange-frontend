@@ -201,6 +201,7 @@ body {
 
   input[role=combobox]:focus {
     @apply ring-0;
+    @apply shadow-none;
   }
 
   input[type=checkbox] {
