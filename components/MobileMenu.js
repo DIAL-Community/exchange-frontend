@@ -184,7 +184,7 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
     <>
       {
         parent &&
-          <ul className='block lg:hidden mt-6 text-sm' style={{ minHeight: user ? '405px' : '370px' }}>
+          <ul className='block lg:hidden mt-6 text-sm text-dial-white-beech' style={{ minHeight: user ? '405px' : '370px' }}>
             <li className='py-4 border-b'>
               <a className='mx-3 font-semibold' href='/main-menu' onClick={transitionToParent}>
                 <RiArrowLeftSLine className='inline mr-2 text-base' />
@@ -264,7 +264,7 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
     <>
       {
         !parent &&
-          <ul className='block lg:hidden mt-6 text-sm' style={{ minHeight: user ? '405px' : '370px' }}>
+          <ul className='block lg:hidden mt-6 text-sm text-dial-white-beech' style={{ minHeight: user ? '405px' : '370px' }}>
             <li className='py-4 border-b'>
               <a
                 className='mx-6 font-semibold' href='/switch-language'

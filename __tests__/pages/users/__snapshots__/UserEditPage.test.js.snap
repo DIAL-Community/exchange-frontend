@@ -50,7 +50,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
       >
         <nav>
           <ul
-            class="block lg:hidden mt-6 text-sm"
+            class="block lg:hidden mt-6 text-sm text-dial-white-beech"
             style="min-height: 405px;"
           >
             <li
@@ -1537,7 +1537,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
       >
         <nav>
           <ul
-            class="block lg:hidden mt-6 text-sm"
+            class="block lg:hidden mt-6 text-sm text-dial-white-beech"
             style="min-height: 370px;"
           >
             <li
