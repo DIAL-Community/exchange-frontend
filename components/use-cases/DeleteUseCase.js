@@ -28,16 +28,23 @@ const DeleteUseCase = ({ useCase }) => {
       query: USE_CASE_DETAIL_QUERY,
       variables: { slug: useCase.slug }
     }],
-    onCompleted: () => {
-      setDisplayConfirmDialog(false)
-      showToast(
-        format('toast.use-case.delete.success'),
-        'success',
-        'top-center',
-        DEFAULT_AUTO_CLOSE_DELAY,
-        null,
-        () => router.push('/use_cases')
-      )
+    onCompleted: (data) => {
+      const { deleteUseCase: response } = data
+      if (response?.useCase && response?.errors?.length === 0) {
+        setDisplayConfirmDialog(false)
+        showToast(
+          format('toast.use-case.delete.success'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push('/use_cases')
+        )
+      } else {
+        setDisplayConfirmDialog(false)
+        showToast(format('toast.use-case.delete.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
       setDisplayConfirmDialog(false)

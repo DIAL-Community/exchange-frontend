@@ -19,26 +19,34 @@ const RubricCategoryForm = React.memo(({ rubricCategory }) => {
   const slug = rubricCategory?.slug ?? ''
 
   const router = useRouter()
-
   const { user } = useUser()
 
   const [mutating, setMutating] = useState(false)
-
   const [reverting, setReverting] = useState(false)
 
   const { showToast } = useContext(ToastContext)
 
   const { locale } = router
 
-  const [updateRubricCategory] = useMutation(CREATE_RUBRIC_CATEGORY, {
-    onCompleted: (data) => showToast(
-      format('toast.rubric-category.submit.success'),
-      'success',
-      'top-center',
-      1000,
-      null,
-      () => router.push(`/${router.locale}/rubric_categories/${data.createRubricCategory.rubricCategory.slug}`)
-    ),
+  const [updateRubricCategory, { reset }] = useMutation(CREATE_RUBRIC_CATEGORY, {
+    onCompleted: (data) => {
+      const { createRubricCategory: response } = data
+      if (response?.rubricCategory && response?.errors?.length === 0) {
+        setMutating(false)
+        showToast(
+          format('toast.rubric-category.submit.success'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => router.push(`/${router.locale}/rubric_categories/${response?.rubricCategory?.slug}`)
+        )
+      } else {
+        setMutating(false)
+        showToast(format('toast.rubric-category.submit.failure'), 'error', 'top-center')
+        reset()
+      }
+    },
     onError: (error) => {
       setMutating(false)
       showToast(
@@ -49,6 +57,7 @@ const RubricCategoryForm = React.memo(({ rubricCategory }) => {
         'error',
         'top-center'
       )
+      reset()
     }
   })
 

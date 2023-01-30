@@ -32,17 +32,26 @@ const WorkflowForm = React.memo(({ workflow }) => {
 
   const { locale } = router
 
-  const [updateWorkflow] = useMutation(CREATE_WORKFLOW, {
-    onCompleted: (data) => showToast(
-      format('workflow.submit.success'),
-      'success',
-      'top-center',
-      1000,
-      null,
-      () => router.push(`/${router.locale}/workflows/${data.createWorkflow.workflow.slug}`)
-    ),
+  const [updateWorkflow, { reset }] = useMutation(CREATE_WORKFLOW, {
+    onCompleted: (data) => {
+      const { createWorkflow: response } = data
+      if (response?.workflow && response?.errors?.length === 0) {
+        showToast(
+          format('workflow.submit.success'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => router.push(`/${router.locale}/workflows/${response?.workflow?.slug}`)
+        )
+        setMutating(false)
+      } else {
+        showToast(format('workflow.submit.failure'), 'error', 'top-center')
+        setMutating(false)
+        reset()
+      }
+    },
     onError: (error) => {
-      setMutating(false)
       showToast(
         <div className='flex flex-col'>
           <span>{format('workflow.submit.failure')}</span>
@@ -51,6 +60,8 @@ const WorkflowForm = React.memo(({ workflow }) => {
         'error',
         'top-center'
       )
+      setMutating(false)
+      reset()
     }
   })
 

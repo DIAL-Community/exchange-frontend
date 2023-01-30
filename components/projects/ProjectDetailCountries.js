@@ -19,7 +19,6 @@ const ProjectDetailCountries = ({ project, canEdit }) => {
   const client = useApolloClient()
 
   const [countries, setCountries] = useState(project.countries)
-
   const [isDirty, setIsDirty] = useState(false)
 
   const { user } = useUser()
@@ -28,16 +27,25 @@ const ProjectDetailCountries = ({ project, canEdit }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateProjectCountries, { data, loading }] = useMutation(UPDATE_PROJECT_COUNTRIES, {
+  const [updateProjectCountries, { data, loading, reset }] = useMutation(UPDATE_PROJECT_COUNTRIES, {
     onCompleted: (data) => {
-      setCountries(data.updateProjectCountries.project.countries)
-      setIsDirty(false)
-      showToast(format('toast.countries.update.success'), 'success', 'top-center')
+      const { updateProjectCountries: response } = data
+      if (response?.project && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setCountries(data.updateProjectCountries.project.countries)
+        showToast(format('toast.countries.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setCountries(project.countries)
+        showToast(format('toast.countries.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setCountries(project.countries)
       setIsDirty(false)
+      setCountries(project.countries)
       showToast(format('toast.countries.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 

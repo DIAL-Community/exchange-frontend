@@ -20,21 +20,29 @@ const ProjectDetailTags = ({ project, canEdit }) => {
   const client = useApolloClient()
 
   const [tags, setTags] = useState(project.tags)
-
   const [isDirty, setIsDirty] = useState(false)
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateProjectTags, { data, loading }] = useMutation(UPDATE_PROJECT_TAGS, {
+  const [updateProjectTags, { data, loading, reset }] = useMutation(UPDATE_PROJECT_TAGS, {
     onError: () => {
-      setTags(project.tags)
       setIsDirty(false)
+      setTags(project.tags)
       showToast(format('toast.tags.update.failure'), 'error', 'top-center')
+      reset()
     },
     onCompleted: (data) => {
-      setTags(data.updateProjectTags.project.tags)
-      setIsDirty(false)
-      showToast(format('toast.tags.update.success'), 'success', 'top-center')
+      const { updateProjectTags: response } = data
+      if (response?.project && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setTags(data.updateProjectTags.project.tags)
+        showToast(format('toast.tags.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setTags(project.tags)
+        showToast(format('toast.tags.update.failure'), 'error', 'top-center')
+        reset()
+      }
     }
   })
 

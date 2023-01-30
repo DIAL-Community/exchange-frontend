@@ -25,16 +25,25 @@ const ProductDetailOrganizations = ({ product, canEdit }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateProductOrganizations, { data, loading }] = useMutation(UPDATE_PRODUCT_ORGANIZATION, {
+  const [updateProductOrganizations, { data, loading, reset }] = useMutation(UPDATE_PRODUCT_ORGANIZATION, {
     onError: () => {
-      setOrganizations(product.organizations)
       setIsDirty(false)
+      setOrganizations(product.organizations)
       showToast(format('toast.organizations.update.failure'), 'error', 'top-center')
+      reset()
     },
     onCompleted: (data) => {
-      setOrganizations(data.updateProductOrganizations.product.organizations)
-      setIsDirty(false)
-      showToast(format('toast.organizations.update.success'), 'success', 'top-center')
+      const { updateProductOrganizations: response } = data
+      if (response?.product && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setOrganizations(data.updateProductOrganizations.product.organizations)
+        showToast(format('toast.organizations.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setOrganizations(product.organizations)
+        showToast(format('toast.organizations.update.failure'), 'error', 'top-center')
+        reset()
+      }
     }
   })
 

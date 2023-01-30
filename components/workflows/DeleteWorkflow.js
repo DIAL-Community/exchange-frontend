@@ -28,21 +28,28 @@ const DeleteWorkflow = ({ workflow }) => {
       query: WORKFLOW_DETAIL_QUERY,
       variables: { slug: workflow.slug }
     }],
-    onCompleted: () => {
-      setDisplayConfirmDialog(false)
-      showToast(
-        format('toast.workflow.delete.success'),
-        'success',
-        'top-center',
-        DEFAULT_AUTO_CLOSE_DELAY,
-        null,
-        () => router.push('/workflows')
-      )
+    onCompleted: (data) => {
+      const { deleteWorkflow: response } = data
+      if (response?.workflow && response?.errors?.length === 0) {
+        setDisplayConfirmDialog(false)
+        showToast(
+          format('toast.workflow.delete.success'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push('/workflows')
+        )
+      } else {
+        reset()
+        setDisplayConfirmDialog(false)
+        showToast(format('toast.workflow.delete.failure'), 'error', 'top-center')
+      }
     },
     onError: () => {
+      reset()
       setDisplayConfirmDialog(false)
       showToast(format('toast.workflow.delete.failure'), 'error', 'top-center')
-      reset()
     }
   })
 

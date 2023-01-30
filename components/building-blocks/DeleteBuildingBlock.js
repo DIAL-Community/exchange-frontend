@@ -28,16 +28,23 @@ const DeleteBuildingBlock = ({ buildingBlock }) => {
       query: BUILDING_BLOCK_DETAIL_QUERY,
       variables: { slug: buildingBlock.slug }
     }],
-    onCompleted: () => {
-      setDisplayConfirmDialog(false)
-      showToast(
-        format('toast.building-block.delete.success'),
-        'success',
-        'top-center',
-        DEFAULT_AUTO_CLOSE_DELAY,
-        null,
-        () => router.push('/building_blocks')
-      )
+    onCompleted: (data) => {
+      const { deleteBuildingBlock: response } = data
+      if (response?.buildingBlock && response?.errors?.length === 0) {
+        setDisplayConfirmDialog(false)
+        showToast(
+          format('toast.building-block.delete.success'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push('/building_blocks')
+        )
+      } else {
+        setDisplayConfirmDialog(false)
+        showToast(format('toast.building-block.delete.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
       setDisplayConfirmDialog(false)

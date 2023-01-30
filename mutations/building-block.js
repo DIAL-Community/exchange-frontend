@@ -42,6 +42,7 @@ export const UPDATE_BUILDING_BLOCK_WORKFLOWS = gql`
           name
         }
       }
+      errors
     }
   }
 `
@@ -66,6 +67,7 @@ export const UPDATE_BUILDING_BLOCK_PRODUCTS = gql`
           buildingBlocksMappingStatus
         }
       }
+      errors
     }
   }
 `
@@ -78,6 +80,7 @@ export const DELETE_BUILDING_BLOCK = gql`
        slug
        name
       }
+      errors
     }
   }
 `

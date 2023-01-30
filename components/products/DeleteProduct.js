@@ -28,16 +28,23 @@ const DeleteProduct = ({ product }) => {
       query: PRODUCT_QUERY,
       variables: { slug: product.slug }
     }],
-    onCompleted: () => {
-      setDisplayConfirmDialog(false)
-      showToast(
-        format('toast.product.delete.success'),
-        'success',
-        'top-center',
-        DEFAULT_AUTO_CLOSE_DELAY,
-        null,
-        () => router.push('/products')
-      )
+    onCompleted: (data) => {
+      const { deleteProduct: response } = data
+      if (response?.product && response?.errors?.length === 0) {
+        setDisplayConfirmDialog(false)
+        showToast(
+          format('toast.product.delete.success'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push('/products')
+        )
+      } else {
+        setDisplayConfirmDialog(false)
+        showToast(format('toast.product.delete.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
       setDisplayConfirmDialog(false)

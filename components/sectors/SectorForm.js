@@ -17,8 +17,8 @@ import { useUser } from '../../lib/hooks'
 const SectorForm = ({ isOpen, onClose, sector }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-  const { user } = useUser()
 
+  const { user } = useUser()
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)
@@ -51,15 +51,16 @@ const SectorForm = ({ isOpen, onClose, sector }) => {
   )
 
   const [updateSector, { called: isSubmitInProgress, reset }] = useMutation(CREATE_SECTOR, {
-    refetchQueries:['SearchSectors'],
-    onCompleted: () => {
-      showToast(
-        format('toast.sector.submit.success'),
-        'success',
-        'top-center'
-      )
-      onClose(true)
-      reset()
+    refetchQueries: ['SearchSectors'],
+    onCompleted: (data) => {
+      const { createSector: response } = data
+      if (response?.sector && response?.errors?.length === 0) {
+        showToast(format('toast.sector.submit.success'), 'success', 'top-center')
+        onClose(true)
+      } else {
+        showToast(format('toast.sector.submit.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: (error) => {
       showToast(

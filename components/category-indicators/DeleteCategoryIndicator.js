@@ -27,14 +27,22 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
       variables: { slug: categoryIndicator.slug }
     }],
     onCompleted: (data) => {
-      showToast(
-        format('toast.category-indicator.delete.success'),
-        'success',
-        'top-center',
-        DEFAULT_AUTO_CLOSE_DELAY,
-        null,
-        () => router.push(`/rubric_categories/${data.deleteCategoryIndicator.rubricCategorySlug}`)
-      )
+      const { deleteCategoryIndicator: response } = data
+      if (response?.rubricCategorySlug && response?.errors?.length === 0) {
+        setDisplayConfirmDialog(false)
+        showToast(
+          format('toast.category-indicator.delete.success'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push(`/rubric_categories/${response?.rubricCategorySlug}`)
+        )
+      } else {
+        showToast(format('toast.category-indicator.delete.failure'), 'error', 'top-center')
+        setDisplayConfirmDialog(false)
+        reset()
+      }
     },
     onError: () => {
       showToast(format('toast.category-indicator.delete.failure'), 'error', 'top-center')

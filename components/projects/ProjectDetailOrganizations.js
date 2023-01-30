@@ -31,16 +31,25 @@ const ProductDetailOrganizations = ({ project, canEdit }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateProjectOrganizations, { data, loading }] = useMutation(UPDATE_PROJECT_ORGANIZATIONS, {
+  const [updateProjectOrganizations, { data, loading, reset }] = useMutation(UPDATE_PROJECT_ORGANIZATIONS, {
     onError: () => {
-      setOrganizations(project.organizations)
       setIsDirty(false)
+      setOrganizations(project.organizations)
       showToast(format('toast.organizations.update.failure'), 'error', 'top-center')
+      reset()
     },
     onCompleted: (data) => {
-      setOrganizations(data.updateProjectOrganizations.project.organizations)
-      setIsDirty(false)
-      showToast(format('toast.organizations.update.success'), 'success', 'top-center')
+      const { updateProjectOrganizations: response } = data
+      if (response?.project && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setOrganizations(data.updateProjectOrganizations.project.organizations)
+        showToast(format('toast.organizations.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setOrganizations(project.organizations)
+        showToast(format('toast.organizations.update.failure'), 'error', 'top-center')
+        reset()
+      }
     }
   })
 

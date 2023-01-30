@@ -30,15 +30,22 @@ const DeletePlaybook = ({ playbook }) => {
       query: PLAYBOOK_QUERY,
       variables: { slug: playbook.slug }
     }],
-    onCompleted: () => {
-      showToast(
-        format('toast.playbook.delete.success'),
-        'success',
-        'top-center',
-        null,
-        () => router.push(`/${locale}/playbooks`)
-      )
-      setIsConfirmDialogOpen(false)
+    onCompleted: (data) => {
+      const { deletePlaybook: response } = data
+      if (response?.playbook && response?.errors?.length === 0) {
+        showToast(
+          format('toast.playbook.delete.success'),
+          'success',
+          'top-center',
+          null,
+          () => router.push(`/${locale}/playbooks`)
+        )
+        setIsConfirmDialogOpen(false)
+      } else {
+        showToast(format('toast.playbook.delete.failure'), 'error', 'top-center')
+        setIsConfirmDialogOpen(false)
+        reset()
+      }
     },
     onError: () => {
       showToast(format('toast.playbook.delete.failure'), 'error', 'top-center')
