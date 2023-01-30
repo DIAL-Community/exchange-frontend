@@ -15,6 +15,7 @@ import Select from '../shared/Select'
 import FileUploader from '../shared/FileUploader'
 import { getDatasetTypeOptions } from '../../lib/utilities'
 import { useUser } from '../../lib/hooks'
+import UrlInput from '../shared/UrlInput'
 
 const DatasetForm = React.memo(({ dataset }) => {
   const { formatMessage } = useIntl()
@@ -28,10 +29,10 @@ const DatasetForm = React.memo(({ dataset }) => {
 
   const { showToast } = useContext(ToastContext)
   const { locale } = useRouter()
-  const [updateDataset] = useMutation(CREATE_DATASET, {
+  const [updateDataset, { reset }] = useMutation(CREATE_DATASET, {
     onCompleted: (data) => {
-      const { createDataset } = data
-      if (createDataset.errors.length <= 0 && createDataset.dataset) {
+      const { createDataset: response } = data
+      if (response?.errors?.length <= 0 && response?.dataset) {
         setMutating(false)
         showToast(
           format('dataset.submit.success'),
@@ -39,9 +40,9 @@ const DatasetForm = React.memo(({ dataset }) => {
           'top-center',
           1000,
           null,
-          () => router.push(`/${router.locale}/datasets/${data.createDataset.dataset.slug}`)
+          () => router.push(`/${router.locale}/datasets/${response?.dataset.slug}`)
         )
-      } else if (createDataset.errors.length > 0) {
+      } else if (response?.errors?.length > 0) {
         setMutating(false)
         showToast(
           <div className='flex flex-col'>
@@ -53,6 +54,7 @@ const DatasetForm = React.memo(({ dataset }) => {
           'error',
           'top-center'
         )
+        reset()
       }
     },
     onError: (error) => {
@@ -65,6 +67,7 @@ const DatasetForm = React.memo(({ dataset }) => {
         'error',
         'top-center'
       )
+      reset()
     }
   })
 
@@ -234,11 +237,18 @@ const DatasetForm = React.memo(({ dataset }) => {
                     <label className='form-field-label required-field' htmlFor='website'>
                       {format('dataset.website')}
                     </label>
-                    <Input
-                      {...register('website', { required: format('validation.required') })}
-                      id='website'
-                      placeholder={format('dataset.website')}
-                      isInvalid={errors.website}
+                    <Controller
+                      name='website'
+                      control={control}
+                      render={({ field: { value, onChange } }) => (
+                        <UrlInput
+                          value={value || ''}
+                          onChange={onChange}
+                          id='website'
+                          placeholder={format('dataset.website')}
+                        />
+                      )}
+                      rules={{ required: format('validation.required') }}
                     />
                     {errors.website && <ValidationError value={errors.website?.message} />}
                   </div>
@@ -246,10 +256,17 @@ const DatasetForm = React.memo(({ dataset }) => {
                     <label className='form-field-label' htmlFor='visualizationUrl'>
                       {format('dataset.visualizationUrl')}
                     </label>
-                    <Input
-                      {...register('visualizationUrl')}
-                      id='visualizationUrl'
-                      placeholder={format('dataset.visualizationUrl')}
+                    <Controller
+                      name='visualizationUrl'
+                      control={control}
+                      render={({ field: { value, onChange } }) => (
+                        <UrlInput
+                          value={value}
+                          onChange={onChange}
+                          id='visualizationUrl'
+                          placeholder={format('dataset.visualizationUrl')}
+                        />
+                      )}
                     />
                   </div>
                   <div className='form-field-wrapper'>

@@ -42,18 +42,26 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
       reset()
     },
     onCompleted: (data) => {
-      showToast(
-        format('use-case-step.submit.success'),
-        'success',
-        'top-center',
-        1000,
-        null,
-        () => router.push(
-          `/${router.locale}` +
-          `/use_cases/${data.createUseCaseStep.useCaseStep.useCase.slug}` +
-          `/use_case_steps/${data.createUseCaseStep.useCaseStep.slug}`
+      const { createUseCaseStep: response } = data
+      if (response?.useCaseStep && response?.errors?.length === 0) {
+        setMutating(false)
+        showToast(
+          format('use-case-step.submit.success'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => router.push(
+            `/${router.locale}` +
+            `/use_cases/${data.createUseCaseStep.useCaseStep.useCase.slug}` +
+            `/use_case_steps/${data.createUseCaseStep.useCaseStep.slug}`
+          )
         )
-      )
+      } else {
+        setMutating(false)
+        showToast(format('use-case-step.submit.failure'), 'error', 'top-center', 1000)
+        reset()
+      }
     }
   })
 

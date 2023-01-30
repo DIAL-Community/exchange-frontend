@@ -26,15 +26,23 @@ const DeleteRubricCategory = ({ rubricCategory }) => {
       query: RUBRIC_CATEGORY_QUERY,
       variables: { slug: rubricCategory.slug }
     }],
-    onCompleted: () => {
-      showToast(
-        format('toast.rubric-category.delete.success'),
-        'success',
-        'top-center',
-        DEFAULT_AUTO_CLOSE_DELAY,
-        null,
-        () => router.push('/rubric_categories')
-      )
+    onCompleted: (data) => {
+      const { deleteRubricCategory: response } = data
+      if (response?.errors?.length === 0) {
+        setDisplayConfirmDialog(false)
+        showToast(
+          format('toast.rubric-category.delete.success'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push('/rubric_categories')
+        )
+      } else {
+        showToast(format('toast.rubric-category.delete.failure'), 'error', 'top-center')
+        setDisplayConfirmDialog(false)
+        reset()
+      }
     },
     onError: () => {
       showToast(format('toast.rubric-category.delete.failure'), 'error', 'top-center')

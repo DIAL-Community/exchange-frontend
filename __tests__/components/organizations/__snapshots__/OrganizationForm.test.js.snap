@@ -250,7 +250,9 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       >
                         <div
                           class="react-select__single-value css-qc6sy-singleValue"
-                        />
+                        >
+                          None
+                        </div>
                         <div
                           class="react-select__input-container css-6j8wv5-Input"
                           data-value=""

@@ -248,15 +248,23 @@ const ApproveButton = ({ role, setStatus, setLoading }) => {
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)
 
-  const [executeMutation, { loading }] = useMutation(APPROVE_CANDIDATE_ROLE, {
-    onCompleted: () => {
-      setLoading(false)
-      setStatus(CandidateStatusType.APPROVED)
-      showToast(format('candidate.role.update.success'), 'success', 'top-center')
+  const [executeMutation, { loading, reset }] = useMutation(APPROVE_CANDIDATE_ROLE, {
+    onCompleted: (data) => {
+      const { approveRejectCandidateRole: response } = data
+      if (response?.candidateRole && response?.errors?.length === 0) {
+        setLoading(false)
+        setStatus(CandidateStatusType.APPROVED)
+        showToast(format('candidate.role.update.success'), 'success', 'top-center')
+      } else {
+        setLoading(false)
+        showToast(format('candidate.role.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
       setLoading(false)
       showToast(format('candidate.role.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 
@@ -312,15 +320,23 @@ const DeclineButton = ({ role, setStatus, setLoading }) => {
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)
 
-  const [executeMutation, { loading }] = useMutation(REJECT_CANDIDATE_ROLE, {
-    onCompleted: () => {
-      setLoading(false)
-      setStatus(CandidateStatusType.REJECTED)
-      showToast(format('candidate.role.update.success'), 'success', 'top-center')
+  const [executeMutation, { loading, reset }] = useMutation(REJECT_CANDIDATE_ROLE, {
+    onCompleted: (data) => {
+      const { approveRejectCandidateRole: response } = data
+      if (response?.candidateRole && response?.errors?.length === 0) {
+        setLoading(false)
+        setStatus(CandidateStatusType.REJECTED)
+        showToast(format('candidate.role.update.success'), 'success', 'top-center')
+      } else {
+        setLoading(false)
+        showToast(format('candidate.role.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
       setLoading(false)
       showToast(format('candidate.role.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 

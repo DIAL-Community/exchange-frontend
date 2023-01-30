@@ -31,16 +31,25 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateProductSdgs, { data, loading }] = useMutation(UPDATE_PRODUCT_SDGS, {
+  const [updateProductSdgs, { data, loading, reset }] = useMutation(UPDATE_PRODUCT_SDGS, {
     onCompleted: (data) => {
-      setSdgs(data.updateProductSdgs.product.sustainableDevelopmentGoals)
-      setIsDirty(false)
-      showToast(format('toast.sdgs.update.success', { entity: format('sdg.label') }), 'success', 'top-center')
+      const { updateProductSdgs: response } = data
+      if (response?.product && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setSdgs(data.updateProductSdgs.product.sustainableDevelopmentGoals)
+        showToast(format('toast.sdgs.update.success', { entity: format('sdg.label') }), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setSdgs(product?.sustainableDevelopmentGoals)
+        showToast(format('toast.sdgs.update.failure', { entity: format('sdg.label') }), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setSdgs(product?.sustainableDevelopmentGoals)
       setIsDirty(false)
+      setSdgs(product?.sustainableDevelopmentGoals)
       showToast(format('toast.sdgs.update.failure', { entity: format('sdg.label') }), 'error', 'top-center')
+      reset()
     }
   })
 

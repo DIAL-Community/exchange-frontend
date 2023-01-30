@@ -43,16 +43,25 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateBuildingBlockProducts, { data, loading }] = useMutation(UPDATE_BUILDING_BLOCK_PRODUCTS, {
+  const [updateBuildingBlockProducts, { data, loading, reset }] = useMutation(UPDATE_BUILDING_BLOCK_PRODUCTS, {
     onCompleted: (data) => {
-      setProducts(data.updateBuildingBlockProducts.buildingBlock.products)
-      setIsDirty(false)
-      showToast(format('toast.products.update.success'), 'success', 'top-center')
+      const { updateBuildingBlockProducts: response } = data
+      if (response?.buildingBlock && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setProducts(response?.buildingBlock.products)
+        showToast(format('toast.products.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setProducts(buildingBlock.products)
+        showToast(format('toast.products.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setProducts(buildingBlock.products)
       setIsDirty(false)
+      setProducts(buildingBlock.products)
       showToast(format('toast.products.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 

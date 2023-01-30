@@ -135,10 +135,11 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
     }
   }
 
-  const [applyAsOwner] = useMutation(APPLY_AS_OWNER, {
+  const [applyAsOwner, { reset }] = useMutation(APPLY_AS_OWNER, {
     refetchQueries: ['CandidateRole'],
     onCompleted: (data) => {
-      if (data.applyAsOwner.errors.length) {
+      const { applyAsOwner: response } = data
+      if (!response?.candidateRole || response?.errors?.length > 0) {
         showToast(
           <div className='flex flex-col'>
             <span>{data.applyAsOwner.errors[0]}</span>
@@ -148,6 +149,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
           null,
           () => setLoading(false)
         )
+        reset()
       } else {
         showToast(
           format('toast.applyAsOwner.submit.success', { entity: format('product.label') }),
@@ -168,6 +170,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
         null,
         () => setLoading(false)
       )
+      reset()
     }
   })
 

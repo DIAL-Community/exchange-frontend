@@ -21,19 +21,13 @@ const CountryForm = ({ isOpen, onClose, country }) => {
   const [updateCountry, { called: isSubmitInProgress, reset }] = useMutation(CREATE_COUNTRY, {
     refetchQueries: ['SearchCountries'],
     onCompleted: (data) => {
-      if (data.createCountry.country) {
+      const { createCountry: response } = data
+      if (response?.country && response?.errors?.length === 0) {
         showToast(format('toast.country.submit.success'), 'success', 'top-center')
         onClose(true)
         reset()
-      }
-      else {
-        showToast(
-          <div className='flex flex-col'>
-            <span>{format('toast.country.submit.failure')}</span>
-          </div>,
-          'error',
-          'top-center'
-        )
+      } else {
+        showToast(format('toast.country.submit.failure'), 'error', 'top-center')
         reset()
       }
 

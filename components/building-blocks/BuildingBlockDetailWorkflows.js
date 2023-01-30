@@ -22,16 +22,25 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateBuildingBlockWorkflows, { data, loading }] = useMutation(UPDATE_BUILDING_BLOCK_WORKFLOWS, {
+  const [updateBuildingBlockWorkflows, { data, loading, reset }] = useMutation(UPDATE_BUILDING_BLOCK_WORKFLOWS, {
     onCompleted: (data) => {
-      setWorkflows(data.updateBuildingBlockWorkflows.buildingBlock.workflows)
-      setIsDirty(false)
-      showToast(format('toast.workflows.update.success'), 'success', 'top-center')
+      const { updateBuildingBlockWorkflows: response } = data
+      if (response?.buildingBlock && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setWorkflows(response?.buildingBlock.workflows)
+        showToast(format('toast.workflows.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setWorkflows(buildingBlock.workflows)
+        showToast(format('toast.workflows.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setWorkflows(buildingBlock.workflows)
       setIsDirty(false)
+      setWorkflows(buildingBlock.workflows)
       showToast(format('toast.workflows.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 

@@ -19,7 +19,6 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
   const client = useApolloClient()
 
   const [products, setProducts] = useState(useCaseStep.products)
-
   const [isDirty, setIsDirty] = useState(false)
 
   const { user } = useUser()
@@ -28,16 +27,25 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateUseCaseStepProducts, { data, loading }] = useMutation(UPDATE_USE_CASE_STEP_PRODUCTS, {
+  const [updateUseCaseStepProducts, { data, loading, reset }] = useMutation(UPDATE_USE_CASE_STEP_PRODUCTS, {
     onCompleted: (data) => {
-      setProducts(data.updateUseCaseStepProducts.useCaseStep.products)
-      setIsDirty(false)
-      showToast(format('toast.products.update.success'), 'success', 'top-center')
+      const { updateUseCaseStepProducts: response } = data
+      if (response?.useCaseStep && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setProducts(response?.useCaseStep?.products)
+        showToast(format('toast.products.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setProducts(useCaseStep.products)
+        showToast(format('toast.products.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setProducts(useCaseStep.products)
       setIsDirty(false)
+      setProducts(useCaseStep.products)
       showToast(format('toast.products.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 

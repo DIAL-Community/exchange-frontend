@@ -283,12 +283,21 @@ const ApproveButton = ({ dataset, setStatus, loading, setLoading }) => {
   const { locale } = useRouter()
   const { user } = useUser()
 
-  const [candidateDatasetApproval] = useMutation(CANDIDATE_DATASET_ACTION, {
-    onCompleted: () => {
-      setStatus(CandidateStatusType.APPROVED)
-      setLoading(false)
+  const [candidateDatasetApproval, { reset }] = useMutation(CANDIDATE_DATASET_ACTION, {
+    onCompleted: (data) => {
+      const { approveRejectCandidateDataset: response } = data
+      if (response?.candidateDataset && response?.errors?.length === 0) {
+        setStatus(CandidateStatusType.APPROVED)
+        setLoading(false)
+      } else {
+        setLoading(false)
+        reset()
+      }
     },
-    onError: () => setLoading(false)
+    onError: () => {
+      setLoading(false)
+      reset()
+    }
   })
 
   const approveDataset = async () => {
@@ -341,12 +350,21 @@ const DeclineButton = ({ dataset, setStatus, loading, setLoading }) => {
   const { locale } = useRouter()
   const { user } = useUser()
 
-  const [candidateDatasetApproval] = useMutation(CANDIDATE_DATASET_ACTION, {
-    onCompleted: () => {
-      setStatus(CandidateStatusType.REJECTED)
-      setLoading(false)
+  const [candidateDatasetApproval, { reset }] = useMutation(CANDIDATE_DATASET_ACTION, {
+    onCompleted: (data) => {
+      const { approveRejectCandidateDataset: response } = data
+      if (response?.candidateDataset && response?.errors?.length === 0) {
+        setStatus(CandidateStatusType.REJECTED)
+        setLoading(false)
+      } else {
+        setLoading(false)
+        reset()
+      }
     },
-    onError: () => setLoading(false)
+    onError: () => {
+      setLoading(false)
+      reset()
+    }
   })
 
   const rejectDataset = async () => {

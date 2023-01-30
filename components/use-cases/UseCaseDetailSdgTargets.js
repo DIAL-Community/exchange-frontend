@@ -22,19 +22,27 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
   const client = useApolloClient()
 
   const [sdgTargets, setSdgTargets] = useState(useCase.sdgTargets)
-
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateUseCaseSdgTargets, { data, loading }] = useMutation(UPDATE_USE_CASE_SDG_TARGETS,{
+  const [updateUseCaseSdgTargets, { data, loading, reset }] = useMutation(UPDATE_USE_CASE_SDG_TARGETS,{
     onError() {
+      setIsDirty(false)
       setSdgTargets(useCase?.sdgTargets)
-      setIsDirty(false)
       showToast(format('toast.sdgTargets.update.failure'), 'error', 'top-center')
+      reset()
     },
-    onCompleted(data) {
-      setSdgTargets(data.updateUseCaseSdgTargets.useCase.sdgTargets)
-      setIsDirty(false)
-      showToast(format('toast.sdgTargets.update.success'), 'success', 'top-center')
+    onCompleted: (data) => {
+      const { updateUseCaseSdgTargets: response } = data
+      if (response?.useCase && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setSdgTargets(response?.useCase?.sdgTargets)
+        showToast(format('toast.sdgTargets.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setSdgTargets(useCase?.sdgTargets)
+        showToast(format('toast.sdgTargets.update.failure'), 'error', 'top-center')
+        reset()
+      }
     }
   })
 

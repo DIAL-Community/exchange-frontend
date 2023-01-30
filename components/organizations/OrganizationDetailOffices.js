@@ -33,14 +33,21 @@ const OrganizationDetailOffices = ({ organization, canEdit }) => {
 
   const [updateOrganizationOffices, { data, loading }] = useMutation(UPDATE_ORGANIZATION_OFFICES, {
     onError: () => {
-      setOffices(organization.offices?.map(mapOfficeCallback))
       setIsDirty(false)
+      setOffices(organization.offices?.map(mapOfficeCallback))
       showToast(format('toast.offices.update.failure'), 'error', 'top-center')
     },
     onCompleted: (data) => {
-      setOffices(data.updateOrganizationOffices.organization.offices?.map(mapOfficeCallback))
-      setIsDirty(false)
-      showToast(format('toast.offices.update.success'), 'success', 'top-center')
+      const { updateOrganizationOffices: response } = data
+      if (response?.organization && response?.errors?.length === 0) {
+        setOffices(response?.organization?.offices?.map(mapOfficeCallback))
+        showToast(format('toast.offices.update.success'), 'success', 'top-center')
+        setIsDirty(false)
+      } else {
+        setIsDirty(false)
+        setOffices(organization.offices?.map(mapOfficeCallback))
+        showToast(format('toast.offices.update.failure'), 'error', 'top-center')
+      }
     }
   })
 

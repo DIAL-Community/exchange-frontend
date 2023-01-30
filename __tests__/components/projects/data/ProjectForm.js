@@ -112,6 +112,7 @@ export const createProjectSuccess = {
   data: {
     createProject: {
       project: {
+        id: 1,
         slug: 'test_product'
       },
       errors: []

@@ -28,16 +28,23 @@ const DeleteDataset = ({ dataset }) => {
       query: DATASET_QUERY,
       variables: { slug: dataset.slug }
     }],
-    onCompleted: () => {
-      setDisplayConfirmDialog(false)
-      showToast(
-        format('toast.dataset.delete.success'),
-        'success',
-        'top-center',
-        DEFAULT_AUTO_CLOSE_DELAY,
-        null,
-        () => router.push('/datasets')
-      )
+    onCompleted: (data) => {
+      const { deleteDataset: response } = data
+      if (response?.dataset && response?.errors?.length === 0) {
+        setDisplayConfirmDialog(false)
+        showToast(
+          format('toast.dataset.delete.success'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push('/datasets')
+        )
+      } else {
+        setDisplayConfirmDialog(false)
+        showToast(format('toast.dataset.delete.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
       setDisplayConfirmDialog(false)

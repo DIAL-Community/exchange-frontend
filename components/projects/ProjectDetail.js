@@ -72,7 +72,7 @@ const ProjectDetail = ({ slug, locale }) => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
   } else if (!data?.project) {
     return <NotFound />

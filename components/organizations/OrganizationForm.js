@@ -32,7 +32,8 @@ const OrganizationForm = React.memo(({ organization }) => {
   const [updateOrganization, { reset }] = useMutation(CREATE_ORGANIZATION, {
     onCompleted: (data) => {
       setMutating(false)
-      if (data?.createOrganization?.organization && data?.createOrganization?.errors?.length === 0) {
+      const { createOrganization: response } = data
+      if (response?.organization && response?.errors?.length === 0) {
         showToast(
           format('organization.submit.success'),
           'success',
@@ -41,7 +42,7 @@ const OrganizationForm = React.memo(({ organization }) => {
           null,
           () => router.push(
             `/${router.locale}` +
-            `/organizations/${data.createOrganization.organization.slug}`
+            `/organizations/${response?.organization?.slug}`
           )
         )
       } else {
@@ -51,6 +52,7 @@ const OrganizationForm = React.memo(({ organization }) => {
     },
     onError: () => {
       showToast(format('organization.submit.failure'), 'error', 'top-center')
+      setMutating(false)
       reset()
     }
   })
@@ -61,6 +63,8 @@ const OrganizationForm = React.memo(({ organization }) => {
     { label: format('organization.endorserLevel.silver'), value: 'silver' },
     { label: format('organization.endorserLevel.gold'), value: 'gold' }
   ]
+
+  const [defaultEndorserLevel] = endorserLevelOptions
 
   const { handleSubmit, register, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
@@ -73,8 +77,7 @@ const OrganizationForm = React.memo(({ organization }) => {
       isEndorser: organization?.isEndorser,
       whenEndorsed: organization?.whenEndorsed ?? null,
       endorserLevel:
-        endorserLevelOptions.find(({ value }) => value === organization?.endorserLevel) ??
-        [endorserLevelOptions],
+        endorserLevelOptions.find(({ value }) => value === organization?.endorserLevel) ?? defaultEndorserLevel,
       isMni: organization?.isMni,
       description: organization?.organizationDescription?.description
     }

@@ -18,8 +18,10 @@ export const CREATE_USE_CASE_STEP = gql`
       markdownUrl: $markdownUrl
     ) {
       useCaseStep {
+        id
         slug
         useCase {
+          id
           slug
         }
       },
@@ -38,6 +40,7 @@ export const UPDATE_USE_CASE_SDG_TARGETS = gql`
       slug: $slug
     ) {
       useCase {
+        id
         slug
         sdgTargets {
           id
@@ -71,6 +74,7 @@ export const CREATE_USE_CASE = gql`
       description: $description
     ) {
       useCase {
+        id
         slug
       }
       errors
@@ -88,6 +92,7 @@ export const UPDATE_USE_CASE_TAGS = gql`
       tags: $tags
     ) {
       useCase {
+        id
         tags
       }
       errors
@@ -103,6 +108,7 @@ export const DELETE_USE_CASE = gql`
        slug
        name
       }
+      errors
     }
   }
 `
