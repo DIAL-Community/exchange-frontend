@@ -1100,7 +1100,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
           <div
             class="text-xl font-semibold"
           >
-            footer.partnersAndSupporters
+            Our partners and supporters
           </div>
           <hr
             class="border border-footer-delimiter"
@@ -1926,7 +1926,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
           <div
             class="text-xl font-semibold"
           >
-            footer.partnersAndSupporters
+            Our partners and supporters
           </div>
           <hr
             class="border border-footer-delimiter"

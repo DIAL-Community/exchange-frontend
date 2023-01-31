@@ -116,7 +116,7 @@ export const en = {
   'footer.signUpEmailAddress': 'Sign up for our newsletter to learn more about DIAL and how you can be involved.',
   'footer.subscriber': 'Your email address',
   'footer.followUs': 'Follow us',
-  'footer.partnerAndSupporters': 'Our partners and supporters',
+  'footer.partnersAndSupporters': 'Our partners and supporters',
 
 
   'definition.title': 'The Catalog of Digital Solutions is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
