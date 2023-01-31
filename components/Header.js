@@ -128,7 +128,7 @@ const Header = ({ isOnAuthPage = false }) => {
       <div className='flex flex-wrap header-min-height'>
         <Link href='/'>
           <a className='flex px-8 xl:px-24 py-6'>
-            <img src='/assets/2023-refresh/exchange-logo.png' alt='Digital Impact Exchage Logo.' />
+            <img src='/assets/exchange/exchange-logo.png' alt='Digital Impact Exchage Logo.' />
           </a>
         </Link>
         <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block lg:hidden px-8'>

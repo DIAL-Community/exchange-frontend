@@ -11,8 +11,22 @@ module.exports = {
           DEFAULT: '#2e3192'
         },
         'dial-white-beech': {
+          light: '#e2e8f0',
           DEFAULT: '#faf4ef'
         },
+        'dial-stratos': {
+          DEFAULT: '#000542'
+        },
+        'dial-blue-chalk': {
+          DEFAULT: '#e6e9fc'
+        },
+        'dial-sunshine': {
+          DEFAULT: '#faa92b'
+        },
+        'footer-delimiter': {
+          DEFAULT: '#c7cefa'
+        },
+        // End of UX refresh colors
         'dial-gray': {
           light: '#f5f6fa',
           DEFAULT: '#dfdfea',

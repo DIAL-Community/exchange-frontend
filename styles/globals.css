@@ -220,6 +220,10 @@ body {
     @apply outline-0;
   }
 
+  textarea.textarea:focus {
+    @apply outline-0;
+  }
+
   input:focus,
   input[type]:focus,
   textarea.textarea:focus {

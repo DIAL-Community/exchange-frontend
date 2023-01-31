@@ -3,7 +3,7 @@ const HeroSection = () => {
     <div
       className="bg-center bg-no-repeat h-screen relative"
       style={{
-        backgroundImage: 'url("/assets/2023-refresh/exchange-hero.png")',
+        backgroundImage: 'url("/assets/exchange/exchange-hero.png")',
         height: '650px'
       }}
     />
