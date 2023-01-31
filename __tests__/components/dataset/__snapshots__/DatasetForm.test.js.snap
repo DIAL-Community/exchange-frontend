@@ -123,7 +123,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                     Data URL
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -144,7 +144,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                     Dataset Visualization URL
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -574,7 +574,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                     Data URL
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <span
                       class="select-none text-dial-gray"
@@ -600,7 +600,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                     Dataset Visualization URL
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <span
                       class="select-none text-dial-gray"

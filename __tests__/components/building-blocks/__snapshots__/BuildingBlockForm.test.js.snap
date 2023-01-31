@@ -315,7 +315,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
