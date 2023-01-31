@@ -4,7 +4,6 @@ import { Controller, useForm } from 'react-hook-form'
 import { Dialog, Transition } from '@headlessui/react'
 import Select from 'react-select'
 import Input from './Input'
-import { HtmlEditor } from './HtmlEditor'
 
 const ReportIssue = ({ showForm, hideFeedbackForm, formTitle }) => {
   const { formatMessage } = useIntl()
