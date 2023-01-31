@@ -112,6 +112,13 @@ export const en = {
   'footer.follow': 'Follow DIAL on social media',
   'footer.icons': 'Icons provided unmodified by ',
 
+  'footer.connectWithUs': 'Connect with us',
+  'footer.signUpEmailAddress': 'Sign up for our newsletter to learn more about DIAL and how you can be involved.',
+  'footer.subscriber': 'Your email address',
+  'footer.followUs': 'Follow us',
+  'footer.partnerAndSupporters': 'Our partners and supporters',
+
+
   'definition.title': 'The Catalog of Digital Solutions is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
   'definition.goal': 'Our goal: ',
   'definition.subtitle': 'Informed decision-making and greater coordination in digital investments, planning & implementations across sectors',
