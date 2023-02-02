@@ -191,19 +191,23 @@ export const UPDATE_PRODUCT_SDGS = gql`
 
 export const CREATE_CANDIDATE_PRODUCT = gql`
   mutation CreateCandidateProduct(
+    $slug: String
     $name: String!
     $website: String!
     $repository: String!
     $description: String!
-    $email: String!
+    $submitterEmail: String!
+    $commercialProduct: Boolean
     $captcha: String!
   ) {
     createCandidateProduct(
+      slug: $slug
       name: $name
       website: $website
       repository: $repository
       description: $description
-      email: $email
+      submitterEmail: $submitterEmail
+      commercialProduct: $commercialProduct
       captcha: $captcha
     ) {
       candidateProduct {

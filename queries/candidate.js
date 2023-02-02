@@ -70,3 +70,19 @@ export const CANDIDATE_DATASET_ACTION = gql`
     }
   }
 `
+
+export const CANDIDATE_PRODUCT_DETAIL_QUERY = gql`
+  query CandidateProduct($slug: String!) {
+    candidateProduct(slug: $slug) {
+      id
+      slug
+      name
+      website
+      repository
+      submitterEmail
+      description
+      commercialProduct
+      rejected
+    }
+  }
+`

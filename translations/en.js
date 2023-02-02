@@ -1547,4 +1547,9 @@ export const en = {
 
   'toast.edit.submit.success': 'Changes saved successfully.',
   'toast.edit.submit.failure': 'Unable to save changes. Please try again later.',
+
+  'product.license.oss': 'Open Source',
+  'product.license.commercial': 'Commercial',
+
+  'candidate.product.submittedBy': 'Proposed by'
 }
