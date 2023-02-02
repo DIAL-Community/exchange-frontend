@@ -112,7 +112,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - candi
                     Code Repository
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
