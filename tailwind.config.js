@@ -23,6 +23,13 @@ module.exports = {
         'dial-sunshine': {
           DEFAULT: '#faa92b'
         },
+        'dial-alice-blue': {
+          light: '#f8fafc',
+          DEFAULT: '#f1f5f9'
+        },
+        'dial-solitude': {
+          DEFAULT: '#e2e8f0'
+        },
         'footer-delimiter': {
           DEFAULT: '#c7cefa'
         },

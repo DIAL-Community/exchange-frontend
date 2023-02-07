@@ -21,7 +21,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
         />
       </a>
       <label
-        class="ml-auto my-auto pointer-cursor block lg:hidden px-8"
+        class="ml-auto my-auto pointer-cursor block xl:hidden px-8"
         for="menu-toggle"
       >
         <svg
@@ -45,12 +45,12 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
         type="checkbox"
       />
       <div
-        class="hidden lg:flex lg:items-center lg:w-auto w-full ml-auto mx-2"
+        class="hidden xl:flex xl:items-center xl:w-auto w-full ml-auto mx-2"
         id="menu"
       >
         <nav>
           <ul
-            class="block lg:hidden mt-6 text-sm text-dial-white-beech"
+            class="block xl:hidden mt-6 text-sm text-dial-white-beech"
             style="min-height: 405px;"
           >
             <li
@@ -248,20 +248,20 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
             </li>
           </ul>
           <ul
-            class="hidden lg:flex items-center text-dial-white-beech pt-4 lg:pt-0 sm:gap-x-6 lg:gap-x-2"
+            class="hidden xl:flex items-center text-dial-white-beech pt-4 xl:pt-0 xl:gap-x-2"
           >
             <li
-              class="relative mt-2 lg:mt-0 text-right"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
-                class="lg:p-2 px-0 lg:mb-0 mb-2 cursor-pointer border-b-2 border-transparent hover:border-dial-yellow"
+                class="xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer border-b-2 border-transparent hover:border-dial-yellow"
                 href="startOverviewTour"
               >
                 Getting Started
               </a>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
                 class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
@@ -289,7 +289,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               </a>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
                 class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
@@ -317,7 +317,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               </a>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
                 class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
@@ -345,7 +345,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               </a>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
                 class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
@@ -373,7 +373,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               </a>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right intro-overview-signup"
+              class="relative mt-2 xl:mt-0 text-right intro-overview-signup"
             >
               <a
                 data-testid="user-menu"
@@ -393,7 +393,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               </a>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
                 class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
@@ -998,7 +998,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
         class="flex flex-col lg:flex-row gap-x-24 gap-y-8 py-12 px-20"
       >
         <div
-          class="w-3/12 flex flex-col gap-y-8"
+          class="w-full lg:w-3/12 flex flex-col gap-y-8"
         >
           <div
             class="text-xl font-semibold"
@@ -1013,24 +1013,6 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
           >
             Sign up for our newsletter to learn more about DIAL and how you can be involved.
           </div>
-          <div
-            class="flex flex-col gap-y-2"
-          >
-            <label
-              class="sr-only"
-              for="emailAddress"
-            >
-              Your email address
-            </label>
-            <input
-              class="w-full"
-              id="emailAddress"
-              name="emailAddress"
-              placeholder="Your email address"
-              type="text"
-              value=""
-            />
-          </div>
           <div>
             <button
               class="py-2 px-5 rounded-md bg-dial-yellow font-semibold"
@@ -1041,7 +1023,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
           </div>
         </div>
         <div
-          class="w-2/12 flex flex-col gap-y-8"
+          class="w-full lg:w-2/12 flex flex-col gap-y-8"
         >
           <div
             class="text-xl font-semibold"
@@ -1095,7 +1077,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
           </div>
         </div>
         <div
-          class="w-7/12 flex flex-col gap-y-8"
+          class="w-full lg:w-7/12 flex flex-col gap-y-8"
         >
           <div
             class="text-xl font-semibold"
@@ -1398,7 +1380,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
         />
       </a>
       <label
-        class="ml-auto my-auto pointer-cursor block lg:hidden px-8"
+        class="ml-auto my-auto pointer-cursor block xl:hidden px-8"
         for="menu-toggle"
       >
         <svg
@@ -1422,12 +1404,12 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
         type="checkbox"
       />
       <div
-        class="hidden lg:flex lg:items-center lg:w-auto w-full ml-auto mx-2"
+        class="hidden xl:flex xl:items-center xl:w-auto w-full ml-auto mx-2"
         id="menu"
       >
         <nav>
           <ul
-            class="block lg:hidden mt-6 text-sm text-dial-white-beech"
+            class="block xl:hidden mt-6 text-sm text-dial-white-beech"
             style="min-height: 370px;"
           >
             <li
@@ -1564,20 +1546,20 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
             </li>
           </ul>
           <ul
-            class="hidden lg:flex items-center text-dial-white-beech pt-4 lg:pt-0 sm:gap-x-6 lg:gap-x-2"
+            class="hidden xl:flex items-center text-dial-white-beech pt-4 xl:pt-0 xl:gap-x-2"
           >
             <li
-              class="relative mt-2 lg:mt-0 text-right"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
-                class="lg:p-2 px-0 lg:mb-0 mb-2 cursor-pointer border-b-2 border-transparent hover:border-dial-yellow"
+                class="xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer border-b-2 border-transparent hover:border-dial-yellow"
                 href="startOverviewTour"
               >
                 Getting Started
               </a>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
                 class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
@@ -1605,7 +1587,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               </a>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
                 class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
@@ -1633,7 +1615,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               </a>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
                 class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
@@ -1661,7 +1643,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               </a>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right intro-overview-signup"
+              class="relative mt-2 xl:mt-0 text-right intro-overview-signup"
             >
               <a
                 class="
@@ -1675,7 +1657,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               </a>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
                 class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
@@ -1824,7 +1806,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
         class="flex flex-col lg:flex-row gap-x-24 gap-y-8 py-12 px-20"
       >
         <div
-          class="w-3/12 flex flex-col gap-y-8"
+          class="w-full lg:w-3/12 flex flex-col gap-y-8"
         >
           <div
             class="text-xl font-semibold"
@@ -1839,24 +1821,6 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
           >
             Sign up for our newsletter to learn more about DIAL and how you can be involved.
           </div>
-          <div
-            class="flex flex-col gap-y-2"
-          >
-            <label
-              class="sr-only"
-              for="emailAddress"
-            >
-              Your email address
-            </label>
-            <input
-              class="w-full"
-              id="emailAddress"
-              name="emailAddress"
-              placeholder="Your email address"
-              type="text"
-              value=""
-            />
-          </div>
           <div>
             <button
               class="py-2 px-5 rounded-md bg-dial-yellow font-semibold"
@@ -1867,7 +1831,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
           </div>
         </div>
         <div
-          class="w-2/12 flex flex-col gap-y-8"
+          class="w-full lg:w-2/12 flex flex-col gap-y-8"
         >
           <div
             class="text-xl font-semibold"
@@ -1921,7 +1885,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
           </div>
         </div>
         <div
-          class="w-7/12 flex flex-col gap-y-8"
+          class="w-full lg:w-7/12 flex flex-col gap-y-8"
         >
           <div
             class="text-xl font-semibold"

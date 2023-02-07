@@ -1,47 +1,19 @@
 import Link from 'next/link'
-import { createRef, useCallback, useEffect, useState } from 'react'
+import classNames from 'classnames'
+import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
 import Image from 'next/image'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('SDGs')
 
-const ellipsisTextStyle = `
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-`
-const containerElementStyle = `
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-sdg hover:text-dial-yellow
-`
+const containerElementStyle = classNames(
+  'cursor-pointer hover:rounded-lg hover:shadow-lg',
+  'border-3 border-transparent hover:border-dial-yellow'
+)
 
-const SDGCard = ({ sdg, listType, filterDisplayed }) => {
+const SDGCard = ({ sdg, listType }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const sdgTargetContainer = createRef()
-  const [sdgTargetOverflow, setSdgTargetOverflow] = useState(false)
-
-  const useCaseContainer = createRef()
-  const [useCaseOverflow, setUseCaseOverflow] = useState(false)
-
-  useEffect(() => {
-    ReactTooltip.rebuild()
-  })
-
-  useEffect(() => {
-    const uc = useCaseContainer.current
-    if (uc) {
-      const useCaseOverflow = uc.offsetHeight < uc.scrollHeight || uc.offsetWidth < uc.scrollWidth
-      setUseCaseOverflow(useCaseOverflow)
-    }
-
-    const sc = sdgTargetContainer.current
-    if (sc) {
-      const sdgTargetOverflow = sc.offsetHeight < sc.scrollHeight || sc.offsetWidth < sc.scrollWidth
-      setSdgTargetOverflow(sdgTargetOverflow)
-    }
-  }, [useCaseOverflow, useCaseContainer, sdgTargetOverflow, sdgTargetContainer])
 
   const useCases = (() => {
     if (!sdg.sdgTargets) {
@@ -68,13 +40,13 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
   const nameColSpan = () => {
     return !useCases
       ? 'col-span-6'
-      : filterDisplayed ? 'col-span-6 xl:col-span-2' : 'col-span-5 md:col-span-3 lg:col-span-2'
+      : 'col-span-5 md:col-span-3 lg:col-span-2'
   }
 
   const caseColSpan = () => {
     return !useCases
       ? 'hidden'
-      : filterDisplayed ? 'hidden xl:block 2xl:col-span-4' : 'hidden lg:block lg:col-span-3 lg:col-span-4'
+      : 'hidden lg:block lg:col-span-3 lg:col-span-4'
   }
 
   return (
@@ -85,13 +57,13 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
             <div className={containerElementStyle}>
               <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                 <div className='grid grid-cols-1 lg:grid-cols-6 gap-x-4 py-4 px-4'>
-                  <div className={`${nameColSpan()} text-base text-sdg font-semibold ${ellipsisTextStyle} relative`}>
+                  <div className={`${nameColSpan()} text-base text-sdg font-semibold relative`}>
                     <Image
                       layout='fill'
                       objectFit='scale-down'
                       objectPosition='left'
                       sizes='2vw'
-                      src={`${process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}`}
+                      src={`/assets/sdg/sdg_${('0' + sdg.number).slice(-2)}.png`}
                       alt={format('image.alt.logoFor', { name: sdg.name })}
                     />
                     <div className='ml-10'>
@@ -101,7 +73,7 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                       useCases &&
                         <div
                           className={`
-                            block ${filterDisplayed ? ' xl:hidden' : 'lg:hidden'}
+                            block lg:hidden
                             text-use-case text-sm font-normal flex flex-row mt-1
                           `}
                         >
@@ -120,10 +92,8 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
                         </div>
                     }
                   </div>
-                  <div className={`${caseColSpan()} text-base text-use-case ${ellipsisTextStyle}`}>
-                    {
-                      useCases && useCases.length === 0 && format('general.na')
-                    }
+                  <div className={`${caseColSpan()} text-base text-use-case`}>
+                    { useCases && useCases.length === 0 && format('general.na') }
                     {
                       useCases && useCases.length > 0 &&
                         useCases.map(u => u.name).join(', ')
@@ -135,115 +105,25 @@ const SDGCard = ({ sdg, listType, filterDisplayed }) => {
           )
           : (
             <div className={containerElementStyle}>
-              <div className='border border-dial-gray hover:border-transparent card-drop-shadow'>
-                <div className='flex flex-col h-80 p-4'>
-                  <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
-                    {sdg.name}
+              <div
+                className={classNames(
+                  'bg-white shadow-xl rounded-lg h-full',
+                  'border border-dial-gray hover:border-transparent'
+                )}
+              >
+                <div className='flex flex-col'>
+                  <div className='text-dial-sapphire bg-dial-alice-blue rounded-t-lg'>
+                    <div className='text-sm text-center font-semibold py-8'>
+                      {sdg.name}
+                    </div>
                   </div>
-                  <div className='m-auto align-middle w-40'>
+                  <div className='w-24 py-16 mx-auto'>
                     <Image
-                      height={250}
-                      width={250}
+                      height={1500}
+                      width={1500}
                       alt={format('image.alt.logoFor', { name: sdg.name })}
-                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}
+                      src={`/assets/sdg/sdg_${('0' + sdg.number).slice(-2)}.png`}
                     />
-                  </div>
-                </div>
-                <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark cursor-default'>
-                  <div className='flex flex-row border-b border-dial-gray'>
-                    <div className='pl-3 py-3 text-dial-teal-light flex flex-row'>
-                      <div className='text-base whitespace-nowrap my-auto text-sdg-target mr-2'>
-                        {format('sdg.sdgTargets')}
-                      </div>
-                      <div className='flex flex-row'>
-                        <div
-                          className='flex flex-row flex-wrap font-semibold overflow-hidden'
-                          style={{ maxHeight: '40px' }}
-                          ref={sdgTargetContainer}
-                        >
-                          {
-                            sdg.sdgTargets.length === 0 &&
-                              <div className='bg-white p-2 text-use-case rounded text-base'>
-                                {format('general.na')}
-                              </div>
-                          }
-                          {
-                            sdg.sdgTargets
-                              .map(sdgTarget => (
-                                <div
-                                  key={`${sdg.id}-${sdgTarget.id}`} className='bg-white rounded text-sdg-target p-2 mr-1.5'
-                                  data-tip={`${sdgTarget.name}.`}
-                                >
-                                  {sdgTarget.targetNumber}
-                                </div>
-                              ))
-                          }
-                        </div>
-                        {
-                          sdgTargetOverflow && (
-                            <div className='bg-white mr-3 px-2 rounded text-sm text-sdg-target'>
-                              <span
-                                className='text-xl bg-white leading-normal'
-                                data-tip={format('tooltip.ellipsisFor', { entity: format('sdg.label') })}
-                              >
-                                &hellip;
-                              </span>
-                            </div>
-                          )
-                        }
-                      </div>
-                    </div>
-                  </div>
-                  <div className='flex flex-row text-dial-gray-dark'>
-                    <div className='py-3 text-dial-gray-dark flex flex-row'>
-                      <div className='pl-3 text-base text-use-case my-auto'>{format('sdg.useCases')}</div>
-                      <div className='flex flex-row'>
-                        <div
-                          className='pl-3 flex flex-row flex-wrap font-semibold overflow-hidden'
-                          style={{ maxHeight: '42px' }}
-                          ref={useCaseContainer}
-                        >
-                          {
-                            useCases.length === 0 &&
-                              <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
-                                {format('general.na')}
-                              </div>
-                          }
-                          {
-                            useCases
-                              .map(useCase => (
-                                <div key={`${sdg.id}-${useCase.id}`} className='bg-white rounded p-2 mr-1'>
-                                  <Image
-                                    height={20}
-                                    width={20}
-                                    data-tip={
-                                      format(
-                                        'tooltip.forEntity',
-                                        { entity: format('useCase.label'), name: useCase.name }
-                                      )
-                                    }
-                                    className='m-auto h-6 use-case-filter'
-                                    alt={format('image.alt.logoFor', { name: useCase.name })}
-                                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
-                                  />
-                                </div>
-                              ))
-                          }
-                        </div>
-                        {
-                          useCaseOverflow && (
-                            <div className='bg-white mr-3 px-2 rounded text-sm'>
-                              <span
-                                className='text-xl bg-white leading-normal'
-                                data-tip={format('tooltip.ellipsisFor', { entity: format('sdg.label') })}
-                              >
-                                &hellip;
-                              </span>
-                            </div>
-                          )
-                        }
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

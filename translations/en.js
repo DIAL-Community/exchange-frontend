@@ -35,6 +35,9 @@ export const en = {
   'app.back': 'Back',
   'app.email': 'Email Address',
   'app.lastUpdated': 'Updated: {lastUpdated}.',
+  'app.filter': 'Filter',
+  'app.selectNavigation': 'Select a resource',
+
   'general.pastSuffix': 'ago',
 
   'profile.profile': 'User Profile',

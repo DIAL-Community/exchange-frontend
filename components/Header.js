@@ -100,18 +100,18 @@ const Header = ({ isOnAuthPage = false }) => {
 
   const withUser =
     <>
-      <li className='relative mt-2 lg:mt-0 text-right'>
+      <li className='relative mt-2 xl:mt-0 text-right'>
         {isAdminUser &&
           <AdminMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
         }
       </li>
-      <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
+      <li className='relative mt-2 xl:mt-0 text-right intro-overview-signup'>
         <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
       </li>
     </>
 
   const withoutUser =
-    <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
+    <li className='relative mt-2 xl:mt-0 text-right intro-overview-signup'>
       <a
         data-testid='login'
         href='signin'
@@ -131,7 +131,7 @@ const Header = ({ isOnAuthPage = false }) => {
             <img src='/assets/exchange/exchange-logo.png' alt='Digital Impact Exchage Logo.' />
           </a>
         </Link>
-        <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block lg:hidden px-8'>
+        <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block xl:hidden px-8'>
           <svg
             className='fill-current text-gray-900'
             xmlns='http://www.w3.org/2000/svg'
@@ -144,18 +144,18 @@ const Header = ({ isOnAuthPage = false }) => {
           </svg>
         </label>
         <input className='hidden' type='checkbox' id='menu-toggle' checked={menuExpanded} onChange={toggleMenu} />
-        <div className='hidden lg:flex lg:items-center lg:w-auto w-full ml-auto mx-2' id='menu'>
+        <div className='hidden xl:flex xl:items-center xl:w-auto w-full ml-auto mx-2' id='menu'>
           <nav>
             <MobileMenu menuExpanded={menuExpanded} setMenuExpanded={setMenuExpanded} />
-            <ul className='hidden lg:flex items-center text-dial-white-beech pt-4 lg:pt-0 sm:gap-x-6 lg:gap-x-2'>
+            <ul className='hidden xl:flex items-center text-dial-white-beech pt-4 xl:pt-0 xl:gap-x-2'>
               {!isOnAuthPage
                 && (
                   <>
-                    <li className='relative mt-2 lg:mt-0 text-right'>
+                    <li className='relative mt-2 xl:mt-0 text-right'>
                       <a
                         href='startOverviewTour'
                         className={classNames(
-                          'lg:p-2 px-0 lg:mb-0 mb-2 cursor-pointer',
+                          'xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer',
                           'border-b-2 border-transparent hover:border-dial-yellow'
                         )}
                         onClick={(e) => startOverviewTour(e)}
@@ -163,20 +163,20 @@ const Header = ({ isOnAuthPage = false }) => {
                         {format('intro.overview.startTour')}
                       </a>
                     </li>
-                    <li className='relative mt-2 lg:mt-0 text-right'>
+                    <li className='relative mt-2 xl:mt-0 text-right'>
                       <AboutMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
-                    <li className='relative mt-2 lg:mt-0 text-right'>
+                    <li className='relative mt-2 xl:mt-0 text-right'>
                       <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
-                    <li className='relative mt-2 lg:mt-0 text-right'>
+                    <li className='relative mt-2 xl:mt-0 text-right'>
                       <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
                     { user ? withUser : withoutUser }
                   </>
                 )
               }
-              <li className='relative mt-2 lg:mt-0 text-right'>
+              <li className='relative mt-2 xl:mt-0 text-right'>
                 <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
             </ul>

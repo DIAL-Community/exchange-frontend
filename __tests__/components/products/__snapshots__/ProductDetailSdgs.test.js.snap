@@ -338,11 +338,7 @@ exports[`Unit tests for the ProductDetailSDGs component. Should match snapshot -
       class="grid grid-cols-1"
     >
       <div
-        class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-sdg hover:text-dial-yellow
-"
+        class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -351,9 +347,7 @@ exports[`Unit tests for the ProductDetailSDGs component. Should match snapshot -
             class="grid grid-cols-1 lg:grid-cols-6 gap-x-4 py-4 px-4"
           >
             <div
-              class="col-span-6 text-base text-sdg font-semibold 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
- relative"
+              class="col-span-6 text-base text-sdg font-semibold relative"
             >
               <span
                 style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -374,9 +368,7 @@ exports[`Unit tests for the ProductDetailSDGs component. Should match snapshot -
               </div>
             </div>
             <div
-              class="hidden text-base text-use-case 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+              class="hidden text-base text-use-case"
             />
           </div>
         </div>
@@ -657,11 +649,7 @@ exports[`Unit tests for the ProductDetailSDGs component. Should match snapshot -
       class="grid grid-cols-1"
     >
       <div
-        class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-sdg hover:text-dial-yellow
-"
+        class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -670,9 +658,7 @@ exports[`Unit tests for the ProductDetailSDGs component. Should match snapshot -
             class="grid grid-cols-1 lg:grid-cols-6 gap-x-4 py-4 px-4"
           >
             <div
-              class="col-span-6 text-base text-sdg font-semibold 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
- relative"
+              class="col-span-6 text-base text-sdg font-semibold relative"
             >
               <span
                 style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -693,9 +679,7 @@ exports[`Unit tests for the ProductDetailSDGs component. Should match snapshot -
               </div>
             </div>
             <div
-              class="hidden text-base text-use-case 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+              class="hidden text-base text-use-case"
             />
           </div>
         </div>

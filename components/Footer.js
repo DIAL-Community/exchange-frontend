@@ -3,9 +3,7 @@ import Image from 'next/image'
 import { FaTwitter, FaLinkedinIn } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useForm } from 'react-hook-form'
 import ReportIssue from './shared/ReportIssue'
-import Input from './shared/Input'
 
 const Consent = dynamic(() => import('./Consent'), { ssr: false })
 
@@ -25,35 +23,16 @@ const Footer = () => {
     setShowForm(false)
   }
 
-  const { register } = useForm({
-    mode: 'onSubmit',
-    reValidateMode: 'onChange',
-    shouldUnregister: true,
-    defaultValues: {
-      emailAddress: ''
-    }
-  })
-
   return (
     <footer>
       <Consent />
       <div className='max-w-catalog mx-auto bg-dial-blue-chalk text-dial-stratos'>
         <div className='flex flex-col lg:flex-row gap-x-24 gap-y-8 py-12 px-20'>
-          <div className='w-3/12 flex flex-col gap-y-8'>
+          <div className='w-full lg:w-3/12 flex flex-col gap-y-8'>
             <div className='text-xl font-semibold'>{format('footer.connectWithUs')}</div>
             <hr className='border border-footer-delimiter' />
             <div className='text-base'>
               {format('footer.signUpEmailAddress')}
-            </div>
-            <div className='flex flex-col gap-y-2'>
-              <label className='sr-only' htmlFor='emailAddress'>
-                {format('footer.subscriber')}
-              </label>
-              <Input
-                {...register('emailAddress')}
-                id='emailAddress'
-                placeholder={format('footer.subscriber')}
-              />
             </div>
             <div>
               <button type='submit' className='py-2 px-5 rounded-md bg-dial-yellow font-semibold'>
@@ -61,7 +40,7 @@ const Footer = () => {
               </button>
             </div>
           </div>
-          <div className='w-2/12 flex flex-col gap-y-8'>
+          <div className='w-full lg:w-2/12 flex flex-col gap-y-8'>
             <div className='text-xl font-semibold'>{format('footer.followUs')}</div>
             <hr className='border border-footer-delimiter' />
             <div className='flex gap-4'>
@@ -73,7 +52,7 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          <div className='w-7/12 flex flex-col gap-y-8'>
+          <div className='w-full lg:w-7/12 flex flex-col gap-y-8'>
             <div className='text-xl font-semibold'>{format('footer.partnersAndSupporters')}</div>
             <hr className='border border-footer-delimiter' />
             <div className='flex gap-4 place-content-around'>
