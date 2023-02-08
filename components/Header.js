@@ -125,13 +125,13 @@ const Header = ({ isOnAuthPage = false }) => {
 
   return (
     <header className='z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
-      <div className='flex flex-wrap header-min-height px-16'>
+      <div className='flex flex-wrap header-min-height px-8 xl:px-16'>
         <Link href='/'>
           <a className='flex py-6'>
             <img src='/assets/exchange/exchange-logo.png' alt='Digital Impact Exchage Logo.' />
           </a>
         </Link>
-        <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block xl:hidden px-8'>
+        <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block xl:hidden'>
           <svg
             className='fill-current text-gray-900'
             xmlns='http://www.w3.org/2000/svg'

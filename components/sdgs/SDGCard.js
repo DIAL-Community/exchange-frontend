@@ -39,14 +39,14 @@ const SDGCard = ({ sdg, listType }) => {
 
   const nameColSpan = () => {
     return !useCases
-      ? 'col-span-6'
-      : 'col-span-5 md:col-span-3 lg:col-span-2'
+      ? 'col-span-1'
+      : 'col-span-1 lg:col-span-3'
   }
 
   const caseColSpan = () => {
     return !useCases
       ? 'hidden'
-      : 'hidden lg:block lg:col-span-3 lg:col-span-4'
+      : 'hidden lg:col-span-4'
   }
 
   return (
@@ -55,44 +55,22 @@ const SDGCard = ({ sdg, listType }) => {
         listType === 'list'
           ? (
             <div className={containerElementStyle}>
-              <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
-                <div className='grid grid-cols-1 lg:grid-cols-6 gap-x-4 py-4 px-4'>
-                  <div className={`${nameColSpan()} text-base text-sdg font-semibold relative`}>
-                    <Image
-                      layout='fill'
-                      objectFit='scale-down'
-                      objectPosition='left'
-                      sizes='2vw'
-                      src={`/assets/sdg/sdg_${('0' + sdg.number).slice(-2)}.png`}
-                      alt={format('image.alt.logoFor', { name: sdg.name })}
-                    />
-                    <div className='ml-10'>
+              <div className='bg-white border border-dial-gray hover:border-transparent'>
+                <div className='grid grid-cols-1 lg:grid-cols-7 gap-x-4 py-4 px-4'>
+                  <div className={`${nameColSpan()} flex gap-2`}>
+                    <div className='w-10 my-auto'>
+                      <Image
+                        height={1500}
+                        width={1500}
+                        src={`/assets/sdg/sdg_${('0' + sdg.number).slice(-2)}.png`}
+                        alt={format('image.alt.logoFor', { name: sdg.name })}
+                      />
+                    </div>
+                    <div className='my-auto'>
                       {sdg.name}
                     </div>
-                    {
-                      useCases &&
-                        <div
-                          className={`
-                            block lg:hidden
-                            text-use-case text-sm font-normal flex flex-row mt-1
-                          `}
-                        >
-                          <div className='inline'>
-                            {format('useCase.header')}:
-                          </div>
-                          <div className='mx-1 whitespace-nowrap text-ellipsis overflow-hidden'>
-                            {
-                              useCases.length === 0 && format('general.na')
-                            }
-                            {
-                              useCases.length > 0 &&
-                                useCases.map(u => u.name).join(', ')
-                            }
-                          </div>
-                        </div>
-                    }
                   </div>
-                  <div className={`${caseColSpan()} text-base text-use-case`}>
+                  <div className={`${caseColSpan()} my-auto line-clamp-1`}>
                     { useCases && useCases.length === 0 && format('general.na') }
                     {
                       useCases && useCases.length > 0 &&

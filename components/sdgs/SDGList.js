@@ -18,7 +18,7 @@ const SDGList = (props) => {
   const displayType = props.displayType
   const gridStyles = `
     grid grid-cols-1
-    ${displayType === 'card' && 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8'}
+    ${displayType === 'card' && 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4'}
   `
 
   return (
@@ -26,21 +26,11 @@ const SDGList = (props) => {
       <div className={gridStyles}>
         {
           displayType === 'list' &&
-            <div className='grid grid-cols-1 md:grid-cols-6 gap-10 my-3 px-4'>
-              <div
-                className={`
-                  col-span-5 md:col-span-3 lg:col-span-2 whitespace-nowrap
-                  text-sm font-semibold text-sdg opacity-80
-                `}
-              >
+            <div className='grid grid-cols-1 lg:grid-cols-7 gap-4 my-3 px-4 text-sm'>
+              <div className='col-span-1 lg:col-span-3 font-semibold opacity-80'>
                 {format('sdg.header').toUpperCase()}
               </div>
-              <div
-                className={`
-                  hidden lg:block
-                  md:col-span-3 lg:col-span-4 text-sm font-semibold text-use-case opacity-50
-                `}
-              >
+              <div className='hidden lg:grid lg:col-span-4 font-semibold text-use-case opacity-80'>
                 {format('exampleOf.entity', { entity: format('useCase.header') }).toUpperCase()}
               </div>
             </div>
