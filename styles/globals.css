@@ -468,4 +468,14 @@ body {
     @apply bg-dial-white-beech;
     @apply rounded-full;
   }
+
+  .badge-avatar {
+    @apply relative;
+    @apply inline-flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply overflow-hidden;
+    @apply bg-dial-white-beech-light;
+    @apply rounded-full;
+  }
 }

@@ -125,9 +125,9 @@ const Header = ({ isOnAuthPage = false }) => {
 
   return (
     <header className='z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
-      <div className='flex flex-wrap header-min-height'>
+      <div className='flex flex-wrap header-min-height px-16'>
         <Link href='/'>
-          <a className='flex px-8 xl:px-24 py-6'>
+          <a className='flex py-6'>
             <img src='/assets/exchange/exchange-logo.png' alt='Digital Impact Exchage Logo.' />
           </a>
         </Link>

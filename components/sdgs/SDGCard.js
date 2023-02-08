@@ -107,23 +107,45 @@ const SDGCard = ({ sdg, listType }) => {
             <div className={containerElementStyle}>
               <div
                 className={classNames(
-                  'bg-white shadow-xl rounded-lg h-full',
+                  'bg-white shadow-lg rounded-lg h-full',
                   'border border-dial-gray hover:border-transparent'
                 )}
               >
                 <div className='flex flex-col'>
-                  <div className='text-dial-sapphire bg-dial-alice-blue rounded-t-lg'>
-                    <div className='text-sm text-center font-semibold py-8'>
+                  <div className='flex text-dial-sapphire bg-dial-alice-blue rounded-t-lg h-20'>
+                    <div className='px-4 text-sm text-center font-semibold m-auto'>
                       {sdg.name}
                     </div>
                   </div>
-                  <div className='w-24 py-16 mx-auto'>
+                  <div className='w-24 py-8 mx-auto'>
                     <Image
                       height={1500}
                       width={1500}
                       alt={format('image.alt.logoFor', { name: sdg.name })}
                       src={`/assets/sdg/sdg_${('0' + sdg.number).slice(-2)}.png`}
                     />
+                  </div>
+                  <hr />
+                  <div className='text-xs text-dial-stratos font-semibold uppercase'>
+                    <div className='px-6 py-2 flex gap-1'>
+                      <span className='badge-avatar w-7 h-7'>
+                        {sdg.sdgTargets.length}
+                      </span>
+                      <span className='my-auto'>
+                        {format('sdg-target.header')}
+                      </span>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className='text-xs text-dial-stratos uppercase'>
+                    <div className='px-6 py-2 flex gap-1'>
+                      <span className='badge-avatar w-7 h-7'>
+                        {useCases.length > 0 ? useCases.length : format('general.na')}
+                      </span>
+                      <span className='my-auto'>
+                        {useCases.length > 1 ? format('use-case.header') : format('use-case.label')}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
