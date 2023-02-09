@@ -8,8 +8,6 @@ import QueryNotification from '../../components/shared/QueryNotification'
 import GradientBackground from '../../components/shared/GradientBackground'
 import MobileNav from '../../components/main/MobileNav'
 import TabNav from '../../components/main/TabNav'
-import PageContent from '../../components/main/PageContent'
-import UseCaseHint from '../../components/filter/hint/UseCaseHint'
 import UseCaseFilter from '../../components/use-cases/UseCaseFilter'
 import UseCaseActiveFilter from '../../components/use-cases/UseCaseActiveFilter'
 import SearchFilter from '../../components/shared/SearchFilter'
@@ -39,17 +37,23 @@ const UseCases = () => {
       <GradientBackground />
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <TabNav activeTab='filter.entity.useCases' />
-      <MobileNav activeTab='filter.entity.useCases' />
       <ClientOnly>
-        <PageContent
-          activeTab='filter.entity.useCases'
-          filter={<UseCaseFilter />}
-          content={<UseCaseListQuery />}
-          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.useCases' />}
-          activeFilter={<UseCaseActiveFilter />}
-          hint={<UseCaseHint />}
-        />
+        <TabNav activeTab='filter.entity.useCases' />
+        <MobileNav activeTab='filter.entity.useCases' />
+        <div className='px-4 xl:px-16 py-4 xl:py-8 bg-dial-alice-blue'>
+          <div className='grid grid-cols-1 xl:grid-cols-7 gap-3 xl:gap-x-24 xl:gap-y-8'>
+            <div className='xl:col-span-2 row-span-2'>
+              <UseCaseFilter />
+            </div>
+            <div className='xl:col-span-5 my-auto'>
+              <SearchFilter {...{ search, setSearch }} hint='filter.entity.useCases' />
+            </div>
+            <div className='xl:col-span-5 flex flex-col gap-3'>
+              <UseCaseActiveFilter />
+              <UseCaseListQuery />
+            </div>
+          </div>
+        </div>
       </ClientOnly>
       <Footer />
     </>

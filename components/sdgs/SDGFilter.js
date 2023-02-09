@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import classNames from 'classnames'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { SDGFilterContext, SDGFilterDispatchContext } from '../context/SDGFilterContext'
@@ -23,9 +22,7 @@ const SDGFilter = () => {
       <div className='text-dial-stratos flex flex-col gap-3'>
         <div className='px-6 text-base'>
           <a
-            className={classNames(
-              'cursor-pointer font-semibold flex gap-2'
-            )}
+            className='cursor-pointer font-semibold flex gap-2'
             onClick={() => toggleHintDetail()}
           >
             <div className='w-6 my-auto image-block-hack'>

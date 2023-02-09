@@ -25,7 +25,7 @@ const ViewSwitcher = () => {
           </div>
           <a href='toggle-display' onClick={toggleDisplayType}>
             <Image
-              width={32}
+              width={28}
               height={24}
               alt='List view toggle'
               src='/assets/list/list.png'
@@ -48,7 +48,7 @@ const ViewSwitcher = () => {
           </a>
           <div className='relative'>
             <Image
-              width={32}
+              width={28}
               height={24}
               alt='List view toggle'
               src='/assets/list/list.png'
