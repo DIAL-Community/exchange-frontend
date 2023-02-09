@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 const HeroSection = () => {
   return (
-    <div className="max-w-catalog mx-auto" style={{ height: '650px' }}>
+    <div className="max-w-catalog mx-auto image-block-hack image-h-full-hack">
       <Image
         width={2120}
         height={650}
