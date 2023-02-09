@@ -144,18 +144,18 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot - candi
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__single-value css-qc6sy-singleValue"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
                           Dataset
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -180,11 +180,11 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot - candi
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             aria-hidden="true"

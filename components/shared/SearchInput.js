@@ -33,7 +33,7 @@ export const SearchInput = ({
         />
       </span>
       {onSearchIconClick && (
-        <span className='my-auto pl-1 border-l bg-white text-3xl text-dial-gray-dark border-dial-gray-dark'>
+        <span className='my-auto pl-1 border-l bg-white text-2xl text-dial-gray-dark border-dial-gray-dark'>
           <HiOutlineSearch
             data-testid='search-icon-button'
             onClick={onSearchIconClick}

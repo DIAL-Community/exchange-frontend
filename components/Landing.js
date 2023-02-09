@@ -37,7 +37,7 @@ const Landing = () => {
                 <div className='px-4 text-lg text-dial-blue-darkest md:text-xl xl:text-2xl xl:leading-landing'>
                   {format('landing.subtitle')}
                 </div>
-                <div className='px-4 font-bold text-dial-blue-darkest text-2xl md:text-3xl xl:text-4xl'>
+                <div className='px-4 font-bold text-dial-blue-darkest text-2xl md:text-2xl xl:text-4xl'>
                   <span className='block'>{format('landing.title.firstLine')}</span>
                   <span className='block'>{format('landing.title.secondLine')}</span>
                 </div>

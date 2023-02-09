@@ -27,10 +27,10 @@ const SDGList = (props) => {
         {
           displayType === 'list' &&
             <div className='grid grid-cols-1 lg:grid-cols-7 gap-4 my-3 px-4 text-sm'>
-              <div className='col-span-1 lg:col-span-3 font-semibold opacity-80'>
+              <div className='col-span-1 lg:col-span-3 font-semibold text-dial-sapphire opacity-80'>
                 {format('sdg.header').toUpperCase()}
               </div>
-              <div className='hidden lg:grid lg:col-span-4 font-semibold text-use-case opacity-80'>
+              <div className='hidden lg:grid lg:col-span-4 font-semibold text-dial-stratos opacity-80'>
                 {format('exampleOf.entity', { entity: format('useCase.header') }).toUpperCase()}
               </div>
             </div>

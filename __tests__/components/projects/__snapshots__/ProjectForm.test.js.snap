@@ -10,7 +10,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
       style="width: auto;"
     >
       <div
-        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--error Toastify--animate Toastify__slide-enter--top-center"
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--error Toastify__toast--close-on-click Toastify--animate Toastify__slide-enter--top-center"
         id="toastId"
         style="--nth: 1; --len: 1;"
       >
@@ -262,7 +262,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
       style="width: auto;"
     >
       <div
-        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify--animate Toastify__slide-enter--top-center"
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify__toast--close-on-click Toastify--animate Toastify__slide-enter--top-center"
         id="toastId"
         style="--nth: 1; --len: 1;"
       >
@@ -638,19 +638,19 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control react-select__control--menu-is-open css-19jej77-control"
+                      class="react-select__control react-select__control--menu-is-open css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r0:-placeholder"
                         >
                           Product
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -678,11 +678,11 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -705,15 +705,15 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                       </div>
                     </div>
                     <div
-                      class="react-select__menu css-1jtw5r9-menu"
+                      class="react-select__menu css-z4z3k3-menu"
                       id="react-select-:r0:-listbox"
                     >
                       <div
-                        class="react-select__menu-list css-4ljt47-MenuList"
+                        class="react-select__menu-list css-1n6sfyn-MenuList"
                       >
                         <div
                           aria-disabled="false"
-                          class="react-select__option react-select__option--is-focused css-llk42x-option"
+                          class="react-select__option react-select__option--is-focused css-1keuksx-option"
                           id="react-select-:r0:-option-0"
                           tabindex="-1"
                         >
@@ -721,7 +721,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                         </div>
                         <div
                           aria-disabled="false"
-                          class="react-select__option css-19r0ri3-option"
+                          class="react-select__option css-kzqu8f-option"
                           id="react-select-:r0:-option-1"
                           tabindex="-1"
                         >
@@ -729,7 +729,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                         </div>
                         <div
                           aria-disabled="false"
-                          class="react-select__option css-19r0ri3-option"
+                          class="react-select__option css-kzqu8f-option"
                           id="react-select-:r0:-option-2"
                           tabindex="-1"
                         >
@@ -762,19 +762,19 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control react-select__control--menu-is-open css-19jej77-control"
+                      class="react-select__control react-select__control--menu-is-open css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r1:-placeholder"
                         >
                           Organization
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -802,11 +802,11 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -829,15 +829,15 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                       </div>
                     </div>
                     <div
-                      class="react-select__menu css-1jtw5r9-menu"
+                      class="react-select__menu css-z4z3k3-menu"
                       id="react-select-:r1:-listbox"
                     >
                       <div
-                        class="react-select__menu-list css-4ljt47-MenuList"
+                        class="react-select__menu-list css-1n6sfyn-MenuList"
                       >
                         <div
                           aria-disabled="false"
-                          class="react-select__option react-select__option--is-focused css-llk42x-option"
+                          class="react-select__option react-select__option--is-focused css-1keuksx-option"
                           id="react-select-:r1:-option-0"
                           tabindex="-1"
                         >
@@ -845,7 +845,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                         </div>
                         <div
                           aria-disabled="false"
-                          class="react-select__option css-19r0ri3-option"
+                          class="react-select__option css-kzqu8f-option"
                           id="react-select-:r1:-option-1"
                           tabindex="-1"
                         >
@@ -1065,19 +1065,19 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r2:-placeholder"
                         >
                           Product
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -1103,11 +1103,11 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -1154,19 +1154,19 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r3:-placeholder"
                         >
                           Organization
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -1192,11 +1192,11 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -1430,19 +1430,19 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control react-select__control--menu-is-open css-19jej77-control"
+                      class="react-select__control react-select__control--menu-is-open css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r4:-placeholder"
                         >
                           Product
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -1470,11 +1470,11 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -1497,14 +1497,14 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                       </div>
                     </div>
                     <div
-                      class="react-select__menu css-1jtw5r9-menu"
+                      class="react-select__menu css-z4z3k3-menu"
                       id="react-select-:r4:-listbox"
                     >
                       <div
-                        class="react-select__menu-list css-4ljt47-MenuList"
+                        class="react-select__menu-list css-1n6sfyn-MenuList"
                       >
                         <div
-                          class="react-select__menu-notice react-select__menu-notice--no-options css-gg45go-NoOptionsMessage"
+                          class="react-select__menu-notice react-select__menu-notice--no-options css-1wlit7h-NoOptionsMessage"
                         >
                           No options
                         </div>
@@ -1535,19 +1535,19 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r5:-placeholder"
                         >
                           Organization
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -1573,11 +1573,11 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -1816,18 +1816,18 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__single-value css-qc6sy-singleValue"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
                           Product 1
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -1852,11 +1852,11 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -2112,19 +2112,19 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r7:-placeholder"
                         >
                           Product
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -2150,11 +2150,11 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -2201,19 +2201,19 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r8:-placeholder"
                         >
                           Organization
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -2239,11 +2239,11 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"

@@ -10,7 +10,7 @@ exports[`Unit tests for WorkflowForm component. Should display toast on submit -
       style="width: auto;"
     >
       <div
-        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--error Toastify--animate Toastify__slide-enter--top-center"
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--error Toastify__toast--close-on-click Toastify--animate Toastify__slide-enter--top-center"
         id="toastId"
         style="--nth: 1; --len: 1;"
       >
@@ -159,7 +159,7 @@ exports[`Unit tests for WorkflowForm component. Should display toast on submit -
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -267,7 +267,7 @@ exports[`Unit tests for WorkflowForm component. Should display toast on submit -
       style="width: auto;"
     >
       <div
-        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify--animate Toastify__slide-enter--top-center"
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify__toast--close-on-click Toastify--animate Toastify__slide-enter--top-center"
         id="toastId"
         style="--nth: 1; --len: 1;"
       >
@@ -407,7 +407,7 @@ exports[`Unit tests for WorkflowForm component. Should display toast on submit -
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -663,7 +663,7 @@ exports[`Unit tests for WorkflowForm component. Should render WorkflowForm compo
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -855,7 +855,7 @@ exports[`Unit tests for WorkflowForm component. Should show validation errors fo
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"

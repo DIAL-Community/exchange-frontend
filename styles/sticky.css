@@ -1,6 +1,8 @@
 @tailwind base;
+@tailwind components;
 @tailwind utilities;
-@layer utilities {
+
+@layer components {
   .header-min-height {
     /*
       Setting the minimum height of the header. The value is based on the minimum height used in the mobile menu.

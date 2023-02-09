@@ -50,19 +50,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a owned p
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r5:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -88,11 +88,11 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a owned p
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"
@@ -268,19 +268,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a pill an
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r2:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -306,11 +306,11 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a pill an
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"
@@ -645,19 +645,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r0:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -683,11 +683,11 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"
@@ -980,19 +980,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should remove a pill
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -1018,11 +1018,11 @@ exports[`Unit test for the ProjectDetailProducts component. Should remove a pill
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"
@@ -1148,19 +1148,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should render Produc
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r4:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -1186,11 +1186,11 @@ exports[`Unit test for the ProjectDetailProducts component. Should render Produc
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"

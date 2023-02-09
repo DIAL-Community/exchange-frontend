@@ -55,9 +55,9 @@ const SDGCard = ({ sdg, listType }) => {
         listType === 'list'
           ? (
             <div className={containerElementStyle}>
-              <div className='bg-white border border-dial-gray hover:border-transparent'>
+              <div className='bg-white shadow-lg border border-dial-gray hover:border-transparent'>
                 <div className='grid grid-cols-1 lg:grid-cols-7 gap-x-4 py-4 px-4'>
-                  <div className={`${nameColSpan()} flex gap-2`}>
+                  <div className={`${nameColSpan()} flex text-dial-sapphire gap-2`}>
                     <div className='w-10 my-auto'>
                       <Image
                         height={1500}
@@ -70,7 +70,7 @@ const SDGCard = ({ sdg, listType }) => {
                       {sdg.name}
                     </div>
                   </div>
-                  <div className={`${caseColSpan()} my-auto line-clamp-1`}>
+                  <div className={`${caseColSpan()} my-auto line-clamp-1 text-dial-stratos`}>
                     { useCases && useCases.length === 0 && format('general.na') }
                     {
                       useCases && useCases.length > 0 &&

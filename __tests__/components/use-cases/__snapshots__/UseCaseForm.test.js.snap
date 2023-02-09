@@ -10,7 +10,7 @@ exports[`Unit tests for UseCaseForm component. Should display failure toast on s
       style="width: auto;"
     >
       <div
-        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--error Toastify--animate Toastify__slide-enter--top-center"
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--error Toastify__toast--close-on-click Toastify--animate Toastify__slide-enter--top-center"
         id="toastId"
         style="--nth: 1; --len: 1;"
       >
@@ -160,18 +160,18 @@ exports[`Unit tests for UseCaseForm component. Should display failure toast on s
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__single-value css-qc6sy-singleValue"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
                           Test Sector
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -196,11 +196,11 @@ exports[`Unit tests for UseCaseForm component. Should display failure toast on s
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -247,18 +247,18 @@ exports[`Unit tests for UseCaseForm component. Should display failure toast on s
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__single-value css-qc6sy-singleValue"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
                           Draft
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -283,11 +283,11 @@ exports[`Unit tests for UseCaseForm component. Should display failure toast on s
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -333,7 +333,7 @@ exports[`Unit tests for UseCaseForm component. Should display failure toast on s
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -441,7 +441,7 @@ exports[`Unit tests for UseCaseForm component. Should display success toast on s
       style="width: auto;"
     >
       <div
-        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify--animate Toastify__slide-enter--top-center"
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify__toast--close-on-click Toastify--animate Toastify__slide-enter--top-center"
         id="toastId"
         style="--nth: 1; --len: 1;"
       >
@@ -582,18 +582,18 @@ exports[`Unit tests for UseCaseForm component. Should display success toast on s
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__single-value css-qc6sy-singleValue"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
                           Test Sector
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -618,11 +618,11 @@ exports[`Unit tests for UseCaseForm component. Should display success toast on s
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -669,18 +669,18 @@ exports[`Unit tests for UseCaseForm component. Should display success toast on s
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__single-value css-qc6sy-singleValue"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
                           Draft
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -705,11 +705,11 @@ exports[`Unit tests for UseCaseForm component. Should display success toast on s
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -755,7 +755,7 @@ exports[`Unit tests for UseCaseForm component. Should display success toast on s
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -980,19 +980,19 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r0:-placeholder"
                         >
                           Sector
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -1018,11 +1018,11 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -1069,18 +1069,18 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__single-value css-qc6sy-singleValue"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
                           Draft
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -1105,11 +1105,11 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -1155,7 +1155,7 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -1380,19 +1380,19 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r4:-placeholder"
                         >
                           Sector
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -1418,11 +1418,11 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -1474,19 +1474,19 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r5:-placeholder"
                         >
                           Maturity
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -1512,11 +1512,11 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -1567,7 +1567,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -1770,19 +1770,19 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r2:-placeholder"
                         >
                           Sector
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -1808,11 +1808,11 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -1864,19 +1864,19 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r3:-placeholder"
                         >
                           Maturity
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -1902,11 +1902,11 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             class="text-2xl"
@@ -1957,7 +1957,7 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"

@@ -27,36 +27,41 @@ const Footer = () => {
     <footer>
       <Consent />
       <div className='max-w-catalog mx-auto bg-dial-blue-chalk text-dial-stratos'>
-        <div className='flex flex-col lg:flex-row gap-x-24 gap-y-8 py-12 px-20'>
-          <div className='w-full lg:w-3/12 flex flex-col gap-y-8'>
+        <div className='flex flex-col xl:flex-row gap-x-8 2xl:gap-x-24 gap-y-4 2xl:gap-y-8 py-8 xl:py-12 px-4 xl:px-20'>
+          <div className='w-full xl:w-3/12 flex flex-col gap-y-4 xl:gap-y-8'>
             <div className='text-xl font-semibold'>{format('footer.connectWithUs')}</div>
             <hr className='border border-footer-delimiter' />
             <div className='text-base'>
               {format('footer.signUpEmailAddress')}
             </div>
             <div>
-              <button type='submit' className='py-2 px-5 rounded-md bg-dial-yellow font-semibold'>
-                {format('app.submit')}
-              </button>
+              <a
+                href='//digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'
+                className='py-2 px-5 rounded-md bg-dial-yellow font-semibold'
+                target='_blank'
+                rel='noreferrer'
+              >
+                {format('landing.newsletter')}
+              </a>
             </div>
           </div>
-          <div className='w-full lg:w-2/12 flex flex-col gap-y-8'>
+          <div className='w-full xl:w-2/12 flex flex-col gap-y-4 xl:gap-y-8'>
             <div className='text-xl font-semibold'>{format('footer.followUs')}</div>
             <hr className='border border-footer-delimiter' />
             <div className='flex gap-4'>
               <a href='//twitter.com/DIAL_Community' target='_blank' rel='noreferrer'>
-                <FaTwitter size={32} />
+                <FaTwitter size='1.5em' />
               </a>
               <a href='//www.linkedin.com/company/digital-impact-alliance/' target='_blank' rel='noreferrer'>
-                <FaLinkedinIn size={32} />
+                <FaLinkedinIn size='1.5em' />
               </a>
             </div>
           </div>
-          <div className='w-full lg:w-7/12 flex flex-col gap-y-8'>
+          <div className='w-full xl:w-7/12 flex flex-col gap-y-4 xl:gap-y-8'>
             <div className='text-xl font-semibold'>{format('footer.partnersAndSupporters')}</div>
             <hr className='border border-footer-delimiter' />
-            <div className='flex gap-4 place-content-around'>
-              <div className='w-36 bg-white rounded-md border-dial-white-beech-light flex place-content-around'>
+            <div className='flex flex-col xl:flex-row gap-4 place-content-around self-center xl:self-start'>
+              <div className='w-36 h-20 bg-white rounded-md flex'>
                 <div className='self-center px-4'>
                   <a href='//unfoundation.org/' target='_blank' rel='noreferrer'>
                     <Image
@@ -68,7 +73,7 @@ const Footer = () => {
                   </a>
                 </div>
               </div>
-              <div className='w-36 bg-white rounded-md border-dial-white-beech-light flex place-content-around'>
+              <div className='w-36 h-20 bg-white rounded-md flex'>
                 <div className='self-center px-4'>
                   <a href='//www.gatesfoundation.org/' target='_blank' rel='noreferrer'>
                     <Image
@@ -80,7 +85,7 @@ const Footer = () => {
                   </a>
                 </div>
               </div>
-              <div className='w-36 bg-white rounded-md border-dial-white-beech-light flex place-content-around'>
+              <div className='w-36 h-20 bg-white rounded-md flex'>
                 <div className='self-center px-10'>
                   <a href='//www.sida.se/' target='_blank' rel='noreferrer'>
                     <Image
@@ -92,7 +97,7 @@ const Footer = () => {
                   </a>
                 </div>
               </div>
-              <div className='w-36 bg-white rounded-md border-dial-white-beech-light flex place-content-around'>
+              <div className='w-36 h-20 bg-white rounded-md flex'>
                 <div className='self-center px-12 mt-3'>
                   <a
                     href='//www.gov.uk/government/organisations/foreign-commonwealth-development-office'
@@ -107,7 +112,7 @@ const Footer = () => {
                   </a>
                 </div>
               </div>
-              <div className='w-36 bg-white rounded-md border-dial-white-beech-light flex place-content-around'>
+              <div className='w-36 h-20 bg-white rounded-md flex'>
                 <div className='self-center px-2'>
                   <a href='//www.giz.de/' target='_blank' rel='noreferrer'>
                     <Image
@@ -119,7 +124,7 @@ const Footer = () => {
                   </a>
                 </div>
               </div>
-              <div className='w-36 bg-white rounded-md border-dial-white-beech-light flex place-content-around'>
+              <div className='w-36 h-20 bg-white rounded-md flex'>
                 <div className='self-center px-1'>
                   <a href='//www.bmz.de/' target='_blank' rel='noreferrer'>
                     <Image

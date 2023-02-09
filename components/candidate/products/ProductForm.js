@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -31,6 +31,8 @@ const ProductForm = ({ candidateProduct }) => {
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
+
+  const captchaRef = useRef(null)
 
   const slug = candidateProduct?.slug ?? ''
 
@@ -66,15 +68,15 @@ const ProductForm = ({ candidateProduct }) => {
     }
   })
 
-  const { handleSubmit, register, control, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, setValue, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
       name: candidateProduct?.name,
       description: candidateProduct?.description,
-      repository: candidateProduct?.repository,
-      website: candidateProduct?.website,
+      repository: candidateProduct?.repository || '',
+      website: candidateProduct?.website || '',
       submitterEmail: candidateProduct?.submitterEmail,
       commercialProduct: candidateProduct?.commercialProduct ? commercialLicenseType : ossLicenseType,
       captcha: null
@@ -85,8 +87,10 @@ const ProductForm = ({ candidateProduct }) => {
     if (user) {
       setMutating(true)
 
+      const captcha = captchaRef.current.getValue()
+
       const { userEmail, userToken } = user
-      const { name, description, submitterEmail, captcha, website, repository, commercialProduct } = data
+      const { name, description, submitterEmail, website, repository, commercialProduct } = data
 
       const variables = {
         slug,
@@ -117,54 +121,64 @@ const ProductForm = ({ candidateProduct }) => {
     router.push(nextPath)
   }
 
+  // Building breadcrumbs
+  const parentBreadcrumb = () =>
+    isAdminUser
+      ? (
+        <Link href='/candidate/products'>
+          <a className='text-dial-blue'>
+            {format('candidateProduct.label')}
+          </a>
+        </Link>
+      )
+      : (
+        <Link href='/products'>
+          <a className='text-dial-blue'>
+            {format('product.header')}
+          </a>
+        </Link>
+      )
+
+  const childBreadcrumb = (candidateProduct) =>
+    !candidateProduct || !isAdminUser
+      ? (
+        <span className='text-dial-gray-dark'>
+          {format('app.create')}
+        </span>
+      )
+      : (
+        <>
+          <Link href={`/candidate/products/${candidateProduct.slug}`}>
+            <a className='text-dial-blue'>
+              {candidateProduct?.name}
+            </a>
+          </Link>
+          {BREADCRUMB_SEPARATOR}
+          <span className='text-dial-gray-dark'>
+            {format('app.edit')}
+          </span>
+        </>
+      )
+
   const generateBreadcrumb = (candidateProduct) => (
     <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
       <Link href='/'>
-        <a className='inline text-dial-blue h5'>{format('app.home')}</a>
+        <a className='inline text-dial-blue h5'>
+          {format('app.home')}
+        </a>
       </Link>
       <div className='inline h5'>
         {BREADCRUMB_SEPARATOR}
-        {
-          isAdminUser
-            ? (
-              <Link href='/candidate/products'>
-                <a className='text-dial-blue'>
-                  {format('candidateProduct.label')}
-                </a>
-              </Link>
-            )
-            : (
-              <Link href='/products'>
-                <a className='text-dial-blue'>
-                  {format('product.header')}
-                </a>
-              </Link>
-            )
-        }
+        {parentBreadcrumb()}
         {BREADCRUMB_SEPARATOR}
-        {!candidateProduct || !isAdminUser
-          ? (
-            <span className='text-dial-gray-dark'>
-              {format('app.create')}
-            </span>
-          )
-          : (
-            <>
-              <Link href={`/candidate/products/${candidateProduct.slug}`}>
-                <a className='text-dial-blue'>
-                  {candidateProduct?.name}
-                </a>
-              </Link>
-              {BREADCRUMB_SEPARATOR}
-              <span className='text-dial-gray-dark'>
-                {format('app.edit')}
-              </span>
-            </>
-          )
-        }
+        {childBreadcrumb(candidateProduct)}
       </div>
     </div>
   )
+
+  useEffect(() => {
+    register('captcha', { required: 'This field is required' })
+  }, [register])
 
   return user ? (
     <div className='flex flex-col'>
@@ -262,12 +276,11 @@ const ProductForm = ({ candidateProduct }) => {
                       )}
                     />
                   </div>
-                  <Controller
-                    name='captcha'
-                    control={control}
-                    rules={{ required: format('validation.required') }}
-                    render={({ field: { onChange, ref } }) => {
-                      return (<ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} ref={ref} onChange={onChange} />)
+                  <ReCAPTCHA
+                    sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+                    ref={captchaRef}
+                    onChange={value => {
+                      setValue('captcha', value, { shouldValidate: true })
                     }}
                   />
                   {errors.captcha && <ValidationError value={errors.captcha?.message} />}
