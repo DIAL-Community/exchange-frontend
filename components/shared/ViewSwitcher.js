@@ -1,11 +1,8 @@
-import { useCallback, useContext } from 'react'
-import { useIntl } from 'react-intl'
+import Image from 'next/image'
+import { useContext } from 'react'
 import { FilterContext } from '../context/FilterContext'
 
 const ViewSwitcher = () => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
   const { displayType, setDisplayType } = useContext(FilterContext)
 
   const toggleDisplayType = (e) => {
@@ -14,42 +11,51 @@ const ViewSwitcher = () => {
   }
 
   return (
-    <div className='flex flex-col md:flex-row'>
-      <div className='text-xs my-auto font-semibold text-dial-gray-dark opacity-50'>
-        {format('view.switch.title')}
-      </div>
-      <div className='my-auto pt-2 pb-3 px-2 flex flex-row'>
-        {
-          displayType === 'card' &&
-          <>
-            <img
-              alt={format('image.alt.logoFor', { name: format('view.active.card') })}
-              className='mr-2 h-6' src='/icons/card-active/card-active.png'
+    <div className='flex gap-4'>
+      {
+        displayType === 'card' &&
+        <>
+          <div className='relative'>
+            <Image
+              width={24}
+              height={24}
+              alt='Card view toggle'
+              src='/assets/card/card.png'
             />
-            <a href='toggle-display' onClick={toggleDisplayType}>
-              <img
-                alt={format('image.alt.logoFor', { name: format('view.inactive.list') })}
-                className='h-6 cursor-pointer' src='/icons/list-inactive/list-inactive.png'
-              />
-            </a>
-          </>
-        }
-        {
-          displayType === 'list' &&
-          <>
-            <a className='mr-2' href='toggle-display' onClick={toggleDisplayType}>
-              <img
-                alt={format('image.alt.logoFor', { name: format('view.inactive.card') })}
-                className='h-6 cursor-pointer' src='/icons/card-inactive/card-inactive.png'
-              />
-            </a>
-            <img
-              alt={format('image.alt.logoFor', { name: format('view.active.list') })}
-              className='h-6' src='/icons/list-active/list-active.png'
+          </div>
+          <a href='toggle-display' onClick={toggleDisplayType}>
+            <Image
+              width={32}
+              height={24}
+              alt='List view toggle'
+              src='/assets/list/list.png'
+              className='opacity-20'
             />
-          </>
-        }
-      </div>
+          </a>
+        </>
+      }
+      {
+        displayType === 'list' &&
+        <>
+          <a href='toggle-display' onClick={toggleDisplayType}>
+            <Image
+              width={24}
+              height={24}
+              alt='Card view toggle'
+              src='/assets/card/card.png'
+              className='opacity-20'
+            />
+          </a>
+          <div className='relative'>
+            <Image
+              width={32}
+              height={24}
+              alt='List view toggle'
+              src='/assets/list/list.png'
+            />
+          </div>
+        </>
+      }
     </div>
   )
 }

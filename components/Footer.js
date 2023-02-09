@@ -60,7 +60,7 @@ const Footer = () => {
           <div className='w-full xl:w-7/12 flex flex-col gap-y-4 xl:gap-y-8'>
             <div className='text-xl font-semibold'>{format('footer.partnersAndSupporters')}</div>
             <hr className='border border-footer-delimiter' />
-            <div className='flex flex-col xl:flex-row gap-4 place-content-around self-center xl:self-start'>
+            <div className='flex flex-row flex-wrap gap-4 self-center xl:self-start'>
               <div className='w-36 h-20 bg-white rounded-md flex'>
                 <div className='self-center px-4'>
                   <a href='//unfoundation.org/' target='_blank' rel='noreferrer'>

@@ -220,11 +220,11 @@ const SearchFilter = ({
             {resultCounts[hint]}
           </span>
         </div>
-        <div className='ml-auto flex gap-3'>
-          <div className='mt-auto'>
+        <div className='ml-auto flex flex-wrap gap-2 xl:gap-12'>
+          <div className='ml-auto md:mt-8'>
             {switchView && <ViewSwitcher />}
           </div>
-          <div className='intro-overview-search flex gap-x-3'>
+          <div className='ml-auto intro-overview-search flex gap-x-3'>
             <label className='my-auto w-80'>
               <span className='text-sm text-dial-stratos font-semibold'>
                 {format('search.input.label', { entity: format(hint) })}
