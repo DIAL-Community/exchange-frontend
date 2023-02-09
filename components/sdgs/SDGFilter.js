@@ -1,10 +1,9 @@
+import Image from 'next/image'
 import classNames from 'classnames'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { BsInfoCircle } from 'react-icons/bs'
 import { SDGFilterContext, SDGFilterDispatchContext } from '../context/SDGFilterContext'
 import { SDGAutocomplete } from '../filter/element/SDG'
-import Image from 'next/image'
 
 const SDGFilter = () => {
   const { formatMessage } = useIntl()
