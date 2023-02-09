@@ -105,7 +105,7 @@ const SDGCard = ({ sdg, listType }) => {
                   </div>
                   <hr />
                   <div className='text-xs text-dial-stratos font-semibold uppercase'>
-                    <div className='px-6 py-2 flex gap-1'>
+                    <div className='px-6 py-2 flex gap-2'>
                       <span className='badge-avatar w-7 h-7'>
                         {sdg.sdgTargets.length}
                       </span>
@@ -116,7 +116,7 @@ const SDGCard = ({ sdg, listType }) => {
                   </div>
                   <hr />
                   <div className='text-xs text-dial-stratos uppercase'>
-                    <div className='px-6 py-2 flex gap-1'>
+                    <div className='px-6 py-2 flex gap-2'>
                       <span className='badge-avatar w-7 h-7'>
                         {useCases.length > 0 ? useCases.length : format('general.na')}
                       </span>

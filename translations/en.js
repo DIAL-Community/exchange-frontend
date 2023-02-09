@@ -521,7 +521,7 @@ export const en = {
   'general.ready-to-download': 'Your document is ready. Click to download',
 
   'view.switch.title': 'Switch View',
-  'search.input.label': 'Enter Search Term',
+  'search.input.label': 'Search in {entity}',
   'sdg.sdgTargets': 'SDG Targets',
   'sdg.useCases': 'Use Cases',
   'sdg.target.title': 'Target',

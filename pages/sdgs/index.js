@@ -10,6 +10,7 @@ import { SDGFilterContext, SDGFilterDispatchContext } from '../../components/con
 import ClientOnly from '../../lib/ClientOnly'
 import MobileNav from '../../components/main/MobileNav'
 import TabNav from '../../components/main/TabNav'
+import SDGActiveFilter from '../../components/sdgs/SDGActiveFilter'
 
 const SDGs = () => {
   const { search } = useContext(SDGFilterContext)
@@ -31,7 +32,8 @@ const SDGs = () => {
             <div className='xl:col-span-5 my-auto'>
               <SearchFilter {...{ search, setSearch }} createNew={false} hint='filter.entity.sdgs' />
             </div>
-            <div className='xl:col-span-5'>
+            <div className='xl:col-span-5 flex flex-col gap-3'>
+              <SDGActiveFilter />
               <SDGListQuery />
             </div>
           </div>
