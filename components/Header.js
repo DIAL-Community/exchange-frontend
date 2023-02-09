@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import cookie from 'react-cookies'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
@@ -128,7 +129,12 @@ const Header = ({ isOnAuthPage = false }) => {
       <div className='flex flex-wrap header-min-height px-8 xl:px-16'>
         <Link href='/'>
           <a className='flex py-6'>
-            <img src='/assets/exchange/exchange-logo.png' alt='Digital Impact Exchage Logo.' />
+            <Image
+              width={154}
+              height={44}
+              src='/assets/exchange/exchange-logo.png'
+              alt='Digital Impact Exchage Logo.'
+            />
           </a>
         </Link>
         <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block xl:hidden'>
