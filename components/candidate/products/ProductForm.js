@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -21,7 +21,7 @@ import { getProductLicenseType } from '../../../lib/utilities'
 
 const ProductForm = ({ candidateProduct }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, { ...values })
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
 
@@ -177,8 +177,8 @@ const ProductForm = ({ candidateProduct }) => {
   )
 
   useEffect(() => {
-    register('captcha', { required: 'This field is required' })
-  }, [register])
+    register('captcha', { required: format('validation.required') })
+  }, [register, format])
 
   return user ? (
     <div className='flex flex-col'>
