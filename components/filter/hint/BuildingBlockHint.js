@@ -12,10 +12,10 @@ const BuildingBlockHint = () => {
       <div className='text-xl font-semibold'>
         {format('buildingBlock.label')}
       </div>
-      <div className='text-base px-8'>
+      <div className='text-base'>
         {format('buildingBlock.hint.subtitle')}
       </div>
-      <div className='ml-20'>
+      <div className='mx-auto'>
         <Image
           height={200}
           width={200}
