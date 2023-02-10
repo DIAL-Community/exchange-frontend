@@ -445,7 +445,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
     </div>
   </header>
   <div
-    class="max-w-catalog mx-auto pr-2"
+    class="max-w-catalog mx-auto"
   >
     <div
       class="flex flex-col"
@@ -1730,7 +1730,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
     </div>
   </header>
   <div
-    class="max-w-catalog mx-auto pr-2"
+    class="max-w-catalog mx-auto"
   >
     <div
       class="h-[60vh]"

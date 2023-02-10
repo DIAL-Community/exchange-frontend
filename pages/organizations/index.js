@@ -41,6 +41,7 @@ const Organizations = () => {
         <TabNav activeTab='filter.entity.organizations' />
         <MobileNav activeTab='filter.entity.organizations' />
         <PageContent
+          activeTab='filter.entity.organizations'
           filter={<OrganizationFilter />}
           content={<OrganizationListQuery />}
           searchFilter={

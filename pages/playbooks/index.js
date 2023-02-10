@@ -30,6 +30,7 @@ const Playbooks = () => {
         <TabNav activeTab='filter.entity.playbooks' />
         <MobileNav activeTab='filter.entity.playbooks' />
         <PageContent
+          activeTab='filter.entity.playbooks'
           filter={<PlaybookFilter />}
           content={<PlaybookListQuery />}
           searchFilter={

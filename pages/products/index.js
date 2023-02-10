@@ -43,6 +43,7 @@ const Products = () => {
         <TabNav activeTab='filter.entity.products' />
         <MobileNav activeTab='filter.entity.products' />
         <PageContent
+          activeTab='filter.entity.products'
           filter={<ProductFilter />}
           content={<ProductListQuery />}
           searchFilter={

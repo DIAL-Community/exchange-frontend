@@ -44,6 +44,7 @@ const BuildingBlocks = () => {
         <TabNav activeTab='filter.entity.buildingBlocks' />
         <MobileNav activeTab='filter.entity.buildingBlocks' />
         <PageContent
+          activeTab='filter.entity.buildingBlocks'
           filter={<BuildingBlockFilter />}
           content={<BuildingBlockListQuery />}
           searchFilter={

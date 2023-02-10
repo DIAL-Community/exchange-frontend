@@ -42,6 +42,7 @@ const Projects = () => {
         <TabNav activeTab='filter.entity.projects' />
         <MobileNav activeTab='filter.entity.projects' />
         <PageContent
+          activeTab='filter.entity.projects'
           filter={<ProjectFilter />}
           content={<ProjectListQuery />}
           searchFilter={

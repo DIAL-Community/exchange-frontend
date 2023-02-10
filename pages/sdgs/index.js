@@ -26,6 +26,7 @@ const SDGs = () => {
         <TabNav activeTab='filter.entity.sdgs' />
         <MobileNav activeTab='filter.entity.sdgs' />
         <PageContent
+          activeTab='filter.entity.sdgs'
           filter={<SDGFilter />}
           content={<SDGListQuery />}
           searchFilter={

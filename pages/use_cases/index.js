@@ -43,6 +43,7 @@ const UseCases = () => {
         <TabNav activeTab='filter.entity.useCases' />
         <MobileNav activeTab='filter.entity.useCases' />
         <PageContent
+          activeTab='filter.entity.useCases'
           filter={<UseCaseFilter />}
           content={<UseCaseListQuery />}
           searchFilter={

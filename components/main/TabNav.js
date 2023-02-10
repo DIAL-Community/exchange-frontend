@@ -35,7 +35,7 @@ const TabNav = (props) => {
           </div>
         </div>
       </div>
-      <div className='hidden md:block relative md:sticky bg-white md:sticky-filter max-w-catalog mx-auto'>
+      <div className='hidden md:block md:sticky bg-white md:sticky-filter max-w-catalog mx-auto z-30'>
         <div className='w-full'>
           <ul className='flex flex-row mb-0 list-none pt-2 gap-x-2'>
             {
