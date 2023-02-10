@@ -3,6 +3,7 @@ import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { UseCaseFilterContext, UseCaseFilterDispatchContext } from '../context/UseCaseFilterContext'
 import { SDGAutocomplete } from '../filter/element/SDG'
+import UseCaseHint from '../filter/hint/UseCaseHint'
 import Checkbox from '../shared/Checkbox'
 
 const UseCaseFilter = () => {
@@ -25,7 +26,7 @@ const UseCaseFilter = () => {
   return (
     <div className='py-6 bg-dial-solitude rounded-lg text-dial-stratos'>
       <div className='text-dial-stratos flex flex-col gap-3'>
-        <div className='px-6 text-base'>
+        <div className='px-6 text-base flex'>
           <a
             className='cursor-pointer font-semibold flex gap-2'
             onClick={() => toggleHintDetail()}
@@ -45,7 +46,7 @@ const UseCaseFilter = () => {
         </div>
         <hr className={`${openingDetail ? 'block' : 'hidden'} border-b border-dial-white-beech`} />
         <div className={`px-6 hidden ${openingDetail ? ' slide-down' : 'slide-up'}`}>
-          {format('useCase.hint.description')}
+          <UseCaseHint />
         </div>
         <hr className='border-b border-dial-white-beech' />
         <div className='px-6 text-xl'>

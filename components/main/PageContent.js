@@ -1,24 +1,17 @@
-import LeftDrawer from './LeftDrawer'
-import MobileDrawer from './MobileDrawer'
-
-const PageContent = ({ activeTab, filter, content, searchFilter, activeFilter, hint }) => {
+const PageContent = ({ filter, content, searchFilter, activeFilter }) => {
   return (
-    <div className='flex'>
-      {
-        // Left drawer with filters. Pages will pass filter object to the left drawer and render it.
-        // This will be hidden on phone.
-      }
-      <LeftDrawer filter={filter} hint={hint} />
-      <div className='w-full h-full'>
-        {
-          // searchFilter: SearchFilter, search bar section. Pages will pass hint of the active nav.
-          // activeFilter: Each component ActiveFilter (OrganizationActiveFilter, ProductActiveFilter, etc).
-          // content: Main content of the page (OrganizationList, ProductList, etc).
-        }
-        {searchFilter}
-        {activeFilter}
-        <MobileDrawer filter={filter} hint={hint} activeTab={activeTab} />
-        {content}
+    <div className='px-4 xl:px-16 py-4 xl:py-8 bg-dial-alice-blue'>
+      <div className='grid grid-cols-1 xl:grid-cols-7 gap-3 xl:gap-x-24 xl:gap-y-8'>
+        <div className='xl:col-span-2 row-span-2'>
+          {filter}
+        </div>
+        <div className='xl:col-span-5 my-auto'>
+          {searchFilter}
+        </div>
+        <div className='xl:col-span-5 flex flex-col gap-3'>
+          {activeFilter}
+          {content}
+        </div>
       </div>
     </div>
   )

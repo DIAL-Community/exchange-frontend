@@ -11,6 +11,7 @@ import ClientOnly from '../../lib/ClientOnly'
 import MobileNav from '../../components/main/MobileNav'
 import TabNav from '../../components/main/TabNav'
 import SDGActiveFilter from '../../components/sdgs/SDGActiveFilter'
+import PageContent from '../../components/main/PageContent'
 
 const SDGs = () => {
   const { search } = useContext(SDGFilterContext)
@@ -24,20 +25,18 @@ const SDGs = () => {
       <ClientOnly>
         <TabNav activeTab='filter.entity.sdgs' />
         <MobileNav activeTab='filter.entity.sdgs' />
-        <div className='px-4 xl:px-16 py-4 xl:py-8 bg-dial-alice-blue'>
-          <div className='grid grid-cols-1 xl:grid-cols-7 gap-3 xl:gap-x-24 xl:gap-y-8'>
-            <div className='xl:col-span-2 row-span-2'>
-              <SDGFilter />
-            </div>
-            <div className='xl:col-span-5 my-auto'>
-              <SearchFilter {...{ search, setSearch }} createNew={false} hint='filter.entity.sdgs' />
-            </div>
-            <div className='xl:col-span-5 flex flex-col gap-3'>
-              <SDGActiveFilter />
-              <SDGListQuery />
-            </div>
-          </div>
-        </div>
+        <PageContent
+          filter={<SDGFilter />}
+          content={<SDGListQuery />}
+          searchFilter={
+            <SearchFilter
+              {...{ search, setSearch }}
+              createNew={false}
+              hint='filter.entity.sdgs'
+            />
+          }
+          activeFilter={<SDGActiveFilter />}
+        />
       </ClientOnly>
       <Footer />
     </>

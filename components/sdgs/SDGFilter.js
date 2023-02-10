@@ -3,6 +3,7 @@ import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { SDGFilterContext, SDGFilterDispatchContext } from '../context/SDGFilterContext'
 import { SDGAutocomplete } from '../filter/element/SDG'
+import SDGHint from '../filter/hint/SDGHint'
 
 const SDGFilter = () => {
   const { formatMessage } = useIntl()
@@ -20,7 +21,7 @@ const SDGFilter = () => {
   return (
     <div className='py-6 bg-dial-solitude rounded-lg'>
       <div className='text-dial-stratos flex flex-col gap-3'>
-        <div className='px-6 text-base'>
+        <div className='px-6 text-base flex'>
           <a
             className='cursor-pointer font-semibold flex gap-2'
             onClick={() => toggleHintDetail()}
@@ -40,7 +41,7 @@ const SDGFilter = () => {
         </div>
         <hr className={`${openingDetail ? 'block' : 'hidden'} border-b border-dial-white-beech`} />
         <div className={`px-6 hidden ${openingDetail ? ' slide-down' : 'slide-up'}`}>
-          {format('sdg.hint.description')}
+          <SDGHint />
         </div>
         <hr className='border-b border-dial-white-beech' />
         <div className='px-6'>

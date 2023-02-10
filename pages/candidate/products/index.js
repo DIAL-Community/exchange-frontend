@@ -35,7 +35,6 @@ const Products = () => {
           <MobileNav activeTab='filter.entity.candidateProducts' />
           <ClientOnly>
             <PageContent
-              activeTab='filter.entity.candidateProducts'
               content={<ProductListQuery />}
               searchFilter={
                 <SearchFilter

@@ -35,7 +35,6 @@ const Datasets = () => {
           <MobileNav activeTab='filter.entity.candidateDatasets' />
           <ClientOnly>
             <PageContent
-              activeTab='filter.entity.candidateDatasets'
               content={<DatasetListQuery />}
               searchFilter={
                 <SearchFilter

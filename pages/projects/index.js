@@ -9,7 +9,6 @@ import GradientBackground from '../../components/shared/GradientBackground'
 import TabNav from '../../components/main/TabNav'
 import MobileNav from '../../components/main/MobileNav'
 import PageContent from '../../components/main/PageContent'
-import ProjectHint from '../../components/filter/hint/ProjectHint'
 import ProjectFilter from '../../components/projects/ProjectFilter'
 import ProjectActiveFilter from '../../components/projects/ProjectActiveFilter'
 import ProjectListQuery from '../../components/projects/ProjectList'
@@ -39,16 +38,19 @@ const Projects = () => {
       <GradientBackground />
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <TabNav activeTab='filter.entity.projects' />
-      <MobileNav activeTab='filter.entity.projects' />
       <ClientOnly>
+        <TabNav activeTab='filter.entity.projects' />
+        <MobileNav activeTab='filter.entity.projects' />
         <PageContent
-          activeTab='filter.entity.projects'
           filter={<ProjectFilter />}
           content={<ProjectListQuery />}
-          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.projects' />}
+          searchFilter={
+            <SearchFilter
+              {...{ search, setSearch }}
+              hint='filter.entity.projects'
+            />
+          }
           activeFilter={<ProjectActiveFilter />}
-          hint={<ProjectHint />}
         />
       </ClientOnly>
       <Footer />

@@ -1,58 +1,59 @@
-import { useCallback, useContext } from 'react'
+import Image from 'next/image'
+import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { BsQuestionCircleFill } from 'react-icons/bs'
-import { FilterContext } from '../context/FilterContext'
 import { WorkflowFilterContext, WorkflowFilterDispatchContext } from '../context/WorkflowFilterContext'
 import { SDGAutocomplete } from '../filter/element/SDG'
 import { UseCaseAutocomplete } from '../filter/element/UseCase'
+import WorkflowHint from '../filter/hint/WorkflowHint'
 
 const WorkflowFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { setHintDisplayed } = useContext(FilterContext)
-
   const { sdgs, useCases } = useContext(WorkflowFilterContext)
   const { setSDGs, setUseCases } = useContext(WorkflowFilterDispatchContext)
 
+  const [openingDetail, setOpeningDetail] = useState(false)
+
+  const toggleHintDetail = () => {
+    setOpeningDetail(!openingDetail)
+  }
+
   return (
-    <div className='px-4 py-4'>
-      <div className='text-dial-gray-dark'>
-        <div className='px-2 mb-4 text-base'>
+    <div className='py-6 bg-dial-solitude rounded-lg text-dial-stratos'>
+      <div className='text-dial-stratos flex flex-col gap-3'>
+        <div className='px-6 text-base flex'>
           <a
-            className={`
-              cursor-pointer font-semibold gap-1 hover:underline
-              decoration-2 decoration-dial-yellow
-            `}
-            onClick={() => setHintDisplayed(true)}
+            className='cursor-pointer font-semibold flex gap-2'
+            onClick={() => toggleHintDetail()}
           >
+            <div className='w-6 my-auto image-block-hack'>
+              <Image
+                width={34}
+                height={34}
+                src='/assets/info.png'
+                alt='Informational hint'
+              />
+            </div>
             <span className='mr-1'>
               {format('filter.hint.text')} {format('workflow.label')}
             </span>
-            <BsQuestionCircleFill className='inline text-xl mb-1 fill-dial-yellow' />
           </a>
         </div>
-        <div className='text-sm text-dial-gray-dark flex flex-row'>
-          <div className='text-xl px-2 pb-3'>
-            {format('filter.framework.title').toUpperCase()}
-          </div>
+        <hr className={`${openingDetail ? 'block' : 'hidden'} border-b border-dial-white-beech`} />
+        <div className={`px-6 hidden ${openingDetail ? ' slide-down' : 'slide-up'}`}>
+          <WorkflowHint />
         </div>
-        <div className='text-sm text-dial-gray-dark flex flex-row'>
-          <div className='pl-2 pr-4 pb-2'>
-            {format('filter.framework.subTitle', { entity: format('workflow.header') })}
-          </div>
+        <hr className='border-b border-dial-white-beech' />
+        <div className='text-xl px-6'>
+          {format('filter.framework.title').toUpperCase()}
         </div>
-        <div className='text-sm text-dial-gray-dark flex flex-row flex-wrap'>
-          <SDGAutocomplete
-            {...{ sdgs, setSDGs }}
-            containerStyles='px-2 pb-2'
-            controlSize='20rem'
-          />
-          <UseCaseAutocomplete
-            {...{ useCases, setUseCases }}
-            containerStyles='px-2 pb-2'
-            controlSize='20rem'
-          />
+        <div className='px-6'>
+          {format('filter.framework.subTitle', { entity: format('workflow.header') })}
+        </div>
+        <div className='px-6 flex flex-col gap-3'>
+          <SDGAutocomplete {...{ sdgs, setSDGs }} />
+          <UseCaseAutocomplete {...{ useCases, setUseCases }} />
         </div>
       </div>
     </div>
