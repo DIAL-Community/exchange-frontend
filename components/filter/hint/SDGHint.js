@@ -7,7 +7,7 @@ const SDGHint = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='flex flex-col text-dial-stratos'>
+    <div className='flex flex-col gap-2 text-dial-stratos'>
       <div className='text-xl font-semibold'>
         {format('sdg.shortLabel')}
       </div>

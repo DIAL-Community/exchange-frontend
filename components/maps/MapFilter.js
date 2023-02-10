@@ -29,128 +29,88 @@ const MapFilter = () => {
     router.push(`/maps/${mapPath}`)
   }
 
+  const routeContains = (expectedText) => router.pathname.indexOf(expectedText) >= 0
+
+  const routeDecoration = (expectedText) => {
+    if (routeContains(expectedText)) {
+      return 'border-4 border-dial-yellow'
+    }
+
+    return ''
+  }
+
   return (
-    <div className='px-4 py-4'>
-      <div className='pb-4 pt-2'>
-        <div className='text-sm text-dial-gray-dark flex flex-row flex-wrap'>
-          <div className='px-2 pb-2 w-full'>
-            <div className='flex flex-col'>
-              <div className='whitespace-normal'>{format('map.project.title')}</div>
-              <div className='block'>
-                <a href='set-projects-active' onClick={(e) => navigateToMap(e, 'projects')}>
-                  <Image
-                    height={125}
-                    width={225}
-                    src='/images/maps/projects.png' alt='Navigate to map of projects'
-                    className={`
-                      ${
-                        router.pathname.indexOf('projects') >= 0
-                          ? 'border-4 border-dial-yellow'
-                          : ''
-                        }
-                      w-56 mt-2
-                    `}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className='px-2 pb-2 w-full'>
-            <div className='flex flex-col'>
-              <div className='whitespace-normal'>{format('map.endorser.title')}</div>
-              <div className='block'>
-                <a href='set-endorsers-active' onClick={(e) => navigateToMap(e, 'endorsers')}>
-                  <Image
-                    height={125}
-                    width={225}
-                    src='/images/maps/endorsers.png' alt='Navigate to map of endorsers'
-                    className={`
-                      ${
-                        router.pathname.indexOf('endorsers') >= 0
-                          ? 'border-4 border-dial-yellow'
-                          : ''
-                        }
-                      w-56 mt-2
-                    `}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className='px-2 pb-2 w-full'>
-            <div className='flex flex-col'>
-              <div className='whitespace-normal'>{format('map.aggregator.title')}</div>
-              <div className='block'>
-                <a href='set-aggregators-active' onClick={(e) => navigateToMap(e, 'aggregators')}>
-                  <Image
-                    height={125}
-                    width={225}
-                    src='/images/maps/aggregators.png' alt='Navigate to map of aggregators'
-                    className={`
-                      ${router.pathname.indexOf('aggregators') >= 0 ? 'border-4 border-dial-yellow' : ''}
-                      w-56 mt-2
-                    `}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
+    <div className='pt-6 pb-10 bg-dial-solitude rounded-lg text-dial-stratos'>
+      <div className='text-dial-stratos flex flex-col gap-3 px-6'>
+        <div className='whitespace-normal'>
+          {format('map.project.title')}
         </div>
-        <div className='col-span-11 xl:col-span-5'>
-          <div className='text-dial-gray-dark text-xl px-2 py-2'>
-            {'Map Filters'.toUpperCase()}
+        <a href='navigate-to-project-map' onClick={(e) => navigateToMap(e, 'projects')}>
+          <div className={`${routeDecoration('projects')} image-block-hack w-56`}>
+            <Image
+              height={125}
+              width={225}
+              src='/images/maps/projects.png'
+              alt='Navigate to map of projects.'
+            />
           </div>
-          <div className='text-sm text-dial-gray-light flex flex-row flex-wrap'>
-            {
-              router.pathname.indexOf('projects') >= 0 &&
-                <>
-                  <SectorAutocomplete {...{ sectors, setSectors }} containerStyles='px-2 pb-2' controlSize='20rem' />
-                  <TagAutocomplete {...{ tags, setTags }} containerStyles='px-2 pb-2' controlSize='20rem' />
-                  <ProductAutocomplete {...{ products, setProducts }} containerStyles='px-2 pb-2' controlSize='20rem' />
-                </>
-            }
-            {
-              router.pathname.indexOf('endorsers') >= 0 &&
-                <>
-                  <SectorAutocomplete
-                    sectors={orgSectors}
-                    setSectors={setOrgSectors}
-                    containerStyles='px-2 pb-2'
-                    controlSize='20rem'
-                  />
-                  <EndorsingYearSelect
-                    {...{ years, setYears }}
-                    containerStyles='px-2 pb-2'
-                    controlSize='20rem'
-                  />
-                </>
-            }
-            {
-              router.pathname.indexOf('aggregators') >= 0 &&
-                <>
-                  <OrganizationAutocomplete
-                    aggregatorOnly
-                    organizations={aggregators}
-                    setOrganizations={setAggregators}
-                    containerStyles='px-2 pb-2'
-                    controlSize='20rem'
-                  />
-                  <OperatorAutocomplete
-                    operators={operators}
-                    setOperators={setOperators}
-                    containerStyles='px-2 pb-2'
-                    controlSize='20rem'
-                  />
-                  <CapabilityAutocomplete
-                    services={services}
-                    setServices={setServices}
-                    containerStyles='px-2 pb-2'
-                    controlSize='20rem'
-                  />
-                </>
-            }
-          </div>
+        </a>
+        <div className='whitespace-normal'>
+          {format('map.endorser.title')}
         </div>
+        <a href='navigate-to-endorser-map' onClick={(e) => navigateToMap(e, 'endorsers')}>
+          <div className={`${routeDecoration('endorsers')} image-block-hack w-56`}>
+            <Image
+              height={125}
+              width={225}
+              src='/images/maps/endorsers.png'
+              alt='Navigate to map of endorsers.'
+            />
+          </div>
+        </a>
+        <div className='whitespace-normal'>
+          {format('map.aggregator.title')}
+        </div>
+        <a href='navigate-to-aggregator-map' onClick={(e) => navigateToMap(e, 'aggregators')}>
+          <div className={`${routeDecoration('aggregators')} image-block-hack w-56`}>
+            <Image
+              height={125}
+              width={225}
+              src='/images/maps/aggregators.png'
+              alt='Navigate to map of aggregators.'
+            />
+          </div>
+        </a>
+        <div className='text-xl'>
+          {format('filter.entity', { entity: format('map.label') }).toUpperCase()}
+        </div>
+        {
+          routeContains('projects') &&
+            <div className='flex flex-col gap-3'>
+              <SectorAutocomplete {...{ sectors, setSectors }} />
+              <TagAutocomplete {...{ tags, setTags }} />
+              <ProductAutocomplete {...{ products, setProducts }} />
+            </div>
+        }
+        {
+          routeContains('endorsers') &&
+            <div className='flex flex-col gap-3'>
+              <SectorAutocomplete sectors={orgSectors} setSectors={setOrgSectors} />
+              <EndorsingYearSelect {...{ years, setYears }} />
+            </div>
+        }
+        {
+          routeContains('aggregators') &&
+            <div className='flex flex-col gap-3'>
+              <OrganizationAutocomplete
+                aggregatorOnly
+                organizations={aggregators}
+                setOrganizations={setAggregators}
+              />
+              <OperatorAutocomplete operators={operators} setOperators={setOperators} />
+              <CapabilityAutocomplete services={services} setServices={setServices} />
+            </div>
+        }
       </div>
     </div>
   )

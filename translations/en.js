@@ -1143,6 +1143,7 @@ export const en = {
   'header.catalog': 'Catalog',
   'header.wizard': 'Recommendation Wizard',
   'header.mainMenu': 'Main Menu',
+  'map.label': 'Map',
   'map.header': 'Maps',
   'admin.links': 'Admin Links',
 
