@@ -240,7 +240,7 @@ const SearchFilter = ({
       </div>
       <div className='my-auto ml-auto'>
         {user && (
-          <div className='flex gap-2 text-sm text-white'>
+          <div className='flex flex-wrap gap-2 text-sm text-white'>
             {createNew &&
               <a className='bg-dial-blue px-2 py-1 rounded-md'
                 data-testid='create-new'

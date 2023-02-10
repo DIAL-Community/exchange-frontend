@@ -29,22 +29,20 @@ const Organizations = () => {
       <GradientBackground />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Header />
-      { loadingUserSession ? <Loading /> : isAdminUser ? (
-        <>
+      {loadingUserSession ? <Loading /> : isAdminUser ? (
+        <ClientOnly>
           <TabNav activeTab='filter.entity.candidateOrganizations' />
           <MobileNav activeTab='filter.entity.candidateOrganizations' />
-          <ClientOnly>
-            <PageContent
-              content={<OrganizationListQuery />}
-              searchFilter={
-                <SearchFilter
-                  {...{ search, setSearch }}
-                  hint='filter.entity.candidateOrganizations'
-                />
-              }
-            />
-          </ClientOnly>
-        </>
+          <PageContent
+            content={<OrganizationListQuery />}
+            searchFilter={
+              <SearchFilter
+                {...{ search, setSearch }}
+                hint='filter.entity.candidateOrganizations'
+              />
+            }
+          />
+        </ClientOnly>
       ) : <Unauthorized />}
       <Footer />
     </>

@@ -10,6 +10,7 @@ import { Loading, Unauthorized } from '../../components/shared/FetchStatus'
 import ClientOnly from '../../lib/ClientOnly'
 import { useUser } from '../../lib/hooks'
 import SectorForm from '../../components/sectors/SectorForm'
+import PageContent from '../../components/main/PageContent'
 const SectorListQuery = dynamic(() => import('../../components/sectors/SectorList'), { ssr: false })
 
 const Sectors = () => {
@@ -29,16 +30,20 @@ const Sectors = () => {
       <ClientOnly>
         {loadingUserSession ? <Loading /> : isAdminUser ? (
           <>
-            <SearchFilter
-              search={search}
-              setSearch={setSearch}
-              hint='filter.entity.sectors'
-              onCreateNewClick={toggleFormDialog}
-              switchView={false}
-              exportJson={false}
-              exportCsv={false}
+            <PageContent
+              content={<SectorListQuery />}
+              searchFilter={
+                <SearchFilter
+                  search={search}
+                  setSearch={setSearch}
+                  hint='filter.entity.sectors'
+                  onCreateNewClick={toggleFormDialog}
+                  switchView={false}
+                  exportJson={false}
+                  exportCsv={false}
+                />
+              }
             />
-            <SectorListQuery />
             <SectorForm isOpen={isFormDialogOpen} onClose={toggleFormDialog} />
           </>
         ) : <Unauthorized />}

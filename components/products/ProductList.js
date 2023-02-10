@@ -112,7 +112,7 @@ const ProductListQuery = () => {
   const isProductLoaded = (index) => !pageInfo.hasNextPage || index < nodes.length
 
   return (
-    <div className='pt-4'>
+    <>
       {
         displayType === 'list' &&
           <div className='flex flex-row my-3 px-4 gap-x-4'>
@@ -127,7 +127,7 @@ const ProductListQuery = () => {
             </div>
           </div>
       }
-      <div className='block pr-2' style={{ height: 'calc(100vh + 600px)' }}>
+      <div style={{ height: 'calc(100vh + 600px)' }}>
         <AutoSizer>
           {({ height, width }) => (
             <InfiniteLoader
@@ -198,9 +198,9 @@ const ProductListQuery = () => {
                             <div
                               style={{
                                 ...style,
-                                left: style.left + PRODUCT_CARD_GUTTER_SIZE,
+                                left: style.left,
                                 top: style.top + PRODUCT_CARD_GUTTER_SIZE,
-                                width: style.width - PRODUCT_CARD_GUTTER_SIZE,
+                                width: style.width,
                                 height: style.height - PRODUCT_CARD_GUTTER_SIZE
                               }}
                             >
@@ -248,7 +248,7 @@ const ProductListQuery = () => {
           )}
         </AutoSizer>
       </div>
-    </div>
+    </>
   )
 }
 

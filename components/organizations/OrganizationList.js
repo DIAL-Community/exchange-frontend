@@ -138,7 +138,7 @@ const OrganizationListQuery = () => {
   const isProductLoaded = (index) => !pageInfo.hasNextPage || index < nodes.length
 
   return (
-    <div className='pt-4'>
+    <>
       {
         displayType === 'list' &&
         <div className='flex flex-row my-3 px-4 gap-x-4'>
@@ -150,7 +150,7 @@ const OrganizationListQuery = () => {
           </div>
         </div>
       }
-      <div className='block pr-2' style={{ height: 'calc(100vh + 600px)' }}>
+      <div style={{ height: 'calc(100vh + 600px)' }}>
         <AutoSizer>
           {({ height, width }) => (
             <InfiniteLoader
@@ -203,9 +203,9 @@ const OrganizationListQuery = () => {
                               <div
                                 style={{
                                   ...style,
-                                  left: style.left + ORGANIZATION_CARD_GUTTER_SIZE,
+                                  left: style.left,
                                   top: style.top + ORGANIZATION_CARD_GUTTER_SIZE,
-                                  width: style.width - ORGANIZATION_CARD_GUTTER_SIZE,
+                                  width: style.width,
                                   height: style.height - ORGANIZATION_CARD_GUTTER_SIZE
                                 }}
                               >
@@ -265,7 +265,7 @@ const OrganizationListQuery = () => {
           )}
         </AutoSizer>
       </div>
-    </div>
+    </>
   )
 }
 

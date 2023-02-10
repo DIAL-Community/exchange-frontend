@@ -143,7 +143,7 @@ exports[`Unit test for the CountryList component Should render list of countries
         class="infinite-scroll-component__outerdiv"
       >
         <div
-          class="infinite-scroll-component relative px-2 mt-3 pb-8"
+          class="infinite-scroll-component relative"
           style="height: auto; overflow: auto;"
         >
           <div
@@ -201,7 +201,7 @@ exports[`Unit test for the CountryList component Should render list of countries
       class="infinite-scroll-component__outerdiv"
     >
       <div
-        class="infinite-scroll-component relative px-2 mt-3 pb-8"
+        class="infinite-scroll-component relative"
         style="height: auto; overflow: auto;"
       >
         <div
@@ -316,7 +316,7 @@ exports[`Unit test for the CountryList component Should render text with anchor 
         class="infinite-scroll-component__outerdiv"
       >
         <div
-          class="infinite-scroll-component relative px-2 mt-3 pb-8"
+          class="infinite-scroll-component relative"
           style="height: auto; overflow: auto;"
         >
           <div
@@ -374,7 +374,7 @@ exports[`Unit test for the CountryList component Should render text with anchor 
       class="infinite-scroll-component__outerdiv"
     >
       <div
-        class="infinite-scroll-component relative px-2 mt-3 pb-8"
+        class="infinite-scroll-component relative"
         style="height: auto; overflow: auto;"
       >
         <div
@@ -489,7 +489,7 @@ exports[`Unit test for the CountryList component Should render text without anch
         class="infinite-scroll-component__outerdiv"
       >
         <div
-          class="infinite-scroll-component relative px-2 mt-3 pb-8"
+          class="infinite-scroll-component relative"
           style="height: auto; overflow: auto;"
         >
           <div
@@ -539,7 +539,7 @@ exports[`Unit test for the CountryList component Should render text without anch
       class="infinite-scroll-component__outerdiv"
     >
       <div
-        class="infinite-scroll-component relative px-2 mt-3 pb-8"
+        class="infinite-scroll-component relative"
         style="height: auto; overflow: auto;"
       >
         <div

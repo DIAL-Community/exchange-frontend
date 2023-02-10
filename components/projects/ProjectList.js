@@ -148,7 +148,7 @@ const ProjectListQuery = () => {
   const isProjectLoaded = (index) => !pageInfo.hasNextPage || index < nodes.length
 
   return (
-    <div className='pt-4'>
+    <>
       {
         displayType === 'list' &&
           <div className='flex flex-row my-3 px-4 gap-x-4'>
@@ -163,7 +163,7 @@ const ProjectListQuery = () => {
             </div>
           </div>
       }
-      <div className='block pr-2' style={{ height: 'calc(100vh + 600px)' }}>
+      <div style={{ height: 'calc(100vh + 600px)' }}>
         <AutoSizer>
           {({ height, width }) => (
             <InfiniteLoader
@@ -216,9 +216,9 @@ const ProjectListQuery = () => {
                             <div
                               style={{
                                 ...style,
-                                left: style.left + PROJECT_CARD_GUTTER_SIZE,
+                                left: style.left,
                                 top: style.top + PROJECT_CARD_GUTTER_SIZE,
-                                width: style.width - PROJECT_CARD_GUTTER_SIZE,
+                                width: style.width,
                                 height: style.height - PROJECT_CARD_GUTTER_SIZE
                               }}
                             >
@@ -278,7 +278,7 @@ const ProjectListQuery = () => {
           )}
         </AutoSizer>
       </div>
-    </div>
+    </>
   )
 }
 

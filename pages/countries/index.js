@@ -10,6 +10,7 @@ import { Loading, Unauthorized } from '../../components/shared/FetchStatus'
 import ClientOnly from '../../lib/ClientOnly'
 import { useUser } from '../../lib/hooks'
 import CountryForm from '../../components/countries/CountryForm'
+import PageContent from '../../components/main/PageContent'
 const CountriesListQuery = dynamic(() => import('../../components/countries/CountryList'), { ssr: false })
 
 const Countries = () => {
@@ -29,16 +30,20 @@ const Countries = () => {
       <ClientOnly>
         {loadingUserSession ? <Loading /> : isAdminUser ? (
           <>
-            <SearchFilter
-              search={search}
-              setSearch={setSearch}
-              hint='filter.entity.countries'
-              onCreateNewClick={toggleFormDialog}
-              switchView={false}
-              exportJson={false}
-              exportCsv={false}
+            <PageContent
+              content={<CountriesListQuery />}
+              searchFilter={
+                <SearchFilter
+                  search={search}
+                  setSearch={setSearch}
+                  hint='filter.entity.countries'
+                  onCreateNewClick={toggleFormDialog}
+                  switchView={false}
+                  exportJson={false}
+                  exportCsv={false}
+                />
+              }
             />
-            <CountriesListQuery />
             <CountryForm isOpen={isFormDialogOpen} onClose={toggleFormDialog} />
           </>
         ) : <Unauthorized />}
