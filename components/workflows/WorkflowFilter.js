@@ -20,7 +20,7 @@ const WorkflowFilter = () => {
   }
 
   return (
-    <div className='py-6 bg-dial-solitude rounded-lg text-dial-stratos'>
+    <div className='pt-6 pb-10 bg-dial-solitude rounded-lg text-dial-stratos'>
       <div className='text-dial-stratos flex flex-col gap-3'>
         <div className='px-6 text-base flex'>
           <a
@@ -35,7 +35,7 @@ const WorkflowFilter = () => {
                 alt='Informational hint'
               />
             </div>
-            <span className='mr-1'>
+            <span className='py-1 border-b-2 border-transparent hover:border-dial-yellow'>
               {format('filter.hint.text')} {format('workflow.label')}
             </span>
           </a>

@@ -24,7 +24,7 @@ const UseCaseFilter = () => {
   }
 
   return (
-    <div className='py-6 bg-dial-solitude rounded-lg text-dial-stratos'>
+    <div className='pt-6 pb-10 bg-dial-solitude rounded-lg text-dial-stratos'>
       <div className='text-dial-stratos flex flex-col gap-3'>
         <div className='px-6 text-base flex'>
           <a
@@ -55,14 +55,18 @@ const UseCaseFilter = () => {
         <div className='px-6 text-sm'>
           {format('filter.framework.subTitle', { entity: format('useCase.header') })}
         </div>
-        <SDGAutocomplete {...{ sdgs, setSDGs }} containerStyles='px-6 pb-2 w-full' />
+        <div className='text-sm flex flex-col gap-3 px-6'>
+          <SDGAutocomplete {...{ sdgs, setSDGs }} />
+        </div>
         <div className='text-xl px-6'>
           {format('filter.entity', { entity: format('useCase.label') }).toUpperCase()}
         </div>
-        <div className='text-sm px-6'>
-          <label className='inline-flex items-center'>
+        <div className='px-6'>
+          <label className='inline'>
             <Checkbox onChange={toggleShowBeta} value={showBeta} />
-            <span className='ml-2'>{format('filter.useCase.showDraft')}</span>
+            <span className='mx-2 my-auto'>
+              {format('filter.useCase.showDraft')}
+            </span>
           </label>
         </div>
       </div>

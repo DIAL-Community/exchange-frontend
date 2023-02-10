@@ -26,7 +26,7 @@ const BuildingBlockFilter = () => {
   }
 
   return (
-    <div className='py-6 bg-dial-solitude rounded-lg text-dial-stratos'>
+    <div className='pt-6 pb-10 bg-dial-solitude rounded-lg text-dial-stratos'>
       <div className='text-dial-stratos flex flex-col gap-3'>
         <div className='px-6 text-base flex'>
           <a
@@ -41,7 +41,9 @@ const BuildingBlockFilter = () => {
                 alt='Informational hint'
               />
             </div>
-            <span className='mr-1'>{format('filter.hint.text')} {format('building-block.label')}</span>
+            <span className='py-1 border-b-2 border-transparent hover:border-dial-yellow'>
+              {format('filter.hint.text')} {format('building-block.label')}
+            </span>
           </a>
         </div>
         <hr className={`${openingDetail ? 'block' : 'hidden'} border-b border-dial-white-beech`} />
@@ -64,9 +66,11 @@ const BuildingBlockFilter = () => {
           {format('filter.entity', { entity: format('buildingBlock.label') }).toUpperCase()}
         </div>
         <div className='px-6'>
-          <label className='inline-flex items-center'>
+          <label className='inline'>
             <Checkbox onChange={toggleWithMaturity} value={showMature} />
-            <span className='ml-2'>{format('filter.buildingBlock.matureOnly')}</span>
+            <span className='mx-2 my-auto'>
+              {format('filter.buildingBlock.matureOnly')}
+            </span>
           </label>
         </div>
       </div>

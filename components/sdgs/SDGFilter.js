@@ -19,7 +19,7 @@ const SDGFilter = () => {
   }
 
   return (
-    <div className='py-6 bg-dial-solitude rounded-lg'>
+    <div className='pt-6 pb-10 bg-dial-solitude rounded-lg'>
       <div className='text-dial-stratos flex flex-col gap-3'>
         <div className='px-6 text-base flex'>
           <a
@@ -47,7 +47,9 @@ const SDGFilter = () => {
         <div className='px-6'>
           {format('app.filter')}
         </div>
-        <SDGAutocomplete {...{ sdgs, setSDGs }} containerStyles='px-6 pb-2 w-full' />
+        <div className='text-sm flex flex-col gap-3 px-6'>
+          <SDGAutocomplete {...{ sdgs, setSDGs }} />
+        </div>
       </div>
     </div>
   )
