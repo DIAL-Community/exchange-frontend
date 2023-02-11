@@ -134,7 +134,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
         >
           <div
             class="grid grid-cols-1 gap-4
-       md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
+      md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
           >
             <a
               href="/playbooks/cdr_analytics_for_covid19_with_f"
@@ -418,7 +418,7 @@ exports[`Unit tests for playbook list interaction. Should render list of playboo
       >
         <div
           class="grid grid-cols-1 gap-4
-       md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
+      md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
         >
           <a
             href="/playbooks/cdr_analytics_for_covid19_with_f"

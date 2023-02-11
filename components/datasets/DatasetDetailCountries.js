@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 import EditableSection from '../shared/EditableSection'
@@ -11,6 +10,7 @@ import { UPDATE_DATASET_COUNTRIES } from '../../mutations/dataset'
 import { fetchSelectOptions } from '../../queries/utils'
 import CountryCard from '../countries/CountryCard'
 import { COUNTRY_SEARCH_QUERY } from '../../queries/country'
+import { useUser } from '../../lib/hooks'
 
 const DatasetDetailCountries = ({ dataset, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -19,7 +19,7 @@ const DatasetDetailCountries = ({ dataset, canEdit }) => {
 
   const client = useApolloClient()
 
-  const { data: session } = useSession()
+  const { user } = useUser()
   const { locale } = useRouter()
 
   const [countries, setCountries] = useState(dataset.countries)
@@ -27,13 +27,20 @@ const DatasetDetailCountries = ({ dataset, canEdit }) => {
 
   const [updateDatasetCountries, { data, loading }] = useMutation(UPDATE_DATASET_COUNTRIES, {
     onCompleted: (data) => {
-      setCountries(data.updateDatasetCountries.dataset.countries)
-      setIsDirty(false)
-      showToast(format('toast.countries.update.success'), 'success', 'top-center')
+      const { updateDatasetCountries: response } = data
+      if (response?.dataset && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setCountries(data.updateDatasetCountries.dataset.countries)
+        showToast(format('toast.countries.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setCountries(dataset.countries)
+        showToast(format('toast.countries.update.failure'), 'error', 'top-center')
+      }
     },
     onError: () => {
-      setCountries(dataset.countries)
       setIsDirty(false)
+      setCountries(dataset.countries)
       showToast(format('toast.countries.update.failure'), 'error', 'top-center')
     }
   })
@@ -58,8 +65,8 @@ const DatasetDetailCountries = ({ dataset, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateDatasetCountries({
         variables: {

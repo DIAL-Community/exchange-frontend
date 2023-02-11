@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { ToastContext } from '../../lib/ToastContext'
 import Select from '../shared/Select'
@@ -11,6 +10,7 @@ import EditableSection from '../shared/EditableSection'
 import { UPDATE_PROJECT_TAGS } from '../../mutations/project'
 import { TAG_SEARCH_QUERY } from '../../queries/tag'
 import TagCard from '../tags/TagCard'
+import { useUser } from '../../lib/hooks'
 
 const ProjectDetailTags = ({ project, canEdit }) => {
 
@@ -20,25 +20,33 @@ const ProjectDetailTags = ({ project, canEdit }) => {
   const client = useApolloClient()
 
   const [tags, setTags] = useState(project.tags)
-
   const [isDirty, setIsDirty] = useState(false)
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateProjectTags, { data, loading }] = useMutation(UPDATE_PROJECT_TAGS, {
+  const [updateProjectTags, { data, loading, reset }] = useMutation(UPDATE_PROJECT_TAGS, {
     onError: () => {
-      setTags(project.tags)
       setIsDirty(false)
+      setTags(project.tags)
       showToast(format('toast.tags.update.failure'), 'error', 'top-center')
+      reset()
     },
     onCompleted: (data) => {
-      setTags(data.updateProjectTags.project.tags)
-      setIsDirty(false)
-      showToast(format('toast.tags.update.success'), 'success', 'top-center')
+      const { updateProjectTags: response } = data
+      if (response?.project && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setTags(data.updateProjectTags.project.tags)
+        showToast(format('toast.tags.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setTags(project.tags)
+        showToast(format('toast.tags.update.failure'), 'error', 'top-center')
+        reset()
+      }
     }
   })
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -62,8 +70,8 @@ const ProjectDetailTags = ({ project, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateProjectTags({
         variables: {

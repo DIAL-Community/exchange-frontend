@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useMemo, useContext } from 'react'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/react'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner, FaPlus, FaMinus } from 'react-icons/fa'
@@ -15,13 +14,14 @@ import ValidationError from '../shared/ValidationError'
 import { CREATE_PRODUCT } from '../../mutations/product'
 import UrlInput from '../shared/UrlInput'
 import Checkbox from '../shared/Checkbox'
+import { useUser } from '../../lib/hooks'
 
 const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -111,11 +111,11 @@ const ProductForm = React.memo(({ product }) => {
   }, [product, format])
 
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = user
       const {
         name,
         imageFile,

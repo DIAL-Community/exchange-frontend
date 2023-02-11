@@ -1,5 +1,4 @@
 import { useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import parse from 'html-react-parser'
 import classNames from 'classnames'
@@ -10,6 +9,7 @@ import ReactTooltip from 'react-tooltip'
 import { CandidateActionType, CandidateStatusType } from '../../../lib/constants'
 import { ToastContext } from '../../../lib/ToastContext'
 import { APPROVE_CANDIDATE_ROLE, REJECT_CANDIDATE_ROLE } from '../../../mutations/candidate'
+import { useUser } from '../../../lib/hooks'
 
 const RoleCard = ({ role, listType }) => {
   const { formatMessage } = useIntl()
@@ -244,24 +244,32 @@ const ApproveButton = ({ role, setStatus, setLoading }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data: session } = useSession()
+  const { user } = useUser()
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)
 
-  const [executeMutation, { loading }] = useMutation(APPROVE_CANDIDATE_ROLE, {
-    onCompleted: () => {
-      setLoading(false)
-      setStatus(CandidateStatusType.APPROVED)
-      showToast(format('candidate.role.update.success'), 'success', 'top-center')
+  const [executeMutation, { loading, reset }] = useMutation(APPROVE_CANDIDATE_ROLE, {
+    onCompleted: (data) => {
+      const { approveRejectCandidateRole: response } = data
+      if (response?.candidateRole && response?.errors?.length === 0) {
+        setLoading(false)
+        setStatus(CandidateStatusType.APPROVED)
+        showToast(format('candidate.role.update.success'), 'success', 'top-center')
+      } else {
+        setLoading(false)
+        showToast(format('candidate.role.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
       setLoading(false)
       showToast(format('candidate.role.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 
   const approveCandidateRole = async (e) => {
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = user
 
     e.preventDefault()
     setLoading(true)
@@ -308,24 +316,32 @@ const DeclineButton = ({ role, setStatus, setLoading }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data: session } = useSession()
+  const { user } = useUser()
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)
 
-  const [executeMutation, { loading }] = useMutation(REJECT_CANDIDATE_ROLE, {
-    onCompleted: () => {
-      setLoading(false)
-      setStatus(CandidateStatusType.REJECTED)
-      showToast(format('candidate.role.update.success'), 'success', 'top-center')
+  const [executeMutation, { loading, reset }] = useMutation(REJECT_CANDIDATE_ROLE, {
+    onCompleted: (data) => {
+      const { approveRejectCandidateRole: response } = data
+      if (response?.candidateRole && response?.errors?.length === 0) {
+        setLoading(false)
+        setStatus(CandidateStatusType.REJECTED)
+        showToast(format('candidate.role.update.success'), 'success', 'top-center')
+      } else {
+        setLoading(false)
+        showToast(format('candidate.role.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
       setLoading(false)
       showToast(format('candidate.role.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 
   const rejectCandidateRole = async (e) => {
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = user
 
     e.preventDefault()
     setLoading(true)

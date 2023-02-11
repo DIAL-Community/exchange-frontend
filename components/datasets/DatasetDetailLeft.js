@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl'
 import { useCallback, useContext, useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
 import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
@@ -21,7 +20,6 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const { showToast } = useContext(ToastContext)
 
-  const { data: session } = useSession()
   const router = useRouter()
   const { locale } = router
 
@@ -42,7 +40,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
   const [ownershipText, setOwnershipText] = useState('')
 
   const generateEditLink = () => {
-    if (!session) {
+    if (!user) {
       return '/edit-not-available'
     }
 
@@ -93,10 +91,19 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, error, data])
 
-  const [applyAsOwner] = useMutation(APPLY_AS_OWNER, {
+  const [applyAsOwner, { reset }] = useMutation(APPLY_AS_OWNER, {
     refetchQueries: ['CandidateRole'],
     onCompleted: (data) => {
-      if (data.applyAsOwner.errors.length) {
+      const { applyAsOwner: response } = data
+      if (response?.candidateRole && response?.errors?.length === 0) {
+        showToast(
+          format('toast.applyAsOwner.submit.success', { entity: format('dataset.label') }),
+          'success',
+          'top-center',
+          null,
+          () => setLoading(false)
+        )
+      } else {
         showToast(
           <div className='flex flex-col'>
             <span>{data.applyAsOwner.errors[0]}</span>
@@ -106,14 +113,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
           null,
           () => setLoading(false)
         )
-      } else {
-        showToast(
-          format('toast.applyAsOwner.submit.success', { entity: format('dataset.label') }),
-          'success',
-          'top-center',
-          null,
-          () => setLoading(false)
-        )
+        reset()
       }
     },
     onError: (error) => {
@@ -126,6 +126,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
         null,
         () => setLoading(false)
       )
+      reset()
     }
   })
 

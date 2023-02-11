@@ -1,8 +1,8 @@
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import { getMappingStatusOptions } from '../../lib/utilities'
 import { UPDATE_PRODUCT_BUILDING_BLOCKS } from '../../mutations/product'
@@ -31,22 +31,31 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateProductBuildingBlocks, { data, loading }] = useMutation(
+  const [updateProductBuildingBlocks, { data, loading, reset }] = useMutation(
     UPDATE_PRODUCT_BUILDING_BLOCKS, {
       onCompleted: (data) => {
-        setBuildingBlocks(data.updateProductBuildingBlocks.product.buildingBlocks)
-        setIsDirty(false)
-        showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
+        const { updateProductBuildingBlocks: response } = data
+        if (response?.product && response?.errors?.length === 0) {
+          setIsDirty(false)
+          setBuildingBlocks(response?.product?.buildingBlocks)
+          showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
+        } else {
+          setIsDirty(false)
+          setBuildingBlocks(product.buildingBlocks)
+          showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+          reset()
+        }
       },
       onError: () => {
-        setBuildingBlocks(product.buildingBlocks)
         setIsDirty(false)
+        setBuildingBlocks(product.buildingBlocks)
         showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+        reset()
       }
     }
   )
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -79,8 +88,8 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateProductBuildingBlocks({
         variables: {

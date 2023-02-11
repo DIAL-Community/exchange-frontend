@@ -6,7 +6,6 @@ import { useMutation } from '@apollo/client'
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Controller, useForm } from 'react-hook-form'
-import { useSession } from 'next-auth/react'
 import { validate } from 'email-validator'
 import { ToastContext } from '../../../lib/ToastContext'
 import { CREATE_CANDIDATE_PRODUCT } from '../../../mutations/product'
@@ -16,41 +15,54 @@ import { HtmlEditor } from '../../shared/HtmlEditor'
 import { Unauthorized } from '../../shared/FetchStatus'
 import UrlInput from '../../shared/UrlInput'
 import { BREADCRUMB_SEPARATOR } from '../../shared/breadcrumb'
+import { useUser } from '../../../lib/hooks'
+import Select from '../../shared/Select'
+import { getProductLicenseType } from '../../../lib/utilities'
 
-const ProductForm = () => {
+const ProductForm = ({ candidateProduct }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const router = useRouter()
 
-  const { data: session } = useSession()
+  const { user, isAdminUser } = useUser()
 
   const { showToast } = useContext(ToastContext)
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
+  const slug = candidateProduct?.slug ?? ''
+
+  const licenseTypeOptions = getProductLicenseType(format)
+  const [ossLicenseType, commercialLicenseType] = licenseTypeOptions
+
   const [createCandidateProduct, { reset }] = useMutation(CREATE_CANDIDATE_PRODUCT, {
     onError: () => {
       setMutating(false)
-      showToast(
-        format('candidate-product.submit.failure'),
-        'error',
-        'top-center',
-        1000
-      )
+      showToast(format('candidate-product.submit.failure'), 'error', 'top-center')
       reset()
     },
-    onCompleted: () => {
-      setMutating(false)
-      showToast(
-        format('candidate-product.submit.success'),
-        'success',
-        'top-center',
-        1000,
-        null,
-        () => router.push('/products')
-      )
+    onCompleted: (data) => {
+      const { createCandidateProduct: response } = data
+      if (response?.errors?.length === 0) {
+        setMutating(false)
+        showToast(
+          format('candidate-product.submit.success'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => {
+            const nextPath = !isAdminUser ? '/products' : '/candidate/products/'
+            router.push(nextPath)
+          }
+        )
+      } else {
+        setMutating(false)
+        showToast(format('candidate-product.submit.failure'), 'error', 'top-center')
+        reset()
+      }
     }
   })
 
@@ -59,28 +71,31 @@ const ProductForm = () => {
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
-      name: '',
-      description: '',
-      repository: '',
-      website: '',
-      email: '',
+      name: candidateProduct?.name,
+      description: candidateProduct?.description,
+      repository: candidateProduct?.repository,
+      website: candidateProduct?.website,
+      submitterEmail: candidateProduct?.submitterEmail,
+      commercialProduct: candidateProduct?.commercialProduct ? commercialLicenseType : ossLicenseType,
       captcha: null
     }
   })
 
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       setMutating(true)
 
-      const { userEmail, userToken } = session.user
-      const { name, description, email, captcha, website, repository } = data
+      const { userEmail, userToken } = user
+      const { name, description, submitterEmail, captcha, website, repository, commercialProduct } = data
 
       const variables = {
+        slug,
         name,
         website,
         repository,
         description,
-        email,
+        submitterEmail,
+        commercialProduct: commercialProduct.value === 'commercial',
         captcha
       }
 
@@ -98,29 +113,63 @@ const ProductForm = () => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push('/products')
+    const nextPath = !isAdminUser ? '/products' : '/candidate/products/'
+    router.push(nextPath)
   }
 
-  return session ? (
-    <div className='flex flex-col'>
-      <div className='hidden lg:block px-8'>
-        <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
-          <Link href='/'>
-            <a className='inline text-dial-blue h5'>{format('app.home')}</a>
-          </Link>
-          <div className='inline h5'>
-            {BREADCRUMB_SEPARATOR}
-            <Link href='/products'>
-              <a className='text-dial-blue'>
-                {format('product.header')}
-              </a>
-            </Link>
-            {BREADCRUMB_SEPARATOR}
+  const generateBreadcrumb = (candidateProduct) => (
+    <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
+      <Link href='/'>
+        <a className='inline text-dial-blue h5'>{format('app.home')}</a>
+      </Link>
+      <div className='inline h5'>
+        {BREADCRUMB_SEPARATOR}
+        {
+          isAdminUser
+            ? (
+              <Link href='/candidate/products'>
+                <a className='text-dial-blue'>
+                  {format('candidateProduct.label')}
+                </a>
+              </Link>
+            )
+            : (
+              <Link href='/products'>
+                <a className='text-dial-blue'>
+                  {format('product.header')}
+                </a>
+              </Link>
+            )
+        }
+        {BREADCRUMB_SEPARATOR}
+        {!candidateProduct || !isAdminUser
+          ? (
             <span className='text-dial-gray-dark'>
               {format('app.create')}
             </span>
-          </div>
-        </div>
+          )
+          : (
+            <>
+              <Link href={`/candidate/products/${candidateProduct.slug}`}>
+                <a className='text-dial-blue'>
+                  {candidateProduct?.name}
+                </a>
+              </Link>
+              {BREADCRUMB_SEPARATOR}
+              <span className='text-dial-gray-dark'>
+                {format('app.edit')}
+              </span>
+            </>
+          )
+        }
+      </div>
+    </div>
+  )
+
+  return user ? (
+    <div className='flex flex-col'>
+      <div className='hidden lg:block px-8'>
+        { generateBreadcrumb(candidateProduct) }
       </div>
       <div className='py-8 px-8'>
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
@@ -144,12 +193,13 @@ const ProductForm = () => {
                     {errors.name && <ValidationError value={errors.name?.message} />}
                   </div>
                   <div className='form-field-wrapper' data-testid='candidate-product-website'>
-                    <label className='form-field-label' htmlFor='website'>
+                    <label className='form-field-label required-field' htmlFor='website'>
                       {format('candidateProduct.website')}
                     </label>
                     <Controller
                       name='website'
                       control={control}
+                      rules={{ required: format('validation.required') }}
                       render={({ field: { value, onChange } }) => (
                         <UrlInput
                           value={value}
@@ -159,32 +209,58 @@ const ProductForm = () => {
                         />
                       )}
                     />
+                    {errors.website && <ValidationError value={errors.website?.message} />}
                   </div>
                   <div className='form-field-wrapper' data-testid='candidate-product-repository'>
-                    <label className='form-field-label' htmlFor='repository'>
+                    <label className='form-field-label required-field' htmlFor='repository'>
                       {format('candidateProduct.repository')}
                     </label>
-                    <Input
-                      {...register('repository')}
-                      id='repository'
-                      placeholder={format('candidateProduct.repository.placeholder')}
+                    <Controller
+                      name='repository'
+                      control={control}
+                      rules={{ required: format('validation.required') }}
+                      render={({ field: { value, onChange } }) => (
+                        <UrlInput
+                          value={value}
+                          onChange={onChange}
+                          id='repository'
+                          placeholder={format('candidateProduct.repository.placeholder')}
+                        />
+                      )}
                     />
+                    {errors.repository && <ValidationError value={errors.repository?.message} />}
                   </div>
                   <div className='form-field-wrapper' data-testid='candidate-product-email'>
-                    <label className='form-field-label required-field' htmlFor='email'>
+                    <label className='form-field-label required-field' htmlFor='submitterEmail'>
                       {format('candidateProduct.email')}
                     </label>
                     <Input
                       type='email'
-                      {...register('email', {
+                      {...register('submitterEmail', {
                         required: format('validation.required'),
                         validate: value => validate(value) || format('validation.email')
                       })}
-                      id='email'
+                      id='submitterEmail'
                       placeholder={format('candidateProduct.email.placeholder')}
                       isInvalid={errors.email}
                     />
                     {errors.email && <ValidationError value={errors.email?.message} />}
+                  </div>
+                  <div className='form-field-wrapper' data-testid='building-block-maturity'>
+                    <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'>
+                      {format('product.license')}
+                    </label>
+                    <Controller
+                      name='commercialProduct'
+                      control={control}
+                      render={({ field }) => (
+                        <Select
+                          {...field}
+                          options={licenseTypeOptions}
+                          placeholder={format('product.commercialProduct')}
+                        />
+                      )}
+                    />
                   </div>
                   <Controller
                     name='captcha'

@@ -12,6 +12,7 @@ export const DELETE_COUNTRY = gql`
        slug
        name
       }
+      errors
     }
   }
 `

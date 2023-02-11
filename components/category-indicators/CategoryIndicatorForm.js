@@ -32,18 +32,29 @@ const CategoryIndicatorForm = ({ rubricCategory, categoryIndicator }) => {
 
   const categoryIndicatorTypes = getCategoryIndicatorTypes(format)
 
-  const [updateCategoryIndicator] = useMutation(CREATE_CATEGORY_INDICATOR, {
-    onCompleted: (data) => showToast(
-      format('toast.category-indicator.submit.success'),
-      'success',
-      'top-center',
-      1000,
-      null,
-      () => router.push(
-        `/${locale}/rubric_categories/${rubricCategory.slug}/` +
-        `${data.createCategoryIndicator.categoryIndicator.slug}`
-      )
-    ),
+  const [updateCategoryIndicator, { reset }] = useMutation(CREATE_CATEGORY_INDICATOR, {
+    onCompleted: (data) => {
+      const { createCategoryIndicator: response } = data
+      if (response?.categoryIndicator && response?.errors?.length === 0) {
+        setMutating(false)
+        showToast(
+          format('toast.category-indicator.submit.success'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => router.push(
+            `/${locale}` +
+            `/rubric_categories/${rubricCategory.slug}` +
+            `/${data.createCategoryIndicator.categoryIndicator.slug}`
+          )
+        )
+      } else {
+        setMutating(false)
+        showToast(format('toast.category-indicator.submit.failure'), 'error', 'top-center')
+        reset()
+      }
+    },
     onError: (error) => {
       setMutating(false)
       showToast(
@@ -54,6 +65,7 @@ const CategoryIndicatorForm = ({ rubricCategory, categoryIndicator }) => {
         'error',
         'top-center'
       )
+      reset()
     }
   })
 

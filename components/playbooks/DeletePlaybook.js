@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/react'
 import { useCallback, useContext, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
@@ -8,6 +7,7 @@ import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import { ToastContext } from '../../lib/ToastContext'
 import { DELETE_PLAYBOOK } from '../../mutations/playbook'
 import { PLAYBOOK_QUERY } from '../../queries/playbook'
+import { useUser } from '../../lib/hooks'
 
 const DeletePlaybook = ({ playbook }) => {
   const { formatMessage } = useIntl()
@@ -18,7 +18,7 @@ const DeletePlaybook = ({ playbook }) => {
   const router = useRouter()
   const { locale } = router
 
-  const { data: session } = useSession()
+  const { user } = useUser()
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false)
 
   const toggleConfirmDialog = () => {
@@ -30,15 +30,22 @@ const DeletePlaybook = ({ playbook }) => {
       query: PLAYBOOK_QUERY,
       variables: { slug: playbook.slug }
     }],
-    onCompleted: () => {
-      showToast(
-        format('toast.playbook.delete.success'),
-        'success',
-        'top-center',
-        null,
-        () => router.push(`/${locale}/playbooks`)
-      )
-      setIsConfirmDialogOpen(false)
+    onCompleted: (data) => {
+      const { deletePlaybook: response } = data
+      if (response?.playbook && response?.errors?.length === 0) {
+        showToast(
+          format('toast.playbook.delete.success'),
+          'success',
+          'top-center',
+          null,
+          () => router.push(`/${locale}/playbooks`)
+        )
+        setIsConfirmDialogOpen(false)
+      } else {
+        showToast(format('toast.playbook.delete.failure'), 'error', 'top-center')
+        setIsConfirmDialogOpen(false)
+        reset()
+      }
     },
     onError: () => {
       showToast(format('toast.playbook.delete.failure'), 'error', 'top-center')
@@ -48,8 +55,8 @@ const DeletePlaybook = ({ playbook }) => {
   })
 
   const onConfirmDelete = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       deletePlaybook({
         variables: {

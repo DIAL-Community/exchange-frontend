@@ -1,5 +1,4 @@
 import { useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import router, { useRouter } from 'next/router'
 import { useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
@@ -8,6 +7,7 @@ import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import DeleteButton from '../shared/DeleteButton'
 import { DELETE_CATEGORY_INDICATOR } from '../../mutations/category-indicator'
 import { CATEGORY_INDICATOR_QUERY } from '../../queries/category-indicator'
+import { useUser } from '../../lib/hooks'
 
 const DeleteCategoryIndicator = ({ categoryIndicator }) => {
   const { formatMessage } = useIntl()
@@ -17,7 +17,7 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
 
   const { locale } = useRouter()
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { showToast } = useContext(ToastContext)
 
@@ -27,14 +27,22 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
       variables: { slug: categoryIndicator.slug }
     }],
     onCompleted: (data) => {
-      showToast(
-        format('toast.category-indicator.delete.success'),
-        'success',
-        'top-center',
-        DEFAULT_AUTO_CLOSE_DELAY,
-        null,
-        () => router.push(`/rubric_categories/${data.deleteCategoryIndicator.rubricCategorySlug}`)
-      )
+      const { deleteCategoryIndicator: response } = data
+      if (response?.rubricCategorySlug && response?.errors?.length === 0) {
+        setDisplayConfirmDialog(false)
+        showToast(
+          format('toast.category-indicator.delete.success'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push(`/rubric_categories/${response?.rubricCategorySlug}`)
+        )
+      } else {
+        showToast(format('toast.category-indicator.delete.failure'), 'error', 'top-center')
+        setDisplayConfirmDialog(false)
+        reset()
+      }
     },
     onError: () => {
       showToast(format('toast.category-indicator.delete.failure'), 'error', 'top-center')
@@ -44,8 +52,8 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
   })
 
   const onConfirmDelete = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       deleteCategoryIndicator({
         variables: { id: categoryIndicator.id },

@@ -1,8 +1,8 @@
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import { UPDATE_WORKFLOW_BUILDING_BLOCKS } from '../../mutations/workflow'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../queries/building-block'
@@ -22,7 +22,7 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -31,13 +31,20 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit }) => {
   const [updateWorkflowBuildingBlocks, { data, loading }] = useMutation(
     UPDATE_WORKFLOW_BUILDING_BLOCKS, {
       onCompleted: (data) => {
-        setBuildingBlocks(data.updateWorkflowBuildingBlocks.workflow.buildingBlocks)
-        setIsDirty(false)
-        showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
+        const { updateWorkflowBuildingBlocks: response } = data
+        if (response?.workflow && response?.errors?.length === 0) {
+          setIsDirty(false)
+          setBuildingBlocks(response?.workflow?.buildingBlocks)
+          showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
+        } else {
+          setIsDirty(false)
+          setBuildingBlocks(workflow.buildingBlocks)
+          showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+        }
       },
       onError: () => {
-        setBuildingBlocks(workflow.buildingBlocks)
         setIsDirty(false)
+        setBuildingBlocks(workflow.buildingBlocks)
         showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
       }
     }
@@ -64,8 +71,8 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateWorkflowBuildingBlocks({
         variables: {

@@ -36,3 +36,12 @@ export const createBuildingBlockSuccess = {
     }
   }
 }
+
+export const createBuildingBlockFailure = {
+  data: {
+    createBuildingBlock: {
+      buildingBlock: null,
+      errors: ['Some create error message from the backend.']
+    }
+  }
+}

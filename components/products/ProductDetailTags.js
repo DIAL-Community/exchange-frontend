@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { ToastContext } from '../../lib/ToastContext'
 import Select from '../shared/Select'
@@ -11,6 +10,7 @@ import EditableSection from '../shared/EditableSection'
 import { UPDATE_PRODUCT_TAGS } from '../../mutations/product'
 import { TAG_SEARCH_QUERY } from '../../queries/tag'
 import TagCard from '../tags/TagCard'
+import { useUser } from '../../lib/hooks'
 
 const ProductDetailTags = ({ product, canEdit }) => {
 
@@ -20,25 +20,33 @@ const ProductDetailTags = ({ product, canEdit }) => {
   const client = useApolloClient()
 
   const [tags, setTags] = useState(product.tags)
-
   const [isDirty, setIsDirty] = useState(false)
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateProductTags, { data, loading }] = useMutation(UPDATE_PRODUCT_TAGS, {
+  const [updateProductTags, { data, loading, reset }] = useMutation(UPDATE_PRODUCT_TAGS, {
     onError: () => {
-      setTags(product.tags)
       setIsDirty(false)
+      setTags(product.tags)
       showToast(format('toast.tags.update.failure'), 'error', 'top-center')
+      reset()
     },
     onCompleted: (data) => {
-      setTags(data.updateProductTags.product.tags)
-      setIsDirty(false)
-      showToast(format('toast.tags.update.success'), 'success', 'top-center')
+      const { updateProductTags: response } = data
+      if (response?.product && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setTags(data.updateProductTags.product.tags)
+        showToast(format('toast.tags.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setTags(product.tags)
+        showToast(format('toast.tags.update.failure'), 'error', 'top-center')
+        reset()
+      }
     }
   })
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -62,8 +70,8 @@ const ProductDetailTags = ({ product, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateProductTags({
         variables: {

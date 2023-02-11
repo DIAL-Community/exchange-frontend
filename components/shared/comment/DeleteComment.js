@@ -19,10 +19,16 @@ const DeleteComment = ({ commentId }) => {
 
   const [deleteComment, { called, reset }] = useMutation(DELETE_COMMENT, {
     refetchQueries: [{ query: COMMENTS_QUERY }, { query: COMMENTS_COUNT_QUERY }],
-    onCompleted: () => {
-      showToast(format('toast.comment.delete.success'), 'success', 'top-center')
-      toggleConfirmDialog()
-      reset()
+    onCompleted: (data) => {
+      const { deleteComment: response } = data
+      if (response?.errors?.length === 0) {
+        showToast(format('toast.comment.delete.success'), 'success', 'top-center')
+        toggleConfirmDialog()
+      } else {
+        showToast(format('toast.comment.delete.failure'), 'error', 'top-center')
+        toggleConfirmDialog()
+        reset()
+      }
     },
     onError: () => {
       showToast(format('toast.comment.delete.failure'), 'error', 'top-center')

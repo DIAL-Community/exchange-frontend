@@ -12,6 +12,7 @@ export const DELETE_SECTOR = gql`
        slug
        name
       }
+      errors
     }
   }
 `
@@ -32,6 +33,7 @@ export const CREATE_SECTOR = gql`
       locale: $locale
     ) {
       sector {
+        id
         name
         slug
         locale

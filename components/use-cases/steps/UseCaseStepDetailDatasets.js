@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import Pill from '../../shared/Pill'
 import Select from '../../shared/Select'
 import { DATASET_SEARCH_QUERY } from '../../../queries/dataset'
@@ -11,13 +10,14 @@ import { ToastContext } from '../../../lib/ToastContext'
 import { fetchSelectOptions } from '../../../queries/utils'
 import DatasetCard from '../../datasets/DatasetCard'
 import { UPDATE_USE_CASE_STEP_DATASETS } from '../../../mutations/useCaseStep'
+import { useUser } from '../../../lib/hooks'
 
 const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const { user } = useUser()
   const { locale } = useRouter()
-  const { data: session } = useSession()
 
   const client = useApolloClient()
 
@@ -26,16 +26,25 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateUseCaseStepDatasets, { data, loading }] = useMutation(UPDATE_USE_CASE_STEP_DATASETS, {
+  const [updateUseCaseStepDatasets, { data, loading, reset }] = useMutation(UPDATE_USE_CASE_STEP_DATASETS, {
     onCompleted: (data) => {
-      setDatasets(data.updateUseCaseStepDatasets.useCaseStep.datasets)
-      setIsDirty(false)
-      showToast(format('toast.datasets.update.success'), 'success', 'top-center')
+      const { updateUseCaseStepDatasets: response } = data
+      if (response?.useCaseStep && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setDatasets(response?.useCaseStep?.datasets)
+        showToast(format('toast.datasets.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setDatasets(useCaseStep.datasets)
+        showToast(format('toast.datasets.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setDatasets(useCaseStep.datasets)
       setIsDirty(false)
+      setDatasets(useCaseStep.datasets)
       showToast(format('toast.datasets.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 
@@ -57,8 +66,8 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateUseCaseStepDatasets({
         variables: {

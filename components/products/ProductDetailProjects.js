@@ -1,8 +1,8 @@
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import { UPDATE_PRODUCT_PROJECTS } from '../../mutations/product'
 import { PROJECT_SEARCH_QUERY } from '../../queries/project'
@@ -23,19 +23,26 @@ const ProductDetailProjects = ({ product, canEdit }) => {
   const [isDirty, setIsDirty] = useState(false)
 
   const [updateProductProjects, { data, loading }] = useMutation(UPDATE_PRODUCT_PROJECTS, {
-    onCompleted(data) {
-      setProjects(data.updateProductProjects.product.projects)
-      setIsDirty(false)
-      showToast(format('toast.projects.updated'), 'success', 'top-center')
+    onCompleted: (data) => {
+      const { updateProductProjects: response } = data
+      if (response?.product && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setProjects(data.updateProductProjects.product.projects)
+        showToast(format('toast.projects.updated'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setProjects(product.currentProjects)
+        showToast(format('toast.projects.update.failure'), 'error', 'top-center')
+      }
     },
     onError() {
-      setProjects(product.currentProjects)
       setIsDirty(false)
+      setProjects(product.currentProjects)
       showToast(format('toast.projects.update.failure'), 'error', 'top-center')
     }
   })
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -64,8 +71,8 @@ const ProductDetailProjects = ({ product, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateProductProjects({
         variables: {

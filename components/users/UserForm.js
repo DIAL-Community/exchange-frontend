@@ -84,14 +84,26 @@ export const UserForm = ({ user }) => {
 
   const [updateUser, { called, reset }] = useMutation(CREATE_USER, {
     onCompleted: (data) => {
-      showToast(
-        format(`${user ? 'toast.user-profile.update.success' : 'toast.user-profile.submit.success'}`),
-        'success',
-        'top-center',
-        DEFAULT_AUTO_CLOSE_DELAY,
-        null,
-        () => router.push(userProfilePageUrl(data))
-      )
+      const { createUser: response } = data
+      if (response?.user && response?.errors?.length === 0) {
+        setMutating(false)
+        showToast(
+          format(`${user ? 'toast.user-profile.update.success' : 'toast.user-profile.submit.success'}`),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push(userProfilePageUrl(data))
+        )
+      } else {
+        setMutating(false)
+        showToast(
+          format(`${user ? 'toast.user-profile.update.failure' : 'toast.user-profile.submit.failure'}`),
+          'error',
+          'top-center'
+        )
+        reset()
+      }
     },
     onError: (error) => {
       setMutating(false)

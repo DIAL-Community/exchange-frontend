@@ -122,14 +122,16 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                   >
                     Data URL
                   </label>
-                  <input
-                    class="w-full"
-                    id="website"
-                    name="website"
-                    placeholder="Data URL"
-                    type="text"
-                    value=""
-                  />
+                  <div
+                    class="url-input bg-white flex items-center"
+                  >
+                    <input
+                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      id="website"
+                      placeholder="Data URL"
+                      value=""
+                    />
+                  </div>
                 </div>
                 <div
                   class="form-field-wrapper"
@@ -141,14 +143,16 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                   >
                     Dataset Visualization URL
                   </label>
-                  <input
-                    class="w-full"
-                    id="visualizationUrl"
-                    name="visualizationUrl"
-                    placeholder="Dataset Visualization URL"
-                    type="text"
-                    value=""
-                  />
+                  <div
+                    class="url-input bg-white flex items-center"
+                  >
+                    <input
+                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      id="visualizationUrl"
+                      placeholder="Dataset Visualization URL"
+                      value=""
+                    />
+                  </div>
                 </div>
                 <div
                   class="form-field-wrapper"
@@ -569,14 +573,21 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                   >
                     Data URL
                   </label>
-                  <input
-                    class="w-full"
-                    id="website"
-                    name="website"
-                    placeholder="Data URL"
-                    type="text"
-                    value=""
-                  />
+                  <div
+                    class="url-input bg-white flex items-center"
+                  >
+                    <span
+                      class="select-none text-dial-gray"
+                    >
+                      https://
+                    </span>
+                    <input
+                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      id="website"
+                      placeholder="Data URL"
+                      value="www.testdataset.org"
+                    />
+                  </div>
                 </div>
                 <div
                   class="form-field-wrapper"
@@ -588,14 +599,21 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                   >
                     Dataset Visualization URL
                   </label>
-                  <input
-                    class="w-full"
-                    id="visualizationUrl"
-                    name="visualizationUrl"
-                    placeholder="Dataset Visualization URL"
-                    type="text"
-                    value=""
-                  />
+                  <div
+                    class="url-input bg-white flex items-center"
+                  >
+                    <span
+                      class="select-none text-dial-gray"
+                    >
+                      https://
+                    </span>
+                    <input
+                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      id="visualizationUrl"
+                      placeholder="Dataset Visualization URL"
+                      value="www.visualization.testdataset.org"
+                    />
+                  </div>
                 </div>
                 <div
                   class="form-field-wrapper"
