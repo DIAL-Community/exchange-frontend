@@ -482,21 +482,17 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         href="/products/product_1"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-product hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray hover:border-transparent"
           >
             <div
               class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
               >
                 <div
                   class="block w-8 relative"
@@ -515,21 +511,21 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                   </span>
                 </div>
                 <div
-                  class="ml-2 mt-0.5 w-full h-3/5 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                  class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
                 >
                   Product 1
                 </div>
               </div>
               <div
-                class="w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-8/12 lg:w-4/12 text-sm lg:text-base my-auto text-dial-purple line-clamp-1"
               />
               <div
-                class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
-              />
+                class="absolute top-4 lg:top-1/3 right-4 lg:w-1/12 lg:justify-end"
+              >
+                <div
+                  class="flex gap-x-2"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -538,21 +534,17 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         href="/products/product_3"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-product hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray hover:border-transparent"
           >
             <div
               class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
               >
                 <div
                   class="block w-8 relative"
@@ -571,21 +563,21 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                   </span>
                 </div>
                 <div
-                  class="ml-2 mt-0.5 w-full h-3/5 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                  class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
                 >
                   Product 3
                 </div>
               </div>
               <div
-                class="w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-8/12 lg:w-4/12 text-sm lg:text-base my-auto text-dial-purple line-clamp-1"
               />
               <div
-                class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
-              />
+                class="absolute top-4 lg:top-1/3 right-4 lg:w-1/12 lg:justify-end"
+              >
+                <div
+                  class="flex gap-x-2"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -817,21 +809,17 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         href="/products/product_1"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-product hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray hover:border-transparent"
           >
             <div
               class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
               >
                 <div
                   class="block w-8 relative"
@@ -850,21 +838,21 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                   </span>
                 </div>
                 <div
-                  class="ml-2 mt-0.5 w-full h-3/5 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                  class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
                 >
                   Product 1
                 </div>
               </div>
               <div
-                class="w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-8/12 lg:w-4/12 text-sm lg:text-base my-auto text-dial-purple line-clamp-1"
               />
               <div
-                class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
-              />
+                class="absolute top-4 lg:top-1/3 right-4 lg:w-1/12 lg:justify-end"
+              >
+                <div
+                  class="flex gap-x-2"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -873,21 +861,17 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         href="/products/product_3"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-product hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray hover:border-transparent"
           >
             <div
               class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
               >
                 <div
                   class="block w-8 relative"
@@ -906,21 +890,21 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                   </span>
                 </div>
                 <div
-                  class="ml-2 mt-0.5 w-full h-3/5 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                  class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
                 >
                   Product 3
                 </div>
               </div>
               <div
-                class="w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-8/12 lg:w-4/12 text-sm lg:text-base my-auto text-dial-purple line-clamp-1"
               />
               <div
-                class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
-              />
+                class="absolute top-4 lg:top-1/3 right-4 lg:w-1/12 lg:justify-end"
+              >
+                <div
+                  class="flex gap-x-2"
+                />
+              </div>
             </div>
           </div>
         </div>

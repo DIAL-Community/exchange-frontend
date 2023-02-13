@@ -16,11 +16,12 @@ import ProductCard from './ProductCard'
 const DEFAULT_PAGE_SIZE = 20
 /* Minimum width per product card. This will decide how many column we have in the page. */
 /* The value is based on the minimum required to render Bahmni card. */
-const MIN_PRODUCT_CARD_WIDTH = 380
+const MIN_PRODUCT_CARD_WIDTH = 260
 /* Default height of the product card. */
-const MIN_PRODUCT_CARD_HEIGHT = 540
-/* Default spacing between product card in a row. This is 0.5 rem. */
-const PRODUCT_CARD_GUTTER_SIZE = 8
+const MIN_PRODUCT_CARD_HEIGHT = 360
+/* Default spacing between product card in a row. This is 1rem. */
+/* Because we're adding this spacing, make sure the container right margin is offsetted by 1rem. */
+const PRODUCT_CARD_GUTTER_SIZE = 16
 /* Height of the product's single list element when viewing the list view. */
 const MIN_PRODUCT_LIST_SIZE = 80
 
@@ -127,7 +128,7 @@ const ProductListQuery = () => {
             </div>
           </div>
       }
-      <div style={{ height: 'calc(100vh + 600px)' }}>
+      <div className='-mr-4' style={{ height: 'calc(100vh + 600px)' }}>
         <AutoSizer>
           {({ height, width }) => (
             <InfiniteLoader
@@ -199,8 +200,8 @@ const ProductListQuery = () => {
                               style={{
                                 ...style,
                                 left: style.left,
-                                top: style.top + PRODUCT_CARD_GUTTER_SIZE,
-                                width: style.width,
+                                top: style.top,
+                                width: style.width - PRODUCT_CARD_GUTTER_SIZE,
                                 height: style.height - PRODUCT_CARD_GUTTER_SIZE
                               }}
                             >
