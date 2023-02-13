@@ -20,7 +20,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
       <div className='absolute top-2 left-2'>
         <div className='flex gap-2'>
           {product.endorsers && product.endorsers.length > 0 &&
-            <div className='w-5 my-auto image-block-hack'>
+            <div className='w-4 my-auto image-block-hack'>
               <Image
                 width={25}
                 height={25}
@@ -31,7 +31,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
             </div>
           }
           {product.tags.indexOf(covidTagValue) >= 0 &&
-            <div className='w-5 my-auto image-block-hack'>
+            <div className='w-4 my-auto image-block-hack'>
               <Image
                 width={25}
                 height={25}
@@ -46,7 +46,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
       {// Placing the information icon on the top right of the image and name.
         product.productDescription &&
         <div className='absolute right-2 top-2'>
-          <div className='image-block-hack w-5 opacity-20 hover:opacity-100'>
+          <div className='image-block-hack w-4 opacity-20 hover:opacity-100'>
             <Image
               width={34}
               height={34}
@@ -142,7 +142,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                 <div className='flex flex-col'>
                   {createProductBadges(product)}
                   <div className='flex bg-dial-alice-blue h-20 rounded-t-lg'>
-                    <div className='text-sm font-semibold text-dial-sapphire my-auto mx-auto'>
+                    <div className='px-4 text-sm font-semibold text-dial-sapphire m-auto line-clamp-1'>
                       {product.name}
                     </div>
                   </div>
@@ -161,7 +161,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                         {product.sustainableDevelopmentGoals.length}
                       </span>
                       <span className='my-auto'>
-                        {format('sdg.header')}
+                        {format('sdg.shortHeader')}
                       </span>
                     </div>
                   </div>
