@@ -58,7 +58,7 @@ const TabNav = (props) => {
                       <a
                         className={`
                           block px-3 py-3
-                          ${index === activeTab ? 'bg-dial-yellow rounded-t' : 'bg-dial-gray-light rounded'}
+                          ${index === activeTab ? 'bg-dial-yellow rounded-t' : 'bg-dial-alice-blue rounded'}
                         `}
                         data-toggle='tab'
                         href={`/${href}`}

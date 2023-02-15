@@ -142,7 +142,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                 <div className='flex flex-col'>
                   {createProductBadges(product)}
                   <div className='flex bg-dial-alice-blue h-20 rounded-t-lg'>
-                    <div className='px-4 text-sm font-semibold text-dial-sapphire m-auto line-clamp-1'>
+                    <div className='px-4 font-semibold text-dial-sapphire m-auto line-clamp-1'>
                       {product.name}
                     </div>
                   </div>
