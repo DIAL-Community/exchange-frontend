@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 /**
  * @param req
  */
-export default function middleware(req) {
+export function middleware(req) {
   const { pathname } = req.nextUrl
   // Get hostname (e.g. vercel.com, test.vercel.app, etc.)
   const hostname = req.headers.get('host')

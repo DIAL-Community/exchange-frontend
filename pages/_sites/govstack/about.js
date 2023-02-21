@@ -20,7 +20,7 @@ const AboutPage = () => {
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <div className='container py-6'>
-        <div className='w-[14rem] p-3 text-4xl bg-blue-900 text-white'>
+        <div className='w-[15rem] p-3 text-4xl bg-blue-900 text-white'>
           Who we are
         </div>
         <div className='w-full text-dial-gray-dark text-xl p-12'>

@@ -2,20 +2,20 @@ import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useContext } from 'react'
 import dynamic from 'next/dynamic'
-import PageContent from '../../../../components/main/PageContent'
-import ProductHint from '../../../../components/filter/hint/ProductHint'
-import ProductActiveFilter from '../../../../components/products/ProductActiveFilter'
-import SearchFilter from '../../../../components/shared/SearchFilter'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../../../../components/context/ProductFilterContext'
-import ClientOnly from '../../../../lib/ClientOnly'
-import Header from '../components/Header'
-import TabNav from '../components/TabNav'
-import Footer from '../components/Footer'
+import PageContent from '../../../components/main/PageContent'
+import ProductHint from '../../../components/filter/hint/ProductHint'
+import ProductActiveFilter from '../../../components/products/ProductActiveFilter'
+import SearchFilter from '../../../components/shared/SearchFilter'
+import { ProductFilterContext, ProductFilterDispatchContext } from '../../../components/context/ProductFilterContext'
+import ClientOnly from '../../../lib/ClientOnly'
+import Header from './components/Header'
+import TabNav from './components/TabNav'
+import Footer from './components/Footer'
 
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
-const ProductListQuery = dynamic(() => import('../../../../components/products/ProductList'), { ssr: false })
+const ProductListQuery = dynamic(() => import('../../../components/products/ProductList'), { ssr: false })
 
-const Products = () => {
+const OfferingPage = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id: id }, values)
 
@@ -73,4 +73,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default OfferingPage

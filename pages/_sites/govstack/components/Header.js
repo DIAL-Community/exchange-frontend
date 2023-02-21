@@ -13,23 +13,17 @@ const Header = () => {
           <Link href='/about'>
             <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>About GovStack</div>
           </Link>
-          <Link href='/use_cases'>
-            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Use Cases</div>
+          <Link href='/offerings'>
+            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Our Offerings</div>
           </Link>
-          <Link href='/building_blocks'>
-            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Building Blocks</div>
-          </Link>
-          <Link href='/products'>
-            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Products</div>
-          </Link>
-          <Link href='https://er3.ext.egovstack.net/'>
-            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Sandbox</div>
-          </Link>
-          <Link href='http://demo.dial.community:8090/'>
-            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Procure Services</div>
+          <Link href='/approach'>
+            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Our Approach</div>
           </Link>
           <Link href='/blog'>
-            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Blog</div>
+            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>News & Events</div>
+          </Link>
+          <Link href='http://demo.dial.community:8090/'>
+            <div className='text-blue-900 text-xl hover:bg-green-500 hover:text-white hover:cursor-pointer font-semibold flex items-center justify-center px-4 m-5'>Join the Community</div>
           </Link>
         </div>
       </div>
