@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
-import parse from 'html-react-parser'
 import { HiExternalLink } from 'react-icons/hi'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
+import { HtmlViewer } from '../shared/HtmlViewer'
 
 export const MOVE_QUERY = gql`
   query Move($playSlug: String!, $slug: String!) {
@@ -63,20 +63,28 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
             </div>
             <div className={`move-body ${openingDetail ? 'slide-down' : 'slide-up'}`}>
               <div className='px-4 py-4'>
-                <div className='fr-view text-dial-gray-dark'>
-                  {data?.move?.moveDescription && parse(data.move.moveDescription.description)}
-                </div>
+                <HtmlViewer
+                  initialContent={data.move?.moveDescription?.description}
+                  editorId={`move-${moveSlug}-desc`}
+                />
                 {
                   data?.move?.resources && data?.move?.resources.length > 0 &&
                     <>
                       <div className='font-semibold py-2'>{format('move.resources.header')}</div>
                       <div className='flex flex-wrap gap-3'>
-                        {
-                          data?.move?.resources.filter(resource => resource.url && resource.name).map(resource => {
+                        {data?.move?.resources
+                          .filter(resource => resource.url && resource.name)
+                          .map(resource => {
                             return (
                               <Link key={resource.i} href={resource.url} passHref>
                                 <a target='_blank' rel='noreferrer'>
-                                  <div key={resource.i} className='group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow'>
+                                  <div
+                                    key={resource.i}
+                                    className={`
+                                      group border-2 border-gray-300 hover:border-dial-yellow
+                                      card-drop-shadow
+                                    `}
+                                  >
                                     <div className='flex'>
                                       <div className='flex flex-col gap-2 px-3 py-4'>
                                         <div className='font-semibold'>{resource.name}</div>

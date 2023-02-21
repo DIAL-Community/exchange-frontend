@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -13,7 +13,7 @@ import CountryCard from './CountryCard'
 
 const CountryList = ({ countryList, displayType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className={classNames('grid', { 'grid-cols-1': displayType === DisplayType.LIST })}>
@@ -32,11 +32,11 @@ const CountryList = ({ countryList, displayType }) => {
 }
 
 const CountriesListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterContext)
+  const { setResultCounts } = useContext(FilterContext)
   const { search } = useContext(UserFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data, fetchMore } = useQuery(COUNTRIES_LIST_QUERY, {
     variables: {
@@ -44,24 +44,8 @@ const CountriesListQuery = () => {
       search
     },
     fetchPolicy: 'network-only',
-    nextFetchPolicy: 'cache-first',
-    onCompleted: (data) => {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.countries']]: data.searchCountries.totalCount }
-      })
-    }
+    nextFetchPolicy: 'cache-first'
   })
-
-  if (loading) {
-    return <Loading />
-  } else if (error && error.networkError) {
-    return <Error />
-  } else if (error && !error.networkError) {
-    return <NotFound />
-  }
-
-  const { searchCountries: { nodes, pageInfo } } = data
 
   function handleLoadMore() {
     fetchMore({
@@ -73,9 +57,30 @@ const CountriesListQuery = () => {
     })
   }
 
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.countries']]: data.searchCountries.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
+
+  if (loading) {
+    return <Loading />
+  } else if (error && error.networkError) {
+    return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
+  }
+
+  const { searchCountries: { nodes, pageInfo } } = data
+
   return (
     <InfiniteScroll
-      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'
+      className='relative'
       dataLength={nodes.length}
       next={handleLoadMore}
       hasMore={pageInfo.hasNextPage}

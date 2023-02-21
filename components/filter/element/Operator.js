@@ -1,5 +1,6 @@
 import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import classNames from 'classnames'
 import Select from '../../shared/Select'
 import { OPERATOR_SEARCH_QUERY } from '../../../queries/operator'
@@ -18,7 +19,7 @@ export const OperatorAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('operator.label') })
 
@@ -59,7 +60,7 @@ export const OperatorFilters = (props) => {
   const { operators, setOperators } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeOperator = (operatorValue) => {
     setOperators(operators.filter(({ value }) => value !== operatorValue))

@@ -15,28 +15,23 @@ const CreateBuildingBlock = () => {
   const { slug } = router.query
   const { loading, error, data } = useQuery(BUILDING_BLOCK_QUERY, {
     variables: { slug, locale },
-    skip: !slug,
     context: { headers: { 'Accept-Language': locale } }
   })
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.buildingBlock) {
     return <NotFound />
   }
 
   return (
     <>
       <Header />
-      {data?.buildingBlock && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            <BuildingBlockForm buildingBlock={data.buildingBlock} />
-          </ClientOnly>
-        </div>
-      )}
+      <ClientOnly>
+        { data?.buildingBlock && <BuildingBlockForm buildingBlock={data.buildingBlock} /> }
+      </ClientOnly>
       <Footer />
     </>
   )

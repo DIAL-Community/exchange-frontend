@@ -27,20 +27,31 @@ const ProjectDetailProducts = ({ project, canEdit }) => {
   const { user, isAdminUser } = useUser()
   const { ownedProducts } = useProductOwnerUser(null, products, isAdminUser)
 
-  const ownedProjectProducts = ownedProducts.filter(({ slug: ownedProductSlug }) => products.some(({ slug }) => ownedProductSlug === slug))
+  const ownedProjectProducts = ownedProducts.filter(
+    ({ slug: ownedProductSlug }) => products.some(({ slug }) => ownedProductSlug === slug)
+  )
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateProjectProducts, { data, loading }] = useMutation(UPDATE_PROJECT_PRODUCTS, {
+  const [updateProjectProducts, { data, loading, reset }] = useMutation(UPDATE_PROJECT_PRODUCTS, {
     onError() {
+      setIsDirty(false)
       setProducts(project.products)
-      setIsDirty(false)
       showToast(format('toast.products.update.failure'), 'error', 'top-center')
+      reset()
     },
-    onCompleted(data) {
-      setProducts(data.updateProjectProducts.project.products)
-      setIsDirty(false)
-      showToast(format('toast.products.update.success'), 'success', 'top-center')
+    onCompleted: (data) => {
+      const { updateProjectProducts: response } = data
+      if (response?.project && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setProducts(data.updateProjectProducts.project.products)
+        showToast(format('toast.products.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setProducts(project.products)
+        showToast(format('toast.products.update.failure'), 'error', 'top-center')
+        reset()
+      }
     }
   })
 

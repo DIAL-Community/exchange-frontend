@@ -1,50 +1,61 @@
 import { useIntl } from 'react-intl'
-import { useState, useEffect, useCallback, useContext } from 'react'
+import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 import EditableSection from '../shared/EditableSection'
 import { ToastContext } from '../../lib/ToastContext'
-import { UPDATE_DATASET_ORGANIZATIONS } from '../../mutations/dataset'
+import { UPDATE_DATASET_COUNTRIES } from '../../mutations/dataset'
 import { fetchSelectOptions } from '../../queries/utils'
 import CountryCard from '../countries/CountryCard'
-import { ORGANIZATION_SEARCH_QUERY } from '../../queries/organization'
+import { COUNTRY_SEARCH_QUERY } from '../../queries/country'
+import { useUser } from '../../lib/hooks'
 
 const DatasetDetailCountries = ({ dataset, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+  const { showToast } = useContext(ToastContext)
 
   const client = useApolloClient()
+
+  const { user } = useUser()
+  const { locale } = useRouter()
 
   const [countries, setCountries] = useState(dataset.countries)
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateDatasetCountries, { data, loading }] = useMutation(UPDATE_DATASET_ORGANIZATIONS)
-
-  const [session] = useSession()
-  const { locale } = useRouter()
-  const { showToast } = useContext(ToastContext)
-
-  useEffect(() => {
-    if (data?.updateDatasetCountries?.errors.length === 0 && data?.updateDatasetCountries?.dataset) {
-      setCountries(data.updateDatasetCountries.dataset.countries)
-      showToast(format('dataset.countries.updated'), 'success', 'top-center')
+  const [updateDatasetCountries, { data, loading }] = useMutation(UPDATE_DATASET_COUNTRIES, {
+    onCompleted: (data) => {
+      const { updateDatasetCountries: response } = data
+      if (response?.dataset && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setCountries(data.updateDatasetCountries.dataset.countries)
+        showToast(format('toast.countries.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setCountries(dataset.countries)
+        showToast(format('toast.countries.update.failure'), 'error', 'top-center')
+      }
+    },
+    onError: () => {
       setIsDirty(false)
+      setCountries(dataset.countries)
+      showToast(format('toast.countries.update.failure'), 'error', 'top-center')
     }
-  }, [data, showToast, format])
+  })
 
   const fetchedCountriesCallback = (data) => (
     data.countries.map((country) => ({
       label: country.name,
-      value: country.id,
       slug: country.slug
     }))
   )
 
   const addCountry = (country) => {
-    setCountries([...countries.filter(({ slug }) => slug !== country.slug), { name: country.label, slug: country.slug }])
+    setCountries([...countries.filter(({ slug }) => slug !== country.slug),
+      { name: country.label, slug: country.slug }
+    ])
     setIsDirty(true)
   }
 
@@ -54,8 +65,8 @@ const DatasetDetailCountries = ({ dataset, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateDatasetCountries({
         variables: {
@@ -77,7 +88,7 @@ const DatasetDetailCountries = ({ dataset, canEdit }) => {
     setIsDirty(false)
   }
 
-  const displayModeBody = countries.length > 0
+  const displayModeBody = countries.length
     ? (
       <div className='grid grid-cols-1 lg:grid-cols-2'>
         {countries.map((country, countryIdx) => <CountryCard key={countryIdx} country={country} listType='list' />)}
@@ -101,7 +112,7 @@ const DatasetDetailCountries = ({ dataset, canEdit }) => {
           defaultOptions
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-          loadOptions={(input) => fetchSelectOptions(client, input, ORGANIZATION_SEARCH_QUERY, fetchedCountriesCallback, locale)}
+          loadOptions={(input) => fetchSelectOptions(client, input, COUNTRY_SEARCH_QUERY, fetchedCountriesCallback)}
           noOptionsMessage={() => format('filter.searchFor', { entity: format('country.header') })}
           onChange={addCountry}
           value={null}

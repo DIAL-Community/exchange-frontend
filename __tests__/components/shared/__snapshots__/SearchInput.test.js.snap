@@ -38,7 +38,7 @@ exports[`Unit test for the SearchInput component. Should match snapshot - with s
         </svg>
       </span>
       <span
-        class="my-auto pl-1 border-l bg-white text-3xl text-dial-gray-dark border-dial-gray-dark"
+        class="my-auto pl-1 border-l bg-white text-2xl text-dial-gray-dark border-dial-gray-dark"
       >
         <svg
           class="cursor-pointer"

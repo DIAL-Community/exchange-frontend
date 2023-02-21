@@ -1,11 +1,11 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
-import { useSession } from 'next-auth/client'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import RepositoryDetail from '../RepositoryDetail'
 import Breadcrumb from '../../shared/breadcrumb'
+import { HtmlViewer } from '../../shared/HtmlViewer'
+import { useUser } from '../../../lib/hooks'
 
 const REPOSITORY_QUERY = gql`
   query ProductRepository($slug: String!) {
@@ -42,7 +42,7 @@ const RepositoryInformation = ({ productRepository }) => {
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const router = useRouter()
-  const [session] = useSession()
+  const { user } = useUser()
   const [deleteProductRepository, { data }] = useMutation(DELETE_PRODUCT_REPOSITORY)
 
   useEffect(() => {
@@ -66,8 +66,8 @@ const RepositoryInformation = ({ productRepository }) => {
   }
 
   const handleDelete = () => {
-    if (session?.user) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
       deleteProductRepository({
         context: { headers: { Authorization: `${userEmail} ${userToken}` } },
         variables: {
@@ -99,9 +99,11 @@ const RepositoryInformation = ({ productRepository }) => {
       <div className='text-sm font-semibold'>
         {format('productRepository.description')}
       </div>
-      <div className='text-sm text-dial-gray-dark'>
-        {parse(productRepository.description)}
-      </div>
+      <HtmlViewer
+        initialContent={productRepository?.description}
+        editorId='repository-data'
+        className='-mb-12'
+      />
       <div className='w-full xl:w-4/5 mt-3 py-3 border-b border-gray-300'>
         <RepositoryDetail
           repositoryData={productRepository.statisticalData.data?.repository}
@@ -110,8 +112,8 @@ const RepositoryInformation = ({ productRepository }) => {
       </div>
       {
         (
-          session?.user.canEdit ||
-          session?.user.own.products.filter(p => `${p}` === `${productRepository.product.id}`).length > 0
+          user.canEdit ||
+          user.own.products.filter(p => `${p}` === `${productRepository.product.id}`).length > 0
         ) &&
           <div className='w-full xl:w-4/5 my-2 flex flex-row gap-2'>
             <button

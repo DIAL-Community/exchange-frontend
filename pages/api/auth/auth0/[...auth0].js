@@ -25,13 +25,31 @@ const afterCallback = async (req, res, session, state) => {
       // 'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
     },
     // redirect: 'follow', // manual, *follow, error
-    // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    // referrerPolicy: 'no-referrer',
+    //   no-referrer,
+    //   *no-referrer-when-downgrade,
+    //   origin,
+    //   origin-when-cross-origin,
+    //   same-origin,
+    //   strict-origin,
+    //   strict-origin-when-cross-origin,
+    //   unsafe-url
     body: JSON.stringify(authBody) // body data type must match "Content-Type" header
   })
 
   const railsUser = await response.json()
 
-  session = { ...session, user: {...session.user, userEmail: railsUser.userEmail, userToken: railsUser.userToken, own: railsUser.own, canEdit: railsUser.canEdit, roles: railsUser.roles}}
+  session = {
+    ...session,
+    user: {
+      ...session.user,
+      userEmail: railsUser.userEmail,
+      userToken: railsUser.userToken,
+      own: railsUser.own,
+      canEdit: railsUser.canEdit,
+      roles: railsUser.roles
+    }
+  }
   return session
 }
 

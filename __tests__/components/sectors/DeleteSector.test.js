@@ -1,17 +1,11 @@
 import { fireEvent, waitFor } from '@testing-library/react'
 import DeleteSector from '../../../components/sectors/DeleteSector'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  render,
-  mockObserverImplementation
-} from '../../test-utils'
+import { render, mockObserverImplementation } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { sectorWithParentSector } from './data/SectorDetail'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for the SectorDelete component.', () => {
   const DELETE_BUTTON_TEST_ID = 'delete-button'
   const CONFIRM_ACTION_DIALOG_TEST_ID = 'confirm-action-dialog'
@@ -19,8 +13,7 @@ describe('Unit tests for the SectorDelete component.', () => {
   const CONFIRM_BUTTON_TEST_ID = 'confirm-button'
 
   beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     window.IntersectionObserver = mockObserverImplementation()
   })
 

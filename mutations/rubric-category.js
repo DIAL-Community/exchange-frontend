@@ -21,3 +21,33 @@ export const CREATE_RUBRIC_CATEGORY = gql`
     }
   }
 `
+
+export const DELETE_RUBRIC_CATEGORY = gql`
+  mutation DeleteRubricCategory ($id: ID!) {
+    deleteRubricCategory(id: $id) {
+      errors
+    }
+  }
+`
+
+export const UPDATE_RUBRIC_CATEGORY_INDICATORS = gql`
+  mutation UpdateRubricCategoryIndicators (
+    $categoryIndicatorSlugs: [String!]!
+    $rubricCategorySlug: String!
+  ) {
+    updateRubricCategoryIndicators (
+      categoryIndicatorSlugs: $categoryIndicatorSlugs
+      rubricCategorySlug: $rubricCategorySlug
+    ) {
+      rubricCategory {
+        id
+        categoryIndicators {
+          slug
+          name
+          rubricCategoryId
+        }
+      } 
+      errors
+    }
+  }
+`

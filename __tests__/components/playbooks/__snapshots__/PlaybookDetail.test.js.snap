@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Unit tests for playbook interaction. Privileged user should be able to edit the playbook. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -9,7 +9,7 @@ Object {
         class="Toastify"
       />
       <div
-        class="sticky sticky-under-header flex flex-col max-w-catalog mx-auto"
+        class="sticky sticky-under-header flex flex-col"
       >
         <div
           class="bg-dial-yellow sticky sticky-under-header"
@@ -136,13 +136,13 @@ Object {
             </div>
           </div>
           <div
-            class="flex flex-col gap-3 w-full max-w-screen-lg"
+            class="flex flex-col gap-3 w-full max-w-screen-2xl"
           >
             <div
               class="flex flex-col gap-3 px-3"
             >
               <div
-                class="flex"
+                class="flex flex-col xl:flex-row"
               >
                 <div
                   class="hidden lg:block"
@@ -168,7 +168,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="mt-4 ml-auto flex items-center"
+                  class="ml-auto flex items-center gap-3"
                 >
                   <div
                     class="inline-flex items-center text-dial-blue text-sm cursor-pointer"
@@ -192,7 +192,7 @@ Object {
                     </span>
                   </div>
                   <a
-                    class="bg-dial-blue px-2 py-0.5 ml-3 rounded text-white mr-3"
+                    class="bg-dial-blue px-2 py-0.5 rounded text-white"
                     href="/en/playbooks/example_playbook/pdf"
                     rel="noreferrer"
                     target="_blank"
@@ -211,7 +211,7 @@ Object {
                     </span>
                   </a>
                   <a
-                    class="cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white mr-3"
+                    class="cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white"
                   >
                     <svg
                       class="inline"
@@ -250,6 +250,35 @@ Object {
                       Edit
                     </span>
                   </a>
+                  <button
+                    class="delete-button gap-x-1.5"
+                    data-testid="delete-button"
+                    type="button"
+                  >
+                    <svg
+                      class="text-sm"
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 16 16"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                      />
+                      <path
+                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                    <span
+                      class="text-sm"
+                    >
+                      Delete
+                    </span>
+                  </button>
                 </div>
               </div>
               <div
@@ -258,9 +287,30 @@ Object {
                 Overview
               </div>
               <div
-                class="fr-view tiny-editor text-dial-gray-dark"
+                class="relative"
               >
-                Just an example of playbook.
+                <svg
+                  class="absolute text-lg inset-x-1/2 top-10 spinner"
+                  fill="currentColor"
+                  height="2em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="2em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+                <div
+                  class="-mt-4 html-viewer"
+                >
+                  <textarea
+                    id="playbook-overview"
+                    style="visibility: hidden;"
+                  />
+                </div>
               </div>
               <div
                 class="h4"
@@ -268,9 +318,30 @@ Object {
                 Audience
               </div>
               <div
-                class="fr-view tiny-editor text-dial-gray-dark"
+                class="relative"
               >
-                The audience of this playbook is you.
+                <svg
+                  class="absolute text-lg inset-x-1/2 top-10 spinner"
+                  fill="currentColor"
+                  height="2em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="2em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+                <div
+                  class="-mt-4 html-viewer"
+                >
+                  <textarea
+                    id="playbook-audience"
+                    style="visibility: hidden;"
+                  />
+                </div>
               </div>
               <div
                 class="h4"
@@ -278,16 +349,105 @@ Object {
                 Outcomes
               </div>
               <div
-                class="fr-view tiny-editor text-dial-gray-dark"
+                class="relative"
               >
-                The outcome of this playbook is expected.
+                <svg
+                  class="absolute text-lg inset-x-1/2 top-10 spinner"
+                  fill="currentColor"
+                  height="2em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="2em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+                <div
+                  class="-mt-4 html-viewer"
+                >
+                  <textarea
+                    id="playbook-outcomes"
+                    style="visibility: hidden;"
+                  />
+                </div>
+              </div>
+              <div
+                class="h4"
+              >
+                Playbook Author(s)
+                :
+              </div>
+              <div
+                class="text-dial-gray-dark"
+              >
+                 
+                Test Author
+              </div>
+              <div
+                class="h4 mt-3"
+              >
+                Playbook Tags
+                :
+              </div>
+              <div
+                class="grid grid-cols-1 md:grid-cols-2"
+              >
+                <div
+                  class="border-3 border-transparent text-button-gray"
+                  data-testid="tag-card"
+                >
+                  <div
+                    class="border border-dial-gray card-drop-shadow"
+                  >
+                    <div
+                      class="flex gap-3 my-5 px-4"
+                    >
+                      <div
+                        class="card-title text-button-gray"
+                      >
+                        <span>
+                          Apps
+                        </span>
+                      </div>
+                      <div
+                        class="line-clamp-1"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="border-3 border-transparent text-button-gray"
+                  data-testid="tag-card"
+                >
+                  <div
+                    class="border border-dial-gray card-drop-shadow"
+                  >
+                    <div
+                      class="flex gap-3 my-5 px-4"
+                    >
+                      <div
+                        class="card-title text-button-gray"
+                      >
+                        <span>
+                          Tag 2
+                        </span>
+                      </div>
+                      <div
+                        class="line-clamp-1"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div
               class="infinite-scroll-component__outerdiv"
             >
               <div
-                class="infinite-scroll-component relative px-2 py-4 max-w-catalog mx-auto"
+                class="infinite-scroll-component relative px-2 py-4"
                 style="height: auto; overflow: auto;"
               >
                 <div
@@ -305,9 +465,30 @@ Object {
                       Play 1. D4D: Understand the Problem
                     </div>
                     <div
-                      class="fr-view tinyEditor text-dial-gray-dark"
+                      class="relative"
                     >
-                      The play description goes here.
+                      <svg
+                        class="absolute text-lg inset-x-1/2 top-10 spinner"
+                        fill="currentColor"
+                        height="2em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 512 512"
+                        width="2em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                        />
+                      </svg>
+                      <div
+                        class="-mt-4 html-viewer"
+                      >
+                        <textarea
+                          id="play-0-desc"
+                          style="visibility: hidden;"
+                        />
+                      </div>
                     </div>
                     <div
                       class="flex flex-col gap-3"
@@ -363,9 +544,30 @@ Object {
                             class="px-4 py-4"
                           >
                             <div
-                              class="fr-view text-dial-gray-dark"
+                              class="relative"
                             >
-                              Description of the move goes here.
+                              <svg
+                                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                                fill="currentColor"
+                                height="2em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 512 512"
+                                width="2em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                                />
+                              </svg>
+                              <div
+                                class="html-viewer"
+                              >
+                                <textarea
+                                  id="move-considerations-desc"
+                                  style="visibility: hidden;"
+                                />
+                              </div>
                             </div>
                             <div
                               class="font-semibold py-2"
@@ -381,7 +583,10 @@ Object {
                                 target="_blank"
                               >
                                 <div
-                                  class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                                  class="
+                                      group border-2 border-gray-300 hover:border-dial-yellow
+                                      card-drop-shadow
+                                    "
                                 >
                                   <div
                                     class="flex"
@@ -444,7 +649,7 @@ Object {
       class="Toastify"
     />
     <div
-      class="sticky sticky-under-header flex flex-col max-w-catalog mx-auto"
+      class="sticky sticky-under-header flex flex-col"
     >
       <div
         class="bg-dial-yellow sticky sticky-under-header"
@@ -571,13 +776,13 @@ Object {
           </div>
         </div>
         <div
-          class="flex flex-col gap-3 w-full max-w-screen-lg"
+          class="flex flex-col gap-3 w-full max-w-screen-2xl"
         >
           <div
             class="flex flex-col gap-3 px-3"
           >
             <div
-              class="flex"
+              class="flex flex-col xl:flex-row"
             >
               <div
                 class="hidden lg:block"
@@ -603,7 +808,7 @@ Object {
                 </div>
               </div>
               <div
-                class="mt-4 ml-auto flex items-center"
+                class="ml-auto flex items-center gap-3"
               >
                 <div
                   class="inline-flex items-center text-dial-blue text-sm cursor-pointer"
@@ -627,7 +832,7 @@ Object {
                   </span>
                 </div>
                 <a
-                  class="bg-dial-blue px-2 py-0.5 ml-3 rounded text-white mr-3"
+                  class="bg-dial-blue px-2 py-0.5 rounded text-white"
                   href="/en/playbooks/example_playbook/pdf"
                   rel="noreferrer"
                   target="_blank"
@@ -646,7 +851,7 @@ Object {
                   </span>
                 </a>
                 <a
-                  class="cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white mr-3"
+                  class="cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white"
                 >
                   <svg
                     class="inline"
@@ -685,6 +890,35 @@ Object {
                     Edit
                   </span>
                 </a>
+                <button
+                  class="delete-button gap-x-1.5"
+                  data-testid="delete-button"
+                  type="button"
+                >
+                  <svg
+                    class="text-sm"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 16 16"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                    />
+                    <path
+                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <span
+                    class="text-sm"
+                  >
+                    Delete
+                  </span>
+                </button>
               </div>
             </div>
             <div
@@ -693,9 +927,30 @@ Object {
               Overview
             </div>
             <div
-              class="fr-view tiny-editor text-dial-gray-dark"
+              class="relative"
             >
-              Just an example of playbook.
+              <svg
+                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                fill="currentColor"
+                height="2em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="2em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                />
+              </svg>
+              <div
+                class="-mt-4 html-viewer"
+              >
+                <textarea
+                  id="playbook-overview"
+                  style="visibility: hidden;"
+                />
+              </div>
             </div>
             <div
               class="h4"
@@ -703,9 +958,30 @@ Object {
               Audience
             </div>
             <div
-              class="fr-view tiny-editor text-dial-gray-dark"
+              class="relative"
             >
-              The audience of this playbook is you.
+              <svg
+                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                fill="currentColor"
+                height="2em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="2em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                />
+              </svg>
+              <div
+                class="-mt-4 html-viewer"
+              >
+                <textarea
+                  id="playbook-audience"
+                  style="visibility: hidden;"
+                />
+              </div>
             </div>
             <div
               class="h4"
@@ -713,16 +989,105 @@ Object {
               Outcomes
             </div>
             <div
-              class="fr-view tiny-editor text-dial-gray-dark"
+              class="relative"
             >
-              The outcome of this playbook is expected.
+              <svg
+                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                fill="currentColor"
+                height="2em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="2em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                />
+              </svg>
+              <div
+                class="-mt-4 html-viewer"
+              >
+                <textarea
+                  id="playbook-outcomes"
+                  style="visibility: hidden;"
+                />
+              </div>
+            </div>
+            <div
+              class="h4"
+            >
+              Playbook Author(s)
+              :
+            </div>
+            <div
+              class="text-dial-gray-dark"
+            >
+               
+              Test Author
+            </div>
+            <div
+              class="h4 mt-3"
+            >
+              Playbook Tags
+              :
+            </div>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2"
+            >
+              <div
+                class="border-3 border-transparent text-button-gray"
+                data-testid="tag-card"
+              >
+                <div
+                  class="border border-dial-gray card-drop-shadow"
+                >
+                  <div
+                    class="flex gap-3 my-5 px-4"
+                  >
+                    <div
+                      class="card-title text-button-gray"
+                    >
+                      <span>
+                        Apps
+                      </span>
+                    </div>
+                    <div
+                      class="line-clamp-1"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="border-3 border-transparent text-button-gray"
+                data-testid="tag-card"
+              >
+                <div
+                  class="border border-dial-gray card-drop-shadow"
+                >
+                  <div
+                    class="flex gap-3 my-5 px-4"
+                  >
+                    <div
+                      class="card-title text-button-gray"
+                    >
+                      <span>
+                        Tag 2
+                      </span>
+                    </div>
+                    <div
+                      class="line-clamp-1"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div
             class="infinite-scroll-component__outerdiv"
           >
             <div
-              class="infinite-scroll-component relative px-2 py-4 max-w-catalog mx-auto"
+              class="infinite-scroll-component relative px-2 py-4"
               style="height: auto; overflow: auto;"
             >
               <div
@@ -740,9 +1105,30 @@ Object {
                     Play 1. D4D: Understand the Problem
                   </div>
                   <div
-                    class="fr-view tinyEditor text-dial-gray-dark"
+                    class="relative"
                   >
-                    The play description goes here.
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="-mt-4 html-viewer"
+                    >
+                      <textarea
+                        id="play-0-desc"
+                        style="visibility: hidden;"
+                      />
+                    </div>
                   </div>
                   <div
                     class="flex flex-col gap-3"
@@ -798,9 +1184,30 @@ Object {
                           class="px-4 py-4"
                         >
                           <div
-                            class="fr-view text-dial-gray-dark"
+                            class="relative"
                           >
-                            Description of the move goes here.
+                            <svg
+                              class="absolute text-lg inset-x-1/2 top-10 spinner"
+                              fill="currentColor"
+                              height="2em"
+                              stroke="currentColor"
+                              stroke-width="0"
+                              viewBox="0 0 512 512"
+                              width="2em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                              />
+                            </svg>
+                            <div
+                              class="html-viewer"
+                            >
+                              <textarea
+                                id="move-considerations-desc"
+                                style="visibility: hidden;"
+                              />
+                            </div>
                           </div>
                           <div
                             class="font-semibold py-2"
@@ -816,7 +1223,10 @@ Object {
                               target="_blank"
                             >
                               <div
-                                class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                                class="
+                                      group border-2 border-gray-300 hover:border-dial-yellow
+                                      card-drop-shadow
+                                    "
                               >
                                 <div
                                   class="flex"
@@ -928,7 +1338,7 @@ Object {
 `;
 
 exports[`Unit tests for playbook interaction. Should render error message when the apollo is returning errors. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -936,27 +1346,34 @@ Object {
         class="Toastify"
       />
       <div
-        class="text-button-gray text-lg"
-        style="margin-top: 10%;"
+        class="h-[60vh]"
       >
-        <svg
-          class="w-full mb-5"
-          fill="currentColor"
-          height="3em"
-          stroke="currentColor"
-          stroke-width="0"
-          viewBox="0 0 512 512"
-          width="3em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
-          />
-        </svg>
         <div
-          class="text-center mt-5"
+          class="flex bg-dial-alice-blue h-full"
         >
-          Error fetching data. Please check your network connection.
+          <div
+            class="text-button-gray text-lg w-full my-auto flex flex-col gap-4"
+          >
+            <svg
+              class="mx-auto"
+              fill="currentColor"
+              height="3em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              width="3em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+              />
+            </svg>
+            <div
+              class="text-center mt-5"
+            >
+              Error fetching data. Please check your network connection.
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -966,27 +1383,34 @@ Object {
       class="Toastify"
     />
     <div
-      class="text-button-gray text-lg"
-      style="margin-top: 10%;"
+      class="h-[60vh]"
     >
-      <svg
-        class="w-full mb-5"
-        fill="currentColor"
-        height="3em"
-        stroke="currentColor"
-        stroke-width="0"
-        viewBox="0 0 512 512"
-        width="3em"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
-        />
-      </svg>
       <div
-        class="text-center mt-5"
+        class="flex bg-dial-alice-blue h-full"
       >
-        Error fetching data. Please check your network connection.
+        <div
+          class="text-button-gray text-lg w-full my-auto flex flex-col gap-4"
+        >
+          <svg
+            class="mx-auto"
+            fill="currentColor"
+            height="3em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 512 512"
+            width="3em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+            />
+          </svg>
+          <div
+            class="text-center mt-5"
+          >
+            Error fetching data. Please check your network connection.
+          </div>
+        </div>
       </div>
     </div>
   </div>,
@@ -1045,7 +1469,7 @@ Object {
 `;
 
 exports[`Unit tests for playbook interaction. Should render playbook data when apollo query returning playbook data. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -1053,7 +1477,7 @@ Object {
         class="Toastify"
       />
       <div
-        class="sticky sticky-under-header flex flex-col max-w-catalog mx-auto"
+        class="sticky sticky-under-header flex flex-col"
       >
         <div
           class="bg-dial-yellow sticky sticky-under-header"
@@ -1173,13 +1597,13 @@ Object {
             </div>
           </div>
           <div
-            class="flex flex-col gap-3 w-full max-w-screen-lg"
+            class="flex flex-col gap-3 w-full max-w-screen-2xl"
           >
             <div
               class="flex flex-col gap-3 px-3"
             >
               <div
-                class="flex"
+                class="flex flex-col xl:flex-row"
               >
                 <div
                   class="hidden lg:block"
@@ -1205,7 +1629,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="mt-4 ml-auto flex items-center"
+                  class="ml-auto flex items-center gap-3"
                 >
                   <div
                     class="inline-flex items-center text-dial-blue text-sm cursor-pointer"
@@ -1229,7 +1653,7 @@ Object {
                     </span>
                   </div>
                   <a
-                    class="bg-dial-blue px-2 py-0.5 ml-3 rounded text-white mr-3"
+                    class="bg-dial-blue px-2 py-0.5 rounded text-white"
                     href="/en/playbooks/example_playbook/pdf"
                     rel="noreferrer"
                     target="_blank"
@@ -1248,7 +1672,7 @@ Object {
                     </span>
                   </a>
                   <a
-                    class="cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white mr-3"
+                    class="cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white"
                   >
                     <svg
                       class="inline"
@@ -1278,9 +1702,30 @@ Object {
                 Overview
               </div>
               <div
-                class="fr-view tiny-editor text-dial-gray-dark"
+                class="relative"
               >
-                Just an example of playbook.
+                <svg
+                  class="absolute text-lg inset-x-1/2 top-10 spinner"
+                  fill="currentColor"
+                  height="2em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="2em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+                <div
+                  class="-mt-4 html-viewer"
+                >
+                  <textarea
+                    id="playbook-overview"
+                    style="visibility: hidden;"
+                  />
+                </div>
               </div>
               <div
                 class="h4"
@@ -1288,9 +1733,30 @@ Object {
                 Audience
               </div>
               <div
-                class="fr-view tiny-editor text-dial-gray-dark"
+                class="relative"
               >
-                The audience of this playbook is you.
+                <svg
+                  class="absolute text-lg inset-x-1/2 top-10 spinner"
+                  fill="currentColor"
+                  height="2em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="2em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+                <div
+                  class="-mt-4 html-viewer"
+                >
+                  <textarea
+                    id="playbook-audience"
+                    style="visibility: hidden;"
+                  />
+                </div>
               </div>
               <div
                 class="h4"
@@ -1298,16 +1764,105 @@ Object {
                 Outcomes
               </div>
               <div
-                class="fr-view tiny-editor text-dial-gray-dark"
+                class="relative"
               >
-                The outcome of this playbook is expected.
+                <svg
+                  class="absolute text-lg inset-x-1/2 top-10 spinner"
+                  fill="currentColor"
+                  height="2em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="2em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+                <div
+                  class="-mt-4 html-viewer"
+                >
+                  <textarea
+                    id="playbook-outcomes"
+                    style="visibility: hidden;"
+                  />
+                </div>
+              </div>
+              <div
+                class="h4"
+              >
+                Playbook Author(s)
+                :
+              </div>
+              <div
+                class="text-dial-gray-dark"
+              >
+                 
+                Test Author
+              </div>
+              <div
+                class="h4 mt-3"
+              >
+                Playbook Tags
+                :
+              </div>
+              <div
+                class="grid grid-cols-1 md:grid-cols-2"
+              >
+                <div
+                  class="border-3 border-transparent text-button-gray"
+                  data-testid="tag-card"
+                >
+                  <div
+                    class="border border-dial-gray card-drop-shadow"
+                  >
+                    <div
+                      class="flex gap-3 my-5 px-4"
+                    >
+                      <div
+                        class="card-title text-button-gray"
+                      >
+                        <span>
+                          Apps
+                        </span>
+                      </div>
+                      <div
+                        class="line-clamp-1"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="border-3 border-transparent text-button-gray"
+                  data-testid="tag-card"
+                >
+                  <div
+                    class="border border-dial-gray card-drop-shadow"
+                  >
+                    <div
+                      class="flex gap-3 my-5 px-4"
+                    >
+                      <div
+                        class="card-title text-button-gray"
+                      >
+                        <span>
+                          Tag 2
+                        </span>
+                      </div>
+                      <div
+                        class="line-clamp-1"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div
               class="infinite-scroll-component__outerdiv"
             >
               <div
-                class="infinite-scroll-component relative px-2 py-4 max-w-catalog mx-auto"
+                class="infinite-scroll-component relative px-2 py-4"
                 style="height: auto; overflow: auto;"
               >
                 <div
@@ -1325,9 +1880,30 @@ Object {
                       Play 1. D4D: Understand the Problem
                     </div>
                     <div
-                      class="fr-view tinyEditor text-dial-gray-dark"
+                      class="relative"
                     >
-                      The play description goes here.
+                      <svg
+                        class="absolute text-lg inset-x-1/2 top-10 spinner"
+                        fill="currentColor"
+                        height="2em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 512 512"
+                        width="2em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                        />
+                      </svg>
+                      <div
+                        class="-mt-4 html-viewer"
+                      >
+                        <textarea
+                          id="play-0-desc"
+                          style="visibility: hidden;"
+                        />
+                      </div>
                     </div>
                     <div
                       class="flex flex-col gap-3"
@@ -1383,9 +1959,30 @@ Object {
                             class="px-4 py-4"
                           >
                             <div
-                              class="fr-view text-dial-gray-dark"
+                              class="relative"
                             >
-                              Description of the move goes here.
+                              <svg
+                                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                                fill="currentColor"
+                                height="2em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 512 512"
+                                width="2em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                                />
+                              </svg>
+                              <div
+                                class="html-viewer"
+                              >
+                                <textarea
+                                  id="move-considerations-desc"
+                                  style="visibility: hidden;"
+                                />
+                              </div>
                             </div>
                             <div
                               class="font-semibold py-2"
@@ -1401,7 +1998,10 @@ Object {
                                 target="_blank"
                               >
                                 <div
-                                  class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                                  class="
+                                      group border-2 border-gray-300 hover:border-dial-yellow
+                                      card-drop-shadow
+                                    "
                                 >
                                   <div
                                     class="flex"
@@ -1464,7 +2064,7 @@ Object {
       class="Toastify"
     />
     <div
-      class="sticky sticky-under-header flex flex-col max-w-catalog mx-auto"
+      class="sticky sticky-under-header flex flex-col"
     >
       <div
         class="bg-dial-yellow sticky sticky-under-header"
@@ -1584,13 +2184,13 @@ Object {
           </div>
         </div>
         <div
-          class="flex flex-col gap-3 w-full max-w-screen-lg"
+          class="flex flex-col gap-3 w-full max-w-screen-2xl"
         >
           <div
             class="flex flex-col gap-3 px-3"
           >
             <div
-              class="flex"
+              class="flex flex-col xl:flex-row"
             >
               <div
                 class="hidden lg:block"
@@ -1616,7 +2216,7 @@ Object {
                 </div>
               </div>
               <div
-                class="mt-4 ml-auto flex items-center"
+                class="ml-auto flex items-center gap-3"
               >
                 <div
                   class="inline-flex items-center text-dial-blue text-sm cursor-pointer"
@@ -1640,7 +2240,7 @@ Object {
                   </span>
                 </div>
                 <a
-                  class="bg-dial-blue px-2 py-0.5 ml-3 rounded text-white mr-3"
+                  class="bg-dial-blue px-2 py-0.5 rounded text-white"
                   href="/en/playbooks/example_playbook/pdf"
                   rel="noreferrer"
                   target="_blank"
@@ -1659,7 +2259,7 @@ Object {
                   </span>
                 </a>
                 <a
-                  class="cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white mr-3"
+                  class="cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white"
                 >
                   <svg
                     class="inline"
@@ -1689,9 +2289,30 @@ Object {
               Overview
             </div>
             <div
-              class="fr-view tiny-editor text-dial-gray-dark"
+              class="relative"
             >
-              Just an example of playbook.
+              <svg
+                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                fill="currentColor"
+                height="2em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="2em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                />
+              </svg>
+              <div
+                class="-mt-4 html-viewer"
+              >
+                <textarea
+                  id="playbook-overview"
+                  style="visibility: hidden;"
+                />
+              </div>
             </div>
             <div
               class="h4"
@@ -1699,9 +2320,30 @@ Object {
               Audience
             </div>
             <div
-              class="fr-view tiny-editor text-dial-gray-dark"
+              class="relative"
             >
-              The audience of this playbook is you.
+              <svg
+                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                fill="currentColor"
+                height="2em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="2em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                />
+              </svg>
+              <div
+                class="-mt-4 html-viewer"
+              >
+                <textarea
+                  id="playbook-audience"
+                  style="visibility: hidden;"
+                />
+              </div>
             </div>
             <div
               class="h4"
@@ -1709,16 +2351,105 @@ Object {
               Outcomes
             </div>
             <div
-              class="fr-view tiny-editor text-dial-gray-dark"
+              class="relative"
             >
-              The outcome of this playbook is expected.
+              <svg
+                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                fill="currentColor"
+                height="2em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="2em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                />
+              </svg>
+              <div
+                class="-mt-4 html-viewer"
+              >
+                <textarea
+                  id="playbook-outcomes"
+                  style="visibility: hidden;"
+                />
+              </div>
+            </div>
+            <div
+              class="h4"
+            >
+              Playbook Author(s)
+              :
+            </div>
+            <div
+              class="text-dial-gray-dark"
+            >
+               
+              Test Author
+            </div>
+            <div
+              class="h4 mt-3"
+            >
+              Playbook Tags
+              :
+            </div>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2"
+            >
+              <div
+                class="border-3 border-transparent text-button-gray"
+                data-testid="tag-card"
+              >
+                <div
+                  class="border border-dial-gray card-drop-shadow"
+                >
+                  <div
+                    class="flex gap-3 my-5 px-4"
+                  >
+                    <div
+                      class="card-title text-button-gray"
+                    >
+                      <span>
+                        Apps
+                      </span>
+                    </div>
+                    <div
+                      class="line-clamp-1"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="border-3 border-transparent text-button-gray"
+                data-testid="tag-card"
+              >
+                <div
+                  class="border border-dial-gray card-drop-shadow"
+                >
+                  <div
+                    class="flex gap-3 my-5 px-4"
+                  >
+                    <div
+                      class="card-title text-button-gray"
+                    >
+                      <span>
+                        Tag 2
+                      </span>
+                    </div>
+                    <div
+                      class="line-clamp-1"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div
             class="infinite-scroll-component__outerdiv"
           >
             <div
-              class="infinite-scroll-component relative px-2 py-4 max-w-catalog mx-auto"
+              class="infinite-scroll-component relative px-2 py-4"
               style="height: auto; overflow: auto;"
             >
               <div
@@ -1736,9 +2467,30 @@ Object {
                     Play 1. D4D: Understand the Problem
                   </div>
                   <div
-                    class="fr-view tinyEditor text-dial-gray-dark"
+                    class="relative"
                   >
-                    The play description goes here.
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="-mt-4 html-viewer"
+                    >
+                      <textarea
+                        id="play-0-desc"
+                        style="visibility: hidden;"
+                      />
+                    </div>
                   </div>
                   <div
                     class="flex flex-col gap-3"
@@ -1794,9 +2546,30 @@ Object {
                           class="px-4 py-4"
                         >
                           <div
-                            class="fr-view text-dial-gray-dark"
+                            class="relative"
                           >
-                            Description of the move goes here.
+                            <svg
+                              class="absolute text-lg inset-x-1/2 top-10 spinner"
+                              fill="currentColor"
+                              height="2em"
+                              stroke="currentColor"
+                              stroke-width="0"
+                              viewBox="0 0 512 512"
+                              width="2em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                              />
+                            </svg>
+                            <div
+                              class="html-viewer"
+                            >
+                              <textarea
+                                id="move-considerations-desc"
+                                style="visibility: hidden;"
+                              />
+                            </div>
                           </div>
                           <div
                             class="font-semibold py-2"
@@ -1812,7 +2585,10 @@ Object {
                               target="_blank"
                             >
                               <div
-                                class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                                class="
+                                      group border-2 border-gray-300 hover:border-dial-yellow
+                                      card-drop-shadow
+                                    "
                               >
                                 <div
                                   class="flex"

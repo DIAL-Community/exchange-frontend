@@ -11,6 +11,8 @@ import SearchFilter from '../../../components/shared/SearchFilter'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext }
   from '../../../components/context/candidate/OrganizationFilterContext'
 import ClientOnly from '../../../lib/ClientOnly'
+import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
+import { useUser } from '../../../lib/hooks'
 const OrganizationListQuery = dynamic(() =>
   import('../../../components/candidate/organizations/OrganizationList'), { ssr: false })
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
@@ -19,21 +21,29 @@ const Organizations = () => {
   const { search } = useContext(OrganizationFilterContext)
   const { setSearch } = useContext(OrganizationFilterDispatchContext)
 
+  const { isAdminUser, loadingUserSession } = useUser()
+
   return (
     <>
       <QueryNotification />
       <GradientBackground />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Header />
-      <TabNav activeTab='filter.entity.candidateOrganizations' />
-      <MobileNav activeTab='filter.entity.candidateOrganizations' />
-      <ClientOnly>
-        <PageContent
-          activeTab='filter.entity.candidateOrganizations'
-          content={<OrganizationListQuery />}
-          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.candidateOrganizations' />}
-        />
-      </ClientOnly>
+      {loadingUserSession ? <Loading /> : isAdminUser ? (
+        <ClientOnly>
+          <TabNav activeTab='filter.entity.candidateOrganizations' />
+          <MobileNav activeTab='filter.entity.candidateOrganizations' />
+          <PageContent
+            content={<OrganizationListQuery />}
+            searchFilter={
+              <SearchFilter
+                {...{ search, setSearch }}
+                hint='filter.entity.candidateOrganizations'
+              />
+            }
+          />
+        </ClientOnly>
+      ) : <Unauthorized />}
       <Footer />
     </>
   )

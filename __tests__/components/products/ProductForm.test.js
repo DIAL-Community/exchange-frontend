@@ -1,29 +1,19 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import ProductForm from '../../../components/products/ProductForm'
 import { CREATE_PRODUCT } from '../../../mutations/product'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  render,
-} from '../../test-utils'
+import { render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { createProductFailure, createProductSuccess, product } from './data/ProductForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for the ProductForm component.', () => {
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
   const PRODUCT_NAME_TEST_ID = 'product-name'
   const PRODUCT_DESCRIPTION_TEST_ID = 'product-description'
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
-
-  beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
-  })
 
   test('Should match snapshot - create.', () => {
     const { container } = render(
@@ -35,7 +25,7 @@ describe('Unit tests for the ProductForm component.', () => {
   })
 
   test('Should match snapshot - edit.', () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const { container } = render(
       <CustomMockedProvider>
         <ProductForm product={product} />
@@ -75,7 +65,9 @@ describe('Unit tests for the ProductForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test product name')
     expect(getByTestId(PRODUCT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await user.clear(screen.getByLabelText(/Name/))
+    await act(async () => waitFor(() => {
+      user.clear(screen.getByLabelText(/Name/))
+    }))
     expect(getByTestId(PRODUCT_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test product name 2')
@@ -89,6 +81,7 @@ describe('Unit tests for the ProductForm component.', () => {
   })
 
   test('Should display success toast on submit.', async () => {
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const mockCreateProduct = generateMockApolloData(
       CREATE_PRODUCT,
       {
@@ -96,44 +89,54 @@ describe('Unit tests for the ProductForm component.', () => {
         slug: 'test_product',
         aliases: ['test1','test2'],
         website: 'testproduct.com',
-        description: '<p>test product description</p>'
+        description: '<p>test product description</p>',
+        commercialProduct: false,
+        hostingModel: null,
+        pricingModel: null,
+        pricingDetails: null
       },
       null,
       createProductSuccess
     )
-    const { getByTestId } = render(
-      <CustomMockedProvider mocks={[mockCreateProduct]}>
+    const { container, getByTestId } = render(
+      <CustomMockedProvider mocks={[mockCreateProduct]} allowDebugMessage>
         <ProductForm product={product} />
       </CustomMockedProvider>
     )
     await act(async () => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      await screen.findByText('Product submitted successfully')
     })
+    await screen.findByText('Product submitted successfully')
+    expect(container).toMatchSnapshot()
   })
 
   test('Should display failure toast on submit.', async () => {
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const mockCreateProduct = generateMockApolloData(
       CREATE_PRODUCT,
       {
         name: 'Test Product',
         slug: 'test_product',
-        aliases: ['test1','test2'],
+        aliases: ['test1', 'test2'],
         website: 'testproduct.com',
-        description: '<p>test product description</p>'
+        description: '<p>test product description</p>',
+        commercialProduct: false,
+        hostingModel: null,
+        pricingModel: null,
+        pricingDetails: null
       },
       null,
       createProductFailure
     )
-    const { getByTestId } = render(
-      <CustomMockedProvider mocks={[mockCreateProduct]}>
+    const { container, getByTestId } = render(
+      <CustomMockedProvider mocks={[mockCreateProduct]} allowDebugMessage>
         <ProductForm product={product} />
       </CustomMockedProvider>
     )
     await act(async () => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      await screen.findByText('Product submission failed')
-      await screen.findByText('Must be admin or product owner to create an product')
     })
+    await screen.findAllByText('Product submission failed')
+    expect(container).toMatchSnapshot()
   })
 })

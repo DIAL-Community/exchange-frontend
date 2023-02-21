@@ -6,38 +6,41 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
     class="Toastify"
   />
   <header
-    class="z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white"
+    class="z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto"
   >
     <div
-      class="flex flex-wrap justify-center items-center py-3 lg:py-0 max-w-catalog header-min-height mx-auto"
+      class="flex flex-wrap header-min-height px-8 xl:px-16"
     >
-      <div
-        class="flex-1 flex my-auto"
+      <a
+        class="flex py-6"
+        href="/"
       >
-        <a
-          class="px-6 lg:px-8"
-          href="/"
+        <span
+          style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
         >
-          <div
-            class="text-dial-blue-darkest text-xs"
+          <span
+            style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
           >
-            Digital Impact Alliance
-          </div>
-          <div
-            class="font-bold text-base text-dial-blue-darkest"
-          >
-            <span
-              class="block"
-            >
-              Catalog of
-               
-              Digital Solutions
-            </span>
-          </div>
-        </a>
-      </div>
+            <img
+              alt=""
+              aria-hidden="true"
+              src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27154%27%20height=%2744%27/%3e"
+              style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+            />
+          </span>
+          <img
+            alt="Digital Impact Exchage Logo."
+            data-nimg="intrinsic"
+            decoding="async"
+            src="/_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=384&q=75"
+            srcset="/_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=256&q=75 1x, /_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=384&q=75 2x"
+            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+          />
+          <noscript />
+        </span>
+      </a>
       <label
-        class="pointer-cursor block lg:hidden px-8"
+        class="ml-auto my-auto pointer-cursor block xl:hidden"
         for="menu-toggle"
       >
         <svg
@@ -61,12 +64,12 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
         type="checkbox"
       />
       <div
-        class="hidden lg:flex lg:items-center lg:w-auto w-full"
+        class="hidden xl:flex xl:items-center xl:w-auto w-full ml-auto mx-2"
         id="menu"
       >
         <nav>
           <ul
-            class="block lg:hidden mt-6 text-sm"
+            class="block xl:hidden mt-6 text-sm text-dial-white-beech"
             style="min-height: 405px;"
           >
             <li
@@ -186,7 +189,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                 class="mx-6 font-semibold"
                 href="/admin"
               >
-                Admin Menu
+                Admin
                 <svg
                   class="text-base inline ml-2"
                   fill="currentColor"
@@ -225,7 +228,9 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                 />
                 <div
                   class="inline text-sm"
-                />
+                >
+                  some-fake-username
+                </div>
                 <svg
                   class="text-base inline ml-2"
                   fill="currentColor"
@@ -261,92 +266,27 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               </a>
             </li>
           </ul>
-          
           <ul
-            class="hidden lg:flex items-center justify-between text-base text-dial-blue-darkest pt-4 lg:pt-0"
+            class="hidden xl:flex items-center text-dial-white-beech pt-4 xl:pt-0 xl:gap-x-2"
           >
             <li
-              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
-                class="
-    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
-   lg:mb-0 mb-2 inline"
-                href="resourceMenu"
-                id="resourceMenu"
+                class="xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer border-b-2 border-transparent hover:border-dial-yellow"
+                href="startOverviewTour"
               >
-                Resources
-                <svg
-                  class="ml-1 inline text-2xl"
-                  fill="currentColor"
-                  height="1em"
-                  stroke="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 20 20"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clip-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    fill-rule="evenodd"
-                  />
-                </svg>
+                Getting Started
               </a>
-              <div
-                class="hidden 
-    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
-    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
-  "
-                role="menu"
-              >
-                <div
-                  class="py-1"
-                  role="none"
-                >
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="/covid-19-resources"
-                    role="menuitem"
-                  >
-                    COVID-19 Resources
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="//resources.dial.community/"
-                    rel="noreferrer"
-                    role="menuitem"
-                    target="_blank"
-                  >
-                    DIAL Resources Portal
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="//digitalimpactalliance.org/research/sdg-digital-investment-framework/"
-                    rel="noreferrer"
-                    role="menuitem"
-                    target="_blank"
-                  >
-                    SDG Framework
-                  </a>
-                </div>
-              </div>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
-                class="
-    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
-   lg:mb-0 mb-2 inline"
-                href="aboutMenu"
-                id="aboutMenu"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                data-testid="menu-about"
+                href="menu-about"
+                id="menu-about"
               >
                 About
                 <svg
@@ -366,124 +306,15 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                   />
                 </svg>
               </a>
-              <div
-                class="hidden 
-    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
-    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
-  "
-                role="menu"
-              >
-                <div
-                  class="py-1"
-                  role="none"
-                >
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="/about"
-                    role="menuitem"
-                  >
-                    About
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="//solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/overview"
-                    rel="noreferrer"
-                    role="menuitem"
-                    target="_blank"
-                  >
-                    Catalog Wiki Page
-                  </a>
-                </div>
-              </div>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
-            />
-            <li
-              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
-                class="
-    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
-   lg:mb-0 mb-2 inline bg-dial-yellow-light pt-2 pb-2 rounded"
-                data-testid="user-menu"
-                href="signOut"
-                id="userMenu"
-              >
-                <img
-                  alt="Back"
-                  class="inline mx-2"
-                  height="20px"
-                  src="/icons/user.svg"
-                  width="20px"
-                />
-                <div
-                  class="inline text-xs"
-                  id="userMenu"
-                >
-                  <svg
-                    class="ml-1 inline text-2xl"
-                    fill="currentColor"
-                    height="1em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 20 20"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                </div>
-              </a>
-              <div
-                class="hidden 
-    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
-    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
-  "
-                role="menu"
-              >
-                <div
-                  class="py-1"
-                  role="none"
-                >
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="/auth/profile"
-                    role="menuitem"
-                  >
-                    My Profile
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="en"
-                    role="menuitem"
-                  >
-                    Sign Out
-                  </a>
-                </div>
-              </div>
-            </li>
-            <li
-              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
-            >
-              <a
-                class="
-    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
-   lg:mb-0 mb-2 inline"
-                href="helpMenu"
-                id="helpMenu"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                data-testid="menu-help"
+                href="menu-help"
+                id="menu-help"
               >
                 Help
                 <svg
@@ -503,49 +334,17 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                   />
                 </svg>
               </a>
-              <div
-                class="hidden 
-    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
-    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
-  "
-                role="menu"
-              >
-                <a
-                  class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                  href="https://docs.osc.dial.community/projects/product-registry/en/latest/"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  Documentation Portal
-                </a>
-                <a
-                  class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                  href="#"
-                >
-                  Report Issue
-                </a>
-              </div>
-            </li>
-            <li>
-              <div
-                class="border border-gray-400 border-t-0 lg:border-l-0 lg:h-9"
-              />
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
-                class="
-    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
-   lg:mb-0 mb-2 inline"
-                href="switchLanguage"
-                id="switchLanguage"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                data-testid="menu-resource"
+                href="menu-resource"
+                id="menu-resource"
               >
-                Select Language
+                Resources
                 <svg
                   class="ml-1 inline text-2xl"
                   fill="currentColor"
@@ -563,89 +362,91 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                   />
                 </svg>
               </a>
-              <div
-                class="hidden 
-    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
-    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
-  "
-                role="menu"
+            </li>
+            <li
+              class="relative mt-2 xl:mt-0 text-right"
+            >
+              <a
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                data-testid="menu-admin"
+                href="menu-admin"
+                id="menu-admin"
+              >
+                Admin
+                <svg
+                  class="ml-1 inline text-2xl"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li
+              class="relative mt-2 xl:mt-0 text-right intro-overview-signup"
+            >
+              <a
+                data-testid="user-menu"
+                href="menu-user"
+                id="menu-user"
               >
                 <div
-                  class="py-1"
-                  role="none"
+                  class="username-avatar"
+                  id="menu-user"
                 >
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="en"
-                    role="menuitem"
+                  <span
+                    class="text-dial-gray-dark"
                   >
-                    English (en)
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="de"
-                    role="menuitem"
-                  >
-                    Deutsch (de)
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="es"
-                    role="menuitem"
-                  >
-                    Español (es)
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="fr"
-                    role="menuitem"
-                  >
-                    Francais (fr)
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="pt"
-                    role="menuitem"
-                  >
-                    Português (pt)
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="sw"
-                    role="menuitem"
-                  >
-                    Kiswahili (sw)
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="cs"
-                    role="menuitem"
-                  >
-                    Czech (cs)
-                  </a>
+                    SO
+                  </span>
                 </div>
-              </div>
+              </a>
+            </li>
+            <li
+              class="relative mt-2 xl:mt-0 text-right"
+            >
+              <a
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                data-testid="menu-language"
+                href="menu-language"
+                id="menu-language"
+              >
+                English (en)
+                <svg
+                  class="ml-1 inline text-2xl"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
             </li>
           </ul>
         </nav>
       </div>
     </div>
   </header>
-  <div>
+  <div
+    class="max-w-catalog mx-auto"
+  >
     <div
       class="flex flex-col"
     >
@@ -685,7 +486,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
         >
           <form>
             <div
-              class="sm:w-full md:w-2/3 lg:w-2/5 bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 mx-auto flex flex-col gap-3"
+              class="
+                sm:w-full md:w-2/3 lg:w-2/5 bg-edit shadow-md rounded
+                px-8 pt-6 pb-12 mb-4 mx-auto flex flex-col gap-3
+              "
             >
               <div
                 class="text-2xl font-bold text-dial-blue pb-4"
@@ -696,65 +500,265 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                 class="flex flex-col lg:flex-col gap-4"
               >
                 <div
-                  class="w-full flex flex-col"
+                  class="form-field-wrapper"
+                  data-testid="email-label"
                 >
                   <label
-                    class="form-field-wrapper form-field-label"
-                    data-testid="email-label"
-                    for="name"
+                    class="form-field-label required-field"
+                    for="email"
                   >
-                    <p
-                      class="required-field"
-                    >
-                      Email
-                    </p>
-                    <input
-                      class="w-full"
-                      data-testid="email-input"
-                      name="email"
-                      type="text"
-                      value=""
-                    />
+                    Email
                   </label>
+                  <input
+                    class="w-full"
+                    data-testid="email-input"
+                    name="email"
+                    placeholder="Enter email address"
+                    type="text"
+                    value=""
+                  />
                 </div>
                 <div
-                  class="w-full flex flex-col"
+                  class="form-field-wrapper"
+                  data-testid="username-label"
                 >
                   <label
-                    class="form-field-wrapper form-field-label"
-                    data-testid="username-label"
-                    for="name"
+                    class="form-field-label required-field"
+                    for="username"
                   >
-                    <p
-                      class="required-field"
-                    >
-                      Username
-                    </p>
-                    <input
-                      class="w-full"
-                      data-testid="username-input"
-                      name="username"
-                      type="text"
-                      value=""
-                    />
+                    Username
                   </label>
+                  <input
+                    class="w-full"
+                    data-testid="username-input"
+                    name="username"
+                    placeholder="Enter username"
+                    type="text"
+                    value=""
+                  />
                 </div>
                 <div
-                  class="w-full flex flex-col"
+                  class="form-field-wrapper"
                 >
                   <label
-                    class="form-field-wrapper form-field-label"
-                    for="name"
+                    class="form-field-label"
+                    for="roles"
                   >
-                    <p>
-                      Roles
-                    </p>
+                    Roles
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-:r0:-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-16oyauc-control"
+                    >
+                      <div
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
+                      >
+                        <div
+                          class="react-select__placeholder css-5rjclb-placeholder"
+                          id="react-select-:r0:-placeholder"
+                        >
+                          Select user roles
+                        </div>
+                        <div
+                          class="react-select__input-container css-qbdosj-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-describedby="react-select-:r0:-placeholder"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-id-undefined"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="css-tj5bde-Svg"
+                            focusable="false"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            width="20"
+                          >
+                            <path
+                              d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-wrap gap-3"
+                  >
+                    <div
+                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      data-testid="pill"
+                    >
+                      user
+                      <svg
+                        class="ml-3 text-2xl cursor-pointer"
+                        data-testid="remove-button"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="form-field-wrapper"
+                >
+                  <label
+                    class="form-field-label"
+                    data-testid="organization-search"
+                    for="organization"
+                  >
+                    Organization
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-:r1:-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-16oyauc-control"
+                    >
+                      <div
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
+                      >
+                        <div
+                          class="react-select__placeholder css-5rjclb-placeholder"
+                          id="react-select-:r1:-placeholder"
+                        >
+                          Enter user organization
+                        </div>
+                        <div
+                          class="react-select__input-container css-qbdosj-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-describedby="react-select-:r1:-placeholder"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-id-organization"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
+                        >
+                          <svg
+                            class="text-2xl"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="form-field-wrapper"
+                >
+                  <label
+                    class="form-field-label"
+                    for="product"
+                  >
+                    Products
+                  </label>
+                  <div
+                    class=""
+                    data-testid="product-search"
+                  >
                     <div
                       class=" css-l45kjq-container"
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-2-live-region"
+                        id="react-select-:r2:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -763,31 +767,32 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-16oyauc-control"
                       >
                         <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                          class="react-select__value-container css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-2-placeholder"
+                            class="react-select__placeholder css-5rjclb-placeholder"
+                            id="react-select-:r2:-placeholder"
                           >
-                            Select user roles
+                            Enter products owned by user
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-2-placeholder"
+                              aria-describedby="react-select-:r2:-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
+                              aria-label="Filter by Product"
                               autocapitalize="none"
                               autocomplete="off"
                               autocorrect="off"
                               class="react-select__input"
-                              id="react-select-2-input"
+                              id="async-select-id-undefined"
                               role="combobox"
                               spellcheck="false"
                               style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -801,11 +806,11 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                           class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                         >
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -823,14 +828,18 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                         </div>
                       </div>
                     </div>
+                  </div>
+                  <div
+                    class="flex flex-wrap gap-x-3"
+                  >
                     <div
-                      class="flex flex-wrap gap-3"
+                      class="py-1"
                     >
                       <div
                         class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
                         data-testid="pill"
                       >
-                        user
+                        Product: product 1
                         <svg
                           class="ml-3 text-2xl cursor-pointer"
                           data-testid="remove-button"
@@ -852,286 +861,36 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                         </svg>
                       </div>
                     </div>
-                  </label>
-                </div>
-                <div
-                  class="w-full flex flex-col"
-                >
-                  <label
-                    class="form-field-wrapper form-field-label"
-                    for="name"
-                  >
-                    <p>
-                      Organization
-                    </p>
                     <div
-                      class=""
-                      data-testid="organization-search"
+                      class="py-1"
                     >
                       <div
-                        class=" css-l45kjq-container"
+                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                        data-testid="pill"
                       >
-                        <span
-                          class="css-1f43avz-a11yText-A11yText"
-                          id="react-select-3-live-region"
-                        />
-                        <span
-                          aria-atomic="false"
-                          aria-live="polite"
-                          aria-relevant="additions text"
-                          class="css-1f43avz-a11yText-A11yText"
-                        />
-                        <div
-                          class="react-select__control css-19jej77-control"
+                        Product: product 2
+                        <svg
+                          class="ml-3 text-2xl cursor-pointer"
+                          data-testid="remove-button"
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <div
-                            class="react-select__value-container css-3tzzl5-ValueContainer"
-                          >
-                            <div
-                              class="react-select__placeholder css-19jynah-placeholder"
-                              id="react-select-3-placeholder"
-                            >
-                              Enter user organization
-                            </div>
-                            <div
-                              class="react-select__input-container css-6j8wv5-Input"
-                              data-value=""
-                            >
-                              <input
-                                aria-autocomplete="list"
-                                aria-describedby="react-select-3-placeholder"
-                                aria-expanded="false"
-                                aria-haspopup="true"
-                                aria-label="Filter by Organization"
-                                autocapitalize="none"
-                                autocomplete="off"
-                                autocorrect="off"
-                                class="react-select__input"
-                                id="react-select-3-input"
-                                role="combobox"
-                                spellcheck="false"
-                                style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                                tabindex="0"
-                                type="text"
-                                value=""
-                              />
-                            </div>
-                          </div>
-                          <div
-                            class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                          >
-                            <span
-                              class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
-                            />
-                            <div
-                              aria-hidden="true"
-                              class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="css-tj5bde-Svg"
-                                focusable="false"
-                                height="20"
-                                viewBox="0 0 20 20"
-                                width="20"
-                              >
-                                <path
-                                  d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                        </div>
+                          <path
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          />
+                          <path
+                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          />
+                        </svg>
                       </div>
                     </div>
-                    <div
-                      class="flex flex-wrap gap-3"
-                    >
-                      <div
-                        class="py-1"
-                      >
-                        <div
-                          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                          data-testid="pill"
-                        >
-                          Organization: Organization 1
-                          <svg
-                            class="ml-3 text-2xl cursor-pointer"
-                            data-testid="remove-button"
-                            fill="currentColor"
-                            height="1em"
-                            stroke="currentColor"
-                            stroke-width="0"
-                            viewBox="0 0 24 24"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M0 0h24v24H0z"
-                              fill="none"
-                            />
-                            <path
-                              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </label>
-                </div>
-                <div
-                  class="w-full flex flex-col"
-                >
-                  <label
-                    class="form-field-wrapper form-field-label"
-                    for="name"
-                  >
-                    <p>
-                      Products
-                    </p>
-                    <div
-                      class=""
-                      data-testid="product-search"
-                    >
-                      <div
-                        class=" css-l45kjq-container"
-                      >
-                        <span
-                          class="css-1f43avz-a11yText-A11yText"
-                          id="react-select-4-live-region"
-                        />
-                        <span
-                          aria-atomic="false"
-                          aria-live="polite"
-                          aria-relevant="additions text"
-                          class="css-1f43avz-a11yText-A11yText"
-                        />
-                        <div
-                          class="react-select__control css-19jej77-control"
-                        >
-                          <div
-                            class="react-select__value-container css-3tzzl5-ValueContainer"
-                          >
-                            <div
-                              class="react-select__placeholder css-19jynah-placeholder"
-                              id="react-select-4-placeholder"
-                            >
-                              Enter products owned by user
-                            </div>
-                            <div
-                              class="react-select__input-container css-6j8wv5-Input"
-                              data-value=""
-                            >
-                              <input
-                                aria-autocomplete="list"
-                                aria-describedby="react-select-4-placeholder"
-                                aria-expanded="false"
-                                aria-haspopup="true"
-                                aria-label="Filter by Product"
-                                autocapitalize="none"
-                                autocomplete="off"
-                                autocorrect="off"
-                                class="react-select__input"
-                                id="react-select-4-input"
-                                role="combobox"
-                                spellcheck="false"
-                                style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                                tabindex="0"
-                                type="text"
-                                value=""
-                              />
-                            </div>
-                          </div>
-                          <div
-                            class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
-                          >
-                            <span
-                              class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
-                            />
-                            <div
-                              aria-hidden="true"
-                              class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="css-tj5bde-Svg"
-                                focusable="false"
-                                height="20"
-                                viewBox="0 0 20 20"
-                                width="20"
-                              >
-                                <path
-                                  d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="flex flex-wrap gap-3"
-                    >
-                      <div
-                        class="py-1"
-                      >
-                        <div
-                          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                          data-testid="pill"
-                        >
-                          Product: product 1
-                          <svg
-                            class="ml-3 text-2xl cursor-pointer"
-                            data-testid="remove-button"
-                            fill="currentColor"
-                            height="1em"
-                            stroke="currentColor"
-                            stroke-width="0"
-                            viewBox="0 0 24 24"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M0 0h24v24H0z"
-                              fill="none"
-                            />
-                            <path
-                              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                      <div
-                        class="py-1"
-                      >
-                        <div
-                          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
-                          data-testid="pill"
-                        >
-                          Product: product 2
-                          <svg
-                            class="ml-3 text-2xl cursor-pointer"
-                            data-testid="remove-button"
-                            fill="currentColor"
-                            height="1em"
-                            stroke="currentColor"
-                            stroke-width="0"
-                            viewBox="0 0 24 24"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M0 0h24v24H0z"
-                              fill="none"
-                            />
-                            <path
-                              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </label>
+                  </div>
                 </div>
                 <label
                   class="flex gap-x-2 items-center form-field-label my-auto"
@@ -1153,7 +912,13 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                     data-testid="submit-button"
                     type="submit"
                   >
-                    Submit
+                    Submit User
+                  </button>
+                  <button
+                    class="cancel-button"
+                    type="button"
+                  >
+                    Cancel
                   </button>
                 </div>
               </div>
@@ -1166,324 +931,144 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
   <footer>
     <div
       class="block"
-    />
-    <div
-      class="relative w-full bg-dial-gray-light text-dial-purple-light"
     >
       <div
-        class="px-4 2xl:px-24 pt-8 2xl:pb-8 lg:flex lg:flex-row flex-wrap justify-center 2xl:justify-start mx-auto max-w-catalog"
+        class="w-full bg-dial-gray-dark fixed bottom-0 right-0 left-0 z-80"
       >
         <div
-          class="max-w-prose sm:w-full lg:flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto text-center 2xl:text-left"
-        >
-          
-    The Digital Impact Alliance is a partnership amongst some of the world’s most active
-    digital development champions. We are grateful for the support of our Founding Partners.
-  
-        </div>
-        <div
-          class="flex-grow flex flex-row flex-wrap place-content-center"
+          class="flex flex-col md:flex-row justify-center py-4 mx-4 gap-3"
         >
           <div
-            class="relative p-2 lg:my-auto"
+            class="text-dial-gray-light my-auto"
           >
-            <a
-              href="https://unfoundation.org/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <div
-                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
-              >
-                <div
-                  style="box-sizing: border-box; display: block; max-width: 100%;"
-                >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQ2IiBoZWlnaHQ9IjU5IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIvPg=="
-                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
-                  />
-                </div>
-                <img
-                  alt="The United Nations Foundation Logo"
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  src="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75"
-                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75 2x"
-                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                />
-                <noscript />
-              </div>
-            </a>
+            Cookies help us deliver our services. By using our services, you agree to our use of cookies.
           </div>
           <div
-            class="relative p-2 m-auto"
+            class="flex justify-center gap-4"
           >
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Accept All
+            </button>
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Cookie Details
+            </button>
             <a
-              href="https://www.gatesfoundation.org/"
-              rel="noreferrer"
+              class="my-auto text-dial-yellow border-b-2 border-transparent hover:border-dial-yellow"
+              href="/privacy-policy"
               target="_blank"
             >
-              <div
-                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
-              >
-                <div
-                  style="box-sizing: border-box; display: block; max-width: 100%;"
-                >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjA0IiBoZWlnaHQ9IjQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIvPg=="
-                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
-                  />
-                </div>
-                <img
-                  alt="The Bill & Melinda Gates Foundation"
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  src="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75"
-                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75 2x"
-                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                />
-                <noscript />
-              </div>
-            </a>
-          </div>
-          <div
-            class="relative p-2 m-auto"
-          >
-            <a
-              href="https://www.sida.se/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <div
-                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
-              >
-                <div
-                  style="box-sizing: border-box; display: block; max-width: 100%;"
-                >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAyIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
-                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
-                  />
-                </div>
-                <img
-                  alt="The Swedish International Development Cooperation Agency Logo"
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  src="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75"
-                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=128&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75 2x"
-                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                />
-                <noscript />
-              </div>
-            </a>
-          </div>
-          <div
-            class="relative p-2 m-auto"
-          >
-            <a
-              href="https://www.gov.uk/government/organisations/foreign-commonwealth-development-office"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <div
-                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
-              >
-                <div
-                  style="box-sizing: border-box; display: block; max-width: 100%;"
-                >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
-                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
-                  />
-                </div>
-                <img
-                  alt="The Foreign, Commonwealth & Development Office Logo"
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  src="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75"
-                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=64&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75 2x"
-                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                />
-                <noscript />
-              </div>
+              Privacy Policy
             </a>
           </div>
         </div>
-      </div>
-      <div
-        class="2xl:px-24 my-3 xl:my-0"
-      >
         <div
-          class="border border-t-0 border-dial-gray"
-        />
-      </div>
-      <div
-        class="px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap justify-center 2xl:justify-start mx-auto max-w-catalog"
-      >
-        <div
-          class="w-full lg:max-w-2/4 2xl:max-w-prose flex-auto my-auto md:text-center 2xl:text-left"
+          class="hidden"
         >
-          
-    We are also thankful for direct support for this Catalog of Digital Solutions provided
-    by the following partners:
-  
-        </div>
-        <div
-          class="h-auto w-72 relative p-2 my-auto"
-        >
-          <a
-            href="https://www.giz.de/"
-            rel="noreferrer"
-            target="_blank"
+          <div
+            class="flex flex-col md:flex-row justify-center py-4 mx-4 gap-3"
           >
-            <div
-              style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+            <label
+              class="inline-flex items-center"
             >
-              <div
-                style="box-sizing: border-box; display: block; max-width: 100%;"
-              >
-                <img
-                  alt=""
-                  aria-hidden="true"
-                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTU3MCIgaGVpZ2h0PSI4NzkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
-                  style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
-                />
-              </div>
-              <img
-                alt="The German Corporation for International Cooperation GmbH Logo"
-                data-nimg="intrinsic"
-                decoding="async"
-                src="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75"
-                srcset="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=1920&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75 2x"
-                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              <input
+                checked=""
+                class="h-4 w-4 form-checkbox text-white"
+                name="essential"
+                type="checkbox"
               />
-              <noscript />
-            </div>
-          </a>
-        </div>
-        <div
-          class="h-auto w-72 relative p-2 my-auto"
-        >
-          <a
-            href="https://www.bmz.de/"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <div
-              style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
-            >
-              <div
-                style="box-sizing: border-box; display: block; max-width: 100%;"
+              <span
+                class="ml-2 text-white"
               >
-                <img
-                  alt=""
-                  aria-hidden="true"
-                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTE1MiIgaGVpZ2h0PSI1MzYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
-                  style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
-                />
-              </div>
-              <img
-                alt="The Federal Ministry for Economic Cooperation and Development Logo"
-                data-nimg="intrinsic"
-                decoding="async"
-                src="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75"
-                srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=1200&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75 2x"
-                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                Essential Cookies
+              </span>
+            </label>
+            <label
+              class="inline-flex items-center"
+            >
+              <input
+                checked=""
+                class="h-4 w-4 form-checkbox text-white"
+                name="essential"
+                type="checkbox"
               />
-              <noscript />
-            </div>
-          </a>
+              <span
+                class="ml-2 text-white"
+              >
+                Statistics Cookies
+              </span>
+            </label>
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Save
+            </button>
+          </div>
         </div>
       </div>
     </div>
     <div
-      class="relative w-full bg-dial-gray text-dial-purple-light leading-none text-base"
+      class="max-w-catalog mx-auto bg-dial-blue-chalk text-dial-stratos"
     >
       <div
-        class="px-4 pb-4 pt-8 lg:px-10 2xl:pt-12 2xl:pb-8 2xl:px-24 flex flex-row flex-wrap mx-auto max-w-catalog"
+        class="flex flex-col xl:flex-row gap-x-8 2xl:gap-x-24 gap-y-4 2xl:gap-y-8 py-8 xl:py-12 px-4 xl:px-20"
       >
         <div
-          class="py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light"
-        >
-          <a
-            class="border-b-2 border-transparent hover:border-dial-yellow"
-            href="https://digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5"
-            rel="noreferrer"
-            target="_blank"
-          >
-            SIGN UP FOR OUR NEWSLETTER
-          </a>
-        </div>
-        <div
-          class="py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light"
-        >
-          <a
-            class="border-b-2 border-transparent hover:border-dial-yellow"
-            href="https://gitlab.com/dial/online-catalog/product-registry"
-            rel="noreferrer"
-            target="_blank"
-          >
-            VIEW THIS PROJECT ON GITLAB
-          </a>
-        </div>
-        <div
-          class="flex-grow mt-4 flex flex-row"
+          class="w-full xl:w-3/12 flex flex-col gap-y-4 xl:gap-y-8"
         >
           <div
-            class="py-2 px-0 lg:px-2 rounded-md flex-grow text-right"
+            class="text-xl font-semibold"
           >
-            Follow DIAL on social media
+            Connect with us
           </div>
+          <hr
+            class="border border-footer-delimiter"
+          />
           <div
-            class="p-2 rounded-md bg-dial-gray-light mx-2"
+            class="text-base"
           >
+            Sign up for our newsletter to learn more about DIAL and how you can be involved.
+          </div>
+          <div>
             <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
-              href="https://facebook.com/DigitalImpactAlliance"
+              class="py-2 px-5 rounded-md bg-dial-yellow font-semibold"
+              href="//digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5"
               rel="noreferrer"
               target="_blank"
             >
-              <svg
-                class="inline"
-                fill="currentColor"
-                height="1em"
-                stroke="currentColor"
-                stroke-width="0"
-                viewBox="0 0 320 512"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
-                />
-              </svg>
+              Sign up for our Newsletter
             </a>
           </div>
+        </div>
+        <div
+          class="w-full xl:w-2/12 flex flex-col gap-y-4 xl:gap-y-8"
+        >
           <div
-            class="p-2 rounded-md bg-dial-gray-light"
+            class="text-xl font-semibold"
+          >
+            Follow us
+          </div>
+          <hr
+            class="border border-footer-delimiter"
+          />
+          <div
+            class="flex gap-4"
           >
             <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
-              href="https://twitter.com/DIAL_Community"
+              href="//twitter.com/DIAL_Community"
               rel="noreferrer"
               target="_blank"
             >
               <svg
-                class="inline"
                 fill="currentColor"
-                height="1em"
+                height="1.5em"
                 stroke="currentColor"
                 stroke-width="0"
                 viewBox="0 0 512 512"
-                width="1em"
+                width="1.5em"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1491,132 +1076,302 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                 />
               </svg>
             </a>
-          </div>
-          <div
-            class="p-2 rounded-md bg-dial-gray-light mx-2"
-          >
             <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
-              href="https://www.instagram.com/dial_community"
+              href="//www.linkedin.com/company/digital-impact-alliance/"
               rel="noreferrer"
               target="_blank"
             >
               <svg
-                class="inline"
                 fill="currentColor"
-                height="1em"
+                height="1.5em"
                 stroke="currentColor"
                 stroke-width="0"
                 viewBox="0 0 448 512"
-                width="1em"
+                width="1.5em"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
-                />
-              </svg>
-            </a>
-          </div>
-          <div
-            class="p-2 rounded-md bg-dial-gray-light mx-2"
-          >
-            <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
-              href="https://www.linkedin.com/company/digital-impact-alliance/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <svg
-                class="inline"
-                fill="currentColor"
-                height="1em"
-                stroke="currentColor"
-                stroke-width="0"
-                viewBox="0 0 448 512"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"
+                  d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
                 />
               </svg>
             </a>
           </div>
         </div>
-      </div>
-      <div
-        class="2xl:px-24"
-      >
         <div
-          class="border border-t-0 border-dial-gray-light"
-        />
-      </div>
-      <div
-        class="px-4 pt-4 pb-8 lg:px-10 2xl:px-24 2xl:pt-8 2xl:pb-12 flex flex-row flex-wrap mx-auto max-w-catalog"
-      >
-        <div
-          class="w-full flex flex-row flex-wrap gap-3 leading-none text-base place-content-center"
+          class="w-full xl:w-7/12 flex flex-col gap-y-4 xl:gap-y-8"
         >
           <div
-            class="py-2 px-0 2xl:px-2 text-center"
+            class="text-xl font-semibold"
           >
-            <span>
-              Icons provided unmodified by 
+            Our partners and supporters
+          </div>
+          <hr
+            class="border border-footer-delimiter"
+          />
+          <div
+            class="flex flex-row flex-wrap gap-4 self-center xl:self-start"
+          >
+            <div
+              class="w-36 h-20 bg-white rounded-md flex"
+            >
+              <div
+                class="self-center px-4"
+              >
+                <a
+                  href="//unfoundation.org/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27246%27%20height=%2759%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="The United Nations Foundation Logo"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75 2x"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div
+              class="w-36 h-20 bg-white rounded-md flex"
+            >
+              <div
+                class="self-center px-4"
+              >
+                <a
+                  href="//www.gatesfoundation.org/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27204%27%20height=%2740%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="The Bill & Melinda Gates Foundation"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75 2x"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div
+              class="w-36 h-20 bg-white rounded-md flex"
+            >
+              <div
+                class="self-center px-10"
+              >
+                <a
+                  href="//www.sida.se/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27102%27%20height=%27100%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="The Swedish International Development Cooperation Agency Logo"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=128&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75 2x"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div
+              class="w-36 h-20 bg-white rounded-md flex"
+            >
+              <div
+                class="self-center px-12 mt-3"
+              >
+                <a
+                  href="//www.gov.uk/government/organisations/foreign-commonwealth-development-office"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2760%27%20height=%2760%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="The Foreign, Commonwealth & Development Office Logo"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=64&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75 2x"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div
+              class="w-36 h-20 bg-white rounded-md flex"
+            >
+              <div
+                class="self-center px-2"
+              >
+                <a
+                  href="//www.giz.de/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%271570%27%20height=%27879%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="The German Corporation for International Cooperation GmbH Logo"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=1920&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75 2x"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div
+              class="w-36 h-20 bg-white rounded-md flex"
+            >
+              <div
+                class="self-center px-1"
+              >
+                <a
+                  href="//www.bmz.de/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%271152%27%20height=%27536%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="The Federal Ministry for Economic Cooperation and Development Logo"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=1200&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75 2x"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ml-auto pt-8 flex flex-row flex-wrap gap-3"
+          >
+            <div
+              class="group hover:cursor-pointer"
+            >
+              <a
+                class="border-b-2 border-transparent group-hover:border-dial-yellow"
+                href="/privacy-policy"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Privacy Policy
+              </a>
+            </div>
+            <div
+              class="border-r border-footer-delimiter"
+            />
+            <div
+              class="group rounded-md hover:cursor-pointer"
+            >
+              <a
+                class="border-b-2 border-transparent group-hover:border-dial-yellow"
+              >
+                Contact Us
+              </a>
+            </div>
+            <div
+              class="border-r border-footer-delimiter"
+            />
+            <div
+              class="block"
+            >
+              © 
+              2023
                
-            </span>
-            <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
-              href="https://fontawesome.com/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              FontAwesome
-            </a>
-            <span>
-               and 
-            </span>
-            <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
-              href="https://www.globalgoals.org/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              The Global Goals for Sustainable Development
-            </a>
-          </div>
-        </div>
-        <div
-          class="w-full flex flex-row flex-wrap gap-3 leading-none text-base place-content-center"
-        >
-          <div
-            class="py-2 order-last xl:order-first"
-          >
-            © 
-            2022
-             
-            DIGITAL IMPACT ALLIANCE
-          </div>
-          <div
-            class="py-2 px-3 rounded-md bg-dial-gray-light"
-          >
-            <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
-              href="/privacy-policy"
-              rel="noreferrer"
-              target="_blank"
-            >
-              PRIVACY POLICY
-            </a>
-          </div>
-          <div
-            class="py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
-          >
-            REPORT ISSUE
-          </div>
-          <div
-            class="py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
-          >
-            CONTACT US
+              Digital Impact Alliance
+            </div>
           </div>
         </div>
       </div>
@@ -1631,38 +1386,41 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
     class="Toastify"
   />
   <header
-    class="z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white"
+    class="z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto"
   >
     <div
-      class="flex flex-wrap justify-center items-center py-3 lg:py-0 max-w-catalog header-min-height mx-auto"
+      class="flex flex-wrap header-min-height px-8 xl:px-16"
     >
-      <div
-        class="flex-1 flex my-auto"
+      <a
+        class="flex py-6"
+        href="/"
       >
-        <a
-          class="px-6 lg:px-8"
-          href="/"
+        <span
+          style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
         >
-          <div
-            class="text-dial-blue-darkest text-xs"
+          <span
+            style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
           >
-            Digital Impact Alliance
-          </div>
-          <div
-            class="font-bold text-base text-dial-blue-darkest"
-          >
-            <span
-              class="block"
-            >
-              Catalog of
-               
-              Digital Solutions
-            </span>
-          </div>
-        </a>
-      </div>
+            <img
+              alt=""
+              aria-hidden="true"
+              src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27154%27%20height=%2744%27/%3e"
+              style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+            />
+          </span>
+          <img
+            alt="Digital Impact Exchage Logo."
+            data-nimg="intrinsic"
+            decoding="async"
+            src="/_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=384&q=75"
+            srcset="/_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=256&q=75 1x, /_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=384&q=75 2x"
+            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+          />
+          <noscript />
+        </span>
+      </a>
       <label
-        class="pointer-cursor block lg:hidden px-8"
+        class="ml-auto my-auto pointer-cursor block xl:hidden"
         for="menu-toggle"
       >
         <svg
@@ -1686,13 +1444,13 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
         type="checkbox"
       />
       <div
-        class="hidden lg:flex lg:items-center lg:w-auto w-full"
+        class="hidden xl:flex xl:items-center xl:w-auto w-full ml-auto mx-2"
         id="menu"
       >
         <nav>
           <ul
-            class="block lg:hidden mt-6 text-sm"
-            style="min-height: 405px;"
+            class="block xl:hidden mt-6 text-sm text-dial-white-beech"
+            style="min-height: 370px;"
           >
             <li
               class="py-4 border-b"
@@ -1809,68 +1567,9 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
             >
               <a
                 class="mx-6 font-semibold"
-                href="/admin"
+                href="/sign-in"
               >
-                Admin Menu
-                <svg
-                  class="text-base inline ml-2"
-                  fill="currentColor"
-                  height="1em"
-                  stroke="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 24 24"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g>
-                    <path
-                      d="M0 0h24v24H0z"
-                      fill="none"
-                    />
-                    <path
-                      d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
-                    />
-                  </g>
-                </svg>
-              </a>
-            </li>
-            <li
-              class="py-4 border-b"
-            >
-              <a
-                class="mx-2 inline bg-dial-yellow-light pl-2 pr-3 py-3 rounded font-semibold"
-                href="signOut"
-              >
-                <img
-                  alt="Back"
-                  class="inline mx-2"
-                  height="20px"
-                  src="/icons/user.svg"
-                  width="20px"
-                />
-                <div
-                  class="inline text-sm"
-                />
-                <svg
-                  class="text-base inline ml-2"
-                  fill="currentColor"
-                  height="1em"
-                  stroke="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 24 24"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g>
-                    <path
-                      d="M0 0h24v24H0z"
-                      fill="none"
-                    />
-                    <path
-                      d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
-                    />
-                  </g>
-                </svg>
+                Sign Up or Log In
               </a>
             </li>
             <li
@@ -1886,92 +1585,27 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               </a>
             </li>
           </ul>
-          
           <ul
-            class="hidden lg:flex items-center justify-between text-base text-dial-blue-darkest pt-4 lg:pt-0"
+            class="hidden xl:flex items-center text-dial-white-beech pt-4 xl:pt-0 xl:gap-x-2"
           >
             <li
-              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
-                class="
-    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
-   lg:mb-0 mb-2 inline"
-                href="resourceMenu"
-                id="resourceMenu"
+                class="xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer border-b-2 border-transparent hover:border-dial-yellow"
+                href="startOverviewTour"
               >
-                Resources
-                <svg
-                  class="ml-1 inline text-2xl"
-                  fill="currentColor"
-                  height="1em"
-                  stroke="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 20 20"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clip-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    fill-rule="evenodd"
-                  />
-                </svg>
+                Getting Started
               </a>
-              <div
-                class="hidden 
-    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
-    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
-  "
-                role="menu"
-              >
-                <div
-                  class="py-1"
-                  role="none"
-                >
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="/covid-19-resources"
-                    role="menuitem"
-                  >
-                    COVID-19 Resources
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="//resources.dial.community/"
-                    rel="noreferrer"
-                    role="menuitem"
-                    target="_blank"
-                  >
-                    DIAL Resources Portal
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="//digitalimpactalliance.org/research/sdg-digital-investment-framework/"
-                    rel="noreferrer"
-                    role="menuitem"
-                    target="_blank"
-                  >
-                    SDG Framework
-                  </a>
-                </div>
-              </div>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
-                class="
-    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
-   lg:mb-0 mb-2 inline"
-                href="aboutMenu"
-                id="aboutMenu"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                data-testid="menu-about"
+                href="menu-about"
+                id="menu-about"
               >
                 About
                 <svg
@@ -1991,124 +1625,15 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                   />
                 </svg>
               </a>
-              <div
-                class="hidden 
-    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
-    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
-  "
-                role="menu"
-              >
-                <div
-                  class="py-1"
-                  role="none"
-                >
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="/about"
-                    role="menuitem"
-                  >
-                    About
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="//solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/overview"
-                    rel="noreferrer"
-                    role="menuitem"
-                    target="_blank"
-                  >
-                    Catalog Wiki Page
-                  </a>
-                </div>
-              </div>
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
-            />
-            <li
-              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
-                class="
-    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
-   lg:mb-0 mb-2 inline bg-dial-yellow-light pt-2 pb-2 rounded"
-                data-testid="user-menu"
-                href="signOut"
-                id="userMenu"
-              >
-                <img
-                  alt="Back"
-                  class="inline mx-2"
-                  height="20px"
-                  src="/icons/user.svg"
-                  width="20px"
-                />
-                <div
-                  class="inline text-xs"
-                  id="userMenu"
-                >
-                  <svg
-                    class="ml-1 inline text-2xl"
-                    fill="currentColor"
-                    height="1em"
-                    stroke="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 20 20"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                </div>
-              </a>
-              <div
-                class="hidden 
-    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
-    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
-  "
-                role="menu"
-              >
-                <div
-                  class="py-1"
-                  role="none"
-                >
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="/auth/profile"
-                    role="menuitem"
-                  >
-                    My Profile
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="en"
-                    role="menuitem"
-                  >
-                    Sign Out
-                  </a>
-                </div>
-              </div>
-            </li>
-            <li
-              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
-            >
-              <a
-                class="
-    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
-   lg:mb-0 mb-2 inline"
-                href="helpMenu"
-                id="helpMenu"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                data-testid="menu-help"
+                href="menu-help"
+                id="menu-help"
               >
                 Help
                 <svg
@@ -2128,49 +1653,17 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                   />
                 </svg>
               </a>
-              <div
-                class="hidden 
-    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
-    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
-  "
-                role="menu"
-              >
-                <a
-                  class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                  href="https://docs.osc.dial.community/projects/product-registry/en/latest/"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  Documentation Portal
-                </a>
-                <a
-                  class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                  href="#"
-                >
-                  Report Issue
-                </a>
-              </div>
-            </li>
-            <li>
-              <div
-                class="border border-gray-400 border-t-0 lg:border-l-0 lg:h-9"
-              />
             </li>
             <li
-              class="relative mt-2 lg:mt-0 text-right sm:mx-6 lg:mx-0"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
-                class="
-    lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
-   lg:mb-0 mb-2 inline"
-                href="switchLanguage"
-                id="switchLanguage"
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                data-testid="menu-resource"
+                href="menu-resource"
+                id="menu-resource"
               >
-                Select Language
+                Resources
                 <svg
                   class="ml-1 inline text-2xl"
                   fill="currentColor"
@@ -2188,435 +1681,230 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                   />
                 </svg>
               </a>
-              <div
-                class="hidden 
-    origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
-    ring-1 ring-black ring-opacity-5 focus:outline-none z-30
+            </li>
+            <li
+              class="relative mt-2 xl:mt-0 text-right intro-overview-signup"
+            >
+              <a
+                class="
+    block px-4 py-2 text-base text-white-beech hover:bg-gray-100 hover:text-gray-900
   "
-                role="menu"
+                data-testid="login"
+                href="signin"
+                role="menuitem"
               >
-                <div
-                  class="py-1"
-                  role="none"
+                Sign Up or Log In
+              </a>
+            </li>
+            <li
+              class="relative mt-2 xl:mt-0 text-right"
+            >
+              <a
+                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-yellow lg:mb-0 mb-2 cursor-pointer"
+                data-testid="menu-language"
+                href="menu-language"
+                id="menu-language"
+              >
+                English (en)
+                <svg
+                  class="ml-1 inline text-2xl"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="en"
-                    role="menuitem"
-                  >
-                    English (en)
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="de"
-                    role="menuitem"
-                  >
-                    Deutsch (de)
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="es"
-                    role="menuitem"
-                  >
-                    Español (es)
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="fr"
-                    role="menuitem"
-                  >
-                    Francais (fr)
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="pt"
-                    role="menuitem"
-                  >
-                    Português (pt)
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="sw"
-                    role="menuitem"
-                  >
-                    Kiswahili (sw)
-                  </a>
-                  <a
-                    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-                    href="cs"
-                    role="menuitem"
-                  >
-                    Czech (cs)
-                  </a>
-                </div>
-              </div>
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
             </li>
           </ul>
         </nav>
       </div>
     </div>
   </header>
-  <div>
+  <div
+    class="max-w-catalog mx-auto"
+  >
     <div
-      class="text-button-gray text-lg"
-      style="margin-top: 10%; margin-bottom: 10%;"
+      class="h-[60vh]"
     >
-      <svg
-        class="w-full mb-5"
-        fill="currentColor"
-        height="3em"
-        stroke="currentColor"
-        stroke-width="0"
-        viewBox="0 0 512 512"
-        width="3em"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
-        />
-      </svg>
       <div
-        class="text-center mt-5"
+        class="flex bg-dial-alice-blue h-full"
       >
-        You are not authorized to view this page
+        <div
+          class="text-button-gray text-lg w-full my-auto flex flex-col gap-4"
+        >
+          <svg
+            class="mx-auto"
+            fill="currentColor"
+            height="3em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 512 512"
+            width="3em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+            />
+          </svg>
+          <div
+            class="text-center mt-5"
+          >
+            You are not authorized to view this page
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <footer>
     <div
       class="block"
-    />
-    <div
-      class="relative w-full bg-dial-gray-light text-dial-purple-light"
     >
       <div
-        class="px-4 2xl:px-24 pt-8 2xl:pb-8 lg:flex lg:flex-row flex-wrap justify-center 2xl:justify-start mx-auto max-w-catalog"
+        class="w-full bg-dial-gray-dark fixed bottom-0 right-0 left-0 z-80"
       >
         <div
-          class="max-w-prose sm:w-full lg:flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto text-center 2xl:text-left"
-        >
-          
-    The Digital Impact Alliance is a partnership amongst some of the world’s most active
-    digital development champions. We are grateful for the support of our Founding Partners.
-  
-        </div>
-        <div
-          class="flex-grow flex flex-row flex-wrap place-content-center"
+          class="flex flex-col md:flex-row justify-center py-4 mx-4 gap-3"
         >
           <div
-            class="relative p-2 lg:my-auto"
+            class="text-dial-gray-light my-auto"
           >
-            <a
-              href="https://unfoundation.org/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <div
-                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
-              >
-                <div
-                  style="box-sizing: border-box; display: block; max-width: 100%;"
-                >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQ2IiBoZWlnaHQ9IjU5IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIvPg=="
-                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
-                  />
-                </div>
-                <img
-                  alt="The United Nations Foundation Logo"
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  src="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75"
-                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75 2x"
-                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                />
-                <noscript />
-              </div>
-            </a>
+            Cookies help us deliver our services. By using our services, you agree to our use of cookies.
           </div>
           <div
-            class="relative p-2 m-auto"
+            class="flex justify-center gap-4"
           >
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Accept All
+            </button>
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Cookie Details
+            </button>
             <a
-              href="https://www.gatesfoundation.org/"
-              rel="noreferrer"
+              class="my-auto text-dial-yellow border-b-2 border-transparent hover:border-dial-yellow"
+              href="/privacy-policy"
               target="_blank"
             >
-              <div
-                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
-              >
-                <div
-                  style="box-sizing: border-box; display: block; max-width: 100%;"
-                >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjA0IiBoZWlnaHQ9IjQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIvPg=="
-                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
-                  />
-                </div>
-                <img
-                  alt="The Bill & Melinda Gates Foundation"
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  src="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75"
-                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75 2x"
-                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                />
-                <noscript />
-              </div>
-            </a>
-          </div>
-          <div
-            class="relative p-2 m-auto"
-          >
-            <a
-              href="https://www.sida.se/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <div
-                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
-              >
-                <div
-                  style="box-sizing: border-box; display: block; max-width: 100%;"
-                >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAyIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
-                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
-                  />
-                </div>
-                <img
-                  alt="The Swedish International Development Cooperation Agency Logo"
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  src="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75"
-                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=128&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75 2x"
-                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                />
-                <noscript />
-              </div>
-            </a>
-          </div>
-          <div
-            class="relative p-2 m-auto"
-          >
-            <a
-              href="https://www.gov.uk/government/organisations/foreign-commonwealth-development-office"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <div
-                style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
-              >
-                <div
-                  style="box-sizing: border-box; display: block; max-width: 100%;"
-                >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
-                    style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
-                  />
-                </div>
-                <img
-                  alt="The Foreign, Commonwealth & Development Office Logo"
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  src="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75"
-                  srcset="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=64&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75 2x"
-                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                />
-                <noscript />
-              </div>
+              Privacy Policy
             </a>
           </div>
         </div>
-      </div>
-      <div
-        class="2xl:px-24 my-3 xl:my-0"
-      >
         <div
-          class="border border-t-0 border-dial-gray"
-        />
-      </div>
-      <div
-        class="px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap justify-center 2xl:justify-start mx-auto max-w-catalog"
-      >
-        <div
-          class="w-full lg:max-w-2/4 2xl:max-w-prose flex-auto my-auto md:text-center 2xl:text-left"
+          class="hidden"
         >
-          
-    We are also thankful for direct support for this Catalog of Digital Solutions provided
-    by the following partners:
-  
-        </div>
-        <div
-          class="h-auto w-72 relative p-2 my-auto"
-        >
-          <a
-            href="https://www.giz.de/"
-            rel="noreferrer"
-            target="_blank"
+          <div
+            class="flex flex-col md:flex-row justify-center py-4 mx-4 gap-3"
           >
-            <div
-              style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+            <label
+              class="inline-flex items-center"
             >
-              <div
-                style="box-sizing: border-box; display: block; max-width: 100%;"
-              >
-                <img
-                  alt=""
-                  aria-hidden="true"
-                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTU3MCIgaGVpZ2h0PSI4NzkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
-                  style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
-                />
-              </div>
-              <img
-                alt="The German Corporation for International Cooperation GmbH Logo"
-                data-nimg="intrinsic"
-                decoding="async"
-                src="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75"
-                srcset="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=1920&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75 2x"
-                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              <input
+                checked=""
+                class="h-4 w-4 form-checkbox text-white"
+                name="essential"
+                type="checkbox"
               />
-              <noscript />
-            </div>
-          </a>
-        </div>
-        <div
-          class="h-auto w-72 relative p-2 my-auto"
-        >
-          <a
-            href="https://www.bmz.de/"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <div
-              style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
-            >
-              <div
-                style="box-sizing: border-box; display: block; max-width: 100%;"
+              <span
+                class="ml-2 text-white"
               >
-                <img
-                  alt=""
-                  aria-hidden="true"
-                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTE1MiIgaGVpZ2h0PSI1MzYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
-                  style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
-                />
-              </div>
-              <img
-                alt="The Federal Ministry for Economic Cooperation and Development Logo"
-                data-nimg="intrinsic"
-                decoding="async"
-                src="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75"
-                srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=1200&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75 2x"
-                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                Essential Cookies
+              </span>
+            </label>
+            <label
+              class="inline-flex items-center"
+            >
+              <input
+                checked=""
+                class="h-4 w-4 form-checkbox text-white"
+                name="essential"
+                type="checkbox"
               />
-              <noscript />
-            </div>
-          </a>
+              <span
+                class="ml-2 text-white"
+              >
+                Statistics Cookies
+              </span>
+            </label>
+            <button
+              class="text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4"
+            >
+              Save
+            </button>
+          </div>
         </div>
       </div>
     </div>
     <div
-      class="relative w-full bg-dial-gray text-dial-purple-light leading-none text-base"
+      class="max-w-catalog mx-auto bg-dial-blue-chalk text-dial-stratos"
     >
       <div
-        class="px-4 pb-4 pt-8 lg:px-10 2xl:pt-12 2xl:pb-8 2xl:px-24 flex flex-row flex-wrap mx-auto max-w-catalog"
+        class="flex flex-col xl:flex-row gap-x-8 2xl:gap-x-24 gap-y-4 2xl:gap-y-8 py-8 xl:py-12 px-4 xl:px-20"
       >
         <div
-          class="py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light"
-        >
-          <a
-            class="border-b-2 border-transparent hover:border-dial-yellow"
-            href="https://digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5"
-            rel="noreferrer"
-            target="_blank"
-          >
-            SIGN UP FOR OUR NEWSLETTER
-          </a>
-        </div>
-        <div
-          class="py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light"
-        >
-          <a
-            class="border-b-2 border-transparent hover:border-dial-yellow"
-            href="https://gitlab.com/dial/online-catalog/product-registry"
-            rel="noreferrer"
-            target="_blank"
-          >
-            VIEW THIS PROJECT ON GITLAB
-          </a>
-        </div>
-        <div
-          class="flex-grow mt-4 flex flex-row"
+          class="w-full xl:w-3/12 flex flex-col gap-y-4 xl:gap-y-8"
         >
           <div
-            class="py-2 px-0 lg:px-2 rounded-md flex-grow text-right"
+            class="text-xl font-semibold"
           >
-            Follow DIAL on social media
+            Connect with us
           </div>
+          <hr
+            class="border border-footer-delimiter"
+          />
           <div
-            class="p-2 rounded-md bg-dial-gray-light mx-2"
+            class="text-base"
           >
+            Sign up for our newsletter to learn more about DIAL and how you can be involved.
+          </div>
+          <div>
             <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
-              href="https://facebook.com/DigitalImpactAlliance"
+              class="py-2 px-5 rounded-md bg-dial-yellow font-semibold"
+              href="//digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5"
               rel="noreferrer"
               target="_blank"
             >
-              <svg
-                class="inline"
-                fill="currentColor"
-                height="1em"
-                stroke="currentColor"
-                stroke-width="0"
-                viewBox="0 0 320 512"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
-                />
-              </svg>
+              Sign up for our Newsletter
             </a>
           </div>
+        </div>
+        <div
+          class="w-full xl:w-2/12 flex flex-col gap-y-4 xl:gap-y-8"
+        >
           <div
-            class="p-2 rounded-md bg-dial-gray-light"
+            class="text-xl font-semibold"
+          >
+            Follow us
+          </div>
+          <hr
+            class="border border-footer-delimiter"
+          />
+          <div
+            class="flex gap-4"
           >
             <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
-              href="https://twitter.com/DIAL_Community"
+              href="//twitter.com/DIAL_Community"
               rel="noreferrer"
               target="_blank"
             >
               <svg
-                class="inline"
                 fill="currentColor"
-                height="1em"
+                height="1.5em"
                 stroke="currentColor"
                 stroke-width="0"
                 viewBox="0 0 512 512"
-                width="1em"
+                width="1.5em"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -2624,132 +1912,302 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                 />
               </svg>
             </a>
-          </div>
-          <div
-            class="p-2 rounded-md bg-dial-gray-light mx-2"
-          >
             <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
-              href="https://www.instagram.com/dial_community"
+              href="//www.linkedin.com/company/digital-impact-alliance/"
               rel="noreferrer"
               target="_blank"
             >
               <svg
-                class="inline"
                 fill="currentColor"
-                height="1em"
+                height="1.5em"
                 stroke="currentColor"
                 stroke-width="0"
                 viewBox="0 0 448 512"
-                width="1em"
+                width="1.5em"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
-                />
-              </svg>
-            </a>
-          </div>
-          <div
-            class="p-2 rounded-md bg-dial-gray-light mx-2"
-          >
-            <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
-              href="https://www.linkedin.com/company/digital-impact-alliance/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <svg
-                class="inline"
-                fill="currentColor"
-                height="1em"
-                stroke="currentColor"
-                stroke-width="0"
-                viewBox="0 0 448 512"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"
+                  d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
                 />
               </svg>
             </a>
           </div>
         </div>
-      </div>
-      <div
-        class="2xl:px-24"
-      >
         <div
-          class="border border-t-0 border-dial-gray-light"
-        />
-      </div>
-      <div
-        class="px-4 pt-4 pb-8 lg:px-10 2xl:px-24 2xl:pt-8 2xl:pb-12 flex flex-row flex-wrap mx-auto max-w-catalog"
-      >
-        <div
-          class="w-full flex flex-row flex-wrap gap-3 leading-none text-base place-content-center"
+          class="w-full xl:w-7/12 flex flex-col gap-y-4 xl:gap-y-8"
         >
           <div
-            class="py-2 px-0 2xl:px-2 text-center"
+            class="text-xl font-semibold"
           >
-            <span>
-              Icons provided unmodified by 
+            Our partners and supporters
+          </div>
+          <hr
+            class="border border-footer-delimiter"
+          />
+          <div
+            class="flex flex-row flex-wrap gap-4 self-center xl:self-start"
+          >
+            <div
+              class="w-36 h-20 bg-white rounded-md flex"
+            >
+              <div
+                class="self-center px-4"
+              >
+                <a
+                  href="//unfoundation.org/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27246%27%20height=%2759%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="The United Nations Foundation Logo"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75 2x"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div
+              class="w-36 h-20 bg-white rounded-md flex"
+            >
+              <div
+                class="self-center px-4"
+              >
+                <a
+                  href="//www.gatesfoundation.org/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27204%27%20height=%2740%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="The Bill & Melinda Gates Foundation"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75 2x"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div
+              class="w-36 h-20 bg-white rounded-md flex"
+            >
+              <div
+                class="self-center px-10"
+              >
+                <a
+                  href="//www.sida.se/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27102%27%20height=%27100%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="The Swedish International Development Cooperation Agency Logo"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=128&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75 2x"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div
+              class="w-36 h-20 bg-white rounded-md flex"
+            >
+              <div
+                class="self-center px-12 mt-3"
+              >
+                <a
+                  href="//www.gov.uk/government/organisations/foreign-commonwealth-development-office"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2760%27%20height=%2760%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="The Foreign, Commonwealth & Development Office Logo"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=64&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75 2x"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div
+              class="w-36 h-20 bg-white rounded-md flex"
+            >
+              <div
+                class="self-center px-2"
+              >
+                <a
+                  href="//www.giz.de/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%271570%27%20height=%27879%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="The German Corporation for International Cooperation GmbH Logo"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=1920&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75 2x"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div
+              class="w-36 h-20 bg-white rounded-md flex"
+            >
+              <div
+                class="self-center px-1"
+              >
+                <a
+                  href="//www.bmz.de/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%271152%27%20height=%27536%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="The Federal Ministry for Economic Cooperation and Development Logo"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75"
+                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=1200&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75 2x"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ml-auto pt-8 flex flex-row flex-wrap gap-3"
+          >
+            <div
+              class="group hover:cursor-pointer"
+            >
+              <a
+                class="border-b-2 border-transparent group-hover:border-dial-yellow"
+                href="/privacy-policy"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Privacy Policy
+              </a>
+            </div>
+            <div
+              class="border-r border-footer-delimiter"
+            />
+            <div
+              class="group rounded-md hover:cursor-pointer"
+            >
+              <a
+                class="border-b-2 border-transparent group-hover:border-dial-yellow"
+              >
+                Contact Us
+              </a>
+            </div>
+            <div
+              class="border-r border-footer-delimiter"
+            />
+            <div
+              class="block"
+            >
+              © 
+              2023
                
-            </span>
-            <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
-              href="https://fontawesome.com/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              FontAwesome
-            </a>
-            <span>
-               and 
-            </span>
-            <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
-              href="https://www.globalgoals.org/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              The Global Goals for Sustainable Development
-            </a>
-          </div>
-        </div>
-        <div
-          class="w-full flex flex-row flex-wrap gap-3 leading-none text-base place-content-center"
-        >
-          <div
-            class="py-2 order-last xl:order-first"
-          >
-            © 
-            2022
-             
-            DIGITAL IMPACT ALLIANCE
-          </div>
-          <div
-            class="py-2 px-3 rounded-md bg-dial-gray-light"
-          >
-            <a
-              class="border-b-2 border-transparent hover:border-dial-yellow"
-              href="/privacy-policy"
-              rel="noreferrer"
-              target="_blank"
-            >
-              PRIVACY POLICY
-            </a>
-          </div>
-          <div
-            class="py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
-          >
-            REPORT ISSUE
-          </div>
-          <div
-            class="py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer"
-          >
-            CONTACT US
+              Digital Impact Alliance
+            </div>
           </div>
         </div>
       </div>

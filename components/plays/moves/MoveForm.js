@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
-import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { gql, useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
@@ -8,6 +7,7 @@ import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
 import { HtmlEditor } from '../../shared/HtmlEditor'
 import Breadcrumb from '../../shared/breadcrumb'
 import { ToastContext } from '../../../lib/ToastContext'
+import { useUser } from '../../../lib/hooks'
 
 const CREATE_RESOURCE = gql`
   mutation (
@@ -74,7 +74,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { user } = useUser()
   const { locale } = useRouter()
   const [createResource, { data }] = useMutation(CREATE_RESOURCE)
   const { showToast } = useContext(ToastContext)
@@ -99,10 +99,10 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
   })
 
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       setMutating(true)
 
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = user
       const { name, resourceDescription, url } = data
 
       updateResource(index, { name, description: resourceDescription, url })
@@ -251,7 +251,7 @@ const ResourceRenderer = (props) => {
 
 const FormTextEditor = ({ control, fieldLabel, fieldName }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
@@ -280,7 +280,7 @@ export const MoveForm = ({ playbook, play, move }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const [session] = useSession()
+  const { user } = useUser()
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
@@ -304,10 +304,10 @@ export const MoveForm = ({ playbook, play, move }) => {
   })
 
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       setMutating(true)
 
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = user
       const { name, description } = data
 
       createMove({
@@ -368,11 +368,11 @@ export const MoveForm = ({ playbook, play, move }) => {
   useEffect(() => {
     const doAutoSave = () => {
       const { locale } = router
-      if (session) {
+      if (user) {
         // Set the loading indicator.
         setMutating(true)
         // Pull all needed data from session and form.
-        const { userEmail, userToken } = session.user
+        const { userEmail, userToken } = user
         const { name, description } = watch()
         // Send graph query to the backend. Set the base variables needed to perform update.
         const variables = {
@@ -401,7 +401,7 @@ export const MoveForm = ({ playbook, play, move }) => {
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [session, moveSlug, playSlug, resources, router, watch, autoSaveMove])
+  }, [user, moveSlug, playSlug, resources, router, watch, autoSaveMove])
 
   const cancelForm = () => {
     setReverting(true)

@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const UPDATE_USER = gql`
+export const CREATE_USER = gql`
   mutation (
     $email: String!
     $roles: JSON!
@@ -9,7 +9,7 @@ export const UPDATE_USER = gql`
     $username: String!
     $confirmed: Boolean
   ) {
-    updateUser(
+    createUser(
       email: $email
       roles: $roles
       products: $products
@@ -31,6 +31,29 @@ export const UPDATE_USER = gql`
           slug
         }
       }
+      errors
+    }
+  }
+`
+
+export const APPLY_AS_OWNER = gql`
+  mutation ApplyAsOwner(
+    $entity: String!
+    $entityId: Int!
+  ) {
+    applyAsOwner(
+      entity: $entity
+      entityId: $entityId
+    ) {
+      candidateRole {
+        email
+        roles
+        description
+        productId
+        organizationId
+        datasetId
+      }
+      errors
     }
   }
 `

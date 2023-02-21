@@ -14,7 +14,7 @@ exports[`Unit test for the DatasetTypeSelect component. Should match snapshot 1`
     >
       <span
         class="css-1f43avz-a11yText-A11yText"
-        id="react-select-2-live-region"
+        id="react-select-:r0:-live-region"
       />
       <span
         aria-atomic="false"
@@ -23,24 +23,24 @@ exports[`Unit test for the DatasetTypeSelect component. Should match snapshot 1`
         class="css-1f43avz-a11yText-A11yText"
       />
       <div
-        class="react-select__control css-19jej77-control"
+        class="react-select__control css-16oyauc-control"
       >
         <div
-          class="react-select__value-container css-3tzzl5-ValueContainer"
+          class="react-select__value-container css-17t7gkf-ValueContainer"
         >
           <div
-            class="react-select__placeholder css-19jynah-placeholder"
-            id="react-select-2-placeholder"
+            class="react-select__placeholder css-5rjclb-placeholder"
+            id="react-select-:r0:-placeholder"
           >
             Filter by Type
           </div>
           <div
-            class="react-select__input-container css-6j8wv5-Input"
+            class="react-select__input-container css-qbdosj-Input"
             data-value=""
           >
             <input
               aria-autocomplete="list"
-              aria-describedby="react-select-2-placeholder"
+              aria-describedby="react-select-:r0:-placeholder"
               aria-expanded="false"
               aria-haspopup="true"
               aria-label="Filter by Type"
@@ -48,7 +48,7 @@ exports[`Unit test for the DatasetTypeSelect component. Should match snapshot 1`
               autocomplete="off"
               autocorrect="off"
               class="react-select__input"
-              id="react-select-2-input"
+              id="async-select-id-undefined"
               role="combobox"
               spellcheck="false"
               style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -62,11 +62,11 @@ exports[`Unit test for the DatasetTypeSelect component. Should match snapshot 1`
           class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
         >
           <span
-            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
           />
           <div
             aria-hidden="true"
-            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
           >
             <svg
               aria-hidden="true"
@@ -102,7 +102,7 @@ exports[`Unit test for the DatasetTypeSelect component. Should render a drop dow
     >
       <span
         class="css-1f43avz-a11yText-A11yText"
-        id="react-select-3-live-region"
+        id="react-select-:r1:-live-region"
       />
       <span
         aria-atomic="false"
@@ -111,34 +111,34 @@ exports[`Unit test for the DatasetTypeSelect component. Should render a drop dow
         class="css-1f43avz-a11yText-A11yText"
       />
       <div
-        class="react-select__control react-select__control--menu-is-open css-19jej77-control"
+        class="react-select__control react-select__control--menu-is-open css-16oyauc-control"
       >
         <div
-          class="react-select__value-container css-3tzzl5-ValueContainer"
+          class="react-select__value-container css-17t7gkf-ValueContainer"
         >
           <div
-            class="react-select__placeholder css-19jynah-placeholder"
-            id="react-select-3-placeholder"
+            class="react-select__placeholder css-5rjclb-placeholder"
+            id="react-select-:r1:-placeholder"
           >
             Filter by Type
           </div>
           <div
-            class="react-select__input-container css-6j8wv5-Input"
+            class="react-select__input-container css-qbdosj-Input"
             data-value=""
           >
             <input
               aria-autocomplete="list"
-              aria-controls="react-select-3-listbox"
-              aria-describedby="react-select-3-placeholder"
+              aria-controls="react-select-:r1:-listbox"
+              aria-describedby="react-select-:r1:-placeholder"
               aria-expanded="true"
               aria-haspopup="true"
               aria-label="Filter by Type"
-              aria-owns="react-select-3-listbox"
+              aria-owns="react-select-:r1:-listbox"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
               class="react-select__input"
-              id="react-select-3-input"
+              id="async-select-id-undefined"
               role="combobox"
               spellcheck="false"
               style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -152,11 +152,11 @@ exports[`Unit test for the DatasetTypeSelect component. Should render a drop dow
           class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
         >
           <span
-            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
           />
           <div
             aria-hidden="true"
-            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
           >
             <svg
               aria-hidden="true"
@@ -174,48 +174,48 @@ exports[`Unit test for the DatasetTypeSelect component. Should render a drop dow
         </div>
       </div>
       <div
-        class="react-select__menu css-1jtw5r9-menu"
-        id="react-select-3-listbox"
+        class="react-select__menu css-z4z3k3-menu"
+        id="react-select-:r1:-listbox"
       >
         <div
-          class="react-select__menu-list css-4ljt47-MenuList"
+          class="react-select__menu-list css-1n6sfyn-MenuList"
         >
           <div
             aria-disabled="false"
-            class="react-select__option react-select__option--is-focused css-llk42x-option"
-            id="react-select-3-option-0"
+            class="react-select__option react-select__option--is-focused css-1keuksx-option"
+            id="react-select-:r1:-option-0"
             tabindex="-1"
           >
             All Types
           </div>
           <div
             aria-disabled="false"
-            class="react-select__option css-19r0ri3-option"
-            id="react-select-3-option-1"
+            class="react-select__option css-kzqu8f-option"
+            id="react-select-:r1:-option-1"
             tabindex="-1"
           >
             Dataset
           </div>
           <div
             aria-disabled="false"
-            class="react-select__option css-19r0ri3-option"
-            id="react-select-3-option-2"
+            class="react-select__option css-kzqu8f-option"
+            id="react-select-:r1:-option-2"
             tabindex="-1"
           >
             Content
           </div>
           <div
             aria-disabled="false"
-            class="react-select__option css-19r0ri3-option"
-            id="react-select-3-option-3"
+            class="react-select__option css-kzqu8f-option"
+            id="react-select-:r1:-option-3"
             tabindex="-1"
           >
             Standard
           </div>
           <div
             aria-disabled="false"
-            class="react-select__option css-19r0ri3-option"
-            id="react-select-3-option-4"
+            class="react-select__option css-kzqu8f-option"
+            id="react-select-:r1:-option-4"
             tabindex="-1"
           >
             AI Model

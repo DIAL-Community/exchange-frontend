@@ -16,6 +16,10 @@ const PRODUCT_QUERY = gql`
       slug
       website
       aliases
+      hostingModel
+      pricingModel
+      pricingDetails
+      commercialProduct
       productDescription {
         description
         locale
@@ -42,9 +46,9 @@ const EditProduct = () => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.product) {
     return <NotFound />
   }
 
@@ -52,11 +56,14 @@ const EditProduct = () => {
     <>
       <Header />
       {data?.product && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            {loadingUserSession ? <Loading /> : isAuthorized ? <ProductForm product={data.product} /> : <Unauthorized />}
-          </ClientOnly>
-        </div>
+        <ClientOnly>
+          {loadingUserSession
+            ? <Loading />
+            : isAuthorized
+              ? <ProductForm product={data.product} />
+              : <Unauthorized />
+          }
+        </ClientOnly>
       )}
       <Footer />
     </>

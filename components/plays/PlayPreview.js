@@ -1,10 +1,10 @@
-import { Fragment, useContext, useEffect, useState } from 'react'
+import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
 import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
 import { Dialog, Transition } from '@headlessui/react'
 import { FaSpinner } from 'react-icons/fa'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import ProductCard from '../products/ProductCard'
 import { PlayPreviewContext, PlayPreviewDispatchContext } from './PlayPreviewContext'
@@ -68,7 +68,7 @@ const PlayPreview = () => {
   const { setPreviewDisplayed } = useContext(PlayPreviewDispatchContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [duplicatePlay, { data: duplicatedPlay }] = useMutation(DUPLICATE_PLAY)
   const [fetchPlayDetail, { data }] = useLazyQuery(PLAY_QUERY, {
@@ -166,10 +166,11 @@ const PlayPreview = () => {
                       </div>
                     </Dialog.Title>
 
-                    <div className='flex flex-col gap-4 w-5/6 px-4 pb-4'>
-                      <div className='fr-view tinyEditor text-dial-gray-dark'>
-                        {data.play.playDescription && parse(data.play.playDescription?.description)}
-                      </div>
+                    <div className='flex flex-col gap-4 px-4 pb-4'>
+                      <HtmlViewer
+                        initialContent={data.play?.playDescription?.description}
+                        editorId='play-preview'
+                      />
                       <div className='flex flex-col gap-3'>
                         {
                           data.play.playMoves.map((move, i) =>
@@ -185,11 +186,13 @@ const PlayPreview = () => {
                               className='text-sm'
                               dangerouslySetInnerHTML={{ __html: format('play.buildingBlocks.subtitle') }}
                             />
-                            {
-                              data.play.buildingBlocks.map((bb, i) =>
-                                <BuildingBlockCard key={i} buildingBlock={bb} listType='list' />
-                              )
-                            }
+                            <div className='max-h-[25vh] overflow-auto'>
+                              {
+                                data.play.buildingBlocks.map((bb, i) =>
+                                  <BuildingBlockCard key={i} buildingBlock={bb} listType='list' />
+                                )
+                              }
+                            </div>
                           </div>
                       }
                       {
@@ -200,11 +203,13 @@ const PlayPreview = () => {
                               className='text-sm'
                               dangerouslySetInnerHTML={{ __html: format('play.products.subtitle') }}
                             />
-                            {
-                              data.play.products.map((product, i) =>
-                                <ProductCard key={i} product={product} listType='list' />
-                              )
-                            }
+                            <div className='max-h-[25vh] overflow-auto'>
+                              {
+                                data.play.products.map((product, i) =>
+                                  <ProductCard key={i} product={product} listType='list' />
+                                )
+                              }
+                            </div>
                           </div>
                       }
                     </div>

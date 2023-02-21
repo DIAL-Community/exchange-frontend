@@ -1,6 +1,8 @@
 import { render, fireEvent } from '@testing-library/react'
 import Checkbox from '../../../components/shared/Checkbox'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 
+mockNextUseRouter()
 describe('Unit test for the Checkbox component.', () => {
   const TEST_ID = 'checkbox'
 
@@ -22,6 +24,6 @@ describe('Unit test for the Checkbox component.', () => {
     const onChange = jest.fn()
     const input = render(<Checkbox value={false} onChange={onChange} />).getByTestId(TEST_ID)
     fireEvent.click(input)
-    expect(onChange).toBeCalledTimes(1)
+    expect(onChange).toHaveBeenCalledTimes(1)
   })
 })

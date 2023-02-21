@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Unit tests for playbook list interaction. Should render error message when apollo returning error. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -9,27 +9,34 @@ Object {
         class="Toastify"
       />
       <div
-        class="text-button-gray text-lg"
-        style="margin-top: 10%;"
+        class="h-[60vh]"
       >
-        <svg
-          class="w-full mb-5"
-          fill="currentColor"
-          height="3em"
-          stroke="currentColor"
-          stroke-width="0"
-          viewBox="0 0 512 512"
-          width="3em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
-          />
-        </svg>
         <div
-          class="text-center mt-5"
+          class="flex bg-dial-alice-blue h-full"
         >
-          Error fetching data. Please check your network connection.
+          <div
+            class="text-button-gray text-lg w-full my-auto flex flex-col gap-4"
+          >
+            <svg
+              class="mx-auto"
+              fill="currentColor"
+              height="3em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              width="3em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+              />
+            </svg>
+            <div
+              class="text-center mt-5"
+            >
+              Error fetching data. Please check your network connection.
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -39,27 +46,34 @@ Object {
       class="Toastify"
     />
     <div
-      class="text-button-gray text-lg"
-      style="margin-top: 10%;"
+      class="h-[60vh]"
     >
-      <svg
-        class="w-full mb-5"
-        fill="currentColor"
-        height="3em"
-        stroke="currentColor"
-        stroke-width="0"
-        viewBox="0 0 512 512"
-        width="3em"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
-        />
-      </svg>
       <div
-        class="text-center mt-5"
+        class="flex bg-dial-alice-blue h-full"
       >
-        Error fetching data. Please check your network connection.
+        <div
+          class="text-button-gray text-lg w-full my-auto flex flex-col gap-4"
+        >
+          <svg
+            class="mx-auto"
+            fill="currentColor"
+            height="3em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 512 512"
+            width="3em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+            />
+          </svg>
+          <div
+            class="text-center mt-5"
+          >
+            Error fetching data. Please check your network connection.
+          </div>
+        </div>
       </div>
     </div>
   </div>,
@@ -118,7 +132,7 @@ Object {
 `;
 
 exports[`Unit tests for playbook list interaction. Should render list of playbooks. 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -129,18 +143,305 @@ Object {
         class="infinite-scroll-component__outerdiv"
       >
         <div
-          class="infinite-scroll-component relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height"
+          class="infinite-scroll-component relative infinite-scroll-default-height"
           style="height: auto; overflow: auto;"
         >
           <div
             class="grid grid-cols-1 gap-4
-       md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
+      md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
+          >
+            <a
+              href="/playbooks/cdr_analytics_for_covid19_with_f"
+            >
+              <div
+                class="group 
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+ h-full"
+              >
+                <div
+                  class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
+                >
+                  <div
+                    class="flex flex-col h-full"
+                  >
+                    <div
+                      class="flex flex-col p-4 group-hover:text-dial-yellow"
+                    >
+                      <div
+                        class="text-2xl font-semibold absolute w-64 2xl:w-80"
+                      >
+                        CDR Analytics for COVID-19 with FlowKit
+                      </div>
+                      <div
+                        class="mx-auto mt-5 pt-20 w-40 h-60 relative"
+                      >
+                        <span
+                          style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                        >
+                          <img
+                            alt="Logo for: CDR Analytics for COVID-19 with FlowKit"
+                            data-nimg="fill"
+                            data-testid="playbook-card-image-2"
+                            decoding="async"
+                            sizes="100vw"
+                            src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=3840&q=75"
+                            srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=3840&q=75 3840w"
+                            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: contain;"
+                          />
+                          <noscript />
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      class="bg-dial-gray-light flex flex-col h-full"
+                    >
+                      <div
+                        class="px-3 py-3 text-sm"
+                      >
+                        <div
+                          class="line-clamp-3"
+                        >
+                          Overview of CDR Analytics for COVID-19 with FlowKit.
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1"
+                      >
+                        <div
+                          class="font-semibold"
+                        >
+                          Tags
+                        </div>
+                        <div
+                          class="flex flex-row"
+                          data-testid="horizontal-items-list"
+                        >
+                          <div
+                            class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
+                          >
+                            <div
+                              class="bg-white px-2 py-1.5 rounded"
+                            >
+                              COVID-19
+                            </div>
+                            <div
+                              class="bg-white px-2 py-1.5 rounded"
+                            >
+                              Chip cards
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              href="/playbooks/d4d_diagnostic_toolkit"
+            >
+              <div
+                class="group 
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+ h-full"
+              >
+                <div
+                  class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
+                >
+                  <div
+                    class="flex flex-col h-full"
+                  >
+                    <div
+                      class="flex flex-col p-4 group-hover:text-dial-yellow"
+                    >
+                      <div
+                        class="text-2xl font-semibold absolute w-64 2xl:w-80"
+                      >
+                        D4D Diagnostic Toolkit
+                      </div>
+                      <div
+                        class="mx-auto mt-5 pt-20 w-40 h-60 relative"
+                      >
+                        <span
+                          style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                        >
+                          <img
+                            alt="Logo for: D4D Diagnostic Toolkit"
+                            data-nimg="fill"
+                            data-testid="playbook-card-image-3"
+                            decoding="async"
+                            sizes="100vw"
+                            src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=3840&q=75"
+                            srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=3840&q=75 3840w"
+                            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: contain;"
+                          />
+                          <noscript />
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      class="bg-dial-gray-light flex flex-col h-full"
+                    >
+                      <div
+                        class="px-3 py-3 text-sm"
+                      >
+                        <div
+                          class="line-clamp-3"
+                        >
+                          D4D Diagnostic Toolkit
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1"
+                      >
+                        <div
+                          class="font-semibold"
+                        >
+                          Tags
+                        </div>
+                        <div
+                          class="flex flex-row"
+                          data-testid="horizontal-items-list"
+                        >
+                          <div
+                            class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
+                          >
+                            <div
+                              class="bg-white px-2 py-1.5 rounded"
+                            >
+                              SMS services
+                            </div>
+                            <div
+                              class="bg-white px-2 py-1.5 rounded"
+                            >
+                              Artificial Intelligence
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              href="/playbooks/example_playbook"
+            >
+              <div
+                class="group 
+  border-3 cursor-pointer
+  border-transparent hover:border-dial-yellow
+ h-full"
+              >
+                <div
+                  class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
+                >
+                  <div
+                    class="flex flex-col h-full"
+                  >
+                    <div
+                      class="flex flex-col p-4 group-hover:text-dial-yellow"
+                    >
+                      <div
+                        class="text-2xl font-semibold absolute w-64 2xl:w-80"
+                      >
+                        Example Playbook
+                      </div>
+                      <div
+                        class="mx-auto mt-5 pt-20 w-40 h-60 relative"
+                      >
+                        <span
+                          style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                        >
+                          <img
+                            alt="Logo for: Example Playbook"
+                            data-nimg="fill"
+                            data-testid="playbook-card-image-4"
+                            decoding="async"
+                            sizes="100vw"
+                            src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=3840&q=75"
+                            srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=3840&q=75 3840w"
+                            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: contain;"
+                          />
+                          <noscript />
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      class="bg-dial-gray-light flex flex-col h-full"
+                    >
+                      <div
+                        class="px-3 py-3 text-sm"
+                      >
+                        <div
+                          class="line-clamp-3"
+                        >
+                          Just an example of playbook.
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1"
+                      >
+                        <div
+                          class="font-semibold"
+                        >
+                          Tags
+                        </div>
+                        <div
+                          class="flex flex-row"
+                          data-testid="horizontal-items-list"
+                        >
+                          <div
+                            class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
+                          >
+                            <div
+                              class="bg-white px-2 py-1.5 rounded"
+                            >
+                              3D Printers
+                            </div>
+                            <div
+                              class="bg-white px-2 py-1.5 rounded"
+                            >
+                              Apps
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Toastify"
+    />
+    <div
+      class="infinite-scroll-component__outerdiv"
+    >
+      <div
+        class="infinite-scroll-component relative infinite-scroll-default-height"
+        style="height: auto; overflow: auto;"
+      >
+        <div
+          class="grid grid-cols-1 gap-4
+      md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
+        >
+          <a
+            href="/playbooks/cdr_analytics_for_covid19_with_f"
           >
             <div
               class="group 
   border-3 cursor-pointer
   border-transparent hover:border-dial-yellow
-"
+ h-full"
             >
               <div
                 class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
@@ -159,12 +460,13 @@ Object {
                     <div
                       class="mx-auto mt-5 pt-20 w-40 h-60 relative"
                     >
-                      <div
-                        style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
+                      <span
+                        style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
                       >
                         <img
                           alt="Logo for: CDR Analytics for COVID-19 with FlowKit"
                           data-nimg="fill"
+                          data-testid="playbook-card-image-2"
                           decoding="async"
                           sizes="100vw"
                           src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=3840&q=75"
@@ -172,7 +474,7 @@ Object {
                           style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: contain;"
                         />
                         <noscript />
-                      </div>
+                      </span>
                     </div>
                   </div>
                   <div
@@ -182,13 +484,13 @@ Object {
                       class="px-3 py-3 text-sm"
                     >
                       <div
-                        class="max-h-16 playbook-description overflow-hidden"
+                        class="line-clamp-3"
                       >
                         Overview of CDR Analytics for COVID-19 with FlowKit.
                       </div>
                     </div>
                     <div
-                      class="flex flex-col bg-dial-gray-light px-3 py-3 text-sm gap-1"
+                      class="flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1"
                     >
                       <div
                         class="font-semibold"
@@ -196,17 +498,22 @@ Object {
                         Tags
                       </div>
                       <div
-                        class="flex flex-row gap-1"
+                        class="flex flex-row"
+                        data-testid="horizontal-items-list"
                       >
                         <div
-                          class="bg-white px-2 py-1.5 rounded"
+                          class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
                         >
-                          COVID-19
-                        </div>
-                        <div
-                          class="bg-white px-2 py-1.5 rounded"
-                        >
-                          Chip cards
+                          <div
+                            class="bg-white px-2 py-1.5 rounded"
+                          >
+                            COVID-19
+                          </div>
+                          <div
+                            class="bg-white px-2 py-1.5 rounded"
+                          >
+                            Chip cards
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -214,11 +521,15 @@ Object {
                 </div>
               </div>
             </div>
+          </a>
+          <a
+            href="/playbooks/d4d_diagnostic_toolkit"
+          >
             <div
               class="group 
   border-3 cursor-pointer
   border-transparent hover:border-dial-yellow
-"
+ h-full"
             >
               <div
                 class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
@@ -237,12 +548,13 @@ Object {
                     <div
                       class="mx-auto mt-5 pt-20 w-40 h-60 relative"
                     >
-                      <div
-                        style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
+                      <span
+                        style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
                       >
                         <img
                           alt="Logo for: D4D Diagnostic Toolkit"
                           data-nimg="fill"
+                          data-testid="playbook-card-image-3"
                           decoding="async"
                           sizes="100vw"
                           src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=3840&q=75"
@@ -250,7 +562,7 @@ Object {
                           style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: contain;"
                         />
                         <noscript />
-                      </div>
+                      </span>
                     </div>
                   </div>
                   <div
@@ -260,13 +572,13 @@ Object {
                       class="px-3 py-3 text-sm"
                     >
                       <div
-                        class="max-h-16 playbook-description overflow-hidden"
+                        class="line-clamp-3"
                       >
                         D4D Diagnostic Toolkit
                       </div>
                     </div>
                     <div
-                      class="flex flex-col bg-dial-gray-light px-3 py-3 text-sm gap-1"
+                      class="flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1"
                     >
                       <div
                         class="font-semibold"
@@ -274,17 +586,22 @@ Object {
                         Tags
                       </div>
                       <div
-                        class="flex flex-row gap-1"
+                        class="flex flex-row"
+                        data-testid="horizontal-items-list"
                       >
                         <div
-                          class="bg-white px-2 py-1.5 rounded"
+                          class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
                         >
-                          SMS services
-                        </div>
-                        <div
-                          class="bg-white px-2 py-1.5 rounded"
-                        >
-                          Artificial Intelligence
+                          <div
+                            class="bg-white px-2 py-1.5 rounded"
+                          >
+                            SMS services
+                          </div>
+                          <div
+                            class="bg-white px-2 py-1.5 rounded"
+                          >
+                            Artificial Intelligence
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -292,11 +609,15 @@ Object {
                 </div>
               </div>
             </div>
+          </a>
+          <a
+            href="/playbooks/example_playbook"
+          >
             <div
               class="group 
   border-3 cursor-pointer
   border-transparent hover:border-dial-yellow
-"
+ h-full"
             >
               <div
                 class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
@@ -315,12 +636,13 @@ Object {
                     <div
                       class="mx-auto mt-5 pt-20 w-40 h-60 relative"
                     >
-                      <div
-                        style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
+                      <span
+                        style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
                       >
                         <img
                           alt="Logo for: Example Playbook"
                           data-nimg="fill"
+                          data-testid="playbook-card-image-4"
                           decoding="async"
                           sizes="100vw"
                           src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=3840&q=75"
@@ -328,7 +650,7 @@ Object {
                           style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: contain;"
                         />
                         <noscript />
-                      </div>
+                      </span>
                     </div>
                   </div>
                   <div
@@ -338,13 +660,13 @@ Object {
                       class="px-3 py-3 text-sm"
                     >
                       <div
-                        class="max-h-16 playbook-description overflow-hidden"
+                        class="line-clamp-3"
                       >
                         Just an example of playbook.
                       </div>
                     </div>
                     <div
-                      class="flex flex-col bg-dial-gray-light px-3 py-3 text-sm gap-1"
+                      class="flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1"
                     >
                       <div
                         class="font-semibold"
@@ -352,278 +674,30 @@ Object {
                         Tags
                       </div>
                       <div
-                        class="flex flex-row gap-1"
+                        class="flex flex-row"
+                        data-testid="horizontal-items-list"
                       >
                         <div
-                          class="bg-white px-2 py-1.5 rounded"
+                          class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
                         >
-                          3D Printers
+                          <div
+                            class="bg-white px-2 py-1.5 rounded"
+                          >
+                            3D Printers
+                          </div>
+                          <div
+                            class="bg-white px-2 py-1.5 rounded"
+                          >
+                            Apps
+                          </div>
                         </div>
-                        <div
-                          class="bg-white px-2 py-1.5 rounded"
-                        >
-                          Apps
-                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="Toastify"
-    />
-    <div
-      class="infinite-scroll-component__outerdiv"
-    >
-      <div
-        class="infinite-scroll-component relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height"
-        style="height: auto; overflow: auto;"
-      >
-        <div
-          class="grid grid-cols-1 gap-4
-       md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
-        >
-          <div
-            class="group 
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-"
-          >
-            <div
-              class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
-            >
-              <div
-                class="flex flex-col h-full"
-              >
-                <div
-                  class="flex flex-col p-4 group-hover:text-dial-yellow"
-                >
-                  <div
-                    class="text-2xl font-semibold absolute w-64 2xl:w-80"
-                  >
-                    CDR Analytics for COVID-19 with FlowKit
-                  </div>
-                  <div
-                    class="mx-auto mt-5 pt-20 w-40 h-60 relative"
-                  >
-                    <div
-                      style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
-                    >
-                      <img
-                        alt="Logo for: CDR Analytics for COVID-19 with FlowKit"
-                        data-nimg="fill"
-                        decoding="async"
-                        sizes="100vw"
-                        src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=3840&q=75"
-                        srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=3840&q=75 3840w"
-                        style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: contain;"
-                      />
-                      <noscript />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="bg-dial-gray-light flex flex-col h-full"
-                >
-                  <div
-                    class="px-3 py-3 text-sm"
-                  >
-                    <div
-                      class="max-h-16 playbook-description overflow-hidden"
-                    >
-                      Overview of CDR Analytics for COVID-19 with FlowKit.
-                    </div>
-                  </div>
-                  <div
-                    class="flex flex-col bg-dial-gray-light px-3 py-3 text-sm gap-1"
-                  >
-                    <div
-                      class="font-semibold"
-                    >
-                      Tags
-                    </div>
-                    <div
-                      class="flex flex-row gap-1"
-                    >
-                      <div
-                        class="bg-white px-2 py-1.5 rounded"
-                      >
-                        COVID-19
-                      </div>
-                      <div
-                        class="bg-white px-2 py-1.5 rounded"
-                      >
-                        Chip cards
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="group 
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-"
-          >
-            <div
-              class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
-            >
-              <div
-                class="flex flex-col h-full"
-              >
-                <div
-                  class="flex flex-col p-4 group-hover:text-dial-yellow"
-                >
-                  <div
-                    class="text-2xl font-semibold absolute w-64 2xl:w-80"
-                  >
-                    D4D Diagnostic Toolkit
-                  </div>
-                  <div
-                    class="mx-auto mt-5 pt-20 w-40 h-60 relative"
-                  >
-                    <div
-                      style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
-                    >
-                      <img
-                        alt="Logo for: D4D Diagnostic Toolkit"
-                        data-nimg="fill"
-                        decoding="async"
-                        sizes="100vw"
-                        src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=3840&q=75"
-                        srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fd4d_diagnostic_toolkit.png&w=3840&q=75 3840w"
-                        style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: contain;"
-                      />
-                      <noscript />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="bg-dial-gray-light flex flex-col h-full"
-                >
-                  <div
-                    class="px-3 py-3 text-sm"
-                  >
-                    <div
-                      class="max-h-16 playbook-description overflow-hidden"
-                    >
-                      D4D Diagnostic Toolkit
-                    </div>
-                  </div>
-                  <div
-                    class="flex flex-col bg-dial-gray-light px-3 py-3 text-sm gap-1"
-                  >
-                    <div
-                      class="font-semibold"
-                    >
-                      Tags
-                    </div>
-                    <div
-                      class="flex flex-row gap-1"
-                    >
-                      <div
-                        class="bg-white px-2 py-1.5 rounded"
-                      >
-                        SMS services
-                      </div>
-                      <div
-                        class="bg-white px-2 py-1.5 rounded"
-                      >
-                        Artificial Intelligence
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="group 
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-"
-          >
-            <div
-              class="border border-dial-gray hover:border-transparent card-drop-shadow h-full"
-            >
-              <div
-                class="flex flex-col h-full"
-              >
-                <div
-                  class="flex flex-col p-4 group-hover:text-dial-yellow"
-                >
-                  <div
-                    class="text-2xl font-semibold absolute w-64 2xl:w-80"
-                  >
-                    Example Playbook
-                  </div>
-                  <div
-                    class="mx-auto mt-5 pt-20 w-40 h-60 relative"
-                  >
-                    <div
-                      style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
-                    >
-                      <img
-                        alt="Logo for: Example Playbook"
-                        data-nimg="fill"
-                        decoding="async"
-                        sizes="100vw"
-                        src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=3840&q=75"
-                        srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fplaybooks%2Fplaybook_placeholder.png&w=3840&q=75 3840w"
-                        style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: contain;"
-                      />
-                      <noscript />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="bg-dial-gray-light flex flex-col h-full"
-                >
-                  <div
-                    class="px-3 py-3 text-sm"
-                  >
-                    <div
-                      class="max-h-16 playbook-description overflow-hidden"
-                    >
-                      Just an example of playbook.
-                    </div>
-                  </div>
-                  <div
-                    class="flex flex-col bg-dial-gray-light px-3 py-3 text-sm gap-1"
-                  >
-                    <div
-                      class="font-semibold"
-                    >
-                      Tags
-                    </div>
-                    <div
-                      class="flex flex-row gap-1"
-                    >
-                      <div
-                        class="bg-white px-2 py-1.5 rounded"
-                      >
-                        3D Printers
-                      </div>
-                      <div
-                        class="bg-white px-2 py-1.5 rounded"
-                      >
-                        Apps
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>

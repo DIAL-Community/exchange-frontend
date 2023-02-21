@@ -1,4 +1,5 @@
 export const rubricCategory = {
+  id: 1,
   name: 'Test rubric category',
   slug: 'test_rubric_category',
   weight: 1,
@@ -11,6 +12,7 @@ export const createRubricCategorySuccess = {
   data: {
     createRubricCategory: {
       rubricCategory: {
+        id: 1,
         slug: 'test_rubric_category'
       },
       errors: []

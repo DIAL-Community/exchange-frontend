@@ -17,6 +17,9 @@ exports[`Unit tests for the ProductDetailProjects component. Should add a pill a
       >
         Projects
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -38,7 +41,7 @@ exports[`Unit tests for the ProductDetailProjects component. Should add a pill a
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-4-live-region"
+            id="react-select-:r2:-live-region"
           />
           <span
             aria-atomic="false"
@@ -47,31 +50,31 @@ exports[`Unit tests for the ProductDetailProjects component. Should add a pill a
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-4-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
+                id="react-select-:r2:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-4-placeholder"
+                  aria-describedby="react-select-:r2:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-4-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 0; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -85,11 +88,11 @@ exports[`Unit tests for the ProductDetailProjects component. Should add a pill a
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"
@@ -232,23 +235,27 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
       >
         Projects
       </div>
-      <button
-        class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-        data-testid="edit-button"
-        type="button"
+      <div
+        class="gap-3"
       >
-        <img
-          alt="Edit"
-          height="12px"
-          src="/icons/edit.svg"
-          width="12px"
-        />
-        <span
-          class="text-sm"
+        <button
+          class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          data-testid="edit-button"
+          type="button"
         >
-          Edit
-        </span>
-      </button>
+          <img
+            alt="Edit"
+            height="12px"
+            src="/icons/edit.svg"
+            width="12px"
+          />
+          <span
+            class="text-sm"
+          >
+            Edit
+          </span>
+        </button>
+      </div>
     </div>
     <div
       class="grid grid-cols-1"
@@ -286,7 +293,7 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
                 />
                 <div
                   class="block xl:hidden text-right text-sm font-semibold text-dial-cyan"
-                  data-tip="Origin: "
+                  data-tip="Origin: Origin"
                 >
                   ORIGIN_SLUG
                 </div>
@@ -317,6 +324,9 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
       >
         Projects
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -338,7 +348,7 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-2-live-region"
+            id="react-select-:r0:-live-region"
           />
           <span
             aria-atomic="false"
@@ -347,31 +357,31 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-2-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
+                id="react-select-:r0:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-2-placeholder"
+                  aria-describedby="react-select-:r0:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-2-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -385,11 +395,11 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"
@@ -483,6 +493,9 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
       >
         Projects
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="grid grid-cols-1"
@@ -520,7 +533,7 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
                 />
                 <div
                   class="block xl:hidden text-right text-sm font-semibold text-dial-cyan"
-                  data-tip="Origin: "
+                  data-tip="Origin: Origin"
                 >
                   ORIGIN_SLUG
                 </div>
@@ -551,6 +564,9 @@ exports[`Unit tests for the ProductDetailProjects component. Should remove a pil
       >
         Projects
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -572,7 +588,7 @@ exports[`Unit tests for the ProductDetailProjects component. Should remove a pil
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-3-live-region"
+            id="react-select-:r1:-live-region"
           />
           <span
             aria-atomic="false"
@@ -581,31 +597,31 @@ exports[`Unit tests for the ProductDetailProjects component. Should remove a pil
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-3-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
+                id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-3-placeholder"
+                  aria-describedby="react-select-:r1:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-3-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -619,11 +635,11 @@ exports[`Unit tests for the ProductDetailProjects component. Should remove a pil
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"

@@ -1,16 +1,14 @@
-import { mockRouterImplementation, mockSessionImplementation, render, waitForAllEffects } from '../../test-utils'
+import { render, waitForAllEffects } from '../../test-utils'
 import CountryDetail from '../../../components/countries/CountryDetail'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { COUNTRY_DETAIL_QUERY } from '../../../queries/country'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { country, countryWithMissingLatLong } from './data/CountryDetail'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the CountryDetail component', () => {
   beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
   })
 
   test('should render element of the country data.', async () => {
@@ -60,7 +58,7 @@ describe('Unit test for the CountryDetail component', () => {
   })
 
   test('should not render delete for user that without edit privilege.', async () => {
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
     const variables = { slug: 'ke' }
     const mockedCountry = generateMockApolloData(
       COUNTRY_DETAIL_QUERY,

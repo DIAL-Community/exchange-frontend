@@ -5,13 +5,27 @@ export const CATEGORY_INDICATOR_QUERY = gql`
     categoryIndicator(slug: $slug) {
       slug
       name
+      id
       indicatorType
       weight
       dataSource
       scriptName
+      rubricCategoryId
       categoryIndicatorDescription {
         description
       } 
     }
   }
 `
+
+export const CATEGORY_INDICATORS_SEARCH_QUERY = gql`
+  query CategoryIndicators($search: String) {
+    categoryIndicators(search: $search) {
+      slug
+      name
+      id
+      rubricCategoryId
+    }
+  }
+`
+

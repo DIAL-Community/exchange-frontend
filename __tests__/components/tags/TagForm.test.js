@@ -2,19 +2,12 @@ import { act } from 'react-dom/test-utils'
 import { fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import TagForm from '../../../components/tags/TagForm'
-import {
-  mockObserverImplementation,
-  mockRouterImplementation,
-  mockSessionImplementation,
-  waitForAllEffects,
-  render
-} from '../../test-utils'
+import { mockObserverImplementation, waitForAllEffects, render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { tag } from './data/TagCard'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for the TagForm component.', () => {
   const DIALOG_FORM_TEST_ID = 'dialog'
   const TAG_NAME_TEST_ID = 'tag-name'
@@ -23,14 +16,13 @@ describe('Unit tests for the TagForm component.', () => {
   const mockOnClose = jest.fn()
 
   beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     window.IntersectionObserver = mockObserverImplementation()
   })
 
   describe('Should match snapshot -', () => {
     test('create.', async () => {
-      const { getByTestId } = render(
+      const { container, getByTestId } = render(
         <CustomMockedProvider>
           <TagForm
             isOpen={mockIsDialogOpen}
@@ -38,12 +30,13 @@ describe('Unit tests for the TagForm component.', () => {
           />
         </CustomMockedProvider>
       )
-      await waitForAllEffects(500)
+      await waitForAllEffects(1000)
       expect(getByTestId(DIALOG_FORM_TEST_ID)).toMatchSnapshot()
+      expect(container).toMatchSnapshot()
     })
 
     test('edit.', async () => {
-      const { getByTestId } = render(
+      const { container, getByTestId } = render(
         <CustomMockedProvider>
           <TagForm
             isOpen={mockIsDialogOpen}
@@ -52,8 +45,9 @@ describe('Unit tests for the TagForm component.', () => {
           />
         </CustomMockedProvider>
       )
-      await waitForAllEffects(500)
+      await waitForAllEffects(1000)
       expect(getByTestId(DIALOG_FORM_TEST_ID)).toMatchSnapshot()
+      expect(container).toMatchSnapshot()
     })
   })
 
@@ -67,9 +61,10 @@ describe('Unit tests for the TagForm component.', () => {
           />
         </CustomMockedProvider>
       )
-      await waitForAllEffects(container)
+      await waitForAllEffects()
       await act(async () => fireEvent.click(getByText('Submit')))
       expect(getByTestId(TAG_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
+      expect(container).toMatchSnapshot()
     })
 
     test('should show validation errors and hide them on input value change.', async () => {
@@ -82,12 +77,13 @@ describe('Unit tests for the TagForm component.', () => {
           />
         </CustomMockedProvider>
       )
-      await waitForAllEffects(container)
+      await waitForAllEffects()
       await act(async () => fireEvent.click(getByText('Submit')))
       expect(getByTestId(TAG_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
       await user.type(screen.getByLabelText(/Name/), 'test tag name')
       expect(getByTestId(TAG_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
+      expect(container).toMatchSnapshot()
     })
   })
 })

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
@@ -13,7 +13,7 @@ const SDGActiveFilter = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { sdgs } = useContext(SDGFilterContext)
   const { setSDGs } = useContext(SDGFilterDispatchContext)
@@ -47,11 +47,11 @@ const SDGActiveFilter = () => {
   })
 
   return (
-    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
-      <div className='flex flex-row flex-wrap px-3 gap-2'>
+    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`}>
+      <div className='flex flex-row flex-wrap px-0.5 gap-2'>
         <SDGFilters {...{ sdgs, setSDGs }} />
 
-        <div className='flex px-2 py-1 mt-2 text-sm text-dial-gray-dark'>
+        <div className='flex px-2 py-1 text-sm text-dial-gray-dark my-auto'>
           <a
             className='border-b-2 border-transparent hover:border-dial-yellow opacity-50'
             href='#clear-filter' onClick={clearFilter}

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
@@ -16,7 +16,7 @@ const OrganizationActiveFilter = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { aggregator, endorser, sectors, countries, years } = useContext(OrganizationFilterContext)
   const { setAggregator, setEndorser, setSectors, setCountries, setYears } = useContext(OrganizationFilterDispatchContext)
@@ -77,7 +77,7 @@ const OrganizationActiveFilter = () => {
   })
 
   return (
-    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
+    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`}>
       <div className='flex flex-row flex-wrap px-3 gap-2'>
         {aggregator && (
           <div className='py-1'>

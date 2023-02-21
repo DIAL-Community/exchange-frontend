@@ -40,3 +40,52 @@ export const WORKFLOW_DETAIL_QUERY = gql`
     }
   }
 `
+
+export const WORKFLOWS_QUERY = gql`
+  query SearchWorkflows(
+    $first: Int,
+    $after: String,
+    $sdgs: [String!],
+    $useCases: [String!],
+    $search: String!
+  ) {
+    searchWorkflows(
+      first: $first,
+      after: $after,
+      sdgs: $sdgs,
+      useCases: $useCases,
+      search: $search
+    ) {
+      totalCount
+      pageInfo {
+        endCursor
+        startCursor
+        hasPreviousPage
+        hasNextPage
+      }
+      nodes {
+        id
+        name
+        slug
+        imageFile
+        useCaseSteps {
+          id
+          slug
+          name
+          useCase {
+            id
+            slug
+            name
+            imageFile
+          }
+        }
+        buildingBlocks {
+          id
+          slug
+          name
+          imageFile
+        }
+      }
+    }
+  }
+`

@@ -1,55 +1,23 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import NotFound from '../shared/NotFound'
 import { Loading, Error } from '../shared/FetchStatus'
 import { FilterContext } from '../context/FilterContext'
 import { PlayFilterContext } from '../context/PlayFilterContext'
-import PlayCard from './PlayCard'
+import { PLAYS_QUERY } from '../../queries/play'
 import { PlayListContext } from './PlayListContext'
+import PlayCard from './PlayCard'
 
 export const SOURCE_TYPE_ASSIGNING = 'source.type.assign'
 export const SOURCE_TYPE_LISTING = 'source.type.listing'
 
 const DEFAULT_PAGE_SIZE = 20
-
-const PLAYS_QUERY = gql`
-query SearchPlays(
-  $first: Int,
-  $after: String,
-  $search: String!
-  ) {
-  searchPlays(
-    first: $first,
-    after: $after,
-    search: $search
-  ) {
-    __typename
-    totalCount
-    pageInfo {
-      endCursor
-      startCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    nodes {
-      id
-      slug
-      name
-      imageFile
-      playDescription {
-        id
-        description
-      }
-    }
-  }
-}
-`
-
 const PlayList = ({ playbook, playList, currentPlays, displayType, filterDisplayed, sourceType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const gridStyles = `grid ${displayType === 'card'
     ? `grid-cols-1 gap-4
@@ -58,7 +26,7 @@ const PlayList = ({ playbook, playList, currentPlays, displayType, filterDisplay
     }`
 
   return (
-    <div className={`${gridStyles}`}>
+    <div className={gridStyles} >
       {
         displayType === 'list' && sourceType !== SOURCE_TYPE_ASSIGNING &&
           <div className='flex flex-row gap-4 px-3 py-4 h-16 w-full opacity-70'>
@@ -94,10 +62,10 @@ const PlayListQuery = ({ playbook, sourceType }) => {
   const { locale } = useRouter()
 
   const { currentPlays } = useContext(PlayListContext)
-  const { filterDisplayed, resultCounts, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, setResultCounts } = useContext(FilterContext)
 
   const { search, tags } = useContext(PlayFilterContext)
-  const { loading, error, data, fetchMore, refetch } = useQuery(PLAYS_QUERY, {
+  const { loading, error, data, fetchMore } = useQuery(PLAYS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       tags,
@@ -105,19 +73,6 @@ const PlayListQuery = ({ playbook, sourceType }) => {
     },
     context: { headers: { 'Accept-Language': locale } }
   })
-
-  useEffect(() => {
-    refetch()
-  }, [locale, refetch])
-
-  useEffect(() => {
-    if (data) {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.plays']]: data.searchPlays.totalCount }
-      })
-    }
-  }, [data])
 
   const handleLoadMore = () => {
     fetchMore({
@@ -129,12 +84,23 @@ const PlayListQuery = ({ playbook, sourceType }) => {
     })
   }
 
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.plays']]: data.searchPlays.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
+
   if (loading) {
     return <Loading />
-  }
-
-  if (error) {
+  } else if (error && error.networkError) {
     return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
   }
 
   const viewType = 'list'
@@ -143,11 +109,12 @@ const PlayListQuery = ({ playbook, sourceType }) => {
   return (
     <>
       <InfiniteScroll
-        className='bg-white relative px-6 pb-8 pt-4 max-w-catalog mx-auto'
+        className='bg-white relative px-6 pb-8 pt-4'
+        height='50vh'
         dataLength={nodes.length}
         next={handleLoadMore}
         hasMore={pageInfo.hasNextPage}
-        loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
+        loader={<div className='text-center mt-3'>{format('general.loadingData')}</div>}
       >
         <PlayList playList={nodes} displayType={viewType} {...{ playbook, currentPlays, filterDisplayed, sourceType }} />
       </InfiniteScroll>

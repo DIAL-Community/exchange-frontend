@@ -1,23 +1,20 @@
 import Link from 'next/link'
-import { createRef, useEffect, useState } from 'react'
+import classNames from 'classnames'
+import { createRef, useCallback, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 import Image from 'next/image'
 import { convertToKey } from '../context/FilterContext'
 const collectionPath = convertToKey('Use Cases')
 
-const ellipsisTextStyle = `
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-`
-const containerElementStyle = `
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-use-case hover:text-dial-yellow
-`
+const containerElementStyle = classNames(
+  'cursor-pointer hover:rounded-lg hover:shadow-lg',
+  'border-3 border-transparent hover:border-dial-yellow'
+)
 
-const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => {
+const UseCaseCard = ({ useCase, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, { ...values })
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const sdgTargetContainer = createRef()
   const [sdgTargetOverflow, setSdgTargetOverflow] = useState(false)
@@ -32,16 +29,20 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
   useEffect(() => {
     const wc = workflowContainer.current
     if (wc) {
-      const workflowOverflow = wc.offsetHeight < wc.scrollHeight || wc.offsetWidth < wc.scrollWidth
+      const workflowOverflow =
+        wc.offsetHeight < wc.scrollHeight ||
+        wc.offsetWidth < wc.scrollWidth
       setWorkflowOverflow(workflowOverflow)
     }
 
     const sc = sdgTargetContainer.current
     if (sc) {
-      const sdgTargetOverflow = sc.offsetHeight < sc.scrollHeight || sc.offsetWidth < sc.scrollWidth
+      const sdgTargetOverflow =
+        sc.offsetHeight < sc.scrollHeight ||
+        sc.offsetWidth < sc.scrollWidth
       setSdgTargetOverflow(sdgTargetOverflow)
     }
-  }, [workflowOverflow, sdgTargetOverflow])
+  }, [workflowOverflow, workflowContainer, sdgTargetOverflow, sdgTargetContainer])
 
   const workflows = (() => {
     if (!useCase.useCaseSteps) {
@@ -65,206 +66,105 @@ const UseCaseCard = ({ useCase, listType, filterDisplayed, newTab = false }) => 
     return workflows
   })()
 
-  const nameColSpan = (useCase) => {
-    return !useCase.sdgTargets && !workflows
-      ? 'col-span-9 lg:col-span-10'
-      : filterDisplayed ? 'col-span-9 lg:col-span-10 xl:col-span-4' : 'col-span-9 md:col-span-10 lg:col-span-4'
-  }
-
-  const navClickHandler = () => {
-  }
-
   return (
     <Link href={`/${collectionPath}/${useCase.slug}`}>
       <a {... newTab && { target: '_blank' }}>
         {
           listType === 'list'
             ? (
-              <div onClick={() => navClickHandler()} className={containerElementStyle}>
-                <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
-                  <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
-                    <div className={`${nameColSpan(useCase)} text-base font-semibold ${ellipsisTextStyle}`}>
-                      <Image
-                        height={20}
-                        width={20}
-                        alt={format('image.alt.logoFor', { name: useCase.name })} className='use-case-filter'
-                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
-                      />
-                      <span className='ml-4'>
+              <div className={containerElementStyle}>
+                <div className='bg-white border border-dial-gray hover:border-transparent shadow-lg'>
+                  <div className='relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6'>
+                    <div className='w-10/12 lg:w-4/12 flex gap-2 my-auto text-dial-sapphire'>
+                      <div className='block w-8 relative'>
+                        <Image
+                          layout='fill'
+                          objectFit='scale-down'
+                          objectPosition='left'
+                          alt={format('image.alt.logoFor', { name: useCase.name })}
+                          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+                        />
+                      </div>
+                      <div className='w-full font-semibold line-clamp-1'>
                         {useCase.name}
-                      </span>
-                      {
-                        useCase.sdgTargets &&
-                        <div className={`block ${filterDisplayed ? 'xl:hidden' : 'lg:hidden'} flex flex-row mt-1`}>
-                          <div className='text-sm font-normal'>
-                            {format('sdg.sdgTargets')}:
-                          </div>
-                          <div className='mx-1 text-sm font-normal overflow-hidden text-ellipsis'>
-                            {useCase.sdgTargets.length === 0 && format('general.na')}
-                            {
-                              useCase.sdgTargets.length > 0 &&
-                                useCase.sdgTargets.map(u => u.targetNumber).join(', ')
-                            }
-                          </div>
-                        </div>
-                      }
-                      {
-                        workflows &&
-                        <div className={`block ${filterDisplayed ? 'xl:hidden' : 'lg:hidden'} text-workflow flex flex-row mt-1`}>
-                          <div className='text-sm font-normal'>
-                            {format('workflow.header')}:
-                          </div>
-                          <div className='mx-1 text-sm font-normal overflow-hidden text-ellipsis'>
-                            {workflows.length === 0 && format('general.na')}
-                            {
-                              workflows.length > 0 &&
-                                workflows.map(b => b.name).join(', ')
-                            }
-                          </div>
-                        </div>
-                      }
+                      </div>
                     </div>
                     {
                       useCase.sdgTargets &&
-                      <div
-                        className={`
-                          hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
-                          lg:col-span-2 text-base text-dial-purple ${ellipsisTextStyle}
-                        `}
-                      >
+                      <div className='w-8/12 lg:w-2/12 line-clamp-1'>
                         {useCase.sdgTargets.length === 0 && format('general.na')}
-                        {
-                          useCase.sdgTargets.length > 0 &&
-                            useCase.sdgTargets.map(u => u.targetNumber).join(', ')
+                        {useCase.sdgTargets.length > 0 &&
+                          useCase.sdgTargets.map(u => u.targetNumber).join(', ')
                         }
                       </div>
                     }
                     {
                       workflows &&
-                      <div
-                        className={`
-                          hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
-                          lg:col-span-5 text-base text-workflow ${ellipsisTextStyle}
-                        `}
-                      >
+                      <div className='w-8/12 lg:w-4/12 line-clamp-1'>
                         {workflows.length === 0 && format('general.na')}
-                        {
-                          workflows.length > 0 &&
-                            workflows.map(b => b.name).join(', ')
+                        {workflows.length > 0 &&
+                          workflows.map(b => b.name).join(', ')
                         }
                       </div>
                     }
-                    <div className='col-span-2 lg:col-span-1 text-right font-semibold opacity-50 justify-end'>
-                      {useCase.maturity}
+                    <div className='ml-auto font-semibold my-auto'>
+                      <div className='text-dial-gray-dark text-xs font-semibold'>
+                        {useCase.maturity.toUpperCase()}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             )
             : (
-              <div onClick={() => navClickHandler()} className={containerElementStyle}>
-                <div className='border border-dial-gray hover:border-transparent card-drop-shadow'>
-                  <div className='flex flex-row p-1.5 border-b border-dial-gray'>
-                    <div className='ml-auto text-button-gray-light text-sm font-semibold'>
-                      {useCase.maturity.toUpperCase()}
-                    </div>
-                  </div>
-                  <div className='flex flex-col h-80 p-4'>
-                    <div className='text-2xl font-semibold absolute w-64 2xl:w-80 z-10'>
-                      {useCase.name}
-                    </div>
-                    <div className='m-auto w-3/5 h-3/5 relative' >
-                      <Image
-                        layout='fill'
-                        objectFit='contain'
-                        alt={format('image.alt.logoFor', { name: useCase.name })} className='use-case-filter'
-                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
-                      />
-                    </div>
-                  </div>
-                  <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark '>
-                    <div className='flex flex-row border-b border-dial-gray'>
-                      <div className='pl-3 py-3 text-dial-teal-light flex flex-row'>
-                        <div className='text-base my-auto whitespace-nowrap text-sdg-target mr-2'>{format('use-case.sdg-targets')}</div>
-                        <div className='flex flex-row'>
-                          <div
-                            className='pl-3 flex flex-row flex-wrap font-semibold overflow-hidden'
-                            style={{ maxHeight: '40px' }}
-                            ref={sdgTargetContainer}
-                          >
-                            {
-                              useCase.sdgTargets.length === 0 &&
-                              <div className='bg-white p-2 text-use-case rounded text-base'>
-                                {format('general.na')}
-                              </div>
-                            }
-                            {
-                              useCase.sdgTargets
-                                .map(s => (
-                                  <div key={`${useCase.id}-${s.id}`} className='bg-white rounded text-sdg-target p-2 mr-1.5 cursor-default' data-tip={`${s.name}.`}>
-                                    {s.targetNumber}
-                                  </div>
-                                ))
-                            }
-                          </div>
-                          {
-                            sdgTargetOverflow && (
-                              <div className='bg-white mr-3 px-2 rounded text-sm text-sdg-target'>
-                                <span
-                                  className='text-xl bg-white leading-normal'
-                                  data-tip={format('tooltip.ellipsisFor', { entity: format('useCase.label') })}
-                                >
-                                &hellip;
-                                </span>
-                              </div>
-                            )
-                          }
+              <div className={containerElementStyle}>
+                <div
+                  className={classNames(
+                    'bg-white shadow-lg rounded-lg h-full',
+                    'border border-dial-gray hover:border-transparent'
+                  )}
+                >
+                  <div className='flex flex-col'>
+                    <div className='relative'>
+                      <div className='absolute right-2 top-2'>
+                        <div className='text-dial-gray-dark text-xs font-semibold'>
+                          {useCase.maturity.toUpperCase()}
                         </div>
                       </div>
                     </div>
-                    <div className='flex flex-row text-dial-gray-dark'>
-                      <div className='py-3 flex flex-row'>
-                        <div className='pl-3 text-base text-workflow my-auto'>{format('use-case.workflow')}</div>
-                        <div className='flex flex-row'>
-                          <div
-                            className='pl-3 flex flex-row flex-wrap font-semibold overflow-hidden'
-                            style={{ maxHeight: '40px' }}
-                            ref={workflowContainer}
-                          >
-                            {
-                              workflows.length === 0 &&
-                              <div className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'>
-                                {format('general.na')}
-                              </div>
-                            }
-                            {
-                              workflows
-                                .map(w => (
-                                  <div key={`${useCase.id}-${w.id}`} className='bg-white rounded p-2 mr-1 cursor-default'>
-                                    <Image
-                                      height={20}
-                                      width={20}
-                                      data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: w.name })}
-                                      className='workflow-filter' alt={format('image.alt.logoFor', { name: w.name })}
-                                      src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + w.imageFile}
-                                    />
-                                  </div>
-                                ))
-                            }
-                          </div>
-                          {
-                            workflowOverflow && (
-                              <div className='bg-white mr-3 px-2 rounded text-sm'>
-                                <span
-                                  className='text-xl text-workflow bg-white leading-normal'
-                                  data-tip={format('tooltip.ellipsisFor', { entity: format('useCase.label') })}
-                                >
-                                &hellip;
-                                </span>
-                              </div>
-                            )
-                          }
-                        </div>
+                    <div className='flex bg-dial-alice-blue h-24 rounded-t-lg'>
+                      <div className='px-4 font-semibold text-dial-sapphire m-auto line-clamp-1'>
+                        {useCase.name}
+                      </div>
+                    </div>
+                    <div className='mx-auto py-6'>
+                      <img
+                        className='object-contain h-20 w-20'
+                        layout='fill'
+                        alt={format('image.alt.logoFor', { name: useCase.name })}
+                        src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+                      />
+                    </div>
+                    <hr />
+                    <div className='text-xs text-dial-stratos font-semibold uppercase'>
+                      <div className='px-4 py-2 flex gap-2'>
+                        <span className='badge-avatar w-7 h-7'>
+                          {workflows.length}
+                        </span>
+                        <span className='my-auto'>
+                          {format('workflow.header')}
+                        </span>
+                      </div>
+                    </div>
+                    <hr />
+                    <div className='text-xs text-dial-stratos font-semibold uppercase'>
+                      <div className='px-4 py-2 flex gap-2'>
+                        <span className='badge-avatar w-7 h-7'>
+                          {useCase.sdgTargets.length}
+                        </span>
+                        <span className='my-auto'>
+                          {format('sdg.sdgTargets')}
+                        </span>
                       </div>
                     </div>
                   </div>

@@ -2,41 +2,29 @@
 
 exports[`Unit test for the Header component. Should match snapshot. 1`] = `
 <div
-  class="py-1"
-  data-testid="admin-menu-items"
-  role="none"
+  class="
+  origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white
+  ring-1 ring-black ring-opacity-5 focus:outline-none z-30
+"
+  data-testid="menu-admin-items"
+  role="menu"
 >
   <a
     class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
     href="/users"
     role="menuitem"
   >
     Users
   </a>
+  <hr
+    class="mx-4 border border-gray-200"
+  />
   <a
     class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-    href="http://localhost:3000//settings?user_email=undefined&user_token=undefined"
-    role="menuitem"
-  >
-    Settings
-  </a>
-  <a
-    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-    href="/sectors"
-    role="menuitem"
-  >
-    Sectors
-  </a>
-  <a
-    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
     href="/countries"
     role="menuitem"
   >
@@ -44,26 +32,47 @@ exports[`Unit test for the Header component. Should match snapshot. 1`] = `
   </a>
   <a
     class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
+    href="/sectors"
+    role="menuitem"
+  >
+    Sectors
+  </a>
+  <a
+    class="
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
     href="/tags"
     role="menuitem"
   >
     Tags
   </a>
+  <hr
+    class="mx-4 border border-gray-200"
+  />
   <a
     class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-    href="/candidate/organizations"
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
+    href="/candidate/datasets"
     role="menuitem"
   >
-    Candidate Orgs
+    Candidate Open Data
   </a>
   <a
     class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
+    href="/candidate/organizations"
+    role="menuitem"
+  >
+    Candidate Organizations
+  </a>
+  <a
+    class="
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
     href="/candidate/products"
     role="menuitem"
   >
@@ -71,48 +80,45 @@ exports[`Unit test for the Header component. Should match snapshot. 1`] = `
   </a>
   <a
     class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
     href="/candidate/roles"
     role="menuitem"
   >
     Candidate Roles
   </a>
+  <hr
+    class="mx-4 border border-gray-200"
+  />
   <a
     class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-    href="http://localhost:3000//deploys?user_email=undefined&user_token=undefined"
-    role="menuitem"
-  >
-    Deploys
-  </a>
-  <a
-    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-    href="http://localhost:3000//portal_views?user_email=undefined&user_token=undefined"
-    role="menuitem"
-  >
-    Portal Views
-  </a>
-  <a
-    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
-    href="http://localhost:3000//maturity_rubrics?user_email=undefined&user_token=undefined"
-    role="menuitem"
-  >
-    Maturity Rubrics
-  </a>
-  <a
-    class="
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
-  "
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
     href="/rubric_categories"
     role="menuitem"
   >
     Rubric Categories
+  </a>
+  <hr
+    class="mx-4 border border-gray-200"
+  />
+  <a
+    class="
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
+    href="/spreadsheets/datasets"
+    role="menuitem"
+  >
+    Dataset Spreadsheet
+  </a>
+  <a
+    class="
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
+    href="/spreadsheets/products"
+    role="menuitem"
+  >
+    Product Spreadsheet
   </a>
 </div>
 `;

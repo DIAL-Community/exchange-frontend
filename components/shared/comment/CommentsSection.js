@@ -1,7 +1,5 @@
 import dynamic from 'next/dynamic'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import 'react-comments-section/dist/index.css'
-const CommentSection = dynamic(() => import('react-comments-section').then((module) => module.CommentSection), { ssr: false })
 import { useMutation, useQuery } from '@apollo/client'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
@@ -11,6 +9,10 @@ import { useUser } from '../../../lib/hooks'
 import { Loading } from '../FetchStatus'
 import EditButton from '../EditButton'
 import CommentsList from './CommentsList'
+const CommentSection = dynamic(
+  () => import('react-comments-section').then((module) => module.CommentSection),
+  { ssr: false }
+)
 
 const INPUT_CLASSNAME = 'public-DraftStyleDefault-block'
 const INPUT_BORDERED_WRAPPER_CLASSNAME = 'advanced-border'
@@ -74,7 +76,10 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
 
   useEffect(() => document.addEventListener('click', handleClickOutside))
 
-  const getElementsByClassName = useCallback((className) => Array.from(innerRef?.current?.getElementsByClassName(className) ?? []), [])
+  const getElementsByClassName = useCallback(
+    (className) => Array.from(innerRef?.current?.getElementsByClassName(className) ?? []),
+    []
+  )
 
   const focusActiveElement = () => {
     const activeInput = document.activeElement.getElementsByClassName(INPUT_CLASSNAME)[FIRST_ELEMENT_INDEX]
@@ -145,7 +150,10 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
               signupLink: '/auth/signup'
             }}
             onSubmitAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
-            onReplyAction={({ text, comId, repliedToCommentId, parentOfRepliedCommentId }) => onCommentUpsertAction(text, comId, repliedToCommentId, parentOfRepliedCommentId)}
+            onReplyAction={
+              ({ text, comId, repliedToCommentId, parentOfRepliedCommentId }) =>
+                onCommentUpsertAction(text, comId, repliedToCommentId, parentOfRepliedCommentId)
+            }
             onEditAction={({ text, comId }) => onCommentUpsertAction(text, comId)}
             onDeleteAction={({ comIdToDelete }) => onCommentDeleteAction(comIdToDelete)}
             advancedInput

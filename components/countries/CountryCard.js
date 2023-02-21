@@ -6,9 +6,11 @@ const CountryCard = ({ country, listType }) => {
   const { isAdminUser } = useUser()
 
   const noAuthCardContent =
-    <div className='bg-white border border-dial-gray card-drop-shadow'>
-      <div className='p-4 font-semibold text-button-gray'>
-        {country.name}
+    <div className='border-3 border-transparent'>
+      <div className='bg-white border border-dial-gray card-drop-shadow'>
+        <div className='p-4 font-semibold text-button-gray'>
+          {country.name}
+        </div>
       </div>
     </div>
 

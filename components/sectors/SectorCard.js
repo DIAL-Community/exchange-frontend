@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import classNames from 'classnames'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
 import { useUser } from '../../lib/hooks'
 import EditButton from '../shared/EditButton'
@@ -11,7 +11,7 @@ import SectorForm from './SectorForm'
 
 const SectorCard = ({ sector, listType = DisplayType.LIST, displayEditButtons = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser } = useUser()
 
@@ -24,7 +24,10 @@ const SectorCard = ({ sector, listType = DisplayType.LIST, displayEditButtons = 
   return (
     listType === DisplayType.LIST && (
       <div
-        className={classNames({ 'hover:border-dial-yellow text-button-gray': displayEditButtons }, 'border-3 border-transparent')}
+        className={classNames(
+          { 'hover:border-dial-yellow text-button-gray': displayEditButtons },
+          'border-3 border-transparent'
+        )}
         data-testid='sector-card'
       >
         <div className='flex justify-between border border-dial-gray card-drop-shadow px-4 h-16'>
@@ -32,7 +35,12 @@ const SectorCard = ({ sector, listType = DisplayType.LIST, displayEditButtons = 
             onClick={toggleSectorDetailDialog}
             className={classNames({ 'flex-1 cursor-pointer': displayEditButtons }, 'flex items-center p-4')}
           >
-            <div className={classNames({ 'inline-flex items-center gap-x-2': displayEditButtons }, 'inline-block font-semibold text-button-gray')}>
+            <div
+              className={classNames(
+                { 'inline-flex items-center gap-x-2': displayEditButtons },
+                'inline-block font-semibold text-button-gray'
+              )}
+            >
               {sector.name}
               {isAdminUser && displayEditButtons && (
                 sector?.isDisplayable

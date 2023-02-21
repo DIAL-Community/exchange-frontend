@@ -1,19 +1,13 @@
 import { fireEvent, screen } from '@testing-library/react'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import BuildingBlockDetailProducts from '../../../components/building-blocks/BuildingBlockDetailProducts'
 import { PRODUCT_SEARCH_QUERY } from '../../../queries/product'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 import { products } from './data/BuildingBlockDetailProducts'
-import { buildingBlock } from './data/BuldingBlockForm'
+import { buildingBlock } from './data/BuildingBlockForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the BuildingBlockDetailProducts component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
@@ -23,11 +17,6 @@ describe('Unit test for the BuildingBlockDetailProducts component.', () => {
   const PILL_TEST_ID = 'pill'
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
   const mockProducts = generateMockApolloData(PRODUCT_SEARCH_QUERY, { search: '' }, null, products)
-
-  beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
-  })
 
   test('Should match snapshot - without edit permission.', () => {
     const { container } = render(

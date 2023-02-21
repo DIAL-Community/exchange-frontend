@@ -3,13 +3,21 @@ import { useEffect } from 'react'
 import Footer from '../../../../components/Footer'
 import Header from '../../../../components/Header'
 import { Loading } from '../../../../components/shared/FetchStatus'
+import { useUser } from '../../../../lib/hooks'
 
 const PlaybookPlays = () => {
+  const { isAdminUser } = useUser()
+
   const router = useRouter()
   const { slug } = router.query
+
   useEffect(() => {
-    router.push(`/${router.locale}/playbooks/${slug}/edit`)
-  }, [router, slug])
+    if (isAdminUser) {
+      router.push(`/${router.locale}/playbooks/${slug}/edit`)
+    } else {
+      router.push(`/${router.locale}/playbooks/${slug}/`)
+    }
+  }, [router, slug, isAdminUser])
 
   return (
     <>

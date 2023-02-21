@@ -1,24 +1,23 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
-import { useContext, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import DeleteButton from '../shared/DeleteButton'
 import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import { ToastContext } from '../../lib/ToastContext'
 import { DELETE_SECTOR } from '../../mutations/sectors'
+import { useUser } from '../../lib/hooks'
 
 const DeleteSector = ({ sector }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { showToast } = useContext(ToastContext)
 
   const router = useRouter()
-
   const { locale } = router
 
-  const [session] = useSession()
+  const { user } = useUser()
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
 
@@ -26,9 +25,16 @@ const DeleteSector = ({ sector }) => {
 
   const [deleteSector, { called, reset }] = useMutation(DELETE_SECTOR, {
     refetchQueries: ['SearchSectors'],
-    onCompleted: () => {
-      showToast(format('toast.sector.delete.success'), 'success', 'top-center')
-      setDisplayConfirmDialog(false)
+    onCompleted: (data) => {
+      const { deleteSector: response } = data
+      if (response?.sector && response?.errors?.length === 0) {
+        showToast(format('toast.sector.delete.success'), 'success', 'top-center')
+        setDisplayConfirmDialog(false)
+      } else {
+        showToast(format('toast.sector.delete.failure'), 'error', 'top-center')
+        setDisplayConfirmDialog(false)
+        reset()
+      }
     },
     onError: () => {
       showToast(format('toast.sector.delete.failure'), 'error', 'top-center')
@@ -38,8 +44,8 @@ const DeleteSector = ({ sector }) => {
   })
 
   const onConfirmDelete = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       deleteSector({
         variables: {

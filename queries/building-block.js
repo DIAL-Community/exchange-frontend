@@ -54,3 +54,51 @@ export const BUILDING_BLOCK_QUERY = gql`
     }
   }
 `
+
+export const BUILDING_BLOCKS_QUERY = gql`
+  query SearchBuildingBlocks(
+    $first: Int,
+    $after: String,
+    $sdgs: [String!],
+    $useCases: [String!],
+    $workflows: [String!],
+    $showMature: Boolean,
+    $search: String!
+    ) {
+    searchBuildingBlocks(
+      first: $first,
+      after: $after,
+      sdgs: $sdgs,
+      useCases: $useCases,
+      workflows: $workflows,
+      showMature: $showMature,
+      search: $search
+    ) {
+      totalCount
+      pageInfo {
+        endCursor
+        startCursor
+        hasPreviousPage
+        hasNextPage
+      }
+      nodes {
+        id
+        name
+        slug
+        imageFile
+        maturity
+        specUrl
+        workflows {
+          slug
+          name
+          imageFile
+        }
+        products {
+          slug
+          name
+          imageFile
+        }
+      }
+    }
+  }
+`

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
@@ -11,33 +11,7 @@ import { PlayPreviewProvider } from '../../../components/plays/PlayPreviewContex
 import ClientOnly from '../../../lib/ClientOnly'
 import NotFound from '../../../components/shared/NotFound'
 import { useUser } from '../../../lib/hooks'
-
-const PLAYBOOK_QUERY = gql`
-  query Playbook($slug: String!) {
-    playbook(slug: $slug) {
-      id
-      name
-      slug
-      tags
-      author
-      playbookDescription {
-        overview
-        audience
-        outcomes
-        locale
-      }
-      plays {
-        id
-        name
-        slug
-        playDescription {
-          description
-        }
-      }
-      draft
-    }
-  }
-`
+import { PLAYBOOK_QUERY } from '../../../queries/playbook'
 
 const EditFormProvider = ({ children }) => {
   return (
@@ -68,13 +42,9 @@ function EditPlaybook () {
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (!data?.playbook) {
     return <NotFound />
   }
 
@@ -82,16 +52,18 @@ function EditPlaybook () {
     <>
       <Header />
       {data?.playbook && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            {loadingUserSession ? <Loading /> : isAdminUser ? (
-              <EditFormProvider>
-                <PlayPreview />
-                <PlaybookForm playbook={data.playbook} />
-              </EditFormProvider>
-            ) : <Unauthorized />}
-          </ClientOnly>
-        </div>
+        <ClientOnly>
+          {loadingUserSession
+            ? <Loading />
+            : isAdminUser
+              ? (
+                <EditFormProvider>
+                  <PlayPreview />
+                  <PlaybookForm playbook={data.playbook} />
+                </EditFormProvider>
+              )
+              : <Unauthorized />}
+        </ClientOnly>
       )}
       <Footer />
     </>

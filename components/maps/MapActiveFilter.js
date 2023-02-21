@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { MapFilterContext, MapFilterDispatchContext } from '../context/MapFilterContext'
 import { SectorFilters } from '../filter/element/Sector'
@@ -14,7 +14,7 @@ const MapActiveFilter = () => {
   const router = useRouter()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const {
     aggregators, operators, services, orgSectors, years, sectors, products, tags
@@ -53,7 +53,7 @@ const MapActiveFilter = () => {
   }
 
   return (
-    <div className={`flex flex-row py-4 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
+    <div className={`flex flex-row py-4 ${filterCount() > 0 ? 'block' : 'hidden'}`}>
       <div className='flex flex-row flex-wrap gap-2'>
         {
           router.pathname.indexOf('projects') >= 0 &&

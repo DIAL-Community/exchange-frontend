@@ -35,17 +35,20 @@ const findIndex = (projectCount) => {
 }
 
 export const createCountryMarkerIcon = (country) => {
-  const iconSize = iconSizeSets[findIndex(country.projects.length)]
+  const { fontSize, marginTop, size } = iconSizeSets[findIndex(country.projects.length)]
 
   return divIcon({
     className: 'border-3 rounded-full border-dial-yellow-light bg-dial-yellow',
     html: `
       <div class='text-white w-full h-full'>
-        <div class='text-center' style='font-size: ${iconSize.fontSize}; margin-top: ${iconSize.marginTop}; font-weight: bolder;'>
+        <div
+          class='text-center'
+          style='font-size: ${fontSize}; margin-top: ${marginTop}; font-weight: bolder;'
+        >
           ${country.projects.length}
         </div>
       </div>
     `,
-    iconSize: [iconSize.size, iconSize.size]
+    iconSize: [size, size]
   })
 }

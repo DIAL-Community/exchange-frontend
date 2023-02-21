@@ -10,13 +10,40 @@ export const UPDATE_USE_CASE_STEP_WORKFLOWS = gql`
       workflowsSlugs: $workflowsSlugs
     ) {
       useCaseStep {
+        id
         slug
         workflows {
+          id
           slug
           imageFile
           name
         }
       }
+      errors
+    }
+  }
+`
+
+export const UPDATE_USE_CASE_STEP_DATASETS = gql`
+  mutation UpdateUseCaseStepDatasets(
+    $slug: String!,
+    $datasetsSlugs: [String!]!
+  ) {
+    updateUseCaseStepDatasets(
+      slug: $slug,
+      datasetsSlugs: $datasetsSlugs
+    ) {
+      useCaseStep {
+        id
+        slug
+        datasets {
+          id
+          slug
+          imageFile
+          name
+        }
+      }
+      errors
     }
   }
 `
@@ -31,6 +58,7 @@ export const UPDATE_USE_CASE_STEP_PRODUCTS = gql`
       productsSlugs: $productsSlugs
     ) {
       useCaseStep {
+        id
         slug
         products {
           slug
@@ -38,6 +66,7 @@ export const UPDATE_USE_CASE_STEP_PRODUCTS = gql`
           name
         }
       }
+      errors
     }
   }
 `
@@ -52,13 +81,16 @@ export const UPDATE_USE_CASE_STEP_BUILDING_BLOCKS = gql`
       slug: $slug
     ) {
       useCaseStep {
+        id
         slug
         buildingBlocks {
+          id
           slug
           name
           imageFile
         }
       }
+      errors
     }
   }
 `

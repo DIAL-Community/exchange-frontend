@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { gql, useQuery } from '@apollo/client'
@@ -25,7 +26,7 @@ const PRODUCT_QUERY = gql`
 
 const ProductHeader = ({ product }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='border'>
@@ -47,7 +48,7 @@ const ProductHeader = ({ product }) => {
 
 const PageDefinition = ({ slug, repositorySlug }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser } = useUser()
   const { isProductOwner } = useProductOwnerUser(data?.product, [], isAdminUser)
@@ -58,9 +59,9 @@ const PageDefinition = ({ slug, repositorySlug }) => {
 
   if (loading) {
     return <Loading/>
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error/>
-  } else if (error && !error.networkError) {
+  } else if (!data?.product) {
     return <NotFound/>
   }
 
@@ -74,7 +75,7 @@ const PageDefinition = ({ slug, repositorySlug }) => {
   })()
 
   return (
-    <div className='flex flex-wrap justify-between pb-8 max-w-catalog mx-auto'>
+    <div className='flex flex-wrap justify-between pb-8'>
       <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
         <div className='block lg:hidden'>
           <Breadcrumb slugNameMapping={slugNameMapping} />

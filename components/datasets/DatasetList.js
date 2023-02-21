@@ -1,6 +1,6 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { FixedSizeGrid, FixedSizeList } from 'react-window'
 import AutoSizer from 'react-virtualized-auto-sizer'
@@ -9,6 +9,7 @@ import { FilterContext } from '../context/FilterContext'
 import { DatasetFilterContext } from '../context/DatasetFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
 import NotFound from '../shared/NotFound'
+import { DATASETS_QUERY } from '../../queries/dataset'
 import DatasetCard from './DatasetCard'
 
 /* Default number of elements coming from graphql query. */
@@ -23,74 +24,17 @@ const PRODUCT_CARD_GUTTER_SIZE = 8
 /* Height of the dataset's single list element when viewing the list view. */
 const MIN_PRODUCT_LIST_SIZE = 80
 
-const DATASETS_QUERY = gql`
-query SearchDatasets(
-  $first: Int,
-  $after: String,
-  $origins: [String!],
-  $sectors: [String!],
-  $countries: [String!],
-  $organizations: [String!],
-  $sdgs: [String!],
-  $tags: [String!],
-  $datasetTypes: [String!],
-  $search: String!
-  ) {
-  searchDatasets(
-    first: $first,
-    after: $after,
-    origins: $origins,
-    sectors: $sectors,
-    countries: $countries,
-    organizations: $organizations,
-    sdgs: $sdgs,
-    tags: $tags,
-    datasetTypes: $datasetTypes,
-    search: $search
-  ) {
-    __typename
-    totalCount
-    pageInfo {
-      endCursor
-      startCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    nodes {
-      id
-      name
-      slug
-      imageFile
-      datasetType
-      tags
-      origins{
-        name
-        slug
-      }
-      sustainableDevelopmentGoals {
-        slug
-        name
-      }
-      datasetDescription {
-        description
-        locale
-      }
-    }
-  }
-}
-`
-
 const DatasetListQuery = () => {
-  const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const {
     origins, countries, sectors, organizations, sdgs, tags, datasetTypes, search
   } = useContext(DatasetFilterContext)
 
   const { locale } = useRouter()
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data, fetchMore, refetch } = useQuery(DATASETS_QUERY, {
+  const { loading, error, data, fetchMore } = useQuery(DATASETS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       origins: origins.map(origin => origin.value),
@@ -102,7 +46,9 @@ const DatasetListQuery = () => {
       datasetTypes: datasetTypes.map(datasetType => datasetType.value),
       search
     },
-    context: { headers: { 'Accept-Language': locale } }
+    context: { headers: { 'Accept-Language': locale } },
+    fetchPolicy: 'network-only',
+    nextFetchPolicy: 'cache-first'
   })
 
   const handleLoadMore = () => {
@@ -123,27 +69,21 @@ const DatasetListQuery = () => {
   }
 
   useEffect(() => {
-    refetch()
-  }, [locale, refetch])
-
-  useEffect(() => {
     if (data) {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.datasets']]: data.searchDatasets.totalCount }
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.datasets']]: data.searchDatasets.totalCount }
+        }
       })
     }
-  }, [data])
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error && error.networkError) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (error && !error.networkError) {
     return <NotFound />
   }
 
@@ -159,7 +99,7 @@ const DatasetListQuery = () => {
   const isDatasetLoaded = (index) => !pageInfo.hasNextPage || index < nodes.length
 
   return (
-    <div className='pt-4'>
+    <>
       {
         displayType === 'list' &&
           <div className='flex flex-row my-3 px-4 gap-x-4'>
@@ -174,7 +114,7 @@ const DatasetListQuery = () => {
             </div>
           </div>
       }
-      <div className='block pr-2' style={{ height: '80vh' }}>
+      <div style={{ height: '80vh' }}>
         <AutoSizer>
           {({ height, width }) => (
             <InfiniteLoader
@@ -227,9 +167,9 @@ const DatasetListQuery = () => {
                             <div
                               style={{
                                 ...style,
-                                left: style.left + PRODUCT_CARD_GUTTER_SIZE,
+                                left: style.left,
                                 top: style.top + PRODUCT_CARD_GUTTER_SIZE,
-                                width: style.width - PRODUCT_CARD_GUTTER_SIZE,
+                                width: style.width,
                                 height: style.height - PRODUCT_CARD_GUTTER_SIZE
                               }}
                             >
@@ -289,7 +229,7 @@ const DatasetListQuery = () => {
           )}
         </AutoSizer>
       </div>
-    </div>
+    </>
   )
 }
 

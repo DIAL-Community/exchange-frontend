@@ -19,7 +19,7 @@ const Content = () => {
   return (
     <div className='px-4 mx-auto my-8 max-w-screen-xl'>
       <div className='my-4'>
-        <div className='text-3xl mt-8 lg:mt-16 mb-4 lg:mb-12 font-semibold'>
+        <div className='text-2xl mt-8 lg:mt-16 mb-4 lg:mb-12 font-semibold'>
           {format('covid.title')}
         </div>
         <div className='my-8 pb-4 flex flex-col text-base border-b border-dial-gray-dark'>

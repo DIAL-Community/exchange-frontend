@@ -3,6 +3,7 @@ import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { ToastContext } from '../../../lib/ToastContext'
 import { DELETE_COMMENT } from '../../../mutations/comment'
+import { COMMENTS_COUNT_QUERY, COMMENTS_QUERY } from '../../../queries/comment'
 import ConfirmActionDialog from '../ConfirmActionDialog'
 import DeleteButton from '../DeleteButton'
 
@@ -17,11 +18,17 @@ const DeleteComment = ({ commentId }) => {
   const toggleConfirmDialog = () => setIsConfirmDialogOpen(!isConfirmDialogOpen)
 
   const [deleteComment, { called, reset }] = useMutation(DELETE_COMMENT, {
-    refetchQueries: ['CountComments', 'Comments'],
-    onCompleted: () => {
-      showToast(format('toast.comment.delete.success'), 'success', 'top-center')
-      toggleConfirmDialog()
-      reset()
+    refetchQueries: [{ query: COMMENTS_QUERY }, { query: COMMENTS_COUNT_QUERY }],
+    onCompleted: (data) => {
+      const { deleteComment: response } = data
+      if (response?.errors?.length === 0) {
+        showToast(format('toast.comment.delete.success'), 'success', 'top-center')
+        toggleConfirmDialog()
+      } else {
+        showToast(format('toast.comment.delete.failure'), 'error', 'top-center')
+        toggleConfirmDialog()
+        reset()
+      }
     },
     onError: () => {
       showToast(format('toast.comment.delete.failure'), 'error', 'top-center')

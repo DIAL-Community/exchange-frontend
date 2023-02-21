@@ -18,22 +18,15 @@ const EditUserPageDefinition = ({ userId, locale }) => {
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (!data?.user) {
     return <NotFound />
   }
 
   return (
     <>
-      {
-        data && data.user &&
-          <UserForm user={data.user} action='update' />
-      }
+      { data?.user && <UserForm user={data.user} /> }
     </>
   )
 }
@@ -49,7 +42,11 @@ const EditUser = () => {
     <>
       <Header />
       <ClientOnly>
-        {loadingUserSession ? <Loading /> : isAdminUser ? <EditUserPageDefinition userId={userId} locale={locale} /> : <Unauthorized />}
+        {loadingUserSession
+          ? <Loading />
+          : isAdminUser
+            ? <EditUserPageDefinition userId={userId} locale={locale} />
+            : <Unauthorized />}
       </ClientOnly>
       <Footer />
     </>

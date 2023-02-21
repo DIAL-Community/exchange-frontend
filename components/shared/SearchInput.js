@@ -4,7 +4,15 @@ import classNames from 'classnames'
 
 const EMPTY_VALUE = ''
 
-export const SearchInput = ({ value, placeholder, onChange, onBlur, onSearchIconClick = null, className, ...otherProps }) => (
+export const SearchInput = ({
+  value,
+  placeholder,
+  onChange,
+  onBlur,
+  onSearchIconClick = null,
+  className,
+  ...otherProps
+}) => (
   <div className='flex items-center'>
     <input
       {...otherProps}
@@ -25,7 +33,7 @@ export const SearchInput = ({ value, placeholder, onChange, onBlur, onSearchIcon
         />
       </span>
       {onSearchIconClick && (
-        <span className='my-auto pl-1 border-l bg-white text-3xl text-dial-gray-dark border-dial-gray-dark'>
+        <span className='my-auto pl-1 border-l bg-white text-2xl text-dial-gray-dark border-dial-gray-dark'>
           <HiOutlineSearch
             data-testid='search-icon-button'
             onClick={onSearchIconClick}

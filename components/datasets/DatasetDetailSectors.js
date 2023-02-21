@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useEffect, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 import EditableSection from '../shared/EditableSection'
@@ -11,6 +10,7 @@ import { UPDATE_DATASET_SECTORS } from '../../mutations/dataset'
 import { fetchSelectOptions } from '../../queries/utils'
 import SectorCard from '../sectors/SectorCard'
 import { SECTOR_SEARCH_QUERY } from '../../queries/sector'
+import { useUser } from '../../lib/hooks'
 
 const DatasetDetailSectors = ({ dataset, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -23,7 +23,7 @@ const DatasetDetailSectors = ({ dataset, canEdit }) => {
 
   const [updateDatasetSectors, { data, loading }] = useMutation(UPDATE_DATASET_SECTORS)
 
-  const [session] = useSession()
+  const { user } = useUser()
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)
 
@@ -54,8 +54,8 @@ const DatasetDetailSectors = ({ dataset, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateDatasetSectors({
         variables: {

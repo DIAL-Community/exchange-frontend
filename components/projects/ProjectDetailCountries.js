@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 import CountryCard from '../countries/CountryCard'
@@ -11,6 +10,7 @@ import EditableSection from '../shared/EditableSection'
 import { ToastContext } from '../../lib/ToastContext'
 import { UPDATE_PROJECT_COUNTRIES } from '../../mutations/project'
 import { fetchSelectOptions } from '../../queries/utils'
+import { useUser } from '../../lib/hooks'
 
 const ProjectDetailCountries = ({ project, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -19,25 +19,33 @@ const ProjectDetailCountries = ({ project, canEdit }) => {
   const client = useApolloClient()
 
   const [countries, setCountries] = useState(project.countries)
-
   const [isDirty, setIsDirty] = useState(false)
 
-  const [session] = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateProjectCountries, { data, loading }] = useMutation(UPDATE_PROJECT_COUNTRIES, {
+  const [updateProjectCountries, { data, loading, reset }] = useMutation(UPDATE_PROJECT_COUNTRIES, {
     onCompleted: (data) => {
-      setCountries(data.updateProjectCountries.project.countries)
-      setIsDirty(false)
-      showToast(format('toast.countries.update.success'), 'success', 'top-center')
+      const { updateProjectCountries: response } = data
+      if (response?.project && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setCountries(data.updateProjectCountries.project.countries)
+        showToast(format('toast.countries.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setCountries(project.countries)
+        showToast(format('toast.countries.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setCountries(project.countries)
       setIsDirty(false)
+      setCountries(project.countries)
       showToast(format('toast.countries.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 
@@ -60,8 +68,8 @@ const ProjectDetailCountries = ({ project, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateProjectCountries({
         variables: {

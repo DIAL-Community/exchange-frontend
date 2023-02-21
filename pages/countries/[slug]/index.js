@@ -18,9 +18,9 @@ const CountryPageDefinition = ({ slug, locale }) => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.country) {
     return <NotFound />
   }
 
@@ -39,11 +39,11 @@ const Country = () => {
     <>
       <Header />
       <ClientOnly>
-        {loadingUserSession ?
-          <Loading /> :
-          isAdminUser ?
-            <CountryPageDefinition slug={slug} locale={locale} /> :
-            <Unauthorized />
+        {loadingUserSession
+          ? <Loading />
+          : isAdminUser
+            ? <CountryPageDefinition slug={slug} locale={locale} />
+            : <Unauthorized />
         }
       </ClientOnly>
       <Footer />

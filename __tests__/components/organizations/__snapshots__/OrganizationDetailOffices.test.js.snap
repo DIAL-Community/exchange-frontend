@@ -17,38 +17,42 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
       >
         Office locations
       </div>
-      <button
-        class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-        data-testid="edit-button"
-        type="button"
+      <div
+        class="gap-3"
       >
-        <img
-          alt="Edit"
-          height="12px"
-          src="/icons/edit.svg"
-          width="12px"
-        />
-        <span
-          class="text-sm"
+        <button
+          class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          data-testid="edit-button"
+          type="button"
         >
-          Edit
-        </span>
-      </button>
+          <img
+            alt="Edit"
+            height="12px"
+            src="/icons/edit.svg"
+            width="12px"
+          />
+          <span
+            class="text-sm"
+          >
+            Edit
+          </span>
+        </button>
+      </div>
     </div>
     <div
       class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
-        class="border-3 border-transparent hover:border-dial-yellow hover:text-dial-yellow cursor-pointer"
+        class="border-3 border-transparent"
       >
         <div
-          class="border border-dial-gray hover:border-transparent card-drop-shadow"
+          class="border border-dial-gray card-drop-shadow"
         >
           <div
             class="my-4 px-4"
           >
             <div
-              class="pr-3 text-base font-semibold whitespace-nowrap text-ellipsis overflow-hidden text-button-gray"
+              class="pr-3 font-semibold line-clamp-1 text-button-gray"
             >
               Test Office Location
             </div>
@@ -77,6 +81,9 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
       >
         Office locations
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -97,7 +104,7 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-2-live-region"
+            id="react-select-:r0:-live-region"
           />
           <span
             aria-atomic="false"
@@ -106,31 +113,31 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-2-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
+                id="react-select-:r0:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-2-placeholder"
+                  aria-describedby="react-select-:r0:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-2-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -144,11 +151,11 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"
@@ -242,21 +249,24 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
       >
         Office locations
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
-        class="border-3 border-transparent hover:border-dial-yellow hover:text-dial-yellow cursor-pointer"
+        class="border-3 border-transparent"
       >
         <div
-          class="border border-dial-gray hover:border-transparent card-drop-shadow"
+          class="border border-dial-gray card-drop-shadow"
         >
           <div
             class="my-4 px-4"
           >
             <div
-              class="pr-3 text-base font-semibold whitespace-nowrap text-ellipsis overflow-hidden text-button-gray"
+              class="pr-3 font-semibold line-clamp-1 text-button-gray"
             >
               Test Office Location
             </div>

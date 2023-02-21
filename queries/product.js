@@ -14,6 +14,7 @@ export const PRODUCT_QUERY = gql`
       pricingModel
       pricingDetails
       hostingModel
+      languages
       productDescription {
         description
         locale
@@ -79,13 +80,20 @@ export const PRODUCT_QUERY = gql`
         slug
         isDisplayable
       }
-      maturityScore
-      maturityScores
       manualUpdate
       mainRepository {
         mainRepository
         name
         slug
+        license
+      }
+      maturityScore
+      maturityScoreDetails
+      playbooks {
+        name
+        slug
+        imageFile
+        tags
       }
     }
   }
@@ -126,7 +134,7 @@ export const PRODUCTS_QUERY = gql`
     $buildingBlocks: [String!]
     $endorsers: [String!]
     $productDeployable: Boolean
-    $withMaturity: Boolean
+    $isEndorsed: Boolean
     $licenseTypes: [String!]
     $search: String!
   ) {
@@ -144,11 +152,10 @@ export const PRODUCTS_QUERY = gql`
       buildingBlocks: $buildingBlocks
       endorsers: $endorsers
       productDeployable: $productDeployable
-      withMaturity: $withMaturity
+      isEndorsed: $isEndorsed
       licenseTypes: $licenseTypes
       search: $search
     ) {
-      __typename
       totalCount
       pageInfo {
         endCursor
@@ -188,6 +195,44 @@ export const PRODUCTS_QUERY = gql`
         }
         mainRepository {
           license
+        }
+        organizations {
+          isEndorser
+        }
+      }
+    }
+  }
+`
+
+export const PRODUCT_CATEGORY_INDICATORS_QUERY = gql`
+  query Product($slug: String!) {
+    product(slug: $slug) {
+      id
+      productIndicators {
+        indicatorValue
+        categoryIndicator {
+          slug
+          name
+          indicatorType
+          categoryIndicatorDescription {
+            description
+          }
+          rubricCategory {
+            id
+            name
+          }
+        }
+      }
+      notAssignedCategoryIndicators {
+        slug
+        name
+        indicatorType
+        categoryIndicatorDescription {
+          description
+        }
+        rubricCategory {
+          id
+          name
         }
       }
     }

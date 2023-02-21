@@ -2,11 +2,12 @@
 
 exports[`Unit tests for the OrganizationDelete component. Should open ConfirmActionDialog after clicks "Delete" button. 1`] = `
 <div
-  aria-labelledby="headlessui-dialog-title-5"
+  aria-labelledby="headlessui-dialog-title-:r2:"
   aria-modal="true"
   class="fixed z-100"
+  data-headlessui-state="open"
   data-testid="confirm-action-dialog"
-  id="headlessui-dialog-2"
+  id="headlessui-dialog-:r0:"
   role="dialog"
 >
   <div
@@ -18,11 +19,13 @@ exports[`Unit tests for the OrganizationDelete component. Should open ConfirmAct
   >
     <div
       class="inline-block w-4/5 md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl ease-out duration-300 opacity-0 scale-95"
-      id="headlessui-dialog-panel-4"
+      data-headlessui-state="open"
+      id="headlessui-dialog-panel-:r1:"
     >
       <h2
         class="card-title pb-3 text-xl xl:text-2xl text-dial-blue"
-        id="headlessui-dialog-title-5"
+        data-headlessui-state="open"
+        id="headlessui-dialog-title-:r2:"
       >
         <span
           data-testid="title"

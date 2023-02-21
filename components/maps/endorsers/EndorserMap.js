@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from 'react'
+import { useCallback, useContext, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
@@ -28,7 +28,6 @@ query SearchOrganizations(
     years: $years,
     mapView: $mapView
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor
@@ -65,7 +64,7 @@ const EndorserMap = () => {
   const { orgSectors, years } = useContext(MapFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, data } = useQuery(ORGANIZATIONS_QUERY, {
     variables: {
@@ -113,7 +112,10 @@ const EndorserMap = () => {
     <div className='flex flex-row' style={{ minHeight: '10vh' }}>
       {
         loading &&
-          <div className='absolute right-4 text-white bg-dial-gray-dark px-3 py-2 mt-2 rounded text-sm' style={{ zIndex: 19 }}>
+          <div
+            className='absolute right-4 text-white bg-dial-gray-dark px-3 py-2 mt-2 rounded text-sm'
+            style={{ zIndex: 19 }}
+          >
             {format('map.loading.indicator')}
           </div>
       }

@@ -1,60 +1,10 @@
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useEffect, useRef } from 'react'
 import NotFound from '../shared/NotFound'
 import { Error, Loading } from '../shared/FetchStatus'
+import { DATASET_QUERY } from '../../queries/dataset'
 import DatasetDetailLeft from './DatasetDetailLeft'
 import DatasetDetailRight from './DatasetDetailRight'
-
-const DATASET_QUERY = gql`
-  query Dataset($slug: String!) {
-    dataset(slug: $slug) {
-      id
-      name
-      slug
-      imageFile
-      website
-      visualizationUrl
-      geographicCoverage
-      timeRange
-      license
-      languages
-      datasetType
-      dataFormat
-      tags
-      datasetDescription {
-        description
-        locale
-      }
-      origins {
-        name
-        slug
-      }
-      organizations {
-        name
-        slug
-        imageFile
-        isEndorser
-        whenEndorsed
-      }
-      sustainableDevelopmentGoalMapping
-      sustainableDevelopmentGoals {
-        id
-        name
-        slug
-        imageFile
-      }
-      sectors {
-        name
-        slug
-        isDisplayable
-      }
-      countries {
-        name
-      }
-      manualUpdate
-    }
-  }
-`
 
 const DatasetDetail = ({ slug, locale }) => {
 
@@ -70,19 +20,26 @@ const DatasetDetail = ({ slug, locale }) => {
 
   const commentsSectionElement = useRef()
 
+  if (loading) {
+    return <Loading />
+  } else if (error) {
+    return <Error />
+  } else if (!data?.dataset) {
+    return <NotFound />
+  }
+
+  const { dataset } = data
+
   return (
     <>
-      {loading && <Loading />}
-      {error && error.networkError && <Error />}
-      {error && !error.networkError && <NotFound />}
       {
-        data && data.dataset &&
-          <div className='flex flex-col lg:flex-row justify-between pb-8 max-w-catalog mx-auto'>
+        dataset &&
+          <div className='flex flex-col lg:flex-row justify-between pb-8'>
             <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
-              <DatasetDetailLeft dataset={data.dataset} commentsSectionRef={commentsSectionElement} />
+              <DatasetDetailLeft dataset={dataset} commentsSectionRef={commentsSectionElement} />
             </div>
             <div className='w-full lg:w-2/3 xl:w-3/4'>
-              <DatasetDetailRight dataset={data.dataset} commentsSectionRef={commentsSectionElement} />
+              <DatasetDetailRight dataset={dataset} commentsSectionRef={commentsSectionElement} />
             </div>
           </div>
       }

@@ -5,8 +5,9 @@ module.exports = {
         {
           id: 2,
           name: 'Another Organization',
+          imageFile: 'fake-image.png',
           slug: 'ao',
-          __typename: 'Organization'
+          website: 'another_organization@gmail.com'
         },
       ]
     }

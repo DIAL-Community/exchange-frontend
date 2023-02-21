@@ -1,21 +1,13 @@
 import { fireEvent } from '@testing-library/dom'
-import {
-  mockRouterImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../../test-utils'
 import CustomMockedProvider from '../../../utils/CustomMockedProvider'
 import { DatasetTypeSelect } from '../../../../components/filter/element/DatasetType'
+import { mockNextUseRouter } from '../../../utils/nextMockImplementation'
 import { datasetTypes } from './data/DatasetTypeSelect'
 
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the DatasetTypeSelect component.', () => {
   const DATASET_SEARCH_TEST_ID = 'dataset-search'
-
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
 
   test('Should match snapshot', async () => {
     const { container } = render(

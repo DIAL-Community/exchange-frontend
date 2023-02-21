@@ -9,6 +9,7 @@ import { UserFilterContext, UserFilterDispatchContext } from '../../components/c
 import { Loading, Unauthorized } from '../../components/shared/FetchStatus'
 import ClientOnly from '../../lib/ClientOnly'
 import { useUser } from '../../lib/hooks'
+import PageContent from '../../components/main/PageContent'
 const UserListQuery = dynamic(() => import('../../components/users/UserList'), { ssr: false })
 
 const Users = () => {
@@ -25,15 +26,19 @@ const Users = () => {
       <ClientOnly>
         {loadingUserSession ? <Loading /> : isAdminUser ? (
           <>
-            <SearchFilter
-              search={search}
-              setSearch={setSearch}
-              hint='filter.entity.users'
-              switchView={false}
-              exportJson={false}
-              exportCsv={false}
+            <PageContent
+              content={<UserListQuery displayType='list' />}
+              searchFilter={
+                <SearchFilter
+                  search={search}
+                  setSearch={setSearch}
+                  hint='filter.entity.users'
+                  switchView={false}
+                  exportJson={false}
+                  exportCsv={false}
+                />
+              }
             />
-            <UserListQuery displayType='list' />
           </>
         ) : <Unauthorized />}
       </ClientOnly>

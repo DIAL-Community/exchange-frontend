@@ -1,14 +1,12 @@
-import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
+import { render } from '../../test-utils'
 import UserDetail from '../../../components/users/UserDetail'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { basicUser, user, userWithProducts } from './data/UserDetail'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the UserDetail component', () => {
   beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
   })
 
   test('should not render 0 for user not owning any product.', () => {

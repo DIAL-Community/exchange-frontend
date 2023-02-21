@@ -1,23 +1,15 @@
 import { fireEvent } from '@testing-library/dom'
-import {
-  mockRouterImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../../utils/CustomMockedProvider'
 import { CountryAutocomplete } from '../../../../components/filter/element/Country'
 import { COUNTRY_SEARCH_QUERY } from '../../../../queries/country'
+import { mockNextUseRouter } from '../../../utils/nextMockImplementation'
 import { countries } from './data/CountryAutocomplete'
 
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the CountryAutocomplete component.', () => {
   const mockCountries = generateMockApolloData(COUNTRY_SEARCH_QUERY, { search: '' }, null, countries)
   const COUNTRY_SEARCH_TEST_ID = 'country-search'
-
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
 
   test('Should match snapshot', async () => {
     const { container } = render(

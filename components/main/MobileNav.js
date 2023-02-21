@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { createRef, useContext, useState } from 'react'
+import { createRef, useCallback, useContext, useState } from 'react'
 import { createPopper } from '@popperjs/core'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { FilterContext, FILTER_ITEMS, MAPPED_FILTER_ITEMS_URL } from '../context/FilterContext'
 
 const MobileNav = ({ activeTab }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [showTabs, setShowTabs] = useState(false)
   const { resultCounts } = useContext(FilterContext)
@@ -36,7 +36,7 @@ const MobileNav = ({ activeTab }) => {
   return (
     <>
       <div
-        className='md:hidden sticky bg-transparent sticky-under-header max-w-catalog mx-auto'
+        className='md:hidden sticky bg-transparent sticky-under-header z-30'
         ref={tabPopoverButton} onClick={toggleTabs}
       >
         <div className='w-full'>
@@ -57,12 +57,12 @@ const MobileNav = ({ activeTab }) => {
         // List of navigations to be shown when you click the div.
       }
       <div
-        className={`${showTabs ? 'block' : 'hidden'} border-b-2 border-dial-gray-dark z-30`}
+        className={`${showTabs ? 'block' : 'hidden'} z-30`}
         ref={tabPopover} role='menu'
       >
         <div className='w-screen flex flex-col bg-white' role='none'>
           <div className='w-full'>
-            <ul className='flex flex-col gap-2 mb-2 list-none pt-2'>
+            <ul className='flex flex-col gap-2 list-none py-2'>
               {
                 FILTER_ITEMS.map((filterItem) => {
                   let href = MAPPED_FILTER_ITEMS_URL[filterItem]

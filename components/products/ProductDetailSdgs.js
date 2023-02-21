@@ -1,8 +1,8 @@
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import { getMappingStatusOptions } from '../../lib/utilities'
 import { UPDATE_PRODUCT_SDGS } from '../../mutations/product'
@@ -31,20 +31,29 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateProductSdgs, { data, loading }] = useMutation(UPDATE_PRODUCT_SDGS, {
+  const [updateProductSdgs, { data, loading, reset }] = useMutation(UPDATE_PRODUCT_SDGS, {
     onCompleted: (data) => {
-      setSdgs(data.updateProductSdgs.product.sustainableDevelopmentGoals)
-      setIsDirty(false)
-      showToast(format('toast.sdgs.update.success', { entity: format('sdg.label') }), 'success', 'top-center')
+      const { updateProductSdgs: response } = data
+      if (response?.product && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setSdgs(data.updateProductSdgs.product.sustainableDevelopmentGoals)
+        showToast(format('toast.sdgs.update.success', { entity: format('sdg.label') }), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setSdgs(product?.sustainableDevelopmentGoals)
+        showToast(format('toast.sdgs.update.failure', { entity: format('sdg.label') }), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setSdgs(product?.sustainableDevelopmentGoals)
       setIsDirty(false)
+      setSdgs(product?.sustainableDevelopmentGoals)
       showToast(format('toast.sdgs.update.failure', { entity: format('sdg.label') }), 'error', 'top-center')
+      reset()
     }
   })
 
-  const [session] = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -78,8 +87,8 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateProductSdgs({
         variables: {
@@ -100,7 +109,10 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
   const onCancel = () => {
     setSdgs(data?.updateProductSdgs?.product?.sustainableDevelopmentGoals ?? product.sustainableDevelopmentGoals)
     setMappingStatus(mappingStatusOptions.find(({ value: mappingStatus }) =>
-      mappingStatus === (data?.updateProductSdgs?.product?.sustainableDevelopmentGoalsMappingStatus ?? product.sustainableDevelopmentGoalsMappingStatus)
+      mappingStatus === (
+        data?.updateProductSdgs?.product?.sustainableDevelopmentGoalsMappingStatus ??
+        product.sustainableDevelopmentGoalsMappingStatus
+      )
     ))
     setIsDirty(false)
   }

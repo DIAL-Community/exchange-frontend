@@ -1,0 +1,46 @@
+/*
+  The uiwjs markdown overrides.
+*/
+
+.wmde-markdown ul {
+  list-style-type: disc;
+}
+
+.wmde-markdown ol {
+  list-style-type: decimal;
+}
+
+/*
+  The entity height overrides.
+*/
+
+.simple-form-height {
+  /* Set the sign up to be 80% of height on tablet and above */
+  /* Full height on phones. */
+  height: 70vh;
+}
+
+.wizard-content-xl {
+  min-height: 60vh;
+}
+
+.wizard-content {
+  min-height: 40vh;
+}
+
+.bb-content {
+  max-height: 40vh;
+}
+
+/*
+  NextJS Image override.
+  https://github.com/vercel/next.js/issues/18915#issuecomment-1005128405
+*/
+
+.image-block-hack > span {
+  display: block !important;
+}
+
+.image-h-full-hack > span {
+  height: 100% !important;
+}

@@ -22,22 +22,18 @@ const CreateUseCaseStep = () => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.useCase) {
     return <NotFound />
   }
 
-  return(
+  return (
     <>
       <Header />
-      {data?.useCase &&
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            <StepForm useCase={data.useCase}/>
-          </ClientOnly>
-        </div>
-      }
+      <ClientOnly>
+        { data?.useCase && <StepForm useCase={data.useCase}/> }
+      </ClientOnly>
       <Footer />
     </>
   )}

@@ -1,38 +1,13 @@
 import { useRouter } from 'next/router'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import Header from '../../../../../../../components/Header'
 import Footer from '../../../../../../../components/Footer'
-import { Loading, Error } from '../../../../../../../components/shared/FetchStatus'
+import { Loading, Error, Unauthorized } from '../../../../../../../components/shared/FetchStatus'
 import { MoveForm } from '../../../../../../../components/plays/moves/MoveForm'
 import ClientOnly from '../../../../../../../lib/ClientOnly'
-
-const MOVE_QUERY = gql`
-  query Move($playbookSlug: String!, $playSlug: String!, $moveSlug: String!) {
-    move(playSlug: $playSlug, slug: $moveSlug) {
-      id
-      name
-      slug
-      resources
-      moveDescription {
-        description
-      }
-      play {
-        name
-        slug
-      }
-    }
-    play(slug: $playSlug) {
-      id
-      name
-      slug
-    }
-    playbook(slug: $playbookSlug) {
-      id
-      name
-      slug
-    }
-  }
-`
+import { useUser } from '../../../../../../../lib/hooks'
+import NotFound from '../../../../../../../components/shared/NotFound'
+import { MOVE_QUERY } from '../../../../../../../queries/move'
 
 const EditMoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
   const { loading, error, data } = useQuery(MOVE_QUERY, {
@@ -47,25 +22,23 @@ const EditMoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error) {
+  } else if (error) {
     return <Error />
+  } else if (!data?.move && !data?.play && !data?.playbook) {
+    return <NotFound />
   }
 
   return (
     <>
-      {
-        data && data.move && data.play && data.playbook &&
-        <div className='max-w-catalog mx-auto'>
-          <MoveForm playbook={data.playbook} play={data.play} move={data.move} />
-        </div>
+      {data?.move && data?.play && data?.playbook &&
+        <MoveForm playbook={data.playbook} play={data.play} move={data.move} />
       }
     </>
   )
 }
 
 const EditMove = () => {
+  const { isAdminUser, loadingUserSession } = useUser()
   const router = useRouter()
 
   const { locale } = router
@@ -75,7 +48,11 @@ const EditMove = () => {
     <>
       <Header />
       <ClientOnly>
-        <EditMoveInformation {...{ slug, playSlug, moveSlug, locale }} />
+        {loadingUserSession
+          ? <Loading />
+          : isAdminUser
+            ? <EditMoveInformation {...{ slug, playSlug, moveSlug, locale }} />
+            : <Unauthorized />}
       </ClientOnly>
       <Footer />
     </>

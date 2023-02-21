@@ -1,11 +1,12 @@
 import NextAuth from 'next-auth'
-import Providers from 'next-auth/providers'
+import CredentialsProvider from 'next-auth/providers/credentials'
 import Auth0Provider from 'next-auth/providers/auth0'
 
 // Session expiration in millis
 const TOKEN_EXPIRATION = 24 * 60 * 60 * 1000
 
 export default NextAuth({
+  secret: process.env.SECRET,
   // Configure one or more authentication providers
   providers: [
     Auth0Provider({
@@ -13,7 +14,7 @@ export default NextAuth({
       clientSecret: process.env.AUTH0_CLIENT_SECRET,
       domain: process.env.AUTH0_ISSUER_BASE_URL
     }),
-    Providers.Credentials({
+    CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
       name: 'Credentials',
       // The credentials is used to generate a suitable form on the sign in page.
@@ -48,7 +49,15 @@ export default NextAuth({
               // 'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
             },
             // redirect: 'follow', // manual, *follow, error
-            // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            // referrerPolicy: 'no-referrer',
+            //   no-referrer,
+            //   *no-referrer-when-downgrade,
+            //   origin,
+            //   origin-when-cross-origin,
+            //   same-origin,
+            //   strict-origin,
+            //   strict-origin-when-cross-origin,
+            //   unsafe-url
             body: JSON.stringify(authBody) // body data type must match "Content-Type" header
           }
         )
@@ -65,81 +74,42 @@ export default NextAuth({
     })
   ],
   callbacks: {
-    jwt: async (token, user) => {
+    jwt: async ({ token, user }) => {
       //  "user" parameter is the object received from "authorize"
       //  "token" is being send below to "session" callback...
       //  ...so we set "user" param of "token" to object from "authorize"...
       //  ...and return it...
       user && (token.user = user)
-
-      if (0) { // eslint-disable-line
-        token.railsAuth = true
-        const authBody = {
-          user: {
-            email: token.user.email
-          }
-        }
-        const response = await fetch(
-          process.env.NEXT_PUBLIC_AUTH_SERVER + '/authenticate/auth0',
-          {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *cors, same-origin
-            // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'include', // include, *same-origin, omit
-            headers: {
-              'Content-Type': 'application/json',
-              'X-Requested-With': 'XMLHttpRequest',
-              'Access-Control-Allow-Origin':
-                process.env.NEXT_PUBLIC_AUTH_SERVER,
-              'Access-Control-Allow-Credentials': true,
-              'Access-Control-Allow-Headers': 'Set-Cookie'
-              // 'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
-            },
-            // redirect: 'follow', // manual, *follow, error
-            // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify(authBody) // body data type must match "Content-Type" header
-          }
-        )
-
-        const railsUser = await response.json()
-        token = {
-          ...token,
-          user: {
-            ...token.user,
-            canEdit: railsUser?.canEdit,
-            userEmail: railsUser?.userEmail,
-            userToken: railsUser?.userToken,
-            own: railsUser?.own,
-            roles: railsUser?.roles
-          },
-          railsAuth: true
-        }
-
-        return token
-      } else {
-        if (!token.expiration) {
-          token.expiration = Date.now() + TOKEN_EXPIRATION
-        }
-
-        return token // ...here
+      if (!token.expiration) {
+        token.expired = false
+        token.expiration = Date.now() + TOKEN_EXPIRATION
       }
+
+      return token
     },
-    session: async (session, user) => {
+    session: async ({ session, token }) => {
       //  "session" is current session object
       //  below we set "user" param of "session" to value received from "jwt" callback
-      session.user = user.user
+      session.user = token.user
 
-      if (user.expiration && Date.now() < user.expiration) {
+      if (token.expiration && Date.now() < token.expiration) {
         return session
       } else {
-        await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/invalidate', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-User-Email': session.userEmail,
-            'X-User-Token': session.userToken
+        if (!token.expired) {
+          const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/invalidate', {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-User-Email': session.user.userEmail,
+              'X-User-Token': session.user.userToken
+            }
+          })
+
+          if (response.status === 200) {
+            token.expired = true
+            console.log(`(Auth) User '${session.user.userEmail}' session's invalidated.`)
           }
-        })
+        }
 
         return {}
       }
@@ -150,21 +120,21 @@ export default NextAuth({
     error: '/auth/error'
   },
   events: {
-    async signOut (message) {
+    async signOut ({ token }) {
       const response = await fetch(
         process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/invalidate',
         {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-            'X-User-Email': message.user.userEmail,
-            'X-User-Token': message.user.userToken
+            'X-User-Email': token.user.userEmail,
+            'X-User-Token': token.user.userToken
           }
         }
       )
 
       if (response.status === 200) {
-        // console.log(`User with email: ${message.user.userEmail} signed out successfully`)
+        console.log(`(Auth) User '${token.user.userEmail}' session's signed out successfully.`)
       }
     }
   }

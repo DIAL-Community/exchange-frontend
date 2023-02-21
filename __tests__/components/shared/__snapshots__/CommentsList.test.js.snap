@@ -17,27 +17,34 @@ exports[`Unit test for the CommentsList component. Should match snapshot loading
       class="bg-edit p-6"
     >
       <div
-        class="text-button-gray text-lg"
-        style="margin-top: 10%;"
+        class="h-[60vh]"
       >
-        <svg
-          class="w-full spinner mb-5"
-          fill="currentColor"
-          height="3em"
-          stroke="currentColor"
-          stroke-width="0"
-          viewBox="0 0 512 512"
-          width="3em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
-          />
-        </svg>
         <div
-          class="text-center mt-5"
+          class="flex bg-dial-alice-blue h-full"
         >
-          Fetching data ...
+          <div
+            class="text-button-gray text-lg w-full my-auto flex flex-col gap-4"
+          >
+            <svg
+              class="spinner mx-auto"
+              fill="currentColor"
+              height="3em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              width="3em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+              />
+            </svg>
+            <div
+              class="text-center mt-5"
+            >
+              Fetching data ...
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -239,11 +246,12 @@ exports[`Unit test for the CommentsList component. Should match snapshot without
 
 exports[`Unit test for the CommentsList component. Should open ConfirmActionDialog after user clicks "Delete" button. 1`] = `
 <div
-  aria-labelledby="headlessui-dialog-title-5"
+  aria-labelledby="headlessui-dialog-title-:r2:"
   aria-modal="true"
   class="fixed z-100"
+  data-headlessui-state="open"
   data-testid="confirm-action-dialog"
-  id="headlessui-dialog-2"
+  id="headlessui-dialog-:r0:"
   role="dialog"
 >
   <div
@@ -255,11 +263,13 @@ exports[`Unit test for the CommentsList component. Should open ConfirmActionDial
   >
     <div
       class="inline-block w-4/5 md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl ease-out duration-300 opacity-0 scale-95"
-      id="headlessui-dialog-panel-4"
+      data-headlessui-state="open"
+      id="headlessui-dialog-panel-:r1:"
     >
       <h2
         class="card-title pb-3 text-xl xl:text-2xl text-dial-blue"
-        id="headlessui-dialog-title-5"
+        data-headlessui-state="open"
+        id="headlessui-dialog-title-:r2:"
       >
         <span
           data-testid="title"

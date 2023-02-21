@@ -2,12 +2,12 @@ import { fireEvent } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import CommentsList from '../../../components/shared/comment/CommentsList'
 import { DELETE_COMMENT } from '../../../mutations/comment'
-import { mockObserverImplementation, mockRouterImplementation, render } from '../../test-utils'
+import { mockObserverImplementation, render } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 import { comments, deleteCommentFailure, deleteCommentSuccess } from './data/CommentsList'
 
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the CommentsList component.', () => {
   const DELETE_BUTTON_TEST_ID = 'delete-button'
   const CONFIRM_ACTION_DIALOG_TEST_ID = 'confirm-action-dialog'
@@ -17,7 +17,6 @@ describe('Unit test for the CommentsList component.', () => {
   const mockRefetch = jest.fn()
 
   beforeAll(() => {
-    mockRouterImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 

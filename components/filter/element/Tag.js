@@ -1,5 +1,6 @@
 import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import classNames from 'classnames'
 import Select from '../../shared/Select'
 import { TAG_SEARCH_QUERY } from '../../../queries/tag'
@@ -18,7 +19,7 @@ export const TagAutocomplete = ({
   const client = useApolloClient()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('tag.label') })
 
@@ -61,7 +62,7 @@ export const TagFilters = (props) => {
   const { tags, setTags } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeTag = (tagId) => {
     setTags(tags.filter(tag => tag.value !== tagId))
@@ -70,7 +71,7 @@ export const TagFilters = (props) => {
   return (
     <>
       {tags?.map((tag, tagIdx) => (
-        <div className='py-1' key={tagIdx}>
+        <div key={tagIdx}>
           <Pill
             key={`filter-${tagIdx}`}
             label={`${format('tag.label')}: ${tag.label}`}

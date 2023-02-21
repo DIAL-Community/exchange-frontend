@@ -12,21 +12,25 @@ const RubricCategoryDetail = ({ slug, locale }) => {
     context: { headers: { 'Accept-Language': locale } },
   })
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(refetch, [locale])
+  useEffect(
+    () => {
+      refetch()
+    },
+    [refetch, locale]
+  )
 
   const slugNameMapping = useMemo(() => ({ [data?.rubricCategory.slug]: data?.rubricCategory.name }), [data])
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.rubricCategory) {
     return <NotFound />
   }
 
   return (
-    <div className='flex flex-col lg:flex-row pb-8 max-w-catalog mx-auto'>
+    <div className='flex flex-col lg:flex-row pb-8'>
       <div className='lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full p-4'>
         <RubricCategoryDetailLeft rubricCategory={data?.rubricCategory} slugNameMapping={slugNameMapping} />
       </div>

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
 import { useIntl, FormattedDate } from 'react-intl'
 import { FaStar, FaCalendar, FaCalendarAlt } from 'react-icons/fa'
@@ -9,7 +9,7 @@ const repositoriesPath = convertToKey('Repositories')
 
 const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   useEffect(() => {
     ReactTooltip.rebuild()
@@ -33,12 +33,28 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
   const [hoverStyle, containerStyle] = cardContainerStyles()
 
   return (
-    <Link href={`/${productsPath}/${productRepository.product.slug}/${repositoriesPath}/${productRepository.slug}`} passHref>
+    <Link
+      href={
+        `/${productsPath}/${productRepository.product.slug}` +
+        `/${repositoriesPath}/${productRepository.slug}`
+      }
+      passHref
+    >
       <div className={hoverStyle}>
         <div className={containerStyle}>
           <div className='flex flex-row justify-between'>
             <div className='flex justify-self-start'>
-              <div className={`py-4 ${repositorySlug && repositorySlug === productRepository.slug ? 'bg-product' : 'bg-transparent'}`} style={{ width: '4px' }}>
+              <div
+                className={`
+                  py-4
+                  ${
+                    repositorySlug && repositorySlug === productRepository.slug
+                      ? 'bg-product'
+                      : 'bg-transparent'
+                  }
+                `}
+                style={{ width: '4px' }}
+              >
                 &nbsp;
               </div>
               <div className='py-4 px-4 flex flex-col'>

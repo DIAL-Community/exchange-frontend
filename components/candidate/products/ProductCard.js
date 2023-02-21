@@ -1,17 +1,20 @@
-import { useSession } from 'next-auth/client'
-import { useEffect, useState } from 'react'
-import { FaCode, FaHome, FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
+import Link from 'next/link'
+import { useCallback, useEffect, useState } from 'react'
+import { FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
+import classNames from 'classnames'
+import parse from 'html-react-parser'
+import { prependUrlWithProtocol } from '../../../lib/utilities'
+import { useUser } from '../../../lib/hooks'
+import { CandidateStatusType } from '../../../lib/constants'
+import EditButton from '../../shared/EditButton'
 
-const ellipsisTextStyle = 'my-auto'
 const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
 
-const ProductCard = ({ product, listType, filterDisplayed }) => {
+const ProductCard = ({ product, listType }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-
-  const [session] = useSession()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState('')
@@ -21,227 +24,256 @@ const ProductCard = ({ product, listType, filterDisplayed }) => {
     ReactTooltip.rebuild()
   })
 
+  const shouldFlipCard = (status) => [CandidateStatusType.REJECTION, CandidateStatusType.APPROVAL].indexOf(status) >= 0
+
+  const listView =
+    <div className={classNames('card', { 'flip-horizontal': shouldFlipCard(status) })}>
+      <div className='card-body border-3 border-transparent'>
+        <div className={classNames('card-front border border-dial-gray card-drop-shadow bg-white h-full',
+          { 'bg-red-50': product.rejected === true || status === CandidateStatusType.REJECTED },
+          { 'bg-emerald-50': product.rejected === false || status === CandidateStatusType.APPROVED }
+        )}>
+          <div className='flex flex-col xl:flex-row gap-3 p-3'>
+            <div className='flex flex-col gap-3 w-full xl:w-2/3 '>
+              <div className='my-auto line-clamp-1 font-semibold'>
+                <Link href={`/candidate/products/${product.slug}`}>
+                  <a className='border-b-2 border-transparent hover:border-dial-yellow'>
+                    {product.name}
+                  </a>
+                </Link>
+              </div>
+              <div className='my-auto line-clamp-1 text-dial-blue'>
+                <a href={prependUrlWithProtocol(product.website)}>{product.website} ⧉</a>
+              </div>
+              {
+                product.description &&
+                <div className='line-clamp-2'>
+                  {parse(product.description)}
+                </div>
+              }
+              <div className='line-clamp-1'>
+                {product.submitterEmail}
+              </div>
+            </div>
+            <div className='absolute right-3'>
+              <div className='flex gap-1'>
+                <div className='px-2 py-1 border border-dial-cyan rounded text-sm text-dial-cyan font-semibold'>
+                  {format('candidateProduct.label').toUpperCase()}
+                </div>
+                {
+                  product.rejected === null &&
+                    <EditButton type='link' href={`/candidate/products/${product?.slug}/edit`} />
+                }
+              </div>
+            </div>
+            <div className='ml-auto mt-auto'>
+              {
+                product.rejected === null &&
+                status !== CandidateStatusType.APPROVED &&
+                status !== CandidateStatusType.REJECTED &&
+                <div className='ml-auto flex flex-row gap-3'>
+                  <ToggleRejectionButton {...{ setStatus, loading }} style='text-sm secondary-button' />
+                  <ToggleApprovalButton {...{ setStatus, loading }} style='text-sm submit-button' />
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+        <div className={classNames(
+          'card-back flip-horizontal border border-dial-gray shadow-sm bg-dial-gray h-full',
+          { 'bg-red-50': product.rejected === true || status === CandidateStatusType.REJECTED },
+          { 'bg-emerald-50': product.rejected === false || status === CandidateStatusType.APPROVED }
+        )}>
+          <div className='flex flex-col gap-3 p-3 h-full'>
+            <div className='flex flex-row xl:hidden text-sm font-semibold'>
+              <div className='ml-auto my-auto p-1.5 border border-dial-gray-dark rounded'>
+                {format('candidateProduct.label').toUpperCase()}
+              </div>
+            </div>
+            <label className='flex flex-col'>
+              <span className='sr-only text-gray-700'>{format('candidate.feedback')}</span>
+              <input
+                className='w-full'
+                type='text'
+                placeholder={format('candidate.feedback.placeholder')}
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              />
+            </label>
+            <div className='ml-auto mt-auto flex flex-row gap-3'>
+              {
+                status === CandidateStatusType.REJECTION &&
+                <>
+                  <CancelButton {...{ status, setStatus, loading }} />
+                  <DeclineButton {...{ status, setStatus, loading, setLoading, product }} />
+                </>
+              }
+              {
+                status === CandidateStatusType.APPROVAL &&
+                <>
+                  <CancelButton {...{ status, setStatus, loading }} />
+                  <ApproveButton {...{ status, setStatus, loading, setLoading, product }} />
+                </>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  const cardView =
+    <div className={classNames('card', { 'flip-vertical': shouldFlipCard(status) })}>
+      <div className='card-body border-3 border-transparent text-product h-full'>
+        <div className='card-front h-full flex flex-col border border-dial-gray  card-drop-shadow'>
+          <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
+            {
+              (product.rejected === true || status === CandidateStatusType.REJECTED) &&
+              <div className='bg-red-500 py-1 px-2 rounded text-white text-sm font-semibold'>
+                {format('candidate.rejected').toUpperCase()}
+              </div>
+            }
+            {
+              (product.rejected === false || status === CandidateStatusType.APPROVED) &&
+              <div className='bg-emerald-500 py-1 px-2 rounded text-white text-sm font-semibold'>
+                {format('candidate.approved').toUpperCase()}
+              </div>
+            }
+            <div className='ml-auto flex gap-1'>
+              <div className='my-auto py-1 px-2 text-dial-cyan text-sm font-semibold'>
+                {format('candidateProduct.label').toUpperCase()}
+              </div>
+              {
+                product.rejected === null &&
+                  <EditButton type='link' href={`/candidate/products/${product?.slug}/edit`} />
+              }
+            </div>
+          </div>
+          <div className='flex flex-col h-64 p-4'>
+            <div className='text-2xl font-semibold'>
+              <Link href={`/candidate/products/${product.slug}`}>
+                <a className='border-b-2 border-transparent hover:border-dial-yellow'>
+                  {product.name}
+                </a>
+              </Link>
+            </div>
+            <div className='mt-3 line-clamp-6'>
+              {product.description && parse(product.description)}
+            </div>
+          </div>
+          <div className='py-3 flex flex-col gap-3 bg-dial-gray-light text-dial-gray-dark mt-auto'>
+            <div className='px-3 ml-auto'>
+              {product.submitterEmail}
+            </div>
+            <div className='px-3 ml-auto'>
+              {
+                product.website
+                  ? (
+                    <a
+                      href={prependUrlWithProtocol(product.website)}
+                      target='_blank'
+                      rel='noreferrer'
+                      className={'py-1 px-2 bg-white text-dial-blue break-all line-clamp-1'}
+                    >
+                      <span className={hoverEffectTextStyle}>{product.website} ⧉</span>
+                    </a>
+                  )
+                  : (
+                    <div className='py-1 px-2 bg-white line-clamp-1'>
+                      {format('general.na')}
+                    </div>
+                  )
+              }
+            </div>
+            <div className='px-3 ml-auto'>
+              {
+                product.repository
+                  ? (
+                    <a
+                      href={prependUrlWithProtocol(product.repository)}
+                      target='_blank'
+                      rel='noreferrer'
+                      className={'py-1 px-2 bg-white text-dial-blue break-all line-clamp-1'}
+                    >
+                      <span className={hoverEffectTextStyle}>{product.repository} ⧉</span>
+                    </a>
+                  )
+                  : (
+                    <div className='py-1 px-2 bg-white line-clamp-1'>
+                      {format('general.na')}
+                    </div>
+                  )
+              }
+            </div>
+            {
+              product.rejected === null &&
+              status !== CandidateStatusType.APPROVED &&
+              status !== CandidateStatusType.REJECTED &&
+              <>
+                <div className='border-t'></div>
+                <div className='ml-auto flex flex-row gap-3 mx-3'>
+                  <ToggleRejectionButton {...{ setStatus, loading }} style='text-sm secondary-button' />
+                  <ToggleApprovalButton {...{ setStatus, loading }} style='text-sm submit-button' />
+                </div>
+              </>
+            }
+          </div>
+        </div>
+        <div className='card-back flip-vertical flex flex-col border border-dial-gray bg-dial-gray shadow-lg h-full'>
+          <div className='flex flex-row p-1.5 bg-dial-gray-dark product-card-header'>
+            <div className='ml-auto my-auto text-dial-cyan text-sm font-semibold'>
+              {format('candidateProduct.label').toUpperCase()}
+            </div>
+          </div>
+          <div className='flex flex-col gap-3 p-3 h-full '>
+            <label className='flex flex-col gap-2'>
+              <span className='text-gray-700'>{format('candidate.feedback')}</span>
+              <textarea
+                className='w-full'
+                rows={8}
+                style={{ resize: 'none' }}
+                placeholder={format('candidate.feedback.placeholder')}
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              />
+            </label>
+            <div className='ml-auto mt-auto flex flex-row gap-3'>
+              {
+                status === CandidateStatusType.REJECTION &&
+                <>
+                  <CancelButton {...{ status, setStatus, loading }} />
+                  <DeclineButton {...{ status, setStatus, loading, setLoading, product }} />
+                </>
+              }
+              {
+                status === CandidateStatusType.APPROVAL &&
+                <>
+                  <CancelButton {...{ status, setStatus, loading }} />
+                  <ApproveButton {...{ status, setStatus, loading, setLoading, product }} />
+                </>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   return (
     <>
-      {
-        listType === 'list'
-          ? (
-            <div className={`card ${status === 'rejection' || status === 'approval' ? 'flip-horizontal' : ''}`}>
-              <div className='card-body border-3 border-transparent hover:border-dial-gray text-workflow cursor-pointer'>
-                <div className={`
-                  ${String(product.rejected) === 'true' || status === 'rejected'
-                  ? 'bg-red-50'
-                  : String(product.rejected) === 'false' || status === 'approved'
-                    ? 'bg-emerald-50'
-                    : 'bg-white'}
-                  card-front border border-dial-gray hover:border-transparent shadow-sm
-                `}
-                >
-                  <div className='grid grid-cols-12 gap-x-4 gap-y-2 my-4 px-4 text-product'>
-                    <div className={`col-span-12 ${filterDisplayed ? 'lg:col-span-8' : 'md:col-span-8'}`}>
-                      <div className={`col-span-12 lg:col-span-3 my-auto ${ellipsisTextStyle}`}>
-                        {product.name}
-                      </div>
-                      <div className={`col-span-12 lg:col-span-3 my-auto ${ellipsisTextStyle}`}>
-                        {product.website}
-                      </div>
-                      <div className={`col-span-12 lg:col-span-3 my-auto ${ellipsisTextStyle}`}>
-                        {product.submitterEmail}
-                      </div>
-                    </div>
-                    <div className='col-span-12 lg:col-span-4 my-auto'>
-                      {
-                        String(product.rejected) === 'null' && session?.user?.canEdit &&
-                          <div className='lg:col-span-3 flex flex-row'>
-                            <ToggleRejectionButton
-                              {...{ setStatus, loading }}
-                              style={`
-                                my-auto px-3 py-1 text-sm font-semibold ml-auto
-                                border border-dial-gray-dark text-dial-gray-dark rounded
-                                hover:bg-opacity-20 hover:bg-dial-gray-dark
-                              `}
-                            />
-                            <ToggleApprovalButton
-                              {...{ setStatus, loading }}
-                              style={`
-                                ml-3 my-auto px-3 py-1 text-sm font-semibold bg-dial-gray-dark text-white
-                                border border-dial-gray-dark bg-dial-gray-dark text-white rounded
-                                hover:bg-opacity-80
-                              `}
-                            />
-                          </div>
-                      }
-                    </div>
-                  </div>
-                </div>
-                <div className={`
-                  ${String(product.rejected) === 'true' || status === 'rejected'
-                  ? 'bg-red-50'
-                  : String(product.rejected) === 'false' || status === 'approved'
-                    ? 'bg-emerald-50'
-                    : 'bg-dial-gray'}
-                  card-back flip-horizontal border border-dial-gray hover:border-transparent shadow-sm
-                `}
-                >
-                  <div className='grid grid-cols-12 gap-x-4 gap-y-2 px-4 h-full text-product'>
-                    <div className='col-span-12 lg:col-span-8 my-auto'>
-                      <label className='block'>
-                        <span className='sr-only text-gray-700'>{format('candidate.feedback')}</span>
-                        <input
-                          className='form-textarea w-full' type='text'
-                          placeholder={format('candidate.feedback.placeholder')} value={comment}
-                          onChange={(e) => setComment(e.target.value)}
-                        />
-                      </label>
-                    </div>
-                    <div className='col-span-12 lg:col-span-4 my-auto'>
-                      <div className='flex flex-row'>
-                        {
-                          session?.user?.canEdit &&
-                            <>
-                              <CancelButton {...{ status, setStatus, loading }} />
-                              <DeclineButton {...{ status, setStatus, loading, setLoading, product }} />
-                              <ApproveButton {...{ status, setStatus, loading, setLoading, product }} />
-                            </>
-                        }
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )
-          : (
-            <div className={`card ${status === 'rejection' || status === 'approval' ? 'flip-vertical' : ''}`}>
-              <div className='card-body border-3 border-transparent hover:border-dial-gray text-dial-purple cursor-pointer h-full'>
-                <div className='card-front h-full flex flex-col border border-dial-gray card-drop-shadow'>
-                  <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
-                    {
-                      (String(product.rejected) === 'true' || status === 'rejected') &&
-                        <div className='bg-red-500 py-1 px-2 rounded text-white text-sm font-semibold'>
-                          {format('candidate.rejected').toUpperCase()}
-                        </div>
-                    }
-                    {
-                      (String(product.rejected) === 'false' || status === 'approved') &&
-                        <div className='bg-emerald-500 py-1 px-2 rounded text-white text-sm font-semibold'>
-                          {format('candidate.approved').toUpperCase()}
-                        </div>
-                    }
-                    <div className='ml-auto my-auto text-dial-cyan text-sm font-semibold'>
-                      {format('candidateProduct.label').toUpperCase()}
-                    </div>
-                  </div>
-                  <div className='flex flex-col h-80 p-4'>
-                    <div className='text-2xl font-semibold absolute w-64 2xl:w-80'>
-                      {product.name}
-                    </div>
-                    <div className='m-auto w-40'>
-                      {product.description}
-                    </div>
-                  </div>
-                  <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark mt-auto'>
-                    <div className='flex flex-col border-b border-dial-gray px-3'>
-                      {product.submitterEmail}
-                    </div>
-                  </div>
-                  <div className='flex flex-col bg-dial-gray-light text-dial-gray-dark mt-auto'>
-                    <div className='flex flex-col border-b border-dial-gray'>
-                      <div className='pl-3 py-2 flex flex-row border-b'>
-                        <div className='w-6 my-auto'>
-                          <FaHome className='text-xl' data-tip={format('candidateProduct.website.hint')} />
-                        </div>
-                        <div className={`mx-2 my-auto px-2 py-1 bg-white ${ellipsisTextStyle} ${hoverEffectTextStyle}`}>
-                          {
-                            product.website
-                              ? <a href={`//${product.website}`} target='_blank' rel='noreferrer'>{product.website}</a>
-                              : format('general.na')
-                          }
-                        </div>
-                      </div>
-                      <div className={`pl-3 flex flex-row ${String(product.rejected) === 'null' ? 'py-2 border-b' : 'py-2'}`}>
-                        <div className='w-6 my-auto'>
-                          <FaCode className='text-xl' data-tip={format('candidateProduct.repository.hint')} />
-                        </div>
-                        <div className={`mx-2 my-auto px-2 py-1 bg-white ${ellipsisTextStyle} ${hoverEffectTextStyle}`}>
-                          {
-                            product.repository
-                              ? <a href={`//${product.repository}`} target='_blank' rel='noreferrer'>{product.repository}</a>
-                              : format('general.na')
-                          }
-                        </div>
-                      </div>
-                      {
-                        String(product.rejected) === 'null' && session?.user?.canEdit && status === '' &&
-                          <div className='pl-3 py-2 flex flex-row'>
-                            <ToggleRejectionButton
-                              {...{ setStatus, loading }}
-                              style={`
-                                my-auto px-3 py-1 text-sm font-semibold mr-auto
-                                border border-dial-gray-dark text-dial-gray-dark rounded
-                                hover:bg-opacity-20 hover:bg-dial-gray-dark
-                              `}
-                            />
-                            <ToggleApprovalButton
-                              {...{ setStatus, loading }}
-                              style={`
-                                mx-3 my-auto px-3 py-1 text-sm font-semibold ml-auto bg-dial-gray-dark text-white
-                                border border-dial-gray-dark bg-dial-gray-dark text-white rounded
-                                hover:bg-opacity-80
-                              `}
-                            />
-                          </div>
-                      }
-                    </div>
-                  </div>
-                </div>
-                <div className='card-back flip-vertical h-full flex flex-col border border-dial-gray bg-dial-gray shadow-lg'>
-                  <div className='flex flex-row p-1.5 border-b border-dial-gray-dark bg-dial-gray-dark product-card-header'>
-                    <div className='ml-auto my-auto text-dial-cyan text-sm font-semibold'>
-                      {format('candidateProduct.label').toUpperCase()}
-                    </div>
-                  </div>
-                  <div className='h-full p-3'>
-                    <label className='block'>
-                      <span className='text-gray-700'>{format('candidate.feedback')}</span>
-                      <textarea
-                        className='form-textarea mt-1 block w-full' rows='6' style={{ resize: 'none' }}
-                        placeholder={format('candidate.feedback.placeholder')} value={comment}
-                        onChange={(e) => setComment(e.target.value)}
-                      />
-                    </label>
-                    <div className='py-2 flex flex-row'>
-                      {
-                        session?.user && session?.user.canEdit &&
-                          <>
-                            <CancelButton {...{ status, setStatus, loading }} />
-                            <DeclineButton {...{ status, setStatus, loading, setLoading, product }} />
-                            <ApproveButton {...{ status, setStatus, loading, setLoading, product }} />
-                          </>
-                      }
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )
-      }
+      { listType === 'list' ? listView : cardView }
     </>
   )
 }
 
 const CancelButton = ({ status, setStatus, loading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <button
-      className={`
-          ${status !== '' ? 'block' : 'hidden'}
-          ml-auto my-auto px-3 py-1 text-sm font-semibold
-          border border-dial-gray-dark text-dial-gray-dark rounded
-          hover:bg-opacity-20 hover:bg-dial-gray-dark
-        `}
+      className={classNames(
+        'text-sm secondary-button',
+        { 'block': status !== '' }, { 'hidden': status === '' }
+      )}
       onClick={() => setStatus('')}
       disabled={loading}
     >
@@ -252,27 +284,28 @@ const CancelButton = ({ status, setStatus, loading }) => {
 
 const ToggleApprovalButton = ({ style, setStatus, loading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <button
       className={style}
-      onClick={() => setStatus('approval')}
+      onClick={() => setStatus(CandidateStatusType.APPROVAL)}
       disabled={loading}
     >
-      {format('candidate.approve')} <FaRegCheckCircle className='ml-1 inline text-xl text-emerald-500' />
+      {format('candidate.approve')}
+      <FaRegCheckCircle className='ml-1 inline text-xl' />
     </button>
   )
 }
 
-const ApproveButton = ({ product, status, setStatus, loading, setLoading }) => {
+const ApproveButton = ({ product, setStatus, loading, setLoading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { user } = useUser()
 
   const approveCandidateProduct = async (e) => {
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = user
 
     e.preventDefault()
     setLoading(true)
@@ -292,51 +325,44 @@ const ApproveButton = ({ product, status, setStatus, loading, setLoading }) => {
     })
 
     if (response.status === 200) {
-      setStatus('approved')
+      setStatus(CandidateStatusType.APPROVED)
     }
 
     setLoading(false)
   }
 
   return (
-    <button
-      className={`
-        ${status === 'approval' ? 'block' : 'hidden'}
-        ml-2 my-auto px-3 py-1 text-sm font-semibold
-        border border-dial-gray-dark bg-dial-gray-dark text-white rounded
-        hover:bg-opacity-80
-      `}
-      onClick={approveCandidateProduct}
-      disabled={loading}
-    >
-      {format('candidate.approve')} <FaRegCheckCircle className='ml-1 inline text-xl text-emerald-500' />
+    <button className='text-sm submit-button' onClick={approveCandidateProduct} disabled={loading}>
+      {format('candidate.approve')}
+      <FaRegCheckCircle className='ml-1 inline text-xl' />
     </button>
   )
 }
 
 const ToggleRejectionButton = ({ style, setStatus, loading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <button
       className={style}
-      onClick={() => setStatus('rejection')}
+      onClick={() => setStatus(CandidateStatusType.REJECTION)}
       disabled={loading}
     >
-      {format('candidate.reject')}  <FaRegTimesCircle className='ml-1 inline text-xl text-red-500' />
+      {format('candidate.reject')}
+      <FaRegTimesCircle className='ml-1 inline text-xl text-red-500' />
     </button>
   )
 }
 
-const DeclineButton = ({ product, status, setStatus, loading, setLoading }) => {
+const DeclineButton = ({ product, setStatus, loading, setLoading }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { user } = useUser()
 
   const rejectCandidateProduct = async (e) => {
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = user
 
     e.preventDefault()
     setLoading(true)
@@ -356,24 +382,16 @@ const DeclineButton = ({ product, status, setStatus, loading, setLoading }) => {
     })
 
     if (response.status === 200) {
-      setStatus('rejected')
+      setStatus(CandidateStatusType.REJECTED)
     }
 
     setLoading(false)
   }
 
   return (
-    <button
-      className={`
-        ${status === 'rejection' ? 'block' : 'hidden'}
-        ml-2 my-auto px-3 py-1 text-sm font-semibold
-        border border-dial-gray-dark text-dial-gray-dark rounded
-        hover:bg-opacity-20 hover:bg-dial-gray-dark
-      `}
-      onClick={rejectCandidateProduct}
-      disabled={loading}
-    >
-      {format('candidate.reject')}  <FaRegTimesCircle className='ml-1 inline text-xl text-red-500' />
+    <button className='text-sm submit-button' onClick={rejectCandidateProduct} disabled={loading}>
+      {format('candidate.reject')}
+      <FaRegTimesCircle className='ml-1 inline text-xl' />
     </button>
   )
 }

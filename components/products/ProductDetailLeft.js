@@ -1,7 +1,7 @@
-import { gql, useLazyQuery } from '@apollo/client'
+import { useLazyQuery, useMutation } from '@apollo/client'
 import parse from 'html-react-parser'
 import { useRouter } from 'next/router'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
@@ -11,22 +11,17 @@ import EditButton from '../shared/EditButton'
 import { useProductOwnerUser, useUser } from '../../lib/hooks'
 import CommentsCount from '../shared/CommentsCount'
 import { ObjectType } from '../../lib/constants'
-
-const CANDIDATE_ROLE_QUERY = gql`
-  query CandidateRole($email: String!, $productId: String!, $organizationId: String!) {
-    candidateRole(email: $email, productId: $productId, organizationId: $organizationId) {
-      id
-      productId
-      organizationId
-    }
-  }
-`
+import { APPLY_AS_OWNER } from '../../mutations/users'
+import { ToastContext } from '../../lib/ToastContext'
+import { CANDIDATE_ROLE_QUERY } from '../../queries/candidate'
+import DeleteProduct from './DeleteProduct'
 
 const CONTACT_STATES = ['initial', 'captcha', 'revealed', 'error']
 
 const ProductDetailLeft = ({ product, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+  const { showToast } = useContext(ToastContext)
 
   const router = useRouter()
   const { locale } = router
@@ -39,7 +34,6 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
   const [emailAddress, setEmailAddress] = useState('')
 
   const [loading, setLoading] = useState(false)
-  const [appliedToBeOwner, setAppliedToBeOwner] = useState(false)
   const [showApplyLink, setShowApplyLink] = useState(false)
   const [ownershipText, setOwnershipText] = useState('')
 
@@ -56,60 +50,53 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
     if (user) {
       const { userEmail } = user
       fetchCandidateRole({
-        variables:
-          { email: userEmail, productId: product.id, organizationId: '' }
+        variables: {
+          email: userEmail,
+          productId: product.id,
+          organizationId: '',
+          datasetId: ''
+        }
       })
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
-  const displayApplyOwnershipLink = (user, data, appliedToBeOwner) => {
+  const displayApplyOwnershipLink = (user) => {
     if (!user) {
       // Not logged in, don't display the link.
       return false
     }
 
-    const filteredProducts = user.own && user.own.products.filter(item => {
-      return `${item}` === `${product.id}`
-    })
-
-    if (filteredProducts && filteredProducts.length > 0) {
+    if (isProductOwner) {
       return false
     }
 
-    if (!appliedToBeOwner && !data?.candidateRole) {
-      // Have not apply to be one or if searching in the db return no data.
+    if (data?.candidateRole === null || data?.candidateRole?.rejected) {
       return true
     }
-
-    return false
   }
 
-  const staticOwnershipTextSelection = (user, data, appliedToBeOwner) => {
+  const staticOwnershipTextSelection = (user) => {
     if (!user) {
       // Not logged in, don't display anything.
       return ''
     }
 
-    const filteredProducts = user.own && user.own?.products.filter(item => {
-      return `${item}` === `${product.id}`
-    })
-
-    if (filteredProducts && filteredProducts.length > 0) {
+    if (isProductOwner) {
       return 'owner'
     }
 
-    if (appliedToBeOwner || (data && `${data.candidateRole?.productId}` === `${product.id}`)) {
+    if (data?.candidateRole?.rejected === null) {
       // Applying to be the owner of the organization
       return 'applied-to-own'
     }
   }
 
   useEffect(() => {
-    setShowApplyLink(displayApplyOwnershipLink(user, data, appliedToBeOwner))
-    setOwnershipText(staticOwnershipTextSelection(user, data, appliedToBeOwner))
+    setShowApplyLink(displayApplyOwnershipLink(user))
+    setOwnershipText(staticOwnershipTextSelection(user))
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, data, error, appliedToBeOwner])
+  }, [user, error, data])
 
   const updateContactInfo = async (captchaValue) => {
     const { userEmail, userToken } = user
@@ -148,39 +135,62 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
     }
   }
 
-  const applyToBeProductOwner = async () => {
-    setLoading(true)
-    const { userEmail, userToken } = user
-    const requestBody = {
-      candidate_role: {
-        email: userEmail,
-        description: 'Product ownership requested from the new UX.',
-        product_id: product.id
-      },
-      user_email: userEmail,
-      user_token: userToken
-    }
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_RAILS_SERVER}/candidate_roles`,
-      {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'omit',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-          'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_RAILS_SERVER,
-          'Access-Control-Allow-Credentials': true,
-          'Access-Control-Allow-Headers': 'Set-Cookie'
-        },
-        body: JSON.stringify(requestBody)
+  const [applyAsOwner, { reset }] = useMutation(APPLY_AS_OWNER, {
+    refetchQueries: ['CandidateRole'],
+    onCompleted: (data) => {
+      const { applyAsOwner: response } = data
+      if (!response?.candidateRole || response?.errors?.length > 0) {
+        showToast(
+          <div className='flex flex-col'>
+            <span>{data.applyAsOwner.errors[0]}</span>
+          </div>,
+          'error',
+          'top-center',
+          null,
+          () => setLoading(false)
+        )
+        reset()
+      } else {
+        showToast(
+          format('toast.applyAsOwner.submit.success', { entity: format('product.label') }),
+          'success',
+          'top-center',
+          null,
+          () => setLoading(false)
+        )
       }
-    )
+    },
+    onError: (error) => {
+      showToast(
+        <div className='flex flex-col'>
+          <span>{error?.message}</span>
+        </div>,
+        'error',
+        'top-center',
+        null,
+        () => setLoading(false)
+      )
+      reset()
+    }
+  })
 
-    if (response) {
-      setLoading(false)
-      setAppliedToBeOwner(response.status === 201)
+  const onSubmit = () => {
+    if (user) {
+      const { userEmail, userToken } = user
+      setLoading(true)
+
+      applyAsOwner({
+        variables: {
+          entity: ObjectType.PRODUCT,
+          entityId: parseInt(product.id)
+        },
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
     }
   }
 
@@ -199,11 +209,12 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
       <div className='h-20'>
         <div className='w-full inline-flex gap-3'>
           {(isAdminUser || isProductOwner) && <EditButton type='link' href={generateEditLink()} />}
+          {isAdminUser && <DeleteProduct product={product} />}
           <CommentsCount commentsSectionRef={commentsSectionRef} objectId={product.id} objectType={ObjectType.PRODUCT}/>
         </div>
         <div className='h4 font-bold py-4'>{format('products.label')}</div>
       </div>
-      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 lg:mr-6 shadow-lg'>
+      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray p-6 shadow-lg'>
         <div id='header' className='flex flex-col h-80 p-2'>
           <div className='h1 p-2 text-dial-purple'>
             {product.name}
@@ -217,11 +228,11 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
             />
           </div>
         </div>
-        <div className='fr-view text-dial-gray-dark max-h-40 overflow-hidden'>
+        <div className='fr-view text-dial-gray-dark line-clamp-5'>
           {product.productDescription && parse(product.productDescription.description)}
         </div>
       </div>
-      <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 lg:mr-6 shadow-lg border-b-2 border-dial-gray'>
+      <div className='bg-dial-gray-dark text-xs text-dial-gray-light p-6 shadow-lg border-b-2 border-dial-gray'>
         {format('product.owner')}
         <div className='flex flex-row gap-3'>
           <a
@@ -237,7 +248,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
                 <div className='border-l border-dial-gray-light mt-2' />
                 <button
                   className='text-dial-yellow block mt-2 border-b border-transparent hover:border-dial-yellow'
-                  href='/apply-product-owner' onClick={applyToBeProductOwner} disabled={loading}
+                  onClick={onSubmit} disabled={loading}
                 >
                   {format('ownership.apply')}
                   {loading && <FaSpinner className='inline spinner ml-1' />}
@@ -269,11 +280,13 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
         {
           user && product.owner &&
             <>
-              {
-                contactState === CONTACT_STATES[1] &&
-                  <div className='mt-2'>
-                    <ReCAPTCHA sitekey='6LfAGscbAAAAAFW_hQyW5OxXPhI7v6X8Ul3FJrsa' onChange={updateContactInfo} ref={captchaRef} />
-                  </div>
+              {contactState === CONTACT_STATES[1] &&
+                <div className='mt-2'>
+                  <ReCAPTCHA
+                    sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+                    onChange={updateContactInfo} ref={captchaRef}
+                  />
+                </div>
               }
               {
                 contactState === CONTACT_STATES[2] &&
@@ -281,7 +294,9 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
                     {format('ownership.label')}:
                     <a
                       className='text-dial-yellow mx-2 mt-2 border-b border-transparent hover:border-dial-yellow'
-                      href={`mailto:${emailAddress}`} target='_blank' rel='noreferrer'
+                      href={`mailto:${emailAddress}`}
+                      target='_blank'
+                      rel='noreferrer'
                     >
                       {emailAddress}
                     </a>

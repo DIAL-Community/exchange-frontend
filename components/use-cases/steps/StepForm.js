@@ -27,7 +27,7 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
   const { showToast } = useContext(ToastContext)
   const { locale } = useRouter()
 
-  const [updateUseCaseStep] = useMutation(CREATE_USE_CASE_STEP, {
+  const [updateUseCaseStep, { reset }] = useMutation(CREATE_USE_CASE_STEP, {
     onError: (error) => {
       setMutating(false)
       showToast(
@@ -37,18 +37,31 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
         </div>,
         'error',
         'top-center',
-        false
+        1000
       )
+      reset()
     },
     onCompleted: (data) => {
-      showToast(
-        format('use-case-step.submit.success'),
-        'success',
-        'top-center',
-        1000,
-        null,
-        () => router.push(`/${router.locale}/use_cases/${data.createUseCaseStep.useCaseStep.useCase.slug}/use_case_steps/${data.createUseCaseStep.useCaseStep.slug}`)
-      )
+      const { createUseCaseStep: response } = data
+      if (response?.useCaseStep && response?.errors?.length === 0) {
+        setMutating(false)
+        showToast(
+          format('use-case-step.submit.success'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => router.push(
+            `/${router.locale}` +
+            `/use_cases/${data.createUseCaseStep.useCaseStep.useCase.slug}` +
+            `/use_case_steps/${data.createUseCaseStep.useCaseStep.slug}`
+          )
+        )
+      } else {
+        setMutating(false)
+        showToast(format('use-case-step.submit.failure'), 'error', 'top-center', 1000)
+        reset()
+      }
     }
   })
 
@@ -59,7 +72,8 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
     defaultValues: {
       name: useCaseStep?.name,
       stepNumber: useCaseStep?.stepNumber,
-      description: useCaseStep?.useCaseStepDescription?.description
+      description: useCaseStep?.useCaseStepDescription?.description,
+      markdownUrl: useCaseStep?.markdownUrl,
     }
   })
 
@@ -92,14 +106,15 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
 
       const { userEmail, userToken } = user
 
-      const { name, description } = data
+      const { name, description, markdownUrl } = data
 
       const variables = {
         name,
         slug,
         stepNumber,
         description,
-        useCaseId
+        useCaseId,
+        markdownUrl
       }
       updateUseCaseStep({
         variables,
@@ -161,29 +176,42 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
                       />
                       {errors.stepNumber && <ValidationError value={errors.stepNumber?.message} />}
                     </div>
-                  </div>
-                  <div className='w-full lg:w-1/2'>
-                    <div className='block flex flex-col gap-y-2' data-testid='use-case-step-description'>
-                      <label className='form-field-label required-field'>
-                        {format('use-case-step.description')}
+                    <div className='form-field-wrapper' data-testid='use-case-step-markdown-url'>
+                      <label className='form-field-label required-field' htmlFor='markdownUrl'>
+                        {format('use-case-step.markdownUrl')}
                       </label>
-                      <Controller
-                        name='description'
-                        control={control}
-                        render={({ field: { value, onChange } }) => (
-                          <HtmlEditor
-                            editorId='description-editor'
-                            onChange={onChange}
-                            initialContent={value}
-                            placeholder={format('use-case-step.description')}
-                            isInvalid={errors.description}
-                          />
-                        )}
-                        rules={{ required: format('validation.required') }}
+                      <Input
+                        {...register('markdownUrl')}
+                        id='markdownUrl'
+                        placeholder={format('use-case-step.markdownUrl')}
                       />
-                      {errors.description && <ValidationError value={errors.description?.message} />}
                     </div>
                   </div>
+                  {
+                    !useCaseStep?.markdownUrl &&
+                      <div className='w-full lg:w-1/2'>
+                        <div className='block flex flex-col gap-y-2' data-testid='use-case-step-description'>
+                          <label className='form-field-label required-field'>
+                            {format('use-case-step.description')}
+                          </label>
+                          <Controller
+                            name='description'
+                            control={control}
+                            render={({ field: { value, onChange } }) => (
+                              <HtmlEditor
+                                editorId='description-editor'
+                                onChange={onChange}
+                                initialContent={value}
+                                placeholder={format('use-case-step.description')}
+                                isInvalid={errors.description}
+                              />
+                            )}
+                            rules={{ required: format('validation.required') }}
+                          />
+                          {errors.description && <ValidationError value={errors.description?.message} />}
+                        </div>
+                      </div>
+                  }
                 </div>
                 <div className='flex flex-wrap text-xl mt-8 gap-3'>
                   <button

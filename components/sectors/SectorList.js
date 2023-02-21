@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -15,7 +15,7 @@ import SectorCard from './SectorCard'
 
 const SectorList = ({ displayType, sectorList }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className={classNames('grid', { 'grid-cols-1' : displayType === DisplayType.LIST })}>
@@ -35,28 +35,33 @@ const SectorList = ({ displayType, sectorList }) => {
 }
 
 const SectorListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterContext)
+  const { setResultCounts } = useContext(FilterContext)
   const { search } = useContext(UserFilterContext)
 
   const { locale } = useRouter()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data, fetchMore, refetch } = useQuery(SECTORS_LIST_QUERY, {
+  const { loading, error, data, fetchMore } = useQuery(SECTORS_LIST_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       search,
       locale
-    },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.sectors']]: data.searchSectors.totalCount } })
     }
   })
 
-  useEffect(refetch, [refetch, locale])
-
-  useEffect(() => ReactTooltip.rebuild(), [data])
+  useEffect(() => {
+    if (data) {
+      ReactTooltip.rebuild()
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.sectors']]: data.searchSectors.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />
@@ -79,7 +84,7 @@ const SectorListQuery = () => {
 
   return (
     <InfiniteScroll
-      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto'
+      className='relative'
       dataLength={nodes.length}
       next={handleLoadMore}
       hasMore={pageInfo.hasNextPage}

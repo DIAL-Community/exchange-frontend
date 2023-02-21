@@ -1,6 +1,8 @@
 import { render, fireEvent } from '@testing-library/react'
 import Input from '../../../components/shared/Input'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 
+mockNextUseRouter()
 describe('Unit test for the Input component.', () => {
   const TEST_ID = 'test-input'
 
@@ -14,6 +16,6 @@ describe('Unit test for the Input component.', () => {
     const onChange = jest.fn()
     const input = render(<Input data-testid={TEST_ID} value='test' onChange={onChange} />).getByTestId(TEST_ID)
     fireEvent.change(input, { target: { value: 'updated' } })
-    expect(onChange).toBeCalledTimes(1)
+    expect(onChange).toHaveBeenCalledTimes(1)
   })
 })

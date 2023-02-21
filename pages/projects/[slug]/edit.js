@@ -19,22 +19,18 @@ const EditProject = () => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.project) {
     return <NotFound />
   }
 
   return (
     <>
       <Header />
-      {data?.project && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            <ProjectForm project={data.project} />
-          </ClientOnly>
-        </div>
-      )}
+      <ClientOnly>
+        { data?.project && <ProjectForm project={data.project} /> }
+      </ClientOnly>
       <Footer />
     </>
   )

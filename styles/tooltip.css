@@ -1,3 +1,12 @@
 .tooltip-prose {
   max-width: 64ch;
 }
+
+/*
+  Overriding the default min-width and max-width of the introjs-tooltip.
+  Default values are: 250px and 300px respectively.
+ */
+.introjs-tooltip {
+  min-width: 450px !important;
+  max-width: 450px !important;
+}

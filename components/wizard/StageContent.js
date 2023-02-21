@@ -1,56 +1,96 @@
 import { useIntl } from 'react-intl'
-import { useState } from 'react'
+import { useCallback } from 'react'
+import { useQuery } from '@apollo/client'
 import Select from '../shared/Select'
 import Pill from '../shared/Pill'
 import Checkbox from '../shared/Checkbox'
+import { WIZARD_USE_CASES_FOR_SECTOR } from '../../queries/wizard'
 
 export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [subSectors, setSubsectors] = useState()
+  const { data } = useQuery(WIZARD_USE_CASES_FOR_SECTOR, {
+    variables: { sectorsSlugs: allValues?.sectors?.map((sector) => sector.slug) } }
+  )
 
-  const updateSubsectors = (val) => {
-    const currSector = projData.sectors.find(sector => sector.value === val.value)
-    setSubsectors(currSector.subSectors.map((sector) => { return { label: sector.name.split(':')[1], value: sector.name.split(':')[1] } }))
-    setAllValues(prevValues => { return { ...prevValues, sector: val.value } })
-  }
+  const addSector = (sector) =>
+    setAllValues(prevValues => ({
+      ...prevValues,
+      sectors: [...allValues.sectors.filter(({ slug }) => slug !== sector.slug), sector]
+    }))
+
+  const removeSector = (sector) =>
+    setAllValues(prevValues => ({
+      ...prevValues,
+      sectors: allValues.sectors.filter(value => value !== sector)
+    }))
+
+  const addSdg = (sdg) =>
+    setAllValues(prevValues => ({
+      ...prevValues,
+      sdgs: [...allValues.sdgs.filter(({ slug }) => slug !== sdg.slug), sdg]
+    }))
+
+  const removeSdg = (sdg) =>
+    setAllValues(prevValues => ({
+      ...prevValues,
+      sdgs: allValues.sdgs.filter(value => value !== sdg)
+    }))
 
   return (
     <div className='lg:flex gap-12'>
-      <div className='lg:w-1/4 lg:mt-auto'>
+      <div className='lg:w-1/4 mt-6'>
         <div className='text-sm my-2 grid content-end'>
           <div>{format('wizard.selectSector')}</div>
         </div>
         <Select
           options={projData.sectors}
-          value={allValues.sector && { value: allValues.sector, label: allValues.sector }}
-          onChange={(val) => updateSubsectors(val)}
+          value={null}
+          onChange={(sector) => addSector(sector)}
           placeholder={format('wizard.sectorPlaceholder')}
         />
+        <div className='flex flex-wrap gap-3 mt-5'>
+          {allValues.sectors?.map((sector, sectorIdx) => (
+            <Pill
+              key={`sector-${sectorIdx}`}
+              label={sector.label}
+              onRemove={() => removeSector(sector)}
+            />
+          ))}
+        </div>
       </div>
-      <div className='lg:w-1/4 mt-6 lg:mt-auto'>
+      <div className='lg:w-1/4 mt-6'>
         <div className='text-sm my-2 grid content-end'>
-          {format('wizard.selectSubsector')}
+          {format('wizard.selectUseCase')}
         </div>
         <Select
-          options={subSectors}
-          value={allValues.subsector && { value: allValues.subsector, label: allValues.subsector }}
-          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, subsector: val && val.value } })}
-          placeholder={format('wizard.subsectorPlaceholder')}
+          options={data?.useCasesForSector?.map((useCase) => ({ value: useCase.name, label: useCase.name }))}
+          value={allValues.useCase && { value: allValues.useCase, label: allValues.useCase }}
+          onChange={(useCase) => setAllValues(prevValues => ({ ...prevValues, useCase: useCase?.label ?? '' }))}
+          placeholder={format('wizard.useCasePlaceholder')}
           isClearable
         />
       </div>
-      <div className='lg:w-1/4 mt-6 lg:mt-auto'>
+      <div className='lg:w-1/4 mt-6'>
         <div className='text-sm my-2 grid content-end'>
           {format('wizard.selectSDG')}
         </div>
         <Select
           options={projData.sdgs}
-          value={allValues.sdg && { value: allValues.sdg, label: allValues.sdg }}
-          onChange={(val) => setAllValues(prevValues => { return { ...prevValues, sdg: val.value } })}
+          value={null}
+          onChange={(sdg) => addSdg(sdg)}
           placeholder={format('wizard.sdgPlaceholder')}
         />
+        <div className='flex flex-wrap gap-3 mt-5'>
+          {allValues.sdgs?.map((sdg, sdgIdx) => (
+            <Pill
+              key={`sdg-${sdgIdx}`}
+              label={sdg.label}
+              onRemove={() => removeSdg(sdg)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -58,7 +98,7 @@ export const WizardStage1 = ({ projData, allValues, setAllValues }) => {
 
 export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const addSelectedTagValue = (selectedTagValue) => {
     if (allValues.tags.indexOf(selectedTagValue) < 0) {
@@ -79,7 +119,12 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
   }
 
   const removeCountry = (countryValue) => {
-    setAllValues(prevValues => { return { ...prevValues, countries: allValues.countries.filter(val => val !== countryValue) } })
+    setAllValues(prevValues => {
+      return {
+        ...prevValues,
+        countries: allValues.countries.filter(val => val !== countryValue)
+      }
+    })
   }
 
   return (
@@ -135,8 +180,18 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
                 <Checkbox
                   onChange={(e) => e.currentTarget.checked
                     ? allValues.mobileServices.push(service.value) &&
-                        setAllValues(prevValues => { return { ...prevValues, mobileServices: allValues.mobileServices } })
-                    : setAllValues(prevValues => { return { ...prevValues, mobileServices: allValues.mobileServices.filter(val => val !== service.value) } })}
+                        setAllValues(prevValues => {
+                          return {
+                            ...prevValues,
+                            mobileServices: allValues.mobileServices
+                          }
+                        })
+                    : setAllValues(prevValues => {
+                      return {
+                        ...prevValues,
+                        mobileServices: allValues.mobileServices.filter(val => val !== service.value)
+                      }
+                    })}
                 />
                 <span className='pl-2'>
                   {service.label}
@@ -152,7 +207,7 @@ export const WizardStage2 = ({ projData, allValues, setAllValues }) => {
 
 export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
   const classNameSelected = 'bg-white border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-button-gray inline'
   const classNameNotSelected = 'bg-dial-gray-dark border border-white rounded px-4 lg:px-6 py-4 my-2 mr-4 text-white inline'
 
@@ -167,26 +222,32 @@ export const WizardStage3 = ({ projData, allValues, setAllValues }) => {
         <div className='text-sm pt-2 pb-2 bb-content overflow-y-auto'>
           {projData.buildingBlocks.map((bb) => {
             return (
-              <div key={bb} className='flex flex-row items-center'>
+              <div key={bb.id} className='flex flex-row items-center'>
                 <button
                   onClick={() => {
-                    allValues.buildingBlocks.push(bb) &&
-                    setAllValues(prevValues => { return { ...prevValues, buildingBlocks: allValues.buildingBlocks } })
+                    allValues.buildingBlocks.push(bb.name) &&
+                    setAllValues(prevValues => ({ ...prevValues, buildingBlocks: allValues.buildingBlocks }))
                   }}
-                  className={allValues.buildingBlocks.includes(bb) ? classNameSelected : classNameNotSelected}
+                  className={allValues.buildingBlocks.includes(bb.name) ? classNameSelected : classNameNotSelected}
                 >
                   {format('wizard.yes')}
                 </button>
                 <button
-                  onClick={() => { setAllValues(prevValues => { return { ...prevValues, buildingBlocks: allValues.buildingBlocks.filter(val => val !== bb) } }) }}
-                  className={allValues.buildingBlocks.includes(bb) ? classNameNotSelected : classNameSelected}
+                  onClick={() => setAllValues(
+                    prevValues => ({
+                      ...prevValues,
+                      buildingBlocks: allValues.buildingBlocks.filter(val => val !== bb.name)
+                    })
+                  )}
+                  className={allValues.buildingBlocks.includes(bb.name) ? classNameNotSelected : classNameSelected}
                 >
                   {format('wizard.no')}
                 </button>
                 <div className='inline-block my-2'>
-                  {bb.toUpperCase()}
+                  {bb.name.toUpperCase()}
+                  <span className='ml-1 capitalize'>({bb.maturity.toLowerCase()})</span>
                   <br />
-                  {format('wizard.bb.' + bb.replace(/\s+/g, '').toLowerCase())}
+                  {format('wizard.bb.' + bb.name.replace(/\s+/g, '').toLowerCase())}
                 </div>
               </div>
             )

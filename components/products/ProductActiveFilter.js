@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
@@ -25,20 +25,21 @@ const ProductActiveFilter = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const {
-    withMaturity, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
+    isEndorsed, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
     useCases, workflows, buildingBlocks, endorsers, licenseTypes
   } = useContext(ProductFilterContext)
 
   const {
-    setWithMaturity, setProductDeployable, setForCovid, setSectors, setCountries, setOrganizations,
-    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers, setLicenseTypes
+    setIsEndorsed, setProductDeployable, setSectors, setCountries, setOrganizations,
+    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers,
+    setLicenseTypes
   } = useContext(ProductFilterDispatchContext)
 
-  const toggleWithMaturity = () => {
-    setWithMaturity(!withMaturity)
+  const toggleIsEndorsed = () => {
+    setIsEndorsed(!isEndorsed)
   }
 
   const toggleProductDeployable = () => {
@@ -47,7 +48,7 @@ const ProductActiveFilter = () => {
 
   const filterCount = () => {
     let count = 0
-    count = withMaturity ? count + 1 : count
+    count = isEndorsed ? count + 1 : count
     count = productDeployable ? count + 1 : count
     count = count + countries.length + organizations.length + tags.length +
       sectors.length + origins.length + sdgs.length + useCases.length +
@@ -58,9 +59,8 @@ const ProductActiveFilter = () => {
 
   const clearFilter = (e) => {
     e.preventDefault()
-    setWithMaturity(false)
+    setIsEndorsed(false)
     setProductDeployable(false)
-    setForCovid(false)
     setOrigins([])
     setCountries([])
     setSectors([])
@@ -79,25 +79,31 @@ const ProductActiveFilter = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
     const basePath = 'products'
 
-    const maturityFilter = withMaturity ? 'withMaturity=true' : ''
+    const endorsedFilter = isEndorsed ? 'isEndorsed=true' : ''
     const deployableFilter = productDeployable ? 'productDeployable=true' : ''
     const originFilters = origins.map(origin => `origins=${origin.value}--${origin.label}`)
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
     const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
-    const organizationFilters = organizations.map(organization => `organizations=${organization.value}--${organization.label}`)
+    const organizationFilters = organizations.map(
+      organization => `organizations=${organization.value}--${organization.label}`
+    )
     const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
     const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
     const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
     const workflowFilters = workflows.map(workflow => `workflows=${workflow.value}--${workflow.label}`)
-    const buildingBlockFilters = buildingBlocks.map(buildingBlock => `buildingBlocks=${buildingBlock.value}--${buildingBlock.label}`)
+    const buildingBlockFilters = buildingBlocks.map(
+      buildingBlock => `buildingBlocks=${buildingBlock.value}--${buildingBlock.label}`
+    )
     const endorserFilters = endorsers.map(endorser => `endorsers=${endorser.value}--${endorser.label}`)
-    const licenseTypesFilter = licenseTypes.map(licenseType => `licenseTypes=${licenseType.value}--${licenseType.label}`)
+    const licenseTypesFilter = licenseTypes.map(
+      licenseType => `licenseTypes=${licenseType.value}--${licenseType.label}`
+    )
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, maturityFilter, licenseTypesFilter, deployableFilter, ...originFilters, ...countryFilters,
-      ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters, ...useCaseFilters, ...workflowFilters,
-      ...buildingBlockFilters, ...endorserFilters
+      activeFilter, endorsedFilter, licenseTypesFilter, deployableFilter, ...originFilters,
+      ...countryFilters, ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters,
+      ...useCaseFilters, ...workflowFilters, ...buildingBlockFilters, ...endorserFilters
     ].filter(f => f).join('&')
 
     return `${baseUrl}/${basePath}?${filterParameters}`
@@ -105,8 +111,12 @@ const ProductActiveFilter = () => {
 
   useEffect(() => {
     // Only apply this if the use have not interact with the UI and the url is a sharable link
-    if (query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog && !interactionDetected) {
-      setWithMaturity(query.withMaturity === 'true')
+    if (
+      query &&
+      Object.getOwnPropertyNames(query).length > 1 &&
+      query.shareCatalog && !interactionDetected
+    ) {
+      setIsEndorsed(query.isEndorsed === 'true')
       setProductDeployable(query.productDeployable === 'true')
       parseQuery(query, 'licenseTypes', licenseTypes, setLicenseTypes)
       parseQuery(query, 'origins', origins, setOrigins)
@@ -123,13 +133,13 @@ const ProductActiveFilter = () => {
   })
 
   return (
-    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
+    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`}>
       <div className='flex flex-row flex-wrap px-3 gap-2'>
-        {withMaturity && (
+        {isEndorsed && (
           <div className='py-1'>
             <Pill
-              label={format('filter.product.withMaturity')}
-              onRemove={toggleWithMaturity}
+              label={format('filter.product.endorsed')}
+              onRemove={toggleIsEndorsed}
             />
           </div>
         )}

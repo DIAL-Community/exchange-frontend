@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { FilterContext } from '../context/FilterContext'
@@ -19,11 +19,13 @@ const RubricCategoryList = ({ rubricCategoryList }) => {
           <Card
             key={rubricCategoryIdx}
             href={`rubric_categories/${rubricCategory.slug}`}
-            className='grid-cols-2 font-semibold text-button-gray items-center'
+            className='flex flex-col font-semibold text-button-gray items-center'
           >
-            {rubricCategory.name}
-            <div className='text-button-gray-light text-sm pl-2'>
-              {format('rubric-category.weight')}: {rubricCategory.weight}
+            <div className='flex flex-row gap-3'>
+              {rubricCategory.name}
+              <div className='text-button-gray-light text-sm ml-auto'>
+                {format('rubric-category.weight')}: {rubricCategory.weight}
+              </div>
             </div>
           </Card>
         )) : (
@@ -37,15 +39,25 @@ const RubricCategoryList = ({ rubricCategoryList }) => {
 }
 
 const RubricCategoryListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterContext)
+  const { setResultCounts } = useContext(FilterContext)
   const { search } = useContext(UserFilterContext)
 
   const { loading, error, data } = useQuery(RUBRIC_CATEGORIES_LIST_QUERY, {
     variables: { search },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.rubric-categories']]: data.rubricCategories.totalCount } })
-    }
+    fetchPolicy: 'network-only',
+    nextFetchPolicy: 'cache-first'
   })
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.rubric-categories']]: data.rubricCategories.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />
@@ -55,11 +67,7 @@ const RubricCategoryListQuery = () => {
     return <NotFound />
   }
 
-  return (
-    <div className='px-2 mt-3 pb-8 max-w-catalog mx-auto'>
-      <RubricCategoryList rubricCategoryList={data.rubricCategories.nodes} />
-    </div>
-  )
+  return <RubricCategoryList rubricCategoryList={data.rubricCategories.nodes} />
 }
 
 export default RubricCategoryListQuery

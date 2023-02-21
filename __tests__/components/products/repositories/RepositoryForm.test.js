@@ -1,14 +1,11 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import { UPDATE_PRODUCT_REPOSITORY } from '../../../../mutations/product'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  render
-} from '../../../test-utils'
+import { render } from '../../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../../utils/CustomMockedProvider'
 import RepositoryForm from '../../../../components/products/repositories/RepositoryForm'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../../utils/nextMockImplementation'
 import {
   productRepository,
   productSlug,
@@ -16,21 +13,14 @@ import {
   productRepositoryVariables
 } from './data/RepositoryForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('RepositoryForm component.', () => {
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
   const PRODUCT_REPOSITORY_NAME_TEST_ID = 'product-repository-name'
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
 
-  beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
-  })
-
   describe('Should match snapshot:', () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     test('Create.', () => {
       const { container } = render(
         <CustomMockedProvider>
@@ -41,7 +31,7 @@ describe('RepositoryForm component.', () => {
     })
 
     test('Edit.', () => {
-      mockSessionImplementation(true)
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
       const { container } = render(
         <CustomMockedProvider>
           <RepositoryForm productRepository={productRepository} productSlug={productSlug} />
@@ -79,7 +69,9 @@ describe('RepositoryForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test repository name')
     expect(getByTestId(PRODUCT_REPOSITORY_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await user.clear(screen.getByLabelText(/Name/))
+    await act(async () => waitFor(() => {
+      user.clear(screen.getByLabelText(/Name/))
+    }))
     expect(getByTestId(PRODUCT_REPOSITORY_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test repository name 2')
@@ -98,14 +90,15 @@ describe('RepositoryForm component.', () => {
       null,
       updateProductRepositorySuccess
     )
-    const { getByTestId } = render(
+    const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockUpdateProductRepository]}>
         <RepositoryForm productRepository={productRepository} productSlug={productSlug} />
       </CustomMockedProvider>
     )
     await act(async () => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      await screen.findByText('Repository submitted successfully')
     })
+    await screen.findByText('Repository submitted successfully')
+    expect(container).toMatchSnapshot()
   })
 })

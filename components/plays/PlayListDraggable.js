@@ -1,36 +1,14 @@
-import { useRef, useCallback, useContext, useEffect, useState } from 'react'
+import { useRef, useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { gql, useMutation } from '@apollo/client'
 import { useDrag, useDrop } from 'react-dnd'
 import parse from 'html-react-parser'
 import update from 'immutability-helper'
 import { PlayPreviewDispatchContext } from './PlayPreviewContext'
 import { PlayListContext, PlayListDispatchContext } from './PlayListContext'
 
-const UPDATE_PLAY_ORDER = gql`
-  mutation (
-    $playbookSlug: String!,
-    $playSlug: String!,
-    $operation: String!,
-    $distance: Int!
-  ) {
-    updatePlayOrder (
-      playbookSlug: $playbookSlug,
-      playSlug: $playSlug,
-      operation: $operation,
-      distance: $distance
-    ) {
-      play {
-        id
-        slug
-      }
-    }
-  }
-`
-
 const DraggableCard = ({ id, play, index, movePlay, unassignPlay, previewPlay }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const ref = useRef(null)
 
@@ -101,24 +79,6 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay, previewPlay })
     border border-dial-gray border-transparent hover:border-dial-purple-light border-opacity-80
   `
 
-  const shortenedDescription = (() => {
-    let returnValue = ''
-    if (play.playDescription) {
-      // Try getting the first non empty description string for the card. This is needed to make sure
-      // the movable card doesn't use the whole text data of the description. That will make the moveable
-      // card yuge.
-      let currentIndex = 0
-      while (!returnValue.trim() && currentIndex >= 0) {
-        const currentNewLineIndex = play.playDescription.description.indexOf('\n', currentIndex)
-        const substringIndex = currentNewLineIndex >= 0 && currentNewLineIndex <= 80 ? currentNewLineIndex : 80
-        returnValue = play.playDescription.description.substring(currentIndex, substringIndex)
-        currentIndex = currentNewLineIndex
-      }
-    }
-
-    return returnValue
-  })()
-
   return (
     <div style={{ opacity }} data-handler-id={handlerId} className='inline overflow-hidden'>
       <div className='flex flex-row gap-3'>
@@ -132,8 +92,8 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay, previewPlay })
               // Manual alignment for the description because can't do my-auto to center the text.
               // The original text is large and we're using playbook-list-description to force it to become 1 line.
             }
-            <div className='w-full single-line-description whitespace-nowrap overflow-hidden text-ellipsis fr-view my-1'>
-              {parse(shortenedDescription)}
+            <div className='w-full line-clamp-1 fr-view my-1'>
+              {play.playDescription && parse(play.playDescription.description)}
             </div>
             <div className='w-2/6 my-auto flex gap-2 text-sm'>
               <button
@@ -164,54 +124,16 @@ const DraggableCard = ({ id, play, index, movePlay, unassignPlay, previewPlay })
 
 const PlayListDraggable = ({ playbook }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-
-  const [draggedPlay, setDraggedPlay] = useState([-1, -1])
-  const [unassignedPlay, setUnassignedPlay] = useState('')
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { currentPlays } = useContext(PlayListContext)
   const { setCurrentPlays } = useContext(PlayListDispatchContext)
   const { setPreviewSlug, setPreviewContext, setPreviewDisplayed } = useContext(PlayPreviewDispatchContext)
 
-  const [updatePlayOrder] = useMutation(UPDATE_PLAY_ORDER)
-
-  useEffect(() => {
-    // Watch the unassigned play and delete them after render.
-    if (unassignedPlay) {
-      setCurrentPlays(currentPlays.filter(
-        currentPlay => currentPlay.slug !== unassignedPlay.slug)
-      )
-      if (playbook) {
-        updatePlayOrder({
-          variables: {
-            playbookSlug: playbook.slug,
-            playSlug: unassignedPlay.slug,
-            operation: 'UNASSIGN',
-            distance: 0
-          }
-        })
-      }
-    }
-  }, [unassignedPlay])
-
-  useEffect(() => {
-    const [dragIndex, hoverIndex] = draggedPlay
-    if (playbook && dragIndex >= 0 && hoverIndex >= 0) {
-      updatePlayOrder({
-        variables: {
-          playbookSlug: playbook.slug,
-          playSlug: currentPlays[hoverIndex].slug,
-          operation: 'SWAP',
-          distance: hoverIndex - dragIndex
-        }
-      })
-    }
-  }, [draggedPlay])
-
-  const unassignPlay = (play) => {
-    // Mark play as un-assigned. This will trigger deletion from the context component.
-    setUnassignedPlay(play)
-  }
+  const unassignPlay = useCallback(
+    (play) => setCurrentPlays(currentPlays.filter((currentPlay) => currentPlay.slug !== play.slug)),
+    [currentPlays, setCurrentPlays]
+  )
 
   const previewPlay = useCallback((play) => {
     setPreviewDisplayed(true)
@@ -219,19 +141,22 @@ const PlayListDraggable = ({ playbook }) => {
     setPreviewSlug(play.slug)
   }, [playbook, setPreviewContext, setPreviewSlug, setPreviewDisplayed])
 
-  const movePlay = useCallback((dragIndex, hoverIndex) => {
-    setCurrentPlays((prevCards) => update(prevCards, {
-      $splice: [
-        [dragIndex, 1],
-        [hoverIndex, 0, prevCards[dragIndex]]
-      ]
-    }))
-    setDraggedPlay([dragIndex, hoverIndex])
-  }, [setCurrentPlays])
+  const movePlay = useCallback(
+    (dragIndex, hoverIndex) =>
+      setCurrentPlays((prevCards) =>
+        update(prevCards, {
+          $splice: [
+            [dragIndex, 1],
+            [hoverIndex, 0, prevCards[dragIndex]]
+          ]
+        })
+      ),
+    [setCurrentPlays]
+  )
 
   const renderCard = useCallback((play, index) => (
     <DraggableCard key={index} id={play.id} {...{ index, play, movePlay, unassignPlay, previewPlay }} />
-  ), [movePlay, previewPlay])
+  ), [movePlay, previewPlay, unassignPlay])
 
   useEffect(() => {
     if (playbook) {

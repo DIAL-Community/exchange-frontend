@@ -1,26 +1,46 @@
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 
 const RepositoryInfo = ({ product }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   useEffect(() => {
     ReactTooltip.rebuild()
   })
 
-  const currVersion = (product.statistics.data && product.statistics.data.repository && product.statistics.data.repository.releases && product.statistics.data.repository.releases.edges[0]) ? product.statistics.data.repository.releases.edges[0].node.name : null
+  const currVersion = (
+    product.statistics.data &&
+    product.statistics.data.repository &&
+    product.statistics.data.repository.releases &&
+    product.statistics.data.repository.releases.edges[0])
+    ? product.statistics.data.repository.releases.edges[0].node.name
+    : null
 
   return (
     <>
       <div className='pb-5 pr-5 text-ellipsis overflow-hidden'>
         <div className='h5 pb-1'>{format('product.website')}</div>
-        <a className='text-dial-blue text-sm' href={`https://${product.website}`} target='_blank' rel='noreferrer'>{product.website}</a>
+        <a
+          className='text-dial-blue text-sm'
+          href={`//${product.website}`}
+          target='_blank'
+          rel='noreferrer'
+        >
+          {product.website}
+        </a>
       </div>
       <div className='pb-5 pr-5 text-ellipsis overflow-hidden'>
         <div className='h5 pb-1'>{format('product.repository')}</div>
-        <a className='text-dial-blue text-sm' href={`${product.repository}`} target='_blank' rel='noreferrer'>{product.repository}</a>
+        <a
+          className='text-dial-blue text-sm'
+          href={`${product.repository}`}
+          target='_blank'
+          rel='noreferrer'
+        >
+          {product.repository}
+        </a>
       </div>
       <div className='pb-5 pr-5 grid grid-cols-2'>
         <div>

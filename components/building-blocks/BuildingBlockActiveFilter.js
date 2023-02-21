@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
@@ -17,7 +17,7 @@ const BuildingBlockActiveFilter = () => {
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { showMature, sdgs, useCases, workflows } = useContext(BuildingBlockFilterContext)
   const { setShowMature, setSDGs, setUseCases, setWorkflows } = useContext(BuildingBlockFilterDispatchContext)
@@ -51,7 +51,13 @@ const BuildingBlockActiveFilter = () => {
     const workflowFilters = workflows.map(workflow => `workflows=${workflow.value}--${workflow.label}`)
 
     const activeFilter = 'shareCatalog=true'
-    const filterParameters = [activeFilter, showMatureFilter, ...sdgFilters, ...useCaseFilters, ...workflowFilters].filter(f => f).join('&')
+    const filterParameters = [
+      activeFilter,
+      showMatureFilter,
+      ...sdgFilters,
+      ...useCaseFilters,
+      ...workflowFilters
+    ].filter(f => f).join('&')
 
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
@@ -71,7 +77,7 @@ const BuildingBlockActiveFilter = () => {
   })
 
   return (
-    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
+    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`}>
       <div className='flex flex-row flex-wrap px-3 gap-2'>
         {showMature && (
           <div className='py-1'>

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { ToastContext } from '../../lib/ToastContext'
 
@@ -33,7 +33,7 @@ const SharableLink = ({ sharableLink }) => {
   const [shareStatus, setShareStatus] = useState('')
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { showToast } = useContext(ToastContext)
 
@@ -60,7 +60,7 @@ const SharableLink = ({ sharableLink }) => {
     } else if (shareStatus === 'failed') {
       showToast(format('app.shareFailed'), 'error', 'top-center', 2000)
     }
-  }, [shareStatus])
+  }, [shareStatus, showToast, format])
 
   return (
     <>
@@ -69,7 +69,7 @@ const SharableLink = ({ sharableLink }) => {
           <div className='opacity-50'>
             <a
               href='/generate-sharable-link' onClick={copyToClipboard}
-              className='border-b-2 border-transparent hover:border-dial-yellow my-auto'
+              className='border-b-2 border-transparent hover:border-dial-yellow'
             >
               {format('app.shareLink')}
             </a>

@@ -4,8 +4,7 @@ const ProductFilterContext = createContext()
 const ProductFilterDispatchContext = createContext()
 
 const ProductFilterProvider = ({ children }) => {
-  const [withMaturity, setWithMaturity] = useState(false)
-  const [forCovid, setForCovid] = useState(false)
+  const [isEndorsed, setIsEndorsed] = useState(false)
   const [productDeployable, setProductDeployable] = useState(false)
   const [origins, setOrigins] = useState([])
   const [countries, setCountries] = useState([])
@@ -24,9 +23,8 @@ const ProductFilterProvider = ({ children }) => {
   const [sortDirection, setSortDirection] = useState('asc')
 
   const productFilterValues = {
-    withMaturity,
+    isEndorsed,
     productDeployable,
-    forCovid,
     origins,
     countries,
     sectors,
@@ -43,9 +41,8 @@ const ProductFilterProvider = ({ children }) => {
     sortDirection
   }
   const productFilterDispatchValues = {
-    setWithMaturity,
+    setIsEndorsed,
     setProductDeployable,
-    setForCovid,
     setOrigins,
     setCountries,
     setSectors,

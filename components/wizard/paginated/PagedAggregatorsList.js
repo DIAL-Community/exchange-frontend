@@ -1,6 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
+import { useIntl } from 'react-intl'
 import OrganizationCard from '../../organizations/OrganizationCard'
 import { Loading, Error } from '../../shared/FetchStatus'
 
@@ -20,7 +21,6 @@ const AGGREGATORS_QUERY = gql`
       services: $services,
       search: $search
     ) {
-      __typename
       totalCount
       pageInfo {
         endCursor
@@ -40,6 +40,9 @@ const AGGREGATORS_QUERY = gql`
 `
 
 const PagedAggregatorsList = ({ countries, services }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id) => formatMessage({ id }), [formatMessage])
+
   const [itemOffset, setItemOffset] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
   const { loading, error, data, fetchMore } = useQuery(AGGREGATORS_QUERY, {
@@ -88,12 +91,12 @@ const PagedAggregatorsList = ({ countries, services }) => {
       }
       <ReactPaginate
         breakLabel='...'
-        nextLabel='Next >'
+        nextLabel={format('paginatedSection.page.next.label')}
         forcePage={currentPage}
         onPageChange={handlePageClick}
         pageRangeDisplayed={1}
         pageCount={Math.ceil((itemOffset + data.paginatedAggregators.totalCount) / DEFAULT_PAGE_SIZE)}
-        previousLabel='< Previous'
+        previousLabel={format('paginatedSection.page.previous.label')}
         renderOnZeroPageCount={null}
         breakLinkClassName='relative block py-1.5 px-3 border border-dial-gray -ml-px'
         containerClassName='flex mb-3 mt-3 ml-auto border-3 border-transparent'

@@ -126,14 +126,16 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   >
                     Website
                   </label>
-                  <input
-                    class="w-full"
-                    id="website"
-                    name="website"
-                    placeholder="Website"
-                    type="text"
-                    value=""
-                  />
+                  <div
+                    class="border border-transparent url-input bg-white flex items-center"
+                  >
+                    <input
+                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      id="website"
+                      placeholder="Website"
+                      value=""
+                    />
+                  </div>
                 </div>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
@@ -148,6 +150,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -157,7 +160,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -182,6 +185,11 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="text-sm w-full text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
                 <label
                   class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
@@ -226,7 +234,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-2-live-region"
+                      id="react-select-:r0:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -235,18 +243,18 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__single-value css-qc6sy-singleValue"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
                           None
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -257,7 +265,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                             autocomplete="off"
                             autocorrect="off"
                             class="react-select__input"
-                            id="react-select-2-input"
+                            id="react-select-id-endorserLevel"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -271,11 +279,11 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             aria-hidden="true"
@@ -292,11 +300,6 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                         </div>
                       </div>
                     </div>
-                    <input
-                      name="endorserLevel"
-                      type="hidden"
-                      value="none"
-                    />
                   </div>
                 </div>
                 <label
@@ -342,7 +345,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -562,14 +565,21 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   >
                     Website
                   </label>
-                  <input
-                    class="w-full"
-                    id="website"
-                    name="website"
-                    placeholder="Website"
-                    type="text"
-                    value=""
-                  />
+                  <div
+                    class="border border-transparent url-input bg-white flex items-center"
+                  >
+                    <span
+                      class="select-none text-dial-gray"
+                    >
+                      https://
+                    </span>
+                    <input
+                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      id="website"
+                      placeholder="Website"
+                      value="testorganization.com"
+                    />
+                  </div>
                 </div>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
@@ -584,6 +594,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     class="flex items-center"
                   >
                     <input
+                      accept=".jpg,.jpeg,.png,.bmp"
                       class="bg-white file:hidden w-full pr-10"
                       data-testid="file-uploader"
                       name="imageFile"
@@ -593,7 +604,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -618,6 +629,11 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       </span>
                     </div>
                   </label>
+                  <div
+                    class="text-sm w-full text-dial-gray-dark"
+                  >
+                    Note: Supported file types are jpg, png, and bmp
+                  </div>
                 </div>
                 <label
                   class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
@@ -662,7 +678,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-3-live-region"
+                      id="react-select-:r1:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -671,18 +687,18 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-16oyauc-control"
                     >
                       <div
-                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__single-value css-qc6sy-singleValue"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
                           None
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -693,7 +709,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                             autocomplete="off"
                             autocorrect="off"
                             class="react-select__input"
-                            id="react-select-3-input"
+                            id="react-select-id-endorserLevel"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -707,11 +723,11 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             aria-hidden="true"
@@ -728,11 +744,6 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                         </div>
                       </div>
                     </div>
-                    <input
-                      name="endorserLevel"
-                      type="hidden"
-                      value="none"
-                    />
                   </div>
                 </div>
                 <label
@@ -778,7 +789,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"

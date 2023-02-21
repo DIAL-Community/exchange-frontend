@@ -1,12 +1,13 @@
 import { useCallback, useEffect } from 'react'
 import Head from 'next/head'
 import { ApolloProvider } from '@apollo/client'
-import { Provider } from 'next-auth/client'
+import { SessionProvider } from 'next-auth/react'
 import { IntlProvider, useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DefaultSeo } from 'next-seo'
+import { CookieConsentProvider } from '@use-cookie-consent/react'
 import * as translations from '../translations'
 import * as gtag from '../lib/gtag'
 import * as matomo from '../lib/matomo'
@@ -25,8 +26,15 @@ import '../styles/card.css'
 import '../styles/playbook.css'
 import '../styles/infinite.css'
 import '../styles/govstack.css'
+import '../styles/prismjs-highlight.css'
+import '../styles/swagger-ui.css'
+import '../styles/overrides.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'handsontable/dist/handsontable.full.css'
+import 'intro.js/introjs.css'
+import 'intro.js/themes/introjs-modern.css'
+import 'react-comments-section/dist/index.css'
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import CatalogContext from '../lib/CatalogContext'
 import CandidateContext from '../lib/CandidateContext'
 import { ToastContextProvider } from '../lib/ToastContext'
@@ -111,13 +119,15 @@ const App = ({ Component, pageProps }) => {
       </Head>
       <IntlProvider locale={locale} defaultLocale='en' messages={messages}>
         <ApolloProvider client={client}>
-          <Provider session={pageProps.session}>
-            <DndProvider backend={HTML5Backend}>
-              <ApplicationDefaultContexts>
-                <Component {...pageProps} />
-              </ApplicationDefaultContexts>
-            </DndProvider>
-          </Provider>
+          <SessionProvider session={pageProps.session} refetchInterval={5 * 60}>
+            <CookieConsentProvider>
+              <DndProvider backend={HTML5Backend}>
+                <ApplicationDefaultContexts>
+                  <Component {...pageProps} />
+                </ApplicationDefaultContexts>
+              </DndProvider>
+            </CookieConsentProvider>
+          </SessionProvider>
         </ApolloProvider>
       </IntlProvider>
     </>

@@ -1,5 +1,4 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { Fragment, useContext, useState } from 'react'
 import { FaCode, FaCopy } from 'react-icons/fa'
@@ -10,6 +9,8 @@ import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
 import CommentsCount from '../shared/CommentsCount'
 import { ObjectType } from '../../lib/constants'
+import { useUser } from '../../lib/hooks'
+import DeletePlaybook from './DeletePlaybook'
 
 const PlaybookEmbedDetail = ({ displayed, setDisplayed }) => {
   const { formatMessage } = useIntl()
@@ -100,11 +101,11 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation, commentsSect
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const [session] = useSession()
+  const { user, isAdminUser } = useUser()
   const [displayEmbedDialog, setDisplayEmbedDialog] = useState(false)
 
   const generateEditLink = () => {
-    if (!session.user) {
+    if (!user) {
       return '/edit-not-available'
     }
 
@@ -127,27 +128,33 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation, commentsSect
   return (
     <>
       <PlaybookEmbedDetail displayed={displayEmbedDialog} setDisplayed={setDisplayEmbedDialog} />
-      <div className='flex'>
+      <div className='flex flex-col xl:flex-row'>
         <div className='hidden lg:block'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
-        <div className='mt-4 ml-auto flex items-center'>
+        <div className='ml-auto flex items-center gap-3'>
           <CommentsCount
             commentsSectionRef={commentsSectionRef}
             objectId={playbook.id}
             objectType={ObjectType.PLAYBOOK}
           />
-          <a href={generatePdfLink()} target='_blank' rel='noreferrer' className='bg-dial-blue px-2 py-0.5 ml-3 rounded text-white mr-3'>
+          <a
+            href={generatePdfLink()}
+            target='_blank'
+            rel='noreferrer'
+            className='bg-dial-blue px-2 py-0.5 rounded text-white'
+          >
             <img src='/icons/pdf.svg' className='inline mr-2 pb-1' alt='Print PDF' height='12px' width='12px' />
             <span className='text-sm px-2'>{format('app.print-pdf')}</span>
           </a>
           {allowEmbedCreation &&
-            <a onClick={openEmbedDialog} className='cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white mr-3'>
+            <a onClick={openEmbedDialog} className='cursor-pointer bg-dial-blue px-2 py-0.5 rounded text-white'>
               <FaCode className='inline' />
               <span className='text-sm px-2'>{format('playbook.openEmbedDialog')}</span>
             </a>
           }
-          {session?.user.canEdit && <EditButton type='link' href={generateEditLink()} />}
+          {isAdminUser && <EditButton type='link' href={generateEditLink()} />}
+          {isAdminUser && <DeletePlaybook playbook={playbook} />}
         </div>
       </div>
     </>

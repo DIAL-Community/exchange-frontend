@@ -1,10 +1,11 @@
 import { useIntl, FormattedDate } from 'react-intl'
 import { FaStar, FaEye, FaFile, FaCalendar, FaCalendarAlt, FaCode, FaCheck } from 'react-icons/fa'
 import { CgGitFork } from 'react-icons/cg'
+import { useCallback } from 'react'
 
 const RepositoryDetail = ({ repositoryData, languageData }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const lastUpdated = repositoryData && new Date(repositoryData.updatedAt)
   const lastThreeMonths = new Date()
@@ -24,15 +25,21 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
             {format('product.repository-info')}
             {
               lastUpdated >= lastThreeMonths &&
-                (<div className='inline py-1 px-2 ml-4 h5 text-white bg-dial-teal rounded'>{format('product.very-active')}</div>)
+                <div className='inline py-1 px-2 ml-4 h5 text-white bg-dial-teal rounded'>
+                  {format('product.very-active')}
+                </div>
             }
             {
-              (lastUpdated > lastYear && lastUpdated < lastThreeMonths) &&
-                (<div className='inline py-1 px-2 ml-4 h5 text-white bg-not-active rounded'>{format('product.not-very-active')}</div>)
+              lastUpdated > lastYear && lastUpdated < lastThreeMonths &&
+                <div className='inline py-1 px-2 ml-4 h5 text-white bg-not-active rounded'>
+                  {format('product.not-very-active')}
+                </div>
             }
             {
               lastUpdated < lastYear &&
-                (<div className='inline py-1 px-2 ml-4 h5 text-white bg-button-gray-light rounded'>{format('product.inactive')}</div>)
+                <div className='inline py-1 px-2 ml-4 h5 text-white bg-button-gray-light rounded'>
+                  {format('product.inactive')}
+                </div>
             }
           </div>
           <div className='card-body pt-3'>
@@ -56,12 +63,29 @@ const RepositoryDetail = ({ repositoryData, languageData }) => {
                   : (<div>{format('product.no-version-data')}</div>)}
               </div>
               <div className='pb-4'>
-                <div><FaCalendar className='inline mr-2' />{format('product.created')}</div>
-                <div><FormattedDate value={new Date(repositoryData.createdAt)} year='numeric' month='long' day='2-digit' /></div>
+                <div>
+                  <FaCalendar className='inline mr-2' />{format('product.created')}</div>
+                <div>
+                  <FormattedDate
+                    value={new Date(repositoryData.createdAt)}
+                    year='numeric'
+                    month='long'
+                    day='2-digit'
+                  />
+                </div>
               </div>
               <div className='pb-4'>
-                <div><FaCalendarAlt className='inline mr-2' />{format('product.last-updated')}</div>
-                <div><FormattedDate value={new Date(repositoryData.updatedAt)} year='numeric' month='long' day='2-digit' /></div>
+                <div>
+                  <FaCalendarAlt className='inline mr-2' />{format('product.last-updated')}
+                </div>
+                <div>
+                  <FormattedDate
+                    value={new Date(repositoryData.updatedAt)}
+                    year='numeric'
+                    month='long'
+                    day='2-digit'
+                  />
+                </div>
               </div>
               <div className='pb-4'>
                 <div><FaCode className='inline mr-2' />{format('product.open-pr')}</div>

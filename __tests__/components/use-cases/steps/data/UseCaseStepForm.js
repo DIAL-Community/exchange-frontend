@@ -16,6 +16,13 @@ export const useCaseStep = {
       slug: 'tp'
     }
   ],
+  datasets: [
+    {
+      id: 1,
+      name: 'Test Dataset',
+      slug: 'td'
+    }
+  ],
   buildingBlocks: [
     {
       id: 1,
@@ -29,8 +36,10 @@ export const createUseCaseStepSuccess = {
   data: {
     createUseCaseStep: {
       useCaseStep: {
+        id: 1,
         slug: 'test_use_case_step',
         useCase: {
+          id: 1,
           slug: 'test_use_case'
         }
       },

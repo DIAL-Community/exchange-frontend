@@ -1,19 +1,20 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/client'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
 import { ObjectType } from '../../lib/constants'
 import CommentsCount from '../shared/CommentsCount'
+import { useUser } from '../../lib/hooks'
 
 const ProjectDetailLeft = ({ project, canEdit, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-  const [session] = useSession()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+  const { user } = useUser()
   const { locale } = useRouter()
 
   const generateEditLink = () => {
-    if (!session.user) {
+    if (!user) {
       return '/edit-not-available'
     }
 

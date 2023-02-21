@@ -17,6 +17,9 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
       >
         Products
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -38,7 +41,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-4-live-region"
+            id="react-select-:r2:-live-region"
           />
           <span
             aria-atomic="false"
@@ -47,31 +50,31 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-4-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
+                id="react-select-:r2:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-4-placeholder"
+                  aria-describedby="react-select-:r2:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-4-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 0; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -85,11 +88,11 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"
@@ -207,23 +210,27 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
       >
         Products
       </div>
-      <button
-        class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-        data-testid="edit-button"
-        type="button"
+      <div
+        class="gap-3"
       >
-        <img
-          alt="Edit"
-          height="12px"
-          src="/icons/edit.svg"
-          width="12px"
-        />
-        <span
-          class="text-sm"
+        <button
+          class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          data-testid="edit-button"
+          type="button"
         >
-          Edit
-        </span>
-      </button>
+          <img
+            alt="Edit"
+            height="12px"
+            src="/icons/edit.svg"
+            width="12px"
+          />
+          <span
+            class="text-sm"
+          >
+            Edit
+          </span>
+        </button>
+      </div>
     </div>
     <div
       class="grid grid-cols-1"
@@ -232,50 +239,50 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
         href="/products/tp"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-product hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray hover:border-transparent"
           >
             <div
               class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
               >
                 <div
-                  style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
+                  class="block w-8 relative"
                 >
-                  <img
-                    alt="Logo for: Test Product"
-                    data-nimg="fill"
-                    decoding="async"
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                  />
-                  <noscript />
+                  <span
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                  >
+                    <img
+                      alt="Logo for: Test Product"
+                      data-nimg="fill"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                    />
+                    <noscript />
+                  </span>
                 </div>
                 <div
-                  class="ml-8 w-4/5 h-3/5 font-semibold relative 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                  class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
                 >
                   Test Product
                 </div>
               </div>
               <div
-                class="w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-8/12 lg:w-4/12 text-sm lg:text-base my-auto text-dial-purple line-clamp-1"
               />
               <div
-                class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
-              />
+                class="absolute top-4 lg:top-1/3 right-4 lg:w-1/12 lg:justify-end"
+              >
+                <div
+                  class="flex gap-x-2"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -302,6 +309,9 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
       >
         Products
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -323,7 +333,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-2-live-region"
+            id="react-select-:r0:-live-region"
           />
           <span
             aria-atomic="false"
@@ -332,31 +342,31 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-2-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
+                id="react-select-:r0:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-2-placeholder"
+                  aria-describedby="react-select-:r0:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-2-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -370,11 +380,11 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"
@@ -468,6 +478,9 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
       >
         Products
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="grid grid-cols-1"
@@ -476,50 +489,50 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
         href="/products/tp"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-product hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray hover:border-transparent"
           >
             <div
               class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
               style="min-height: 4.5rem;"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
               >
                 <div
-                  style="display: block; overflow: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; margin: 0px;"
+                  class="block w-8 relative"
                 >
-                  <img
-                    alt="Logo for: Test Product"
-                    data-nimg="fill"
-                    decoding="async"
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                  />
-                  <noscript />
+                  <span
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                  >
+                    <img
+                      alt="Logo for: Test Product"
+                      data-nimg="fill"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                    />
+                    <noscript />
+                  </span>
                 </div>
                 <div
-                  class="ml-8 w-4/5 h-3/5 font-semibold relative 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                  class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
                 >
                   Test Product
                 </div>
               </div>
               <div
-                class="w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-8/12 lg:w-4/12 text-sm lg:text-base my-auto text-dial-purple line-clamp-1"
               />
               <div
-                class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
-              />
+                class="absolute top-4 lg:top-1/3 right-4 lg:w-1/12 lg:justify-end"
+              >
+                <div
+                  class="flex gap-x-2"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -546,6 +559,9 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should remove a 
       >
         Products
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -567,7 +583,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should remove a 
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-3-live-region"
+            id="react-select-:r1:-live-region"
           />
           <span
             aria-atomic="false"
@@ -576,31 +592,31 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should remove a 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-3-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
+                id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-3-placeholder"
+                  aria-describedby="react-select-:r1:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-3-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -614,11 +630,11 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should remove a 
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"

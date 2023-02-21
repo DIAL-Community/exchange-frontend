@@ -1,22 +1,15 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  render,
-  waitForAllEffects,
-  waitForAllEffectsAndSelectToLoad
-} from '../../test-utils'
+import { render, waitForAllEffects, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import UseCaseForm from '../../../components/use-cases/UseCaseForm'
 import { SECTOR_SEARCH_QUERY } from '../../../queries/sector'
 import { CREATE_USE_CASE } from '../../../mutations/use-case'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { createUseCaseSuccess, sectors, useCase } from './data/UseCaseForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for UseCaseForm component.', () => {
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
   const USE_CASE_NAME_TEST_ID = 'use-case-name'
@@ -29,77 +22,84 @@ describe('Unit tests for UseCaseForm component.', () => {
     name: 'Test Use Case',
     slug: 'test_use_case',
     sectorSlug: 'test_sector',
-    maturity: 'BETA',
+    maturity: 'DRAFT',
     description: 'Test Use Case Description'
   }
 
-  beforeAll(mockRouterImplementation)
-
   test('Should render Unauthorized component for unauthorized user.', async () => {
-    mockSessionImplementation()
+    mockNextAuthUseSession(statuses.UNAUTHENTICATED)
     const { container } = render(
       <CustomMockedProvider>
         <UseCaseForm />
       </CustomMockedProvider>
     )
     await waitForAllEffects()
+    expect(container).toHaveTextContent('You are not authorized to view this page')
     expect(container).toMatchSnapshot()
   })
 
   test('Should match snapshot - create.', async () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
     const { container } = render(
       <CustomMockedProvider mocks={[mockSectors]} addTypename={false}>
         <UseCaseForm />
       </CustomMockedProvider>
     )
-    await waitForAllEffectsAndSelectToLoad(container)
+    await waitForAllEffects()
+    expect(container).toHaveTextContent('You are not authorized to view this page')
     expect(container).toMatchSnapshot()
   })
 
   test('Should match snapshot - edit.', async () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const { container } = render(
       <CustomMockedProvider>
         <UseCaseForm useCase={useCase} />
       </CustomMockedProvider>
     )
-    await waitForAllEffectsAndSelectToLoad(container)
+    await waitForAllEffects()
     expect(container).toMatchSnapshot()
   })
 
   test('Should show validation errors for mandatory fields on submit.', async () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockSectors]} addTypename={false}>
         <UseCaseForm />
       </CustomMockedProvider>
     )
-    await waitForAllEffectsAndSelectToLoad(container)
+
+    await waitForAllEffects()
 
     expect(getByTestId(USE_CASE_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_SECTOR_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_MATURITY_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_DESCRIPTION_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await waitForAllEffects()
+
     expect(getByTestId(USE_CASE_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_SECTOR_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_MATURITY_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
+
+    expect(container).toMatchSnapshot()
   })
 
   test('Should show validation errors for mandatory fields on submit and hide them on input value change.', async () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const user = userEvent.setup()
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockSectors]} addTypename={false}>
         <UseCaseForm />
       </CustomMockedProvider>
     )
-    await waitForAllEffectsAndSelectToLoad(container)
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await waitForAllEffects()
+
+    act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await waitForAllEffectsAndSelectToLoad(container)
     expect(getByTestId(USE_CASE_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_SECTOR_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_MATURITY_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -107,13 +107,17 @@ describe('Unit tests for UseCaseForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test user case name')
     expect(getByTestId(USE_CASE_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await user.clear(screen.getByLabelText(/Name/))
+    await act(async () => waitFor(() => {
+      user.clear(screen.getByLabelText(/Name/))
+    }))
     expect(getByTestId(USE_CASE_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test user case name 2')
     expect(getByTestId(USE_CASE_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await waitForAllEffectsAndSelectToLoad(container)
+
     expect(getByTestId(USE_CASE_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_SECTOR_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_MATURITY_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -123,6 +127,7 @@ describe('Unit tests for UseCaseForm component.', () => {
   })
 
   test('Should display success toast on submit.', async () => {
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const mockCreateUseCase = generateMockApolloData(
       CREATE_USE_CASE,
       mockCreateUseCaseVariables,
@@ -134,15 +139,15 @@ describe('Unit tests for UseCaseForm component.', () => {
         <UseCaseForm useCase={useCase} />
       </CustomMockedProvider>
     )
+    await waitForAllEffects()
+    act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     await waitForAllEffectsAndSelectToLoad(container)
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      await screen.findByText('Use Case submitted successfully')
-    })
+    await screen.findByText('Use Case submitted successfully')
+    expect(container).toMatchSnapshot()
   })
 
   test('Should display failure toast on submit.', async () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const errorMessage = 'An error occurred'
     const mockCreateUseCase = generateMockApolloData(
       CREATE_USE_CASE,
@@ -154,11 +159,11 @@ describe('Unit tests for UseCaseForm component.', () => {
         <UseCaseForm useCase={useCase} />
       </CustomMockedProvider>
     )
+    await waitForAllEffects()
+    act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     await waitForAllEffectsAndSelectToLoad(container)
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      await screen.findByText('Use Case submission failed')
-      await screen.findByText(errorMessage)
-    })
+    await screen.findByText('Use Case submission failed')
+    await screen.findByText(errorMessage)
+    expect(container).toMatchSnapshot()
   })
 })

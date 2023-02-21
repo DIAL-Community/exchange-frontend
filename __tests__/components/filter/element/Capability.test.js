@@ -1,23 +1,15 @@
 import { fireEvent } from '@testing-library/dom'
-import {
-  mockRouterImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../../utils/CustomMockedProvider'
 import { CapabilityAutocomplete } from '../../../../components/filter/element/Capability'
 import { CAPABILITY_SEARCH_QUERY } from '../../../../queries/capability'
+import { mockNextUseRouter } from '../../../utils/nextMockImplementation'
 import { capabilityOnly } from './data/CapabilityAutocomplete'
 
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the CapabilityAutocomplete component.', () => {
   const mockServices = generateMockApolloData(CAPABILITY_SEARCH_QUERY, { search: '' }, null, capabilityOnly)
   const CAPABILITY_SEARCH_TEST_ID = 'service-search'
-
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
 
   test('Should match snapshot', async () => {
     const { container } = render(

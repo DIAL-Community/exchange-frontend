@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useEffect, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 import EditableSection from '../shared/EditableSection'
@@ -11,6 +10,7 @@ import { UPDATE_ORGANIZATION_PROJECTS } from '../../mutations/organization'
 import { fetchSelectOptions } from '../../queries/utils'
 import ProjectCard from '../projects/ProjectCard'
 import { PROJECT_SEARCH_QUERY } from '../../queries/project'
+import { useUser } from '../../lib/hooks'
 
 const OrganizationDetailProjects = ({ organization, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -24,7 +24,7 @@ const OrganizationDetailProjects = ({ organization, canEdit }) => {
 
   const [updateOrganizationProjects, { data, loading }] = useMutation(UPDATE_ORGANIZATION_PROJECTS)
 
-  const [session] = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -61,8 +61,8 @@ const OrganizationDetailProjects = ({ organization, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateOrganizationProjects({
         variables: {

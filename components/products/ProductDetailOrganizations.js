@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { ToastContext } from '../../lib/ToastContext'
 import Select from '../shared/Select'
@@ -11,6 +10,7 @@ import OrganizationCard from '../organizations/OrganizationCard'
 import EditableSection from '../shared/EditableSection'
 import { UPDATE_PRODUCT_ORGANIZATION } from '../../mutations/product'
 import { ORGANIZATION_SEARCH_QUERY } from '../../queries/organization'
+import { useUser } from '../../lib/hooks'
 
 const ProductDetailOrganizations = ({ product, canEdit }) => {
 
@@ -25,20 +25,29 @@ const ProductDetailOrganizations = ({ product, canEdit }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateProductOrganizations, { data, loading }] = useMutation(UPDATE_PRODUCT_ORGANIZATION, {
+  const [updateProductOrganizations, { data, loading, reset }] = useMutation(UPDATE_PRODUCT_ORGANIZATION, {
     onError: () => {
-      setOrganizations(product.organizations)
       setIsDirty(false)
+      setOrganizations(product.organizations)
       showToast(format('toast.organizations.update.failure'), 'error', 'top-center')
+      reset()
     },
     onCompleted: (data) => {
-      setOrganizations(data.updateProductOrganizations.product.organizations)
-      setIsDirty(false)
-      showToast(format('toast.organizations.update.success'), 'success', 'top-center')
+      const { updateProductOrganizations: response } = data
+      if (response?.product && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setOrganizations(data.updateProductOrganizations.product.organizations)
+        showToast(format('toast.organizations.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setOrganizations(product.organizations)
+        showToast(format('toast.organizations.update.failure'), 'error', 'top-center')
+        reset()
+      }
     }
   })
 
-  const [session] = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -52,7 +61,10 @@ const ProductDetailOrganizations = ({ product, canEdit }) => {
   )
 
   const addOrganization = (organization) => {
-    setOrganizations([...organizations.filter(({ slug }) => slug !== organization.slug), { name: organization.label, slug: organization.slug }])
+    setOrganizations([
+      ...organizations.filter(({ slug }) => slug !== organization.slug),
+      { name: organization.label, slug: organization.slug }
+    ])
     setIsDirty(true)
   }
 
@@ -62,8 +74,8 @@ const ProductDetailOrganizations = ({ product, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateProductOrganizations({
         variables: {
@@ -88,7 +100,10 @@ const ProductDetailOrganizations = ({ product, canEdit }) => {
   const displayModeBody = organizations.length
     ? (
       <div className='card-title mb-3 text-dial-gray-dark'>
-        {organizations.map((organization, organizationIdx) => <OrganizationCard key={organizationIdx} organization={organization} listType='list' />)}
+        {organizations.map(
+          (organization, organizationIdx) =>
+            <OrganizationCard key={organizationIdx} organization={organization} listType='list' />
+        )}
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>

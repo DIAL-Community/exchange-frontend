@@ -2,11 +2,12 @@
 
 exports[`Unit tests for the CountryForm component. Should match snapshot - create. 1`] = `
 <div
-  aria-describedby="headlessui-description-5"
+  aria-describedby="headlessui-description-:r2:"
   aria-modal="true"
   class="fixed z-100"
+  data-headlessui-state="open"
   data-testid="dialog"
-  id="headlessui-dialog-1"
+  id="headlessui-dialog-:r0:"
   role="dialog"
 >
   <div
@@ -17,11 +18,13 @@ exports[`Unit tests for the CountryForm component. Should match snapshot - creat
   >
     <div
       class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col opacity-100 scale-100"
-      id="headlessui-dialog-panel-4"
+      data-headlessui-state="open"
+      id="headlessui-dialog-panel-:r1:"
     >
       <div
         class="bg-edit overflow-auto py-4 px-8 flex flex-col gap-3"
-        id="headlessui-description-5"
+        data-headlessui-state="open"
+        id="headlessui-description-:r2:"
       >
         <div
           class="flex justify-start text-xl"
@@ -91,11 +94,12 @@ exports[`Unit tests for the CountryForm component. Should match snapshot - creat
 
 exports[`Unit tests for the CountryForm component. Should match snapshot - edit. 1`] = `
 <div
-  aria-describedby="headlessui-description-10"
+  aria-describedby="headlessui-description-:r5:"
   aria-modal="true"
   class="fixed z-100"
+  data-headlessui-state="open"
   data-testid="dialog"
-  id="headlessui-dialog-7"
+  id="headlessui-dialog-:r3:"
   role="dialog"
 >
   <div
@@ -106,11 +110,13 @@ exports[`Unit tests for the CountryForm component. Should match snapshot - edit.
   >
     <div
       class="max-h-screen w-screen md:w-3/5 lg:w-3/5 xl:w-1/2 p-8 transform bg-white shadow-xl rounded-2xl flex flex-col opacity-100 scale-100"
-      id="headlessui-dialog-panel-9"
+      data-headlessui-state="open"
+      id="headlessui-dialog-panel-:r4:"
     >
       <div
         class="bg-edit overflow-auto py-4 px-8 flex flex-col gap-3"
-        id="headlessui-description-10"
+        data-headlessui-state="open"
+        id="headlessui-description-:r5:"
       >
         <div
           class="flex justify-start text-xl"

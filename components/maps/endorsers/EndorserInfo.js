@@ -1,13 +1,14 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { prependUrlWithProtocol } from '../../../lib/utilities'
 
 const EndorserInfo = (props) => {
   const { city, setOrganization } = props
 
   const router = useRouter()
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [active, setActive] = useState(city?.organizations[0].slug)
 
@@ -39,8 +40,12 @@ const EndorserInfo = (props) => {
               <div key={`${city.name}-${organization.name}`} className='hover:bg-gray-100 hover:text-gray-900'>
                 <div className='mx-4 py-2 border-b last:border-0'>
                   <a
-                    href={`expand-${organization.slug}`} onClick={(e) => toggleExpand(e, organization)}
-                    className={`${active === organization.slug ? 'font-semibold' : ''} text-sm text-gray-700 cursor-pointer block`}
+                    href={`expand-${organization.slug}`}
+                    onClick={(e) => toggleExpand(e, organization)}
+                    className={`
+                      ${active === organization.slug ? 'font-semibold' : ''}
+                      text-sm text-gray-700 cursor-pointer block
+                    `}
                   >
                     {organization.name}
                   </a>
@@ -52,7 +57,7 @@ const EndorserInfo = (props) => {
                             {
                               organization.website &&
                                 <div className='text-xs flex-grow text-dial-blue my-2'>
-                                  <a href={`//${organization.website}`} target='_blank' rel='noreferrer'>
+                                  <a href={prependUrlWithProtocol(organization.website)} target='_blank' rel='noreferrer'>
                                     {organization.website} ⧉
                                   </a>
                                 </div>
@@ -65,14 +70,21 @@ const EndorserInfo = (props) => {
                                     className='mr-2 h-6' src='/icons/digiprins/digiprins.png'
                                   />
                                   <div className='my-auto'>
-                                    {`${format('endorsement.year.text')} ${organization.whenEndorsed.substring(0, 4)}`.toUpperCase()}
+                                    {`
+                                      ${format('endorsement.year.text')}
+                                      ${organization.whenEndorsed.substring(0, 4)}
+                                    `.toUpperCase()}
                                   </div>
                                 </div>
                             }
                           </div>
                           <a
-                            href={organization.slug} onClick={(e) => openDetailPage(e, organization.slug)}
-                            className='py-1.5 text-center text-xs text-dial-blue bg-dial-blue-light bg-opacity-20 cursor-pointer'
+                            href={organization.slug}
+                            onClick={(e) => openDetailPage(e, organization.slug)}
+                            className={`
+                              py-1.5 text-center text-xs text-dial-blue
+                              bg-dial-blue-light bg-opacity-20 cursor-pointer
+                            `}
                           >
                             {format('map.endorsers.viewOrganization')} &gt;&gt;
                           </a>

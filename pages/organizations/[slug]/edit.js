@@ -52,9 +52,9 @@ const EditOrganization = () => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.organization) {
     return <NotFound />
   }
 
@@ -62,11 +62,13 @@ const EditOrganization = () => {
     <>
       <Header />
       {data && data.organization && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            {loadingUserSession ? <Loading /> : canEdit ? <OrganizationForm organization={data.organization} /> : <Unauthorized />}
-          </ClientOnly>
-        </div>
+        <ClientOnly>
+          {loadingUserSession
+            ? <Loading />
+            : canEdit
+              ? <OrganizationForm organization={data.organization} />
+              : <Unauthorized />}
+        </ClientOnly>
       )}
       <Footer />
     </>

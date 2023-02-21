@@ -1,14 +1,10 @@
 import { fireEvent } from '@testing-library/react'
 import Dialog, { DialogType } from '../../../components/shared/Dialog'
-import {
-  mockObserverImplementation,
-  mockRouterImplementation,
-  render
-} from '../../test-utils'
+import { mockObserverImplementation, render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the Dialog component.', () => {
   const DIALOG_TEST_ID = 'dialog'
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
@@ -19,7 +15,6 @@ describe('Unit test for the Dialog component.', () => {
   const mockOnClose = jest.fn()
 
   beforeAll(() => {
-    mockRouterImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 
@@ -90,7 +85,7 @@ describe('Unit test for the Dialog component.', () => {
         </CustomMockedProvider>
       )
       fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID))
-      expect(mockOnClose).toBeCalled()
+      expect(mockOnClose).toHaveBeenCalled()
     })
 
     test('the onClose function after clicking the "Close" button.', () => {
@@ -106,7 +101,7 @@ describe('Unit test for the Dialog component.', () => {
         </CustomMockedProvider>
       )
       fireEvent.click(getByTestId(CLOSE_BUTTON_TEST_ID))
-      expect(mockOnClose).toBeCalled()
+      expect(mockOnClose).toHaveBeenCalled()
     })
   })
 })

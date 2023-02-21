@@ -10,7 +10,8 @@ import RepositoryList from '../../../../../components/products/repositories/Repo
 import RepositoryForm from '../../../../../components/products/repositories/RepositoryForm'
 import ClientOnly from '../../../../../lib/ClientOnly'
 import NotFound from '../../../../../components/shared/NotFound'
-import { Loading, Error } from '../../../../../components/shared/FetchStatus'
+import { Loading, Error, Unauthorized } from '../../../../../components/shared/FetchStatus'
+import { useProductOwnerUser, useUser } from '../../../../../lib/hooks'
 
 const REPOSITORY_QUERY = gql`
   query ProductRepository($slug: String!) {
@@ -32,7 +33,7 @@ const REPOSITORY_QUERY = gql`
 
 const ProductHeader = ({ product }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='border'>
@@ -58,15 +59,16 @@ const PageDefinition = ({ slug, repositorySlug }) => {
 
   const { data, loading, error } = useQuery(REPOSITORY_QUERY, { variables: { slug: repositorySlug } })
 
+  const { isAdminUser, loadingUserSession } = useUser()
+  const { isProductOwner } = useProductOwnerUser(data?.product, [], loadingUserSession || isAdminUser)
+
+  const isAuthorized = isAdminUser || isProductOwner
+
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (!data?.productRepository) {
     return <NotFound />
   }
 
@@ -81,25 +83,37 @@ const PageDefinition = ({ slug, repositorySlug }) => {
   })()
 
   return (
-    <div className='flex flex-wrap justify-between pb-8 max-w-catalog mx-auto'>
-      <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
-        <div className='block lg:hidden'>
-          <Breadcrumb slugNameMapping={slugNameMapping} />
-        </div>
-        {data?.productRepository && <ProductHeader product={data.productRepository.product} />}
-        <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer />
-      </div>
-      <div className='w-full lg:w-2/3 xl:w-3/4'>
-        <div className='hidden lg:block'>
-          <div className='px-4'>
-            <Breadcrumb slugNameMapping={slugNameMapping} />
-          </div>
-        </div>
-        <div className='w-full lg:w-2/3 xl:w-3/4'>
-          <RepositoryForm productRepository={data?.productRepository} productSlug={slug} />
-        </div>
-      </div>
-    </div>
+    <>
+      {loadingUserSession
+        ? <Loading />
+        : isAuthorized
+          ? <div className='flex flex-wrap justify-between pb-8'>
+            <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
+              <div className='block lg:hidden'>
+                <Breadcrumb slugNameMapping={slugNameMapping} />
+              </div>
+              {data?.productRepository && <ProductHeader product={data.productRepository.product} />}
+              <RepositoryList
+                productSlug={slug}
+                repositorySlug={repositorySlug}
+                listStyle='compact'
+                shadowOnContainer
+              />
+            </div>
+            <div className='w-full lg:w-2/3 xl:w-3/4'>
+              <div className='hidden lg:block'>
+                <div className='px-4'>
+                  <Breadcrumb slugNameMapping={slugNameMapping} />
+                </div>
+              </div>
+              <div className='w-full lg:w-2/3 xl:w-3/4'>
+                <RepositoryForm productRepository={data?.productRepository} productSlug={slug} />
+              </div>
+            </div>
+          </div >
+          : <Unauthorized />
+      }
+    </>
   )
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useId } from 'react'
 import dynamic from 'next/dynamic'
 import ReactSelect, { components } from 'react-select'
 import { HiOutlineSearch } from 'react-icons/hi'
@@ -8,6 +8,7 @@ import classNames from 'classnames'
 const AsyncReactSelect = dynamic(() => import('react-select/async'), { ssr: false })
 
 const Select = React.forwardRef(({
+  name,
   value,
   options,
   onChange,
@@ -43,7 +44,7 @@ const Select = React.forwardRef(({
     container: (provided, { isFocused }) => ({
       ...provided,
       boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-      outline: isFocused ? '3px solid #3F9EDD' : isInvalid ? '1px solid #e11d48' : '1px solid #323245',
+      outline: isFocused ? '2px solid #3F9EDD' : isInvalid ? '1px solid #e11d48' : '1px solid #323245',
       borderRadius: '0.375rem'
     }),
     control: (provided) => ({
@@ -64,7 +65,8 @@ const Select = React.forwardRef(({
       fontSize: '1.125rem'
     }),
     menuPortal: (provided) => ({
-      ...provided, zIndex: 30,
+      ...provided,
+      zIndex: 30,
       color: 'red'
     }),
     menu: (provided) => ({
@@ -79,10 +81,14 @@ const Select = React.forwardRef(({
     </components.DropdownIndicator>
   )
 
+  const id = useId()
+
   return (
     async ? (
       <AsyncReactSelect
         {...otherProps}
+        instanceId={id}
+        inputId={`async-select-id-${name}`}
         innerRef={ref}
         value={value}
         placeholder={placeholder}
@@ -97,6 +103,8 @@ const Select = React.forwardRef(({
     ) : (
       <ReactSelect
         {...otherProps}
+        instanceId={id}
+        inputId={`react-select-id-${name}`}
         innerRef={ref}
         value={value}
         placeholder={placeholder}

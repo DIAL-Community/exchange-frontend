@@ -4,7 +4,8 @@ export const organizations = {
       {
         id: 2,
         name: 'Another Organization',
-        slug: 'ao'
+        slug: 'ao',
+        website: 'another_organization@gmail.com'
       }
     ]
   }

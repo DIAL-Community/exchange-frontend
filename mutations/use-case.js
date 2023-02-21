@@ -5,8 +5,9 @@ export const CREATE_USE_CASE_STEP = gql`
     $name: String!,
     $slug: String!,
     $stepNumber: Int!,
-    $description: String!
+    $description: String
     $useCaseId: Int!
+    $markdownUrl: String
   ) {
     createUseCaseStep(
       name: $name
@@ -14,10 +15,13 @@ export const CREATE_USE_CASE_STEP = gql`
       stepNumber: $stepNumber
       description: $description
       useCaseId: $useCaseId
+      markdownUrl: $markdownUrl
     ) {
       useCaseStep {
+        id
         slug
         useCase {
+          id
           slug
         }
       },
@@ -36,6 +40,7 @@ export const UPDATE_USE_CASE_SDG_TARGETS = gql`
       slug: $slug
     ) {
       useCase {
+        id
         slug
         sdgTargets {
           id
@@ -69,6 +74,7 @@ export const CREATE_USE_CASE = gql`
       description: $description
     ) {
       useCase {
+        id
         slug
       }
       errors
@@ -86,9 +92,23 @@ export const UPDATE_USE_CASE_TAGS = gql`
       tags: $tags
     ) {
       useCase {
+        id
         tags
       }
       errors
     }  
+  }
+`
+
+export const DELETE_USE_CASE = gql`
+  mutation DeleteUseCase($id: ID!) {
+    deleteUseCase(id: $id) {
+      useCase {
+       id
+       slug
+       name
+      }
+      errors
+    }
   }
 `

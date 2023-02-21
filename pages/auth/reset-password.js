@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
 import dynamic from 'next/dynamic'
+import { getCsrfToken, getSession } from 'next-auth/react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
@@ -12,7 +13,7 @@ const ResetPassword = () => {
   const router = useRouter()
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
   const [created, setCreated] = useState(false)
@@ -48,7 +49,7 @@ const ResetPassword = () => {
 
   return (
     <>
-      <Header />
+      <Header isOnAuthPage />
       <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <div className='bg-dial-gray-dark pt-28 simple-form-height'>
         <div className={`mx-4 ${created ? 'visible' : 'invisible'} text-center bg-dial-gray-dark`}>
@@ -71,7 +72,7 @@ const ResetPassword = () => {
                 <div className='flex items-center justify-between font-semibold text-sm mt-2'>
                   <div className='flex'>
                     <button
-                      className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+                      className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex disabled:opacity-50'
                       type='submit' disabled={loading}
                     >
                       {format('app.resetPassword')}
@@ -109,3 +110,21 @@ const ResetPassword = () => {
 }
 
 export default ResetPassword
+
+export async function getServerSideProps (ctx) {
+  const session = await getSession(ctx)
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/'
+      }
+    }
+  }
+
+  return {
+    props: {
+      csrfToken: await getCsrfToken(ctx)
+    }
+  }
+}

@@ -17,6 +17,9 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
       >
         SDG Targets
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -38,7 +41,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-4-live-region"
+            id="react-select-:r2:-live-region"
           />
           <span
             aria-atomic="false"
@@ -47,33 +50,33 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control react-select__control--menu-is-open css-19jej77-control"
+            class="react-select__control react-select__control--menu-is-open css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-4-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
+                id="react-select-:r2:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
                   aria-autocomplete="list"
-                  aria-controls="react-select-4-listbox"
-                  aria-describedby="react-select-4-placeholder"
+                  aria-controls="react-select-:r2:-listbox"
+                  aria-describedby="react-select-:r2:-placeholder"
                   aria-expanded="true"
                   aria-haspopup="true"
-                  aria-owns="react-select-4-listbox"
+                  aria-owns="react-select-:r2:-listbox"
                   autocapitalize="none"
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-4-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -87,11 +90,11 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"
@@ -114,16 +117,16 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
             </div>
           </div>
           <div
-            class="react-select__menu css-1jtw5r9-menu"
-            id="react-select-4-listbox"
+            class="react-select__menu css-z4z3k3-menu"
+            id="react-select-:r2:-listbox"
           >
             <div
-              class="react-select__menu-list css-4ljt47-MenuList"
+              class="react-select__menu-list css-1n6sfyn-MenuList"
             >
               <div
                 aria-disabled="false"
-                class="react-select__option react-select__option--is-focused css-llk42x-option"
-                id="react-select-4-option-0"
+                class="react-select__option react-select__option--is-focused css-1keuksx-option"
+                id="react-select-:r2:-option-0"
                 tabindex="-1"
               >
                 3: Another SDG Target
@@ -227,30 +230,37 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
       >
         SDG Targets
       </div>
-      <button
-        class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-        data-testid="edit-button"
-        type="button"
+      <div
+        class="gap-3"
       >
-        <img
-          alt="Edit"
-          height="12px"
-          src="/icons/edit.svg"
-          width="12px"
-        />
-        <span
-          class="text-sm"
+        <button
+          class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          data-testid="edit-button"
+          type="button"
         >
-          Edit
-        </span>
-      </button>
+          <img
+            alt="Edit"
+            height="12px"
+            src="/icons/edit.svg"
+            width="12px"
+          />
+          <span
+            class="text-sm"
+          >
+            Edit
+          </span>
+        </button>
+      </div>
     </div>
     <div
       class="grid grid-cols-1"
     >
       <div
-        class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
-        href="/sdgs/ts"
+        class="
+          border-3 border-transparent hover:border-dial-yellow text-use-case
+          hover:text-dial-yellow cursor-pointer
+        "
+        href="/sdgs/sdg_target_slug_1"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -272,8 +282,11 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         </div>
       </div>
       <div
-        class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
-        href="/sdgs/as"
+        class="
+          border-3 border-transparent hover:border-dial-yellow text-use-case
+          hover:text-dial-yellow cursor-pointer
+        "
+        href="/sdgs/sdg_target_slug_2"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -316,6 +329,9 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
       >
         SDG Targets
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -337,7 +353,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-2-live-region"
+            id="react-select-:r0:-live-region"
           />
           <span
             aria-atomic="false"
@@ -346,31 +362,31 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-2-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
+                id="react-select-:r0:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-2-placeholder"
+                  aria-describedby="react-select-:r0:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-2-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -384,11 +400,11 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"
@@ -507,13 +523,19 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
       >
         SDG Targets
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="grid grid-cols-1"
     >
       <div
-        class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
-        href="/sdgs/ts"
+        class="
+          border-3 border-transparent hover:border-dial-yellow text-use-case
+          hover:text-dial-yellow cursor-pointer
+        "
+        href="/sdgs/sdg_target_slug_1"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -535,8 +557,11 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         </div>
       </div>
       <div
-        class="border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer"
-        href="/sdgs/as"
+        class="
+          border-3 border-transparent hover:border-dial-yellow text-use-case
+          hover:text-dial-yellow cursor-pointer
+        "
+        href="/sdgs/sdg_target_slug_2"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -579,6 +604,9 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should remove a p
       >
         SDG Targets
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -600,7 +628,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should remove a p
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-3-live-region"
+            id="react-select-:r1:-live-region"
           />
           <span
             aria-atomic="false"
@@ -609,31 +637,31 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should remove a p
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-3-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
+                id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-3-placeholder"
+                  aria-describedby="react-select-:r1:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-3-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -647,11 +675,11 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should remove a p
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"

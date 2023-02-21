@@ -1,8 +1,8 @@
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import { UPDATE_PROJECT_SECTORS } from '../../mutations/project'
 import { SECTOR_SEARCH_QUERY } from '../../queries/sector'
@@ -19,25 +19,29 @@ const ProjectDetailSectors = ({ project, canEdit }) => {
   const client = useApolloClient()
 
   const [sectors, setSectors] = useState(project.sectors)
-
   const [isDirty, setIsDirty] = useState(false)
 
-  const [session] = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateProjectSectors, { data, loading }] = useMutation(UPDATE_PROJECT_SECTORS, {
+  const [updateProjectSectors, { data, loading, reset }] = useMutation(UPDATE_PROJECT_SECTORS, {
     onCompleted: (data) => {
-      setSectors(data.updateProjectSectors.project.sectors)
-      setIsDirty(false)
-      showToast(format('toast.sectors.update.success'), 'success', 'top-center')
+      const { updateProjectSectors: response } = data
+      if (response?.project && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setSectors(data.updateProjectSectors.project.sectors)
+        showToast(format('toast.sectors.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setSectors(project.sectors)
+        showToast(format('toast.sectors.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setSectors(project.sectors)
-      setIsDirty(false)
-      showToast(format('toast.sectors.update.failure'), 'error', 'top-center')
     }
   })
 
@@ -60,8 +64,8 @@ const ProjectDetailSectors = ({ project, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateProjectSectors({
         variables: {

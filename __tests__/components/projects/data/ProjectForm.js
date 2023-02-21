@@ -27,12 +27,14 @@ export const organizations = {
       {
         id: 1,
         name: 'Organization 1',
-        slug: 'organization_1'
+        slug: 'organization_1',
+        website: 'organization_1@gmail.com'
       },
       {
         id: 2,
         name: 'Organization 2',
-        slug: 'organization_2'
+        slug: 'organization_2',
+        website: 'organization_2@gmail.com'
       },
     ]
   }
@@ -83,7 +85,7 @@ export const project = {
   slug: 'test_project',
   startDate: '2000-01-01',
   endDate: '2001-01-01',
-  projectUrl: 'testproject.com',
+  projectWebsite: 'testproject.com',
   projectDescription: {
     description: '<p>test project description</p>',
     locale: 'en'
@@ -110,6 +112,7 @@ export const createProjectSuccess = {
   data: {
     createProject: {
       project: {
+        id: 1,
         slug: 'test_product'
       },
       errors: []

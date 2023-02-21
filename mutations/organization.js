@@ -166,6 +166,7 @@ export const DELETE_ORGANIZATION = gql`
        slug
        name
       }
+      errors
     }
   }
 `
@@ -188,7 +189,12 @@ export const CREATE_CANDIDATE_ORGANIZATION = gql`
       email: $email,
       title: $title,
       captcha: $captcha
-    ) { slug }
+    ) {
+      candidateOrganization {
+        id
+      }
+      errors
+    }
   }
 `
 
@@ -202,6 +208,7 @@ export const UPDATE_ORGANIZATION_OFFICES = gql`
       offices: $offices
     ) {
       organization {
+        id
         offices {
           name
           city

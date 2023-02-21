@@ -1,0 +1,117 @@
+/* App */
+.api-editor .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.api-editor .container__content {
+  width: 440px;
+  max-width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.api-editor .container_editor_area {
+  tab-size: 4ch;
+  max-height: 400px;
+  overflow: auto;
+  margin: 1.67em 0;
+}
+
+.api-editor .container__editor {
+  font-size: 12px;
+  font-variant-ligatures: common-ligatures;
+  background-color: #fafafa;
+  border-radius: 3px;
+}
+
+.api-editor .container__editor textarea {
+  outline: 0;
+}
+
+.api-editor .button {
+  display: inline-block;
+  padding: 0 6px;
+  text-decoration: none;
+  background: #000;
+  color: #fff;
+}
+
+.api-editor .button:hover {
+  background: linear-gradient(45deg, #E42B66, #E2433F);
+}
+
+/* Syntax highlighting */
+.api-editor .token.comment,
+.api-editor .token.prolog,
+.api-editor .token.doctype,
+.api-editor .token.cdata {
+  color: #90a4ae;
+}
+
+.api-editor .token.punctuation {
+  color: #9e9e9e;
+}
+
+.api-editor .namespace {
+  opacity: 0.7;
+}
+
+.api-editor .token.property,
+.api-editor .token.tag,
+.api-editor .token.boolean,
+.api-editor .token.number,
+.api-editor .token.constant,
+.api-editor .token.symbol,
+.api-editor .token.deleted {
+  color: #e91e63;
+}
+
+.api-editor .token.selector,
+.api-editor .token.attr-name,
+.api-editor .token.string,
+.api-editor .token.char,
+.api-editor .token.builtin,
+.api-editor .token.inserted {
+  color: #4caf50;
+}
+
+.api-editor .token.operator,
+.api-editor .token.entity,
+.api-editor .token.url,
+.api-editor .language-css .token.string,
+.api-editor .style .token.string {
+  color: #795548;
+}
+
+.api-editor .token.atrule,
+.api-editor .token.attr-value,
+.api-editor .token.keyword {
+  color: #3f51b5;
+}
+
+.api-editor .token.function {
+  color: #f44336;
+}
+
+.api-editor .token.regex,
+.api-editor .token.important,
+.api-editor .token.variable {
+  color: #ff9800;
+}
+
+.api-editor .token.important,
+.api-editor .token.bold {
+  font-weight: bold;
+}
+
+.api-editor .token.italic {
+  font-style: italic;
+}
+
+.api-editor .token.entity {
+  cursor: help;
+}

@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
 import Image from 'next/image'
-import { ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
+import { ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/constants'
 
 const ellipsisTextStyle = `
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
@@ -16,10 +16,7 @@ const containerElementStyle = `
 
 const DatasetCard = ({ dataset, listType, newTab = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
-
-  const navClickHandler = () => {
-  }
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   useEffect(() => {
     ReactTooltip.rebuild()
@@ -31,18 +28,21 @@ const DatasetCard = ({ dataset, listType, newTab = false }) => {
         {
           listType === 'list'
             ? (
-              <div onClick={() => navClickHandler()} className={`${containerElementStyle}`}>
+              <div className={`${containerElementStyle}`}>
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='flex flex-row flex-wrap lg:gap-x-4 px-4' style={{ minHeight: '4.5rem' }}>
-                    <div className={`w-full lg:w-4/12 font-semibold my-auto relative ${ellipsisTextStyle}`}>
+                    <div className='w-10/12 lg:w-4/12 text-base font-semibold text-dial-gray-dark my-auto relative'>
                       <Image
                         layout='fill'
-                        objectFit='contain'
-                        className='inline pr-3' width='50' height='50'
+                        objectFit='scale-down'
+                        objectPosition='left'
+                        sizes='1vw'
                         alt={format('image.alt.logoFor', { name: dataset.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
                       />
-                      {dataset.name}
+                      <div className={`ml-8 w-4/5 h-3/5 font-semibold relative ${ellipsisTextStyle}`}>
+                        {dataset.name}
+                      </div>
                     </div>
                     <div className={`w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple ${ellipsisTextStyle}`}>
                       {dataset.origins && dataset.origins.length === 0 && format('general.na')}
@@ -61,7 +61,7 @@ const DatasetCard = ({ dataset, listType, newTab = false }) => {
               </div>
             )
             : (
-              <div onClick={() => navClickHandler()} className={containerElementStyle}>
+              <div className={containerElementStyle}>
                 <div className='h-full flex flex-col border border-dial-gray hover:border-transparent card-drop-shadow'>
                   <div className='flex flex-row gap-x-1.5 p-1.5 border-b border-dial-gray dataset-card-header'>
                     {
@@ -151,7 +151,8 @@ const DatasetCard = ({ dataset, listType, newTab = false }) => {
                               .map(origin => {
                                 return (
                                   <div
-                                    key={`origin-${origin.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
+                                    key={`origin-${origin.slug}`}
+                                    className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
                                   >
                                     {(ORIGIN_ACRONYMS[origin.slug.toLowerCase()] || origin.slug).toUpperCase()}
                                   </div>

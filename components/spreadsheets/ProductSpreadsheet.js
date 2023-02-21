@@ -2,10 +2,11 @@ import { createRef, Fragment, useEffect, useState } from 'react'
 import { Tab } from '@headlessui/react'
 import { useMutation, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
+import { ContextMenu } from 'handsontable/plugins'
 import { HotTable } from '@handsontable/react'
 import { registerAllModules } from 'handsontable/registry'
 import { Error, Loading } from '../shared/FetchStatus'
+import { useUser } from '../../lib/hooks'
 import NotFound from '../shared/NotFound'
 import { CREATE_SPREADSHEET_MUTATION, DELETE_SPREADSHEET_MUTATION } from '../../mutations/spreadsheet'
 import { PRODUCT_SPREADSHEET_QUERY } from '../../queries/spreadsheet'
@@ -24,7 +25,7 @@ const ProductSpreadsheet = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   const { locale } = useRouter()
-  const [session] = useSession()
+  const { user } = useUser()
 
   const [updateAssocData] = useMutation(CREATE_SPREADSHEET_MUTATION)
   const [saveSpreadsheetData] = useMutation(CREATE_SPREADSHEET_MUTATION, { refetchQueries: [PRODUCT_SPREADSHEET_QUERY] })
@@ -53,7 +54,7 @@ const ProductSpreadsheet = () => {
       spreadsheetType: 'product',
       assoc: COLUMN_SOURCE_KEYS[selectedIndex]
     }
-    const { userEmail, userToken } = session.user
+    const { userEmail, userToken } = user
     mutationFunction.apply(this, [{
       variables,
       context: {
@@ -116,27 +117,32 @@ const ProductSpreadsheet = () => {
       for (let i = coordinate.startRow; i <= coordinate.endRow; i++) {
         // Update current row with the new values and save them to the database.
         const currentRowData = currentHotRef.getDataAtRow(i)
-        for (let j = coordinate.startCol; j <= coordinate.endCol; j++) {
-          currentRowData[j] = dataToConvert[i - coordinate.startRow][j - coordinate.startCol]
-        }
-
-        const [productName, secondColumnData, thirdColumnData] = currentRowData
-        if (productName) {
-          const spreadsheetData = {
-            name: productName,
-            changes: [i, 1, '', secondColumnData]
+        if (currentRowData) {
+          for (let j = coordinate.startCol; j <= coordinate.endCol; j++) {
+            if (j < currentRowData.length) {
+              // Only update array within the current row data.
+              currentRowData[j] = dataToConvert[i - coordinate.startRow][j - coordinate.startCol]
+            }
           }
-          if (thirdColumnData) {
-            // This is to handle locale and description on the same column. The rest only 2 columns.
-            saveChanges(spreadsheetData, updateAssocData, () => {
-              const spreadsheetData = {
-                name: productName,
-                changes: [i, 2, '', thirdColumnData]
-              }
+
+          const [productName, secondColumnData, thirdColumnData] = currentRowData
+          if (productName) {
+            const spreadsheetData = {
+              name: productName,
+              changes: [i, 1, '', secondColumnData]
+            }
+            if (thirdColumnData) {
+              // This is to handle locale and description on the same column. The rest only 2 columns.
+              saveChanges(spreadsheetData, updateAssocData, () => {
+                const spreadsheetData = {
+                  name: productName,
+                  changes: [i, 2, '', thirdColumnData]
+                }
+                saveChanges(spreadsheetData, updateAssocData)
+              })
+            } else {
               saveChanges(spreadsheetData, updateAssocData)
-            })
-          } else {
-            saveChanges(spreadsheetData, updateAssocData)
+            }
           }
         }
       }
@@ -151,17 +157,22 @@ const ProductSpreadsheet = () => {
       for (let i = coordinate.startRow; i <= coordinate.endRow; i++) {
         // Update current row with the new values and save them to the database.
         const currentRowData = currentHotRef.getDataAtRow(i)
-        for (let j = coordinate.startCol; j <= coordinate.endCol; j++) {
-          currentRowData[j] = dataToConvert[i - coordinate.startRow][j - coordinate.startCol]
-        }
-
-        const [productName] = currentRowData
-        if (productName) {
-          const spreadsheetData = {
-            name: productName,
-            changes: currentRowData.map(x => typeof x === 'undefined' || x === null ? '' : x)
+        if (currentRowData) {
+          for (let j = coordinate.startCol; j <= coordinate.endCol; j++) {
+            if (j < currentRowData.length) {
+              // Only update array within the current row data.
+              currentRowData[j] = dataToConvert[i - coordinate.startRow][j - coordinate.startCol]
+            }
           }
-          saveChanges(spreadsheetData, saveSpreadsheetData)
+
+          const [productName] = currentRowData
+          if (productName) {
+            const spreadsheetData = {
+              name: productName,
+              changes: currentRowData.map(x => typeof x === 'undefined' || x === null ? '' : x)
+            }
+            saveChanges(spreadsheetData, saveSpreadsheetData)
+          }
         }
       }
     })
@@ -262,6 +273,38 @@ const ProductSpreadsheet = () => {
 
   const { spreadsheetProduct } = data
 
+  const contextMenuConfig = {
+    items: {
+      row_above: {},
+      multi_row_above: {
+        name: 'Insert 10 row above',
+        callback: () => {
+          const currentHot = hotRefs[selectedIndex].current.hotInstance
+          // Get selected return array of array. We will use the first selected row as reference.
+          const [selected] = currentHot.getSelected()
+          const [rowIndex] = selected
+          currentHot.alter('insert_row', rowIndex, 10)
+        }
+      },
+      first_separator: ContextMenu.SEPARATOR,
+      row_below: {},
+      multi_row_below: {
+        name: 'Insert 10 row below',
+        callback: () => {
+          const currentHot = hotRefs[selectedIndex].current.hotInstance
+          // Get selected return array of array. We will use the first selected row as reference.
+          const [selected] = currentHot.getSelected()
+          const [rowIndex] = selected
+          currentHot.alter('insert_row', rowIndex + 1, 10)
+        }
+      },
+      second_separator: ContextMenu.SEPARATOR,
+      remove_row: {},
+      third_separator: ContextMenu.SEPARATOR,
+      copy: {}
+    }
+  }
+
   return (
     <div className='w-full'>
       <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
@@ -285,14 +328,14 @@ const ProductSpreadsheet = () => {
             </Tab>
           ))}
         </Tab.List>
-        <Tab.Panels className='pt-2 pl-8 pr-4' style={{ minHeight: '70vh' }}>
+        <Tab.Panels className='pt-2 pb-4 ml-4 mr-2 overflow-auto'>
           {DEFAULT_SHEET_HEADERS.map((header, index) => (
             <Tab.Panel key={index}>
               <HotTable
                 id='product-spreadsheet'
                 colHeaders={header}
                 columns={columnsUsingGraphData(data, index)}
-                contextMenu
+                contextMenu={contextMenuConfig}
                 data={mapSpreadsheetData(spreadsheetProduct, index)}
                 licenseKey='non-commercial-and-evaluation'
                 manualColumnResize
@@ -301,6 +344,7 @@ const ProductSpreadsheet = () => {
                 rowHeaders={true}
                 stretchH='all'
                 width='100%'
+                height='70vh'
                 style={{ zIndex: 19 }}
                 afterChange={afterChangeHandler}
                 afterPaste={afterPasteHandler}

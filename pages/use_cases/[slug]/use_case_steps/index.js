@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
 import Breadcrumb from '../../../../components/shared/breadcrumb'
@@ -12,11 +12,12 @@ import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import NotFound from '../../../../components/shared/NotFound'
 import { USE_CASE_DETAIL_QUERY } from '../../../../queries/use-case'
 import CreateButton from '../../../../components/shared/CreateButton'
+import { useUser } from '../../../../lib/hooks'
 
 // Create the top left header of the step list.
 const UseCaseHeader = ({ useCase }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='border'>
@@ -39,21 +40,17 @@ const UseCaseHeader = ({ useCase }) => {
 
 const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { isAdminUser } = useUser()
 
   const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug } })
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (!data?.useCase) {
     return <NotFound />
   }
 
@@ -67,13 +64,19 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
   })()
 
   return (
-    <div className='flex flex-wrap justify-between pb-8 max-w-catalog mx-auto'>
+    <div className='flex flex-wrap justify-between pb-8'>
       <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
         <div className='block lg:hidden'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
         <div className='w-full mb-2'>
-          {session?.user && <CreateButton type='link' label={format('use-case-step.create')} href={`/use_cases/${data.useCase.slug}/use_case_steps/create`} />}
+          {isAdminUser &&
+            <CreateButton
+              type='link'
+              label={format('use-case-step.create')}
+              href={`/use_cases/${data.useCase.slug}/use_case_steps/create`}
+            />
+          }
         </div>
         {data?.useCase && <UseCaseHeader useCase={data.useCase} />}
         <StepList useCaseSlug={slug} stepSlug={stepSlug} listStyle='compact' shadowOnContainer />

@@ -1,5 +1,6 @@
 import { useApolloClient } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
 import { fetchSelectOptions } from '../../../queries/utils'
@@ -20,7 +21,7 @@ export const SectorAutocomplete = ({
   const { locale } = router
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('sector.label') })
 
@@ -60,7 +61,7 @@ export const SectorFilters = (props) => {
   const { sectors, setSectors } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeSector = (sectorSlug) => {
     setSectors(sectors.filter(({ slug }) => slug !== sectorSlug))

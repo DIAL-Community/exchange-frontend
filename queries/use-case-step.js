@@ -26,6 +26,7 @@ query UseCaseSteps($slug: String!) {
         slug
         imageFile
       }
+      markdownUrl
   }
 }
 `
@@ -33,10 +34,11 @@ query UseCaseSteps($slug: String!) {
 export const USE_CASE_STEP_QUERY = gql`
   query UseCaseStep($slug: String!) {
     useCaseStep(slug: $slug) {
+      id
       name
       slug
       stepNumber
-      useCase{
+      useCase {
         id
         name
         slug
@@ -55,11 +57,17 @@ export const USE_CASE_STEP_QUERY = gql`
         slug
         imageFile
       }
+      datasets {
+        name
+        slug
+        imageFile
+      }
       buildingBlocks {
         name
         slug
         imageFile
       }
+      markdownUrl
     }
   }
 `

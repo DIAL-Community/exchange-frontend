@@ -1,76 +1,25 @@
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import ProjectCard from '../../projects/ProjectCard'
 import { Loading, Error } from '../../shared/FetchStatus'
+import { WIZARD_PAGINATED_PROJECTS } from '../../../queries/wizard'
 
 const DEFAULT_PAGE_SIZE = 5
-const PRODUCTS_QUERY = gql`
-  query PaginatedProjects(
-    $first: Int!,
-    $offset: Int!,
-    $sectors: [String!],
-    $subSectors: [String!],
-    $countries: [String!],
-    $tags: [String!],
-    $projectSortHint: String!
-  ) {
-    paginatedProjects(
-      first: $first,
-      offsetAttributes: { offset: $offset},
-      sectors: $sectors,
-      subSectors: $subSectors,
-      countries: $countries,
-      tags: $tags,
-      projectSortHint: $projectSortHint
-    ) {
-      __typename
-      totalCount
-      pageInfo {
-        endCursor
-        startCursor
-        hasPreviousPage
-        hasNextPage
-      }
-      nodes {
-        id
-        name
-        slug
-        organizations {
-          id
-          slug
-          name
-          imageFile
-        }
-        products {
-          id
-          slug
-          name
-          imageFile
-        }
-        origin {
-          slug
-          name
-        }
-      }
-    }
-  }
-`
 
-const PagedProjectList = ({ countries, sectors, subSectors, tags, projectSortHint }) => {
+const PagedProjectList = ({ countries, sectors, tags, projectSortHint }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [itemOffset, setItemOffset] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
-  const { loading, error, data, fetchMore } = useQuery(PRODUCTS_QUERY, {
+  const { loading, error, data, fetchMore } = useQuery(WIZARD_PAGINATED_PROJECTS, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       offset: itemOffset,
       countries,
       sectors,
-      subSectors,
       tags,
       projectSortHint
     }
@@ -84,7 +33,6 @@ const PagedProjectList = ({ countries, sectors, subSectors, tags, projectSortHin
           offset: itemOffset,
           countries,
           sectors,
-          subSectors,
           tags,
           projectSortHint
         }
@@ -108,21 +56,23 @@ const PagedProjectList = ({ countries, sectors, subSectors, tags, projectSortHin
   return (
     <>
       <div className='pb-4 text-sm'>
-        {data.paginatedProjects.nodes && data.paginatedProjects.nodes.length ? format('wizard.results.similarProjectsDesc') : format('wizard.results.noProjects')}
+        {data.paginatedProjects.nodes && data.paginatedProjects.nodes.length
+          ? format('wizard.results.similarProjectsDesc')
+          : format('wizard.results.noProjects')}
       </div>
       {
         data.paginatedProjects.nodes && data.paginatedProjects.nodes.map((project) => {
-          return (<ProjectCard key={project.name} project={project} listType='list' newTab />)
+          return (<ProjectCard key={project.id} project={project} listType='list' newTab />)
         })
       }
       <ReactPaginate
         breakLabel='...'
-        nextLabel='Next >'
+        nextLabel={format('paginatedSection.page.next.label')}
         forcePage={currentPage}
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={Math.ceil((itemOffset + data.paginatedProjects.totalCount) / DEFAULT_PAGE_SIZE)}
-        previousLabel='< Previous'
+        previousLabel={format('paginatedSection.page.previous.label')}
         renderOnZeroPageCount={null}
         breakLinkClassName='relative block py-1.5 px-3 border border-dial-gray -ml-px'
         containerClassName='flex mb-3 mt-3 ml-auto border-3 border-transparent'

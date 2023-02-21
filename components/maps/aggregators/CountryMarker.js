@@ -35,17 +35,20 @@ const findIndex = (aggregatorCount) => {
 }
 
 export const createCountryMarkerIcon = (country) => {
-  const iconSize = iconSizeSets[findIndex(country.aggregators.length)]
+  const { fontSize, marginTop, size } = iconSizeSets[findIndex(country.aggregators.length)]
 
   return divIcon({
     className: 'border-3 rounded-full border-workflow-light bg-workflow',
     html: `
       <div class='text-white w-full h-full'>
-        <div class='text-center' style='font-size: ${iconSize.fontSize}; margin-top: ${iconSize.marginTop}; font-weight: bolder;'>
+        <div
+          class='text-center'
+          style='font-size: ${fontSize}; margin-top: ${marginTop}; font-weight: bolder;'
+        >
           ${country.aggregators.length}
         </div>
       </div>
     `,
-    iconSize: [iconSize.size, iconSize.size]
+    iconSize: [size, size]
   })
 }

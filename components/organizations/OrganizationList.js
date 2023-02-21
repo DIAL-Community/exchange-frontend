@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { FixedSizeGrid, FixedSizeList } from 'react-window'
@@ -45,7 +45,6 @@ query SearchOrganizations(
     years: $years,
     search: $search
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor
@@ -71,11 +70,11 @@ query SearchOrganizations(
 `
 
 const OrganizationListQuery = () => {
-  const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const { aggregator, endorser, endorserLevel, countries, sectors, years, search } = useContext(OrganizationFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data, fetchMore } = useQuery(ORGANIZATIONS_QUERY, {
     variables: {
@@ -110,22 +109,20 @@ const OrganizationListQuery = () => {
 
   useEffect(() => {
     if (data) {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.organizations']]: data.searchOrganizations.totalCount }
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.organizations']]: data.searchOrganizations.totalCount }
+        }
       })
     }
-  }, [data])
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error && error.networkError) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (error && !error.networkError) {
     return <NotFound />
   }
 
@@ -141,7 +138,7 @@ const OrganizationListQuery = () => {
   const isProductLoaded = (index) => !pageInfo.hasNextPage || index < nodes.length
 
   return (
-    <div className='pt-4'>
+    <>
       {
         displayType === 'list' &&
         <div className='flex flex-row my-3 px-4 gap-x-4'>
@@ -153,7 +150,7 @@ const OrganizationListQuery = () => {
           </div>
         </div>
       }
-      <div className='block pr-2' style={{ height: '80vh' }}>
+      <div style={{ height: 'calc(100vh + 600px)' }}>
         <AutoSizer>
           {({ height, width }) => (
             <InfiniteLoader
@@ -206,9 +203,9 @@ const OrganizationListQuery = () => {
                               <div
                                 style={{
                                   ...style,
-                                  left: style.left + ORGANIZATION_CARD_GUTTER_SIZE,
+                                  left: style.left,
                                   top: style.top + ORGANIZATION_CARD_GUTTER_SIZE,
-                                  width: style.width - ORGANIZATION_CARD_GUTTER_SIZE,
+                                  width: style.width,
                                   height: style.height - ORGANIZATION_CARD_GUTTER_SIZE
                                 }}
                               >
@@ -268,7 +265,7 @@ const OrganizationListQuery = () => {
           )}
         </AutoSizer>
       </div>
-    </div>
+    </>
   )
 }
 

@@ -17,6 +17,9 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
       >
         Building Blocks
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -37,7 +40,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-6-live-region"
+            id="react-select-:r4:-live-region"
           />
           <span
             aria-atomic="false"
@@ -46,18 +49,18 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+              class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__single-value css-qc6sy-singleValue"
+                class="react-select__single-value css-1dimb5e-singleValue"
               >
                 Validated
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -68,7 +71,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-6-input"
+                  id="react-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -82,11 +85,11 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   aria-hidden="true"
@@ -115,7 +118,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-7-live-region"
+            id="react-select-:r5:-live-region"
           />
           <span
             aria-atomic="false"
@@ -124,31 +127,31 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-7-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
+                id="react-select-:r5:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-7-placeholder"
+                  aria-describedby="react-select-:r5:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-7-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 0; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -162,11 +165,11 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"
@@ -309,23 +312,27 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
       >
         Building Blocks
       </div>
-      <button
-        class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-        data-testid="edit-button"
-        type="button"
+      <div
+        class="gap-3"
       >
-        <img
-          alt="Edit"
-          height="12px"
-          src="/icons/edit.svg"
-          width="12px"
-        />
-        <span
-          class="text-sm"
+        <button
+          class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          data-testid="edit-button"
+          type="button"
         >
-          Edit
-        </span>
-      </button>
+          <img
+            alt="Edit"
+            height="12px"
+            src="/icons/edit.svg"
+            width="12px"
+          />
+          <span
+            class="text-sm"
+          >
+            Edit
+          </span>
+        </button>
+      </div>
     </div>
     <div
       class="text-sm text-dial-gray-dark pb-2 highlight-link"
@@ -345,58 +352,47 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
         href="/building_blocks/test_building_block"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-building-block hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray hover:border-transparent shadow-lg"
           >
             <div
-              class="grid grid-cols-12 gap-x-4 py-4 px-4"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
             >
               <div
-                class="col-span-10 pr-3 text-base font-semibold 
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-10/12 lg:w-4/12 flex gap-2 my-auto text-dial-sapphire"
               >
                 <div
-                  style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+                  class="block w-8 relative"
                 >
-                  <div
-                    style="box-sizing: border-box; display: block; max-width: 100%;"
+                  <span
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
                   >
                     <img
-                      alt=""
-                      aria-hidden="true"
-                      src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
-                      style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
+                      alt="Logo for: Test Building Block"
+                      data-nimg="fill"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
                     />
-                  </div>
-                  <img
-                    alt="Logo for: Test Building Block"
-                    class="building-block-filter inline mr-2 "
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                  />
-                  <noscript />
+                    <noscript />
+                  </span>
                 </div>
-                <span
-                  class="ml-8 w-4/5 h-3/5 relative 
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                <div
+                  class="w-full font-semibold line-clamp-1"
                 >
                   Test Building Block
-                </span>
+                </div>
               </div>
               <div
-                class="col-span-2 flex flex-row font-semibold opacity-50 justify-end"
+                class="ml-auto font-semibold my-auto"
               >
-                BETA
+                <div
+                  class="text-dial-gray-dark text-xs font-semibold"
+                >
+                  BETA
+                </div>
               </div>
             </div>
           </div>
@@ -424,6 +420,9 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
       >
         Building Blocks
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -444,7 +443,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-2-live-region"
+            id="react-select-:r0:-live-region"
           />
           <span
             aria-atomic="false"
@@ -453,18 +452,18 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+              class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__single-value css-qc6sy-singleValue"
+                class="react-select__single-value css-1dimb5e-singleValue"
               >
                 Validated
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -475,7 +474,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-2-input"
+                  id="react-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -489,11 +488,11 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   aria-hidden="true"
@@ -522,7 +521,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-3-live-region"
+            id="react-select-:r1:-live-region"
           />
           <span
             aria-atomic="false"
@@ -531,31 +530,31 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-3-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
+                id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-3-placeholder"
+                  aria-describedby="react-select-:r1:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-3-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -569,11 +568,11 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"
@@ -667,6 +666,9 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
       >
         Building Blocks
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="text-sm text-dial-gray-dark pb-2 highlight-link"
@@ -686,58 +688,47 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
         href="/building_blocks/test_building_block"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-building-block hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray hover:border-transparent shadow-lg"
           >
             <div
-              class="grid grid-cols-12 gap-x-4 py-4 px-4"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
             >
               <div
-                class="col-span-10 pr-3 text-base font-semibold 
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-10/12 lg:w-4/12 flex gap-2 my-auto text-dial-sapphire"
               >
                 <div
-                  style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+                  class="block w-8 relative"
                 >
-                  <div
-                    style="box-sizing: border-box; display: block; max-width: 100%;"
+                  <span
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
                   >
                     <img
-                      alt=""
-                      aria-hidden="true"
-                      src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
-                      style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
+                      alt="Logo for: Test Building Block"
+                      data-nimg="fill"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
                     />
-                  </div>
-                  <img
-                    alt="Logo for: Test Building Block"
-                    class="building-block-filter inline mr-2 "
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                  />
-                  <noscript />
+                    <noscript />
+                  </span>
                 </div>
-                <span
-                  class="ml-8 w-4/5 h-3/5 relative 
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                <div
+                  class="w-full font-semibold line-clamp-1"
                 >
                   Test Building Block
-                </span>
+                </div>
               </div>
               <div
-                class="col-span-2 flex flex-row font-semibold opacity-50 justify-end"
+                class="ml-auto font-semibold my-auto"
               >
-                BETA
+                <div
+                  class="text-dial-gray-dark text-xs font-semibold"
+                >
+                  BETA
+                </div>
               </div>
             </div>
           </div>
@@ -765,6 +756,9 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
       >
         Building Blocks
       </div>
+      <div
+        class="gap-3"
+      />
     </div>
     <div
       class="bg-edit p-6"
@@ -785,7 +779,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-4-live-region"
+            id="react-select-:r2:-live-region"
           />
           <span
             aria-atomic="false"
@@ -794,18 +788,18 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+              class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__single-value css-qc6sy-singleValue"
+                class="react-select__single-value css-1dimb5e-singleValue"
               >
                 Validated
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -816,7 +810,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-4-input"
+                  id="react-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -830,11 +824,11 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   aria-hidden="true"
@@ -863,7 +857,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-5-live-region"
+            id="react-select-:r3:-live-region"
           />
           <span
             aria-atomic="false"
@@ -872,31 +866,31 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-16oyauc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-5-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
+                id="react-select-:r3:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-5-placeholder"
+                  aria-describedby="react-select-:r3:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
                   autocomplete="off"
                   autocorrect="off"
                   class="react-select__input"
-                  id="react-select-5-input"
+                  id="async-select-id-undefined"
                   role="combobox"
                   spellcheck="false"
                   style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -910,11 +904,11 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   class="text-2xl"

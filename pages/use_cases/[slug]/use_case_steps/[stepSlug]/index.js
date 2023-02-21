@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
 import { useQuery } from '@apollo/client'
 import Link from 'next/link'
 import StepList from '../../../../../components/use-cases/steps/StepList'
@@ -14,10 +14,11 @@ import ClientOnly from '../../../../../lib/ClientOnly'
 import CreateButton from '../../../../../components/shared/CreateButton'
 import EditButton from '../../../../../components/shared/EditButton'
 import { USE_CASE_DETAIL_QUERY } from '../../../../../queries/use-case'
+import { useUser } from '../../../../../lib/hooks'
 
 const UseCaseHeader = ({ useCase }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
     <div className='border'>
@@ -40,14 +41,14 @@ const UseCaseHeader = ({ useCase }) => {
 
 const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
+  const { isAdminUser } = useUser()
   const { locale } = useRouter()
   const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug } })
 
   const generateEditLink = () => {
-    if (!session.user) {
+    if (!isAdminUser) {
       return '/edit-not-available'
     }
 
@@ -56,13 +57,9 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (!data?.useCase) {
     return <NotFound />
   }
 
@@ -76,15 +73,19 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
   })()
 
   return (
-    <div className='flex flex-wrap justify-between pb-8 max-w-catalog mx-auto'>
+    <div className='flex flex-wrap justify-between pb-8'>
       <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
         <div className='block lg:hidden'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
-        {session?.user &&
+        {isAdminUser &&
           <div className='flex flex-row justify-between mb-2'>
             <EditButton type='link' href={generateEditLink()} />
-            <CreateButton type='link' label={format('use-case-step.create')} href={`/use_cases/${data.useCase.slug}/use_case_steps/create`}/>
+            <CreateButton
+              type='link'
+              label={format('use-case-step.create')}
+              href={`/use_cases/${data.useCase.slug}/use_case_steps/create`}
+            />
           </div>
         }
         {data?.useCase && <UseCaseHeader useCase={data.useCase} />}

@@ -2,10 +2,14 @@
 
 exports[`Unit test for the FileUploader component. Should match snapshot. 1`] = `
 <div>
+  <div
+    class="Toastify"
+  />
   <label
     class="flex items-center"
   >
     <input
+      accept=".jpg,.jpeg,.png,.bmp"
       class="bg-white file:hidden w-full pr-10"
       data-testid="file-uploader"
       type="file"
@@ -14,7 +18,7 @@ exports[`Unit test for the FileUploader component. Should match snapshot. 1`] = 
       class="-ml-11 flex p-1"
     >
       <span
-        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
       >
         <svg
           fill="currentColor"
@@ -39,5 +43,10 @@ exports[`Unit test for the FileUploader component. Should match snapshot. 1`] = 
       </span>
     </div>
   </label>
+  <div
+    class="text-sm w-full text-dial-gray-dark"
+  >
+    Note: Supported file types are jpg, png, and bmp
+  </div>
 </div>
 `;

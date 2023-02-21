@@ -8,7 +8,7 @@ import Breadcrumb from '../shared/breadcrumb'
 import { HtmlEditor } from '../shared/HtmlEditor'
 import Input from '../shared/Input'
 import Select from '../shared/Select'
-import { ToastContext } from '../../lib/ToastContext'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import ValidationError from '../shared/ValidationError'
 import { Loading, Unauthorized } from '../shared/FetchStatus'
 import { useUser } from '../../lib/hooks'
@@ -36,15 +36,24 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
 
   const maturityOptions = getMaturityOptions(format)
 
-  const [updateBuildingBlock] = useMutation(CREATE_BUILDING_BLOCK, {
-    onCompleted: (data) => showToast(
-      format('building-block.submit.success'),
-      'success',
-      'top-center',
-      1000,
-      null,
-      () => router.push(`/${router.locale}/building_blocks/${data.createBuildingBlock.buildingBlock.slug}`)
-    ),
+  const [updateBuildingBlock, { reset }] = useMutation(CREATE_BUILDING_BLOCK, {
+    onCompleted: (data) => {
+      setMutating(false)
+      const { createBuildingBlock: response } = data
+      if (response?.buildingBlock && response?.errors?.length === 0) {
+        showToast(
+          format('building-block.submit.success'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push(`/${router.locale}/building_blocks/${response?.buildingBlock.slug}`)
+        )
+      } else {
+        showToast(format('building-block.submit.failure'), 'error', 'top-center')
+        reset()
+      }
+    },
     onError: (error) => {
       setMutating(false)
       showToast(
@@ -55,6 +64,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
         'error',
         'top-center'
       )
+      reset()
     }
   })
 

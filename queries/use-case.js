@@ -75,3 +75,51 @@ export const USE_CASE_SEARCH_QUERY = gql`
     }
   }
 `
+
+export const USE_CASES_QUERY = gql`
+  query SearchUseCases(
+    $first: Int,
+    $after: String,
+    $sdgs: [String!],
+    $showBeta: Boolean,
+    $search: String!
+  ) {
+    searchUseCases(
+      first: $first,
+      after: $after,
+      sdgs: $sdgs,
+      showBeta: $showBeta,
+      search: $search
+    ) {
+      totalCount
+      pageInfo {
+        endCursor
+        startCursor
+        hasPreviousPage
+        hasNextPage
+      }
+      nodes {
+        id
+        name
+        slug
+        imageFile
+        maturity
+        sdgTargets {
+          id
+          name
+          targetNumber
+        }
+        useCaseSteps {
+          id
+          name
+          workflows {
+            id
+            name
+            slug
+            imageFile
+          }
+        }
+      }
+    }
+  }
+`

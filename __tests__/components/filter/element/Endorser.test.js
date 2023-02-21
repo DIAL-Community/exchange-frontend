@@ -1,23 +1,15 @@
 import { fireEvent } from '@testing-library/dom'
-import {
-  mockRouterImplementation,
-  render,
-  waitForAllEffectsAndSelectToLoad
-} from '../../../test-utils'
+import { render, waitForAllEffectsAndSelectToLoad } from '../../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../../utils/CustomMockedProvider'
 import { EndorserAutocomplete } from '../../../../components/filter/element/Endorser'
 import { ENDORSER_SEARCH_QUERY } from '../../../../queries/endorser'
+import { mockNextUseRouter } from '../../../utils/nextMockImplementation'
 import { endorsers } from './data/EndorserAutocomplete'
 
-jest.mock('next/dist/client/router')
-
+mockNextUseRouter()
 describe('Unit test for the EndorserAutocomplete component.', () => {
   const mockEndorsers = generateMockApolloData(ENDORSER_SEARCH_QUERY, { search: '' }, null, endorsers)
   const ENDORSER_SEARCH_TEST_ID = 'endorser-search'
-
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
 
   test('Should match snapshot.', async () => {
     const { container } = render(

@@ -1,8 +1,8 @@
 import { useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
-import { useContext, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import { DELETE_TAG } from '../../mutations/tag'
 import ConfirmActionDialog from '../shared/ConfirmActionDialog'
@@ -10,21 +10,27 @@ import DeleteButton from '../shared/DeleteButton'
 
 const DeleteTag = ({ tag }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
 
+  const { user } = useUser()
   const { locale } = useRouter()
-
-  const [session] = useSession()
 
   const { showToast } = useContext(ToastContext)
 
   const [deleteTag, { called, reset }] = useMutation(DELETE_TAG, {
     refetchQueries: ['SearchTags'],
-    onCompleted: () => {
-      showToast(format('toast.tag.delete.success'), 'success', 'top-center')
-      setDisplayConfirmDialog(false)
+    onCompleted: (data) => {
+      const { deleteTag: response } = data
+      if (response?.tag && response?.errors?.length === 0) {
+        showToast(format('toast.tag.delete.success'), 'success', 'top-center')
+        setDisplayConfirmDialog(false)
+      } else {
+        showToast(format('toast.tag.delete.failure'), 'error', 'top-center')
+        setDisplayConfirmDialog(false)
+        reset()
+      }
     },
     onError: () => {
       showToast(format('toast.tag.delete.failure'), 'error', 'top-center')
@@ -34,8 +40,8 @@ const DeleteTag = ({ tag }) => {
   })
 
   const onConfirmDelete = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       deleteTag({
         variables: { id: tag.id },

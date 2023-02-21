@@ -1,6 +1,6 @@
-import { csrfToken } from 'next-auth/client'
+import { getCsrfToken, getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import Link from 'next/link'
 import Header from '../../components/Header'
@@ -8,7 +8,7 @@ import Footer from '../../components/Footer'
 
 export default function SignIn ({ csrfToken }) {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
   const formEl = useRef()
@@ -25,10 +25,19 @@ export default function SignIn ({ csrfToken }) {
 
   return (
     <>
-      <Header />
+      <Header isOnAuthPage />
       <div className='bg-dial-gray-dark pt-40 pb-40'>
         <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
-          <form ref={formEl} method='post' onSubmit={handleSubmit} action={process.env.NEXT_PUBLIC_AUTH_TYPE === 'auth0' ? '/api/auth/signin/auth0' : '/api/auth/callback/credentials'}>
+          <form
+            ref={formEl}
+            method='post'
+            onSubmit={handleSubmit}
+            action={
+              process.env.NEXT_PUBLIC_AUTH_TYPE === 'auth0'
+                ? '/api/auth/signin/auth0'
+                : '/api/auth/callback/credentials'
+            }
+          >
             <input name='csrfToken' type='hidden' defaultValue={csrfToken} />
             {process.env.NEXT_PUBLIC_AUTH_TYPE !== 'auth0' && (
               <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
@@ -53,7 +62,7 @@ export default function SignIn ({ csrfToken }) {
                 </div>
                 <div className='flex items-center justify-between text-sm font-semibold'>
                   <button
-                    className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
+                    className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex disabled:opacity-50'
                     type='submit' disabled={loading}
                   >
                     {format('app.signIn')}
@@ -92,6 +101,8 @@ export default function SignIn ({ csrfToken }) {
 export async function getServerSideProps (ctx) {
   const { resolvedUrl, query, locale } = ctx
 
+  const session = await getSession(ctx)
+
   if (query && query.callbackUrl) {
     const callbackUrl = new URL(query.callbackUrl)
     const [, cbLang] = callbackUrl.pathname.split('/')
@@ -105,11 +116,17 @@ export async function getServerSideProps (ctx) {
         }
       }
     }
+  } else if (session) {
+    return {
+      redirect: {
+        destination: '/'
+      }
+    }
   }
 
   return {
     props: {
-      csrfToken: await csrfToken(ctx)
+      csrfToken: await getCsrfToken(ctx)
     }
   }
 }

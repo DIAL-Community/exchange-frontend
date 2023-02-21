@@ -1,7 +1,9 @@
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
+import { useCallback, useMemo } from 'react'
 import Pill from '../../shared/Pill'
 import Select from '../../shared/Select'
+import { getLicenseTypeOptions } from '../../../lib/utilities'
 
 export const LicenseTypeSelect = ({
   licenseTypes,
@@ -12,7 +14,7 @@ export const LicenseTypeSelect = ({
   isSearch = false
 }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('licenseType.label') })
 
@@ -20,11 +22,7 @@ export const LicenseTypeSelect = ({
     setLicenseTypes([...licenseTypes.filter(({ value }) => value !== licenseType.value), licenseType])
   }
 
-  const options = [
-    { value: 'all_license', label: format('licenseType.allType') },
-    { value: 'commercial_only', label: format('licenseType.commercialOnly') },
-    { value: 'oss_only', label: format('licenseType.ossOnly') }
-  ]
+  const options = useMemo(() => getLicenseTypeOptions(format), [format])
 
   const fetchOptions = async (input) => {
     return options.filter(({ label }) => label.indexOf(input) >= 0)
@@ -52,7 +50,7 @@ export const LicenseTypeFilters = (props) => {
   const { licenseTypes, setLicenseTypes } = props
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const removeLicenseType = (licenseTypeValue) => {
     setLicenseTypes(licenseTypes.filter(({ value }) => value !== licenseTypeValue))

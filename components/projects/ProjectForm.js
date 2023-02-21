@@ -24,7 +24,6 @@ const ProjectForm = React.memo(({ project }) => {
   const slug = project?.slug ?? ''
 
   const router = useRouter()
-
   const { user, isAdminUser, loadingUserSession } = useUser()
 
   const { data: productsData } = useQuery(PRODUCT_SEARCH_QUERY, {
@@ -70,22 +69,31 @@ const ProjectForm = React.memo(({ project }) => {
     isAdminUser || (project ? (ownsSomeProduct || ownsSomeOrganization) : (ownsAnyProduct || ownsAnyOrganization))
 
   const [mutating, setMutating] = useState(false)
-
   const [reverting, setReverting] = useState(false)
 
   const { showToast } = useContext(ToastContext)
 
   const { locale } = useRouter()
 
-  const [updateProject] = useMutation(CREATE_PROJECT, {
-    onCompleted: (data) => showToast(
-      format('project.submit.success'),
-      'success',
-      'top-center',
-      1000,
-      null,
-      () => router.push(`/${router.locale}/projects/${data.createProject.project.slug}`)
-    ),
+  const [updateProject, { reset }] = useMutation(CREATE_PROJECT, {
+    onCompleted: (data) => {
+      const { createProject: response } = data
+      if (response?.project && response?.errors?.length === 0) {
+        setMutating(false)
+        showToast(
+          format('project.submit.success'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => router.push(`/${router.locale}/projects/${response?.project?.slug}`)
+        )
+      } else {
+        setMutating(false)
+        showToast(format('project.submit.failure'), 'error', 'top-center')
+        reset()
+      }
+    },
     onError: (error) => {
       setMutating(false)
       showToast(
@@ -96,6 +104,7 @@ const ProjectForm = React.memo(({ project }) => {
         'error',
         'top-center'
       )
+      reset()
     }
   })
 
@@ -107,7 +116,7 @@ const ProjectForm = React.memo(({ project }) => {
       name: project?.name,
       startDate: project?.startDate ?? null,
       endDate: project?.endDate ?? null,
-      projectUrl: project?.projectUrl,
+      projectUrl: project?.projectWebsite,
       description: project?.projectDescription?.description
     }
   })
@@ -137,8 +146,8 @@ const ProjectForm = React.memo(({ project }) => {
       const variables = {
         name,
         slug,
-        startDate,
-        endDate,
+        startDate: startDate || null,
+        endDate: endDate || null,
         projectUrl,
         description
       }
@@ -211,7 +220,11 @@ const ProjectForm = React.memo(({ project }) => {
                       <Input
                         {...register(
                           'endDate',
-                          { validate: (endDate) => isEndDateValid(endDate) || format('validation.endDateEarlierThanStartDate') }
+                          { validate:
+                              (endDate) =>
+                                isEndDateValid(endDate) ||
+                                format('validation.endDateEarlierThanStartDate')
+                          }
                         )}
                         type='date'
                         placeholder={format('project.endDate')}
@@ -247,7 +260,9 @@ const ProjectForm = React.memo(({ project }) => {
                           )}
                           rules={ownsAnyProduct && { required: format('validation.required') }}
                         />
-                        {errors.product && <ValidationError value={errors.product?.message} />}
+                        {errors.product &&
+                          <ValidationError value={errors.product?.message} />
+                        }
                       </div>
                     )}
                     {!slug && (isAdminUser || ownsAnyOrganization) && (
@@ -297,7 +312,9 @@ const ProjectForm = React.memo(({ project }) => {
                         )}
                         rules={{ required: format('validation.required') }}
                       />
-                      {errors.description && <ValidationError value={errors.description?.message} />}
+                      {errors.description &&
+                        <ValidationError value={errors.description?.message} />
+                      }
                     </div>
                   </div>
                 </div>

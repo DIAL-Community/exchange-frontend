@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from 'react'
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { gql, useQuery } from '@apollo/client'
@@ -41,7 +41,6 @@ query SearchOrganizations(
     search: $search,
     mapView: $mapView
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor
@@ -76,7 +75,7 @@ query SearchOrganizations(
 
 const EndorserPageInformation = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [selectedCity, setSelectedCity] = useState('')
   const [organization, setOrganization] = useState()
@@ -86,7 +85,7 @@ const EndorserPageInformation = () => {
   const [years, setYears] = useState([])
   const [sectors, setSectors] = useState([])
 
-  const { resultCounts, setResultCounts, displayType } = useContext(FilterContext)
+  const { setResultCounts, displayType } = useContext(FilterContext)
 
   const toggleEndorserLevel = () => {
     setEndorserLevel(endorserLevel === 'gold' ? '' : 'gold')
@@ -101,11 +100,19 @@ const EndorserPageInformation = () => {
       endorserLevel,
       search,
       mapView: true
-    },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.organizations']]: data.searchOrganizations.totalCount } })
     }
   })
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.organizations']]: data.searchOrganizations.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
 
   // Group project into map of countries with projects
   const cities = (() => {
@@ -140,13 +147,21 @@ const EndorserPageInformation = () => {
 
   const city = cities[selectedCity]
 
-  const gridStyles = `grid ${displayType === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4' : 'grid-cols-1'}`
+  const gridStyles = `grid
+    ${
+      displayType === 'card'
+        ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4'
+        : 'grid-cols-1'
+    }
+  `
 
   return (
     <>
       <GradientBackground />
       <div className='flex flex-row mx-2 my-2' style={{ minHeight: '10vh' }}>
-        <EndorserMarkerMaps {...{ cities, organization, setSelectedCity, setOrganization, height: '30vh', defaultMap: 'principles' }} />
+        <EndorserMarkerMaps
+          {...{ cities, organization, setSelectedCity, setOrganization, height: '30vh', defaultMap: 'principles' }}
+        />
         <EndorserInfo {...{ city, setOrganization }} />
       </div>
       <div className='flex flex-row bg-dial-gray-dark pt-2 pb-2'>

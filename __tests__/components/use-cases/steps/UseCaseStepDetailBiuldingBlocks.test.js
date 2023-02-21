@@ -1,19 +1,13 @@
 import { fireEvent, screen } from '@testing-library/react'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  waitForAllEffectsAndSelectToLoad,
-  render
-} from '../../../test-utils'
+import { waitForAllEffectsAndSelectToLoad,  render } from '../../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../../utils/CustomMockedProvider'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../../queries/building-block'
 import UseCaseStepDetailBuildingBlocks from '../../../../components/use-cases/steps/UseCaseStepDetailBuildingBlocks'
+import { mockNextUseRouter } from '../../../utils/nextMockImplementation'
 import { buildingBlocks } from './data/UseCaseStepDetailBuildingBlocks'
 import { useCaseStep } from './data/UseCaseStepForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
@@ -24,11 +18,6 @@ describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => 
   const PILL_TEST_ID = 'pill'
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
   const mockBuildingBlocks = generateMockApolloData(BUILDING_BLOCK_SEARCH_QUERY, { search: '' }, null, buildingBlocks)
-
-  beforeAll(() => {
-    mockRouterImplementation()
-    mockSessionImplementation()
-  })
 
   describe('Should match snapshot -', () => {
     test('without edit permission.', () => {

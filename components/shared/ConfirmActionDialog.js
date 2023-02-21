@@ -1,11 +1,11 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useRef } from 'react'
+import { Fragment, useCallback, useRef } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
 
 const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isConfirming }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   // Dialog should contain at least one focusable element - documentation of @headlessui/react
   let initialFocusRef = useRef(null)
@@ -36,11 +36,23 @@ const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isCon
                 {message}
               </span>
               <div className='flex justify-center sm:justify-end gap-3 text-xl'>
-                <button type='button' className='submit-button' onClick={onConfirm} data-testid='confirm-button' disabled={isConfirming}>
+                <button
+                  type='button'
+                  className='submit-button'
+                  onClick={onConfirm}
+                  data-testid='confirm-button'
+                  disabled={isConfirming}
+                >
                   {format('app.confirm')}
                   {isConfirming && <FaSpinner className='spinner ml-3 inline' />}
                 </button>
-                <button ref={initialFocusRef} type='button' className='cancel-button' onClick={onClose} data-testid='cancel-button'>
+                <button
+                  ref={initialFocusRef}
+                  type='button'
+                  className='cancel-button'
+                  onClick={onClose}
+                  data-testid='cancel-button'
+                >
                   {format('app.cancel')}
                 </button>
               </div>

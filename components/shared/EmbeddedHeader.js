@@ -12,7 +12,7 @@ const menuItemStyles = `
   `
 
 const dropdownMenuStyles = `
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+    block px-4 py-2 text-base text-white-beech hover:bg-gray-100 hover:text-gray-900
   `
 
 const dropdownPanelStyles = `
@@ -85,7 +85,7 @@ const EmbeddedHeader = () => {
 
   return (
     <header className='z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white'>
-      <div className='flex flex-wrap justify-center items-center py-3 lg:py-0 max-w-catalog header-min-height mx-auto'>
+      <div className='flex flex-wrap justify-center items-center py-3 lg:py-0 header-min-height'>
         <div className='flex-1 flex my-auto'>
           <a href='' className='text-center mx-auto'>
             <div className='text-dial-blue-darkest text-xs'>
@@ -93,7 +93,9 @@ const EmbeddedHeader = () => {
             </div>
             <div className='font-bold text-xl text-dial-blue-darkest'>
               <span className='block'>
-                <a href='https://solutions.dial.community' target='_blank' rel='noreferrer'>DIAL Catalog of Digital Solutions</a>
+                <a href='https://solutions.dial.community' target='_blank' rel='noreferrer'>
+                  {format('app.title')}
+                </a>
               </span>
             </div>
           </a>

@@ -8,8 +8,17 @@ const SdgTargetCard = ({ sdgTarget }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <Link key={sdgTarget.id} href={`/sdgs/${sdgTarget.slug}`} passHref>
-      <div className='border-3 border-transparent hover:border-dial-yellow text-use-case hover:text-dial-yellow cursor-pointer'>
+    <Link
+      key={sdgTarget.sustainableDevelopmentGoal?.id}
+      href={`/sdgs/${sdgTarget.sustainableDevelopmentGoal?.slug}`}
+      passHref
+    >
+      <div
+        className={`
+          border-3 border-transparent hover:border-dial-yellow text-use-case
+          hover:text-dial-yellow cursor-pointer
+        `}
+      >
         <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
           <div className='flex flex-row text-dial-gray-dark'>
             <div className='px-4 my-auto text-sm font-semibold text-dial-yellow w-3/12 md:w-2/12'>

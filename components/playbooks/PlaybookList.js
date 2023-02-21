@@ -1,68 +1,32 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useSession } from 'next-auth/client'
+import NotFound from '../shared/NotFound'
+import { useUser } from '../../lib/hooks'
 import { Loading, Error } from '../shared/FetchStatus'
 import { FilterContext } from '../context/FilterContext'
 import { PlaybookFilterContext } from '../context/PlaybookFilterContext'
+import { PLAYBOOKS_QUERY } from '../../queries/playbook'
 import PlaybookCard from './PlaybookCard'
 
 const DEFAULT_PAGE_SIZE = 20
-
-export const PLAYBOOKS_QUERY = gql`
-  query SearchPlaybooks(
-    $first: Int,
-    $after: String,
-    $search: String!,
-    $tags: [String!],
-    $products: [String!]
-    ) {
-    searchPlaybooks(
-      first: $first,
-      after: $after,
-      search: $search,
-      products: $products,
-      tags: $tags
-    ) {
-      __typename
-      totalCount
-      pageInfo {
-        endCursor
-        startCursor
-        hasPreviousPage
-        hasNextPage
-      }
-      nodes {
-        id
-        slug
-        name
-        imageFile
-        tags
-        playbookDescription {
-          id
-          overview
-        }
-        draft
-      }
-    }
-  }
-`
-
 const PlaybookList = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [session] = useSession()
-
-  const canEdit = session?.user?.canEdit
+  const { isAdminUser } = useUser()
 
   const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card'
     ? `grid-cols-1 gap-4
-       ${filterDisplayed ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'}`
+      ${
+        filterDisplayed
+          ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'
+          : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'
+      }`
     : 'grid-cols-1'
     }`
 
@@ -82,7 +46,12 @@ const PlaybookList = (props) => {
       {
         props.playbookList.length > 0
           ? props.playbookList.map((playbook) => (
-            <PlaybookCard key={playbook.id} listType={displayType} {...{ playbook, filterDisplayed }} canEdit={canEdit} />
+            <PlaybookCard
+              key={playbook.id}
+              listType={displayType}
+              canEdit={isAdminUser}
+              {...{ playbook, filterDisplayed }}
+            />
           ))
           : (
             <div className='text-sm font-medium opacity-80'>
@@ -99,10 +68,10 @@ const PlaybookListQuery = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { displayType, filterDisplayed, resultCounts, setResultCounts } = useContext(FilterContext)
+  const { displayType, filterDisplayed, setResultCounts } = useContext(FilterContext)
   const { search, tags, products } = useContext(PlaybookFilterContext)
 
-  const { loading, error, data, fetchMore, refetch } = useQuery(PLAYBOOKS_QUERY, {
+  const { loading, error, data, fetchMore } = useQuery(PLAYBOOKS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       search,
@@ -125,24 +94,22 @@ const PlaybookListQuery = () => {
   }
 
   useEffect(() => {
-    refetch()
-  }, [locale, refetch])
-
-  useEffect(() => {
     if (data) {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.playbooks']]: data.searchPlaybooks.totalCount }
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.playbooks']]: data.searchPlaybooks.totalCount }
+        }
       })
     }
   }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error) {
+  } else if (error && error.networkError) {
     return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
   }
 
   const { searchPlaybooks: { nodes, pageInfo } } = data
@@ -150,7 +117,7 @@ const PlaybookListQuery = () => {
   return (
     <>
       <InfiniteScroll
-        className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height'
+        className='relative infinite-scroll-default-height'
         dataLength={nodes.length}
         next={handleLoadMore}
         hasMore={pageInfo.hasNextPage}

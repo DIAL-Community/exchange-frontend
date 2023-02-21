@@ -8,6 +8,11 @@ export const CREATE_PRODUCT = gql`
     $imageFile: Upload
     $website: String
     $description: String!
+    $pricingUrl: String
+    $pricingDetails: String
+    $pricingModel: String
+    $hostingModel: String
+    $commercialProduct: Boolean
   ) {
     createProduct(
       name: $name
@@ -16,6 +21,11 @@ export const CREATE_PRODUCT = gql`
       website: $website
       imageFile: $imageFile
       description: $description
+      pricingUrl: $pricingUrl
+      pricingDetails: $pricingDetails
+      pricingModel: $pricingModel
+      hostingModel: $hostingModel
+      commercialProduct: $commercialProduct
     ) {
       product {
         name
@@ -45,6 +55,7 @@ export const UPDATE_PRODUCT_BUILDING_BLOCKS = gql`
       mappingStatus: $mappingStatus
     ) {
       product {
+        id
         buildingBlocks {
           name
           slug
@@ -68,6 +79,7 @@ export const UPDATE_PRODUCT_SECTORS = gql`
       sectorsSlugs: $sectorsSlugs
     ) {
       product {
+        id
         sectors {
           id
           name
@@ -89,6 +101,7 @@ export const UPDATE_PRODUCT_PROJECTS = gql`
       projectsSlugs: $projectsSlugs
     ) {
       product {
+        id
         slug
         projects {
           id
@@ -114,6 +127,7 @@ export const UPDATE_PRODUCT_ORGANIZATION = gql`
       organizationsSlugs: $organizationsSlugs
     ) {
       product {
+        id
         organizations {
           id
           name
@@ -140,6 +154,7 @@ export const UPDATE_PRODUCT_TAGS = gql`
       tags: $tags
     ) {
       product {
+        id
         slug
         tags
       }
@@ -160,6 +175,7 @@ export const UPDATE_PRODUCT_SDGS = gql`
       mappingStatus: $mappingStatus
     ) {
       product {
+        id
         slug
         sustainableDevelopmentGoals {
           slug
@@ -168,27 +184,37 @@ export const UPDATE_PRODUCT_SDGS = gql`
         }
         sustainableDevelopmentGoalsMappingStatus
       }
+      errors
     }  
   }
 `
 
 export const CREATE_CANDIDATE_PRODUCT = gql`
   mutation CreateCandidateProduct(
+    $slug: String
     $name: String!
     $website: String!
     $repository: String!
     $description: String!
-    $email: String!
+    $submitterEmail: String!
+    $commercialProduct: Boolean
     $captcha: String!
   ) {
     createCandidateProduct(
+      slug: $slug
       name: $name
       website: $website
       repository: $repository
       description: $description
-      email: $email
+      submitterEmail: $submitterEmail
+      commercialProduct: $commercialProduct
       captcha: $captcha
-    ) { slug }
+    ) {
+      candidateProduct {
+        id
+      }
+      errors
+    }
   }
 `
 
@@ -215,3 +241,35 @@ const generateProductRepositoryMutation = (mutationName) => `
 export const CREATE_PRODUCT_REPOSITORY = gql(generateProductRepositoryMutation('createProductRepository'))
 
 export const UPDATE_PRODUCT_REPOSITORY = gql(generateProductRepositoryMutation('updateProductRepository'))
+
+export const UPDATE_PRODUCT_CATEGORY_INDICATORS = gql`
+  mutation UpdateProductIndicators(
+    $slug: String!
+    $indicatorsData: [JSON!]!
+  ) {
+    updateProductIndicators(
+      slug: $slug
+      indicatorsData: $indicatorsData
+    ) {
+      product {
+        id
+        maturityScore
+        maturityScoreDetails
+      }
+      errors
+    }  
+  }
+`
+
+export const DELETE_PRODUCT = gql`
+  mutation DeleteProduct($id: ID!) {
+    deleteProduct(id: $id) {
+      product {
+       id
+       slug
+       name
+      }
+      errors
+    }
+  }
+`

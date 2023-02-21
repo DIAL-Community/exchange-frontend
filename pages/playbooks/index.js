@@ -10,10 +10,11 @@ import PageContent from '../../components/main/PageContent'
 import SearchFilter from '../../components/shared/SearchFilter'
 import PlaybookFilter from '../../components/playbooks/PlaybookFilter'
 import PlaybookActiveFilter from '../../components/playbooks/PlaybookActiveFilter'
-import PlaybookHint from '../../components/filter/hint/PlaybookHint'
-import { PlaybookFilterContext, PlaybookFilterDispatchContext } from '../../components/context/PlaybookFilterContext'
+import { PlaybookFilterContext, PlaybookFilterDispatchContext }
+  from '../../components/context/PlaybookFilterContext'
 import ClientOnly from '../../lib/ClientOnly'
 const PlaybookListQuery = dynamic(() => import('../../components/playbooks/PlaybookList'), { ssr: false })
+const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const Playbooks = () => {
   const { search } = useContext(PlaybookFilterContext)
@@ -24,16 +25,21 @@ const Playbooks = () => {
       <QueryNotification />
       <GradientBackground />
       <Header />
-      <TabNav activeTab='filter.entity.playbooks' />
-      <MobileNav activeTab='filter.entity.playbooks' />
+      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <ClientOnly>
+        <TabNav activeTab='filter.entity.playbooks' />
+        <MobileNav activeTab='filter.entity.playbooks' />
         <PageContent
           activeTab='filter.entity.playbooks'
           filter={<PlaybookFilter />}
           content={<PlaybookListQuery />}
-          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.playbooks' />}
+          searchFilter={
+            <SearchFilter
+              {...{ search, setSearch }}
+              hint='filter.entity.playbooks'
+            />
+          }
           activeFilter={<PlaybookActiveFilter />}
-          hint={<PlaybookHint />}
         />
       </ClientOnly>
       <Footer />

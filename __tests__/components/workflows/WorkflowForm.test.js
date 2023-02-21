@@ -1,34 +1,23 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import userEvent from '@testing-library/user-event'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import {
-  mockRouterImplementation,
-  mockSessionImplementation,
-  mockUnauthorizedUserSessionImplementation,
-  render,
-  waitForAllEffects
-} from '../../test-utils'
+import { render, waitForAllEffects } from '../../test-utils'
 import WorkflowForm from '../../../components/workflows/WorkflowForm'
 import { CREATE_WORKFLOW } from '../../../mutations/workflow'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { workflow, createWorkflowSuccess } from './data/WorkflowForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit tests for WorkflowForm component.', () => {
   const WORKFLOW_NAME_TEST_ID = 'workflow-name'
   const WORKFLOW_DESCRIPTION_TEST_ID = 'workflow-description'
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
 
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
-
   describe('Should render Unauthorized component for', () => {
     test('unauthorized user.', async () => {
-      mockUnauthorizedUserSessionImplementation()
+      mockNextAuthUseSession(statuses.UNAUTHENTICATED)
       const { container } = render(
         <CustomMockedProvider>
           <WorkflowForm />
@@ -36,10 +25,11 @@ describe('Unit tests for WorkflowForm component.', () => {
       )
       await waitForAllEffects()
       expect(container).toHaveTextContent('You are not authorized to view this page')
+      expect(container).toMatchSnapshot()
     })
 
     test('user who is not an admin.', async () => {
-      mockSessionImplementation()
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
       const { container } = render(
         <CustomMockedProvider>
           <WorkflowForm />
@@ -47,11 +37,12 @@ describe('Unit tests for WorkflowForm component.', () => {
       )
       await waitForAllEffects()
       expect(container).toHaveTextContent('You are not authorized to view this page')
+      expect(container).toMatchSnapshot()
     })
   })
 
   test('Should render WorkflowForm component for admin user.', async () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
     const { container } = render(
       <CustomMockedProvider>
         <WorkflowForm />
@@ -63,8 +54,8 @@ describe('Unit tests for WorkflowForm component.', () => {
 
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
     const user = userEvent.setup()
-    mockSessionImplementation(true)
-    const { getByTestId } = render(
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    const { container, getByTestId } = render(
       <CustomMockedProvider>
         <WorkflowForm />
       </CustomMockedProvider>
@@ -76,7 +67,9 @@ describe('Unit tests for WorkflowForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test workflow name')
     expect(getByTestId(WORKFLOW_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await user.clear(screen.getByLabelText(/Name/))
+    await act(async () => waitFor(() => {
+      user.clear(screen.getByLabelText(/Name/))
+    }))
     expect(getByTestId(WORKFLOW_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test workflow name 2')
@@ -86,11 +79,12 @@ describe('Unit tests for WorkflowForm component.', () => {
     await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(WORKFLOW_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(WORKFLOW_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
+    expect(container).toMatchSnapshot()
   })
 
   describe('Should display toast on submit -', () => {
     test('Success.', async () => {
-      mockSessionImplementation(true)
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
       const mockCreateWorkflow = generateMockApolloData(
         CREATE_WORKFLOW,
         {
@@ -101,7 +95,7 @@ describe('Unit tests for WorkflowForm component.', () => {
         null,
         createWorkflowSuccess
       )
-      const { getByTestId } = render(
+      const { container, getByTestId } = render(
         <CustomMockedProvider mocks={[mockCreateWorkflow]} addTypename={false}>
           <WorkflowForm workflow={workflow} />
         </CustomMockedProvider>
@@ -110,12 +104,13 @@ describe('Unit tests for WorkflowForm component.', () => {
       await waitForAllEffects()
       await act(async () => {
         fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-        await screen.findByText('Workflow submitted successfully')
       })
+      await screen.findByText('Workflow submitted successfully')
+      expect(container).toMatchSnapshot()
     })
 
     test('Failure.', async () => {
-      mockSessionImplementation(true)
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
       const errorMessage = 'An error occurred'
       const mockCreateWorkflow = generateMockApolloData(
         CREATE_WORKFLOW,
@@ -126,7 +121,7 @@ describe('Unit tests for WorkflowForm component.', () => {
         },
         new Error(errorMessage)
       )
-      const { getByTestId } = render(
+      const { container, getByTestId } = render(
         <CustomMockedProvider mocks={[mockCreateWorkflow]}>
           <WorkflowForm workflow={workflow} />
         </CustomMockedProvider>
@@ -135,9 +130,10 @@ describe('Unit tests for WorkflowForm component.', () => {
       await waitForAllEffects()
       await act(async () => {
         fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-        await screen.findByText('Workflow submission failed')
-        await screen.findByText(errorMessage)
       })
+      await screen.findByText('Workflow submission failed')
+      await screen.findByText(errorMessage)
+      expect(container).toMatchSnapshot()
     })
   })
 })

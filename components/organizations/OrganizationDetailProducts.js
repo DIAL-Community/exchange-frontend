@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useEffect, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 import { PRODUCT_SEARCH_QUERY } from '../../queries/product'
@@ -11,6 +10,7 @@ import { ToastContext } from '../../lib/ToastContext'
 import { UPDATE_ORGANIZATION_PRODUCT } from '../../mutations/organization'
 import { fetchSelectOptions } from '../../queries/utils'
 import ProductCard from '../products/ProductCard'
+import { useUser } from '../../lib/hooks'
 
 const OrganizationDetailProducts = ({ organization, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -24,7 +24,7 @@ const OrganizationDetailProducts = ({ organization, canEdit }) => {
 
   const [updateOrganizationProducts, { data, loading }] = useMutation(UPDATE_ORGANIZATION_PRODUCT)
 
-  const [session] = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -57,8 +57,8 @@ const OrganizationDetailProducts = ({ organization, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateOrganizationProducts({
         variables: {

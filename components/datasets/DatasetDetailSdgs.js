@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useEffect, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 import EditableSection from '../shared/EditableSection'
@@ -12,6 +11,7 @@ import { fetchSelectOptions } from '../../queries/utils'
 import SDGCard from '../sdgs/SDGCard'
 import { SDG_SEARCH_QUERY } from '../../queries/sdg'
 import { getMappingStatusOptions } from '../../lib/utilities'
+import { useUser } from '../../lib/hooks'
 
 const DatasetDetailSdgs = ({ dataset, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -32,7 +32,7 @@ const DatasetDetailSdgs = ({ dataset, canEdit }) => {
 
   const [updateDatasetSdgs, { data, loading }] = useMutation(UPDATE_DATASET_SDGS)
 
-  const [session] = useSession()
+  const { user } = useUser()
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)
 
@@ -68,8 +68,8 @@ const DatasetDetailSdgs = ({ dataset, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateDatasetSdgs({
         variables: {
@@ -90,7 +90,10 @@ const DatasetDetailSdgs = ({ dataset, canEdit }) => {
   const onCancel = () => {
     setSdgs(data?.updateDatasetSdgs?.dataset?.sustainableDevelopmentGoals ?? dataset.sustainableDevelopmentGoals)
     setMappingStatus(mappingStatusOptions.find(({ value: mappingStatus }) =>
-      mappingStatus === (data?.updateDatasetSdgs?.dataset?.sustainableDevelopmentGoalMapping ?? dataset.sustainableDevelopmentGoalMapping)
+      mappingStatus === (
+        data?.updateDatasetSdgs?.dataset?.sustainableDevelopmentGoalMapping ??
+        dataset.sustainableDevelopmentGoalMapping
+      )
     ))
     setIsDirty(false)
   }

@@ -1,22 +1,25 @@
-import React, { useContext, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useMutation } from '@apollo/client'
 import { FaSpinner } from 'react-icons/fa'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Controller, useForm } from 'react-hook-form'
+import { validate } from 'email-validator'
 import { ToastContext } from '../../../lib/ToastContext'
 import { CREATE_CANDIDATE_ORGANIZATION } from '../../../mutations/organization'
 import Input from '../../shared/Input'
 import ValidationError from '../../shared/ValidationError'
 import { HtmlEditor } from '../../shared/HtmlEditor'
-import { emailRegex } from '../../shared/emailRegex'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { useUser } from '../../../lib/hooks'
+import UrlInput from '../../shared/UrlInput'
+import { BREADCRUMB_SEPARATOR } from '../../shared/breadcrumb'
 
 const OrganizationForm = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, { ...values })
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
 
@@ -27,16 +30,21 @@ const OrganizationForm = () => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const [createCandidateOrganization] = useMutation(CREATE_CANDIDATE_ORGANIZATION, {
+  const captchaRef = useRef(null)
+
+  const [createCandidateOrganization, { reset }] = useMutation(CREATE_CANDIDATE_ORGANIZATION, {
     onError: () => {
+      setMutating(false)
       showToast(
         format('candidate-organization.submit.failure'),
         'error',
         'top-center',
-        false
+        1000
       )
+      reset()
     },
     onCompleted: () => {
+      setMutating(false)
       showToast(
         format('candidate-organization.submit.success'),
         'success',
@@ -48,8 +56,8 @@ const OrganizationForm = () => {
     }
   })
 
-  const { handleSubmit, register, control, formState: { errors } } = useForm({
-    mode: 'onBlur',
+  const { handleSubmit, register, control, setValue, formState: { errors } } = useForm({
+    mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
     defaultValues: {
@@ -67,8 +75,11 @@ const OrganizationForm = () => {
     if (user) {
       setMutating(true)
 
+      const captcha = captchaRef.current.getValue()
+
       const { userEmail, userToken } = user
-      const { name, description, organizationName, website, email, title, captcha } = data
+      const { name, description, organizationName, email, title, website } = data
+
       const variables = {
         name,
         website,
@@ -96,9 +107,32 @@ const OrganizationForm = () => {
     router.push('/organizations')
   }
 
+  useEffect(() => {
+    register('captcha', { required: format('validation.required') })
+  }, [register, format])
+
   return (
     loadingUserSession ? <Loading /> : user ? (
       <div className='flex flex-col'>
+        <div className='hidden lg:block px-8'>
+          <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
+            <Link href='/'>
+              <a className='inline text-dial-blue h5'>{format('app.home')}</a>
+            </Link>
+            <div className='inline h5'>
+              {BREADCRUMB_SEPARATOR}
+              <Link href='/organizations'>
+                <a className='text-dial-blue'>
+                  {format('organization.header')}
+                </a>
+              </Link>
+              {BREADCRUMB_SEPARATOR}
+              <span className='text-dial-gray-dark'>
+                {format('app.create')}
+              </span>
+            </div>
+          </div>
+        </div>
         <div className='py-8 px-8'>
           <div id='content' className='sm:px-0 max-w-full mx-auto'>
             <form onSubmit={handleSubmit(doUpsert)}>
@@ -124,11 +158,19 @@ const OrganizationForm = () => {
                       <label className='form-field-label required-field' htmlFor='website'>
                         {format('candidateOrganization.website')}
                       </label>
-                      <Input
-                        {...register('website', { required: format('validation.required') })}
-                        id='website'
-                        placeholder={format('candidateOrganization.website.placeholder')}
-                        isInvalid={errors.website}
+                      <Controller
+                        name='website'
+                        control={control}
+                        render={({ field: { value, onChange } }) => (
+                          <UrlInput
+                            value={value}
+                            onChange={onChange}
+                            id='website'
+                            isInvalid={errors.website}
+                            placeholder={format('candidateOrganization.website.placeholder')}
+                          />
+                        )}
+                        rules={{ required: format('validation.required') }}
                       />
                       {errors.website && <ValidationError value={errors.website?.message} />}
                     </div>
@@ -153,7 +195,7 @@ const OrganizationForm = () => {
                         {...register('email',
                           {
                             required: format('validation.required'),
-                            pattern: { value: emailRegex , message: format('validation.email') }
+                            validate: value => validate(value) || format('validation.email')
                           }
                         )}
                         id='email'
@@ -174,17 +216,20 @@ const OrganizationForm = () => {
                       />
                       {errors.title && <ValidationError value={errors.title?.message} />}
                     </div>
-                    <Controller
-                      name='captcha'
-                      control={control}
-                      rules={{ required: format('validation.required') }}
-                      render={({ field: { onChange, ref } }) => {
-                        return (<ReCAPTCHA sitekey='6LfAGscbAAAAAFW_hQyW5OxXPhI7v6X8Ul3FJrsa' ref={ref} onChange={onChange} />)
+                    <ReCAPTCHA
+                      sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+                      ref={captchaRef}
+                      onChange={value => {
+                        setValue('captcha', value, { shouldValidate: true })
                       }}
                     />
                     {errors.captcha && <ValidationError value={errors.captcha?.message} />}
                   </div>
-                  <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }} data-testid='candidate-organization-description'>
+                  <div
+                    className='w-full lg:w-2/3'
+                    style={{ minHeight: '20rem' }}
+                    data-testid='candidate-organization-description'
+                  >
                     <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
                       <p className='required-field'> {format('candidateOrganization.description')}</p>
                       <Controller
@@ -215,7 +260,7 @@ const OrganizationForm = () => {
                     className='submit-button'
                     disabled={mutating || reverting}
                   >
-                    {format('candidateProduct.submit')}
+                    {format('candidateOrganization.submit')}
                     {mutating && <FaSpinner className='spinner ml-3 inline' />}
                   </button>
                   <button

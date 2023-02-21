@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
 import { useQuery } from '@apollo/client'
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
@@ -10,6 +9,7 @@ import UserDetail from '../../../components/users/UserDetail'
 import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
 import ClientOnly from '../../../lib/ClientOnly'
 import { USER_QUERY } from '../../../queries/user'
+import { useUser } from '../../../lib/hooks'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const UserPageDefinition = ({ userId, locale }) => {
@@ -25,35 +25,23 @@ const UserPageDefinition = ({ userId, locale }) => {
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (!data?.user) {
     return <NotFound />
   }
 
   return (
     <>
-      {
-        data && data.user &&
-          <UserDetail user={data.user} />
-      }
+      { data?.user && <UserDetail user={data.user} /> }
     </>
   )
 }
 
 const User = () => {
-  const router = useRouter()
-  const [session] = useSession()
+  const { user, isAdminUser, loadingUserSession } = useUser()
 
-  if (session && !session.user.roles.includes('admin')) {
-    return <Unauthorized />
-  }
-
-  const { locale, query } = router
+  const { locale, query } = useRouter()
   const { userId } = query
 
   return (
@@ -61,7 +49,13 @@ const User = () => {
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <ClientOnly>
-        <UserPageDefinition userId={userId} locale={locale} />
+        {
+          loadingUserSession
+            ? <Loading />
+            : isAdminUser || String(user?.id) === String(userId)
+              ? <UserPageDefinition userId={userId} locale={locale} />
+              : <Unauthorized />
+        }
       </ClientOnly>
       <Footer />
     </>

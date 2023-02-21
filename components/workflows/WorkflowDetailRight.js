@@ -1,12 +1,13 @@
 import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
+import { useCallback } from 'react'
 import Breadcrumb from '../shared/breadcrumb'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import UseCaseCard from '../use-cases/UseCaseCard'
 import WorkflowDetailBuildingBlocks from './WorkflowDetailBuildingBlocks'
 
 const WorkflowDetailRight = ({ workflow, canEdit }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const useCases = (() => {
     if (!workflow.useCaseSteps) {
@@ -38,9 +39,10 @@ const WorkflowDetailRight = ({ workflow, canEdit }) => {
       <div className='hidden lg:block'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
-      <div className='fr-view text-dial-gray-dark'>
-        {workflow.workflowDescription && parse(workflow.workflowDescription.description)}
-      </div>
+      <HtmlViewer
+        initialContent={workflow?.workflowDescription?.description}
+        editorId='workflow-detail'
+      />
       {
         useCases && useCases.length > 0 &&
           <div className='mt-12'>

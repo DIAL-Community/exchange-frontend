@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/client'
 import Pill from '../../shared/Pill'
 import Select from '../../shared/Select'
 import { PRODUCT_SEARCH_QUERY } from '../../../queries/product'
@@ -11,6 +10,7 @@ import { ToastContext } from '../../../lib/ToastContext'
 import { fetchSelectOptions } from '../../../queries/utils'
 import ProductCard from '../../products/ProductCard'
 import { UPDATE_USE_CASE_STEP_PRODUCTS } from '../../../mutations/useCaseStep'
+import { useUser } from '../../../lib/hooks'
 
 const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -19,25 +19,33 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
   const client = useApolloClient()
 
   const [products, setProducts] = useState(useCaseStep.products)
-
   const [isDirty, setIsDirty] = useState(false)
 
-  const [session] = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateUseCaseStepProducts, { data, loading }] = useMutation(UPDATE_USE_CASE_STEP_PRODUCTS, {
+  const [updateUseCaseStepProducts, { data, loading, reset }] = useMutation(UPDATE_USE_CASE_STEP_PRODUCTS, {
     onCompleted: (data) => {
-      setProducts(data.updateUseCaseStepProducts.useCaseStep.products)
-      setIsDirty(false)
-      showToast(format('toast.products.update.success'), 'success', 'top-center')
+      const { updateUseCaseStepProducts: response } = data
+      if (response?.useCaseStep && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setProducts(response?.useCaseStep?.products)
+        showToast(format('toast.products.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setProducts(useCaseStep.products)
+        showToast(format('toast.products.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setProducts(useCaseStep.products)
       setIsDirty(false)
+      setProducts(useCaseStep.products)
       showToast(format('toast.products.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 
@@ -60,8 +68,8 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateUseCaseStepProducts({
         variables: {

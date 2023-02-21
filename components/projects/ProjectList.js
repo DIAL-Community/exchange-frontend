@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import { FixedSizeGrid, FixedSizeList } from 'react-window'
@@ -47,7 +47,6 @@ query SearchProjects(
     tags: $tags,
     search: $search
   ) {
-    __typename
     totalCount
     pageInfo {
       endCursor
@@ -81,11 +80,11 @@ query SearchProjects(
 `
 
 const ProjectListQuery = () => {
-  const { resultCounts, filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
   const { origins, countries, sectors, organizations, products, sdgs, tags, search } = useContext(ProjectFilterContext)
 
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data, fetchMore } = useQuery(PROJECTS_QUERY, {
     variables: {
@@ -120,22 +119,20 @@ const ProjectListQuery = () => {
 
   useEffect(() => {
     if (data) {
-      setResultCounts({
-        ...resultCounts,
-        ...{ [['filter.entity.projects']]: data.searchProjects.totalCount }
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.projects']]: data.searchProjects.totalCount }
+        }
       })
     }
-  }, [data])
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />
-  }
-
-  if (error && error.networkError) {
+  } else if (error && error.networkError) {
     return <Error />
-  }
-
-  if (error && !error.networkError) {
+  } else if (error && !error.networkError) {
     return <NotFound />
   }
 
@@ -151,7 +148,7 @@ const ProjectListQuery = () => {
   const isProjectLoaded = (index) => !pageInfo.hasNextPage || index < nodes.length
 
   return (
-    <div className='pt-4'>
+    <>
       {
         displayType === 'list' &&
           <div className='flex flex-row my-3 px-4 gap-x-4'>
@@ -166,7 +163,7 @@ const ProjectListQuery = () => {
             </div>
           </div>
       }
-      <div className='block pr-2' style={{ height: '80vh' }}>
+      <div style={{ height: 'calc(100vh + 600px)' }}>
         <AutoSizer>
           {({ height, width }) => (
             <InfiniteLoader
@@ -219,9 +216,9 @@ const ProjectListQuery = () => {
                             <div
                               style={{
                                 ...style,
-                                left: style.left + PROJECT_CARD_GUTTER_SIZE,
+                                left: style.left,
                                 top: style.top + PROJECT_CARD_GUTTER_SIZE,
-                                width: style.width - PROJECT_CARD_GUTTER_SIZE,
+                                width: style.width,
                                 height: style.height - PROJECT_CARD_GUTTER_SIZE
                               }}
                             >
@@ -281,7 +278,7 @@ const ProjectListQuery = () => {
           )}
         </AutoSizer>
       </div>
-    </div>
+    </>
   )
 }
 

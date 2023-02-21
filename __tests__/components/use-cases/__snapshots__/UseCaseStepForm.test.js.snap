@@ -1,5 +1,480 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Unit tests for UseCaseStepForm component. Should display failure toast on submit. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  >
+    <div
+      class="Toastify__toast-container Toastify__toast-container--top-center"
+      style="width: auto;"
+    >
+      <div
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--error Toastify__toast--close-on-click Toastify--animate Toastify__slide-enter--top-center"
+        id="toastId"
+        style="--nth: 1; --len: 1;"
+      >
+        <div
+          class="Toastify__toast-body"
+          role="alert"
+        >
+          <div
+            class="Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter"
+          >
+            <svg
+              fill="var(--toastify-icon-color-error)"
+              height="100%"
+              viewBox="0 0 24 24"
+              width="100%"
+            >
+              <path
+                d="M11.983 0a12.206 12.206 0 00-8.51 3.653A11.8 11.8 0 000 12.207 11.779 11.779 0 0011.8 24h.214A12.111 12.111 0 0024 11.791 11.766 11.766 0 0011.983 0zM10.5 16.542a1.476 1.476 0 011.449-1.53h.027a1.527 1.527 0 011.523 1.47 1.475 1.475 0 01-1.449 1.53h-.027a1.529 1.529 0 01-1.523-1.47zM11 12.5v-6a1 1 0 012 0v6a1 1 0 11-2 0z"
+              />
+            </svg>
+          </div>
+          <div>
+            <div
+              class="flex flex-col"
+            >
+              <span>
+                Use Case Step submission failed
+              </span>
+              <span>
+                An error occurred
+              </span>
+            </div>
+          </div>
+        </div>
+        <button
+          aria-label="close"
+          class="Toastify__close-button Toastify__close-button--light"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 14 16"
+          >
+            <path
+              d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <div
+          aria-hidden="true"
+          aria-label="notification timer"
+          class="Toastify__progress-bar Toastify__progress-bar--animated Toastify__progress-bar-theme--light Toastify__progress-bar--error"
+          role="progressbar"
+          style="animation-duration: 1000ms; animation-play-state: paused; opacity: 0;"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="flex flex-col"
+  >
+    <div
+      class="hidden lg:block px-8"
+    >
+      <div
+        class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+      >
+        <a
+          class="inline text-dial-blue h5"
+          href="/"
+        >
+          Home
+        </a>
+        <div
+          class="inline h5"
+        >
+           &gt; 
+          <a
+            class="text-dial-gray-dark"
+            href="/"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="pb-8 px-8"
+    >
+      <div
+        class="sm:px-0 max-w-full mx-auto"
+        id="content"
+      >
+        <form>
+          <div
+            class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
+          >
+            <div
+              class="text-2xl font-bold text-dial-blue pb-4"
+            >
+              Edit Test Use Case Step
+            </div>
+            <div
+              class="flex flex-col lg:flex-row gap-4"
+            >
+              <div
+                class="w-full lg:w-1/2 flex flex-col gap-y-3"
+              >
+                <div
+                  class="form-field-wrapper"
+                  data-testid="use-case-step-name"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="name"
+                  >
+                    Name
+                  </label>
+                  <input
+                    class="w-full"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="use-case-step-step-number"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="stepNumber"
+                  >
+                    Step Number
+                  </label>
+                  <input
+                    class="w-full"
+                    id="stepNumber"
+                    name="stepNumber"
+                    placeholder="Step Number"
+                    type="number"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="use-case-step-markdown-url"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="markdownUrl"
+                  >
+                    Markdown Filename
+                  </label>
+                  <input
+                    class="w-full"
+                    id="markdownUrl"
+                    name="markdownUrl"
+                    placeholder="Markdown Filename"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                class="w-full lg:w-1/2"
+              >
+                <div
+                  class="block flex flex-col gap-y-2"
+                  data-testid="use-case-step-description"
+                >
+                  <label
+                    class="form-field-label required-field"
+                  >
+                    Description
+                  </label>
+                  <div
+                    class="relative"
+                  >
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="html-editor"
+                    >
+                      <textarea
+                        id="description-editor"
+                        style="visibility: hidden;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex flex-wrap text-xl mt-8 gap-3"
+            >
+              <button
+                class="submit-button"
+                data-testid="submit-button"
+                type="submit"
+              >
+                Submit Use Case Step
+              </button>
+              <button
+                class="cancel-button"
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit tests for UseCaseStepForm component. Should display success toast on submit. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  >
+    <div
+      class="Toastify__toast-container Toastify__toast-container--top-center"
+      style="width: auto;"
+    >
+      <div
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify__toast--close-on-click Toastify--animate Toastify__slide-enter--top-center"
+        id="toastId"
+        style="--nth: 1; --len: 1;"
+      >
+        <div
+          class="Toastify__toast-body"
+          role="alert"
+        >
+          <div
+            class="Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter"
+          >
+            <svg
+              fill="var(--toastify-icon-color-success)"
+              height="100%"
+              viewBox="0 0 24 24"
+              width="100%"
+            >
+              <path
+                d="M12 0a12 12 0 1012 12A12.014 12.014 0 0012 0zm6.927 8.2l-6.845 9.289a1.011 1.011 0 01-1.43.188l-4.888-3.908a1 1 0 111.25-1.562l4.076 3.261 6.227-8.451a1 1 0 111.61 1.183z"
+              />
+            </svg>
+          </div>
+          <div>
+            Use Case Step submitted successfully
+          </div>
+        </div>
+        <button
+          aria-label="close"
+          class="Toastify__close-button Toastify__close-button--light"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 14 16"
+          >
+            <path
+              d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <div
+          aria-hidden="true"
+          aria-label="notification timer"
+          class="Toastify__progress-bar Toastify__progress-bar--animated Toastify__progress-bar-theme--light Toastify__progress-bar--success"
+          role="progressbar"
+          style="animation-duration: 1000ms; animation-play-state: paused; opacity: 0;"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="flex flex-col"
+  >
+    <div
+      class="hidden lg:block px-8"
+    >
+      <div
+        class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+      >
+        <a
+          class="inline text-dial-blue h5"
+          href="/"
+        >
+          Home
+        </a>
+        <div
+          class="inline h5"
+        >
+           &gt; 
+          <a
+            class="text-dial-gray-dark"
+            href="/"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="pb-8 px-8"
+    >
+      <div
+        class="sm:px-0 max-w-full mx-auto"
+        id="content"
+      >
+        <form>
+          <div
+            class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
+          >
+            <div
+              class="text-2xl font-bold text-dial-blue pb-4"
+            >
+              Edit Test Use Case Step
+            </div>
+            <div
+              class="flex flex-col lg:flex-row gap-4"
+            >
+              <div
+                class="w-full lg:w-1/2 flex flex-col gap-y-3"
+              >
+                <div
+                  class="form-field-wrapper"
+                  data-testid="use-case-step-name"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="name"
+                  >
+                    Name
+                  </label>
+                  <input
+                    class="w-full"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="use-case-step-step-number"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="stepNumber"
+                  >
+                    Step Number
+                  </label>
+                  <input
+                    class="w-full"
+                    id="stepNumber"
+                    name="stepNumber"
+                    placeholder="Step Number"
+                    type="number"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="use-case-step-markdown-url"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="markdownUrl"
+                  >
+                    Markdown Filename
+                  </label>
+                  <input
+                    class="w-full"
+                    id="markdownUrl"
+                    name="markdownUrl"
+                    placeholder="Markdown Filename"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                class="w-full lg:w-1/2"
+              >
+                <div
+                  class="block flex flex-col gap-y-2"
+                  data-testid="use-case-step-description"
+                >
+                  <label
+                    class="form-field-label required-field"
+                  >
+                    Description
+                  </label>
+                  <div
+                    class="relative"
+                  >
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="html-editor"
+                    >
+                      <textarea
+                        id="description-editor"
+                        style="visibility: hidden;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex flex-wrap text-xl mt-8 gap-3"
+            >
+              <button
+                class="submit-button"
+                data-testid="submit-button"
+                type="submit"
+              >
+                Submit Use Case Step
+              </button>
+              <button
+                class="cancel-button"
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Unit tests for UseCaseStepForm component. Should render StepForm component for admin user. 1`] = `
 <div>
   <div
@@ -91,6 +566,25 @@ exports[`Unit tests for UseCaseStepForm component. Should render StepForm compon
                     value=""
                   />
                 </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="use-case-step-markdown-url"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="markdownUrl"
+                  >
+                    Markdown Filename
+                  </label>
+                  <input
+                    class="w-full"
+                    id="markdownUrl"
+                    name="markdownUrl"
+                    placeholder="Markdown Filename"
+                    type="text"
+                    value=""
+                  />
+                </div>
               </div>
               <div
                 class="w-full lg:w-1/2"
@@ -122,7 +616,7 @@ exports[`Unit tests for UseCaseStepForm component. Should render StepForm compon
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"

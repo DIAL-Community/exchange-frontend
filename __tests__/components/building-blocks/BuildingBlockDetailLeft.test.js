@@ -1,21 +1,15 @@
-import { mockRouterImplementation, mockSessionImplementation, render } from '../../test-utils'
+import { render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
 import BuildingBlockDetailLeft from '../../../components/building-blocks/BuildingBlockDetailLeft'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { buildingBlock } from './data/BuildingBlockForm'
 
-jest.mock('next/dist/client/router')
-jest.mock('next-auth/client')
-
+mockNextUseRouter()
 describe('Unit test for the BuildingBlockDetailLeft component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-link'
 
-  beforeAll(() => {
-    mockRouterImplementation()
-  })
-
   test('Should Edit button not be visible for user without admin or edit privileges', () => {
-    mockSessionImplementation()
-
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
     const { queryByTestId } = render(
       <CustomMockedProvider>
         <BuildingBlockDetailLeft buildingBlock={buildingBlock} />
@@ -26,7 +20,7 @@ describe('Unit test for the BuildingBlockDetailLeft component.', () => {
   })
 
   test('Should Edit button be visible for user with admin or edit privileges', () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
 
     const { getByTestId } = render(
       <CustomMockedProvider>
@@ -38,7 +32,7 @@ describe('Unit test for the BuildingBlockDetailLeft component.', () => {
   })
 
   test('Should redirect to buildingBlock edit form', () => {
-    mockSessionImplementation(true)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
 
     const { getByTestId } = render(
       <CustomMockedProvider>

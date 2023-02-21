@@ -1,8 +1,8 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import parse from 'html-react-parser'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import NotFound from '../shared/NotFound'
 import { Loading, Error } from '../shared/FetchStatus'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
@@ -14,7 +14,6 @@ const DEFAULT_PAGE_SIZE = 10
 export const PLAYBOOK_PLAYS_QUERY = gql`
   query SearchPlaybookPlays($first: Int, $after: String, $slug: String!) {
     searchPlaybookPlays(first: $first, after: $after, slug: $slug) {
-      __typename
       totalCount
       pageInfo {
         endCursor
@@ -55,7 +54,7 @@ export const PLAYBOOK_PLAYS_QUERY = gql`
 
 const Play = ({ play, index }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { updateSlugInformation, setWindowHeight } = useContext(PlaybookDetailDispatchContext)
 
@@ -97,9 +96,11 @@ const Play = ({ play, index }) => {
       <div className='font-semibold text-2xl py-4'>
         {`${format('plays.label')} ${index + 1}. ${play.name}`}
       </div>
-      <div className='fr-view tinyEditor text-dial-gray-dark'>
-        {parse(play.playDescription.description)}
-      </div>
+      <HtmlViewer
+        initialContent={play?.playDescription?.description}
+        editorId={`play-${index}-desc`}
+        className='-mt-4'
+      />
       <div className='flex flex-col gap-3'>
         {
           play.playMoves.map((move, i) =>
@@ -115,7 +116,9 @@ const Play = ({ play, index }) => {
               className='text-sm'
               dangerouslySetInnerHTML={{ __html: format('play.buildingBlocks.subtitle') }}
             />
-            {play.buildingBlocks.map((bb, i) => <BuildingBlockCard key={i} buildingBlock={bb} listType='list' />)}
+            <div className='grid grid-cols-1 md:grid-cols-2'>
+              {play.buildingBlocks.map((bb, bbIdx) => <BuildingBlockCard key={bbIdx} buildingBlock={bb} listType='list' />)}
+            </div>
           </div>
       }
       {
@@ -126,7 +129,12 @@ const Play = ({ play, index }) => {
               className='text-sm'
               dangerouslySetInnerHTML={{ __html: format('play.products.subtitle') }}
             />
-            {play.products.map((product, i) => <ProductCard key={i} product={product} listType='list' />)}
+            <div className='grid grid-cols-1 md:grid-cols-2'>
+              {play.products.map(
+                (product, productIdx) =>
+                  <ProductCard key={productIdx} product={product} listType='list' />
+              )}
+            </div>
           </div>
       }
     </div>
@@ -135,7 +143,7 @@ const Play = ({ play, index }) => {
 
 const PlaybookDetailPlayList = ({ slug, locale }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { loading, error, data, fetchMore, refetch } = useQuery(PLAYBOOK_PLAYS_QUERY, {
     variables: {
@@ -174,7 +182,7 @@ const PlaybookDetailPlayList = ({ slug, locale }) => {
 
   return (
     <InfiniteScroll
-      className='relative px-2 py-4 max-w-catalog mx-auto'
+      className='relative px-2 py-4'
       dataLength={nodes.length}
       next={handleLoadMore}
       scrollThreshold='60%'

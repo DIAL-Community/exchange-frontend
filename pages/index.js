@@ -1,10 +1,8 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
+import cookie from 'react-cookies'
 import Header from '../components/Header'
-import Landing from '../components/Landing'
-import Definition from '../components/Definition'
 import WizardDescription from '../components/WizardDescription'
-import Carousel from '../components/Carousel'
 import CatalogTitle from '../components/CatalogTitle'
 import Footer from '../components/Footer'
 import TabNav from '../components/main/TabNav'
@@ -17,20 +15,31 @@ import ProductListQuery from '../components/products/ProductList'
 import SearchFilter from '../components/shared/SearchFilter'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../components/context/ProductFilterContext'
 import ClientOnly from '../lib/ClientOnly'
+import Intro, { OVERVIEW_INTRO_KEY, OVERVIEW_INTRO_STEPS } from '../components/Intro'
+import QueryNotification from '../components/shared/QueryNotification'
+import HeroSection from '../components/Hero'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const HomePage = () => {
   const { search } = useContext(ProductFilterContext)
   const { setSearch } = useContext(ProductFilterDispatchContext)
 
+  const STEP_INDEX_START = 0
+  const STEP_INDEX_END = OVERVIEW_INTRO_STEPS.length - 1
+
+  const [enableIntro, setEnableIntro] = useState(false)
+  useEffect(() => {
+    const enableIntro = String(cookie.load(OVERVIEW_INTRO_KEY)) !== 'true'
+    setEnableIntro(enableIntro)
+  }, [setEnableIntro])
+
   return (
     <>
-      <Landing />
       <Header />
-      <Definition />
-      <Carousel />
+      <HeroSection />
       <WizardDescription />
       <CatalogTitle />
+      <QueryNotification />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <TabNav activeTab='filter.entity.products' />
       <MobileNav activeTab='filter.entity.products' />
@@ -42,6 +51,13 @@ const HomePage = () => {
           searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.products' />}
           activeFilter={<ProductActiveFilter />}
           hint={<ProductHint />}
+        />
+        <Intro
+          enabled={enableIntro}
+          steps={OVERVIEW_INTRO_STEPS}
+          startIndex={STEP_INDEX_START}
+          endIndex={STEP_INDEX_END}
+          completedKey={OVERVIEW_INTRO_KEY}
         />
       </ClientOnly>
       <Footer />

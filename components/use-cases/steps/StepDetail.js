@@ -1,9 +1,11 @@
 import { useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
 import Breadcrumb from '../../shared/breadcrumb'
+import { HtmlViewer } from '../../shared/HtmlViewer'
+import RepositoryMarkdown from '../../shared/RepositoryMarkdown'
 import { useUser } from '../../../lib/hooks'
 import { USE_CASE_STEP_QUERY } from '../../../queries/use-case-step'
+import UseCaseStepDetailDatasets from './UseCaseStepDetailDatasets'
 import UseCaseStepDetailProducts from './UseCaseStepDetailProducts'
 import UseCaseStepDetailWorkflows from './UseCaseStepDetailWorkflows'
 import UseCaseStepDetailBuildingBlocks from './UseCaseStepDetailBuildingBlocks'
@@ -22,11 +24,16 @@ const UseCaseStepInformation = ({ useCaseStep, canEdit }) => {
       <div className='hidden lg:block'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
-      <div className='fr-view text-dial-gray-dark'>
-        {useCaseStep.useCaseStepDescription && parse(useCaseStep.useCaseStepDescription.description)}
-      </div>
+      {!useCaseStep.markdownUrl &&
+        <HtmlViewer
+          initialContent={useCaseStep?.useCaseStepDescription?.description}
+          className='px-6 pt-6 border border-dial-gray card-drop-shadow'
+        />
+      }
+      {useCaseStep.markdownUrl && <RepositoryMarkdown entityWithMarkdown={useCaseStep} canEdit={canEdit} />}
       {useCaseStep.workflows && <UseCaseStepDetailWorkflows useCaseStep={useCaseStep} canEdit={canEdit} />}
       {useCaseStep.buildingBlocks && <UseCaseStepDetailBuildingBlocks useCaseStep={useCaseStep} canEdit={canEdit} />}
+      {useCaseStep.datasets && <UseCaseStepDetailDatasets useCaseStep={useCaseStep} canEdit={canEdit} />}
       {useCaseStep.products && <UseCaseStepDetailProducts useCaseStep={useCaseStep} canEdit={canEdit} />}
     </div>
   )

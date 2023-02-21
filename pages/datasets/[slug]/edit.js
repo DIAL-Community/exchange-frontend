@@ -47,9 +47,9 @@ const EditOrganization = () => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.dataset) {
     return <NotFound />
   }
 
@@ -57,11 +57,9 @@ const EditOrganization = () => {
     <>
       <Header />
       {data && data.dataset && (
-        <div className='max-w-catalog mx-auto'>
-          <ClientOnly>
-            <DatasetForm dataset={data.dataset} />
-          </ClientOnly>
-        </div>
+        <ClientOnly>
+          <DatasetForm dataset={data.dataset} />
+        </ClientOnly>
       )}
       <Footer />
     </>

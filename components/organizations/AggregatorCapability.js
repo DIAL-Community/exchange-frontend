@@ -1,5 +1,12 @@
 import { gql, useQuery } from '@apollo/client'
-import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion'
+import { useCallback } from 'react'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel
+} from 'react-accessible-accordion'
 import { useIntl } from 'react-intl'
 
 const COUNTRIES_QUERY = gql`
@@ -139,7 +146,7 @@ const CountryCapability = (props) => {
 
 const AggregatorCapability = (props) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, values)
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { aggregatorId } = props
   const { loading: loadingCountryData, data: countryData } = useQuery(COUNTRIES_QUERY)
@@ -200,10 +207,14 @@ const AggregatorCapability = (props) => {
 
   return (
     <Accordion allowMultipleExpanded allowZeroExpanded>
-      {(loadingCountryData || loadingCapabilityData || loadingOperatorData) && `${format('organization.aggregator.loading')}`}
+      {(loadingCountryData || loadingCapabilityData || loadingOperatorData) &&
+        format('organization.aggregator.loading')
+      }
       {
         // Start rendering only when we have all data.
-        Object.keys(countries).length > 0 && Object.keys(mappedCapabilities).length > 0 && Object.keys(operators).length > 0 &&
+        Object.keys(countries).length > 0 &&
+          Object.keys(mappedCapabilities).length > 0 &&
+          Object.keys(operators).length > 0 &&
           Object.keys(mappedCapabilities).map((countryId, index) => {
             const country = countries[countryId]
             const countryData = mappedCapabilities[countryId]

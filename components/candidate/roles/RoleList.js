@@ -1,49 +1,51 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { HiSortAscending } from 'react-icons/hi'
 import { RoleFilterContext } from '../../context/candidate/RoleFilterContext'
 import { FilterContext } from '../../context/FilterContext'
+import NotFound from '../../shared/NotFound'
 import { Loading, Error } from '../../shared/FetchStatus'
 import RoleCard from './RoleCard'
 
 const DEFAULT_PAGE_SIZE = 20
 
 const ROLES_QUERY = gql`
-query SearchCandidateRoles(
-  $first: Int,
-  $after: String,
-  $search: String!
-  ) {
-  searchCandidateRoles(
-    first: $first,
-    after: $after,
-    search: $search
-  ) {
-    __typename
-    totalCount
-    pageInfo {
-      endCursor
-      startCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    nodes {
-      id
-      email
-      roles
-      description
-      rejected
-      product {
-        name
+  query SearchCandidateRoles(
+    $first: Int,
+    $after: String,
+    $search: String!
+    ) {
+    searchCandidateRoles(
+      first: $first,
+      after: $after,
+      search: $search
+    ) {
+      totalCount
+      pageInfo {
+        endCursor
+        startCursor
+        hasPreviousPage
+        hasNextPage
       }
-      organization {
-        name
+      nodes {
+        id
+        email
+        roles
+        description
+        rejected
+        product {
+          name
+        }
+        organization {
+          name
+        }
+        dataset {
+          name
+        }
       }
     }
   }
-}
 `
 
 const RoleList = (props) => {
@@ -62,15 +64,10 @@ const RoleList = (props) => {
     <>
       <div className={gridStyles}>
         {
-          displayType === 'list' &&
+          props.roleList.length > 0 && displayType === 'list' &&
             <div className='grid grid-cols-12 gap-x-4 my-3 px-4'>
               <div className='col-span-3 ml-2 text-sm font-semibold opacity-70'>
-                {format('product.header').toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
-              </div>
-              <div className='hidden xl:blockcol-span-3 text-sm font-semibold opacity-50'>
-                {format('product.website').toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
+                {format('candidate.role.name').toUpperCase()}
               </div>
             </div>
         }
@@ -81,7 +78,7 @@ const RoleList = (props) => {
             ))
             : (
               <div className='flex justify-self-center text-dial-gray-dark'>{
-                format('noResults.entity', { entity: format('products.label') })
+                format('noResults.entity', { entity: format('candidate.role.label').toLowerCase() })
               }
               </div>
             )
@@ -91,34 +88,21 @@ const RoleList = (props) => {
   )
 }
 
-const RoleListQuery = ({ displayType }) => {
+const RoleListQuery = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const { search } = useContext(RoleFilterContext)
-  const { filterDisplayed, resultCounts, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
 
   const { loading, error, data, fetchMore } = useQuery(ROLES_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       search
-    },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.candidateRoles']]: data.searchCandidateRoles.totalCount } })
     }
   })
 
-  if (loading) {
-    return <Loading />
-  }
-
-  if (error) {
-    return <Error />
-  }
-
-  const { searchCandidateRoles: { nodes, pageInfo } } = data
-
-  function handleLoadMore () {
+  function handleLoadMore() {
     fetchMore({
       variables: {
         first: DEFAULT_PAGE_SIZE,
@@ -128,9 +112,30 @@ const RoleListQuery = ({ displayType }) => {
     })
   }
 
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.candidateRoles']]: data.searchCandidateRoles.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
+
+  if (loading) {
+    return <Loading />
+  } else if (error && error.networkError) {
+    return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
+  }
+
+  const { searchCandidateRoles: { nodes, pageInfo } } = data
+
   return (
     <InfiniteScroll
-      className='relative px-2 mt-3 pb-8 max-w-catalog mx-auto infinite-scroll-default-height'
+      className='relative infinite-scroll-default-height'
       dataLength={nodes.length}
       next={handleLoadMore}
       hasMore={pageInfo.hasNextPage}

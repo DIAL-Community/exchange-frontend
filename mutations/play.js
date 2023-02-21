@@ -7,6 +7,8 @@ const generatePlayMutation = (mutationName) => `
       $description: String!
       $tags: JSON!
       $playbookSlug: String
+      $productsSlugs: [String!]
+      $buildingBlocksSlugs: [String!]
     ) {
       ${mutationName} (
         name: $name
@@ -14,6 +16,8 @@ const generatePlayMutation = (mutationName) => `
         description: $description
         tags: $tags
         playbookSlug: $playbookSlug
+        productsSlugs: $productsSlugs
+        buildingBlocksSlugs: $buildingBlocksSlugs
       ) {
         play {
           id
