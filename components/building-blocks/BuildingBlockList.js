@@ -19,21 +19,21 @@ const BuildingBlockList = (props) => {
   const gridStyles = `grid ${displayType === 'card'
     ? 'grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'
     : 'grid-cols-1'
-    }`
+  }`
 
   return (
     <>
       <div className={gridStyles}>
         {
           displayType === 'list' &&
-            <div className='flex gap-x-2 lg:gap-x-4 px-4 my-3 px-4 text-sm'>
-              <div className='w-10/12 lg:w-4/12 font-semibold opacity-80'>
+            <div className='flex gap-x-2 lg:gap-x-4 px-4 my-3 px-4 text-sm font-semibold '>
+              <div className='w-10/12 lg:w-4/12 opacity-80'>
                 {format('building-block.header').toUpperCase()}
               </div>
-              <div className='hidden lg:block w-8/12 lg:w-3/12 text-sm font-semibold opacity-50'>
+              <div className='hidden lg:block w-8/12 lg:w-3/12 opacity-50'>
                 {format('exampleOf.entity', { entity: format('product.header') }).toUpperCase()}
               </div>
-              <div className='hidden lg:block w-8/12 lg:w-3/12 text-sm font-semibold opacity-50'>
+              <div className='hidden lg:block w-8/12 lg:w-3/12 opacity-50'>
                 {format('exampleOf.entity', { entity: format('workflow.header') }).toUpperCase()}
               </div>
             </div>

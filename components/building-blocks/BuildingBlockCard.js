@@ -42,7 +42,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
           listType === 'list'
             ? (
               <div className={containerElementStyle}>
-                <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
+                <div className='bg-white border border-dial-gray hover:border-transparent shadow-lg'>
                   <div className='relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6'>
                     <div className='w-10/12 lg:w-4/12 flex gap-2 my-auto text-dial-sapphire'>
                       <div className='block w-8 relative'>

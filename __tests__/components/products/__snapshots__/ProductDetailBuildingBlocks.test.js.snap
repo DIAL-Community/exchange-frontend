@@ -355,7 +355,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
           class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray hover:border-transparent shadow-lg"
           >
             <div
               class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
@@ -691,7 +691,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
           class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray hover:border-transparent shadow-lg"
           >
             <div
               class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
