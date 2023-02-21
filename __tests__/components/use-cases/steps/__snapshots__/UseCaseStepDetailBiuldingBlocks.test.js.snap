@@ -264,33 +264,41 @@ exports[`Unit tests for the UseCaseStepDetailBuildingBlocks component. Should ma
         href="/building_blocks/tbb"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-building-block hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
         >
           <div
             class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
           >
             <div
-              class="grid grid-cols-12 gap-x-4 py-4 px-4"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
             >
               <div
-                class="col-span-10 pr-3 text-base font-semibold 
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-10/12 lg:w-4/12 flex gap-2 my-auto text-dial-sapphire"
               >
-                <span
-                  class="ml-8 w-4/5 h-3/5 relative 
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                <div
+                  class="block w-8 relative"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                  >
+                    <img
+                      alt="Logo for: Test Building Block"
+                      data-nimg="fill"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                    />
+                    <noscript />
+                  </span>
+                </div>
+                <div
+                  class="w-full font-semibold line-clamp-1"
                 >
                   Test Building Block
-                </span>
+                </div>
               </div>
               <div
-                class="col-span-2 flex flex-row font-semibold opacity-50 justify-end"
+                class="ml-auto font-semibold my-auto"
               />
             </div>
           </div>
@@ -498,33 +506,41 @@ exports[`Unit tests for the UseCaseStepDetailBuildingBlocks component. Should ma
         href="/building_blocks/tbb"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-building-block hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-yellow"
         >
           <div
             class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
           >
             <div
-              class="grid grid-cols-12 gap-x-4 py-4 px-4"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
             >
               <div
-                class="col-span-10 pr-3 text-base font-semibold 
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-10/12 lg:w-4/12 flex gap-2 my-auto text-dial-sapphire"
               >
-                <span
-                  class="ml-8 w-4/5 h-3/5 relative 
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                <div
+                  class="block w-8 relative"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                  >
+                    <img
+                      alt="Logo for: Test Building Block"
+                      data-nimg="fill"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                    />
+                    <noscript />
+                  </span>
+                </div>
+                <div
+                  class="w-full font-semibold line-clamp-1"
                 >
                   Test Building Block
-                </span>
+                </div>
               </div>
               <div
-                class="col-span-2 flex flex-row font-semibold opacity-50 justify-end"
+                class="ml-auto font-semibold my-auto"
               />
             </div>
           </div>

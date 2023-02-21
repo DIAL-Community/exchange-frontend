@@ -26,7 +26,7 @@ const PRODUCT_CARD_GUTTER_SIZE = 16
 const MIN_PRODUCT_LIST_SIZE = 80
 
 const ProductListQuery = () => {
-  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
+  const { displayType, setResultCounts } = useContext(FilterContext)
   const {
     origins, countries, sectors, organizations, sdgs, tags, useCases, workflows, buildingBlocks,
     endorsers, productDeployable, isEndorsed, search, licenseTypes
@@ -207,7 +207,7 @@ const ProductListQuery = () => {
                             >
                               {
                                 currentIndex < nodes.length && product &&
-                                  <ProductCard listType={displayType} {...{ product, filterDisplayed }} />
+                                  <ProductCard listType={displayType} product={product} />
                               }
                               {currentIndex < nodes.length && !product && <Loading />}
                             </div>
@@ -234,7 +234,7 @@ const ProductListQuery = () => {
                             <div style={style}>
                               {
                                 index < nodes.length && product &&
-                                  <ProductCard listType={displayType} {...{ product, filterDisplayed }} />
+                                  <ProductCard listType={displayType} product={product} />
                               }
                               {index < nodes.length && !product && <Loading />}
                             </div>
