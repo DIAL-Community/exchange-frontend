@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import Image from 'next/image'
@@ -9,7 +10,7 @@ const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const HomePage = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <>
@@ -25,9 +26,9 @@ const HomePage = () => {
         <div className='w-full py-4 pl-16 flex'>
           <Image src='/images/govstack/govstack1.webp' alt='Govstack Image' width={500} height={300} />
           <div className='ml-5 w-1/3 pt-8'>
-            Digital government services are vital for fostering economic growth, developing the digital economy and promoting trust in government institutions.  
+            Digital government services are vital for fostering economic growth, developing the digital economy and promoting trust in government institutions.
             <br /><br />
-            Governments struggle to keep pace with the digitalization trend due to budget constraints, the coordination between agencies and siloed investments in digitization.
+            Governments struggle to keep pace with the digitalization trend due to budget constraints, the coordination between agencies and siloed investments in digitization.
           </div>
         </div>
       </div>

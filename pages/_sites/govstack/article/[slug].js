@@ -10,17 +10,9 @@ import Footer from '../components/Footer'
 
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
-const Article = ({ article, categories }) => {
+const Article = ({ article }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
-  const imageUrl = getStrapiMedia(article.attributes.image)
-
-  const seo = {
-    metaTitle: article.attributes.title,
-    metaDescription: article.attributes.description,
-    shareImage: article.attributes.image,
-    article: true,
-  }
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <>
@@ -61,7 +53,6 @@ const Article = ({ article, categories }) => {
         </div>
       </div>
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      
       <Footer />
     </>
   )
@@ -80,7 +71,7 @@ export async function getStaticPaths() {
       fallback: false,
     }
   } else {
-    return { paths: [{params: { slug: 'firstbbspecs' }}], fallback: false }
+    return { paths: [{ params: { slug: 'firstbbspecs' } }], fallback: false }
   }
 }
 
@@ -98,6 +89,5 @@ export async function getStaticProps({ params }) {
     revalidate: 1,
   }
 }
-
 
 export default Article

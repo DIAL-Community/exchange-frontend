@@ -1,15 +1,14 @@
+/* eslint-disable max-len */
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
-import { useContext } from 'react'
 import dynamic from 'next/dynamic'
 import Header from './components/Header'
-import Landing from './components/Landing'
 import Footer from './components/Footer'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const AboutPage = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <>
@@ -24,7 +23,7 @@ const AboutPage = () => {
           Who we are
         </div>
         <div className='w-full text-dial-gray-dark text-xl p-12'>
-          The GovStack initiative is a multi-stakeholder initiative led by the Federal Ministry for Economic Cooperation and Development, Gesellschaft für Internationale Zusammenarbeit (GIZ), Estonia, the International Telecommunication Union (ITU) and the Digital Impact Alliance. 
+          The GovStack initiative is a multi-stakeholder initiative led by the Federal Ministry for Economic Cooperation and Development, Gesellschaft für Internationale Zusammenarbeit (GIZ), Estonia, the International Telecommunication Union (ITU) and the Digital Impact Alliance.
           <br />
           <br />
           The initiative actively seeks partnerships with governments, agencies, private sector organizations and the open source community

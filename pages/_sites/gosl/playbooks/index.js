@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useContext } from 'react'

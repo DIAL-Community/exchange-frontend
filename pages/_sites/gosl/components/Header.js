@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import Link from 'next/link'
 
 const Header = () => {

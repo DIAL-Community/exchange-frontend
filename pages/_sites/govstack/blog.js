@@ -8,9 +8,9 @@ import Articles from './components/articles'
 
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
-const Blog = ({ articles, categories, homepage }) => {
+const Blog = ({ articles, homepage }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   return (
     <>
@@ -31,7 +31,6 @@ const Blog = ({ articles, categories, homepage }) => {
         </div>
       </div>
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      
       <Footer />
     </>
   )

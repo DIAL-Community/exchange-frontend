@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useContext } from 'react'
@@ -18,7 +19,7 @@ const ProductListQuery = dynamic(() => import('../../../../components/products/P
 
 const Products = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id: id }, values)
+  const format = (id, values) => formatMessage({ id }, values)
 
   const { search } = useContext(ProductFilterContext)
   const { setSearch } = useContext(ProductFilterDispatchContext)

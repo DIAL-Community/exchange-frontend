@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import Image from 'next/image'
+/* eslint-disable max-len */
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 
@@ -8,8 +7,6 @@ const Consent = dynamic(() => import('../../../../components/Consent'), { ssr: f
 const Footer = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
-
-  const [showForm, setShowForm] = useState(false)
 
   return (
     <footer>
