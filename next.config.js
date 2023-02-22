@@ -16,7 +16,8 @@ module.exports = removeImports(withTranspileModules({
     localeDetection: false
   },
   images: {
-    domains: ['localhost','solutions-dev.dial.community','solutions.dial.community','strapi.dial.community']
+    domains: ['localhost','solutions-dev.dial.community','solutions.dial.community',
+      'demo-govstack.dial.community','demo.govstack.dial.community']
   },
   async headers() {
     return [
