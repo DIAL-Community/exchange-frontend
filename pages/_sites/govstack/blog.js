@@ -1,14 +1,12 @@
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { fetchAPI } from '../../../lib/contentApi'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Articles from './components/articles'
 
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
-const Blog = ({ articles, homepage }) => {
+const Blog = () => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, values)
 
@@ -25,8 +23,7 @@ const Blog = ({ articles, homepage }) => {
         </div>
         <div className='uk-section'>
           <div className='uk-container uk-container-large'>
-            <h1>{homepage.attributes.hero.title}</h1>
-            <Articles articles={articles} />
+            <h1>Hello!</h1>
           </div>
         </div>
       </div>
@@ -34,29 +31,6 @@ const Blog = ({ articles, homepage }) => {
       <Footer />
     </>
   )
-}
-
-export async function getStaticProps() {
-  // Run API calls in parallel
-  const [articlesRes, categoriesRes, homepageRes] = await Promise.all([
-    fetchAPI('/articles', { populate: ['image', 'category'] }),
-    fetchAPI('/categories', { populate: '*' }),
-    fetchAPI('/homepage', {
-      populate: {
-        hero: '*',
-        seo: { populate: '*' },
-      },
-    }),
-  ])
-
-  return {
-    props: {
-      articles: articlesRes.data,
-      categories: categoriesRes.data,
-      homepage: homepageRes.data,
-    },
-    revalidate: 1,
-  }
 }
 
 export default Blog
