@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { useCallback, useContext, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
@@ -113,7 +114,7 @@ const ProjectMap = (props) => {
   })()
 
   const country = countriesWithProjects[selectedCountry]
-  
+
   if (initialCountry && !loadingProjects && !loadingCountries && selectedCountry != initialCountry) {
     setSelectedCountry(initialCountry)
   }
@@ -129,6 +130,7 @@ const ProjectMap = (props) => {
             {format('map.loading.indicator')}
           </div>
       }
+
       <CountryMarkersMaps countries={countriesWithProjects} setSelectedCountry={setSelectedCountry} center={center} zoom={zoom} />
       <CountryInfo country={country} />
     </div>

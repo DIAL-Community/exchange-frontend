@@ -71,7 +71,7 @@ const CountryMarkers = (props) => {
 
 const CountryMarkersMaps = (props) => {
   const { center, zoom } = props
-  
+
   // Adding this attribute will prevent duplicating world map:  maxBounds={[[-90, -180], [90, 180]]}
   return (
     <MapContainer
