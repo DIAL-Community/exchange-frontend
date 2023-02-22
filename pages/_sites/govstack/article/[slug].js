@@ -4,7 +4,6 @@ import ReactMarkdown from 'react-markdown'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { fetchAPI } from '../../../../lib/contentApi'
-import { getStrapiMedia } from '../../../../lib/media'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
@@ -26,9 +25,9 @@ const Article = ({ article }) => {
           <ReactMarkdown>{article.attributes.content}</ReactMarkdown>
           {article.attributes.author.data.attributes.picture && (
             <img
-              src={getStrapiMedia(
+              src={
                 article.attributes.author.data.attributes.picture
-              )}
+              }
               alt={
                 article.attributes.author.data.attributes.picture.data
                   .attributes.alternativeText
