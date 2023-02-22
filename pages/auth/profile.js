@@ -12,8 +12,6 @@ const UserProfile = () => {
 
   const { user } = useUser()
 
-  console.log('User data: ', user)
-
   return (
     <>
       <Header />
