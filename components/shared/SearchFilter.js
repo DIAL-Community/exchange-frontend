@@ -47,9 +47,11 @@ const SearchFilter = ({
   }
 
   useEffect(() => {
-    const timeOutId = setTimeout(() => setSearch(searchTerm), 500)
+    if (setSearch) {
+      const timeOutId = setTimeout(() => setSearch(searchTerm), 500)
 
-    return () => clearTimeout(timeOutId)
+      return () => clearTimeout(timeOutId)
+    }
   }, [searchTerm, setSearch])
 
   const handleChange = (e) => setSearchTerm(e.target.value)
