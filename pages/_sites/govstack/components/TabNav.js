@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
-import { HiQuestionMarkCircle } from 'react-icons/hi'
 
 const FILTER_ITEMS = [
   'filter.entity.useCases', 'filter.entity.buildingBlocks',
