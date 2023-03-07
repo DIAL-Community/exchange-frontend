@@ -170,7 +170,6 @@ export const PRODUCTS_QUERY = gql`
         tags
         imageFile
         isLaunchable
-        maturityScore
         overallMaturityScore
         endorsers {
           name
