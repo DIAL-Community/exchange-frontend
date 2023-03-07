@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { useCallback, useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
 import Image from 'next/image'
-import { ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/utilities'
+import { ORIGIN_ACRONYMS, ORIGIN_EXPANSIONS } from '../../lib/constants'
 
 const ellipsisTextStyle = `
   whitespace-nowrap text-ellipsis overflow-hidden my-auto
@@ -151,7 +151,8 @@ const DatasetCard = ({ dataset, listType, newTab = false }) => {
                               .map(origin => {
                                 return (
                                   <div
-                                    key={`origin-${origin.slug}`} className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
+                                    key={`origin-${origin.slug}`}
+                                    className='bg-white mt-1.5 mr-1.5 last:mr-0 p-2 rounded text-sm'
                                   >
                                     {(ORIGIN_ACRONYMS[origin.slug.toLowerCase()] || origin.slug).toUpperCase()}
                                   </div>

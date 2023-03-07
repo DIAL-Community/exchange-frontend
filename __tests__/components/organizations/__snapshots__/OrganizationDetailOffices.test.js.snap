@@ -52,7 +52,7 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
             class="my-4 px-4"
           >
             <div
-              class="pr-3 text-base font-semibold whitespace-nowrap text-ellipsis overflow-hidden text-button-gray"
+              class="pr-3 font-semibold line-clamp-1 text-button-gray"
             >
               Test Office Location
             </div>
@@ -104,7 +104,7 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-2-live-region"
+            id="react-select-:r0:-live-region"
           />
           <span
             aria-atomic="false"
@@ -120,7 +120,7 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-2-placeholder"
+                id="react-select-:r0:-placeholder"
               >
                 Type to search...
               </div>
@@ -130,7 +130,7 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-2-placeholder"
+                  aria-describedby="react-select-:r0:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
@@ -266,7 +266,7 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
             class="my-4 px-4"
           >
             <div
-              class="pr-3 text-base font-semibold whitespace-nowrap text-ellipsis overflow-hidden text-button-gray"
+              class="pr-3 font-semibold line-clamp-1 text-button-gray"
             >
               Test Office Location
             </div>

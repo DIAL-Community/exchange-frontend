@@ -1,10 +1,11 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { HiSortAscending } from 'react-icons/hi'
 import { ProductFilterContext } from '../../context/candidate/ProductFilterContext'
 import { FilterContext } from '../../context/FilterContext'
+import NotFound from '../../shared/NotFound'
 import { Loading, Error } from '../../shared/FetchStatus'
 import ProductCard from './ProductCard'
 
@@ -64,7 +65,7 @@ const ProductList = (props) => {
                 {format('product.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div className='hidden xl:blockcol-span-3 text-sm font-semibold opacity-50'>
+              <div className='hidden xl:block col-span-3 text-sm font-semibold opacity-50'>
                 {format('product.website').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
@@ -92,29 +93,16 @@ const ProductListQuery = () => {
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   const { search } = useContext(ProductFilterContext)
-  const { filterDisplayed, resultCounts, displayType, setResultCounts } = useContext(FilterContext)
+  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
 
   const { loading, error, data, fetchMore } = useQuery(PRODUCTS_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       search
-    },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.candidateProducts']]: data.searchCandidateProducts.totalCount } })
     }
   })
 
-  if (loading) {
-    return <Loading />
-  }
-
-  if (error) {
-    return <Error />
-  }
-
-  const { searchCandidateProducts: { nodes, pageInfo } } = data
-
-  function handleLoadMore () {
+  function handleLoadMore() {
     fetchMore({
       variables: {
         first: DEFAULT_PAGE_SIZE,
@@ -123,6 +111,27 @@ const ProductListQuery = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.candidateProducts']]: data.searchCandidateProducts.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
+
+  if (loading) {
+    return <Loading />
+  } else if (error && error.networkError) {
+    return <Error />
+  } else if (error && !error.networkError) {
+    return <NotFound />
+  }
+
+  const { searchCandidateProducts: { nodes, pageInfo } } = data
 
   return (
     <InfiniteScroll

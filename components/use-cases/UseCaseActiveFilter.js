@@ -58,12 +58,12 @@ const UseCaseActiveFilter = () => {
   })
 
   return (
-    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
+    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`}>
       <div className='flex flex-row flex-wrap px-3 gap-2'>
         {showBeta && (
           <div className='py-1'>
             <Pill
-              label={format('filter.useCase.showBeta')}
+              label={format('filter.useCase.showDraft')}
               onRemove={toggleShowBeta}
             />
           </div>

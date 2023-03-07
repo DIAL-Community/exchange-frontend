@@ -1,8 +1,8 @@
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import { getMappingStatusOptions } from '../../lib/utilities'
 import { UPDATE_PRODUCT_BUILDING_BLOCKS } from '../../mutations/product'
@@ -31,20 +31,31 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateProductBuildingBlocks, { data, loading }] = useMutation(UPDATE_PRODUCT_BUILDING_BLOCKS, {
-    onCompleted: (data) => {
-      setBuildingBlocks(data.updateProductBuildingBlocks.product.buildingBlocks)
-      setIsDirty(false)
-      showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
-    },
-    onError: () => {
-      setBuildingBlocks(product.buildingBlocks)
-      setIsDirty(false)
-      showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+  const [updateProductBuildingBlocks, { data, loading, reset }] = useMutation(
+    UPDATE_PRODUCT_BUILDING_BLOCKS, {
+      onCompleted: (data) => {
+        const { updateProductBuildingBlocks: response } = data
+        if (response?.product && response?.errors?.length === 0) {
+          setIsDirty(false)
+          setBuildingBlocks(response?.product?.buildingBlocks)
+          showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
+        } else {
+          setIsDirty(false)
+          setBuildingBlocks(product.buildingBlocks)
+          showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+          reset()
+        }
+      },
+      onError: () => {
+        setIsDirty(false)
+        setBuildingBlocks(product.buildingBlocks)
+        showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+        reset()
+      }
     }
-  })
+  )
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -77,8 +88,8 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateProductBuildingBlocks({
         variables: {
@@ -99,12 +110,19 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
   const onCancel = () => {
     setBuildingBlocks(data?.updateProductBuildingBlocks?.product?.buildingBlocks ?? product.buildingBlocks)
     setMappingStatus(mappingStatusOptions.find(({ value: mappingStatus }) =>
-      mappingStatus === (data?.updateProductBuildingBlocks?.product?.buildingBlocksMappingStatus ?? product.buildingBlocksMappingStatus)
+      mappingStatus === (
+        data?.updateProductBuildingBlocks?.product?.buildingBlocksMappingStatus ??
+        product.buildingBlocksMappingStatus
+      )
     ))
     setIsDirty(false)
   }
 
-  const disclaimer = <div className='text-sm text-dial-gray-dark pb-2 highlight-link' dangerouslySetInnerHTML={{ __html: format('building-block.disclaimer') }} />
+  const disclaimer =
+    <div
+      className='text-sm text-dial-gray-dark pb-2 highlight-link'
+      dangerouslySetInnerHTML={{ __html: format('building-block.disclaimer') }}
+    />
 
   const displayModeBody =
     <>
@@ -144,8 +162,18 @@ const ProductDetailBuildingBlocks = ({ product, canEdit }) => {
           defaultOptions
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-          loadOptions={(input) => fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('building-block.header') })}
+          loadOptions={
+            (input) =>
+              fetchSelectOptions(
+                client,
+                input,
+                BUILDING_BLOCK_SEARCH_QUERY,
+                fetchedBuildingBlocksCallback
+              )
+          }
+          noOptionsMessage={() =>
+            format('filter.searchFor', { entity: format('building-block.header') })
+          }
           onChange={addBuildingBlock}
           value={null}
         />

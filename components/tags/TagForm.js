@@ -1,5 +1,4 @@
 import { useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useCallback, useContext } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -10,25 +9,27 @@ import ValidationError from '../shared/ValidationError'
 import Dialog, { DialogType } from '../shared/Dialog'
 import { CREATE_TAG } from '../../mutations/tag'
 import { HtmlEditor } from '../shared/HtmlEditor'
+import { useUser } from '../../lib/hooks'
 
 const TagForm = ({ isOpen, onClose, tag }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)
 
   const [updateTag, { called: isSubmitInProgress, reset }] = useMutation(CREATE_TAG, {
-    refetchQueries:['SearchTags'],
-    onCompleted: () => {
-      showToast(
-        format('toast.tag.submit.success'),
-        'success',
-        'top-center'
-      )
-      onClose(true)
-      reset()
+    refetchQueries: ['SearchTags'],
+    onCompleted: (data) => {
+      const { createTag: response } = data
+      if (response?.tag && response?.errors?.length === 0) {
+        showToast(format('toast.tag.submit.success'), 'success', 'top-center')
+        onClose(true)
+      } else {
+        showToast(format('toast.tag.submit.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: (error) => {
       showToast(
@@ -56,8 +57,8 @@ const TagForm = ({ isOpen, onClose, tag }) => {
   const slug = tag?.slug ?? ''
 
   const doUpsert = async (data) => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
       const { name, description } = data
 
       updateTag({

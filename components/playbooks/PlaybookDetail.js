@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { PLAYBOOK_QUERY } from '../../queries/playbook'
 import { ObjectType } from '../../lib/constants'
-import { Error, Loading } from '../shared/FetchStatus'
+import { Error, Loading, Unauthorized } from '../shared/FetchStatus'
 import NotFound from '../shared/NotFound'
 import PlaybookDetailOverview from './PlaybookDetailOverview'
 import PlaybookDetailNavigation from './PlaybookDetailNavigation'
@@ -20,13 +20,13 @@ const PlaybookDetail = ({ slug, locale }) => {
 
   if (loading) {
     return <Loading />
-  } else if (error && error.networkError) {
+  } else if (error) {
     return <Error />
-  } else if (error && !error.networkError) {
+  } else if (!data?.playbook) {
     return <NotFound />
   }
 
-  return (
+  const PlaybookDetail = () => (
     <div className='sticky sticky-under-header flex flex-col'>
       <PlaybookDetailHeader playbook={data?.playbook} />
       <div className='flex gap-x-3'>
@@ -52,6 +52,12 @@ const PlaybookDetail = ({ slug, locale }) => {
         </div>
       </div>
     </div>
+  )
+
+  return (
+    data?.playbook
+      ? <PlaybookDetail />
+      : <Unauthorized />
   )
 }
 

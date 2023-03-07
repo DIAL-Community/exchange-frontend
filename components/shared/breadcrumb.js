@@ -33,17 +33,19 @@ const basePathMappings = {
   rubric_categories: 'rubric-categories.header'
 }
 
+export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>
+
 const Breadcrumb = (props) => {
   const { slugNameMapping } = props
 
-  const router = useRouter()
+  const { asPath } = useRouter()
   const [breadcrumbs, setBreadcrumbs] = useState([])
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   useEffect(() => {
-    const linkPath = router.asPath.split('/')
+    const linkPath = asPath.split('/')
     linkPath.shift()
 
     const pathArray = linkPath.map((path, i) => {
@@ -68,7 +70,7 @@ const Breadcrumb = (props) => {
       {breadcrumbs.map((breadcrumb, i) => {
         return (
           <div key={i} className='inline h5'>
-            &nbsp;&gt;&nbsp;
+            {BREADCRUMB_SEPARATOR}
             <Link href={breadcrumb.href}>
               <a className={`${i === breadcrumbs.length - 1 ? 'text-dial-gray-dark' : 'text-dial-blue'}`}>
                 {convertBreadcrumb(breadcrumb.breadcrumb)}

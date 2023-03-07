@@ -1,12 +1,12 @@
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
-import { useSession } from 'next-auth/react'
 import IframeResizer from 'iframe-resizer-react'
-import parse from 'html-react-parser'
 import Breadcrumb from '../shared/breadcrumb'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
 import { prependUrlWithProtocol } from '../../lib/utilities'
+import { useUser } from '../../lib/hooks'
 import DatasetDetailCountries from './DatasetDetailCountries'
 import DatasetDetailOrganizations from './DatasetDetailOrganizations'
 import DatasetDetailSectors from './DatasetDetailSectors'
@@ -17,8 +17,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data: session } = useSession()
-  const canEdit = session?.user?.canEdit
+  const { isAdminUser: canEdit } = useUser()
   const slugNameMapping = (() => {
     const map = {}
     map[dataset.slug] = dataset.name
@@ -35,24 +34,29 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
         dataset.website &&
           <div className='mt-12'>
             <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.website')}</div>
-            <div className='text-base text-dial-teal inline ml-3'>
-              <a href={prependUrlWithProtocol(dataset.website)} className='mt-2' target='_blank' rel='noreferrer'>
+            <div className='text-base text-dial-teal flex'>
+              <a
+                href={prependUrlWithProtocol(dataset.website)}
+                className='border-b-2 border-transparent hover:border-dial-yellow'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <div className='my-auto'>{dataset.website} ⧉</div>
               </a>
             </div>
           </div>
       }
-      <div className='w-2/3 flex place-content-between'>
+      <div className='w-2/3 flex'>
         {
           dataset.datasetType &&
-            <div className='mt-12'>
+            <div className='mt-12 w-1/3'>
               <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.datasetType')}</div>
               <div className='my-auto'>{dataset.datasetType}</div>
             </div>
         }
         {
           dataset.geographicCoverage &&
-            <div className='mt-12 px-4'>
+            <div className='mt-12 w-1/3'>
               <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.coverage')}</div>
               <div className='my-auto'>{dataset.geographicCoverage}</div>
             </div>
@@ -65,17 +69,17 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
             </div>
         }
       </div>
-      <div className='w-2/3 flex place-content-between'>
+      <div className='w-2/3 flex'>
         {
           dataset.languages &&
-            <div className='mt-12'>
+            <div className='mt-12 w-1/3'>
               <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.languages')}</div>
               <div className='my-auto'>{dataset.languages}</div>
             </div>
         }
         {
           dataset.timeRange &&
-            <div className='mt-12 px-4'>
+            <div className='mt-12 w-1/3'>
               <div className='card-title mb-3 text-dial-gray-dark inline'>{format('dataset.timeRange')}</div>
               <div className='my-auto'>{dataset.timeRange}</div>
             </div>
@@ -88,14 +92,16 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
             </div>
         }
       </div>
-      <div className='mt-8 card-title mb-3 text-dial-gray-dark'>{format('dataset.description')}
+      <div className='mt-12 card-title mb-3 text-dial-gray-dark'>
+        {format('dataset.description')}
         {dataset.manualUpdate && (
           <div className='inline ml-5 h5'>{format('dataset.manualUpdate')}</div>
         )}
       </div>
-      <div className='fr-view text-dial-gray-dark'>
-        {dataset.datasetDescription && parse(dataset.datasetDescription.description)}
-      </div>
+      <HtmlViewer
+        initialContent={dataset?.datasetDescription?.description}
+        className='-mb-12'
+      />
       {
         dataset.visualizationUrl &&
           <div className='mt-3 v
@@ -129,7 +135,12 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
                 />
                 <div key={i} className='inline ml-2 text-sm'>{origin.name}</div>
                 {origin.slug === 'dpga' && (
-                  <a className='block ml-3' href={'https://digitalpublicgoods.net/registry/' + dataset.slug.replaceAll('_', '-')} target='_blank' rel='noreferrer'>
+                  <a
+                    className='block ml-3'
+                    href={`https://digitalpublicgoods.net/registry/${dataset.slug.replaceAll('_', '-')}`}
+                    target='_blank'
+                    rel='noreferrer'
+                  >
                     <div className='inline ml-4 text-dial-teal text-sm'>{format('dataset.view-DPGA-data')}</div>
                   </a>
                 )}

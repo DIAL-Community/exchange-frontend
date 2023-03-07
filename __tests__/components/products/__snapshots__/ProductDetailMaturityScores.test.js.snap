@@ -71,7 +71,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                       class="h5 float-right inline"
                     >
                       Category score
-                      : 
+                      :
                       90
                        / 
                       100
@@ -391,7 +391,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                       class="h5 float-right inline"
                     >
                       Category score
-                      : 
+                      :
                       80
                        / 
                       100
@@ -711,7 +711,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                       class="h5 float-right inline"
                     >
                       Category score
-                      : 
+                      :
                       90
                        / 
                       100
@@ -1137,15 +1137,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     <div
                       class="text-sm text-dial-gray-dark"
                     >
-                      <p>
-                        The code is released under one of the preferred copyleft licenses explained in our 
-                        <a
-                          href="https://www.osc.dial.community/licensing-principles"
-                        >
-                          Licensing Principles
-                        </a>
-                        .
-                      </p>
+                      Another description text.
                     </div>
                   </div>
                   <div
@@ -1156,7 +1148,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-2-live-region"
+                        id="react-select-:rm:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -1260,9 +1252,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     <div
                       class="text-sm text-dial-gray-dark"
                     >
-                      <p>
-                        Libraries that are mandatory dependencies of the project's code do not create more restrictions than the project's license does.
-                      </p>
+                      Another description text.
                     </div>
                   </div>
                   <div
@@ -1273,7 +1263,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-3-live-region"
+                        id="react-select-:rn:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -1398,7 +1388,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-4-live-region"
+                        id="react-select-:ro:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -1414,7 +1404,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         >
                           <div
                             class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-4-placeholder"
+                            id="react-select-:ro:-placeholder"
                           >
                             Select...
                           </div>
@@ -1424,7 +1414,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-4-placeholder"
+                              aria-describedby="react-select-:ro:-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
                               autocapitalize="none"
@@ -1484,12 +1474,12 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
             role="heading"
           >
             <div
-              aria-controls="accordion__panel-:rm:"
+              aria-controls="accordion__panel-:rp:"
               aria-disabled="false"
               aria-expanded="false"
               class="accordion__button"
               data-accordion-component="AccordionItemButton"
-              id="accordion__heading-:rm:"
+              id="accordion__heading-:rp:"
               role="button"
               tabindex="0"
             >
@@ -1505,7 +1495,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
             class="p-3"
             data-accordion-component="AccordionItemPanel"
             hidden=""
-            id="accordion__panel-:rm:"
+            id="accordion__panel-:rp:"
           >
             <label
               class="font-semibold m-2"
@@ -1541,7 +1531,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-5-live-region"
+                        id="react-select-:rq:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -1557,7 +1547,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         >
                           <div
                             class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-5-placeholder"
+                            id="react-select-:rq:-placeholder"
                           >
                             Select...
                           </div>
@@ -1567,7 +1557,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-5-placeholder"
+                              aria-describedby="react-select-:rq:-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
                               autocapitalize="none"
@@ -1627,12 +1617,12 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
             role="heading"
           >
             <div
-              aria-controls="accordion__panel-:rn:"
+              aria-controls="accordion__panel-:rr:"
               aria-disabled="false"
               aria-expanded="false"
               class="accordion__button"
               data-accordion-component="AccordionItemButton"
-              id="accordion__heading-:rn:"
+              id="accordion__heading-:rr:"
               role="button"
               tabindex="0"
             >
@@ -1648,7 +1638,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
             class="p-3"
             data-accordion-component="AccordionItemPanel"
             hidden=""
-            id="accordion__panel-:rn:"
+            id="accordion__panel-:rr:"
           >
             <label
               class="font-semibold m-2"
@@ -1671,9 +1661,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     <div
                       class="text-sm text-dial-gray-dark"
                     >
-                      <p>
-                        The project is open and honest about the quality of its code. Various levels of quality and maturity for various modules are natural and acceptable as long as they are clearly communicated.
-                      </p>
+                      Another description text.
                     </div>
                   </div>
                   <div
@@ -1684,7 +1672,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-6-live-region"
+                        id="react-select-:rs:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -1788,9 +1776,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     <div
                       class="text-sm text-dial-gray-dark"
                     >
-                      <p>
-                        In particular, there are either no monoliths or god classes, or they are known and there is a roadmap to refactor them.
-                      </p>
+                      Another description text.
                     </div>
                   </div>
                   <div
@@ -1801,7 +1787,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-7-live-region"
+                        id="react-select-:rt:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -1926,7 +1912,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-8-live-region"
+                        id="react-select-:ru:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -1942,7 +1928,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         >
                           <div
                             class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-8-placeholder"
+                            id="react-select-:ru:-placeholder"
                           >
                             Select...
                           </div>
@@ -1952,7 +1938,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-8-placeholder"
+                              aria-describedby="react-select-:ru:-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
                               autocapitalize="none"
@@ -2012,12 +1998,12 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
             role="heading"
           >
             <div
-              aria-controls="accordion__panel-:ro:"
+              aria-controls="accordion__panel-:rv:"
               aria-disabled="false"
               aria-expanded="false"
               class="accordion__button"
               data-accordion-component="AccordionItemButton"
-              id="accordion__heading-:ro:"
+              id="accordion__heading-:rv:"
               role="button"
               tabindex="0"
             >
@@ -2033,7 +2019,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
             class="p-3"
             data-accordion-component="AccordionItemPanel"
             hidden=""
-            id="accordion__panel-:ro:"
+            id="accordion__panel-:rv:"
           >
             <label
               class="font-semibold m-2"
@@ -2056,9 +2042,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     <div
                       class="text-sm text-dial-gray-dark"
                     >
-                      <p>
-                        Releases consist of source code, distributed using standard and open archive formats that are expected to stay readable in the long term.
-                      </p>
+                      Another description text.
                     </div>
                   </div>
                   <div
@@ -2069,7 +2053,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-9-live-region"
+                        id="react-select-:r10:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -2173,9 +2157,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     <div
                       class="text-sm text-dial-gray-dark"
                     >
-                      <p>
-                        Releases are signed and/or distributed along with digests that can be reliably used to validate the downloaded archives.
-                      </p>
+                      Another description text.
                     </div>
                   </div>
                   <div
@@ -2186,7 +2168,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-10-live-region"
+                        id="react-select-:r11:-live-region"
                       />
                       <span
                         aria-atomic="false"

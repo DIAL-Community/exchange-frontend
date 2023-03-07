@@ -31,16 +31,25 @@ const ProductDetailOrganizations = ({ project, canEdit }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateProjectOrganizations, { data, loading }] = useMutation(UPDATE_PROJECT_ORGANIZATIONS, {
+  const [updateProjectOrganizations, { data, loading, reset }] = useMutation(UPDATE_PROJECT_ORGANIZATIONS, {
     onError: () => {
-      setOrganizations(project.organizations)
       setIsDirty(false)
+      setOrganizations(project.organizations)
       showToast(format('toast.organizations.update.failure'), 'error', 'top-center')
+      reset()
     },
     onCompleted: (data) => {
-      setOrganizations(data.updateProjectOrganizations.project.organizations)
-      setIsDirty(false)
-      showToast(format('toast.organizations.update.success'), 'success', 'top-center')
+      const { updateProjectOrganizations: response } = data
+      if (response?.project && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setOrganizations(data.updateProjectOrganizations.project.organizations)
+        showToast(format('toast.organizations.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setOrganizations(project.organizations)
+        showToast(format('toast.organizations.update.failure'), 'error', 'top-center')
+        reset()
+      }
     }
   })
 
@@ -54,7 +63,10 @@ const ProductDetailOrganizations = ({ project, canEdit }) => {
   )
 
   const addOrganization = (organization) => {
-    setOrganizations([...organizations.filter(({ slug }) => slug !== organization.slug), { name: organization.label, slug: organization.slug, id: organization.id }])
+    setOrganizations([
+      ...organizations.filter(({ slug }) => slug !== organization.slug),
+      { name: organization.label, slug: organization.slug, id: organization.id }
+    ])
     setIsDirty(true)
   }
 
@@ -90,7 +102,10 @@ const ProductDetailOrganizations = ({ project, canEdit }) => {
   const displayModeBody = organizations.length
     ? (
       <div className='card-title mb-3 text-dial-gray-dark'>
-        {organizations.map((organization, organizationIdx) => <OrganizationCard key={organizationIdx} organization={organization} listType='list' />)}
+        {organizations.map(
+          (organization, organizationIdx) =>
+            <OrganizationCard key={organizationIdx} organization={organization} listType='list' />
+        )}
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>

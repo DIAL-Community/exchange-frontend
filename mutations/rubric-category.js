@@ -40,6 +40,7 @@ export const UPDATE_RUBRIC_CATEGORY_INDICATORS = gql`
       rubricCategorySlug: $rubricCategorySlug
     ) {
       rubricCategory {
+        id
         categoryIndicators {
           slug
           name

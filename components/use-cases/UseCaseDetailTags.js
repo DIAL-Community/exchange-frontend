@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { ToastContext } from '../../lib/ToastContext'
 import Select from '../shared/Select'
@@ -11,6 +10,7 @@ import EditableSection from '../shared/EditableSection'
 import { TAG_SEARCH_QUERY } from '../../queries/tag'
 import TagCard from '../tags/TagCard'
 import { UPDATE_USE_CASE_TAGS } from '../../mutations/use-case'
+import { useUser } from '../../lib/hooks'
 
 const UseCaseDetailTags = ({ useCase, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -19,25 +19,32 @@ const UseCaseDetailTags = ({ useCase, canEdit }) => {
   const client = useApolloClient()
 
   const [tags, setTags] = useState(useCase.tags)
-
   const [isDirty, setIsDirty] = useState(false)
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateUseCaseTags, { data, loading }] = useMutation(UPDATE_USE_CASE_TAGS, {
+  const [updateUseCaseTags, { data, loading, reset }] = useMutation(UPDATE_USE_CASE_TAGS, {
     onError: () => {
-      setTags(useCase.tags)
       setIsDirty(false)
+      setTags(useCase.tags)
       showToast(format('toast.tags.update.failure'), 'error', 'top-center')
     },
     onCompleted: (data) => {
-      setTags(data.updateUseCaseTags.useCase.tags)
-      setIsDirty(false)
-      showToast(format('toast.tags.update.success'), 'success', 'top-center')
+      const { updateUseCaseTags: response } = data
+      if (response?.useCase && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setTags(response?.useCase?.tags)
+        showToast(format('toast.tags.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setTags(useCase.tags)
+        showToast(format('toast.tags.update.failure'), 'error', 'top-center')
+        reset()
+      }
     }
   })
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -54,8 +61,8 @@ const UseCaseDetailTags = ({ useCase, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateUseCaseTags({
         variables: {

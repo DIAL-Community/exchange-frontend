@@ -143,7 +143,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                       >
                         <span
                           class="css-1f43avz-a11yText-A11yText"
-                          id="react-select-14-live-region"
+                          id="react-select-:rc:-live-region"
                         />
                         <span
                           aria-atomic="false"
@@ -159,7 +159,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                           >
                             <div
                               class="react-select__placeholder css-19jynah-placeholder"
-                              id="react-select-14-placeholder"
+                              id="react-select-:rc:-placeholder"
                             >
                               Add tag for this play.
                             </div>
@@ -169,7 +169,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                             >
                               <input
                                 aria-autocomplete="list"
-                                aria-describedby="react-select-14-placeholder"
+                                aria-describedby="react-select-:rc:-placeholder"
                                 aria-expanded="false"
                                 aria-haspopup="true"
                                 aria-label="Filter by Tag"
@@ -287,7 +287,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-15-live-region"
+                        id="react-select-:rd:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -303,7 +303,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                         >
                           <div
                             class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-15-placeholder"
+                            id="react-select-:rd:-placeholder"
                           >
                             Add product for this play.
                           </div>
@@ -313,7 +313,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-15-placeholder"
+                              aria-describedby="react-select-:rd:-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
                               autocapitalize="none"
@@ -430,7 +430,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-16-live-region"
+                        id="react-select-:re:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -446,7 +446,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                         >
                           <div
                             class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-16-placeholder"
+                            id="react-select-:re:-placeholder"
                           >
                             Add building block for this play.
                           </div>
@@ -456,7 +456,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-16-placeholder"
+                              aria-describedby="react-select-:re:-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
                               autocapitalize="none"
@@ -650,7 +650,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                             test
                           </div>
                           <div
-                            class="w-6/12 single-line-description whitespace-nowrap overflow-hidden text-ellipsis fr-view my-1"
+                            class="w-6/12 fr-view line-clamp-1 my-1"
                           />
                           <div
                             class="w-3/12 my-auto flex gap-2 text-sm"
@@ -837,7 +837,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                       >
                         <span
                           class="css-1f43avz-a11yText-A11yText"
-                          id="react-select-2-live-region"
+                          id="react-select-:r0:-live-region"
                         />
                         <span
                           aria-atomic="false"
@@ -853,7 +853,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                           >
                             <div
                               class="react-select__placeholder css-19jynah-placeholder"
-                              id="react-select-2-placeholder"
+                              id="react-select-:r0:-placeholder"
                             >
                               Add tag for this play.
                             </div>
@@ -863,7 +863,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                             >
                               <input
                                 aria-autocomplete="list"
-                                aria-describedby="react-select-2-placeholder"
+                                aria-describedby="react-select-:r0:-placeholder"
                                 aria-expanded="false"
                                 aria-haspopup="true"
                                 aria-label="Filter by Tag"
@@ -926,7 +926,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-3-live-region"
+                        id="react-select-:r1:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -942,7 +942,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                         >
                           <div
                             class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-3-placeholder"
+                            id="react-select-:r1:-placeholder"
                           >
                             Add product for this play.
                           </div>
@@ -952,7 +952,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-3-placeholder"
+                              aria-describedby="react-select-:r1:-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
                               autocapitalize="none"
@@ -1018,7 +1018,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-4-live-region"
+                        id="react-select-:r2:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -1034,7 +1034,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                         >
                           <div
                             class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-4-placeholder"
+                            id="react-select-:r2:-placeholder"
                           >
                             Add building block for this play.
                           </div>
@@ -1044,7 +1044,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-4-placeholder"
+                              aria-describedby="react-select-:r2:-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
                               autocapitalize="none"
@@ -1305,7 +1305,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                       >
                         <span
                           class="css-1f43avz-a11yText-A11yText"
-                          id="react-select-5-live-region"
+                          id="react-select-:r3:-live-region"
                         />
                         <span
                           aria-atomic="false"
@@ -1321,7 +1321,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                           >
                             <div
                               class="react-select__placeholder css-19jynah-placeholder"
-                              id="react-select-5-placeholder"
+                              id="react-select-:r3:-placeholder"
                             >
                               Add tag for this play.
                             </div>
@@ -1331,7 +1331,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                             >
                               <input
                                 aria-autocomplete="list"
-                                aria-describedby="react-select-5-placeholder"
+                                aria-describedby="react-select-:r3:-placeholder"
                                 aria-expanded="false"
                                 aria-haspopup="true"
                                 aria-label="Filter by Tag"
@@ -1449,7 +1449,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-6-live-region"
+                        id="react-select-:r4:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -1465,7 +1465,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                         >
                           <div
                             class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-6-placeholder"
+                            id="react-select-:r4:-placeholder"
                           >
                             Add product for this play.
                           </div>
@@ -1475,7 +1475,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-6-placeholder"
+                              aria-describedby="react-select-:r4:-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
                               autocapitalize="none"
@@ -1592,7 +1592,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-7-live-region"
+                        id="react-select-:r5:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -1608,7 +1608,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                         >
                           <div
                             class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-7-placeholder"
+                            id="react-select-:r5:-placeholder"
                           >
                             Add building block for this play.
                           </div>
@@ -1618,7 +1618,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-7-placeholder"
+                              aria-describedby="react-select-:r5:-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
                               autocapitalize="none"
@@ -1812,7 +1812,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                             test
                           </div>
                           <div
-                            class="w-6/12 single-line-description whitespace-nowrap overflow-hidden text-ellipsis fr-view my-1"
+                            class="w-6/12 fr-view line-clamp-1 my-1"
                           />
                           <div
                             class="w-3/12 my-auto flex gap-2 text-sm"

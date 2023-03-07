@@ -2,15 +2,15 @@ import { gql } from '@apollo/client'
 
 export const WIZARD_QUERY = gql`
   query Wizard(
-    $sector: String
+    $sectors: [String!]
     $useCase: String
-    $sdg: String
+    $sdgs: [String!]
     $buildingBlocks: [String!]
   ) {
     wizard(
-      sector: $sector
+      sectors: $sectors
       useCase: $useCase
-      sdg: $sdg
+      sdgs: $sdgs
       buildingBlocks: $buildingBlocks
     ) {
       digitalPrinciples {
@@ -49,8 +49,8 @@ export const WIZARD_QUERY = gql`
 `
 
 export const WIZARD_USE_CASES_FOR_SECTOR = gql`
-  query UseCasesForSector ($sectorSlug: String!) {
-    useCasesForSector (sectorSlug: $sectorSlug) {
+  query UseCasesForSector ($sectorsSlugs: [String!]!) {
+    useCasesForSector (sectorsSlugs: $sectorsSlugs) {
       name
     }
   }
@@ -163,14 +163,14 @@ export const WIZARD_PAGINATED_PLAYBOOKS = gql`
   query PaginatedPlaybooks(
     $first: Int!
     $offset: Int!
-    $sector: String
+    $sectors: [String!]
     $tags: [String!]
     $playbookSortHint: String!
   ) {
     paginatedPlaybooks(
       first: $first
       offsetAttributes: { offset: $offset }
-      sector: $sector
+      sectors: $sectors
       tags: $tags
       playbookSortHint: $playbookSortHint
     ) {

@@ -176,7 +176,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                     </div>
                   </label>
                   <div
-                    class="h5 w-full pl-2 text-dial-gray-dark"
+                    class="text-sm w-full text-dial-gray-dark"
                   >
                     Note: Supported file types are jpg, png, and bmp
                   </div>
@@ -213,7 +213,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-6-live-region"
+                        id="react-select-:r4:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -229,7 +229,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                         >
                           <div
                             class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-6-placeholder"
+                            id="react-select-:r4:-placeholder"
                           >
                             Add tag for this playbook.
                           </div>
@@ -239,7 +239,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-6-placeholder"
+                              aria-describedby="react-select-:r4:-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
                               aria-label="Filter by Tag"
@@ -622,7 +622,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                     </div>
                   </label>
                   <div
-                    class="h5 w-full pl-2 text-dial-gray-dark"
+                    class="text-sm w-full text-dial-gray-dark"
                   >
                     Note: Supported file types are jpg, png, and bmp
                   </div>
@@ -659,7 +659,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-2-live-region"
+                        id="react-select-:r0:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -675,7 +675,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                         >
                           <div
                             class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-2-placeholder"
+                            id="react-select-:r0:-placeholder"
                           >
                             Add tag for this playbook.
                           </div>
@@ -685,7 +685,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-2-placeholder"
+                              aria-describedby="react-select-:r0:-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
                               aria-label="Filter by Tag"
@@ -1052,7 +1052,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                     </div>
                   </label>
                   <div
-                    class="h5 w-full pl-2 text-dial-gray-dark"
+                    class="text-sm w-full text-dial-gray-dark"
                   >
                     Note: Supported file types are jpg, png, and bmp
                   </div>
@@ -1089,7 +1089,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                     >
                       <span
                         class="css-1f43avz-a11yText-A11yText"
-                        id="react-select-3-live-region"
+                        id="react-select-:r1:-live-region"
                       />
                       <span
                         aria-atomic="false"
@@ -1105,7 +1105,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                         >
                           <div
                             class="react-select__placeholder css-19jynah-placeholder"
-                            id="react-select-3-placeholder"
+                            id="react-select-:r1:-placeholder"
                           >
                             Add tag for this playbook.
                           </div>
@@ -1115,7 +1115,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                           >
                             <input
                               aria-autocomplete="list"
-                              aria-describedby="react-select-3-placeholder"
+                              aria-describedby="react-select-:r1:-placeholder"
                               aria-expanded="false"
                               aria-haspopup="true"
                               aria-label="Filter by Tag"
@@ -1338,7 +1338,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                           D4D: Understand the Problem
                         </div>
                         <div
-                          class="w-full single-line-description whitespace-nowrap overflow-hidden text-ellipsis fr-view my-1"
+                          class="w-full line-clamp-1 fr-view my-1"
                         >
                           The play description goes here.
                         </div>

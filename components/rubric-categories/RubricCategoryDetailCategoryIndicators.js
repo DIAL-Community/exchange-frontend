@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import Card from '../shared/Card'
 import { ToastContext } from '../../lib/ToastContext'
@@ -18,13 +17,10 @@ const RubricCategoryDetailCategoryIndicators = ({ categoryIndicators, rubricCate
 
   const { showToast } = useContext(ToastContext)
 
-  const { isAdminUser } = useUser()
-
   const [indicators, setIndicators] = useState(categoryIndicators)
-
   const [isDirty, setIsDirty] = useState(false)
 
-  const { data: session } = useSession()
+  const { user, isAdminUser } = useUser()
 
   const router = useRouter()
 
@@ -44,17 +40,26 @@ const RubricCategoryDetailCategoryIndicators = ({ categoryIndicators, rubricCate
 
   useEffect(() => setIndicatorOptions(options), [options])
 
-  const [updateRubricCategoryIndicators, { data, loading }] = useMutation(UPDATE_RUBRIC_CATEGORY_INDICATORS, {
+  const [updateRubricCategoryIndicators, { data, loading, reset }] = useMutation(UPDATE_RUBRIC_CATEGORY_INDICATORS, {
     refetchQueries: ['CategoryIndicators'],
     onCompleted: (data) => {
-      setIndicators(data.updateRubricCategoryIndicators.rubricCategory.categoryIndicators)
-      setIsDirty(false)
-      showToast(format('toast.category-indicator.update.success'), 'success', 'top-center')
+      const { updateRubricCategoryIndicators: response } = data
+      if (response?.rubricCategory && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setIndicators(response?.rubricCategory?.categoryIndicators)
+        showToast(format('toast.category-indicator.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setIndicators(categoryIndicators)
+        showToast(format('toast.category-indicator.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setIndicators(categoryIndicators)
       setIsDirty(false)
+      setIndicators(categoryIndicators)
       showToast(format('toast.category-indicator.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 
@@ -76,8 +81,8 @@ const RubricCategoryDetailCategoryIndicators = ({ categoryIndicators, rubricCate
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateRubricCategoryIndicators({
         variables: {

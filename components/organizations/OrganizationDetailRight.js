@@ -1,12 +1,12 @@
 import { FormattedDate, useIntl } from 'react-intl'
-import parse from 'html-react-parser'
 import { useCallback, useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import { useSession } from 'next-auth/react'
 import Breadcrumb from '../shared/breadcrumb'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import CommentsSection from '../shared/comment/CommentsSection'
 import { ObjectType } from '../../lib/constants'
 import { prependUrlWithProtocol } from '../../lib/utilities'
+import { useOrganizationOwnerUser, useUser } from '../../lib/hooks'
 import AggregatorCapability from './AggregatorCapability'
 import OrganizationDetailCountries from './OrganizationDetailCountries'
 import OrganizationDetailSectors from './OrganizationDetailSectors'
@@ -33,9 +33,10 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data: session } = useSession()
+  const { isAdminUser } = useUser()
+  const { isOrganizationOwner } = useOrganizationOwnerUser(organization)
 
-  const canEdit = session?.user?.canEdit || session?.user?.own?.organization?.id === organization.id
+  const canEdit = isAdminUser || isOrganizationOwner
 
   const isEndorser = organization?.whenEndorsed
 
@@ -67,8 +68,13 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
           <div className='text-sm text-dial-purple-light leading-6 tracking-wide'>
             {format('organization.detail.website').toUpperCase()}
           </div>
-          <div className='text-base text-dial-teal' data-testid='organization-website'>
-            <a href={prependUrlWithProtocol(organization.website)} className='flex flex-row' target='_blank' rel='noreferrer'>
+          <div className='text-base text-dial-teal flex' data-testid='organization-website'>
+            <a
+              href={prependUrlWithProtocol(organization.website)}
+              className='border-b-2 border-transparent hover:border-dial-yellow'
+              target='_blank'
+              rel='noreferrer'
+            >
               <div className='my-auto'>{organization.website} ⧉</div>
             </a>
           </div>
@@ -101,9 +107,10 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
         }
       </div>
       <div className={`mt-8 ${sectionHeaderStyle}`}>{format('product.description')}</div>
-      <div className='fr-view text-dial-gray-dark p-3' data-testid='organization-description'>
-        {organization.organizationDescription && parse(organization.organizationDescription.description)}
-      </div>
+      <HtmlViewer
+        initialContent={organization?.organizationDescription?.description}
+        className='-mb-12'
+      />
       {canEdit && <OrganizationDetailOffices organization={organization} canEdit={canEdit} />}
       {canEdit && <OrganizationDetailContacts organization={organization}/>}
       {organization.sectors && <OrganizationDetailSectors organization={organization} canEdit={canEdit} />}

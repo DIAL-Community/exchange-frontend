@@ -7,7 +7,7 @@ export const useCase = {
     name: 'Test Sector',
     slug: 'test_sector'
   },
-  maturity: 'BETA',
+  maturity: 'DRAFT',
   useCaseDescription: {
     description: 'Test Use Case Description'
   },
@@ -53,6 +53,7 @@ export const createUseCaseSuccess = {
   data: {
     createUseCase: {
       useCase: {
+        id: 1,
         slug: 'test_use_case',
         useCase: {
           slug: 'test_use_case'

@@ -108,7 +108,9 @@ describe('Unit tests for PlaybookForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test playbook name')
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => user.clear(screen.getByLabelText(/Name/))))
+    await act(async () => waitFor(() => {
+      user.clear(screen.getByLabelText(/Name/))
+    }))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test playbook name 2')
@@ -159,25 +161,28 @@ describe('Unit tests for PlaybookForm component.', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('Should render unchecked "Published" checkbox and "Save as Draft" submit button by default - create Playbook.', async () => {
-    const { container, getByLabelText } = render(
-      <CustomMockedProvider>
-        <PlayListProvider>
-          <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <PlaybookForm />
-            </PlayPreviewProvider>
-          </PlayFilterProvider>
-        </PlayListProvider>
-      </CustomMockedProvider>
-    )
-    await waitForAllEffectsAndSelectToLoad(container)
-    await waitFor(() => {
-      expect(getByLabelText(PUBLISHED_CHECKBOX_LABEL)).not.toBeChecked()
-      expect(screen.queryByText(SAVE_AS_DRAFT_SUBMIT_BUTTON_LABEL)).toBeInTheDocument()
-      expect(screen.queryByText(PUBLISH_PLAYBOOK_SUBMIT_BUTTON_LABEL)).not.toBeInTheDocument()
-    })
-  })
+  test(
+    'Should render unchecked "Published" checkbox and "Save as Draft" submit button by default - create Playbook.',
+    async () => {
+      const { container, getByLabelText } = render(
+        <CustomMockedProvider>
+          <PlayListProvider>
+            <PlayFilterProvider>
+              <PlayPreviewProvider>
+                <PlaybookForm />
+              </PlayPreviewProvider>
+            </PlayFilterProvider>
+          </PlayListProvider>
+        </CustomMockedProvider>
+      )
+      await waitForAllEffectsAndSelectToLoad(container)
+      await waitFor(() => {
+        expect(getByLabelText(PUBLISHED_CHECKBOX_LABEL)).not.toBeChecked()
+        expect(screen.queryByText(SAVE_AS_DRAFT_SUBMIT_BUTTON_LABEL)).toBeInTheDocument()
+        expect(screen.queryByText(PUBLISH_PLAYBOOK_SUBMIT_BUTTON_LABEL)).not.toBeInTheDocument()
+      })
+    }
+  )
 
   test('Should check "Published" checkbox and change submit button label from "Save as Draft" to "Published".', async () => {
     const { container, getByLabelText } = render(
@@ -229,25 +234,28 @@ describe('Unit tests for PlaybookForm component.', () => {
     })
   })
 
-  test('Should render checked "Published" checkbox and "Publish Playbook" submit button for published Playbook.', async () => {
-    const { container, getByLabelText } = render(
-      <CustomMockedProvider>
-        <PlayListProvider>
-          <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <DndProvider backend={HTML5Backend}>
-                <PlaybookForm playbook={publishedPlaybook} />
-              </DndProvider>
-            </PlayPreviewProvider>
-          </PlayFilterProvider>
-        </PlayListProvider>
-      </CustomMockedProvider>
-    )
-    await waitForAllEffectsAndSelectToLoad(container)
-    await waitFor(() => {
-      expect(getByLabelText(PUBLISHED_CHECKBOX_LABEL)).toBeChecked()
-      expect(screen.queryByText(SAVE_AS_DRAFT_SUBMIT_BUTTON_LABEL)).not.toBeInTheDocument()
-      expect(screen.queryByText(PUBLISH_PLAYBOOK_SUBMIT_BUTTON_LABEL)).toBeInTheDocument()
-    })
-  })
+  test(
+    'Should render checked "Published" checkbox and "Publish Playbook" submit button for published Playbook.',
+    async () => {
+      const { container, getByLabelText } = render(
+        <CustomMockedProvider>
+          <PlayListProvider>
+            <PlayFilterProvider>
+              <PlayPreviewProvider>
+                <DndProvider backend={HTML5Backend}>
+                  <PlaybookForm playbook={publishedPlaybook} />
+                </DndProvider>
+              </PlayPreviewProvider>
+            </PlayFilterProvider>
+          </PlayListProvider>
+        </CustomMockedProvider>
+      )
+      await waitForAllEffectsAndSelectToLoad(container)
+      await waitFor(() => {
+        expect(getByLabelText(PUBLISHED_CHECKBOX_LABEL)).toBeChecked()
+        expect(screen.queryByText(SAVE_AS_DRAFT_SUBMIT_BUTTON_LABEL)).not.toBeInTheDocument()
+        expect(screen.queryByText(PUBLISH_PLAYBOOK_SUBMIT_BUTTON_LABEL)).toBeInTheDocument()
+      })
+    }
+  )
 })

@@ -27,7 +27,7 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
   const { showToast } = useContext(ToastContext)
   const { locale } = useRouter()
 
-  const [updateUseCaseStep] = useMutation(CREATE_USE_CASE_STEP, {
+  const [updateUseCaseStep, { reset }] = useMutation(CREATE_USE_CASE_STEP, {
     onError: (error) => {
       setMutating(false)
       showToast(
@@ -37,18 +37,31 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
         </div>,
         'error',
         'top-center',
-        false
+        1000
       )
+      reset()
     },
     onCompleted: (data) => {
-      showToast(
-        format('use-case-step.submit.success'),
-        'success',
-        'top-center',
-        1000,
-        null,
-        () => router.push(`/${router.locale}/use_cases/${data.createUseCaseStep.useCaseStep.useCase.slug}/use_case_steps/${data.createUseCaseStep.useCaseStep.slug}`)
-      )
+      const { createUseCaseStep: response } = data
+      if (response?.useCaseStep && response?.errors?.length === 0) {
+        setMutating(false)
+        showToast(
+          format('use-case-step.submit.success'),
+          'success',
+          'top-center',
+          1000,
+          null,
+          () => router.push(
+            `/${router.locale}` +
+            `/use_cases/${data.createUseCaseStep.useCaseStep.useCase.slug}` +
+            `/use_case_steps/${data.createUseCaseStep.useCaseStep.slug}`
+          )
+        )
+      } else {
+        setMutating(false)
+        showToast(format('use-case-step.submit.failure'), 'error', 'top-center', 1000)
+        reset()
+      }
     }
   })
 

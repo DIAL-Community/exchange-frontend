@@ -19,8 +19,16 @@ const WorkflowFilter = () => {
     <div className='px-4 py-4'>
       <div className='text-dial-gray-dark'>
         <div className='px-2 mb-4 text-base'>
-          <a className='cursor-pointer items-center font-semibold gap-1 hover:underline decoration-2 decoration-dial-yellow' onClick={() => setHintDisplayed(true)}>
-            <span className='mr-1'>{format('filter.hint.text')} {format('workflow.label')}</span>
+          <a
+            className={`
+              cursor-pointer font-semibold gap-1 hover:underline
+              decoration-2 decoration-dial-yellow
+            `}
+            onClick={() => setHintDisplayed(true)}
+          >
+            <span className='mr-1'>
+              {format('filter.hint.text')} {format('workflow.label')}
+            </span>
             <BsQuestionCircleFill className='inline text-xl mb-1 fill-dial-yellow' />
           </a>
         </div>
@@ -35,8 +43,16 @@ const WorkflowFilter = () => {
           </div>
         </div>
         <div className='text-sm text-dial-gray-dark flex flex-row flex-wrap'>
-          <SDGAutocomplete {...{ sdgs, setSDGs }} containerStyles='px-2 pb-2' controlSize='20rem' />
-          <UseCaseAutocomplete {...{ useCases, setUseCases }} containerStyles='px-2 pb-2' controlSize='20rem' />
+          <SDGAutocomplete
+            {...{ sdgs, setSDGs }}
+            containerStyles='px-2 pb-2'
+            controlSize='20rem'
+          />
+          <UseCaseAutocomplete
+            {...{ useCases, setUseCases }}
+            containerStyles='px-2 pb-2'
+            controlSize='20rem'
+          />
         </div>
       </div>
     </div>

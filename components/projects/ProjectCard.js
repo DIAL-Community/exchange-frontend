@@ -3,8 +3,9 @@ import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import ReactTooltip from 'react-tooltip'
 import Image from 'next/image'
-import { ORIGIN_ACRONYMS, truncate } from '../../lib/utilities'
+import { truncate } from '../../lib/utilities'
 import { convertToKey } from '../context/FilterContext'
+import { ORIGIN_ACRONYMS } from '../../lib/constants'
 const collectionPath = convertToKey('Projects')
 
 const ellipsisTextStyle = `
@@ -43,7 +44,10 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
             ? (
               <div className={containerElementStyle}>
                 <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
-                  <div className='flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 justify-between' style={{ minHeight: '4.5rem' }}>
+                  <div
+                    className='flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 justify-between'
+                    style={{ minHeight: '4.5rem' }}
+                  >
                     <div className={`w-10/12 lg:w-3/12 my-auto font-semibold ${ellipsisTextStyle}`}>
                       {project.name}
                     </div>

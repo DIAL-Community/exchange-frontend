@@ -1,26 +1,26 @@
 import { gql } from '@apollo/client'
 
 export const UPDATE_WORKFLOW_BUILDING_BLOCKS = gql`
-      mutation UpdateWorkflowBuildingBlocks (
-        $buildingBlocksSlugs: [String!]!
-        $slug: String!
-        ) {
-          updateWorkflowBuildingBlocks (
-            buildingBlocksSlugs: $buildingBlocksSlugs
-            slug: $slug
-          ) {
-            workflow {
-              slug
-              buildingBlocks {
-                slug
-                name
-                imageFile
-                maturity
-              }
-            }
-            errors
-          }
+  mutation UpdateWorkflowBuildingBlocks (
+    $buildingBlocksSlugs: [String!]!
+    $slug: String!
+  ) {
+    updateWorkflowBuildingBlocks (
+      buildingBlocksSlugs: $buildingBlocksSlugs
+      slug: $slug
+    ) {
+      workflow {
+        slug
+        buildingBlocks {
+          slug
+          name
+          imageFile
+          maturity
+        }
       }
+      errors
+    }
+  }
 `
 
 export const CREATE_WORKFLOW = gql`
@@ -37,9 +37,30 @@ export const CREATE_WORKFLOW = gql`
       description: $description
     ) {
       workflow {
+        id
+        name
         slug
+        imageFile
+        workflowDescription {
+          description
+          locale
+        }
       }
       errors
     }
   }
 `
+
+export const DELETE_WORKFLOW = gql`
+  mutation DeleteWorkflow($id: ID!) {
+    deleteWorkflow(id: $id) {
+      workflow {
+       id
+       slug
+       name
+      }
+      errors
+    }
+  }
+`
+

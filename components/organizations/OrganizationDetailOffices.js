@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { ToastContext } from '../../lib/ToastContext'
 import Pill from '../shared/Pill'
@@ -9,6 +8,7 @@ import EditableSection from '../shared/EditableSection'
 import CityCard from '../cities/CityCard'
 import GeocodeAutocomplete from '../shared/GeocodeAutocomplete'
 import { UPDATE_ORGANIZATION_OFFICES } from '../../mutations/organization'
+import { useUser } from '../../lib/hooks'
 
 const OFFICE_NAME_PARTS_SEPARATOR = ', '
 
@@ -33,18 +33,25 @@ const OrganizationDetailOffices = ({ organization, canEdit }) => {
 
   const [updateOrganizationOffices, { data, loading }] = useMutation(UPDATE_ORGANIZATION_OFFICES, {
     onError: () => {
-      setOffices(organization.offices?.map(mapOfficeCallback))
       setIsDirty(false)
+      setOffices(organization.offices?.map(mapOfficeCallback))
       showToast(format('toast.offices.update.failure'), 'error', 'top-center')
     },
     onCompleted: (data) => {
-      setOffices(data.updateOrganizationOffices.organization.offices?.map(mapOfficeCallback))
-      setIsDirty(false)
-      showToast(format('toast.offices.update.success'), 'success', 'top-center')
+      const { updateOrganizationOffices: response } = data
+      if (response?.organization && response?.errors?.length === 0) {
+        setOffices(response?.organization?.offices?.map(mapOfficeCallback))
+        showToast(format('toast.offices.update.success'), 'success', 'top-center')
+        setIsDirty(false)
+      } else {
+        setIsDirty(false)
+        setOffices(organization.offices?.map(mapOfficeCallback))
+        showToast(format('toast.offices.update.failure'), 'error', 'top-center')
+      }
     }
   })
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -70,8 +77,8 @@ const OrganizationDetailOffices = ({ organization, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
       updateOrganizationOffices({
         variables: {
           slug: organization.slug,

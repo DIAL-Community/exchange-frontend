@@ -1,4 +1,4 @@
-import { render } from '../../test-utils'
+import { render, waitForAllEffects } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
 import SectorCard from '../../../components/sectors/SectorCard'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
@@ -53,7 +53,7 @@ describe('Unit test for the SectorCard component', () => {
       expect(container).toMatchSnapshot()
     })
 
-    test('user is an admin, displayEditButtons passed.', () => {
+    test('user is an admin, displayEditButtons passed.', async () => {
       mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
       const { container, getByTestId } = render(
         <CustomMockedProvider>
@@ -63,6 +63,8 @@ describe('Unit test for the SectorCard component', () => {
           />
         </CustomMockedProvider>
       )
+      await waitForAllEffects()
+
       expect(getByTestId(CARD_TEST_ID)).toHaveTextContent('Example Sector')
       expect(getByTestId(EDIT_BUTTON_TEST_ID)).toBeInTheDocument()
       expect(getByTestId(DELETE_BUTTON_TEST_ID)).toBeInTheDocument()

@@ -67,14 +67,18 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     )
     await waitForAllEffects()
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(async () => waitFor(() => {
+      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
+    }))
     expect(getByTestId(USE_CASE_STEP_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_STEP_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_STEP_STEP_NUMBER_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test use case step name')
     expect(getByTestId(USE_CASE_STEP_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => user.clear(screen.getByLabelText(/Name/))))
+    await act(async () => waitFor(() => {
+      user.clear(screen.getByLabelText(/Name/))
+    }))
     expect(getByTestId(USE_CASE_STEP_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test use case step name 2')
@@ -84,7 +88,9 @@ describe('Unit tests for UseCaseStepForm component.', () => {
 
     await user.type(screen.getByLabelText(/Step Number/), '1')
     expect(getByTestId(USE_CASE_STEP_STEP_NUMBER_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => user.clear(screen.getByLabelText(/Step Number/))))
+    await act(async () => waitFor(() => {
+      user.clear(screen.getByLabelText(/Step Number/))
+    }))
     expect(getByTestId(USE_CASE_STEP_STEP_NUMBER_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Step Number/), '2')
@@ -92,7 +98,9 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     expect(getByTestId(USE_CASE_STEP_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_STEP_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(async () => {
+      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
+    })
     expect(getByTestId(USE_CASE_STEP_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_STEP_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_STEP_STEP_NUMBER_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)

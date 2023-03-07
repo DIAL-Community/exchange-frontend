@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/react'
 import { useCallback, useContext, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
@@ -7,6 +6,8 @@ import DeleteButton from '../shared/DeleteButton'
 import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import { ToastContext } from '../../lib/ToastContext'
 import { DELETE_COUNTRY } from '../../mutations/country'
+import { COUNTRY_DETAIL_QUERY } from '../../queries/country'
+import { useUser } from '../../lib/hooks'
 
 const DeleteCountry = ({ country }) => {
   const { formatMessage } = useIntl()
@@ -17,7 +18,7 @@ const DeleteCountry = ({ country }) => {
   const router = useRouter()
   const { locale } = router
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false)
 
@@ -26,15 +27,26 @@ const DeleteCountry = ({ country }) => {
   }
 
   const [deleteCountry, { called, reset }] = useMutation(DELETE_COUNTRY, {
-    onCompleted: () => {
-      showToast(
-        format('toast.country.delete.success'),
-        'success',
-        'top-center',
-        null,
-        () => router.push(`/${locale}/countries`)
-      )
-      setIsConfirmDialogOpen(false)
+    refetchQueries: [{
+      query: COUNTRY_DETAIL_QUERY,
+      variables: { slug: country.slug }
+    }],
+    onCompleted: (data) => {
+      const { deleteCountry: response } = data
+      if (response?.country && response?.errors?.length === 0) {
+        showToast(
+          format('toast.country.delete.success'),
+          'success',
+          'top-center',
+          null,
+          () => router.push(`/${locale}/countries`)
+        )
+        setIsConfirmDialogOpen(false)
+      } else {
+        showToast(format('toast.country.delete.failure'), 'error', 'top-center')
+        setIsConfirmDialogOpen(false)
+        reset()
+      }
     },
     onError: () => {
       showToast(format('toast.country.delete.failure'), 'error', 'top-center')
@@ -44,8 +56,8 @@ const DeleteCountry = ({ country }) => {
   })
 
   const onConfirmDelete = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       deleteCountry({
         variables: {

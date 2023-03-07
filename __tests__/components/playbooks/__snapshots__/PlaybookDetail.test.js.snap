@@ -287,9 +287,30 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                 Overview
               </div>
               <div
-                class="fr-view tiny-editor text-dial-gray-dark"
+                class="relative"
               >
-                Just an example of playbook.
+                <svg
+                  class="absolute text-lg inset-x-1/2 top-10 spinner"
+                  fill="currentColor"
+                  height="2em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="2em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+                <div
+                  class="-mt-4 html-viewer"
+                >
+                  <textarea
+                    id="playbook-overview"
+                    style="visibility: hidden;"
+                  />
+                </div>
               </div>
               <div
                 class="h4"
@@ -297,9 +318,30 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                 Audience
               </div>
               <div
-                class="fr-view tiny-editor text-dial-gray-dark"
+                class="relative"
               >
-                The audience of this playbook is you.
+                <svg
+                  class="absolute text-lg inset-x-1/2 top-10 spinner"
+                  fill="currentColor"
+                  height="2em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="2em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+                <div
+                  class="-mt-4 html-viewer"
+                >
+                  <textarea
+                    id="playbook-audience"
+                    style="visibility: hidden;"
+                  />
+                </div>
               </div>
               <div
                 class="h4"
@@ -307,9 +349,30 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                 Outcomes
               </div>
               <div
-                class="fr-view tiny-editor text-dial-gray-dark"
+                class="relative"
               >
-                The outcome of this playbook is expected.
+                <svg
+                  class="absolute text-lg inset-x-1/2 top-10 spinner"
+                  fill="currentColor"
+                  height="2em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="2em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+                <div
+                  class="-mt-4 html-viewer"
+                >
+                  <textarea
+                    id="playbook-outcomes"
+                    style="visibility: hidden;"
+                  />
+                </div>
               </div>
               <div
                 class="h4"
@@ -322,6 +385,62 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
               >
                  
                 Test Author
+              </div>
+              <div
+                class="h4 mt-3"
+              >
+                Playbook Tags
+                :
+              </div>
+              <div
+                class="grid grid-cols-1 md:grid-cols-2"
+              >
+                <div
+                  class="border-3 border-transparent text-button-gray"
+                  data-testid="tag-card"
+                >
+                  <div
+                    class="border border-dial-gray card-drop-shadow"
+                  >
+                    <div
+                      class="flex gap-3 my-5 px-4"
+                    >
+                      <div
+                        class="card-title text-button-gray"
+                      >
+                        <span>
+                          Apps
+                        </span>
+                      </div>
+                      <div
+                        class="line-clamp-1"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="border-3 border-transparent text-button-gray"
+                  data-testid="tag-card"
+                >
+                  <div
+                    class="border border-dial-gray card-drop-shadow"
+                  >
+                    <div
+                      class="flex gap-3 my-5 px-4"
+                    >
+                      <div
+                        class="card-title text-button-gray"
+                      >
+                        <span>
+                          Tag 2
+                        </span>
+                      </div>
+                      <div
+                        class="line-clamp-1"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -346,9 +465,30 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                       Play 1. D4D: Understand the Problem
                     </div>
                     <div
-                      class="fr-view tiny-editor text-dial-gray-dark"
+                      class="relative"
                     >
-                      The play description goes here.
+                      <svg
+                        class="absolute text-lg inset-x-1/2 top-10 spinner"
+                        fill="currentColor"
+                        height="2em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 512 512"
+                        width="2em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                        />
+                      </svg>
+                      <div
+                        class="-mt-4 html-viewer"
+                      >
+                        <textarea
+                          id="play-0-desc"
+                          style="visibility: hidden;"
+                        />
+                      </div>
                     </div>
                     <div
                       class="flex flex-col gap-3"
@@ -404,9 +544,30 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                             class="px-4 py-4"
                           >
                             <div
-                              class="fr-view text-dial-gray-dark"
+                              class="relative"
                             >
-                              Description of the move goes here.
+                              <svg
+                                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                                fill="currentColor"
+                                height="2em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 512 512"
+                                width="2em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                                />
+                              </svg>
+                              <div
+                                class="html-viewer"
+                              >
+                                <textarea
+                                  id="move-considerations-desc"
+                                  style="visibility: hidden;"
+                                />
+                              </div>
                             </div>
                             <div
                               class="font-semibold py-2"
@@ -422,7 +583,10 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                                 target="_blank"
                               >
                                 <div
-                                  class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                                  class="
+                                      group border-2 border-gray-300 hover:border-dial-yellow
+                                      card-drop-shadow
+                                    "
                                 >
                                   <div
                                     class="flex"
@@ -763,9 +927,30 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
               Overview
             </div>
             <div
-              class="fr-view tiny-editor text-dial-gray-dark"
+              class="relative"
             >
-              Just an example of playbook.
+              <svg
+                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                fill="currentColor"
+                height="2em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="2em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                />
+              </svg>
+              <div
+                class="-mt-4 html-viewer"
+              >
+                <textarea
+                  id="playbook-overview"
+                  style="visibility: hidden;"
+                />
+              </div>
             </div>
             <div
               class="h4"
@@ -773,9 +958,30 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
               Audience
             </div>
             <div
-              class="fr-view tiny-editor text-dial-gray-dark"
+              class="relative"
             >
-              The audience of this playbook is you.
+              <svg
+                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                fill="currentColor"
+                height="2em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="2em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                />
+              </svg>
+              <div
+                class="-mt-4 html-viewer"
+              >
+                <textarea
+                  id="playbook-audience"
+                  style="visibility: hidden;"
+                />
+              </div>
             </div>
             <div
               class="h4"
@@ -783,9 +989,30 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
               Outcomes
             </div>
             <div
-              class="fr-view tiny-editor text-dial-gray-dark"
+              class="relative"
             >
-              The outcome of this playbook is expected.
+              <svg
+                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                fill="currentColor"
+                height="2em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="2em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                />
+              </svg>
+              <div
+                class="-mt-4 html-viewer"
+              >
+                <textarea
+                  id="playbook-outcomes"
+                  style="visibility: hidden;"
+                />
+              </div>
             </div>
             <div
               class="h4"
@@ -798,6 +1025,62 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
             >
                
               Test Author
+            </div>
+            <div
+              class="h4 mt-3"
+            >
+              Playbook Tags
+              :
+            </div>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2"
+            >
+              <div
+                class="border-3 border-transparent text-button-gray"
+                data-testid="tag-card"
+              >
+                <div
+                  class="border border-dial-gray card-drop-shadow"
+                >
+                  <div
+                    class="flex gap-3 my-5 px-4"
+                  >
+                    <div
+                      class="card-title text-button-gray"
+                    >
+                      <span>
+                        Apps
+                      </span>
+                    </div>
+                    <div
+                      class="line-clamp-1"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="border-3 border-transparent text-button-gray"
+                data-testid="tag-card"
+              >
+                <div
+                  class="border border-dial-gray card-drop-shadow"
+                >
+                  <div
+                    class="flex gap-3 my-5 px-4"
+                  >
+                    <div
+                      class="card-title text-button-gray"
+                    >
+                      <span>
+                        Tag 2
+                      </span>
+                    </div>
+                    <div
+                      class="line-clamp-1"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div
@@ -822,9 +1105,30 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                     Play 1. D4D: Understand the Problem
                   </div>
                   <div
-                    class="fr-view tiny-editor text-dial-gray-dark"
+                    class="relative"
                   >
-                    The play description goes here.
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="-mt-4 html-viewer"
+                    >
+                      <textarea
+                        id="play-0-desc"
+                        style="visibility: hidden;"
+                      />
+                    </div>
                   </div>
                   <div
                     class="flex flex-col gap-3"
@@ -880,9 +1184,30 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                           class="px-4 py-4"
                         >
                           <div
-                            class="fr-view text-dial-gray-dark"
+                            class="relative"
                           >
-                            Description of the move goes here.
+                            <svg
+                              class="absolute text-lg inset-x-1/2 top-10 spinner"
+                              fill="currentColor"
+                              height="2em"
+                              stroke="currentColor"
+                              stroke-width="0"
+                              viewBox="0 0 512 512"
+                              width="2em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                              />
+                            </svg>
+                            <div
+                              class="html-viewer"
+                            >
+                              <textarea
+                                id="move-considerations-desc"
+                                style="visibility: hidden;"
+                              />
+                            </div>
                           </div>
                           <div
                             class="font-semibold py-2"
@@ -898,7 +1223,10 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                               target="_blank"
                             >
                               <div
-                                class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                                class="
+                                      group border-2 border-gray-300 hover:border-dial-yellow
+                                      card-drop-shadow
+                                    "
                               >
                                 <div
                                   class="flex"
@@ -1019,7 +1347,7 @@ exports[`Unit tests for playbook interaction. Should render error message when t
       />
       <div
         class="text-button-gray text-lg"
-        style="margin-top: 10%;"
+        style="margin-top: 10%; margin-bottom: 10%;"
       >
         <svg
           class="w-full mb-5"
@@ -1049,7 +1377,7 @@ exports[`Unit tests for playbook interaction. Should render error message when t
     />
     <div
       class="text-button-gray text-lg"
-      style="margin-top: 10%;"
+      style="margin-top: 10%; margin-bottom: 10%;"
     >
       <svg
         class="w-full mb-5"
@@ -1360,9 +1688,30 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                 Overview
               </div>
               <div
-                class="fr-view tiny-editor text-dial-gray-dark"
+                class="relative"
               >
-                Just an example of playbook.
+                <svg
+                  class="absolute text-lg inset-x-1/2 top-10 spinner"
+                  fill="currentColor"
+                  height="2em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="2em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+                <div
+                  class="-mt-4 html-viewer"
+                >
+                  <textarea
+                    id="playbook-overview"
+                    style="visibility: hidden;"
+                  />
+                </div>
               </div>
               <div
                 class="h4"
@@ -1370,9 +1719,30 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                 Audience
               </div>
               <div
-                class="fr-view tiny-editor text-dial-gray-dark"
+                class="relative"
               >
-                The audience of this playbook is you.
+                <svg
+                  class="absolute text-lg inset-x-1/2 top-10 spinner"
+                  fill="currentColor"
+                  height="2em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="2em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+                <div
+                  class="-mt-4 html-viewer"
+                >
+                  <textarea
+                    id="playbook-audience"
+                    style="visibility: hidden;"
+                  />
+                </div>
               </div>
               <div
                 class="h4"
@@ -1380,9 +1750,30 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                 Outcomes
               </div>
               <div
-                class="fr-view tiny-editor text-dial-gray-dark"
+                class="relative"
               >
-                The outcome of this playbook is expected.
+                <svg
+                  class="absolute text-lg inset-x-1/2 top-10 spinner"
+                  fill="currentColor"
+                  height="2em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  width="2em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                  />
+                </svg>
+                <div
+                  class="-mt-4 html-viewer"
+                >
+                  <textarea
+                    id="playbook-outcomes"
+                    style="visibility: hidden;"
+                  />
+                </div>
               </div>
               <div
                 class="h4"
@@ -1395,6 +1786,62 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
               >
                  
                 Test Author
+              </div>
+              <div
+                class="h4 mt-3"
+              >
+                Playbook Tags
+                :
+              </div>
+              <div
+                class="grid grid-cols-1 md:grid-cols-2"
+              >
+                <div
+                  class="border-3 border-transparent text-button-gray"
+                  data-testid="tag-card"
+                >
+                  <div
+                    class="border border-dial-gray card-drop-shadow"
+                  >
+                    <div
+                      class="flex gap-3 my-5 px-4"
+                    >
+                      <div
+                        class="card-title text-button-gray"
+                      >
+                        <span>
+                          Apps
+                        </span>
+                      </div>
+                      <div
+                        class="line-clamp-1"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="border-3 border-transparent text-button-gray"
+                  data-testid="tag-card"
+                >
+                  <div
+                    class="border border-dial-gray card-drop-shadow"
+                  >
+                    <div
+                      class="flex gap-3 my-5 px-4"
+                    >
+                      <div
+                        class="card-title text-button-gray"
+                      >
+                        <span>
+                          Tag 2
+                        </span>
+                      </div>
+                      <div
+                        class="line-clamp-1"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -1419,9 +1866,30 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                       Play 1. D4D: Understand the Problem
                     </div>
                     <div
-                      class="fr-view tiny-editor text-dial-gray-dark"
+                      class="relative"
                     >
-                      The play description goes here.
+                      <svg
+                        class="absolute text-lg inset-x-1/2 top-10 spinner"
+                        fill="currentColor"
+                        height="2em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 512 512"
+                        width="2em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                        />
+                      </svg>
+                      <div
+                        class="-mt-4 html-viewer"
+                      >
+                        <textarea
+                          id="play-0-desc"
+                          style="visibility: hidden;"
+                        />
+                      </div>
                     </div>
                     <div
                       class="flex flex-col gap-3"
@@ -1477,9 +1945,30 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                             class="px-4 py-4"
                           >
                             <div
-                              class="fr-view text-dial-gray-dark"
+                              class="relative"
                             >
-                              Description of the move goes here.
+                              <svg
+                                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                                fill="currentColor"
+                                height="2em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 512 512"
+                                width="2em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                                />
+                              </svg>
+                              <div
+                                class="html-viewer"
+                              >
+                                <textarea
+                                  id="move-considerations-desc"
+                                  style="visibility: hidden;"
+                                />
+                              </div>
                             </div>
                             <div
                               class="font-semibold py-2"
@@ -1495,7 +1984,10 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                                 target="_blank"
                               >
                                 <div
-                                  class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                                  class="
+                                      group border-2 border-gray-300 hover:border-dial-yellow
+                                      card-drop-shadow
+                                    "
                                 >
                                   <div
                                     class="flex"
@@ -1783,9 +2275,30 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
               Overview
             </div>
             <div
-              class="fr-view tiny-editor text-dial-gray-dark"
+              class="relative"
             >
-              Just an example of playbook.
+              <svg
+                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                fill="currentColor"
+                height="2em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="2em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                />
+              </svg>
+              <div
+                class="-mt-4 html-viewer"
+              >
+                <textarea
+                  id="playbook-overview"
+                  style="visibility: hidden;"
+                />
+              </div>
             </div>
             <div
               class="h4"
@@ -1793,9 +2306,30 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
               Audience
             </div>
             <div
-              class="fr-view tiny-editor text-dial-gray-dark"
+              class="relative"
             >
-              The audience of this playbook is you.
+              <svg
+                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                fill="currentColor"
+                height="2em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="2em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                />
+              </svg>
+              <div
+                class="-mt-4 html-viewer"
+              >
+                <textarea
+                  id="playbook-audience"
+                  style="visibility: hidden;"
+                />
+              </div>
             </div>
             <div
               class="h4"
@@ -1803,9 +2337,30 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
               Outcomes
             </div>
             <div
-              class="fr-view tiny-editor text-dial-gray-dark"
+              class="relative"
             >
-              The outcome of this playbook is expected.
+              <svg
+                class="absolute text-lg inset-x-1/2 top-10 spinner"
+                fill="currentColor"
+                height="2em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="2em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                />
+              </svg>
+              <div
+                class="-mt-4 html-viewer"
+              >
+                <textarea
+                  id="playbook-outcomes"
+                  style="visibility: hidden;"
+                />
+              </div>
             </div>
             <div
               class="h4"
@@ -1818,6 +2373,62 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
             >
                
               Test Author
+            </div>
+            <div
+              class="h4 mt-3"
+            >
+              Playbook Tags
+              :
+            </div>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2"
+            >
+              <div
+                class="border-3 border-transparent text-button-gray"
+                data-testid="tag-card"
+              >
+                <div
+                  class="border border-dial-gray card-drop-shadow"
+                >
+                  <div
+                    class="flex gap-3 my-5 px-4"
+                  >
+                    <div
+                      class="card-title text-button-gray"
+                    >
+                      <span>
+                        Apps
+                      </span>
+                    </div>
+                    <div
+                      class="line-clamp-1"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="border-3 border-transparent text-button-gray"
+                data-testid="tag-card"
+              >
+                <div
+                  class="border border-dial-gray card-drop-shadow"
+                >
+                  <div
+                    class="flex gap-3 my-5 px-4"
+                  >
+                    <div
+                      class="card-title text-button-gray"
+                    >
+                      <span>
+                        Tag 2
+                      </span>
+                    </div>
+                    <div
+                      class="line-clamp-1"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div
@@ -1842,9 +2453,30 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                     Play 1. D4D: Understand the Problem
                   </div>
                   <div
-                    class="fr-view tiny-editor text-dial-gray-dark"
+                    class="relative"
                   >
-                    The play description goes here.
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="-mt-4 html-viewer"
+                    >
+                      <textarea
+                        id="play-0-desc"
+                        style="visibility: hidden;"
+                      />
+                    </div>
                   </div>
                   <div
                     class="flex flex-col gap-3"
@@ -1900,9 +2532,30 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                           class="px-4 py-4"
                         >
                           <div
-                            class="fr-view text-dial-gray-dark"
+                            class="relative"
                           >
-                            Description of the move goes here.
+                            <svg
+                              class="absolute text-lg inset-x-1/2 top-10 spinner"
+                              fill="currentColor"
+                              height="2em"
+                              stroke="currentColor"
+                              stroke-width="0"
+                              viewBox="0 0 512 512"
+                              width="2em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                              />
+                            </svg>
+                            <div
+                              class="html-viewer"
+                            >
+                              <textarea
+                                id="move-considerations-desc"
+                                style="visibility: hidden;"
+                              />
+                            </div>
                           </div>
                           <div
                             class="font-semibold py-2"
@@ -1918,7 +2571,10 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                               target="_blank"
                             >
                               <div
-                                class="group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow"
+                                class="
+                                      group border-2 border-gray-300 hover:border-dial-yellow
+                                      card-drop-shadow
+                                    "
                               >
                                 <div
                                   class="flex"

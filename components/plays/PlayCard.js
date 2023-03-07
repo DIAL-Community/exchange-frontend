@@ -27,7 +27,7 @@ const PlayCard = ({ playbook, play, sourceType }) => {
         <div className='w-2/6 font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
           {play.name}
         </div>
-        <div className='w-full playbook-list-description overflow-hidden fr-view my-1'>
+        <div className='w-full line-clamp-1 fr-view my-1'>
           {play.playDescription && parse(play.playDescription.description)}
         </div>
         {

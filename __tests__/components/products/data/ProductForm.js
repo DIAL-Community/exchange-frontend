@@ -15,9 +15,14 @@ export const product = {
   organizations: [{
     id: 1,
     name: 'Test Organization',
-    slug: 'to'
+    slug: 'to',
+    imageFile: '',
+    isEndorser: false,
+    whenEndorsed: null,
+    sectors: []
   }],
   tags: ['Test Tag'],
+  mainRepository: null,
   buildingBlocks: [{
     id: 3,
     name: 'Test Building Block',
@@ -30,7 +35,8 @@ export const product = {
     {
       id: 1,
       name: 'Test Sector',
-      slug: 'test_sector'
+      slug: 'test_sector',
+      isDisplayable: true
     }
   ],
   currentProjects: [
@@ -39,7 +45,8 @@ export const product = {
       name: 'Test Project',
       slug: 'test_project',
       origin: {
-        slug: 'origin_slug'
+        slug: 'origin_slug',
+        name: 'Origin'
       }
     }
   ],
@@ -47,21 +54,39 @@ export const product = {
     id: 1,
     name: 'Test SDG',
     slug: 'test_sdg',
+    imageFile: '',
     number: 1
   }],
   sustainableDevelopmentGoalsMappingStatus: 'SELF-REPORTED',
+  maturityScore: {},
+  maturityScoreDetails: {},
   playbooks: [
     {
       id: 1,
       name: 'Playbook 1',
-      slug: 'playbook_1'
+      slug: 'playbook_1',
+      imageFile: '',
+      tags: []
     },
     {
       id: 2,
       name: 'Playbook 2',
-      slug: 'playbook_2'
+      slug: 'playbook_2',
+      imageFile: '',
+      tags: []
     }
-  ]
+  ],
+  includes: [],
+  interoperatesWith: [],
+  endorsers: [],
+  origins: [],
+  languages: [],
+  owner: [],
+  commercialProduct: false,
+  hostingModel: null,
+  pricingModel: null,
+  pricingDetails: null,
+  manualUpdate: false
 }
 
 export const createProductSuccess = {

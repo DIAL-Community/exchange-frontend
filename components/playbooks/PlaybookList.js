@@ -1,10 +1,10 @@
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useSession } from 'next-auth/react'
 import NotFound from '../shared/NotFound'
+import { useUser } from '../../lib/hooks'
 import { Loading, Error } from '../shared/FetchStatus'
 import { FilterContext } from '../context/FilterContext'
 import { PlaybookFilterContext } from '../context/PlaybookFilterContext'
@@ -16,15 +16,17 @@ const PlaybookList = (props) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { data: session } = useSession()
-
-  const canEdit = session?.user?.canEdit
+  const { isAdminUser } = useUser()
 
   const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card'
     ? `grid-cols-1 gap-4
-       ${filterDisplayed ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'}`
+      ${
+        filterDisplayed
+          ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'
+          : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'
+      }`
     : 'grid-cols-1'
     }`
 
@@ -44,7 +46,12 @@ const PlaybookList = (props) => {
       {
         props.playbookList.length > 0
           ? props.playbookList.map((playbook) => (
-            <PlaybookCard key={playbook.id} listType={displayType} {...{ playbook, filterDisplayed }} canEdit={canEdit} />
+            <PlaybookCard
+              key={playbook.id}
+              listType={displayType}
+              canEdit={isAdminUser}
+              {...{ playbook, filterDisplayed }}
+            />
           ))
           : (
             <div className='text-sm font-medium opacity-80'>
@@ -61,7 +68,7 @@ const PlaybookListQuery = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { displayType, filterDisplayed, resultCounts, setResultCounts } = useContext(FilterContext)
+  const { displayType, filterDisplayed, setResultCounts } = useContext(FilterContext)
   const { search, tags, products } = useContext(PlaybookFilterContext)
 
   const { loading, error, data, fetchMore } = useQuery(PLAYBOOKS_QUERY, {
@@ -71,15 +78,7 @@ const PlaybookListQuery = () => {
       products: products.map(product => product.value),
       tags: tags.map(tag => tag.label)
     },
-    context: { headers: { 'Accept-Language': locale } },
-    onCompleted: (data) => {
-      if (data) {
-        setResultCounts({
-          ...resultCounts,
-          ...{ [['filter.entity.playbooks']]: data.searchPlaybooks.totalCount }
-        })
-      }
-    }
+    context: { headers: { 'Accept-Language': locale } }
   })
 
   const handleLoadMore = () => {
@@ -93,6 +92,17 @@ const PlaybookListQuery = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.playbooks']]: data.searchPlaybooks.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />

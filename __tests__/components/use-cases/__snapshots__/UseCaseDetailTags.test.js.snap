@@ -41,7 +41,7 @@ exports[`Unit test for the UseCaseDetailTags component. Should add a pill and re
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-4-live-region"
+            id="react-select-:r2:-live-region"
           />
           <span
             aria-atomic="false"
@@ -57,7 +57,7 @@ exports[`Unit test for the UseCaseDetailTags component. Should add a pill and re
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-4-placeholder"
+                id="react-select-:r2:-placeholder"
               >
                 Type to search...
               </div>
@@ -67,7 +67,7 @@ exports[`Unit test for the UseCaseDetailTags component. Should add a pill and re
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-4-placeholder"
+                  aria-describedby="react-select-:r2:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
@@ -243,15 +243,18 @@ exports[`Unit test for the UseCaseDetailTags component. Should match snapshot - 
           class="border border-dial-gray card-drop-shadow"
         >
           <div
-            class="flex justify-between my-5 px-4"
+            class="flex gap-3 my-5 px-4"
           >
             <div
-              class="inline-block card-title text-button-gray"
+              class="card-title text-button-gray"
             >
               <span>
                 Test Tag
               </span>
             </div>
+            <div
+              class="line-clamp-1"
+            />
           </div>
         </div>
       </div>
@@ -301,7 +304,7 @@ exports[`Unit test for the UseCaseDetailTags component. Should match snapshot - 
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-2-live-region"
+            id="react-select-:r0:-live-region"
           />
           <span
             aria-atomic="false"
@@ -317,7 +320,7 @@ exports[`Unit test for the UseCaseDetailTags component. Should match snapshot - 
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-2-placeholder"
+                id="react-select-:r0:-placeholder"
               >
                 Type to search...
               </div>
@@ -327,7 +330,7 @@ exports[`Unit test for the UseCaseDetailTags component. Should match snapshot - 
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-2-placeholder"
+                  aria-describedby="react-select-:r0:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"
@@ -461,15 +464,18 @@ exports[`Unit test for the UseCaseDetailTags component. Should match snapshot - 
           class="border border-dial-gray card-drop-shadow"
         >
           <div
-            class="flex justify-between my-5 px-4"
+            class="flex gap-3 my-5 px-4"
           >
             <div
-              class="inline-block card-title text-button-gray"
+              class="card-title text-button-gray"
             >
               <span>
                 Test Tag
               </span>
             </div>
+            <div
+              class="line-clamp-1"
+            />
           </div>
         </div>
       </div>
@@ -519,7 +525,7 @@ exports[`Unit test for the UseCaseDetailTags component. Should remove a pill 1`]
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
-            id="react-select-3-live-region"
+            id="react-select-:r1:-live-region"
           />
           <span
             aria-atomic="false"
@@ -535,7 +541,7 @@ exports[`Unit test for the UseCaseDetailTags component. Should remove a pill 1`]
             >
               <div
                 class="react-select__placeholder css-19jynah-placeholder"
-                id="react-select-3-placeholder"
+                id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
@@ -545,7 +551,7 @@ exports[`Unit test for the UseCaseDetailTags component. Should remove a pill 1`]
               >
                 <input
                   aria-autocomplete="list"
-                  aria-describedby="react-select-3-placeholder"
+                  aria-describedby="react-select-:r1:-placeholder"
                   aria-expanded="false"
                   aria-haspopup="true"
                   autocapitalize="none"

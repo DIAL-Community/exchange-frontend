@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import Pill from '../shared/Pill'
 import Select from '../shared/Select'
 import { PRODUCT_SEARCH_QUERY } from '../../queries/product'
@@ -12,6 +11,7 @@ import { fetchSelectOptions } from '../../queries/utils'
 import ProductCard from '../products/ProductCard'
 import { UPDATE_BUILDING_BLOCK_PRODUCTS } from '../../mutations/building-block'
 import { getMappingStatusOptions } from '../../lib/utilities'
+import { useUser } from '../../lib/hooks'
 
 const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -19,7 +19,7 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
 
   const client = useApolloClient()
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
@@ -27,8 +27,13 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
 
   const [products, setProducts] = useState(buildingBlock.products)
 
-  const mappingStatusOptions = getMappingStatusOptions(format).filter((status) =>
-    status.label === `${format('shared.mappingStatus.beta')}` || status.label === `${format('shared.mappingStatus.validated')}`)
+  const mappingStatusOptions =
+    getMappingStatusOptions(format)
+      .filter(
+        (status) =>
+          status.label === `${format('shared.mappingStatus.beta')}` ||
+          status.label === `${format('shared.mappingStatus.validated')}`
+      )
 
   const [mappingStatus, setMappingStatus] = useState(
     mappingStatusOptions.find(({ value: mappingStatus }) =>
@@ -38,16 +43,25 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateBuildingBlockProducts, { data, loading }] = useMutation(UPDATE_BUILDING_BLOCK_PRODUCTS, {
+  const [updateBuildingBlockProducts, { data, loading, reset }] = useMutation(UPDATE_BUILDING_BLOCK_PRODUCTS, {
     onCompleted: (data) => {
-      setProducts(data.updateBuildingBlockProducts.buildingBlock.products)
-      setIsDirty(false)
-      showToast(format('toast.products.update.success'), 'success', 'top-center')
+      const { updateBuildingBlockProducts: response } = data
+      if (response?.buildingBlock && response?.errors?.length === 0) {
+        setIsDirty(false)
+        setProducts(response?.buildingBlock.products)
+        showToast(format('toast.products.update.success'), 'success', 'top-center')
+      } else {
+        setIsDirty(false)
+        setProducts(buildingBlock.products)
+        showToast(format('toast.products.update.failure'), 'error', 'top-center')
+        reset()
+      }
     },
     onError: () => {
-      setProducts(buildingBlock.products)
       setIsDirty(false)
+      setProducts(buildingBlock.products)
       showToast(format('toast.products.update.failure'), 'error', 'top-center')
+      reset()
     }
   })
 
@@ -74,8 +88,8 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateBuildingBlockProducts({
         variables: {
@@ -96,7 +110,10 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
   const onCancel = () => {
     setProducts(data?.updateBuildingBlockProducts?.buildingBlock?.products ?? buildingBlock.products)
     setMappingStatus(mappingStatusOptions.find(({ value: mappingStatus }) =>
-      mappingStatus === (data?.updateBuildingBlockProducts?.buildingBlock?.products.buildingBlocksMappingStatus ?? buildingBlock.products.buildingBlocksMappingStatus)
+      mappingStatus === (
+        data?.updateBuildingBlockProducts?.buildingBlock?.products.buildingBlocksMappingStatus ??
+        buildingBlock.products.buildingBlocksMappingStatus
+      )
     ))
     setIsDirty(false)
   }

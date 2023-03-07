@@ -35,3 +35,25 @@ export const CREATE_USER = gql`
     }
   }
 `
+
+export const APPLY_AS_OWNER = gql`
+  mutation ApplyAsOwner(
+    $entity: String!
+    $entityId: Int!
+  ) {
+    applyAsOwner(
+      entity: $entity
+      entityId: $entityId
+    ) {
+      candidateRole {
+        email
+        roles
+        description
+        productId
+        organizationId
+        datasetId
+      }
+      errors
+    }
+  }
+`

@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl'
 import { FaSpinner } from 'react-icons/fa'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import { ToastContext } from '../../../lib/ToastContext'
 import {
@@ -13,10 +12,11 @@ import {
 import ValidationError from '../../shared/ValidationError'
 import Input from '../../shared/Input'
 import Checkbox from '../../shared/Checkbox'
+import { useUser } from '../../../lib/hooks'
 
 const RepositoryForm = ({ productRepository, productSlug }) => {
   const router = useRouter()
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
@@ -69,10 +69,10 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
   })
 
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       setMutating(true)
 
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = user
       const { name, absoluteUrl, description, mainRepository } = data
 
       const graphParameters = {
@@ -138,7 +138,10 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
                   </label>
                 </div>
                 <div className='w-full lg:w-full flex flex-col gap-y-3'>
-                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue' data-testid='organization-is-mni'>
+                  <label
+                    className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'
+                    data-testid='organization-is-mni'
+                  >
                     <Checkbox {...register('mainRepository')} />
                     {format('productRepository.mainRepository.label')}
                   </label>

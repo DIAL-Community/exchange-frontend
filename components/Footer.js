@@ -27,15 +27,27 @@ const Footer = () => {
     <footer>
       <Consent />
       <div className='relative w-full bg-dial-gray-light text-dial-purple-light'>
-        <div className='px-4 2xl:px-24 pt-8 2xl:pb-8 lg:flex lg:flex-row flex-wrap justify-center 2xl:justify-start max-w-catalog mx-auto'>
-          <div className='max-w-prose sm:w-full lg:flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto text-center 2xl:text-left'>
+        <div
+          className={`
+            px-4 2xl:px-24 pt-8 2xl:pb-8 lg:flex lg:flex-row flex-wrap
+            justify-center 2xl:justify-start max-w-catalog mx-auto
+          `}
+        >
+          <div
+            className={`
+              max-w-prose sm:w-full lg:flex-auto sm:mx-auto 2xl:mx-0 lg:my-auto
+              text-center 2xl:text-left
+            `}
+          >
             {format('footer.text.firstLine')}
           </div>
           <div className='flex-grow flex flex-row flex-wrap place-content-center'>
             <div className='relative p-2 lg:my-auto'>
               <a href='https://unfoundation.org/' target='_blank' rel='noreferrer'>
                 <Image
-                  src='/images/footer/unf-logo.png' width={246} height={59}
+                  src='/images/footer/unf-logo.png'
+                  width={246}
+                  height={59}
                   alt='The United Nations Foundation Logo'
                 />
               </a>
@@ -43,7 +55,9 @@ const Footer = () => {
             <div className='relative p-2 m-auto'>
               <a href='https://www.gatesfoundation.org/' target='_blank' rel='noreferrer'>
                 <Image
-                  src='/images/footer/bill-n-melinda-logo.png' width={204} height={40}
+                  src='/images/footer/bill-n-melinda-logo.png'
+                  width={204}
+                  height={40}
                   alt='The Bill & Melinda Gates Foundation'
                 />
               </a>
@@ -51,7 +65,9 @@ const Footer = () => {
             <div className='relative p-2 m-auto'>
               <a href='https://www.sida.se/' target='_blank' rel='noreferrer'>
                 <Image
-                  src='/images/footer/sida-logo.png' width={102} height={100}
+                  src='/images/footer/sida-logo.png'
+                  width={102}
+                  height={100}
                   alt='The Swedish International Development Cooperation Agency Logo'
                 />
               </a>
@@ -62,7 +78,9 @@ const Footer = () => {
                 target='_blank' rel='noreferrer'
               >
                 <Image
-                  src='/images/footer/fcdo-logo.png' height={60} width={60}
+                  src='/images/footer/fcdo-logo.png'
+                  height={60}
+                  width={60}
                   alt='The Foreign, Commonwealth & Development Office Logo'
                 />
               </a>
@@ -72,14 +90,26 @@ const Footer = () => {
         <div className='2xl:px-24 my-3 xl:my-0'>
           <div className='border border-t-0 border-dial-gray' />
         </div>
-        <div className='px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap justify-center 2xl:justify-start max-w-catalog mx-auto'>
-          <div className='w-full lg:max-w-2/4 2xl:max-w-prose flex-auto my-auto md:text-center 2xl:text-left'>
+        <div
+          className={`
+            px-4 2xl:px-24 lg:pt-4 2xl:pb-4 flex flex-row flex-wrap
+            justify-center 2xl:justify-start max-w-catalog mx-auto
+          `}
+        >
+          <div
+            className={`
+              w-full lg:max-w-2/4 2xl:max-w-prose flex-auto my-auto md:text-center
+              2xl:text-left
+            `}
+          >
             {format('footer.text.secondLine')}
           </div>
           <div className='h-auto w-72 relative p-2 my-auto'>
             <a href='https://www.giz.de/' target='_blank' rel='noreferrer'>
               <Image
-                src='/images/footer/giz-logo.png' width={1570} height={879}
+                src='/images/footer/giz-logo.png'
+                width={1570}
+                height={879}
                 alt='The German Corporation for International Cooperation GmbH Logo'
               />
             </a>
@@ -87,7 +117,9 @@ const Footer = () => {
           <div className='h-auto w-72 relative p-2 my-auto'>
             <a href='https://www.bmz.de/' target='_blank' rel='noreferrer'>
               <Image
-                src='/images/footer/bmz-logo.png' width={1152} height={536}
+                src='/images/footer/bmz-logo.png'
+                width={1152}
+                height={536}
                 alt='The Federal Ministry for Economic Cooperation and Development Logo'
               />
             </a>
@@ -99,7 +131,8 @@ const Footer = () => {
           <div className='group py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light hover:cursor-pointer'>
             <a
               href='https://digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'
-              target='_blank' rel='noreferrer'
+              target='_blank'
+              rel='noreferrer'
               className='border-b-2 border-transparent group-hover:border-dial-yellow'
             >
               {format('footer.sign-up').toUpperCase()}
@@ -108,7 +141,8 @@ const Footer = () => {
           <div className='group py-2 px-3 mr-4 mt-4 rounded-md bg-dial-gray-light hover:cursor-pointer'>
             <a
               href='https://gitlab.com/dial/online-catalog/product-registry'
-              target='_blank' rel='noreferrer'
+              target='_blank'
+              rel='noreferrer'
               className='border-b-2 border-transparent group-hover:border-dial-yellow'
             >
               {format('footer.view-gitlab').toUpperCase()}
@@ -121,7 +155,9 @@ const Footer = () => {
             <div className='p-2 rounded-md bg-dial-gray-light mx-2'>
               <a
                 className='border-b-2 border-transparent hover:border-dial-yellow'
-                href='https://facebook.com/DigitalImpactAlliance' target='_blank' rel='noreferrer'
+                href='https://facebook.com/DigitalImpactAlliance'
+                target='_blank'
+                rel='noreferrer'
               >
                 <FaFacebookF className='inline' />
               </a>
@@ -144,7 +180,9 @@ const Footer = () => {
             </div>
             <div className='p-2 rounded-md bg-dial-gray-light mx-2'>
               <a
-                href='https://www.linkedin.com/company/digital-impact-alliance/' target='_blank' rel='noreferrer'
+                href='https://www.linkedin.com/company/digital-impact-alliance/'
+                target='_blank'
+                rel='noreferrer'
                 className='border-b-2 border-transparent hover:border-dial-yellow'
               >
                 <FaLinkedin className='inline' />
@@ -161,14 +199,18 @@ const Footer = () => {
               <span>{format('footer.icons')} </span>
               <a
                 className='border-b-2 border-transparent hover:border-dial-yellow'
-                href='https://fontawesome.com/' target='_blank' rel='noreferrer'
+                href='https://fontawesome.com/'
+                target='_blank'
+                rel='noreferrer'
               >
                 FontAwesome
               </a>
               <span> and </span>
               <a
                 className='border-b-2 border-transparent hover:border-dial-yellow'
-                href='https://www.globalgoals.org/' target='_blank' rel='noreferrer'
+                href='https://www.globalgoals.org/'
+                target='_blank'
+                rel='noreferrer'
               >
                 The Global Goals for Sustainable Development
               </a>
@@ -181,7 +223,8 @@ const Footer = () => {
             <div className='group py-2 px-3 rounded-md bg-dial-gray-light hover:cursor-pointer'>
               <a
                 href='/privacy-policy'
-                target='_blank' rel='noreferrer'
+                target='_blank'
+                rel='noreferrer'
                 className='border-b-2 border-transparent group-hover:border-dial-yellow'
               >
                 {format('footer.privacyPolicy').toUpperCase()}

@@ -55,10 +55,19 @@ exports[`Unit test for the Header component. Should match snapshot. 1`] = `
     class="
   block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
 "
+    href="/candidate/datasets"
+    role="menuitem"
+  >
+    Candidate Open Data
+  </a>
+  <a
+    class="
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
     href="/candidate/organizations"
     role="menuitem"
   >
-    Candidate Orgs
+    Candidate Organizations
   </a>
   <a
     class="
@@ -89,6 +98,27 @@ exports[`Unit test for the Header component. Should match snapshot. 1`] = `
     role="menuitem"
   >
     Rubric Categories
+  </a>
+  <hr
+    class="mx-4 border border-gray-200"
+  />
+  <a
+    class="
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
+    href="/spreadsheets/datasets"
+    role="menuitem"
+  >
+    Dataset Spreadsheet
+  </a>
+  <a
+    class="
+  block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+"
+    href="/spreadsheets/products"
+    role="menuitem"
+  >
+    Product Spreadsheet
   </a>
 </div>
 `;

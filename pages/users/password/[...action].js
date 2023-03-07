@@ -153,8 +153,9 @@ const PasswordAction = () => {
                 <div className='flex items-center justify-between font-semibold text-sm mt-2'>
                   <div className='flex'>
                     <button
-                      className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex items-center disabled:opacity-50'
-                      type='submit' disabled={loading || password !== passwordConfirmation || passwordStrength < 3 || !tokenValid}
+                      className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex disabled:opacity-50'
+                      type='submit'
+                      disabled={loading || password !== passwordConfirmation || passwordStrength < 3 || !tokenValid}
                     >
                       {format('app.updatePassword')}
                       {loading && <FaSpinner className='spinner ml-3' />}

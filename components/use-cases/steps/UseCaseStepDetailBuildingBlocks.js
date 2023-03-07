@@ -1,8 +1,8 @@
 import { useApolloClient, useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useUser } from '../../../lib/hooks'
 import { ToastContext } from '../../../lib/ToastContext'
 import { UPDATE_USE_CASE_STEP_BUILDING_BLOCKS } from '../../../mutations/useCaseStep'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../queries/building-block'
@@ -19,27 +19,37 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
   const client = useApolloClient()
 
   const [buildingBlocks, setBuildingBlocks] = useState(useCaseStep.buildingBlocks)
-
   const [isDirty, setIsDirty] = useState(false)
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)
 
-  const [updateUseCaseStepBuildingBlocks, { data, loading }] = useMutation(UPDATE_USE_CASE_STEP_BUILDING_BLOCKS, {
-    onCompleted: (data) => {
-      setBuildingBlocks(data.updateUseCaseStepBuildingBlocks.useCaseStep.buildingBlocks)
-      setIsDirty(false)
-      showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
-    },
-    onError: () => {
-      setBuildingBlocks(useCaseStep.buildingBlocks)
-      setIsDirty(false)
-      showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+  const [updateUseCaseStepBuildingBlocks, { data, loading, reset }] = useMutation(
+    UPDATE_USE_CASE_STEP_BUILDING_BLOCKS, {
+      onCompleted: (data) => {
+        const { updateUseCaseStepBuildingBlocks: response } = data
+        if (response?.useCaseStep && response?.errors?.length === 0) {
+          setIsDirty(false)
+          setBuildingBlocks(response?.useCaseStep?.buildingBlocks)
+          showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
+        } else {
+          setIsDirty(false)
+          setBuildingBlocks(useCaseStep.buildingBlocks)
+          showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+          reset()
+        }
+      },
+      onError: () => {
+        setIsDirty(false)
+        setBuildingBlocks(useCaseStep.buildingBlocks)
+        showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
+        reset()
+      }
     }
-  })
+  )
 
   const fetchedBuildingBlocksCallback = (data) => (
     data.buildingBlocks.map((buildingBlock) => ({
@@ -62,8 +72,8 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
   }
 
   const onSubmit = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       updateUseCaseStepBuildingBlocks({
         variables: {
@@ -81,7 +91,10 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
   }
 
   const onCancel = () => {
-    setBuildingBlocks(data?.updateUseCaseStepBuildingBlocks?.useCaseStep?.buildingBlocks ?? useCaseStep.buildingBlocks)
+    setBuildingBlocks(
+      data?.updateUseCaseStepBuildingBlocks?.useCaseStep?.buildingBlocks ??
+      useCaseStep.buildingBlocks
+    )
     setIsDirty(false)
   }
 
@@ -90,7 +103,11 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
       {buildingBlocks.length ? (
         <div className='grid grid-cols-1'>
           {buildingBlocks.map((buildingBlock, buildingBlockIdx) =>
-            <BuildingBlockCard key={buildingBlockIdx} buildingBlock={buildingBlock} listType='list' />
+            <BuildingBlockCard
+              key={buildingBlockIdx}
+              buildingBlock={buildingBlock}
+              listType='list'
+            />
           )}
         </div>
       ) : (
@@ -113,8 +130,18 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
           defaultOptions
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-          loadOptions={(input) => fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('building-block.header') })}
+          loadOptions={
+            (input) =>
+              fetchSelectOptions(
+                client,
+                input,
+                BUILDING_BLOCK_SEARCH_QUERY,
+                fetchedBuildingBlocksCallback
+              )
+          }
+          noOptionsMessage={() =>
+            format('filter.searchFor', { entity: format('building-block.header') })
+          }
           onChange={addBuildingBlock}
           value={null}
         />

@@ -1,10 +1,11 @@
 import { useMutation } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 import router, { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
+import { useUser } from '../../lib/hooks'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import { DELETE_ORGANIZATION } from '../../mutations/organization'
+import { ORGANIZATION_QUERY } from '../../queries/organization'
 import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import DeleteButton from '../shared/DeleteButton'
 
@@ -16,20 +17,32 @@ const DeleteOrganization = ({ organization }) => {
 
   const { locale } = useRouter()
 
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const { showToast } = useContext(ToastContext)
 
   const [deleteOrganization, { called, reset }] = useMutation(DELETE_ORGANIZATION, {
-    onCompleted: () => {
-      showToast(
-        format('toast.organization.delete.success'),
-        'success',
-        'top-center',
-        DEFAULT_AUTO_CLOSE_DELAY,
-        null,
-        () => router.push(`/${router.locale}/organizations`)
-      )
+    refetchQueries: [{
+      query: ORGANIZATION_QUERY,
+      variables: { slug: organization.slug }
+    }],
+    onCompleted: (data) => {
+      const { deleteOrganization: response } = data
+      if (response?.organization && response?.errors?.length === 0) {
+        showToast(
+          format('toast.organization.delete.success'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push(`/${router.locale}/organizations`)
+        )
+        setDisplayConfirmDialog(false)
+      } else {
+        showToast(format('toast.organization.delete.failure'), 'error', 'top-center')
+        setDisplayConfirmDialog(false)
+        reset()
+      }
     },
     onError: () => {
       showToast(format('toast.organization.delete.failure'), 'error', 'top-center')
@@ -39,8 +52,8 @@ const DeleteOrganization = ({ organization }) => {
   })
 
   const onConfirmDelete = () => {
-    if (session) {
-      const { userEmail, userToken } = session.user
+    if (user) {
+      const { userEmail, userToken } = user
 
       deleteOrganization({
         variables: {

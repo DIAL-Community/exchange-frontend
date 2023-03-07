@@ -146,10 +146,93 @@ exports[`Unit test for the RubricCategoryDetail component. Should render RubricC
           Description
         </div>
         <div
-          class="fr-view text-dial-gray-dark"
-          data-testid="description"
+          class="relative"
         >
-          RC description
+          <svg
+            class="absolute text-lg inset-x-1/2 top-10 spinner"
+            fill="currentColor"
+            height="2em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 512 512"
+            width="2em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+            />
+          </svg>
+          <div
+            class="-mb-12 html-viewer"
+          >
+            <textarea
+              id="rubric-category-detail"
+              style="visibility: hidden;"
+            />
+          </div>
+        </div>
+        <div
+          class="mt-12"
+          data-testid="editable-section"
+        >
+          <div
+            class="flex justify-between items-center mb-3"
+          >
+            <div
+              class="card-title text-dial-gray-dark"
+            >
+              Category Indicators
+            </div>
+            <div
+              class="gap-3"
+            >
+              <button
+                class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+                data-testid="edit-button"
+                type="button"
+              >
+                <img
+                  alt="Edit"
+                  height="12px"
+                  src="/icons/edit.svg"
+                  width="12px"
+                />
+                <span
+                  class="text-sm"
+                >
+                  Edit
+                </span>
+              </button>
+              <button
+                class="mr-2 create-button gap-x-1.5"
+                data-testid="create-button"
+                type="button"
+              >
+                <img
+                  alt="Edit"
+                  height="12px"
+                  src="/icons/edit.svg"
+                  width="12px"
+                />
+                <span
+                  class="text-sm"
+                >
+                  Create New
+                </span>
+              </button>
+            </div>
+          </div>
+          <div
+            class="grid sm:grid-cols-1 lg:grid-cols-2"
+          >
+            <div
+              class="border-3 border-transparent hover:border-dial-yellow cursor-pointer"
+            >
+              <div
+                class="font-semibold text-button-gray items-center grid gap-x-4 py-4 px-8 w-full border border-dial-gray card-drop-shadow"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

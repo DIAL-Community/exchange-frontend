@@ -66,7 +66,12 @@ const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
                             <Image
                               height={25}
                               width={25}
-                              data-tip={format('tooltip.forEntity', { entity: format('workflow.label'), name: workflow.name })}
+                              data-tip={
+                                format(
+                                  'tooltip.forEntity',
+                                  { entity: format('workflow.label'), name: workflow.name }
+                                )
+                              }
                               alt={format('image.alt.logoFor', { name: workflow.name })} className='workflow-filter'
                               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
                             />

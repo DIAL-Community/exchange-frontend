@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -32,7 +32,7 @@ const TagList = ({ tagList, displayType }) => {
 }
 
 const TagsListQuery = () => {
-  const { resultCounts, setResultCounts } = useContext(FilterContext)
+  const { setResultCounts } = useContext(FilterContext)
   const { search } = useContext(UserFilterContext)
 
   const { formatMessage } = useIntl()
@@ -42,11 +42,28 @@ const TagsListQuery = () => {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       search
-    },
-    onCompleted: (data) => {
-      setResultCounts({ ...resultCounts, ...{ [['filter.entity.tags']]: data.searchTags.totalCount } })
     }
   })
+
+  function handleLoadMore() {
+    fetchMore({
+      variables: {
+        after: pageInfo.endCursor,
+        first: DEFAULT_PAGE_SIZE
+      }
+    })
+  }
+
+  useEffect(() => {
+    if (data) {
+      setResultCounts(resultCounts => {
+        return {
+          ...resultCounts,
+          ...{ [['filter.entity.tags']]: data.searchTags.totalCount }
+        }
+      })
+    }
+  }, [data, setResultCounts])
 
   if (loading) {
     return <Loading />
@@ -57,15 +74,6 @@ const TagsListQuery = () => {
   }
 
   const { searchTags: { nodes, pageInfo } } = data
-
-  function handleLoadMore() {
-    fetchMore({
-      variables: {
-        after: pageInfo.endCursor,
-        first: DEFAULT_PAGE_SIZE
-      }
-    })
-  }
 
   return (
     <InfiniteScroll

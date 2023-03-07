@@ -1,6 +1,5 @@
-import React, { useState, useCallback, useMemo, useContext, useEffect } from 'react'
+import React, { useState, useCallback, useMemo, useContext } from 'react'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/react'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaSpinner, FaPlus, FaMinus } from 'react-icons/fa'
@@ -12,24 +11,51 @@ import FileUploader from '../shared/FileUploader'
 import Checkbox from '../shared/Checkbox'
 import IconButton from '../shared/IconButton'
 import Select from '../shared/Select'
-import { ToastContext } from '../../lib/ToastContext'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import ValidationError from '../shared/ValidationError'
 import { CREATE_ORGANIZATION } from '../../mutations/organization'
 import UrlInput from '../shared/UrlInput'
+import { useUser } from '../../lib/hooks'
 
 const OrganizationForm = React.memo(({ organization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
   const { showToast } = useContext(ToastContext)
   const { locale } = useRouter()
-  const [updateOrganization, { data }] = useMutation(CREATE_ORGANIZATION)
+  const [updateOrganization, { reset }] = useMutation(CREATE_ORGANIZATION, {
+    onCompleted: (data) => {
+      setMutating(false)
+      const { createOrganization: response } = data
+      if (response?.organization && response?.errors?.length === 0) {
+        showToast(
+          format('organization.submit.success'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push(
+            `/${router.locale}` +
+            `/organizations/${response?.organization?.slug}`
+          )
+        )
+      } else {
+        showToast(format('organization.submit.failure'), 'error', 'top-center')
+        reset()
+      }
+    },
+    onError: () => {
+      showToast(format('organization.submit.failure'), 'error', 'top-center')
+      setMutating(false)
+      reset()
+    }
+  })
 
   const endorserLevelOptions = [
     { label: format('organization.endorserLevel.none'), value: 'none' },
@@ -38,6 +64,8 @@ const OrganizationForm = React.memo(({ organization }) => {
     { label: format('organization.endorserLevel.gold'), value: 'gold' }
   ]
 
+  const [defaultEndorserLevel] = endorserLevelOptions
+
   const { handleSubmit, register, control, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
@@ -45,10 +73,11 @@ const OrganizationForm = React.memo(({ organization }) => {
     defaultValues: {
       name: organization?.name,
       aliases: organization?.aliases?.length ? organization?.aliases.map(value => ({ value })) : [{ value: '' }],
-      website: organization?.website,
+      website: organization?.website ?? '',
       isEndorser: organization?.isEndorser,
       whenEndorsed: organization?.whenEndorsed ?? null,
-      endorserLevel: endorserLevelOptions.find(({ value }) => value === organization?.endorserLevel) ?? endorserLevelOptions[0],
+      endorserLevel:
+        endorserLevelOptions.find(({ value }) => value === organization?.endorserLevel) ?? defaultEndorserLevel,
       isMni: organization?.isMni,
       description: organization?.organizationDescription?.description
     }
@@ -79,38 +108,12 @@ const OrganizationForm = React.memo(({ organization }) => {
     return map
   }, [organization, format])
 
-  useEffect(() => {
-    if (!data?.createOrganization?.errors.length && data?.createOrganization?.organization) {
-      showToast(
-        format('organization.submit.success'),
-        'success',
-        'top-center',
-        1000,
-        null,
-        () => router.push(`/${router.locale}/organizations/${data.createOrganization.organization.slug}`)
-      )
-    } else if (data?.createOrganization?.errors.length) {
-      setMutating(false)
-      showToast(
-        <div className='flex flex-col'>
-          <span>{format('organization.submit.failure')}</span>
-          {data?.createOrganization?.errors.map((error, errorIdx) => (
-            <span key={errorIdx}>{error}</span>
-          ))}
-        </div>,
-        'error',
-        'top-center',
-        false
-      )
-    }
-  }, [data, format, router, showToast])
-
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = user
       const { name, imageFile, website, isEndorser, whenEndorsed, endorserLevel, isMni, description, aliases } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
@@ -235,7 +238,10 @@ const OrganizationForm = React.memo(({ organization }) => {
                     </label>
                     <FileUploader {...register('imageFile')} />
                   </div>
-                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue' data-testid='organization-is-endorser'>
+                  <label
+                    className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'
+                    data-testid='organization-is-endorser'
+                  >
                     <Checkbox {...register('isEndorser')} />
                     {format('organization.isEndorser')}
                   </label>
@@ -257,10 +263,20 @@ const OrganizationForm = React.memo(({ organization }) => {
                     <Controller
                       name='endorserLevel'
                       control={control}
-                      render={({ field }) => <Select {...field} options={endorserLevelOptions} placeholder={format('organization.endorserLevel')} />}
+                      render={
+                        ({ field }) =>
+                          <Select
+                            {...field}
+                            options={endorserLevelOptions}
+                            placeholder={format('organization.endorserLevel')}
+                          />
+                      }
                     />
                   </div>
-                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue' data-testid='organization-is-mni'>
+                  <label
+                    className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'
+                    data-testid='organization-is-mni'
+                  >
                     <Checkbox {...register('isMni')} />
                     {format('organization.isMni')}
                   </label>

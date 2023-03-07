@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import parse from 'html-react-parser'
+import { HtmlViewer } from '../shared/HtmlViewer'
 import NotFound from '../shared/NotFound'
 import { Loading, Error } from '../shared/FetchStatus'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
@@ -96,9 +96,11 @@ const Play = ({ play, index }) => {
       <div className='font-semibold text-2xl py-4'>
         {`${format('plays.label')} ${index + 1}. ${play.name}`}
       </div>
-      <div className='fr-view tiny-editor text-dial-gray-dark'>
-        {parse(play.playDescription.description)}
-      </div>
+      <HtmlViewer
+        initialContent={play?.playDescription?.description}
+        editorId={`play-${index}-desc`}
+        className='-mt-4'
+      />
       <div className='flex flex-col gap-3'>
         {
           play.playMoves.map((move, i) =>
@@ -128,7 +130,10 @@ const Play = ({ play, index }) => {
               dangerouslySetInnerHTML={{ __html: format('play.products.subtitle') }}
             />
             <div className='grid grid-cols-1 md:grid-cols-2'>
-              {play.products.map((product, productIdx) => <ProductCard key={productIdx} product={product} listType='list' />)}
+              {play.products.map(
+                (product, productIdx) =>
+                  <ProductCard key={productIdx} product={product} listType='list' />
+              )}
             </div>
           </div>
       }

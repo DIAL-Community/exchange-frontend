@@ -11,7 +11,7 @@ module.exports = {
           locale: 'en',
           __typename: 'OrganizationDescription'
         },
-        slug: 'test_organization',
+        slug: 'test_organization_2',
         website: 'testorganization.com',
         whenEndorsed: '2000-01-01',
         aliases: ['abc', '123'],

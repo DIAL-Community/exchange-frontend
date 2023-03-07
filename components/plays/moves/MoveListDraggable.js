@@ -85,24 +85,6 @@ const DraggableCard = ({ id, move, index, swapMove, unassignMove, previewMove })
     border border-dial-gray border-transparent hover:border-dial-purple-light border-opacity-80
   `
 
-  const shortenedDescription = (() => {
-    let returnValue = ''
-    if (move.moveDescription) {
-      // Try getting the first non empty description string for the card. This is needed to make sure
-      // the movable card doesn't use the whole text data of the description. That will make the moveable
-      // card yuge.
-      let currentIndex = 0
-      while (!returnValue.trim() && currentIndex >= 0) {
-        const currentNewLineIndex = move.moveDescription.description.indexOf('\n', currentIndex)
-        const substringIndex = currentNewLineIndex >= 0 && currentNewLineIndex <= 80 ? currentNewLineIndex : 80
-        returnValue = move.moveDescription.description.substring(currentIndex, substringIndex)
-        currentIndex = currentNewLineIndex
-      }
-    }
-
-    return returnValue
-  })()
-
   return (
     <div style={{ opacity }} data-handler-id={handlerId} className='inline overflow-hidden'>
       <div className='flex flex-row gap-3'>
@@ -116,8 +98,8 @@ const DraggableCard = ({ id, move, index, swapMove, unassignMove, previewMove })
               // Manual alignment for the description because can't do my-auto to center the text.
               // The original text is large and we're using play-list-description to force it to become 1 line.
             }
-            <div className='w-6/12 single-line-description whitespace-nowrap overflow-hidden text-ellipsis fr-view my-1'>
-              {parse(shortenedDescription)}
+            <div className='w-6/12 fr-view line-clamp-1 my-1'>
+              {move.moveDescription && parse(move.moveDescription.description)}
             </div>
             <div className='w-3/12 my-auto flex gap-2 text-sm'>
               <button

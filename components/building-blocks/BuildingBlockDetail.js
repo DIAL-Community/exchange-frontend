@@ -8,6 +8,8 @@ import BuildingBlockDetailLeft from './BuildingBlockDetailLeft'
 import BuildingBlockDetailRight from './BuildingBlockDetailRight'
 
 const BuildingBlockDetail = ({ slug, locale }) => {
+  const commentsSectionElement = useRef()
+
   const { loading, error, data } = useQuery(BUILDING_BLOCK_DETAIL_QUERY, {
     variables: { slug },
     context: { headers: { 'Accept-Language': locale } },
@@ -16,15 +18,18 @@ const BuildingBlockDetail = ({ slug, locale }) => {
 
   const { isAdminUser: canEdit } = useUser()
 
-  const commentsSectionElement = useRef()
+  if (loading) {
+    return <Loading />
+  } else if (error) {
+    return <Error />
+  } else if (!data?.buildingBlock) {
+    return <NotFound />
+  }
 
   return (
     <>
-      {loading && <Loading />}
-      {error && error.networkError && <Error />}
-      {error && !error.networkError && <NotFound />}
       {
-        data && data.buildingBlock &&
+        data?.buildingBlock &&
           <div className='flex flex-col lg:flex-row pb-8'>
             <div className='relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4'>
               <BuildingBlockDetailLeft

@@ -3,10 +3,10 @@ import { gql, useLazyQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
 import { HiExternalLink } from 'react-icons/hi'
 import { Dialog, Transition } from '@headlessui/react'
 import { FaSpinner } from 'react-icons/fa'
+import { HtmlViewer } from '../../shared/HtmlViewer'
 import { MovePreviewContext, MovePreviewDispatchContext } from './MovePreviewContext'
 
 const MOVE_QUERY = gql`
@@ -108,34 +108,36 @@ const MovePreview = () => {
                       </div>
                     </Dialog.Title>
 
-                    <div className='flex flex-col gap-4 w-5/6 px-4 pb-4'>
-                      <div className='fr-view tiny-editor text-dial-gray-dark'>
-                        {data.move?.moveDescription && parse(data.move.moveDescription.description)}
-                      </div>
+                    <div className='flex flex-col gap-4 px-4 pb-4'>
+                      <HtmlViewer
+                        initialContent={data.move?.moveDescription?.description}
+                        editorId='move-preview'
+                      />
                       {
                         data.move?.resources && data?.move?.resources.length > 0 &&
                           <>
                             <div className='font-semibold'>{format('move.resources.header')}</div>
                             <div className='flex flex-wrap gap-3'>
-                              {
-                                data.move?.resources.map(resource => {
-                                  return (
-                                    <Link key={resource.i} href={resource.url} passHref>
-                                      <a target='_blank' rel='noreferrer'>
-                                        <div className='group border-2 border-gray-300 hover:border-dial-yellow card-drop-shadow'>
-                                          <div className='flex'>
-                                            <div className='flex flex-col gap-2 px-3 py-4'>
-                                              <div className='font-semibold'>{resource.name}</div>
-                                              <div className='text-sm'>{resource.description}</div>
-                                            </div>
-                                            <HiExternalLink className='ml-auto px-2' size='2.2em' />
-                                          </div>
+                              {data.move?.resources.map(resource =>
+                                <Link key={resource.i} href={resource.url} passHref>
+                                  <a target='_blank' rel='noreferrer'>
+                                    <div
+                                      className={`
+                                        group border-2 border-gray-300 hover:border-dial-yellow
+                                        card-drop-shadow
+                                      `}
+                                    >
+                                      <div className='flex'>
+                                        <div className='flex flex-col gap-2 px-3 py-4'>
+                                          <div className='font-semibold'>{resource.name}</div>
+                                          <div className='text-sm'>{resource.description}</div>
                                         </div>
-                                      </a>
-                                    </Link>
-                                  )
-                                })
-                              }
+                                        <HiExternalLink className='ml-auto px-2' size='2.2em' />
+                                      </div>
+                                    </div>
+                                  </a>
+                                </Link>
+                              )}
                             </div>
                           </>
                       }

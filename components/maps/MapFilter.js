@@ -42,7 +42,14 @@ const MapFilter = () => {
                     height={125}
                     width={225}
                     src='/images/maps/projects.png' alt='Navigate to map of projects'
-                    className={`${router.pathname.indexOf('projects') >= 0 ? 'border-4 border-dial-yellow' : ''} w-56 mt-2`}
+                    className={`
+                      ${
+                        router.pathname.indexOf('projects') >= 0
+                          ? 'border-4 border-dial-yellow'
+                          : ''
+                        }
+                      w-56 mt-2
+                    `}
                   />
                 </a>
               </div>
@@ -57,7 +64,14 @@ const MapFilter = () => {
                     height={125}
                     width={225}
                     src='/images/maps/endorsers.png' alt='Navigate to map of endorsers'
-                    className={`${router.pathname.indexOf('endorsers') >= 0 ? 'border-4 border-dial-yellow' : ''} w-56 mt-2`}
+                    className={`
+                      ${
+                        router.pathname.indexOf('endorsers') >= 0
+                          ? 'border-4 border-dial-yellow'
+                          : ''
+                        }
+                      w-56 mt-2
+                    `}
                   />
                 </a>
               </div>
@@ -72,7 +86,10 @@ const MapFilter = () => {
                     height={125}
                     width={225}
                     src='/images/maps/aggregators.png' alt='Navigate to map of aggregators'
-                    className={`${router.pathname.indexOf('aggregators') >= 0 ? 'border-4 border-dial-yellow' : ''} w-56 mt-2`}
+                    className={`
+                      ${router.pathname.indexOf('aggregators') >= 0 ? 'border-4 border-dial-yellow' : ''}
+                      w-56 mt-2
+                    `}
                   />
                 </a>
               </div>
@@ -95,19 +112,41 @@ const MapFilter = () => {
             {
               router.pathname.indexOf('endorsers') >= 0 &&
                 <>
-                  <SectorAutocomplete sectors={orgSectors} setSectors={setOrgSectors} containerStyles='px-2 pb-2' controlSize='20rem' />
-                  <EndorsingYearSelect {...{ years, setYears }} containerStyles='px-2 pb-2' controlSize='20rem' />
+                  <SectorAutocomplete
+                    sectors={orgSectors}
+                    setSectors={setOrgSectors}
+                    containerStyles='px-2 pb-2'
+                    controlSize='20rem'
+                  />
+                  <EndorsingYearSelect
+                    {...{ years, setYears }}
+                    containerStyles='px-2 pb-2'
+                    controlSize='20rem'
+                  />
                 </>
             }
             {
               router.pathname.indexOf('aggregators') >= 0 &&
                 <>
                   <OrganizationAutocomplete
-                    aggregatorOnly organizations={aggregators} setOrganizations={setAggregators}
-                    containerStyles='px-2 pb-2' controlSize='20rem'
+                    aggregatorOnly
+                    organizations={aggregators}
+                    setOrganizations={setAggregators}
+                    containerStyles='px-2 pb-2'
+                    controlSize='20rem'
                   />
-                  <OperatorAutocomplete operators={operators} setOperators={setOperators} containerStyles='px-2 pb-2' controlSize='20rem' />
-                  <CapabilityAutocomplete services={services} setServices={setServices} containerStyles='px-2 pb-2' controlSize='20rem' />
+                  <OperatorAutocomplete
+                    operators={operators}
+                    setOperators={setOperators}
+                    containerStyles='px-2 pb-2'
+                    controlSize='20rem'
+                  />
+                  <CapabilityAutocomplete
+                    services={services}
+                    setServices={setServices}
+                    containerStyles='px-2 pb-2'
+                    controlSize='20rem'
+                  />
                 </>
             }
           </div>

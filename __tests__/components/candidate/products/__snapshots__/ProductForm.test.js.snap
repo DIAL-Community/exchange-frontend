@@ -26,10 +26,16 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - candi
            &gt; 
           <a
             class="text-dial-blue"
-            href="/products"
+            href="/candidate/products"
           >
-            Products
+            Candidate Product
           </a>
+           &gt; 
+          <span
+            class="text-dial-gray-dark"
+          >
+            Create
+          </span>
         </div>
       </div>
     </div>
@@ -79,7 +85,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - candi
                   data-testid="candidate-product-website"
                 >
                   <label
-                    class="form-field-label"
+                    class="form-field-label required-field"
                     for="website"
                   >
                     Website
@@ -100,19 +106,21 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - candi
                   data-testid="candidate-product-repository"
                 >
                   <label
-                    class="form-field-label"
+                    class="form-field-label required-field"
                     for="repository"
                   >
                     Code Repository
                   </label>
-                  <input
-                    class="w-full"
-                    id="repository"
-                    name="repository"
-                    placeholder="Code repository of the candidate product"
-                    type="text"
-                    value=""
-                  />
+                  <div
+                    class="url-input bg-white flex items-center"
+                  >
+                    <input
+                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      id="repository"
+                      placeholder="Code repository of the candidate product"
+                      value=""
+                    />
+                  </div>
                 </div>
                 <div
                   class="form-field-wrapper"
@@ -120,18 +128,100 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - candi
                 >
                   <label
                     class="form-field-label required-field"
-                    for="email"
+                    for="submitterEmail"
                   >
                     Your Email Address
                   </label>
                   <input
                     class="w-full"
-                    id="email"
-                    name="email"
+                    id="submitterEmail"
+                    name="submitterEmail"
                     placeholder="Email address of submitter."
                     type="email"
                     value=""
                   />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="building-block-maturity"
+                >
+                  <label
+                    class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  >
+                    License
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-:r0:-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-19jej77-control"
+                    >
+                      <div
+                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                      >
+                        <div
+                          class="react-select__single-value css-qc6sy-singleValue"
+                        >
+                          Open Source
+                        </div>
+                        <div
+                          class="react-select__input-container css-6j8wv5-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-id-commercialProduct"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="css-tj5bde-Svg"
+                            focusable="false"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            width="20"
+                          >
+                            <path
+                              d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div />
               </div>

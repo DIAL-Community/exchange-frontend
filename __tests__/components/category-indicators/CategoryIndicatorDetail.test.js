@@ -7,7 +7,12 @@ import { categoryIndicator } from './data/CategoryIndicatorDetail'
 
 mockNextUseRouter()
 describe('Unit test for the CategoryIndicatorDetail component.', () => {
-  const mockCategoryIndicator = generateMockApolloData(CATEGORY_INDICATOR_QUERY, { slug: 'test_category_indicator' }, null, categoryIndicator)
+  const mockCategoryIndicator = generateMockApolloData(
+    CATEGORY_INDICATOR_QUERY,
+    { slug: 'test_category_indicator' },
+    null,
+    categoryIndicator
+  )
 
   test('Should render CategoryIndicatorDetail component', async () => {
     const { container } = render(

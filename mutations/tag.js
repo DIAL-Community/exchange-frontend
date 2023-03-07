@@ -22,11 +22,12 @@ export const CREATE_TAG = gql`
       slug: $slug
       description: $description
     ) {
-        tag {
-          name
-          slug
-        }
-        errors
+      tag {
+        id
+        name
+        slug
       }
+      errors
     }
+  }
 `

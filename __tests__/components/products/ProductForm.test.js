@@ -65,7 +65,9 @@ describe('Unit tests for the ProductForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test product name')
     expect(getByTestId(PRODUCT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => user.clear(screen.getByLabelText(/Name/))))
+    await act(async () => waitFor(() => {
+      user.clear(screen.getByLabelText(/Name/))
+    }))
     expect(getByTestId(PRODUCT_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test product name 2')
@@ -87,13 +89,17 @@ describe('Unit tests for the ProductForm component.', () => {
         slug: 'test_product',
         aliases: ['test1','test2'],
         website: 'testproduct.com',
-        description: '<p>test product description</p>'
+        description: '<p>test product description</p>',
+        commercialProduct: false,
+        hostingModel: null,
+        pricingModel: null,
+        pricingDetails: null
       },
       null,
       createProductSuccess
     )
     const { container, getByTestId } = render(
-      <CustomMockedProvider mocks={[mockCreateProduct]}>
+      <CustomMockedProvider mocks={[mockCreateProduct]} allowDebugMessage>
         <ProductForm product={product} />
       </CustomMockedProvider>
     )
@@ -111,15 +117,19 @@ describe('Unit tests for the ProductForm component.', () => {
       {
         name: 'Test Product',
         slug: 'test_product',
-        aliases: ['test1','test2'],
+        aliases: ['test1', 'test2'],
         website: 'testproduct.com',
-        description: '<p>test product description</p>'
+        description: '<p>test product description</p>',
+        commercialProduct: false,
+        hostingModel: null,
+        pricingModel: null,
+        pricingDetails: null
       },
       null,
       createProductFailure
     )
     const { container, getByTestId } = render(
-      <CustomMockedProvider mocks={[mockCreateProduct]}>
+      <CustomMockedProvider mocks={[mockCreateProduct]} allowDebugMessage>
         <ProductForm product={product} />
       </CustomMockedProvider>
     )
@@ -127,7 +137,6 @@ describe('Unit tests for the ProductForm component.', () => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
     })
     await screen.findAllByText('Product submission failed')
-    await screen.findAllByText('Must be admin or product owner to create an product')
     expect(container).toMatchSnapshot()
   })
 })

@@ -15,11 +15,16 @@ const WorkflowDetail = ({ slug, locale }) => {
 
   const { isAdminUser: canEdit } = useUser()
 
+  if (loading) {
+    return <Loading />
+  } else if (error) {
+    return <Error />
+  } else if (!data?.workflow) {
+    return <NotFound />
+  }
+
   return (
     <>
-      {loading && <Loading />}
-      {error && error.networkError && <Error />}
-      {error && !error.networkError && <NotFound />}
       {
         data?.workflow &&
           <div className='flex flex-col lg:flex-row justify-between pb-8'>

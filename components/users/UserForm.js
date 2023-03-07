@@ -84,14 +84,26 @@ export const UserForm = ({ user }) => {
 
   const [updateUser, { called, reset }] = useMutation(CREATE_USER, {
     onCompleted: (data) => {
-      showToast(
-        format(`${user ? 'toast.user-profile.update.success' : 'toast.user-profile.submit.success'}`),
-        'success',
-        'top-center',
-        DEFAULT_AUTO_CLOSE_DELAY,
-        null,
-        () => router.push(userProfilePageUrl(data))
-      )
+      const { createUser: response } = data
+      if (response?.user && response?.errors?.length === 0) {
+        setMutating(false)
+        showToast(
+          format(`${user ? 'toast.user-profile.update.success' : 'toast.user-profile.submit.success'}`),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push(userProfilePageUrl(data))
+        )
+      } else {
+        setMutating(false)
+        showToast(
+          format(`${user ? 'toast.user-profile.update.failure' : 'toast.user-profile.submit.failure'}`),
+          'error',
+          'top-center'
+        )
+        reset()
+      }
     },
     onError: (error) => {
       setMutating(false)
@@ -149,7 +161,12 @@ export const UserForm = ({ user }) => {
       <div className='pb-8 px-8'>
         <div id='content' className='sm:px-0 mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>
-            <div className='sm:w-full md:w-2/3 lg:w-2/5 bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 mx-auto flex flex-col gap-3'>
+            <div
+              className={`
+                sm:w-full md:w-2/3 lg:w-2/5 bg-edit shadow-md rounded
+                px-8 pt-6 pb-12 mb-4 mx-auto flex flex-col gap-3
+              `}
+            >
               <div className='text-2xl font-bold text-dial-blue pb-4'>
                 {user
                   ? format('app.edit-entity', { entity: user.username })
@@ -226,7 +243,9 @@ export const UserForm = ({ user }) => {
                     rules={{ validate: validateOrganizationDomain }}
                   />
                   {errors.organization ? <ValidationError value={errors.organization?.message} /> : !user && (
-                    <div className='h5 w-full pl-2 text-dial-gray-dark normal-case'>{format('user.organization.inform.message')}</div>
+                    <div className='h5 w-full pl-2 text-dial-gray-dark normal-case'>
+                      {format('user.organization.inform.message')}
+                    </div>
                   )}
                 </div>
                 <div className='form-field-wrapper'>

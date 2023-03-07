@@ -60,7 +60,7 @@ const SharableLink = ({ sharableLink }) => {
     } else if (shareStatus === 'failed') {
       showToast(format('app.shareFailed'), 'error', 'top-center', 2000)
     }
-  }, [shareStatus])
+  }, [shareStatus, showToast, format])
 
   return (
     <>

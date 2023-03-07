@@ -7,7 +7,7 @@ exports[`Unit test for the Select component. Should match snapshot - async. 1`] 
   >
     <span
       class="css-1f43avz-a11yText-A11yText"
-      id="react-select-3-live-region"
+      id="react-select-:r1:-live-region"
     />
     <span
       aria-atomic="false"
@@ -23,7 +23,7 @@ exports[`Unit test for the Select component. Should match snapshot - async. 1`] 
       >
         <div
           class="react-select__placeholder css-19jynah-placeholder"
-          id="react-select-3-placeholder"
+          id="react-select-:r1:-placeholder"
         >
           test
         </div>
@@ -33,7 +33,7 @@ exports[`Unit test for the Select component. Should match snapshot - async. 1`] 
         >
           <input
             aria-autocomplete="list"
-            aria-describedby="react-select-3-placeholder"
+            aria-describedby="react-select-:r1:-placeholder"
             aria-expanded="false"
             aria-haspopup="true"
             autocapitalize="none"
@@ -86,7 +86,7 @@ exports[`Unit test for the Select component. Should match snapshot - search asyn
   >
     <span
       class="css-1f43avz-a11yText-A11yText"
-      id="react-select-5-live-region"
+      id="react-select-:r3:-live-region"
     />
     <span
       aria-atomic="false"
@@ -102,7 +102,7 @@ exports[`Unit test for the Select component. Should match snapshot - search asyn
       >
         <div
           class="react-select__placeholder css-19jynah-placeholder"
-          id="react-select-5-placeholder"
+          id="react-select-:r3:-placeholder"
         >
           test
         </div>
@@ -112,7 +112,7 @@ exports[`Unit test for the Select component. Should match snapshot - search asyn
         >
           <input
             aria-autocomplete="list"
-            aria-describedby="react-select-5-placeholder"
+            aria-describedby="react-select-:r3:-placeholder"
             aria-expanded="false"
             aria-haspopup="true"
             autocapitalize="none"
@@ -170,7 +170,7 @@ exports[`Unit test for the Select component. Should match snapshot - search. 1`]
   >
     <span
       class="css-1f43avz-a11yText-A11yText"
-      id="react-select-4-live-region"
+      id="react-select-:r2:-live-region"
     />
     <span
       aria-atomic="false"
@@ -186,7 +186,7 @@ exports[`Unit test for the Select component. Should match snapshot - search. 1`]
       >
         <div
           class="react-select__placeholder css-19jynah-placeholder"
-          id="react-select-4-placeholder"
+          id="react-select-:r2:-placeholder"
         >
           test
         </div>
@@ -196,7 +196,7 @@ exports[`Unit test for the Select component. Should match snapshot - search. 1`]
         >
           <input
             aria-autocomplete="list"
-            aria-describedby="react-select-4-placeholder"
+            aria-describedby="react-select-:r2:-placeholder"
             aria-expanded="false"
             aria-haspopup="true"
             autocapitalize="none"
@@ -254,7 +254,7 @@ exports[`Unit test for the Select component. Should match snapshot. 1`] = `
   >
     <span
       class="css-1f43avz-a11yText-A11yText"
-      id="react-select-2-live-region"
+      id="react-select-:r0:-live-region"
     />
     <span
       aria-atomic="false"
@@ -270,7 +270,7 @@ exports[`Unit test for the Select component. Should match snapshot. 1`] = `
       >
         <div
           class="react-select__placeholder css-19jynah-placeholder"
-          id="react-select-2-placeholder"
+          id="react-select-:r0:-placeholder"
         >
           test
         </div>
@@ -280,7 +280,7 @@ exports[`Unit test for the Select component. Should match snapshot. 1`] = `
         >
           <input
             aria-autocomplete="list"
-            aria-describedby="react-select-2-placeholder"
+            aria-describedby="react-select-:r0:-placeholder"
             aria-expanded="false"
             aria-haspopup="true"
             autocapitalize="none"

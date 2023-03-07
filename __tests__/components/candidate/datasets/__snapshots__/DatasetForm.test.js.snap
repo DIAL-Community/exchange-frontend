@@ -1,0 +1,295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for the DatasetForm component. Should match snapshot - candidate open data. 1`] = `
+<div>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="flex flex-col"
+  >
+    <div
+      class="hidden lg:block px-8"
+    >
+      <div
+        class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
+      >
+        <a
+          class="inline text-dial-blue h5"
+          href="/"
+        >
+          Home
+        </a>
+        <div
+          class="inline h5"
+        >
+           &gt; 
+          <a
+            class="text-dial-blue"
+            href="/datasets"
+          >
+            Open Data
+          </a>
+           &gt; 
+          <span
+            class="text-dial-gray-dark"
+          >
+            Create
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="pb-8 px-8"
+    >
+      <div
+        class="sm:px-0 max-w-full mx-auto"
+        id="content"
+      >
+        <form>
+          <div
+            class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
+          >
+            <div
+              class="text-2xl font-bold text-dial-blue pb-4"
+            >
+              Candidate Open Data
+            </div>
+            <div
+              class="flex flex-col lg:flex-row gap-4"
+            >
+              <div
+                class="w-full lg:w-1/2 flex flex-col gap-y-3"
+              >
+                <div
+                  class="form-field-wrapper"
+                  data-testid="candidate-dataset-name"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="name"
+                  >
+                    Dataset Name
+                  </label>
+                  <input
+                    class="w-full"
+                    data-testid="dataset-name-input"
+                    id="name"
+                    name="name"
+                    placeholder="Dataset Name"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="candidate-dataset-dataUrl"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="dataUrl"
+                  >
+                    Data URL
+                  </label>
+                  <div
+                    class="url-input bg-white flex items-center"
+                  >
+                    <input
+                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      id="dataUrl"
+                      placeholder="Data URL"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="form-field-wrapper"
+                >
+                  <label
+                    class="form-field-label"
+                    for="dataVisualizationUrl"
+                  >
+                    Dataset Visualization URL
+                  </label>
+                  <div
+                    class="url-input bg-white flex items-center"
+                  >
+                    <input
+                      class="url w-full placeholder-dial-gray focus:outline-0"
+                      id="dataVisualizationUrl"
+                      placeholder="Dataset Visualization URL"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="form-field-wrapper"
+                >
+                  <label
+                    class="form-field-label"
+                  >
+                    Dataset Type
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-:r0:-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-19jej77-control"
+                    >
+                      <div
+                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                      >
+                        <div
+                          class="react-select__single-value css-qc6sy-singleValue"
+                        >
+                          Dataset
+                        </div>
+                        <div
+                          class="react-select__input-container css-6j8wv5-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-id-dataType"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="css-tj5bde-Svg"
+                            focusable="false"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            width="20"
+                          >
+                            <path
+                              d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="candidate-dataset-email"
+                >
+                  <label
+                    class="form-field-label required-field"
+                    for="email"
+                  >
+                    Email Address
+                  </label>
+                  <input
+                    class="w-full"
+                    id="email"
+                    name="submitterEmail"
+                    placeholder="Email Address"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-field-wrapper"
+                >
+                  <div />
+                </div>
+              </div>
+              <div
+                class="w-full lg:w-1/2"
+              >
+                <div
+                  class="form-field-wrapper"
+                  data-testid="candidate-dataset-description"
+                >
+                  <label
+                    class="form-field-label required-field"
+                  >
+                    Description
+                  </label>
+                  <div
+                    class="relative"
+                  >
+                    <svg
+                      class="absolute text-lg inset-x-1/2 top-10 spinner"
+                      fill="currentColor"
+                      height="2em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      width="2em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+                      />
+                    </svg>
+                    <div
+                      class="htmlEditor"
+                    >
+                      <textarea
+                        id="description-editor"
+                        style="visibility: hidden;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex flex-wrap text-xl mt-8 gap-3"
+            >
+              <button
+                class="submit-button"
+                data-testid="submit-button"
+                type="submit"
+              >
+                Submit Candidate Open Data
+              </button>
+              <button
+                class="cancel-button"
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

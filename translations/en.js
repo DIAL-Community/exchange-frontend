@@ -37,12 +37,12 @@ export const en = {
   'app.lastUpdated': 'Updated: {lastUpdated}.',
   'general.pastSuffix': 'ago',
 
-  'profile.profile': 'User Profile for ',
+  'profile.profile': 'User Profile',
   'profile.username': 'Username',
   'profile.email': 'Email',
-  'profile.roles': 'Roles: ',
-  'profile.products': 'Products: ',
-  'profile.organization': 'Organization: ',
+  'profile.roles': 'Roles',
+  'profile.products': 'Products',
+  'profile.organization': 'Organization',
 
   'user.header': 'Users',
   'user.label': 'User',
@@ -88,8 +88,9 @@ export const en = {
   'header.admin.sectors': 'Sectors',
   'header.admin.tags': 'Tags',
   'header.admin.countries': 'Countries',
-  'header.admin.candidate_orgs': 'Candidate Orgs',
+  'header.admin.candidate_orgs': 'Candidate Organizations',
   'header.admin.candidate_products': 'Candidate Products',
+  'header.admin.candidate_datasets': 'Candidate Open Data',
   'header.admin.candidate_roles': 'Candidate Roles',
   'header.admin.deploys': 'Deploys',
   'header.admin.portal_views': 'Portal Views',
@@ -252,6 +253,14 @@ export const en = {
   'product.no-project': 'We do not have any Project information for this Product.',
   'product.no-sdgs': 'We do not have any Sustainable Development Goal information for this Product.',
 
+  'product.pricingInformation': 'Product Pricing Information',
+  'product.commercialProduct': 'This product is commercial product.',
+  'product.pricingUrl': 'Link to Pricing Information',
+  'product.hostingModel': 'Hosting Model',
+  'product.pricingModel': 'Pricing Model',
+  'product.pricing.details': 'Pricing Details',
+
+
   'project.header': 'Projects',
   'project.label': 'Project',
   'project.url': 'Project URL',
@@ -317,6 +326,26 @@ export const en = {
   'building-block.submit.success': 'Building Block submitted successfully',
   'building-block.submit.failure': 'Building Block submission failed',
   'building-block.no-workflow': 'We do not have any Workflow information for this Building Block.',
+
+  'building-block.delete.confirm.message': 'Are you sure you want to delete this building block?',
+  'toast.building-block.delete.success': 'Building block deleted successfully.',
+  'toast.building-block.delete.failure': 'Building block deletion failed.',
+
+  'dataset.delete.confirm.message': 'Are you sure you want to delete this open data record?',
+  'toast.dataset.delete.success': 'Open data record deleted successfully.',
+  'toast.dataset.delete.failure': 'Open data record deletion failed.',
+
+  'product.delete.confirm.message': 'Are you sure you want to delete this product record?',
+  'toast.product.delete.success': 'Product record deleted successfully.',
+  'toast.product.delete.failure': 'Product record deletion failed.',
+
+  'use-case.delete.confirm.message': 'Are you sure you want to delete this use case record?',
+  'toast.use-case.delete.success': 'Use case record deleted successfully.',
+  'toast.use-case.delete.failure': 'Use case record deletion failed.',
+
+  'workflow.delete.confirm.message': 'Are you sure you want to delete this workflow record?',
+  'toast.workflow.delete.success': 'Workflow record deleted successfully.',
+  'toast.workflow.delete.failure': 'Workflow record deletion failed.',
 
   'contact.header': 'Contacts',
   'contact.label': 'Contact',
@@ -418,6 +447,20 @@ export const en = {
   'wizard.bb.scheduling': 'Will the project require scheduling of events, such as appointments?',
   'wizard.bb.contentmanagement': 'Will the project require users to be able to create and manage content?',
   'wizard.bb.emarketplace': 'Will the project include an online marketplace that connects buyers and sellers?',
+  'wizard.bb.analyticsandbusinessintelligence': 'Will the project require the collection of analytics and business intelligence?',
+  'wizard.bb.artificialintelligence': 'Will the project leverage AI or machine learning models?',
+  'wizard.bb.clientcasemanagement': 'Will the project involve tracking the progress of clients or users over time?',
+  'wizard.bb.collaborationmanagement': 'Will the project require multiple users to work the same task simultaneously?',
+  'wizard.bb.consentmanagement': 'Will the project require users to provide consent for various activities?',
+  'wizard.bb.digitalregistries': 'Will the project require storing information about users in a database?',
+  'wizard.bb.geographicinformationservices(gis)': 'Will the project require the use of geographic and location tracking services?',
+  'wizard.bb.mobilitymanagement': 'Will the project require users to be able to securely access information on mobile devices?',
+  'wizard.bb.reportinganddashboards': 'Will the project require reports and dashboards to display key metrics and information?',
+  'wizard.bb.security': 'Will this project require secure storage and transmission of data?',
+  'wizard.bb.shareddatarepositories': 'Will the project involve making information available to other users or services?',
+  'wizard.bb.terminology': 'Will the project involve the management of definitions, terms, and standards?',
+  'wizard.bb.workflowandalgorithm': 'Will the project require orchestration of processes and flow of information between services?',
+  'wizard.bb.elearning': 'Will this project involve online learning or creation of courses and curricula?',
   'wizard.request-additional-support': 'Request additional support',
   'wizard.request-additional-support.message': 'Message',
 
@@ -456,6 +499,8 @@ export const en = {
   'dataset.card.dataset': 'Dataset',
   'dataset.card.content': 'Content',
   'dataset.card.coronavirusTagValue': 'COVID-19',
+  'dataset.imageFile': 'Logo',
+  'dataset.owner': 'If you are the owner of this dataset, you can update this dataset information.',
 
   'general.close': 'Close',
   'general.na': 'N/A',
@@ -509,8 +554,6 @@ export const en = {
   'useCase.name': 'Name',
   'useCase.sector': 'Sector',
   'useCase.maturity': 'Maturity',
-  'useCase.maturity.beta': 'BETA',
-  'useCase.maturity.mature': 'MATURE',
   'useCase.imageFile': 'Logo',
   'useCase.submit.success': 'Use Case submitted successfully',
   'useCase.submit.failure': 'Use Case submission failed',
@@ -564,6 +607,7 @@ export const en = {
   'filter.entity.tags': 'Tags',
   'filter.entity.candidateOrganizations': 'Candidate Organizations',
   'filter.entity.candidateProducts': 'Candidate Products',
+  'filter.entity.candidateDatasets': 'Candidate Open Data',
   'filter.entity.candidateRoles': 'Candidate Roles',
   'filter.entity.countries': 'Countries',
   'filter.entity.rubric-categories': 'Rubric Categories',
@@ -585,7 +629,7 @@ export const en = {
 
   'filter.organization.aggregatorOnly': 'Only Aggregators',
   'filter.organization.endorserOnly': 'Only Endorser Organizations',
-  'filter.useCase.showBeta': 'Show Beta (non-Validated) Use Cases',
+  'filter.useCase.showDraft': 'Show Draft (non-Validated) Use Cases',
 
   'filter.product.forCovid': 'COVID-19 Tools',
   'filter.product.endorsed': 'Show endorsed products',
@@ -1133,6 +1177,7 @@ export const en = {
 
   'candidateProduct.label': 'Candidate Product',
   'candidateOrganization.label': 'Candidate Organization',
+  'candidateDataset.label': 'Candidate Open Data',
 
   'candidateProduct.name': 'Name',
   'candidateProduct.name.placeholder': 'Name of the candidate product.',
@@ -1166,6 +1211,13 @@ export const en = {
   'candidateOrganization.submit': 'Submit Candidate Organization',
   'candidate-organization.submit.success': 'Candidate Organization submitted successfully',
   'candidate-organization.submit.failure': 'Candidate Organization submission failed',
+  'candidateOrganization.website.hint': 'Website of the candidate organization.',
+
+  'candidate-dataset.submit': 'Submit Candidate Open Data',
+  'candidate-dataset.submit.success': 'Candidate Open Data submitted successfully',
+  'candidate-dataset.submit.failure': 'Candidate Open Data submission failed',
+  'candidateDataset.website.hint': 'Data URL of the Candidate Open Data',
+  'candidateDataset.datasetType.hint': 'Data Type of the Candidate Open Data',
 
   'candidate.header': 'Candidate',
   'candidate.rejected': 'Declined',
@@ -1178,6 +1230,13 @@ export const en = {
   'candidate.cancel': 'Cancel',
   'candidate.email': 'Email',
   'candidate.applied': 'Applied For',
+
+  'candidate.role.header': 'Candidate Role',
+  'candidate.role.label': 'Candidate Roles',
+  'candidate.role.name': 'Requested Role',
+  'candidate.role.description': 'Role Description',
+  'candidate.role.update.success': 'Candidate role record updated successfully',
+  'candidate.role.update.failure': 'Failed to update candidate role record.',
 
   'entity.file': 'File to Process',
   'entity.process': 'Start Processing File',
@@ -1286,6 +1345,7 @@ export const en = {
   'playbook.autoSaved': 'Playbook saved ...',
   'playbook.author': 'Playbook Author(s)',
   'playbook.cover': 'Playbook Cover',
+  'playbook.tags': 'Playbook Tags',
 
   'playbook.openEmbedDialog': 'Create Embed',
   'playbook.embed.title': 'Embed Playbook',
@@ -1312,8 +1372,8 @@ export const en = {
   'shared.mappingStatus.mature': 'Mature',
   'shared.mappingStatus.selfReported': 'Self Reported',
   'shared.mappingStatus.validated': 'Validated',
-  'shared.maturity.beta': 'BETA',
-  'shared.maturity.published': 'PUBLISHED',
+  'shared.maturity.draft': 'Draft',
+  'shared.maturity.published': 'Published',
   'shared.metadata.description.comprehensiveListOf': 'Comprehensive list of {entities} provided by DIAL\'s Catalog of Digital Solutions to support users in discovering digital technologies designed to address the Sustainable Development Goals (SDGs).',
   'shared.metadata.description.listOfKey': 'List of key {entities} provided by DIAL’s Catalog of Digital Solutions, to support users in the deployment of digital technologies designed to address the Sustainable Development Goals (SDGs).',
   'shared.comment.delete.confirm.message': 'Are you sure you want to delete this comment?',
@@ -1398,6 +1458,7 @@ export const en = {
   'toast.category-indicator.update.failure': 'Category Indicators update failed',
   'toast.playbook.delete.success': 'Playbook deleted successfully',
   'toast.playbook.delete.failure': 'Playbook deletion failed',
+  'toast.applyAsOwner.submit.success': 'Applied as {entity} Owner',
 
   'toast.markdown.submit.success': 'Changes saved successfully.',
   'toast.markdown.submit.failure': 'Unable to save changes. Please try again later.',
@@ -1423,6 +1484,8 @@ export const en = {
   'product.pricing.pricingDetails': 'Detail Pricing Information',
 
   'spreadsheet.save': 'Save Spreadsheet',
+  'spreadsheet.product.header': 'Product Spreadsheet',
+  'spreadsheet.dataset.header': 'Dataset Spreadsheet',
 
   'licenseType.label': 'Product License',
   'licenseType.allType': 'All license types',
@@ -1469,6 +1532,17 @@ export const en = {
   'govstack.api.branch': 'Branch',
   'govstack.api.editorTitle': 'YAML Editor',
 
+  'github.commit.branch': 'Save Location',
+  'github.commit.message': 'Changes Comment',
+  'github.commit.messagePlaceholder': 'Comment for the current changes.',
+  'github.commit.defaultMessage': 'Updating definition on {path}.',
+  'github.pr.defaultTitle': 'Data updates from {branch}.',
+
   'toast.edit.submit.success': 'Changes saved successfully.',
   'toast.edit.submit.failure': 'Unable to save changes. Please try again later.',
+
+  'product.license.oss': 'Open Source',
+  'product.license.commercial': 'Commercial',
+
+  'candidate.product.submittedBy': 'Proposed by'
 }

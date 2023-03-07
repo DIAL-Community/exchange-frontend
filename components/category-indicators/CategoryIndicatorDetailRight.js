@@ -1,6 +1,6 @@
-import parse from 'html-react-parser'
 import { useIntl } from 'react-intl'
 import Breadcrumb from '../shared/breadcrumb'
+import { HtmlViewer } from '../shared/HtmlViewer'
 
 const CategoryIndicatorDetailRight = ({ categoryIndicator, slugNameMapping }) => {
   const { formatMessage } = useIntl()
@@ -28,7 +28,10 @@ const CategoryIndicatorDetailRight = ({ categoryIndicator, slugNameMapping }) =>
         <div className={labelStyles}>
           {formatMessage({ id: 'app.description' })}
         </div>
-        {parse(categoryIndicator?.categoryIndicatorDescription?.description)}
+        <HtmlViewer
+          initialContent={categoryIndicator?.categoryIndicatorDescription?.description}
+          className='-mb-12'
+        />
       </div>
     </div>
   )

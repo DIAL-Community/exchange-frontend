@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import parse from 'html-react-parser'
 import Breadcrumb from '../../shared/breadcrumb'
+import { HtmlViewer } from '../../shared/HtmlViewer'
 import RepositoryMarkdown from '../../shared/RepositoryMarkdown'
 import { useUser } from '../../../lib/hooks'
 import { USE_CASE_STEP_QUERY } from '../../../queries/use-case-step'
@@ -25,9 +25,10 @@ const UseCaseStepInformation = ({ useCaseStep, canEdit }) => {
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
       {!useCaseStep.markdownUrl &&
-        <div className='fr-view text-dial-gray-dark'>
-          {useCaseStep.useCaseStepDescription && parse(useCaseStep?.useCaseStepDescription?.description)}
-        </div>
+        <HtmlViewer
+          initialContent={useCaseStep?.useCaseStepDescription?.description}
+          className='px-6 pt-6 border border-dial-gray card-drop-shadow'
+        />
       }
       {useCaseStep.markdownUrl && <RepositoryMarkdown entityWithMarkdown={useCaseStep} canEdit={canEdit} />}
       {useCaseStep.workflows && <UseCaseStepDetailWorkflows useCaseStep={useCaseStep} canEdit={canEdit} />}

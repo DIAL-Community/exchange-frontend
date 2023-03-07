@@ -49,7 +49,15 @@ export default NextAuth({
               // 'X-CSRF-Token': token //document.querySelector('meta[name="csrf-token"]').attr('content')
             },
             // redirect: 'follow', // manual, *follow, error
-            // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            // referrerPolicy: 'no-referrer',
+            //   no-referrer,
+            //   *no-referrer-when-downgrade,
+            //   origin,
+            //   origin-when-cross-origin,
+            //   same-origin,
+            //   strict-origin,
+            //   strict-origin-when-cross-origin,
+            //   unsafe-url
             body: JSON.stringify(authBody) // body data type must match "Content-Type" header
           }
         )

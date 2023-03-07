@@ -69,7 +69,7 @@ const SearchFilter = ({
       return `/candidate/${linkPath[1]}/create`
     }
 
-    const withCandidatePaths = ['products', 'organizations']
+    const withCandidatePaths = ['products', 'organizations', 'datasets']
     if (!user.canEdit && withCandidatePaths.some(el => linkPath.includes(el))) {
       return `/candidate/${linkPath[0]}/create`
     }
@@ -229,7 +229,12 @@ const SearchFilter = ({
     <div className='bg-dial-gray-light md:bg-transparent w-full pt-1 md:pt-2'>
       <div className='flex flex-wrap gap-x-4 px-3'>
         <div className='flex flex-wrap gap-x-4 gap-y-4 lg:gap-x-8 xl:gap-20'>
-          <div className='hidden md:flex items-center ml-auto text-xl font-semibold my-auto animated-drawer intro-overview-card-view'>
+          <div
+            className={`
+              hidden md:flex items-center ml-auto text-xl font-semibold my-auto
+              animated-drawer intro-overview-card-view
+            `}
+          >
             <div className='h1'>{format(hint)}</div>
             <span
               data-testid='list-counter'
@@ -321,24 +326,22 @@ const SearchFilter = ({
                   </a>
               }
               {exportJson && (
-                <>
-                  <a
-                    className='bg-dial-yellow mx-2 px-2 py-1 rounded-md text-white text-md'
-                    href='/export-as-json' onClick={(e) => exportAsJson(e)}
-                  >
-                    <span>{format('app.exportAsJson')}</span>
-                  </a>
-                </>
+                <a
+                  className='bg-dial-yellow mx-2 px-2 py-1 rounded-md text-white text-md'
+                  href='/export-as-json'
+                  onClick={(e) => exportAsJson(e)}
+                >
+                  <span>{format('app.exportAsJson')}</span>
+                </a>
               )}
               {exportCsv && (
-                <>
-                  <a
-                    className='bg-dial-yellow px-2 py-1 rounded-md text-white text-md'
-                    href='/export-as-csv' onClick={(e) => exportAsCsv(e)}
-                  >
-                    <span>{format('app.exportAsCSV')}</span>
-                  </a>
-                </>
+                <a
+                  className='bg-dial-yellow px-2 py-1 rounded-md text-white text-md'
+                  href='/export-as-csv'
+                  onClick={(e) => exportAsCsv(e)}
+                >
+                  <span>{format('app.exportAsCSV')}</span>
+                </a>
               )}
             </div>
           </div>

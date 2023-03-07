@@ -56,10 +56,15 @@ const ProductFilter = () => {
       <div className='text-dial-gray-dark'>
         <div className='px-2 mb-4 text-base'>
           <a
-            className='cursor-pointer items-center font-semibold hover:underline decoration-2 decoration-dial-yellow intro-overview-entity-help'
+            className={`
+              cursor-pointer items-center font-semibold hover:underline
+              decoration-2 decoration-dial-yellow intro-overview-entity-help
+            `}
             onClick={() => setHintDisplayed(true)}
           >
-            <span className='mr-1'>{format('filter.hint.text')} {format('product.label')}</span>
+            <span className='mr-1'>
+              {format('filter.hint.text')} {format('product.label')}
+            </span>
             <BsQuestionCircleFill className='inline text-xl mb-1 fill-dial-yellow' />
           </a>
         </div>
@@ -74,11 +79,31 @@ const ProductFilter = () => {
           </div>
         </div>
         <div className='text-sm flex flex-row flex-wrap intro-overview-filter'>
-          <SDGAutocomplete {...{ sdgs, setSDGs }} containerStyles='px-2 pb-2' controlSize='20rem' />
-          <UseCaseAutocomplete {...{ useCases, setUseCases }} containerStyles='px-2 pb-2' controlSize='20rem' />
-          <WorkflowAutocomplete {...{ workflows, setWorkflows }} containerStyles='px-2 pb-2' controlSize='20rem' />
-          <BuildingBlockAutocomplete {...{ buildingBlocks, setBuildingBlocks }} containerStyles='px-2 pb-2' controlSize='20rem' />
-          <TagAutocomplete {...{ tags, setTags }} containerStyles='px-2 pb-2' controlSize='20rem' />
+          <SDGAutocomplete
+            {...{ sdgs, setSDGs }}
+            containerStyles='px-2 pb-2'
+            controlSize='20rem'
+          />
+          <UseCaseAutocomplete
+            {...{ useCases, setUseCases }}
+            containerStyles='px-2 pb-2'
+            controlSize='20rem'
+          />
+          <WorkflowAutocomplete
+            {...{ workflows, setWorkflows }}
+            containerStyles='px-2 pb-2'
+            controlSize='20rem'
+          />
+          <BuildingBlockAutocomplete
+            {...{ buildingBlocks, setBuildingBlocks }}
+            containerStyles='px-2 pb-2'
+            controlSize='20rem'
+          />
+          <TagAutocomplete
+            {...{ tags, setTags }}
+            containerStyles='px-2 pb-2'
+            controlSize='20rem'
+          />
         </div>
         <div className='col-span-11 lg:col-span-6'>
           <div className='text-xl px-2 pb-3 pt-2'>
@@ -111,12 +136,36 @@ const ProductFilter = () => {
             </div>
           </div>
           <div className='text-sm text-dial-gray-light flex flex-row flex-wrap'>
-            <LicenseTypeSelect {...{ licenseTypes, setLicenseTypes }} containerStyles='px-2 pb-2' controlSize='20rem' />
-            <OriginAutocomplete {...{ origins, setOrigins }} containerStyles='px-2 pb-2' controlSize='20rem' />
-            <EndorserAutocomplete {...{ endorsers, setEndorsers }} containerStyles='px-2 pb-2' controlSize='20rem' />
-            <CountryAutocomplete {...{ countries, setCountries }} containerStyles='px-2 pb-2' controlSize='20rem' />
-            <SectorAutocomplete {...{ sectors, setSectors }} containerStyles='px-2 pb-2' controlSize='20rem' />
-            <OrganizationAutocomplete {...{ organizations, setOrganizations }} containerStyles='px-2 pb-2' controlSize='20rem' />
+            <LicenseTypeSelect
+              {...{ licenseTypes, setLicenseTypes }}
+              containerStyles='px-2 pb-2'
+              controlSize='20rem'
+            />
+            <OriginAutocomplete
+              {...{ origins, setOrigins }}
+              containerStyles='px-2 pb-2'
+              controlSize='20rem'
+            />
+            <EndorserAutocomplete
+              {...{ endorsers, setEndorsers }}
+              containerStyles='px-2 pb-2'
+              controlSize='20rem'
+            />
+            <CountryAutocomplete
+              {...{ countries, setCountries }}
+              containerStyles='px-2 pb-2'
+              controlSize='20rem'
+            />
+            <SectorAutocomplete
+              {...{ sectors, setSectors }}
+              containerStyles='px-2 pb-2'
+              controlSize='20rem'
+            />
+            <OrganizationAutocomplete
+              {...{ organizations, setOrganizations }}
+              containerStyles='px-2 pb-2'
+              controlSize='20rem'
+            />
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ exports[`Unit test for the EndorsingYearSelect component. Should match snapshot.
     >
       <span
         class="css-1f43avz-a11yText-A11yText"
-        id="react-select-2-live-region"
+        id="react-select-:r0:-live-region"
       />
       <span
         aria-atomic="false"
@@ -30,7 +30,7 @@ exports[`Unit test for the EndorsingYearSelect component. Should match snapshot.
         >
           <div
             class="react-select__placeholder css-19jynah-placeholder"
-            id="react-select-2-placeholder"
+            id="react-select-:r0:-placeholder"
           >
             Filter by Endorsing Year
           </div>
@@ -40,7 +40,7 @@ exports[`Unit test for the EndorsingYearSelect component. Should match snapshot.
           >
             <input
               aria-autocomplete="list"
-              aria-describedby="react-select-2-placeholder"
+              aria-describedby="react-select-:r0:-placeholder"
               aria-expanded="false"
               aria-haspopup="true"
               aria-label="Filter by Endorsing Year"
@@ -102,7 +102,7 @@ exports[`Unit test for the EndorsingYearSelect component. Should render a drop d
     >
       <span
         class="css-1f43avz-a11yText-A11yText"
-        id="react-select-3-live-region"
+        id="react-select-:r1:-live-region"
       />
       <span
         aria-atomic="false"
@@ -118,7 +118,7 @@ exports[`Unit test for the EndorsingYearSelect component. Should render a drop d
         >
           <div
             class="react-select__placeholder css-19jynah-placeholder"
-            id="react-select-3-placeholder"
+            id="react-select-:r1:-placeholder"
           >
             Filter by Endorsing Year
           </div>
@@ -128,12 +128,12 @@ exports[`Unit test for the EndorsingYearSelect component. Should render a drop d
           >
             <input
               aria-autocomplete="list"
-              aria-controls="react-select-3-listbox"
-              aria-describedby="react-select-3-placeholder"
+              aria-controls="react-select-:r1:-listbox"
+              aria-describedby="react-select-:r1:-placeholder"
               aria-expanded="true"
               aria-haspopup="true"
               aria-label="Filter by Endorsing Year"
-              aria-owns="react-select-3-listbox"
+              aria-owns="react-select-:r1:-listbox"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
@@ -175,7 +175,7 @@ exports[`Unit test for the EndorsingYearSelect component. Should render a drop d
       </div>
       <div
         class="react-select__menu css-1jtw5r9-menu"
-        id="react-select-3-listbox"
+        id="react-select-:r1:-listbox"
       >
         <div
           class="react-select__menu-list css-4ljt47-MenuList"
@@ -183,7 +183,7 @@ exports[`Unit test for the EndorsingYearSelect component. Should render a drop d
           <div
             aria-disabled="false"
             class="react-select__option react-select__option--is-focused css-llk42x-option"
-            id="react-select-3-option-0"
+            id="react-select-:r1:-option-0"
             tabindex="-1"
           >
             2015
@@ -191,7 +191,7 @@ exports[`Unit test for the EndorsingYearSelect component. Should render a drop d
           <div
             aria-disabled="false"
             class="react-select__option css-19r0ri3-option"
-            id="react-select-3-option-1"
+            id="react-select-:r1:-option-1"
             tabindex="-1"
           >
             2016
@@ -199,7 +199,7 @@ exports[`Unit test for the EndorsingYearSelect component. Should render a drop d
           <div
             aria-disabled="false"
             class="react-select__option css-19r0ri3-option"
-            id="react-select-3-option-2"
+            id="react-select-:r1:-option-2"
             tabindex="-1"
           >
             2017
@@ -207,7 +207,7 @@ exports[`Unit test for the EndorsingYearSelect component. Should render a drop d
           <div
             aria-disabled="false"
             class="react-select__option css-19r0ri3-option"
-            id="react-select-3-option-3"
+            id="react-select-:r1:-option-3"
             tabindex="-1"
           >
             2018
@@ -215,7 +215,7 @@ exports[`Unit test for the EndorsingYearSelect component. Should render a drop d
           <div
             aria-disabled="false"
             class="react-select__option css-19r0ri3-option"
-            id="react-select-3-option-4"
+            id="react-select-:r1:-option-4"
             tabindex="-1"
           >
             2019
@@ -223,7 +223,7 @@ exports[`Unit test for the EndorsingYearSelect component. Should render a drop d
           <div
             aria-disabled="false"
             class="react-select__option css-19r0ri3-option"
-            id="react-select-3-option-5"
+            id="react-select-:r1:-option-5"
             tabindex="-1"
           >
             2020
@@ -231,7 +231,7 @@ exports[`Unit test for the EndorsingYearSelect component. Should render a drop d
           <div
             aria-disabled="false"
             class="react-select__option css-19r0ri3-option"
-            id="react-select-3-option-6"
+            id="react-select-:r1:-option-6"
             tabindex="-1"
           >
             2021
@@ -239,10 +239,18 @@ exports[`Unit test for the EndorsingYearSelect component. Should render a drop d
           <div
             aria-disabled="false"
             class="react-select__option css-19r0ri3-option"
-            id="react-select-3-option-7"
+            id="react-select-:r1:-option-7"
             tabindex="-1"
           >
             2022
+          </div>
+          <div
+            aria-disabled="false"
+            class="react-select__option css-19r0ri3-option"
+            id="react-select-:r1:-option-8"
+            tabindex="-1"
+          >
+            2023
           </div>
         </div>
       </div>

@@ -15,6 +15,7 @@ import { HtmlEditor } from '../../shared/HtmlEditor'
 import { Loading, Unauthorized } from '../../shared/FetchStatus'
 import { useUser } from '../../../lib/hooks'
 import UrlInput from '../../shared/UrlInput'
+import { BREADCRUMB_SEPARATOR } from '../../shared/breadcrumb'
 
 const OrganizationForm = () => {
   const { formatMessage } = useIntl()
@@ -29,16 +30,19 @@ const OrganizationForm = () => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const [createCandidateOrganization] = useMutation(CREATE_CANDIDATE_ORGANIZATION, {
+  const [createCandidateOrganization, { reset }] = useMutation(CREATE_CANDIDATE_ORGANIZATION, {
     onError: () => {
+      setMutating(false)
       showToast(
         format('candidate-organization.submit.failure'),
         'error',
         'top-center',
-        false
+        1000
       )
+      reset()
     },
     onCompleted: () => {
+      setMutating(false)
       showToast(
         format('candidate-organization.submit.success'),
         'success',
@@ -108,12 +112,16 @@ const OrganizationForm = () => {
               <a className='inline text-dial-blue h5'>{format('app.home')}</a>
             </Link>
             <div className='inline h5'>
-              &nbsp;&gt;&nbsp;
+              {BREADCRUMB_SEPARATOR}
               <Link href='/organizations'>
                 <a className='text-dial-blue'>
                   {format('organization.header')}
                 </a>
               </Link>
+              {BREADCRUMB_SEPARATOR}
+              <span className='text-dial-gray-dark'>
+                {format('app.create')}
+              </span>
             </div>
           </div>
         </div>
@@ -205,12 +213,21 @@ const OrganizationForm = () => {
                       control={control}
                       rules={{ required: format('validation.required') }}
                       render={({ field: { onChange, ref } }) => {
-                        return (<ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} ref={ref} onChange={onChange} />)
+                        return (
+                          <ReCAPTCHA
+                            sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+                            ref={ref} onChange={onChange}
+                          />
+                        )
                       }}
                     />
                     {errors.captcha && <ValidationError value={errors.captcha?.message} />}
                   </div>
-                  <div className='w-full lg:w-2/3' style={{ minHeight: '20rem' }} data-testid='candidate-organization-description'>
+                  <div
+                    className='w-full lg:w-2/3'
+                    style={{ minHeight: '20rem' }}
+                    data-testid='candidate-organization-description'
+                  >
                     <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
                       <p className='required-field'> {format('candidateOrganization.description')}</p>
                       <Controller
@@ -241,7 +258,7 @@ const OrganizationForm = () => {
                     className='submit-button'
                     disabled={mutating || reverting}
                   >
-                    {format('candidateProduct.submit')}
+                    {format('candidateOrganization.submit')}
                     {mutating && <FaSpinner className='spinner ml-3 inline' />}
                   </button>
                   <button

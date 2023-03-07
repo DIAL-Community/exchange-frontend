@@ -7,7 +7,7 @@ export const Loading = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='text-button-gray text-lg' style={{ marginTop: '10%' }}>
+    <div className='text-button-gray text-lg' style={{ marginTop: '10%', marginBottom: '10%' }}>
       <FaSpinner size='3em' className='w-full spinner mb-5' />
       <div className='text-center mt-5'>{format('general.fetchingData')}</div>
     </div>
@@ -19,7 +19,7 @@ export const Error = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='text-button-gray text-lg' style={{ marginTop: '10%' }}>
+    <div className='text-button-gray text-lg' style={{ marginTop: '10%', marginBottom: '10%' }}>
       <FaExclamationCircle size='3em' className='w-full mb-5' />
       <div className='text-center mt-5'>{format('general.fetchError')}</div>
     </div>

@@ -22,7 +22,7 @@ describe('Unit tests for UseCaseForm component.', () => {
     name: 'Test Use Case',
     slug: 'test_use_case',
     sectorSlug: 'test_sector',
-    maturity: 'BETA',
+    maturity: 'DRAFT',
     description: 'Test Use Case Description'
   }
 
@@ -107,8 +107,9 @@ describe('Unit tests for UseCaseForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test user case name')
     expect(getByTestId(USE_CASE_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    // TODO: Causing --> Warning: The current testing environment is not configured to support act(...)
-    await act(async () => waitFor(() => user.clear(screen.getByLabelText(/Name/))))
+    await act(async () => waitFor(() => {
+      user.clear(screen.getByLabelText(/Name/))
+    }))
     expect(getByTestId(USE_CASE_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test user case name 2')

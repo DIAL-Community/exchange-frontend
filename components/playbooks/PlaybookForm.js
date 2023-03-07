@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/react'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
 import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
@@ -21,6 +20,7 @@ import Input from '../shared/Input'
 import { AUTOSAVE_PLAYBOOK, CREATE_PLAYBOOK } from '../../mutations/playbook'
 import ValidationError from '../shared/ValidationError'
 import FileUploader from '../shared/FileUploader'
+import { useUser } from '../../lib/hooks'
 const PlayListQuery = dynamic(() => import('../plays/PlayList'), { ssr: false })
 
 const PUBLISHED_CHECKBOX_FIELD_NAME = 'published'
@@ -143,16 +143,14 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const { data: session } = useSession()
+  const { user } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
   const [navigateToPlay, setNavigateToPlay] = useState(false)
 
   const { locale } = useRouter()
-  const [updatePlaybook, { data }] = useMutation(CREATE_PLAYBOOK, {
-    refetchQueries: ['Playbook']
-  })
+  const [updatePlaybook, { data }] = useMutation(CREATE_PLAYBOOK)
   const [autoSavePlaybook, { data: autoSaveData }] = useMutation(AUTOSAVE_PLAYBOOK)
   const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
     mode: 'onSubmit',
@@ -203,11 +201,11 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   }, [data, autoSaveData, notifyAndNavigateAway, showToast, format])
 
   const doUpsert = async (data) => {
-    if (session) {
+    if (user) {
       // Set the loading indicator.
       setMutating(true)
       // Pull all needed data from session and form.
-      const { userEmail, userToken } = session.user
+      const { userEmail, userToken } = user
       const { name, cover, author, overview, audience, outcomes, published } = data
       const [coverFile] = cover
       // Send graph query to the backend. Set the base variables needed to perform update.
@@ -238,11 +236,11 @@ export const PlaybookForm = React.memo(({ playbook }) => {
 
   useEffect(() => {
     const doAutoSave = () => {
-      if (session) {
+      if (user) {
         // Set the loading indicator.
         setMutating(true)
         // Pull all needed data from session and form.
-        const { userEmail, userToken } = session.user
+        const { userEmail, userToken } = user
         const { name, author, overview, audience, outcomes } = watch()
         // Send graph query to the backend. Set the base variables needed to perform update.
         // Auto save will not save the cover file since it could be expensive.
@@ -275,7 +273,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [session, slug, currentPlays, tags, locale, watch, autoSavePlaybook])
+  }, [user, slug, currentPlays, tags, locale, watch, autoSavePlaybook])
 
   const cancelForm = () => {
     setReverting(true)

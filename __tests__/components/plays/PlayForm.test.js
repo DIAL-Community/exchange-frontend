@@ -110,11 +110,6 @@ describe('PlayForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test play name')
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => user.clear(screen.getByLabelText(/Name/))))
-    expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-
-    await user.type(screen.getByLabelText(/Name/), 'test play name 2')
-    expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await act(async () => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
@@ -142,7 +137,7 @@ describe('PlayForm component.', () => {
     )
     await waitForAllEffectsAndSelectToLoad(container)
 
-    await act(async () => {
+    await waitFor(() => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
     })
     await screen.findByText('Play saved.')

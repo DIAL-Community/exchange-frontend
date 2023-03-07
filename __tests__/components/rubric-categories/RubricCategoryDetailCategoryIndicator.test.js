@@ -1,7 +1,8 @@
 import { fireEvent, screen } from '@testing-library/react'
 import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import RubricCategoryDetailCategoryIndicators from '../../../components/rubric-categories/RubricCategoryDetailCategoryIndicators'
+import RubricCategoryDetailCategoryIndicators
+  from '../../../components/rubric-categories/RubricCategoryDetailCategoryIndicators'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { CATEGORY_INDICATORS_SEARCH_QUERY } from '../../../queries/category-indicator'
 import { categoryIndicators, rubricCategory } from './data/RubricCategoryDetailCategoryIndicators'
@@ -16,7 +17,12 @@ describe('Unit test for the RubricCategoryDetailCategoryIndicators component.', 
   const RUBRIC_CATEGORY_TEST_CATEGORY_INDICATOR_LABEL = 'Category Indicator 1'
   const PILL_TEST_ID = 'pill'
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
-  const mockCategoryIndicators = generateMockApolloData(CATEGORY_INDICATORS_SEARCH_QUERY, { search: '' }, null, categoryIndicators)
+  const mockCategoryIndicators = generateMockApolloData(
+    CATEGORY_INDICATORS_SEARCH_QUERY,
+    { search: '' },
+    null,
+    categoryIndicators
+  )
 
   test('Should match snapshot - without edit permission.', () => {
     const { container } = render(

@@ -22,7 +22,7 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed, newTab = false, can
 
   const isPlaybookPublished = !playbook.draft
 
-  useEffect(ReactTooltip.rebuild)
+  useEffect(() => ReactTooltip.rebuild(), [])
 
   return (
     <Link href={`/${collectionPath}/${playbook.slug}`}>
@@ -60,8 +60,16 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed, newTab = false, can
             <div className='border border-dial-gray hover:border-transparent card-drop-shadow h-full'>
               <div className='flex flex-col h-full'>
                 {canEdit &&
-                <div className='flex flex-row gap-x-1.5 p-1.5 border-b border-dial-gray playbook-card-header font-semibold text-dial-cyan'>
-                  <div>{format('app.status')} {format(isPlaybookPublished ? 'playbook.status.published' : 'playbook.status.draft')}</div>
+                <div
+                  className={`
+                    flex flex-row gap-x-1.5 p-1.5 border-b border-dial-gray
+                    playbook-card-header font-semibold text-dial-cyan
+                  `}
+                >
+                  <div>
+                    {format('app.status')}
+                    {format(isPlaybookPublished ? 'playbook.status.published' : 'playbook.status.draft')}
+                  </div>
                 </div>
                 }
                 <div className='flex flex-col p-4 group-hover:text-dial-yellow'>
@@ -74,19 +82,24 @@ const PlaybookCard = ({ playbook, listType, filterDisplayed, newTab = false, can
                       objectFit='contain'
                       alt={format('image.alt.logoFor', { name: playbook.name })}
                       src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
+                      data-testid={`playbook-card-image-${playbook.id}`}
                     />
                   </div>
                 </div>
                 <div className='bg-dial-gray-light flex flex-col h-full'>
                   <div className='px-3 py-3 text-sm'>
-                    <div className='max-h-16 playbook-description overflow-hidden'>
+                    <div className='line-clamp-3'>
                       {playbook.playbookDescription && parse(playbook.playbookDescription.overview)}
                     </div>
                   </div>
                   {playbook?.tags.length > 0 && (
                     <div className='flex flex-col bg-dial-gray-light px-3 pb-3 text-sm gap-1'>
                       <div className='font-semibold'>{format('tag.header')}</div>
-                      <HorizontalItemList restTooltipMessage={format('tooltip.ellipsisFor', { entity: format('playbooks.label') })}>
+                      <HorizontalItemList
+                        restTooltipMessage={
+                          format('tooltip.ellipsisFor', { entity: format('playbooks.label') })
+                        }
+                      >
                         {playbook.tags.map((tag, tagIdx) => (
                           <div
                             key={`playbook-${tagIdx}`}

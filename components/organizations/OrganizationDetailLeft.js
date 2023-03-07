@@ -1,40 +1,35 @@
 import { useIntl } from 'react-intl'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { FaSpinner } from 'react-icons/fa'
-import { useCallback, useEffect, useState } from 'react'
-import { gql, useLazyQuery } from '@apollo/client'
+import { useCallback, useContext, useEffect, useState } from 'react'
+import { useLazyQuery, useMutation } from '@apollo/client'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
 import { ObjectType } from '../../lib/constants'
 import CommentsCount from '../shared/CommentsCount'
+import { APPLY_AS_OWNER } from '../../mutations/users'
+import { ToastContext } from '../../lib/ToastContext'
+import { useOrganizationOwnerUser, useUser } from '../../lib/hooks'
+import { CANDIDATE_ROLE_QUERY } from '../../queries/candidate'
 import DeleteOrganization from './DeleteOrganization'
-
-const CANDIDATE_ROLE_QUERY = gql`
-  query CandidateRole($email: String!, $productId: String!, $organizationId: String!) {
-    candidateRole(email: $email, productId: $productId, organizationId: $organizationId) {
-      id
-      productId
-      organizationId
-    }
-  }
-`
 
 const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+  const { showToast } = useContext(ToastContext)
 
-  const { data: session } = useSession()
   const { locale } = useRouter()
 
+  const { user, isAdminUser } = useUser()
+  const { isOrganizationOwner } = useOrganizationOwnerUser(organization)
+
   const [loading, setLoading] = useState(false)
-  const [appliedToBeOwner, setAppliedToBeOwner] = useState(false)
   const [showApplyLink, setShowApplyLink] = useState(false)
   const [ownershipText, setOwnershipText] = useState('')
 
   const generateEditLink = () => {
-    if (!session.user) {
+    if (!user) {
       return '/edit-not-available'
     }
 
@@ -43,91 +38,112 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
 
   const [fetchCandidateRole, { data, error }] = useLazyQuery(CANDIDATE_ROLE_QUERY)
   useEffect(() => {
-    if (session && session.user) {
-      const { userEmail } = session.user
+    if (user) {
+      const { userEmail } = user
       fetchCandidateRole({
-        variables:
-          { email: userEmail, productId: '', organizationId: organization.id }
+        variables: {
+          email: userEmail,
+          productId: '',
+          datasetId: '',
+          organizationId: organization.id
+        }
       })
     }
-  }, [session])
+  }, [user])
 
-  const displayApplyOwnershipLink = (session, data, appliedToBeOwner) => {
-    if (!session || !session.user) {
+  const displayApplyOwnershipLink = (user) => {
+    if (!user) {
       // Not logged in, don't display the link.
       return false
     }
 
-    const user = session.user
-    if (`${user.own?.organization?.id}` === `${organization.id}`) {
-      // Already owning this organization, don't display the link.
+    if (isOrganizationOwner) {
       return false
     }
 
-    if (!appliedToBeOwner && !data?.candidateRole) {
-      // Have not apply to be one or if searching in the db return no data.
+    if (data?.candidateRole === null || data?.candidateRole?.rejected) {
       return true
     }
-
-    return false
   }
 
-  const staticOwnershipTextSelection = (session, data, appliedToBeOwner) => {
-    if (!session || !session.user) {
+  const staticOwnershipTextSelection = (user) => {
+    if (!user) {
       // Not logged in, don't display anything.
       return ''
     }
 
-    const user = session.user
-    if (`${user.own?.organization?.id}` === `${organization.id}`) {
+    if (isOrganizationOwner) {
       // Already owning this organization, display user already owning.
       return 'owner'
     }
 
-    if (appliedToBeOwner || (data && `${data.candidateRole?.organizationId}` === `${organization.id}`)) {
+    if (data?.candidateRole?.rejected === null) {
       // Applying to be the owner of the organization
       return 'applied-to-own'
     }
   }
 
   useEffect(() => {
-    setShowApplyLink(displayApplyOwnershipLink(session, data, appliedToBeOwner))
-    setOwnershipText(staticOwnershipTextSelection(session, data, appliedToBeOwner))
-  }, [session, data, error, appliedToBeOwner])
+    setShowApplyLink(displayApplyOwnershipLink(user))
+    setOwnershipText(staticOwnershipTextSelection(user))
+  }, [user, data, error])
 
-  const applyToBeOrganizationOwner = async () => {
-    setLoading(true)
-    const { userEmail, userToken } = session.user
-    const requestBody = {
-      candidate_role: {
-        email: userEmail,
-        description: 'Organization ownership requested from the new UX.',
-        organization_id: organization.id
-      },
-      user_email: userEmail,
-      user_token: userToken
-    }
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_RAILS_SERVER}/candidate_roles`,
-      {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'omit',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-          'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_RAILS_SERVER,
-          'Access-Control-Allow-Credentials': true,
-          'Access-Control-Allow-Headers': 'Set-Cookie'
-        },
-        body: JSON.stringify(requestBody)
+  const [applyAsOwner, { reset }] = useMutation(APPLY_AS_OWNER, {
+    refetchQueries: ['CandidateRole'],
+    onCompleted: (data) => {
+      const { applyAsOwner: response } = data
+      if (response?.candidateRole && response?.errors?.length === 0) {
+        showToast(
+          format('toast.applyAsOwner.submit.success', { entity: format('organization.label') }),
+          'success',
+          'top-center',
+          null,
+          () => setLoading(false)
+        )
+      } else {
+        showToast(
+          <div className='flex flex-col'>
+            <span>{data.applyAsOwner.errors[0]}</span>
+          </div>,
+          'error',
+          'top-center',
+          null,
+          () => setLoading(false)
+        )
+        reset()
       }
-    )
+    },
+    onError: (error) => {
+      showToast(
+        <div className='flex flex-col'>
+          <span>{error?.message}</span>
+        </div>,
+        'error',
+        'top-center',
+        null,
+        () => setLoading(false)
+      )
+      reset()
+    }
+  })
 
-    if (response) {
-      setLoading(false)
-      setAppliedToBeOwner(response.status === 201)
+  const onSubmit = () => {
+    if (user) {
+      const { userEmail, userToken } = user
+      setLoading(true)
+
+      applyAsOwner({
+        variables: {
+          entity: ObjectType.ORGANIZATION,
+          entityId: parseInt(organization.id)
+        },
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
     }
   }
 
@@ -145,9 +161,13 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
       </div>
       <div className='h-20'>
         <div className='w-full inline-flex gap-3'>
-          {session?.user.canEdit && <DeleteOrganization organization={organization} />}
-          {(session?.user.own?.organization?.id === parseInt(organization.id) || session?.user.canEdit) && <EditButton type='link' href={generateEditLink()}/>}
-          <CommentsCount commentsSectionRef={commentsSectionRef} objectId={organization.id} objectType={ObjectType.ORGANIZATION}/>
+          {isAdminUser && <DeleteOrganization organization={organization} />}
+          {(isOrganizationOwner || isAdminUser) && <EditButton type='link' href={generateEditLink()}/>}
+          <CommentsCount
+            commentsSectionRef={commentsSectionRef}
+            objectId={organization.id}
+            objectType={ObjectType.ORGANIZATION}
+          />
         </div>
         <div className='h4 font-bold py-4'>{format('organization.label')}</div>
       </div>
@@ -196,7 +216,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
                 <div className='border-l border-dial-gray-light mt-2' />
                 <button
                   className='text-dial-yellow block mt-2 border-b border-transparent hover:border-dial-yellow'
-                  href='/apply-product-owner' onClick={applyToBeOrganizationOwner} disabled={loading}
+                  onClick={onSubmit} disabled={loading}
                 >
                   {format('ownership.apply')}
                   {loading && <FaSpinner className='inline spinner ml-1' />}

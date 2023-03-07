@@ -27,7 +27,12 @@ const Landing = () => {
       >
         <div className='relative pb-8'>
           <div className='grid grid-cols-5'>
-            <div className='col-span-5 lg:col-span-3 h-screen text-left lg:grid lg:place-content-center mt-24 lg:mt-0 lg:ml-0'>
+            <div
+              className={`
+                col-span-5 lg:col-span-3 h-screen text-left lg:grid lg:place-content-center
+                mt-24 lg:mt-0 lg:ml-0
+              `}
+            >
               <div>
                 <div className='px-4 text-lg text-dial-blue-darkest md:text-xl xl:text-2xl xl:leading-landing'>
                   {format('landing.subtitle')}
@@ -59,8 +64,17 @@ const Landing = () => {
               </div>
               <div className='px-4 mt-3 sm:flex md:justify-start sm:text-xs md:text-sm lg:text-lg'>
                 <div className='text-white lg:py-1'>
-                  <Link href='https://digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'>
-                    <a target='_blank' rel='noreferrer' className={`${buttonAnchorStyle} shadow-2xl px-10 text-white bg-sdg-target`}>
+                  <Link
+                    href={
+                      'https://digitalimpactalliance.us11.list-manage.com/subscribe' +
+                      '?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'
+                    }
+                  >
+                    <a
+                      target='_blank'
+                      rel='noreferrer'
+                      className={`${buttonAnchorStyle} shadow-2xl px-10 text-white bg-sdg-target`}
+                    >
                       {format('landing.newsletter')}
                     </a>
                   </Link>

@@ -7,6 +7,7 @@ export const workflow = {
     locale: 'en'
   },
   imageFile: './test.jpg',
+  useCaseSteps: [],
   buildingBlocks: [
     {
       id: 3,
@@ -22,7 +23,14 @@ export const createWorkflowSuccess = {
   data: {
     createWorkflow: {
       workflow: {
-        slug: 'test_workflow'
+        id: 1,
+        name: 'Test Workflow',
+        imageFile: '',
+        slug: 'test_workflow',
+        workflowDescription: {
+          description: 'Some description',
+          locale: 'en'
+        }
       },
       errors: []
     }

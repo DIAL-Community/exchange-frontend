@@ -58,7 +58,9 @@ const DatasetActiveFilter = () => {
     const originFilters = origins.map(origin => `origins=${origin.value}--${origin.label}`)
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
     const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
-    const organizationFilters = organizations.map(organization => `organizations=${organization.value}--${organization.label}`)
+    const organizationFilters = organizations.map(
+      organization => `organizations=${organization.value}--${organization.label}`
+    )
     const datasetTypeFilters = datasetTypes.map(datasetType => `datasetTypes=${datasetType.value}--${datasetType.label}`)
     const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
     const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
@@ -86,7 +88,7 @@ const DatasetActiveFilter = () => {
   })
 
   return (
-    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`} id='link1'>
+    <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`}>
       <div className='flex flex-row flex-wrap px-3 gap-2'>
         <SDGFilters {...{ sdgs, setSDGs }} />
         <TagFilters {...{ tags, setTags }} />

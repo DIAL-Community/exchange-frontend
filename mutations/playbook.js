@@ -65,6 +65,7 @@ export const DELETE_PLAYBOOK = gql`
        slug
        name
       }
+      errors
     }
   }
 `
