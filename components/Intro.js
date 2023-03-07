@@ -66,7 +66,6 @@ const Intro = ({ enabled, steps, startIndex, endIndex, previousPath, nextPath, c
   }
 
   const onExitHandler = () => {
-    console.log('Dismissing intro and marking them as completed.')
     cookie.save(completedKey, true)
   }
 

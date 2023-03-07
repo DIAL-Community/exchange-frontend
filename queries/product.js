@@ -87,7 +87,7 @@ export const PRODUCT_QUERY = gql`
         slug
         license
       }
-      maturityScore
+      overallMaturityScore
       maturityScoreDetails
       playbooks {
         name
@@ -167,11 +167,11 @@ export const PRODUCTS_QUERY = gql`
         id
         name
         slug
+        tags
         imageFile
         isLaunchable
         maturityScore
-        tags
-        commercialProduct
+        overallMaturityScore
         endorsers {
           name
           slug

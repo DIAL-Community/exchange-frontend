@@ -4,7 +4,7 @@ import Footer from '../../../components/Footer'
 import ProductDetail from '../../../components/products/ProductDetail'
 import ClientOnly from '../../../lib/ClientOnly'
 import { addApolloState, initializeApollo } from '../../../lib/apolloClient'
-import { PRODUCT_CATEGORY_INDICATORS_QUERY, PRODUCT_QUERY } from '../../../queries/product'
+import { PRODUCT_QUERY } from '../../../queries/product'
 import NotFound from '../../../components/shared/NotFound'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
@@ -28,13 +28,9 @@ export async function getServerSideProps(context) {
     variables: { slug },
     context: { headers: { 'Accept-Language': locale } }
   })
-  const { data: categoryIndicatorsData } = await client.query({
-    query: PRODUCT_CATEGORY_INDICATORS_QUERY,
-    variables: { slug }
-  })
 
   return addApolloState(client, {
-    props: { data: productData, categoryIndicatorsData }
+    props: { data: productData }
   })
 }
 
