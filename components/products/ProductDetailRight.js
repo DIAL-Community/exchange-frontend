@@ -207,7 +207,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
       </div>
       <ProductDetailMaturityScores
         slug={product.slug}
-        maturityScore={product.maturityScore}
+        overallMaturityScore={product.overallMaturityScore}
         maturityScoreDetails={product.maturityScoreDetails}
       />
       <CommentsSection

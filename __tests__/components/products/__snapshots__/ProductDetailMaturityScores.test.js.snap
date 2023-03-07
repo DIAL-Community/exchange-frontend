@@ -72,7 +72,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                     >
                       Category score
                       :
-                      90
+                      NaN
                        / 
                       100
                     </div>
@@ -117,11 +117,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            50
-                             / 
-                            100
+                            Indicator score: 50/100
                           </div>
                         </div>
                       </div>
@@ -136,6 +132,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           Developer, Contributor and Implementor Community Engagement
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -172,11 +175,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            100
-                             / 
-                            100
+                            Indicator score: 100/100
                           </div>
                         </div>
                       </div>
@@ -191,6 +190,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           Community Governance
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -227,11 +233,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            100
-                             / 
-                            100
+                            Indicator score: 100/100
                           </div>
                         </div>
                       </div>
@@ -246,6 +248,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           Software Roadmap
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -282,11 +291,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            100
-                             / 
-                            100
+                            Indicator score: 100/100
                           </div>
                         </div>
                       </div>
@@ -301,6 +306,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           User Documentation
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -337,11 +349,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            100
-                             / 
-                            100
+                            Indicator score: 100/100
                           </div>
                         </div>
                       </div>
@@ -356,6 +364,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           Multi-Lingual Support
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -392,7 +407,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                     >
                       Category score
                       :
-                      80
+                      NaN
                        / 
                       100
                     </div>
@@ -437,11 +452,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            100
-                             / 
-                            100
+                            Indicator score: 100/100
                           </div>
                         </div>
                       </div>
@@ -456,6 +467,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           Country Utilization
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -492,11 +510,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            50
-                             / 
-                            100
+                            Indicator score: 50/100
                           </div>
                         </div>
                       </div>
@@ -511,6 +525,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           Country Strategy
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -547,11 +568,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            100
-                             / 
-                            100
+                            Indicator score: 100/100
                           </div>
                         </div>
                       </div>
@@ -566,6 +583,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           Digital Health Interventions
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -602,11 +626,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            100
-                             / 
-                            100
+                            Indicator score: 100/100
                           </div>
                         </div>
                       </div>
@@ -621,6 +641,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           Source Code Accessibility
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -657,11 +684,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            50
-                             / 
-                            100
+                            Indicator score: 50/100
                           </div>
                         </div>
                       </div>
@@ -676,6 +699,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           Funding and Revenue
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -712,7 +742,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                     >
                       Category score
                       :
-                      90
+                      NaN
                        / 
                       100
                     </div>
@@ -757,11 +787,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            100
-                             / 
-                            100
+                            Indicator score: 100/100
                           </div>
                         </div>
                       </div>
@@ -776,6 +802,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           Technical Documentation
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -812,11 +845,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            100
-                             / 
-                            100
+                            Indicator score: 100/100
                           </div>
                         </div>
                       </div>
@@ -831,6 +860,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           Software Productization
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -867,11 +903,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            100
-                             / 
-                            100
+                            Indicator score: 100/100
                           </div>
                         </div>
                       </div>
@@ -886,6 +918,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           Interoperability and Data Accessibility
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -922,11 +961,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            50
-                             / 
-                            100
+                            Indicator score: 50/100
                           </div>
                         </div>
                       </div>
@@ -941,6 +976,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           Security
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -977,11 +1019,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           <div
                             class="h5 float-right inline"
                           >
-                            Indicator score
-                            : 
-                            100
-                             / 
-                            100
+                            Indicator score: 100/100
                           </div>
                         </div>
                       </div>
@@ -996,6 +1034,13 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                           class="text-sm text-button-gray pl-6"
                         >
                           Scalability
+                        </div>
+                        <div
+                          class="text-sm text-dial-stratos pl-4"
+                        >
+                          Weight
+                          : 
+                          0.2
                         </div>
                       </div>
                     </div>
@@ -1032,7 +1077,6 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
 >
   Overall maturity score
   : 
-  80
    / 
   100
 </div>
