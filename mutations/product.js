@@ -253,7 +253,7 @@ export const UPDATE_PRODUCT_CATEGORY_INDICATORS = gql`
     ) {
       product {
         id
-        maturityScore
+        overallMaturityScore
         maturityScoreDetails
       }
       errors
