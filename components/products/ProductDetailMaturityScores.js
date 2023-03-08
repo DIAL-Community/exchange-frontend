@@ -48,7 +48,7 @@ const MaturityCategory = ({ category }) => {
           <div className='h5 inline'>{category.name}</div>
           <div className='h5 float-right inline'>
             {format('product.category-score')}:
-            {category.overallScore / category.maximumScore * MAX_MATURITY_SCORE} / {MAX_MATURITY_SCORE}
+            {Math.round(category.overallScore / category.maximumScore * MAX_MATURITY_SCORE)} / {MAX_MATURITY_SCORE}
           </div>
         </AccordionItemButton>
       </AccordionItemHeading>
@@ -56,7 +56,7 @@ const MaturityCategory = ({ category }) => {
         {category.categoryIndicators.map((indicator, indicatorIdx) => {
           let indicatorScore = Math.round(indicator.score / indicator.weight) * MATURITY_SCORE_MULTIPLIER
           indicatorScore = indicatorScore > MAX_MATURITY_SCORE ? MAX_MATURITY_SCORE : indicatorScore
-          const scoreText = `${indicatorScore}/${MAX_MATURITY_SCORE}`
+          const scoreText = `${Math.round(indicatorScore)}/${MAX_MATURITY_SCORE}`
 
           return (
             <Accordion key={indicatorIdx} allowMultipleExpanded allowZeroExpanded>
@@ -70,7 +70,7 @@ const MaturityCategory = ({ category }) => {
                   </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
-                  <div className='text-sm text-button-gray pl-6'>
+                  <div className='text-sm text-button-gray pl-4'>
                     {parse(indicator.description)}
                   </div>
                   <div className='text-sm text-dial-stratos pl-4'>
@@ -274,7 +274,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
       {validMaturityScores?.length ? (
         <>
           <div className='pb-5 mr-6 h4' data-testid='maturity-overall-score'>
-            {format('product.overall-score')}: {maturityScore} / {MAX_MATURITY_SCORE}
+            {format('product.overall-score')}: {Math.round(maturityScore)} / {MAX_MATURITY_SCORE}
           </div>
           <div
             className='cursor-pointer min-h-[20rem] h-[25vh]'

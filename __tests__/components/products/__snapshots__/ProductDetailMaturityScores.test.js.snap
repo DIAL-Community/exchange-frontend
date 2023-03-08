@@ -129,7 +129,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:r4:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           Developer, Contributor and Implementor Community Engagement
                         </div>
@@ -187,7 +187,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:r5:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           Community Governance
                         </div>
@@ -245,7 +245,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:r6:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           Software Roadmap
                         </div>
@@ -303,7 +303,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:r7:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           User Documentation
                         </div>
@@ -361,7 +361,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:r8:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           Multi-Lingual Support
                         </div>
@@ -464,7 +464,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:ra:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           Country Utilization
                         </div>
@@ -522,7 +522,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:rb:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           Country Strategy
                         </div>
@@ -580,7 +580,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:rc:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           Digital Health Interventions
                         </div>
@@ -638,7 +638,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:rd:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           Source Code Accessibility
                         </div>
@@ -696,7 +696,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:re:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           Funding and Revenue
                         </div>
@@ -799,7 +799,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:rg:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           Technical Documentation
                         </div>
@@ -857,7 +857,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:rh:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           Software Productization
                         </div>
@@ -915,7 +915,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:ri:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           Interoperability and Data Accessibility
                         </div>
@@ -973,7 +973,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:rj:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           Security
                         </div>
@@ -1031,7 +1031,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:rk:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-6"
+                          class="text-sm text-button-gray pl-4"
                         >
                           Scalability
                         </div>
@@ -1077,6 +1077,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
 >
   Overall maturity score
   : 
+  NaN
    / 
   100
 </div>
