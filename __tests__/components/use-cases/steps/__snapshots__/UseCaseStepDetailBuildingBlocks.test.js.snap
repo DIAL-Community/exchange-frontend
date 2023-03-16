@@ -1,44 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit test for the OrganizationDetailSectors component. Should add a pill and revert changes on "Cancel" button click 1`] = `
+exports[`Unit tests for the UseCaseStepDetailBuildingBlocks component. Should add a pill and revert changes on "Cancel" button click 1`] = `
 <div>
   <div
     class="Toastify"
   />
   <div
-    data-testid="organization-sectors"
+    class="mt-12"
+    data-testid="editable-section"
   >
     <div
-      class="mt-12"
-      data-testid="editable-section"
+      class="flex justify-between items-center mb-3"
     >
       <div
-        class="flex justify-between items-center mb-3"
+        class="card-title text-dial-sapphire"
       >
-        <div
-          class="card-title text-dial-sapphire"
-        >
-          Sectors
-        </div>
-        <div
-          class="gap-3"
-        />
+        Building Blocks
       </div>
       <div
-        class="bg-edit p-6"
+        class="gap-3"
+      />
+    </div>
+    <div
+      class="bg-edit p-6"
+    >
+      <div
+        class="flex flex-col gap-3"
       >
         <p
-          class="card-title text-dial-stratos mb-3"
+          class="card-title text-dial-stratos"
         >
           Assign
            
-          Sectors
+          Building Blocks
         </p>
         <label
-          class="flex flex-col gap-y-2 mb-2"
-          data-testid="sector-search"
+          class="flex flex-col gap-y-2"
+          data-testid="building-block-search"
         >
-          Search and Assign Sectors
+          Search and Assign Building Blocks
           <div
             class=" css-l45kjq-container"
           >
@@ -126,7 +126,7 @@ exports[`Unit test for the OrganizationDetailSectors component. Should add a pil
             class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
             data-testid="pill"
           >
-            Test Sector
+            Test Building Block
             <svg
               class="cursor-pointer opacity-50"
               data-testid="remove-button"
@@ -147,7 +147,7 @@ exports[`Unit test for the OrganizationDetailSectors component. Should add a pil
             class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
             data-testid="pill"
           >
-            Sector 1
+            Building Block 1
             <svg
               class="cursor-pointer opacity-50"
               data-testid="remove-button"
@@ -168,7 +168,7 @@ exports[`Unit test for the OrganizationDetailSectors component. Should add a pil
             class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
             data-testid="pill"
           >
-            Sector 2
+            Building Block 2
             <svg
               class="cursor-pointer opacity-50"
               data-testid="remove-button"
@@ -186,138 +186,168 @@ exports[`Unit test for the OrganizationDetailSectors component. Should add a pil
             </svg>
           </div>
         </div>
-        <div
-          class="flex justify-end mt-8 gap-3 text-xl"
+      </div>
+      <div
+        class="flex justify-end mt-8 gap-3 text-xl"
+      >
+        <button
+          class="submit-button"
+          data-testid="submit-button"
+          type="submit"
         >
-          <button
-            class="submit-button"
-            data-testid="submit-button"
-            type="submit"
-          >
-            Submit
-          </button>
-          <button
-            class="cancel-button"
-            data-testid="cancel-button"
-            type="button"
-          >
-            Cancel
-          </button>
-        </div>
+          Submit
+        </button>
+        <button
+          class="cancel-button"
+          data-testid="cancel-button"
+          type="button"
+        >
+          Cancel
+        </button>
       </div>
     </div>
   </div>
 </div>
 `;
 
-exports[`Unit test for the OrganizationDetailSectors component. Should match snapshot - with edit permission. 1`] = `
+exports[`Unit tests for the UseCaseStepDetailBuildingBlocks component. Should match snapshot - with edit permission. 1`] = `
 <div>
   <div
     class="Toastify"
   />
   <div
-    data-testid="organization-sectors"
+    class="mt-12"
+    data-testid="editable-section"
   >
     <div
-      class="mt-12"
-      data-testid="editable-section"
+      class="flex justify-between items-center mb-3"
     >
       <div
-        class="flex justify-between items-center mb-3"
+        class="card-title text-dial-sapphire"
       >
-        <div
-          class="card-title text-dial-sapphire"
-        >
-          Sectors
-        </div>
-        <div
-          class="gap-3"
-        >
-          <button
-            class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
-            data-testid="edit-button"
-            type="button"
-          >
-            <img
-              alt="Edit"
-              height="12px"
-              src="/icons/edit.svg"
-              width="12px"
-            />
-            <span
-              class="text-sm"
-            >
-              Edit
-            </span>
-          </button>
-        </div>
+        Building Blocks
       </div>
       <div
-        class="grid grid-cols-1 lg:grid-cols-2"
+        class="gap-3"
       >
+        <button
+          class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          data-testid="edit-button"
+          type="button"
+        >
+          <img
+            alt="Edit"
+            height="12px"
+            src="/icons/edit.svg"
+            width="12px"
+          />
+          <span
+            class="text-sm"
+          >
+            Edit
+          </span>
+        </button>
+      </div>
+    </div>
+    <div
+      class="flex flex-col gap-3"
+    >
+      <div
+        class="grid grid-cols-3"
+      >
+        <div />
+        <div />
         <div
-          class="border-3 border-transparent"
-          data-testid="sector-card"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-2 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="flex items-center p-4"
+              class="flex flex-row flex-wrap px-4 py-3 false"
             >
               <div
-                class="inline-block font-semibold text-button-gray"
+                class="flex gap-2 my-auto text-dial-sapphire"
               >
-                Test Sector
+                <div
+                  class="block w-8 relative opacity-80"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                  >
+                    <img
+                      alt="Logo for: Test Building Block"
+                      data-nimg="fill"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                    />
+                    <noscript />
+                  </span>
+                </div>
+                Test Building Block
+              </div>
+              <div
+                class="ml-auto flex gap-2 text-white"
+              >
+                <div
+                  class="bg-dial-lavender rounded text-sm px-2 py-1"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div
+        class="border-b border-dashed border-dial-lavender"
+      />
+      <div
+        class="grid grid-cols-1"
+      />
     </div>
   </div>
 </div>
 `;
 
-exports[`Unit test for the OrganizationDetailSectors component. Should match snapshot - with open editable section 1`] = `
+exports[`Unit tests for the UseCaseStepDetailBuildingBlocks component. Should match snapshot - with open editable section 1`] = `
 <div>
   <div
     class="Toastify"
   />
   <div
-    data-testid="organization-sectors"
+    class="mt-12"
+    data-testid="editable-section"
   >
     <div
-      class="mt-12"
-      data-testid="editable-section"
+      class="flex justify-between items-center mb-3"
     >
       <div
-        class="flex justify-between items-center mb-3"
+        class="card-title text-dial-sapphire"
       >
-        <div
-          class="card-title text-dial-sapphire"
-        >
-          Sectors
-        </div>
-        <div
-          class="gap-3"
-        />
+        Building Blocks
       </div>
       <div
-        class="bg-edit p-6"
+        class="gap-3"
+      />
+    </div>
+    <div
+      class="bg-edit p-6"
+    >
+      <div
+        class="flex flex-col gap-3"
       >
         <p
-          class="card-title text-dial-stratos mb-3"
+          class="card-title text-dial-stratos"
         >
           Assign
            
-          Sectors
+          Building Blocks
         </p>
         <label
-          class="flex flex-col gap-y-2 mb-2"
-          data-testid="sector-search"
+          class="flex flex-col gap-y-2"
+          data-testid="building-block-search"
         >
-          Search and Assign Sectors
+          Search and Assign Building Blocks
           <div
             class=" css-l45kjq-container"
           >
@@ -405,7 +435,7 @@ exports[`Unit test for the OrganizationDetailSectors component. Should match sna
             class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
             data-testid="pill"
           >
-            Test Sector
+            Test Building Block
             <svg
               class="cursor-pointer opacity-50"
               data-testid="remove-button"
@@ -423,121 +453,151 @@ exports[`Unit test for the OrganizationDetailSectors component. Should match sna
             </svg>
           </div>
         </div>
-        <div
-          class="flex justify-end mt-8 gap-3 text-xl"
+      </div>
+      <div
+        class="flex justify-end mt-8 gap-3 text-xl"
+      >
+        <button
+          class="submit-button"
+          data-testid="submit-button"
+          disabled=""
+          type="submit"
         >
-          <button
-            class="submit-button"
-            data-testid="submit-button"
-            disabled=""
-            type="submit"
-          >
-            Submit
-          </button>
-          <button
-            class="cancel-button"
-            data-testid="cancel-button"
-            type="button"
-          >
-            Cancel
-          </button>
-        </div>
+          Submit
+        </button>
+        <button
+          class="cancel-button"
+          data-testid="cancel-button"
+          type="button"
+        >
+          Cancel
+        </button>
       </div>
     </div>
   </div>
 </div>
 `;
 
-exports[`Unit test for the OrganizationDetailSectors component. Should match snapshot - without edit permission. 1`] = `
+exports[`Unit tests for the UseCaseStepDetailBuildingBlocks component. Should match snapshot - without edit permission. 1`] = `
 <div>
   <div
     class="Toastify"
   />
   <div
-    data-testid="organization-sectors"
+    class="mt-12"
+    data-testid="editable-section"
   >
     <div
-      class="mt-12"
-      data-testid="editable-section"
+      class="flex justify-between items-center mb-3"
     >
       <div
-        class="flex justify-between items-center mb-3"
+        class="card-title text-dial-sapphire"
       >
-        <div
-          class="card-title text-dial-sapphire"
-        >
-          Sectors
-        </div>
-        <div
-          class="gap-3"
-        />
+        Building Blocks
       </div>
       <div
-        class="grid grid-cols-1 lg:grid-cols-2"
+        class="gap-3"
+      />
+    </div>
+    <div
+      class="flex flex-col gap-3"
+    >
+      <div
+        class="grid grid-cols-3"
       >
+        <div />
+        <div />
         <div
-          class="border-3 border-transparent"
-          data-testid="sector-card"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-2 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="flex items-center p-4"
+              class="flex flex-row flex-wrap px-4 py-3 false"
             >
               <div
-                class="inline-block font-semibold text-button-gray"
+                class="flex gap-2 my-auto text-dial-sapphire"
               >
-                Test Sector
+                <div
+                  class="block w-8 relative opacity-80"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+                  >
+                    <img
+                      alt="Logo for: Test Building Block"
+                      data-nimg="fill"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
+                    />
+                    <noscript />
+                  </span>
+                </div>
+                Test Building Block
+              </div>
+              <div
+                class="ml-auto flex gap-2 text-white"
+              >
+                <div
+                  class="bg-dial-lavender rounded text-sm px-2 py-1"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div
+        class="border-b border-dashed border-dial-lavender"
+      />
+      <div
+        class="grid grid-cols-1"
+      />
     </div>
   </div>
 </div>
 `;
 
-exports[`Unit test for the OrganizationDetailSectors component. Should remove a pill 1`] = `
+exports[`Unit tests for the UseCaseStepDetailBuildingBlocks component. Should remove a pill 1`] = `
 <div>
   <div
     class="Toastify"
   />
   <div
-    data-testid="organization-sectors"
+    class="mt-12"
+    data-testid="editable-section"
   >
     <div
-      class="mt-12"
-      data-testid="editable-section"
+      class="flex justify-between items-center mb-3"
     >
       <div
-        class="flex justify-between items-center mb-3"
+        class="card-title text-dial-sapphire"
       >
-        <div
-          class="card-title text-dial-sapphire"
-        >
-          Sectors
-        </div>
-        <div
-          class="gap-3"
-        />
+        Building Blocks
       </div>
       <div
-        class="bg-edit p-6"
+        class="gap-3"
+      />
+    </div>
+    <div
+      class="bg-edit p-6"
+    >
+      <div
+        class="flex flex-col gap-3"
       >
         <p
-          class="card-title text-dial-stratos mb-3"
+          class="card-title text-dial-stratos"
         >
           Assign
            
-          Sectors
+          Building Blocks
         </p>
         <label
-          class="flex flex-col gap-y-2 mb-2"
-          data-testid="sector-search"
+          class="flex flex-col gap-y-2"
+          data-testid="building-block-search"
         >
-          Search and Assign Sectors
+          Search and Assign Building Blocks
           <div
             class=" css-l45kjq-container"
           >
@@ -621,24 +681,24 @@ exports[`Unit test for the OrganizationDetailSectors component. Should remove a 
         <div
           class="flex flex-wrap gap-3 mt-5"
         />
-        <div
-          class="flex justify-end mt-8 gap-3 text-xl"
+      </div>
+      <div
+        class="flex justify-end mt-8 gap-3 text-xl"
+      >
+        <button
+          class="submit-button"
+          data-testid="submit-button"
+          type="submit"
         >
-          <button
-            class="submit-button"
-            data-testid="submit-button"
-            type="submit"
-          >
-            Submit
-          </button>
-          <button
-            class="cancel-button"
-            data-testid="cancel-button"
-            type="button"
-          >
-            Cancel
-          </button>
-        </div>
+          Submit
+        </button>
+        <button
+          class="cancel-button"
+          data-testid="cancel-button"
+          type="button"
+        >
+          Cancel
+        </button>
       </div>
     </div>
   </div>

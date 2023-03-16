@@ -176,6 +176,11 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                           : format('building-block.label')
                         }
                       </span>
+                      {product.linkedWithDpi &&
+                        <div className='opacity-50 ml-auto my-auto'>
+                          {format('buildingBlock.category.dpi')}
+                        </div>
+                      }
                     </div>
                   </div>
                   <hr />

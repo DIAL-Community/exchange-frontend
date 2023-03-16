@@ -1565,5 +1565,18 @@ export const en = {
   'product.license.oss': 'Open Source',
   'product.license.commercial': 'Commercial',
 
-  'candidate.product.submittedBy': 'Proposed by'
+  'candidate.product.submittedBy': 'Proposed by',
+
+  'categoryType.label': 'Category',
+  'categoryType.header': 'Categories',
+
+  'buildingBlock.category': 'Building Block Category',
+  'buildingBlock.category.dpi': 'DPI',
+  'buildingBlock.category.functional': 'FUNCTIONAL',
+
+  'filter.product.linkedWithDpi': 'Show only linked with DPI',
+  'filter.product.dpiDefinition': `
+    Digital Public Infrastructure (DPI), refers to solutions and systems that enable the effective
+    provision of essential society-wide functions and services in the public and private sectors.
+  `
 }

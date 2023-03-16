@@ -96,6 +96,7 @@ export const PRODUCT_QUERY = gql`
         imageFile
         tags
       }
+      linkedWithDpi
     }
   }
 `
@@ -137,6 +138,7 @@ export const PRODUCTS_QUERY = gql`
     $productDeployable: Boolean
     $isEndorsed: Boolean
     $licenseTypes: [String!]
+    $isLinkedWithDpi: Boolean
     $search: String!
   ) {
     searchProducts (
@@ -155,6 +157,7 @@ export const PRODUCTS_QUERY = gql`
       productDeployable: $productDeployable
       isEndorsed: $isEndorsed
       licenseTypes: $licenseTypes
+      isLinkedWithDpi: $isLinkedWithDpi
       search: $search
     ) {
       totalCount
@@ -170,7 +173,6 @@ export const PRODUCTS_QUERY = gql`
         slug
         tags
         imageFile
-        isLaunchable
         overallMaturityScore
         commercialProduct
         endorsers {
@@ -197,9 +199,7 @@ export const PRODUCTS_QUERY = gql`
         mainRepository {
           license
         }
-        organizations {
-          isEndorser
-        }
+        linkedWithDpi
       }
     }
   }

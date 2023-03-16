@@ -8,19 +8,21 @@ const BuildingBlockFilterProvider = ({ children }) => {
   const [sdgs, setSDGs] = useState([])
   const [useCases, setUseCases] = useState([])
   const [workflows, setWorkflows] = useState([])
+  const [categoryTypes, setCategoryTypes] = useState([])
 
   const [search, setSearch] = useState('')
   const [sortColumn, setSortColumn] = useState('name')
   const [sortDirection, setSortDirection] = useState('asc')
 
   const buildingBlockFilterValues = {
-    showMature, sdgs, useCases, workflows, search, sortColumn, sortDirection
+    showMature, sdgs, useCases, workflows, categoryTypes, search, sortColumn, sortDirection
   }
   const buildingBlockFilterDispatchValues = {
     setShowMature,
     setSDGs,
     setUseCases,
     setWorkflows,
+    setCategoryTypes,
     setSearch,
     setSortColumn,
     setSortDirection

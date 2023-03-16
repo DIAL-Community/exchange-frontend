@@ -49,10 +49,10 @@ module.exports = {
           DEFAULT: '#96a2ef'
         },
         'dial-amethyst-smoke': {
-          DEFAULT: '#9996b8'
+          DEFAULT: '#9996ef'
         },
         'dial-blueberry': {
-          DEFAULT: '#e6e9fc'
+          DEFAULT: '#574f8a'
         },
         'dial-biscotti': {
           DEFAULT: '#fad3a2'

@@ -33,7 +33,38 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
             </svg>
           </div>
           <div>
-            Building Block submission failed
+            <div
+              class="flex flex-col"
+            >
+              <span>
+                Building Block submission failed
+              </span>
+              <span>
+                No more mocked responses for the query: mutation CreateBuildingBlock($name: String!, $slug: String!, $maturity: String!, $category: String, $imageFile: Upload, $description: String!, $specUrl: String) {
+  createBuildingBlock(
+    name: $name
+    slug: $slug
+    maturity: $maturity
+    category: $category
+    imageFile: $imageFile
+    description: $description
+    specUrl: $specUrl
+  ) {
+    buildingBlock {
+      slug
+      __typename
+    }
+    errors
+    __typename
+  }
+}
+Expected variables: {"name":"Test Building Block","slug":"test_buidling_block","maturity":"DRAFT","category":null,"description":"&lt;p&gt;test building block description&lt;/p&gt;","specUrl":"testbuidlingblock.com","imageFile":&lt;undefined&gt;}
+
+Failed to match 1 mock for this query. The mocked response had the following variables:
+  {"name":"Test Building Block","slug":"test_buidling_block","maturity":"DRAFT","specUrl":"testbuidlingblock.com","description":"&lt;p&gt;test building block description&lt;/p&gt;"}
+
+              </span>
+            </div>
           </div>
         </div>
         <button
@@ -99,7 +130,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Building Block
             </div>
@@ -142,7 +173,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-:r4:-live-region"
+                      id="react-select-:r8:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -174,6 +205,95 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                             autocorrect="off"
                             class="react-select__input"
                             id="react-select-id-maturity"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="text-2xl"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="building-block-category"
+                >
+                  <label
+                    class="form-field-label"
+                  >
+                    Building Block Category
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-:r9:-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-qv4grc-control"
+                    >
+                      <div
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
+                      >
+                        <div
+                          class="react-select__placeholder css-5rjclb-placeholder"
+                          id="react-select-:r9:-placeholder"
+                        >
+                          Building Block Category
+                        </div>
+                        <div
+                          class="react-select__input-container css-qbdosj-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-describedby="react-select-:r9:-placeholder"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-id-category"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -459,7 +579,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Building Block
             </div>
@@ -502,7 +622,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-:r3:-live-region"
+                      id="react-select-:r6:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -534,6 +654,95 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                             autocorrect="off"
                             class="react-select__input"
                             id="react-select-id-maturity"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="text-2xl"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="building-block-category"
+                >
+                  <label
+                    class="form-field-label"
+                  >
+                    Building Block Category
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-:r7:-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-qv4grc-control"
+                    >
+                      <div
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
+                      >
+                        <div
+                          class="react-select__placeholder css-5rjclb-placeholder"
+                          id="react-select-:r7:-placeholder"
+                        >
+                          Building Block Category
+                        </div>
+                        <div
+                          class="react-select__input-container css-qbdosj-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-describedby="react-select-:r7:-placeholder"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-id-category"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -810,7 +1019,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Building Block
             </div>
@@ -853,7 +1062,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
-                      id="react-select-:r2:-live-region"
+                      id="react-select-:r4:-live-region"
                     />
                     <span
                       aria-atomic="false"
@@ -885,6 +1094,95 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                             autocorrect="off"
                             class="react-select__input"
                             id="react-select-id-maturity"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="text-2xl"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="building-block-category"
+                >
+                  <label
+                    class="form-field-label"
+                  >
+                    Building Block Category
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-:r5:-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-qv4grc-control"
+                    >
+                      <div
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
+                      >
+                        <div
+                          class="react-select__placeholder css-5rjclb-placeholder"
+                          id="react-select-:r5:-placeholder"
+                        >
+                          Building Block Category
+                        </div>
+                        <div
+                          class="react-select__input-container css-qbdosj-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-describedby="react-select-:r5:-placeholder"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-id-category"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
@@ -1105,7 +1403,7 @@ exports[`Unit tests for BuildingBlockForm component. Should render BuildingBlock
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Building Block
             </div>
@@ -1182,6 +1480,95 @@ exports[`Unit tests for BuildingBlockForm component. Should render BuildingBlock
                             autocorrect="off"
                             class="react-select__input"
                             id="react-select-id-maturity"
+                            role="combobox"
+                            spellcheck="false"
+                            style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                            tabindex="0"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                      >
+                        <span
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="text-2xl"
+                            fill="none"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="form-field-wrapper"
+                  data-testid="building-block-category"
+                >
+                  <label
+                    class="form-field-label"
+                  >
+                    Building Block Category
+                  </label>
+                  <div
+                    class=" css-l45kjq-container"
+                  >
+                    <span
+                      class="css-1f43avz-a11yText-A11yText"
+                      id="react-select-:r1:-live-region"
+                    />
+                    <span
+                      aria-atomic="false"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                      class="css-1f43avz-a11yText-A11yText"
+                    />
+                    <div
+                      class="react-select__control css-qv4grc-control"
+                    >
+                      <div
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
+                      >
+                        <div
+                          class="react-select__placeholder css-5rjclb-placeholder"
+                          id="react-select-:r1:-placeholder"
+                        >
+                          Building Block Category
+                        </div>
+                        <div
+                          class="react-select__input-container css-qbdosj-Input"
+                          data-value=""
+                        >
+                          <input
+                            aria-autocomplete="list"
+                            aria-describedby="react-select-:r1:-placeholder"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            autocapitalize="none"
+                            autocomplete="off"
+                            autocorrect="off"
+                            class="react-select__input"
+                            id="react-select-id-category"
                             role="combobox"
                             spellcheck="false"
                             style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"

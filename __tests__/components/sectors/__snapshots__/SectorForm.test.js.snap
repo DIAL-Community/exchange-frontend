@@ -40,7 +40,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - create
                 class="pb-12 mb-4 flex flex-col gap-3"
               >
                 <div
-                  class="text-2xl font-bold text-dial-blue pb-4"
+                  class="text-2xl font-semibold text-dial-sapphire pb-4"
                 >
                   Create New Sector
                 </div>
@@ -49,7 +49,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - create
                   data-testid="sector-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -68,7 +68,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - create
                   data-testid="sector-locale"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="locale"
                   >
                     Locale
@@ -156,7 +156,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - create
                   data-testid="sector-parent"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="parent"
                   >
                     Parent Sector
@@ -327,7 +327,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                 class="pb-12 mb-4 flex flex-col gap-3"
               >
                 <div
-                  class="text-2xl font-bold text-dial-blue pb-4"
+                  class="text-2xl font-semibold text-dial-sapphire pb-4"
                 >
                   Edit Example Sector
                 </div>
@@ -336,7 +336,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                   data-testid="sector-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -355,7 +355,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                   data-testid="sector-locale"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="locale"
                   >
                     Locale
@@ -443,7 +443,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                   data-testid="sector-parent"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="parent"
                   >
                     Parent Sector
@@ -614,7 +614,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                 class="pb-12 mb-4 flex flex-col gap-3"
               >
                 <div
-                  class="text-2xl font-bold text-dial-blue pb-4"
+                  class="text-2xl font-semibold text-dial-sapphire pb-4"
                 >
                   Edit Example Sector
                 </div>
@@ -623,7 +623,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                   data-testid="sector-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -642,7 +642,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                   data-testid="sector-locale"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="locale"
                   >
                     Locale
@@ -730,7 +730,7 @@ exports[`Unit tests for the SectorForm component. Should match snapshot - edit f
                   data-testid="sector-parent"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="parent"
                   >
                     Parent Sector

@@ -1,6 +1,7 @@
 import Image from 'next/image'
-import { useCallback, useContext, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
+import ReactTooltip from 'react-tooltip'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../context/ProductFilterContext'
 import { BuildingBlockAutocomplete } from '../filter/element/BuildingBlock'
 import { CountryAutocomplete } from '../filter/element/Country'
@@ -23,18 +24,18 @@ const ProductFilter = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const {
-    isEndorsed, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, endorsers, licenseTypes
+    isEndorsed, sectors, countries, organizations, origins, sdgs, tags,
+    useCases, workflows, buildingBlocks, endorsers, licenseTypes, isLinkedWithDpi
   } = useContext(ProductFilterContext)
 
   const {
-    setIsEndorsed, setProductDeployable, setSectors, setCountries, setOrganizations,
-    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers, setLicenseTypes
+    setIsEndorsed, setSectors, setCountries, setOrganizations,
+    setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks,
+    setEndorsers, setLicenseTypes, setIsLinkedWithDpi
   } = useContext(ProductFilterDispatchContext)
 
   const toggleIsEndorsed = () => setIsEndorsed(!isEndorsed)
-
-  const toggleProductDeployable = () => setProductDeployable(!productDeployable)
+  const toggleLinkedWithDpi = () => setIsLinkedWithDpi(!isLinkedWithDpi)
 
   const isCovid19TagActive = tags.some(({ slug }) => slug === COVID_19_LABEL)
 
@@ -53,6 +54,10 @@ const ProductFilter = () => {
   const toggleHintDetail = () => {
     setOpeningDetail(!openingDetail)
   }
+
+  useEffect(() => {
+    ReactTooltip.rebuild()
+  })
 
   return (
     <div className='pt-6 pb-10 bg-dial-solitude rounded-lg text-dial-stratos'>
@@ -109,10 +114,20 @@ const ProductFilter = () => {
               {format('filter.product.endorsed')}
             </span>
           </label>
-          <label className='inline'>
-            <Checkbox onChange={toggleProductDeployable} value={productDeployable} />
+          <label className='flex'>
+            <Checkbox onChange={toggleLinkedWithDpi} value={isLinkedWithDpi} />
             <span className='mx-2 my-auto'>
-              {format('filter.product.launchable')}
+              {format('filter.product.linkedWithDpi')}
+            </span>
+            <span className='w-6 my-auto image-block-hack'>
+              <Image
+                width={34}
+                height={34}
+                src='/assets/info.png'
+                alt='Informational hint'
+                data-tip={format('filter.product.dpiDefinition')}
+                data-html
+              />
             </span>
           </label>
         </div>

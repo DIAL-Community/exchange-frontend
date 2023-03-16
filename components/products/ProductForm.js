@@ -176,7 +176,7 @@ const ProductForm = React.memo(({ product }) => {
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 flex flex-col gap-3'>
-              <div className='text-2xl font-bold text-dial-blue pb-4'>
+              <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {product
                   ? format('app.edit-entity', { entity: product.name })
                   : `${format('app.create-new')} ${format('product.label')}`
@@ -185,7 +185,7 @@ const ProductForm = React.memo(({ product }) => {
               <div className='flex flex-col lg:flex-row gap-x-16'>
                 <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
                   <div className='flex flex-col gap-y-2 mb-2' data-testid='product-name'>
-                    <label className='text-xl text-dial-blue required-field' htmlFor='name'>
+                    <label className='text-dial-sapphire required-field' htmlFor='name'>
                       {format('product.name')}
                     </label>
                     <Input
@@ -197,7 +197,7 @@ const ProductForm = React.memo(({ product }) => {
                     {errors.name && <ValidationError value={errors.name?.message} />}
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2'>
-                    <label className='text-xl text-dial-blue'>
+                    <label className='text-dial-sapphire'>
                       {format('product.aliases')}
                     </label>
                     {aliases.map((alias, aliasIdx) => (
@@ -222,7 +222,7 @@ const ProductForm = React.memo(({ product }) => {
                     ))}
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2' data-testid='product-website'>
-                    <label className='text-xl text-dial-blue' htmlFor='website'>
+                    <label className='text-dial-sapphire' htmlFor='website'>
                       {format('product.website')}
                     </label>
                     <Controller
@@ -240,7 +240,7 @@ const ProductForm = React.memo(({ product }) => {
                     />
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2'>
-                    <label className='text-xl text-dial-blue'>
+                    <label className='text-dial-sapphire'>
                       {format('product.imageFile')}
                     </label>
                     <FileUploader {...register('imageFile')} />
@@ -248,7 +248,7 @@ const ProductForm = React.memo(({ product }) => {
                 </div>
                 <div className='w-full lg:w-1/2'>
                   <div className='block flex flex-col gap-y-2' data-testid='product-description'>
-                    <label className='text-xl text-dial-blue required-field'>
+                    <label className='text-dial-sapphire required-field'>
                       {format('product.description')}
                     </label>
                     <Controller
@@ -270,17 +270,17 @@ const ProductForm = React.memo(({ product }) => {
                 </div>
               </div>
               <hr className='my-2'/>
-              <div className='text-2xl font-bold text-dial-blue pb-4'>
+              <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {format('product.pricingInformation')}
               </div>
               <div className='flex flex-col lg:flex-row gap-x-16'>
                 <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
-                  <label className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'>
+                  <label className='flex gap-x-2 mb-2 items-center self-start text-dial-sapphire'>
                     <Checkbox {...register('commercialProduct')} />
                     {format('product.commercialProduct')}
                   </label>
                   <div className='flex flex-col gap-y-2 mb-2'>
-                    <label className='text-xl text-dial-blue' htmlFor='pricingUrl'>
+                    <label className='text-dial-sapphire' htmlFor='pricingUrl'>
                       {format('product.pricingUrl')}
                     </label>
                     <Controller
@@ -297,7 +297,7 @@ const ProductForm = React.memo(({ product }) => {
                     />
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2'>
-                    <label className='text-xl text-dial-blue' htmlFor='hostingModel'>
+                    <label className='text-dial-sapphire' htmlFor='hostingModel'>
                       {format('product.hostingModel')}
                     </label>
                     <Input
@@ -307,7 +307,7 @@ const ProductForm = React.memo(({ product }) => {
                     />
                   </div>
                   <div className='flex flex-col gap-y-2 mb-2'>
-                    <label className='text-xl text-dial-blue' htmlFor='pricingModel'>
+                    <label className='text-dial-sapphire' htmlFor='pricingModel'>
                       {format('product.pricingModel')}
                     </label>
                     <Input
@@ -319,7 +319,7 @@ const ProductForm = React.memo(({ product }) => {
                 </div>
                 <div className='w-full lg:w-1/2'>
                   <div className='block flex flex-col gap-y-2'>
-                    <label className='text-xl text-dial-blue'>
+                    <label className='text-dial-sapphire'>
                       {format('product.pricing.details')}
                     </label>
                     <Controller

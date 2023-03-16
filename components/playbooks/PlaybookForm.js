@@ -38,7 +38,7 @@ const FormPlayList = ({ playbook, saveAndCreatePlay }) => {
   return (
     <>
       <div className='flex flex-col gap-y-2 mt-4'>
-        <div className='text-xl text-dial-blue font-bold'>
+        <div className='text-dial-sapphire font-bold'>
           {format('playbooks.plays')}
         </div>
         <div className='text-sm text-dial-blue'>
@@ -314,7 +314,7 @@ export const PlaybookForm = React.memo(({ playbook }) => {
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-              <div className='text-2xl font-bold text-dial-blue pb-4'>
+              <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {playbook && format('app.edit-entity', { entity: playbook.name })}
                 {!playbook && `${format('app.create-new')} ${format('playbooks.label')}`}
               </div>

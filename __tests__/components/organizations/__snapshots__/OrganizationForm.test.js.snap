@@ -43,7 +43,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Organization
             </div>
@@ -58,7 +58,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -76,7 +76,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Aliases
                   </label>
@@ -121,7 +121,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-website"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="website"
                   >
                     Website
@@ -142,7 +142,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-logo"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Logo
                   </label>
@@ -192,7 +192,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   </div>
                 </div>
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                   data-testid="organization-is-endorser"
                 >
                   <input
@@ -207,7 +207,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Endorsed Date
                   </label>
@@ -225,7 +225,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-endorser-level"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Endorser Level
                   </label>
@@ -303,7 +303,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   </div>
                 </div>
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                   data-testid="organization-is-mni"
                 >
                   <input
@@ -323,7 +323,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -424,7 +424,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Organization
             </div>
@@ -439,7 +439,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -457,7 +457,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Aliases
                   </label>
@@ -560,7 +560,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-website"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="website"
                   >
                     Website
@@ -586,7 +586,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-logo"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Logo
                   </label>
@@ -636,7 +636,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   </div>
                 </div>
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                   data-testid="organization-is-endorser"
                 >
                   <input
@@ -651,7 +651,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Endorsed Date
                   </label>
@@ -669,7 +669,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-endorser-level"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Endorser Level
                   </label>
@@ -747,7 +747,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   </div>
                 </div>
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                   data-testid="organization-is-mni"
                 >
                   <input
@@ -767,7 +767,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   data-testid="organization-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>

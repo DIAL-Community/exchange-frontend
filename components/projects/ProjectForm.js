@@ -183,7 +183,7 @@ const ProjectForm = React.memo(({ project }) => {
           <div id='content' className='sm:px-0 max-w-full mx-auto'>
             <form onSubmit={handleSubmit(doUpsert)}>
               <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-                <div className='text-2xl font-bold text-dial-blue pb-4'>
+                <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                   {project
                     ? format('app.edit-entity', { entity: project.name })
                     : `${format('app.create-new')} ${format('project.label')}`
@@ -192,7 +192,7 @@ const ProjectForm = React.memo(({ project }) => {
                 <div className='flex flex-col lg:flex-row gap-4'>
                   <div className='w-full lg:w-1/2 flex flex-col gap-y-3'>
                     <div className='flex flex-col gap-y-2 mb-2' data-testid='project-name'>
-                      <label className='text-xl text-dial-blue required-field' htmlFor='name'>
+                      <label className='text-dial-sapphire required-field' htmlFor='name'>
                         {format('project.name')}
                       </label>
                       <Input
@@ -204,7 +204,7 @@ const ProjectForm = React.memo(({ project }) => {
                       {errors.name && <ValidationError value={errors.name?.message} />}
                     </div>
                     <div className='flex flex-col gap-y-2 mb-2'>
-                      <label className='text-xl text-dial-blue'>
+                      <label className='text-dial-sapphire'>
                         {format('project.startDate')}
                       </label>
                       <Input
@@ -214,7 +214,7 @@ const ProjectForm = React.memo(({ project }) => {
                       />
                     </div>
                     <div className='flex flex-col gap-y-2 mb-2'>
-                      <label className='text-xl text-dial-blue'>
+                      <label className='text-dial-sapphire'>
                         {format('project.endDate')}
                       </label>
                       <Input
@@ -233,7 +233,7 @@ const ProjectForm = React.memo(({ project }) => {
                       {errors.endDate && <ValidationError value={errors.endDate?.message} />}
                     </div>
                     <div className='flex flex-col gap-y-2 mb-2'>
-                      <label className='text-xl text-dial-blue'>
+                      <label className='text-dial-sapphire'>
                         {format('project.url')}
                       </label>
                       <Input {...register('projectUrl')} placeholder={format('project.url')} />
@@ -242,7 +242,7 @@ const ProjectForm = React.memo(({ project }) => {
                       <div className='flex flex-col gap-y-2 mb-2' data-testid='project-product'>
                         <label className={classNames(
                           { 'required-field': ownsAnyProduct },
-                          'text-xl text-dial-blue'
+                          'text-dial-sapphire'
                         )}>
                           {format('project.product')}
                         </label>
@@ -267,7 +267,7 @@ const ProjectForm = React.memo(({ project }) => {
                     )}
                     {!slug && (isAdminUser || ownsAnyOrganization) && (
                       <div className='flex flex-col gap-y-2 mb-2' data-testid='project-organization'>
-                        <label className='text-xl text-dial-blue'>
+                        <label className='text-dial-sapphire'>
                           {format('project.organization')}
                         </label>
                         {isAdminUser ? (
@@ -295,7 +295,7 @@ const ProjectForm = React.memo(({ project }) => {
                   </div>
                   <div className='w-full lg:w-1/2'>
                     <div className='block flex flex-col gap-y-2' data-testid='project-description'>
-                      <label className='text-xl text-dial-blue required-field'>
+                      <label className='text-dial-sapphire required-field'>
                         {format('project.description')}
                       </label>
                       <Controller

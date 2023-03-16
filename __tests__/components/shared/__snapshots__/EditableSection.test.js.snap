@@ -13,7 +13,7 @@ exports[`Unit test for the Editable Section component. Should match snapshot - w
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Mock Section Header
       </div>
@@ -57,7 +57,7 @@ exports[`Unit test for the Editable Section component. Should match snapshot - w
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Mock Section Header
       </div>
@@ -83,7 +83,7 @@ exports[`Unit test for the Editable Section component. Should switch to edit mod
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Mock Section Header
       </div>

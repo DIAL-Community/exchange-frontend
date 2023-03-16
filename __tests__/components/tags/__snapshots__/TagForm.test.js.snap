@@ -66,7 +66,7 @@ exports[`Unit tests for the TagForm component. Should match snapshot - create. 1
                 class="pb-12 mb-4 flex flex-col gap-3"
               >
                 <div
-                  class="text-2xl font-bold text-dial-blue pb-4"
+                  class="text-2xl font-semibold text-dial-sapphire pb-4"
                 >
                   Create New Tag
                 </div>
@@ -75,7 +75,7 @@ exports[`Unit tests for the TagForm component. Should match snapshot - create. 1
                   data-testid="tag-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -93,7 +93,7 @@ exports[`Unit tests for the TagForm component. Should match snapshot - create. 1
                   class="block flex flex-col gap-y-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Description
                   </label>
@@ -206,7 +206,7 @@ exports[`Unit tests for the TagForm component. Should match snapshot - edit. 1`]
                 class="pb-12 mb-4 flex flex-col gap-3"
               >
                 <div
-                  class="text-2xl font-bold text-dial-blue pb-4"
+                  class="text-2xl font-semibold text-dial-sapphire pb-4"
                 >
                   Edit Example Tag
                 </div>
@@ -215,7 +215,7 @@ exports[`Unit tests for the TagForm component. Should match snapshot - edit. 1`]
                   data-testid="tag-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -233,7 +233,7 @@ exports[`Unit tests for the TagForm component. Should match snapshot - edit. 1`]
                   class="block flex flex-col gap-y-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Description
                   </label>

@@ -9,6 +9,7 @@ import { UseCaseFilters } from '../filter/element/UseCase'
 import { WorkflowFilters } from '../filter/element/Workflow'
 import { parseQuery } from '../shared/SharableLink'
 import Pill from '../shared/Pill'
+import { CategoryTypeFilters } from '../filter/element/CategoryType'
 
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
@@ -22,13 +23,12 @@ const BuildingBlockActiveFilter = () => {
   const { showMature, sdgs, useCases, workflows } = useContext(BuildingBlockFilterContext)
   const { setShowMature, setSDGs, setUseCases, setWorkflows } = useContext(BuildingBlockFilterDispatchContext)
 
-  const filterCount = () => {
-    let count = 0
-    if (showMature) {
-      count = count + 1
-    }
+  const { categoryTypes } = useContext(BuildingBlockFilterContext)
+  const { setCategoryTypes } = useContext(BuildingBlockFilterDispatchContext)
 
-    count = count + sdgs.length + useCases.length + workflows.length
+  const filterCount = () => {
+    let count = showMature ? 1 : 0
+    count += sdgs.length + useCases.length + workflows.length + categoryTypes.length
 
     return count
   }
@@ -39,6 +39,7 @@ const BuildingBlockActiveFilter = () => {
     setSDGs([])
     setUseCases([])
     setWorkflows([])
+    setCategoryTypes([])
   }
 
   const sharableLink = () => {
@@ -49,6 +50,9 @@ const BuildingBlockActiveFilter = () => {
     const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
     const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
     const workflowFilters = workflows.map(workflow => `workflows=${workflow.value}--${workflow.label}`)
+    const categoryTypeFilters = categoryTypes.map(
+      categoryType => `categoryTypes=${categoryType.value}--${categoryType.label}`
+    )
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
@@ -56,7 +60,8 @@ const BuildingBlockActiveFilter = () => {
       showMatureFilter,
       ...sdgFilters,
       ...useCaseFilters,
-      ...workflowFilters
+      ...workflowFilters,
+      ...categoryTypeFilters
     ].filter(f => f).join('&')
 
     return `${baseUrl}/${basePath}?${filterParameters}`
@@ -73,6 +78,7 @@ const BuildingBlockActiveFilter = () => {
       parseQuery(query, 'sdgs', sdgs, setSDGs)
       parseQuery(query, 'useCases', useCases, setUseCases)
       parseQuery(query, 'workflows', workflows, setWorkflows)
+      parseQuery(query, 'categoryTypes', categoryTypes, setCategoryTypes)
     }
   })
 
@@ -90,6 +96,7 @@ const BuildingBlockActiveFilter = () => {
         <SDGFilters {...{ sdgs, setSDGs }} />
         <UseCaseFilters {...{ useCases, setUseCases }} />
         <WorkflowFilters {...{ workflows, setWorkflows }} />
+        <CategoryTypeFilters {...{ categoryTypes, setCategoryTypes }} />
 
         <div className='flex px-2 py-1 mt-2 text-sm text-dial-gray-dark'>
           <a

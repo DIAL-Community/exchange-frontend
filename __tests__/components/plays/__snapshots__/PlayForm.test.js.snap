@@ -99,7 +99,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Play
             </div>
@@ -111,7 +111,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                 data-testid="play-name"
               >
                 <label
-                  class="flex flex-col gap-y-2 text-xl text-dial-blue mb-2"
+                  class="flex flex-col gap-y-2 text-dial-sapphire mb-2"
                 >
                   <p
                     class="required-field"
@@ -131,7 +131,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                   data-testid="play-tags"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                     for="name"
                   >
                     Tags
@@ -220,54 +220,46 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                   >
                     <div>
                       <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
+                        class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                         data-testid="pill"
                       >
                         Tag: tag_1
                         <svg
-                          class="ml-3 text-2xl cursor-pointer"
+                          class="cursor-pointer opacity-50"
                           data-testid="remove-button"
                           fill="currentColor"
-                          height="1em"
+                          height="1.5em"
                           stroke="currentColor"
                           stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
+                          viewBox="0 0 512 512"
+                          width="1.5em"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                            d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                           />
                         </svg>
                       </div>
                     </div>
                     <div>
                       <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
+                        class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                         data-testid="pill"
                       >
                         Tag: tag_2
                         <svg
-                          class="ml-3 text-2xl cursor-pointer"
+                          class="cursor-pointer opacity-50"
                           data-testid="remove-button"
                           fill="currentColor"
-                          height="1em"
+                          height="1.5em"
                           stroke="currentColor"
                           stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
+                          viewBox="0 0 512 512"
+                          width="1.5em"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                            d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                           />
                         </svg>
                       </div>
@@ -279,7 +271,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                   data-testid="play-products"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                   >
                     Products
                     <div
@@ -366,52 +358,44 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                     class="flex flex-wrap gap-3 mt-2"
                   >
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       product 1
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       product 2
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
@@ -422,7 +406,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                   data-testid="play-buildingBlocks"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                   >
                     Building Blocks
                     <div
@@ -509,52 +493,44 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                     class="flex flex-wrap gap-3 mt-2"
                   >
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       bb 1
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       bb 2
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
@@ -567,7 +543,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                 style="min-height: 20rem;"
               >
                 <label
-                  class="block text-xl text-dial-blue flex flex-col gap-y-2"
+                  class="block text-dial-sapphire flex flex-col gap-y-2"
                 >
                   <p
                     class="required-field"
@@ -608,7 +584,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
               class="flex flex-col gap-y-2 mt-4"
             >
               <div
-                class="text-xl text-dial-blue font-bold"
+                class="text-dial-sapphire font-bold"
               >
                 Moves
               </div>
@@ -793,7 +769,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Play
             </div>
@@ -805,7 +781,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                 data-testid="play-name"
               >
                 <label
-                  class="flex flex-col gap-y-2 text-xl text-dial-blue mb-2"
+                  class="flex flex-col gap-y-2 text-dial-sapphire mb-2"
                 >
                   <p
                     class="required-field"
@@ -825,7 +801,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                   data-testid="play-tags"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                     for="name"
                   >
                     Tags
@@ -918,7 +894,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                   data-testid="play-products"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                   >
                     Products
                     <div
@@ -1010,7 +986,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                   data-testid="play-buildingBlocks"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                   >
                     Building Blocks
                     <div
@@ -1104,7 +1080,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                 style="min-height: 20rem;"
               >
                 <label
-                  class="block text-xl text-dial-blue flex flex-col gap-y-2"
+                  class="block text-dial-sapphire flex flex-col gap-y-2"
                 >
                   <p
                     class="required-field"
@@ -1145,7 +1121,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
               class="flex flex-col gap-y-2 mt-4"
             >
               <div
-                class="text-xl text-dial-blue font-bold"
+                class="text-dial-sapphire font-bold"
               >
                 Moves
               </div>
@@ -1261,7 +1237,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Play
             </div>
@@ -1273,7 +1249,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                 data-testid="play-name"
               >
                 <label
-                  class="flex flex-col gap-y-2 text-xl text-dial-blue mb-2"
+                  class="flex flex-col gap-y-2 text-dial-sapphire mb-2"
                 >
                   <p
                     class="required-field"
@@ -1293,7 +1269,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                   data-testid="play-tags"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                     for="name"
                   >
                     Tags
@@ -1382,54 +1358,46 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                   >
                     <div>
                       <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
+                        class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                         data-testid="pill"
                       >
                         Tag: tag_1
                         <svg
-                          class="ml-3 text-2xl cursor-pointer"
+                          class="cursor-pointer opacity-50"
                           data-testid="remove-button"
                           fill="currentColor"
-                          height="1em"
+                          height="1.5em"
                           stroke="currentColor"
                           stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
+                          viewBox="0 0 512 512"
+                          width="1.5em"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                            d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                           />
                         </svg>
                       </div>
                     </div>
                     <div>
                       <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
+                        class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                         data-testid="pill"
                       >
                         Tag: tag_2
                         <svg
-                          class="ml-3 text-2xl cursor-pointer"
+                          class="cursor-pointer opacity-50"
                           data-testid="remove-button"
                           fill="currentColor"
-                          height="1em"
+                          height="1.5em"
                           stroke="currentColor"
                           stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
+                          viewBox="0 0 512 512"
+                          width="1.5em"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                            d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                           />
                         </svg>
                       </div>
@@ -1441,7 +1409,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                   data-testid="play-products"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                   >
                     Products
                     <div
@@ -1528,52 +1496,44 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                     class="flex flex-wrap gap-3 mt-2"
                   >
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       product 1
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       product 2
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
@@ -1584,7 +1544,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                   data-testid="play-buildingBlocks"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                   >
                     Building Blocks
                     <div
@@ -1671,52 +1631,44 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                     class="flex flex-wrap gap-3 mt-2"
                   >
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       bb 1
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       bb 2
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
@@ -1729,7 +1681,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                 style="min-height: 20rem;"
               >
                 <label
-                  class="block text-xl text-dial-blue flex flex-col gap-y-2"
+                  class="block text-dial-sapphire flex flex-col gap-y-2"
                 >
                   <p
                     class="required-field"
@@ -1770,7 +1722,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
               class="flex flex-col gap-y-2 mt-4"
             >
               <div
-                class="text-xl text-dial-blue font-bold"
+                class="text-dial-sapphire font-bold"
               >
                 Moves
               </div>

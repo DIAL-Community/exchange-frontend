@@ -1112,7 +1112,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Product maturity scores
       </div>

@@ -97,6 +97,7 @@ describe('Unit tests for BuildingBlockForm component.', () => {
           name: 'Test Building Block',
           slug: 'test_buidling_block',
           maturity: 'DRAFT',
+          category: null,
           specUrl: 'testbuidlingblock.com',
           description: '<p>test building block description</p>'
         },
@@ -125,6 +126,7 @@ describe('Unit tests for BuildingBlockForm component.', () => {
           name: 'Test Building Block',
           slug: 'test_buidling_block',
           maturity: 'DRAFT',
+          category: null,
           specUrl: 'testbuidlingblock.com',
           description: '<p>test building block description</p>'
         },
