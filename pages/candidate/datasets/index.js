@@ -29,23 +29,20 @@ const Datasets = () => {
       <GradientBackground />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Header />
-      { loadingUserSession ? <Loading /> : isAdminUser ? (
-        <>
+      {loadingUserSession ? <Loading /> : isAdminUser ? (
+        <ClientOnly>
           <TabNav activeTab='filter.entity.candidateDatasets' />
           <MobileNav activeTab='filter.entity.candidateDatasets' />
-          <ClientOnly>
-            <PageContent
-              activeTab='filter.entity.candidateDatasets'
-              content={<DatasetListQuery />}
-              searchFilter={
-                <SearchFilter
-                  {...{ search, setSearch }}
-                  hint='filter.entity.candidateDatasets'
-                />
-              }
-            />
-          </ClientOnly>
-        </>
+          <PageContent
+            content={<DatasetListQuery />}
+            searchFilter={
+              <SearchFilter
+                {...{ search, setSearch }}
+                hint='filter.entity.candidateDatasets'
+              />
+            }
+          />
+        </ClientOnly>
       ) : <Unauthorized />}
       <Footer />
     </>

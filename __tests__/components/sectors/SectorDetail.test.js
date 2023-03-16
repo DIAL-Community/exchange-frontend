@@ -15,6 +15,7 @@ describe('Unit test for the SectorDetail component', () => {
   const mockSectorList = generateMockApolloData(SECTOR_SEARCH_QUERY, { search: '', locale: 'en' }, null, sectors)
 
   beforeAll(() => {
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 

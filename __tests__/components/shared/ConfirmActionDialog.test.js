@@ -16,9 +16,10 @@ describe('Unit test for the ConfirmActionDialog component.', () => {
   const mockOnConfirm = jest.fn()
   const CONFIRM_ACTION_DIALOG_TEST_ID = 'confirm-action-dialog'
 
-  beforeAll(
+  beforeAll(() => {
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
-  )
+  })
 
   test('Should match snapshot.', () => {
     const { getByTestId } = render(

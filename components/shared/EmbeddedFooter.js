@@ -20,14 +20,14 @@ const EmbeddedFooter = () => {
             <div className='py-2 px-0 2xl:px-2 text-center'>
               <span>{format('footer.icons')} </span>
               <a
-                className='border-b-2 border-transparent hover:border-dial-yellow'
+                className='border-b-2 border-transparent hover:border-dial-sunshine'
                 href='https://fontawesome.com/' target='_blank' rel='noreferrer'
               >
                 FontAwesome
               </a>
               <span> and </span>
               <a
-                className='border-b-2 border-transparent hover:border-dial-yellow'
+                className='border-b-2 border-transparent hover:border-dial-sunshine'
                 href='https://www.globalgoals.org/' target='_blank' rel='noreferrer'
               >
                 The Global Goals for Sustainable Development
@@ -42,7 +42,7 @@ const EmbeddedFooter = () => {
               <a
                 href='/privacy-policy'
                 target='_blank' rel='noreferrer'
-                className='border-b-2 border-transparent hover:border-dial-yellow'
+                className='border-b-2 border-transparent hover:border-dial-sunshine'
               >
                 {format('footer.privacyPolicy').toUpperCase()}
               </a>

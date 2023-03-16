@@ -8,7 +8,7 @@ const CategoryIndicatorDetailRight = ({ categoryIndicator, slugNameMapping }) =>
   const labelStyles = 'card-title mb-3'
 
   return (
-    <div className='px-4 text-dial-gray-dark'>
+    <div className='px-4 text-dial-gray-dark' style={{ minHeight: '50vh' }}>
       <div className='hidden lg:block'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>

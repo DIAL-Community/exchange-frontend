@@ -198,7 +198,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
           {
             showApplyLink &&
               <button
-                className='text-dial-yellow block mt-2 border-b border-transparent hover:border-dial-yellow'
+                className='text-dial-sunshine block mt-2 border-b border-transparent hover:border-dial-sunshine'
                 onClick={onSubmit} disabled={loading}
               >
                 {format('ownership.apply')}

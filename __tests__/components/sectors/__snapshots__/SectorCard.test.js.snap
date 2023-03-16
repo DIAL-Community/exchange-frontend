@@ -32,7 +32,7 @@ exports[`Unit test for the SectorCard component Should match snapshot - user is 
     class="Toastify"
   />
   <div
-    class="hover:border-dial-yellow text-button-gray border-3 border-transparent"
+    class="hover:border-dial-sunshine text-button-gray border-3 border-transparent"
     data-testid="sector-card"
   >
     <div
@@ -152,7 +152,7 @@ exports[`Unit test for the SectorCard component Should match snapshot - user is 
     class="Toastify"
   />
   <div
-    class="hover:border-dial-yellow text-button-gray border-3 border-transparent"
+    class="hover:border-dial-sunshine text-button-gray border-3 border-transparent"
     data-testid="sector-card"
   >
     <div

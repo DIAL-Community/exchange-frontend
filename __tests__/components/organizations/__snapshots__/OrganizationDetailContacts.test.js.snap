@@ -235,7 +235,7 @@ exports[`Unit test for the OrganizationDetailContacts component. Should add pill
             class="flex flex-wrap gap-3 mt-5 mx-4"
           >
             <div
-              class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+              class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
               data-testid="pill"
             >
               Name: Test Test
@@ -510,7 +510,7 @@ exports[`Unit test for the OrganizationDetailContacts component. Should clear in
             class="flex flex-wrap gap-3 mt-5 mx-4"
           >
             <div
-              class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+              class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
               data-testid="pill"
             >
               Name: Test Test

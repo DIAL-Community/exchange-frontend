@@ -13,6 +13,7 @@ export const UrlInput = React.forwardRef(
       className={classNames(
         { 'validation-error': isInvalid },
         className,
+        'border border-transparent',
         'url-input bg-white flex items-center'
       )}
     >

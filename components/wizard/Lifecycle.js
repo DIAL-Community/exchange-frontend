@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 import DigitalPrinciple from '../principles/DigitalPrinciple'
@@ -13,13 +14,18 @@ const Lifecycle = ({ wizardData, objType }) => {
     setOpenTab(tabNumber)
   }
 
-  const generateAnchorStyles = (tabNumber) => `
-    block px-5 py-3 leading-loose tracking-wide whitespace-nowrap xl:pr-24
-    ${openTab === tabNumber ? 'rounded-l-lg font-bold text-dial-gray-dark bg-dial-gray' : 'text-dial-gray-dark bg-white'}
-  `
+  const generateAnchorStyles = (tabNumber) => classNames(
+    'block px-5 py-3 leading-loose tracking-wide whitespace-nowrap xl:pr-24',
+    `${openTab === tabNumber
+      ? 'rounded-l-lg font-semibold text-dial-stratos bg-dial-lavender'
+      : 'text-dial-lavender bg-white'
+    }`
+  )
 
   const actorList = [
-    format('wizard.ideation'), format('wizard.planning'), format('wizard.implementation'),
+    format('wizard.ideation'),
+    format('wizard.planning'),
+    format('wizard.implementation'),
     format('wizard.monitoring')
   ]
 
@@ -33,8 +39,10 @@ const Lifecycle = ({ wizardData, objType }) => {
                 actorList.map((actor, index) => (
                   <li key={`actor-${index}`} className='-mb-px'>
                     <a
-                      data-toggle='tab' href={`#${actor.replace(/\s+/g, '-').toLowerCase()}`}
-                      className={generateAnchorStyles(index)} onClick={e => tabClickHandler(e, index)}
+                      data-toggle='tab'
+                      href={`#${actor.replace(/\s+/g, '-').toLowerCase()}`}
+                      className={generateAnchorStyles(index)}
+                      onClick={e => tabClickHandler(e, index)}
                     >
                       {actor}
                     </a>
@@ -44,8 +52,8 @@ const Lifecycle = ({ wizardData, objType }) => {
             </ul>
             <div
               className={`
-                col-span-2 relative flex flex-col min-w-0 break-words bg-white w-full mb-6
-                rounded-b bg-gradient-to-r from-dial-gray to-dial-gray-light
+                col-span-2 relative flex flex-col min-w-0 break-words bg-white w-full py-2
+                rounded-b bg-gradient-to-r from-dial-lavender to-dial-blue-chalk h-full
               `}
             >
               <div className='px-4 py-2'>
@@ -53,22 +61,38 @@ const Lifecycle = ({ wizardData, objType }) => {
                   {['Ideation', 'Planning', 'Implementation', 'Evaluation'].map((phase, index) => {
                     return objType === 'principles'
                       ? (
-                        <div key={phase} className={openTab === index ? 'block' : 'hidden'} id={'principle-phase-' + index}>
-                          <div className='pb-2 grid lg:grid-cols-3'>
+                        <div
+                          key={phase}
+                          className={openTab === index ? 'block' : 'hidden'}
+                          id={'principle-phase-' + index}
+                        >
+                          <div className='grid lg:grid-cols-3'>
                             {wizardData.digitalPrinciples.map((principle) => {
                               if (principle.phase.includes(phase)) {
-                                return (<div key={`${principle.name}`}><DigitalPrinciple principle={principle} /></div>)
+                                return (
+                                  <div key={`${principle.name}`}>
+                                    <DigitalPrinciple principle={principle} />
+                                  </div>
+                                )
                               }
                             })}
                           </div>
                         </div>
                       )
                       : (
-                        <div key={phase} className={openTab === index ? 'block' : 'hidden'} id={'resource-phase-' + index}>
-                          <div className='pb-6 grid lg:grid-cols-3'>
+                        <div
+                          key={phase}
+                          className={openTab === index ? 'block' : 'hidden'}
+                          id={'resource-phase-' + index}
+                        >
+                          <div className='grid lg:grid-cols-3'>
                             {wizardData.resources.map((resource) => {
                               if (resource.phase.includes(phase)) {
-                                return (<div key={`${resource.name}`}><Resource resource={resource} listType='list' /></div>)
+                                return (
+                                  <div key={`${resource.name}`}>
+                                    <Resource resource={resource} listType='list' />
+                                  </div>
+                                )
                               }
                             })}
                           </div>

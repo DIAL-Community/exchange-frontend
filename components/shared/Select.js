@@ -44,7 +44,7 @@ const Select = React.forwardRef(({
     container: (provided, { isFocused }) => ({
       ...provided,
       boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-      outline: isFocused ? '3px solid #3F9EDD' : isInvalid ? '1px solid #e11d48' : '1px solid #323245',
+      outline: isFocused ? '2px solid #3F9EDD' : isInvalid ? '1px solid #e11d48' : '1px solid #323245',
       borderRadius: '0.375rem'
     }),
     control: (provided) => ({
@@ -54,15 +54,13 @@ const Select = React.forwardRef(({
       boxShadow: 'none',
       cursor: 'pointer',
       borderRadius: '0.375rem',
-      border: 0,
-      fontSize: '1.125rem'
+      border: 0
     }),
     option: (provided, { isFocused, isSelected }) => ({
       ...provided,
       cursor: 'pointer',
       backgroundColor: isSelected ? '#3F9EDD' : isFocused && '#b2daf5',
-      color: isSelected ? 'white' : '#46465a',
-      fontSize: '1.125rem'
+      color: isSelected ? 'white' : '#46465a'
     }),
     menuPortal: (provided) => ({
       ...provided,

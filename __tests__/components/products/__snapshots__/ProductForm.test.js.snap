@@ -10,7 +10,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
       style="width: auto;"
     >
       <div
-        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--error Toastify--animate Toastify__slide-enter--top-center"
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--error Toastify__toast--close-on-click Toastify--animate Toastify__slide-enter--top-center"
         id="toastId"
         style="--nth: 1; --len: 1;"
       >
@@ -233,7 +233,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                     Website
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <span
                       class="select-none text-dial-gray"
@@ -270,7 +270,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -332,7 +332,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -378,7 +378,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                     Link to Pricing Information
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -454,7 +454,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="pricing-details-editor"
@@ -500,7 +500,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
       style="width: auto;"
     >
       <div
-        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify--animate Toastify__slide-enter--top-center"
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify__toast--close-on-click Toastify--animate Toastify__slide-enter--top-center"
         id="toastId"
         style="--nth: 1; --len: 1;"
       >
@@ -717,7 +717,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                     Website
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <span
                       class="select-none text-dial-gray"
@@ -754,7 +754,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -816,7 +816,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -862,7 +862,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                     Link to Pricing Information
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -938,7 +938,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="pricing-details-editor"
@@ -1096,7 +1096,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                     Website
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -1128,7 +1128,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -1190,7 +1190,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -1236,7 +1236,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                     Link to Pricing Information
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -1312,7 +1312,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="pricing-details-editor"
@@ -1519,7 +1519,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                     Website
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <span
                       class="select-none text-dial-gray"
@@ -1556,7 +1556,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -1618,7 +1618,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -1664,7 +1664,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                     Link to Pricing Information
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -1740,7 +1740,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="pricing-details-editor"

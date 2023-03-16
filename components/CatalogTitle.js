@@ -5,7 +5,7 @@ const CatalogTitle = () => {
   const format = (id, values) => formatMessage({ id }, { ...values })
 
   return (
-    <div className='text-center text-3xl font-bold pt-7 pb-5 text-button-gray'>
+    <div className='text-center text-2xl font-bold pt-7 pb-5 text-button-gray'>
       {format('landing.title.firstLine')} {format('landing.title.secondLine')}
     </div>
   )

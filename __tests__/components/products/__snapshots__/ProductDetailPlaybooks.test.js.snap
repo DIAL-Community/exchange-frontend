@@ -29,24 +29,19 @@ exports[`Unit tests for the ProductDetailPlaybooks component. Should match snaps
         target="_blank"
       >
         <div
-          class="group 
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="flex flex-col md:flex-row flex-wrap my-5 px-4 gap-2"
+              class="relative flex flex-row gap-x-2 lg:gap-x-4 px-4 py-6"
             >
               <div
-                class=" 
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
- pr-3 text-base font-semibold group-hover:text-dial-yellow"
+                class="w-10/12 lg:w-6/12 flex gap-3 text-dial-gray-dark my-auto"
               >
                 <div
-                  class="m-auto w-3/5 h-3/5 relative"
+                  class="block w-8 relative"
                 >
                   <span
                     style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -62,11 +57,31 @@ exports[`Unit tests for the ProductDetailPlaybooks component. Should match snaps
                     <noscript />
                   </span>
                 </div>
-                Playbook 1
+                <div
+                  class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
+                >
+                  Playbook 1
+                </div>
               </div>
               <div
                 class="flex gap-1.5 text-sm lg:ml-auto"
-              />
+              >
+                <div
+                  class="flex flex-row"
+                  data-testid="horizontal-items-list"
+                >
+                  <div
+                    class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
+                  >
+                    <div
+                      class="bg-dial-alice-blue p-2 rounded"
+                      data-testid="items-not-applicable"
+                    >
+                      N/A
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -76,24 +91,19 @@ exports[`Unit tests for the ProductDetailPlaybooks component. Should match snaps
         target="_blank"
       >
         <div
-          class="group 
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="flex flex-col md:flex-row flex-wrap my-5 px-4 gap-2"
+              class="relative flex flex-row gap-x-2 lg:gap-x-4 px-4 py-6"
             >
               <div
-                class=" 
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
- pr-3 text-base font-semibold group-hover:text-dial-yellow"
+                class="w-10/12 lg:w-6/12 flex gap-3 text-dial-gray-dark my-auto"
               >
                 <div
-                  class="m-auto w-3/5 h-3/5 relative"
+                  class="block w-8 relative"
                 >
                   <span
                     style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -109,11 +119,31 @@ exports[`Unit tests for the ProductDetailPlaybooks component. Should match snaps
                     <noscript />
                   </span>
                 </div>
-                Playbook 2
+                <div
+                  class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
+                >
+                  Playbook 2
+                </div>
               </div>
               <div
                 class="flex gap-1.5 text-sm lg:ml-auto"
-              />
+              >
+                <div
+                  class="flex flex-row"
+                  data-testid="horizontal-items-list"
+                >
+                  <div
+                    class="flex flex-row flex-wrap overflow-hidden max-h-8 gap-1"
+                  >
+                    <div
+                      class="bg-dial-alice-blue p-2 rounded"
+                      data-testid="items-not-applicable"
+                    >
+                      N/A
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

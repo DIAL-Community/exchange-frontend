@@ -68,7 +68,9 @@ exports[`Unit test for the SectorDetail component Should match snapshot - for se
 `;
 
 exports[`Unit test for the SectorDetail component Should match snapshot - for sector with parent sector. 2`] = `
-<div>
+<div
+  aria-hidden="true"
+>
   <div
     class="Toastify"
   />
@@ -131,7 +133,9 @@ exports[`Unit test for the SectorDetail component Should match snapshot - for se
 `;
 
 exports[`Unit test for the SectorDetail component Should match snapshot - for sector without parent sector. 2`] = `
-<div>
+<div
+  aria-hidden="true"
+>
   <div
     class="Toastify"
   />

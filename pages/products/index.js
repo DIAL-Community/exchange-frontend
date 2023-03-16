@@ -9,7 +9,6 @@ import QueryNotification from '../../components/shared/QueryNotification'
 import TabNav from '../../components/main/TabNav'
 import MobileNav from '../../components/main/MobileNav'
 import PageContent from '../../components/main/PageContent'
-import ProductHint from '../../components/filter/hint/ProductHint'
 import ProductFilter from '../../components/products/ProductFilter'
 import ProductActiveFilter from '../../components/products/ProductActiveFilter'
 import SearchFilter from '../../components/shared/SearchFilter'
@@ -21,6 +20,7 @@ const ProductListQuery = dynamic(() => import('../../components/products/Product
 const Products = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const { search } = useContext(ProductFilterContext)
   const { setSearch } = useContext(ProductFilterDispatchContext)
 
@@ -39,16 +39,20 @@ const Products = () => {
       <GradientBackground />
       <Header />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
-      <TabNav activeTab='filter.entity.products' />
-      <MobileNav activeTab='filter.entity.products' />
       <ClientOnly>
+        <TabNav activeTab='filter.entity.products' />
+        <MobileNav activeTab='filter.entity.products' />
         <PageContent
           activeTab='filter.entity.products'
           filter={<ProductFilter />}
           content={<ProductListQuery />}
-          searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.products' />}
+          searchFilter={
+            <SearchFilter
+              {...{ search, setSearch }}
+              hint='filter.entity.products'
+            />
+          }
           activeFilter={<ProductActiveFilter />}
-          hint={<ProductHint />}
         />
       </ClientOnly>
       <Footer />

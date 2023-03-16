@@ -2,7 +2,7 @@
 // Only translate texts inside curly brace after 'one', 'other', and '= 0'
 
 export const en = {
-  'app.title': 'DIAL Catalog of Digital Solutions',
+  'app.title': 'Digital Impact Exchange',
   'app.edit': 'Edit',
   'app.comment': 'Comments',
   'app.nocomment': 'Start a Conversation',
@@ -35,6 +35,9 @@ export const en = {
   'app.back': 'Back',
   'app.email': 'Email Address',
   'app.lastUpdated': 'Updated: {lastUpdated}.',
+  'app.filter': 'Filter',
+  'app.selectNavigation': 'Select a resource',
+
   'general.pastSuffix': 'ago',
 
   'profile.profile': 'User Profile',
@@ -74,7 +77,7 @@ export const en = {
   'header.about': 'About',
   'header.documentation': 'Documentation Portal',
   'header.confluence': 'Catalog Wiki Page',
-  'header.admin': 'Admin Menu',
+  'header.admin': 'Admin',
   'header.selectLanguage': 'Select Language',
   'header.english': 'English (en)',
   'header.german': 'Deutsch (de)',
@@ -111,6 +114,13 @@ export const en = {
   'footer.view-gitlab': 'View this project on GitLab',
   'footer.follow': 'Follow DIAL on social media',
   'footer.icons': 'Icons provided unmodified by ',
+
+  'footer.connectWithUs': 'Connect with us',
+  'footer.signUpEmailAddress': 'Sign up for our newsletter to learn more about DIAL and how you can be involved.',
+  'footer.subscriber': 'Your email address',
+  'footer.followUs': 'Follow us',
+  'footer.partnersAndSupporters': 'Our partners and supporters',
+
 
   'definition.title': 'The Catalog of Digital Solutions is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
   'definition.goal': 'Our goal: ',
@@ -429,7 +439,7 @@ export const en = {
   'wizard.selectSector': 'Select the sector that your project supports',
   'wizard.selectUseCase': 'Select a specific use case, if applicable',
   'wizard.selectSDG': 'Select any SDG that the project is designed to support',
-  'wizard.selectCountry': 'What country/countries will this project be implemented in?',
+  'wizard.selectCountry': 'What country(s) will this project be implemented in?',
   'wizard.selectTags': 'Select any tags that are applicable to this project',
   'wizard.selectMobile': 'Will mobile services be required for this project?',
   'wizard.sectorPlaceholder': 'Select a Sector',
@@ -463,6 +473,16 @@ export const en = {
   'wizard.bb.elearning': 'Will this project involve online learning or creation of courses and curricula?',
   'wizard.request-additional-support': 'Request additional support',
   'wizard.request-additional-support.message': 'Message',
+
+  'wizard.getStarted': 'Let\'s get started',
+  'wizard.getStarted.firstLine': `
+    The Digital Impact Exchange enables digital changemakers to connect, collaborate and exchange tools, knowledge and best practices in the collective pursuit of the Sustainable Development Goals.
+  `,
+  'wizard.getStarted.secondLine': `
+    Let’s help get you started to find you a curated list of resources,
+    tailored to wherever you are in a project lifecycle — ideation, planning,
+    implementation, or monitoring/evaluation.
+  `,
 
   'landing.subtitle': 'Digital Impact Alliance',
   'landing.title.firstLine': 'Catalog of',
@@ -511,7 +531,7 @@ export const en = {
   'general.ready-to-download': 'Your document is ready. Click to download',
 
   'view.switch.title': 'Switch View',
-  'search.input.label': 'Enter Search Term',
+  'search.input.label': 'Search in {entity}',
   'sdg.sdgTargets': 'SDG Targets',
   'sdg.useCases': 'Use Cases',
   'sdg.target.title': 'Target',
@@ -1133,6 +1153,7 @@ export const en = {
   'header.catalog': 'Catalog',
   'header.wizard': 'Recommendation Wizard',
   'header.mainMenu': 'Main Menu',
+  'map.label': 'Map',
   'map.header': 'Maps',
   'admin.links': 'Admin Links',
 
@@ -1374,8 +1395,8 @@ export const en = {
   'shared.mappingStatus.validated': 'Validated',
   'shared.maturity.draft': 'Draft',
   'shared.maturity.published': 'Published',
-  'shared.metadata.description.comprehensiveListOf': 'Comprehensive list of {entities} provided by DIAL\'s Catalog of Digital Solutions to support users in discovering digital technologies designed to address the Sustainable Development Goals (SDGs).',
-  'shared.metadata.description.listOfKey': 'List of key {entities} provided by DIAL’s Catalog of Digital Solutions, to support users in the deployment of digital technologies designed to address the Sustainable Development Goals (SDGs).',
+  'shared.metadata.description.comprehensiveListOf': 'Comprehensive list of {entities} provided by the Digital Impact Exchange to support users in discovering digital technologies designed to address the Sustainable Development Goals (SDGs).',
+  'shared.metadata.description.listOfKey': 'List of key {entities} provided by the Digital Impact Exchange, to support users in the deployment of digital technologies designed to address the Sustainable Development Goals (SDGs).',
   'shared.comment.delete.confirm.message': 'Are you sure you want to delete this comment?',
   'shared.comment.delete.confirm.header': 'Deleting a comment',
   'shared.comment.no-comments': 'There are no comments',
@@ -1516,7 +1537,7 @@ export const en = {
   'paginatedSection.page.previous.label': '< Previous',
   'paginatedSection.page.next.label': 'Next >',
 
-  'intro.overview.startTour': 'Take a Tour',
+  'intro.overview.startTour': 'Getting Started',
   'intro.overview': "Welcome to the Catalog of Digital Solutions.<br /><br />Let's start with a quick product tour to get acquainted with the platform.<br /><br /><div class='text-xs'>You can exit this tour at any time by clicking the 'X' in the top right corner.</div>",
   'intro.overview.sdgFramework': 'The Catalog leverages the SDG Digital Investment Framework developed by DIAL and ITU. You can see different aspects of the Framework by clicking on the various tabs.',
   'intro.overview.entityProduct': 'The Products Tab is used to discover information on different solutions and tools.',

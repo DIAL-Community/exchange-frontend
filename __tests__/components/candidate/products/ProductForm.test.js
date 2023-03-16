@@ -49,7 +49,6 @@ describe('Unit tests for the ProductForm component.', () => {
 
     await user.type(screen.getByLabelText(/Email/), 'test@test.com')
     expect(getByTestId(CANDIDATE_PRODUCT_EMAIL_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    expect(getByTestId(CANDIDATE_PRODUCT_DESCRIPTION_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(CANDIDATE_PRODUCT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -69,7 +68,6 @@ describe('Unit tests for the ProductForm component.', () => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
     })
     expect(getByTestId(CANDIDATE_PRODUCT_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    expect(getByTestId(CANDIDATE_PRODUCT_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test product name')
     expect(getByTestId(CANDIDATE_PRODUCT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)

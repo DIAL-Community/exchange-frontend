@@ -22,7 +22,7 @@ export const HtmlEditor = ({
       {loading && (
         <FaSpinner size='2em' className='absolute text-lg inset-x-1/2 top-10 spinner' />
       )}
-      <div className={classNames({ 'validation-error': isInvalid }, className, 'htmlEditor')}>
+      <div className={classNames({ 'validation-error': isInvalid }, className, 'html-editor')}>
         <Editor
           id={editorId || 'tinymce-editor'}
           apiKey={process.env.NEXT_PUBLIC_EDITOR_KEY}
@@ -61,8 +61,7 @@ export const HtmlEditor = ({
                 height: 100%
               }
               body {
-                font-family: Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-                  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+                font-family: 'Poppins', sans-serif;
                 font-size: 16px
               }
               .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {

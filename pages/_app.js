@@ -27,7 +27,7 @@ import '../styles/playbook.css'
 import '../styles/infinite.css'
 import '../styles/prismjs-highlight.css'
 import '../styles/swagger-ui.css'
-import '../styles/wmde-override.css'
+import '../styles/overrides.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'handsontable/dist/handsontable.full.css'
 import 'intro.js/introjs.css'
@@ -63,7 +63,7 @@ const ApplicationDefaultContexts = ({ children }) => {
           <DefaultSeo
             titleTemplate={`%s | ${format('app.title')}`}
             defaultTitle={format('app.title')}
-            description={format('landing.blurb')}
+            description={format('wizard.getStarted.firstLine')}
             additionalLinkTags={[{
               rel: 'icon',
               href: '/favicon.ico'
@@ -73,10 +73,10 @@ const ApplicationDefaultContexts = ({ children }) => {
               type: 'website',
               images: [
                 {
-                  url: 'https://solutions.dial.community/images/hero-image/hero-image.png',
+                  url: 'https://exchange.dial.global/images/hero-image/exchange-hero.png',
                   width: 700,
                   height: 380,
-                  alt: 'Banner of DIAL Catalog of Digital Solutions'
+                  alt: 'Banner of Digital Impact Exchange'
                 }
               ]
             }}

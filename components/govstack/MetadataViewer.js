@@ -8,8 +8,8 @@ import { MetadataContext } from './MetadataContext'
 
 const containerElementStyle = `
   border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-building-block hover:text-dial-yellow
+  border-transparent hover:border-dial-sunshine
+  text-building-block hover:text-dial-sunshine
 `
 
 const MetadataViewer = () => {

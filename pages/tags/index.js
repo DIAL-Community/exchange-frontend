@@ -10,6 +10,7 @@ import { Loading, Unauthorized } from '../../components/shared/FetchStatus'
 import ClientOnly from '../../lib/ClientOnly'
 import { useUser } from '../../lib/hooks'
 import TagForm from '../../components/tags/TagForm'
+import PageContent from '../../components/main/PageContent'
 const TagsListQuery = dynamic(() => import('../../components/tags/TagList'), { ssr: false })
 
 const Tags = () => {
@@ -30,16 +31,20 @@ const Tags = () => {
       <ClientOnly>
         {loadingUserSession ? <Loading /> : isAdminUser ? (
           <>
-            <SearchFilter
-              search={search}
-              setSearch={setSearch}
-              onCreateNewClick={toggleFormDialog}
-              hint='filter.entity.tags'
-              switchView={false}
-              exportJson={false}
-              exportCsv={false}
+            <PageContent
+              content={<TagsListQuery />}
+              searchFilter={
+                <SearchFilter
+                  search={search}
+                  setSearch={setSearch}
+                  onCreateNewClick={toggleFormDialog}
+                  hint='filter.entity.tags'
+                  switchView={false}
+                  exportJson={false}
+                  exportCsv={false}
+                />
+              }
             />
-            <TagsListQuery />
             <TagForm isOpen={isFormDialogOpen} onClose={toggleFormDialog} />
           </>
         ) : <Unauthorized />}

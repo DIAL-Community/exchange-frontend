@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit test for the WizardRequestAdditionalSupportDialog component. Should display validation errors after clicking the "Confirm" button. 1`] = `
+exports[`Unit test for the AdditionalSupportDialog component. Should display validation errors after clicking the "Confirm" button. 1`] = `
 <div
   aria-describedby="headlessui-description-:r8:"
   aria-modal="true"
@@ -144,7 +144,7 @@ exports[`Unit test for the WizardRequestAdditionalSupportDialog component. Shoul
 </div>
 `;
 
-exports[`Unit test for the WizardRequestAdditionalSupportDialog component. Should match snapshot. 1`] = `
+exports[`Unit test for the AdditionalSupportDialog component. Should match snapshot. 1`] = `
 <div
   aria-describedby="headlessui-description-:r2:"
   aria-modal="true"

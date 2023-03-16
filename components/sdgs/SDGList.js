@@ -1,101 +1,43 @@
 import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { HiSortAscending } from 'react-icons/hi'
 import { FilterContext } from '../context/FilterContext'
 import { SDGFilterContext } from '../context/SDGFilterContext'
 import NotFound from '../shared/NotFound'
 import { Loading, Error } from '../shared/FetchStatus'
+import { SDGS_QUERY } from '../../queries/sdg'
 import SDGCard from './SDGCard'
 
 const DEFAULT_PAGE_SIZE = 20
-
-const SDGS_QUERY = gql`
-query SearchSDGs(
-  $first: Int,
-  $after: String,
-  $sdgs: [String!],
-  $search: String!
-  ) {
-  searchSdgs(
-    first: $first,
-    after: $after,
-    sdgs: $sdgs,
-    search: $search
-  ) {
-    totalCount
-    pageInfo {
-      endCursor
-      startCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    nodes {
-      id
-      name
-      slug
-      imageFile
-      longTitle
-      sdgTargets {
-        id
-        name
-        targetNumber
-        useCases {
-          id
-          slug
-          name
-          imageFile
-        }
-      }
-    }
-  }
-}
-`
 
 const SDGList = (props) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
-  const gridStyles = `grid ${displayType === 'card'
-    ? `grid-cols-1 gap-4
-       ${filterDisplayed ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'}`
-    : 'grid-cols-1'
-    }`
+  const gridStyles = `
+    grid grid-cols-1
+    ${displayType === 'card' && 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4'}
+  `
 
   return (
     <>
       <div className={gridStyles}>
         {
           displayType === 'list' &&
-            <div className='grid grid-cols-1 md:grid-cols-6 gap-4 my-3 px-4'>
-              <div
-                className={`
-                  col-span-5 md:col-span-3 lg:col-span-2 whitespace-nowrap
-                  text-sm font-semibold text-sdg opacity-80
-                `}
-              >
+            <div className='flex gap-x-2 lg:gap-x-4 px-4 my-3 px-4 text-sm font-semibold'>
+              <div className='w-10/12 lg:w-4/12 opacity-80'>
                 {format('sdg.header').toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div
-                className={`
-                  hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
-                  md:col-span-3 lg:col-span-4 text-sm font-semibold text-use-case opacity-50
-                `}
-              >
+              <div className='hidden lg:block w-8/12 lg:w-7/12 opacity-50'>
                 {format('exampleOf.entity', { entity: format('useCase.header') }).toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
             </div>
         }
         {
           props.sdgList.length > 0
-            ? props.sdgList.map((sdg) => (
-              <SDGCard key={sdg.id} listType={displayType} {...{ sdg, filterDisplayed }} />
-            ))
+            ? props.sdgList.map((sdg) => <SDGCard key={sdg.id} listType={displayType} sdg={sdg} />)
             : (
               <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
                 {format('noResults.entity', { entity: format('sdg.label').toLowerCase() })}
@@ -108,7 +50,7 @@ const SDGList = (props) => {
 }
 
 const SDGListQuery = () => {
-  const { displayType, filterDisplayed, setResultCounts } = useContext(FilterContext)
+  const { displayType, setResultCounts } = useContext(FilterContext)
   const { sdgs, search } = useContext(SDGFilterContext)
 
   const { formatMessage } = useIntl()
@@ -156,13 +98,13 @@ const SDGListQuery = () => {
 
   return (
     <InfiniteScroll
-      className='relative px-2 mt-3 pb-8 infinite-scroll-default-height'
+      className='relative infinite-scroll-default-height'
       dataLength={nodes.length}
       next={handleLoadMore}
       hasMore={pageInfo.hasNextPage}
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
-      <SDGList sdgList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
+      <SDGList sdgList={nodes} displayType={displayType} />
     </InfiniteScroll>
   )
 }

@@ -39,6 +39,7 @@ export const ProductAutocomplete = ({
       <Select
         async
         aria-label={format('filter.byEntity', { entity: format('product.label') })}
+        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) => fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchedProductsCallback)}

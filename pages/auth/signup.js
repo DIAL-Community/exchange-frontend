@@ -203,7 +203,7 @@ const SignUp = () => {
                     <div className='flex'>
                       <Link href='/auth/signin'>
                         <a
-                          className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow'
+                          className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-sunshine'
                           href='navigate-to-signin'
                         >
                           {format('app.signIn')}
@@ -212,7 +212,7 @@ const SignUp = () => {
                       <div className='border-r-2 border-dial-gray-dark mx-2' />
                       <Link href='/auth/reset-password'>
                         <a
-                          className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow'
+                          className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-sunshine'
                           href='navigate-to-reset'
                         >
                           {format('signIn.forgetPassword')}
@@ -223,7 +223,7 @@ const SignUp = () => {
                   <div className='h5 mt-2'>
                     {format('signUp.privacy')}
                     <Link href='/privacy-policy'>
-                      <a className='text-dial-yellow'>{format('signUp.privacyLink')}</a>
+                      <a className='text-dial-sunshine'>{format('signUp.privacyLink')}</a>
                     </Link>
                   </div>
                 </div>

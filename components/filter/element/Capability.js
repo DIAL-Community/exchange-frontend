@@ -41,6 +41,7 @@ export const CapabilityAutocomplete = ({
       <Select
         async
         aria-label={format('filter.byEntity', { entity: format('service.label') })}
+        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) => fetchSelectOptions(client, input, CAPABILITY_SEARCH_QUERY, fetchedCapabilityCallback)}

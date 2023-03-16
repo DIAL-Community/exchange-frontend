@@ -67,11 +67,7 @@ const RubricCategoryListQuery = () => {
     return <NotFound />
   }
 
-  return (
-    <div className='px-2 mt-3 pb-8'>
-      <RubricCategoryList rubricCategoryList={data.rubricCategories.nodes} />
-    </div>
-  )
+  return <RubricCategoryList rubricCategoryList={data.rubricCategories.nodes} />
 }
 
 export default RubricCategoryListQuery

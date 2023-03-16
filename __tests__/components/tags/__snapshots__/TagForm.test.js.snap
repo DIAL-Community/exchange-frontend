@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Unit tests for the TagForm component. For mandatory field - should show validation errors and hide them on input value change. 1`] = `
-<div>
+<div
+  aria-hidden="true"
+>
   <div
     class="Toastify"
   />
@@ -12,7 +14,9 @@ exports[`Unit tests for the TagForm component. For mandatory field - should show
 `;
 
 exports[`Unit tests for the TagForm component. For mandatory field - should show validation errors. 1`] = `
-<div>
+<div
+  aria-hidden="true"
+>
   <div
     class="Toastify"
   />
@@ -111,7 +115,7 @@ exports[`Unit tests for the TagForm component. Should match snapshot - create. 1
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -150,7 +154,9 @@ exports[`Unit tests for the TagForm component. Should match snapshot - create. 1
 `;
 
 exports[`Unit tests for the TagForm component. Should match snapshot - create. 2`] = `
-<div>
+<div
+  aria-hidden="true"
+>
   <div
     class="Toastify"
   />
@@ -249,7 +255,7 @@ exports[`Unit tests for the TagForm component. Should match snapshot - edit. 1`]
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -288,7 +294,9 @@ exports[`Unit tests for the TagForm component. Should match snapshot - edit. 1`]
 `;
 
 exports[`Unit tests for the TagForm component. Should match snapshot - edit. 2`] = `
-<div>
+<div
+  aria-hidden="true"
+>
   <div
     class="Toastify"
   />

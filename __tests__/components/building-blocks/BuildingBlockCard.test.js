@@ -10,19 +10,14 @@ describe('Unit tests for the building block card.', () => {
     render(<BuildingBlockCard buildingBlock={completeBuildingBlock} listType='list' />)
     expect(screen.getByText(completeBuildingBlock.name)).toBeInTheDocument()
 
-    // 2 workflow list: mobile view + desktop view
     const workflows = screen.getAllByText(completeBuildingBlock.workflows.map(w => w.name).join(', '))
-    expect(workflows.length).toBe(2)
+    expect(workflows.length).toBe(1)
 
-    // 2 product list: mobile view + desktop view
     const products = screen.getAllByText(completeBuildingBlock.products.map(p => p.name).join(', '))
-    expect(products.length).toBe(2)
+    expect(products.length).toBe(1)
 
     expect(screen.getByText(completeBuildingBlock.name).closest('a'))
       .toHaveAttribute('href', `/building_blocks/${completeBuildingBlock.slug}`)
-
-    expect(screen.getByText(/Products/)).toBeInTheDocument()
-    expect(screen.getByText(/Workflows/)).toBeInTheDocument()
   })
 
   test('Should render minimal building block in list view.', () => {
@@ -42,13 +37,6 @@ describe('Unit tests for the building block card.', () => {
     expect(screen.queryByText(/Products:/)).toBeNull()
     expect(screen.queryByText(/Workflows:/)).toBeNull()
 
-    expect(screen.getByText('Products')).toBeInTheDocument()
-    expect(screen.getByText('Product A')).toBeInTheDocument()
-    expect(screen.getByText('Product B')).toBeInTheDocument()
-
-    expect(screen.getByText('Workflows')).toBeInTheDocument()
-    completeBuildingBlock.workflows.forEach(workflow => {
-      expect(screen.getByAltText(`Logo for: ${workflow.name}`)).toBeInTheDocument()
-    })
+    expect(screen.getAllByText('2').length).toBe(2)
   })
 })

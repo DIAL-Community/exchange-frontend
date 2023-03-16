@@ -19,6 +19,7 @@ describe('Unit tests for the SectorForm component.', () => {
 
   beforeAll(() => {
     mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 

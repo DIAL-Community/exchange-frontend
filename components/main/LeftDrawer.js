@@ -38,7 +38,7 @@ const LeftDrawer = ({ filter, hint }) => {
     <div
       onClick={divToggleDrawer}
       className={`hidden md:flex sticky h-full ${!filterDisplayed && 'cursor-pointer'}`}
-      style={{ left: 0, top: '174px', height: 'calc(100vh - 174px)' }}
+      style={{ left: 0, top: '200px', height: 'calc(100vh - 200px)' }}
     >
       <div
         className={`

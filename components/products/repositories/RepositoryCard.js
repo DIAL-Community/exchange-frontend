@@ -19,12 +19,12 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
   const cardContainerStyles = () => {
     if (listStyle === 'compact') {
       return [
-        'text-product cursor-pointer border-transparent hover:border-r-2 hover:border-dial-yellow',
+        'text-product cursor-pointer border-transparent hover:border-r-2 hover:border-dial-sunshine',
         'border'
       ]
     } else {
       return [
-        'text-product border-3 border-transparent hover:border-dial-yellow cursor-pointer',
+        'text-product border-3 border-transparent hover:border-dial-sunshine cursor-pointer',
         'border border-dial-gray hover:border-transparent card-drop-shadow'
       ]
     }

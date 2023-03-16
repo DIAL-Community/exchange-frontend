@@ -26,7 +26,7 @@ const FileUploader = React.forwardRef(({ onChange, onBlur, isInvalid = false, cl
           data-testid='file-uploader'
         />
         <div className='-ml-11 flex p-1'>
-          <span className='h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark'>
+          <span className='h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark'>
             <ImFilePicture />
           </span>
         </div>

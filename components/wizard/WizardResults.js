@@ -15,7 +15,7 @@ import Lifecycle from './Lifecycle'
 import PagedAggregatorsList from './paginated/PagedAggregatorsList'
 import PagedProductList from './paginated/PagedProductList'
 import PagedProjectList from './paginated/PagedProjectList'
-import WizardRequestAdditionalSupportDialog from './WizardRequestAdditionalSupportDialog'
+import AdditionalSupportDialog from './AdditionalSupportDialog'
 import PagedPlaybookList from './paginated/PagedPlaybookList'
 import PagedDatasetList from './paginated/PagedDatasetList'
 
@@ -40,54 +40,54 @@ const LeftMenu = ({ currentSection, clickHandler }) => {
 
   const sectionStyle = (sectionPosition) =>
     classNames(
-      { 'bg-button-gray border-l-2 border-dial-gray-light': currentSection === sectionPosition },
+      { 'bg-dial-amethyst-smoke border-l-2 border-dial-angel': currentSection === sectionPosition },
       'cursor-pointer'
     )
 
   return (
-    <div className='self-end py-3 w-3/4'>
+    <div className='self-end py-3 w-11/12'>
       <div className={sectionStyle(0)} onClick={() => clickHandler(0)}>
-        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+        <div className='p-4 border-r border-transparent hover:border-dial-sunshine'>
           {format('wizard.results.principles')}
         </div>
       </div>
       <div className={sectionStyle(1)} onClick={() => clickHandler(1)}>
-        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+        <div className='p-4 border-r border-transparent hover:border-dial-sunshine'>
           {format('wizard.results.similarProjects')}
         </div>
       </div>
       <div className={sectionStyle(2)} onClick={() => clickHandler(2)}>
-        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+        <div className='p-4 border-r border-transparent hover:border-dial-sunshine'>
           {format('wizard.results.products')}
         </div>
       </div>
       <div className={sectionStyle(3)} onClick={() => clickHandler(3)}>
-        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+        <div className='p-4 border-r border-transparent hover:border-dial-sunshine'>
           {format('wizard.results.playbooks')}
         </div>
       </div>
       <div className={sectionStyle(4)} onClick={() => clickHandler(4)}>
-        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+        <div className='p-4 border-r border-transparent hover:border-dial-sunshine'>
           {format('wizard.results.datasets')}
         </div>
       </div>
       <div className={sectionStyle(5)} onClick={() => clickHandler(5)}>
-        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+        <div className='p-4 border-r border-transparent hover:border-dial-sunshine'>
           {format('wizard.results.useCases')}
         </div>
       </div>
       <div className={sectionStyle(6)} onClick={() => clickHandler(6)}>
-        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+        <div className='p-4 border-r border-transparent hover:border-dial-sunshine'>
           {format('wizard.results.buildingBlocks')}
         </div>
       </div>
       <div className={sectionStyle(7)} onClick={() => clickHandler(7)}>
-        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+        <div className='p-4 border-r border-transparent hover:border-dial-sunshine'>
           {format('wizard.results.resources')}
         </div>
       </div>
       <div className={sectionStyle(8)} onClick={() => clickHandler(8)}>
-        <div className='p-4 border-r border-transparent hover:border-dial-yellow'>
+        <div className='p-4 border-r border-transparent hover:border-dial-sunshine'>
           {format('wizard.results.aggregators')}
         </div>
       </div>
@@ -101,7 +101,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
   const router = useRouter()
   const [currentSection, setCurrentSection] = useState(0)
   const [wizardData, setWizardData] = useState()
-  const [isRequestAdditionalSupportDialogOpen, setIsRequestAdditionalSupportDialogOpen] = useState(false)
+  const [isSupportDialogOpen, setIsSupportDialogOpen] = useState(false)
 
   const licenseTypeOptions = useMemo(() => getLicenseTypeOptions(format), [format])
 
@@ -207,22 +207,24 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
     return <div><Loading /></div>
   }
 
-  const wizardButtonStyle = 'bg-button-gray border border-dial-yellow rounded p-4 my-4 text-button-gray-light'
+  const wizardButtonStyle = 'bg-dial-stratos border border-dial-white-beech rounded p-4 text-dial-white-beech'
 
   return (
     <>
       <div className='lg:flex w-full relative wizard-content'>
-        <div className='bg-dial-gray-dark text-dial-gray-light p-6 lg:w-1/4'>
+        <div className='bg-dial-stratos text-dial-white-beech p-6 lg:w-1/4'>
           <div className='block text-2xl px-6 py-3'>{format('wizard.results')}</div>
           <div className='block py-3 px-6'>{format('wizard.resultsDesc')}</div>
           <div className='hidden lg:flex flex-col'>
             <LeftMenu currentSection={currentSection} clickHandler={clickHandler} />
-            <div className='flex flex-wrap justify-between mt-10'>
-              <button onClick={() => { stage > 0 && setStage(stage - 1) }} className={wizardButtonStyle}>
-                <img src='/icons/left-arrow.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
-                {format('wizard.back')}
-              </button>
-              <button onClick={() => setIsRequestAdditionalSupportDialogOpen(true)} className={wizardButtonStyle}>
+            <div className='flex flex-wrap ml-auto gap-2 mt-10'>
+              {stage &&
+                <button onClick={() => { stage > 0 && setStage(stage - 1) }} className={wizardButtonStyle}>
+                  <img src='/icons/left-arrow.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
+                  {format('wizard.back')}
+                </button>
+              }
+              <button onClick={() => setIsSupportDialogOpen(true)} className={wizardButtonStyle}>
                 {format('wizard.request-additional-support')}
               </button>
             </div>
@@ -230,15 +232,17 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
         </div>
         <div
           ref={parentRef}
-          className='bg-dial-gray-light text-button-gray-light p-6 lg:w-3/4 h-screen overflow-y-scroll wizard-content'
+          className='bg-dial-blue-chalk text-white-beech p-6 lg:w-3/4 overflow-y-scroll wizard-content'
+          style={{ height: 'calc(100vh - 100px)' }}
         >
-          <button
-            className='bg-dial-gray p-4 float-right rounded text-button-gray-light'
-            onClick={() => { router.push('/products') }}
-          >
-            <img src='/icons/close.svg' className='inline mr-2' alt='Back' height='20px' width='20px' />
-            {format('wizard.close')}
-          </button>
+          { stage &&
+            <button
+              className='bg-dial-angel p-4 float-right rounded text-dial-stratos'
+              onClick={() => { router.push('/products') }}
+            >
+              {format('wizard.close')}
+            </button>
+          }
           <div className='text-dial-gray-dark' ref={principlesRef}>
             <div className='text-2xl font-bold py-4'>{format('wizard.results.principles')}</div>
             <div className='pb-4 text-sm'>{format('wizard.results.principlesDesc')}</div>
@@ -420,9 +424,9 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
           </div>
         </div>
       </div>
-      <WizardRequestAdditionalSupportDialog
-        isOpen={isRequestAdditionalSupportDialogOpen}
-        onClose={() => setIsRequestAdditionalSupportDialogOpen(false)}
+      <AdditionalSupportDialog
+        isOpen={isSupportDialogOpen}
+        onClose={() => setIsSupportDialogOpen(false)}
       />
     </>
   )
