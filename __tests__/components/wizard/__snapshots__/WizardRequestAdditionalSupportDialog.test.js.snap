@@ -40,7 +40,7 @@ exports[`Unit test for the AdditionalSupportDialog component. Should display val
                 class="pb-12 mb-4 flex flex-col gap-3"
               >
                 <div
-                  class="text-2xl font-bold text-dial-blue pb-4"
+                  class="text-2xl font-semibold text-dial-sapphire pb-4"
                 >
                   Request additional support
                 </div>
@@ -184,7 +184,7 @@ exports[`Unit test for the AdditionalSupportDialog component. Should match snaps
                 class="pb-12 mb-4 flex flex-col gap-3"
               >
                 <div
-                  class="text-2xl font-bold text-dial-blue pb-4"
+                  class="text-2xl font-semibold text-dial-sapphire pb-4"
                 >
                   Request additional support
                 </div>

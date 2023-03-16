@@ -13,7 +13,7 @@ import ValidationError from '../shared/ValidationError'
 import { Loading, Unauthorized } from '../shared/FetchStatus'
 import { useUser } from '../../lib/hooks'
 import { CREATE_BUILDING_BLOCK } from '../../mutations/building-block'
-import { getMaturityOptions } from '../../lib/utilities'
+import { getCategoryOptions, getMaturityOptions } from '../../lib/utilities'
 import FileUploader from '../shared/FileUploader'
 
 const BuildingBlockForm = React.memo(({ buildingBlock }) => {
@@ -23,18 +23,15 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
   const slug = buildingBlock?.slug ?? ''
 
   const router = useRouter()
-
   const { user, isAdminUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
-
   const [reverting, setReverting] = useState(false)
 
   const { showToast } = useContext(ToastContext)
 
-  const { locale } = router
-
   const maturityOptions = getMaturityOptions(format)
+  const categoryOptions = getCategoryOptions(format)
 
   const [updateBuildingBlock, { reset }] = useMutation(CREATE_BUILDING_BLOCK, {
     onCompleted: (data) => {
@@ -75,6 +72,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
     defaultValues: {
       name: buildingBlock?.name,
       maturity: maturityOptions.find(({ value: maturity }) => maturity === buildingBlock?.maturity),
+      category: categoryOptions.find(({ value: category }) => category === buildingBlock?.category),
       description: buildingBlock?.buildingBlockDescription?.description,
       specUrl: buildingBlock?.specUrl
     }
@@ -97,14 +95,16 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
     if (user) {
       setMutating(true)
       const { userEmail, userToken } = user
-      const { name, maturity, imageFile, description, specUrl } = data
+      const { name, maturity, category, imageFile, description, specUrl } = data
       const variables = {
         name,
         slug,
         maturity: maturity.value,
+        category: category ? category.value : null,
         description,
         specUrl
       }
+
       if (imageFile) {
         variables.imageFile = imageFile[0]
       }
@@ -113,7 +113,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
         variables,
         context: {
           headers: {
-            'Accept-Language': locale,
+            'Accept-Language': router.locale,
             Authorization: `${userEmail} ${userToken}`
           }
         }
@@ -136,7 +136,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
           <div id='content' className='sm:px-0 max-w-full mx-auto'>
             <form onSubmit={handleSubmit(doUpsert)}>
               <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-                <div className='text-2xl font-bold text-dial-blue pb-4'>
+                <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                   {buildingBlock
                     ? format('app.edit-entity', { entity: buildingBlock.name })
                     : `${format('app.create-new')} ${format('building-block.label')}`
@@ -175,6 +175,23 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
                         rules={{ required: format('validation.required') }}
                       />
                       {errors.maturity && <ValidationError value={errors.maturity?.message} />}
+                    </div>
+                    <div className='form-field-wrapper' data-testid='building-block-category'>
+                      <label className='form-field-label'>
+                        {format('buildingBlock.category')}
+                      </label>
+                      <Controller
+                        name='category'
+                        control={control}
+                        render={({ field }) => (
+                          <Select
+                            {...field}
+                            isSearch
+                            options={categoryOptions}
+                            placeholder={format('buildingBlock.category')}
+                          />
+                        )}
+                      />
                     </div>
                     <div className='form-field-wrapper'>
                       <label className='form-field-label'>

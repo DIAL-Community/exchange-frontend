@@ -42,6 +42,13 @@ export const USE_CASE_STEP_QUERY = gql`
         id
         name
         slug
+        buildingBlocks {
+          slug
+          name
+          imageFile
+          maturity
+          category
+        }
       }  
       useCaseStepDescription {
         description
@@ -63,9 +70,11 @@ export const USE_CASE_STEP_QUERY = gql`
         imageFile
       }
       buildingBlocks {
-        name
         slug
+        name
         imageFile
+        maturity
+        category
       }
       markdownUrl
     }

@@ -56,7 +56,7 @@ const BuildingBlockList = (props) => {
 
 const BuildingBlockListQuery = () => {
   const { displayType, setResultCounts } = useContext(FilterContext)
-  const { sdgs, useCases, workflows, showMature, search } = useContext(BuildingBlockFilterContext)
+  const { sdgs, useCases, workflows, categoryTypes, showMature, search } = useContext(BuildingBlockFilterContext)
 
   const format = (id, value = {}) => <FormattedMessage id={id} values={{ ...value }} />
 
@@ -66,6 +66,7 @@ const BuildingBlockListQuery = () => {
       sdgs: sdgs.map(sdg => sdg.value),
       useCases: useCases.map(useCase => useCase.value),
       workflows: workflows.map(workflow => workflow.value),
+      categoryTypes: categoryTypes.map(categoryType => categoryType.value),
       showMature,
       search
     },
@@ -81,6 +82,7 @@ const BuildingBlockListQuery = () => {
         sdgs: sdgs.map(sdg => sdg.value),
         useCases: useCases.map(useCase => useCase.value),
         workflows: workflows.map(workflow => workflow.value),
+        categoryTypes: categoryTypes.map(categoryType => categoryType.value),
         showMature,
         search
       }

@@ -53,7 +53,7 @@ const AdditionalSupportDialog = ({ isOpen, onClose }) => {
       <div className='w-full'>
         <form onSubmit={handleSubmit(doUpsert)} id='wizard-request-additional-support-form'>
           <div className='pb-12 mb-4 flex flex-col gap-3'>
-            <div className='text-2xl font-bold text-dial-blue pb-4'>
+            <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
               {format('wizard.request-additional-support')}
             </div>
             <div className='form-field-wrapper' data-testid='name'>

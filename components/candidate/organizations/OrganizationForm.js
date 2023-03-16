@@ -137,7 +137,7 @@ const OrganizationForm = () => {
           <div id='content' className='sm:px-0 max-w-full mx-auto'>
             <form onSubmit={handleSubmit(doUpsert)}>
               <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-                <div className='text-2xl font-bold text-dial-blue pb-4'>
+                <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                   {format('candidateOrganization.label')}
                 </div>
                 <div className='flex flex-col lg:flex-row gap-4'>
@@ -230,7 +230,7 @@ const OrganizationForm = () => {
                     style={{ minHeight: '20rem' }}
                     data-testid='candidate-organization-description'
                   >
-                    <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
+                    <label className='block text-dial-sapphire flex flex-col gap-y-2'>
                       <p className='required-field'> {format('candidateOrganization.description')}</p>
                       <Controller
                         name='description'

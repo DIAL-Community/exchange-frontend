@@ -153,7 +153,7 @@ export const UserForm = ({ user }) => {
 
   return (
     <div className='flex flex-col'>
-      <div className='lg:w-2/5 mx-auto px-4 font-bold text-xl text-dial-blue'>
+      <div className='lg:w-2/5 mx-auto px-4 font-bold text-dial-sapphire'>
         <div className='hidden lg:block'>
           <Breadcrumb slugNameMapping={idNameMapping} />
         </div>
@@ -167,7 +167,7 @@ export const UserForm = ({ user }) => {
                 px-8 pt-6 pb-12 mb-4 mx-auto flex flex-col gap-3
               `}
             >
-              <div className='text-2xl font-bold text-dial-blue pb-4'>
+              <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {user
                   ? format('app.edit-entity', { entity: user.username })
                   : `${format('app.create-new')} ${format('user.label')}`}

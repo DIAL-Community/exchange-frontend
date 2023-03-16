@@ -29,7 +29,7 @@ const ProductListQuery = () => {
   const { displayType, setResultCounts } = useContext(FilterContext)
   const {
     origins, countries, sectors, organizations, sdgs, tags, useCases, workflows, buildingBlocks,
-    endorsers, productDeployable, isEndorsed, search, licenseTypes
+    endorsers, productDeployable, isEndorsed, search, licenseTypes, isLinkedWithDpi
   } = useContext(ProductFilterContext)
 
   const { locale } = useRouter()
@@ -52,6 +52,7 @@ const ProductListQuery = () => {
       licenseTypes: licenseTypes.map(licenseType => licenseType.value),
       productDeployable,
       isEndorsed,
+      isLinkedWithDpi,
       search
     },
     context: { headers: { 'Accept-Language': locale } },
@@ -77,6 +78,7 @@ const ProductListQuery = () => {
         licenseTypes: licenseTypes.map(licenseType => licenseType.value),
         productDeployable,
         isEndorsed,
+        isLinkedWithDpi,
         search
       }
     })

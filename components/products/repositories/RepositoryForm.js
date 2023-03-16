@@ -100,7 +100,7 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
       <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mr-auto'>
         <form onSubmit={handleSubmit(doUpsert)}>
           <div className='bg-edit border-t shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
-            <div className='text-2xl font-bold text-dial-blue pb-4'>
+            <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
               {productRepository
                 ? format('app.edit-entity', { entity: productRepository.name })
                 : `${format('app.create-new')} ${format('productRepository.label')}`
@@ -139,7 +139,7 @@ const RepositoryForm = ({ productRepository, productSlug }) => {
                 </div>
                 <div className='w-full lg:w-full flex flex-col gap-y-3'>
                   <label
-                    className='flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue'
+                    className='flex gap-x-2 mb-2 items-center self-start text-dial-sapphire'
                     data-testid='organization-is-mni'
                   >
                     <Checkbox {...register('mainRepository')} />

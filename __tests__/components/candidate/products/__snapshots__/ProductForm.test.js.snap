@@ -51,7 +51,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - candi
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Candidate Product
             </div>
@@ -146,7 +146,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - candi
                   data-testid="building-block-maturity"
                 >
                   <label
-                    class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                    class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                   >
                     License
                   </label>
@@ -231,7 +231,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - candi
                 style="min-height: 20rem;"
               >
                 <label
-                  class="block text-xl text-dial-blue flex flex-col gap-y-2"
+                  class="block text-dial-sapphire flex flex-col gap-y-2"
                 >
                   <p
                     class="required-field"

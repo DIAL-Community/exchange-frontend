@@ -256,13 +256,13 @@ export const PlayForm = ({ playbook, play }) => {
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-              <div className='text-2xl font-bold text-dial-blue pb-4'>
+              <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {play && format('app.edit-entity', { entity: play.name })}
                 {!play && `${format('app.create-new')} ${format('plays.label')}`}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
                 <div className='w-full lg:w-1/3 flex flex-col gap-y-3' data-testid='play-name'>
-                  <label className='flex flex-col gap-y-2 text-xl text-dial-blue mb-2'>
+                  <label className='flex flex-col gap-y-2 text-dial-sapphire mb-2'>
                     <p className='required-field'>{format('plays.name')}</p>
                     <Input
                       {...register('name', { required: format('validation.required') })}
@@ -272,7 +272,7 @@ export const PlayForm = ({ playbook, play }) => {
                     {errors.name && <ValidationError value={errors.name?.message} />}
                   </label>
                   <div className='flex flex-col gap-y-2' data-testid='play-tags'>
-                    <label className='text-xl text-dial-blue flex flex-col gap-y-2' htmlFor='name'>
+                    <label className='text-dial-sapphire flex flex-col gap-y-2' htmlFor='name'>
                       {format('plays.tags')}
                       <TagAutocomplete
                         {...{ tags, setTags }}
@@ -285,7 +285,7 @@ export const PlayForm = ({ playbook, play }) => {
                     </div>
                   </div>
                   <div className='flex flex-col gap-y-2' data-testid='play-products'>
-                    <label className='text-xl text-dial-blue flex flex-col gap-y-2'>
+                    <label className='text-dial-sapphire flex flex-col gap-y-2'>
                       {format('plays.products')}
                       <Select
                         async
@@ -320,7 +320,7 @@ export const PlayForm = ({ playbook, play }) => {
                     </div>
                   </div>
                   <div className='flex flex-col gap-y-2' data-testid='play-buildingBlocks'>
-                    <label className='text-xl text-dial-blue flex flex-col gap-y-2'>
+                    <label className='text-dial-sapphire flex flex-col gap-y-2'>
                       {format('plays.buildingBlocks')}
                       <Select
                         async
@@ -360,7 +360,7 @@ export const PlayForm = ({ playbook, play }) => {
                   style={{ minHeight: '20rem' }}
                   data-testid='play-description'
                 >
-                  <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
+                  <label className='block text-dial-sapphire flex flex-col gap-y-2'>
                     <p className='required-field'> {format('plays.description')}</p>
                     <Controller
                       name='description'
@@ -385,7 +385,7 @@ export const PlayForm = ({ playbook, play }) => {
                 </div>
               </div>
               <div className='flex flex-col gap-y-2 mt-4'>
-                <div className='text-xl text-dial-blue font-bold'>
+                <div className='text-dial-sapphire font-bold'>
                   {format('move.header')}
                 </div>
                 <div className='text-sm text-dial-blue'>

@@ -56,6 +56,7 @@ export const USE_CASE_DETAIL_QUERY = gql`
         name
         slug
         maturity
+        category
         imageFile
       }
       useCaseHeaders {

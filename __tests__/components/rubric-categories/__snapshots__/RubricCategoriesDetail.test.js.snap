@@ -180,7 +180,7 @@ exports[`Unit test for the RubricCategoryDetail component. Should render RubricC
             class="flex justify-between items-center mb-3"
           >
             <div
-              class="card-title text-dial-gray-dark"
+              class="card-title text-dial-sapphire"
             >
               Category Indicators
             </div>

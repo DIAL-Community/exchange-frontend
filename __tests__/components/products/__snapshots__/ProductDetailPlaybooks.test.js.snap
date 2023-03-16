@@ -13,7 +13,7 @@ exports[`Unit tests for the ProductDetailPlaybooks component. Should match snaps
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Playbooks
       </div>

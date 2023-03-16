@@ -91,7 +91,7 @@ const WorkflowCard = ({ workflow, listType }) => {
                         layout='fill'
                         objectFit='scale-down'
                         objectPosition='left'
-                        alt={format('image.alt.logoFor', { workflow: workflow.name })}
+                        alt={format('image.alt.logoFor', { name: workflow.name })}
                         src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
                       />
                     </div>

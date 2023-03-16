@@ -20,7 +20,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
       ? (
         <a href={buildingBlock.specUrl} target='_blank' rel='noreferrer'>
           <div className='flex gap-1'>
-            <div className='text-dial-sapphire text-xs font-semibold'>
+            <div className='text-dial-sapphire opacity-70  text-xs font-semibold'>
               {buildingBlock.maturity.toUpperCase()}
             </div>
             <div className='image-block-hack w-4'>
@@ -30,7 +30,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
         </a>
       )
       : (
-        <div className='text-dial-gray-dark text-xs font-semibold'>
+        <div className='text-dial-stratos opacity-70 text-xs font-semibold'>
           {buildingBlock.maturity.toUpperCase()}
         </div>
       )
@@ -95,8 +95,18 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                 >
                   <div className='flex flex-col'>
                     <div className='relative'>
+                      <div className='absolute top-2 left-2'>
+                        <div className='opacity-50 text-dial-stratos text-xs font-semibold'>
+                          {buildingBlock.category}
+                        </div>
+                      </div>
                       <div className='absolute right-2 top-2'>
                         {buildingBlock.maturity && createBuildingBlockBadge(buildingBlock)}
+                      </div>
+                    </div>
+                    <div className='flex text-dial-sapphire bg-dial-alice-blue h-24 rounded-t-lg'>
+                      <div className='px-4 text-sm text-center font-semibold m-auto'>
+                        {buildingBlock.name}
                       </div>
                     </div>
                     <div className='flex text-dial-sapphire bg-dial-alice-blue h-24 rounded-t-lg'>
@@ -110,7 +120,7 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                           layout='fill'
                           objectFit='scale-down'
                           objectPosition='left'
-                          alt={format('image.alt.logoFor', { workflow: buildingBlock.name })}
+                          alt={format('image.alt.logoFor', { name: buildingBlock.name })}
                           src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
                         />
                       </div>

@@ -114,7 +114,7 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit }) => {
 
   const editModeBody =
     <>
-      <p className='card-title text-dial-blue mb-3'>
+      <p className='card-title text-dial-stratos mb-3'>
         {format('app.assign')} {format('building-block.header')}
       </p>
       <label className='flex flex-col gap-y-2 mb-2' data-testid='building-block-search'>

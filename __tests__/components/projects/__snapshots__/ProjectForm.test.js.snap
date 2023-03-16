@@ -108,7 +108,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Project
             </div>
@@ -123,7 +123,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
                   data-testid="project-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -141,7 +141,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Start Date
                   </label>
@@ -157,7 +157,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     End Date
                   </label>
@@ -173,7 +173,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Project URL
                   </label>
@@ -194,7 +194,7 @@ exports[`Unit tests for ProjectForm component. Should display failure toast on s
                   data-testid="project-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -351,7 +351,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Project
             </div>
@@ -366,7 +366,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
                   data-testid="project-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -384,7 +384,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Start Date
                   </label>
@@ -400,7 +400,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     End Date
                   </label>
@@ -416,7 +416,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Project URL
                   </label>
@@ -437,7 +437,7 @@ exports[`Unit tests for ProjectForm component. Should display success toast on s
                   data-testid="project-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -538,7 +538,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Project
             </div>
@@ -553,7 +553,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                   data-testid="project-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -571,7 +571,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Start Date
                   </label>
@@ -587,7 +587,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     End Date
                   </label>
@@ -603,7 +603,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Project URL
                   </label>
@@ -620,7 +620,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                   data-testid="project-product"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Product
                   </label>
@@ -744,7 +744,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                   data-testid="project-organization"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Organization
                   </label>
@@ -864,7 +864,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm compone
                   data-testid="project-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -965,7 +965,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Project
             </div>
@@ -980,7 +980,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                   data-testid="project-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -998,7 +998,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Start Date
                   </label>
@@ -1014,7 +1014,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     End Date
                   </label>
@@ -1030,7 +1030,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Project URL
                   </label>
@@ -1047,7 +1047,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                   data-testid="project-product"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Product
                   </label>
@@ -1136,7 +1136,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                   data-testid="project-organization"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Organization
                   </label>
@@ -1229,7 +1229,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Org
                   data-testid="project-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -1330,7 +1330,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Project
             </div>
@@ -1345,7 +1345,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                   data-testid="project-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -1363,7 +1363,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Start Date
                   </label>
@@ -1379,7 +1379,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     End Date
                   </label>
@@ -1395,7 +1395,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Project URL
                   </label>
@@ -1412,7 +1412,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                   data-testid="project-product"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Product
                   </label>
@@ -1517,7 +1517,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                   data-testid="project-organization"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Organization
                   </label>
@@ -1610,7 +1610,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm for Pro
                   data-testid="project-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -1711,7 +1711,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Project
             </div>
@@ -1726,7 +1726,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                   data-testid="project-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -1749,7 +1749,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Start Date
                   </label>
@@ -1765,7 +1765,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     End Date
                   </label>
@@ -1781,7 +1781,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Project URL
                   </label>
@@ -1798,7 +1798,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                   data-testid="project-product"
                 >
                   <label
-                    class="required-field text-xl text-dial-blue"
+                    class="required-field text-dial-sapphire"
                   >
                     Product
                   </label>
@@ -1885,7 +1885,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                   data-testid="project-organization"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Organization
                   </label>
@@ -1906,7 +1906,7 @@ exports[`Unit tests for ProjectForm component. Should render ProjectForm with re
                   data-testid="project-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -2012,7 +2012,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Project
             </div>
@@ -2027,7 +2027,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                   data-testid="project-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -2045,7 +2045,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Start Date
                   </label>
@@ -2061,7 +2061,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     End Date
                   </label>
@@ -2077,7 +2077,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Project URL
                   </label>
@@ -2094,7 +2094,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                   data-testid="project-product"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Product
                   </label>
@@ -2183,7 +2183,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                   data-testid="project-organization"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Organization
                   </label>
@@ -2276,7 +2276,7 @@ exports[`Unit tests for ProjectForm component. Should show validation errors for
                   data-testid="project-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
