@@ -77,7 +77,7 @@ const UserListQuery = () => {
 
   return (
     <InfiniteScroll
-      className='relative px-2 mt-3 pb-8'
+      className='relative'
       dataLength={nodes.length}
       next={handleLoadMore}
       hasMore={pageInfo.hasNextPage}

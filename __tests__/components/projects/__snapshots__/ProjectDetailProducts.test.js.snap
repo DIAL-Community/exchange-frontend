@@ -50,19 +50,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a owned p
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r5:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -88,18 +88,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a owned p
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +109,6 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a owned p
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -120,7 +120,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a owned p
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           Product 1
@@ -145,7 +145,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a owned p
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           Product 3
@@ -170,7 +170,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a owned p
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           Product 2
@@ -268,19 +268,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a pill an
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r2:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -306,18 +306,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a pill an
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -326,7 +327,6 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a pill an
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -338,7 +338,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a pill an
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           Product 1
@@ -363,7 +363,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a pill an
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           Product 3
@@ -388,7 +388,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should add a pill an
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           Product 2
@@ -482,21 +482,16 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         href="/products/product_1"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-product hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
-              style="min-height: 4.5rem;"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
               >
                 <div
                   class="block w-8 relative"
@@ -515,21 +510,21 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                   </span>
                 </div>
                 <div
-                  class="ml-2 mt-0.5 w-full h-3/5 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                  class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
                 >
                   Product 1
                 </div>
               </div>
               <div
-                class="w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-8/12 lg:w-4/12 text-sm lg:text-base my-auto text-dial-purple line-clamp-1"
               />
               <div
-                class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
-              />
+                class="absolute top-4 lg:top-1/3 right-4 lg:w-1/12 lg:justify-end"
+              >
+                <div
+                  class="flex gap-x-2"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -538,21 +533,16 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         href="/products/product_3"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-product hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
-              style="min-height: 4.5rem;"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
               >
                 <div
                   class="block w-8 relative"
@@ -571,21 +561,21 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                   </span>
                 </div>
                 <div
-                  class="ml-2 mt-0.5 w-full h-3/5 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                  class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
                 >
                   Product 3
                 </div>
               </div>
               <div
-                class="w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-8/12 lg:w-4/12 text-sm lg:text-base my-auto text-dial-purple line-clamp-1"
               />
               <div
-                class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
-              />
+                class="absolute top-4 lg:top-1/3 right-4 lg:w-1/12 lg:justify-end"
+              >
+                <div
+                  class="flex gap-x-2"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -645,19 +635,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r0:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -683,18 +673,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -703,7 +694,6 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -715,7 +705,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           Product 1
@@ -740,7 +730,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           Product 3
@@ -817,21 +807,16 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         href="/products/product_1"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-product hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
-              style="min-height: 4.5rem;"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
               >
                 <div
                   class="block w-8 relative"
@@ -850,21 +835,21 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                   </span>
                 </div>
                 <div
-                  class="ml-2 mt-0.5 w-full h-3/5 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                  class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
                 >
                   Product 1
                 </div>
               </div>
               <div
-                class="w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-8/12 lg:w-4/12 text-sm lg:text-base my-auto text-dial-purple line-clamp-1"
               />
               <div
-                class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
-              />
+                class="absolute top-4 lg:top-1/3 right-4 lg:w-1/12 lg:justify-end"
+              >
+                <div
+                  class="flex gap-x-2"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -873,21 +858,16 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
         href="/products/product_3"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-product hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
-              style="min-height: 4.5rem;"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
               >
                 <div
                   class="block w-8 relative"
@@ -906,21 +886,21 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                   </span>
                 </div>
                 <div
-                  class="ml-2 mt-0.5 w-full h-3/5 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                  class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
                 >
                   Product 3
                 </div>
               </div>
               <div
-                class="w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-8/12 lg:w-4/12 text-sm lg:text-base my-auto text-dial-purple line-clamp-1"
               />
               <div
-                class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
-              />
+                class="absolute top-4 lg:top-1/3 right-4 lg:w-1/12 lg:justify-end"
+              >
+                <div
+                  class="flex gap-x-2"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -980,19 +960,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should remove a pill
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -1018,18 +998,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should remove a pill
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -1038,7 +1019,6 @@ exports[`Unit test for the ProjectDetailProducts component. Should remove a pill
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -1050,7 +1030,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should remove a pill
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           Product 3
@@ -1148,19 +1128,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should render Produc
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r4:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -1186,18 +1166,19 @@ exports[`Unit test for the ProjectDetailProducts component. Should render Produc
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -1206,7 +1187,6 @@ exports[`Unit test for the ProjectDetailProducts component. Should render Produc
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -1218,13 +1198,13 @@ exports[`Unit test for the ProjectDetailProducts component. Should render Produc
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           Product 1
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           Product 3

@@ -91,7 +91,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     Organization Website
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -192,7 +192,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="-editor"

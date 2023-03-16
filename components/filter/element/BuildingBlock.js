@@ -39,6 +39,7 @@ export const BuildingBlockAutocomplete = ({
       <Select
         async
         aria-label={format('filter.byEntity', { entity: format('buildingBlock.label') })}
+        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) =>

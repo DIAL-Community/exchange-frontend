@@ -50,19 +50,19 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r2:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -88,18 +88,19 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +109,6 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -120,7 +120,7 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           Category Indicator 1
@@ -145,7 +145,7 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           Category Indicator 2
@@ -236,7 +236,7 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
       class="grid sm:grid-cols-1 lg:grid-cols-2"
     >
       <div
-        class="border-3 border-transparent hover:border-dial-yellow cursor-pointer"
+        class="border-3 border-transparent hover:border-dial-sunshine cursor-pointer"
       >
         <div
           class="font-semibold text-button-gray items-center grid gap-x-4 py-4 px-8 w-full border border-dial-gray card-drop-shadow"
@@ -299,19 +299,19 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r0:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -337,18 +337,19 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -357,7 +358,6 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -369,7 +369,7 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           Category Indicator 1
@@ -461,7 +461,7 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
       class="grid sm:grid-cols-1 lg:grid-cols-2"
     >
       <div
-        class="border-3 border-transparent hover:border-dial-yellow cursor-pointer"
+        class="border-3 border-transparent hover:border-dial-sunshine cursor-pointer"
       >
         <div
           class="font-semibold text-button-gray items-center grid gap-x-4 py-4 px-8 w-full border border-dial-gray card-drop-shadow"
@@ -524,19 +524,19 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -562,18 +562,19 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -582,7 +583,6 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>

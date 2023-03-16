@@ -39,6 +39,7 @@ export const CountryAutocomplete = ({
       <Select
         async
         aria-label={format('filter.byEntity', { entity: format('country.label') })}
+        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) => fetchSelectOptions(client, input, COUNTRY_SEARCH_QUERY, fetchedCountriesCallback)}

@@ -16,11 +16,9 @@ const WorkflowList = (props) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card'
-    ? `grid-cols-1 gap-4
-       ${filterDisplayed ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'}`
+    ? 'grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'
     : 'grid-cols-1'
     }`
 
@@ -29,35 +27,23 @@ const WorkflowList = (props) => {
       <div className={gridStyles}>
         {
           displayType === 'list' &&
-            <div className='grid grid-cols-12 gap-4 my-3 px-4'>
-              <div className='col-span-12 lg:col-span-4 ml-2 text-sm font-semibold text-workflow opacity-80'>
+            <div className='flex gap-x-2 lg:gap-x-4 px-4 my-3 px-4 text-sm font-semibold'>
+              <div className='w-10/12 lg:w-4/12 opacity-80'>
                 {format('workflow.header').toUpperCase()}
                 <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div
-                className={`
-                  hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
-                  col-span-4 text-sm font-semibold text-use-case opacity-80
-                `}
-              >
+              <div className='w-8/12 lg:w-4/12 line-clamp-1'>
                 {format('exampleOf.entity', { entity: format('useCase.header') }).toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
-              <div
-                className={`
-                  hidden ${filterDisplayed ? 'xl:block' : 'lg:block'}
-                  col-span-4 text-sm font-semibold text-building-block
-                `}
-              >
+              <div className='w-8/12 lg:w-3/12 line-clamp-1'>
                 {format('exampleOf.entity', { entity: format('building-block.header') }).toUpperCase()}
-                <HiSortAscending className='hidden ml-1 inline text-2xl' />
               </div>
             </div>
         }
         {
           props.workflowList.length > 0
             ? props.workflowList.map((workflow) => (
-              <WorkflowCard key={workflow.id} listType={displayType} {...{ workflow, filterDisplayed }} />
+              <WorkflowCard key={workflow.id} listType={displayType} {...{ workflow }} />
             ))
             : (
               <div className='col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3 px-1'>
@@ -71,7 +57,7 @@ const WorkflowList = (props) => {
 }
 
 const WorkflowListQuery = () => {
-  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
+  const { displayType, setResultCounts } = useContext(FilterContext)
   const { sdgs, useCases, search } = useContext(WorkflowFilterContext)
 
   const { formatMessage } = useIntl()
@@ -123,13 +109,13 @@ const WorkflowListQuery = () => {
 
   return (
     <InfiniteScroll
-      className='relative px-2 mt-3 pb-8 infinite-scroll-default-height'
+      className='relative infinite-scroll-default-height'
       dataLength={nodes.length}
       next={handleLoadMore}
       hasMore={pageInfo.hasNextPage}
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
-      <WorkflowList workflowList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
+      <WorkflowList workflowList={nodes} displayType={displayType} />
     </InfiniteScroll>
   )
 }

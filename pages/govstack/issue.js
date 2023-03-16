@@ -103,7 +103,7 @@ const GovStackIssueForm = ({ referer }) => {
               {format('report.thankyou')}
               <br />
               {format('govstack.feedback.track')}
-              <a className='text-dial-yellow' href={`${issueLink}`} target='_blank' rel='noreferrer'>
+              <a className='text-dial-sunshine' href={`${issueLink}`} target='_blank' rel='noreferrer'>
                 {format('govstack.feedback.link')}
               </a>
             </div>

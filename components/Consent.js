@@ -58,19 +58,20 @@ const Consent = () => {
               </div>
               <div className='flex justify-center gap-4'>
                 <button
-                  className='text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4'
+                  className='text-button-gray bg-dial-sunshine rounded inline-flex items-center py-2 px-4'
                   onClick={handleAccept}
                 >
                   {format('consent.acceptAll')}
                 </button>
                 <button
-                  className='text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4'
+                  className='text-button-gray bg-dial-sunshine rounded inline-flex items-center py-2 px-4'
                   onClick={toggleShowCookies}
                 >
                   {format('consent.cookieDetails')}
                 </button>
                 <a
-                  className='my-auto text-dial-yellow border-b-2 border-transparent hover:border-dial-yellow' target='_blank'
+                  className='my-auto text-dial-sunshine border-b-2 border-transparent hover:border-dial-sunshine'
+                  target='_blank'
                   href='/privacy-policy'
                 >
                   {format('consent.privacyPolicy')}
@@ -94,7 +95,7 @@ const Consent = () => {
                   <span className='ml-2 text-white'>{format('consent.statistics')}</span>
                 </label>
                 <button
-                  className='text-button-gray bg-dial-yellow rounded inline-flex items-center py-2 px-4'
+                  className='text-button-gray bg-dial-sunshine rounded inline-flex items-center py-2 px-4'
                   onClick={saveCookies}
                 >
                   {format('consent.save')}

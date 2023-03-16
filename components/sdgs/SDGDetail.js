@@ -23,6 +23,7 @@ const SDG_QUERY = gql`
           slug
           name
           imageFile
+          maturity
         }
       }
     }

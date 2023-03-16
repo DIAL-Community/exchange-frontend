@@ -8,7 +8,7 @@ import { prependUrlWithProtocol } from '../../../lib/utilities'
 import { CandidateStatusType } from '../../../lib/constants'
 import { useUser } from '../../../lib/hooks'
 
-const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
+const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-sunshine'
 
 const OrganizationCard = ({ organization, listType }) => {
   const { formatMessage } = useIntl()

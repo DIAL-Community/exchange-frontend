@@ -39,6 +39,7 @@ export const EndorserAutocomplete = ({
       <Select
         async
         aria-label={format('filter.byEntity', { entity: format('endorser.label') })}
+        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) => fetchSelectOptions(client, input, ENDORSER_SEARCH_QUERY, fetchedEndorsersCallback)}

@@ -39,6 +39,7 @@ export const SDGAutocomplete = ({
       <Select
         async
         aria-label={format('filter.byEntity', { entity: format('sdg.shortLabel') })}
+        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) => fetchSelectOptions(client, input, SDG_SEARCH_QUERY, fetchedSdgsCallback)}

@@ -1,7 +1,6 @@
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useCallback, useRef } from 'react'
-import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../lib/hooks'
 import { USER_MENU } from './MenuCommon'
@@ -33,21 +32,13 @@ const UserMenu = ({ currentOpenMenu, onToggleDropdown }) => {
         id={USER_MENU}
         href={USER_MENU}
         data-testid='user-menu'
-        className={`
-          lg:p-3 px-0 block border-b-2 border-transparent hover:border-dial-yellow
-          lg:mb-0 mb-2 inline bg-dial-yellow-light py-2 rounded
-        `}
         ref={buttonRef}
         onClick={toggleSwitcher}
       >
-        <img src='/icons/user.svg' className='inline mx-2' alt={format('user.iconImage')} height='20px' width='20px' />
-        <div id={USER_MENU} className='inline text-xs'>
-          {userName}
-          {
-            currentOpenMenu === USER_MENU
-              ? <HiChevronUp className='ml-1 inline text-2xl' />
-              : <HiChevronDown className='ml-1 inline text-2xl' />
-          }
+        <div id={USER_MENU} className="username-avatar">
+          <span className="text-dial-gray-dark">
+            {userName.substring(0, 2)}
+          </span>
         </div>
       </a>
       {

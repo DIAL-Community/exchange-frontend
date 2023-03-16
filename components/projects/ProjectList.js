@@ -14,11 +14,11 @@ import ProjectCard from './ProjectCard'
 const DEFAULT_PAGE_SIZE = 20
 /* Minimum width per project card. This will decide how many column we have in the page. */
 /* The value is based on the minimum required to render Bahmni card. */
-const MIN_PROJECT_CARD_WIDTH = 380
+const MIN_PROJECT_CARD_WIDTH = 320
 /* Default height of the project card. */
-const MIN_PROJECT_CARD_HEIGHT = 450
+const MIN_PROJECT_CARD_HEIGHT = 360
 /* Default spacing between project card in a row. This is 0.5 rem. */
-const PROJECT_CARD_GUTTER_SIZE = 8
+const PROJECT_CARD_GUTTER_SIZE = 16
 /* Height of the project's single list element when viewing the list view. */
 const MIN_PROJECT_LIST_SIZE = 80
 
@@ -80,7 +80,7 @@ query SearchProjects(
 `
 
 const ProjectListQuery = () => {
-  const { filterDisplayed, displayType, setResultCounts } = useContext(FilterContext)
+  const { displayType, setResultCounts } = useContext(FilterContext)
   const { origins, countries, sectors, organizations, products, sdgs, tags, search } = useContext(ProjectFilterContext)
 
   const { formatMessage } = useIntl()
@@ -148,22 +148,22 @@ const ProjectListQuery = () => {
   const isProjectLoaded = (index) => !pageInfo.hasNextPage || index < nodes.length
 
   return (
-    <div className='pt-4'>
+    <>
       {
         displayType === 'list' &&
-          <div className='flex flex-row my-3 px-4 gap-x-4'>
-            <div className='w-3/12 text-sm font-semibold opacity-70'>
+          <div className='flex flex-row text-sm font-semibold my-3 px-4 gap-x-4'>
+            <div className='w-4/12 opacity-70'>
               {format('project.header').toUpperCase()}
             </div>
-            <div className='hidden lg:block w-3/12 text-sm font-semibold opacity-50'>
+            <div className='hidden lg:block w-3/12 opacity-50'>
               {format('organization.header').toUpperCase()}
             </div>
-            <div className='hidden lg:block w-3/12 text-sm font-semibold opacity-50'>
+            <div className='hidden lg:block w-3/12 opacity-50'>
               {format('product.header').toUpperCase()}
             </div>
           </div>
       }
-      <div className='block pr-2' style={{ height: 'calc(100vh + 600px)' }}>
+      <div className={`${displayType === 'card' && '-mr-4'}`} style={{ height: 'calc(100vh + 600px)' }}>
         <AutoSizer>
           {({ height, width }) => (
             <InfiniteLoader
@@ -216,15 +216,13 @@ const ProjectListQuery = () => {
                             <div
                               style={{
                                 ...style,
-                                left: style.left + PROJECT_CARD_GUTTER_SIZE,
-                                top: style.top + PROJECT_CARD_GUTTER_SIZE,
                                 width: style.width - PROJECT_CARD_GUTTER_SIZE,
                                 height: style.height - PROJECT_CARD_GUTTER_SIZE
                               }}
                             >
                               {
                                 currentIndex < nodes.length && project &&
-                                  <ProjectCard listType={displayType} {...{ project, filterDisplayed }} />
+                                  <ProjectCard listType={displayType} {...{ project }} />
                               }
                               {currentIndex < nodes.length && !project && <Loading />}
                             </div>
@@ -263,7 +261,7 @@ const ProjectListQuery = () => {
                             <div style={style}>
                               {
                                 index < nodes.length && project &&
-                                  <ProjectCard listType={displayType} {...{ project, filterDisplayed }} />
+                                  <ProjectCard listType={displayType} {...{ project }} />
                               }
                               {index < nodes.length && !project && <Loading />}
                             </div>
@@ -278,7 +276,7 @@ const ProjectListQuery = () => {
           )}
         </AutoSizer>
       </div>
-    </div>
+    </>
   )
 }
 

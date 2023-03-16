@@ -53,19 +53,19 @@ exports[`Unit test for the OrganizationDetailSectors component. Should add a pil
               class="css-1f43avz-a11yText-A11yText"
             />
             <div
-              class="react-select__control css-19jej77-control"
+              class="react-select__control css-qv4grc-control"
             >
               <div
-                class="react-select__value-container css-3tzzl5-ValueContainer"
+                class="react-select__value-container css-17t7gkf-ValueContainer"
               >
                 <div
-                  class="react-select__placeholder css-19jynah-placeholder"
+                  class="react-select__placeholder css-5rjclb-placeholder"
                   id="react-select-:r2:-placeholder"
                 >
                   Type to search...
                 </div>
                 <div
-                  class="react-select__input-container css-6j8wv5-Input"
+                  class="react-select__input-container css-qbdosj-Input"
                   data-value=""
                 >
                   <input
@@ -91,18 +91,19 @@ exports[`Unit test for the OrganizationDetailSectors component. Should add a pil
                 class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
               >
                 <span
-                  class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                  class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                 />
                 <div
                   aria-hidden="true"
-                  class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                  class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                 >
                   <svg
+                    aria-hidden="true"
                     class="text-2xl"
                     fill="none"
                     height="1em"
                     stroke="currentColor"
-                    stroke-width="0"
+                    stroke-width="2"
                     viewBox="0 0 24 24"
                     width="1em"
                     xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +112,6 @@ exports[`Unit test for the OrganizationDetailSectors component. Should add a pil
                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      stroke-width="2"
                     />
                   </svg>
                 </div>
@@ -123,7 +123,7 @@ exports[`Unit test for the OrganizationDetailSectors component. Should add a pil
           class="flex flex-wrap gap-3 mt-5"
         >
           <div
-            class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+            class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
             data-testid="pill"
           >
             Test Sector
@@ -148,7 +148,7 @@ exports[`Unit test for the OrganizationDetailSectors component. Should add a pil
             </svg>
           </div>
           <div
-            class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+            class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
             data-testid="pill"
           >
             Sector 1
@@ -173,7 +173,7 @@ exports[`Unit test for the OrganizationDetailSectors component. Should add a pil
             </svg>
           </div>
           <div
-            class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+            class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
             data-testid="pill"
           >
             Sector 2
@@ -344,19 +344,19 @@ exports[`Unit test for the OrganizationDetailSectors component. Should match sna
               class="css-1f43avz-a11yText-A11yText"
             />
             <div
-              class="react-select__control css-19jej77-control"
+              class="react-select__control css-qv4grc-control"
             >
               <div
-                class="react-select__value-container css-3tzzl5-ValueContainer"
+                class="react-select__value-container css-17t7gkf-ValueContainer"
               >
                 <div
-                  class="react-select__placeholder css-19jynah-placeholder"
+                  class="react-select__placeholder css-5rjclb-placeholder"
                   id="react-select-:r0:-placeholder"
                 >
                   Type to search...
                 </div>
                 <div
-                  class="react-select__input-container css-6j8wv5-Input"
+                  class="react-select__input-container css-qbdosj-Input"
                   data-value=""
                 >
                   <input
@@ -382,18 +382,19 @@ exports[`Unit test for the OrganizationDetailSectors component. Should match sna
                 class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
               >
                 <span
-                  class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                  class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                 />
                 <div
                   aria-hidden="true"
-                  class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                  class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                 >
                   <svg
+                    aria-hidden="true"
                     class="text-2xl"
                     fill="none"
                     height="1em"
                     stroke="currentColor"
-                    stroke-width="0"
+                    stroke-width="2"
                     viewBox="0 0 24 24"
                     width="1em"
                     xmlns="http://www.w3.org/2000/svg"
@@ -402,7 +403,6 @@ exports[`Unit test for the OrganizationDetailSectors component. Should match sna
                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      stroke-width="2"
                     />
                   </svg>
                 </div>
@@ -414,7 +414,7 @@ exports[`Unit test for the OrganizationDetailSectors component. Should match sna
           class="flex flex-wrap gap-3 mt-5"
         >
           <div
-            class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+            class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
             data-testid="pill"
           >
             Test Sector
@@ -568,19 +568,19 @@ exports[`Unit test for the OrganizationDetailSectors component. Should remove a 
               class="css-1f43avz-a11yText-A11yText"
             />
             <div
-              class="react-select__control css-19jej77-control"
+              class="react-select__control css-qv4grc-control"
             >
               <div
-                class="react-select__value-container css-3tzzl5-ValueContainer"
+                class="react-select__value-container css-17t7gkf-ValueContainer"
               >
                 <div
-                  class="react-select__placeholder css-19jynah-placeholder"
+                  class="react-select__placeholder css-5rjclb-placeholder"
                   id="react-select-:r1:-placeholder"
                 >
                   Type to search...
                 </div>
                 <div
-                  class="react-select__input-container css-6j8wv5-Input"
+                  class="react-select__input-container css-qbdosj-Input"
                   data-value=""
                 >
                   <input
@@ -606,18 +606,19 @@ exports[`Unit test for the OrganizationDetailSectors component. Should remove a 
                 class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
               >
                 <span
-                  class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                  class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                 />
                 <div
                   aria-hidden="true"
-                  class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                  class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                 >
                   <svg
+                    aria-hidden="true"
                     class="text-2xl"
                     fill="none"
                     height="1em"
                     stroke="currentColor"
-                    stroke-width="0"
+                    stroke-width="2"
                     viewBox="0 0 24 24"
                     width="1em"
                     xmlns="http://www.w3.org/2000/svg"
@@ -626,7 +627,6 @@ exports[`Unit test for the OrganizationDetailSectors component. Should remove a 
                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      stroke-width="2"
                     />
                   </svg>
                 </div>

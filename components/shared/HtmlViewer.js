@@ -34,8 +34,7 @@ export const HtmlViewer = ({ initialContent, editorId, className }) => {
               
               body {
                 margin: 0;
-                font-family: Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-                  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+                font-family: 'Poppins', sans-serif;
                 font-size: 16px
               }
 

@@ -46,7 +46,7 @@ exports[`Unit test for the HorizontalItemList component. Should match snapshot -
     data-testid="items-rest-marker"
   >
     <span
-      class="font-semibold bg-white"
+      class="font-semibold my-auto"
     >
       …
     </span>

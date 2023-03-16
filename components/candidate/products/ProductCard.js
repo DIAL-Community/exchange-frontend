@@ -10,7 +10,7 @@ import { useUser } from '../../../lib/hooks'
 import { CandidateStatusType } from '../../../lib/constants'
 import EditButton from '../../shared/EditButton'
 
-const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
+const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-sunshine'
 
 const ProductCard = ({ product, listType }) => {
   const { formatMessage } = useIntl()
@@ -37,7 +37,7 @@ const ProductCard = ({ product, listType }) => {
             <div className='flex flex-col gap-3 w-full xl:w-2/3 '>
               <div className='my-auto line-clamp-1 font-semibold'>
                 <Link href={`/candidate/products/${product.slug}`}>
-                  <a className='border-b-2 border-transparent hover:border-dial-yellow'>
+                  <a className='border-b-2 border-transparent hover:border-dial-sunshine'>
                     {product.name}
                   </a>
                 </Link>
@@ -151,7 +151,7 @@ const ProductCard = ({ product, listType }) => {
           <div className='flex flex-col h-64 p-4'>
             <div className='text-2xl font-semibold'>
               <Link href={`/candidate/products/${product.slug}`}>
-                <a className='border-b-2 border-transparent hover:border-dial-yellow'>
+                <a className='border-b-2 border-transparent hover:border-dial-sunshine'>
                   {product.name}
                 </a>
               </Link>

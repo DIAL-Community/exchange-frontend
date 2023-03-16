@@ -29,23 +29,20 @@ const Products = () => {
       <GradientBackground />
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Header />
-      { loadingUserSession ? <Loading /> : isAdminUser ? (
-        <>
+      {loadingUserSession ? <Loading /> : isAdminUser ? (
+        <ClientOnly>
           <TabNav activeTab='filter.entity.candidateProducts' />
           <MobileNav activeTab='filter.entity.candidateProducts' />
-          <ClientOnly>
-            <PageContent
-              activeTab='filter.entity.candidateProducts'
-              content={<ProductListQuery />}
-              searchFilter={
-                <SearchFilter
-                  {...{ search, setSearch }}
-                  hint='filter.entity.candidateProducts'
-                />
-              }
-            />
-          </ClientOnly>
-        </>
+          <PageContent
+            content={<ProductListQuery />}
+            searchFilter={
+              <SearchFilter
+                {...{ search, setSearch }}
+                hint='filter.entity.candidateProducts'
+              />
+            }
+          />
+        </ClientOnly>
       ) : <Unauthorized />}
       <Footer />
     </>

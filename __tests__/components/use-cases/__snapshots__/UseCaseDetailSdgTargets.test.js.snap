@@ -50,19 +50,19 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control react-select__control--menu-is-open css-19jej77-control"
+            class="react-select__control react-select__control--menu-is-open css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r2:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -90,18 +90,19 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -110,22 +111,21 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
             </div>
           </div>
           <div
-            class="react-select__menu css-1jtw5r9-menu"
+            class="react-select__menu css-z4z3k3-menu"
             id="react-select-:r2:-listbox"
           >
             <div
-              class="react-select__menu-list css-4ljt47-MenuList"
+              class="react-select__menu-list css-1n6sfyn-MenuList"
             >
               <div
                 aria-disabled="false"
-                class="react-select__option react-select__option--is-focused css-llk42x-option"
+                class="react-select__option react-select__option--is-focused css-o0hax1-option"
                 id="react-select-:r2:-option-0"
                 tabindex="-1"
               >
@@ -139,7 +139,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           1: Test SDG Target...
@@ -164,7 +164,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           2: Another SDG Target...
@@ -257,8 +257,8 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
     >
       <div
         class="
-          border-3 border-transparent hover:border-dial-yellow text-use-case
-          hover:text-dial-yellow cursor-pointer
+          border-3 border-transparent hover:border-dial-sunshine text-use-case
+          hover:text-dial-sunshine cursor-pointer
         "
         href="/sdgs/sdg_target_slug_1"
       >
@@ -269,7 +269,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
             class="flex flex-row text-dial-gray-dark"
           >
             <div
-              class="px-4 my-auto text-sm font-semibold text-dial-yellow w-3/12 md:w-2/12"
+              class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
             >
               Target: 1
             </div>
@@ -283,8 +283,8 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
       </div>
       <div
         class="
-          border-3 border-transparent hover:border-dial-yellow text-use-case
-          hover:text-dial-yellow cursor-pointer
+          border-3 border-transparent hover:border-dial-sunshine text-use-case
+          hover:text-dial-sunshine cursor-pointer
         "
         href="/sdgs/sdg_target_slug_2"
       >
@@ -295,7 +295,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
             class="flex flex-row text-dial-gray-dark"
           >
             <div
-              class="px-4 my-auto text-sm font-semibold text-dial-yellow w-3/12 md:w-2/12"
+              class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
             >
               Target: 2
             </div>
@@ -362,19 +362,19 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r0:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -400,18 +400,19 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -420,7 +421,6 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -432,7 +432,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           1: Test SDG Target...
@@ -457,7 +457,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           2: Another SDG Target...
@@ -532,8 +532,8 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
     >
       <div
         class="
-          border-3 border-transparent hover:border-dial-yellow text-use-case
-          hover:text-dial-yellow cursor-pointer
+          border-3 border-transparent hover:border-dial-sunshine text-use-case
+          hover:text-dial-sunshine cursor-pointer
         "
         href="/sdgs/sdg_target_slug_1"
       >
@@ -544,7 +544,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
             class="flex flex-row text-dial-gray-dark"
           >
             <div
-              class="px-4 my-auto text-sm font-semibold text-dial-yellow w-3/12 md:w-2/12"
+              class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
             >
               Target: 1
             </div>
@@ -558,8 +558,8 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
       </div>
       <div
         class="
-          border-3 border-transparent hover:border-dial-yellow text-use-case
-          hover:text-dial-yellow cursor-pointer
+          border-3 border-transparent hover:border-dial-sunshine text-use-case
+          hover:text-dial-sunshine cursor-pointer
         "
         href="/sdgs/sdg_target_slug_2"
       >
@@ -570,7 +570,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
             class="flex flex-row text-dial-gray-dark"
           >
             <div
-              class="px-4 my-auto text-sm font-semibold text-dial-yellow w-3/12 md:w-2/12"
+              class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
             >
               Target: 2
             </div>
@@ -637,19 +637,19 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should remove a p
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -675,18 +675,19 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should remove a p
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -695,7 +696,6 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should remove a p
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -707,7 +707,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should remove a p
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           2: Another SDG Target...

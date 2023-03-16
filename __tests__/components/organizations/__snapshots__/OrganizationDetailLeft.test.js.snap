@@ -114,7 +114,7 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
       class="flex flex-row gap-3"
     >
       <a
-        class="text-dial-yellow block mt-2"
+        class="text-dial-sunshine block mt-2"
         href="https://docs.osc.dial.community/projects/product-registry/en/latest/org_owner.html"
         rel="noreferrer"
         target="_blank"
@@ -286,7 +286,7 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
       class="flex flex-row gap-3"
     >
       <a
-        class="text-dial-yellow block mt-2"
+        class="text-dial-sunshine block mt-2"
         href="https://docs.osc.dial.community/projects/product-registry/en/latest/org_owner.html"
         rel="noreferrer"
         target="_blank"
@@ -412,7 +412,7 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
       class="flex flex-row gap-3"
     >
       <a
-        class="text-dial-yellow block mt-2"
+        class="text-dial-sunshine block mt-2"
         href="https://docs.osc.dial.community/projects/product-registry/en/latest/org_owner.html"
         rel="noreferrer"
         target="_blank"

@@ -204,7 +204,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
         {format('organization.owner')}
         <div className='flex flex-row gap-3'>
           <a
-            className='text-dial-yellow block mt-2'
+            className='text-dial-sunshine block mt-2'
             href={`https://docs.osc.dial.community/projects/product-registry/${locale}/latest/org_owner.html`}
             target='_blank' rel='noreferrer'
           >
@@ -215,7 +215,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
               <>
                 <div className='border-l border-dial-gray-light mt-2' />
                 <button
-                  className='text-dial-yellow block mt-2 border-b border-transparent hover:border-dial-yellow'
+                  className='text-dial-sunshine block mt-2 border-b border-transparent hover:border-dial-sunshine'
                   onClick={onSubmit} disabled={loading}
                 >
                   {format('ownership.apply')}

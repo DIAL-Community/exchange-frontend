@@ -16,6 +16,7 @@ describe('Unit tests for the DeleteBuildingBlock component.', () => {
 
   beforeAll(() => {
     mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 

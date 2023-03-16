@@ -80,7 +80,7 @@ const PlaybookDetailHeader = ({ playbook }) => {
   }
 
   return (
-    <div className='bg-dial-yellow sticky sticky-under-header'>
+    <div className='bg-dial-sunshine sticky sticky-under-header'>
       <div className='flex flex-wrap gap-3'>
         <div className='px-8 py-3 flex flex-col gap-1'>
           <div className='text-sm'>

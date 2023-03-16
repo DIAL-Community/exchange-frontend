@@ -9,10 +9,10 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
     class="lg:flex gap-12"
   >
     <div
-      class="lg:w-1/4 mt-6"
+      class="lg:w-1/3"
     >
       <div
-        class="text-sm my-2 grid content-end"
+        class="text-sm my-2"
       >
         <div>
           Select the sector that your project supports
@@ -32,19 +32,19 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
           class="css-1f43avz-a11yText-A11yText"
         />
         <div
-          class="react-select__control css-19jej77-control"
+          class="react-select__control css-qv4grc-control"
         >
           <div
-            class="react-select__value-container css-3tzzl5-ValueContainer"
+            class="react-select__value-container css-17t7gkf-ValueContainer"
           >
             <div
-              class="react-select__placeholder css-19jynah-placeholder"
+              class="react-select__placeholder css-5rjclb-placeholder"
               id="react-select-:r0:-placeholder"
             >
               Select a Sector
             </div>
             <div
-              class="react-select__input-container css-6j8wv5-Input"
+              class="react-select__input-container css-qbdosj-Input"
               data-value=""
             >
               <input
@@ -70,11 +70,11 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
             class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
           >
             <span
-              class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+              class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
             />
             <div
               aria-hidden="true"
-              class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+              class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
             >
               <svg
                 aria-hidden="true"
@@ -93,10 +93,10 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
         </div>
       </div>
       <div
-        class="flex flex-wrap gap-3 mt-5"
+        class="flex flex-wrap gap-3 mt-4"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           sector 1
@@ -121,7 +121,7 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           sector 2
@@ -148,10 +148,10 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
       </div>
     </div>
     <div
-      class="lg:w-1/4 mt-6"
+      class="lg:w-1/3"
     >
       <div
-        class="text-sm my-2 grid content-end"
+        class="text-sm my-2"
       >
         Select a specific use case, if applicable
       </div>
@@ -169,18 +169,18 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
           class="css-1f43avz-a11yText-A11yText"
         />
         <div
-          class="react-select__control css-19jej77-control"
+          class="react-select__control css-qv4grc-control"
         >
           <div
-            class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+            class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
           >
             <div
-              class="react-select__single-value css-qc6sy-singleValue"
+              class="react-select__single-value css-1dimb5e-singleValue"
             >
               useCase
             </div>
             <div
-              class="react-select__input-container css-6j8wv5-Input"
+              class="react-select__input-container css-qbdosj-Input"
               data-value=""
             >
               <input
@@ -206,7 +206,7 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
           >
             <div
               aria-hidden="true"
-              class="react-select__indicator react-select__clear-indicator css-tlfecz-indicatorContainer"
+              class="react-select__indicator react-select__clear-indicator css-1xc3v61-indicatorContainer"
             >
               <svg
                 aria-hidden="true"
@@ -222,11 +222,11 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
               </svg>
             </div>
             <span
-              class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+              class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
             />
             <div
               aria-hidden="true"
-              class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+              class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
             >
               <svg
                 aria-hidden="true"
@@ -246,10 +246,10 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
       </div>
     </div>
     <div
-      class="lg:w-1/4 mt-6"
+      class="lg:w-1/3"
     >
       <div
-        class="text-sm my-2 grid content-end"
+        class="text-sm my-2"
       >
         Select any SDG that the project is designed to support
       </div>
@@ -267,19 +267,19 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
           class="css-1f43avz-a11yText-A11yText"
         />
         <div
-          class="react-select__control css-19jej77-control"
+          class="react-select__control css-qv4grc-control"
         >
           <div
-            class="react-select__value-container css-3tzzl5-ValueContainer"
+            class="react-select__value-container css-17t7gkf-ValueContainer"
           >
             <div
-              class="react-select__placeholder css-19jynah-placeholder"
+              class="react-select__placeholder css-5rjclb-placeholder"
               id="react-select-:r2:-placeholder"
             >
               Select an SDG
             </div>
             <div
-              class="react-select__input-container css-6j8wv5-Input"
+              class="react-select__input-container css-qbdosj-Input"
               data-value=""
             >
               <input
@@ -305,11 +305,11 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
             class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
           >
             <span
-              class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+              class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
             />
             <div
               aria-hidden="true"
-              class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+              class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
             >
               <svg
                 aria-hidden="true"
@@ -328,10 +328,10 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
         </div>
       </div>
       <div
-        class="flex flex-wrap gap-3 mt-5"
+        class="flex flex-wrap gap-3 mt-4"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           sdg 1
@@ -356,7 +356,7 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-dial-gray-dark"
           data-testid="pill"
         >
           sdg 2
@@ -392,13 +392,13 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
     class="Toastify"
   />
   <div
-    class="lg:grid lg:grid-cols-3 gap-12 "
+    class="lg:flex gap-12"
   >
     <div
-      class="mt-6 lg:mt-0"
+      class="lg:w-1/3"
     >
       <div
-        class="text-sm pb-2"
+        class="text-sm my-2"
       >
         Select any tags that are applicable to this project
       </div>
@@ -416,19 +416,19 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
           class="css-1f43avz-a11yText-A11yText"
         />
         <div
-          class="react-select__control css-19jej77-control"
+          class="react-select__control css-qv4grc-control"
         >
           <div
-            class="react-select__value-container css-3tzzl5-ValueContainer"
+            class="react-select__value-container css-17t7gkf-ValueContainer"
           >
             <div
-              class="react-select__placeholder css-19jynah-placeholder"
+              class="react-select__placeholder css-5rjclb-placeholder"
               id="react-select-:r3:-placeholder"
             >
               Select a Tag
             </div>
             <div
-              class="react-select__input-container css-6j8wv5-Input"
+              class="react-select__input-container css-qbdosj-Input"
               data-value=""
             >
               <input
@@ -454,11 +454,11 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
             class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
           >
             <span
-              class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+              class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
             />
             <div
               aria-hidden="true"
-              class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+              class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
             >
               <svg
                 aria-hidden="true"
@@ -477,16 +477,16 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
         </div>
       </div>
       <div
-        class="flex flex-wrap gap-3 mt-5"
+        class="flex flex-wrap gap-3 mt-4"
       />
     </div>
     <div
-      class="mt-6 lg:mt-0"
+      class="lg:w-1/3"
     >
       <div
-        class="text-sm pb-2"
+        class="text-sm my-2"
       >
-        What country/countries will this project be implemented in?
+        What country(s) will this project be implemented in?
       </div>
       <div
         class=" css-l45kjq-container"
@@ -502,19 +502,19 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
           class="css-1f43avz-a11yText-A11yText"
         />
         <div
-          class="react-select__control css-19jej77-control"
+          class="react-select__control css-qv4grc-control"
         >
           <div
-            class="react-select__value-container css-3tzzl5-ValueContainer"
+            class="react-select__value-container css-17t7gkf-ValueContainer"
           >
             <div
-              class="react-select__placeholder css-19jynah-placeholder"
+              class="react-select__placeholder css-5rjclb-placeholder"
               id="react-select-:r4:-placeholder"
             >
               Select a Country
             </div>
             <div
-              class="react-select__input-container css-6j8wv5-Input"
+              class="react-select__input-container css-qbdosj-Input"
               data-value=""
             >
               <input
@@ -540,11 +540,11 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
             class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
           >
             <span
-              class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+              class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
             />
             <div
               aria-hidden="true"
-              class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+              class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
             >
               <svg
                 aria-hidden="true"
@@ -563,22 +563,22 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
         </div>
       </div>
       <div
-        class="flex flex-wrap gap-3 mt-5"
+        class="flex flex-wrap gap-3 mt-4"
       />
     </div>
     <div
-      class="mt-6 lg:mt-0"
+      class="lg:w-1/3"
     >
       <div
-        class="text-sm pb-2"
+        class="text-sm my-2"
       >
         Will mobile services be required for this project?
       </div>
       <div
-        class="xl:grid xl:grid-cols-2"
+        class="xl:grid xl:grid-cols-2 gap-2"
       >
         <div
-          class="text-sm pt-2"
+          class="text-sm"
         >
           <label>
             <input

@@ -236,7 +236,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
         {format('product.owner')}
         <div className='flex flex-row gap-3'>
           <a
-            className='text-dial-yellow block mt-2 border-b border-transparent hover:border-dial-yellow'
+            className='text-dial-sunshine block mt-2 border-b border-transparent hover:border-dial-sunshine'
             target='_blank' rel='noreferrer'
             href={`https://docs.osc.dial.community/projects/product-registry/${locale}/latest/product_owner.html`}
           >
@@ -247,7 +247,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
               <>
                 <div className='border-l border-dial-gray-light mt-2' />
                 <button
-                  className='text-dial-yellow block mt-2 border-b border-transparent hover:border-dial-yellow'
+                  className='text-dial-sunshine block mt-2 border-b border-transparent hover:border-dial-sunshine'
                   onClick={onSubmit} disabled={loading}
                 >
                   {format('ownership.apply')}
@@ -269,7 +269,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
               <>
                 <div className='border-l border-dial-gray-light mt-2' />
                 <button
-                  className='text-dial-yellow block mt-2 border-b border-transparent hover:border-dial-yellow'
+                  className='text-dial-sunshine block mt-2 border-b border-transparent hover:border-dial-sunshine'
                   href='/apply-product-owner' onClick={() => setContactState(CONTACT_STATES[1])}
                 >
                   {format('ownership.reveal')}
@@ -293,7 +293,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
                   <div className='mt-2'>
                     {format('ownership.label')}:
                     <a
-                      className='text-dial-yellow mx-2 mt-2 border-b border-transparent hover:border-dial-yellow'
+                      className='text-dial-sunshine mx-2 mt-2 border-b border-transparent hover:border-dial-sunshine'
                       href={`mailto:${emailAddress}`}
                       target='_blank'
                       rel='noreferrer'

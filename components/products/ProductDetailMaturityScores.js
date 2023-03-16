@@ -70,7 +70,7 @@ const MaturityCategory = ({ category }) => {
                   </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
-                  <div className='text-sm text-button-gray pl-4'>
+                  <div className='text-sm text-dial-stratos pl-4'>
                     {parse(indicator.description)}
                   </div>
                   <div className='text-sm text-dial-stratos pl-4'>

@@ -19,12 +19,12 @@ const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
   const cardContainerStyles = () => {
     if (listStyle === 'compact') {
       return [
-        'text-use-case cursor-pointer border-transparent hover:border-r-2 hover:border-dial-yellow',
+        'text-use-case cursor-pointer border-transparent hover:border-r-2 hover:border-dial-sunshine',
         'border border-t-0'
       ]
     } else {
       return [
-        'text-use-case border-3 border-transparent hover:border-dial-yellow hover:text-dial-yellow cursor-pointer',
+        'text-use-case border-3 border-transparent hover:border-dial-sunshine hover:text-dial-sunshine cursor-pointer',
         'border border-dial-gray hover:border-transparent card-drop-shadow'
       ]
     }

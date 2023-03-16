@@ -1,5 +1,5 @@
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
-import { render, waitForAllEffects } from '../../test-utils'
+import { mockObserverImplementation, render, waitForAllEffects } from '../../test-utils'
 import { DEFAULT_SHEET_NAMES } from '../../../components/spreadsheets/ProductSpreadsheetConfig'
 import ProductSpreadsheet from '../../../components/spreadsheets/ProductSpreadsheet'
 import { PRODUCT_SPREADSHEET_QUERY } from '../../../queries/spreadsheet'
@@ -10,6 +10,11 @@ jest.setTimeout(10000)
 
 mockNextUseRouter()
 describe('Unit tests for spreadsheet interaction.', () => {
+  beforeAll(() => {
+    window.ResizeObserver = mockObserverImplementation()
+    window.IntersectionObserver = mockObserverImplementation()
+  })
+
   test('Should render error message when the apollo is returning errors.', async () => {
     // Mock all apollo interaction
     const mockProductSpreadsheetData = generateMockApolloData(PRODUCT_SPREADSHEET_QUERY, {}, new Error('An error occurred'))

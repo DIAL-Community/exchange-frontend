@@ -30,17 +30,19 @@ const Roles = () => {
       <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
       <Header />
       {loadingUserSession ? <Loading /> : isAdminUser ? (
-        <>
+        <ClientOnly>
           <TabNav activeTab='filter.entity.candidateRoles' />
           <MobileNav activeTab='filter.entity.candidateRoles' />
-          <ClientOnly>
-            <PageContent
-              activeTab='filter.entity.candidateRoles'
-              content={<RoleListQuery />}
-              searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.candidateRoles' />}
-            />
-          </ClientOnly>
-        </>
+          <PageContent
+            content={<RoleListQuery />}
+            searchFilter={
+              <SearchFilter
+                {...{ search, setSearch }}
+                hint='filter.entity.candidateRoles'
+              />
+            }
+          />
+        </ClientOnly>
       ) : <Unauthorized />}
       <Footer />
     </>

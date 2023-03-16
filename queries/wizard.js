@@ -258,3 +258,35 @@ export const WIZARD_TAG_QUERY = gql`
     }
   }
 `
+
+export const WIZARD_PARAMS_QUERY = gql`
+  query WizardParamsQuery($locale: String) {
+    tags {
+      id
+      name
+      slug
+    }
+    countries {
+      id
+      name
+      slug
+    }
+    sdgs {
+      id
+      name
+      slug
+    }
+    sectors(locale: $locale) {
+      id
+      name
+      slug
+    }
+    buildingBlocks {
+      id
+      name
+      slug
+      imageFile
+      maturity
+    }
+  }
+`

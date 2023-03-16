@@ -9,6 +9,7 @@ import { Loading, Unauthorized } from '../../components/shared/FetchStatus'
 import ClientOnly from '../../lib/ClientOnly'
 import { useUser } from '../../lib/hooks'
 import RubricCategoryListQuery from '../../components/rubric-categories/RubricCategoryList'
+import PageContent from '../../components/main/PageContent'
 
 const RubricCategories = () => {
   const { formatMessage } = useIntl()
@@ -25,17 +26,19 @@ const RubricCategories = () => {
       <Header />
       <ClientOnly>
         {loadingUserSession ? <Loading /> : isAdminUser ? (
-          <>
-            <SearchFilter
-              search={search}
-              setSearch={setSearch}
-              hint='filter.entity.rubric-categories'
-              switchView={false}
-              exportJson={false}
-              exportCsv={false}
-            />
-            <RubricCategoryListQuery />
-          </>
+          <PageContent
+            content={<RubricCategoryListQuery />}
+            searchFilter={
+              <SearchFilter
+                search={search}
+                setSearch={setSearch}
+                hint='filter.entity.rubric-categories'
+                switchView={false}
+                exportJson={false}
+                exportCsv={false}
+              />
+            }
+          />
         ) : <Unauthorized />}
       </ClientOnly>
       <Footer />

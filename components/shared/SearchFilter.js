@@ -2,7 +2,6 @@ import { saveAs } from 'file-saver'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useCallback, useContext, useEffect, useState } from 'react'
-import { FaSearch } from 'react-icons/fa'
 import { FilterContext } from '../context/FilterContext'
 import { ProductFilterContext } from '../context/ProductFilterContext'
 import { DatasetFilterContext } from '../context/DatasetFilterContext'
@@ -14,6 +13,7 @@ import { UseCaseFilterContext } from '../context/UseCaseFilterContext'
 import { WorkflowFilterContext } from '../context/WorkflowFilterContext'
 import { useOrganizationOwnerUser, useProductOwnerUser, useUser } from '../../lib/hooks'
 import { SearchInput } from './SearchInput'
+import ViewSwitcher from './ViewSwitcher'
 
 const SearchFilter = ({
   search,
@@ -25,10 +25,9 @@ const SearchFilter = ({
   exportJson = true,
   exportCsv = true
 }) => {
-  const { resultCounts, displayType, setDisplayType } = useContext(FilterContext)
+  const { resultCounts } = useContext(FilterContext)
 
   const router = useRouter()
-  const { locale } = useRouter()
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
@@ -55,20 +54,7 @@ const SearchFilter = ({
 
   const handleChange = (e) => setSearchTerm(e.target.value)
 
-  const toggleDisplayType = (e) => {
-    e.preventDefault()
-    setDisplayType(displayType === 'list' ? 'card' : 'list')
-  }
-
   const generateCreateLink = () => {
-    if (!user) {
-      return '/create-not-available'
-    }
-
-    if (!user.canEdit && linkPath.includes('candidate')) {
-      return `/candidate/${linkPath[1]}/create`
-    }
-
     const withCandidatePaths = ['products', 'organizations', 'datasets']
     if (!user.canEdit && withCandidatePaths.some(el => linkPath.includes(el))) {
       return `/candidate/${linkPath[0]}/create`
@@ -90,15 +76,12 @@ const SearchFilter = ({
       'playbooks', 'plays', 'organizations', 'products', 'datasets', 'use_cases', 'building_blocks', 'workflows',
       'countries', 'rubric_categories'
     ]
-    if (reactEditPaths.some(el => linkPath.includes(el))) {
+    if (user.canEdit && reactEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails
       return `/${linkPath[0]}/create`
     }
 
-    const { userEmail, userToken } = user
-
-    return `${process.env.NEXT_PUBLIC_RAILS_SERVER}/${linkPath[0]}/` +
-      `new?user_email=${userEmail}&user_token=${userToken}&locale=${locale}`
+    return '/create-not-available'
   }
 
   const productFilters = useContext(ProductFilterContext)
@@ -226,124 +209,70 @@ const SearchFilter = ({
   }
 
   return (
-    <div className='bg-dial-gray-light md:bg-transparent w-full pt-1 md:pt-2'>
-      <div className='flex flex-wrap gap-x-4 px-3'>
-        <div className='flex flex-wrap gap-x-4 gap-y-4 lg:gap-x-8 xl:gap-20'>
-          <div
-            className={`
-              hidden md:flex items-center ml-auto text-xl font-semibold my-auto
-              animated-drawer intro-overview-card-view
-            `}
+    <div className='bg-dial-gray-light md:bg-transparent w-full flex flex-col gap-2'>
+      <div className='flex flex-wrap gap-4'>
+        <div className='hidden md:flex text-xl font-semibold intro-overview-card-view mt-auto gap-3'>
+          <div className='h1 my-auto'>{format(hint)}</div>
+          <span
+            data-testid='list-counter'
+            className='px-2 py-1.5 rounded text-dial-gray-dark bg-dial-sunshine'
           >
-            <div className='h1'>{format(hint)}</div>
-            <span
-              data-testid='list-counter'
-              className='ml-2 px-2 py-1.5 text-base rounded text-dial-gray-dark bg-dial-yellow'
-            >
-              {resultCounts[hint]}
-            </span>
+            {resultCounts[hint]}
+          </span>
+        </div>
+        <div className='ml-auto flex flex-wrap gap-2 xl:gap-12'>
+          <div className='ml-auto md:mt-8'>
+            {switchView && <ViewSwitcher />}
           </div>
-          <div className='intro-overview-search ml-auto flex gap-x-3'>
-            <label className='my-auto'>
-              <span className='sr-only'>{format('search.input.label')}</span>
+          <div className='ml-auto intro-overview-search flex gap-x-3'>
+            <label className='my-auto w-80'>
+              <span className='text-sm text-dial-stratos font-semibold'>
+                {format('search.input.label', { entity: format(hint) })}
+              </span>
               <SearchInput
-                value={searchTerm} onChange={handleChange}
-                className={`
-                  form-input py-2 px-3 text-sm rounded-md md:w-80 lg:w-96 2xl:w-[32rem]
-                  placeholder-dial-gray-dark placeholder-opacity-40 border border-dial-gray-dark focus:border-dial-yellow
-                `}
-                placeholder={`${format('app.search')} ${format(hint).toString().toLowerCase()}`}
+                value={searchTerm}
+                onChange={handleChange}
+                placeholder={format('app.search')}
               />
             </label>
-            <button
-              className={`
-                hidden form-input px-4 bg-dial-gray-dark rounded-md border border-dial-gray-dark focus:border-dial-yellow
-                hover:border-dial-yellow
-              `}
-            >
-              <FaSearch className='text-dial-gray-light' />
-            </button>
           </div>
         </div>
-        <div className='ml-auto my-auto'>
-          {switchView && (
-            <div className='flex flex-col md:flex-row'>
-              <div className='text-xs my-auto font-semibold text-dial-gray-dark opacity-50'>
-                {format('view.switch.title')}
-              </div>
-              <div className='my-auto pt-2 pb-3 px-2 flex flex-row'>
-                {
-                  displayType === 'card' &&
-                    <>
-                      <img
-                        alt={format('image.alt.logoFor', { name: format('view.active.card') })}
-                        className='mr-2 h-6' src='/icons/card-active/card-active.png'
-                      />
-                      <a href='toggle-display' onClick={toggleDisplayType}>
-                        <img
-                          alt={format('image.alt.logoFor', { name: format('view.inactive.list') })}
-                          className='h-6 cursor-pointer' src='/icons/list-inactive/list-inactive.png'
-                        />
-                      </a>
-                    </>
-                }
-                {
-                  displayType === 'list' &&
-                    <>
-                      <a className='mr-2' href='toggle-display' onClick={toggleDisplayType}>
-                        <img
-                          alt={format('image.alt.logoFor', { name: format('view.inactive.card') })}
-                          className='h-6 cursor-pointer' src='/icons/card-inactive/card-inactive.png'
-                        />
-                      </a>
-                      <img
-                        alt={format('image.alt.logoFor', { name: format('view.active.list') })}
-                        className='h-6' src='/icons/list-active/list-active.png'
-                      />
-                    </>
-                }
-              </div>
-            </div>
-          )}
-        </div>
       </div>
-      <div>
+      <div className='my-auto ml-auto'>
         {user && (
-          <div className='text-xs mt-2'>
-            <div className='flex justify-end px-3'>
-              {createNew &&
-                  <a className='bg-dial-blue px-2 py-1 rounded-md text-white text-md'
-                    data-testid='create-new'
-                    href={generateCreateLink()}
-                    onClick={(event) => {
-                      if (onCreateNewClick) {
-                        event.preventDefault()
-                        onCreateNewClick()
-                      }
-                    }}
-                  >
-                    <span>{format('app.create-new')}</span>
-                  </a>
-              }
-              {exportJson && (
-                <a
-                  className='bg-dial-yellow mx-2 px-2 py-1 rounded-md text-white text-md'
-                  href='/export-as-json'
-                  onClick={(e) => exportAsJson(e)}
-                >
-                  <span>{format('app.exportAsJson')}</span>
-                </a>
-              )}
-              {exportCsv && (
-                <a
-                  className='bg-dial-yellow px-2 py-1 rounded-md text-white text-md'
-                  href='/export-as-csv'
-                  onClick={(e) => exportAsCsv(e)}
-                >
-                  <span>{format('app.exportAsCSV')}</span>
-                </a>
-              )}
-            </div>
+          <div className='flex flex-wrap gap-2 text-xs text-dial-stratos'>
+            {createNew &&
+              <a className='bg-dial-blue px-2 py-1 rounded-md text-white'
+                data-testid='create-new'
+                href={generateCreateLink()}
+                onClick={(event) => {
+                  if (onCreateNewClick) {
+                    event.preventDefault()
+                    onCreateNewClick()
+                  }
+                }}
+              >
+                <span>{format('app.create-new')}</span>
+              </a>
+            }
+            {exportJson && (
+              <a
+                className='bg-dial-sunshine px-2 py-1 rounded-md'
+                href='/export-as-json'
+                onClick={(e) => exportAsJson(e)}
+              >
+                <span>{format('app.exportAsJson')}</span>
+              </a>
+            )}
+            {exportCsv && (
+              <a
+                className='bg-dial-sunshine px-2 py-1 rounded-md'
+                href='/export-as-csv'
+                onClick={(e) => exportAsCsv(e)}
+              >
+                <span>{format('app.exportAsCSV')}</span>
+              </a>
+            )}
           </div>
         )}
       </div>

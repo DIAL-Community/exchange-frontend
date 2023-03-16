@@ -50,7 +50,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
           <div className='card-title text-dial-gray-dark inline'>{format('product.website')}</div>
           <div className='text-base text-dial-teal flex'>
             <a href={prependUrlWithProtocol(product.website)} target='_blank' rel='noreferrer'>
-              <div className='border-b-2 border-transparent hover:border-dial-yellow'>
+              <div className='border-b-2 border-transparent hover:border-dial-sunshine'>
                 {product.website} ⧉
               </div>
             </a>
@@ -123,7 +123,7 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
                   rel='noreferrer'
                 >
                   <div className='inline text-dial-teal text-sm' data-tip={format('product.view-DPGA-data')}>
-                    <BsQuestionCircleFill className='inline text-xl mb-1 fill-dial-yellow' />
+                    <BsQuestionCircleFill className='inline text-xl mb-1 fill-dial-sunshine' />
                   </div>
                 </a>
               )}

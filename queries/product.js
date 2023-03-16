@@ -73,6 +73,7 @@ export const PRODUCT_QUERY = gql`
         name
         slug
         imageFile
+        number
       }
       sustainableDevelopmentGoalsMappingStatus
       sectors {
@@ -171,6 +172,7 @@ export const PRODUCTS_QUERY = gql`
         imageFile
         isLaunchable
         overallMaturityScore
+        commercialProduct
         endorsers {
           name
           slug

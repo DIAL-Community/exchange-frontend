@@ -6,6 +6,61 @@ module.exports = {
         3: '3px'
       },
       colors: {
+        // Part of the UX refresh.
+        'dial-sapphire': {
+          DEFAULT: '#2e3192'
+        },
+        'dial-white-beech': {
+          light: '#e2e8f0',
+          DEFAULT: '#faf4ef'
+        },
+        'dial-stratos': {
+          DEFAULT: '#000542'
+        },
+        'dial-sunshine': {
+          DEFAULT: '#faa92b'
+        },
+        'dial-alice-blue': {
+          light: '#f8fafc',
+          DEFAULT: '#f1f5f9'
+        },
+        'dial-solitude': {
+          DEFAULT: '#e2e8f0'
+        },
+        'dial-iris-blue': {
+          DEFAULT: '#485cd5'
+        },
+        'dial-eggshell': {
+          DEFAULT: '#faeedc'
+        },
+        'dial-mint': {
+          DEFAULT: '#c0fed7'
+        },
+        'dial-ice': {
+          DEFAULT: '#d4ffef'
+        },
+        'dial-blue-chalk': {
+          DEFAULT: '#e6e9fc'
+        },
+        'dial-angel': {
+          DEFAULT: '#c7ccf4'
+        },
+        'dial-lavender': {
+          DEFAULT: '#96a2ef'
+        },
+        'dial-amethyst-smoke': {
+          DEFAULT: '#9996b8'
+        },
+        'dial-blueberry': {
+          DEFAULT: '#e6e9fc'
+        },
+        'dial-biscotti': {
+          DEFAULT: '#fad3a2'
+        },
+        'footer-delimiter': {
+          DEFAULT: '#c7cefa'
+        },
+        // End of UX refresh colors
         'dial-gray': {
           light: '#f5f6fa',
           DEFAULT: '#dfdfea',
@@ -93,7 +148,7 @@ module.exports = {
         '1/4': '25%',
         '1/2': '50%',
         '3/4': '75%',
-        catalog: '120rem'
+        catalog: '2120px'
       },
       maxHeight: {
         lg: '28rem',
@@ -112,10 +167,7 @@ module.exports = {
         '66px': '66px'
       },
       fontFamily: {
-        DEFAULT: `
-          Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif
-        `
+        DEFAULT: '"Poppins", sans-serif'
       }
     }
   },

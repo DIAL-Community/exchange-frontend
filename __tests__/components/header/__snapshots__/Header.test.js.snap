@@ -3,7 +3,7 @@
 exports[`Unit test for the Header component. Should match snapshot. 1`] = `
 <div
   class="
-  origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white
+  origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white
   ring-1 ring-black ring-opacity-5 focus:outline-none z-30
 "
   data-testid="menu-admin-items"

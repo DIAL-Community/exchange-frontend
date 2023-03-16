@@ -128,6 +128,7 @@ exports[`Unit test for the CategoryIndicatorDetail component. Should render Cate
     >
       <div
         class="px-4 text-dial-gray-dark"
+        style="min-height: 50vh;"
       >
         <div
           class="hidden lg:block"

@@ -9,7 +9,7 @@ const RubricCategoryDetailRight = ({ rubricCategory, slugNameMapping }) => {
   const format = useCallback((id) => formatMessage({ id }), [formatMessage])
 
   return (
-    <div className='px-4'>
+    <div className='px-4' style={{ minHeight: '50vh' }}>
       <div className='hidden lg:block'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
