@@ -96,7 +96,7 @@ export const PRODUCT_QUERY = gql`
         imageFile
         tags
       }
-      linkedWithDpi
+      isLinkedWithDpi
     }
   }
 `
@@ -199,7 +199,7 @@ export const PRODUCTS_QUERY = gql`
         mainRepository {
           license
         }
-        linkedWithDpi
+        isLinkedWithDpi
       }
     }
   }
