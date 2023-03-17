@@ -109,11 +109,6 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                         {buildingBlock.name}
                       </div>
                     </div>
-                    <div className='flex text-dial-sapphire bg-dial-alice-blue h-24 rounded-t-lg'>
-                      <div className='px-4 text-sm text-center font-semibold m-auto'>
-                        {buildingBlock.name}
-                      </div>
-                    </div>
                     <div className='my-8 mx-auto'>
                       <div className='block w-16 h-16 relative opacity-60'>
                         <Image
