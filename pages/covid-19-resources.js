@@ -155,7 +155,7 @@ const Content = () => {
                     firstLink: chunks =>
                       <a
                         className='mx-1 text-dial-sunshine border-b border-transparent hover:border-dial-sunshine'
-                        href='http://solutions.dial.community/organizations?shareCatalog=true&aggregator=true'
+                        href='http://sexchange.dial.global/organizations?shareCatalog=true&aggregator=true'
                       >
                         {chunks}
                       </a>
