@@ -18,7 +18,7 @@ export const en = {
   'app.cancel': 'Cancel',
   'app.duplicate': 'Duplicate',
   'app.close': 'Close',
-  'app.powered': 'Powered by DIAL\'s Catalog of Digital Solutions',
+  'app.powered': 'Powered by the Digital Impact Exchange',
   'app.reportIssue': 'Report Issue',
   'app.delete': 'Delete',
   'app.assign': 'Assign',
@@ -76,7 +76,7 @@ export const en = {
   'header.help': 'Help',
   'header.about': 'About',
   'header.documentation': 'Documentation Portal',
-  'header.confluence': 'Catalog Wiki Page',
+  'header.confluence': 'Exchange Wiki Page',
   'header.admin': 'Admin',
   'header.selectLanguage': 'Select Language',
   'header.english': 'English (en)',
@@ -104,7 +104,7 @@ export const en = {
     digital development champions. We are grateful for the support of our Founding Partners.
   `,
   'footer.text.secondLine': `
-    We are also thankful for direct support for this Catalog of Digital Solutions provided
+    We are also thankful for direct support for the Digital Impact Exchange provided
     by the following partners:
   `,
   'footer.organizationName': 'Digital Impact Alliance',
@@ -122,7 +122,7 @@ export const en = {
   'footer.partnersAndSupporters': 'Our partners and supporters',
 
 
-  'definition.title': 'The Catalog of Digital Solutions is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
+  'definition.title': 'The Digital Impact Exchange is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
   'definition.goal': 'Our goal: ',
   'definition.subtitle': 'Informed decision-making and greater coordination in digital investments, planning & implementations across sectors',
   'definition.donors': 'Donors',
@@ -131,10 +131,10 @@ export const en = {
   'definition.ministers': 'Technology and ICT Ministers',
   'definition.procurers': 'Procurers',
   'definition.product-owners': 'Product Owners',
-  'definition.sections.what': 'What is the Catalog',
+  'definition.sections.what': 'What is the Exchange',
   'definition.sections.who': 'Who is it For?',
   'definition.sections.how': 'How can I use it?',
-  'definition.sections.approach': 'The Catalog\'s approach',
+  'definition.sections.approach': 'The Exchange\'s approach',
   'definition.sections.featured': 'Featured this quarter',
   'definition.sections.contact': 'Contact us',
   'definition.buttons.learn': 'Learn More',
@@ -151,29 +151,29 @@ export const en = {
       <strong>Product owners</strong> of Digital Public Goods that want connect to potential users and supply the development ecosystem with innovative products.
       </p>
       `,
-  'definition.how': 'Watch our demo and tutorial videos to learn how to use the Catalog',
+  'definition.how': 'Watch our demo and tutorial videos to learn how to use the Exchange',
   'definition.approach': `
-      The Catalog promotes a Whole-of-Government approach to investing in digital technologies to achieve the SDGs.
+      The Exchange promotes a Whole-of-Government approach to investing in digital technologies to achieve the SDGs.
       <br /><br />
       This approach is rooted in the SDG Digital Investment Framework, developed by DIAL and ITU.
       `,
   'definition.featured': `
       More Data! In many sectors, access to open data and and content is a critical part 
-      of any digital project. The Catalog has a new tab called 'Open Data' that 
+      of any digital project. The Exchange has a new tab called 'Open Data' that 
       provides links to over a hundred different open datasets allowing users to find valuable
       information on population, agriculture, climate, and much more.
       <br /><br />
       Read our <a href='https://dial.global/using-open-datasets-to-fertilize-agriculture-development-announcing-the-catalogs-newest-feature/' target='_blank' rel='noreferrer'>blog</a> to learn more about the open datasets feature
       <br /><br />
-      We are also happy to introduce new commenting and dialog functionality in the Catalog. Users
+      We are also happy to introduce new commenting and dialog functionality in the Exchange. Users
       can now easily ask questions, post comments, and engage in dialog about digital products,
-      use cases, or building blocks. The Catalog community has immense knowledge and
+      use cases, or building blocks. The Exchange community has immense knowledge and
       experience in digital development, and this new feature allows users to share advice,
       resources and best practices with each other.
       `,
-  'definition.contact': 'We welcome questions or feedback on the Catalog of Digital Solutions. Please feel free to reach out to us.',
+  'definition.contact': 'We welcome questions or feedback on the Digital Impact Exchange. Please feel free to reach out to us.',
   'definition.tutorial.intro': 'Tutorial: Introduction',
-  'definition.tutorial.started': 'Tutorial: Getting Started with the Catalog',
+  'definition.tutorial.started': 'Tutorial: Getting Started with the Exchange',
   'definition.tutorial.framework': 'Tutorial: SDG Digital Investment Framework',
   'definition.tutorial.products': 'Tutorial: How to use the "Products" Tab',
   'definition.tutorial.filters': 'Tutorial: Using Filters',
@@ -191,7 +191,7 @@ export const en = {
   'definition.minister.desc2': 'Mapping systems to the ICT Building Blocks can also provides a better understanding of what gaps currently exist or opportunities for consolidation.',
   'definition.procurer.desc1': 'can use this tool to identify what ICT Building Blocks and Products deliver various needed workflows, or business process, to deliver development programming or various digital initiatives.',
   'definition.procurer.desc2': 'Also, discover existing products that can meet the use cases and workflows for specific programmatic needs, providing insights to the “build or buy” questions for project implementation.',
-  'definition.product-owner.desc1': 'can use this tool provide detailed information about their product. They can also contribute to the online forums connected to the catalog, sharing best practices and tips for using their platform.',
+  'definition.product-owner.desc1': 'can use this tool provide detailed information about their product. They can also contribute to the online forums connected to the Exchange, sharing best practices and tips for using their platform.',
   'definition.product-owner.desc2': 'Product Owners can also provide information about sectors or use cases the product is designed to address, and can create and update Projects - providing information about where the product has been deployed and by whom.',
   'definition.explore-sdg': 'Explore SDGs',
   'definition.explore-bb': 'Explore Building Blocks',
@@ -235,7 +235,7 @@ export const en = {
   'product.no-interop': 'We do not have any Interoperating information for this Product.',
   'product.no-include': 'We do not have any Includes information for this Product.',
   'product.maturity-scores': 'Product maturity scores',
-  'product.maturity-desc': 'These maturity scores have been sourced from organizations such as Digital Square and DIAL Open Source Center. These maturity scores are not an endorsement, but a reflection of ratings given by various organizations. For more information visit the <a href="https://docs.osc.dial.community/projects/product-registry/en/latest/maturity.html" target="_blank">Catalog Documentation</a>',
+  'product.maturity-desc': 'These maturity scores have been sourced from organizations such as Digital Square and DIAL Open Source Center. These maturity scores are not an endorsement, but a reflection of ratings given by various organizations. For more information visit the <a href="https://docs.osc.dial.community/projects/product-registry/en/latest/maturity.html" target="_blank">Exchange Documentation</a>',
   'product.no-maturity': 'We do not have any Maturity information for this Product.',
   'product.maturity-chart-tooltip': 'Click to see maturity score details',
   'product.maturity-details-label': 'Maturity score details',
@@ -392,7 +392,7 @@ export const en = {
   'wizard.yes': 'Yes',
   'wizard.no': 'No',
   'wizard.seeResults': 'See Results',
-  'wizard.intro': 'The Requirements and Recommendation Wizard is a part of the DIAL Catalog of Digital Solutions. It is a tool designed to provide information and resources to individuals and teams working on development projects that leverage digital tools and technologies.{linebreak}{linebreak}The Wizard can be used at different times during the project lifecycle - ideation, planning, implementation, or monitoring/evaluation. The output of this tool will be tailored to provide the resources and information that are applicable to the current project phase.{linebreak}{linebreak}We will first ask a series of brief questions about your project and then generate a report that links to data within the DIAL Catalog as well as to other helpful resources.',
+  'wizard.intro': 'The Requirements and Recommendation Wizard is a part of the Digital Impact Exchange. It is a tool designed to provide information and resources to individuals and teams working on development projects that leverage digital tools and technologies.{linebreak}{linebreak}The Wizard can be used at different times during the project lifecycle - ideation, planning, implementation, or monitoring/evaluation. The output of this tool will be tailored to provide the resources and information that are applicable to the current project phase.{linebreak}{linebreak}We will first ask a series of brief questions about your project and then generate a report that links to data within the Exchange as well as to other helpful resources.',
   'wizard.introStep': 'Introduction',
   'wizard.stepOne': 'Step 1: Project Information',
   'wizard.stepTwo': 'Step 2: Additional Project Information',
@@ -408,7 +408,7 @@ export const en = {
   'wizard.results.useCases': 'Use Cases',
   'wizard.results.useCasesDesc': 'The following use cases may be applicable to your project. A use case provides a breakdown of all of the steps that may be required as well as the workflows or business processes that will be needed at each step.',
   'wizard.results.useCaseDesc': 'The following use case was selected and provides a breakdown of all of the steps that may be required as well as the workflows or business processes that will be needed at each step.',
-  'wizard.results.noUseCases': 'We do not have any uses cases that are applicable to this project. We encourage you to create a new use case in the Catalog of Digital Solutions.',
+  'wizard.results.noUseCases': 'We do not have any uses cases that are applicable to this project. We encourage you to create a new use case in the Exchange.',
   'wizard.results.clickHere': ' Click Here',
   'wizard.results.buildingBlocks': 'Building Blocks',
   'wizard.results.buildingBlocksDesc': 'The following building blocks may be applicable to your project.',
@@ -485,8 +485,8 @@ export const en = {
   `,
 
   'landing.subtitle': 'Digital Impact Alliance',
-  'landing.title.firstLine': 'Catalog of',
-  'landing.title.secondLine': 'Digital Solutions',
+  'landing.title.firstLine': 'Digital Impact',
+  'landing.title.secondLine': 'Exchange',
   'landing.blurb': 'An interactive online resource to support Global Development Actors in the implementation of digital strategies.',
   'landing.wizard.title': 'Recommendations Wizard',
   'landing.catalog.title': 'Launch Catalog',
@@ -609,7 +609,7 @@ export const en = {
   'filter.hint.text.an': 'What is an ',
 
   'digiInvestment.title': 'Digital Investment Framework',
-  'digiInvestment.tooltip': 'The SDG Digital Investment Framework developed by DIAL and ITU advocates for re-usable, cross-sectoral building blocks. The Catalog illustrates how use cases are composed of generic workflows which can be implemented by building blocks. Users can also explore existing products that may provide necessary functionality for each building block.',
+  'digiInvestment.tooltip': 'The SDG Digital Investment Framework developed by DIAL and ITU advocates for re-usable, cross-sectoral building blocks. The Exchange illustrates how use cases are composed of generic workflows which can be implemented by building blocks. Users can also explore existing products that may provide necessary functionality for each building block.',
 
   'filter.entity.sdgs': 'SDGs',
   'filter.entity.useCases': 'Use Cases',
@@ -801,7 +801,7 @@ export const en = {
   'project.hint.characteristicTitle': 'Description',
   'project.hint.descriptionTitle': 'Project Sources',
   'project.hint.subtitle': `A Project is an implementation of a digital platform in a specific context and/or sector.`,
-  'project.hint.characteristics': `Projects provide insight into where specific digital technologies have been deployed. Users of the Catalog can search and filter projects by country or sector.`,
+  'project.hint.characteristics': `Projects provide insight into where specific digital technologies have been deployed. Users of the Exchange can search and filter projects by country or sector.`,
   'project.hint.description': `Project data is sourced from many different partners, including the World Health Organization's Digital Health Atlas, the Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ), and New America.`,
 
   'playbook.hint.subtitle': `Playbooks are tactical guides that  help different actors approach common digital initiatives. They provide step-by-step instructions and highlight key technical and operational considerations.`,
@@ -815,7 +815,7 @@ export const en = {
   'organization.hint.descriptionTitle': 'Types of Organizations',
   'organization.hint.subtitle': `An Organization supports the development and/or implementation of digital technologies to address the SDGs.`,
   'organization.hint.characteristics': `The organization cards provide a quick overview of each organization, including information on the products they support, the projects or work they have been connected to, the sectors they are engaged with and the countries in which they work.`,
-  'organization.hint.description': `The Catalog tracks several different types of organizations:<ul><li>Organizations that have endorsed the Principles for Digital Development</li><li>Mobile Network Aggregators</li><li>Funders and Maintainers of open source tools (products)</li></ul>`,
+  'organization.hint.description': `The Exchange tracks several different types of organizations:<ul><li>Organizations that have endorsed the Principles for Digital Development</li><li>Mobile Network Aggregators</li><li>Funders and Maintainers of open source tools (products)</li></ul>`,
 
   'useCase.hint.characteristicTitle': 'Characteristics',
   'useCase.hint.descriptionTitle': 'Description',
@@ -1167,7 +1167,7 @@ export const en = {
 
   'covid.exploreCatalog': 'Explore the Catalog',
 
-  'covid.firstArea.title': 'Using the Online Catalog for Product Discovery',
+  'covid.firstArea.title': 'Using the Digital Impact Exchange for Product Discovery',
   'covid.firstArea.firstText': `<p>Governments and organizations are looking for digital tools to help with COVID-19 surveillance, diagnosis, prevention and treatment.</p><p>However, they may not know that there are mature open source solutions that are ready to be deployed to support these needs.</p><p><firstLink>The Online Catalog</firstLink> contains a list of open source products that support the SDGs.</p><p>Users can filter products by the SDGs that they are designed to address, the use cases that they are connected to, or the building blocks that they support.</p>`,
   'covid.firstArea.secondText': `<p>Several of the products in the catalog have been tagged as supporting specific functionality needed for COVID-19 response.</p><p>To see these products, use the "<b>COVID-19</b>" tag in the filter section.</p><p>Click on a specific product to get detailed information about the product.</p>`,
   'covid.firstArea.thirdText': `<p>The product details page will provide a description of the product, links to the product website and code repository, as well as other relevant data about the product.</p>`,
@@ -1411,7 +1411,7 @@ export const en = {
   'shared.category-indicator.assigned': 'Category Indicators with data',
   'shared.category-indicator.notAssigned': 'Category Indicators without data',
 
-  'seo.description.about': 'DIAL’s Catalog of Digital Solutions is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
+  'seo.description.about': 'The Digital Impact Exchange is an interactive online tool providing data and resources for donors, governments, procurers, and implementers to support their digital initiatives.',
   'seo.description.maps': 'Interactive map views showing where specific digital platforms have been implemented as well as the countries where various digital development organizations work.',
 
   'validation.required': 'This field is required',
@@ -1538,16 +1538,16 @@ export const en = {
   'paginatedSection.page.next.label': 'Next >',
 
   'intro.overview.startTour': 'Getting Started',
-  'intro.overview': "Welcome to the Catalog of Digital Solutions.<br /><br />Let's start with a quick product tour to get acquainted with the platform.<br /><br /><div class='text-xs'>You can exit this tour at any time by clicking the 'X' in the top right corner.</div>",
-  'intro.overview.sdgFramework': 'The Catalog leverages the SDG Digital Investment Framework developed by DIAL and ITU. You can see different aspects of the Framework by clicking on the various tabs.',
+  'intro.overview': "Welcome to the Digital Impact Exchange.<br /><br />Let's start with a quick product tour to get acquainted with the platform.<br /><br /><div class='text-xs'>You can exit this tour at any time by clicking the 'X' in the top right corner.</div>",
+  'intro.overview.sdgFramework': 'The Exchange leverages the SDG Digital Investment Framework developed by DIAL and ITU. You can see different aspects of the Framework by clicking on the various tabs.',
   'intro.overview.entityProduct': 'The Products Tab is used to discover information on different solutions and tools.',
   'intro.overview.entityHelp': 'Need more information on what a product is? Click here.',
-  'intro.overview.search': 'The Catalog makes it easy to search and find specific products. Use this search bar to find a product by key words.',
+  'intro.overview.search': 'The Exchange makes it easy to search and find specific products. Use this search bar to find a product by key words.',
   'intro.overview.filter': 'Or use these filters to narrow your search.',
   'intro.overview.cardView': 'Click on one of the cards below for detailed information about that product.',
-  'intro.overview.entityPlaybook': 'The Playbooks tab allows you to find guidance and resources contributed by DIAL and our community of users.',
+  'intro.overview.entityPlaybook': 'The Playbooks tab allows you to find guidance and resources contributed by the Digital Impact Alliance and our community of users.',
   'intro.overview.wizard': 'Need more help? Try our recommendations wizard.',
-  'intro.overview.signUp': 'Start using the Catalog today by signing up for an account, which allows you to access even more great features.',
+  'intro.overview.signUp': 'Start using the Exchange today by signing up for an account, which allows you to access even more great features.',
 
   'govstack.api.repositories': 'Govstack API Repositories',
   'govstack.api.branch': 'Branch',
