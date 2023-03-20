@@ -15,7 +15,7 @@ const EditButton = ({ type = 'button', onClick, href, className }) => {
       </span>
     </>
 
-  const style = 'inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white'
+  const style = 'flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white'
 
   return (
     type === 'button' ? (

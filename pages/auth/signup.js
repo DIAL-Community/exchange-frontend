@@ -26,6 +26,9 @@ const TextFieldDefinition = (initialState) => {
       validationValue = zxcvbn(event.target.value).score
     } else if (id === 'passwordConfirmation') {
       validationValue = event.target.value && event.target.value === fields.password
+    } else if (id === 'email') {
+      console.log('Event Target: ', event.target.value, '---')
+      validationValue = event.target.value?.length > 0 && /\S+@\S+\.\S+/.test(event.target.value)
     }
 
     setFieldValidations({
@@ -130,6 +133,8 @@ const SignUp = () => {
     return strengthClasses[strength]
   }
 
+  console.log(fieldValidations)
+
   return (
     <>
       <Header isOnAuthPage />
@@ -139,28 +144,39 @@ const SignUp = () => {
           <div className={`mx-4 ${created ? 'visible' : 'invisible'} text-center pt-4`}>
             <div className='my-auto text-emerald-500'>{format('signUp.created')}</div>
           </div>
-          <div className='pt-4 pb-8'>
+          <div className='pt-4 pb-8 text-dial-sapphire'>
             <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
               <form method='post' onSubmit={handleSubmit}>
                 <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
                   <div className='mb-4'>
-                    <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='email'>
+                    <label className='block text-grey-darker text-sm font-semibold mb-2' htmlFor='email'>
                       {format('signUp.email')}
                     </label>
                     <input
-                      id='email' name='email' type='email' placeholder={format('signUp.email.placeholder')}
+                      id='email'
+                      name='email'
+                      type='email'
+                      placeholder={format('signUp.email.placeholder')}
                       className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                      value={textFields.email} onChange={handleTextChange}
+                      value={textFields.email}
+                      onChange={handleTextChange}
                     />
+                    {fieldValidations.email === false &&
+                      <p className='text-red-500 text-xs mt-2'>{format('signUp.email.invalid')}</p>
+                    }
                   </div>
                   <div className='mb-4'>
-                    <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='password'>
+                    <label className='block text-grey-darker text-sm font-semibold mb-2' htmlFor='password'>
                       {format('signUp.password')}
                     </label>
                     <input
-                      id='password' name='password' type='password' placeholder='******************'
+                      id='password'
+                      name='password'
+                      type='password'
+                      placeholder='******************'
                       className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
-                      value={textFields.password} onChange={handleTextChange}
+                      value={textFields.password}
+                      onChange={handleTextChange}
                     />
                     <div className='strength-meter my-2'>
                       <div className={`strength-meter-fill ${strengthColor(fieldValidations.password)}`} />
@@ -170,29 +186,35 @@ const SignUp = () => {
                     </div>
                   </div>
                   <div className='mb-4'>
-                    <label className='block text-grey-darker text-sm font-bold mb-2' htmlFor='passwordConfirmation'>
+                    <label className='block text-grey-darker text-sm font-semibold mb-2' htmlFor='passwordConfirmation'>
                       {format('signUp.passwordConfirmation')}
                     </label>
                     <input
-                      id='passwordConfirmation' name='passwordConfirmation' type='password' placeholder='******************'
-                      className={`
-                        ${fieldValidations.passwordConfirmation === false ? 'border-4 border-red-500' : ''}
-                        shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker
-                      `}
-                      value={textFields.passwordConfirmation} onChange={handleTextChange}
+                      id='passwordConfirmation'
+                      name='passwordConfirmation'
+                      type='password'
+                      placeholder='******************'
+                      className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
+                      value={textFields.passwordConfirmation}
+                      onChange={handleTextChange}
                     />
-                    <p className='text-red text-xs italic mt-2'>{format('signUp.passwordConfirmation.hint')}</p>
+                    {fieldValidations.passwordConfirmation === false &&
+                      <p className='text-red-500 text-xs italic mt-2'>
+                        {format('signUp.passwordConfirmation.hint')}
+                      </p>
+                    }
                   </div>
                   <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} onChange={setCaptcha} />
                   <div className='flex items-center justify-between font-semibold text-sm mt-2'>
                     <div className='flex'>
                       <button
-                        className='bg-dial-gray-dark text-dial-gray-light py-2 px-4 rounded inline-flex disabled:opacity-50'
+                        className='bg-dial-sapphire text-white py-2 px-4 rounded inline-flex disabled:opacity-50'
                         type='submit'
                         disabled={
                           loading ||
                           fieldValidations.password < 2 ||
                           !fieldValidations.passwordConfirmation ||
+                          !fieldValidations.email ||
                           !captcha
                         }
                       >
@@ -200,10 +222,10 @@ const SignUp = () => {
                         {loading && <FaSpinner className='spinner ml-3' />}
                       </button>
                     </div>
-                    <div className='flex'>
+                    <div className='flex text-dial-sapphire'>
                       <Link href='/auth/signin'>
                         <a
-                          className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-sunshine'
+                          className='border-b-2 border-transparent hover:border-dial-sunshine'
                           href='navigate-to-signin'
                         >
                           {format('app.signIn')}
@@ -212,7 +234,7 @@ const SignUp = () => {
                       <div className='border-r-2 border-dial-gray-dark mx-2' />
                       <Link href='/auth/reset-password'>
                         <a
-                          className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-sunshine'
+                          className='border-b-2 border-transparent hover:border-dial-sunshine'
                           href='navigate-to-reset'
                         >
                           {format('signIn.forgetPassword')}
@@ -220,10 +242,12 @@ const SignUp = () => {
                       </Link>
                     </div>
                   </div>
-                  <div className='h5 mt-2'>
+                  <div className='flex gap-1 mt-2 text-xs text-dial-stratos'>
                     {format('signUp.privacy')}
                     <Link href='/privacy-policy'>
-                      <a className='text-dial-sunshine'>{format('signUp.privacyLink')}</a>
+                      <a className='text-dial-sunshine border-b-2 border-transparent hover:border-dial-sunshine'>
+                        {format('signUp.privacyLink')}
+                      </a>
                     </Link>
                   </div>
                 </div>

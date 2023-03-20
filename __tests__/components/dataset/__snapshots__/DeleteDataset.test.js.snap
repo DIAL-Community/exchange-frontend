@@ -23,7 +23,7 @@ exports[`Unit tests for the DeleteDataset component. Should open confirmation di
       id="headlessui-dialog-panel-:r1:"
     >
       <h2
-        class="card-title pb-3 text-xl xl:text-2xl text-dial-blue"
+        class="card-title pb-3 text-xl xl:text-2xl text-dial-sapphire"
         data-headlessui-state="open"
         id="headlessui-dialog-title-:r2:"
       >

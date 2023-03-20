@@ -26,8 +26,42 @@ const mobileServices = [
   'Voice'
 ]
 
-const Wizard = () => {
+const Wizard = () => (
+  <div className='max-w-catalog mx-auto'>
+    <div className='flex flex-col gap-4 divide-y'>
+      <WizardHeader />
+      <WizardContent />
+    </div>
+  </div>
+)
+
+const WizardHeader = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  return (
+    <div className='flex flex-col gap-8 my-8'>
+      <div className='mx-auto text-4xl font-semibold text-dial-sapphire intro-overview-wizard'>
+        {format('wizard.getStarted')}
+      </div>
+      <div className='mx-auto text-center font-semibold text-dial-stratos max-w-4xl'>
+        {format('wizard.getStarted.firstLine')}
+      </div>
+      <div className='mx-auto text-center text-dial-stratos max-w-4xl'>
+        {format('wizard.getStarted.secondLine')}
+      </div>
+    </div>
+  )
+}
+
+const WizardContent = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const { locale } = useRouter()
+
+  const [currentStep, setCurrentStep] = useState(0)
+  const [resultDisplayed, setResultDisplayed] = useState(false)
   const [allValues, setAllValues] = useState({
     projectPhase: '',
     sectors: [],
@@ -70,42 +104,6 @@ const Wizard = () => {
       ...buildingBlocksData?.filter(({ maturity }) => maturity === MaturityStatus.DRAFT) ?? []
     ] ?? []
   }
-
-  return (
-    <div className='max-w-catalog mx-auto'>
-      <div className='flex flex-col gap-4 divide-y'>
-        <WizardHeader />
-        <WizardContent { ...{ wizardData, allValues, setAllValues }} />
-      </div>
-    </div>
-  )
-}
-
-const WizardHeader = () => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  return (
-    <div className='flex flex-col gap-8 my-8'>
-      <div className='mx-auto text-4xl font-semibold text-dial-sapphire'>
-        {format('wizard.getStarted')}
-      </div>
-      <div className='mx-auto text-center font-semibold text-dial-stratos max-w-4xl'>
-        {format('wizard.getStarted.firstLine')}
-      </div>
-      <div className='mx-auto text-center text-dial-stratos max-w-4xl'>
-        {format('wizard.getStarted.secondLine')}
-      </div>
-    </div>
-  )
-}
-
-const WizardContent = ({ wizardData, allValues, setAllValues }) => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const [currentStep, setCurrentStep] = useState(0)
-  const [resultDisplayed, setResultDisplayed] = useState(false)
 
   const availableSteps = [
     <WizardStage1 key='step-1' {...{ wizardData, allValues, setAllValues }} />,

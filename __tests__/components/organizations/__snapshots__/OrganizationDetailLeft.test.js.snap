@@ -12,7 +12,7 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
       class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
     >
       <a
-        class="inline text-dial-blue h5"
+        class="inline text-dial-sapphire h5"
         href="/"
       >
         Home
@@ -35,7 +35,7 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
       class="w-full inline-flex gap-3"
     >
       <div
-        class="inline-flex items-center text-dial-blue text-sm cursor-pointer"
+        class="inline-flex items-center text-dial-sapphire text-sm cursor-pointer"
       >
         <svg
           class="mr-1"
@@ -138,7 +138,7 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
       class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
     >
       <a
-        class="inline text-dial-blue h5"
+        class="inline text-dial-sapphire h5"
         href="/"
       >
         Home
@@ -190,7 +190,7 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
         </span>
       </button>
       <a
-        class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+        class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
         data-testid="edit-link"
         href="/en/organizations/test_organization/edit"
       >
@@ -207,7 +207,7 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
         </span>
       </a>
       <div
-        class="inline-flex items-center text-dial-blue text-sm cursor-pointer"
+        class="inline-flex items-center text-dial-sapphire text-sm cursor-pointer"
       >
         <svg
           class="mr-1"
@@ -310,7 +310,7 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
       class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
     >
       <a
-        class="inline text-dial-blue h5"
+        class="inline text-dial-sapphire h5"
         href="/"
       >
         Home
@@ -333,7 +333,7 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
       class="w-full inline-flex gap-3"
     >
       <div
-        class="inline-flex items-center text-dial-blue text-sm cursor-pointer"
+        class="inline-flex items-center text-dial-sapphire text-sm cursor-pointer"
       >
         <svg
           class="mr-1"

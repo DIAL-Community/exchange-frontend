@@ -15,7 +15,7 @@ exports[`Unit tests for CategoryIndicatorForm component. Should render CategoryI
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home

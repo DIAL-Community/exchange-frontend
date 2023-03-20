@@ -21,7 +21,7 @@ exports[`Unit test for the CountryDetail component should not render delete for 
               class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
             >
               <a
-                class="inline text-dial-blue h5"
+                class="inline text-dial-sapphire h5"
                 href="/"
               >
                 Home
@@ -89,7 +89,7 @@ exports[`Unit test for the CountryDetail component should not render delete for 
               class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
             >
               <a
-                class="inline text-dial-blue h5"
+                class="inline text-dial-sapphire h5"
                 href="/"
               >
                 Home
@@ -133,7 +133,7 @@ exports[`Unit test for the CountryDetail component should not render delete for 
             class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
           >
             <a
-              class="inline text-dial-blue h5"
+              class="inline text-dial-sapphire h5"
               href="/"
             >
               Home
@@ -201,7 +201,7 @@ exports[`Unit test for the CountryDetail component should not render delete for 
             class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
           >
             <a
-              class="inline text-dial-blue h5"
+              class="inline text-dial-sapphire h5"
               href="/"
             >
               Home
@@ -302,7 +302,7 @@ exports[`Unit test for the CountryDetail component should render element of the 
               class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
             >
               <a
-                class="inline text-dial-blue h5"
+                class="inline text-dial-sapphire h5"
                 href="/"
               >
                 Home
@@ -354,7 +354,7 @@ exports[`Unit test for the CountryDetail component should render element of the 
                 </span>
               </button>
               <button
-                class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+                class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
                 data-testid="edit-button"
                 type="button"
               >
@@ -421,7 +421,7 @@ exports[`Unit test for the CountryDetail component should render element of the 
               class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
             >
               <a
-                class="inline text-dial-blue h5"
+                class="inline text-dial-sapphire h5"
                 href="/"
               >
                 Home
@@ -461,7 +461,7 @@ exports[`Unit test for the CountryDetail component should render element of the 
             class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
           >
             <a
-              class="inline text-dial-blue h5"
+              class="inline text-dial-sapphire h5"
               href="/"
             >
               Home
@@ -513,7 +513,7 @@ exports[`Unit test for the CountryDetail component should render element of the 
               </span>
             </button>
             <button
-              class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+              class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
               data-testid="edit-button"
               type="button"
             >
@@ -580,7 +580,7 @@ exports[`Unit test for the CountryDetail component should render element of the 
             class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
           >
             <a
-              class="inline text-dial-blue h5"
+              class="inline text-dial-sapphire h5"
               href="/"
             >
               Home
@@ -677,7 +677,7 @@ exports[`Unit test for the CountryDetail component should render element of the 
               class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
             >
               <a
-                class="inline text-dial-blue h5"
+                class="inline text-dial-sapphire h5"
                 href="/"
               >
                 Home
@@ -729,7 +729,7 @@ exports[`Unit test for the CountryDetail component should render element of the 
                 </span>
               </button>
               <button
-                class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+                class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
                 data-testid="edit-button"
                 type="button"
               >
@@ -796,7 +796,7 @@ exports[`Unit test for the CountryDetail component should render element of the 
               class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
             >
               <a
-                class="inline text-dial-blue h5"
+                class="inline text-dial-sapphire h5"
                 href="/"
               >
                 Home
@@ -840,7 +840,7 @@ exports[`Unit test for the CountryDetail component should render element of the 
             class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
           >
             <a
-              class="inline text-dial-blue h5"
+              class="inline text-dial-sapphire h5"
               href="/"
             >
               Home
@@ -892,7 +892,7 @@ exports[`Unit test for the CountryDetail component should render element of the 
               </span>
             </button>
             <button
-              class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+              class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
               data-testid="edit-button"
               type="button"
             >
@@ -959,7 +959,7 @@ exports[`Unit test for the CountryDetail component should render element of the 
             class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
           >
             <a
-              class="inline text-dial-blue h5"
+              class="inline text-dial-sapphire h5"
               href="/"
             >
               Home

@@ -879,6 +879,7 @@ export const en = {
   'signUp.created': 'Registration successful. Please check your email for confirmation. Redirecting ...',
   'signUp.submit': 'Sign Up',
   'signUp.email': 'Email Address',
+  'signUp.email.invalid': 'Invalid email address.',
   'signUp.email.placeholder': 'Please enter your email address',
   'signUp.password': 'Password',
   'signUp.password.hint': 'Please choose a password.',

@@ -122,7 +122,7 @@ exports[`Unit test for the TagCard component Should match snapshot - user is an 
           class="flex flex-row gap-3 ml-auto"
         >
           <button
-            class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+            class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
             data-testid="edit-button"
             type="button"
           >

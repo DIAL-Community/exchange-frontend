@@ -77,7 +77,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -153,7 +153,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -183,7 +183,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -202,7 +202,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                       </svg>
                     </button>
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -561,7 +561,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -637,7 +637,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -667,7 +667,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -686,7 +686,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                       </svg>
                     </button>
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -989,7 +989,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -1065,7 +1065,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -1363,7 +1363,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -1439,7 +1439,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -1469,7 +1469,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -1488,7 +1488,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                       </svg>
                     </button>
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >

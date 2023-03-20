@@ -10,7 +10,7 @@ import { useQuery } from '@apollo/client'
 import { useUser } from '../lib/hooks'
 import { ToastContext } from '../lib/ToastContext'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../queries/user'
-import { OVERVIEW_INTRO_KEY } from './Intro'
+import { OVERVIEW_INTRO_KEY } from '../lib/intro'
 import MobileMenu from './MobileMenu'
 import AdminMenu from './shared/menu/AdminMenu'
 import UserMenu from './shared/menu/UserMenu'
@@ -60,6 +60,18 @@ const Header = ({ isOnAuthPage = false }) => {
         const id = closestAnchor.getAttribute('id')
         if (!id || (id !== currentOpenMenu && currentOpenMenu !== NONE)) {
           setCurrentOpenMenu(NONE)
+        }
+      }
+
+      if (!closestAnchor) {
+        const closestSvg = target.closest('svg')
+        if (!closestSvg) {
+          setCurrentOpenMenu(NONE)
+        } else {
+          const id = closestSvg.getAttribute('id')
+          if (!id || (`svg-down-${currentOpenMenu}` !== id && `svg-up-${currentOpenMenu}` !== id)) {
+            setCurrentOpenMenu(NONE)
+          }
         }
       }
     }

@@ -31,8 +31,8 @@ export const MenuHeader = forwardRef(({ id, href, title, onToggleDropdown, curre
       {formatMessage({ id: title })}
       {
         currentOpenMenu === id
-          ? <HiChevronUp className='ml-1 inline text-2xl' />
-          : <HiChevronDown className='ml-1 inline text-2xl' />
+          ? <HiChevronUp className='ml-1 inline text-2xl' id={`svg-up-${id}`} />
+          : <HiChevronDown className='ml-1 inline text-2xl' id={`svg-down-${id}`} />
       }
     </a>
   )

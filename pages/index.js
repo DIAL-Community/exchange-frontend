@@ -14,10 +14,11 @@ import ProductListQuery from '../components/products/ProductList'
 import SearchFilter from '../components/shared/SearchFilter'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../components/context/ProductFilterContext'
 import ClientOnly from '../lib/ClientOnly'
-import Intro, { OVERVIEW_INTRO_KEY, OVERVIEW_INTRO_STEPS } from '../components/Intro'
+import Intro from '../components/Intro'
 import QueryNotification from '../components/shared/QueryNotification'
 import HeroSection from '../components/Hero'
 import Wizard from '../components/wizard/Wizard'
+import { OVERVIEW_INTRO_KEY, OVERVIEW_INTRO_STEPS } from '../lib/intro'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
 const HomePage = () => {
