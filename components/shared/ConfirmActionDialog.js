@@ -27,7 +27,7 @@ const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isCon
             <Dialog.Panel className={`
                 inline-block w-4/5 md:w-3/5 lg:w-3/5 xl:w-1/2 p-8
                 transform bg-white shadow-xl rounded-2xl`}>
-              <Dialog.Title className='card-title pb-3 text-xl xl:text-2xl text-dial-blue'>
+              <Dialog.Title className='card-title pb-3 text-xl xl:text-2xl text-dial-sapphire'>
                 <span data-testid='title'>
                   {title}
                 </span>

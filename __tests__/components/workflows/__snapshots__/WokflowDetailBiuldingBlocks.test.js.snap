@@ -227,7 +227,7 @@ exports[`Unit tests for the WorkflowDetailBuildingBlocks component. Should match
         class="gap-3"
       >
         <button
-          class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          class="mr-2 flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
           data-testid="edit-button"
           type="button"
         >

@@ -26,7 +26,7 @@ const WizardDescription = () => {
             <a
               className={`
                 rounded-full shadow-2xl text-base md:text-xl py-4 pl-4 pr-12
-                text-button-gray bg-dial-sunshine intro-overview-wizard
+                text-button-gray bg-dial-sunshine
               `}
             >
               <img src='/icons/wizard.svg' className='inline mx-2 pr-2' alt='Back' height='30px' width='30px' />

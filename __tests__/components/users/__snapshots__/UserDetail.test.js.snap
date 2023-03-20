@@ -18,7 +18,7 @@ exports[`Unit test for the UserDetail component should not render 0 for user not
             class="pb-4"
           >
             <a
-              class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+              class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
               data-testid="edit-link"
               href="/users/undefined/edit"
             >
@@ -70,7 +70,7 @@ exports[`Unit test for the UserDetail component should not render 0 for user not
               class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
             >
               <a
-                class="inline text-dial-blue h5"
+                class="inline text-dial-sapphire h5"
                 href="/"
               >
                 Home
@@ -147,7 +147,7 @@ exports[`Unit test for the UserDetail component should not render 0 for user not
           class="pb-4"
         >
           <a
-            class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+            class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
             data-testid="edit-link"
             href="/users/undefined/edit"
           >
@@ -199,7 +199,7 @@ exports[`Unit test for the UserDetail component should not render 0 for user not
             class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
           >
             <a
-              class="inline text-dial-blue h5"
+              class="inline text-dial-sapphire h5"
               href="/"
             >
               Home
@@ -333,7 +333,7 @@ exports[`Unit test for the UserDetail component should render element of basic u
             class="pb-4"
           >
             <a
-              class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+              class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
               data-testid="edit-link"
               href="/users/undefined/edit"
             >
@@ -385,7 +385,7 @@ exports[`Unit test for the UserDetail component should render element of basic u
               class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
             >
               <a
-                class="inline text-dial-blue h5"
+                class="inline text-dial-sapphire h5"
                 href="/"
               >
                 Home
@@ -449,7 +449,7 @@ exports[`Unit test for the UserDetail component should render element of basic u
           class="pb-4"
         >
           <a
-            class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+            class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
             data-testid="edit-link"
             href="/users/undefined/edit"
           >
@@ -501,7 +501,7 @@ exports[`Unit test for the UserDetail component should render element of basic u
             class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
           >
             <a
-              class="inline text-dial-blue h5"
+              class="inline text-dial-sapphire h5"
               href="/"
             >
               Home
@@ -622,7 +622,7 @@ exports[`Unit test for the UserDetail component should render element of the use
             class="pb-4"
           >
             <a
-              class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+              class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
               data-testid="edit-link"
               href="/users/undefined/edit"
             >
@@ -674,7 +674,7 @@ exports[`Unit test for the UserDetail component should render element of the use
               class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
             >
               <a
-                class="inline text-dial-blue h5"
+                class="inline text-dial-sapphire h5"
                 href="/"
               >
                 Home
@@ -764,7 +764,7 @@ exports[`Unit test for the UserDetail component should render element of the use
           class="pb-4"
         >
           <a
-            class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+            class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
             data-testid="edit-link"
             href="/users/undefined/edit"
           >
@@ -816,7 +816,7 @@ exports[`Unit test for the UserDetail component should render element of the use
             class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
           >
             <a
-              class="inline text-dial-blue h5"
+              class="inline text-dial-sapphire h5"
               href="/"
             >
               Home

@@ -80,7 +80,7 @@ exports[`Unit tests for RubricCategoryForm component. Should display toast on su
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -295,7 +295,7 @@ exports[`Unit tests for RubricCategoryForm component. Should display toast on su
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -454,7 +454,7 @@ exports[`Unit tests for RubricCategoryForm component. Should render RubricCatego
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home

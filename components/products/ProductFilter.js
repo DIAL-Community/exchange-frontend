@@ -62,7 +62,7 @@ const ProductFilter = () => {
   return (
     <div className='pt-6 pb-10 bg-dial-solitude rounded-lg text-dial-stratos'>
       <div className='text-dial-stratos flex flex-col gap-3'>
-        <div className='px-6 text-base flex'>
+        <div className='px-6 text-base flex intro-overview-entity-help'>
           <a
             className='cursor-pointer font-semibold flex gap-2'
             onClick={() => toggleHintDetail()}
@@ -85,13 +85,13 @@ const ProductFilter = () => {
           <ProductHint />
         </div>
         <hr className='border-b border-dial-white-beech' />
-        <div className='text-xl px-6'>
+        <div className='text-xl px-6 intro-overview-filter'>
           {format('filter.framework.title').toUpperCase()}
         </div>
         <div className='px-6'>
           {format('filter.framework.subTitle', { entity: format('product.header') })}
         </div>
-        <div className='flex flex-col gap-3 px-6 intro-overview-filter'>
+        <div className='flex flex-col gap-3 px-6'>
           <SDGAutocomplete {...{ sdgs, setSDGs }} />
           <UseCaseAutocomplete {...{ useCases, setUseCases }} />
           <WorkflowAutocomplete {...{ workflows, setWorkflows }} />

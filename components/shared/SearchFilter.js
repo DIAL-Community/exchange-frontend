@@ -242,7 +242,7 @@ const SearchFilter = ({
         {user && (
           <div className='flex flex-wrap gap-2 text-xs text-dial-stratos'>
             {createNew &&
-              <a className='bg-dial-blue px-2 py-1 rounded-md text-white'
+              <a className='bg-dial-iris-blue px-2 py-1 rounded-md text-white'
                 data-testid='create-new'
                 href={generateCreateLink()}
                 onClick={(event) => {

@@ -71,7 +71,7 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -517,7 +517,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -947,7 +947,7 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home

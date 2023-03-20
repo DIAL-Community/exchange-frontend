@@ -18,7 +18,7 @@ exports[`Unit test for the CategoryIndicatorDetail component. Should render Cate
           class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
         >
           <a
-            class="inline text-dial-blue h5"
+            class="inline text-dial-sapphire h5"
             href="/"
           >
             Home
@@ -67,7 +67,7 @@ exports[`Unit test for the CategoryIndicatorDetail component. Should render Cate
           </span>
         </button>
         <a
-          class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
           data-testid="edit-link"
           href="/rubric_categories/undefined/test_category_indicator/edit"
         >
@@ -137,7 +137,7 @@ exports[`Unit test for the CategoryIndicatorDetail component. Should render Cate
             class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
           >
             <a
-              class="inline text-dial-blue h5"
+              class="inline text-dial-sapphire h5"
               href="/"
             >
               Home

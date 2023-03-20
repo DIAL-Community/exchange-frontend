@@ -108,13 +108,13 @@ const ReportIssue = ({ showForm, hideFeedbackForm, formTitle }) => {
                     </div>
                     <div className='ml-auto grid grid-cols-1 gap-3 py-3 px-2'>
                       <div className='grid'>
-                        <label className='block text-lg text-dial-blue mb-2' htmlFor='name'>
+                        <label className='block text-lg text-dial-sapphire mb-2' htmlFor='name'>
                           {format('report.name')}
                         </label>
                         <Input {...register('name', { required: true })}/>
                       </div>
                       <div className='grid'>
-                        <label className='block text-lg text-dial-blue mb-2' htmlFor='name'>
+                        <label className='block text-lg text-dial-sapphire mb-2' htmlFor='name'>
                           {format('report.email')}
                         </label>
                         <Input {...register('email', { required: true })} />
@@ -135,7 +135,7 @@ const ReportIssue = ({ showForm, hideFeedbackForm, formTitle }) => {
                         }}
                       />
                       <div className='grid'>
-                        <label className='block text-lg text-dial-blue mb-2' htmlFor='issue'>
+                        <label className='block text-lg text-dial-sapphire mb-2' htmlFor='issue'>
                           {format('report.issue')}
                         </label>
                         <textarea

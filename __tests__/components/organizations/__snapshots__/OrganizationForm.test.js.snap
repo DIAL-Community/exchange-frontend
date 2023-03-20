@@ -15,7 +15,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -95,7 +95,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       data-testid="alias-add"
                     >
                       <button
-                        class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                        class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                         data-testid="icon-button"
                         type="button"
                       >
@@ -396,7 +396,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -476,7 +476,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       data-testid="alias-remove"
                     >
                       <button
-                        class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                        class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                         data-testid="icon-button"
                         type="button"
                       >
@@ -511,7 +511,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       data-testid="alias-add"
                     >
                       <button
-                        class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                        class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                         data-testid="icon-button"
                         type="button"
                       >
@@ -534,7 +534,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       data-testid="alias-remove"
                     >
                       <button
-                        class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                        class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                         data-testid="icon-button"
                         type="button"
                       >

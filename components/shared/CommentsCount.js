@@ -18,7 +18,7 @@ const CommentCount = ({ objectId, objectType, commentsSectionRef }) => {
   const scrollToCommentsSection = () => commentsSectionRef.current.scrollIntoView()
 
   return (
-    <div className='inline-flex items-center text-dial-blue text-sm cursor-pointer' onClick={scrollToCommentsSection}>
+    <div className='inline-flex items-center text-dial-sapphire text-sm cursor-pointer' onClick={scrollToCommentsSection}>
       <FaRegCommentDots className='mr-1'/>
       <span>{data?.countComments > 0 ? `${data.countComments} - ${format('app.comment')}` : format('app.nocomment')}</span>
     </div>

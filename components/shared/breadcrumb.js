@@ -65,14 +65,14 @@ const Breadcrumb = (props) => {
     // Use this to make this sticky: <div className='bg-white sticky py-4' style={{ top: '66px', zIndex: 1 }}>
     <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
       <Link href='/'>
-        <a className='inline text-dial-blue h5'>{format('app.home')}</a>
+        <a className='inline text-dial-sapphire h5'>{format('app.home')}</a>
       </Link>
       {breadcrumbs.map((breadcrumb, i) => {
         return (
           <div key={i} className='inline h5'>
             {BREADCRUMB_SEPARATOR}
             <Link href={breadcrumb.href}>
-              <a className={`${i === breadcrumbs.length - 1 ? 'text-dial-gray-dark' : 'text-dial-blue'}`}>
+              <a className={`${i === breadcrumbs.length - 1 ? 'text-dial-gray-dark' : 'text-dial-sapphire'}`}>
                 {convertBreadcrumb(breadcrumb.breadcrumb)}
               </a>
             </Link>
