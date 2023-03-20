@@ -143,7 +143,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
                     </div>
                   </div>
                   <div className='mx-auto py-6'>
-                    <Image
+                    <img
                       className='object-contain h-20 w-20'
                       layout='fill'
                       alt={format('image.alt.logoFor', { name: product.name })}
