@@ -355,7 +355,7 @@ const WizardResults = ({ allValues, setAllValues, stage, setStage }) => {
                 wizardData.useCases && !wizardData.useCases.length &&
                 <a
                   className='text-dial-teal'
-                  href='https://solutions.dial.community/use_cases' target='_blank' rel='noreferrer'
+                  href='https://exchange.dial.global/use_cases' target='_blank' rel='noreferrer'
                 >
                   {format('wizard.results.clickHere')}
                 </a>

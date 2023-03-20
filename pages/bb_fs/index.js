@@ -112,7 +112,7 @@ const BBFullScreen = () => {
 
   const getUrl = (bb) => {
     return bb.url ? bb.url :
-      `https://solutions.dial.community/building_blocks/${getSlug(bb)}`
+      `https://exchange.dial.global/building_blocks/${getSlug(bb)}`
   }
 
   const currBBList = () => {
@@ -141,7 +141,7 @@ const BBFullScreen = () => {
                   <div className='flex flex-col p-4 h-1/2'>
                     <div className='mx-auto py-4 w-1/2'>
                       <img
-                        src={`https://solutions.dial.community/assets/building_blocks/${getSlug(bb)}.png`}
+                        src={`https://exchange.dial.global/assets/building_blocks/${getSlug(bb)}.png`}
                         alt='building block image'
                       />
                     </div>

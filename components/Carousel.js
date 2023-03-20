@@ -234,7 +234,7 @@ const Carousel = () => {
                 {format('definition.contact')}
               </p>
               <div className='text-center'>
-                <a href='mailto:issues@solutions.dial.community' target='_blank' rel='noreferrer'>
+                <a href='mailto:issues@exchange.dial.global' target='_blank' rel='noreferrer'>
                   <button
                     className={`
                       my-auto px-3 py-4 my-3 font-semibold ml-auto
