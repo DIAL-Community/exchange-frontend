@@ -41,6 +41,7 @@ const WizardHeader = () => {
 
   return (
     <div className='flex flex-col gap-8 my-8'>
+      <a id='wizard-anchor' />
       <div className='mx-auto text-4xl font-semibold text-dial-sapphire intro-overview-wizard'>
         {format('wizard.getStarted')}
       </div>
