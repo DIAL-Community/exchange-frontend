@@ -24,11 +24,8 @@ const TabNav = (props) => {
             </div>
           </div>
           <div className='text-sm text-right -mt-3'>
-            <Link href='/wizard'>
-              <a
-                href='/navigate-to-wizard'
-                className='border-b-2 border-transparent text-dial-sunshine font-bold hover:border-dial-sunshine'
-              >
+            <Link href='/#wizard-anchor' scroll={false}>
+              <a className='border-b-2 border-transparent text-dial-sunshine font-bold hover:border-dial-sunshine'>
                 {format('filter.launchWizard')}
               </a>
             </Link>
