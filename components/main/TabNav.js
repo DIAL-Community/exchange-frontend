@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import classNames from 'classnames'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 import { HiQuestionMarkCircle } from 'react-icons/hi'
@@ -45,28 +46,30 @@ const TabNav = (props) => {
                 return (
                   <li
                     key={`menu-${filterItem}`}
-                    className={`
-                      -mb-px whitespace-nowrap
-                      ${index === activeTab ? 'bg-dial-sunshine rounded-t' : 'pb-2 overflow-hidden'}
-                    `}
+                    className={classNames(
+                      '-mb-px whitespace-nowrap',
+                      index === activeTab ? 'bg-dial-sunshine rounded-t' : 'pb-2 overflow-hidden'
+                    )}
                     style={{ flex: '1 1 0px' }}
                   >
                     <Link href={`/${href}`}>
                       <a
-                        className={`
-                          block px-3 py-3
-                          ${index === activeTab ? 'bg-dial-sunshine rounded-t' : 'bg-dial-alice-blue rounded'}
-                        `}
+                        className={classNames(
+                          'block p-3',
+                          index === activeTab
+                            ? 'bg-dial-sunshine rounded-t hover:bg-dial-sunshine'
+                            : 'bg-dial-alice-blue rounded hover:bg-dial-eggshell'
+                        )}
                         data-toggle='tab'
                         href={`/${href}`}
                       >
                         <div
-                          className={`
-                            ${index === activeTab ? '' : 'truncate'}
-                            ${filterItem === 'filter.entity.products' ? 'intro-overview-entity-product' : ''}
-                            ${filterItem === 'filter.entity.playbooks' ? 'intro-overview-entity-playbook' : ''}
-                            text-center font-semibold text-dial-gray-dark
-                          `}
+                          className={classNames(
+                            index === activeTab ? '' : 'truncate',
+                            filterItem === 'filter.entity.products' ? 'intro-overview-entity-product' : '',
+                            filterItem === 'filter.entity.playbooks' ? 'intro-overview-entity-playbook' : '',
+                            'text-center font-semibold text-dial-gray-dark'
+                          )}
                         >
                           {format(filterItem)}
                         </div>
