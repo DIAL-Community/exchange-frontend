@@ -6,20 +6,20 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
     class="Toastify"
   />
   <div
-    class="lg:flex gap-12"
+    class="grid xl:grid-cols-3 gap-x-12 gap-y-3"
   >
     <div
-      class="lg:w-1/3"
+      class="flex flex-col gap-3 order-1"
     >
       <div
-        class="text-sm my-2"
+        class="text-sm"
       >
         <div>
           Select the sector that your project supports
         </div>
       </div>
       <div
-        class=" css-l45kjq-container"
+        class="mt-auto css-l45kjq-container"
       >
         <span
           class="css-1f43avz-a11yText-A11yText"
@@ -92,63 +92,17 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
           </div>
         </div>
       </div>
-      <div
-        class="flex flex-wrap gap-3 mt-4"
-      >
-        <div
-          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
-          data-testid="pill"
-        >
-          sector 1
-          <svg
-            class="cursor-pointer opacity-50"
-            data-testid="remove-button"
-            fill="currentColor"
-            height="1.5em"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 512 512"
-            width="1.5em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
-            />
-          </svg>
-        </div>
-        <div
-          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
-          data-testid="pill"
-        >
-          sector 2
-          <svg
-            class="cursor-pointer opacity-50"
-            data-testid="remove-button"
-            fill="currentColor"
-            height="1.5em"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 512 512"
-            width="1.5em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
-            />
-          </svg>
-        </div>
-      </div>
     </div>
     <div
-      class="lg:w-1/3"
+      class="flex flex-col gap-3 order-3 xl:order-2"
     >
       <div
-        class="text-sm my-2"
+        class="text-sm"
       >
         Select a specific use case, if applicable
       </div>
       <div
-        class=" css-l45kjq-container"
+        class="mt-auto css-l45kjq-container"
       >
         <span
           class="css-1f43avz-a11yText-A11yText"
@@ -238,10 +192,10 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
       </div>
     </div>
     <div
-      class="lg:w-1/3"
+      class="flex flex-col gap-3 order-5 xl:order-3"
     >
       <div
-        class="text-sm my-2"
+        class="text-sm"
       >
         Select any SDG that the project is designed to support
       </div>
@@ -319,8 +273,65 @@ exports[`Unit test for the WizardStage1 component. Should match snapshot. 1`] = 
           </div>
         </div>
       </div>
+    </div>
+    <div
+      class="pill-container order-2 xl:order-4"
+    >
       <div
-        class="flex flex-wrap gap-3 mt-4"
+        class="flex flex-wrap gap-3"
+      >
+        <div
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
+          data-testid="pill"
+        >
+          sector 1
+          <svg
+            class="cursor-pointer opacity-50"
+            data-testid="remove-button"
+            fill="currentColor"
+            height="1.5em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 512 512"
+            width="1.5em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
+            />
+          </svg>
+        </div>
+        <div
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
+          data-testid="pill"
+        >
+          sector 2
+          <svg
+            class="cursor-pointer opacity-50"
+            data-testid="remove-button"
+            fill="currentColor"
+            height="1.5em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 512 512"
+            width="1.5em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      class="order-4 xl:order-5"
+    />
+    <div
+      class="pill-container order-6"
+    >
+      <div
+        class="flex flex-wrap gap-3"
       >
         <div
           class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
@@ -376,7 +387,7 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
     class="Toastify"
   />
   <div
-    class="lg:flex gap-12"
+    class="flex flex-col lg:flex-row gap-x-12 gap-y-3"
   >
     <div
       class="lg:w-1/3"
@@ -559,7 +570,7 @@ exports[`Unit test for the WizardStage2 component. Should match snapshot. 1`] = 
         Will mobile services be required for this project?
       </div>
       <div
-        class="xl:grid xl:grid-cols-2 gap-2"
+        class="grid xl:grid-cols-2 gap-2"
       >
         <div
           class="text-sm"

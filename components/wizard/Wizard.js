@@ -40,7 +40,7 @@ const WizardHeader = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='flex flex-col gap-8 my-8'>
+    <div className='flex flex-col gap-8 my-8 px-3'>
       <a id='wizard-anchor' />
       <div className='mx-auto text-4xl font-semibold text-dial-sapphire intro-overview-wizard'>
         {format('wizard.getStarted')}
@@ -126,9 +126,9 @@ const WizardContent = () => {
       <div className='px-4 xl:px-40 py-4 xl:py-8'>
         <div className='flex flex-col gap-y-4'>
           <div className=''>{`Step ${currentStep + 1} of ${availableSteps.length}`}</div>
-          <div className='flex items-start gap-4 '>
-            <div className='w-10/12'>{availableSteps[currentStep]}</div>
-            <div className='flex gap-2 ml-auto mt-8'>
+          <div className='flex flex-col xl:flex-row items-start gap-4 '>
+            <div className='w-full'>{availableSteps[currentStep]}</div>
+            <div className='flex gap-2 xl:ml-auto'>
               <button
                 onClick={() => {
                   if (previousAvailable())
@@ -156,7 +156,7 @@ const WizardContent = () => {
               <button
                 onClick={() => viewWizardInformation()}
                 className={classNames(
-                  `${!allowViewingResult() && 'hidden'}`,
+                  `${!allowViewingResult() && 'hidden'} whitespace-nowrap`,
                   'bg-dial-sunshine border border-dial-sunshine rounded p-3'
                 )}
               >
