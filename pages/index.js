@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
+import { isMobile } from 'react-device-detect'
 import dynamic from 'next/dynamic'
 import cookie from 'react-cookies'
 import Header from '../components/Header'
@@ -12,7 +13,8 @@ import ProductFilter from '../components/products/ProductFilter'
 import ProductActiveFilter from '../components/products/ProductActiveFilter'
 import ProductListQuery from '../components/products/ProductList'
 import SearchFilter from '../components/shared/SearchFilter'
-import { ProductFilterContext, ProductFilterDispatchContext } from '../components/context/ProductFilterContext'
+import { ProductFilterContext, ProductFilterDispatchContext }
+  from '../components/context/ProductFilterContext'
 import ClientOnly from '../lib/ClientOnly'
 import Intro from '../components/Intro'
 import QueryNotification from '../components/shared/QueryNotification'
@@ -48,18 +50,21 @@ const HomePage = () => {
         <PageContent
           activeTab='filter.entity.products'
           filter={<ProductFilter />}
+          mobileFilter={<ProductFilter inMobileView={true} />}
           content={<ProductListQuery />}
           searchFilter={<SearchFilter {...{ search, setSearch }} hint='filter.entity.products' />}
           activeFilter={<ProductActiveFilter />}
           hint={<ProductHint />}
         />
-        <Intro
-          enabled={enableIntro}
-          steps={OVERVIEW_INTRO_STEPS}
-          startIndex={STEP_INDEX_START}
-          endIndex={STEP_INDEX_END}
-          completedKey={OVERVIEW_INTRO_KEY}
-        />
+        {!isMobile &&
+          <Intro
+            enabled={enableIntro}
+            steps={OVERVIEW_INTRO_STEPS}
+            startIndex={STEP_INDEX_START}
+            endIndex={STEP_INDEX_END}
+            completedKey={OVERVIEW_INTRO_KEY}
+          />
+        }
       </ClientOnly>
       <Footer />
     </>
