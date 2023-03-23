@@ -39,18 +39,54 @@ export const WizardStage1 = ({ wizardData, allValues, setAllValues }) => {
     }))
 
   return (
-    <div className='lg:flex gap-12'>
-      <div className='lg:w-1/3'>
-        <div className='text-sm my-2'>
+    <div className='grid xl:grid-cols-3 gap-x-12 gap-y-3'>
+      <div className='flex flex-col gap-3 order-1'>
+        <div className='text-sm'>
           <div>{format('wizard.selectSector')}</div>
         </div>
         <Select
+          className='mt-auto'
           options={wizardData.sectors}
           value={null}
           onChange={(sector) => addSector(sector)}
           placeholder={format('wizard.sectorPlaceholder')}
         />
-        <div className='flex flex-wrap gap-3 mt-4'>
+      </div>
+      <div className='flex flex-col gap-3 order-3 xl:order-2'>
+        <div className='text-sm'>
+          {format('wizard.selectUseCase')}
+        </div>
+        <Select
+          className='mt-auto'
+          options={
+            data?.useCasesForSector?.map((useCase) =>
+              ({ value: useCase.name, label: useCase.name }))
+          }
+          value={
+            allValues.useCase &&
+            { value: allValues.useCase, label: allValues.useCase }
+          }
+          onChange={(useCase) =>
+            setAllValues(prevValues =>
+              ({ ...prevValues, useCase: useCase?.label ?? '' }))
+          }
+          placeholder={format('wizard.useCasePlaceholder')}
+          isClearable
+        />
+      </div>
+      <div className='flex flex-col gap-3 order-5 xl:order-3'>
+        <div className='text-sm'>
+          {format('wizard.selectSDG')}
+        </div>
+        <Select
+          options={wizardData.sdgs}
+          value={null}
+          onChange={(sdg) => addSdg(sdg)}
+          placeholder={format('wizard.sdgPlaceholder')}
+        />
+      </div>
+      <div className='pill-container order-2 xl:order-4'>
+        <div className='flex flex-wrap gap-3'>
           {allValues.sectors?.map((sector, sectorIdx) => (
             <Pill
               key={`sector-${sectorIdx}`}
@@ -60,29 +96,9 @@ export const WizardStage1 = ({ wizardData, allValues, setAllValues }) => {
           ))}
         </div>
       </div>
-      <div className='lg:w-1/3'>
-        <div className='text-sm my-2'>
-          {format('wizard.selectUseCase')}
-        </div>
-        <Select
-          options={data?.useCasesForSector?.map((useCase) => ({ value: useCase.name, label: useCase.name }))}
-          value={allValues.useCase && { value: allValues.useCase, label: allValues.useCase }}
-          onChange={(useCase) => setAllValues(prevValues => ({ ...prevValues, useCase: useCase?.label ?? '' }))}
-          placeholder={format('wizard.useCasePlaceholder')}
-          isClearable
-        />
-      </div>
-      <div className='lg:w-1/3'>
-        <div className='text-sm my-2'>
-          {format('wizard.selectSDG')}
-        </div>
-        <Select
-          options={wizardData.sdgs}
-          value={null}
-          onChange={(sdg) => addSdg(sdg)}
-          placeholder={format('wizard.sdgPlaceholder')}
-        />
-        <div className='flex flex-wrap gap-3 mt-4'>
+      <div className='order-4 xl:order-5'/>
+      <div className='pill-container order-6'>
+        <div className='flex flex-wrap gap-3'>
           {allValues.sdgs?.map((sdg, sdgIdx) => (
             <Pill
               key={`sdg-${sdgIdx}`}
@@ -135,7 +151,7 @@ export const WizardStage2 = ({ wizardData, allValues, setAllValues }) => {
   }
 
   return (
-    <div className='lg:flex gap-12'>
+    <div className='flex flex-col lg:flex-row gap-x-12 gap-y-3'>
       <div className='lg:w-1/3'>
         <div className='text-sm my-2'>
           {format('wizard.selectTags')}
@@ -180,7 +196,7 @@ export const WizardStage2 = ({ wizardData, allValues, setAllValues }) => {
         <div className='text-sm my-2'>
           {format('wizard.selectMobile')}
         </div>
-        <div className='xl:grid xl:grid-cols-2 gap-2'>
+        <div className='grid xl:grid-cols-2 gap-2'>
           {wizardData.mobileServices.map((service, serviceIdx) => (
             <div key={serviceIdx} className='text-sm'>
               <label>
@@ -216,7 +232,7 @@ export const WizardStage3 = ({ wizardData, allValues, setAllValues }) => {
   const classNameNotSelected = 'border border-dial-stratos text-dial-stratos rounded p-4 '
 
   return (
-    <div className='lg:flex gap-12'>
+    <div className='flex flex-col lg:flex-row gap-x-12 gap-y-3'>
       <div className='lg:w-1/3'>
         <div className='text-sm'>
           {format('wizard.buildingBlocks')}
