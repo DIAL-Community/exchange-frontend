@@ -126,7 +126,7 @@ const WizardContent = () => {
       <div className='px-4 xl:px-40 py-4 xl:py-8'>
         <div className='flex flex-col gap-y-4'>
           <div className=''>{`Step ${currentStep + 1} of ${availableSteps.length}`}</div>
-          <div className='flex flex-col xl:flex-row items-start gap-4 '>
+          <div className='flex flex-col xl:flex-row items-start gap-y-4 gap-x-12'>
             <div className='w-full'>{availableSteps[currentStep]}</div>
             <div className='flex gap-2 xl:ml-auto'>
               <button
