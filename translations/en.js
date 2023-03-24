@@ -580,7 +580,7 @@ export const en = {
 
   'error.auth': 'Error in authentication',
   'error.tryAgain': 'Try Again',
-  'error.goBack': 'Go Back to Catalog',
+  'error.goBack': 'Go Back to Exchange',
 
   'buildingBlock.hint.subtitle': `Building blocks are enterprise-ready, reusable software components
     providing key functionality facilitating generic WorkFlows across multiple sectors.

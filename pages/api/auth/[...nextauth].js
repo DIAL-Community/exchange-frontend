@@ -107,7 +107,6 @@ export default NextAuth({
 
           if (response.status === 200) {
             token.expired = true
-            console.log(`(Auth) User '${session.user.userEmail}' session's invalidated.`)
           }
         }
 
