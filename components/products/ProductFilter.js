@@ -19,7 +19,7 @@ import ProductHint from '../filter/hint/ProductHint'
 
 const COVID_19_LABEL = 'COVID-19'
 
-const ProductFilter = () => {
+const ProductFilter = ({ inMobileView }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -62,7 +62,7 @@ const ProductFilter = () => {
   return (
     <div className='pt-6 pb-10 bg-dial-solitude rounded-lg text-dial-stratos'>
       <div className='text-dial-stratos flex flex-col gap-3'>
-        <div className='px-6 text-base flex intro-overview-entity-help'>
+        <div className={`px-6 text-base flex ${!inMobileView && 'intro-overview-entity-help'}`}>
           <a
             className='cursor-pointer font-semibold flex gap-2'
             onClick={() => toggleHintDetail()}
@@ -85,7 +85,7 @@ const ProductFilter = () => {
           <ProductHint />
         </div>
         <hr className='border-b border-dial-white-beech' />
-        <div className='text-xl px-6 intro-overview-filter'>
+        <div className={`text-xl px-6 ${!inMobileView && 'intro-overview-filter'}`}>
           {format('filter.framework.title').toUpperCase()}
         </div>
         <div className='px-6'>
