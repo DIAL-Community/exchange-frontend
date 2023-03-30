@@ -129,7 +129,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:r4:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           Developer, Contributor and Implementor Community Engagement
                         </div>
@@ -187,7 +187,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:r5:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           Community Governance
                         </div>
@@ -245,7 +245,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:r6:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           Software Roadmap
                         </div>
@@ -303,7 +303,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:r7:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           User Documentation
                         </div>
@@ -361,7 +361,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:r8:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           Multi-Lingual Support
                         </div>
@@ -464,7 +464,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:ra:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           Country Utilization
                         </div>
@@ -522,7 +522,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:rb:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           Country Strategy
                         </div>
@@ -580,7 +580,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:rc:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           Digital Health Interventions
                         </div>
@@ -638,7 +638,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:rd:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           Source Code Accessibility
                         </div>
@@ -696,7 +696,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:re:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           Funding and Revenue
                         </div>
@@ -799,7 +799,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:rg:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           Technical Documentation
                         </div>
@@ -857,7 +857,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:rh:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           Software Productization
                         </div>
@@ -915,7 +915,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:ri:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           Interoperability and Data Accessibility
                         </div>
@@ -973,7 +973,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:rj:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           Security
                         </div>
@@ -1031,7 +1031,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                         id="accordion__panel-:rk:"
                       >
                         <div
-                          class="text-sm text-button-gray pl-4"
+                          class="text-sm text-dial-stratos pl-4"
                         >
                           Scalability
                         </div>
@@ -1077,7 +1077,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
 >
   Overall maturity score
   : 
-  NaN
+  80
    / 
   100
 </div>
@@ -1112,7 +1112,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Product maturity scores
       </div>
@@ -1202,18 +1202,18 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                          class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__single-value css-qc6sy-singleValue"
+                            class="react-select__single-value css-1dimb5e-singleValue"
                           >
                             true
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -1239,7 +1239,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         >
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__clear-indicator css-tlfecz-indicatorContainer"
+                            class="react-select__indicator react-select__clear-indicator css-1xc3v61-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -1255,11 +1255,11 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                             </svg>
                           </div>
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -1317,18 +1317,18 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                          class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__single-value css-qc6sy-singleValue"
+                            class="react-select__single-value css-1dimb5e-singleValue"
                           >
                             false
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -1354,7 +1354,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         >
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__clear-indicator css-tlfecz-indicatorContainer"
+                            class="react-select__indicator react-select__clear-indicator css-1xc3v61-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -1370,11 +1370,11 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                             </svg>
                           </div>
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -1442,19 +1442,19 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                          class="react-select__value-container css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__placeholder css-19jynah-placeholder"
+                            class="react-select__placeholder css-5rjclb-placeholder"
                             id="react-select-:ro:-placeholder"
                           >
                             Select...
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -1480,11 +1480,11 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                           class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                         >
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -1585,19 +1585,19 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                          class="react-select__value-container css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__placeholder css-19jynah-placeholder"
+                            class="react-select__placeholder css-5rjclb-placeholder"
                             id="react-select-:rq:-placeholder"
                           >
                             Select...
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -1623,11 +1623,11 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                           class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                         >
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -1726,18 +1726,18 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                          class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__single-value css-qc6sy-singleValue"
+                            class="react-select__single-value css-1dimb5e-singleValue"
                           >
                             0
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -1763,7 +1763,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         >
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__clear-indicator css-tlfecz-indicatorContainer"
+                            class="react-select__indicator react-select__clear-indicator css-1xc3v61-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -1779,11 +1779,11 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                             </svg>
                           </div>
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -1841,18 +1841,18 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                          class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__single-value css-qc6sy-singleValue"
+                            class="react-select__single-value css-1dimb5e-singleValue"
                           >
                             1
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -1878,7 +1878,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         >
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__clear-indicator css-tlfecz-indicatorContainer"
+                            class="react-select__indicator react-select__clear-indicator css-1xc3v61-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -1894,11 +1894,11 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                             </svg>
                           </div>
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -1966,19 +1966,19 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                          class="react-select__value-container css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__placeholder css-19jynah-placeholder"
+                            class="react-select__placeholder css-5rjclb-placeholder"
                             id="react-select-:ru:-placeholder"
                           >
                             Select...
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -2004,11 +2004,11 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                           class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                         >
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -2107,18 +2107,18 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                          class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__single-value css-qc6sy-singleValue"
+                            class="react-select__single-value css-1dimb5e-singleValue"
                           >
                             low
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -2144,7 +2144,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         >
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__clear-indicator css-tlfecz-indicatorContainer"
+                            class="react-select__indicator react-select__clear-indicator css-1xc3v61-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -2160,11 +2160,11 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                             </svg>
                           </div>
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -2222,18 +2222,18 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                          class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__single-value css-qc6sy-singleValue"
+                            class="react-select__single-value css-1dimb5e-singleValue"
                           >
                             medium
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -2259,7 +2259,7 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                         >
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__clear-indicator css-tlfecz-indicatorContainer"
+                            class="react-select__indicator react-select__clear-indicator css-1xc3v61-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"
@@ -2275,11 +2275,11 @@ exports[`Unit test for the ProductDetailMaturityScores component. category indic
                             </svg>
                           </div>
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
                               aria-hidden="true"

@@ -25,7 +25,7 @@ const SectorCard = ({ sector, listType = DisplayType.LIST, displayEditButtons = 
     listType === DisplayType.LIST && (
       <div
         className={classNames(
-          { 'hover:border-dial-yellow text-button-gray': displayEditButtons },
+          { 'hover:border-dial-sunshine text-button-gray': displayEditButtons },
           'border-3 border-transparent'
         )}
         data-testid='sector-card'

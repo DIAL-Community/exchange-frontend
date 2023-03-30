@@ -17,6 +17,7 @@ describe('Unit tests for the TagForm component.', () => {
 
   beforeAll(() => {
     mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 

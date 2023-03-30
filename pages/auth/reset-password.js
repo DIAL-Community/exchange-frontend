@@ -82,7 +82,7 @@ const ResetPassword = () => {
                   <div className='flex'>
                     <Link href='/auth/signin'>
                       <a
-                        className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow'
+                        className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-sunshine'
                         href='navigate-to-signin'
                       >
                         {format('app.signIn')}
@@ -91,7 +91,7 @@ const ResetPassword = () => {
                     <div className='border-r-2 border-dial-gray-dark mx-2' />
                     <Link href='/auth/signup'>
                       <a
-                        className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-yellow'
+                        className='inline-block align-baseline border-b-2 border-transparent hover:border-dial-sunshine'
                         href='navigate-to-signup'
                       >
                         {format('app.signUp')}

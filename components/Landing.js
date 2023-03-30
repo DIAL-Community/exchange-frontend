@@ -37,7 +37,7 @@ const Landing = () => {
                 <div className='px-4 text-lg text-dial-blue-darkest md:text-xl xl:text-2xl xl:leading-landing'>
                   {format('landing.subtitle')}
                 </div>
-                <div className='px-4 font-bold text-dial-blue-darkest text-2xl md:text-3xl xl:text-4xl'>
+                <div className='px-4 font-bold text-dial-blue-darkest text-2xl md:text-2xl xl:text-4xl'>
                   <span className='block'>{format('landing.title.firstLine')}</span>
                   <span className='block'>{format('landing.title.secondLine')}</span>
                 </div>
@@ -55,7 +55,7 @@ const Landing = () => {
                 </div>
                 <div className='px-4 mt-3 sm:mt-0 sm:ml-3 lg:py-1'>
                   <Link href='/wizard'>
-                    <a className={`${buttonAnchorStyle} shadow-2xl pl-4 pr-8 text-button-gray bg-dial-yellow`}>
+                    <a className={`${buttonAnchorStyle} shadow-2xl pl-4 pr-8 text-button-gray bg-dial-sunshine`}>
                       <img src='/icons/wizard.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
                       {format('landing.wizard.title')}
                     </a>

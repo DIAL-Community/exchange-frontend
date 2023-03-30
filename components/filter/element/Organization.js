@@ -60,6 +60,7 @@ export const OrganizationAutocomplete = ({
         aria-label={format('filter.byEntity', {
           entity: aggregatorOnly ? format('aggregator.label') : format('organization.label')
         })}
+        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input, callback) => fetchOptions(input, aggregatorOnly, callback, ORGANIZATION_SEARCH_QUERY)}

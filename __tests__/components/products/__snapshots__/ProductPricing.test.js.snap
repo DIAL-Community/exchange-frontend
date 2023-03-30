@@ -16,7 +16,7 @@ exports[`Unit test for the ProductDetailOrganizations component. Should render p
           class="flex justify-between items-center mb-3"
         >
           <div
-            class="card-title text-dial-gray-dark"
+            class="card-title text-dial-sapphire"
           >
             Pricing Information
           </div>
@@ -113,7 +113,7 @@ exports[`Unit test for the ProductDetailOrganizations component. Should render p
         class="flex justify-between items-center mb-3"
       >
         <div
-          class="card-title text-dial-gray-dark"
+          class="card-title text-dial-sapphire"
         >
           Pricing Information
         </div>

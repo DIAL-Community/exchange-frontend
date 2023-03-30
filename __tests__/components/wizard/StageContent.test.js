@@ -2,7 +2,7 @@ import { render } from '../../test-utils'
 import { WizardStage1, WizardStage2 } from '../../../components/wizard/StageContent'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
 import { mockNextUseRouter } from '../../utils/nextMockImplementation'
-import { projData, allValues } from './data/WizardStage'
+import { wizardData, allValues } from './data/WizardStage'
 
 mockNextUseRouter()
 describe('Unit test for the WizardStage1 component.', () => {
@@ -11,7 +11,7 @@ describe('Unit test for the WizardStage1 component.', () => {
     const { container } = render(
       <CustomMockedProvider>
         <WizardStage1
-          projData={projData}
+          wizardData={wizardData}
           allValues={allValues}
         />
       </CustomMockedProvider>
@@ -27,7 +27,7 @@ describe('Unit test for the WizardStage2 component.', () => {
     const { container } = render(
       <CustomMockedProvider>
         <WizardStage2
-          projData={projData}
+          wizardData={wizardData}
           allValues={allValues}
         />
       </CustomMockedProvider>

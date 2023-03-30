@@ -1,4 +1,8 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import cookie from 'react-cookies'
+import classNames from 'classnames'
+import { useRouter } from 'next/router'
 import { signIn, signOut } from 'next-auth/react'
 import { useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
@@ -6,6 +10,7 @@ import { useQuery } from '@apollo/client'
 import { useUser } from '../lib/hooks'
 import { ToastContext } from '../lib/ToastContext'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../queries/user'
+import { OVERVIEW_INTRO_KEY } from '../lib/intro'
 import MobileMenu from './MobileMenu'
 import AdminMenu from './shared/menu/AdminMenu'
 import UserMenu from './shared/menu/UserMenu'
@@ -16,7 +21,7 @@ import LanguageMenu from './shared/menu/LanguageMenu'
 import { NONE } from './shared/menu/MenuCommon'
 
 const dropdownMenuStyles = `
-    block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:text-gray-900
+    block px-4 py-2 text-base text-white-beech hover:bg-gray-100 hover:text-gray-900
   `
 
 const Header = ({ isOnAuthPage = false }) => {
@@ -25,6 +30,7 @@ const Header = ({ isOnAuthPage = false }) => {
 
   const { showToast } = useContext(ToastContext)
 
+  const router = useRouter()
   const { user, isAdminUser } = useUser()
 
   const signInUser = (e) => {
@@ -54,6 +60,18 @@ const Header = ({ isOnAuthPage = false }) => {
         const id = closestAnchor.getAttribute('id')
         if (!id || (id !== currentOpenMenu && currentOpenMenu !== NONE)) {
           setCurrentOpenMenu(NONE)
+        }
+      }
+
+      if (!closestAnchor) {
+        const closestSvg = target.closest('svg')
+        if (!closestSvg) {
+          setCurrentOpenMenu(NONE)
+        } else {
+          const id = closestSvg.getAttribute('id')
+          if (!id || (`svg-down-${currentOpenMenu}` !== id && `svg-up-${currentOpenMenu}` !== id)) {
+            setCurrentOpenMenu(NONE)
+          }
         }
       }
     }
@@ -87,24 +105,51 @@ const Header = ({ isOnAuthPage = false }) => {
     )
   }
 
+  const startOverviewTour = (e) => {
+    e.preventDefault()
+    cookie.save(OVERVIEW_INTRO_KEY, false)
+    router.push('/')
+  }
+
+  const withUser =
+    <>
+      <li className='relative mt-2 xl:mt-0 text-right'>
+        {isAdminUser &&
+          <AdminMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+        }
+      </li>
+      <li className='relative mt-2 xl:mt-0 text-right intro-overview-signup'>
+        <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+      </li>
+    </>
+
+  const withoutUser =
+    <li className='relative mt-2 xl:mt-0 text-right intro-overview-signup'>
+      <a
+        data-testid='login'
+        href='signin'
+        role='menuitem'
+        className={dropdownMenuStyles}
+        onClick={signInUser}
+      >
+        {format('header.signIn')}
+      </a>
+    </li>
+
   return (
-    <header className='z-70 sticky top-0 border-b-2 border-dial-gray-dark bg-white'>
-      <div className='flex flex-wrap py-3 lg:py-0 header-min-height max-w-catalog mx-auto'>
-        <div className='flex flex-1 my-auto'>
-          <Link href='/'>
-            <a className='px-4 xl:px-8'>
-              <div className='text-dial-blue-darkest text-xs'>
-                {format('landing.subtitle')}
-              </div>
-              <div className='font-bold text-base text-dial-blue-darkest'>
-                <span className='block'>
-                  {format('landing.title.firstLine')} {format('landing.title.secondLine')}
-                </span>
-              </div>
-            </a>
-          </Link>
-        </div>
-        <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block lg:hidden px-8'>
+    <header className='z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
+      <div className='flex flex-wrap header-min-height px-8 xl:px-16'>
+        <Link href='/'>
+          <a className='flex py-6'>
+            <Image
+              width={154}
+              height={44}
+              src='/assets/exchange/exchange-logo.png'
+              alt='Digital Impact Exchage Logo.'
+            />
+          </a>
+        </Link>
+        <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block xl:hidden'>
           <svg
             className='fill-current text-gray-900'
             xmlns='http://www.w3.org/2000/svg'
@@ -117,52 +162,39 @@ const Header = ({ isOnAuthPage = false }) => {
           </svg>
         </label>
         <input className='hidden' type='checkbox' id='menu-toggle' checked={menuExpanded} onChange={toggleMenu} />
-        <div className='hidden lg:flex lg:items-center lg:w-auto w-full ml-auto mx-2' id='menu'>
+        <div className='hidden xl:flex xl:items-center xl:w-auto w-full ml-auto mx-2' id='menu'>
           <nav>
             <MobileMenu menuExpanded={menuExpanded} setMenuExpanded={setMenuExpanded} />
-            <ul className='hidden lg:flex items-center text-dial-blue-darkest pt-4 lg:pt-0 sm:gap-x-6 lg:gap-x-2'>
+            <ul className='hidden xl:flex items-center text-dial-white-beech pt-4 xl:pt-0 xl:gap-x-2'>
               {!isOnAuthPage
                 && (
                   <>
-                    <li className='relative mt-2 lg:mt-0 text-right'>
-                      <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                    <li className='relative mt-2 xl:mt-0 text-right'>
+                      <a
+                        href='startOverviewTour'
+                        className={classNames(
+                          'xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer',
+                          'border-b-2 border-transparent hover:border-dial-sunshine'
+                        )}
+                        onClick={(e) => startOverviewTour(e)}
+                      >
+                        {format('intro.overview.startTour')}
+                      </a>
                     </li>
-                    <li className='relative mt-2 lg:mt-0 text-right'>
+                    <li className='relative mt-2 xl:mt-0 text-right'>
                       <AboutMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
-                    {
-                      user
-                        ? (
-                          <>
-                            <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
-                              {isAdminUser &&
-                                <AdminMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-                              }
-                            </li>
-                            <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
-                              <UserMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-                            </li>
-                          </>
-                        ) : (
-                          <li className='relative mt-2 lg:mt-0 text-right intro-overview-signup'>
-                            <a
-                              data-testid='login'
-                              href='signin'
-                              role='menuitem'
-                              className={dropdownMenuStyles}
-                              onClick={signInUser}
-                            >
-                              {format('header.signIn')}
-                            </a>
-                          </li>
-                        )
-                    }
-                    <li className='relative mt-2 lg:mt-0 text-right'>
+                    <li className='relative mt-2 xl:mt-0 text-right'>
                       <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
-                    <li><div className='border border-gray-400 border-t-0 lg:border-l-0 lg:h-9' /></li>
-                  </>)}
-              <li className='relative mt-2 lg:mt-0 text-right'>
+                    <li className='relative mt-2 xl:mt-0 text-right'>
+                      <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                    </li>
+                    { user ? withUser : withoutUser }
+                  </>
+                )
+              }
+              <li className='relative mt-2 xl:mt-0 text-right'>
                 <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
             </ul>

@@ -1,20 +1,20 @@
-import { MdClose } from 'react-icons/md'
 import classNames from 'classnames'
+import { IoClose } from 'react-icons/io5'
 
 const Pill = ({ label, onRemove, className, readOnly = false }) => (
   <div
     className={classNames(
       className,
-      'inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light',
-      'text-lg text-dial-gray-dark'
+      'shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos'
     )}
     data-testid='pill'
   >
     {label}
     {!readOnly &&
-      <MdClose
+      <IoClose
         onClick={onRemove}
-        className='ml-3 text-2xl cursor-pointer'
+        className='cursor-pointer opacity-50'
+        size='1.5em'
         data-testid='remove-button'
       />
     }

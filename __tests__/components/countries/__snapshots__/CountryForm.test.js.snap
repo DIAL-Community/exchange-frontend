@@ -40,7 +40,7 @@ exports[`Unit tests for the CountryForm component. Should match snapshot - creat
                 class="pb-12 mb-4 flex flex-col gap-3"
               >
                 <div
-                  class="text-2xl font-bold text-dial-blue pb-4"
+                  class="text-2xl font-semibold text-dial-sapphire pb-4"
                 >
                   Create New Country
                 </div>
@@ -49,7 +49,7 @@ exports[`Unit tests for the CountryForm component. Should match snapshot - creat
                   data-testid="country-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -132,7 +132,7 @@ exports[`Unit tests for the CountryForm component. Should match snapshot - edit.
                 class="pb-12 mb-4 flex flex-col gap-3"
               >
                 <div
-                  class="text-2xl font-bold text-dial-blue pb-4"
+                  class="text-2xl font-semibold text-dial-sapphire pb-4"
                 >
                   Edit Country
                 </div>
@@ -141,7 +141,7 @@ exports[`Unit tests for the CountryForm component. Should match snapshot - edit.
                   data-testid="country-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name

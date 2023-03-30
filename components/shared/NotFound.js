@@ -7,10 +7,12 @@ const NotFound = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='grid place-items-center bg-gradient-to-b from-dial-gray-light to-white'>
-      <div className='my-20 text-button-gray text-lg'>
-        <FaExclamationCircle size='3em' className='w-full mb-5' />
-        <div className='font-semibold'>{format('app.notFound')}</div>
+    <div className='h-[60vh]'>
+      <div className='flex bg-gradient-to-b from-dial-gray-light to-white h-full'>
+        <div className='text-button-gray text-lg w-full my-auto flex flex-col gap-4'>
+          <FaExclamationCircle size='3em' className='mx-auto' />
+          <div className='font-semibold text-center'>{format('app.notFound')}</div>
+        </div>
       </div>
     </div>
   )

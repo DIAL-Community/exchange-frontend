@@ -2,16 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@font-face {
+  font-family: 'Poppins';
+  src: url('/public/assets/fonts/Poppins/Poppins-Regular.ttf');
+  src: url('/public/assets/fonts/Poppins/Poppins-SemiBold.ttf');
+  src: url('/public/assets/fonts/Poppins/Poppins-Bold.ttf');
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .h1 {
-  font: Arial;
   font-size: 1.75rem;
   line-height: 2rem;
   font-weight: bold;
@@ -19,7 +25,6 @@ body {
 }
 
 .h2 {
-  font: Arial;
   font-size: 1.5rem;
   line-height: 1.75rem;
   font-weight: normal;
@@ -27,7 +32,6 @@ body {
 }
 
 .h3 {
-  font: Arial;
   font-size: 1.125rem;
   line-height: 1.375rem;
   text-transform: uppercase;
@@ -36,7 +40,6 @@ body {
 }
 
 .h4 {
-  font: Arial;
   font-size: 1rem;
   line-height: 1.25rem;
   font-weight: bold;
@@ -44,22 +47,13 @@ body {
 }
 
 .h5 {
-  font: Arial;
   font-size: .75rem;
   line-height: 1.125rem;
   text-transform: uppercase;
   font-weight: normal;
 }
 
-.card-title {
-  font: Arial;
-  font-size: 1.125rem;
-  line-height: 1.375rem;
-  font-weight: bold;
-}
-
 .body-large {
-  font: Arial;
   font-size: 1rem;
   line-height: 1.25rem;
   font-weight: normal;
@@ -67,7 +61,6 @@ body {
 }
 
 .body-small {
-  font: Arial;
   font-size: .875rem;
   line-height: 1.125rem;
   font-weight: normal;
@@ -94,10 +87,6 @@ body {
 
 .body-container {
   min-height: calc(100vh - 597px);
-}
-
-.form-checkbox:checked {
-  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='gray' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
 }
 
 .form-checkbox:checked {
@@ -147,10 +136,6 @@ body {
   background-size: 10px 10px;
 }
 
-.bg-edit {
-  background-color: #f7fcff;
-}
-
 .repository-progress-padding {
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
@@ -172,24 +157,37 @@ body {
 }
 
 @layer components {
+  .card-title {
+    @apply font-semibold;
+    @apply text-lg;
+  }
+
+  .bg-edit {
+    @apply bg-gradient-to-l;
+    @apply from-dial-angel;
+    @apply to-dial-blue-chalk;
+    @apply rounded-md
+  }
+
   /* native HTML inputs */
-  input:not(.react-select__input, .url),
-  input[type]:not(.react-select__input),
+  input:not(.url, [type=checkbox], [type=radio]),
   textarea.textarea,
   .url-input {
-    @apply border-0;
-    @apply text-lg;
+    @apply border;
+    @apply border-transparent;
+    @apply hover:border-dial-sapphire;
     @apply text-dial-gray-dark;
     @apply shadow-md;
     @apply rounded-md;
-    @apply outline;
-    @apply outline-1;
-    @apply outline-offset-0;
     @apply placeholder-dial-gray;
-    @apply pl-3;
+    @apply px-3;
     @apply py-2;
     @apply disabled:outline-button-gray-light;
     @apply disabled:text-button-gray-light;
+  }
+
+  .url-input:has(input:focus) {
+    @apply border-dial-sapphire;
   }
 
   input:not(.validation-error),
@@ -204,15 +202,36 @@ body {
     @apply outline-validation-error;
   }
 
+  input[role=combobox]:focus {
+    @apply ring-0;
+    @apply shadow-none;
+  }
+
+  input[type=checkbox] {
+    @apply border;
+    @apply border-dial-sapphire;
+    @apply shadow-md;
+    @apply rounded-md;
+  }
+
+  input[type=checkbox]:focus {
+    outline: 1px solid transparent;
+    @apply ring-offset-[-1px];
+  }
+
+  input[type=file]:focus {
+    @apply outline-0;
+  }
+
+  textarea.textarea:focus {
+    @apply outline-0;
+  }
+
   input:focus,
   input[type]:focus,
-  textarea.textarea:focus,
-  .url-input:focus-within {
-    @apply outline;
-    @apply outline-offset-0;
-    @apply outline-[3px];
-    @apply outline-dial-blue;
-    @apply ring-0;
+  textarea.textarea:focus {
+    @apply ring-offset-[-1px];
+    @apply border-dial-sapphire
   }
 
   /* native HTML button */
@@ -223,31 +242,24 @@ body {
 
   button:focus,
   button:focus-visible {
-    @apply outline-none;
-    @apply ring-[3px];
-    @apply ring-dial-blue;
-    @apply ring-offset-2;
   }
 
   /* TinyMCE HTML editor - textarea */
-  .htmlEditor .tox-tinymce {
+  .html-editor .tox-tinymce {
     @apply border-0;
-    @apply outline;
-    @apply outline-1;
-    @apply outline-offset-0;
-    @apply outline-button-gray;
     @apply shadow-md;
     @apply rounded-md;
+    @apply border;
+    @apply border-transparent;
+    @apply hover:border-dial-sapphire;
   }
 
-  .htmlEditor .tox-tinymce.focused,
-  .htmlEditor.validation-error .tox-tinymce.focused {
-    @apply outline-offset-0;
-    @apply outline-[3px];
-    @apply outline-dial-blue;
+  .html-editor .tox-tinymce.focused,
+  .html-editor.validation-error .tox-tinymce.focused {
+    @apply border-dial-sapphire;
   }
 
-  .htmlEditor.validation-error .tox-tinymce {
+  .html-editor.validation-error .tox-tinymce {
     @apply outline-validation-error;
   }
 
@@ -301,22 +313,19 @@ body {
 
   .overlay button.loginBtn,
   .overlay button.signBtn {
-    @apply bg-dial-blue;
+    @apply bg-dial-sapphire;
     @apply disabled:bg-dial-gray;
-    @apply hover:bg-dial-blue;
+    @apply hover:bg-dial-sapphire;
     @apply hover:text-white;
   }
 
   /* CommentsSection - text input */
   .form .advanced-border {
-    @apply border-0;
-    @apply text-lg;
+    @apply border-2;
     @apply text-dial-gray-dark;
     @apply shadow-md;
     @apply rounded-md;
-    @apply outline;
-    @apply outline-1;
-    @apply outline-offset-0;
+    @apply p-3
   }
 
   .form .public-DraftEditorPlaceholder-root {
@@ -328,10 +337,7 @@ body {
   }
 
   .form .advanced-border.focused {
-    @apply outline;
-    @apply outline-offset-0;
-    @apply outline-[3px];
-    @apply outline-dial-blue;
+    @apply shadow-lg;
   }
 
   /* CommentsSection - Post and Cancel buttons */
@@ -360,7 +366,7 @@ body {
   }
 
   .form .advanced-btns button.advanced-post {
-    @apply bg-dial-blue;
+    @apply bg-dial-sapphire;
     @apply disabled:bg-dial-gray;
   }
 
@@ -382,7 +388,7 @@ body {
 
   .form-field-label {
     @apply text-xl;
-    @apply text-dial-blue;
+    @apply text-dial-sapphire;
   }
 
   .form-field-wrapper {
@@ -398,9 +404,9 @@ body {
     @apply py-2;
     @apply px-5;
     @apply rounded-md;
-    @apply bg-dial-blue;
+    @apply bg-dial-sapphire;
     @apply text-white;
-    @apply disabled:bg-dial-gray;
+    @apply disabled:bg-dial-amethyst-smoke;
   }
 
   button.secondary-button {
@@ -410,11 +416,11 @@ body {
     @apply px-5;
     @apply rounded-md;
     @apply border-2;
-    @apply border-dial-blue;
-    @apply hover:border-transparent;
-    @apply text-dial-blue;
-    @apply hover:bg-dial-blue;
-    @apply hover:text-white;
+    @apply border-dial-sapphire;
+    @apply enabled:hover:border-transparent;
+    @apply text-dial-sapphire;
+    @apply enabled:hover:bg-dial-sapphire;
+    @apply enabled:hover:text-white;
     @apply disabled:opacity-50;
   }
 
@@ -425,7 +431,8 @@ body {
     @apply py-2;
     @apply px-5;
     @apply rounded-md;
-    @apply bg-button-gray-light;
+    @apply bg-dial-amethyst-smoke;
+    @apply enabled:hover:bg-dial-sapphire;
     @apply text-white;
     @apply disabled:opacity-50;
   }
@@ -438,8 +445,6 @@ body {
     @apply rounded-md;
     @apply bg-button-red;
     @apply text-white;
-    @apply focus:outline-button-red;
-    @apply focus:ring-button-red
   }
 
   .create-button {
@@ -448,12 +453,40 @@ body {
     @apply py-1;
     @apply px-2;
     @apply rounded-md;
-    @apply bg-dial-blue;
+    @apply bg-dial-sapphire;
     @apply text-white;
   }
 
   button.create-button {
-    @apply bg-dial-blue;
-    @apply focus:bg-dial-blue;
+    @apply bg-dial-sapphire;
   }
+
+  .username-avatar {
+    @apply relative;
+    @apply inline-flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply w-10;
+    @apply h-10;
+    @apply overflow-hidden;
+    @apply bg-dial-white-beech;
+    @apply rounded-full;
+  }
+
+  .badge-avatar {
+    @apply relative;
+    @apply inline-flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply overflow-hidden;
+    @apply bg-dial-white-beech-light;
+    @apply rounded-full;
+  }
+}
+
+#wizard-anchor {
+  display: block;
+  position: relative;
+  top: -100px;
+  visibility: hidden;
 }

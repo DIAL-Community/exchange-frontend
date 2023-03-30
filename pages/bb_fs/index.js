@@ -112,7 +112,7 @@ const BBFullScreen = () => {
 
   const getUrl = (bb) => {
     return bb.url ? bb.url :
-      `https://solutions.dial.community/building_blocks/${getSlug(bb)}`
+      `https://exchange.dial.global/building_blocks/${getSlug(bb)}`
   }
 
   const currBBList = () => {
@@ -129,7 +129,7 @@ const BBFullScreen = () => {
           return (
             <div key={i} className='m-2'>
               <a href={getUrl(bb)} target='_blank' rel='noreferrer'>
-                <div className='h-full flex flex-col border border-dial-gray hover:border-dial-yellow card-drop-shadow'>
+                <div className='h-full flex flex-col border border-dial-gray hover:border-dial-sunshine card-drop-shadow'>
                   <div
                     className={`
                       text-2xl text-white font-semibold overflow-hidden h-1/5 w-full flex flex-row gap-x-1.5 p-2
@@ -141,7 +141,7 @@ const BBFullScreen = () => {
                   <div className='flex flex-col p-4 h-1/2'>
                     <div className='mx-auto py-4 w-1/2'>
                       <img
-                        src={`https://solutions.dial.community/assets/building_blocks/${getSlug(bb)}.png`}
+                        src={`https://exchange.dial.global/assets/building_blocks/${getSlug(bb)}.png`}
                         alt='building block image'
                       />
                     </div>

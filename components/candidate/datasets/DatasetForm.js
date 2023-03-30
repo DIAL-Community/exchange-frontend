@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
@@ -30,6 +30,8 @@ const DatasetForm = () => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
+  const captchaRef = useRef(null)
+
   const { showToast } = useContext(ToastContext)
   const { locale } = useRouter()
 
@@ -59,7 +61,7 @@ const DatasetForm = () => {
 
   const datasetTypeOptions = useMemo(() => getDatasetTypeOptions(format), [format])
 
-  const { handleSubmit, register, control, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, setValue, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
@@ -78,6 +80,8 @@ const DatasetForm = () => {
     if (user) {
       setMutating(true)
 
+      const captcha = captchaRef.current.getValue()
+
       const { userEmail, userToken } = user
       const {
         name,
@@ -85,8 +89,7 @@ const DatasetForm = () => {
         dataVisualizationUrl,
         dataType,
         submitterEmail,
-        description,
-        captcha
+        description
       } = data
 
       createCandidateDataset({
@@ -115,6 +118,10 @@ const DatasetForm = () => {
     router.push('/datasets')
   }
 
+  useEffect(() => {
+    register('captcha', { required: format('validation.required') })
+  }, [register, format])
+
   return user ? (
     <div className='flex flex-col'>
       <div className='hidden lg:block px-8'>
@@ -140,7 +147,7 @@ const DatasetForm = () => {
         <div id='content' className='sm:px-0 max-w-full mx-auto'>
           <form onSubmit={handleSubmit(doUpsert)}>
             <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-              <div className='text-2xl font-bold text-dial-blue pb-4'>
+              <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                 {format('candidateDataset.label')}
               </div>
               <div className='flex flex-col lg:flex-row gap-4'>
@@ -225,13 +232,12 @@ const DatasetForm = () => {
                     {errors.submitterEmail && <ValidationError value={errors.submitterEmail?.message} />}
                   </div>
                   <div className='form-field-wrapper'>
-                    <Controller
-                      name='captcha'
-                      control={control}
-                      rules={{ required: format('validation.required') }}
-                      render={({ field: { onChange, ref } }) => (
-                        <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} ref={ref} onChange={onChange} />
-                      )}
+                    <ReCAPTCHA
+                      sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+                      ref={captchaRef}
+                      onChange={value => {
+                        setValue('captcha', value, { shouldValidate: true })
+                      }}
                     />
                     {errors.captcha && <ValidationError value={errors.captcha?.message} />}
                   </div>

@@ -120,7 +120,7 @@ const MoveContent = ({ move, format }) => {
                           <div
                             key={resource.i}
                             className={`
-                              group border-2 border-gray-300 hover:border-dial-yellow
+                              group border-2 border-gray-300 hover:border-dial-sunshine
                               card-drop-shadow
                             `}
                           >

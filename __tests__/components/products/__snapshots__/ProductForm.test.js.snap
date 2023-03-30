@@ -10,7 +10,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
       style="width: auto;"
     >
       <div
-        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--error Toastify--animate Toastify__slide-enter--top-center"
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--error Toastify__toast--close-on-click Toastify--animate Toastify__slide-enter--top-center"
         id="toastId"
         style="--nth: 1; --len: 1;"
       >
@@ -77,7 +77,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -105,7 +105,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Product
             </div>
@@ -120,7 +120,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                   data-testid="product-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -138,7 +138,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Aliases
                   </label>
@@ -153,7 +153,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -183,7 +183,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -202,7 +202,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                       </svg>
                     </button>
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -227,13 +227,13 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                   data-testid="product-website"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="website"
                   >
                     Website
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <span
                       class="select-none text-dial-gray"
@@ -252,7 +252,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Logo
                   </label>
@@ -270,7 +270,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -310,7 +310,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                   data-testid="product-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -332,7 +332,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -347,7 +347,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
               class="my-2"
             />
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Product Pricing Information
             </div>
@@ -358,7 +358,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                 class="w-full lg:w-1/2 flex flex-col gap-y-3"
               >
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                 >
                   <input
                     class="h-8 w-8"
@@ -372,13 +372,13 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="pricingUrl"
                   >
                     Link to Pricing Information
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -392,7 +392,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="hostingModel"
                   >
                     Hosting Model
@@ -410,7 +410,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="pricingModel"
                   >
                     Pricing Model
@@ -432,7 +432,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                   class="block flex flex-col gap-y-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Pricing Details
                   </label>
@@ -454,7 +454,7 @@ exports[`Unit tests for the ProductForm component. Should display failure toast 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="pricing-details-editor"
@@ -500,7 +500,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
       style="width: auto;"
     >
       <div
-        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify--animate Toastify__slide-enter--top-center"
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify__toast--close-on-click Toastify--animate Toastify__slide-enter--top-center"
         id="toastId"
         style="--nth: 1; --len: 1;"
       >
@@ -561,7 +561,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -589,7 +589,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Product
             </div>
@@ -604,7 +604,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                   data-testid="product-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -622,7 +622,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Aliases
                   </label>
@@ -637,7 +637,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -667,7 +667,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -686,7 +686,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                       </svg>
                     </button>
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -711,13 +711,13 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                   data-testid="product-website"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="website"
                   >
                     Website
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <span
                       class="select-none text-dial-gray"
@@ -736,7 +736,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Logo
                   </label>
@@ -754,7 +754,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -794,7 +794,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                   data-testid="product-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -816,7 +816,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -831,7 +831,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
               class="my-2"
             />
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Product Pricing Information
             </div>
@@ -842,7 +842,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                 class="w-full lg:w-1/2 flex flex-col gap-y-3"
               >
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                 >
                   <input
                     class="h-8 w-8"
@@ -856,13 +856,13 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="pricingUrl"
                   >
                     Link to Pricing Information
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -876,7 +876,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="hostingModel"
                   >
                     Hosting Model
@@ -894,7 +894,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="pricingModel"
                   >
                     Pricing Model
@@ -916,7 +916,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                   class="block flex flex-col gap-y-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Pricing Details
                   </label>
@@ -938,7 +938,7 @@ exports[`Unit tests for the ProductForm component. Should display success toast 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="pricing-details-editor"
@@ -989,7 +989,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -1017,7 +1017,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Product
             </div>
@@ -1032,7 +1032,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                   data-testid="product-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -1050,7 +1050,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Aliases
                   </label>
@@ -1065,7 +1065,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -1090,13 +1090,13 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                   data-testid="product-website"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="website"
                   >
                     Website
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -1110,7 +1110,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Logo
                   </label>
@@ -1128,7 +1128,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -1168,7 +1168,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                   data-testid="product-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -1190,7 +1190,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -1205,7 +1205,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
               class="my-2"
             />
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Product Pricing Information
             </div>
@@ -1216,7 +1216,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                 class="w-full lg:w-1/2 flex flex-col gap-y-3"
               >
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                 >
                   <input
                     class="h-8 w-8"
@@ -1230,13 +1230,13 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="pricingUrl"
                   >
                     Link to Pricing Information
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -1250,7 +1250,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="hostingModel"
                   >
                     Hosting Model
@@ -1268,7 +1268,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="pricingModel"
                   >
                     Pricing Model
@@ -1290,7 +1290,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                   class="block flex flex-col gap-y-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Pricing Details
                   </label>
@@ -1312,7 +1312,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - creat
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="pricing-details-editor"
@@ -1363,7 +1363,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -1391,7 +1391,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Product
             </div>
@@ -1406,7 +1406,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                   data-testid="product-name"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                     for="name"
                   >
                     Name
@@ -1424,7 +1424,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Aliases
                   </label>
@@ -1439,7 +1439,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -1469,7 +1469,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -1488,7 +1488,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                       </svg>
                     </button>
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -1513,13 +1513,13 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                   data-testid="product-website"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="website"
                   >
                     Website
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <span
                       class="select-none text-dial-gray"
@@ -1538,7 +1538,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Logo
                   </label>
@@ -1556,7 +1556,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -1596,7 +1596,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                   data-testid="product-description"
                 >
                   <label
-                    class="text-xl text-dial-blue required-field"
+                    class="text-dial-sapphire required-field"
                   >
                     Description
                   </label>
@@ -1618,7 +1618,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -1633,7 +1633,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
               class="my-2"
             />
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Product Pricing Information
             </div>
@@ -1644,7 +1644,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                 class="w-full lg:w-1/2 flex flex-col gap-y-3"
               >
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                 >
                   <input
                     class="h-8 w-8"
@@ -1658,13 +1658,13 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="pricingUrl"
                   >
                     Link to Pricing Information
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -1678,7 +1678,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="hostingModel"
                   >
                     Hosting Model
@@ -1696,7 +1696,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                   class="flex flex-col gap-y-2 mb-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                     for="pricingModel"
                   >
                     Pricing Model
@@ -1718,7 +1718,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                   class="block flex flex-col gap-y-2"
                 >
                   <label
-                    class="text-xl text-dial-blue"
+                    class="text-dial-sapphire"
                   >
                     Pricing Details
                   </label>
@@ -1740,7 +1740,7 @@ exports[`Unit tests for the ProductForm component. Should match snapshot - edit.
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="pricing-details-editor"

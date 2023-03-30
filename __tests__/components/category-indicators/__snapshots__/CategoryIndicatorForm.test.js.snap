@@ -15,7 +15,7 @@ exports[`Unit tests for CategoryIndicatorForm component. Should render CategoryI
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -43,7 +43,7 @@ exports[`Unit tests for CategoryIndicatorForm component. Should render CategoryI
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Category Indicator
             </div>
@@ -95,19 +95,19 @@ exports[`Unit tests for CategoryIndicatorForm component. Should render CategoryI
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r0:-placeholder"
                         >
                           Indicator type
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -133,18 +133,19 @@ exports[`Unit tests for CategoryIndicatorForm component. Should render CategoryI
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
+                            aria-hidden="true"
                             class="text-2xl"
                             fill="none"
                             height="1em"
                             stroke="currentColor"
-                            stroke-width="0"
+                            stroke-width="2"
                             viewBox="0 0 24 24"
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +154,6 @@ exports[`Unit tests for CategoryIndicatorForm component. Should render CategoryI
                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              stroke-width="2"
                             />
                           </svg>
                         </div>
@@ -244,7 +244,7 @@ exports[`Unit tests for CategoryIndicatorForm component. Should render CategoryI
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"

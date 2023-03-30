@@ -7,6 +7,7 @@ export const BUILDING_BLOCK_DETAIL_QUERY = gql`
       name
       slug
       imageFile
+      category
       specUrl
       buildingBlockDescription {
         description
@@ -47,6 +48,7 @@ export const BUILDING_BLOCK_QUERY = gql`
       slug
       specUrl
       maturity
+      category
       buildingBlockDescription {
         description
         locale
@@ -62,6 +64,7 @@ export const BUILDING_BLOCKS_QUERY = gql`
     $sdgs: [String!],
     $useCases: [String!],
     $workflows: [String!],
+    $categoryTypes: [String!],
     $showMature: Boolean,
     $search: String!
     ) {
@@ -71,6 +74,7 @@ export const BUILDING_BLOCKS_QUERY = gql`
       sdgs: $sdgs,
       useCases: $useCases,
       workflows: $workflows,
+      categoryTypes: $categoryTypes,
       showMature: $showMature,
       search: $search
     ) {
@@ -87,6 +91,7 @@ export const BUILDING_BLOCKS_QUERY = gql`
         slug
         imageFile
         maturity
+        category
         specUrl
         workflows {
           slug

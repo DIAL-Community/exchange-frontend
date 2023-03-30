@@ -4,7 +4,7 @@ import { MdPlayArrow } from 'react-icons/md'
 import { PlaybookDetailContext, PlaybookDetailDispatchContext } from './PlaybookDetailContext'
 import { OVERVIEW_SLUG_NAME } from './PlaybookDetailOverview'
 
-const ACTIVE_NAV_COLOR = 'bg-dial-purple border-dial-yellow'
+const ACTIVE_NAV_COLOR = 'bg-dial-purple border-dial-sunshine'
 
 const PlaybookDetailNavigation = ({ playbook }) => {
   const { formatMessage } = useIntl()
@@ -125,8 +125,8 @@ const PlaybookDetailNavigation = ({ playbook }) => {
         <div
           className={`
             border-r-4 border-dial-gray-dark
-            hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
-            ${currentSlug === OVERVIEW_SLUG_NAME ? 'border-dial-purple text-dial-yellow' : 'border-dial-gray-dark'}
+            hover:border-dial-sunshine hover:bg-dial-purple-light hover:text-dial-biscotti
+            ${currentSlug === OVERVIEW_SLUG_NAME ? 'border-dial-purple text-dial-sunshine' : 'border-dial-gray-dark'}
           `}
         >
           <div className={`border-l-8 ${currentSlug === OVERVIEW_SLUG_NAME ? `${ACTIVE_NAV_COLOR}` : 'border-transparent'}`}>
@@ -142,8 +142,12 @@ const PlaybookDetailNavigation = ({ playbook }) => {
                 key={index}
                 className={`
                   border-r-4 border-dial-gray-dark
-                  hover:border-dial-yellow hover:bg-dial-purple-light hover:text-dial-yellow-light
-                  ${currentSlug === playbookPlay.playSlug ? 'border-dial-purple text-dial-yellow' : 'border-dial-gray-dark'}
+                  hover:border-dial-sunshine hover:bg-dial-purple-light hover:text-dial-biscotti
+                  ${
+                    currentSlug === playbookPlay.playSlug
+                      ? 'border-dial-purple text-dial-sunshine'
+                      : 'border-dial-gray-dark'
+                  }
                 `}
               >
                 <a href='#navigate-to-play' className='block' onClick={(e) => navigateToPlay(e, playbookPlay.playSlug)}>

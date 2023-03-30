@@ -18,7 +18,7 @@ exports[`Unit test for the RubricCategoryDetail component. Should render RubricC
           class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
         >
           <a
-            class="inline text-dial-blue h5"
+            class="inline text-dial-sapphire h5"
             href="/"
           >
             Home
@@ -67,7 +67,7 @@ exports[`Unit test for the RubricCategoryDetail component. Should render RubricC
           </span>
         </button>
         <a
-          class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
           data-testid="edit-link"
           href="/rubric_categories/rc_name/edit"
         >
@@ -116,6 +116,7 @@ exports[`Unit test for the RubricCategoryDetail component. Should render RubricC
     >
       <div
         class="px-4"
+        style="min-height: 50vh;"
       >
         <div
           class="hidden lg:block"
@@ -124,7 +125,7 @@ exports[`Unit test for the RubricCategoryDetail component. Should render RubricC
             class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
           >
             <a
-              class="inline text-dial-blue h5"
+              class="inline text-dial-sapphire h5"
               href="/"
             >
               Home
@@ -179,7 +180,7 @@ exports[`Unit test for the RubricCategoryDetail component. Should render RubricC
             class="flex justify-between items-center mb-3"
           >
             <div
-              class="card-title text-dial-gray-dark"
+              class="card-title text-dial-sapphire"
             >
               Category Indicators
             </div>
@@ -187,7 +188,7 @@ exports[`Unit test for the RubricCategoryDetail component. Should render RubricC
               class="gap-3"
             >
               <button
-                class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+                class="mr-2 flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
                 data-testid="edit-button"
                 type="button"
               >
@@ -226,7 +227,7 @@ exports[`Unit test for the RubricCategoryDetail component. Should render RubricC
             class="grid sm:grid-cols-1 lg:grid-cols-2"
           >
             <div
-              class="border-3 border-transparent hover:border-dial-yellow cursor-pointer"
+              class="border-3 border-transparent hover:border-dial-sunshine cursor-pointer"
             >
               <div
                 class="font-semibold text-button-gray items-center grid gap-x-4 py-4 px-8 w-full border border-dial-gray card-drop-shadow"

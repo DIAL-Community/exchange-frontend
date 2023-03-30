@@ -11,7 +11,7 @@ import { CANDIDATE_DATASET_ACTION } from '../../../queries/candidate'
 import { useUser } from '../../../lib/hooks'
 import { CandidateActionType, CandidateStatusType } from '../../../lib/constants'
 
-const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-yellow'
+const hoverEffectTextStyle = 'border-b-2 border-transparent hover:border-dial-sunshine'
 
 const DatasetCard = ({ dataset, listType }) => {
   const { formatMessage } = useIntl()

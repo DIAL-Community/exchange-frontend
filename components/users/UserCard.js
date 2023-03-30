@@ -10,8 +10,8 @@ const ellipsisTextStyle = `
 `
 const containerElementStyle = `
   border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-button-gray hover:text-dial-yellow
+  border-transparent hover:border-dial-sunshine
+  text-button-gray hover:text-dial-sunshine
 `
 
 const UserCard = ({ user, listType, newTab = false }) => {

@@ -1,13 +1,13 @@
 import { fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import WizardRequestAdditionalSupportDialog from '../../../components/wizard/WizardRequestAdditionalSupportDialog'
+import AdditionalSupportDialog from '../../../components/wizard/AdditionalSupportDialog'
 import { mockObserverImplementation, render, waitForAllEffects } from '../../test-utils'
 import { mockNextUseRouter } from '../../utils/nextMockImplementation'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
 
 mockNextUseRouter()
 
-describe('Unit test for the WizardRequestAdditionalSupportDialog component.', () => {
+describe('Unit test for the AdditionalSupportDialog component.', () => {
   const SUBMIT_BUTTON_TEST_ID = 'submit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
   const NAME_TEST_ID = 'name'
@@ -20,14 +20,15 @@ describe('Unit test for the WizardRequestAdditionalSupportDialog component.', ()
   const INVALID_EMAIL_ADDRESS_MESSAGE = 'Please enter a valid email address'
   const MESSAGE_TOO_SHORT_MESSAGE = 'Message must be at least 20 characters'
 
-  beforeAll(
+  beforeAll(() => {
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
-  )
+  })
 
   test('Should match snapshot.', () => {
     const { getByTestId } = render(
       <CustomMockedProvider>
-        <WizardRequestAdditionalSupportDialog
+        <AdditionalSupportDialog
           isOpen={mockIsDialogOpen}
           onClose={mockSetIsDialogOpen}
         />
@@ -39,7 +40,7 @@ describe('Unit test for the WizardRequestAdditionalSupportDialog component.', ()
   test('Should call the onClose function after clicking the "Cancel" button.', () => {
     const { getByTestId } = render(
       <CustomMockedProvider>
-        <WizardRequestAdditionalSupportDialog
+        <AdditionalSupportDialog
           isOpen={mockIsDialogOpen}
           onClose={mockSetIsDialogOpen}
         />
@@ -53,7 +54,7 @@ describe('Unit test for the WizardRequestAdditionalSupportDialog component.', ()
     const user = userEvent.setup()
     const { getByTestId } = render(
       <CustomMockedProvider>
-        <WizardRequestAdditionalSupportDialog
+        <AdditionalSupportDialog
           isOpen={mockIsDialogOpen}
           onClose={mockSetIsDialogOpen}
         />

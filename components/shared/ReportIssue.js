@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl'
 import { Controller, useForm } from 'react-hook-form'
 import { Dialog, Transition } from '@headlessui/react'
 import Select from 'react-select'
+import Input from './Input'
 
 const ReportIssue = ({ showForm, hideFeedbackForm, formTitle }) => {
   const { formatMessage } = useIntl()
@@ -107,28 +108,16 @@ const ReportIssue = ({ showForm, hideFeedbackForm, formTitle }) => {
                     </div>
                     <div className='ml-auto grid grid-cols-1 gap-3 py-3 px-2'>
                       <div className='grid'>
-                        <label className='block text-lg text-dial-blue mb-2' htmlFor='name'>
+                        <label className='block text-lg text-dial-sapphire mb-2' htmlFor='name'>
                           {format('report.name')}
                         </label>
-                        <input
-                          {...register('name', { required: true })}
-                          className={`
-                            shadow appearance-none border rounded w-full py-2 px-3
-                            text-grey-darker
-                          `}
-                        />
+                        <Input {...register('name', { required: true })}/>
                       </div>
                       <div className='grid'>
-                        <label className='block text-lg text-dial-blue mb-2' htmlFor='name'>
+                        <label className='block text-lg text-dial-sapphire mb-2' htmlFor='name'>
                           {format('report.email')}
                         </label>
-                        <input
-                          {...register('email', { required: true })}
-                          className={`
-                            shadow appearance-none border rounded w-full py-2 px-3
-                            text-grey-darker
-                          `}
-                        />
+                        <Input {...register('email', { required: true })} />
                       </div>
                       <Controller
                         name='issueType'
@@ -146,35 +135,19 @@ const ReportIssue = ({ showForm, hideFeedbackForm, formTitle }) => {
                         }}
                       />
                       <div className='grid'>
-                        <label className='block text-lg text-dial-blue mb-2' htmlFor='name'>
+                        <label className='block text-lg text-dial-sapphire mb-2' htmlFor='issue'>
                           {format('report.issue')}
                         </label>
                         <textarea
                           {...register('issue', { required: true })}
-                          className={`
-                            shadow appearance-none border rounded w-full py-2 px-3
-                            text-grey-darker
-                          `}
+                          className='textarea outline-0'
                         />
                       </div>
-                      <div className='flex'>
-                        <button
-                          type='submit'
-                          className={`
-                            w-24 mr-2 bg-dial-blue text-dial-gray-light py-2 px-4
-                            rounded disabled:opacity-50
-                          `}
-                        >
+                      <div className='flex gap-3'>
+                        <button type='submit' className='submit-button'>
                           {format('app.submit')}
                         </button>
-                        <button
-                          type='button'
-                          className={`
-                            w-24 ml-2 bg-button-gray-light text-white py-2 px-4
-                            rounded disabled:opacity-50
-                          `}
-                          onClick={hideFeedbackForm}
-                        >
+                        <button type='button' className='secondary-button' onClick={hideFeedbackForm}>
                           {format('general.close')}
                         </button>
                       </div>

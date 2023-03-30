@@ -15,6 +15,7 @@ describe('Unit test for the Dialog component.', () => {
   const mockOnClose = jest.fn()
 
   beforeAll(() => {
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 

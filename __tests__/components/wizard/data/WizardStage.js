@@ -1,4 +1,4 @@
-export const projData = {
+export const wizardData = {
   sectors: [
     {
       slug: 'sector1',

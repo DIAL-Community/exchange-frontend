@@ -17,6 +17,7 @@ describe('Unit test for the CommentsList component.', () => {
   const mockRefetch = jest.fn()
 
   beforeAll(() => {
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 

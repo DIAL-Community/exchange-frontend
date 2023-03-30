@@ -49,7 +49,7 @@ const BranchSelection = () => {
         />
         <MdRefresh
           onClick={() => updateBranchOptions()}
-          className='inline text-3xl my-auto fill-dial-blue cursor-pointer'
+          className='inline text-2xl my-auto fill-dial-sapphire cursor-pointer'
         />
       </div>
     </label>

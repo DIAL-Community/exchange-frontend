@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -19,7 +19,7 @@ import { BREADCRUMB_SEPARATOR } from '../../shared/breadcrumb'
 
 const OrganizationForm = () => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, { ...values })
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
 
@@ -29,6 +29,8 @@ const OrganizationForm = () => {
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
+
+  const captchaRef = useRef(null)
 
   const [createCandidateOrganization, { reset }] = useMutation(CREATE_CANDIDATE_ORGANIZATION, {
     onError: () => {
@@ -54,7 +56,7 @@ const OrganizationForm = () => {
     }
   })
 
-  const { handleSubmit, register, control, formState: { errors } } = useForm({
+  const { handleSubmit, register, control, setValue, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     shouldUnregister: true,
@@ -73,8 +75,10 @@ const OrganizationForm = () => {
     if (user) {
       setMutating(true)
 
+      const captcha = captchaRef.current.getValue()
+
       const { userEmail, userToken } = user
-      const { name, description, organizationName, email, title, captcha, website } = data
+      const { name, description, organizationName, email, title, website } = data
 
       const variables = {
         name,
@@ -103,6 +107,10 @@ const OrganizationForm = () => {
     router.push('/organizations')
   }
 
+  useEffect(() => {
+    register('captcha', { required: format('validation.required') })
+  }, [register, format])
+
   return (
     loadingUserSession ? <Loading /> : user ? (
       <div className='flex flex-col'>
@@ -129,7 +137,7 @@ const OrganizationForm = () => {
           <div id='content' className='sm:px-0 max-w-full mx-auto'>
             <form onSubmit={handleSubmit(doUpsert)}>
               <div className='bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3'>
-                <div className='text-2xl font-bold text-dial-blue pb-4'>
+                <div className='text-2xl font-semibold text-dial-sapphire pb-4'>
                   {format('candidateOrganization.label')}
                 </div>
                 <div className='flex flex-col lg:flex-row gap-4'>
@@ -208,17 +216,11 @@ const OrganizationForm = () => {
                       />
                       {errors.title && <ValidationError value={errors.title?.message} />}
                     </div>
-                    <Controller
-                      name='captcha'
-                      control={control}
-                      rules={{ required: format('validation.required') }}
-                      render={({ field: { onChange, ref } }) => {
-                        return (
-                          <ReCAPTCHA
-                            sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
-                            ref={ref} onChange={onChange}
-                          />
-                        )
+                    <ReCAPTCHA
+                      sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+                      ref={captchaRef}
+                      onChange={value => {
+                        setValue('captcha', value, { shouldValidate: true })
                       }}
                     />
                     {errors.captcha && <ValidationError value={errors.captcha?.message} />}
@@ -228,7 +230,7 @@ const OrganizationForm = () => {
                     style={{ minHeight: '20rem' }}
                     data-testid='candidate-organization-description'
                   >
-                    <label className='block text-xl text-dial-blue flex flex-col gap-y-2'>
+                    <label className='block text-dial-sapphire flex flex-col gap-y-2'>
                       <p className='required-field'> {format('candidateOrganization.description')}</p>
                       <Controller
                         name='description'

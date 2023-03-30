@@ -46,7 +46,7 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
         data &&
           <div className='flex flex-col border border-dial-orange-light'>
             <div className='move-header cursor-pointer' onClick={toggleDetail}>
-              <div className='move-animation-base bg-dial-yellow-light h-14' />
+              <div className='move-animation-base bg-dial-biscotti h-14' />
               <div
                 className={`
                   animated-move
@@ -81,7 +81,7 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
                                   <div
                                     key={resource.i}
                                     className={`
-                                      group border-2 border-gray-300 hover:border-dial-yellow
+                                      group border-2 border-gray-300 hover:border-dial-sunshine
                                       card-drop-shadow
                                     `}
                                   >

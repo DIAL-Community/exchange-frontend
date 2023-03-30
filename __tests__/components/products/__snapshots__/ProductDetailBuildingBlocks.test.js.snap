@@ -13,7 +13,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Building Blocks
       </div>
@@ -25,7 +25,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
       class="bg-edit p-6"
     >
       <p
-        class="card-title text-dial-blue mb-3"
+        class="card-title text-dial-stratos mb-3"
       >
         Assign
          
@@ -49,18 +49,18 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+              class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__single-value css-qc6sy-singleValue"
+                class="react-select__single-value css-1dimb5e-singleValue"
               >
                 Validated
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -85,11 +85,11 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   aria-hidden="true"
@@ -127,19 +127,19 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r5:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -165,18 +165,19 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -185,7 +186,6 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -197,77 +197,65 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should add a 
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Test Building Block
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Building Block 1
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Building Block 2
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>
@@ -308,7 +296,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Building Blocks
       </div>
@@ -316,7 +304,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
         class="gap-3"
       >
         <button
-          class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          class="mr-2 flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
           data-testid="edit-button"
           type="button"
         >
@@ -352,58 +340,47 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
         href="/building_blocks/test_building_block"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-building-block hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="grid grid-cols-12 gap-x-4 py-4 px-4"
+              class="flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
             >
               <div
-                class="col-span-10 pr-3 text-base font-semibold 
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-10/12 lg:w-4/12 flex gap-2 my-auto text-dial-sapphire"
               >
-                <span
-                  style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                <div
+                  class="block w-8 relative opacity-60"
                 >
                   <span
-                    style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
                   >
                     <img
-                      alt=""
-                      aria-hidden="true"
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2720%27%20height=%2720%27/%3e"
-                      style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      alt="Logo for: Test Building Block"
+                      data-nimg="fill"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
                     />
+                    <noscript />
                   </span>
-                  <img
-                    alt="Logo for: Test Building Block"
-                    class="building-block-filter inline mr-2 "
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                  />
-                  <noscript />
-                </span>
-                <span
-                  class="ml-8 w-4/5 h-3/5 relative 
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                </div>
+                <div
+                  class="w-full font-semibold"
                 >
                   Test Building Block
-                </span>
+                </div>
               </div>
               <div
-                class="col-span-2 flex flex-row font-semibold opacity-50 justify-end"
+                class="ml-auto font-semibold my-auto"
               >
-                BETA
+                <div
+                  class="text-dial-stratos opacity-70 text-xs font-semibold"
+                >
+                  BETA
+                </div>
               </div>
             </div>
           </div>
@@ -427,7 +404,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Building Blocks
       </div>
@@ -439,7 +416,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
       class="bg-edit p-6"
     >
       <p
-        class="card-title text-dial-blue mb-3"
+        class="card-title text-dial-stratos mb-3"
       >
         Assign
          
@@ -463,18 +440,18 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+              class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__single-value css-qc6sy-singleValue"
+                class="react-select__single-value css-1dimb5e-singleValue"
               >
                 Validated
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -499,11 +476,11 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   aria-hidden="true"
@@ -541,19 +518,19 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -579,18 +556,19 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -599,7 +577,6 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -611,27 +588,23 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Test Building Block
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>
@@ -673,7 +646,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Building Blocks
       </div>
@@ -699,58 +672,47 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should match 
         href="/building_blocks/test_building_block"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-building-block hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="grid grid-cols-12 gap-x-4 py-4 px-4"
+              class="flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
             >
               <div
-                class="col-span-10 pr-3 text-base font-semibold 
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-10/12 lg:w-4/12 flex gap-2 my-auto text-dial-sapphire"
               >
-                <span
-                  style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                <div
+                  class="block w-8 relative opacity-60"
                 >
                   <span
-                    style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
                   >
                     <img
-                      alt=""
-                      aria-hidden="true"
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2720%27%20height=%2720%27/%3e"
-                      style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      alt="Logo for: Test Building Block"
+                      data-nimg="fill"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
                     />
+                    <noscript />
                   </span>
-                  <img
-                    alt="Logo for: Test Building Block"
-                    class="building-block-filter inline mr-2 "
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                  />
-                  <noscript />
-                </span>
-                <span
-                  class="ml-8 w-4/5 h-3/5 relative 
-   whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                </div>
+                <div
+                  class="w-full font-semibold"
                 >
                   Test Building Block
-                </span>
+                </div>
               </div>
               <div
-                class="col-span-2 flex flex-row font-semibold opacity-50 justify-end"
+                class="ml-auto font-semibold my-auto"
               >
-                BETA
+                <div
+                  class="text-dial-stratos opacity-70 text-xs font-semibold"
+                >
+                  BETA
+                </div>
               </div>
             </div>
           </div>
@@ -774,7 +736,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Building Blocks
       </div>
@@ -786,7 +748,7 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
       class="bg-edit p-6"
     >
       <p
-        class="card-title text-dial-blue mb-3"
+        class="card-title text-dial-stratos mb-3"
       >
         Assign
          
@@ -810,18 +772,18 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+              class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__single-value css-qc6sy-singleValue"
+                class="react-select__single-value css-1dimb5e-singleValue"
               >
                 Validated
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -846,11 +808,11 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
                   aria-hidden="true"
@@ -888,19 +850,19 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r3:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -926,18 +888,19 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -946,7 +909,6 @@ exports[`Unit tests for the ProductDetailBuildingBlocks component. Should remove
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>

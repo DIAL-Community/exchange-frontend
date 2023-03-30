@@ -44,6 +44,7 @@ export const TagAutocomplete = ({
       <Select
         async
         aria-label={format('filter.byEntity', { entity: format('tag.label') })}
+        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) => fetchSelectOptions(client, input, tagQuery || TAG_SEARCH_QUERY, fetchedTagsCallback)}

@@ -13,7 +13,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Products
       </div>
@@ -25,7 +25,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
       class="bg-edit p-6"
     >
       <p
-        class="card-title text-dial-blue mb-3"
+        class="card-title text-dial-stratos mb-3"
       >
         Assign
          
@@ -50,19 +50,19 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r2:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -88,18 +88,19 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +109,6 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -120,52 +120,44 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should add a pil
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Test Product
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Product 2
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>
@@ -206,7 +198,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Products
       </div>
@@ -214,7 +206,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
         class="gap-3"
       >
         <button
-          class="mr-2 inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+          class="mr-2 flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
           data-testid="edit-button"
           type="button"
         >
@@ -239,21 +231,16 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
         href="/products/tp"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-product hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
-              style="min-height: 4.5rem;"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
               >
                 <div
                   class="block w-8 relative"
@@ -272,21 +259,21 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
                   </span>
                 </div>
                 <div
-                  class="ml-2 mt-0.5 w-full h-3/5 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                  class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
                 >
                   Test Product
                 </div>
               </div>
               <div
-                class="w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-8/12 lg:w-4/12 text-sm lg:text-base my-auto text-dial-purple line-clamp-1"
               />
               <div
-                class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
-              />
+                class="absolute top-4 lg:top-1/3 right-4 lg:w-1/12 lg:justify-end"
+              >
+                <div
+                  class="flex gap-x-2"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -309,7 +296,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Products
       </div>
@@ -321,7 +308,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
       class="bg-edit p-6"
     >
       <p
-        class="card-title text-dial-blue mb-3"
+        class="card-title text-dial-stratos mb-3"
       >
         Assign
          
@@ -346,19 +333,19 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r0:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -384,18 +371,19 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -404,7 +392,6 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>
@@ -416,27 +403,23 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
         class="flex flex-wrap gap-3 mt-5"
       >
         <div
-          class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+          class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
           Test Product
           <svg
-            class="ml-3 text-2xl cursor-pointer"
+            class="cursor-pointer opacity-50"
             data-testid="remove-button"
             fill="currentColor"
-            height="1em"
+            height="1.5em"
             stroke="currentColor"
             stroke-width="0"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 512 512"
+            width="1.5em"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
             />
           </svg>
         </div>
@@ -478,7 +461,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Products
       </div>
@@ -493,21 +476,16 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
         href="/products/tp"
       >
         <div
-          class="
-  border-3 cursor-pointer
-  border-transparent hover:border-dial-yellow
-  text-product hover:text-dial-yellow
-"
+          class="cursor-pointer hover:rounded-lg hover:shadow-lg border-3 border-transparent hover:border-dial-sunshine"
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4"
-              style="min-height: 4.5rem;"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
             >
               <div
-                class="w-10/12 lg:w-4/12 text-base flex font-semibold text-dial-gray-dark my-auto relative"
+                class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
               >
                 <div
                   class="block w-8 relative"
@@ -526,21 +504,21 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should match sna
                   </span>
                 </div>
                 <div
-                  class="ml-2 mt-0.5 w-full h-3/5 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                  class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
                 >
                   Test Product
                 </div>
               </div>
               <div
-                class="w-8/12 lg:w-4/12 text-sm lg:text-base text-dial-purple 
-  whitespace-nowrap text-ellipsis overflow-hidden my-auto
-"
+                class="w-8/12 lg:w-4/12 text-sm lg:text-base my-auto text-dial-purple line-clamp-1"
               />
               <div
-                class="absolute top-4 lg:top-1/3 right-4 flex gap-x-1.5 lg:w-1/12 lg:justify-end"
-              />
+                class="absolute top-4 lg:top-1/3 right-4 lg:w-1/12 lg:justify-end"
+              >
+                <div
+                  class="flex gap-x-2"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -563,7 +541,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should remove a 
       class="flex justify-between items-center mb-3"
     >
       <div
-        class="card-title text-dial-gray-dark"
+        class="card-title text-dial-sapphire"
       >
         Products
       </div>
@@ -575,7 +553,7 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should remove a 
       class="bg-edit p-6"
     >
       <p
-        class="card-title text-dial-blue mb-3"
+        class="card-title text-dial-stratos mb-3"
       >
         Assign
          
@@ -600,19 +578,19 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should remove a 
             class="css-1f43avz-a11yText-A11yText"
           />
           <div
-            class="react-select__control css-19jej77-control"
+            class="react-select__control css-qv4grc-control"
           >
             <div
-              class="react-select__value-container css-3tzzl5-ValueContainer"
+              class="react-select__value-container css-17t7gkf-ValueContainer"
             >
               <div
-                class="react-select__placeholder css-19jynah-placeholder"
+                class="react-select__placeholder css-5rjclb-placeholder"
                 id="react-select-:r1:-placeholder"
               >
                 Type to search...
               </div>
               <div
-                class="react-select__input-container css-6j8wv5-Input"
+                class="react-select__input-container css-qbdosj-Input"
                 data-value=""
               >
                 <input
@@ -638,18 +616,19 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should remove a 
               class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
             >
               <span
-                class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
               />
               <div
                 aria-hidden="true"
-                class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
               >
                 <svg
+                  aria-hidden="true"
                   class="text-2xl"
                   fill="none"
                   height="1em"
                   stroke="currentColor"
-                  stroke-width="0"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
@@ -658,7 +637,6 @@ exports[`Unit test for the UseCaseStepDetailProducts component. Should remove a 
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                   />
                 </svg>
               </div>

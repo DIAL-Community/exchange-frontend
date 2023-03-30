@@ -15,7 +15,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -43,7 +43,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Dataset
             </div>
@@ -92,7 +92,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -123,7 +123,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                     Data URL
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -144,7 +144,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                     Dataset Visualization URL
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -176,18 +176,18 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
-                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__single-value css-qc6sy-singleValue"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
                           Dataset
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -212,11 +212,11 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             aria-hidden="true"
@@ -258,7 +258,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -415,7 +415,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. crea
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"
@@ -466,7 +466,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -494,7 +494,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Test Dataset
             </div>
@@ -543,7 +543,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                       value=""
                     />
                     <button
-                      class="shadow-md p-3 bg-dial-blue hover:bg-dial-blue-light"
+                      class="shadow-md p-3 bg-dial-sapphire hover:bg-dial-angel"
                       data-testid="icon-button"
                       type="button"
                     >
@@ -574,7 +574,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                     Data URL
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <span
                       class="select-none text-dial-gray"
@@ -600,7 +600,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                     Dataset Visualization URL
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <span
                       class="select-none text-dial-gray"
@@ -637,18 +637,18 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
-                        class="react-select__value-container react-select__value-container--has-value css-3tzzl5-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__single-value css-qc6sy-singleValue"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
                           Dataset
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -673,11 +673,11 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             aria-hidden="true"
@@ -719,7 +719,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                       class="-ml-11 flex p-1"
                     >
                       <span
-                        class="h-full pl-1 border-l text-3xl text-dial-gray-dark border-dial-gray-dark"
+                        class="h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark"
                       >
                         <svg
                           fill="currentColor"
@@ -876,7 +876,7 @@ exports[`Unit tests for the DatasetForm component. Should match snapshot -. edit
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="description-editor"

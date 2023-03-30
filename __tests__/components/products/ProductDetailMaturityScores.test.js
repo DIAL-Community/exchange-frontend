@@ -4,7 +4,7 @@ import { PRODUCT_CATEGORY_INDICATORS_QUERY } from '../../../queries/product'
 import { mockObserverImplementation, render, waitForAllEffects } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
-import { categoryIndicators, maturityScoreDetails, maturityScore } from './data/ProductDetailMaturityScores'
+import { categoryIndicators, maturityScoreDetails, overallMaturityScore } from './data/ProductDetailMaturityScores'
 
 mockNextUseRouter()
 
@@ -31,7 +31,7 @@ describe('Unit test for the ProductDetailMaturityScores component.', () => {
         <CustomMockedProvider>
           <ProductDetailMaturityScores
             slug={PRODUCT_SLUG}
-            maturityScore={maturityScore}
+            overallMaturityScore={overallMaturityScore}
             maturityScoreDetails={maturityScoreDetails}
           />
         </CustomMockedProvider>
@@ -46,7 +46,7 @@ describe('Unit test for the ProductDetailMaturityScores component.', () => {
         <CustomMockedProvider>
           <ProductDetailMaturityScores
             slug={PRODUCT_SLUG}
-            maturityScore={maturityScore}
+            overallMaturityScore={overallMaturityScore}
             maturityScoreDetails={maturityScoreDetails}
           />
         </CustomMockedProvider>
@@ -64,7 +64,7 @@ describe('Unit test for the ProductDetailMaturityScores component.', () => {
       <CustomMockedProvider mocks={[mockCategoryIndicators]}>
         <ProductDetailMaturityScores
           slug={PRODUCT_SLUG}
-          maturityScore={maturityScore}
+          overallMaturityScore={overallMaturityScore}
           maturityScoreDetails={maturityScoreDetails}
         />
       </CustomMockedProvider>

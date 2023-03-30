@@ -23,19 +23,19 @@ exports[`Unit test for the SectorAutocomplete component. Should match snapshot 1
         class="css-1f43avz-a11yText-A11yText"
       />
       <div
-        class="react-select__control css-19jej77-control"
+        class="react-select__control css-qv4grc-control"
       >
         <div
-          class="react-select__value-container css-3tzzl5-ValueContainer"
+          class="react-select__value-container css-17t7gkf-ValueContainer"
         >
           <div
-            class="react-select__placeholder css-19jynah-placeholder"
+            class="react-select__placeholder css-5rjclb-placeholder"
             id="react-select-:r0:-placeholder"
           >
             Filter by Sector
           </div>
           <div
-            class="react-select__input-container css-6j8wv5-Input"
+            class="react-select__input-container css-qbdosj-Input"
             data-value=""
           >
             <input
@@ -62,11 +62,11 @@ exports[`Unit test for the SectorAutocomplete component. Should match snapshot 1
           class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
         >
           <span
-            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
           />
           <div
             aria-hidden="true"
-            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
           >
             <svg
               aria-hidden="true"
@@ -111,19 +111,19 @@ exports[`Unit test for the SectorAutocomplete component. Should render a drop do
         class="css-1f43avz-a11yText-A11yText"
       />
       <div
-        class="react-select__control react-select__control--menu-is-open css-19jej77-control"
+        class="react-select__control react-select__control--menu-is-open css-qv4grc-control"
       >
         <div
-          class="react-select__value-container css-3tzzl5-ValueContainer"
+          class="react-select__value-container css-17t7gkf-ValueContainer"
         >
           <div
-            class="react-select__placeholder css-19jynah-placeholder"
+            class="react-select__placeholder css-5rjclb-placeholder"
             id="react-select-:r1:-placeholder"
           >
             Filter by Sector
           </div>
           <div
-            class="react-select__input-container css-6j8wv5-Input"
+            class="react-select__input-container css-qbdosj-Input"
             data-value=""
           >
             <input
@@ -152,11 +152,11 @@ exports[`Unit test for the SectorAutocomplete component. Should render a drop do
           class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
         >
           <span
-            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
           />
           <div
             aria-hidden="true"
-            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
           >
             <svg
               aria-hidden="true"
@@ -174,15 +174,15 @@ exports[`Unit test for the SectorAutocomplete component. Should render a drop do
         </div>
       </div>
       <div
-        class="react-select__menu css-1jtw5r9-menu"
+        class="react-select__menu css-z4z3k3-menu"
         id="react-select-:r1:-listbox"
       >
         <div
-          class="react-select__menu-list css-4ljt47-MenuList"
+          class="react-select__menu-list css-1n6sfyn-MenuList"
         >
           <div
             aria-disabled="false"
-            class="react-select__option react-select__option--is-focused css-llk42x-option"
+            class="react-select__option react-select__option--is-focused css-o0hax1-option"
             id="react-select-:r1:-option-0"
             tabindex="-1"
           >
@@ -190,7 +190,7 @@ exports[`Unit test for the SectorAutocomplete component. Should render a drop do
           </div>
           <div
             aria-disabled="false"
-            class="react-select__option css-19r0ri3-option"
+            class="react-select__option css-l88m9j-option"
             id="react-select-:r1:-option-1"
             tabindex="-1"
           >

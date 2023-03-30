@@ -38,7 +38,7 @@ export const createCountryMarkerIcon = (country) => {
   const { fontSize, marginTop, size } = iconSizeSets[findIndex(country.projects.length)]
 
   return divIcon({
-    className: 'border-3 rounded-full border-dial-yellow-light bg-dial-yellow',
+    className: 'border-3 rounded-full border-dial-biscotti bg-dial-sunshine',
     html: `
       <div class='text-white w-full h-full'>
         <div

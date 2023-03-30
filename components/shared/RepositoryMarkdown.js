@@ -304,7 +304,7 @@ const RepositoryMarkdown = ({ entityWithMarkdown, canEdit }) => {
         />
         <MdRefresh
           onClick={() => updateBranchOptions()}
-          className='text-3xl my-auto fill-dial-blue cursor-pointer'
+          className='text-2xl my-auto fill-dial-sapphire cursor-pointer'
         />
         <div
           className={`

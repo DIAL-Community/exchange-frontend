@@ -5,6 +5,7 @@ export const CREATE_BUILDING_BLOCK = gql`
     $name: String!
     $slug: String!
     $maturity: String!
+    $category: String
     $imageFile: Upload
     $description: String!
     $specUrl: String
@@ -13,6 +14,7 @@ export const CREATE_BUILDING_BLOCK = gql`
       name: $name
       slug: $slug
       maturity: $maturity
+      category: $category
       imageFile: $imageFile
       description: $description
       specUrl: $specUrl

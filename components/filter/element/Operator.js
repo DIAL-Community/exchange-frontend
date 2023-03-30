@@ -42,6 +42,7 @@ export const OperatorAutocomplete = ({
       <Select
         async
         aria-label={format('filter.byEntity', { entity: format('operator.label') })}
+        className='rounded text-sm text-dial-gray-dark my-auto'
         cacheOptions
         defaultOptions
         loadOptions={(input) => fetchSelectOptions(client, input, OPERATOR_SEARCH_QUERY, fetchedOperatorsCallback)}

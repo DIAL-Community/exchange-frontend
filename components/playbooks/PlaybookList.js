@@ -18,15 +18,9 @@ const PlaybookList = (props) => {
 
   const { isAdminUser } = useUser()
 
-  const filterDisplayed = props.filterDisplayed
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card'
-    ? `grid-cols-1 gap-4
-      ${
-        filterDisplayed
-          ? 'md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'
-          : 'md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'
-      }`
+    ? 'grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'
     : 'grid-cols-1'
     }`
 
@@ -45,12 +39,8 @@ const PlaybookList = (props) => {
       }
       {
         props.playbookList.length > 0
-          ? props.playbookList.map((playbook) => (
-            <PlaybookCard
-              key={playbook.id}
-              listType={displayType}
-              canEdit={isAdminUser}
-              {...{ playbook, filterDisplayed }}
+          ? props.playbookList.map((playbook, index) => (
+            <PlaybookCard key={index} listType={displayType} canEdit={isAdminUser} {...{ playbook }}
             />
           ))
           : (
@@ -68,7 +58,7 @@ const PlaybookListQuery = () => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { displayType, filterDisplayed, setResultCounts } = useContext(FilterContext)
+  const { displayType, setResultCounts } = useContext(FilterContext)
   const { search, tags, products } = useContext(PlaybookFilterContext)
 
   const { loading, error, data, fetchMore } = useQuery(PLAYBOOKS_QUERY, {
@@ -117,13 +107,13 @@ const PlaybookListQuery = () => {
   return (
     <>
       <InfiniteScroll
-        className='relative px-2 mt-3 pb-8 infinite-scroll-default-height'
+        className='relative infinite-scroll-default-height'
         dataLength={nodes.length}
         next={handleLoadMore}
         hasMore={pageInfo.hasNextPage}
         loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
       >
-        <PlaybookList playbookList={nodes} displayType={displayType} filterDisplayed={filterDisplayed} />
+        <PlaybookList playbookList={nodes} displayType={displayType} />
       </InfiniteScroll>
     </>
   )

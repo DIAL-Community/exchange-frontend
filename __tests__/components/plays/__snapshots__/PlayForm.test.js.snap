@@ -10,7 +10,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
       style="width: auto;"
     >
       <div
-        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify--animate Toastify__slide-enter--top-center"
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify__toast--close-on-click Toastify--animate Toastify__slide-enter--top-center"
         id="toastId"
         style="--nth: 1; --len: 1;"
       >
@@ -71,7 +71,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -99,7 +99,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Play
             </div>
@@ -111,7 +111,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                 data-testid="play-name"
               >
                 <label
-                  class="flex flex-col gap-y-2 text-xl text-dial-blue mb-2"
+                  class="flex flex-col gap-y-2 text-dial-sapphire mb-2"
                 >
                   <p
                     class="required-field"
@@ -131,7 +131,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                   data-testid="play-tags"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                     for="name"
                   >
                     Tags
@@ -139,7 +139,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                       class=""
                     >
                       <div
-                        class=" css-l45kjq-container"
+                        class="rounded text-sm text-dial-gray-dark my-auto css-l45kjq-container"
                       >
                         <span
                           class="css-1f43avz-a11yText-A11yText"
@@ -152,19 +152,19 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                           class="css-1f43avz-a11yText-A11yText"
                         />
                         <div
-                          class="react-select__control css-1sda1v0-control"
+                          class="react-select__control css-1j14ozg-control"
                         >
                           <div
-                            class="react-select__value-container css-3tzzl5-ValueContainer"
+                            class="react-select__value-container css-17t7gkf-ValueContainer"
                           >
                             <div
-                              class="react-select__placeholder css-19jynah-placeholder"
+                              class="react-select__placeholder css-5rjclb-placeholder"
                               id="react-select-:rc:-placeholder"
                             >
                               Add tag for this play.
                             </div>
                             <div
-                              class="react-select__input-container css-6j8wv5-Input"
+                              class="react-select__input-container css-qbdosj-Input"
                               data-value=""
                             >
                               <input
@@ -191,11 +191,11 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                             class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                           >
                             <span
-                              class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                              class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                             />
                             <div
                               aria-hidden="true"
-                              class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                              class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                             >
                               <svg
                                 aria-hidden="true"
@@ -220,54 +220,46 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                   >
                     <div>
                       <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                        class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                         data-testid="pill"
                       >
                         Tag: tag_1
                         <svg
-                          class="ml-3 text-2xl cursor-pointer"
+                          class="cursor-pointer opacity-50"
                           data-testid="remove-button"
                           fill="currentColor"
-                          height="1em"
+                          height="1.5em"
                           stroke="currentColor"
                           stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
+                          viewBox="0 0 512 512"
+                          width="1.5em"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                            d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                           />
                         </svg>
                       </div>
                     </div>
                     <div>
                       <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                        class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                         data-testid="pill"
                       >
                         Tag: tag_2
                         <svg
-                          class="ml-3 text-2xl cursor-pointer"
+                          class="cursor-pointer opacity-50"
                           data-testid="remove-button"
                           fill="currentColor"
-                          height="1em"
+                          height="1.5em"
                           stroke="currentColor"
                           stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
+                          viewBox="0 0 512 512"
+                          width="1.5em"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                            d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                           />
                         </svg>
                       </div>
@@ -279,7 +271,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                   data-testid="play-products"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                   >
                     Products
                     <div
@@ -296,19 +288,19 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                          class="react-select__value-container css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__placeholder css-19jynah-placeholder"
+                            class="react-select__placeholder css-5rjclb-placeholder"
                             id="react-select-:rd:-placeholder"
                           >
                             Add product for this play.
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -334,18 +326,19 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                           class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                         >
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
+                              aria-hidden="true"
                               class="text-2xl"
                               fill="none"
                               height="1em"
                               stroke="currentColor"
-                              stroke-width="0"
+                              stroke-width="2"
                               viewBox="0 0 24 24"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -354,7 +347,6 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                stroke-width="2"
                               />
                             </svg>
                           </div>
@@ -366,52 +358,44 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                     class="flex flex-wrap gap-3 mt-2"
                   >
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       product 1
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       product 2
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
@@ -422,7 +406,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                   data-testid="play-buildingBlocks"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                   >
                     Building Blocks
                     <div
@@ -439,19 +423,19 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                          class="react-select__value-container css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__placeholder css-19jynah-placeholder"
+                            class="react-select__placeholder css-5rjclb-placeholder"
                             id="react-select-:re:-placeholder"
                           >
                             Add building block for this play.
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -477,18 +461,19 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                           class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                         >
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
+                              aria-hidden="true"
                               class="text-2xl"
                               fill="none"
                               height="1em"
                               stroke="currentColor"
-                              stroke-width="0"
+                              stroke-width="2"
                               viewBox="0 0 24 24"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -497,7 +482,6 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                stroke-width="2"
                               />
                             </svg>
                           </div>
@@ -509,52 +493,44 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                     class="flex flex-wrap gap-3 mt-2"
                   >
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       bb 1
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       bb 2
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
@@ -567,7 +543,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                 style="min-height: 20rem;"
               >
                 <label
-                  class="block text-xl text-dial-blue flex flex-col gap-y-2"
+                  class="block text-dial-sapphire flex flex-col gap-y-2"
                 >
                   <p
                     class="required-field"
@@ -593,7 +569,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="-editor"
@@ -608,7 +584,7 @@ exports[`PlayForm component. Should display success toast on submit. 1`] = `
               class="flex flex-col gap-y-2 mt-4"
             >
               <div
-                class="text-xl text-dial-blue font-bold"
+                class="text-dial-sapphire font-bold"
               >
                 Moves
               </div>
@@ -765,7 +741,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -793,7 +769,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New Play
             </div>
@@ -805,7 +781,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                 data-testid="play-name"
               >
                 <label
-                  class="flex flex-col gap-y-2 text-xl text-dial-blue mb-2"
+                  class="flex flex-col gap-y-2 text-dial-sapphire mb-2"
                 >
                   <p
                     class="required-field"
@@ -825,7 +801,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                   data-testid="play-tags"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                     for="name"
                   >
                     Tags
@@ -833,7 +809,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                       class=""
                     >
                       <div
-                        class=" css-l45kjq-container"
+                        class="rounded text-sm text-dial-gray-dark my-auto css-l45kjq-container"
                       >
                         <span
                           class="css-1f43avz-a11yText-A11yText"
@@ -846,19 +822,19 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                           class="css-1f43avz-a11yText-A11yText"
                         />
                         <div
-                          class="react-select__control css-1sda1v0-control"
+                          class="react-select__control css-1j14ozg-control"
                         >
                           <div
-                            class="react-select__value-container css-3tzzl5-ValueContainer"
+                            class="react-select__value-container css-17t7gkf-ValueContainer"
                           >
                             <div
-                              class="react-select__placeholder css-19jynah-placeholder"
+                              class="react-select__placeholder css-5rjclb-placeholder"
                               id="react-select-:r0:-placeholder"
                             >
                               Add tag for this play.
                             </div>
                             <div
-                              class="react-select__input-container css-6j8wv5-Input"
+                              class="react-select__input-container css-qbdosj-Input"
                               data-value=""
                             >
                               <input
@@ -885,11 +861,11 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                             class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                           >
                             <span
-                              class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                              class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                             />
                             <div
                               aria-hidden="true"
-                              class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                              class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                             >
                               <svg
                                 aria-hidden="true"
@@ -918,7 +894,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                   data-testid="play-products"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                   >
                     Products
                     <div
@@ -935,19 +911,19 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                          class="react-select__value-container css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__placeholder css-19jynah-placeholder"
+                            class="react-select__placeholder css-5rjclb-placeholder"
                             id="react-select-:r1:-placeholder"
                           >
                             Add product for this play.
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -973,18 +949,19 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                           class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                         >
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
+                              aria-hidden="true"
                               class="text-2xl"
                               fill="none"
                               height="1em"
                               stroke="currentColor"
-                              stroke-width="0"
+                              stroke-width="2"
                               viewBox="0 0 24 24"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -993,7 +970,6 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                stroke-width="2"
                               />
                             </svg>
                           </div>
@@ -1010,7 +986,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                   data-testid="play-buildingBlocks"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                   >
                     Building Blocks
                     <div
@@ -1027,19 +1003,19 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                          class="react-select__value-container css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__placeholder css-19jynah-placeholder"
+                            class="react-select__placeholder css-5rjclb-placeholder"
                             id="react-select-:r2:-placeholder"
                           >
                             Add building block for this play.
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -1065,18 +1041,19 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                           class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                         >
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
+                              aria-hidden="true"
                               class="text-2xl"
                               fill="none"
                               height="1em"
                               stroke="currentColor"
-                              stroke-width="0"
+                              stroke-width="2"
                               viewBox="0 0 24 24"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1085,7 +1062,6 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                stroke-width="2"
                               />
                             </svg>
                           </div>
@@ -1104,7 +1080,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                 style="min-height: 20rem;"
               >
                 <label
-                  class="block text-xl text-dial-blue flex flex-col gap-y-2"
+                  class="block text-dial-sapphire flex flex-col gap-y-2"
                 >
                   <p
                     class="required-field"
@@ -1130,7 +1106,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="-editor"
@@ -1145,7 +1121,7 @@ exports[`PlayForm component. Should match snapshot Create. 1`] = `
               class="flex flex-col gap-y-2 mt-4"
             >
               <div
-                class="text-xl text-dial-blue font-bold"
+                class="text-dial-sapphire font-bold"
               >
                 Moves
               </div>
@@ -1233,7 +1209,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
         class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
       >
         <a
-          class="inline text-dial-blue h5"
+          class="inline text-dial-sapphire h5"
           href="/"
         >
           Home
@@ -1261,7 +1237,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit Play
             </div>
@@ -1273,7 +1249,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                 data-testid="play-name"
               >
                 <label
-                  class="flex flex-col gap-y-2 text-xl text-dial-blue mb-2"
+                  class="flex flex-col gap-y-2 text-dial-sapphire mb-2"
                 >
                   <p
                     class="required-field"
@@ -1293,7 +1269,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                   data-testid="play-tags"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                     for="name"
                   >
                     Tags
@@ -1301,7 +1277,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                       class=""
                     >
                       <div
-                        class=" css-l45kjq-container"
+                        class="rounded text-sm text-dial-gray-dark my-auto css-l45kjq-container"
                       >
                         <span
                           class="css-1f43avz-a11yText-A11yText"
@@ -1314,19 +1290,19 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                           class="css-1f43avz-a11yText-A11yText"
                         />
                         <div
-                          class="react-select__control css-1sda1v0-control"
+                          class="react-select__control css-1j14ozg-control"
                         >
                           <div
-                            class="react-select__value-container css-3tzzl5-ValueContainer"
+                            class="react-select__value-container css-17t7gkf-ValueContainer"
                           >
                             <div
-                              class="react-select__placeholder css-19jynah-placeholder"
+                              class="react-select__placeholder css-5rjclb-placeholder"
                               id="react-select-:r3:-placeholder"
                             >
                               Add tag for this play.
                             </div>
                             <div
-                              class="react-select__input-container css-6j8wv5-Input"
+                              class="react-select__input-container css-qbdosj-Input"
                               data-value=""
                             >
                               <input
@@ -1353,11 +1329,11 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                             class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                           >
                             <span
-                              class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                              class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                             />
                             <div
                               aria-hidden="true"
-                              class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                              class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                             >
                               <svg
                                 aria-hidden="true"
@@ -1382,54 +1358,46 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                   >
                     <div>
                       <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                        class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                         data-testid="pill"
                       >
                         Tag: tag_1
                         <svg
-                          class="ml-3 text-2xl cursor-pointer"
+                          class="cursor-pointer opacity-50"
                           data-testid="remove-button"
                           fill="currentColor"
-                          height="1em"
+                          height="1.5em"
                           stroke="currentColor"
                           stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
+                          viewBox="0 0 512 512"
+                          width="1.5em"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                            d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                           />
                         </svg>
                       </div>
                     </div>
                     <div>
                       <div
-                        class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                        class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                         data-testid="pill"
                       >
                         Tag: tag_2
                         <svg
-                          class="ml-3 text-2xl cursor-pointer"
+                          class="cursor-pointer opacity-50"
                           data-testid="remove-button"
                           fill="currentColor"
-                          height="1em"
+                          height="1.5em"
                           stroke="currentColor"
                           stroke-width="0"
-                          viewBox="0 0 24 24"
-                          width="1em"
+                          viewBox="0 0 512 512"
+                          width="1.5em"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          />
-                          <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                            d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                           />
                         </svg>
                       </div>
@@ -1441,7 +1409,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                   data-testid="play-products"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                   >
                     Products
                     <div
@@ -1458,19 +1426,19 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                          class="react-select__value-container css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__placeholder css-19jynah-placeholder"
+                            class="react-select__placeholder css-5rjclb-placeholder"
                             id="react-select-:r4:-placeholder"
                           >
                             Add product for this play.
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -1496,18 +1464,19 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                           class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                         >
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
+                              aria-hidden="true"
                               class="text-2xl"
                               fill="none"
                               height="1em"
                               stroke="currentColor"
-                              stroke-width="0"
+                              stroke-width="2"
                               viewBox="0 0 24 24"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1516,7 +1485,6 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                stroke-width="2"
                               />
                             </svg>
                           </div>
@@ -1528,52 +1496,44 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                     class="flex flex-wrap gap-3 mt-2"
                   >
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       product 1
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       product 2
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
@@ -1584,7 +1544,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                   data-testid="play-buildingBlocks"
                 >
                   <label
-                    class="text-xl text-dial-blue flex flex-col gap-y-2"
+                    class="text-dial-sapphire flex flex-col gap-y-2"
                   >
                     Building Blocks
                     <div
@@ -1601,19 +1561,19 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                         class="css-1f43avz-a11yText-A11yText"
                       />
                       <div
-                        class="react-select__control css-19jej77-control"
+                        class="react-select__control css-qv4grc-control"
                       >
                         <div
-                          class="react-select__value-container css-3tzzl5-ValueContainer"
+                          class="react-select__value-container css-17t7gkf-ValueContainer"
                         >
                           <div
-                            class="react-select__placeholder css-19jynah-placeholder"
+                            class="react-select__placeholder css-5rjclb-placeholder"
                             id="react-select-:r5:-placeholder"
                           >
                             Add building block for this play.
                           </div>
                           <div
-                            class="react-select__input-container css-6j8wv5-Input"
+                            class="react-select__input-container css-qbdosj-Input"
                             data-value=""
                           >
                             <input
@@ -1639,18 +1599,19 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                           class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                         >
                           <span
-                            class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                            class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                           />
                           <div
                             aria-hidden="true"
-                            class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                            class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                           >
                             <svg
+                              aria-hidden="true"
                               class="text-2xl"
                               fill="none"
                               height="1em"
                               stroke="currentColor"
-                              stroke-width="0"
+                              stroke-width="2"
                               viewBox="0 0 24 24"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1659,7 +1620,6 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                stroke-width="2"
                               />
                             </svg>
                           </div>
@@ -1671,52 +1631,44 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                     class="flex flex-wrap gap-3 mt-2"
                   >
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       bb 1
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       bb 2
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
@@ -1729,7 +1681,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                 style="min-height: 20rem;"
               >
                 <label
-                  class="block text-xl text-dial-blue flex flex-col gap-y-2"
+                  class="block text-dial-sapphire flex flex-col gap-y-2"
                 >
                   <p
                     class="required-field"
@@ -1755,7 +1707,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="-editor"
@@ -1770,7 +1722,7 @@ exports[`PlayForm component. Should match snapshot Edit. 1`] = `
               class="flex flex-col gap-y-2 mt-4"
             >
               <div
-                class="text-xl text-dial-blue font-bold"
+                class="text-dial-sapphire font-bold"
               >
                 Moves
               </div>

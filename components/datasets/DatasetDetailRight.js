@@ -37,7 +37,7 @@ const DatasetDetailRight = ({ dataset, commentsSectionRef }) => {
             <div className='text-base text-dial-teal flex'>
               <a
                 href={prependUrlWithProtocol(dataset.website)}
-                className='border-b-2 border-transparent hover:border-dial-yellow'
+                className='border-b-2 border-transparent hover:border-dial-sunshine'
                 target='_blank'
                 rel='noreferrer'
               >

@@ -6,7 +6,7 @@ import { MOVE_QUERY } from '../../../components/plays/PlayPreviewMove'
 import PlaybookDetail from '../../../components/playbooks/PlaybookDetail'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
-import { render, waitForAllEffects } from '../../test-utils'
+import { mockObserverImplementation, render, waitForAllEffects } from '../../test-utils'
 import { playbook, searchPlaysResult, move } from './data/PlaybookDetail'
 
 // TODO: https://github.com/tinymce/tinymce-react/issues/91.
@@ -19,11 +19,8 @@ jest.mock('../../../components/shared/comment/CommentsSection', () => () => 'Com
 mockNextUseRouter()
 describe('Unit tests for playbook interaction.', () => {
   beforeEach(() => {
-    // Mock intersection observer. We're using this in the playbook detail page.
-    window.IntersectionObserver = jest.fn(() => ({
-      observe: jest.fn(),
-      disconnect: jest.fn(),
-    }))
+    window.ResizeObserver = mockObserverImplementation()
+    window.IntersectionObserver = mockObserverImplementation()
   })
 
   test('Should render error message when the apollo is returning errors.', async () => {

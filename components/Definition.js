@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import dynamic from 'next/dynamic'
+import classNames from 'classnames'
 
 const LiteYoutubeEmbed = dynamic(
   () => import('react-lite-yt-embed').then((module) => module.LiteYoutubeEmbed),
@@ -18,14 +19,12 @@ const Description = () => {
     setOpenTab(tabNumber)
   }
 
-  const generateAnchorStyles = (tabNumber) => `
-    px-5 py-3 rounded-l-lg block leading-loose tracking-wide whitespace-nowrap xl:pr-24
-    ${
-      openTab === tabNumber
-        ? 'font-bold text-carousel bg-carousel-light'
-        : 'text-dial-gray-dark bg-white'
-    }
-  `
+  const generateAnchorStyles = (tabNumber) => classNames(
+    'px-5 py-3 rounded-l-lg block leading-loose tracking-wide whitespace-nowrap xl:pr-24',
+    openTab === tabNumber
+      ? 'font-semibold bg-dial-angel'
+      : 'bg-white'
+  )
 
   const sectionList = [
     format('definition.sections.what'),
@@ -37,12 +36,10 @@ const Description = () => {
   ]
 
   return (
-    <div className='hidden lg:block'>
+    <div className='hidden lg:block text-dial-stratos '>
       <div className='relative pb-8 lg:pb-12 2xl:max-w-full'>
         <main className='pt-8 mx-auto px-6 sm:px-12 xl:pt-12 xl:max-w-6xl 2xl:max-w-7xl'>
-          <div
-            className='text-lg text-dial-blue-darkest md:text-xl xl:text-2xl xl:leading-landing py-8'
-          >
+          <div className='text-lg md:text-xl xl:text-2xl xl:leading-landing py-8'>
             {format('definition.title')}
           </div>
           <div className='grid grid-cols-3'>
@@ -63,10 +60,10 @@ const Description = () => {
               }
             </ul>
             <div
-              className={`
-                col-span-2 relative flex flex-col min-w-0 break-words bg-white w-full mb-6
-                rounded-b bg-gradient-to-r from-carousel-light
-              `}
+              className={classNames(
+                'col-span-2 flex flex-col break-words bg-white w-full',
+                'rounded-b bg-gradient-to-r from-dial-angel'
+              )}
             >
               <div className='px-4 py-5'>
                 <div className='tab-content tab-space'>
@@ -81,14 +78,14 @@ const Description = () => {
                     </div>
                   </div>
                   <div className={openTab === 1 ? 'block' : 'hidden'} id='policy-makers'>
-                    <div className='flex flex-col col-span-2 flex-wrap p-8 xl:max-h-lg text-dial-blue-darkest'>
+                    <div className='flex flex-col col-span-2 flex-wrap p-8 xl:max-h-lg'>
                       <div className='text-lg tracking-wide'>
                         {parse(format('definition.who'))}
                       </div>
                     </div>
                   </div>
                   <div className={openTab === 2 ? 'block' : 'hidden'} id='implementing-partners'>
-                    <div className='flex flex-col px-8 xl:max-h-lg text-dial-blue-darkest'>
+                    <div className='flex flex-col px-8 xl:max-h-lg'>
                       <p className='text-lg tracking-wide pb-3'>
                         {format('definition.how')}
                       </p>
@@ -100,16 +97,17 @@ const Description = () => {
                           rel='noreferrer'
                         >
                           <button
-                            className={`
-                                    my-auto px-3 py-3 my-3 font-semibold ml-auto
-                                    text-white bg-dial-blue rounded
-                                  `}
-                          >{format('definition.buttons.tutorials')}
+                            className={classNames(
+                              'my-auto px-3 py-3 my-3 font-semibold ml-auto',
+                              'text-white bg-dial-sapphire rounded'
+                            )}
+                          >
+                            {format('definition.buttons.tutorials')}
                           </button>
                         </a>
                         <div className='py-1 col-span-2'>
                           <a
-                            className='block px-3 py-1 text-dial-teal'
+                            className='block px-3 py-1 text-dial-iris-blue'
                             href='https://solutions-catalog.atlassian.net/l/cp/DGrrxAnW'
                             target='_blank'
                             rel='noreferrer'
@@ -117,7 +115,7 @@ const Description = () => {
                             {format('definition.tutorial.intro')}
                           </a>
                           <a
-                            className='block px-3 py-1 text-dial-teal'
+                            className='block px-3 py-1 text-dial-iris-blue'
                             href='https://solutions-catalog.atlassian.net/l/cp/P53p9r7G'
                             target='_blank'
                             rel='noreferrer'
@@ -125,7 +123,7 @@ const Description = () => {
                             {format('definition.tutorial.started')}
                           </a>
                           <a
-                            className='block px-3 py-1 text-dial-teal'
+                            className='block px-3 py-1 text-dial-iris-blue'
                             href='https://solutions-catalog.atlassian.net/l/cp/CFvP6bww'
                             target='_blank'
                             rel='noreferrer'
@@ -133,14 +131,14 @@ const Description = () => {
                             {format('definition.tutorial.framework')}
                           </a>
                           <a
-                            className='block px-3 py-1 text-dial-teal'
+                            className='block px-3 py-1 text-dial-iris-blue'
                             href='https://solutions-catalog.atlassian.net/l/cp/k4jKPf9A'
                             target='_blank' rel='noreferrer'
                           >
                             {format('definition.tutorial.products')}
                           </a>
                           <a
-                            className='block px-3 py-1 text-dial-teal'
+                            className='block px-3 py-1 text-dial-iris-blue'
                             href='https://solutions-catalog.atlassian.net/l/cp/z7NDG7BS'
                             target='_blank'
                             rel='noreferrer'
@@ -148,7 +146,7 @@ const Description = () => {
                             {format('definition.tutorial.filters')}
                           </a>
                           <a
-                            className='block px-3 py-1 text-dial-teal'
+                            className='block px-3 py-1 text-dial-iris-blue'
                             href='https://solutions-catalog.atlassian.net/l/cp/ZRURfBN4'
                             target='_blank'
                             rel='noreferrer'
@@ -156,7 +154,7 @@ const Description = () => {
                             {format('definition.tutorial.use-cases')}
                           </a>
                           <a
-                            className='block px-3 py-1 text-dial-teal'
+                            className='block px-3 py-1 text-dial-iris-blue'
                             href='https://solutions-catalog.atlassian.net/l/cp/wosCpaFc'
                             target='_blank'
                             rel='noreferrer'
@@ -164,7 +162,7 @@ const Description = () => {
                             {format('definition.tutorial.wizard')}
                           </a>
                           <a
-                            className='block px-3 py-1 text-dial-teal'
+                            className='block px-3 py-1 text-dial-iris-blue'
                             href='https://solutions-catalog.atlassian.net/l/cp/tMS1kGMs'
                             target='_blank'
                             rel='noreferrer'
@@ -172,7 +170,7 @@ const Description = () => {
                             {format('definition.tutorial.community')}
                           </a>
                           <a
-                            className='block px-3 py-1 text-dial-teal'
+                            className='block px-3 py-1 text-dial-iris-blue'
                             href='https://solutions-catalog.atlassian.net/l/cp/yfSzEQHT'
                             target='_blank'
                             rel='noreferrer'
@@ -184,7 +182,7 @@ const Description = () => {
                     </div>
                   </div>
                   <div className={openTab === 3 ? 'block' : 'hidden'} id='tech-ict-partners'>
-                    <div className='flex flex-col flex-wrap p-8 xl:max-h-lg text-dial-blue-darkest'>
+                    <div className='flex flex-col flex-wrap p-8 xl:max-h-lg'>
                       <p className='text-lg tracking-wide pb-6'>
                         {parse(format('definition.approach'))}
                       </p>
@@ -196,7 +194,7 @@ const Description = () => {
                         <button
                           className={`
                             my-auto px-3 py-3 my-3 font-semibold ml-auto
-                            text-white bg-dial-blue rounded
+                            text-white bg-dial-sapphire rounded
                           `}
                         >
                           {format('definition.buttons.learn')}
@@ -205,23 +203,23 @@ const Description = () => {
                     </div>
                   </div>
                   <div className={openTab === 4 ? 'block' : 'hidden'} id='procurers'>
-                    <div className='flex flex-col flex-wrap p-8 xl:max-h-lg text-dial-blue-darkest'>
+                    <div className='flex flex-col flex-wrap p-8 xl:max-h-lg'>
                       <p className='text-lg tracking-wide'>
                         {parse(format('definition.featured'))}
                       </p>
                     </div>
                   </div>
                   <div className={openTab === 5 ? 'block' : 'hidden'} id='product-owners'>
-                    <div className='flex flex-col flex-wrap p-8 h-72 text-dial-blue-darkest'>
+                    <div className='flex flex-col flex-wrap p-8 h-80'>
                       <p className='text-lg tracking-wide pb-6'>
                         {format('definition.contact')}
                       </p>
-                      <a href='mailto:issues@solutions.dial.community' target='_blank' rel='noreferrer'>
+                      <a href='mailto:issues@exchange.dial.global' target='_blank' rel='noreferrer'>
                         <button
-                          className={`
-                            my-auto px-3 py-4 my-3 font-semibold ml-auto
-                            text-white bg-dial-blue rounded
-                          `}
+                          className={classNames(
+                            'my-auto px-3 py-4 my-3 font-semibold ml-auto',
+                            'text-white bg-dial-sapphire rounded'
+                          )}
                         >
                           {format('definition.buttons.contact')}
                         </button>
@@ -232,7 +230,7 @@ const Description = () => {
               </div>
             </div>
           </div>
-          <div className='text-lg text-dial-blue-darkest md:text-xl xl:text-2xl xl:leading-landing py-8'>
+          <div className='text-lg md:text-xl xl:text-2xl xl:leading-landing py-8'>
             <strong>{format('definition.goal')}</strong>
             {format('definition.subtitle')}
           </div>

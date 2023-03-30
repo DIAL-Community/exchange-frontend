@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 
-const SITE_URL = 'https://solutions.dial.community'
+const SITE_URL = 'https://exchange.dial.global'
 
 const config = {
   siteUrl: SITE_URL,

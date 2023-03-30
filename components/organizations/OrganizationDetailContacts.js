@@ -100,7 +100,7 @@ const OrganizationDetailContacts = ({ organization }) => {
   const editModeBody =
     <>
       <form onSubmit={handleSubmit(addContact)}>
-        <p className='card-title text-dial-blue mb-3'>
+        <p className='card-title text-dial-stratos mb-3'>
           {format('app.assign')} {format('contact.header')}
         </p>
         <div className='flex flex-col md:flex-row justify-between'>

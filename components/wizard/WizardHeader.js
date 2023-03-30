@@ -125,7 +125,7 @@ const WizardHeader = ({ stage, setStage }) => {
 
   return (
     <>
-      <header className='bg-dial-yellow p-5 w-full sticky lg:flex lg:items-center sticky-under-header'>
+      <header className='bg-dial-sunshine p-5 w-full sticky lg:flex lg:items-center sticky-under-header'>
         <div className='px-6 h1 lg:inline py-3 lg:w-1/2'>{format('wizard.title')}</div>
         <ProgressBar stage={stage} setStage={setStage} />
       </header>

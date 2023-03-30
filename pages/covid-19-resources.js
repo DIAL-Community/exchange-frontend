@@ -19,7 +19,7 @@ const Content = () => {
   return (
     <div className='px-4 mx-auto my-8 max-w-screen-xl'>
       <div className='my-4'>
-        <div className='text-3xl mt-8 lg:mt-16 mb-4 lg:mb-12 font-semibold'>
+        <div className='text-2xl mt-8 lg:mt-16 mb-4 lg:mb-12 font-semibold'>
           {format('covid.title')}
         </div>
         <div className='my-8 pb-4 flex flex-col text-base border-b border-dial-gray-dark'>
@@ -59,7 +59,7 @@ const Content = () => {
                   p: chunks => <p className='text-justify mb-2'>{chunks}</p>,
                   firstLink: chunks =>
                     <a
-                      className='mr-1 text-dial-yellow border-b border-transparent hover:border-dial-yellow'
+                      className='mr-1 text-dial-sunshine border-b border-transparent hover:border-dial-sunshine'
                       href='/products' target='_blank'
                     >
                       {chunks}
@@ -107,14 +107,14 @@ const Content = () => {
                     b: chunks => <span className='font-semibold'>{chunks}</span>,
                     firstLink: chunks =>
                       <a
-                        className='ml-1 text-dial-yellow border-b border-transparent hover:border-dial-yellow'
+                        className='ml-1 text-dial-sunshine border-b border-transparent hover:border-dial-sunshine'
                         href='/maps/aggregators' target='_blank'
                       >
                         {chunks}
                       </a>,
                     secondLink: chunks =>
                       <a
-                        className='ml-1 text-dial-yellow border-b border-transparent hover:border-dial-yellow'
+                        className='ml-1 text-dial-sunshine border-b border-transparent hover:border-dial-sunshine'
                         href='/products' target='_blank'
                       >
                         {chunks}
@@ -154,8 +154,8 @@ const Content = () => {
                     p: chunks => <p className='text-justify mb-2'>{chunks}</p>,
                     firstLink: chunks =>
                       <a
-                        className='mx-1 text-dial-yellow border-b border-transparent hover:border-dial-yellow'
-                        href='http://solutions.dial.community/organizations?shareCatalog=true&aggregator=true'
+                        className='mx-1 text-dial-sunshine border-b border-transparent hover:border-dial-sunshine'
+                        href='http://sexchange.dial.global/organizations?shareCatalog=true&aggregator=true'
                       >
                         {chunks}
                       </a>
@@ -180,14 +180,14 @@ const Content = () => {
                   li: chunks => <li>{chunks}</li>,
                   jsphLink: chunks =>
                     <a
-                      className='text-dial-yellow border-b border-transparent hover:border-dial-yellow'
+                      className='text-dial-sunshine border-b border-transparent hover:border-dial-sunshine'
                       href={jsphUrl} target='_blank' rel='noreferrer'
                     >
                       {chunks}
                     </a>,
                   cdcLink: chunks =>
                     <a
-                      className='text-dial-yellow border-b border-transparent hover:border-dial-yellow'
+                      className='text-dial-sunshine border-b border-transparent hover:border-dial-sunshine'
                       href='https://www.cdc.gov/coronavirus/2019-ncov/global-covid-19/compare-digital-tools.html'
                       target='_blank' rel='noreferrer'
                     >
@@ -195,14 +195,14 @@ const Content = () => {
                     </a>,
                   pathLink: chunks =>
                     <a
-                      className='text-dial-yellow border-b border-transparent hover:border-dial-yellow'
+                      className='text-dial-sunshine border-b border-transparent hover:border-dial-sunshine'
                       href={pathZoomUrl} target='_blank' rel='noreferrer'
                     >
                       {chunks}
                     </a>,
                   deckLink: chunks =>
                     <a
-                      className='text-dial-yellow border-b border-transparent hover:border-dial-yellow'
+                      className='text-dial-sunshine border-b border-transparent hover:border-dial-sunshine'
                       href='https://drive.google.com/file/d/14bqGbDwXnMNWSAZMNUmGLCbcFkIsjPVU/view'
                       target='_blank' rel='noreferrer'
                     >
@@ -210,7 +210,7 @@ const Content = () => {
                     </a>,
                   digiSquareLink: chunks =>
                     <a
-                      className='text-dial-yellow border-b border-transparent hover:border-dial-yellow'
+                      className='text-dial-sunshine border-b border-transparent hover:border-dial-sunshine'
                       href='https://wiki.digitalsquare.io/index.php/Main_Page#Global_Good_Adaptations_to_COVID-19'
                       target='_blank' rel='noreferrer'
                     >
@@ -218,7 +218,7 @@ const Content = () => {
                     </a>,
                   newAmericaLink: chunks =>
                     <a
-                      className='text-dial-yellow border-b border-transparent hover:border-dial-yellow'
+                      className='text-dial-sunshine border-b border-transparent hover:border-dial-sunshine'
                       href='https://newamericafoundation.github.io/pandemic-response-repository/'
                       target='_blank' rel='noreferrer'
                     >
@@ -226,7 +226,7 @@ const Content = () => {
                     </a>,
                   unPandemicLink: chunks =>
                     <a
-                      className='text-dial-yellow border-b border-transparent hover:border-dial-yellow'
+                      className='text-dial-sunshine border-b border-transparent hover:border-dial-sunshine'
                       href={unPandemicUrl} target='_blank' rel='noreferrer'
                     >
                       {chunks}

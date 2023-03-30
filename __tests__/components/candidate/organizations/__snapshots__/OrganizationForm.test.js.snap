@@ -51,7 +51,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
             class="bg-edit shadow-md rounded px-8 pt-6 pb-12 mb-4 flex flex-col gap-3"
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Candidate Organization
             </div>
@@ -91,7 +91,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     Organization Website
                   </label>
                   <div
-                    class="url-input bg-white flex items-center"
+                    class="border border-transparent url-input bg-white flex items-center"
                   >
                     <input
                       class="url w-full placeholder-dial-gray focus:outline-0"
@@ -166,7 +166,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                 style="min-height: 20rem;"
               >
                 <label
-                  class="block text-xl text-dial-blue flex flex-col gap-y-2"
+                  class="block text-dial-sapphire flex flex-col gap-y-2"
                 >
                   <p
                     class="required-field"
@@ -192,7 +192,7 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                       />
                     </svg>
                     <div
-                      class="htmlEditor"
+                      class="html-editor"
                     >
                       <textarea
                         id="-editor"

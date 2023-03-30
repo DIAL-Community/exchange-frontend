@@ -308,7 +308,7 @@ const ProductSpreadsheet = () => {
   return (
     <div className='w-full'>
       <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-        <Tab.List className='flex flex px-8 bg-dial-gray-dark -mr-2'>
+        <Tab.List className='flex flex px-8 bg-dial-gray-dark'>
           {DEFAULT_SHEET_NAMES.map((name) => (
             <Tab key={name} as={Fragment}>
               {({ selected }) => (

@@ -9,7 +9,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
     class="flex flex-col"
   >
     <div
-      class="lg:w-2/5 mx-auto px-4 font-bold text-xl text-dial-blue"
+      class="lg:w-2/5 mx-auto px-4 font-bold text-dial-sapphire"
     >
       <div
         class="hidden lg:block"
@@ -18,7 +18,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
           class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
         >
           <a
-            class="inline text-dial-blue h5"
+            class="inline text-dial-sapphire h5"
             href="/"
           >
             Home
@@ -50,7 +50,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
               "
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New User
             </div>
@@ -118,19 +118,19 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                     class="css-1f43avz-a11yText-A11yText"
                   />
                   <div
-                    class="react-select__control css-19jej77-control"
+                    class="react-select__control css-qv4grc-control"
                   >
                     <div
-                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                      class="react-select__value-container css-17t7gkf-ValueContainer"
                     >
                       <div
-                        class="react-select__placeholder css-19jynah-placeholder"
+                        class="react-select__placeholder css-5rjclb-placeholder"
                         id="react-select-:r0:-placeholder"
                       >
                         Select user roles
                       </div>
                       <div
-                        class="react-select__input-container css-6j8wv5-Input"
+                        class="react-select__input-container css-qbdosj-Input"
                         data-value=""
                       >
                         <input
@@ -156,11 +156,11 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                       class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                     >
                       <span
-                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                       />
                       <div
                         aria-hidden="true"
-                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                       >
                         <svg
                           aria-hidden="true"
@@ -203,19 +203,19 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                     class="css-1f43avz-a11yText-A11yText"
                   />
                   <div
-                    class="react-select__control css-19jej77-control"
+                    class="react-select__control css-qv4grc-control"
                   >
                     <div
-                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                      class="react-select__value-container css-17t7gkf-ValueContainer"
                     >
                       <div
-                        class="react-select__placeholder css-19jynah-placeholder"
+                        class="react-select__placeholder css-5rjclb-placeholder"
                         id="react-select-:r1:-placeholder"
                       >
                         Enter user organization
                       </div>
                       <div
-                        class="react-select__input-container css-6j8wv5-Input"
+                        class="react-select__input-container css-qbdosj-Input"
                         data-value=""
                       >
                         <input
@@ -241,18 +241,19 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                       class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                     >
                       <span
-                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                       />
                       <div
                         aria-hidden="true"
-                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                       >
                         <svg
+                          aria-hidden="true"
                           class="text-2xl"
                           fill="none"
                           height="1em"
                           stroke="currentColor"
-                          stroke-width="0"
+                          stroke-width="2"
                           viewBox="0 0 24 24"
                           width="1em"
                           xmlns="http://www.w3.org/2000/svg"
@@ -261,7 +262,6 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            stroke-width="2"
                           />
                         </svg>
                       </div>
@@ -288,7 +288,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                   data-testid="product-search"
                 >
                   <div
-                    class=" css-l45kjq-container"
+                    class="rounded text-sm text-dial-gray-dark my-auto css-l45kjq-container"
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
@@ -301,19 +301,19 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r2:-placeholder"
                         >
                           Enter products owned by user
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -340,11 +340,11 @@ exports[`Unit tests for the UserForm component. Should match snapshot - create. 
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             aria-hidden="true"
@@ -411,7 +411,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
     class="flex flex-col"
   >
     <div
-      class="lg:w-2/5 mx-auto px-4 font-bold text-xl text-dial-blue"
+      class="lg:w-2/5 mx-auto px-4 font-bold text-dial-sapphire"
     >
       <div
         class="hidden lg:block"
@@ -420,7 +420,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
           class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
         >
           <a
-            class="inline text-dial-blue h5"
+            class="inline text-dial-sapphire h5"
             href="/"
           >
             Home
@@ -452,7 +452,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
               "
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit User Test
             </div>
@@ -520,19 +520,19 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                     class="css-1f43avz-a11yText-A11yText"
                   />
                   <div
-                    class="react-select__control css-19jej77-control"
+                    class="react-select__control css-qv4grc-control"
                   >
                     <div
-                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                      class="react-select__value-container css-17t7gkf-ValueContainer"
                     >
                       <div
-                        class="react-select__placeholder css-19jynah-placeholder"
+                        class="react-select__placeholder css-5rjclb-placeholder"
                         id="react-select-:r3:-placeholder"
                       >
                         Select user roles
                       </div>
                       <div
-                        class="react-select__input-container css-6j8wv5-Input"
+                        class="react-select__input-container css-qbdosj-Input"
                         data-value=""
                       >
                         <input
@@ -558,11 +558,11 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                       class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                     >
                       <span
-                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                       />
                       <div
                         aria-hidden="true"
-                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                       >
                         <svg
                           aria-hidden="true"
@@ -584,27 +584,23 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                   class="flex flex-wrap gap-3"
                 >
                   <div
-                    class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                    class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                     data-testid="pill"
                   >
                     user
                     <svg
-                      class="ml-3 text-2xl cursor-pointer"
+                      class="cursor-pointer opacity-50"
                       data-testid="remove-button"
                       fill="currentColor"
-                      height="1em"
+                      height="1.5em"
                       stroke="currentColor"
                       stroke-width="0"
-                      viewBox="0 0 24 24"
-                      width="1em"
+                      viewBox="0 0 512 512"
+                      width="1.5em"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M0 0h24v24H0z"
-                        fill="none"
-                      />
-                      <path
-                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                       />
                     </svg>
                   </div>
@@ -634,19 +630,19 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                     class="css-1f43avz-a11yText-A11yText"
                   />
                   <div
-                    class="react-select__control css-19jej77-control"
+                    class="react-select__control css-qv4grc-control"
                   >
                     <div
-                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                      class="react-select__value-container css-17t7gkf-ValueContainer"
                     >
                       <div
-                        class="react-select__placeholder css-19jynah-placeholder"
+                        class="react-select__placeholder css-5rjclb-placeholder"
                         id="react-select-:r4:-placeholder"
                       >
                         Enter user organization
                       </div>
                       <div
-                        class="react-select__input-container css-6j8wv5-Input"
+                        class="react-select__input-container css-qbdosj-Input"
                         data-value=""
                       >
                         <input
@@ -672,18 +668,19 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                       class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                     >
                       <span
-                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                       />
                       <div
                         aria-hidden="true"
-                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                       >
                         <svg
+                          aria-hidden="true"
                           class="text-2xl"
                           fill="none"
                           height="1em"
                           stroke="currentColor"
-                          stroke-width="0"
+                          stroke-width="2"
                           viewBox="0 0 24 24"
                           width="1em"
                           xmlns="http://www.w3.org/2000/svg"
@@ -692,7 +689,6 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            stroke-width="2"
                           />
                         </svg>
                       </div>
@@ -714,7 +710,7 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                   data-testid="product-search"
                 >
                   <div
-                    class=" css-l45kjq-container"
+                    class="rounded text-sm text-dial-gray-dark my-auto css-l45kjq-container"
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
@@ -727,19 +723,19 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r5:-placeholder"
                         >
                           Enter products owned by user
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -766,11 +762,11 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             aria-hidden="true"
@@ -796,27 +792,23 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                     class="py-1"
                   >
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       Product: product 1
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
@@ -825,27 +817,23 @@ exports[`Unit tests for the UserForm component. Should match snapshot - edit. 1`
                     class="py-1"
                   >
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       Product: product 2
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
@@ -899,7 +887,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
     class="flex flex-col"
   >
     <div
-      class="lg:w-2/5 mx-auto px-4 font-bold text-xl text-dial-blue"
+      class="lg:w-2/5 mx-auto px-4 font-bold text-dial-sapphire"
     >
       <div
         class="hidden lg:block"
@@ -908,7 +896,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
           class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
         >
           <a
-            class="inline text-dial-blue h5"
+            class="inline text-dial-sapphire h5"
             href="/"
           >
             Home
@@ -940,7 +928,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
               "
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New User
             </div>
@@ -1011,19 +999,19 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                     class="css-1f43avz-a11yText-A11yText"
                   />
                   <div
-                    class="react-select__control css-19jej77-control"
+                    class="react-select__control css-qv4grc-control"
                   >
                     <div
-                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                      class="react-select__value-container css-17t7gkf-ValueContainer"
                     >
                       <div
-                        class="react-select__placeholder css-19jynah-placeholder"
+                        class="react-select__placeholder css-5rjclb-placeholder"
                         id="react-select-:r6:-placeholder"
                       >
                         Select user roles
                       </div>
                       <div
-                        class="react-select__input-container css-6j8wv5-Input"
+                        class="react-select__input-container css-qbdosj-Input"
                         data-value=""
                       >
                         <input
@@ -1049,11 +1037,11 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                       class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                     >
                       <span
-                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                       />
                       <div
                         aria-hidden="true"
-                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                       >
                         <svg
                           aria-hidden="true"
@@ -1096,19 +1084,19 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                     class="css-1f43avz-a11yText-A11yText"
                   />
                   <div
-                    class="react-select__control css-19jej77-control"
+                    class="react-select__control css-qv4grc-control"
                   >
                     <div
-                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                      class="react-select__value-container css-17t7gkf-ValueContainer"
                     >
                       <div
-                        class="react-select__placeholder css-19jynah-placeholder"
+                        class="react-select__placeholder css-5rjclb-placeholder"
                         id="react-select-:r7:-placeholder"
                       >
                         Enter user organization
                       </div>
                       <div
-                        class="react-select__input-container css-6j8wv5-Input"
+                        class="react-select__input-container css-qbdosj-Input"
                         data-value=""
                       >
                         <input
@@ -1134,18 +1122,19 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                       class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                     >
                       <span
-                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                       />
                       <div
                         aria-hidden="true"
-                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                       >
                         <svg
+                          aria-hidden="true"
                           class="text-2xl"
                           fill="none"
                           height="1em"
                           stroke="currentColor"
-                          stroke-width="0"
+                          stroke-width="2"
                           viewBox="0 0 24 24"
                           width="1em"
                           xmlns="http://www.w3.org/2000/svg"
@@ -1154,7 +1143,6 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            stroke-width="2"
                           />
                         </svg>
                       </div>
@@ -1181,7 +1169,7 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                   data-testid="product-search"
                 >
                   <div
-                    class=" css-l45kjq-container"
+                    class="rounded text-sm text-dial-gray-dark my-auto css-l45kjq-container"
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
@@ -1194,19 +1182,19 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:r8:-placeholder"
                         >
                           Enter products owned by user
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -1233,11 +1221,11 @@ exports[`Unit tests for the UserForm component. Should not show validation error
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             aria-hidden="true"
@@ -1304,7 +1292,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
     class="flex flex-col"
   >
     <div
-      class="lg:w-2/5 mx-auto px-4 font-bold text-xl text-dial-blue"
+      class="lg:w-2/5 mx-auto px-4 font-bold text-dial-sapphire"
     >
       <div
         class="hidden lg:block"
@@ -1313,7 +1301,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
           class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
         >
           <a
-            class="inline text-dial-blue h5"
+            class="inline text-dial-sapphire h5"
             href="/"
           >
             Home
@@ -1345,7 +1333,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
               "
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit User Test
             </div>
@@ -1413,19 +1401,19 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                     class="css-1f43avz-a11yText-A11yText"
                   />
                   <div
-                    class="react-select__control css-19jej77-control"
+                    class="react-select__control css-qv4grc-control"
                   >
                     <div
-                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                      class="react-select__value-container css-17t7gkf-ValueContainer"
                     >
                       <div
-                        class="react-select__placeholder css-19jynah-placeholder"
+                        class="react-select__placeholder css-5rjclb-placeholder"
                         id="react-select-:rf:-placeholder"
                       >
                         Select user roles
                       </div>
                       <div
-                        class="react-select__input-container css-6j8wv5-Input"
+                        class="react-select__input-container css-qbdosj-Input"
                         data-value=""
                       >
                         <input
@@ -1451,11 +1439,11 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                       class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                     >
                       <span
-                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                       />
                       <div
                         aria-hidden="true"
-                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                       >
                         <svg
                           aria-hidden="true"
@@ -1477,27 +1465,23 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                   class="flex flex-wrap gap-3"
                 >
                   <div
-                    class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                    class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                     data-testid="pill"
                   >
                     user
                     <svg
-                      class="ml-3 text-2xl cursor-pointer"
+                      class="cursor-pointer opacity-50"
                       data-testid="remove-button"
                       fill="currentColor"
-                      height="1em"
+                      height="1.5em"
                       stroke="currentColor"
                       stroke-width="0"
-                      viewBox="0 0 24 24"
-                      width="1em"
+                      viewBox="0 0 512 512"
+                      width="1.5em"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M0 0h24v24H0z"
-                        fill="none"
-                      />
-                      <path
-                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                       />
                     </svg>
                   </div>
@@ -1527,19 +1511,19 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                     class="css-1f43avz-a11yText-A11yText"
                   />
                   <div
-                    class="react-select__control css-19jej77-control"
+                    class="react-select__control css-qv4grc-control"
                   >
                     <div
-                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                      class="react-select__value-container css-17t7gkf-ValueContainer"
                     >
                       <div
-                        class="react-select__placeholder css-19jynah-placeholder"
+                        class="react-select__placeholder css-5rjclb-placeholder"
                         id="react-select-:rg:-placeholder"
                       >
                         Enter user organization
                       </div>
                       <div
-                        class="react-select__input-container css-6j8wv5-Input"
+                        class="react-select__input-container css-qbdosj-Input"
                         data-value=""
                       >
                         <input
@@ -1565,18 +1549,19 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                       class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                     >
                       <span
-                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                       />
                       <div
                         aria-hidden="true"
-                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                       >
                         <svg
+                          aria-hidden="true"
                           class="text-2xl"
                           fill="none"
                           height="1em"
                           stroke="currentColor"
-                          stroke-width="0"
+                          stroke-width="2"
                           viewBox="0 0 24 24"
                           width="1em"
                           xmlns="http://www.w3.org/2000/svg"
@@ -1585,7 +1570,6 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            stroke-width="2"
                           />
                         </svg>
                       </div>
@@ -1607,7 +1591,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                   data-testid="product-search"
                 >
                   <div
-                    class=" css-l45kjq-container"
+                    class="rounded text-sm text-dial-gray-dark my-auto css-l45kjq-container"
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
@@ -1620,19 +1604,19 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:rh:-placeholder"
                         >
                           Enter products owned by user
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -1660,7 +1644,7 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                       >
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__loading-indicator css-at12u2-loadingIndicator"
+                          class="react-select__indicator react-select__loading-indicator css-pogzpp-loadingIndicator"
                         >
                           <span
                             class="css-1xtdfmb-LoadingDot"
@@ -1673,11 +1657,11 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                           />
                         </div>
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             aria-hidden="true"
@@ -1703,27 +1687,23 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                     class="py-1"
                   >
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       Product: product 1
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
@@ -1732,27 +1712,23 @@ exports[`Unit tests for the UserForm component. Should render checked based on t
                     class="py-1"
                   >
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       Product: product 2
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
@@ -1806,7 +1782,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
     class="flex flex-col"
   >
     <div
-      class="lg:w-2/5 mx-auto px-4 font-bold text-xl text-dial-blue"
+      class="lg:w-2/5 mx-auto px-4 font-bold text-dial-sapphire"
     >
       <div
         class="hidden lg:block"
@@ -1815,7 +1791,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
           class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
         >
           <a
-            class="inline text-dial-blue h5"
+            class="inline text-dial-sapphire h5"
             href="/"
           >
             Home
@@ -1847,7 +1823,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
               "
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Edit User Test
             </div>
@@ -1915,19 +1891,19 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                     class="css-1f43avz-a11yText-A11yText"
                   />
                   <div
-                    class="react-select__control css-19jej77-control"
+                    class="react-select__control css-qv4grc-control"
                   >
                     <div
-                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                      class="react-select__value-container css-17t7gkf-ValueContainer"
                     >
                       <div
-                        class="react-select__placeholder css-19jynah-placeholder"
+                        class="react-select__placeholder css-5rjclb-placeholder"
                         id="react-select-:rc:-placeholder"
                       >
                         Select user roles
                       </div>
                       <div
-                        class="react-select__input-container css-6j8wv5-Input"
+                        class="react-select__input-container css-qbdosj-Input"
                         data-value=""
                       >
                         <input
@@ -1953,11 +1929,11 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                       class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                     >
                       <span
-                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                       />
                       <div
                         aria-hidden="true"
-                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                       >
                         <svg
                           aria-hidden="true"
@@ -1979,27 +1955,23 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                   class="flex flex-wrap gap-3"
                 >
                   <div
-                    class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                    class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                     data-testid="pill"
                   >
                     user
                     <svg
-                      class="ml-3 text-2xl cursor-pointer"
+                      class="cursor-pointer opacity-50"
                       data-testid="remove-button"
                       fill="currentColor"
-                      height="1em"
+                      height="1.5em"
                       stroke="currentColor"
                       stroke-width="0"
-                      viewBox="0 0 24 24"
-                      width="1em"
+                      viewBox="0 0 512 512"
+                      width="1.5em"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M0 0h24v24H0z"
-                        fill="none"
-                      />
-                      <path
-                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                       />
                     </svg>
                   </div>
@@ -2029,19 +2001,19 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                     class="css-1f43avz-a11yText-A11yText"
                   />
                   <div
-                    class="react-select__control css-19jej77-control"
+                    class="react-select__control css-qv4grc-control"
                   >
                     <div
-                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                      class="react-select__value-container css-17t7gkf-ValueContainer"
                     >
                       <div
-                        class="react-select__placeholder css-19jynah-placeholder"
+                        class="react-select__placeholder css-5rjclb-placeholder"
                         id="react-select-:rd:-placeholder"
                       >
                         Enter user organization
                       </div>
                       <div
-                        class="react-select__input-container css-6j8wv5-Input"
+                        class="react-select__input-container css-qbdosj-Input"
                         data-value=""
                       >
                         <input
@@ -2067,18 +2039,19 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                       class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                     >
                       <span
-                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                       />
                       <div
                         aria-hidden="true"
-                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                       >
                         <svg
+                          aria-hidden="true"
                           class="text-2xl"
                           fill="none"
                           height="1em"
                           stroke="currentColor"
-                          stroke-width="0"
+                          stroke-width="2"
                           viewBox="0 0 24 24"
                           width="1em"
                           xmlns="http://www.w3.org/2000/svg"
@@ -2087,7 +2060,6 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            stroke-width="2"
                           />
                         </svg>
                       </div>
@@ -2109,7 +2081,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                   data-testid="product-search"
                 >
                   <div
-                    class=" css-l45kjq-container"
+                    class="rounded text-sm text-dial-gray-dark my-auto css-l45kjq-container"
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
@@ -2122,19 +2094,19 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:re:-placeholder"
                         >
                           Enter products owned by user
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -2162,7 +2134,7 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                       >
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__loading-indicator css-at12u2-loadingIndicator"
+                          class="react-select__indicator react-select__loading-indicator css-pogzpp-loadingIndicator"
                         >
                           <span
                             class="css-1xtdfmb-LoadingDot"
@@ -2175,11 +2147,11 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                           />
                         </div>
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             aria-hidden="true"
@@ -2205,27 +2177,23 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                     class="py-1"
                   >
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       Product: product 1
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
@@ -2234,27 +2202,23 @@ exports[`Unit tests for the UserForm component. Should render unchecked based on
                     class="py-1"
                   >
                     <div
-                      class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+                      class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
                       data-testid="pill"
                     >
                       Product: product 2
                       <svg
-                        class="ml-3 text-2xl cursor-pointer"
+                        class="cursor-pointer opacity-50"
                         data-testid="remove-button"
                         fill="currentColor"
-                        height="1em"
+                        height="1.5em"
                         stroke="currentColor"
                         stroke-width="0"
-                        viewBox="0 0 24 24"
-                        width="1em"
+                        viewBox="0 0 512 512"
+                        width="1.5em"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                          d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                         />
                       </svg>
                     </div>
@@ -2308,7 +2272,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
     class="flex flex-col"
   >
     <div
-      class="lg:w-2/5 mx-auto px-4 font-bold text-xl text-dial-blue"
+      class="lg:w-2/5 mx-auto px-4 font-bold text-dial-sapphire"
     >
       <div
         class="hidden lg:block"
@@ -2317,7 +2281,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
           class="bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden"
         >
           <a
-            class="inline text-dial-blue h5"
+            class="inline text-dial-sapphire h5"
             href="/"
           >
             Home
@@ -2349,7 +2313,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
               "
           >
             <div
-              class="text-2xl font-bold text-dial-blue pb-4"
+              class="text-2xl font-semibold text-dial-sapphire pb-4"
             >
               Create New User
             </div>
@@ -2420,19 +2384,19 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                     class="css-1f43avz-a11yText-A11yText"
                   />
                   <div
-                    class="react-select__control css-19jej77-control"
+                    class="react-select__control css-qv4grc-control"
                   >
                     <div
-                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                      class="react-select__value-container css-17t7gkf-ValueContainer"
                     >
                       <div
-                        class="react-select__placeholder css-19jynah-placeholder"
+                        class="react-select__placeholder css-5rjclb-placeholder"
                         id="react-select-:r9:-placeholder"
                       >
                         Select user roles
                       </div>
                       <div
-                        class="react-select__input-container css-6j8wv5-Input"
+                        class="react-select__input-container css-qbdosj-Input"
                         data-value=""
                       >
                         <input
@@ -2458,11 +2422,11 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                       class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                     >
                       <span
-                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                       />
                       <div
                         aria-hidden="true"
-                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                       >
                         <svg
                           aria-hidden="true"
@@ -2505,19 +2469,19 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                     class="css-1f43avz-a11yText-A11yText"
                   />
                   <div
-                    class="react-select__control css-19jej77-control"
+                    class="react-select__control css-qv4grc-control"
                   >
                     <div
-                      class="react-select__value-container css-3tzzl5-ValueContainer"
+                      class="react-select__value-container css-17t7gkf-ValueContainer"
                     >
                       <div
-                        class="react-select__placeholder css-19jynah-placeholder"
+                        class="react-select__placeholder css-5rjclb-placeholder"
                         id="react-select-:ra:-placeholder"
                       >
                         Enter user organization
                       </div>
                       <div
-                        class="react-select__input-container css-6j8wv5-Input"
+                        class="react-select__input-container css-qbdosj-Input"
                         data-value=""
                       >
                         <input
@@ -2543,18 +2507,19 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                       class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                     >
                       <span
-                        class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                        class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                       />
                       <div
                         aria-hidden="true"
-                        class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                        class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                       >
                         <svg
+                          aria-hidden="true"
                           class="text-2xl"
                           fill="none"
                           height="1em"
                           stroke="currentColor"
-                          stroke-width="0"
+                          stroke-width="2"
                           viewBox="0 0 24 24"
                           width="1em"
                           xmlns="http://www.w3.org/2000/svg"
@@ -2563,7 +2528,6 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            stroke-width="2"
                           />
                         </svg>
                       </div>
@@ -2590,7 +2554,7 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                   data-testid="product-search"
                 >
                   <div
-                    class=" css-l45kjq-container"
+                    class="rounded text-sm text-dial-gray-dark my-auto css-l45kjq-container"
                   >
                     <span
                       class="css-1f43avz-a11yText-A11yText"
@@ -2603,19 +2567,19 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                       class="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      class="react-select__control css-19jej77-control"
+                      class="react-select__control css-qv4grc-control"
                     >
                       <div
-                        class="react-select__value-container css-3tzzl5-ValueContainer"
+                        class="react-select__value-container css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-19jynah-placeholder"
+                          class="react-select__placeholder css-5rjclb-placeholder"
                           id="react-select-:rb:-placeholder"
                         >
                           Enter products owned by user
                         </div>
                         <div
-                          class="react-select__input-container css-6j8wv5-Input"
+                          class="react-select__input-container css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -2642,11 +2606,11 @@ exports[`Unit tests for the UserForm component. Should show validation errors fo
                         class="react-select__indicators css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          class="react-select__indicator-separator css-1979yuk-indicatorSeparator"
+                          class="react-select__indicator-separator css-nyxz9h-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          class="react-select__indicator react-select__dropdown-indicator css-1hmmjq6-indicatorContainer"
+                          class="react-select__indicator react-select__dropdown-indicator css-2hgo35-indicatorContainer"
                         >
                           <svg
                             aria-hidden="true"

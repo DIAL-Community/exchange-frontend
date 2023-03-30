@@ -6,7 +6,7 @@ exports[`Unit test for the EditButton component. Should match snapshot - type ==
     class="Toastify"
   />
   <button
-    class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+    class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
     data-testid="edit-button"
     type="button"
   >
@@ -31,7 +31,7 @@ exports[`Unit test for the EditButton component. Should match snapshot - type ==
     class="Toastify"
   />
   <a
-    class="inline-flex items-center gap-x-1.5 bg-dial-blue px-2 py-1 rounded-md text-white"
+    class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
     data-testid="edit-link"
     href="http://test/"
   >

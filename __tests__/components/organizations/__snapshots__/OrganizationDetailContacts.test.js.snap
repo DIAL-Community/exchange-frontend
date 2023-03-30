@@ -16,7 +16,7 @@ exports[`Unit test for the OrganizationDetailContacts component. If input name i
         class="flex justify-between items-center mb-3"
       >
         <div
-          class="card-title text-dial-gray-dark"
+          class="card-title text-dial-sapphire"
         >
           Contacts
         </div>
@@ -29,7 +29,7 @@ exports[`Unit test for the OrganizationDetailContacts component. If input name i
       >
         <form>
           <p
-            class="card-title text-dial-blue mb-3"
+            class="card-title text-dial-stratos mb-3"
           >
             Assign
              
@@ -151,7 +151,7 @@ exports[`Unit test for the OrganizationDetailContacts component. Should add pill
         class="flex justify-between items-center mb-3"
       >
         <div
-          class="card-title text-dial-gray-dark"
+          class="card-title text-dial-sapphire"
         >
           Contacts
         </div>
@@ -164,7 +164,7 @@ exports[`Unit test for the OrganizationDetailContacts component. Should add pill
       >
         <form>
           <p
-            class="card-title text-dial-blue mb-3"
+            class="card-title text-dial-stratos mb-3"
           >
             Assign
              
@@ -235,27 +235,23 @@ exports[`Unit test for the OrganizationDetailContacts component. Should add pill
             class="flex flex-wrap gap-3 mt-5 mx-4"
           >
             <div
-              class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+              class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
               data-testid="pill"
             >
               Name: Test Test
               <svg
-                class="ml-3 text-2xl cursor-pointer"
+                class="cursor-pointer opacity-50"
                 data-testid="remove-button"
                 fill="currentColor"
-                height="1em"
+                height="1.5em"
                 stroke="currentColor"
                 stroke-width="0"
-                viewBox="0 0 24 24"
-                width="1em"
+                viewBox="0 0 512 512"
+                width="1.5em"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path
-                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                  d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                 />
               </svg>
             </div>
@@ -301,7 +297,7 @@ exports[`Unit test for the OrganizationDetailContacts component. Should assign b
         class="flex justify-between items-center mb-3"
       >
         <div
-          class="card-title text-dial-gray-dark"
+          class="card-title text-dial-sapphire"
         >
           Contacts
         </div>
@@ -314,7 +310,7 @@ exports[`Unit test for the OrganizationDetailContacts component. Should assign b
       >
         <form>
           <p
-            class="card-title text-dial-blue mb-3"
+            class="card-title text-dial-stratos mb-3"
           >
             Assign
              
@@ -426,7 +422,7 @@ exports[`Unit test for the OrganizationDetailContacts component. Should clear in
         class="flex justify-between items-center mb-3"
       >
         <div
-          class="card-title text-dial-gray-dark"
+          class="card-title text-dial-sapphire"
         >
           Contacts
         </div>
@@ -439,7 +435,7 @@ exports[`Unit test for the OrganizationDetailContacts component. Should clear in
       >
         <form>
           <p
-            class="card-title text-dial-blue mb-3"
+            class="card-title text-dial-stratos mb-3"
           >
             Assign
              
@@ -510,27 +506,23 @@ exports[`Unit test for the OrganizationDetailContacts component. Should clear in
             class="flex flex-wrap gap-3 mt-5 mx-4"
           >
             <div
-              class="inline-flex items-center px-2 py-1 rounded-md bg-dial-blue-light text-lg text-dial-gray-dark"
+              class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
               data-testid="pill"
             >
               Name: Test Test
               <svg
-                class="ml-3 text-2xl cursor-pointer"
+                class="cursor-pointer opacity-50"
                 data-testid="remove-button"
                 fill="currentColor"
-                height="1em"
+                height="1.5em"
                 stroke="currentColor"
                 stroke-width="0"
-                viewBox="0 0 24 24"
-                width="1em"
+                viewBox="0 0 512 512"
+                width="1.5em"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path
-                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                  d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
                 />
               </svg>
             </div>
@@ -576,7 +568,7 @@ exports[`Unit test for the OrganizationDetailContacts component. Should remove p
         class="flex justify-between items-center mb-3"
       >
         <div
-          class="card-title text-dial-gray-dark"
+          class="card-title text-dial-sapphire"
         >
           Contacts
         </div>
@@ -589,7 +581,7 @@ exports[`Unit test for the OrganizationDetailContacts component. Should remove p
       >
         <form>
           <p
-            class="card-title text-dial-blue mb-3"
+            class="card-title text-dial-stratos mb-3"
           >
             Assign
              

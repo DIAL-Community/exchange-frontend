@@ -14,6 +14,7 @@ describe('Unit tests for the DeleteRubricCategory component.', () => {
 
   beforeAll(() => {
     mockNextAuthUseSession(statuses.AUTHENTICATED)
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 

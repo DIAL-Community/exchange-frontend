@@ -10,7 +10,7 @@ exports[`RepositoryForm component. Should display success toast on submit. 1`] =
       style="width: auto;"
     >
       <div
-        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify--animate Toastify__slide-enter--top-center"
+        class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success Toastify__toast--close-on-click Toastify--animate Toastify__slide-enter--top-center"
         id="toastId"
         style="--nth: 1; --len: 1;"
       >
@@ -73,7 +73,7 @@ exports[`RepositoryForm component. Should display success toast on submit. 1`] =
           class="bg-edit border-t shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col"
         >
           <div
-            class="text-2xl font-bold text-dial-blue pb-4"
+            class="text-2xl font-semibold text-dial-sapphire pb-4"
           >
             Edit Repository 1
           </div>
@@ -144,7 +144,7 @@ exports[`RepositoryForm component. Should display success toast on submit. 1`] =
                 class="w-full lg:w-full flex flex-col gap-y-3"
               >
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                   data-testid="organization-is-mni"
                 >
                   <input
@@ -219,7 +219,7 @@ exports[`RepositoryForm component. Should match snapshot: Create. 1`] = `
           class="bg-edit border-t shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col"
         >
           <div
-            class="text-2xl font-bold text-dial-blue pb-4"
+            class="text-2xl font-semibold text-dial-sapphire pb-4"
           >
             Create New Product Repository
           </div>
@@ -290,7 +290,7 @@ exports[`RepositoryForm component. Should match snapshot: Create. 1`] = `
                 class="w-full lg:w-full flex flex-col gap-y-3"
               >
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                   data-testid="organization-is-mni"
                 >
                   <input
@@ -349,7 +349,7 @@ exports[`RepositoryForm component. Should match snapshot: Edit. 1`] = `
           class="bg-edit border-t shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col"
         >
           <div
-            class="text-2xl font-bold text-dial-blue pb-4"
+            class="text-2xl font-semibold text-dial-sapphire pb-4"
           >
             Edit Repository 1
           </div>
@@ -420,7 +420,7 @@ exports[`RepositoryForm component. Should match snapshot: Edit. 1`] = `
                 class="w-full lg:w-full flex flex-col gap-y-3"
               >
                 <label
-                  class="flex gap-x-2 mb-2 items-center self-start text-xl text-dial-blue"
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
                   data-testid="organization-is-mni"
                 >
                   <input

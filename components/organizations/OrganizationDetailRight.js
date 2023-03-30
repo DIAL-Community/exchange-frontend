@@ -71,7 +71,7 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
           <div className='text-base text-dial-teal flex' data-testid='organization-website'>
             <a
               href={prependUrlWithProtocol(organization.website)}
-              className='border-b-2 border-transparent hover:border-dial-yellow'
+              className='border-b-2 border-transparent hover:border-dial-sunshine'
               target='_blank'
               rel='noreferrer'
             >
@@ -95,7 +95,7 @@ const OrganizationDetailRight = ({ organization, commentsSectionRef }) => {
                 <div className='text-sm leading-6 text-dial-purple-light pt-6 leading-6 tracking-wide'>
                   {format('organization.detail.endorserLevel').toUpperCase()}
                 </div>
-                <div className='text-base text-dial-yellow pb-2' data-testid='organization-endorser-level'>
+                <div className='text-base text-dial-sunshine pb-2' data-testid='organization-endorser-level'>
                   {organization.endorserLevel.toUpperCase()}
                 </div>
               </>

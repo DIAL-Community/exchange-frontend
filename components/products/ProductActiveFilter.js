@@ -29,17 +29,21 @@ const ProductActiveFilter = () => {
 
   const {
     isEndorsed, productDeployable, sectors, countries, organizations, origins, sdgs, tags,
-    useCases, workflows, buildingBlocks, endorsers, licenseTypes
+    useCases, workflows, buildingBlocks, endorsers, licenseTypes, isLinkedWithDpi
   } = useContext(ProductFilterContext)
 
   const {
     setIsEndorsed, setProductDeployable, setSectors, setCountries, setOrganizations,
     setOrigins, setSDGs, setTags, setUseCases, setWorkflows, setBuildingBlocks, setEndorsers,
-    setLicenseTypes
+    setLicenseTypes, setIsLinkedWithDpi
   } = useContext(ProductFilterDispatchContext)
 
   const toggleIsEndorsed = () => {
     setIsEndorsed(!isEndorsed)
+  }
+
+  const toggleIsLinkedWithDpi = () => {
+    setIsLinkedWithDpi(!isLinkedWithDpi)
   }
 
   const toggleProductDeployable = () => {
@@ -49,6 +53,7 @@ const ProductActiveFilter = () => {
   const filterCount = () => {
     let count = 0
     count = isEndorsed ? count + 1 : count
+    count = isLinkedWithDpi ? count + 1 : count
     count = productDeployable ? count + 1 : count
     count = count + countries.length + organizations.length + tags.length +
       sectors.length + origins.length + sdgs.length + useCases.length +
@@ -72,6 +77,7 @@ const ProductActiveFilter = () => {
     setBuildingBlocks([])
     setEndorsers([])
     setLicenseTypes([])
+    setIsLinkedWithDpi(false)
     // router.push(router.pathname)
   }
 
@@ -98,12 +104,13 @@ const ProductActiveFilter = () => {
     const licenseTypesFilter = licenseTypes.map(
       licenseType => `licenseTypes=${licenseType.value}--${licenseType.label}`
     )
+    const linkedWithDpiFilter = isLinkedWithDpi ? 'isLinkedWithDpi=true' : ''
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
       activeFilter, endorsedFilter, licenseTypesFilter, deployableFilter, ...originFilters,
       ...countryFilters, ...sectorFilters, ...organizationFilters, ...sdgFilters, ...tagFilters,
-      ...useCaseFilters, ...workflowFilters, ...buildingBlockFilters, ...endorserFilters
+      ...useCaseFilters, ...workflowFilters, ...buildingBlockFilters, ...endorserFilters, linkedWithDpiFilter
     ].filter(f => f).join('&')
 
     return `${baseUrl}/${basePath}?${filterParameters}`
@@ -129,6 +136,7 @@ const ProductActiveFilter = () => {
       parseQuery(query, 'workflows', workflows, setWorkflows)
       parseQuery(query, 'buildingBlocks', buildingBlocks, setBuildingBlocks)
       parseQuery(query, 'endorsers', endorsers, setEndorsers)
+      setIsLinkedWithDpi(query.isLinkedWithDpi === 'true')
     }
   })
 
@@ -151,6 +159,14 @@ const ProductActiveFilter = () => {
             />
           </div>
         )}
+        {isLinkedWithDpi && (
+          <div className='py-1'>
+            <Pill
+              label={format('filter.product.linkedWithDpi')}
+              onRemove={toggleIsLinkedWithDpi}
+            />
+          </div>
+        )}
         <SDGFilters {...{ sdgs, setSDGs }} />
         <UseCaseFilters {...{ useCases, setUseCases }} />
         <WorkflowFilters {...{ workflows, setWorkflows }} />
@@ -165,7 +181,7 @@ const ProductActiveFilter = () => {
 
         <div className='flex px-2 py-1 mt-2 text-sm text-dial-gray-dark'>
           <a
-            className='border-b-2 border-transparent hover:border-dial-yellow opacity-50'
+            className='border-b-2 border-transparent hover:border-dial-sunshine opacity-50'
             href='#clear-filter' onClick={clearFilter}
           >
             {format('filter.general.clearAll')}

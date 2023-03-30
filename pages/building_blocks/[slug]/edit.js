@@ -8,7 +8,7 @@ import BuildingBlockForm from '../../../components/building-blocks/BuildingBlock
 import NotFound from '../../../components/shared/NotFound'
 import { BUILDING_BLOCK_QUERY } from '../../../queries/building-block'
 
-const CreateBuildingBlock = () => {
+const EditBuildingBlock = () => {
   const router = useRouter()
 
   const { locale } = router
@@ -37,4 +37,4 @@ const CreateBuildingBlock = () => {
   )
 }
 
-export default CreateBuildingBlock
+export default EditBuildingBlock

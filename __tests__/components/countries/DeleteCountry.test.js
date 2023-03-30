@@ -14,6 +14,7 @@ describe('Unit tests for the CountryDelete component.', () => {
 
   beforeAll(() => {
     mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 
