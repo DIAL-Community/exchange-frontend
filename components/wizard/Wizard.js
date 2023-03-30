@@ -128,7 +128,14 @@ const WizardContent = () => {
           <div className=''>{`Step ${currentStep + 1} of ${availableSteps.length}`}</div>
           <div className='flex flex-col xl:flex-row items-start gap-y-4 gap-x-12'>
             <div className='w-full'>{availableSteps[currentStep]}</div>
-            <div className='flex gap-2 xl:ml-auto'>
+            <div
+              className={classNames(
+                'flex gap-2 xl:ml-auto',
+                currentStep === 0 && 'mt-auto py-3',
+                currentStep === 1 && 'py-3',
+                currentStep === 2 && 'py-1'
+              )}
+            >
               <button
                 onClick={() => {
                   if (previousAvailable())
