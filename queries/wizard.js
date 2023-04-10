@@ -288,5 +288,10 @@ export const WIZARD_PARAMS_QUERY = gql`
       imageFile
       maturity
     }
+    useCases {
+      id
+      name
+      slug
+    }
   }
 `
