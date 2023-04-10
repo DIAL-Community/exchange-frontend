@@ -3,66 +3,89 @@ import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { QueryParamContext } from '../context/QueryParamContext'
-import { ProjectFilterContext, ProjectFilterDispatchContext } from '../context/ProjectFilterContext'
-import { SDGFilters } from '../filter/element/SDG'
+import { OpportunityFilterContext, OpportunityFilterDispatchContext } from '../context/OpportunityFilterContext'
 import { parseQuery } from '../shared/SharableLink'
-import { OriginFilters } from '../filter/element/Origin'
 import { CountryFilters } from '../filter/element/Country'
 import { SectorFilters } from '../filter/element/Sector'
+import { BuildingBlockFilters } from '../filter/element/BuildingBlock'
 import { OrganizationFilters } from '../filter/element/Organization'
-import { ProductFilters } from '../filter/element/Product'
-import { TagFilters } from '../filter/element/Tag'
+import { UseCaseFilters } from '../filter/element/UseCase'
+import Pill from '../shared/Pill'
 const SharableLink = dynamic(() => import('../shared/SharableLink'), { ssr: false })
 
-const ProjectActiveFilter = () => {
+const OpportunityActiveFilter = () => {
   const { query } = useRouter()
   const { interactionDetected } = useContext(QueryParamContext)
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sectors, countries, organizations, products, origins, sdgs, tags } = useContext(ProjectFilterContext)
-  const { setSectors, setCountries, setOrganizations, setProducts, setOrigins, setSDGs, setTags } =
-    useContext(ProjectFilterDispatchContext)
+  const {
+    buildingBlocks,
+    countries,
+    organizations,
+    sectors,
+    useCases,
+    showClosed
+  } = useContext(OpportunityFilterContext)
 
-  const filterCount = () =>
-    countries.length +
-    organizations.length +
-    products.length +
-    sectors.length +
-    origins.length +
-    sdgs.length +
-    tags.length
+  const {
+    setBuildingBlocks,
+    setCountries,
+    setOrganizations,
+    setSectors,
+    setUseCases,
+    setShowClosed
+  } = useContext(OpportunityFilterDispatchContext)
+
+  const filterCount = () => {
+    return buildingBlocks.length
+    + countries.length
+    + organizations.length
+    + sectors.length
+    + useCases.length
+    + showClosed ? 1 : 0
+  }
 
   const clearFilter = (e) => {
     e.preventDefault()
-    setOrigins([])
+    setShowClosed(false)
+    setBuildingBlocks([])
     setCountries([])
-    setProducts([])
-    setSectors([])
     setOrganizations([])
-    setSDGs([])
-    setTags([])
+    setSectors([])
+    setUseCases([])
+  }
+
+  const toggleShowClosed = () => {
+    setShowClosed(!showClosed)
   }
 
   const sharableLink = () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
-    const basePath = 'projects'
+    const basePath = 'opportunities'
 
-    const originFilters = origins.map(origin => `origins=${origin.value}--${origin.label}`)
+    const showClosedFilter = showClosed ? 'showClosed=true' : ''
+
+    const buildingBlockFilters = buildingBlocks.map(
+      buildingBlock => `buildingBlocks=${buildingBlock.value}--${buildingBlock.label}`
+    )
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
-    const productFilters = products.map(product => `products=${product.value}--${product.label}`)
-    const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
     const organizationFilters = organizations.map(
       organization => `organizations=${organization.value}--${organization.label}`
     )
-    const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
-    const tagFilters = tags.map(tag => `tags=${tag.value}--${tag.label}`)
+    const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
+    const useCaseFilters = useCases.map(useCase => `useCases=${useCase.value}--${useCase.label}`)
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, ...originFilters, ...countryFilters, ...productFilters, ...sectorFilters, ...organizationFilters,
-      ...sdgFilters, ...tagFilters
+      activeFilter,
+      showClosedFilter,
+      ...buildingBlockFilters,
+      ...countryFilters,
+      ...organizationFilters,
+      ...sectorFilters,
+      ...useCaseFilters
     ].filter(f => f).join('&')
 
     return `${baseUrl}/${basePath}?${filterParameters}`
@@ -71,26 +94,31 @@ const ProjectActiveFilter = () => {
   useEffect(() => {
     // Only apply this if the use have not interact with the UI and the url is a sharable link
     if (query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog && !interactionDetected) {
-      parseQuery(query, 'origins', origins, setOrigins)
+      setShowClosed(query.showClosed === 'true')
+      parseQuery(query, 'buildingBlocks', buildingBlocks, setBuildingBlocks)
       parseQuery(query, 'countries', countries, setCountries)
-      parseQuery(query, 'products', products, setProducts)
-      parseQuery(query, 'sectors', sectors, setSectors)
       parseQuery(query, 'organizations', organizations, setOrganizations)
-      parseQuery(query, 'sdgs', sdgs, setSDGs)
-      parseQuery(query, 'tags', tags, setTags)
+      parseQuery(query, 'sectors', sectors, setSectors)
+      parseQuery(query, 'useCases', useCases, setUseCases)
     }
   })
 
   return (
     <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`}>
       <div className='flex flex-row flex-wrap px-1 gap-2'>
-        <SDGFilters {...{ sdgs, setSDGs }} />
-        <OriginFilters {...{ origins, setOrigins }} />
+        <BuildingBlockFilters {...{ buildingBlocks, setBuildingBlocks }} />
         <CountryFilters {...{ countries, setCountries }} />
-        <SectorFilters {...{ sectors, setSectors }} />
         <OrganizationFilters {...{ organizations, setOrganizations }} />
-        <ProductFilters {...{ products, setProducts }} />
-        <TagFilters {...{ tags, setTags }} />
+        <SectorFilters {...{ sectors, setSectors }} />
+        <UseCaseFilters {...{ useCases, setUseCases }} />
+        {showClosed && (
+          <div className='py-1'>
+            <Pill
+              label={format('filter.opportunity.showClosed')}
+              onRemove={toggleShowClosed}
+            />
+          </div>
+        )}
 
         <div className='flex px-2 py-1 mt-2 text-sm text-dial-gray-dark'>
           <a
@@ -107,4 +135,4 @@ const ProjectActiveFilter = () => {
   )
 }
 
-export default ProjectActiveFilter
+export default OpportunityActiveFilter

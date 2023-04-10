@@ -118,7 +118,6 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
                         <Image
                           layout='fill'
                           objectFit='scale-down'
-                          objectPosition='left'
                           alt={format('image.alt.logoFor', { name: useCase.name })}
                           src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
                         />
