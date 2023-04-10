@@ -61,7 +61,6 @@ const DatasetCard = ({ dataset, listType, newTab = false }) => {
                         <Image
                           layout='fill'
                           objectFit='scale-down'
-                          objectPosition='left'
                           alt={format('image.alt.logoFor', { name: dataset.name })}
                           src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
                         />

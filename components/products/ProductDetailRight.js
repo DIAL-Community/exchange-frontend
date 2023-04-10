@@ -102,7 +102,6 @@ const ProductDetailRight = ({ product, commentsSectionRef }) => {
                   <Image
                     layout='fill'
                     objectFit='scale-down'
-                    objectPosition='left'
                     src={'/images/origins/' + origin.slug + '.png'}
                     alt={format('image.alt.logoFor', { name: origin.name })}
                   />
