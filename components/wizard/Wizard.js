@@ -91,7 +91,8 @@ const WizardContent = () => {
     sectors: sectorData,
     sdgs: sdgData,
     tags: tagData,
-    buildingBlocks: buildingBlocksData
+    buildingBlocks: buildingBlockData,
+    useCases: useCaseData
   } = data
 
   const wizardData = {
@@ -101,9 +102,10 @@ const WizardContent = () => {
     mobileServices: mobileServices.map(service => ({ label: service, value: service })) ?? [],
     tags: tagData?.map(({ name }) => ({ label: name, value: name })) ?? [],
     buildingBlocks: [
-      ...buildingBlocksData?.filter(({ maturity }) => maturity === MaturityStatus.PUBLISHED) ?? [],
-      ...buildingBlocksData?.filter(({ maturity }) => maturity === MaturityStatus.DRAFT) ?? []
-    ] ?? []
+      ...buildingBlockData?.filter(({ maturity }) => maturity === MaturityStatus.PUBLISHED) ?? [],
+      ...buildingBlockData?.filter(({ maturity }) => maturity === MaturityStatus.DRAFT) ?? []
+    ] ?? [],
+    useCases: useCaseData?.map(({ name }) => ({ label: name, value: name })) ?? [],
   }
 
   const availableSteps = [

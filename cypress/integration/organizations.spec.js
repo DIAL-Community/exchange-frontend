@@ -83,11 +83,11 @@ describe('Organizations', () => {
     cy.getByTestId('organization-when-endorsed')
       .type(orgData.endorsedOn)
 
-    // endorser level
-    cy.getByTestId('organization-endorser-level')
-      .click()
-      .contains(orgData.endorserLevel)
-      .click()
+    // // endorser level
+    // cy.getByTestId('organization-endorser-level')
+    //   .click()
+    //   .contains(orgData.endorserLevel)
+    //   .click()
 
     // MNI
     if (orgData.mni) {

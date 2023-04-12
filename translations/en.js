@@ -158,8 +158,8 @@ export const en = {
       This approach is rooted in the SDG Digital Investment Framework, developed by DIAL and ITU.
       `,
   'definition.featured': `
-      More Data! In many sectors, access to open data and and content is a critical part 
-      of any digital project. The Exchange has a new tab called 'Open Data' that 
+      More Data! In many sectors, access to open data and and content is a critical part
+      of any digital project. The Exchange has a new tab called 'Open Data' that
       provides links to over a hundred different open datasets allowing users to find valuable
       information on population, agriculture, climate, and much more.
       <br /><br />
@@ -598,7 +598,7 @@ export const en = {
       <li>Standards-based</li>
     </ul>
   `,
-  'buildingBlock.hint.description': `Each ICT Building Block page includes a description, key digital 
+  'buildingBlock.hint.description': `Each ICT Building Block page includes a description, key digital
     functionalities, sector-specific examples, example software products, and mappings to WorkFlows defined
     in this framework. The list of ICT Building Blocks, exemplar software products, and mappings is not
     exhaustive and more will be added in future releases. Please note that the software product examples
@@ -1579,5 +1579,42 @@ export const en = {
   'filter.product.dpiDefinition': `
     Digital Public Infrastructure (DPI), refers to solutions and systems that enable the effective
     provision of essential society-wide functions and services in the public and private sectors.
-  `
+  `,
+
+  'filter.entity.opportunities': 'Opportunities',
+  'opportunity.label': 'Opportunity',
+  'opportunity.header': 'Opportunities',
+
+  'opportunity.name': 'Name',
+  'opportunity.webAddress': 'Web Address',
+  'opportunity.imageFile': 'Logo',
+  'opportunity.openingDate': 'Opening Date',
+  'opportunity.contact': 'Contact Information',
+  'opportunity.contactName': 'Full Name',
+  'opportunity.contactEmail': 'Email Address',
+  'opportunity.opportunityType': 'Opportunity Type',
+  'opportunity.opportunityStatus': 'Opportunity Status',
+  'opportunity.openingDate': 'Opening Date',
+  'opportunity.closingDate': 'Closing Date',
+  'opportunity.description': 'Description',
+  'filter.opportunity.showClosed': 'Show closed opportunities',
+
+  'opportunity.type.bid': 'Bid',
+  'opportunity.type.innovation': 'Innovation',
+  'opportunity.type.other': 'Other',
+  'opportunity.type.tender': 'Tender',
+  'opportunity.type.buildingBlock': 'Building Block',
+
+  'opportunity.status.open': 'Open',
+  'opportunity.status.closed': 'Closed',
+  'opportunity.status.upcoming': 'Upcoming',
+
+  'opportunity.submit.success': 'Opportunity data saved.',
+  'opportunity.submit.failed': 'Fail to save opportunity data saved.',
+
+  'opportunity.no-building-block': 'No building block assigned.',
+  'opportunity.no-country': 'No country assigned.',
+  'opportunity.no-organization': 'No organization assigned.',
+  'opportunity.no-sector': 'No sector assigned.',
+  'opportunity.no-use-case': 'No use case assigned.'
 }

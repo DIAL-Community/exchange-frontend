@@ -74,7 +74,7 @@ const SearchFilter = ({
 
     const reactEditPaths = [
       'playbooks', 'plays', 'organizations', 'products', 'datasets', 'use_cases', 'building_blocks', 'workflows',
-      'countries', 'rubric_categories'
+      'countries', 'rubric_categories', 'opportunities'
     ]
     if (user.canEdit && reactEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails

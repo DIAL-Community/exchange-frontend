@@ -1,18 +1,12 @@
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
-import { useQuery } from '@apollo/client'
 import Select from '../shared/Select'
 import Pill from '../shared/Pill'
 import Checkbox from '../shared/Checkbox'
-import { WIZARD_USE_CASES_FOR_SECTOR } from '../../queries/wizard'
 
 export const WizardStage1 = ({ wizardData, allValues, setAllValues }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const { data } = useQuery(WIZARD_USE_CASES_FOR_SECTOR, {
-    variables: { sectorsSlugs: allValues?.sectors?.map((sector) => sector.slug) } }
-  )
 
   const addSector = (sector) =>
     setAllValues(prevValues => ({
@@ -58,10 +52,7 @@ export const WizardStage1 = ({ wizardData, allValues, setAllValues }) => {
         </div>
         <Select
           className='mt-auto'
-          options={
-            data?.useCasesForSector?.map((useCase) =>
-              ({ value: useCase.name, label: useCase.name }))
-          }
+          options={wizardData.useCases}
           value={
             allValues.useCase &&
             { value: allValues.useCase, label: allValues.useCase }

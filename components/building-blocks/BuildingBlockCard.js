@@ -114,7 +114,6 @@ const BuildingBlockCard = ({ buildingBlock, listType, newTab = false }) => {
                         <Image
                           layout='fill'
                           objectFit='scale-down'
-                          objectPosition='left'
                           alt={format('image.alt.logoFor', { name: buildingBlock.name })}
                           src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
                         />

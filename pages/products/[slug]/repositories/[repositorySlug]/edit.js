@@ -60,7 +60,7 @@ const PageDefinition = ({ slug, repositorySlug }) => {
   const { data, loading, error } = useQuery(REPOSITORY_QUERY, { variables: { slug: repositorySlug } })
 
   const { isAdminUser, loadingUserSession } = useUser()
-  const { isProductOwner } = useProductOwnerUser(data?.product, [], loadingUserSession || isAdminUser)
+  const { isProductOwner } = useProductOwnerUser(data?.productRepository?.product, [], isAdminUser)
 
   const isAuthorized = isAdminUser || isProductOwner
 

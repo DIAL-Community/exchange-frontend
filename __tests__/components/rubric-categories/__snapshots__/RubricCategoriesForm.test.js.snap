@@ -40,7 +40,7 @@ exports[`Unit tests for RubricCategoryForm component. Should display toast on su
                 Rubric Category submission failed
               </span>
               <span>
-                undefined
+                Error message not found.
               </span>
             </div>
           </div>
