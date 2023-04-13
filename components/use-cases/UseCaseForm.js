@@ -89,7 +89,8 @@ const UseCaseForm = React.memo(({ useCase }) => {
     defaultValues: {
       name: useCase?.name,
       maturity: maturityOptions.find(({ value }) => value === useCase?.maturity),
-      description: useCase?.useCaseDescription?.description
+      description: useCase?.useCaseDescription?.description,
+      markdownUrl: useCase?.markdownUrl
     }
   })
 
@@ -115,13 +116,14 @@ const UseCaseForm = React.memo(({ useCase }) => {
     if (user) {
       setMutating(true)
       const { userEmail, userToken } = user
-      const { name, sector, maturity, imageFile, description } = data
+      const { name, sector, maturity, imageFile, description, markdownUrl } = data
       const variables = {
         name,
         slug,
         sectorSlug: sector.slug,
         maturity: maturity.value,
-        description
+        description,
+        markdownUrl
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -216,6 +218,16 @@ const UseCaseForm = React.memo(({ useCase }) => {
                         )}
                       />
                       {errors.maturity && <ValidationError value={errors.maturity?.message} />}
+                    </div>
+                    <div className='flex flex-col gap-y-2 mb-2'>
+                      <label className='text-dial-sapphire' htmlFor='markdownUrl'>
+                        {format('useCase.markdownUrl')}
+                      </label>
+                      <Input
+                        {...register('markdownUrl')}
+                        id='markdownUrl'
+                        placeholder={format('useCase.markdownUrl')}
+                      />
                     </div>
                     <div className='flex flex-col gap-y-2 mb-2'>
                       <label className='text-dial-sapphire'>

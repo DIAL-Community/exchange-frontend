@@ -7,6 +7,7 @@ export const USE_CASE_QUERY = gql`
       name
       slug
       maturity
+      markdownUrl
       sector {
         slug
         name
