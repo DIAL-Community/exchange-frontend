@@ -316,6 +316,24 @@ exports[`Unit tests for UseCaseForm component. Should display failure toast on s
                 >
                   <label
                     class="text-dial-sapphire"
+                    for="markdownUrl"
+                  >
+                    Markdown URL
+                  </label>
+                  <input
+                    class="w-full"
+                    id="markdownUrl"
+                    name="markdownUrl"
+                    placeholder="Markdown URL"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                >
+                  <label
+                    class="text-dial-sapphire"
                   >
                     Logo
                   </label>
@@ -738,6 +756,24 @@ exports[`Unit tests for UseCaseForm component. Should display success toast on s
                 >
                   <label
                     class="text-dial-sapphire"
+                    for="markdownUrl"
+                  >
+                    Markdown URL
+                  </label>
+                  <input
+                    class="w-full"
+                    id="markdownUrl"
+                    name="markdownUrl"
+                    placeholder="Markdown URL"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                >
+                  <label
+                    class="text-dial-sapphire"
                   >
                     Logo
                   </label>
@@ -1139,6 +1175,24 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                       </div>
                     </div>
                   </div>
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                >
+                  <label
+                    class="text-dial-sapphire"
+                    for="markdownUrl"
+                  >
+                    Markdown URL
+                  </label>
+                  <input
+                    class="w-full"
+                    id="markdownUrl"
+                    name="markdownUrl"
+                    placeholder="Markdown URL"
+                    type="text"
+                    value=""
+                  />
                 </div>
                 <div
                   class="flex flex-col gap-y-2 mb-2"
@@ -1564,6 +1618,24 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                 >
                   <label
                     class="text-dial-sapphire"
+                    for="markdownUrl"
+                  >
+                    Markdown URL
+                  </label>
+                  <input
+                    class="w-full"
+                    id="markdownUrl"
+                    name="markdownUrl"
+                    placeholder="Markdown URL"
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                >
+                  <label
+                    class="text-dial-sapphire"
                   >
                     Logo
                   </label>
@@ -1948,6 +2020,24 @@ exports[`Unit tests for UseCaseForm component. Should show validation errors for
                   >
                     This field is required
                   </p>
+                </div>
+                <div
+                  class="flex flex-col gap-y-2 mb-2"
+                >
+                  <label
+                    class="text-dial-sapphire"
+                    for="markdownUrl"
+                  >
+                    Markdown URL
+                  </label>
+                  <input
+                    class="w-full"
+                    id="markdownUrl"
+                    name="markdownUrl"
+                    placeholder="Markdown URL"
+                    type="text"
+                    value=""
+                  />
                 </div>
                 <div
                   class="flex flex-col gap-y-2 mb-2"

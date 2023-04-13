@@ -2,6 +2,7 @@ export const useCase = {
   id: 1,
   name: 'Test Use Case',
   slug: 'test_use_case',
+  markdownUrl: 'Some-Markdown-URL',
   sector: {
     id: 1,
     name: 'Test Sector',
