@@ -258,7 +258,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
             >
               <a
                 class="mx-6 font-semibold"
-                href="https://docs.osc.dial.community/projects/product-registry/en/latest/"
+                href="https://docs.dial.community/projects/product-registry/en/latest/"
                 rel="noreferrer"
                 target="_blank"
               >
@@ -1575,7 +1575,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
             >
               <a
                 class="mx-6 font-semibold"
-                href="https://docs.osc.dial.community/projects/product-registry/en/latest/"
+                href="https://docs.dial.community/projects/product-registry/en/latest/"
                 rel="noreferrer"
                 target="_blank"
               >

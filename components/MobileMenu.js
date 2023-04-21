@@ -337,7 +337,7 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
             <li className='py-4'>
               <a
                 className='mx-6 font-semibold'
-                href={`https://docs.osc.dial.community/projects/product-registry/${locale}/latest/`}
+                href={`https://docs.dial.community/projects/product-registry/${locale}/latest/`}
                 target='_blank' rel='noreferrer'
               >
                 {format('header.help')}

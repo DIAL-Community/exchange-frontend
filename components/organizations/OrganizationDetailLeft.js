@@ -205,7 +205,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
         <div className='flex flex-row gap-3'>
           <a
             className='text-dial-sunshine block mt-2'
-            href={`https://docs.osc.dial.community/projects/product-registry/${locale}/latest/org_owner.html`}
+            href={`https://docs.dial.community/projects/product-registry/${locale}/latest/org_owner.html`}
             target='_blank' rel='noreferrer'
           >
             {format('organization.owner-link')}

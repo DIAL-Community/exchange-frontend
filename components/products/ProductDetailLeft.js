@@ -238,7 +238,7 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
           <a
             className='text-dial-sunshine block mt-2 border-b border-transparent hover:border-dial-sunshine'
             target='_blank' rel='noreferrer'
-            href={`https://docs.osc.dial.community/projects/product-registry/${locale}/latest/product_owner.html`}
+            href={`https://docs.dial.community/projects/product-registry/${locale}/latest/product_owner.html`}
           >
             {format('product.owner-link')}
           </a>

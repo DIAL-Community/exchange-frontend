@@ -176,7 +176,7 @@ export const pt = {
   "product.no-interop": "Não dispomos de qualquer informação de Interoperabilidade para este Produto.",
   "product.no-include": "Não dispomos de qualquer informação de Inclui para este Produto.",
   "product.maturity-scores": "Classificações de maturidade dos produtos",
-  "product.maturity-desc": "Estas classificações de maturidade foram obtidas de organizações como a Digital Square e o DIAL Open Source Center. Estas notas de maturidade não são uma aprovação, mas um reflexo das classificações dadas por várias organizações. Para mais informações, visite a <a href='https://docs.osc.dial.community/projects/product-registry/en/latest/maturity.html' target='_blank'>Documentação do Catálogo</a>",
+  "product.maturity-desc": "Estas classificações de maturidade foram obtidas de organizações como a Digital Square e o DIAL Open Source Center. Estas notas de maturidade não são uma aprovação, mas um reflexo das classificações dadas por várias organizações. Para mais informações, visite a <a href='https://docs.dial.community/projects/product-registry/en/latest/maturity.html' target='_blank'>Documentação do Catálogo</a>",
   "product.no-maturity": "Não dispomos de nenhuma informação de Maturidade para este Produto.",
   "product.overall-score": "Classificação de maturidade global",
   "product.category-score": "Classificação de categoria",
