@@ -41,7 +41,7 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
           <div className={DEFAULT_DROPDOWN_PANEL_STYLES} ref={helpPopover} role='menu'>
             <a
               className={DEFAULT_DROPDOWN_MENU_STYLES}
-              href={`https://docs.osc.dial.community/projects/product-registry/${locale}/latest/`}
+              href={`https://docs.dial.community/projects/product-registry/${locale}/latest/`}
               target='_blank' rel='noreferrer'
             >
               {format('header.documentation')}

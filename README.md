@@ -14,7 +14,7 @@ Note that this repository contains the code for the front-end for the Catalog. I
 Catalog back-end/API, which can be referenced at: https://gitlab.com/dial/online-catalog/product-registry/-/tree/development
 
 ## Documentation
-Complete documentation is available (including detailed installation and configuration instructions) at [DIAL Online Catalog Documentation](https://docs.osc.dial.community/projects/product-registry/en/latest/)
+Complete documentation is available (including detailed installation and configuration instructions) at [DIAL Online Catalog Documentation](https://docs.dial.community/projects/product-registry/en/latest/)
 
 Please also reference the [Wiki page for the Catalog](https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/overview?homepageId=33072), which contains information about upcoming feature development, releases, and additional documentation.
 

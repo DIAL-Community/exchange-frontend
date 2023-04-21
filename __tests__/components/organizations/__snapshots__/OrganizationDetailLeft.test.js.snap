@@ -115,7 +115,7 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
     >
       <a
         class="text-dial-sunshine block mt-2"
-        href="https://docs.osc.dial.community/projects/product-registry/en/latest/org_owner.html"
+        href="https://docs.dial.community/projects/product-registry/en/latest/org_owner.html"
         rel="noreferrer"
         target="_blank"
       >
@@ -287,7 +287,7 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
     >
       <a
         class="text-dial-sunshine block mt-2"
-        href="https://docs.osc.dial.community/projects/product-registry/en/latest/org_owner.html"
+        href="https://docs.dial.community/projects/product-registry/en/latest/org_owner.html"
         rel="noreferrer"
         target="_blank"
       >
@@ -413,7 +413,7 @@ exports[`Unit tests for the OrganizationDetailLeft component. Should match snaps
     >
       <a
         class="text-dial-sunshine block mt-2"
-        href="https://docs.osc.dial.community/projects/product-registry/en/latest/org_owner.html"
+        href="https://docs.dial.community/projects/product-registry/en/latest/org_owner.html"
         rel="noreferrer"
         target="_blank"
       >
