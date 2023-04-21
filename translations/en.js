@@ -575,6 +575,7 @@ export const en = {
   'useCase.sector': 'Sector',
   'useCase.maturity': 'Maturity',
   'useCase.imageFile': 'Logo',
+  'useCase.markdownUrl': 'Markdown URL',
   'useCase.submit.success': 'Use Case submitted successfully',
   'useCase.submit.failure': 'Use Case submission failed',
 

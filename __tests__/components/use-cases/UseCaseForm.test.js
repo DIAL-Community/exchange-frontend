@@ -23,7 +23,8 @@ describe('Unit tests for UseCaseForm component.', () => {
     slug: 'test_use_case',
     sectorSlug: 'test_sector',
     maturity: 'DRAFT',
-    description: 'Test Use Case Description'
+    description: 'Test Use Case Description',
+    markdownUrl: 'Some-Markdown-URL'
   }
 
   test('Should render Unauthorized component for unauthorized user.', async () => {

@@ -64,6 +64,7 @@ export const CREATE_USE_CASE = gql`
     $maturity: String!
     $imageFile: Upload
     $description: String!
+    $markdownUrl: String
   ) {
     createUseCase(
       name: $name
@@ -72,6 +73,7 @@ export const CREATE_USE_CASE = gql`
       maturity: $maturity
       imageFile: $imageFile
       description: $description
+      markdownUrl: $markdownUrl
     ) {
       useCase {
         id
@@ -96,7 +98,7 @@ export const UPDATE_USE_CASE_TAGS = gql`
         tags
       }
       errors
-    }  
+    }
   }
 `
 
