@@ -51,11 +51,11 @@ export const UPDATE_USE_CASE_STEP_DATASETS = gql`
 export const UPDATE_USE_CASE_STEP_PRODUCTS = gql`
   mutation UpdateUseCaseStepProducts(
     $slug: String!,
-    $productsSlugs: [String!]!
+    $productSlugs: [String!]!
   ) {
     updateUseCaseStepProducts(
       slug: $slug,
-      productsSlugs: $productsSlugs
+      productSlugs: $productSlugs
     ) {
       useCaseStep {
         id
@@ -73,11 +73,11 @@ export const UPDATE_USE_CASE_STEP_PRODUCTS = gql`
 
 export const UPDATE_USE_CASE_STEP_BUILDING_BLOCKS = gql`
   mutation UpdateUseCaseStepBuildingBlocks (
-    $buildingBlocksSlugs: [String!]!
+    $buildingBlockSlugs: [String!]!
     $slug: String!
   ) {
     updateUseCaseStepBuildingBlocks (
-      buildingBlocksSlugs: $buildingBlocksSlugs
+      buildingBlockSlugs: $buildingBlockSlugs
       slug: $slug
     ) {
       useCaseStep {

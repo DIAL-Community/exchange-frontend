@@ -30,7 +30,7 @@ export const PLAYBOOK_QUERY = gql`
         id
         playSlug
         playName
-        order
+        playOrder
       }
       plays {
         id

@@ -46,12 +46,12 @@ export const CREATE_PRODUCT = gql`
 export const UPDATE_PRODUCT_BUILDING_BLOCKS = gql`
   mutation UpdateProductBuildingBlocks(
     $slug: String!
-    $buildingBlocksSlugs: [String!]!
+    $buildingBlockSlugs: [String!]!
     $mappingStatus: String
   ) {
     updateProductBuildingBlocks(
       slug: $slug
-      buildingBlocksSlugs: $buildingBlocksSlugs
+      buildingBlockSlugs: $buildingBlockSlugs
       mappingStatus: $mappingStatus
     ) {
       product {
@@ -159,7 +159,7 @@ export const UPDATE_PRODUCT_TAGS = gql`
         tags
       }
       errors
-    }  
+    }
   }
 `
 
@@ -185,7 +185,7 @@ export const UPDATE_PRODUCT_SDGS = gql`
         sustainableDevelopmentGoalsMappingStatus
       }
       errors
-    }  
+    }
   }
 `
 
@@ -232,7 +232,7 @@ const generateProductRepositoryMutation = (mutationName) => `
       absoluteUrl: $absoluteUrl
       description: $description
       mainRepository: $mainRepository
-    ) { 
+    ) {
       slug
     }
   }
@@ -257,7 +257,7 @@ export const UPDATE_PRODUCT_CATEGORY_INDICATORS = gql`
         maturityScoreDetails
       }
       errors
-    }  
+    }
   }
 `
 

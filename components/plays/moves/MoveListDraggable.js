@@ -1,10 +1,8 @@
 import { useRef, useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
-import { useMutation } from '@apollo/client'
 import { useDrag, useDrop } from 'react-dnd'
 import update from 'immutability-helper'
 import parse from 'html-react-parser'
-import { UPDATE_MOVE_ORDER } from '../../../mutations/move'
 import { MovePreviewDispatchContext } from './MovePreviewContext'
 import { MoveListContext, MoveListDispatchContext } from './MoveListContext'
 
@@ -136,24 +134,12 @@ const MoveListDraggable = ({ playbook, play }) => {
   const { setCurrentMoves } = useContext(MoveListDispatchContext)
   const { setPreviewSlug, setPreviewContext, setPreviewDisplayed } = useContext(MovePreviewDispatchContext)
 
-  const [updateMoveOrder] = useMutation(UPDATE_MOVE_ORDER)
-
   const unassignMove = useCallback((move) => {
     // Mark move as un-assigned. This will trigger deletion from the context component.
-    setCurrentMoves(currentMoves.filter(
+    setCurrentMoves((currentMoves) => currentMoves.filter(
       currentMove => currentMove.slug !== move.slug)
     )
-    if (move) {
-      updateMoveOrder({
-        variables: {
-          playSlug: play.slug,
-          moveSlug: move.slug,
-          operation: 'UNASSIGN',
-          distance: 0
-        }
-      })
-    }
-  }, [currentMoves, setCurrentMoves, play, updateMoveOrder])
+  }, [setCurrentMoves])
 
   const previewMove = useCallback((move) => {
     setPreviewDisplayed(true)
@@ -162,23 +148,13 @@ const MoveListDraggable = ({ playbook, play }) => {
   }, [play, playbook, setPreviewContext, setPreviewSlug, setPreviewDisplayed])
 
   const swapMove = useCallback((dragIndex, hoverIndex) => {
-    setCurrentMoves((prevCards) => update(prevCards, {
+    setCurrentMoves((currentMoves) => update(currentMoves, {
       $splice: [
         [dragIndex, 1],
-        [hoverIndex, 0, prevCards[dragIndex]]
+        [hoverIndex, 0, currentMoves[dragIndex]]
       ]
     }))
-    if (play && dragIndex >= 0 && hoverIndex >= 0) {
-      updateMoveOrder({
-        variables: {
-          playSlug: play.slug,
-          moveSlug: currentMoves[dragIndex].slug,
-          operation: 'SWAP',
-          distance: hoverIndex - dragIndex
-        }
-      })
-    }
-  }, [currentMoves, setCurrentMoves, play, updateMoveOrder])
+  }, [setCurrentMoves])
 
   const renderCard = useCallback((move, index) => (
     <div key={index}>

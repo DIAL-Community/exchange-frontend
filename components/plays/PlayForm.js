@@ -7,7 +7,7 @@ import { FaSpinner, FaPlusCircle } from 'react-icons/fa'
 import { HtmlEditor } from '../shared/HtmlEditor'
 import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
 import Breadcrumb from '../shared/breadcrumb'
-import { ToastContext } from '../../lib/ToastContext'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import Input from '../shared/Input'
 import ValidationError from '../shared/ValidationError'
 import { AUTOSAVE_PLAY, CREATE_PLAY } from '../../mutations/play'
@@ -18,6 +18,7 @@ import { fetchSelectOptions } from '../../queries/utils'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../queries/building-block'
 import { useUser } from '../../lib/hooks'
 import MoveListDraggable from './moves/MoveListDraggable'
+import { MoveListContext } from './moves/MoveListContext'
 
 export const PlayForm = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
@@ -29,6 +30,7 @@ export const PlayForm = ({ playbook, play }) => {
   const { locale } = router
   const { user } = useUser()
   const { showToast } = useContext(ToastContext)
+  const { currentMoves } = useContext(MoveListContext)
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -57,17 +59,19 @@ export const PlayForm = ({ playbook, play }) => {
         </div>,
         'error',
         'top-center',
-        1000
+        DEFAULT_AUTO_CLOSE_DELAY
       )
       reset()
     },
     onCompleted: (data) => {
+      setMutating(false)
+      const { createPlay: response } = data
       if (!navigateToMove) {
         showToast(
           format('play.submitted'),
           'success',
           'top-center',
-          1000,
+          DEFAULT_AUTO_CLOSE_DELAY,
           null,
           () => router.push(`/${locale}/playbooks/${playbook.slug}/edit`)
         )
@@ -76,12 +80,12 @@ export const PlayForm = ({ playbook, play }) => {
           format('play.submittedToCreateMove'),
           'success',
           'top-center',
-          1000,
+          DEFAULT_AUTO_CLOSE_DELAY,
           null,
           () => router.push(
             `/${locale}` +
             `/playbooks/${playbook.slug}` +
-            `/plays/${data.createPlay.play.slug}/moves/create`
+            `/plays/${response.play.slug}/moves/create`
           )
         )
       }
@@ -89,25 +93,21 @@ export const PlayForm = ({ playbook, play }) => {
   })
 
   const [autoSavePlay, { reset: resetAutoSave }] = useMutation(AUTOSAVE_PLAY, {
-    onError: (error) => {
+    onError: () => {
       setMutating(false)
-      showToast(
-        <div className='flex flex-col'>
-          <span>{error?.message}</span>
-        </div>,
-        'error',
-        'top-center',
-        1000
-      )
       resetAutoSave()
     },
-    onCompleted: () => {
-      setMutating(false)
-      showToast(format('play.autoSaved'), 'success', 'top-right')
+    onCompleted: (data) => {
+      const { autoSavePlay: response } = data
+      if (response.errors.length === 0 && response.play) {
+        setMutating(false)
+        setSlug(response.play.slug)
+        showToast(format('play.autoSaved'), 'success', 'top-right')
+      }
     }
   })
 
-  const [slug] = useState(play?.slug ?? '')
+  const [slug, setSlug] = useState(play?.slug ?? '')
   const [tags, setTags] = useState(play?.tags.map(tag => ({ label: tag })) ?? [])
   const [products, setProducts] = useState(
     play?.products?.map(
@@ -141,9 +141,10 @@ export const PlayForm = ({ playbook, play }) => {
         slug,
         description,
         tags: tags.map(tag => tag.label),
+        moves: currentMoves,
         playbookSlug: playbook.slug,
-        productsSlugs: products.map(({ slug }) => slug),
-        buildingBlocksSlugs: buildingBlocks.map(({ slug }) => slug)
+        productSlugs: products.map(({ slug }) => slug),
+        buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
       }
 
       createPlay({
@@ -161,39 +162,50 @@ export const PlayForm = ({ playbook, play }) => {
   useEffect(() => {
     const doAutoSave = () => {
       const { locale } = router
-      if (user) {
-        setMutating(true)
 
-        const { userEmail, userToken } = user
-        const { name, description } = watch()
-        const variables = {
-          name,
-          slug,
-          description,
-          tags: tags.map(tag => tag.label),
-          productsSlugs: products.map(({ slug }) => slug),
-          buildingBlocksSlugs: buildingBlocks.map(({ slug }) => slug)
-        }
-        autoSavePlay({
-          variables,
-          context: {
-            headers: {
-              'Accept-Language': locale,
-              Authorization: `${userEmail} ${userToken}`
-            }
-          }
-        })
+      if (!user || !watch) {
+        return
       }
+
+      setMutating(true)
+
+      const { userEmail, userToken } = user
+      const { name, description } = watch()
+      if (!name || !description) {
+        // Minimum required fields are name and description.
+        setMutating(false)
+
+        return
+      }
+
+      const variables = {
+        name,
+        slug,
+        description,
+        tags: tags.map(tag => tag.label),
+        moves: currentMoves,
+        playbookSlug: playbook.slug,
+        productSlugs: products.map(({ slug }) => slug),
+        buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
+      }
+
+      autoSavePlay({
+        variables,
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
     }
 
     const interval = setInterval(() => {
-      if (slug) {
-        doAutoSave()
-      }
+      doAutoSave()
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, slug, tags, products, buildingBlocks, router, watch, autoSavePlay])
+  }, [user, slug, tags, products, buildingBlocks, currentMoves, playbook, router, watch, autoSavePlay])
 
   const cancelForm = () => {
     setReverting(true)
@@ -204,7 +216,6 @@ export const PlayForm = ({ playbook, play }) => {
     const map = {}
 
     map[play?.slug] = play?.name
-
     map[playbook?.slug] = playbook?.name
 
     map.edit = format('app.edit')

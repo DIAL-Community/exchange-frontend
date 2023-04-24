@@ -17,7 +17,7 @@ module.exports = {
       id: 827,
       playSlug: 'd4d_understand_the_problem',
       playName: 'D4D: Understand the Problem',
-      order: 0,
+      playOrder: 0,
       __typename: 'PlaybookPlay'
     }],
     plays: [{

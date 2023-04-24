@@ -17,7 +17,7 @@ const PlaybookDetailHeader = ({ playbook }) => {
   const { currentSlug, slugHeights, slugIntersectionRatios } = useContext(PlaybookDetailContext)
   const { setDirect, setCurrentSlug } = useContext(PlaybookDetailDispatchContext)
 
-  const isPlaybookPublished = !playbook.draft
+  const isPlaybookPublished = !playbook?.draft
 
   useEffect(() => {
     playProgressNumbersRef.current = playProgressNumbersRef.current.slice(0, playbook?.playbookPlays?.length)

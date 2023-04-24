@@ -95,7 +95,7 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit }) => {
         variables: {
           slug: buildingBlock.slug,
           mappingStatus: mappingStatus.value,
-          productsSlugs: products.map(({ slug }) => slug)
+          productSlugs: products.map(({ slug }) => slug)
         },
         context: {
           headers: {

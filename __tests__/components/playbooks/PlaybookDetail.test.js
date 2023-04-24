@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react'
 import { PlaybookDetailProvider } from '../../../components/playbooks/PlaybookDetailContext'
 import { PLAYBOOK_QUERY } from '../../../queries/playbook'
 import { PLAYBOOK_PLAYS_QUERY } from '../../../components/playbooks/PlaybookDetailPlayList'
-import { MOVE_QUERY } from '../../../components/plays/PlayPreviewMove'
+import { MOVE_PREVIEW_QUERY } from '../../../queries/play'
 import PlaybookDetail from '../../../components/playbooks/PlaybookDetail'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
@@ -47,7 +47,7 @@ describe('Unit tests for playbook interaction.', () => {
     // Mock all apollo interaction
     const mockPlaybook = generateMockApolloData(PLAYBOOK_QUERY, { slug }, null, playbook)
     const mockPlays = generateMockApolloData(PLAYBOOK_PLAYS_QUERY, { first: 10, slug }, null, searchPlaysResult)
-    const mockMove = generateMockApolloData(MOVE_QUERY, { playSlug, slug: moveSlug }, null, move)
+    const mockMove = generateMockApolloData(MOVE_PREVIEW_QUERY, { playSlug, slug: moveSlug }, null, move)
     // Render the component and use screen to check them.
     const component = render(
       <CustomMockedProvider mocks={[mockPlaybook, mockPlays, mockMove]} addTypename={false}>
@@ -84,7 +84,7 @@ describe('Unit tests for playbook interaction.', () => {
     // Mock all apollo interaction
     const mockPlaybook = generateMockApolloData(PLAYBOOK_QUERY, { slug }, null, playbook)
     const mockPlays = generateMockApolloData(PLAYBOOK_PLAYS_QUERY, { first: 10, slug }, null, searchPlaysResult)
-    const mockMove = generateMockApolloData(MOVE_QUERY, { playSlug, slug: moveSlug }, null, move)
+    const mockMove = generateMockApolloData(MOVE_PREVIEW_QUERY, { playSlug, slug: moveSlug }, null, move)
     // Render the component and use screen to check them.
     const component = render(
       <CustomMockedProvider mocks={[mockPlaybook, mockPlays, mockMove]} addTypename={false}>
