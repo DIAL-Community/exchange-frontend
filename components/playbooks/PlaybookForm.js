@@ -13,7 +13,7 @@ import { PlayListContext } from '../plays/PlayListContext'
 import PlayListDraggable from '../plays/PlayListDraggable'
 import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
 import { PlayFilterContext, PlayFilterDispatchContext } from '../context/PlayFilterContext'
-import { ToastContext } from '../../lib/ToastContext'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import { SearchInput } from '../../components/shared/SearchInput'
 import Checkbox from '../shared/Checkbox'
 import Input from '../shared/Input'
@@ -150,8 +150,62 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   const [navigateToPlay, setNavigateToPlay] = useState(false)
 
   const { locale } = useRouter()
-  const [updatePlaybook, { data }] = useMutation(CREATE_PLAYBOOK)
-  const [autoSavePlaybook, { data: autoSaveData }] = useMutation(AUTOSAVE_PLAYBOOK)
+  const [updatePlaybook, { reset }] = useMutation(CREATE_PLAYBOOK, {
+    onError: (error) => {
+      setMutating(false)
+      showToast(
+        <div className='flex flex-col'>
+          <span>{error?.message}</span>
+        </div>,
+        'error',
+        'top-center',
+        DEFAULT_AUTO_CLOSE_DELAY
+      )
+      reset()
+    },
+    onCompleted: (data) => {
+      setMutating(false)
+      const { createPlaybook: response } = data
+      if (response.errors.length === 0 && response.playbook) {
+        setSlug(response.playbook.slug)
+        if (!navigateToPlay) {
+          showToast(
+            format('playbook.submitted'),
+            'success',
+            'top-center',
+            DEFAULT_AUTO_CLOSE_DELAY,
+            null,
+            () => router.push(`/${router.locale}/playbooks/${response.playbook.slug}`)
+          )
+        } else {
+          showToast(
+            format('playbook.submittedToCreatePlay'),
+            'success',
+            'top-center',
+            DEFAULT_AUTO_CLOSE_DELAY,
+            null,
+            () => router.push(`/${router.locale}/playbooks/${response.playbook.slug}/plays/create`)
+          )
+        }
+      }
+    }
+  })
+
+  const [autoSavePlaybook, { reset: resetAutoSave }] = useMutation(AUTOSAVE_PLAYBOOK, {
+    onError: () => {
+      setMutating(false)
+      resetAutoSave()
+    },
+    onCompleted: (data) => {
+      setMutating(false)
+      const { autoSavePlaybook: response } = data
+      if (response.errors.length === 0 && response.playbook) {
+        setSlug(response.playbook.slug)
+        showToast(format('playbook.autoSaved'), 'success', 'top-right')
+      }
+    }
+  })
+
   const { handleSubmit, register, control, watch, formState: { errors } } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
@@ -167,38 +221,11 @@ export const PlaybookForm = React.memo(({ playbook }) => {
   })
   const isPublished = watch(PUBLISHED_CHECKBOX_FIELD_NAME)
 
-  const [slug] = useState(playbook ? playbook.slug : '')
+  const [slug, setSlug] = useState(playbook ? playbook.slug : '')
   const [tags, setTags] = useState(playbook?.tags.map(tag => ({ label: tag, value: tag })) ?? [])
 
   const { showToast } = useContext(ToastContext)
   const { currentPlays } = useContext(PlayListContext)
-
-  const notifyAndNavigateAway = useCallback(() => {
-    if (!navigateToPlay) {
-      showToast(format('playbook.submitted'), 'success', 'top-center')
-      const navigateToPlaybook = setTimeout(() => {
-        router.push(`/${router.locale}/playbooks/${data.createPlaybook.playbook.slug}`)
-      }, 800)
-
-      return () => clearTimeout(navigateToPlaybook)
-    } else {
-      showToast(format('playbook.submittedToCreatePlay'), 'success', 'top-center')
-      const navigateToPlay = setTimeout(() => {
-        router.push(`/${router.locale}/playbooks/${data.createPlaybook.playbook.slug}/plays/create`)
-      }, 800)
-
-      return () => clearTimeout(navigateToPlay)
-    }
-  }, [data, router, format, showToast, navigateToPlay])
-
-  useEffect(() => {
-    if (data?.createPlaybook?.errors.length === 0 && data?.createPlaybook?.playbook) {
-      notifyAndNavigateAway()
-    } else if (autoSaveData?.autoSavePlaybook?.errors.length === 0 && autoSaveData?.autoSavePlaybook?.playbook) {
-      setMutating(false)
-      showToast(format('playbook.autoSaved'), 'success', 'top-right')
-    }
-  }, [data, autoSaveData, notifyAndNavigateAway, showToast, format])
 
   const doUpsert = async (data) => {
     if (user) {
@@ -236,40 +263,48 @@ export const PlaybookForm = React.memo(({ playbook }) => {
 
   useEffect(() => {
     const doAutoSave = () => {
-      if (user) {
-        // Set the loading indicator.
-        setMutating(true)
-        // Pull all needed data from session and form.
-        const { userEmail, userToken } = user
-        const { name, author, overview, audience, outcomes } = watch()
-        // Send graph query to the backend. Set the base variables needed to perform update.
-        // Auto save will not save the cover file since it could be expensive.
-        const variables = {
-          name,
-          slug,
-          author,
-          overview,
-          audience,
-          outcomes,
-          plays: currentPlays,
-          tags: tags.map(tag => tag.label)
-        }
-        autoSavePlaybook({
-          variables,
-          context: {
-            headers: {
-              'Accept-Language': locale,
-              Authorization: `${userEmail} ${userToken}`
-            }
-          }
-        })
+      if (!user || !watch) {
+        return
       }
+
+      // Set the loading indicator.
+      setMutating(true)
+      // Pull all needed data from session and form.
+      const { userEmail, userToken } = user
+      const { name, author, overview, audience, outcomes } = watch()
+
+      if (!name && !overview) {
+        // Minimum required fields are name and overview.
+        setMutating(false)
+
+        return
+      }
+
+      // Send graph query to the backend. Set the base variables needed to perform update.
+      // Auto save will not save the cover file since it could be expensive.
+      const variables = {
+        name,
+        slug,
+        author,
+        overview,
+        audience,
+        outcomes,
+        plays: currentPlays,
+        tags: tags.map(tag => tag.label)
+      }
+      autoSavePlaybook({
+        variables,
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
     }
 
     const interval = setInterval(() => {
-      if (slug) {
-        doAutoSave()
-      }
+      doAutoSave()
     }, 60000)
 
     return () => clearInterval(interval)

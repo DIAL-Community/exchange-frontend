@@ -80,7 +80,7 @@ const ProjectDetailProducts = ({ project, canEdit }) => {
       updateProjectProducts({
         variables: {
           slug: project.slug,
-          productsSlugs: products.map(({ slug }) => slug)
+          productSlugs: products.map(({ slug }) => slug)
         },
         context: {
           headers: {

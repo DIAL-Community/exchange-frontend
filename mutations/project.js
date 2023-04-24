@@ -67,7 +67,7 @@ export const UPDATE_PROJECT_TAGS = gql`
         tags
       }
       errors
-    }  
+    }
   }
 `
 
@@ -125,11 +125,11 @@ export const UPDATE_PROJECT_COUNTRIES = gql`
 export const UPDATE_PROJECT_PRODUCTS = gql`
   mutation UpdateProjectProducts(
     $slug: String!,
-    $productsSlugs: [String!]!
+    $productSlugs: [String!]!
   ) {
     updateProjectProducts(
       slug: $slug
-      productsSlugs: $productsSlugs
+      productSlugs: $productSlugs
     ) {
       project {
         id

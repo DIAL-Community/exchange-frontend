@@ -77,7 +77,7 @@ const WorkflowDetailBuildingBlocks = ({ workflow, canEdit }) => {
       updateWorkflowBuildingBlocks({
         variables: {
           slug: workflow.slug,
-          buildingBlocksSlugs: buildingBlocks.map(({ slug }) => slug)
+          buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
         },
         context: {
           headers: {

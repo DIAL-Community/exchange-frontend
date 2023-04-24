@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl'
 import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
 import { HtmlEditor } from '../../shared/HtmlEditor'
 import Breadcrumb from '../../shared/breadcrumb'
-import { ToastContext } from '../../../lib/ToastContext'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../../lib/ToastContext'
 import { useUser } from '../../../lib/hooks'
 
 const CREATE_RESOURCE = gql`
@@ -76,16 +76,29 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
 
   const { user } = useUser()
   const { locale } = useRouter()
-  const [createResource, { data }] = useMutation(CREATE_RESOURCE)
   const { showToast } = useContext(ToastContext)
 
-  useEffect(() => {
-    if (data && data.createResource.errors.length === 0 && data.createResource.move) {
+  const [createResource, { reset }] = useMutation(CREATE_RESOURCE, {
+    onCompleted: (data) => {
+      const { createResource: response } = data
+      if (response.errors.length === 0 && response.move) {
+        setEditing(false)
+        setMutating(false)
+        showToast(format('toast.products.update.success'), 'success', 'top-center')
+      } else {
+        setEditing(false)
+        setMutating(false)
+        showToast(format('resource.submitted'), 'success', 'top-center')
+        reset()
+      }
+    },
+    onError: () => {
       setEditing(false)
       setMutating(false)
       showToast(format('resource.submitted'), 'success', 'top-center')
+      reset()
     }
-  }, [data, setEditing, showToast, setMutating, format])
+  })
 
   const { handleSubmit, register } = useForm({
     mode: 'onBlur',
@@ -284,14 +297,47 @@ export const MoveForm = ({ playbook, play, move }) => {
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
 
-  const [moveSlug] = useState(move ? move.slug : '')
+  const [moveSlug, setMoveSlug] = useState(move ? move.slug : '')
   const [playSlug] = useState(play ? play.slug : move ? move.play.slug : '')
   const [resources, setResources] = useState(
     move ? move.resources.map((resource, i) => ({ ...resource, i })) : []
   )
-  const [createMove, { data }] = useMutation(CREATE_MOVE)
-  const [autoSaveMove, { data: autoSaveData }] = useMutation(AUTOSAVE_MOVE)
+
   const { showToast } = useContext(ToastContext)
+  const [createMove, { reset }] = useMutation(CREATE_MOVE, {
+    onCompleted: (data) => {
+      const { locale } = router
+      const { createMove: response } = data
+      if (response?.errors.length === 0 && response.move) {
+        setMutating(false)
+        showToast(
+          format('move.submitted'),
+          'success',
+          'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
+          null,
+          () => router.push(`/${locale}/playbooks/${playbook.slug}/plays/${play.slug}/edit`)
+        )
+      } else {
+        reset()
+      }
+    }
+  })
+
+  const [autoSaveMove, { reset: resetAutoSave }] = useMutation(AUTOSAVE_MOVE, {
+    onError: () => {
+      setMutating(false)
+      resetAutoSave()
+    },
+    onCompleted: (data) => {
+      const { autoSaveMove: response } = data
+      if (response.errors.length === 0 && response.move) {
+        setMutating(false)
+        setMoveSlug(response.move.slug)
+        showToast(format('move.autoSaved'), 'success', 'top-right')
+      }
+    }
+  })
 
   const { handleSubmit, register, control, watch } = useForm({
     mode: 'onBlur',
@@ -312,9 +358,9 @@ export const MoveForm = ({ playbook, play, move }) => {
 
       createMove({
         variables: {
+          name,
           moveSlug,
           playSlug,
-          name,
           description,
           resources
         },
@@ -350,54 +396,47 @@ export const MoveForm = ({ playbook, play, move }) => {
   })()
 
   useEffect(() => {
-    const { locale } = router
-    if (data && data.createMove.errors.length === 0 && data.createMove.move) {
-      setMutating(false)
-      showToast(format('move.submitted'), 'success', 'top-center')
-      const navigateToPlay = setTimeout(() => {
-        router.push(`/${locale}/playbooks/${playbook.slug}/plays/${play.slug}/edit`)
-      }, 2000)
-
-      return () => clearTimeout(navigateToPlay)
-    } else if (autoSaveData?.autoSaveMove?.errors.length === 0 && autoSaveData?.autoSaveMove?.move) {
-      setMutating(false)
-      showToast(format('move.autoSaved'), 'success', 'top-right')
-    }
-  }, [data, autoSaveData, play, playbook, router, showToast, format])
-
-  useEffect(() => {
     const doAutoSave = () => {
       const { locale } = router
-      if (user) {
-        // Set the loading indicator.
-        setMutating(true)
-        // Pull all needed data from session and form.
-        const { userEmail, userToken } = user
-        const { name, description } = watch()
-        // Send graph query to the backend. Set the base variables needed to perform update.
-        const variables = {
-          moveSlug,
-          playSlug,
-          name,
-          description,
-          resources
-        }
-        autoSaveMove({
-          variables,
-          context: {
-            headers: {
-              'Accept-Language': locale,
-              Authorization: `${userEmail} ${userToken}`
-            }
-          }
-        })
+
+      if (!user || !watch) {
+        return
       }
+
+      // Set the loading indicator.
+      setMutating(true)
+      // Pull all needed data from session and form.
+      const { userEmail, userToken } = user
+      const { name, description } = watch()
+      if (!name || !description) {
+        // Minimum required fields are name and description.
+        setMutating(false)
+
+        return
+      }
+
+      // Send graph query to the backend. Set the base variables needed to perform update.
+      const variables = {
+        name,
+        moveSlug,
+        playSlug,
+        description,
+        resources
+      }
+
+      autoSaveMove({
+        variables,
+        context: {
+          headers: {
+            'Accept-Language': locale,
+            Authorization: `${userEmail} ${userToken}`
+          }
+        }
+      })
     }
 
     const interval = setInterval(() => {
-      if (moveSlug) {
-        doAutoSave()
-      }
+      doAutoSave()
     }, 60000)
 
     return () => clearInterval(interval)

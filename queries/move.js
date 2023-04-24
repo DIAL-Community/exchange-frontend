@@ -44,3 +44,17 @@ export const PLAY_QUERY = gql`
     }
   }
 `
+
+export const MOVE_PREVIEW_QUERY = gql`
+  query Move($playSlug: String!, $slug: String!) {
+    move(playSlug: $playSlug, slug: $slug) {
+      id
+      slug
+      name
+      resources
+      moveDescription {
+        description
+      }
+    }
+  }
+`

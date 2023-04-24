@@ -53,12 +53,12 @@ export const UPDATE_BUILDING_BLOCK_PRODUCTS = gql`
  mutation UpdateBuildingBlockProducts(
     $slug: String!
     $mappingStatus: String!
-    $productsSlugs: [String!]!
+    $productSlugs: [String!]!
   ) {
     updateBuildingBlockProducts(
       slug: $slug
       mappingStatus: $mappingStatus
-      productsSlugs: $productsSlugs
+      productSlugs: $productSlugs
     ) {
       buildingBlock {
         slug

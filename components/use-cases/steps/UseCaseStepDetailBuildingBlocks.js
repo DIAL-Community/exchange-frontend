@@ -85,7 +85,7 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
       updateUseCaseStepBuildingBlocks({
         variables: {
           slug: useCaseStep.slug,
-          buildingBlocksSlugs: buildingBlocks.map(({ slug }) => slug)
+          buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
         },
         context: {
           headers: {
