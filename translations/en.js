@@ -98,6 +98,7 @@ export const en = {
   'header.admin.deploys': 'Deploys',
   'header.admin.portal_views': 'Portal Views',
   'header.admin.maturity_rubrics': 'Maturity Rubrics',
+  'header.newsletter': 'Join Our Newsletter',
 
   'footer.text.firstLine': `
     The Digital Impact Alliance is a partnership amongst some of the world’s most active
