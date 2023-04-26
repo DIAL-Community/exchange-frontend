@@ -42,7 +42,9 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
             <a
               className={DEFAULT_DROPDOWN_MENU_STYLES}
               href={`https://docs.dial.community/projects/product-registry/${locale}/latest/`}
-              target='_blank' rel='noreferrer'
+              target='_blank'
+              rel='noreferrer'
+              role='menuitem'
             >
               {format('header.documentation')}
             </a>
