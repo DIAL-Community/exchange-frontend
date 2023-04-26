@@ -74,7 +74,7 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
       updateUseCaseStepProducts({
         variables: {
           slug: useCaseStep.slug,
-          productsSlugs: products.map(({ slug }) => slug)
+          productSlugs: products.map(({ slug }) => slug)
         },
         context: {
           headers: {

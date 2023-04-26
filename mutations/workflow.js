@@ -2,11 +2,11 @@ import { gql } from '@apollo/client'
 
 export const UPDATE_WORKFLOW_BUILDING_BLOCKS = gql`
   mutation UpdateWorkflowBuildingBlocks (
-    $buildingBlocksSlugs: [String!]!
+    $buildingBlockSlugs: [String!]!
     $slug: String!
   ) {
     updateWorkflowBuildingBlocks (
-      buildingBlocksSlugs: $buildingBlocksSlugs
+      buildingBlockSlugs: $buildingBlockSlugs
       slug: $slug
     ) {
       workflow {

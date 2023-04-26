@@ -176,7 +176,7 @@
   "product.no-interop": "No disponemos de información de interoperabilidad para este producto.",
   "product.no-include": "No disponemos de información incluida para este producto.",
   "product.maturity-scores": "Puntuaciones de madurez del producto",
-  "product.maturity-desc": "Estas puntuaciones de madurez proceden de organizaciones como Digital Square y DIAL Open Source Center. Estas puntuaciones de madurez no constituyen un aval, sino un reflejo de las calificaciones que otorgan diversas organizaciones. Para obtener más información, visite la <a href='https://docs.osc.dial.community/projects/product-registry/en/latest/maturity.html' target='_blank'>Documentación del catálogo</a>",
+  "product.maturity-desc": "Estas puntuaciones de madurez proceden de organizaciones como Digital Square y DIAL Open Source Center. Estas puntuaciones de madurez no constituyen un aval, sino un reflejo de las calificaciones que otorgan diversas organizaciones. Para obtener más información, visite la <a href='https://docs.dial.community/projects/product-registry/en/latest/maturity.html' target='_blank'>Documentación del catálogo</a>",
   "product.no-maturity": "No tenemos información sobre la madurez de este producto.",
   "product.overall-score": "Valoración global de la madurez",
   "product.category-score": "Valoración de la categoría",

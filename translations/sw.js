@@ -176,7 +176,7 @@ export const sw = {
   "product.no-interop": "Hatuna maelezo yoyote ya Kuingiliana kwa Bidhaa hii.",
   "product.no-include": "Hatuna maelezo yoyote ya Ziada kwa Bidhaa hii.",
   "product.maturity-scores": "Uuzaji wa bidhaa",
-  "product.maturity-desc": "Alama hizi za kuwa tayari zimetolewa kutoka kwa mashirika kama vile Digital Square na DIAL Open Source Center. Alama hizi za kuwa tayari si uidhinishaji, bali ni onyesho la ukadiriaji unaotolewa na mashirika mbalimbali. Kwa taarifa zaidi tembelea <a href='https://docs.osc.dial.community/projects/product-registry/en/latest/maturity.html' target='_blank'>Hati ya Katalogi</a>",
+  "product.maturity-desc": "Alama hizi za kuwa tayari zimetolewa kutoka kwa mashirika kama vile Digital Square na DIAL Open Source Center. Alama hizi za kuwa tayari si uidhinishaji, bali ni onyesho la ukadiriaji unaotolewa na mashirika mbalimbali. Kwa taarifa zaidi tembelea <a href='https://docs.dial.community/projects/product-registry/en/latest/maturity.html' target='_blank'>Hati ya Katalogi</a>",
   "product.no-maturity": "Hatuna maelezo yoyote ya Ukomavu kwa Bidhaa hii.",
   "product.overall-score": "Uuuzaji wa jumla",
   "product.category-score": "Alama ya kitengo",

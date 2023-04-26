@@ -1,5 +1,5 @@
 import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
-import { gql, useLazyQuery } from '@apollo/client'
+import { useLazyQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
@@ -7,21 +7,8 @@ import { HiExternalLink } from 'react-icons/hi'
 import { Dialog, Transition } from '@headlessui/react'
 import { FaSpinner } from 'react-icons/fa'
 import { HtmlViewer } from '../../shared/HtmlViewer'
+import { MOVE_PREVIEW_QUERY } from '../../../queries/move'
 import { MovePreviewContext, MovePreviewDispatchContext } from './MovePreviewContext'
-
-const MOVE_QUERY = gql`
-  query Move($playSlug: String!, $slug: String!) {
-    move(playSlug: $playSlug, slug: $slug) {
-      id
-      slug
-      name
-      resources
-      moveDescription {
-        description
-      }
-    }
-  }
-`
 
 const MovePreview = () => {
   const router = useRouter()
@@ -37,7 +24,7 @@ const MovePreview = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const [fetchPlayDetail, { data }] = useLazyQuery(MOVE_QUERY, {
+  const [fetchPlayDetail, { data }] = useLazyQuery(MOVE_PREVIEW_QUERY, {
     variables: {
       slug: previewSlug,
       playSlug

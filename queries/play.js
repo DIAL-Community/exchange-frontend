@@ -36,6 +36,32 @@ export const PLAYS_QUERY = gql`
   }
 `
 
+export const PLAYBOOK_QUERY = gql`
+  query Playbook($playbookSlug: String!) {
+    playbook(slug: $playbookSlug) {
+      id
+      name
+      slug
+    }
+  }
+`
+
+export const MOVE_PREVIEW_QUERY = gql`
+  query Move($playSlug: String!, $slug: String!) {
+    move(playSlug: $playSlug, slug: $slug) {
+      id
+      slug
+      name
+      resources
+      moveOrder
+      moveDescription {
+        id
+        description
+      }
+    }
+  }
+`
+
 export const PLAY_QUERY = gql`
   query Play($playbookSlug: String!, $playSlug: String!) {
     play(slug: $playSlug) {

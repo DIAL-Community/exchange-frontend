@@ -176,7 +176,7 @@ export const de = {
   "product.no-interop": "Wir haben keine Interoperabilitätsinformationen für dieses Produkt.",
   "product.no-include": "Für dieses Produkt liegen uns keine Informationen darüber vor, was es beinhaltet.",
   "product.maturity-scores": "Produktreife-Score",
-  "product.maturity-desc": "Diese Produktreife-Scores stammen von Organisationen wie Digital Square und DIAL Open Source Center. Diese Produktreife-Scores stellen keine Empfehlung dar, sondern spiegeln die Einschätzungen durch diverse Organisationen wider. Weitere Informationen finden Sie in der <a href='https://docs.osc.dial.community/projects/product-registry/en/latest/maturity.html' target='_blank'>Katalogdokumentation</a>",
+  "product.maturity-desc": "Diese Produktreife-Scores stammen von Organisationen wie Digital Square und DIAL Open Source Center. Diese Produktreife-Scores stellen keine Empfehlung dar, sondern spiegeln die Einschätzungen durch diverse Organisationen wider. Weitere Informationen finden Sie in der <a href='https://docs.dial.community/projects/product-registry/en/latest/maturity.html' target='_blank'>Katalogdokumentation</a>",
   "product.no-maturity": "Für dieses Produkt liegen uns keine Informationen zur Laufzeit vor.",
   "product.overall-score": "Gesamter Reife-Score",
   "product.category-score": "Kategorie-Score",

@@ -2,26 +2,11 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { HiExternalLink } from 'react-icons/hi'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { HtmlViewer } from '../shared/HtmlViewer'
-
-export const MOVE_QUERY = gql`
-  query Move($playSlug: String!, $slug: String!) {
-    move(playSlug: $playSlug, slug: $slug) {
-      id
-      slug
-      name
-      resources
-      order
-      moveDescription {
-        id
-        description
-      }
-    }
-  }
-`
+import { MOVE_PREVIEW_QUERY } from '../../queries/play'
 
 const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
   const { formatMessage } = useIntl()
@@ -34,7 +19,7 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
 
   const { locale } = useRouter()
 
-  const { data } = useQuery(MOVE_QUERY, {
+  const { data } = useQuery(MOVE_PREVIEW_QUERY, {
     variables: { playSlug, slug: moveSlug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !moveSlug
