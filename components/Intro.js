@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 import dynamic from 'next/dynamic'
 
 const Steps = dynamic(() => import('intro.js-react').then(mod => mod.Steps), { ssr: false })
@@ -27,7 +27,7 @@ const Intro = ({ enabled, steps, startIndex, endIndex, previousPath, nextPath, c
   }
 
   const onExitHandler = () => {
-    cookie.save(completedKey, true)
+    Cookies.set(completedKey, true)
   }
 
   return (

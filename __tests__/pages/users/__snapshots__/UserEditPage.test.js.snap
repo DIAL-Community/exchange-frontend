@@ -274,9 +274,9 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
             >
               <a
                 class="xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer border-b-2 border-transparent hover:border-dial-sunshine"
-                href="startOverviewTour"
+                href="/opportunities"
               >
-                Getting Started
+                Opportunities
               </a>
             </li>
             <li
@@ -1591,9 +1591,9 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
             >
               <a
                 class="xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer border-b-2 border-transparent hover:border-dial-sunshine"
-                href="startOverviewTour"
+                href="/opportunities"
               >
-                Getting Started
+                Opportunities
               </a>
             </li>
             <li
