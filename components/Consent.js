@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useCookieConsentContext } from '@use-cookie-consent/react'
 import { useState } from 'react'
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 
 const Consent = () => {
   const { formatMessage } = useIntl()
@@ -41,9 +41,9 @@ const Consent = () => {
     })
     if (!statistics) {
       // Disable Google Analytics if they do not accept statistics
-      cookie.remove('_ga', { path: '/' })
-      cookie.remove(`_ga_${process.env.NEXT_PUBLIC_GOOGLE_ANALYTIC_ID.replaceAll('-', '_')}`, { path: '/' })
-      cookie.remove('_gid', { path: '/' })
+      Cookies.remove('_ga', { path: '/' })
+      Cookies.remove(`_ga_${process.env.NEXT_PUBLIC_GOOGLE_ANALYTIC_ID.replaceAll('-', '_')}`, { path: '/' })
+      Cookies.remove('_gid', { path: '/' })
     }
   }
 

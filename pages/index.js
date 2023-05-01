@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { isMobile } from 'react-device-detect'
 import dynamic from 'next/dynamic'
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 import Header from '../components/Header'
 import CatalogTitle from '../components/CatalogTitle'
 import Footer from '../components/Footer'
@@ -32,7 +32,7 @@ const HomePage = () => {
 
   const [enableIntro, setEnableIntro] = useState(false)
   useEffect(() => {
-    const enableIntro = String(cookie.load(OVERVIEW_INTRO_KEY)) !== 'true'
+    const enableIntro = String(Cookies.get(OVERVIEW_INTRO_KEY)) !== 'true'
     setEnableIntro(enableIntro)
   }, [setEnableIntro])
 
