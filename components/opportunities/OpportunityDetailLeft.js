@@ -56,7 +56,7 @@ const OpportunityDetailLeft = ({ opportunity, commentsSectionRef }) => {
               {opportunity.name}
             </div>
             {opportunity?.opportunityStatus &&
-              <div className='ml-auto my-auto text-white'>
+              <div className='ml-auto mb-auto text-white'>
                 <div className={`text-sm px-2 py-1 rounded ${getOpportunityStatusBgColor(opportunity)}`}>
                   {opportunity.opportunityStatus}
                 </div>

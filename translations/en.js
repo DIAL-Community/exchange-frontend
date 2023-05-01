@@ -1601,6 +1601,8 @@ export const en = {
   'opportunity.description': 'Description',
   'filter.opportunity.showClosed': 'Show closed opportunities',
 
+  'opportunity.source': 'Source',
+
   'opportunity.type.bid': 'Bid',
   'opportunity.type.innovation': 'Innovation',
   'opportunity.type.other': 'Other',
