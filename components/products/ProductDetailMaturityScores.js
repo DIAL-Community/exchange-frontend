@@ -50,6 +50,9 @@ const MaturityCategory = ({ category }) => {
             {format('product.category-score')}:
             {Math.round(category.overallScore / category.maximumScore * MAX_MATURITY_SCORE)} / {MAX_MATURITY_SCORE}
           </div>
+          <div className='text-xs pl-4 pt-3'>
+            {category.description && parse(category.description)}
+          </div>
         </AccordionItemButton>
       </AccordionItemHeading>
       <AccordionItemPanel>

@@ -76,6 +76,11 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                        / 
                       100
                     </div>
+                    <div
+                      class="text-xs pl-4 pt-3"
+                    >
+                      Community Support
+                    </div>
                   </div>
                 </div>
                 <div
@@ -411,6 +416,11 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                        / 
                       100
                     </div>
+                    <div
+                      class="text-xs pl-4 pt-3"
+                    >
+                      Global Utility
+                    </div>
                   </div>
                 </div>
                 <div
@@ -745,6 +755,11 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
                       NaN
                        / 
                       100
+                    </div>
+                    <div
+                      class="text-xs pl-4 pt-3"
+                    >
+                      Software Maturity
                     </div>
                   </div>
                 </div>
