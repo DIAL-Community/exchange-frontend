@@ -59,7 +59,7 @@ describe('Unit test for the ProductDetailMaturityScores component.', () => {
   })
 
   test('category indicators accordion in an editable section.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { getByTestId, container } = render(
       <CustomMockedProvider mocks={[mockCategoryIndicators]}>
         <ProductDetailMaturityScores

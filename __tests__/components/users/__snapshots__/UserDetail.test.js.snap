@@ -15,7 +15,7 @@ exports[`Unit test for the UserDetail component should not render 0 for user not
           class="relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4"
         >
           <div
-            class="pb-4"
+            class="pb-4 flex"
           >
             <a
               class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
@@ -144,7 +144,7 @@ exports[`Unit test for the UserDetail component should not render 0 for user not
         class="relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4"
       >
         <div
-          class="pb-4"
+          class="pb-4 flex"
         >
           <a
             class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
@@ -330,7 +330,7 @@ exports[`Unit test for the UserDetail component should render element of basic u
           class="relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4"
         >
           <div
-            class="pb-4"
+            class="pb-4 flex"
           >
             <a
               class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
@@ -446,7 +446,7 @@ exports[`Unit test for the UserDetail component should render element of basic u
         class="relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4"
       >
         <div
-          class="pb-4"
+          class="pb-4 flex"
         >
           <a
             class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
@@ -619,7 +619,7 @@ exports[`Unit test for the UserDetail component should render element of the use
           class="relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4"
         >
           <div
-            class="pb-4"
+            class="pb-4 flex"
           >
             <a
               class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
@@ -761,7 +761,7 @@ exports[`Unit test for the UserDetail component should render element of the use
         class="relative lg:sticky lg:top-66px w-full lg:w-1/3 xl:w-1/4 h-full py-4 px-4"
       >
         <div
-          class="pb-4"
+          class="pb-4 flex"
         >
           <a
             class="flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"

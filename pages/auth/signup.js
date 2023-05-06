@@ -27,7 +27,6 @@ const TextFieldDefinition = (initialState) => {
     } else if (id === 'passwordConfirmation') {
       validationValue = event.target.value && event.target.value === fields.password
     } else if (id === 'email') {
-      console.log('Event Target: ', event.target.value, '---')
       validationValue = event.target.value?.length > 0 && /\S+@\S+\.\S+/.test(event.target.value)
     }
 
@@ -67,7 +66,6 @@ const SignUp = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [loading, setLoading] = useState(false)
-  const [created, setCreated] = useState(false)
   const [captcha, setCaptcha] = useState('')
 
   const { showToast } = useContext(ToastContext)
@@ -104,12 +102,17 @@ const SignUp = () => {
       body: JSON.stringify(signUpBody)
     })
 
+    setLoading(false)
     if (response.status === 201) {
       resetTextFields()
-      setCreated(true)
-      setTimeout(() => {
-        router.push('/')
-      }, 3000)
+      showToast(
+        format('signUp.created'),
+        'success',
+        'top-center',
+        3000,
+        null,
+        () => router.push('/auth/signin')
+      )
     } else {
       const errorMsg = await response.json()
       Object.entries(errorMsg).map(item => {
@@ -121,8 +124,6 @@ const SignUp = () => {
         )
       })
     }
-
-    setLoading(false)
   }
 
   const strengthColor = (strength) => {
@@ -133,23 +134,18 @@ const SignUp = () => {
     return strengthClasses[strength]
   }
 
-  console.log(fieldValidations)
-
   return (
     <>
       <Header isOnAuthPage />
       <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <ClientOnly>
         <div className='bg-dial-gray-dark'>
-          <div className={`mx-4 ${created ? 'visible' : 'invisible'} text-center pt-4`}>
-            <div className='my-auto text-emerald-500'>{format('signUp.created')}</div>
-          </div>
           <div className='pt-4 pb-8 text-dial-sapphire'>
             <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
               <form method='post' onSubmit={handleSubmit}>
-                <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
-                  <div className='mb-4'>
-                    <label className='block text-grey-darker text-sm font-semibold mb-2' htmlFor='email'>
+                <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col gap-4'>
+                  <div className='flex flex-col gap-2'>
+                    <label className='block text-sm font-semibold' htmlFor='email'>
                       {format('signUp.email')}
                     </label>
                     <input
@@ -165,8 +161,8 @@ const SignUp = () => {
                       <p className='text-red-500 text-xs mt-2'>{format('signUp.email.invalid')}</p>
                     }
                   </div>
-                  <div className='mb-4'>
-                    <label className='block text-grey-darker text-sm font-semibold mb-2' htmlFor='password'>
+                  <div className='flex flex-col gap-2'>
+                    <label className='block text-sm font-semibold' htmlFor='password'>
                       {format('signUp.password')}
                     </label>
                     <input
@@ -185,8 +181,8 @@ const SignUp = () => {
                       )}
                     </div>
                   </div>
-                  <div className='mb-4'>
-                    <label className='block text-grey-darker text-sm font-semibold mb-2' htmlFor='passwordConfirmation'>
+                  <div className='flex flex-col gap-2'>
+                    <label className='block text-sm font-semibold' htmlFor='passwordConfirmation'>
                       {format('signUp.passwordConfirmation')}
                     </label>
                     <input
@@ -205,10 +201,10 @@ const SignUp = () => {
                     }
                   </div>
                   <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} onChange={setCaptcha} />
-                  <div className='flex items-center justify-between font-semibold text-sm mt-2'>
+                  <div className='flex items-center justify-between font-semibold text-sm'>
                     <div className='flex'>
                       <button
-                        className='bg-dial-sapphire text-white py-2 px-4 rounded inline-flex disabled:opacity-50'
+                        className='bg-dial-sapphire text-white py-2 px-4 rounded flex disabled:opacity-50'
                         type='submit'
                         disabled={
                           loading ||
@@ -219,10 +215,10 @@ const SignUp = () => {
                         }
                       >
                         {format('app.signUp')}
-                        {loading && <FaSpinner className='spinner ml-3' />}
+                        {loading && <FaSpinner className='spinner ml-3 my-auto' />}
                       </button>
                     </div>
-                    <div className='flex text-dial-sapphire'>
+                    <div className='flex gap-2 text-dial-sapphire'>
                       <Link href='/auth/signin'>
                         <a
                           className='border-b-2 border-transparent hover:border-dial-sunshine'
@@ -231,7 +227,7 @@ const SignUp = () => {
                           {format('app.signIn')}
                         </a>
                       </Link>
-                      <div className='border-r-2 border-dial-gray-dark mx-2' />
+                      <div className='border-r-2 border-dial-gray-dark' />
                       <Link href='/auth/reset-password'>
                         <a
                           className='border-b-2 border-transparent hover:border-dial-sunshine'
@@ -242,7 +238,7 @@ const SignUp = () => {
                       </Link>
                     </div>
                   </div>
-                  <div className='flex gap-1 mt-2 text-xs text-dial-stratos'>
+                  <div className='flex gap-1 text-xs text-dial-stratos'>
                     {format('signUp.privacy')}
                     <Link href='/privacy-policy'>
                       <a className='text-dial-sunshine border-b-2 border-transparent hover:border-dial-sunshine'>

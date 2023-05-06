@@ -58,7 +58,7 @@ describe('Unit test for the EditUser component.', () => {
     })
 
     test('- edit.', async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const { container, queryByText } = render(
         <CustomMockedProvider
           mocks={[

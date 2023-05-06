@@ -39,8 +39,13 @@ describe('Unit test for the SectorDetail component', () => {
     })
 
     test('for sector without parent sector.', async () => {
+
+      const sectorData = { data: { sectors: [] } }
+      const sectorVars = { search: '', locale: 'en' }
+      const mockSectors = generateMockApolloData(SECTOR_SEARCH_QUERY, sectorVars, null, sectorData)
+
       const { container, getByTestId, queryByTestId } = render(
-        <CustomMockedProvider>
+        <CustomMockedProvider mocks={[mockSectors]}>
           <SectorDetail
             isOpen={true}
             onClose={mockOnClose}

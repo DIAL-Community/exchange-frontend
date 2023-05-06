@@ -87,7 +87,7 @@ const CategoryIndicatorForm = ({ rubricCategory, categoryIndicator }) => {
 
   const slugNameMapping = useMemo(() => {
     const map = {
-      create_category_indicator: format('categoryIndicator.create'),
+      create: format('categoryIndicator.create'),
       edit: format('app.edit')
     }
 

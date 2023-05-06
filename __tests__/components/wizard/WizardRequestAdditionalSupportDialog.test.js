@@ -1,3 +1,4 @@
+import { act } from 'react-dom/test-utils'
 import { fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import AdditionalSupportDialog from '../../../components/wizard/AdditionalSupportDialog'
@@ -25,42 +26,42 @@ describe('Unit test for the AdditionalSupportDialog component.', () => {
     window.IntersectionObserver = mockObserverImplementation()
   })
 
-  test('Should match snapshot.', () => {
-    const { getByTestId } = render(
+  test('Should match snapshot.', async () => {
+    const { getByTestId } = await act(() => render(
       <CustomMockedProvider>
         <AdditionalSupportDialog
           isOpen={mockIsDialogOpen}
           onClose={mockSetIsDialogOpen}
         />
       </CustomMockedProvider>
-    )
+    ))
     expect(getByTestId(DIALOG_TEST_ID)).toMatchSnapshot()
   })
 
-  test('Should call the onClose function after clicking the "Cancel" button.', () => {
-    const { getByTestId } = render(
+  test('Should call the onClose function after clicking the "Cancel" button.', async () => {
+    const { getByTestId } = await act(() => render(
       <CustomMockedProvider>
         <AdditionalSupportDialog
           isOpen={mockIsDialogOpen}
           onClose={mockSetIsDialogOpen}
         />
       </CustomMockedProvider>
-    )
-    fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID))
+    ))
+    await act(() => fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID)))
     expect(mockSetIsDialogOpen).toHaveBeenCalled()
   })
 
   test('Should display validation errors after clicking the "Confirm" button.', async () => {
     const user = userEvent.setup()
-    const { getByTestId } = render(
+    const { getByTestId } = await act(() => render(
       <CustomMockedProvider>
         <AdditionalSupportDialog
           isOpen={mockIsDialogOpen}
           onClose={mockSetIsDialogOpen}
         />
       </CustomMockedProvider>
-    )
-    fireEvent.click(getByTestId(SUBMIT_BUTTON_TEST_ID))
+    ))
+    await act(() => fireEvent.click(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     await waitForAllEffects(1000)
     expect(getByTestId(NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(EMAIL_ADDRESS_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)

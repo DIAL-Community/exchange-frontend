@@ -42,7 +42,8 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser } = useUser()
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = isAdminUser || isEditorUser
 
   const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug } })
 
@@ -70,7 +71,7 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
         <div className='w-full mb-2'>
-          {isAdminUser &&
+          {canEdit &&
             <CreateButton
               type='link'
               label={format('use-case-step.create')}

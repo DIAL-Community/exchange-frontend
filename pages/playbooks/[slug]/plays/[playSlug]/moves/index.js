@@ -6,18 +6,18 @@ import { Loading } from '../../../../../../components/shared/FetchStatus'
 import { useUser } from '../../../../../../lib/hooks'
 
 const PlayMoves = () => {
-  const { isAdminUser } = useUser()
+  const { isAdminUser, isEditorUser } = useUser()
 
   const router = useRouter()
   const { slug, playSlug } = router.query
 
   useEffect(() => {
-    if (isAdminUser) {
+    if (isAdminUser || isEditorUser) {
       router.push(`/${router.locale}/playbooks/${slug}/plays/${playSlug}/edit`)
     } else {
       router.push(`/${router.locale}/playbooks/${slug}/plays/${playSlug}`)
     }
-  }, [router, slug, playSlug, isAdminUser])
+  }, [router, slug, playSlug, isAdminUser, isEditorUser])
 
   return (
     <>

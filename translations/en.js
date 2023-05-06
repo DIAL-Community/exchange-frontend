@@ -877,6 +877,13 @@ export const en = {
   'signIn.email.placeholder': 'Your email address',
   'signIn.password': 'Password',
   'signIn.password.hint': 'Enter your password.',
+  'signIn.confirmation.required': 'Account need to be activated first.',
+  'signIn.confirmationEmail': 'Request activation here.',
+
+  'confirmation.email': 'Email Address',
+  'confirmation.email.placeholder': 'Your email address',
+  'confirmation.request': 'Request Activation Instructions',
+  'toast.confirmation.email.success': 'Activation instruction email sent to existing account. Redirecting ...',
 
   'signUp.created': 'Registration successful. Please check your email for confirmation. Redirecting ...',
   'signUp.submit': 'Sign Up',

@@ -43,7 +43,8 @@ const StepDetail = ({ stepSlug, locale }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const { isAdminUser: canEdit } = useUser()
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = isAdminUser || isEditorUser
 
   const { loading, data } = useQuery(USE_CASE_STEP_QUERY, {
     variables: { slug: stepSlug },

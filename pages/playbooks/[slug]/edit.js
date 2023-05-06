@@ -26,7 +26,7 @@ const EditFormProvider = ({ children }) => {
 function EditPlaybook () {
   const router = useRouter()
 
-  const { isAdminUser, loadingUserSession } = useUser()
+  const { isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const { locale } = router
   const { slug } = router.query
@@ -55,7 +55,7 @@ function EditPlaybook () {
         <ClientOnly>
           {loadingUserSession
             ? <Loading />
-            : isAdminUser
+            : isAdminUser || isEditorUser
               ? (
                 <EditFormProvider>
                   <PlayPreview />

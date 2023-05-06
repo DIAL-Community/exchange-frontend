@@ -1,3 +1,4 @@
+import { act } from 'react-dom/test-utils'
 import { fireEvent, screen } from '@testing-library/react'
 import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
@@ -12,8 +13,8 @@ describe('Unit tests for the ProductDetailSdgTargets component.', () => {
   const EDIT_BUTTON_TEST_ID = 'edit-button'
   const CANCEL_BUTTON_TEST_ID = 'cancel-button'
   const SDG_TARGETS_SEARCH_TEST_ID = 'sdg-targets-search'
-  const SDG_TARGETS_SEARCH_OPTION_1_LABEL = '1: Test SDG Target...'
-  const SDG_TARGETS_SEARCH_OPTION_2_LABEL = '2: Another SDG Target...'
+  const SDG_TARGETS_SEARCH_OPTION_1_LABEL = '1.1. Test SDG Target...'
+  const SDG_TARGETS_SEARCH_OPTION_2_LABEL = '2.1. Another SDG Target...'
   const USECASE_TEST_SDG_TARGETS_LABEL = 'Another SDG Target'
   const PILL_TEST_ID = 'pill'
   const PILL_REMOVE_BUTTON_TEST_ID = 'remove-button'
@@ -52,7 +53,7 @@ describe('Unit tests for the ProductDetailSdgTargets component.', () => {
         />
       </CustomMockedProvider>
     )
-    fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
+    await act(() => fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID)))
     await waitForAllEffectsAndSelectToLoad(container)
 
     expect(container).toMatchSnapshot()
@@ -67,10 +68,10 @@ describe('Unit tests for the ProductDetailSdgTargets component.', () => {
         />
       </CustomMockedProvider>
     )
-    fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
+    await act(() => fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID)))
     await waitForAllEffectsAndSelectToLoad(container)
 
-    fireEvent.click(getAllByTestId(PILL_REMOVE_BUTTON_TEST_ID)[0])
+    await act(() => fireEvent.click(getAllByTestId(PILL_REMOVE_BUTTON_TEST_ID)[0]))
     expect(screen.queryAllByTestId(PILL_TEST_ID)).toHaveLength(1)
     expect(container).toMatchSnapshot()
   })
@@ -84,22 +85,22 @@ describe('Unit tests for the ProductDetailSdgTargets component.', () => {
         />
       </CustomMockedProvider>
     )
-    fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
+    await act(() => fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID)))
     await waitForAllEffectsAndSelectToLoad(container)
 
-    fireEvent.keyDown(getByTestId(SDG_TARGETS_SEARCH_TEST_ID).childNodes[1], { key: 'ArrowDown' })
+    await act(() => fireEvent.keyDown(getByTestId(SDG_TARGETS_SEARCH_TEST_ID).childNodes[1], { key: 'ArrowDown' }))
     await screen.findByText(SDG_TARGETS_SEARCH_OPTION_1_LABEL)
-    fireEvent.click(getByText(SDG_TARGETS_SEARCH_OPTION_1_LABEL))
+    await act(() => fireEvent.click(getByText(SDG_TARGETS_SEARCH_OPTION_1_LABEL)))
     expect(screen.queryAllByTestId(PILL_TEST_ID)).toHaveLength(2)
 
     expect(container).toMatchSnapshot()
 
-    fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID))
+    await act(() => fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID)))
     expect(screen.queryByText(USECASE_TEST_SDG_TARGETS_LABEL)).toBeInTheDocument()
     expect(screen.queryByText(SDG_TARGETS_SEARCH_OPTION_1_LABEL)).not.toBeInTheDocument()
     expect(screen.queryByText(SDG_TARGETS_SEARCH_OPTION_2_LABEL)).not.toBeInTheDocument()
 
-    fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID))
+    await act(() => fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID)))
     await waitForAllEffectsAndSelectToLoad(container)
 
     expect(screen.queryByText(SDG_TARGETS_SEARCH_OPTION_2_LABEL)).toBeInTheDocument()

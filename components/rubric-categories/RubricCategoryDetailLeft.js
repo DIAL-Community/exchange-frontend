@@ -9,10 +9,10 @@ const RubricCategoryDetailLeft = ({ rubricCategory, slugNameMapping }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id) => formatMessage({ id }), [formatMessage])
 
-  const { user, isAdminUser } = useUser()
+  const { isAdminUser } = useUser()
 
   const generateEditLink = () => {
-    if (!user) {
+    if (!isAdminUser) {
       return '/edit-not-available'
     }
 

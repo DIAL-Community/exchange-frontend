@@ -1,4 +1,5 @@
 export const categoryIndicator = {
+  id: 1,
   slug: 'test_category_indicator',
   name: 'Test Category Indicator',
   weight: 1,

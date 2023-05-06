@@ -18,7 +18,7 @@ describe('Unit tests for the SectorForm component.', () => {
   const mockOnClose = jest.fn()
 
   beforeAll(() => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
@@ -77,7 +77,7 @@ describe('Unit tests for the SectorForm component.', () => {
         </CustomMockedProvider>
       )
       await waitForAllEffects()
-      await act(async () => fireEvent.click(getByText('Submit')))
+      await act(() => fireEvent.click(getByText('Submit')))
       expect(getByTestId(SECTOR_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
       expect(getByTestId(SECTOR_LOCALE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     })
@@ -93,7 +93,7 @@ describe('Unit tests for the SectorForm component.', () => {
         </CustomMockedProvider>
       )
       await waitForAllEffects()
-      await act(async () => fireEvent.click(getByText('Submit')))
+      await act(() => fireEvent.click(getByText('Submit')))
       expect(getByTestId(SECTOR_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
       expect(getByTestId(SECTOR_LOCALE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 

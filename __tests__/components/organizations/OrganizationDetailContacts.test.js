@@ -48,7 +48,7 @@ describe('Unit test for the OrganizationDetailContacts component.', () => {
     const input = getByTestId(NAME_INPUT_TEST_ID)
 
     fireEvent.change(input, { target: { value: '' } })
-    await act(async () => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))
+    await act(() => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))
     expect(queryByTestId(PILL_TEST_ID)).toBeNull()
     expect(container).toMatchSnapshot()
   })
@@ -69,7 +69,7 @@ describe('Unit test for the OrganizationDetailContacts component.', () => {
 
     fireEvent.change(inputName, { target: { value: contacts.data.name } })
     fireEvent.change(inputEmail, { target: { value: contacts.data.email } })
-    await act(async () => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))
+    await act(() => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))
     await screen.findByTestId(PILL_TEST_ID)
 
     expect(getByTestId(PILL_TEST_ID)).toHaveTextContent(`Name: ${contacts.data.name}`)
@@ -92,7 +92,7 @@ describe('Unit test for the OrganizationDetailContacts component.', () => {
 
     fireEvent.change(inputName, { target: { value: contacts.data.name } })
     fireEvent.change(inputEmail, { target: { value: contacts.data.email } })
-    await act(async () => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))
+    await act(() => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))
     await screen.findByTestId(PILL_TEST_ID)
 
     expect(getByTestId(PILL_TEST_ID)).toHaveTextContent(`Name: ${contacts.data.name}`)
@@ -122,7 +122,7 @@ describe('Unit test for the OrganizationDetailContacts component.', () => {
     fireEvent.change(inputName, { target: { value: contacts.data.name } })
     fireEvent.change(inputEmail, { target: { value: contacts.data.email } })
     fireEvent.change(inputTitle, { target: { value: contacts.data.title } })
-    await act(async () => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))
+    await act(() => fireEvent.click(getByTestId(ASSIGN_BUTTON_TEST_ID)))
 
     expect(inputName).toHaveTextContent('')
     expect(inputEmail).toHaveTextContent('')

@@ -129,7 +129,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
                 id="react-select-:r2:-option-0"
                 tabindex="-1"
               >
-                3: Another SDG Target
+                3.1. Another SDG Target
               </div>
             </div>
           </div>
@@ -142,7 +142,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
           class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
-          1: Test SDG Target...
+          1.1. Test SDG Target...
           <svg
             class="cursor-pointer opacity-50"
             data-testid="remove-button"
@@ -163,7 +163,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should add a pill
           class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
-          2: Another SDG Target...
+          2.1. Another SDG Target...
           <svg
             class="cursor-pointer opacity-50"
             data-testid="remove-button"
@@ -252,7 +252,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
           border-3 border-transparent hover:border-dial-sunshine text-use-case
           hover:text-dial-sunshine cursor-pointer
         "
-        href="/sdgs/sdg_target_slug_1"
+        href="/sdgs/undefined"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -263,7 +263,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
             <div
               class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
             >
-              Target: 1
+              Target: 1.1
             </div>
             <div
               class="my-2 text-sm w-9/12 md:w-10/12"
@@ -278,7 +278,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
           border-3 border-transparent hover:border-dial-sunshine text-use-case
           hover:text-dial-sunshine cursor-pointer
         "
-        href="/sdgs/sdg_target_slug_2"
+        href="/sdgs/undefined"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -289,7 +289,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
             <div
               class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
             >
-              Target: 2
+              Target: 2.1
             </div>
             <div
               class="my-2 text-sm w-9/12 md:w-10/12"
@@ -427,7 +427,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
           class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
-          1: Test SDG Target...
+          1.1. Test SDG Target...
           <svg
             class="cursor-pointer opacity-50"
             data-testid="remove-button"
@@ -448,7 +448,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
           class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
-          2: Another SDG Target...
+          2.1. Another SDG Target...
           <svg
             class="cursor-pointer opacity-50"
             data-testid="remove-button"
@@ -519,7 +519,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
           border-3 border-transparent hover:border-dial-sunshine text-use-case
           hover:text-dial-sunshine cursor-pointer
         "
-        href="/sdgs/sdg_target_slug_1"
+        href="/sdgs/undefined"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -530,7 +530,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
             <div
               class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
             >
-              Target: 1
+              Target: 1.1
             </div>
             <div
               class="my-2 text-sm w-9/12 md:w-10/12"
@@ -545,7 +545,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
           border-3 border-transparent hover:border-dial-sunshine text-use-case
           hover:text-dial-sunshine cursor-pointer
         "
-        href="/sdgs/sdg_target_slug_2"
+        href="/sdgs/undefined"
       >
         <div
           class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
@@ -556,7 +556,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
             <div
               class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
             >
-              Target: 2
+              Target: 2.1
             </div>
             <div
               class="my-2 text-sm w-9/12 md:w-10/12"
@@ -694,7 +694,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should remove a p
           class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
-          2: Another SDG Target...
+          2.1. Another SDG Target...
           <svg
             class="cursor-pointer opacity-50"
             data-testid="remove-button"

@@ -51,7 +51,7 @@ const UserCard = ({ user, listType, newTab = false }) => {
                   </div>
                   <div className='flex flex-col h-80 p-4'>
                     <div className='text-2xl font-semibold absolute w-64 2xl:w-80 z-10'>
-                      {user.name}
+                      {user.userName}
                     </div>
                     <div className='m-auto align-middle w-40'>
                       <img src='/icons/user.svg' className='inline mx-2' alt='Back' height='60px' width='60px' />

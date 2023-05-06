@@ -165,7 +165,7 @@ const RubricCategoryDetailCategoryIndicators = ({ categoryIndicators, rubricCate
       isMutating={loading}
       displayModeBody={displayModeBody}
       editModeBody={editModeBody}
-      createAction={() => router.push(`/rubric_categories/${rubricCategorySlug}/create_category_indicator`)}
+      createAction={() => router.push(`/rubric_categories/${rubricCategorySlug}/create`)}
     />
   )
 }

@@ -25,10 +25,10 @@ describe('Unit tests for CategoryIndicatorForm component.', () => {
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
 
   test('Should render CategoryIndicatorForm component for admin user.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container } = render(
       <CustomMockedProvider>
-        <CategoryIndicatorForm />
+        <CategoryIndicatorForm rubricCategory={rubricCategory} />
       </CustomMockedProvider>
     )
     await waitForAllEffectsAndSelectToLoad(container)
@@ -37,14 +37,14 @@ describe('Unit tests for CategoryIndicatorForm component.', () => {
 
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
     const user = userEvent.setup()
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { getByTestId, getByText, container } = render(
       <CustomMockedProvider>
-        <CategoryIndicatorForm />
+        <CategoryIndicatorForm rubricCategory={rubricCategory} />
       </CustomMockedProvider>
     )
     await waitForAllEffectsAndSelectToLoad(container)
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(CATEGORY_INDICATOR_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CATEGORY_INDICATOR_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CATEGORY_INDICATOR_WEIGHT_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -52,9 +52,7 @@ describe('Unit tests for CategoryIndicatorForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test category indicator name')
     expect(getByTestId(CATEGORY_INDICATOR_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => {
-      user.clear(screen.getByLabelText(/Name/))
-    }))
+    await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(CATEGORY_INDICATOR_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test category indicator name 2')
@@ -66,20 +64,29 @@ describe('Unit tests for CategoryIndicatorForm component.', () => {
     await user.type(screen.getByLabelText(/Weight/), '1')
     expect(getByTestId(CATEGORY_INDICATOR_WEIGHT_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    fireEvent.keyDown(getByTestId(CATEGORY_INDICATOR_INDICATOR_TYPE_TEST_ID).childNodes[1], { key: 'ArrowDown' })
-    await screen.findByText(CATEGORY_INDICATOR_INDICATOR_TYPE_OPTION_LABEL)
-    fireEvent.click(getByText(CATEGORY_INDICATOR_INDICATOR_TYPE_OPTION_LABEL))
+    await act(() =>
+      fireEvent.keyDown(
+        getByTestId(CATEGORY_INDICATOR_INDICATOR_TYPE_TEST_ID).childNodes[1],
+        { key: 'ArrowDown' }
+      )
+    )
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await waitFor(() => {
+      fireEvent.click(getByText(CATEGORY_INDICATOR_INDICATOR_TYPE_OPTION_LABEL))
+      expect(getByText(CATEGORY_INDICATOR_INDICATOR_TYPE_OPTION_LABEL)).toBeInTheDocument()
+    })
+
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(CATEGORY_INDICATOR_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CATEGORY_INDICATOR_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CATEGORY_INDICATOR_WEIGHT_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(CATEGORY_INDICATOR_INDICATOR_TYPE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
+    expect(container).toMatchSnapshot()
   })
 
   describe('Should display toast on submit -', () => {
     test('Success.', async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const mockCreateCategoryIndicator = generateMockApolloData(
         CREATE_CATEGORY_INDICATOR,
         {
@@ -102,14 +109,13 @@ describe('Unit tests for CategoryIndicatorForm component.', () => {
       )
 
       await waitForAllEffectsAndSelectToLoad(container)
-      await act(async () => {
-        fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      })
+      await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
       expect(await screen.findByText('Category Indicator submitted successfully')).toBeInTheDocument()
+      expect(container).toMatchSnapshot()
     })
 
     test('Failure.', async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const mockCreateCategoryIndicator = generateMockApolloData(
         CREATE_CATEGORY_INDICATOR,
         {
@@ -130,10 +136,9 @@ describe('Unit tests for CategoryIndicatorForm component.', () => {
       )
 
       await waitForAllEffectsAndSelectToLoad(container)
-      await act(async () => {
-        fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      })
+      await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
       expect(await screen.findByText('Category Indicator submission failed')).toBeInTheDocument()
+      expect(container).toMatchSnapshot()
     })
   })
 })
