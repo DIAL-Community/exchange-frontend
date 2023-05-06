@@ -46,9 +46,7 @@ export const UPDATE_USE_CASE_SDG_TARGETS = gql`
           id
           name
           targetNumber
-          sustainableDevelopmentGoal {
-           slug
-          }
+          sdgNumber
         }
       }
       errors

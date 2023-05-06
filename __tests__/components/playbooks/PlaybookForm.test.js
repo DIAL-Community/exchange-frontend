@@ -10,8 +10,10 @@ import { PlayListProvider } from '../../../components/plays/PlayListContext'
 import { PlayFilterProvider } from '../../../components/context/PlayFilterContext'
 import { PlayPreviewProvider } from '../../../components/plays/PlayPreviewContext'
 import { CREATE_PLAYBOOK } from '../../../mutations/playbook'
+import { TAG_SEARCH_QUERY } from '../../../queries/tag'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { createPlaybookSuccess, draftPlaybook, publishedPlaybook, testPlaybook } from './data/PlaybookForm'
+import { tags } from './data/PlaybookTags'
 
 mockNextUseRouter()
 describe('Unit tests for PlaybookForm component.', () => {
@@ -23,13 +25,15 @@ describe('Unit tests for PlaybookForm component.', () => {
   const PLAYBOOK_OVERVIEW_TEST_ID = 'playbook-overview'
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
 
+  const mockTags = generateMockApolloData(TAG_SEARCH_QUERY, { search: '' }, null, tags)
+
   beforeAll(() => {
     mockNextAuthUseSession(statuses.AUTHENTICATED)
   })
 
   test('Should match snapshot - create.', async () => {
     const { container } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
             <PlayPreviewProvider>
@@ -45,7 +49,7 @@ describe('Unit tests for PlaybookForm component.', () => {
 
   test('Should match snapshot - edit.', async () => {
     const { container } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
             <PlayPreviewProvider>
@@ -64,7 +68,7 @@ describe('Unit tests for PlaybookForm component.', () => {
   test('Should not show validation errors for mandatory fields.', async () => {
     const user = userEvent.setup()
     const { container, getByTestId } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
             <PlayPreviewProvider>
@@ -80,7 +84,7 @@ describe('Unit tests for PlaybookForm component.', () => {
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PLAYBOOK_OVERVIEW_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PLAYBOOK_OVERVIEW_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
@@ -88,7 +92,7 @@ describe('Unit tests for PlaybookForm component.', () => {
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
     const user = userEvent.setup()
     const { container, getByTestId } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
             <PlayPreviewProvider>
@@ -100,25 +104,19 @@ describe('Unit tests for PlaybookForm component.', () => {
     )
     await waitForAllEffectsAndSelectToLoad(container)
 
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PLAYBOOK_OVERVIEW_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test playbook name')
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => {
-      user.clear(screen.getByLabelText(/Name/))
-    }))
+    await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test playbook name 2')
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PLAYBOOK_OVERVIEW_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
@@ -141,7 +139,7 @@ describe('Unit tests for PlaybookForm component.', () => {
       createPlaybookSuccess
     )
     const { container, getByTestId } = render(
-      <CustomMockedProvider mocks={[mockCreatePlaybook]}>
+      <CustomMockedProvider mocks={[mockCreatePlaybook, mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
             <PlayPreviewProvider>
@@ -154,9 +152,7 @@ describe('Unit tests for PlaybookForm component.', () => {
       </CustomMockedProvider>
     )
     await waitForAllEffectsAndSelectToLoad(container)
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     await screen.findByText('Playbook submitted.')
     expect(container).toMatchSnapshot()
   })
@@ -165,7 +161,7 @@ describe('Unit tests for PlaybookForm component.', () => {
     'Should render unchecked "Published" checkbox and "Save as Draft" submit button by default - create Playbook.',
     async () => {
       const { container, getByLabelText } = render(
-        <CustomMockedProvider>
+        <CustomMockedProvider mocks={[mockTags]}>
           <PlayListProvider>
             <PlayFilterProvider>
               <PlayPreviewProvider>
@@ -186,7 +182,7 @@ describe('Unit tests for PlaybookForm component.', () => {
 
   test('Should check "Published" checkbox and change submit button label from "Save as Draft" to "Published".', async () => {
     const { container, getByLabelText } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
             <PlayPreviewProvider>
@@ -214,7 +210,7 @@ describe('Unit tests for PlaybookForm component.', () => {
 
   test('Should render unchecked "Published" checkbox and "Save as Draft" submit button for draft Playbook.', async () => {
     const { container, getByLabelText } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
             <PlayPreviewProvider>
@@ -238,7 +234,7 @@ describe('Unit tests for PlaybookForm component.', () => {
     'Should render checked "Published" checkbox and "Publish Playbook" submit button for published Playbook.',
     async () => {
       const { container, getByLabelText } = render(
-        <CustomMockedProvider>
+        <CustomMockedProvider mocks={[mockTags]}>
           <PlayListProvider>
             <PlayFilterProvider>
               <PlayPreviewProvider>

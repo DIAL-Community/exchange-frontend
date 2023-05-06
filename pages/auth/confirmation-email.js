@@ -10,7 +10,7 @@ import Footer from '../../components/Footer'
 import { ToastContext } from '../../lib/ToastContext'
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
 
-const ResetPassword = () => {
+const ConfirmationEmail = () => {
   const router = useRouter()
 
   const { formatMessage } = useIntl()
@@ -25,7 +25,7 @@ const ResetPassword = () => {
     event.preventDefault()
     setLoading(true)
 
-    const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/reset-password', {
+    const response = await fetch(process.env.NEXT_PUBLIC_AUTH_SERVER + '/auth/resend-activation-email', {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -39,10 +39,10 @@ const ResetPassword = () => {
     })
 
     setLoading(false)
-    if (response.status === 201) {
+    if (response.status === 200) {
       setEmail('')
       showToast(
-        format('reset.created'),
+        format('toast.confirmation.email.success'),
         'success',
         'top-center',
         3000,
@@ -63,24 +63,25 @@ const ResetPassword = () => {
               <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col gap-4'>
                 <div className='flex flex-col gap-2'>
                   <label className='block text-grey-darker text-sm font-bold' htmlFor='email'>
-                    {format('reset.email')}
+                    {format('confirmation.email')}
                   </label>
                   <input
                     id='email'
                     name='email'
                     type='email'
-                    placeholder={format('reset.email.placeholder')}
+                    placeholder={format('confirmation.email.placeholder')}
                     className='shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker'
                     value={email} onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
-                <div className='flex items-center justify-between font-semibold text-sm mt-2'>
+                <div className='flex items-center justify-between font-semibold text-sm'>
                   <div className='flex'>
                     <button
                       className='bg-dial-sapphire text-white py-2 px-4 rounded flex disabled:opacity-50'
-                      type='submit' disabled={loading}
+                      type='submit'
+                      disabled={loading}
                     >
-                      {format('app.resetPassword')}
+                      {format('confirmation.request')}
                       {loading && <FaSpinner className='spinner ml-3 my-auto' />}
                     </button>
                   </div>
@@ -108,7 +109,7 @@ const ResetPassword = () => {
   )
 }
 
-export default ResetPassword
+export default ConfirmationEmail
 
 export async function getServerSideProps (ctx) {
   const session = await getSession(ctx)

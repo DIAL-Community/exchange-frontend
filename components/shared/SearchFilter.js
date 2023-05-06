@@ -56,7 +56,7 @@ const SearchFilter = ({
 
   const generateCreateLink = () => {
     const withCandidatePaths = ['products', 'organizations', 'datasets']
-    if (!user.canEdit && withCandidatePaths.some(el => linkPath.includes(el))) {
+    if (!user.isAdminUser && withCandidatePaths.some(el => linkPath.includes(el))) {
       return `/candidate/${linkPath[0]}/create`
     }
 
@@ -64,19 +64,39 @@ const SearchFilter = ({
       return 'projects/create'
     }
 
-    if (user.canEdit && linkPath.includes('candidate')) {
+    if (user.isAdminUser && linkPath.includes('candidate')) {
       return `/candidate/${linkPath[1]}/create`
     }
 
-    if (user.canEdit && linkPath.includes('users')) {
+    if (user.isAdminUser && linkPath.includes('users')) {
       return '/users/create'
     }
 
-    const reactEditPaths = [
-      'playbooks', 'plays', 'organizations', 'products', 'datasets', 'use_cases', 'building_blocks', 'workflows',
-      'countries', 'rubric_categories', 'opportunities'
+    const editorEditPaths = [
+      'building_blocks',
+      'use_cases',
+      'playbooks',
+      'workflows'
     ]
-    if (user.canEdit && reactEditPaths.some(el => linkPath.includes(el))) {
+    if (user.isEditorUser && editorEditPaths.some(el => linkPath.includes(el))) {
+      // These create functions are in React, not Rails
+      return `/${linkPath[0]}/create`
+    }
+
+    const adminEditPaths = [
+      'playbooks',
+      'plays',
+      'organizations',
+      'products',
+      'datasets',
+      'use_cases',
+      'building_blocks',
+      'workflows',
+      'countries',
+      'rubric_categories',
+      'opportunities'
+    ]
+    if (user.isAdminUser && adminEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails
       return `/${linkPath[0]}/create`
     }

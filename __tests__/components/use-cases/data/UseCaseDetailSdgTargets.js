@@ -3,11 +3,9 @@ export const sdgTargets = {
     sdgTargets: [{
       id: 3,
       name: 'Another SDG Target',
-      targetNumber: '3',
+      targetNumber: '3.1',
       slug: 'as',
-      sustainableDevelopmentGoal: {
-        slug: 'sdg_target_slug_3'
-      }
+      sdgNumber: '3'
     }]
   }
 }

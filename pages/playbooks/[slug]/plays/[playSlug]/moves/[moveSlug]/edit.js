@@ -38,7 +38,7 @@ const EditMoveInformation = ({ slug, playSlug, moveSlug, locale }) => {
 }
 
 const EditMove = () => {
-  const { isAdminUser, loadingUserSession } = useUser()
+  const { isAdminUser, isEditorUser, loadingUserSession } = useUser()
   const router = useRouter()
 
   const { locale } = router
@@ -50,7 +50,7 @@ const EditMove = () => {
       <ClientOnly>
         {loadingUserSession
           ? <Loading />
-          : isAdminUser
+          : isAdminUser || isEditorUser
             ? <EditMoveInformation {...{ slug, playSlug, moveSlug, locale }} />
             : <Unauthorized />}
       </ClientOnly>

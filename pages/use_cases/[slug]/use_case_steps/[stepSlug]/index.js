@@ -43,12 +43,13 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser } = useUser()
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = isAdminUser || isEditorUser
   const { locale } = useRouter()
   const { data, loading, error } = useQuery(USE_CASE_DETAIL_QUERY, { variables: { slug } })
 
   const generateEditLink = () => {
-    if (!isAdminUser) {
+    if (!canEdit) {
       return '/edit-not-available'
     }
 
@@ -78,7 +79,7 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
         <div className='block lg:hidden'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
-        {isAdminUser &&
+        {canEdit &&
           <div className='flex flex-row justify-between mb-2'>
             <EditButton type='link' href={generateEditLink()} />
             <CreateButton

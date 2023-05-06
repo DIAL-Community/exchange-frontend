@@ -6,7 +6,7 @@ import { basicUser, user, userWithProducts } from './data/UserDetail'
 mockNextUseRouter()
 describe('Unit test for the UserDetail component', () => {
   beforeAll(() => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
   })
 
   test('should not render 0 for user not owning any product.', () => {

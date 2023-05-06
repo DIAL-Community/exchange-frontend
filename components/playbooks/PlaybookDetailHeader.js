@@ -9,7 +9,7 @@ const PlaybookDetailHeader = ({ playbook }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { isAdminUser } = useUser()
+  const { isAdminUser, isEditorUser } = useUser()
 
   const playProgressNumbersRef = useRef([])
   const [percentage, setPercentage] = useState(0)
@@ -98,7 +98,7 @@ const PlaybookDetailHeader = ({ playbook }) => {
           </div>
           <div className='flex flex-col md:flex-row gap-x-2 text-2xl font-semibold'>
             <div>{playbook.name}</div>
-            {isAdminUser &&
+            {(isAdminUser || isEditorUser) &&
               <div className='text-base font-base text-white md:self-center'>
                 ({format(isPlaybookPublished ? 'playbook.status.published' : 'playbook.status.draft')})
               </div>

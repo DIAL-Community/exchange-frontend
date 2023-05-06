@@ -30,7 +30,7 @@ exports[`Unit tests for the DeleteRubricCategory component. Should open ConfirmA
         <span
           data-testid="title"
         >
-          Deleting Test rubric category
+          Deleting 
         </span>
       </h2>
       <span

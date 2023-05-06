@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client'
-import router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
@@ -15,7 +15,8 @@ const DeleteOrganization = ({ organization }) => {
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
 
-  const { locale } = useRouter()
+  const router = useRouter()
+  const { locale } = router
 
   const { user } = useUser()
 

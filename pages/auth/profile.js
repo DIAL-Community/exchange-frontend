@@ -12,8 +12,6 @@ const UserProfile = () => {
 
   const { user } = useUser()
 
-  console.log('User data: ', user)
-
   return (
     <>
       <Header />
@@ -24,7 +22,7 @@ const UserProfile = () => {
             <div className='bg-white border-2 border-dial-gray shadow-lg'>
               <div className='flex flex-col h-80 p-4'>
                 <div className='text-2xl font-semibold absolute line-clamp-1 text-dial-purple'>
-                  {user.name}
+                  {user.userName}
                 </div>
                 <div className='pt-8 m-auto align-middle w-48'>
                   <img

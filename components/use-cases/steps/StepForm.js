@@ -19,7 +19,8 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
 
   const router = useRouter()
 
-  const { user, isAdminUser, loadingUserSession } = useUser()
+  const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
+  const canEdit = isAdminUser || isEditorUser
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -99,13 +100,12 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
   }, [useCaseStep, useCase, format])
 
   const doUpsert = async (data) => {
-    if (user) {
+    if (canEdit) {
       setMutating(true)
 
       const stepNumber = parseInt(data.stepNumber)
 
       const { userEmail, userToken } = user
-
       const { name, description, markdownUrl } = data
 
       const variables = {
@@ -134,7 +134,7 @@ const StepForm = React.memo(({ useCaseStep, useCase }) => {
   }
 
   return (
-    loadingUserSession  ? <Loading /> : isAdminUser ? (
+    loadingUserSession  ? <Loading /> : canEdit ? (
       <div className='flex flex-col'>
         <div className='hidden lg:block px-8'>
           <Breadcrumb slugNameMapping={slugNameMapping} />

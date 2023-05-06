@@ -33,7 +33,7 @@ describe('Unit test for the ProjectDetailSectors component.', () => {
   })
 
   test('Should match snapshot - with edit permission.', () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container } = render(
       <CustomMockedProvider mocks={[mockSectors]}>
         <ProjectDetailSectors
@@ -59,7 +59,7 @@ describe('Unit test for the ProjectDetailSectors component.', () => {
   })
 
   test('Should match snapshot - with open editable section', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockSectors]}>
         <ProjectDetailSectors
@@ -76,7 +76,7 @@ describe('Unit test for the ProjectDetailSectors component.', () => {
   })
 
   test('Should remove a pill', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockSectors]}>
         <ProjectDetailSectors
@@ -94,7 +94,7 @@ describe('Unit test for the ProjectDetailSectors component.', () => {
   })
 
   test('Should add a pill and revert changes on "Cancel" button click', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container, getByTestId, getByText } = render(
       <CustomMockedProvider mocks={[mockSectors]}>
         <ProjectDetailSectors

@@ -11,7 +11,7 @@ import { countryListData } from './data/CountryListData'
 mockNextUseRouter()
 describe('Unit test for the CountryList component', () => {
   beforeAll(() => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
   })
 
   test('Should render error message when apollo returning error.', async () => {

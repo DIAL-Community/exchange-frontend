@@ -16,7 +16,8 @@ const PlaybookList = (props) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { isAdminUser } = useUser()
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = isAdminUser || isEditorUser
 
   const displayType = props.displayType
   const gridStyles = `grid ${displayType === 'card'
@@ -40,7 +41,7 @@ const PlaybookList = (props) => {
       {
         props.playbookList.length > 0
           ? props.playbookList.map((playbook, index) => (
-            <PlaybookCard key={index} listType={displayType} canEdit={isAdminUser} {...{ playbook }}
+            <PlaybookCard key={index} listType={displayType} canEdit={canEdit} {...{ playbook }}
             />
           ))
           : (

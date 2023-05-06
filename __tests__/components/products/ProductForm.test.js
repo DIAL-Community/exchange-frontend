@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import ProductForm from '../../../components/products/ProductForm'
@@ -25,7 +25,7 @@ describe('Unit tests for the ProductForm component.', () => {
   })
 
   test('Should match snapshot - edit.', () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container } = render(
       <CustomMockedProvider>
         <ProductForm product={product} />
@@ -45,7 +45,7 @@ describe('Unit tests for the ProductForm component.', () => {
     expect(getByTestId(PRODUCT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PRODUCT_DESCRIPTION_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PRODUCT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PRODUCT_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
@@ -57,31 +57,25 @@ describe('Unit tests for the ProductForm component.', () => {
         <ProductForm />
       </CustomMockedProvider>
     )
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PRODUCT_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PRODUCT_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test product name')
     expect(getByTestId(PRODUCT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => {
-      user.clear(screen.getByLabelText(/Name/))
-    }))
+    await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(PRODUCT_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test product name 2')
     expect(getByTestId(PRODUCT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PRODUCT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PRODUCT_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
 
   test('Should display success toast on submit.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const mockCreateProduct = generateMockApolloData(
       CREATE_PRODUCT,
       {
@@ -103,15 +97,13 @@ describe('Unit tests for the ProductForm component.', () => {
         <ProductForm product={product} />
       </CustomMockedProvider>
     )
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     await screen.findByText('Product submitted successfully')
     expect(container).toMatchSnapshot()
   })
 
   test('Should display failure toast on submit.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const mockCreateProduct = generateMockApolloData(
       CREATE_PRODUCT,
       {
@@ -133,9 +125,7 @@ describe('Unit tests for the ProductForm component.', () => {
         <ProductForm product={product} />
       </CustomMockedProvider>
     )
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     await screen.findAllByText('Product submission failed')
     expect(container).toMatchSnapshot()
   })

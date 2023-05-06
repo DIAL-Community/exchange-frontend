@@ -5,10 +5,11 @@ import { act } from 'react-dom/test-utils'
 import { UserForm } from '../../../components/users/UserForm'
 import { ORGANIZATION_SEARCH_QUERY } from '../../../queries/organization'
 import { USER_ROLES } from '../../../queries/user'
+import { PRODUCT_SEARCH_QUERY } from '../../../queries/product'
 import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
-import { organization, user, userRoles } from './data/UserForm'
+import { organizations, products, user, userRoles } from './data/UserForm'
 
 jest.mock('../../../lib/hooks', () => ({
   useEmailValidation: () => ({
@@ -28,16 +29,17 @@ describe('Unit tests for the UserForm component.', () => {
   const USER_NAME_LABEL_TEST_ID = 'username-label'
   const REQUIRED_FIELD_MESSAGE = 'This field is required'
   const mockUserRoles = generateMockApolloData(USER_ROLES, null, userRoles)
-  const mockOrganizations = generateMockApolloData(ORGANIZATION_SEARCH_QUERY, { search: '' }, null, organization)
+  const mockOrganizations = generateMockApolloData(ORGANIZATION_SEARCH_QUERY, { search: '' }, null, organizations)
+  const mockProducts = generateMockApolloData(PRODUCT_SEARCH_QUERY, { search: '' }, null, products)
 
   beforeAll(() => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
   })
 
   describe('Should match snapshot', () => {
     test('- create.', async () => {
       const { container } = render(
-        <CustomMockedProvider mocks={[mockUserRoles, mockOrganizations]}>
+        <CustomMockedProvider mocks={[mockUserRoles, mockOrganizations, mockProducts]}>
           <UserForm />
         </CustomMockedProvider>
       )
@@ -47,7 +49,7 @@ describe('Unit tests for the UserForm component.', () => {
 
     test('- edit.', async () => {
       const { container, getByText } = render(
-        <CustomMockedProvider mocks={[mockUserRoles, mockOrganizations]}>
+        <CustomMockedProvider mocks={[mockUserRoles, mockOrganizations, mockProducts]}>
           <UserForm user={user} />
         </CustomMockedProvider>
       )
@@ -60,7 +62,7 @@ describe('Unit tests for the UserForm component.', () => {
   test('Should not show validation errors for mandatory fields.', async () => {
     const someUser = userEvent.setup()
     const { container, getByTestId } = render(
-      <CustomMockedProvider mocks={[mockUserRoles, mockOrganizations]}>
+      <CustomMockedProvider mocks={[mockUserRoles, mockOrganizations, mockProducts]}>
         <UserForm />
       </CustomMockedProvider>
     )
@@ -83,7 +85,7 @@ describe('Unit tests for the UserForm component.', () => {
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
     const someUser = userEvent.setup()
     const { container, getByTestId } = render(
-      <CustomMockedProvider mocks={[mockUserRoles, mockOrganizations]}>
+      <CustomMockedProvider mocks={[mockUserRoles, mockOrganizations, mockProducts]}>
         <UserForm />
       </CustomMockedProvider>
     )
@@ -107,7 +109,7 @@ describe('Unit tests for the UserForm component.', () => {
 
   test('Should render unchecked based on the confirmed flag data.', async () => {
     const { container, queryByTestId } = render(
-      <CustomMockedProvider mocks={[mockUserRoles, mockOrganizations]}>
+      <CustomMockedProvider mocks={[mockUserRoles, mockOrganizations, mockProducts]}>
         <UserForm user={user} />
       </CustomMockedProvider>
     )
@@ -121,7 +123,7 @@ describe('Unit tests for the UserForm component.', () => {
   test('Should render checked based on the confirmed flag data.', async () => {
     user.confirmed = true
     const { container, queryByTestId } = render(
-      <CustomMockedProvider mocks={[mockUserRoles, mockOrganizations]}>
+      <CustomMockedProvider mocks={[mockUserRoles, mockOrganizations, mockProducts]}>
         <UserForm user={user} />
       </CustomMockedProvider>
     )

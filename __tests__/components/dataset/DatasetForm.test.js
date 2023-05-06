@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import DatasetForm from '../../../components/datasets/DatasetForm'
@@ -48,7 +48,7 @@ describe('Unit tests for the DatasetForm component.', () => {
     expect(getByTestId(DATASET_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(DATASET_WEBSITE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(DATASET_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(DATASET_WEBSITE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
@@ -60,16 +60,14 @@ describe('Unit tests for the DatasetForm component.', () => {
         <DatasetForm />
       </CustomMockedProvider>
     )
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(DATASET_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(DATASET_WEBSITE_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(DATASET_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Dataset Name/), 'test dataset name')
     expect(getByTestId(DATASET_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => {
-      user.clear(screen.getByLabelText(/Dataset Name/))
-    }))
+    await user.clear(screen.getByLabelText(/Dataset Name/))
     expect(getByTestId(DATASET_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Dataset Name/), 'test dataset name 2')
@@ -77,7 +75,7 @@ describe('Unit tests for the DatasetForm component.', () => {
     expect(getByTestId(DATASET_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(DATASET_WEBSITE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(DATASET_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(DATASET_WEBSITE_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(DATASET_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)

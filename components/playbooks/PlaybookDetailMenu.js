@@ -101,11 +101,12 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation, commentsSect
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { user, isAdminUser } = useUser()
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = isAdminUser || isEditorUser
   const [displayEmbedDialog, setDisplayEmbedDialog] = useState(false)
 
   const generateEditLink = () => {
-    if (!user) {
+    if (!canEdit) {
       return '/edit-not-available'
     }
 
@@ -153,7 +154,7 @@ const PlaybookDetailMenu = ({ playbook, locale, allowEmbedCreation, commentsSect
               <span className='text-sm px-2'>{format('playbook.openEmbedDialog')}</span>
             </a>
           }
-          {isAdminUser && <EditButton type='link' href={generateEditLink()} />}
+          {canEdit && <EditButton type='link' href={generateEditLink()} />}
           {isAdminUser && <DeletePlaybook playbook={playbook} />}
         </div>
       </div>

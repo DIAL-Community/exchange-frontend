@@ -33,38 +33,7 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
             </svg>
           </div>
           <div>
-            <div
-              class="flex flex-col"
-            >
-              <span>
-                Building Block submission failed
-              </span>
-              <span>
-                No more mocked responses for the query: mutation CreateBuildingBlock($name: String!, $slug: String!, $maturity: String!, $category: String, $imageFile: Upload, $description: String!, $specUrl: String) {
-  createBuildingBlock(
-    name: $name
-    slug: $slug
-    maturity: $maturity
-    category: $category
-    imageFile: $imageFile
-    description: $description
-    specUrl: $specUrl
-  ) {
-    buildingBlock {
-      slug
-      __typename
-    }
-    errors
-    __typename
-  }
-}
-Expected variables: {"name":"Test Building Block","slug":"test_buidling_block","maturity":"DRAFT","category":null,"description":"&lt;p&gt;test building block description&lt;/p&gt;","specUrl":"testbuidlingblock.com","imageFile":&lt;undefined&gt;}
-
-Failed to match 1 mock for this query. The mocked response had the following variables:
-  {"name":"Test Building Block","slug":"test_buidling_block","maturity":"DRAFT","specUrl":"testbuidlingblock.com","description":"&lt;p&gt;test building block description&lt;/p&gt;"}
-
-              </span>
-            </div>
+            Building Block submission failed
           </div>
         </div>
         <button
@@ -272,13 +241,12 @@ Failed to match 1 mock for this query. The mocked response had the following var
                       class="react-select__control css-qv4grc-control"
                     >
                       <div
-                        class="react-select__value-container css-17t7gkf-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-5rjclb-placeholder"
-                          id="react-select-:r9:-placeholder"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
-                          Building Block Category
+                          DPI
                         </div>
                         <div
                           class="react-select__input-container css-qbdosj-Input"
@@ -286,7 +254,6 @@ Failed to match 1 mock for this query. The mocked response had the following var
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-:r9:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"
@@ -721,13 +688,12 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                       class="react-select__control css-qv4grc-control"
                     >
                       <div
-                        class="react-select__value-container css-17t7gkf-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-5rjclb-placeholder"
-                          id="react-select-:r7:-placeholder"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
-                          Building Block Category
+                          DPI
                         </div>
                         <div
                           class="react-select__input-container css-qbdosj-Input"
@@ -735,7 +701,6 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-:r7:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"
@@ -1161,13 +1126,12 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                       class="react-select__control css-qv4grc-control"
                     >
                       <div
-                        class="react-select__value-container css-17t7gkf-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-5rjclb-placeholder"
-                          id="react-select-:r5:-placeholder"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
-                          Building Block Category
+                          DPI
                         </div>
                         <div
                           class="react-select__input-container css-qbdosj-Input"
@@ -1175,7 +1139,6 @@ exports[`Unit tests for BuildingBlockForm component. Should display toast on sub
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-:r5:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"

@@ -58,7 +58,8 @@ export const product = {
     number: 1
   }],
   sustainableDevelopmentGoalsMappingStatus: 'SELF-REPORTED',
-  maturityScore: {},
+  isLinkedWithDpi: false,
+  overallMaturityScore: {},
   maturityScoreDetails: {},
   playbooks: [
     {

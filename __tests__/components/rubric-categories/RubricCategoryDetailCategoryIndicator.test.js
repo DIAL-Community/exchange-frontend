@@ -49,7 +49,7 @@ describe('Unit test for the RubricCategoryDetailCategoryIndicators component.', 
   })
 
   test('Should match snapshot - with open editable section', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockCategoryIndicators]}>
         <RubricCategoryDetailCategoryIndicators
@@ -64,7 +64,7 @@ describe('Unit test for the RubricCategoryDetailCategoryIndicators component.', 
   })
 
   test('Should remove a pill', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockCategoryIndicators]}>
         <RubricCategoryDetailCategoryIndicators
@@ -81,7 +81,7 @@ describe('Unit test for the RubricCategoryDetailCategoryIndicators component.', 
   })
 
   test('Should add a pill and revert changes on "Cancel" button click', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container, getByTestId, getByText } = render(
       <CustomMockedProvider mocks={[mockCategoryIndicators]}>
         <RubricCategoryDetailCategoryIndicators

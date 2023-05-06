@@ -6,9 +6,7 @@ export const SDG_TARGET_SEARCH_QUERY = gql`
       id
       name
       targetNumber
-      sustainableDevelopmentGoal {
-        slug
-      }
+      sdgNumber
     }
   }
 `

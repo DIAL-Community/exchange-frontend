@@ -206,7 +206,7 @@ const RepositoryMarkdown = ({ entityWithMarkdown, canEdit }) => {
         path: markdownUrl,
         message: 'Updates markdown specification.',
         committer: {
-          name: user.name,
+          name: user.userName,
           email: user.userEmail
         },
         content: Buffer.from(markdown).toString('base64'),

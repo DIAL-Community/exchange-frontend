@@ -54,18 +54,28 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
 
   const fetchedSdgTargetsCallback = (data) => (
     data.sdgTargets?.map((sdgTarget) => ({
-      label: `${sdgTarget.targetNumber}: ${sdgTarget.name}`,
-      name: sdgTarget.name,
       id: sdgTarget.id,
+      name: sdgTarget.name,
+      label: `${sdgTarget.targetNumber}. ${sdgTarget.name}`,
       targetNumber: sdgTarget.targetNumber,
-      slug: sdgTarget.sustainableDevelopmentGoal.slug,
+      sdgNumber: sdgTarget.sdgNumber,
     }))
   )
 
   const addSdgTargets = (sdgTarget) => {
     setSdgTargets([
-      ...sdgTargets.filter(({ id }) => id !== sdgTarget.id),
-      { name: sdgTarget.name, targetNumber: sdgTarget.targetNumber, id: sdgTarget.id }
+      ...[
+        ...sdgTargets.filter(({ id }) => id !== sdgTarget.id), {
+          id: sdgTarget.id,
+          name: sdgTarget.name,
+          targetNumber: sdgTarget.targetNumber,
+          sdgNumber: sdgTarget.sdgNumber
+        }
+      ].sort((a, b) => {
+        const diff = parseInt(a.sdgNumber) - parseInt(b.sdgNumber)
+
+        return diff === 0 ? a.targetNumber.localeCompare(b.targetNumber) : diff
+      })
     ])
     setIsDirty(true)
   }
@@ -102,7 +112,8 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
   const displayModeBody = sdgTargets.length
     ? (
       <div className='grid grid-cols-1'>
-        {sdgTargets.map((sdgTarget, sdgTargetIdx) => <SDGTargetCard key={sdgTargetIdx} sdgTarget={sdgTarget} />)}
+        {sdgTargets.map((sdgTarget, sdgTargetIdx) =>
+          <SDGTargetCard key={sdgTargetIdx} sdgTarget={sdgTarget} />)}
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
@@ -123,7 +134,9 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
           defaultOptions
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-          loadOptions={(input) => fetchSelectOptions(client, input, SDG_TARGET_SEARCH_QUERY, fetchedSdgTargetsCallback)}
+          loadOptions={(input) =>
+            fetchSelectOptions(client, input, SDG_TARGET_SEARCH_QUERY, fetchedSdgTargetsCallback)
+          }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('sdg-target.label') })}
           onChange={addSdgTargets}
           value={null}
@@ -134,7 +147,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
           <Pill
             key={`sdgTargets-${sdgTargetIdx}`}
             label={
-              `${sdgTarget.targetNumber}: ` +
+              `${sdgTarget.targetNumber}. ` +
               `${sdgTarget.name.substring(SDG_TARGET_NAME_INDEX_START, SDG_TARGET_NAME_INDEX_END)}...`
             }
             onRemove={() => removeSdgTargets(sdgTarget)}

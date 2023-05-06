@@ -13,7 +13,13 @@ import { PlayPreviewProvider } from '../../../components/plays/PlayPreviewContex
 import { MoveListProvider } from '../../../components/plays/moves/MoveListContext'
 import { MovePreviewProvider } from '../../../components/plays/moves/MovePreviewContext'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
+import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../queries/building-block'
+import { PRODUCT_SEARCH_QUERY } from '../../../queries/product'
+import { TAG_SEARCH_QUERY } from '../../../queries/tag'
 import { playbook, play, createPlaySuccess } from './data/PlayForm'
+import { buildingBlocks } from './data/PlayBuildingBlocks'
+import { products } from './data/PlayProducts'
+import { tags } from './data/PlayTags'
 
 mockNextUseRouter()
 describe('PlayForm component.', () => {
@@ -31,6 +37,11 @@ describe('PlayForm component.', () => {
     productSlugs: ['product_1', 'product_2'],
     buildingBlockSlugs: ['bb_1', 'bb_2']
   }
+
+  const mockTags = generateMockApolloData(TAG_SEARCH_QUERY, { search: '' }, null, tags)
+  const mockProducts = generateMockApolloData(PRODUCT_SEARCH_QUERY, { search: '' }, null, products)
+  const mockBuildingBlocks = generateMockApolloData(BUILDING_BLOCK_SEARCH_QUERY, { search: '' }, null, buildingBlocks)
+
   const PlayAndMoveProviders = ({ children }) => (
     <PlayListProvider>
       <PlayFilterProvider>
@@ -48,7 +59,7 @@ describe('PlayForm component.', () => {
   describe('Should match snapshot', () => {
     test('Create.', async () => {
       const { container } = render(
-        <CustomMockedProvider>
+        <CustomMockedProvider mocks={[mockTags, mockProducts, mockBuildingBlocks]}>
           <PlayAndMoveProviders>
             <PlayForm playbook={playbook}/>
           </PlayAndMoveProviders>
@@ -60,7 +71,7 @@ describe('PlayForm component.', () => {
 
     test('Edit.', async () => {
       const { container } = render(
-        <CustomMockedProvider>
+        <CustomMockedProvider mocks={[mockTags, mockProducts, mockBuildingBlocks]}>
           <PlayAndMoveProviders>
             <DndProvider backend={HTML5Backend}>
               <PlayForm playbook={playbook} play={play}/>
@@ -76,7 +87,7 @@ describe('PlayForm component.', () => {
   test('Should not show validation errors for mandatory fields.', async () => {
     const user = userEvent.setup()
     const { container, getByTestId } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockTags, mockProducts, mockBuildingBlocks]}>
         <PlayAndMoveProviders>
           <PlayForm playbook={playbook}/>
         </PlayAndMoveProviders>
@@ -87,7 +98,7 @@ describe('PlayForm component.', () => {
     await user.type(screen.getByLabelText(/Name/), 'test playbook name')
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PLAYBOOK_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
@@ -95,7 +106,7 @@ describe('PlayForm component.', () => {
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
     const user = userEvent.setup()
     const { container, getByTestId } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockTags, mockProducts, mockBuildingBlocks]}>
         <PlayAndMoveProviders>
           <PlayForm playbook={playbook}/>
         </PlayAndMoveProviders>
@@ -103,24 +114,20 @@ describe('PlayForm component.', () => {
     )
     await waitForAllEffectsAndSelectToLoad(container)
 
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PLAYBOOK_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test play name')
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PLAYBOOK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PLAYBOOK_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
 
   test('Should display success toast on submit.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const mockCreatePlay = generateMockApolloData(
       CREATE_PLAY,
       mockCreatePlayVariables,
@@ -128,7 +135,7 @@ describe('PlayForm component.', () => {
       createPlaySuccess
     )
     const { container, getByTestId } = render(
-      <CustomMockedProvider mocks={[mockCreatePlay]}>
+      <CustomMockedProvider mocks={[mockCreatePlay, mockTags, mockProducts, mockBuildingBlocks]}>
         <PlayAndMoveProviders>
           <DndProvider backend={HTML5Backend}>
             <PlayForm playbook={playbook} play={play}/>

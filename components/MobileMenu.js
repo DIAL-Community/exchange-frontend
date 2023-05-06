@@ -193,7 +193,7 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
             </li>
             <li className='py-3'>
               <div className='mx-8 font-semibold'>
-                {parent === 'current.user' ? user.name.toUpperCase() : format(parent)}
+                {parent === 'current.user' ? user.userName.toUpperCase() : format(parent)}
               </div>
             </li>
             {
@@ -319,7 +319,7 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
                       >
                         <img src='/icons/user.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
                         <div className='inline text-sm'>
-                          {user.name.toLowerCase()}
+                          {user.userName.toLowerCase()}
                         </div>
                         <RiArrowRightSLine className='text-base inline ml-2' />
                       </a>

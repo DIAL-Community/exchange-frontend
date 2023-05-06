@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import userEvent from '@testing-library/user-event'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
@@ -29,7 +29,7 @@ describe('Unit tests for WorkflowForm component.', () => {
     })
 
     test('user who is not an admin.', async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: false })
       const { container } = render(
         <CustomMockedProvider>
           <WorkflowForm />
@@ -42,7 +42,7 @@ describe('Unit tests for WorkflowForm component.', () => {
   })
 
   test('Should render WorkflowForm component for admin user.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container } = render(
       <CustomMockedProvider>
         <WorkflowForm />
@@ -54,29 +54,27 @@ describe('Unit tests for WorkflowForm component.', () => {
 
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
     const user = userEvent.setup()
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container, getByTestId } = render(
       <CustomMockedProvider>
         <WorkflowForm />
       </CustomMockedProvider>
     )
     await waitForAllEffects()
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(WORKFLOW_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(WORKFLOW_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test workflow name')
     expect(getByTestId(WORKFLOW_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => {
-      user.clear(screen.getByLabelText(/Name/))
-    }))
+    await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(WORKFLOW_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test workflow name 2')
     expect(getByTestId(WORKFLOW_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(WORKFLOW_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(WORKFLOW_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(WORKFLOW_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(container).toMatchSnapshot()
@@ -84,7 +82,7 @@ describe('Unit tests for WorkflowForm component.', () => {
 
   describe('Should display toast on submit -', () => {
     test('Success.', async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const mockCreateWorkflow = generateMockApolloData(
         CREATE_WORKFLOW,
         {
@@ -102,15 +100,13 @@ describe('Unit tests for WorkflowForm component.', () => {
       )
 
       await waitForAllEffects()
-      await act(async () => {
-        fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      })
+      await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
       await screen.findByText('Workflow submitted successfully')
       expect(container).toMatchSnapshot()
     })
 
     test('Failure.', async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const errorMessage = 'An error occurred'
       const mockCreateWorkflow = generateMockApolloData(
         CREATE_WORKFLOW,
@@ -128,9 +124,7 @@ describe('Unit tests for WorkflowForm component.', () => {
       )
 
       await waitForAllEffects()
-      await act(async () => {
-        fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      })
+      await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
       await screen.findByText('Workflow submission failed')
       await screen.findByText(errorMessage)
       expect(container).toMatchSnapshot()

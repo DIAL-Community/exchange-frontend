@@ -50,7 +50,6 @@ const BuildingBlocks = () => {
           searchFilter={
             <SearchFilter
               {...{ search, setSearch }}
-              createNew={false}
               hint='filter.entity.buildingBlocks'
             />
           }
