@@ -12,32 +12,20 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
       class="flex flex-wrap header-min-height px-8 xl:px-16"
     >
       <a
-        class="flex py-6"
+        class="flex py-6 image-block-hack"
         href="/"
       >
-        <span
-          style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-        >
-          <span
-            style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-          >
-            <img
-              alt=""
-              aria-hidden="true"
-              src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27154%27%20height=%2744%27/%3e"
-              style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-            />
-          </span>
-          <img
-            alt="Digital Impact Exchage Logo."
-            data-nimg="intrinsic"
-            decoding="async"
-            src="/_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=384&q=75"
-            srcset="/_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=256&q=75 1x, /_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=384&q=75 2x"
-            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-          />
-          <noscript />
-        </span>
+        <img
+          alt="Digital Impact Exchage Logo."
+          data-nimg="1"
+          decoding="async"
+          height="44"
+          loading="lazy"
+          src="/_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=384&q=75"
+          srcset="/_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=256&q=75 1x, /_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=384&q=75 2x"
+          style="color: transparent;"
+          width="154"
+        />
       </a>
       <label
         class="ml-auto my-auto pointer-cursor block xl:hidden"
@@ -137,7 +125,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
             >
               <a
                 class="mx-6 font-semibold"
-                href="about"
+                href="wizard"
               >
                 Recommendation Wizard
               </a>
@@ -1120,29 +1108,17 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27246%27%20height=%2759%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      alt="The United Nations Foundation Logo"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      src="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75"
-                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75 2x"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="The United Nations Foundation Logo"
+                    data-nimg="1"
+                    decoding="async"
+                    height="59"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75"
+                    srcset="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75 2x"
+                    style="color: transparent;"
+                    width="246"
+                  />
                 </a>
               </div>
             </div>
@@ -1157,29 +1133,17 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27204%27%20height=%2740%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      alt="The Bill & Melinda Gates Foundation"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      src="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75"
-                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75 2x"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="The Bill & Melinda Gates Foundation"
+                    data-nimg="1"
+                    decoding="async"
+                    height="40"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75"
+                    srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75 2x"
+                    style="color: transparent;"
+                    width="204"
+                  />
                 </a>
               </div>
             </div>
@@ -1194,29 +1158,17 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27102%27%20height=%27100%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      alt="The Swedish International Development Cooperation Agency Logo"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      src="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75"
-                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=128&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75 2x"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="The Swedish International Development Cooperation Agency Logo"
+                    data-nimg="1"
+                    decoding="async"
+                    height="100"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=128&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75 2x"
+                    style="color: transparent;"
+                    width="102"
+                  />
                 </a>
               </div>
             </div>
@@ -1224,36 +1176,24 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               class="w-36 h-20 bg-white rounded-md flex"
             >
               <div
-                class="self-center px-12 mt-3"
+                class="self-center px-12"
               >
                 <a
                   href="//www.gov.uk/government/organisations/foreign-commonwealth-development-office"
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2760%27%20height=%2760%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      alt="The Foreign, Commonwealth & Development Office Logo"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      src="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=64&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75 2x"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="The Foreign, Commonwealth & Development Office Logo"
+                    data-nimg="1"
+                    decoding="async"
+                    height="60"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75"
+                    srcset="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=64&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75 2x"
+                    style="color: transparent;"
+                    width="60"
+                  />
                 </a>
               </div>
             </div>
@@ -1268,29 +1208,17 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%271570%27%20height=%27879%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      alt="The German Corporation for International Cooperation GmbH Logo"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      src="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75"
-                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=1920&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75 2x"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="The German Corporation for International Cooperation GmbH Logo"
+                    data-nimg="1"
+                    decoding="async"
+                    height="879"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75"
+                    srcset="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=1920&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75 2x"
+                    style="color: transparent;"
+                    width="1570"
+                  />
                 </a>
               </div>
             </div>
@@ -1305,29 +1233,17 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%271152%27%20height=%27536%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      alt="The Federal Ministry for Economic Cooperation and Development Logo"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      src="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75"
-                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=1200&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75 2x"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="The Federal Ministry for Economic Cooperation and Development Logo"
+                    data-nimg="1"
+                    decoding="async"
+                    height="536"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75"
+                    srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=1200&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75 2x"
+                    style="color: transparent;"
+                    width="1152"
+                  />
                 </a>
               </div>
             </div>
@@ -1390,32 +1306,20 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
       class="flex flex-wrap header-min-height px-8 xl:px-16"
     >
       <a
-        class="flex py-6"
+        class="flex py-6 image-block-hack"
         href="/"
       >
-        <span
-          style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-        >
-          <span
-            style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-          >
-            <img
-              alt=""
-              aria-hidden="true"
-              src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27154%27%20height=%2744%27/%3e"
-              style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-            />
-          </span>
-          <img
-            alt="Digital Impact Exchage Logo."
-            data-nimg="intrinsic"
-            decoding="async"
-            src="/_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=384&q=75"
-            srcset="/_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=256&q=75 1x, /_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=384&q=75 2x"
-            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-          />
-          <noscript />
-        </span>
+        <img
+          alt="Digital Impact Exchage Logo."
+          data-nimg="1"
+          decoding="async"
+          height="44"
+          loading="lazy"
+          src="/_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=384&q=75"
+          srcset="/_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=256&q=75 1x, /_next/image?url=%2Fassets%2Fexchange%2Fexchange-logo.png&w=384&q=75 2x"
+          style="color: transparent;"
+          width="154"
+        />
       </a>
       <label
         class="ml-auto my-auto pointer-cursor block xl:hidden"
@@ -1515,7 +1419,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
             >
               <a
                 class="mx-6 font-semibold"
-                href="about"
+                href="wizard"
               >
                 Recommendation Wizard
               </a>
@@ -1964,29 +1868,17 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27246%27%20height=%2759%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      alt="The United Nations Foundation Logo"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      src="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75"
-                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75 2x"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="The United Nations Foundation Logo"
+                    data-nimg="1"
+                    decoding="async"
+                    height="59"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75"
+                    srcset="/_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Funf-logo.png&w=640&q=75 2x"
+                    style="color: transparent;"
+                    width="246"
+                  />
                 </a>
               </div>
             </div>
@@ -2001,29 +1893,17 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27204%27%20height=%2740%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      alt="The Bill & Melinda Gates Foundation"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      src="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75"
-                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75 2x"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="The Bill & Melinda Gates Foundation"
+                    data-nimg="1"
+                    decoding="async"
+                    height="40"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75"
+                    srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=256&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbill-n-melinda-logo.png&w=640&q=75 2x"
+                    style="color: transparent;"
+                    width="204"
+                  />
                 </a>
               </div>
             </div>
@@ -2038,29 +1918,17 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27102%27%20height=%27100%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      alt="The Swedish International Development Cooperation Agency Logo"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      src="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75"
-                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=128&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75 2x"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="The Swedish International Development Cooperation Agency Logo"
+                    data-nimg="1"
+                    decoding="async"
+                    height="100"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75"
+                    srcset="/_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=128&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fsida-logo.png&w=256&q=75 2x"
+                    style="color: transparent;"
+                    width="102"
+                  />
                 </a>
               </div>
             </div>
@@ -2068,36 +1936,24 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               class="w-36 h-20 bg-white rounded-md flex"
             >
               <div
-                class="self-center px-12 mt-3"
+                class="self-center px-12"
               >
                 <a
                   href="//www.gov.uk/government/organisations/foreign-commonwealth-development-office"
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2760%27%20height=%2760%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      alt="The Foreign, Commonwealth & Development Office Logo"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      src="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75"
-                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=64&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75 2x"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="The Foreign, Commonwealth & Development Office Logo"
+                    data-nimg="1"
+                    decoding="async"
+                    height="60"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75"
+                    srcset="/_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=64&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Ffcdo-logo.png&w=128&q=75 2x"
+                    style="color: transparent;"
+                    width="60"
+                  />
                 </a>
               </div>
             </div>
@@ -2112,29 +1968,17 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%271570%27%20height=%27879%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      alt="The German Corporation for International Cooperation GmbH Logo"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      src="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75"
-                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=1920&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75 2x"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="The German Corporation for International Cooperation GmbH Logo"
+                    data-nimg="1"
+                    decoding="async"
+                    height="879"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75"
+                    srcset="/_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=1920&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fgiz-logo.png&w=3840&q=75 2x"
+                    style="color: transparent;"
+                    width="1570"
+                  />
                 </a>
               </div>
             </div>
@@ -2149,29 +1993,17 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%271152%27%20height=%27536%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      alt="The Federal Ministry for Economic Cooperation and Development Logo"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      src="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75"
-                      srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=1200&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75 2x"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="The Federal Ministry for Economic Cooperation and Development Logo"
+                    data-nimg="1"
+                    decoding="async"
+                    height="536"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75"
+                    srcset="/_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=1200&q=75 1x, /_next/image?url=%2Fimages%2Ffooter%2Fbmz-logo.png&w=3840&q=75 2x"
+                    style="color: transparent;"
+                    width="1152"
+                  />
                 </a>
               </div>
             </div>

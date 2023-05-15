@@ -16,15 +16,11 @@ export default function Error () {
           <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col'>
             <h1 className='block mb-3 mx-2'>{format('error.auth')}</h1>
             <div className='flex gap-2 items-center text-white font-semibold'>
-              <Link href='/auth/signin' passHref>
-                <a className='bg-dial-sapphire py-2 px-4 mx-2 rounded'>
-                  {format('error.tryAgain')}
-                </a>
+              <Link href='/auth/signin' className='bg-dial-sapphire py-2 px-4 mx-2 rounded'>
+                {format('error.tryAgain')}
               </Link>
-              <Link href='/'>
-                <a className='bg-dial-sapphire py-2 px-4 rounded'>
-                  {format('error.goBack')}
-                </a>
+              <Link href='/' className='bg-dial-sapphire py-2 px-4 rounded'>
+                {format('error.goBack')}
               </Link>
             </div>
           </div>

@@ -128,15 +128,13 @@ const Header = ({ isOnAuthPage = false }) => {
   return (
     <header className='z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-8 xl:px-16'>
-        <Link href='/'>
-          <a className='flex py-6'>
-            <Image
-              width={154}
-              height={44}
-              src='/assets/exchange/exchange-logo.png'
-              alt='Digital Impact Exchage Logo.'
-            />
-          </a>
+        <Link href='/' className='flex py-6 image-block-hack'>
+          <Image
+            width={154}
+            height={44}
+            src='/assets/exchange/exchange-logo.png'
+            alt='Digital Impact Exchage Logo.'
+          />
         </Link>
         <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block xl:hidden'>
           <svg
@@ -159,15 +157,14 @@ const Header = ({ isOnAuthPage = false }) => {
                 && (
                   <>
                     <li className='relative mt-2 xl:mt-0 text-right'>
-                      <Link href='/opportunities'>
-                        <a
-                          className={classNames(
-                            'xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer',
-                            'border-b-2 border-transparent hover:border-dial-sunshine'
-                          )}
-                        >
-                          {format('opportunity.header')}
-                        </a>
+                      <Link
+                        href='/opportunities'
+                        className={classNames(
+                          'xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer',
+                          'border-b-2 border-transparent hover:border-dial-sunshine'
+                        )}
+                      >
+                        {format('opportunity.header')}
                       </Link>
                     </li>
                     <li className='relative mt-2 xl:mt-0 text-right'>

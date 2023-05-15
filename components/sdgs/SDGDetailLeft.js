@@ -38,8 +38,8 @@ const SDGDetailLeft = ({ sdg }) => {
           </div>
           <div className='m-auto w-3/5 h-3/5 relative' >
             <Image
-              layout='fill'
-              objectFit='contain'
+              fill
+              className='p-2 m-auto object-contain'
               alt={format('image.alt.logoFor', { name: sdg.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdg.imageFile}
             />

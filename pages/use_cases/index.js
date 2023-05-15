@@ -14,7 +14,7 @@ import SearchFilter from '../../components/shared/SearchFilter'
 import { UseCaseFilterContext, UseCaseFilterDispatchContext } from '../../components/context/UseCaseFilterContext'
 import ClientOnly from '../../lib/ClientOnly'
 import PageContent from '../../components/main/PageContent'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 const UseCaseListQuery = dynamic(() => import('../../components/use-cases/UseCaseList'), { ssr: false })
 
 const UseCases = () => {
@@ -38,7 +38,7 @@ const UseCases = () => {
       <QueryNotification />
       <GradientBackground />
       <Header />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
         <TabNav activeTab='filter.entity.useCases' />
         <MobileNav activeTab='filter.entity.useCases' />

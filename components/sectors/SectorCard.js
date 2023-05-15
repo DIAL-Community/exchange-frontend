@@ -44,8 +44,14 @@ const SectorCard = ({ sector, listType = DisplayType.LIST, displayEditButtons = 
               {sector.name}
               {isAdminUser && displayEditButtons && (
                 sector?.isDisplayable
-                  ? <MdVisibility data-tip={format('sector.displayable.tooltip')} />
-                  : <MdVisibilityOff data-tip={format('sector.not-displayable.tooltip')} />
+                  ? <MdVisibility
+                    data-tooltip-id='react-tooltip'
+                    data-tooltip-content={format('sector.displayable.tooltip')}
+                  />
+                  : <MdVisibilityOff
+                    data-tooltip-id='react-tooltip'
+                    data-tooltip-content={format('sector.not-displayable.tooltip')}
+                  />
               )}
             </div>
           </div>

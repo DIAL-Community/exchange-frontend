@@ -31,44 +31,32 @@ const ProductHeader = ({ product }) => {
   return (
     <div className='border'>
       <Link href={`/products/${product.slug}`}>
-        <a href='navigate-to-product'>
-          <div className='cursor-pointer px-4 py-6 flex items-center'>
-            <img
-              className='w-8 h-full'
-              alt={format('image.alt.logoFor', { name: product.name })}
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
-            />
-            <div className='text-xl text-product font-semibold px-4'>{product.name}</div>
-          </div>
-        </a>
+        <div className='cursor-pointer px-4 py-6 flex items-center'>
+          <img
+            className='w-8 h-full'
+            alt={format('image.alt.logoFor', { name: product.name })}
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+          />
+          <div className='text-xl text-product font-semibold px-4'>{product.name}</div>
+        </div>
       </Link>
     </div>
   )
 }
 
-const PageDefinition = ({ slug, repositorySlug }) => {
+const PageDefinition = ({ slug, repositorySlug, product }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser } = useUser()
-  const { isProductOwner } = useProductOwnerUser(data?.product, [], isAdminUser)
+  const { isProductOwner } = useProductOwnerUser(product, [], isAdminUser)
 
   const canEdit = isAdminUser || isProductOwner
 
-  const { data, loading, error } = useQuery(PRODUCT_QUERY, { variables: { slug } })
-
-  if (loading) {
-    return <Loading/>
-  } else if (error) {
-    return <Error/>
-  } else if (!data?.product) {
-    return <NotFound/>
-  }
-
   const slugNameMapping = (() => {
     const map = {}
-    if (data) {
-      map[data.product.slug] = data.product.name
+    if (product) {
+      map[product.slug] = product.name
     }
 
     return map
@@ -83,7 +71,7 @@ const PageDefinition = ({ slug, repositorySlug }) => {
         <div className='w-full mb-2'>
           {canEdit && <CreateButton type='link' label={format('app.create-new')} href='repositories/create' />}
         </div>
-        {data?.product && <ProductHeader product={data.product} />}
+        <ProductHeader product={product} />
         <RepositoryList productSlug={slug} repositorySlug={repositorySlug} listStyle='compact' shadowOnContainer />
       </div>
       <div className='w-full lg:w-2/3 xl:w-3/4'>
@@ -102,11 +90,21 @@ const ProductRepositories = () => {
   const { query } = router
   const { slug, repositorySlug } = query
 
+  const { data, loading, error } = useQuery(PRODUCT_QUERY, { variables: { slug } })
+
+  if (loading) {
+    return <Loading/>
+  } else if (error) {
+    return <Error/>
+  } else if (!data?.product) {
+    return <NotFound/>
+  }
+
   return (
     <>
       <Header />
       <ClientOnly>
-        <PageDefinition slug={slug} repositorySlug={repositorySlug} />
+        <PageDefinition slug={slug} repositorySlug={repositorySlug} product={data.product} />
       </ClientOnly>
       <Footer />
     </>

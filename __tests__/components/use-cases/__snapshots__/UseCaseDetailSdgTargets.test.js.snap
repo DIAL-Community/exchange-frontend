@@ -247,58 +247,64 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
     <div
       class="grid grid-cols-1"
     >
-      <div
-        class="
-          border-3 border-transparent hover:border-dial-sunshine text-use-case
-          hover:text-dial-sunshine cursor-pointer
-        "
+      <a
         href="/sdgs/undefined"
       >
         <div
-          class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
-        >
-          <div
-            class="flex flex-row text-dial-gray-dark"
-          >
-            <div
-              class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
-            >
-              Target: 1.1
-            </div>
-            <div
-              class="my-2 text-sm w-9/12 md:w-10/12"
-            >
-              Test SDG Target
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="
+          class="
           border-3 border-transparent hover:border-dial-sunshine text-use-case
           hover:text-dial-sunshine cursor-pointer
         "
-        href="/sdgs/undefined"
-      >
-        <div
-          class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
         >
           <div
-            class="flex flex-row text-dial-gray-dark"
+            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
           >
             <div
-              class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
+              class="flex flex-row text-dial-gray-dark"
             >
-              Target: 2.1
-            </div>
-            <div
-              class="my-2 text-sm w-9/12 md:w-10/12"
-            >
-              Another SDG Target
+              <div
+                class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
+              >
+                Target: 1.1
+              </div>
+              <div
+                class="my-2 text-sm w-9/12 md:w-10/12"
+              >
+                Test SDG Target
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </a>
+      <a
+        href="/sdgs/undefined"
+      >
+        <div
+          class="
+          border-3 border-transparent hover:border-dial-sunshine text-use-case
+          hover:text-dial-sunshine cursor-pointer
+        "
+        >
+          <div
+            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+          >
+            <div
+              class="flex flex-row text-dial-gray-dark"
+            >
+              <div
+                class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
+              >
+                Target: 2.1
+              </div>
+              <div
+                class="my-2 text-sm w-9/12 md:w-10/12"
+              >
+                Another SDG Target
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </div>
@@ -514,58 +520,64 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
     <div
       class="grid grid-cols-1"
     >
-      <div
-        class="
-          border-3 border-transparent hover:border-dial-sunshine text-use-case
-          hover:text-dial-sunshine cursor-pointer
-        "
+      <a
         href="/sdgs/undefined"
       >
         <div
-          class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
-        >
-          <div
-            class="flex flex-row text-dial-gray-dark"
-          >
-            <div
-              class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
-            >
-              Target: 1.1
-            </div>
-            <div
-              class="my-2 text-sm w-9/12 md:w-10/12"
-            >
-              Test SDG Target
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="
+          class="
           border-3 border-transparent hover:border-dial-sunshine text-use-case
           hover:text-dial-sunshine cursor-pointer
         "
-        href="/sdgs/undefined"
-      >
-        <div
-          class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
         >
           <div
-            class="flex flex-row text-dial-gray-dark"
+            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
           >
             <div
-              class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
+              class="flex flex-row text-dial-gray-dark"
             >
-              Target: 2.1
-            </div>
-            <div
-              class="my-2 text-sm w-9/12 md:w-10/12"
-            >
-              Another SDG Target
+              <div
+                class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
+              >
+                Target: 1.1
+              </div>
+              <div
+                class="my-2 text-sm w-9/12 md:w-10/12"
+              >
+                Test SDG Target
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </a>
+      <a
+        href="/sdgs/undefined"
+      >
+        <div
+          class="
+          border-3 border-transparent hover:border-dial-sunshine text-use-case
+          hover:text-dial-sunshine cursor-pointer
+        "
+        >
+          <div
+            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+          >
+            <div
+              class="flex flex-row text-dial-gray-dark"
+            >
+              <div
+                class="px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12"
+              >
+                Target: 2.1
+              </div>
+              <div
+                class="my-2 text-sm w-9/12 md:w-10/12"
+              >
+                Another SDG Target
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </div>

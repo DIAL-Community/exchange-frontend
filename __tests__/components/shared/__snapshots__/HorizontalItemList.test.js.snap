@@ -47,6 +47,7 @@ exports[`Unit test for the HorizontalItemList component. Should match snapshot -
   >
     <span
       class="font-semibold my-auto"
+      data-tooltip-id="react-tooltip"
     >
       …
     </span>

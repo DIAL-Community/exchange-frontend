@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
 import classNames from 'classnames'
 import parse from 'html-react-parser'
 import { prependUrlWithProtocol } from '../../../lib/utilities'
@@ -20,10 +19,6 @@ const ProductCard = ({ product, listType }) => {
   const [status, setStatus] = useState('')
   const [comment, setComment] = useState('')
 
-  useEffect(() => {
-    ReactTooltip.rebuild()
-  })
-
   const shouldFlipCard = (status) => [CandidateStatusType.REJECTION, CandidateStatusType.APPROVAL].indexOf(status) >= 0
 
   const listView =
@@ -36,10 +31,11 @@ const ProductCard = ({ product, listType }) => {
           <div className='flex flex-col xl:flex-row gap-3 p-3'>
             <div className='flex flex-col gap-3 w-full xl:w-2/3 '>
               <div className='my-auto line-clamp-1 font-semibold'>
-                <Link href={`/candidate/products/${product.slug}`}>
-                  <a className='border-b-2 border-transparent hover:border-dial-sunshine'>
-                    {product.name}
-                  </a>
+                <Link
+                  href={`/candidate/products/${product.slug}`}
+                  className='border-b-2 border-transparent hover:border-dial-sunshine'
+                >
+                  {product.name}
                 </Link>
               </div>
               <div className='my-auto line-clamp-1 text-dial-blue'>
@@ -150,10 +146,11 @@ const ProductCard = ({ product, listType }) => {
           </div>
           <div className='flex flex-col h-64 p-4'>
             <div className='text-2xl font-semibold'>
-              <Link href={`/candidate/products/${product.slug}`}>
-                <a className='border-b-2 border-transparent hover:border-dial-sunshine'>
-                  {product.name}
-                </a>
+              <Link
+                href={`/candidate/products/${product.slug}`}
+                className='border-b-2 border-transparent hover:border-dial-sunshine'
+              >
+                {product.name}
               </Link>
             </div>
             <div className='mt-3 line-clamp-6'>

@@ -23,16 +23,14 @@ const UseCaseHeader = ({ useCase }) => {
     <div className='border'>
       <div className='text-xs text-right text-dial-cyan font-semibold p-1.5 border-b uppercase'>{useCase.maturity}</div>
       <Link href={`/use_cases/${useCase.slug}`}>
-        <a href='navigate-to-usecase'>
-          <div className='cursor-pointer px-4 py-6 flex items-center'>
-            <img
-              className='use-case-filter w-8 h-full'
-              alt={format('image.alt.logoFor', { name: useCase.name })}
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
-            />
-            <div className='text-xl text-use-case font-semibold px-4'>{useCase.name}</div>
-          </div>
-        </a>
+        <div className='cursor-pointer px-4 py-6 flex items-center'>
+          <img
+            className='use-case-filter w-8 h-full'
+            alt={format('image.alt.logoFor', { name: useCase.name })}
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+          />
+          <div className='text-xl text-use-case font-semibold px-4'>{useCase.name}</div>
+        </div>
       </Link>
     </div>
   )

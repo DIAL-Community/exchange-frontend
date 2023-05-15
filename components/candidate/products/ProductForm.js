@@ -125,17 +125,13 @@ const ProductForm = ({ candidateProduct }) => {
   const parentBreadcrumb = () =>
     isAdminUser
       ? (
-        <Link href='/candidate/products'>
-          <a className='text-dial-blue'>
-            {format('candidateProduct.label')}
-          </a>
+        <Link href='/candidate/products' className='text-dial-blue'>
+          {format('candidateProduct.label')}
         </Link>
       )
       : (
-        <Link href='/products'>
-          <a className='text-dial-blue'>
-            {format('product.header')}
-          </a>
+        <Link href='/products' className='text-dial-blue'>
+          {format('product.header')}
         </Link>
       )
 
@@ -148,10 +144,8 @@ const ProductForm = ({ candidateProduct }) => {
       )
       : (
         <>
-          <Link href={`/candidate/products/${candidateProduct.slug}`}>
-            <a className='text-dial-blue'>
-              {candidateProduct?.name}
-            </a>
+          <Link href={`/candidate/products/${candidateProduct.slug}`} className='text-dial-blue'>
+            {candidateProduct?.name}
           </Link>
           {BREADCRUMB_SEPARATOR}
           <span className='text-dial-gray-dark'>
@@ -162,10 +156,8 @@ const ProductForm = ({ candidateProduct }) => {
 
   const generateBreadcrumb = (candidateProduct) => (
     <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
-      <Link href='/'>
-        <a className='inline text-dial-blue h5'>
-          {format('app.home')}
-        </a>
+      <Link href='/' className='inline text-dial-blue h5'>
+        {format('app.home')}
       </Link>
       <div className='inline h5'>
         {BREADCRUMB_SEPARATOR}

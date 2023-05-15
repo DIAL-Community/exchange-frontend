@@ -24,12 +24,13 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                 class="text-sm"
               >
                 <a
-                  href="back-to-playbooks"
+                  href="/playbooks"
                 >
                   <img
                     alt="Logo for: {name}"
                     class="m-auto h-6 inline mr-2"
-                    data-tip="{entity}: {name}"
+                    data-tooltip-content="{entity}: {name}"
+                    data-tooltip-id="react-tooltip"
                     src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                   />
                   Playbook
@@ -503,11 +504,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                             class="move-animation-base bg-dial-biscotti h-14"
                           />
                           <div
-                            class="
-                  animated-move
-                  move-header-collapsed
-                  move-animation bg-dial-orange-light h-14
-                "
+                            class="animated-move move-header-collapsed move-animation bg-dial-orange-light h-14"
                           />
                           <div
                             class="flex move-header"
@@ -583,10 +580,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                                 target="_blank"
                               >
                                 <div
-                                  class="
-                                      group border-2 border-gray-300 hover:border-dial-sunshine
-                                      card-drop-shadow
-                                    "
+                                  class="group border-2 border-gray-300 hover:border-dial-sunshine card-drop-shadow"
                                 >
                                   <div
                                     class="flex"
@@ -665,12 +659,13 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
               class="text-sm"
             >
               <a
-                href="back-to-playbooks"
+                href="/playbooks"
               >
                 <img
                   alt="Logo for: {name}"
                   class="m-auto h-6 inline mr-2"
-                  data-tip="{entity}: {name}"
+                  data-tooltip-content="{entity}: {name}"
+                  data-tooltip-id="react-tooltip"
                   src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                 />
                 Playbook
@@ -1144,11 +1139,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                           class="move-animation-base bg-dial-biscotti h-14"
                         />
                         <div
-                          class="
-                  animated-move
-                  move-header-collapsed
-                  move-animation bg-dial-orange-light h-14
-                "
+                          class="animated-move move-header-collapsed move-animation bg-dial-orange-light h-14"
                         />
                         <div
                           class="flex move-header"
@@ -1224,10 +1215,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                               target="_blank"
                             >
                               <div
-                                class="
-                                      group border-2 border-gray-300 hover:border-dial-sunshine
-                                      card-drop-shadow
-                                    "
+                                class="group border-2 border-gray-300 hover:border-dial-sunshine card-drop-shadow"
                               >
                                 <div
                                   class="flex"
@@ -1494,12 +1482,13 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                 class="text-sm"
               >
                 <a
-                  href="back-to-playbooks"
+                  href="/playbooks"
                 >
                   <img
                     alt="Logo for: {name}"
                     class="m-auto h-6 inline mr-2"
-                    data-tip="{entity}: {name}"
+                    data-tooltip-content="{entity}: {name}"
+                    data-tooltip-id="react-tooltip"
                     src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                   />
                   Playbook
@@ -1920,11 +1909,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                             class="move-animation-base bg-dial-biscotti h-14"
                           />
                           <div
-                            class="
-                  animated-move
-                  move-header-collapsed
-                  move-animation bg-dial-orange-light h-14
-                "
+                            class="animated-move move-header-collapsed move-animation bg-dial-orange-light h-14"
                           />
                           <div
                             class="flex move-header"
@@ -2000,10 +1985,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                                 target="_blank"
                               >
                                 <div
-                                  class="
-                                      group border-2 border-gray-300 hover:border-dial-sunshine
-                                      card-drop-shadow
-                                    "
+                                  class="group border-2 border-gray-300 hover:border-dial-sunshine card-drop-shadow"
                                 >
                                   <div
                                     class="flex"
@@ -2082,12 +2064,13 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
               class="text-sm"
             >
               <a
-                href="back-to-playbooks"
+                href="/playbooks"
               >
                 <img
                   alt="Logo for: {name}"
                   class="m-auto h-6 inline mr-2"
-                  data-tip="{entity}: {name}"
+                  data-tooltip-content="{entity}: {name}"
+                  data-tooltip-id="react-tooltip"
                   src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                 />
                 Playbook
@@ -2508,11 +2491,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                           class="move-animation-base bg-dial-biscotti h-14"
                         />
                         <div
-                          class="
-                  animated-move
-                  move-header-collapsed
-                  move-animation bg-dial-orange-light h-14
-                "
+                          class="animated-move move-header-collapsed move-animation bg-dial-orange-light h-14"
                         />
                         <div
                           class="flex move-header"
@@ -2588,10 +2567,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                               target="_blank"
                             >
                               <div
-                                class="
-                                      group border-2 border-gray-300 hover:border-dial-sunshine
-                                      card-drop-shadow
-                                    "
+                                class="group border-2 border-gray-300 hover:border-dial-sunshine card-drop-shadow"
                               >
                                 <div
                                   class="flex"

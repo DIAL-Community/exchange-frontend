@@ -12,7 +12,7 @@ import DatasetActiveFilter from '../../components/datasets/DatasetActiveFilter'
 import SearchFilter from '../../components/shared/SearchFilter'
 import { DatasetFilterContext, DatasetFilterDispatchContext } from '../../components/context/DatasetFilterContext'
 import ClientOnly from '../../lib/ClientOnly'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 const DatasetListQuery = dynamic(() => import('../../components/datasets/DatasetList'), { ssr: false })
 
 const Datasets = () => {
@@ -24,7 +24,7 @@ const Datasets = () => {
       <QueryNotification />
       <GradientBackground />
       <Header />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
         <TabNav activeTab='filter.entity.datasets' />
         <MobileNav activeTab='filter.entity.datasets' />

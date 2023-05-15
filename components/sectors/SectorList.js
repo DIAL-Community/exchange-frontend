@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
-import ReactTooltip from 'react-tooltip'
+import { Tooltip } from 'react-tooltip'
 import { FilterContext } from '../context/FilterContext'
 import { UserFilterContext } from '../context/UserFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
@@ -53,7 +53,6 @@ const SectorListQuery = () => {
 
   useEffect(() => {
     if (data) {
-      ReactTooltip.rebuild()
       setResultCounts(resultCounts => {
         return {
           ...resultCounts,
@@ -91,7 +90,7 @@ const SectorListQuery = () => {
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
       <SectorList sectorList={nodes} displayType={DisplayType.LIST}/>
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
     </InfiniteScroll>
   )
 }

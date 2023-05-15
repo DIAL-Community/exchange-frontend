@@ -1,5 +1,5 @@
 import { act } from 'react-dom/test-utils'
-import { fireEvent, waitFor } from '@testing-library/react'
+import { fireEvent } from '@testing-library/react'
 import Dialog, { DialogType } from '../../../components/shared/Dialog'
 import { mockObserverImplementation, render } from '../../test-utils'
 import CustomMockedProvider from '../../utils/CustomMockedProvider'
@@ -31,7 +31,7 @@ describe('Unit test for the Dialog component.', () => {
 
   describe('Should match snapshot -', () => {
     test('when Dialog has form type with submit and cancel button.', async () => {
-      const { getByTestId, queryByTestId } = await act(() => render(
+      const { getByTestId, queryByTestId, container } = await act(() => render(
         <CustomMockedProvider>
           <Dialog
             submitButton
@@ -44,17 +44,15 @@ describe('Unit test for the Dialog component.', () => {
           </Dialog>
         </CustomMockedProvider>
       ))
-      waitFor(() => {
-        expect(getByTestId(DIALOG_BODY_TEST_ID)).toHaveTextContent(mockDialogBody)
-        expect(getByTestId(SUBMIT_BUTTON_TEST_ID)).toHaveTextContent('Submit')
-        expect(getByTestId(CANCEL_BUTTON_TEST_ID)).toHaveTextContent('Cancel')
-        expect(queryByTestId(CLOSE_BUTTON_TEST_ID)).not.toBeInTheDocument()
-        expect(getByTestId(DIALOG_TEST_ID)).toMatchSnapshot()
-      })
+      expect(getByTestId(DIALOG_BODY_TEST_ID)).toHaveTextContent(mockDialogBody)
+      expect(getByTestId(SUBMIT_BUTTON_TEST_ID)).toHaveTextContent('Submit')
+      expect(getByTestId(CANCEL_BUTTON_TEST_ID)).toHaveTextContent('Cancel')
+      expect(queryByTestId(CLOSE_BUTTON_TEST_ID)).not.toBeInTheDocument()
+      expect(container).toMatchSnapshot()
     })
 
     test('when Dialog has default type and has close button.', async () => {
-      const { getByTestId, queryByTestId } = await act(() => render(
+      const { getByTestId, queryByTestId, container } = await act(() => render(
         <CustomMockedProvider>
           <Dialog
             closeButton
@@ -69,7 +67,7 @@ describe('Unit test for the Dialog component.', () => {
       expect(getByTestId(CLOSE_BUTTON_TEST_ID)).toHaveTextContent('Close')
       expect(queryByTestId(SUBMIT_BUTTON_TEST_ID)).not.toBeInTheDocument()
       expect(queryByTestId(CANCEL_BUTTON_TEST_ID)).not.toBeInTheDocument()
-      expect(getByTestId(DIALOG_TEST_ID)).toMatchSnapshot()
+      expect(container).toMatchSnapshot()
     })
   })
 

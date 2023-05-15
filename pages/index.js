@@ -21,7 +21,7 @@ import QueryNotification from '../components/shared/QueryNotification'
 import HeroSection from '../components/Hero'
 import Wizard from '../components/wizard/Wizard'
 import { OVERVIEW_INTRO_KEY, OVERVIEW_INTRO_STEPS } from '../lib/intro'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const HomePage = () => {
   const { search } = useContext(ProductFilterContext)
@@ -43,7 +43,7 @@ const HomePage = () => {
       <Wizard />
       <CatalogTitle />
       <QueryNotification />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <TabNav activeTab='filter.entity.products' />
       <MobileNav activeTab='filter.entity.products' />
       <ClientOnly>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
+import classNames from 'classnames'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { HiExternalLink } from 'react-icons/hi'
@@ -33,11 +33,11 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
             <div className='move-header cursor-pointer' onClick={toggleDetail}>
               <div className='move-animation-base bg-dial-biscotti h-14' />
               <div
-                className={`
-                  animated-move
-                  ${openingDetail ? 'move-header-expanded' : 'move-header-collapsed'}
-                  move-animation bg-dial-orange-light h-14
-                `}
+                className={classNames(
+                  'animated-move',
+                  openingDetail ? 'move-header-expanded' : 'move-header-collapsed',
+                  'move-animation bg-dial-orange-light h-14'
+                )}
               />
               <div className='flex move-header'>
                 <div className='font-semibold px-4 py-4 my-auto'>{moveName}</div>
@@ -61,25 +61,23 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
                           .filter(resource => resource.url && resource.name)
                           .map(resource => {
                             return (
-                              <Link key={resource.i} href={resource.url} passHref>
-                                <a target='_blank' rel='noreferrer'>
-                                  <div
-                                    key={resource.i}
-                                    className={`
-                                      group border-2 border-gray-300 hover:border-dial-sunshine
-                                      card-drop-shadow
-                                    `}
-                                  >
-                                    <div className='flex'>
-                                      <div className='flex flex-col gap-2 px-3 py-4'>
-                                        <div className='font-semibold'>{resource.name}</div>
-                                        <div className='text-sm'>{resource.description}</div>
-                                      </div>
-                                      <HiExternalLink className='ml-auto px-2' size='2.2em' />
+                              <a key={resource.i} href={resource.url} target='_blank' rel='noreferrer'>
+                                <div
+                                  key={resource.i}
+                                  className={classNames(
+                                    'group border-2 border-gray-300 hover:border-dial-sunshine',
+                                    'card-drop-shadow'
+                                  )}
+                                >
+                                  <div className='flex'>
+                                    <div className='flex flex-col gap-2 px-3 py-4'>
+                                      <div className='font-semibold'>{resource.name}</div>
+                                      <div className='text-sm'>{resource.description}</div>
                                     </div>
+                                    <HiExternalLink className='ml-auto px-2' size='2.2em' />
                                   </div>
-                                </a>
-                              </Link>
+                                </div>
+                              </a>
                             )
                           })
                         }

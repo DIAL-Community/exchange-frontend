@@ -16,15 +16,13 @@ const CountryCard = ({ country, listType }) => {
 
   const withAuthCardContent =
     <Link data-testid='country-card' className='card-link' href={`/countries/${country.slug}`}>
-      <a href={`/countries/${country.slug}`}>
-        <div className='border-3 border-transparent hover:border-dial-sunshine'>
-          <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
-            <div className='p-4 font-semibold text-button-gray'>
-              {country.name}
-            </div>
+      <div className='border-3 border-transparent hover:border-dial-sunshine'>
+        <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
+          <div className='p-4 font-semibold text-button-gray'>
+            {country.name}
           </div>
         </div>
-      </a>
+      </div>
     </Link>
 
   return (

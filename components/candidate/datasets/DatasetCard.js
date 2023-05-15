@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import parse from 'html-react-parser'
@@ -25,10 +24,6 @@ const DatasetCard = ({ dataset, listType }) => {
     getDatasetTypeOptions(format)
       .find((datasetOption) => dataset.dataType === datasetOption.value)
   , [dataset.dataType, format])
-
-  useEffect(() => {
-    ReactTooltip.rebuild()
-  })
 
   const shouldFlipCard = (status) =>
     [CandidateStatusType.REJECTION, CandidateStatusType.APPROVAL].indexOf(status) >= 0

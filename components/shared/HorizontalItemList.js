@@ -1,7 +1,6 @@
 import debounce from 'lodash.debounce'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
 
 const HorizontalItemList = ({ restTooltipMessage, children, itemBgClassname='bg-white' }) => {
   const { formatMessage } = useIntl()
@@ -22,8 +21,6 @@ const HorizontalItemList = ({ restTooltipMessage, children, itemBgClassname='bg-
     window.addEventListener('resize', debounce(getContainerSize, 200))
   }, [getContainerSize])
 
-  useEffect(() => ReactTooltip.rebuild, [])
-
   return (
     <div className='flex flex-row' data-testid='horizontal-items-list'>
       <div
@@ -43,7 +40,8 @@ const HorizontalItemList = ({ restTooltipMessage, children, itemBgClassname='bg-
         >
           <span
             className='font-semibold my-auto'
-            data-tip={restTooltipMessage}
+            data-tooltip-id='react-tooltip'
+            data-tooltip-content={restTooltipMessage}
           >
             &hellip;
           </span>

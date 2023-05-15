@@ -54,8 +54,8 @@ const UseCaseDetailLeft = ({ useCase, commentsSectionRef }) => {
           </div>
           <div className='m-auto w-3/5 h-3/5 relative use-case-filter' >
             <Image
-              layout='fill'
-              objectFit='contain'
+              fill
+              className='object-contain'
               sizes='100vw'
               alt={format('image.alt.logoFor', { name: useCase.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}

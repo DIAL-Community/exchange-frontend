@@ -15,7 +15,7 @@ import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
 import { useUser } from '../../../lib/hooks'
 const OrganizationListQuery = dynamic(() =>
   import('../../../components/candidate/organizations/OrganizationList'), { ssr: false })
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const Organizations = () => {
   const { search } = useContext(OrganizationFilterContext)
@@ -27,7 +27,7 @@ const Organizations = () => {
     <>
       <QueryNotification />
       <GradientBackground />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <Header />
       {loadingUserSession ? <Loading /> : isAdminUser ? (
         <ClientOnly>

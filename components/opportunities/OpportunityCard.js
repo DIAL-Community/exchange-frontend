@@ -49,9 +49,8 @@ const OpportunityCard = ({ opportunity, listType, newTab = false }) => {
                       <div className='text-dial-gray-dark my-auto'>
                         <div className='image-block-hack w-8 relative'>
                           <Image
-                            layout='fill'
-                            objectFit='scale-down'
-                            objectPosition='left'
+                            fill
+                            className='object-contain'
                             alt={format('image.alt.logoFor', { name: opportunity.name })}
                             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + opportunity.imageFile}
                           />
@@ -103,8 +102,8 @@ const OpportunityCard = ({ opportunity, listType, newTab = false }) => {
                       <div className='my-8 mx-auto'>
                         <div className='block w-64 h-32 relative'>
                           <Image
-                            layout='fill'
-                            objectFit='scale-down'
+                            fill
+                            className='object-contain'
                             alt={format('image.alt.logoFor', { name: opportunity.name })}
                             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + opportunity.imageFile}
                           />

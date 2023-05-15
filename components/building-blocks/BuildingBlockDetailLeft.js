@@ -62,8 +62,8 @@ const BuildingBlockDetailLeft = ({ buildingBlock, commentsSectionRef }) => {
           </div>
           <div className='block w-32 h-32 building-block-filter flex-grow mx-auto'>
             <Image
-              layout='fill'
-              objectFit='contain'
+              fill
+              className='object-contain'
               alt={format('image.alt.logoFor', { name: buildingBlock.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
             />

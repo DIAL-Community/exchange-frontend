@@ -150,6 +150,8 @@ exports[`Unit test for the CountryList component Should render list of countries
             class="grid grid-cols-1"
           >
             <a
+              class="card-link"
+              data-testid="country-card"
               href="/countries/af"
             >
               <div
@@ -167,6 +169,8 @@ exports[`Unit test for the CountryList component Should render list of countries
               </div>
             </a>
             <a
+              class="card-link"
+              data-testid="country-card"
               href="/countries/al"
             >
               <div
@@ -208,6 +212,8 @@ exports[`Unit test for the CountryList component Should render list of countries
           class="grid grid-cols-1"
         >
           <a
+            class="card-link"
+            data-testid="country-card"
             href="/countries/af"
           >
             <div
@@ -225,6 +231,8 @@ exports[`Unit test for the CountryList component Should render list of countries
             </div>
           </a>
           <a
+            class="card-link"
+            data-testid="country-card"
             href="/countries/al"
           >
             <div
@@ -323,6 +331,8 @@ exports[`Unit test for the CountryList component Should render text with anchor 
             class="grid grid-cols-1"
           >
             <a
+              class="card-link"
+              data-testid="country-card"
               href="/countries/af"
             >
               <div
@@ -340,6 +350,8 @@ exports[`Unit test for the CountryList component Should render text with anchor 
               </div>
             </a>
             <a
+              class="card-link"
+              data-testid="country-card"
               href="/countries/al"
             >
               <div
@@ -381,6 +393,8 @@ exports[`Unit test for the CountryList component Should render text with anchor 
           class="grid grid-cols-1"
         >
           <a
+            class="card-link"
+            data-testid="country-card"
             href="/countries/af"
           >
             <div
@@ -398,6 +412,8 @@ exports[`Unit test for the CountryList component Should render text with anchor 
             </div>
           </a>
           <a
+            class="card-link"
+            data-testid="country-card"
             href="/countries/al"
           >
             <div

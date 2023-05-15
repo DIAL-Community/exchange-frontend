@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { useEffect } from 'react'
-import ReactTooltip from 'react-tooltip'
 import Image from 'next/image'
 import { convertToKey } from '../../context/FilterContext'
 const useCasesPath = convertToKey('Use Cases')
@@ -10,10 +8,6 @@ const stepsPath = convertToKey('Use Case Steps')
 const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
-
-  useEffect(() => {
-    ReactTooltip.rebuild()
-  })
 
   // Style the card based on the list style
   const cardContainerStyles = () => {
@@ -33,7 +27,7 @@ const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
   const [hoverStyle, containerStyle] = cardContainerStyles()
 
   return (
-    <Link href={`/${useCasesPath}/${useCaseStep.useCase.slug}/${stepsPath}/${useCaseStep.slug}`} passHref>
+    <Link href={`/${useCasesPath}/${useCaseStep.useCase.slug}/${stepsPath}/${useCaseStep.slug}`}>
       <div className={hoverStyle}>
         <div className={containerStyle}>
           <div className='flex flex-row'>
@@ -66,7 +60,8 @@ const StepCard = ({ useCaseStep, stepSlug, listStyle }) => {
                             <Image
                               height={25}
                               width={25}
-                              data-tip={
+                              data-tooltip-id='react-tooltip'
+                              data-tooltip-content={
                                 format(
                                   'tooltip.forEntity',
                                   { entity: format('workflow.label'), name: workflow.name }

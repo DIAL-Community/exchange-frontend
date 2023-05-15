@@ -8,7 +8,7 @@ import { getCsrfToken, getSession } from 'next-auth/react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { ToastContext } from '../../lib/ToastContext'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const ConfirmationEmail = () => {
   const router = useRouter()
@@ -55,7 +55,7 @@ const ConfirmationEmail = () => {
   return (
     <>
       <Header isOnAuthPage />
-      <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
+      <Tooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <div className='bg-dial-gray-dark pt-28 simple-form-height'>
         <div className='pt-4 text-dial-sapphire'>
           <div id='content' className='px-4 sm:px-0 max-w-full sm:max-w-prose mx-auto'>
@@ -86,16 +86,18 @@ const ConfirmationEmail = () => {
                     </button>
                   </div>
                   <div className='flex gap-2'>
-                    <Link href='/auth/signin'>
-                      <a className='border-b-2 border-transparent hover:border-dial-sunshine'>
-                        {format('app.signIn')}
-                      </a>
+                    <Link
+                      href='/auth/signin'
+                      className='border-b-2 border-transparent hover:border-dial-sunshine'
+                    >
+                      {format('app.signIn')}
                     </Link>
                     <div className='border-r-2 border-dial-gray-dark' />
-                    <Link href='/auth/signup'>
-                      <a className='border-b-2 border-transparent hover:border-dial-sunshine'>
-                        {format('app.signUp')}
-                      </a>
+                    <Link
+                      href='/auth/signup'
+                      className='border-b-2 border-transparent hover:border-dial-sunshine'
+                    >
+                      {format('app.signUp')}
                     </Link>
                   </div>
                 </div>

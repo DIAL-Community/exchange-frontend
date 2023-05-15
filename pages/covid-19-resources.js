@@ -38,10 +38,10 @@ const Content = () => {
             </li>
           </ul>
           <div className='my-8'>
-            <Link href='/products'>
-              <a className='px-8 py-4 rounded-full text-xl shadow-xl text-white bg-dial-blue' href='/products'>
-                {format('covid.exploreCatalog')}
-              </a>
+            <Link href='/products'
+              className='px-8 py-4 rounded-full text-xl shadow-xl text-white bg-dial-blue'
+            >
+              {format('covid.exploreCatalog')}
             </Link>
           </div>
         </div>

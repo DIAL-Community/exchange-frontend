@@ -22,16 +22,15 @@ const WizardDescription = () => {
           {format('landing.wizard.description')}
         </p>
         <div className='text-center mt-12'>
-          <Link href='/wizard'>
-            <a
-              className={`
-                rounded-full shadow-2xl text-base md:text-xl py-4 pl-4 pr-12
-                text-button-gray bg-dial-sunshine
-              `}
-            >
-              <img src='/icons/wizard.svg' className='inline mx-2 pr-2' alt='Back' height='30px' width='30px' />
-              {format('landing.wizard.buttonText')}
-            </a>
+          <Link
+            href='/wizard'
+            className={`
+              rounded-full shadow-2xl text-base md:text-xl py-4 pl-4 pr-12
+              text-button-gray bg-dial-sunshine
+            `}
+          >
+            <img src='/icons/wizard.svg' className='inline mx-2 pr-2' alt='Back' height='30px' width='30px' />
+            {format('landing.wizard.buttonText')}
           </Link>
         </div>
       </div>
