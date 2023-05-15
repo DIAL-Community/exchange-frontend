@@ -22,65 +22,48 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       />
       {
         currentOpenMenu === ADMIN_MENU &&
-          <div className={DEFAULT_DROPDOWN_PANEL_STYLES} ref={adminPopoverRe} role='menu'  data-testid='menu-admin-items'>
-            <Link href='/users'>
-              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-                {format('header.admin.users')}
-              </a>
+          <div
+            className={DEFAULT_DROPDOWN_PANEL_STYLES}
+            ref={adminPopoverRe}
+            role='menu'
+            data-testid='menu-admin-items'
+          >
+            <Link href='/users' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('header.admin.users')}
             </Link>
             <hr className='mx-4 border border-gray-200' />
-            <Link href='/countries'>
-              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-                {format('header.admin.countries')}
-              </a>
+            <Link href='/countries' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('header.admin.countries')}
             </Link>
-            <Link href='/sectors'>
-              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-                {format('header.admin.sectors')}
-              </a>
+            <Link href='/sectors' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('header.admin.sectors')}
             </Link>
-            <Link href='/tags'>
-              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-                {format('header.admin.tags')}
-              </a>
+            <Link href='/tags' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('header.admin.tags')}
             </Link>
             <hr className='mx-4 border border-gray-200' />
-            <Link href='/candidate/datasets'>
-              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-                {format('header.admin.candidate_datasets')}
-              </a>
+            <Link href='/candidate/datasets' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('header.admin.candidate_datasets')}
             </Link>
-            <Link href='/candidate/organizations'>
-              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-                {format('header.admin.candidate_orgs')}
-              </a>
+            <Link href='/candidate/organizations' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('header.admin.candidate_orgs')}
             </Link>
-            <Link href='/candidate/products'>
-              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-                {format('header.admin.candidate_products')}
-              </a>
+            <Link href='/candidate/products' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('header.admin.candidate_products')}
             </Link>
-            <Link href='/candidate/roles'>
-              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-                {format('header.admin.candidate_roles')}
-              </a>
+            <Link href='/candidate/roles' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('header.admin.candidate_roles')}
             </Link>
             <hr className='mx-4 border border-gray-200' />
-            <Link href='/rubric_categories'>
-              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-                {format('rubric-categories.header')}
-              </a>
+            <Link href='/rubric_categories' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('rubric-categories.header')}
             </Link>
             <hr className='mx-4 border border-gray-200' />
-            <Link href='/spreadsheets/datasets'>
-              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-                {format('spreadsheet.dataset.header')}
-              </a>
+            <Link href='/spreadsheets/datasets' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('spreadsheet.dataset.header')}
             </Link>
-            <Link href='/spreadsheets/products'>
-              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-                {format('spreadsheet.product.header')}
-              </a>
+            <Link href='/spreadsheets/products' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('spreadsheet.product.header')}
             </Link>
           </div>
       }

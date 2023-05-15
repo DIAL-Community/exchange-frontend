@@ -11,7 +11,6 @@ const SdgTargetCard = ({ sdgTarget }) => {
     <Link
       key={sdgTarget.sustainableDevelopmentGoal?.id}
       href={`/sdgs/${sdgTarget.sustainableDevelopmentGoal?.slug}`}
-      passHref
     >
       <div
         className={`

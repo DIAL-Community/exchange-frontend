@@ -20,15 +20,21 @@ const TabNav = (props) => {
             <div className='text-center -mt-7' style={{ lineHeight: 0.1 }}>
               <span className='bg-white px-3 intro-overview-sdg-framework'>
                 <span className='text-sm font-bold text-gray-500'>{format('digiInvestment.title')}</span>
-                <HiQuestionMarkCircle className='ml-1 inline' data-tip={format('digiInvestment.tooltip')} data-html />
+                <HiQuestionMarkCircle
+                  className='ml-1 inline'
+                  data-tooltip-id='react-tooltip'
+                  data-tooltip-html={format('digiInvestment.tooltip')}
+                />
               </span>
             </div>
           </div>
-          <div className='text-sm text-right -mt-3'>
-            <Link href='/#wizard-anchor' scroll={false}>
-              <a className='border-b-2 border-transparent text-dial-sunshine font-semibold hover:border-dial-sunshine'>
-                {format('filter.launchWizard')}
-              </a>
+          <div className='text-sm text-dial-sunshine text-right -mt-3'>
+            <Link
+              href='/#wizard-anchor'
+              scroll={false}
+              className='border-b-2 border-transparent font-semibold hover:border-dial-sunshine'
+            >
+              {format('filter.launchWizard')}
             </Link>
           </div>
         </div>
@@ -52,28 +58,26 @@ const TabNav = (props) => {
                     )}
                     style={{ flex: '1 1 0px' }}
                   >
-                    <Link href={`/${href}`}>
-                      <a
+                    <Link
+                      href={`/${href}`}
+                      className={classNames(
+                        'block p-3',
+                        index === activeTab
+                          ? 'bg-dial-sunshine rounded-t hover:bg-dial-sunshine'
+                          : 'bg-dial-alice-blue rounded hover:bg-dial-eggshell'
+                      )}
+                      data-toggle='tab'
+                    >
+                      <div
                         className={classNames(
-                          'block p-3',
-                          index === activeTab
-                            ? 'bg-dial-sunshine rounded-t hover:bg-dial-sunshine'
-                            : 'bg-dial-alice-blue rounded hover:bg-dial-eggshell'
+                          index === activeTab ? '' : 'truncate',
+                          filterItem === 'filter.entity.products' ? 'intro-overview-entity-product' : '',
+                          filterItem === 'filter.entity.playbooks' ? 'intro-overview-entity-playbook' : '',
+                          'text-center font-semibold text-dial-gray-dark'
                         )}
-                        data-toggle='tab'
-                        href={`/${href}`}
                       >
-                        <div
-                          className={classNames(
-                            index === activeTab ? '' : 'truncate',
-                            filterItem === 'filter.entity.products' ? 'intro-overview-entity-product' : '',
-                            filterItem === 'filter.entity.playbooks' ? 'intro-overview-entity-playbook' : '',
-                            'text-center font-semibold text-dial-gray-dark'
-                          )}
-                        >
-                          {format(filterItem)}
-                        </div>
-                      </a>
+                        {format(filterItem)}
+                      </div>
                     </Link>
                   </li>
                 )

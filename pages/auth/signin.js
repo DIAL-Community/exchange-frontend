@@ -78,16 +78,18 @@ export default function SignIn ({ csrfToken }) {
                     {loading && <FaSpinner className='spinner ml-3 my-auto' />}
                   </button>
                   <div className='ml-auto flex gap-2'>
-                    <Link href='/auth/signup'>
-                      <a className='border-b-2 border-transparent hover:border-dial-sunshine'>
-                        {format('app.signUp')}
-                      </a>
+                    <Link
+                      href='/auth/signup'
+                      className='border-b-2 border-transparent hover:border-dial-sunshine'
+                    >
+                      {format('app.signUp')}
                     </Link>
                     <span className='border-r-2 border-dial-gray-dark' />
-                    <Link href='/auth/reset-password'>
-                      <a className='border-b-2 border-transparent hover:border-dial-sunshine'>
-                        {format('signIn.forgetPassword')}
-                      </a>
+                    <Link
+                      href='/auth/reset-password'
+                      className='border-b-2 border-transparent hover:border-dial-sunshine'
+                    >
+                      {format('signIn.forgetPassword')}
                     </Link>
                   </div>
                 </div>
@@ -95,10 +97,11 @@ export default function SignIn ({ csrfToken }) {
                   requireConfirmation &&
                   <div className='text-xs text-red-500 flex gap-1 italic'>
                     {format('signIn.confirmation.required')}
-                    <Link href='/auth/confirmation-email'>
-                      <a className='border-b-2 border-transparent hover:border-dial-sunshine'>
-                        {format('signIn.confirmationEmail')}
-                      </a>
+                    <Link
+                      href='/auth/confirmation-email'
+                      className='border-b-2 border-transparent hover:border-dial-sunshine'
+                    >
+                      {format('signIn.confirmationEmail')}
                     </Link>
                   </div>
                 }

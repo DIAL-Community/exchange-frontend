@@ -1,7 +1,6 @@
 import Image from 'next/image'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
 import { ProductFilterContext, ProductFilterDispatchContext } from '../context/ProductFilterContext'
 import { BuildingBlockAutocomplete } from '../filter/element/BuildingBlock'
 import { CountryAutocomplete } from '../filter/element/Country'
@@ -54,10 +53,6 @@ const ProductFilter = ({ inMobileView }) => {
   const toggleHintDetail = () => {
     setOpeningDetail(!openingDetail)
   }
-
-  useEffect(() => {
-    ReactTooltip.rebuild()
-  })
 
   return (
     <div className='pt-6 pb-10 bg-dial-solitude rounded-lg text-dial-stratos'>
@@ -125,8 +120,8 @@ const ProductFilter = ({ inMobileView }) => {
                 height={34}
                 src='/assets/info.png'
                 alt='Informational hint'
-                data-tip={format('filter.product.dpiDefinition')}
-                data-html
+                data-tooltip-id='react-tooltip'
+                data-tooltip-html={format('filter.product.dpiDefinition')}
               />
             </span>
           </label>

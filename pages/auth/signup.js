@@ -12,7 +12,7 @@ import Header from '../../components/Header'
 import ClientOnly from '../../lib/ClientOnly'
 import { ToastContext } from '../../lib/ToastContext'
 
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const TextFieldDefinition = (initialState) => {
   const [fields, setFields] = useState(initialState)
@@ -137,7 +137,7 @@ const SignUp = () => {
   return (
     <>
       <Header isOnAuthPage />
-      <ReactTooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
+      <Tooltip className='tooltip-prose bg-gray-300 text-gray rounded' />
       <ClientOnly>
         <div className='bg-dial-gray-dark'>
           <div className='pt-4 pb-8 text-dial-sapphire'>
@@ -219,31 +219,28 @@ const SignUp = () => {
                       </button>
                     </div>
                     <div className='flex gap-2 text-dial-sapphire'>
-                      <Link href='/auth/signin'>
-                        <a
-                          className='border-b-2 border-transparent hover:border-dial-sunshine'
-                          href='navigate-to-signin'
-                        >
-                          {format('app.signIn')}
-                        </a>
+                      <Link
+                        href='/auth/signin'
+                        className='border-b-2 border-transparent hover:border-dial-sunshine'
+                      >
+                        {format('app.signIn')}
                       </Link>
                       <div className='border-r-2 border-dial-gray-dark' />
-                      <Link href='/auth/reset-password'>
-                        <a
-                          className='border-b-2 border-transparent hover:border-dial-sunshine'
-                          href='navigate-to-reset'
-                        >
-                          {format('signIn.forgetPassword')}
-                        </a>
+                      <Link
+                        href='/auth/reset-password'
+                        className='border-b-2 border-transparent hover:border-dial-sunshine'
+                      >
+                        {format('signIn.forgetPassword')}
                       </Link>
                     </div>
                   </div>
                   <div className='flex gap-1 text-xs text-dial-stratos'>
                     {format('signUp.privacy')}
-                    <Link href='/privacy-policy'>
-                      <a className='text-dial-sunshine border-b-2 border-transparent hover:border-dial-sunshine'>
-                        {format('signUp.privacyLink')}
-                      </a>
+                    <Link
+                      href='/privacy-policy'
+                      className='text-dial-sunshine border-b-2 border-transparent hover:border-dial-sunshine'
+                    >
+                      {format('signUp.privacyLink')}
                     </Link>
                   </div>
                 </div>

@@ -133,8 +133,8 @@ const OpportunityDetailRight = ({ opportunity, commentsSectionRef }) => {
         {opportunity.origin &&
           <div className='image-block-hack w-24 h-6 relative'>
             <Image
-              layout='fill'
-              objectFit='scale-down'
+              fill
+              className='p-2 m-auto object-contain'
               src={'/images/origins/' + opportunity.origin.slug + '.png'}
               alt={format('image.alt.logoFor', { name: opportunity.origin.name })}
             />

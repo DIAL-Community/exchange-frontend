@@ -66,8 +66,8 @@ const OpportunityDetailLeft = ({ opportunity, commentsSectionRef }) => {
           <div className='my-8 mx-auto'>
             <div className='block w-40 h-40 relative'>
               <Image
-                layout='fill'
-                objectFit='scale-down'
+                fill
+                className='object-contain'
                 alt={format('image.alt.logoFor', { name: opportunity.name })}
                 src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + opportunity.imageFile}
               />

@@ -1101,9 +1101,9 @@ exports[`Unit test for the ProductDetailMaturityScores component. Should match s
 exports[`Unit test for the ProductDetailMaturityScores component. Should match snapshot maturity scores radar chart. 2`] = `
 <div
   class="cursor-pointer min-h-[20rem] h-[25vh]"
-  currentitem="false"
   data-testid="maturity-scores-chart"
-  data-tip="Click to see maturity score details"
+  data-tooltip-content="Click to see maturity score details"
+  data-tooltip-id="react-tooltip"
 >
   <canvas
     height="0"

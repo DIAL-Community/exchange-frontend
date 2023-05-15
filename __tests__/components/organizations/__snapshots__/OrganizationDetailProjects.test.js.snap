@@ -274,7 +274,7 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should match s
               >
                 <div
                   class="text-right text-sm font-semibold text-dial-cyan"
-                  data-tip="Origin: "
+                  data-tooltip-content="Origin: "
                 >
                   ORIGIN_SLUG
                 </div>
@@ -503,7 +503,7 @@ exports[`Unit tests for the OrganizationDetailProjects component. Should match s
               >
                 <div
                   class="text-right text-sm font-semibold text-dial-cyan"
-                  data-tip="Origin: "
+                  data-tooltip-content="Origin: "
                 >
                   ORIGIN_SLUG
                 </div>

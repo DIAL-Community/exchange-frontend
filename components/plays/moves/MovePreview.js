@@ -1,7 +1,6 @@
 import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { HiExternalLink } from 'react-icons/hi'
 import { Dialog, Transition } from '@headlessui/react'
@@ -106,24 +105,22 @@ const MovePreview = () => {
                             <div className='font-semibold'>{format('move.resources.header')}</div>
                             <div className='flex flex-wrap gap-3'>
                               {data.move?.resources.map(resource =>
-                                <Link key={resource.i} href={resource.url} passHref>
-                                  <a target='_blank' rel='noreferrer'>
-                                    <div
-                                      className={`
-                                        group border-2 border-gray-300 hover:border-dial-sunshine
-                                        card-drop-shadow
-                                      `}
-                                    >
-                                      <div className='flex'>
-                                        <div className='flex flex-col gap-2 px-3 py-4'>
-                                          <div className='font-semibold'>{resource.name}</div>
-                                          <div className='text-sm'>{resource.description}</div>
-                                        </div>
-                                        <HiExternalLink className='ml-auto px-2' size='2.2em' />
+                                <a key={resource.i} href={resource.url} target='_blank' rel='noreferrer'>
+                                  <div
+                                    className={`
+                                      group border-2 border-gray-300 hover:border-dial-sunshine
+                                      card-drop-shadow
+                                    `}
+                                  >
+                                    <div className='flex'>
+                                      <div className='flex flex-col gap-2 px-3 py-4'>
+                                        <div className='font-semibold'>{resource.name}</div>
+                                        <div className='text-sm'>{resource.description}</div>
                                       </div>
+                                      <HiExternalLink className='ml-auto px-2' size='2.2em' />
                                     </div>
-                                  </a>
-                                </Link>
+                                  </div>
+                                </a>
                               )}
                             </div>
                           </>

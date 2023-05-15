@@ -112,7 +112,7 @@ const RepositoryInformation = ({ productRepository }) => {
       </div>
       {
         (
-          user?.canEdit ||
+          user?.isAdminUser ||
           user?.own.products.filter(p => `${p}` === `${productRepository.product.id}`).length > 0
         ) &&
           <div className='w-full xl:w-4/5 my-2 flex flex-row gap-2'>

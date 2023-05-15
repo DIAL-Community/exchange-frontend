@@ -44,10 +44,8 @@ const UserMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       {
         currentOpenMenu === USER_MENU &&
           <div className={DEFAULT_DROPDOWN_PANEL_STYLES} ref={popoverRef} role='menu'>
-            <Link href='/auth/profile'>
-              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-                {format('header.profile')}
-              </a>
+            <Link href='/auth/profile' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('header.profile')}
             </Link>
             <a href='signOut' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES} onClick={signOutUser}>
               {format('header.signOut')}

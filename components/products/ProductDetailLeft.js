@@ -221,8 +221,8 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
           </div>
           <div className='m-auto w-3/5 h-3/5 relative' >
             <Image
-              layout='fill'
-              objectFit='contain'
+              fill
+              className='p-2 m-auto object-contain'
               alt={`${product.name} Logo`}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
             />

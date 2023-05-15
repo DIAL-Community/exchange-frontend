@@ -52,8 +52,8 @@ const WorkflowDetailLeft = ({ workflow }) => {
           </div>
           <div className='m-auto w-3/5 h-3/5 relative workflow-filter' >
             <Image
-              layout='fill'
-              objectFit='contain'
+              fill
+              className='p-2 m-auto object-contain'
               sizes='100vw'
               alt={format('image.alt.logoFor', { name: workflow.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}

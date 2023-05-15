@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { useCallback, useEffect } from 'react'
-import ReactTooltip from 'react-tooltip'
+import { useCallback } from 'react'
 import { useIntl, FormattedDate } from 'react-intl'
 import { FaStar, FaCalendar, FaCalendarAlt } from 'react-icons/fa'
 import { convertToKey } from '../../context/FilterContext'
@@ -10,10 +9,6 @@ const repositoriesPath = convertToKey('Repositories')
 const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  useEffect(() => {
-    ReactTooltip.rebuild()
-  })
 
   // Style the card based on the list style
   const cardContainerStyles = () => {
@@ -38,7 +33,6 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
         `/${productsPath}/${productRepository.product.slug}` +
         `/${repositoriesPath}/${productRepository.slug}`
       }
-      passHref
     >
       <div className={hoverStyle}>
         <div className={containerStyle}>

@@ -191,9 +191,8 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
           </div>
           <div className='m-auto w-3/5 h-3/5 relative' >
             <Image
-              layout='fill'
-              objectFit='contain'
-              className='w-40'
+              fill
+              className='w-40 object-contain'
               alt={format('image.alt.logoFor', { name: organization.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.imageFile}
             />

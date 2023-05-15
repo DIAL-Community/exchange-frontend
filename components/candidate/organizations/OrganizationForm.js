@@ -116,15 +116,13 @@ const OrganizationForm = () => {
       <div className='flex flex-col'>
         <div className='hidden lg:block px-8'>
           <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
-            <Link href='/'>
-              <a className='inline text-dial-blue h5'>{format('app.home')}</a>
+            <Link href='/' className='inline text-dial-blue h5'>
+              {format('app.home')}
             </Link>
             <div className='inline h5'>
               {BREADCRUMB_SEPARATOR}
-              <Link href='/organizations'>
-                <a className='text-dial-blue'>
-                  {format('organization.header')}
-                </a>
+              <Link href='/organizations' className='text-dial-blue'>
+                {format('organization.header')}
               </Link>
               {BREADCRUMB_SEPARATOR}
               <span className='text-dial-gray-dark'>
