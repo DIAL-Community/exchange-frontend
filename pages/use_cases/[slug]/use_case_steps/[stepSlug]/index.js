@@ -79,7 +79,7 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
         <div className='block lg:hidden'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
         </div>
-        {canEdit &&
+        {canEdit && !data.useCase.markdownUrl &&
           <div className='flex flex-row justify-between mb-2'>
             <EditButton type='link' href={generateEditLink()} />
             <CreateButton
@@ -93,7 +93,7 @@ const UseCaseStepPageDefinition = ({ slug, stepSlug }) => {
         <StepList useCaseSlug={slug} stepSlug={stepSlug} listStyle='compact' shadowOnContainer />
       </div>
       <div className='w-full lg:w-2/3 xl:w-3/4'>
-        <StepDetail stepSlug={stepSlug} locale={locale} />
+        <StepDetail useCaseSlug={slug} stepSlug={stepSlug} locale={locale} />
       </div>
     </div>
   )

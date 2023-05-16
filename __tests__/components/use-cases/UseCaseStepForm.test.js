@@ -19,7 +19,6 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     name: 'Test Use Case Step',
     slug: 'test_use_case_step',
     stepNumber: 1,
-    markdownUrl: '',
     description: 'test Use Case Step description',
     useCaseId: 17
   }
@@ -28,7 +27,7 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     mockNextAuthUseSession(statuses.UNAUTHENTICATED)
     const { container } = render(
       <CustomMockedProvider>
-        <StepForm />
+        <StepForm useCase={useCase} />
       </CustomMockedProvider>
     )
     await waitForAllEffects()
@@ -39,7 +38,7 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: false })
     const { container } = render(
       <CustomMockedProvider>
-        <StepForm />
+        <StepForm useCase={useCase} />
       </CustomMockedProvider>
     )
     await waitForAllEffects()
@@ -50,7 +49,7 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container } = render(
       <CustomMockedProvider>
-        <StepForm />
+        <StepForm useCase={useCase} />
       </CustomMockedProvider>
     )
     await waitForAllEffects()
@@ -62,7 +61,7 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { getByTestId } = render(
       <CustomMockedProvider>
-        <StepForm />
+        <StepForm useCase={useCase} />
       </CustomMockedProvider>
     )
     await waitForAllEffects()

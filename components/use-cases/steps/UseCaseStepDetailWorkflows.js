@@ -97,7 +97,9 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit }) => {
   const displayModeBody = workflows.length
     ? (
       <div className='flex flex-col gap-2'>
-        {workflows.map((workflow, workflowIdx) => <WorkflowCard key={workflowIdx} workflow={workflow} listType='list' />)}
+        {workflows.map((workflow, workflowIdx) =>
+          <WorkflowCard key={workflowIdx} workflow={workflow} listType='list' />)
+        }
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>

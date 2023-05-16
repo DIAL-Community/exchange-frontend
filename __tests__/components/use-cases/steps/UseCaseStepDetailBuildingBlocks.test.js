@@ -7,7 +7,7 @@ import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../../queries/building-block'
 import UseCaseStepDetailBuildingBlocks from '../../../../components/use-cases/steps/UseCaseStepDetailBuildingBlocks'
 import { mockNextUseRouter } from '../../../utils/nextMockImplementation'
 import { buildingBlocks } from './data/UseCaseStepDetailBuildingBlocks'
-import { useCaseStep } from './data/UseCaseStepForm'
+import { useCaseStep, useCase } from './data/UseCaseStepForm'
 
 mockNextUseRouter()
 describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => {
@@ -28,6 +28,7 @@ describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => 
           <DndProvider backend={HTML5Backend}>
             <UseCaseStepDetailBuildingBlocks
               canEdit={false}
+              useCase={useCase}
               useCaseStep={useCaseStep}
             />
           </DndProvider>
@@ -42,6 +43,7 @@ describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => 
           <DndProvider backend={HTML5Backend}>
             <UseCaseStepDetailBuildingBlocks
               canEdit={true}
+              useCase={useCase}
               useCaseStep={useCaseStep}
             />
           </DndProvider>
@@ -56,6 +58,7 @@ describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => 
           <DndProvider backend={HTML5Backend}>
             <UseCaseStepDetailBuildingBlocks
               canEdit={true}
+              useCase={useCase}
               useCaseStep={useCaseStep}
             />
           </DndProvider>
@@ -73,6 +76,7 @@ describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => 
         <DndProvider backend={HTML5Backend}>
           <UseCaseStepDetailBuildingBlocks
             canEdit={true}
+            useCase={useCase}
             useCaseStep={useCaseStep}
           />
         </DndProvider>
@@ -91,6 +95,7 @@ describe('Unit tests for the UseCaseStepDetailBuildingBlocks component.', () => 
         <DndProvider backend={HTML5Backend}>
           <UseCaseStepDetailBuildingBlocks
             canEdit={true}
+            useCase={useCase}
             useCaseStep={useCaseStep}
           />
         </DndProvider>
