@@ -669,7 +669,6 @@ export const en = {
   'use-case-step.create': 'Add Use Case Step',
   'use-case-step.label': 'Use Case Step',
   'use-case-step.name': 'Name',
-  'use-case-step.markdownUrl': 'Markdown Filename',
   'use-case-step.description': 'Description',
   'use-case-step.step-number': 'Step Number',
   'use-case-step.submit.failure': 'Use Case Step submission failed',
@@ -1627,5 +1626,13 @@ export const en = {
   'opportunity.no-country': 'No country assigned.',
   'opportunity.no-organization': 'No organization assigned.',
   'opportunity.no-sector': 'No sector assigned.',
-  'opportunity.no-use-case': 'No use case assigned.'
+  'opportunity.no-use-case': 'No use case assigned.',
+
+  'useCaseStep.markdownWarning': `
+    Use case is linked to a markdown definition. Please edit the markdown if you would like
+    to make changes to this step.
+  `,
+  'useCase.markdownWarning': `
+    Use case is linked to a markdown definition. Description will be read from linked markdown.
+  `
 }

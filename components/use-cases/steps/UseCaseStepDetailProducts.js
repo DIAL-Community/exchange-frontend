@@ -58,7 +58,10 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit }) => {
   )
 
   const addProduct = (product) => {
-    setProducts([...products.filter(({ slug }) => slug !== product.slug), { name: product.label, slug: product.slug }])
+    setProducts([
+      ...products.filter(({ slug }) => slug !== product.slug),
+      { name: product.label, slug: product.slug }
+    ])
     setIsDirty(true)
   }
 

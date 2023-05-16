@@ -18,7 +18,7 @@ const UseCaseDetailRight = ({ useCase, commentsSectionRef }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { isAdminUser, isEditorUser } = useUser()
-  const canEdit = isAdminUser || isEditorUser
+  const canEdit = (isAdminUser || isEditorUser) && !useCase.markdownUrl
 
   const generateCreateStepLink = () => {
     if (!canEdit) {

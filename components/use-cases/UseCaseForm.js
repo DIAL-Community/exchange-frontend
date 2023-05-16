@@ -279,6 +279,11 @@ const UseCaseForm = React.memo(({ useCase }) => {
                     {reverting && <FaSpinner className='spinner ml-3' />}
                   </button>
                 </div>
+                { useCase?.markdownUrl &&
+                  <div className='text-sm italic text-red-500'>
+                    {format('useCase.markdownWarning')}
+                  </div>
+                }
               </div>
             </form>
           </div>

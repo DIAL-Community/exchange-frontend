@@ -12,7 +12,7 @@ import Pill from '../../shared/Pill'
 import Select from '../../shared/Select'
 import UseCaseBuildingBlock from '../UseCaseBuildingBlocks'
 
-const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
+const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, useCase, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -29,9 +29,9 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit }) => {
   useEffect(
     () => {
       setBuildingBlocks(useCaseStep.buildingBlocks)
-      setUseCaseBuildingBlocks(useCaseStep.useCase.buildingBlocks)
+      setUseCaseBuildingBlocks(useCase.buildingBlocks)
     },
-    [useCaseStep]
+    [useCaseStep, useCase]
   )
 
   const [updateUseCaseStepBuildingBlocks, { data, loading, reset }] = useMutation(

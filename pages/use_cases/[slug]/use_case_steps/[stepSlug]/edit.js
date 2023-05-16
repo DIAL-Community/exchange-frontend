@@ -11,10 +11,8 @@ import { USE_CASE_STEP_QUERY } from '../../../../../queries/use-case-step'
 const EditUseCaseStep = () => {
   const { query: { slug, stepSlug } } = useRouter()
 
-  const useCase = { slug }
-
   const { loading, error, data } = useQuery(USE_CASE_STEP_QUERY, {
-    variables: { slug: stepSlug },
+    variables: { slug: stepSlug, useCaseSlug: slug },
     skip: !stepSlug,
   })
 
@@ -30,7 +28,12 @@ const EditUseCaseStep = () => {
     <>
       <Header />
       <ClientOnly>
-        { data?.useCaseStep && <StepForm useCaseStep={data.useCaseStep} useCase={useCase}/> }
+        { data?.useCaseStep && data?.useCase &&
+          <StepForm
+            useCase={data.useCase}
+            useCaseStep={data.useCaseStep}
+          />
+        }
       </ClientOnly>
       <Footer />
     </>
