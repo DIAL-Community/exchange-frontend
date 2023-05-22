@@ -236,7 +236,7 @@ export const en = {
   'product.no-interop': 'We do not have any Interoperating information for this Product.',
   'product.no-include': 'We do not have any Includes information for this Product.',
   'product.maturity-scores': 'Product maturity scores',
-  'product.maturity-desc': 'These maturity scores have been sourced from organizations such as Digital Square and DIAL Open Source Center. These maturity scores are not an endorsement, but a reflection of ratings given by various organizations and collected via automated methods. For more information visit the <a href="https://docs.dial.community/projects/product-registry/en/latest/maturity.html" target="_blank">Exchange Documentation</a>',
+  'product.maturity-desc': 'These maturity scores have been sourced from organizations such as Digital Square and GitHub. These maturity scores are not an endorsement, but a reflection of ratings given by various organizations and collected via automated methods. For more information visit the <a href="https://docs.dial.community/projects/product-registry/en/latest/maturity.html" target="_blank">Exchange Documentation</a>',
   'product.no-maturity': 'We do not have any Maturity information for this Product.',
   'product.maturity-chart-tooltip': 'Click to see maturity score details',
   'product.maturity-details-label': 'Maturity score details',
