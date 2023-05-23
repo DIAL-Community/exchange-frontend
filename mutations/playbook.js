@@ -65,3 +65,16 @@ export const DELETE_PLAYBOOK = gql`
     }
   }
 `
+
+export const APPLY_AS_CONTENT_EDITOR = gql`
+  mutation ApplyAsContentEditor {
+    applyAsContentEditor {
+      candidateRole {
+        email
+        roles
+        description
+      }
+      errors
+    }
+  }
+`

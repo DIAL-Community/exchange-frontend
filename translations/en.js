@@ -1628,6 +1628,10 @@ export const en = {
   'opportunity.no-sector': 'No sector assigned.',
   'opportunity.no-use-case': 'No use case assigned.',
 
+  'toast.applyAsContentEditor.submit.success': 'Role content editor requested.',
+  'contentEditor.apply': 'Apply to be content editor',
+  'contentEditor.privilege': 'to add playbooks.',
+
   'useCaseStep.markdownWarning': `
     Use case is linked to a markdown definition. Please edit the markdown if you would like
     to make changes to this step.
