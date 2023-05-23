@@ -244,7 +244,7 @@ const RepositoryMarkdown = ({ entityWithMarkdown, canEdit }) => {
         format('toast.markdown.submit.success'),
         'success',
         'top-center',
-        null,
+        500,
         null,
         () => {
           setBranchUpdateDates(branchUpdateDates => ({

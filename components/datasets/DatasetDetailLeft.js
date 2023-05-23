@@ -12,7 +12,7 @@ import { ObjectType } from '../../lib/constants'
 import { APPLY_AS_OWNER } from '../../mutations/users'
 import { useDatasetOwnerUser, useUser } from '../../lib/hooks'
 import { CANDIDATE_ROLE_QUERY } from '../../queries/candidate'
-import { ToastContext } from '../../lib/ToastContext'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import DeleteDataset from './DeleteDataset'
 
 const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
@@ -100,6 +100,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
           format('toast.applyAsOwner.submit.success', { entity: format('dataset.label') }),
           'success',
           'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
           null,
           () => setLoading(false)
         )
@@ -110,6 +111,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
           </div>,
           'error',
           'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
           null,
           () => setLoading(false)
         )
@@ -123,6 +125,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
         </div>,
         'error',
         'top-center',
+        DEFAULT_AUTO_CLOSE_DELAY,
         null,
         () => setLoading(false)
       )

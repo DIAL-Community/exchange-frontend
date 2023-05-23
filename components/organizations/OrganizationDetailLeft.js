@@ -9,7 +9,7 @@ import EditButton from '../shared/EditButton'
 import { ObjectType } from '../../lib/constants'
 import CommentsCount from '../shared/CommentsCount'
 import { APPLY_AS_OWNER } from '../../mutations/users'
-import { ToastContext } from '../../lib/ToastContext'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import { useOrganizationOwnerUser, useUser } from '../../lib/hooks'
 import { CANDIDATE_ROLE_QUERY } from '../../queries/candidate'
 import DeleteOrganization from './DeleteOrganization'
@@ -97,6 +97,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
           format('toast.applyAsOwner.submit.success', { entity: format('organization.label') }),
           'success',
           'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
           null,
           () => setLoading(false)
         )
@@ -107,6 +108,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
           </div>,
           'error',
           'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
           null,
           () => setLoading(false)
         )
@@ -120,6 +122,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
         </div>,
         'error',
         'top-center',
+        DEFAULT_AUTO_CLOSE_DELAY,
         null,
         () => setLoading(false)
       )
