@@ -1634,5 +1634,6 @@ export const en = {
   `,
   'useCase.markdownWarning': `
     Use case is linked to a markdown definition. Description will be read from linked markdown.
-  `
+  `,
+  'govstack.issue.submitFailed': 'Feedback submission failed. Please try again later.'
 }
