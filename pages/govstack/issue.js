@@ -27,7 +27,7 @@ const GovStackIssueForm = ({ referer }) => {
 
   const getProjectKey = (issuePage) => {
     const projectKeys = new Map([
-      ['bb-information-mediator', 'IM'],
+      ['bb-information-mediation', 'IM'],
       ['bb-consent', 'CON'],
       ['bb-digital-registries', 'DR'],
       ['bb-identity', 'ID'],
@@ -39,6 +39,7 @@ const GovStackIssueForm = ({ referer }) => {
       ['bb-ux', 'UX'],
       ['bb-esignature', 'SIG'],
       ['bb-emarketplace', 'MKT'],
+      ['bb-cms', 'CMS'],
       ['bb-cloud-infrastructure-hosting', 'INF'],
     ])
     const match = issuePage.match('(bb-[a-z|-]*)')
@@ -46,8 +47,10 @@ const GovStackIssueForm = ({ referer }) => {
     if (!match) {
       if (issuePage.match('(govstack-country-engagement-playbook)'))
         return 'GSCIJ'
-      else if (issuePage.match('(product-use-cases)'))
+      else if (issuePage.match('(use-cases)'))
         return 'PRD'
+      else if (issuePage.match('(sandbox)'))
+        return 'SND'
       else
         return 'TECH'
     }
