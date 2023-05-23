@@ -5,7 +5,8 @@ import { useRouter } from 'next/router'
 import DeleteButton from '../shared/DeleteButton'
 import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import { ToastContext } from '../../lib/ToastContext'
-import { DELETE_SECTOR } from '../../mutations/sectors'
+import { DELETE_SECTOR } from '../../mutations/sector'
+import { SECTORS_LIST_QUERY } from '../../queries/sector'
 import { useUser } from '../../lib/hooks'
 
 const DeleteSector = ({ sector }) => {
@@ -24,7 +25,7 @@ const DeleteSector = ({ sector }) => {
   const toggleConfirmDialog = () => setDisplayConfirmDialog(!displayConfirmDialog)
 
   const [deleteSector, { called, reset }] = useMutation(DELETE_SECTOR, {
-    refetchQueries: ['SearchSectors'],
+    refetchQueries: [{ SECTORS_LIST_QUERY }],
     onCompleted: (data) => {
       const { deleteSector: response } = data
       if (response?.sector && response?.errors?.length === 0) {

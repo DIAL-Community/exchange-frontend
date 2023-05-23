@@ -10,7 +10,7 @@ import Dialog, { DialogType } from '../shared/Dialog'
 import Checkbox from '../shared/Checkbox'
 import Select from '../shared/Select'
 import { SECTOR_SEARCH_QUERY } from '../../queries/sector'
-import { CREATE_SECTOR } from '../../mutations/sectors'
+import { CREATE_SECTOR } from '../../mutations/sector'
 import { getLanguageOptions } from '../../lib/utilities'
 import { useUser } from '../../lib/hooks'
 

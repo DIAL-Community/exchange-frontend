@@ -56,7 +56,7 @@ const OpportunityDetailLeft = ({ opportunity, commentsSectionRef }) => {
               {opportunity.name}
             </div>
             {opportunity?.opportunityStatus &&
-              <div className='ml-auto my-auto text-white'>
+              <div className='ml-auto mb-auto text-white'>
                 <div className={`text-sm px-2 py-1 rounded ${getOpportunityStatusBgColor(opportunity)}`}>
                   {opportunity.opportunityStatus}
                 </div>
@@ -66,8 +66,8 @@ const OpportunityDetailLeft = ({ opportunity, commentsSectionRef }) => {
           <div className='my-8 mx-auto'>
             <div className='block w-40 h-40 relative'>
               <Image
-                layout='fill'
-                objectFit='scale-down'
+                fill
+                className='object-contain'
                 alt={format('image.alt.logoFor', { name: opportunity.name })}
                 src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + opportunity.imageFile}
               />

@@ -23,7 +23,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
 
   const slug = useCase?.slug ?? ''
 
-  const { user, isAdminUser, loadingUserSession } = useUser()
+  const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -147,7 +147,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
   }
 
   return (
-    (loadingUserSession || loadingSectors) ? <Loading /> : isAdminUser ? (
+    (loadingUserSession || loadingSectors) ? <Loading /> : isAdminUser || isEditorUser ? (
       <div className='flex flex-col'>
         <div className='hidden lg:block px-8'>
           <Breadcrumb slugNameMapping={slugNameMapping} />
@@ -279,6 +279,11 @@ const UseCaseForm = React.memo(({ useCase }) => {
                     {reverting && <FaSpinner className='spinner ml-3' />}
                   </button>
                 </div>
+                { useCase?.markdownUrl &&
+                  <div className='text-sm italic text-red-500'>
+                    {format('useCase.markdownWarning')}
+                  </div>
+                }
               </div>
             </form>
           </div>

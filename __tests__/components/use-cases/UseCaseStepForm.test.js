@@ -19,7 +19,6 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     name: 'Test Use Case Step',
     slug: 'test_use_case_step',
     stepNumber: 1,
-    markdownUrl: '',
     description: 'test Use Case Step description',
     useCaseId: 17
   }
@@ -28,7 +27,7 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     mockNextAuthUseSession(statuses.UNAUTHENTICATED)
     const { container } = render(
       <CustomMockedProvider>
-        <StepForm />
+        <StepForm useCase={useCase} />
       </CustomMockedProvider>
     )
     await waitForAllEffects()
@@ -36,10 +35,10 @@ describe('Unit tests for UseCaseStepForm component.', () => {
   })
 
   test('Should render Unauthorized component for user who is not an admin.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: false })
     const { container } = render(
       <CustomMockedProvider>
-        <StepForm />
+        <StepForm useCase={useCase} />
       </CustomMockedProvider>
     )
     await waitForAllEffects()
@@ -47,10 +46,10 @@ describe('Unit tests for UseCaseStepForm component.', () => {
   })
 
   test('Should render StepForm component for admin user.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container } = render(
       <CustomMockedProvider>
-        <StepForm />
+        <StepForm useCase={useCase} />
       </CustomMockedProvider>
     )
     await waitForAllEffects()
@@ -59,15 +58,15 @@ describe('Unit tests for UseCaseStepForm component.', () => {
 
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
     const user = userEvent.setup()
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { getByTestId } = render(
       <CustomMockedProvider>
-        <StepForm />
+        <StepForm useCase={useCase} />
       </CustomMockedProvider>
     )
     await waitForAllEffects()
 
-    await act(async () => waitFor(() => {
+    await act(() => waitFor(() => {
       fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
     }))
     expect(getByTestId(USE_CASE_STEP_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -76,9 +75,7 @@ describe('Unit tests for UseCaseStepForm component.', () => {
 
     await user.type(screen.getByLabelText(/Name/), 'test use case step name')
     expect(getByTestId(USE_CASE_STEP_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => {
-      user.clear(screen.getByLabelText(/Name/))
-    }))
+    await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(USE_CASE_STEP_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test use case step name 2')
@@ -88,9 +85,7 @@ describe('Unit tests for UseCaseStepForm component.', () => {
 
     await user.type(screen.getByLabelText(/Step Number/), '1')
     expect(getByTestId(USE_CASE_STEP_STEP_NUMBER_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => {
-      user.clear(screen.getByLabelText(/Step Number/))
-    }))
+    await user.clear(screen.getByLabelText(/Step Number/))
     expect(getByTestId(USE_CASE_STEP_STEP_NUMBER_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Step Number/), '2')
@@ -98,16 +93,14 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     expect(getByTestId(USE_CASE_STEP_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_STEP_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(USE_CASE_STEP_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_STEP_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(USE_CASE_STEP_STEP_NUMBER_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
   })
 
   test('Should display success toast on submit.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const mockCreateUseCaseStep = generateMockApolloData(
       CREATE_USE_CASE_STEP,
       mockCreateUseCaseStepVariables,
@@ -121,15 +114,13 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     )
     await waitForAllEffects()
 
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     await screen.findByText('Use Case Step submitted successfully')
     expect(container).toMatchSnapshot()
   })
 
   test('Should display failure toast on submit.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const errorMessage = 'An error occurred'
     const mockCreateUseCaseStep = generateMockApolloData(
       CREATE_USE_CASE_STEP,
@@ -143,9 +134,7 @@ describe('Unit tests for UseCaseStepForm component.', () => {
     )
     await waitForAllEffects()
 
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     await screen.findByText('Use Case Step submission failed')
     await screen.findByText(errorMessage)
     expect(container).toMatchSnapshot()

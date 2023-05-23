@@ -56,7 +56,10 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit }) => {
   )
 
   const addDataset = (dataset) => {
-    setDatasets([...datasets.filter(({ slug }) => slug !== dataset.slug), { name: dataset.label, slug: dataset.slug }])
+    setDatasets([
+      ...datasets.filter(({ slug }) => slug !== dataset.slug),
+      { name: dataset.label, slug: dataset.slug }
+    ])
     setIsDirty(true)
   }
 

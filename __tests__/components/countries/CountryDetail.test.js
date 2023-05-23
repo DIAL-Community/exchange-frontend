@@ -8,7 +8,7 @@ import { country, countryWithMissingLatLong } from './data/CountryDetail'
 mockNextUseRouter()
 describe('Unit test for the CountryDetail component', () => {
   beforeAll(() => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
   })
 
   test('should render element of the country data.', async () => {
@@ -58,7 +58,7 @@ describe('Unit test for the CountryDetail component', () => {
   })
 
   test('should not render delete for user that without edit privilege.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: false })
     const variables = { slug: 'ke' }
     const mockedCountry = generateMockApolloData(
       COUNTRY_DETAIL_QUERY,

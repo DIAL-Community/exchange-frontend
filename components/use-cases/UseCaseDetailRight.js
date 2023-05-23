@@ -13,14 +13,15 @@ import UseCaseDetailSdgTargets from './UseCaseDetailSdgTargets'
 import UseCaseDetailTags from './UseCaseDetailTags'
 import UseCaseBuildingBlock from './UseCaseBuildingBlocks'
 
-const UseCaseDetailRight = ({ useCase, canEdit, commentsSectionRef }) => {
+const UseCaseDetailRight = ({ useCase, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { user, isAdminUser } = useUser()
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = (isAdminUser || isEditorUser) && !useCase.markdownUrl
 
   const generateCreateStepLink = () => {
-    if (!user) {
+    if (!canEdit) {
       return '/edit-not-available'
     }
 
@@ -54,7 +55,7 @@ const UseCaseDetailRight = ({ useCase, canEdit, commentsSectionRef }) => {
           <div className='card-title text-dial-gray-dark self-center'>
             {format('useCaseStep.header')}
           </div>
-          {isAdminUser &&
+          {canEdit &&
             <CreateButton
               type='link'
               label={format('use-case-step.create')}
@@ -82,7 +83,9 @@ const UseCaseDetailRight = ({ useCase, canEdit, commentsSectionRef }) => {
       {useCase.sdgTargets && <UseCaseDetailSdgTargets useCase={useCase} canEdit={canEdit} />}
       {useCase.buildingBlocks && useCase.buildingBlocks.length > 0 &&
         <div className='mt-12 mb-4'>
-          <div className='card-title mb-3 text-dial-gray-dark'>{format('building-block.header')}</div>
+          <div className='card-title mb-3 text-dial-gray-dark'>
+            {format('building-block.header')}
+          </div>
           <UseCaseBuildingBlock useCaseBuildingBlocks={useCase.buildingBlocks} />
         </div>
       }

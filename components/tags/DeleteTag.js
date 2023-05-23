@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl'
 import { useUser } from '../../lib/hooks'
 import { ToastContext } from '../../lib/ToastContext'
 import { DELETE_TAG } from '../../mutations/tag'
+import { TAGS_LIST_QUERY } from '../../queries/tag'
 import ConfirmActionDialog from '../shared/ConfirmActionDialog'
 import DeleteButton from '../shared/DeleteButton'
 
@@ -20,7 +21,7 @@ const DeleteTag = ({ tag }) => {
   const { showToast } = useContext(ToastContext)
 
   const [deleteTag, { called, reset }] = useMutation(DELETE_TAG, {
-    refetchQueries: ['SearchTags'],
+    refetchQueries: [{ TAGS_LIST_QUERY }],
     onCompleted: (data) => {
       const { deleteTag: response } = data
       if (response?.tag && response?.errors?.length === 0) {

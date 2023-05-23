@@ -19,13 +19,13 @@ const CreateFormProvider = ({ children }) => {
 }
 
 function CreatePlaybook () {
-  const { isAdminUser, loadingUserSession } = useUser()
+  const { isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   return (
     <>
       <Header />
       <ClientOnly>
-        {loadingUserSession ? <Loading /> : isAdminUser ? (
+        {loadingUserSession ? <Loading /> : isAdminUser || isEditorUser ? (
           <CreateFormProvider>
             <PlayPreview />
             <PlaybookForm />

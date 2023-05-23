@@ -472,18 +472,17 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                 <div
                   class="block w-8 relative"
                 >
-                  <span
-                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-                  >
-                    <img
-                      alt="Logo for: Product 1"
-                      data-nimg="fill"
-                      decoding="async"
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="Logo for: Product 1"
+                    class="object-contain"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    sizes="100vw"
+                    src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75"
+                    srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75 3840w"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
                 </div>
                 <div
                   class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
@@ -523,18 +522,17 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                 <div
                   class="block w-8 relative"
                 >
-                  <span
-                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-                  >
-                    <img
-                      alt="Logo for: Product 3"
-                      data-nimg="fill"
-                      decoding="async"
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="Logo for: Product 3"
+                    class="object-contain"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    sizes="100vw"
+                    src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75"
+                    srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75 3840w"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
                 </div>
                 <div
                   class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
@@ -685,21 +683,6 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
           data-testid="pill"
         >
           Product 1
-          <svg
-            class="cursor-pointer opacity-50"
-            data-testid="remove-button"
-            fill="currentColor"
-            height="1.5em"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 512 512"
-            width="1.5em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
-            />
-          </svg>
         </div>
         <div
           class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
@@ -789,18 +772,17 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                 <div
                   class="block w-8 relative"
                 >
-                  <span
-                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-                  >
-                    <img
-                      alt="Logo for: Product 1"
-                      data-nimg="fill"
-                      decoding="async"
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="Logo for: Product 1"
+                    class="object-contain"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    sizes="100vw"
+                    src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75"
+                    srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75 3840w"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
                 </div>
                 <div
                   class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
@@ -840,18 +822,17 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
                 <div
                   class="block w-8 relative"
                 >
-                  <span
-                    style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-                  >
-                    <img
-                      alt="Logo for: Product 3"
-                      data-nimg="fill"
-                      decoding="async"
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down; object-position: left;"
-                    />
-                    <noscript />
-                  </span>
+                  <img
+                    alt="Logo for: Product 3"
+                    class="object-contain"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    sizes="100vw"
+                    src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75"
+                    srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2Fundefined&w=3840&q=75 3840w"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
                 </div>
                 <div
                   class="ml-2 mt-0.5 w-full h-3/5 font-semibold line-clamp-1"
@@ -1001,22 +982,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should remove a pill
           class="shadow-md flex gap-2 px-2 py-1 bg-white text-dial-stratos"
           data-testid="pill"
         >
-          Product 3
-          <svg
-            class="cursor-pointer opacity-50"
-            data-testid="remove-button"
-            fill="currentColor"
-            height="1.5em"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 512 512"
-            width="1.5em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
-            />
-          </svg>
+          Product 1
         </div>
       </div>
       <div

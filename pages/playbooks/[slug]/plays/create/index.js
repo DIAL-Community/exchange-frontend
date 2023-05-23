@@ -50,7 +50,7 @@ const CreatePlayInformation = ({ slug, locale }) => {
 }
 
 function CreatePlay () {
-  const { isAdminUser, loadingUserSession } = useUser()
+  const { isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const router = useRouter()
   const { locale } = router
@@ -62,7 +62,7 @@ function CreatePlay () {
       <ClientOnly>
         {loadingUserSession
           ? <Loading />
-          : isAdminUser
+          : isAdminUser || isEditorUser
             ? <CreatePlayInformation slug={slug} locale={locale} />
             : <Unauthorized />}
       </ClientOnly>

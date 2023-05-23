@@ -48,7 +48,7 @@ export const userRoles = {
   }
 }
 
-export const organization = {
+export const organizations = {
   data: {
     organizations: [
       {
@@ -59,6 +59,23 @@ export const organization = {
         __typename: 'Organization',
         website: 'test@gmail.com'
       },
+    ]
+  }
+}
+
+export const products = {
+  data: {
+    products: [
+      {
+        id: 2,
+        name: 'Product 1',
+        slug: 'product_1'
+      },
+      {
+        id: 2,
+        name: 'Product 2',
+        slug: 'product_2'
+      }
     ]
   }
 }

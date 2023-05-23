@@ -23,7 +23,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
   const slug = buildingBlock?.slug ?? ''
 
   const router = useRouter()
-  const { user, isAdminUser, loadingUserSession } = useUser()
+  const { user, isAdminUser, isEditorUser, loadingUserSession } = useUser()
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -127,7 +127,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
   }
 
   return (
-    loadingUserSession ? <Loading /> : isAdminUser ? (
+    loadingUserSession ? <Loading /> : isAdminUser || isEditorUser ? (
       <div className='flex flex-col'>
         <div className='hidden lg:block px-8'>
           <Breadcrumb slugNameMapping={slugNameMapping} />

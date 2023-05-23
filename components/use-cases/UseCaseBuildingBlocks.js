@@ -66,9 +66,8 @@ const BuildingBlockCard = ({ buildingBlock, disabled }) => {
             <div className='flex gap-2 my-auto text-dial-sapphire'>
               <div className='block w-8 relative opacity-80'>
                 <Image
-                  layout='fill'
-                  objectFit='scale-down'
-                  objectPosition='left'
+                  fill
+                  className='object-contain'
                   alt={format('image.alt.logoFor', { name: buildingBlock.name })}
                   src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
                 />

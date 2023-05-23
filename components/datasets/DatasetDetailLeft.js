@@ -12,7 +12,7 @@ import { ObjectType } from '../../lib/constants'
 import { APPLY_AS_OWNER } from '../../mutations/users'
 import { useDatasetOwnerUser, useUser } from '../../lib/hooks'
 import { CANDIDATE_ROLE_QUERY } from '../../queries/candidate'
-import { ToastContext } from '../../lib/ToastContext'
+import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
 import DeleteDataset from './DeleteDataset'
 
 const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
@@ -100,6 +100,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
           format('toast.applyAsOwner.submit.success', { entity: format('dataset.label') }),
           'success',
           'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
           null,
           () => setLoading(false)
         )
@@ -110,6 +111,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
           </div>,
           'error',
           'top-center',
+          DEFAULT_AUTO_CLOSE_DELAY,
           null,
           () => setLoading(false)
         )
@@ -123,6 +125,7 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
         </div>,
         'error',
         'top-center',
+        DEFAULT_AUTO_CLOSE_DELAY,
         null,
         () => setLoading(false)
       )
@@ -174,12 +177,10 @@ const DatasetDetailLeft = ({ dataset, commentsSectionRef }) => {
           </div>
           <div className='m-auto w-3/5 h-3/5 relative' >
             <Image
-              layout='fill'
-              objectFit='contain'
-              sizes='100vw'
-              alt={`${dataset.name} Logo`} className='p-2 m-auto'
+              fill
+              className='p-2 m-auto object-contain'
+              alt={`${dataset.name} Logo`}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
-              width='200px' height='200px'
             />
           </div>
         </div>

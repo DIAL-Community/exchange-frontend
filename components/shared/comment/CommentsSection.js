@@ -142,8 +142,8 @@ const CommentsSection = ({ objectId, objectType, commentsSectionRef, className }
             commentData={commentData}
             currentUser={user ? {
               currentUserId: String(user.id),
-              currentUserImg: `https://ui-avatars.com/api/name=${user.name}&background=random`,
-              currentUserFullName: user.name
+              currentUserImg: `https://ui-avatars.com/api/name=${user.userName}&background=random`,
+              currentUserFullName: user.userName
             } : null}
             logIn={{
               loginLink: '/auth/signin',

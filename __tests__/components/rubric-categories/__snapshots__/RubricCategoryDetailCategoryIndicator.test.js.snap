@@ -227,15 +227,19 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
     <div
       class="grid sm:grid-cols-1 lg:grid-cols-2"
     >
-      <div
-        class="border-3 border-transparent hover:border-dial-sunshine cursor-pointer"
+      <a
+        href="/rubric_categories/test_rubric_category/category_indicator_1"
       >
         <div
-          class="font-semibold text-button-gray items-center grid gap-x-4 py-4 px-8 w-full border border-dial-gray card-drop-shadow"
+          class="border-3 border-transparent hover:border-dial-sunshine cursor-pointer"
         >
-          Category Indicator 1
+          <div
+            class="font-semibold text-button-gray items-center grid gap-x-4 py-4 px-8 w-full border border-dial-gray card-drop-shadow"
+          >
+            Category Indicator 1
+          </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>
@@ -448,15 +452,19 @@ exports[`Unit test for the RubricCategoryDetailCategoryIndicators component. Sho
     <div
       class="grid sm:grid-cols-1 lg:grid-cols-2"
     >
-      <div
-        class="border-3 border-transparent hover:border-dial-sunshine cursor-pointer"
+      <a
+        href="/rubric_categories/test_rubric_category/category_indicator_1"
       >
         <div
-          class="font-semibold text-button-gray items-center grid gap-x-4 py-4 px-8 w-full border border-dial-gray card-drop-shadow"
+          class="border-3 border-transparent hover:border-dial-sunshine cursor-pointer"
         >
-          Category Indicator 1
+          <div
+            class="font-semibold text-button-gray items-center grid gap-x-4 py-4 px-8 w-full border border-dial-gray card-drop-shadow"
+          >
+            Category Indicator 1
+          </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>

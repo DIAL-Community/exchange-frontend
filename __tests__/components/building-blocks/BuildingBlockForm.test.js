@@ -30,7 +30,7 @@ describe('Unit tests for BuildingBlockForm component.', () => {
     })
 
     test('user who is not an admin.', async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: false })
       const { container } = render(
         <CustomMockedProvider>
           <BuildingBlockForm />
@@ -42,7 +42,7 @@ describe('Unit tests for BuildingBlockForm component.', () => {
   })
 
   test('Should render BuildingBlockForm component for admin user.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container } = render(
       <CustomMockedProvider>
         <BuildingBlockForm />
@@ -54,23 +54,21 @@ describe('Unit tests for BuildingBlockForm component.', () => {
 
   test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
     const user = userEvent.setup()
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container, getByTestId, getByText } = render(
       <CustomMockedProvider>
         <BuildingBlockForm />
       </CustomMockedProvider>
     )
     await waitForAllEffectsAndSelectToLoad(container)
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(BUILDING_BLOCK_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(BUILDING_BLOCK_MATURITY_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(BUILDING_BLOCK_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test building block name')
     expect(getByTestId(BUILDING_BLOCK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(async () => waitFor(() => {
-      user.clear(screen.getByLabelText(/Name/))
-    }))
+    await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(BUILDING_BLOCK_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test building block name 2')
@@ -78,11 +76,15 @@ describe('Unit tests for BuildingBlockForm component.', () => {
     expect(getByTestId(BUILDING_BLOCK_MATURITY_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(BUILDING_BLOCK_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    fireEvent.keyDown(getByTestId(BUILDING_BLOCK_MATURITY_TEST_ID).childNodes[1], { key: 'ArrowDown' })
+    await act(() => fireEvent.keyDown(getByTestId(BUILDING_BLOCK_MATURITY_TEST_ID).childNodes[1], { key: 'ArrowDown' }))
     await screen.findByText(BUILDING_BLOCK_MATURITY_OPTION_LABEL)
-    fireEvent.click(getByText(BUILDING_BLOCK_MATURITY_OPTION_LABEL))
 
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await waitFor(() => {
+      fireEvent.click(getByText(BUILDING_BLOCK_MATURITY_OPTION_LABEL))
+      expect(getByText(BUILDING_BLOCK_MATURITY_OPTION_LABEL)).toBeInTheDocument()
+    })
+
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(BUILDING_BLOCK_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(BUILDING_BLOCK_MATURITY_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(BUILDING_BLOCK_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
@@ -90,14 +92,14 @@ describe('Unit tests for BuildingBlockForm component.', () => {
 
   describe('Should display toast on submit -', () => {
     test('Success.', async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const mockCreateBuildingBlock = generateMockApolloData(
         CREATE_BUILDING_BLOCK,
         {
           name: 'Test Building Block',
           slug: 'test_buidling_block',
           maturity: 'DRAFT',
-          category: null,
+          category: 'DPI',
           specUrl: 'testbuidlingblock.com',
           description: '<p>test building block description</p>'
         },
@@ -110,15 +112,13 @@ describe('Unit tests for BuildingBlockForm component.', () => {
         </CustomMockedProvider>
       )
       await waitForAllEffectsAndSelectToLoad(container)
-      await act(async () => {
-        fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      })
+      await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
       await screen.findByText('Building Block submitted successfully')
       expect(container).toMatchSnapshot()
     })
 
     test('Failure with graph error (non 200 status).', async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const errorMessage = 'An error occurred'
       const mockCreateBuildingBlock = generateMockApolloData(
         CREATE_BUILDING_BLOCK,
@@ -126,7 +126,7 @@ describe('Unit tests for BuildingBlockForm component.', () => {
           name: 'Test Building Block',
           slug: 'test_buidling_block',
           maturity: 'DRAFT',
-          category: null,
+          category: 'DPI',
           specUrl: 'testbuidlingblock.com',
           description: '<p>test building block description</p>'
         },
@@ -138,22 +138,21 @@ describe('Unit tests for BuildingBlockForm component.', () => {
         </CustomMockedProvider>
       )
       await waitForAllEffectsAndSelectToLoad(container)
-      await act(async () => {
-        fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      })
+      await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
       await screen.findByText('Building Block submission failed')
       await screen.findByText(errorMessage)
       expect(container).toMatchSnapshot()
     })
 
     test('Failure with 200 status.', async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const mockCreateBuildingBlock = generateMockApolloData(
         CREATE_BUILDING_BLOCK,
         {
           name: 'Test Building Block',
           slug: 'test_buidling_block',
           maturity: 'DRAFT',
+          category: 'DPI',
           specUrl: 'testbuidlingblock.com',
           description: '<p>test building block description</p>'
         },
@@ -166,9 +165,7 @@ describe('Unit tests for BuildingBlockForm component.', () => {
         </CustomMockedProvider>
       )
       await waitForAllEffectsAndSelectToLoad(container)
-      await act(async () => {
-        fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-      })
+      await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
       await screen.findByText('Building Block submission failed')
       expect(container).toMatchSnapshot()
     })

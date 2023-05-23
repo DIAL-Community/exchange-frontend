@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import cookie from 'react-cookies'
 import classNames from 'classnames'
-import { useRouter } from 'next/router'
 import { signIn, signOut } from 'next-auth/react'
 import { useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
@@ -10,7 +8,6 @@ import { useQuery } from '@apollo/client'
 import { useUser } from '../lib/hooks'
 import { ToastContext } from '../lib/ToastContext'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../queries/user'
-import { OVERVIEW_INTRO_KEY } from '../lib/intro'
 import MobileMenu from './MobileMenu'
 import AdminMenu from './shared/menu/AdminMenu'
 import UserMenu from './shared/menu/UserMenu'
@@ -30,9 +27,7 @@ const Header = ({ isOnAuthPage = false }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const router = useRouter()
   const { user, isAdminUser } = useUser()
-
   const signInUser = (e) => {
     e.preventDefault()
     process.env.NEXT_PUBLIC_AUTH_TYPE === 'auth0'
@@ -105,12 +100,6 @@ const Header = ({ isOnAuthPage = false }) => {
     )
   }
 
-  const startOverviewTour = (e) => {
-    e.preventDefault()
-    cookie.save(OVERVIEW_INTRO_KEY, false)
-    router.push('/')
-  }
-
   const withUser =
     <>
       <li className='relative mt-2 xl:mt-0 text-right'>
@@ -139,15 +128,13 @@ const Header = ({ isOnAuthPage = false }) => {
   return (
     <header className='z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-8 xl:px-16'>
-        <Link href='/'>
-          <a className='flex py-6'>
-            <Image
-              width={154}
-              height={44}
-              src='/assets/exchange/exchange-logo.png'
-              alt='Digital Impact Exchage Logo.'
-            />
-          </a>
+        <Link href='/' className='flex py-6 image-block-hack'>
+          <Image
+            width={154}
+            height={44}
+            src='/assets/exchange/exchange-logo.png'
+            alt='Digital Impact Exchage Logo.'
+          />
         </Link>
         <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block xl:hidden'>
           <svg
@@ -170,16 +157,15 @@ const Header = ({ isOnAuthPage = false }) => {
                 && (
                   <>
                     <li className='relative mt-2 xl:mt-0 text-right'>
-                      <a
-                        href='startOverviewTour'
+                      <Link
+                        href='/opportunities'
                         className={classNames(
                           'xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer',
                           'border-b-2 border-transparent hover:border-dial-sunshine'
                         )}
-                        onClick={(e) => startOverviewTour(e)}
                       >
-                        {format('intro.overview.startTour')}
-                      </a>
+                        {format('opportunity.header')}
+                      </Link>
                     </li>
                     <li className='relative mt-2 xl:mt-0 text-right'>
                       <AboutMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />

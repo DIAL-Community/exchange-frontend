@@ -1,3 +1,4 @@
+import { act } from 'react-dom/test-utils'
 import { fireEvent, waitFor } from '@testing-library/react'
 import DeleteWorkflow from '../../../components/workflows/DeleteWorkflow'
 import { DELETE_WORKFLOW } from '../../../mutations/workflow'
@@ -15,31 +16,31 @@ describe('Unit tests for the DeleteWorkflow component.', () => {
   const CONFIRM_BUTTON_TEST_ID = 'confirm-button'
 
   beforeAll(() => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
   })
 
-  test('Should open confirmation dialog after clicking delete button.', () => {
+  test('Should open confirmation dialog after clicking delete button.', async () => {
     const { getByTestId } = render(
       <CustomMockedProvider>
         <DeleteWorkflow workflow={workflow}/>
       </CustomMockedProvider>
     )
-    fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID))
+    await act(() => fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID)))
     expect(getByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toBeVisible()
     expect(getByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).toMatchSnapshot()
   })
 
   describe('Should close confirmation dialog.', () => {
-    test('after clicks "Cancel" button.', () => {
+    test('after clicks "Cancel" button.', async () => {
       const { getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
           <DeleteWorkflow workflow={workflow} />
         </CustomMockedProvider>
       )
-      fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID))
-      fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID))
+      await act(() => fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID)))
+      await act(() => fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID)))
       expect(queryByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).not.toBeInTheDocument()
     })
 
@@ -55,8 +56,8 @@ describe('Unit tests for the DeleteWorkflow component.', () => {
           <DeleteWorkflow workflow={workflow} />
         </CustomMockedProvider>
       )
-      fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID))
-      fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID))
+      await act(() => fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID)))
+      await act(() => fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID)))
 
       await waitFor(() => expect(getByText('Workflow record deletion failed.')).toBeInTheDocument())
       await waitFor(() => expect(queryByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).not.toBeInTheDocument())
@@ -97,8 +98,8 @@ describe('Unit tests for the DeleteWorkflow component.', () => {
           <DeleteWorkflow workflow={workflow}/>
         </CustomMockedProvider>
       )
-      fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID))
-      fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID))
+      await act(() => fireEvent.click(getByTestId(DELETE_BUTTON_TEST_ID)))
+      await act(() => fireEvent.click(getByTestId(CONFIRM_BUTTON_TEST_ID)))
 
       await waitFor(() => expect(getByText('Workflow record deleted successfully.')).toBeInTheDocument())
       await waitFor(() => expect(queryByTestId(CONFIRM_ACTION_DIALOG_TEST_ID)).not.toBeInTheDocument())

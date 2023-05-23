@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa'
 import { useIntl } from 'react-intl'
-import ReactTooltip from 'react-tooltip'
 import classNames from 'classnames'
 import parse from 'html-react-parser'
 import { prependUrlWithProtocol } from '../../../lib/utilities'
@@ -18,10 +17,6 @@ const OrganizationCard = ({ organization, listType }) => {
 
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState('')
-
-  useEffect(() => {
-    ReactTooltip.rebuild()
-  })
 
   const approveCandidateOrganization = async (e) => {
     const { userEmail, userToken } = user

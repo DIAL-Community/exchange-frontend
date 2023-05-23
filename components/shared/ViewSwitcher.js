@@ -11,25 +11,24 @@ const ViewSwitcher = () => {
   }
 
   return (
-    <div className='flex gap-4'>
+    <div className='flex gap-3'>
       {
         displayType === 'card' &&
         <>
-          <div className='relative'>
+          <div className='relative w-6 h-6'>
             <Image
-              width={24}
-              height={24}
+              fill
+              className='object-contain'
               alt='Card view toggle'
               src='/assets/card/card.png'
             />
           </div>
-          <a href='toggle-display' onClick={toggleDisplayType}>
+          <a href='toggle-display' onClick={toggleDisplayType} className='relative w-6 h-6'>
             <Image
-              width={28}
-              height={24}
+              fill
+              className='opacity-20 object-contain'
               alt='List view toggle'
               src='/assets/list/list.png'
-              className='opacity-20'
             />
           </a>
         </>
@@ -37,19 +36,18 @@ const ViewSwitcher = () => {
       {
         displayType === 'list' &&
         <>
-          <a href='toggle-display' onClick={toggleDisplayType}>
+          <a href='toggle-display' onClick={toggleDisplayType} className='relative w-6 h-6'>
             <Image
-              width={24}
-              height={24}
+              fill
+              className='opacity-20 object-contain'
               alt='Card view toggle'
               src='/assets/card/card.png'
-              className='opacity-20'
             />
           </a>
-          <div className='relative'>
+          <div className='relative w-6 h-6'>
             <Image
-              width={28}
-              height={24}
+              fill
+              className='object-contain'
               alt='List view toggle'
               src='/assets/list/list.png'
             />

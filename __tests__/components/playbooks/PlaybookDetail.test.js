@@ -7,6 +7,7 @@ import PlaybookDetail from '../../../components/playbooks/PlaybookDetail'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { mockObserverImplementation, render, waitForAllEffects } from '../../test-utils'
+import { COMMENTS_COUNT_QUERY } from '../../../queries/comment'
 import { playbook, searchPlaysResult, move } from './data/PlaybookDetail'
 
 // TODO: https://github.com/tinymce/tinymce-react/issues/91.
@@ -18,6 +19,10 @@ jest.mock('../../../components/shared/comment/CommentsSection', () => () => 'Com
 
 mockNextUseRouter()
 describe('Unit tests for playbook interaction.', () => {
+  const commentVars = { 'commentObjectId': 4, 'commentObjectType': 'PLAYBOOK' }
+  const commentData = { 'data': { 'countComments': 0 } }
+  const mockComment = generateMockApolloData(COMMENTS_COUNT_QUERY, commentVars, null, commentData)
+
   beforeEach(() => {
     window.ResizeObserver = mockObserverImplementation()
     window.IntersectionObserver = mockObserverImplementation()
@@ -29,7 +34,7 @@ describe('Unit tests for playbook interaction.', () => {
     const mockPlays = generateMockApolloData(PLAYBOOK_PLAYS_QUERY, { first: 10, slug }, new Error('An error occurred'))
     // Render the component and use screen to check them.
     const component = render(
-      <CustomMockedProvider mocks={[mockPlaybook, mockPlays]} addTypename={false}>
+      <CustomMockedProvider mocks={[mockPlaybook, mockPlays, mockComment]} addTypename={false}>
         <PlaybookDetailProvider>
           <PlaybookDetail slug={slug} locale='en' />
         </PlaybookDetailProvider>
@@ -43,14 +48,14 @@ describe('Unit tests for playbook interaction.', () => {
   })
 
   test('Should render playbook data when apollo query returning playbook data.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: false })
     // Mock all apollo interaction
     const mockPlaybook = generateMockApolloData(PLAYBOOK_QUERY, { slug }, null, playbook)
     const mockPlays = generateMockApolloData(PLAYBOOK_PLAYS_QUERY, { first: 10, slug }, null, searchPlaysResult)
     const mockMove = generateMockApolloData(MOVE_PREVIEW_QUERY, { playSlug, slug: moveSlug }, null, move)
     // Render the component and use screen to check them.
     const component = render(
-      <CustomMockedProvider mocks={[mockPlaybook, mockPlays, mockMove]} addTypename={false}>
+      <CustomMockedProvider mocks={[mockPlaybook, mockPlays, mockMove, mockComment]} addTypename={false}>
         <PlaybookDetailProvider>
           <PlaybookDetail slug={slug} locale='en' />
         </PlaybookDetailProvider>
@@ -80,14 +85,14 @@ describe('Unit tests for playbook interaction.', () => {
   })
 
   test('Privileged user should be able to edit the playbook.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     // Mock all apollo interaction
     const mockPlaybook = generateMockApolloData(PLAYBOOK_QUERY, { slug }, null, playbook)
     const mockPlays = generateMockApolloData(PLAYBOOK_PLAYS_QUERY, { first: 10, slug }, null, searchPlaysResult)
     const mockMove = generateMockApolloData(MOVE_PREVIEW_QUERY, { playSlug, slug: moveSlug }, null, move)
     // Render the component and use screen to check them.
     const component = render(
-      <CustomMockedProvider mocks={[mockPlaybook, mockPlays, mockMove]} addTypename={false}>
+      <CustomMockedProvider mocks={[mockPlaybook, mockPlays, mockMove, mockComment]} addTypename={false}>
         <PlaybookDetailProvider>
           <PlaybookDetail slug={slug} locale='en' />
         </PlaybookDetailProvider>

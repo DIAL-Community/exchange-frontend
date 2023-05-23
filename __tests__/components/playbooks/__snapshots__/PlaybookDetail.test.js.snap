@@ -24,12 +24,13 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                 class="text-sm"
               >
                 <a
-                  href="back-to-playbooks"
+                  href="/playbooks"
                 >
                   <img
                     alt="Logo for: {name}"
                     class="m-auto h-6 inline mr-2"
-                    data-tip="{entity}: {name}"
+                    data-tooltip-content="{entity}: {name}"
+                    data-tooltip-id="react-tooltip"
                     src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                   />
                   Playbook
@@ -503,11 +504,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                             class="move-animation-base bg-dial-biscotti h-14"
                           />
                           <div
-                            class="
-                  animated-move
-                  move-header-collapsed
-                  move-animation bg-dial-orange-light h-14
-                "
+                            class="animated-move move-header-collapsed move-animation bg-dial-orange-light h-14"
                           />
                           <div
                             class="flex move-header"
@@ -542,92 +539,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                         >
                           <div
                             class="px-4 py-4"
-                          >
-                            <div
-                              class="relative"
-                            >
-                              <svg
-                                class="absolute text-lg inset-x-1/2 top-10 spinner"
-                                fill="currentColor"
-                                height="2em"
-                                stroke="currentColor"
-                                stroke-width="0"
-                                viewBox="0 0 512 512"
-                                width="2em"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
-                                />
-                              </svg>
-                              <div
-                                class="html-viewer"
-                              >
-                                <textarea
-                                  id="move-considerations-desc"
-                                  style="visibility: hidden;"
-                                />
-                              </div>
-                            </div>
-                            <div
-                              class="font-semibold py-2"
-                            >
-                              Resources
-                            </div>
-                            <div
-                              class="flex flex-wrap gap-3"
-                            >
-                              <a
-                                href="https://www.example.com/"
-                                rel="noreferrer"
-                                target="_blank"
-                              >
-                                <div
-                                  class="
-                                      group border-2 border-gray-300 hover:border-dial-sunshine
-                                      card-drop-shadow
-                                    "
-                                >
-                                  <div
-                                    class="flex"
-                                  >
-                                    <div
-                                      class="flex flex-col gap-2 px-3 py-4"
-                                    >
-                                      <div
-                                        class="font-semibold"
-                                      >
-                                        Nyoman Ribeka
-                                      </div>
-                                      <div
-                                        class="text-sm"
-                                      >
-                                        Adadadada
-                                      </div>
-                                    </div>
-                                    <svg
-                                      aria-hidden="true"
-                                      class="ml-auto px-2"
-                                      fill="currentColor"
-                                      height="2.2em"
-                                      stroke="currentColor"
-                                      stroke-width="0"
-                                      viewBox="0 0 20 20"
-                                      width="2.2em"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
-                                      />
-                                      <path
-                                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
-                                      />
-                                    </svg>
-                                  </div>
-                                </div>
-                              </a>
-                            </div>
-                          </div>
+                          />
                         </div>
                       </div>
                     </div>
@@ -665,12 +577,13 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
               class="text-sm"
             >
               <a
-                href="back-to-playbooks"
+                href="/playbooks"
               >
                 <img
                   alt="Logo for: {name}"
                   class="m-auto h-6 inline mr-2"
-                  data-tip="{entity}: {name}"
+                  data-tooltip-content="{entity}: {name}"
+                  data-tooltip-id="react-tooltip"
                   src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                 />
                 Playbook
@@ -1144,11 +1057,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                           class="move-animation-base bg-dial-biscotti h-14"
                         />
                         <div
-                          class="
-                  animated-move
-                  move-header-collapsed
-                  move-animation bg-dial-orange-light h-14
-                "
+                          class="animated-move move-header-collapsed move-animation bg-dial-orange-light h-14"
                         />
                         <div
                           class="flex move-header"
@@ -1183,92 +1092,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                       >
                         <div
                           class="px-4 py-4"
-                        >
-                          <div
-                            class="relative"
-                          >
-                            <svg
-                              class="absolute text-lg inset-x-1/2 top-10 spinner"
-                              fill="currentColor"
-                              height="2em"
-                              stroke="currentColor"
-                              stroke-width="0"
-                              viewBox="0 0 512 512"
-                              width="2em"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
-                              />
-                            </svg>
-                            <div
-                              class="html-viewer"
-                            >
-                              <textarea
-                                id="move-considerations-desc"
-                                style="visibility: hidden;"
-                              />
-                            </div>
-                          </div>
-                          <div
-                            class="font-semibold py-2"
-                          >
-                            Resources
-                          </div>
-                          <div
-                            class="flex flex-wrap gap-3"
-                          >
-                            <a
-                              href="https://www.example.com/"
-                              rel="noreferrer"
-                              target="_blank"
-                            >
-                              <div
-                                class="
-                                      group border-2 border-gray-300 hover:border-dial-sunshine
-                                      card-drop-shadow
-                                    "
-                              >
-                                <div
-                                  class="flex"
-                                >
-                                  <div
-                                    class="flex flex-col gap-2 px-3 py-4"
-                                  >
-                                    <div
-                                      class="font-semibold"
-                                    >
-                                      Nyoman Ribeka
-                                    </div>
-                                    <div
-                                      class="text-sm"
-                                    >
-                                      Adadadada
-                                    </div>
-                                  </div>
-                                  <svg
-                                    aria-hidden="true"
-                                    class="ml-auto px-2"
-                                    fill="currentColor"
-                                    height="2.2em"
-                                    stroke="currentColor"
-                                    stroke-width="0"
-                                    viewBox="0 0 20 20"
-                                    width="2.2em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
-                                    />
-                                    <path
-                                      d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -1494,12 +1318,13 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                 class="text-sm"
               >
                 <a
-                  href="back-to-playbooks"
+                  href="/playbooks"
                 >
                   <img
                     alt="Logo for: {name}"
                     class="m-auto h-6 inline mr-2"
-                    data-tip="{entity}: {name}"
+                    data-tooltip-content="{entity}: {name}"
+                    data-tooltip-id="react-tooltip"
                     src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                   />
                   Playbook
@@ -1920,11 +1745,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                             class="move-animation-base bg-dial-biscotti h-14"
                           />
                           <div
-                            class="
-                  animated-move
-                  move-header-collapsed
-                  move-animation bg-dial-orange-light h-14
-                "
+                            class="animated-move move-header-collapsed move-animation bg-dial-orange-light h-14"
                           />
                           <div
                             class="flex move-header"
@@ -1959,92 +1780,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                         >
                           <div
                             class="px-4 py-4"
-                          >
-                            <div
-                              class="relative"
-                            >
-                              <svg
-                                class="absolute text-lg inset-x-1/2 top-10 spinner"
-                                fill="currentColor"
-                                height="2em"
-                                stroke="currentColor"
-                                stroke-width="0"
-                                viewBox="0 0 512 512"
-                                width="2em"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
-                                />
-                              </svg>
-                              <div
-                                class="html-viewer"
-                              >
-                                <textarea
-                                  id="move-considerations-desc"
-                                  style="visibility: hidden;"
-                                />
-                              </div>
-                            </div>
-                            <div
-                              class="font-semibold py-2"
-                            >
-                              Resources
-                            </div>
-                            <div
-                              class="flex flex-wrap gap-3"
-                            >
-                              <a
-                                href="https://www.example.com/"
-                                rel="noreferrer"
-                                target="_blank"
-                              >
-                                <div
-                                  class="
-                                      group border-2 border-gray-300 hover:border-dial-sunshine
-                                      card-drop-shadow
-                                    "
-                                >
-                                  <div
-                                    class="flex"
-                                  >
-                                    <div
-                                      class="flex flex-col gap-2 px-3 py-4"
-                                    >
-                                      <div
-                                        class="font-semibold"
-                                      >
-                                        Nyoman Ribeka
-                                      </div>
-                                      <div
-                                        class="text-sm"
-                                      >
-                                        Adadadada
-                                      </div>
-                                    </div>
-                                    <svg
-                                      aria-hidden="true"
-                                      class="ml-auto px-2"
-                                      fill="currentColor"
-                                      height="2.2em"
-                                      stroke="currentColor"
-                                      stroke-width="0"
-                                      viewBox="0 0 20 20"
-                                      width="2.2em"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
-                                      />
-                                      <path
-                                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
-                                      />
-                                    </svg>
-                                  </div>
-                                </div>
-                              </a>
-                            </div>
-                          </div>
+                          />
                         </div>
                       </div>
                     </div>
@@ -2082,12 +1818,13 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
               class="text-sm"
             >
               <a
-                href="back-to-playbooks"
+                href="/playbooks"
               >
                 <img
                   alt="Logo for: {name}"
                   class="m-auto h-6 inline mr-2"
-                  data-tip="{entity}: {name}"
+                  data-tooltip-content="{entity}: {name}"
+                  data-tooltip-id="react-tooltip"
                   src="http://localhost:3000//assets/playbooks/playbook_placeholder.png"
                 />
                 Playbook
@@ -2508,11 +2245,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                           class="move-animation-base bg-dial-biscotti h-14"
                         />
                         <div
-                          class="
-                  animated-move
-                  move-header-collapsed
-                  move-animation bg-dial-orange-light h-14
-                "
+                          class="animated-move move-header-collapsed move-animation bg-dial-orange-light h-14"
                         />
                         <div
                           class="flex move-header"
@@ -2547,92 +2280,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                       >
                         <div
                           class="px-4 py-4"
-                        >
-                          <div
-                            class="relative"
-                          >
-                            <svg
-                              class="absolute text-lg inset-x-1/2 top-10 spinner"
-                              fill="currentColor"
-                              height="2em"
-                              stroke="currentColor"
-                              stroke-width="0"
-                              viewBox="0 0 512 512"
-                              width="2em"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
-                              />
-                            </svg>
-                            <div
-                              class="html-viewer"
-                            >
-                              <textarea
-                                id="move-considerations-desc"
-                                style="visibility: hidden;"
-                              />
-                            </div>
-                          </div>
-                          <div
-                            class="font-semibold py-2"
-                          >
-                            Resources
-                          </div>
-                          <div
-                            class="flex flex-wrap gap-3"
-                          >
-                            <a
-                              href="https://www.example.com/"
-                              rel="noreferrer"
-                              target="_blank"
-                            >
-                              <div
-                                class="
-                                      group border-2 border-gray-300 hover:border-dial-sunshine
-                                      card-drop-shadow
-                                    "
-                              >
-                                <div
-                                  class="flex"
-                                >
-                                  <div
-                                    class="flex flex-col gap-2 px-3 py-4"
-                                  >
-                                    <div
-                                      class="font-semibold"
-                                    >
-                                      Nyoman Ribeka
-                                    </div>
-                                    <div
-                                      class="text-sm"
-                                    >
-                                      Adadadada
-                                    </div>
-                                  </div>
-                                  <svg
-                                    aria-hidden="true"
-                                    class="ml-auto px-2"
-                                    fill="currentColor"
-                                    height="2.2em"
-                                    stroke="currentColor"
-                                    stroke-width="0"
-                                    viewBox="0 0 20 20"
-                                    width="2.2em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
-                                    />
-                                    <path
-                                      d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>

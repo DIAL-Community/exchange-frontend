@@ -11,7 +11,8 @@ const BuildingBlockDetailLeft = ({ buildingBlock, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const { user, isAdminUser } = useUser()
+  const { user, isAdminUser, isEditorUser } = useUser()
+  const canEdit = isAdminUser || isEditorUser
 
   const generateEditLink = () => {
     if (!user) {
@@ -35,7 +36,7 @@ const BuildingBlockDetailLeft = ({ buildingBlock, commentsSectionRef }) => {
       </div>
       <div className='h-20'>
         <div className='w-full inline-flex gap-3'>
-          {isAdminUser && <EditButton type='link' href={generateEditLink()} />}
+          {canEdit && <EditButton type='link' href={generateEditLink()} />}
           {isAdminUser && <DeleteBuildingBlock buildingBlock={buildingBlock} />}
           <CommentsCount
             commentsSectionRef={commentsSectionRef}
@@ -61,8 +62,8 @@ const BuildingBlockDetailLeft = ({ buildingBlock, commentsSectionRef }) => {
           </div>
           <div className='block w-32 h-32 building-block-filter flex-grow mx-auto'>
             <Image
-              layout='fill'
-              objectFit='contain'
+              fill
+              className='object-contain'
               alt={format('image.alt.logoFor', { name: buildingBlock.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
             />

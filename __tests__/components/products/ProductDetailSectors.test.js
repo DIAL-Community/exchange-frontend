@@ -56,7 +56,7 @@ describe('Unit test for the ProductDetailSectors component.', () => {
 
     await waitFor(() => new Promise((res) => setTimeout(res, 0)))
 
-    await act(async () => fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID)))
     await waitForAllEffectsAndSelectToLoad(container)
     expect(container).toMatchSnapshot()
   })
@@ -70,9 +70,9 @@ describe('Unit test for the ProductDetailSectors component.', () => {
         />
       </CustomMockedProvider>
     )
-    await act(async () => fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID)))
     await waitForAllEffectsAndSelectToLoad(container)
-    await act(async () => fireEvent.click(getByTestId(PILL_REMOVE_BUTTON_TEST_ID)))
+    await act(() => fireEvent.click(getByTestId(PILL_REMOVE_BUTTON_TEST_ID)))
     expect(screen.queryByTestId(PILL_TEST_ID)).toBeNull()
     expect(container).toMatchSnapshot()
   })
@@ -86,27 +86,27 @@ describe('Unit test for the ProductDetailSectors component.', () => {
         />
       </CustomMockedProvider>
     )
-    await act(async () => fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID)))
     await waitForAllEffectsAndSelectToLoad(container)
 
-    await act(async () => fireEvent.keyDown(getByTestId(SECTOR_SEARCH_TEST_ID).childNodes[1], { key: 'ArrowDown' }))
+    await act(() => fireEvent.keyDown(getByTestId(SECTOR_SEARCH_TEST_ID).childNodes[1], { key: 'ArrowDown' }))
     await screen.findByText(SECTOR_SEARCH_OPTION_1_LABEL)
-    await act(async () => fireEvent.click(getByText(SECTOR_SEARCH_OPTION_1_LABEL)))
+    await act(() => fireEvent.click(getByText(SECTOR_SEARCH_OPTION_1_LABEL)))
     expect(screen.queryAllByTestId(PILL_TEST_ID)).toHaveLength(2)
 
-    await act(async () => fireEvent.keyDown(getByTestId(SECTOR_SEARCH_TEST_ID).childNodes[1], { key: 'ArrowDown' }))
+    await act(() => fireEvent.keyDown(getByTestId(SECTOR_SEARCH_TEST_ID).childNodes[1], { key: 'ArrowDown' }))
     await screen.findByText(SECTOR_SEARCH_OPTION_2_LABEL)
-    await act(async () => fireEvent.click(getByText(SECTOR_SEARCH_OPTION_2_LABEL)))
+    await act(() => fireEvent.click(getByText(SECTOR_SEARCH_OPTION_2_LABEL)))
     expect(screen.queryAllByTestId(PILL_TEST_ID)).toHaveLength(3)
 
     expect(container).toMatchSnapshot()
 
-    await act(async () => fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID)))
+    await act(() => fireEvent.click(getByTestId(CANCEL_BUTTON_TEST_ID)))
     expect(screen.queryByText(PRODUCT_TEST_SECTOR_LABEL)).toBeInTheDocument()
     expect(screen.queryByText(SECTOR_SEARCH_OPTION_1_LABEL)).not.toBeInTheDocument()
     expect(screen.queryByText(SECTOR_SEARCH_OPTION_2_LABEL)).not.toBeInTheDocument()
 
-    await act(async () => fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.click(getByTestId(EDIT_BUTTON_TEST_ID)))
     await waitForAllEffectsAndSelectToLoad(container)
 
     expect(screen.queryByText(PRODUCT_TEST_SECTOR_LABEL)).toBeInTheDocument()

@@ -22,7 +22,8 @@ const WorkflowForm = React.memo(({ workflow }) => {
 
   const router = useRouter()
 
-  const { user, isAdminUser, loadingUserSession } = useUser()
+  const { user, loadingUserSession } = useUser()
+  const canEdit = user?.isAdminUser || user?.isEditorUser
 
   const [mutating, setMutating] = useState(false)
 
@@ -89,7 +90,7 @@ const WorkflowForm = React.memo(({ workflow }) => {
   }, [workflow, format])
 
   const doUpsert = async (data) => {
-    if (user) {
+    if (canEdit) {
       setMutating(true)
       const { userEmail, userToken } = user
       const { name, imageFile, description } = data
@@ -120,7 +121,7 @@ const WorkflowForm = React.memo(({ workflow }) => {
   }
 
   return (
-    loadingUserSession ? <Loading /> : isAdminUser ? (
+    loadingUserSession ? <Loading /> : canEdit ? (
       <div className='flex flex-col'>
         <div className='hidden lg:block px-8'>
           <Breadcrumb slugNameMapping={slugNameMapping} />

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { useCallback } from 'react'
 import { FormattedDate, useIntl } from 'react-intl'
 import Breadcrumb from '../shared/breadcrumb'
@@ -45,31 +46,19 @@ const OpportunityDetailRight = ({ opportunity, commentsSectionRef }) => {
         </div>
         <div className='flex flex-col flex-grow pb-4'>
           <div className={sectionHeaderStyle}>
-            {format('opportunity.detail.webAddress')}
-          </div>
-          <div className='text-dial-teal flex'>
-            <a
-              href={prependUrlWithProtocol(opportunity.webAddress)}
-              className='border-b-2 border-transparent hover:border-dial-sunshine'
-              target='_blank'
-              rel='noreferrer'
-            >
-              <div className='my-auto'>{opportunity.webAddress} ⧉</div>
-            </a>
-          </div>
-        </div>
-        <div className='flex flex-col flex-grow pb-4'>
-          <div className={sectionHeaderStyle}>
             {format('opportunity.openingDate')}
           </div>
           <div className='text-dial-stratos flex'>
             <div className='my-auto'>
-              <FormattedDate
-                value={new Date(opportunity.openingDate)}
-                year='numeric'
-                month='long'
-                day='2-digit'
-              />
+              { opportunity.openingDate
+                ?<FormattedDate
+                  value={new Date(opportunity.openingDate)}
+                  year='numeric'
+                  month='long'
+                  day='2-digit'
+                />
+                : format('general.na')
+              }
             </div>
           </div>
         </div>
@@ -79,14 +68,35 @@ const OpportunityDetailRight = ({ opportunity, commentsSectionRef }) => {
           </div>
           <div className='text-dial-stratos flex'>
             <div className='my-auto'>
-              <FormattedDate
-                value={new Date(opportunity.closingDate)}
-                year='numeric'
-                month='long'
-                day='2-digit'
-              />
+              { opportunity.closingDate
+                ? <FormattedDate
+                  value={new Date(opportunity.closingDate)}
+                  year='numeric'
+                  month='long'
+                  day='2-digit'
+                />
+                : format('general.na')
+              }
             </div>
           </div>
+        </div>
+      </div>
+      <div className='flex flex-col flex-grow pb-4'>
+        <div className={sectionHeaderStyle}>
+          {format('opportunity.webAddress')}
+        </div>
+        <div className='flex'>
+          { opportunity.webAddress && opportunity.webAddress !== 'N/A'
+            ? <a
+              href={prependUrlWithProtocol(opportunity.webAddress)}
+              className='text-dial-teal border-b-2 border-transparent hover:border-dial-sunshine'
+              target='_blank'
+              rel='noreferrer'
+            >
+              <div className='my-auto'>{opportunity.webAddress} ⧉</div>
+            </a>
+            : format('general.na')
+          }
         </div>
       </div>
       {(opportunity.contactName || opportunity.contactEmail) &&
@@ -116,6 +126,21 @@ const OpportunityDetailRight = ({ opportunity, commentsSectionRef }) => {
       <OpportunityDetailOrganizations opportunity={opportunity} canEdit={canEdit} />
       <OpportunityDetailSectors opportunity={opportunity} canEdit={canEdit} />
       <OpportunityDetailUseCases opportunity={opportunity} canEdit={canEdit} />
+      <div className={`mt-8 ${sectionHeaderStyle}`}>
+        {format('opportunity.source')}
+      </div>
+      <div className='flex flex-col gap-3'>
+        {opportunity.origin &&
+          <div className='image-block-hack w-24 h-6 relative'>
+            <Image
+              fill
+              className='p-2 m-auto object-contain'
+              src={'/images/origins/' + opportunity.origin.slug + '.png'}
+              alt={format('image.alt.logoFor', { name: opportunity.origin.name })}
+            />
+          </div>
+        }
+      </div>
       <CommentsSection
         commentsSectionRef={commentsSectionRef}
         objectId={opportunity.id}

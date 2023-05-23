@@ -236,7 +236,7 @@ export const en = {
   'product.no-interop': 'We do not have any Interoperating information for this Product.',
   'product.no-include': 'We do not have any Includes information for this Product.',
   'product.maturity-scores': 'Product maturity scores',
-  'product.maturity-desc': 'These maturity scores have been sourced from organizations such as Digital Square and DIAL Open Source Center. These maturity scores are not an endorsement, but a reflection of ratings given by various organizations. For more information visit the <a href="https://docs.dial.community/projects/product-registry/en/latest/maturity.html" target="_blank">Exchange Documentation</a>',
+  'product.maturity-desc': 'These maturity scores have been sourced from organizations such as Digital Square and GitHub. These maturity scores are not an endorsement, but a reflection of ratings given by various organizations and collected via automated methods. For more information visit the <a href="https://docs.dial.community/projects/product-registry/en/latest/maturity.html" target="_blank">Exchange Documentation</a>',
   'product.no-maturity': 'We do not have any Maturity information for this Product.',
   'product.maturity-chart-tooltip': 'Click to see maturity score details',
   'product.maturity-details-label': 'Maturity score details',
@@ -669,7 +669,6 @@ export const en = {
   'use-case-step.create': 'Add Use Case Step',
   'use-case-step.label': 'Use Case Step',
   'use-case-step.name': 'Name',
-  'use-case-step.markdownUrl': 'Markdown Filename',
   'use-case-step.description': 'Description',
   'use-case-step.step-number': 'Step Number',
   'use-case-step.submit.failure': 'Use Case Step submission failed',
@@ -856,7 +855,7 @@ export const en = {
   'aggregator.label': 'Aggregator',
   'map.loading.indicator': 'Updating map data ...',
   'tooltip.endorsed': 'This product has been endorsed by one or more vetting organizations.',
-  'tooltip.covid': 'This product has been tagged as relevant for COVID response,',
+  'tooltip.covid': 'This product has been tagged as relevant for COVID response.',
   'tooltip.launchable': 'This product has been tagged as can be deployed to cloud provider.',
   'tooltip.digiprins': 'This product is owned or maintained by a Digital Principles endorser.',
 
@@ -877,6 +876,13 @@ export const en = {
   'signIn.email.placeholder': 'Your email address',
   'signIn.password': 'Password',
   'signIn.password.hint': 'Enter your password.',
+  'signIn.confirmation.required': 'Account need to be activated first.',
+  'signIn.confirmationEmail': 'Request activation here.',
+
+  'confirmation.email': 'Email Address',
+  'confirmation.email.placeholder': 'Your email address',
+  'confirmation.request': 'Request Activation Instructions',
+  'toast.confirmation.email.success': 'Activation instruction email sent to existing account. Redirecting ...',
 
   'signUp.created': 'Registration successful. Please check your email for confirmation. Redirecting ...',
   'signUp.submit': 'Sign Up',
@@ -1601,6 +1607,8 @@ export const en = {
   'opportunity.description': 'Description',
   'filter.opportunity.showClosed': 'Show closed opportunities',
 
+  'opportunity.source': 'Source',
+
   'opportunity.type.bid': 'Bid',
   'opportunity.type.innovation': 'Innovation',
   'opportunity.type.other': 'Other',
@@ -1618,5 +1626,18 @@ export const en = {
   'opportunity.no-country': 'No country assigned.',
   'opportunity.no-organization': 'No organization assigned.',
   'opportunity.no-sector': 'No sector assigned.',
-  'opportunity.no-use-case': 'No use case assigned.'
+  'opportunity.no-use-case': 'No use case assigned.',
+
+  'toast.applyAsContentEditor.submit.success': 'Role content editor requested.',
+  'contentEditor.apply': 'Apply to be content editor',
+  'contentEditor.privilege': 'to add playbooks.',
+
+  'useCaseStep.markdownWarning': `
+    Use case is linked to a markdown definition. Please edit the markdown if you would like
+    to make changes to this step.
+  `,
+  'useCase.markdownWarning': `
+    Use case is linked to a markdown definition. Description will be read from linked markdown.
+  `,
+  'govstack.issue.submitFailed': 'Feedback submission failed. Please try again later.'
 }

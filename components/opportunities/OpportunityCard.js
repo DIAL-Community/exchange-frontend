@@ -49,9 +49,8 @@ const OpportunityCard = ({ opportunity, listType, newTab = false }) => {
                       <div className='text-dial-gray-dark my-auto'>
                         <div className='image-block-hack w-8 relative'>
                           <Image
-                            layout='fill'
-                            objectFit='scale-down'
-                            objectPosition='left'
+                            fill
+                            className='object-contain'
                             alt={format('image.alt.logoFor', { name: opportunity.name })}
                             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + opportunity.imageFile}
                           />
@@ -95,46 +94,49 @@ const OpportunityCard = ({ opportunity, listType, newTab = false }) => {
                   {createOpportunityBadges(opportunity)}
                   <Link href={`/${collectionPath}/${opportunity.slug}`}>
                     <div className='flex flex-col'>
-                      <div className='flex text-dial-sapphire bg-dial-alice-blue h-20 rounded-t-lg'>
-                        <div className='px-4 text-sm text-center font-semibold m-auto'>
+                      <div className='flex text-dial-sapphire bg-dial-alice-blue h-24 rounded-t-lg'>
+                        <div className='px-4 text-sm text-center font-semibold m-auto line-clamp-1'>
                           {opportunity.name}
                         </div>
                       </div>
                       <div className='my-8 mx-auto'>
-                        <div className='block w-24 h-24 relative'>
+                        <div className='block w-64 h-32 relative'>
                           <Image
-                            layout='fill'
-                            objectFit='scale-down'
+                            fill
+                            className='object-contain'
                             alt={format('image.alt.logoFor', { name: opportunity.name })}
                             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + opportunity.imageFile}
                           />
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                  <div className='bg-dial-alice-blue flex flex-col h-44 rounded-b-md'>
-                    <div className='px-3 py-3 text-sm line-clamp-4'>
-                      <div className='line-clamp-4'>
-                        {parse(opportunity?.description)}
-                      </div>
-                    </div>
-                    {opportunity.webAddress &&
-                      <div className='flex flex-col bg-dial-alice-blue px-3 pb-3 text-sm gap-1 mt-auto'>
-                        <div className='font-semibold'>{format('opportunity.webAddress')}</div>
-                        <div className='text-dial-sunshine text-sm flex'>
-                          <a
-                            href={prependUrlWithProtocol(opportunity.webAddress)}
-                            className='flex flex-row justify-center'
-                            target='_blank' rel='noreferrer'
-                          >
-                            <div className='flex gap-2'>
-                              {opportunity.webAddress}
-                              <FaExternalLinkAlt className='my-auto' />
-                            </div>
-                          </a>
+                      <div className='bg-dial-alice-blue h-28'>
+                        <div className='px-3 py-3 text-sm line-clamp-4'>
+                          <div className='line-clamp-4'>
+                            {parse(opportunity?.description)}
+                          </div>
                         </div>
                       </div>
-                    }
+                    </div>
+                  </Link>
+                  <hr />
+                  <div className='bg-dial-alice-blue pt-3'>
+                    <div className='flex flex-col px-3 pb-3 text-sm gap-1 mt-auto'>
+                      <div className='font-semibold'>{format('opportunity.webAddress')}</div>
+                      <div className='text-sm'>
+                        {opportunity.webAddress && opportunity.webAddress !== 'N/A'
+                          ? <a
+                            href={prependUrlWithProtocol(opportunity.webAddress)}
+                            target='_blank' rel='noreferrer'
+                            className='text-dial-sunshine'
+                          >
+                            <div className='line-clamp-1 border-b border-transparent hover:border-dial-sunshine'>
+                              {opportunity.webAddress} ⧉
+                            </div>
+                          </a>
+                          : format('general.na')
+                        }
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -12,7 +12,8 @@ const UseCaseDetailLeft = ({ useCase, commentsSectionRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { user, isAdminUser } = useUser()
+  const { user, isAdminUser, isEditorUser } = useUser()
+  const canEdit = isAdminUser || isEditorUser
 
   const generateEditLink = () => {
     if (!user) {
@@ -36,9 +37,13 @@ const UseCaseDetailLeft = ({ useCase, commentsSectionRef }) => {
       </div>
       <div className='h-20'>
         <div className='w-full inline-flex gap-3'>
-          {isAdminUser && <EditButton type='link' href={generateEditLink()} />}
+          {canEdit && <EditButton type='link' href={generateEditLink()} />}
           {isAdminUser && <DeleteUseCase useCase={useCase} />}
-          <CommentsCount commentsSectionRef={commentsSectionRef} objectId={useCase.id} objectType={ObjectType.USE_CASE}/>
+          <CommentsCount
+            commentsSectionRef={commentsSectionRef}
+            objectId={useCase.id}
+            objectType={ObjectType.USE_CASE}
+          />
         </div>
         <div className='h4 font-bold py-4'>{format('useCase.label')}</div>
       </div>
@@ -49,8 +54,8 @@ const UseCaseDetailLeft = ({ useCase, commentsSectionRef }) => {
           </div>
           <div className='m-auto w-3/5 h-3/5 relative use-case-filter' >
             <Image
-              layout='fill'
-              objectFit='contain'
+              fill
+              className='object-contain'
               sizes='100vw'
               alt={format('image.alt.logoFor', { name: useCase.name })}
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}

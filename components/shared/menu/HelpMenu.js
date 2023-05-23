@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router'
 import { useCallback, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
+import Cookies from 'js-cookie'
+import { OVERVIEW_INTRO_KEY } from '../../../lib/intro'
 import ReportIssue from '../ReportIssue'
 import { HELP_MENU, MenuHeader, NONE } from './MenuCommon'
 import { DEFAULT_DROPDOWN_MENU_STYLES, DEFAULT_DROPDOWN_PANEL_STYLES } from './MenuStyleCommon'
@@ -27,6 +29,12 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
     onToggleDropdown(NONE)
   }
 
+  const startOverviewTour = (e) => {
+    e.preventDefault()
+    Cookies.set(OVERVIEW_INTRO_KEY, false)
+    window.location.href = '/'
+  }
+
   return (
     <>
       <MenuHeader
@@ -39,6 +47,13 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       {
         currentOpenMenu === HELP_MENU &&
           <div className={DEFAULT_DROPDOWN_PANEL_STYLES} ref={helpPopover} role='menu'>
+            <a
+              href='startOverviewTour'
+              className={DEFAULT_DROPDOWN_MENU_STYLES}
+              onClick={(e) => startOverviewTour(e)}
+            >
+              {format('intro.overview.startTour')}
+            </a>
             <a
               className={DEFAULT_DROPDOWN_MENU_STYLES}
               href={`https://docs.dial.community/projects/product-registry/${locale}/latest/`}

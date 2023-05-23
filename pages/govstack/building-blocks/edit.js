@@ -18,7 +18,7 @@ const GovStackApiEditor = () => {
 
   useEffect(() => {
     if (user) {
-      setUserName(user.name)
+      setUserName(user.userName)
       setUserEmail(user.userEmail)
     }
   }, [user])

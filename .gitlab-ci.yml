@@ -15,7 +15,7 @@ variables:
     - set -e
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null  
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
     - mkdir -p ~/.ssh
     - touch ~/.ssh/config
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" >> ~/.ssh/config
@@ -61,7 +61,7 @@ test:
     - docker
   stage: test
   script:
-    - yarn test
+    - yarn test --maxWorkers=2
   artifacts:
     expire_in: 1 hour
     paths:

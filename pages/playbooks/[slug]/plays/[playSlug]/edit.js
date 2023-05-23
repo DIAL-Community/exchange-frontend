@@ -56,7 +56,7 @@ const EditPlayInformation = ({ slug, playSlug, locale }) => {
 }
 
 function EditPlay() {
-  const { isAdminUser, loadingUserSession } = useUser()
+  const { isAdminUser, isEditorUser, loadingUserSession } = useUser()
   const router = useRouter()
 
   const { locale } = router
@@ -68,7 +68,7 @@ function EditPlay() {
       <ClientOnly>
         {loadingUserSession
           ? <Loading />
-          : isAdminUser
+          : isAdminUser || isEditorUser
             ? <EditPlayInformation slug={slug} playSlug={playSlug} locale={locale} />
             : <Unauthorized />}
       </ClientOnly>

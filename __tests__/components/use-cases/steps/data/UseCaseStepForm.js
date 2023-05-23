@@ -2,15 +2,6 @@ export const useCaseStep = {
   id: 1,
   name: 'UseCaseStep',
   slug: 'ucs',
-  useCase: {
-    buildingBlocks: [
-      {
-        id: 1,
-        name: 'Test Building Block',
-        slug: 'tbb'
-      }
-    ]
-  },
   workflows: [
     {
       id: 1,
@@ -32,6 +23,16 @@ export const useCaseStep = {
       slug: 'td'
     }
   ],
+  buildingBlocks: [
+    {
+      id: 1,
+      name: 'Test Building Block',
+      slug: 'tbb'
+    }
+  ]
+}
+
+export const useCase = {
   buildingBlocks: [
     {
       id: 1,

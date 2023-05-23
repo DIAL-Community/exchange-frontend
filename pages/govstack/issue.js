@@ -1,14 +1,19 @@
 import { useIntl } from 'react-intl'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useContext } from 'react'
 import { useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa'
 import Header from '../../components/govstack/Header'
+import { ToastContext } from '../../lib/ToastContext'
 
 const GovStackIssueForm = ({ referer }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const [thanks, setThanks] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [issueLink, setIssueLink] = useState()
+
+  const { showToast } = useContext(ToastContext)
 
   const { handleSubmit, register, reset } = useForm({
     mode: 'onBlur',
@@ -18,7 +23,7 @@ const GovStackIssueForm = ({ referer }) => {
 
   useEffect(() => {
     reset({ issuePage: referer } )
-  }, [referer])
+  }, [referer, reset])
 
   const getProjectKey = (issuePage) => {
     const projectKeys = new Map([
@@ -51,10 +56,10 @@ const GovStackIssueForm = ({ referer }) => {
   }
 
   const submitMessage = async (data) => {
+    setLoading(true)
     const { name, email, issuePage, issue } = data
 
     const encodedEmail = Buffer.from(email).toString('base64')
-
     const projectKey = getProjectKey(issuePage)
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_RAILS_SERVER}/create_issue?project_key=${projectKey}`, {
@@ -76,9 +81,19 @@ const GovStackIssueForm = ({ referer }) => {
       })
     })
 
-    const responseBody = await response.json()
-    setIssueLink('https://govstack-global.atlassian.net/browse/'+responseBody?.data?.key)
-    setThanks(true)
+    if (response.status === 201) {
+      const { data } = await response.json()
+      setIssueLink('https://govstack-global.atlassian.net/browse/' + data?.key)
+      setThanks(true)
+    } else {
+      showToast(
+        format('govstack.issue.submitFailed'),
+        'error',
+        'top-center'
+      )
+    }
+
+    setLoading(false)
   }
 
   return (
@@ -149,10 +164,11 @@ const GovStackIssueForm = ({ referer }) => {
               <div className='flex'>
                 <button
                   type='submit'
-                  className='w-40 mr-2 bg-dial-blue text-dial-gray-light py-2 px-4 rounded disabled:opacity-50'
-                  disabled={thanks}
+                  className='bg-dial-blue text-dial-gray-light py-2 px-4 rounded disabled:opacity-50 flex gap-3'
+                  disabled={thanks || loading}
                 >
                   {format('govstack.feedback.submit')}
+                  {loading && <FaSpinner className='spinner inline my-auto' />}
                 </button>
               </div>
             </div>

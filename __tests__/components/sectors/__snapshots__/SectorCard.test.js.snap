@@ -46,7 +46,8 @@ exports[`Unit test for the SectorCard component Should match snapshot - user is 
         >
           Example Sector
           <svg
-            data-tip="Displayable"
+            data-tooltip-content="Displayable"
+            data-tooltip-id="react-tooltip"
             fill="currentColor"
             height="1em"
             stroke="currentColor"

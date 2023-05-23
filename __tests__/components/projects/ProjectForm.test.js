@@ -30,11 +30,12 @@ describe('Unit tests for ProjectForm component.', () => {
   const mockOrganizations = generateMockApolloData(ORGANIZATION_SEARCH_QUERY, { search: '' }, null, organizations)
   const mockProducts = generateMockApolloData(PRODUCT_SEARCH_QUERY, { search: '' }, null, products)
   const mockOwnedProducts = generateMockApolloData(OWNED_PRODUCTS_QUERY, null, null, ownedProducts)
+  const mockNotOwningProducts = generateMockApolloData(OWNED_PRODUCTS_QUERY, null, new Error('Not Authorized'))
 
   test('Should render Unauthorized component for unauthorized user.', async () => {
     mockNextAuthUseSession(statuses.UNAUTHENTICATED)
     const { container } = render(
-      <CustomMockedProvider>
+      <CustomMockedProvider mocks={[mockNotOwningProducts]}>
         <ProjectForm />
       </CustomMockedProvider>
     )
@@ -45,9 +46,9 @@ describe('Unit tests for ProjectForm component.', () => {
   test(
     'Should render Unauthorized for user who is neither an admin, an Org owner, or a Product owner.',
     async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: false })
       const { container } = render(
-        <CustomMockedProvider>
+        <CustomMockedProvider mocks={[mockNotOwningProducts]}>
           <ProjectForm />
         </CustomMockedProvider>
       )
@@ -57,15 +58,15 @@ describe('Unit tests for ProjectForm component.', () => {
   )
 
   test('Should render ProjectForm component for admin user.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const { container, getByTestId } = render(
       <CustomMockedProvider mocks={[mockOrganizations, mockProducts]} addTypename={false}>
         <ProjectForm />
       </CustomMockedProvider>
     )
     await waitForAllEffects()
-    fireEvent.keyDown(getByTestId(PROJECT_ORGANIZATION_TEST_ID).childNodes[1], { key: 'ArrowDown' })
-    fireEvent.keyDown(getByTestId(PROJECT_PRODUCT_TEST_ID).childNodes[1], { key: 'ArrowDown' })
+    await act(() => fireEvent.keyDown(getByTestId(PROJECT_ORGANIZATION_TEST_ID).childNodes[1], { key: 'ArrowDown' }))
+    await act(() => fireEvent.keyDown(getByTestId(PROJECT_PRODUCT_TEST_ID).childNodes[1], { key: 'ArrowDown' }))
     expect(container).toMatchSnapshot()
   })
 
@@ -74,7 +75,7 @@ describe('Unit tests for ProjectForm component.', () => {
     async () => {
       mockNextAuthUseSession(statuses.AUTHENTICATED, organizationOwnerUserProps)
       const { container } = render(
-        <CustomMockedProvider>
+        <CustomMockedProvider mocks={[mockOrganizations, mockProducts]}>
           <ProjectForm />
         </CustomMockedProvider>
       )
@@ -83,81 +84,71 @@ describe('Unit tests for ProjectForm component.', () => {
     }
   )
 
-  test(
-    'Should render ProjectForm for Product owner with select for Product.',
-    async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, productOwnerUserProps)
-      const { container, getByTestId } = render(
-        <CustomMockedProvider mocks={[mockOwnedProducts]} addTypename={false}>
-          <ProjectForm />
-        </CustomMockedProvider>
-      )
-      await waitForAllEffects()
-      fireEvent.keyDown(getByTestId(PROJECT_PRODUCT_TEST_ID).childNodes[1], { key: 'ArrowDown' })
-      expect(container).toMatchSnapshot()
-    }
-  )
-
-  test(
-    'Should render ProjectForm with read-only input for Organization and select for Product.',
-    async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { ...organizationAndProductOwnerUserProps, ... { canEdit: false } })
-      const { container, getByTestId, getByText } = render(
-        <CustomMockedProvider mocks={[mockOwnedProducts]} addTypename={false}>
-          <ProjectForm />
-        </CustomMockedProvider>
-      )
-      await waitForAllEffects()
-      await act(() => waitFor(() => { fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)) }))
-      expect(getByTestId(PROJECT_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-
-      await act(() => waitFor(
-        () => {
-          fireEvent.keyDown(
-            getByTestId(PROJECT_PRODUCT_TEST_ID).childNodes[1],
-            { key: 'ArrowDown' }
-          )
-        }
-      ))
-      await screen.findByText('Product 1')
-      await act(() => waitFor(() => { fireEvent.click(getByText('Product 1')) }))
-
-      await act(() => waitFor(() => { fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)) }))
-      expect(getByTestId(PROJECT_PRODUCT_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-      expect(container).toMatchSnapshot()
-    }
-  )
-
-  test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
-    const user = userEvent.setup()
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+  test('Should render ProjectForm for Product owner with select for Product.', async () => {
+    mockNextAuthUseSession(statuses.AUTHENTICATED, productOwnerUserProps)
     const { container, getByTestId } = render(
-      <CustomMockedProvider mocks={[mockProducts]} addTypename={false}>
+      <CustomMockedProvider mocks={[mockOwnedProducts, mockProducts, mockOrganizations]} addTypename={false}>
         <ProjectForm />
       </CustomMockedProvider>
     )
     await waitForAllEffects()
-    await act(async () => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    await act(() => fireEvent.keyDown(getByTestId(PROJECT_PRODUCT_TEST_ID).childNodes[1], { key: 'ArrowDown' }))
+    expect(container).toMatchSnapshot()
+  })
+
+  test('Should render with read-only input for Organization and select for Product.', async () => {
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { ...organizationAndProductOwnerUserProps, ... { isAdminUser: false } })
+    const { container, getByTestId, getByText } = render(
+      <CustomMockedProvider mocks={[mockOwnedProducts]} addTypename={false}>
+        <ProjectForm />
+      </CustomMockedProvider>
+    )
+    await waitForAllEffects()
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    expect(getByTestId(PROJECT_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
+
+    await act(() => fireEvent.keyDown(getByTestId(PROJECT_PRODUCT_TEST_ID).childNodes[1], { key: 'ArrowDown' }))
+
+    await waitFor(() => {
+      fireEvent.click(getByText('Product 1'))
+      expect(getByText('Product 1')).toBeInTheDocument()
+    })
+
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    expect(getByTestId(PROJECT_PRODUCT_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
+    expect(container).toMatchSnapshot()
+  })
+
+  test('Should show validation errors for mandatory fields and hide them on input value change.', async () => {
+    const user = userEvent.setup()
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
+    const { container, getByTestId } = render(
+      <CustomMockedProvider mocks={[mockProducts, mockOrganizations]} addTypename={false}>
+        <ProjectForm />
+      </CustomMockedProvider>
+    )
+    await waitForAllEffects()
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PROJECT_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PROJECT_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test project name')
     expect(getByTestId(PROJECT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
-    await act(() => waitFor(() => { user.clear(screen.getByLabelText(/Name/)) }))
+    await user.clear(screen.getByLabelText(/Name/))
     expect(getByTestId(PROJECT_NAME_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
     await user.type(screen.getByLabelText(/Name/), 'test project name 2')
     expect(getByTestId(PROJECT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PROJECT_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
 
-    await act(() => waitFor(() => { fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)) }))
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     expect(getByTestId(PROJECT_NAME_TEST_ID)).not.toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(getByTestId(PROJECT_DESCRIPTION_TEST_ID)).toHaveTextContent(REQUIRED_FIELD_MESSAGE)
     expect(container).toMatchSnapshot()
   })
 
   test('Should display success toast on submit.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const mockCreateProject = generateMockApolloData(
       CREATE_PROJECT,
       {
@@ -177,15 +168,13 @@ describe('Unit tests for ProjectForm component.', () => {
       </CustomMockedProvider>
     )
     await waitForAllEffects()
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     await screen.findByText('Project submitted successfully')
     expect(container).toMatchSnapshot()
   })
 
   test('Should display failure toast on submit.', async () => {
-    mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
     const errorMessage = 'An error occurred'
     const mockCreateProject = generateMockApolloData(
       CREATE_PROJECT,
@@ -205,9 +194,7 @@ describe('Unit tests for ProjectForm component.', () => {
       </CustomMockedProvider>
     )
     await waitForAllEffects()
-    await act(async () => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
     await screen.findByText('Project submission failed')
     await screen.findByText(errorMessage)
     expect(container).toMatchSnapshot()

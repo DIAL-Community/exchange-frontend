@@ -14,7 +14,7 @@ import { PlaybookFilterContext, PlaybookFilterDispatchContext }
   from '../../components/context/PlaybookFilterContext'
 import ClientOnly from '../../lib/ClientOnly'
 const PlaybookListQuery = dynamic(() => import('../../components/playbooks/PlaybookList'), { ssr: false })
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const Playbooks = () => {
   const { search } = useContext(PlaybookFilterContext)
@@ -25,7 +25,7 @@ const Playbooks = () => {
       <QueryNotification />
       <GradientBackground />
       <Header />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
         <TabNav activeTab='filter.entity.playbooks' />
         <MobileNav activeTab='filter.entity.playbooks' />

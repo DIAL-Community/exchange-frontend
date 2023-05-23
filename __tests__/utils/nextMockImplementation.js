@@ -49,8 +49,9 @@ export const sessionDefaultValues = {
       id: 1,
       userEmail: 'some-fake@email.com',
       userToken: 'some-fake-user-token',
-      name: 'some-fake-username',
-      canEdit: true
+      userName: 'some-fake-username',
+      isAdminUser: true,
+      isEditorUser: false
     }
   },
   status: 'authenticated'

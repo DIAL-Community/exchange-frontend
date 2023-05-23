@@ -139,16 +139,19 @@ const InternalLink = ({ menuExpanded, setMenuExpanded, link, label }) => {
   const { formatMessage } = useIntl()
   const format = (id, values) => formatMessage({ id }, { ...values })
 
-  const closeMenu = () => {
+  const router = useRouter()
+
+  const closeMenu = (e, link) => {
+    e.preventDefault()
+
     setMenuExpanded(!menuExpanded)
+    router.push(link)
   }
 
   return (
     <li className='py-3'>
-      <Link href={link}>
-        <a className='mx-8' href={link} onClick={closeMenu}>
-          {format(label)}
-        </a>
+      <Link className='mx-8' onClick={(e) => closeMenu(e, link)}>
+        {format(label)}
       </Link>
     </li>
   )
@@ -193,7 +196,7 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
             </li>
             <li className='py-3'>
               <div className='mx-8 font-semibold'>
-                {parent === 'current.user' ? user.name.toUpperCase() : format(parent)}
+                {parent === 'current.user' ? user.userName.toUpperCase() : format(parent)}
               </div>
             </li>
             {
@@ -224,10 +227,8 @@ const SubMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
                 } else if (subMenus[parent].type === 'admin' && isAdminUser) {
                   return (
                     <li key={index} className='py-4 border-b'>
-                      <Link href='/users'>
-                        <a role='menuitem' className='mx-8'>
-                          {format('header.admin.users')}
-                        </a>
+                      <Link href='/users' role='menuitem' className='mx-8'>
+                        {format('header.admin.users')}
                       </Link>
                     </li>
                   )
@@ -284,8 +285,8 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
               </a>
             </li>
             <li className='py-4 border-b'>
-              <Link href='wizard'>
-                <a className='mx-6 font-semibold' href='about'>{format('header.wizard')}</a>
+              <Link href='wizard' className='mx-6 font-semibold'>
+                {format('header.wizard')}
               </Link>
             </li>
             <li className='py-4 border-b'>
@@ -298,8 +299,8 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
               </a>
             </li>
             <li className='py-4 border-b'>
-              <Link href='about'>
-                <a className='mx-6 font-semibold' href='about'>{format('header.about')}</a>
+              <Link className='mx-6 font-semibold' href='about'>
+                {format('header.about')}
               </Link>
             </li>
             {
@@ -319,7 +320,7 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
                       >
                         <img src='/icons/user.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
                         <div className='inline text-sm'>
-                          {user.name.toLowerCase()}
+                          {user.userName.toLowerCase()}
                         </div>
                         <RiArrowRightSLine className='text-base inline ml-2' />
                       </a>

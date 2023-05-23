@@ -15,7 +15,7 @@ import { Loading, Unauthorized } from '../../../components/shared/FetchStatus'
 import MobileNav from '../../../components/main/MobileNav'
 const DatasetListQuery = dynamic(() =>
   import('../../../components/candidate/datasets/DatasetList'), { ssr: false })
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const Datasets = () => {
   const { search } = useContext(DatasetFilterContext)
@@ -27,7 +27,7 @@ const Datasets = () => {
     <>
       <QueryNotification />
       <GradientBackground />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <Header />
       {loadingUserSession ? <Loading /> : isAdminUser ? (
         <ClientOnly>

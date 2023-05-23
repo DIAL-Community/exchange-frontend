@@ -8,7 +8,7 @@ import {
 import { useIntl } from 'react-intl'
 import parse from 'html-react-parser'
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import ReactTooltip from 'react-tooltip'
+import { Tooltip } from 'react-tooltip'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { useMutation, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
@@ -49,6 +49,9 @@ const MaturityCategory = ({ category }) => {
           <div className='h5 float-right inline'>
             {format('product.category-score')}:
             {Math.round(category.overallScore / category.maximumScore * MAX_MATURITY_SCORE)} / {MAX_MATURITY_SCORE}
+          </div>
+          <div className='text-xs pl-4 pt-3'>
+            {category.description && parse(category.description)}
           </div>
         </AccordionItemButton>
       </AccordionItemHeading>
@@ -278,7 +281,8 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
           </div>
           <div
             className='cursor-pointer min-h-[20rem] h-[25vh]'
-            data-tip={format('product.maturity-chart-tooltip')}
+            data-tooltip-id='react-tooltip'
+            data-tooltip-content={format('product.maturity-chart-tooltip')}
             onClick={toggleMaturityScoreDetailsDialog}
             data-testid='maturity-scores-chart'
           >
@@ -287,7 +291,7 @@ const ProductDetailMaturityScores = ({ slug, overallMaturityScore, maturityScore
               : <RadarChart labels={chartLabels} values={chartValues} maxScaleValue={MAX_MATURITY_SCORE} />
             }
           </div>
-          <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+          <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
           <Dialog
             isOpen={isMaturityScoreDetailsDialogOpen}
             onClose={toggleMaturityScoreDetailsDialog}

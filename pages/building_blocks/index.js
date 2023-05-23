@@ -16,7 +16,7 @@ import SearchFilter from '../../components/shared/SearchFilter'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext }
   from '../../components/context/BuildingBlockFilterContext'
 import ClientOnly from '../../lib/ClientOnly'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const BuildingBlocks = () => {
   const { formatMessage } = useIntl()
@@ -39,7 +39,7 @@ const BuildingBlocks = () => {
       <QueryNotification />
       <GradientBackground />
       <Header />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
         <TabNav activeTab='filter.entity.buildingBlocks' />
         <MobileNav activeTab='filter.entity.buildingBlocks' />
@@ -50,7 +50,6 @@ const BuildingBlocks = () => {
           searchFilter={
             <SearchFilter
               {...{ search, setSearch }}
-              createNew={false}
               hint='filter.entity.buildingBlocks'
             />
           }

@@ -441,6 +441,13 @@ exports[`Unit tests for UseCaseForm component. Should display failure toast on s
                 Cancel
               </button>
             </div>
+            <div
+              class="text-sm italic text-red-500"
+            >
+              
+    Use case is linked to a markdown definition. Description will be read from linked markdown.
+  
+            </div>
           </div>
         </form>
       </div>
@@ -881,6 +888,13 @@ exports[`Unit tests for UseCaseForm component. Should display success toast on s
                 Cancel
               </button>
             </div>
+            <div
+              class="text-sm italic text-red-500"
+            >
+              
+    Use case is linked to a markdown definition. Description will be read from linked markdown.
+  
+            </div>
           </div>
         </form>
       </div>
@@ -1026,13 +1040,12 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                       class="react-select__control css-qv4grc-control"
                     >
                       <div
-                        class="react-select__value-container css-17t7gkf-ValueContainer"
+                        class="react-select__value-container react-select__value-container--has-value css-17t7gkf-ValueContainer"
                       >
                         <div
-                          class="react-select__placeholder css-5rjclb-placeholder"
-                          id="react-select-:r0:-placeholder"
+                          class="react-select__single-value css-1dimb5e-singleValue"
                         >
-                          Sector
+                          Test Sector
                         </div>
                         <div
                           class="react-select__input-container css-qbdosj-Input"
@@ -1040,7 +1053,6 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
                         >
                           <input
                             aria-autocomplete="list"
-                            aria-describedby="react-select-:r0:-placeholder"
                             aria-expanded="false"
                             aria-haspopup="true"
                             autocapitalize="none"
@@ -1305,6 +1317,13 @@ exports[`Unit tests for UseCaseForm component. Should match snapshot - edit. 1`]
               >
                 Cancel
               </button>
+            </div>
+            <div
+              class="text-sm italic text-red-500"
+            >
+              
+    Use case is linked to a markdown definition. Description will be read from linked markdown.
+  
             </div>
           </div>
         </form>

@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client'
-import router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { useContext, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../lib/ToastContext'
@@ -15,7 +15,8 @@ const DeleteCategoryIndicator = ({ categoryIndicator }) => {
 
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false)
 
-  const { locale } = useRouter()
+  const router = useRouter()
+  const { locale } = router
 
   const { user } = useUser()
 

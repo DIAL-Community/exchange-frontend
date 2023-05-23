@@ -274,7 +274,7 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
               >
                 <div
                   class="text-right text-sm font-semibold text-dial-cyan"
-                  data-tip="Origin: Origin"
+                  data-tooltip-content="Origin: Origin"
                 >
                   ORIGIN_SLUG
                 </div>
@@ -503,7 +503,7 @@ exports[`Unit tests for the ProductDetailProjects component. Should match snapsh
               >
                 <div
                   class="text-right text-sm font-semibold text-dial-cyan"
-                  data-tip="Origin: Origin"
+                  data-tooltip-content="Origin: Origin"
                 >
                   ORIGIN_SLUG
                 </div>

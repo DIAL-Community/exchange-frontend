@@ -23,10 +23,8 @@ const AboutMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       {
         currentOpenMenu === ABOUT_MENU &&
           <div className={DEFAULT_DROPDOWN_PANEL_STYLES} ref={aboutPopover} role='menu'>
-            <Link href='/about'>
-              <a role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-                {format('header.about')}
-              </a>
+            <Link href='/about' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('header.about')}
             </Link>
             <a
               className={DEFAULT_DROPDOWN_MENU_STYLES}

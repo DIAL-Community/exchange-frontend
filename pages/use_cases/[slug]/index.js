@@ -4,7 +4,7 @@ import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import UseCaseDetail from '../../../components/use-cases/UseCaseDetail'
 import ClientOnly from '../../../lib/ClientOnly'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const UseCase = () => {
   const router = useRouter()
@@ -14,7 +14,7 @@ const UseCase = () => {
   return (
     <>
       <Header />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
         <UseCaseDetail slug={slug} locale={locale} />
       </ClientOnly>

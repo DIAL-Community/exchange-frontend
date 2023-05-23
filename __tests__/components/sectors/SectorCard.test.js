@@ -1,7 +1,8 @@
 import { render, waitForAllEffects } from '../../test-utils'
-import CustomMockedProvider from '../../utils/CustomMockedProvider'
+import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import SectorCard from '../../../components/sectors/SectorCard'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
+import { SECTOR_SEARCH_QUERY } from '../../../queries/sector'
 import { sectorWithParentSector } from './data/SectorDetail'
 
 mockNextUseRouter()
@@ -12,7 +13,7 @@ describe('Unit test for the SectorCard component', () => {
 
   describe('Should match snapshot -', () => {
     test('user is not an admin, displayEditButtons not passed.', () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: false })
       const { container, getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
           <SectorCard sector={sectorWithParentSector} />
@@ -25,7 +26,7 @@ describe('Unit test for the SectorCard component', () => {
     })
 
     test('user is not an admin, displayEditButtons passed.', () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: false })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: false })
       const { container, getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
           <SectorCard
@@ -41,7 +42,7 @@ describe('Unit test for the SectorCard component', () => {
     })
 
     test('user is an admin, displayEditButtons not passed.', () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
       const { container, getByTestId, queryByTestId } = render(
         <CustomMockedProvider>
           <SectorCard sector={sectorWithParentSector} />
@@ -54,9 +55,13 @@ describe('Unit test for the SectorCard component', () => {
     })
 
     test('user is an admin, displayEditButtons passed.', async () => {
-      mockNextAuthUseSession(statuses.AUTHENTICATED, { canEdit: true })
+      mockNextAuthUseSession(statuses.AUTHENTICATED, { isAdminUser: true })
+
+      const sectorData = { data: { sectors: [] } }
+      const sectorVars = { search: '', locale: 'en' }
+      const mockSectors = generateMockApolloData(SECTOR_SEARCH_QUERY, sectorVars, null, sectorData)
       const { container, getByTestId } = render(
-        <CustomMockedProvider>
+        <CustomMockedProvider mocks={[mockSectors]}>
           <SectorCard
             sector={sectorWithParentSector}
             displayEditButtons

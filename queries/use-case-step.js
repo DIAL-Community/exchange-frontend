@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const USE_CASE_STEPS_QUERY = gql`
-query UseCaseSteps($slug: String!) {
-  useCaseSteps(slug: $slug) {
+  query UseCaseSteps($slug: String!) {
+    useCaseSteps(slug: $slug) {
       id
       name
       slug
@@ -26,30 +26,17 @@ query UseCaseSteps($slug: String!) {
         slug
         imageFile
       }
-      markdownUrl
+    }
   }
-}
 `
 
 export const USE_CASE_STEP_QUERY = gql`
-  query UseCaseStep($slug: String!) {
+  query UseCaseStep($slug: String!, $useCaseSlug: String!) {
     useCaseStep(slug: $slug) {
       id
       name
       slug
       stepNumber
-      useCase {
-        id
-        name
-        slug
-        buildingBlocks {
-          slug
-          name
-          imageFile
-          maturity
-          category
-        }
-      }  
       useCaseStepDescription {
         description
         locale
@@ -76,7 +63,19 @@ export const USE_CASE_STEP_QUERY = gql`
         maturity
         category
       }
+    }
+    useCase(slug: $useCaseSlug) {
+      id
+      name
+      slug
       markdownUrl
+      buildingBlocks {
+        slug
+        name
+        imageFile
+        maturity
+        category
+      }
     }
   }
 `
@@ -89,7 +88,7 @@ export const USE_CASE_QUERY = gql`
       slug
       maturity
       imageFile
-      useCaseSteps{ 
+      useCaseSteps{
         name
       }
     }

@@ -4,6 +4,7 @@ export const buildingBlock = {
   slug: 'test_buidling_block',
   imageFile: '',
   maturity: 'DRAFT',
+  category: 'DPI',
   specUrl: 'testbuidlingblock.com',
   buildingBlockDescription: {
     description: '<p>test building block description</p>',

@@ -10,7 +10,7 @@ import { Loading, Error, Unauthorized } from '../../../components/shared/FetchSt
 import ClientOnly from '../../../lib/ClientOnly'
 import { USER_QUERY } from '../../../queries/user'
 import { useUser } from '../../../lib/hooks'
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false })
+const Tooltip = dynamic(() => import('react-tooltip').then(x => x.Tooltip), { ssr: false })
 
 const UserPageDefinition = ({ userId, locale }) => {
   const { loading, error, data, refetch } = useQuery(USER_QUERY, {
@@ -47,7 +47,7 @@ const User = () => {
   return (
     <>
       <Header />
-      <ReactTooltip className='tooltip-prose bg-dial-gray-dark text-white rounded' />
+      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
         {
           loadingUserSession

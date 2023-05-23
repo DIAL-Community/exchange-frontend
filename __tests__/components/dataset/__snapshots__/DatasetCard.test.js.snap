@@ -25,35 +25,7 @@ exports[`Unit tests for the DatasetCard component Should match snapshot - card m
             >
               <div
                 class="flex gap-2"
-              >
-                <div
-                  class="w-4 my-auto image-block-hack"
-                >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2725%27%20height=%2725%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      alt="Logo for: COVID-19"
-                      data-nimg="intrinsic"
-                      data-tip="This product has been tagged as relevant for COVID response,"
-                      decoding="async"
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
-                </div>
-              </div>
+              />
             </div>
             <div
               class="absolute right-2 top-2"
@@ -145,20 +117,19 @@ exports[`Unit tests for the DatasetCard component Should match snapshot - list m
             class="w-10/12 lg:w-4/12 flex gap-2 my-auto text-dial-sapphire"
           >
             <div
-              class="block w-8 relative"
+              class="block w-6 h-6 relative"
             >
-              <span
-                style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
-              >
-                <img
-                  alt="Logo for: Test Dataset"
-                  data-nimg="fill"
-                  decoding="async"
-                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: scale-down;"
-                />
-                <noscript />
-              </span>
+              <img
+                alt="Logo for: Test Dataset"
+                class="object-contain"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                sizes="100vw"
+                src="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fdatasets%2Ftest_dataset.png&w=3840&q=75"
+                srcset="/_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fdatasets%2Ftest_dataset.png&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fdatasets%2Ftest_dataset.png&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fdatasets%2Ftest_dataset.png&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fdatasets%2Ftest_dataset.png&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fdatasets%2Ftest_dataset.png&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fdatasets%2Ftest_dataset.png&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fdatasets%2Ftest_dataset.png&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Flocalhost%3A3000%2F%2Fassets%2Fdatasets%2Ftest_dataset.png&w=3840&q=75 3840w"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
             </div>
             <div
               class="w-full font-semibold line-clamp-1"

@@ -32,10 +32,11 @@ export const USE_CASE_DETAIL_QUERY = gql`
         id
       }
       maturity
+      imageFile
+      markdownUrl
       useCaseDescription {
         description
       }
-      imageFile
       useCaseDescription {
         description
         locale
@@ -44,9 +45,7 @@ export const USE_CASE_DETAIL_QUERY = gql`
         id
         name
         targetNumber
-        sustainableDevelopmentGoal {
-          slug
-        }
+        sdgNumber
       }
       workflows {
         name

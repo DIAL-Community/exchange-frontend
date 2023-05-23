@@ -3,7 +3,7 @@ import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import ProjectDetailProducts from '../../../components/projects/ProjectDetailProduct'
 import { OWNED_PRODUCTS_QUERY, PRODUCT_SEARCH_QUERY } from '../../../queries/product'
-import { mockNextAuthUseSession, mockNextUseRouter } from '../../utils/nextMockImplementation'
+import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { productOwnerUserProps, products, ownedProducts, projectProducts } from './data/ProjectDetailProducts'
 
 mockNextUseRouter()
@@ -21,7 +21,7 @@ describe('Unit test for the ProjectDetailProducts component.', () => {
 
   test('Should match snapshot - without edit permission.', () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockProducts]}>
+      <CustomMockedProvider mocks={[mockProducts, mockOwnedProducts]}>
         <ProjectDetailProducts
           canEdit={false}
           project={projectProducts}
@@ -33,7 +33,7 @@ describe('Unit test for the ProjectDetailProducts component.', () => {
 
   test('Should match snapshot - with edit permission.', () => {
     const { container } = render(
-      <CustomMockedProvider mocks={[mockProducts]}>
+      <CustomMockedProvider mocks={[mockProducts, mockOwnedProducts]}>
         <ProjectDetailProducts
           canEdit={true}
           project={projectProducts}
@@ -45,7 +45,7 @@ describe('Unit test for the ProjectDetailProducts component.', () => {
 
   test('Should match snapshot - with open editable section', async () => {
     const { container, getByTestId } = render(
-      <CustomMockedProvider mocks={[mockProducts]}>
+      <CustomMockedProvider mocks={[mockProducts, mockOwnedProducts]}>
         <ProjectDetailProducts
           canEdit={true}
           project={projectProducts}
@@ -59,7 +59,7 @@ describe('Unit test for the ProjectDetailProducts component.', () => {
 
   test('Should remove a pill', async () => {
     const { container, getByTestId, getAllByTestId } = render(
-      <CustomMockedProvider mocks={[mockProducts]}>
+      <CustomMockedProvider mocks={[mockProducts, mockOwnedProducts]}>
         <ProjectDetailProducts
           canEdit={true}
           project={projectProducts}
@@ -76,7 +76,7 @@ describe('Unit test for the ProjectDetailProducts component.', () => {
 
   test('Should add a pill and revert changes on "Cancel" button click', async () => {
     const { container, getByTestId, getByText } = render(
-      <CustomMockedProvider mocks={[mockProducts]}>
+      <CustomMockedProvider mocks={[mockProducts, mockOwnedProducts]}>
         <ProjectDetailProducts
           canEdit={true}
           project={projectProducts}
@@ -107,9 +107,9 @@ describe('Unit test for the ProjectDetailProducts component.', () => {
   })
 
   test('Should render Products with read only owned product pill', async () => {
-    mockNextAuthUseSession(false, productOwnerUserProps)
+    mockNextAuthUseSession(statuses.AUTHENTICATED, { ...productOwnerUserProps, isAdminUser: false })
     const { container, getByTestId } = render(
-      <CustomMockedProvider mocks={[mockOwnedProducts]}>
+      <CustomMockedProvider mocks={[mockOwnedProducts, mockProducts]}>
         <ProjectDetailProducts
           canEdit={true}
           project={projectProducts}

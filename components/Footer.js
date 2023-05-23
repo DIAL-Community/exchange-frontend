@@ -98,7 +98,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className='w-36 h-20 bg-white rounded-md flex'>
-                <div className='self-center px-12 mt-3'>
+                <div className='self-center px-12'>
                   <a
                     href='//www.gov.uk/government/organisations/foreign-commonwealth-development-office'
                     target='_blank' rel='noreferrer'

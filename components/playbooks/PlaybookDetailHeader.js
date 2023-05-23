@@ -9,7 +9,7 @@ const PlaybookDetailHeader = ({ playbook }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
-  const { isAdminUser } = useUser()
+  const { isAdminUser, isEditorUser } = useUser()
 
   const playProgressNumbersRef = useRef([])
   const [percentage, setPercentage] = useState(0)
@@ -85,20 +85,22 @@ const PlaybookDetailHeader = ({ playbook }) => {
         <div className='px-8 py-3 flex flex-col gap-1'>
           <div className='text-sm'>
             <Link href='/playbooks'>
-              <a href='back-to-playbooks'>
-                <img
-                  data-tip={format('tooltip.forEntity', { entity: format('playbooks.label'), name: playbook.name })}
-                  className='m-auto h-6 inline mr-2'
-                  alt={format('image.alt.logoFor', { name: playbook.name })}
-                  src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
-                />
-                {format('playbooks.label')}
-              </a>
+              <img
+                data-tooltip-id='react-tooltip'
+                data-tooltip-content={format(
+                  'tooltip.forEntity',
+                  { entity: format('playbooks.label'), name: playbook.name }
+                )}
+                className='m-auto h-6 inline mr-2'
+                alt={format('image.alt.logoFor', { name: playbook.name })}
+                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + playbook.imageFile}
+              />
+              {format('playbooks.label')}
             </Link>
           </div>
           <div className='flex flex-col md:flex-row gap-x-2 text-2xl font-semibold'>
             <div>{playbook.name}</div>
-            {isAdminUser &&
+            {(isAdminUser || isEditorUser) &&
               <div className='text-base font-base text-white md:self-center'>
                 ({format(isPlaybookPublished ? 'playbook.status.published' : 'playbook.status.draft')})
               </div>
