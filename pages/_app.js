@@ -10,7 +10,6 @@ import { DefaultSeo } from 'next-seo'
 import { CookieConsentProvider } from '@use-cookie-consent/react'
 import * as translations from '../translations'
 import * as gtag from '../lib/gtag'
-import * as matomo from '../lib/matomo'
 import '../styles/globals.css'
 import '../styles/editor.css'
 import '../styles/filter.css'
@@ -102,7 +101,6 @@ const App = ({ Component, pageProps }) => {
   useEffect(() => {
     const handleRouteChange = (url) => {
       gtag.pageview(url)
-      matomo.pageview(url)
     }
 
     router.events.on('routeChangeComplete', handleRouteChange)
