@@ -46,24 +46,6 @@ const OpportunityDetailRight = ({ opportunity, commentsSectionRef }) => {
         </div>
         <div className='flex flex-col flex-grow pb-4'>
           <div className={sectionHeaderStyle}>
-            {format('opportunity.openingDate')}
-          </div>
-          <div className='text-dial-stratos flex'>
-            <div className='my-auto'>
-              { opportunity.openingDate
-                ?<FormattedDate
-                  value={new Date(opportunity.openingDate)}
-                  year='numeric'
-                  month='long'
-                  day='2-digit'
-                />
-                : format('general.na')
-              }
-            </div>
-          </div>
-        </div>
-        <div className='flex flex-col flex-grow pb-4'>
-          <div className={sectionHeaderStyle}>
             {format('opportunity.closingDate')}
           </div>
           <div className='text-dial-stratos flex'>
@@ -93,7 +75,9 @@ const OpportunityDetailRight = ({ opportunity, commentsSectionRef }) => {
               target='_blank'
               rel='noreferrer'
             >
-              <div className='my-auto'>{opportunity.webAddress} ⧉</div>
+              <div className='my-auto'>
+                {format('opportunity.leverist.webAddress')} ⧉
+              </div>
             </a>
             : format('general.na')
           }

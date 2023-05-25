@@ -130,7 +130,7 @@ const OpportunityCard = ({ opportunity, listType, newTab = false }) => {
                             className='text-dial-sunshine'
                           >
                             <div className='line-clamp-1 border-b border-transparent hover:border-dial-sunshine'>
-                              {opportunity.webAddress} ⧉
+                              {format('opportunity.leverist.webAddress')} ⧉
                             </div>
                           </a>
                           : format('general.na')
