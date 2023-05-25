@@ -105,6 +105,7 @@ export const USE_CASES_QUERY = gql`
         slug
         imageFile
         maturity
+        markdownUrl
         sdgTargets {
           id
           name

@@ -16,12 +16,13 @@ const UseCaseActiveFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sdgs, showBeta } = useContext(UseCaseFilterContext)
-  const { setSDGs, setShowBeta } = useContext(UseCaseFilterDispatchContext)
+  const { sdgs, showBeta, showGovStack } = useContext(UseCaseFilterContext)
+  const { setSDGs, setShowBeta, setShowGovStack } = useContext(UseCaseFilterDispatchContext)
 
   const filterCount = () => {
     let count = sdgs.length
     count = showBeta ? count + 1 : count
+    count = showGovStack ? count + 1 : count
 
     return count
   }
@@ -30,10 +31,15 @@ const UseCaseActiveFilter = () => {
     setShowBeta(!showBeta)
   }
 
+  const toggleShowGovStack = () => {
+    setShowGovStack(!showGovStack)
+  }
+
   const clearFilter = (e) => {
     e.preventDefault()
     setSDGs([])
     setShowBeta(false)
+    setShowGovStack(false)
   }
 
   const sharableLink = () => {
@@ -41,10 +47,16 @@ const UseCaseActiveFilter = () => {
     const basePath = 'use_cases'
 
     const showBetaFilter = showBeta ? 'showBeta=true' : ''
+    const showGovStackFilter = showGovStack ? 'showGovStack=true' : ''
     const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
 
     const activeFilter = 'shareCatalog=true'
-    const filterParameters = [activeFilter, showBetaFilter, ...sdgFilters].filter(f => f).join('&')
+    const filterParameters = [
+      activeFilter,
+      showBetaFilter,
+      showGovStackFilter,
+      ...sdgFilters
+    ].filter(f => f).join('&')
 
     return `${baseUrl}/${basePath}?${filterParameters}`
   }
@@ -53,6 +65,7 @@ const UseCaseActiveFilter = () => {
     // Only apply this if the use have not interact with the UI and the url is a sharable link
     if (query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog && !interactionDetected) {
       setShowBeta(query.showBeta === 'true')
+      setShowGovStack(query.showGovStack === 'true')
       parseQuery(query, 'sdgs', sdgs, setSDGs)
     }
   })
@@ -65,6 +78,14 @@ const UseCaseActiveFilter = () => {
             <Pill
               label={format('filter.useCase.showDraft')}
               onRemove={toggleShowBeta}
+            />
+          </div>
+        )}
+        {showGovStack && (
+          <div className='py-1'>
+            <Pill
+              label={format('filter.useCase.showGovStackOnly')}
+              onRemove={toggleShowGovStack}
             />
           </div>
         )}

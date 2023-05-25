@@ -5,6 +5,7 @@ const UseCaseFilterDispatchContext = createContext()
 
 const UseCaseFilterProvider = ({ children }) => {
   const [showBeta, setShowBeta] = useState(false)
+  const [showGovStack, setShowGovStack] = useState(false)
   const [sectors, setSectors] = useState([])
   const [sdgs, setSDGs] = useState([])
 
@@ -13,10 +14,11 @@ const UseCaseFilterProvider = ({ children }) => {
   const [sortDirection, setSortDirection] = useState('asc')
 
   const useCaseFilterValues = {
-    showBeta, sectors, sdgs, search, sortColumn, sortDirection
+    showBeta, showGovStack, sectors, sdgs, search, sortColumn, sortDirection
   }
   const useCaseFilterDispatchValues = {
     setShowBeta,
+    setShowGovStack,
     setSectors,
     setSDGs,
     setSearch,
