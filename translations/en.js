@@ -652,7 +652,7 @@ export const en = {
   'filter.organization.aggregatorOnly': 'Only Aggregators',
   'filter.organization.endorserOnly': 'Only Endorser Organizations',
   'filter.useCase.showDraft': 'Show Draft (non-Validated) Use Cases',
-  'filter.useCase.showGovStackOnly': 'Show GovStack Only Use Cases',
+  'filter.useCase.govStackOnly': 'Show GovStack Only Use Cases',
 
   'filter.product.forCovid': 'COVID-19 Tools',
   'filter.product.endorsed': 'Show endorsed products',

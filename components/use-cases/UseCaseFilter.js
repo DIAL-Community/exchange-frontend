@@ -12,7 +12,7 @@ const UseCaseFilter = () => {
 
   const [openingDetail, setOpeningDetail] = useState(false)
 
-  const { sdgs, showBeta, showGovStack } = useContext(UseCaseFilterContext)
+  const { sdgs, showBeta, govStackOnly } = useContext(UseCaseFilterContext)
   const { setSDGs, setShowBeta, setShowGovStack } = useContext(UseCaseFilterDispatchContext)
 
   const toggleShowBeta = () => {
@@ -20,7 +20,7 @@ const UseCaseFilter = () => {
   }
 
   const toggleShowGovStack = () => {
-    setShowGovStack(!showGovStack)
+    setShowGovStack(!govStackOnly)
   }
 
   const toggleHintDetail = () => {
@@ -75,9 +75,9 @@ const UseCaseFilter = () => {
         </div>
         <div className='px-6'>
           <label className='inline'>
-            <Checkbox onChange={toggleShowGovStack} value={showGovStack} />
+            <Checkbox onChange={toggleShowGovStack} value={govStackOnly} />
             <span className='mx-2 my-auto text-sm'>
-              {format('filter.useCase.showGovStackOnly')}
+              {format('filter.useCase.govStackOnly')}
             </span>
           </label>
         </div>

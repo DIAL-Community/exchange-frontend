@@ -16,13 +16,13 @@ const UseCaseActiveFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sdgs, showBeta, showGovStack } = useContext(UseCaseFilterContext)
+  const { sdgs, showBeta, govStackOnly } = useContext(UseCaseFilterContext)
   const { setSDGs, setShowBeta, setShowGovStack } = useContext(UseCaseFilterDispatchContext)
 
   const filterCount = () => {
     let count = sdgs.length
     count = showBeta ? count + 1 : count
-    count = showGovStack ? count + 1 : count
+    count = govStackOnly ? count + 1 : count
 
     return count
   }
@@ -32,7 +32,7 @@ const UseCaseActiveFilter = () => {
   }
 
   const toggleShowGovStack = () => {
-    setShowGovStack(!showGovStack)
+    setShowGovStack(!govStackOnly)
   }
 
   const clearFilter = (e) => {
@@ -47,14 +47,14 @@ const UseCaseActiveFilter = () => {
     const basePath = 'use_cases'
 
     const showBetaFilter = showBeta ? 'showBeta=true' : ''
-    const showGovStackFilter = showGovStack ? 'showGovStack=true' : ''
+    const govStackOnlyFilter = govStackOnly ? 'govStackOnly=true' : ''
     const sdgFilters = sdgs.map(sdg => `sdgs=${sdg.value}--${sdg.label}`)
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
       activeFilter,
       showBetaFilter,
-      showGovStackFilter,
+      govStackOnlyFilter,
       ...sdgFilters
     ].filter(f => f).join('&')
 
@@ -65,7 +65,7 @@ const UseCaseActiveFilter = () => {
     // Only apply this if the use have not interact with the UI and the url is a sharable link
     if (query && Object.getOwnPropertyNames(query).length > 1 && query.shareCatalog && !interactionDetected) {
       setShowBeta(query.showBeta === 'true')
-      setShowGovStack(query.showGovStack === 'true')
+      setShowGovStack(query.govStackOnly === 'true')
       parseQuery(query, 'sdgs', sdgs, setSDGs)
     }
   })
@@ -81,10 +81,10 @@ const UseCaseActiveFilter = () => {
             />
           </div>
         )}
-        {showGovStack && (
+        {govStackOnly && (
           <div className='py-1'>
             <Pill
-              label={format('filter.useCase.showGovStackOnly')}
+              label={format('filter.useCase.govStackOnly')}
               onRemove={toggleShowGovStack}
             />
           </div>
