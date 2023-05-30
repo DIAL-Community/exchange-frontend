@@ -30,19 +30,19 @@ const PlayList = ({ playbook, playList, currentPlays, displayType, filterDisplay
       {
         displayType === 'list' && sourceType !== SOURCE_TYPE_ASSIGNING &&
           <div className='flex flex-row gap-4 px-3 py-4 h-16 w-full opacity-70'>
-            <div className='w-2/6 text-sm font-semibold'>
+            <div className='w-3/6 text-sm font-semibold'>
               {format('play.header').toUpperCase()}
             </div>
-            <div className='hidden md:block w-full text-sm font-semibold overflow-hidden fr-view my-1'>
+            <div className='hidden md:block w-full text-sm font-semibold my-1'>
               {format('plays.description').toUpperCase()}
             </div>
           </div>
       }
       {
         playList.length > 0
-          ? playList.map((play) => {
+          ? playList.map((play, index) => {
             return (!currentPlays || !currentPlays.filter(e => e.id === play.id).length > 0) && (
-              <PlayCard key={play.id} {...{ playbook, play, filterDisplayed, sourceType }} />
+              <PlayCard key={index} {...{ playbook, play, filterDisplayed, sourceType }} />
             )
           })
           : (
@@ -55,14 +55,14 @@ const PlayList = ({ playbook, playList, currentPlays, displayType, filterDisplay
   )
 }
 
-const PlayListQuery = ({ playbook, sourceType }) => {
+const PlayListQuery = ({ playbook }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
 
   const { locale } = useRouter()
 
   const { currentPlays } = useContext(PlayListContext)
-  const { filterDisplayed, setResultCounts } = useContext(FilterContext)
+  const { setResultCounts } = useContext(FilterContext)
 
   const { search, tags } = useContext(PlayFilterContext)
   const { loading, error, data, fetchMore } = useQuery(PLAYS_QUERY, {
@@ -109,14 +109,14 @@ const PlayListQuery = ({ playbook, sourceType }) => {
   return (
     <>
       <InfiniteScroll
-        className='bg-white relative px-6 pb-8 pt-4'
+        className='bg-white relative'
         height='50vh'
         dataLength={nodes.length}
         next={handleLoadMore}
         hasMore={pageInfo.hasNextPage}
         loader={<div className='text-center mt-3'>{format('general.loadingData')}</div>}
       >
-        <PlayList playList={nodes} displayType={viewType} {...{ playbook, currentPlays, filterDisplayed, sourceType }} />
+        <PlayList playList={nodes} displayType={viewType} {...{ playbook, currentPlays }} />
       </InfiniteScroll>
     </>
   )

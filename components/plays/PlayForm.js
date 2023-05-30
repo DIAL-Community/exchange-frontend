@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
-import { FaSpinner, FaPlusCircle } from 'react-icons/fa'
+import { FaSpinner } from 'react-icons/fa'
 import { HtmlEditor } from '../shared/HtmlEditor'
 import { TagAutocomplete, TagFilters } from '../filter/element/Tag'
 import Breadcrumb from '../shared/breadcrumb'
@@ -17,8 +17,6 @@ import Pill from '../shared/Pill'
 import { fetchSelectOptions } from '../../queries/utils'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../queries/building-block'
 import { useUser } from '../../lib/hooks'
-import MoveListDraggable from './moves/MoveListDraggable'
-import { MoveListContext } from './moves/MoveListContext'
 
 export const PlayForm = ({ playbook, play }) => {
   const { formatMessage } = useIntl()
@@ -30,11 +28,9 @@ export const PlayForm = ({ playbook, play }) => {
   const { locale } = router
   const { user } = useUser()
   const { showToast } = useContext(ToastContext)
-  const { currentMoves } = useContext(MoveListContext)
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
-  const [navigateToMove, setNavigateToMove] = useState(false)
 
   const fetchedProductsCallback = (data) => (
     data?.products?.map((product) => ({
@@ -58,37 +54,20 @@ export const PlayForm = ({ playbook, play }) => {
           <span>{error?.message}</span>
         </div>,
         'error',
-        'top-center',
-        DEFAULT_AUTO_CLOSE_DELAY
+        'top-center'
       )
       reset()
     },
-    onCompleted: (data) => {
+    onCompleted: () => {
       setMutating(false)
-      const { createPlay: response } = data
-      if (!navigateToMove) {
-        showToast(
-          format('play.submitted'),
-          'success',
-          'top-center',
-          DEFAULT_AUTO_CLOSE_DELAY,
-          null,
-          () => router.push(`/${locale}/playbooks/${playbook.slug}/edit`)
-        )
-      } else {
-        showToast(
-          format('play.submittedToCreateMove'),
-          'success',
-          'top-center',
-          DEFAULT_AUTO_CLOSE_DELAY,
-          null,
-          () => router.push(
-            `/${locale}` +
-            `/playbooks/${playbook.slug}` +
-            `/plays/${response.play.slug}/moves/create`
-          )
-        )
-      }
+      showToast(
+        format('play.submitted'),
+        'success',
+        'top-center',
+        DEFAULT_AUTO_CLOSE_DELAY,
+        null,
+        () => router.push(`/${locale}/playbooks/${playbook.slug}`)
+      )
     }
   })
 
@@ -141,7 +120,6 @@ export const PlayForm = ({ playbook, play }) => {
         slug,
         description,
         tags: tags.map(tag => tag.label),
-        moves: currentMoves,
         playbookSlug: playbook.slug,
         productSlugs: products.map(({ slug }) => slug),
         buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
@@ -183,7 +161,6 @@ export const PlayForm = ({ playbook, play }) => {
         slug,
         description,
         tags: tags.map(tag => tag.label),
-        moves: currentMoves,
         playbookSlug: playbook.slug,
         productSlugs: products.map(({ slug }) => slug),
         buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
@@ -205,11 +182,11 @@ export const PlayForm = ({ playbook, play }) => {
     }, 60000)
 
     return () => clearInterval(interval)
-  }, [user, slug, tags, products, buildingBlocks, currentMoves, playbook, router, watch, autoSavePlay])
+  }, [user, slug, tags, products, buildingBlocks, playbook, router, watch, autoSavePlay])
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/${router.locale}/playbooks/${playbook.slug}/edit`)
+    router.push(`/${router.locale}/playbooks/${playbook.slug}`)
   }
 
   const slugNameMapping = (() => {
@@ -223,14 +200,6 @@ export const PlayForm = ({ playbook, play }) => {
 
     return map
   })()
-
-  const saveAndCreateMove = () => {
-    setNavigateToMove(true)
-  }
-
-  const saveAndAssignPlay = () => {
-    setNavigateToMove(false)
-  }
 
   const addProduct =
     (product) =>
@@ -395,28 +364,10 @@ export const PlayForm = ({ playbook, play }) => {
                   </label>
                 </div>
               </div>
-              <div className='flex flex-col gap-y-2 mt-4'>
-                <div className='text-dial-sapphire font-bold'>
-                  {format('move.header')}
-                </div>
-                <div className='text-sm text-dial-blue'>
-                  {format('play.assignedMoves')}
-                </div>
-                <MoveListDraggable playbook={playbook} play={play} />
-              </div>
-              <div className='block'>
-                <button className='flex gap-2' onClick={saveAndCreateMove}>
-                  <FaPlusCircle className='ml-3 my-auto' color='#3f9edd' />
-                  <div className='text-dial-blue'>
-                    {`${format('app.create-new')} ${format('move.label')}`}
-                  </div>
-                </button>
-              </div>
               <div className='flex flex-wrap font-semibold text-xl lg:mt-8 gap-3'>
                 <button
                   type='submit'
                   data-testid='submit-button'
-                  onClick={saveAndAssignPlay}
                   className='submit-button'
                   disabled={mutating || reverting}
                 >

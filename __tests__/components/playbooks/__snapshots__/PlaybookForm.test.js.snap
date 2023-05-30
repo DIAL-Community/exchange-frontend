@@ -417,39 +417,6 @@ exports[`Unit tests for PlaybookForm component. Should display success toast on 
                 </div>
               </div>
             </div>
-            <div
-              class="flex flex-col gap-y-2 mt-4"
-            >
-              <div
-                class="text-dial-sapphire font-bold"
-              >
-                Plays
-              </div>
-              <div
-                class="text-sm text-dial-blue"
-              >
-                Plays currently assigned. You can preview, re-order, unnassign Plays, or add new Plays.
-              </div>
-              <div
-                class="flex flex-col gap-2 text-dial-purple-light"
-              >
-                <div
-                  class="text-sm font-medium opacity-80"
-                >
-                  No play results found
-                </div>
-              </div>
-            </div>
-            <div
-              class="font-semibold text-sm ml-auto"
-            >
-              <button
-                class="bg-blue-500 text-dial-gray-light py-2 px-4 rounded"
-                type="button"
-              >
-                Assign Play
-              </button>
-            </div>
             <label
               class="flex gap-x-2 mb-2 items-center self-start form-field-label"
             >
@@ -847,39 +814,6 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - create. 
                 </div>
               </div>
             </div>
-            <div
-              class="flex flex-col gap-y-2 mt-4"
-            >
-              <div
-                class="text-dial-sapphire font-bold"
-              >
-                Plays
-              </div>
-              <div
-                class="text-sm text-dial-blue"
-              >
-                Plays currently assigned. You can preview, re-order, unnassign Plays, or add new Plays.
-              </div>
-              <div
-                class="flex flex-col gap-2 text-dial-purple-light"
-              >
-                <div
-                  class="text-sm font-medium opacity-80"
-                >
-                  No play results found
-                </div>
-              </div>
-            </div>
-            <div
-              class="font-semibold text-sm ml-auto"
-            >
-              <button
-                class="bg-blue-500 text-dial-gray-light py-2 px-4 rounded"
-                type="button"
-              >
-                Assign Play
-              </button>
-            </div>
             <label
               class="flex gap-x-2 mb-2 items-center self-start form-field-label"
             >
@@ -1276,92 +1210,6 @@ exports[`Unit tests for PlaybookForm component. Should match snapshot - edit. 1`
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              class="flex flex-col gap-y-2 mt-4"
-            >
-              <div
-                class="text-dial-sapphire font-bold"
-              >
-                Plays
-              </div>
-              <div
-                class="text-sm text-dial-blue"
-              >
-                Plays currently assigned. You can preview, re-order, unnassign Plays, or add new Plays.
-              </div>
-              <div
-                class="flex flex-col gap-2 text-dial-purple-light"
-              >
-                <div
-                  class="inline overflow-hidden"
-                  data-handler-id="T0"
-                >
-                  <div
-                    class="flex flex-row gap-3"
-                  >
-                    <div
-                      class="py-4 font-semibold text-lg"
-                    >
-                      1
-                      )
-                    </div>
-                    <div
-                      class="w-full"
-                    >
-                      <div
-                        class="
-    bg-white cursor-move card-drop-shadow overflow-hidden
-    border border-dial-gray border-transparent hover:border-dial-purple-light border-opacity-80
-   flex flex-row gap-3 px-3 py-4 h-16"
-                        draggable="true"
-                      >
-                        <div
-                          class="w-2/6 font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis"
-                        >
-                          D4D: Understand the Problem
-                        </div>
-                        <div
-                          class="w-full line-clamp-1 fr-view my-1"
-                        >
-                          The play description goes here.
-                        </div>
-                        <div
-                          class="w-2/6 my-auto flex gap-2 text-sm"
-                        >
-                          <button
-                            class="ml-auto bg-dial-orange-light text-dial-purple py-1.5 px-3 rounded disabled:opacity-50"
-                            type="button"
-                          >
-                            Preview
-                          </button>
-                          <button
-                            class="bg-dial-purple-light text-dial-gray-light py-1.5 px-3 rounded disabled:opacity-50"
-                            type="button"
-                          >
-                            Unassign
-                          </button>
-                          <img
-                            alt="Logo for: Move Order."
-                            class="h-6 my-auto"
-                            src="/icons/move/move.png"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="font-semibold text-sm ml-auto"
-            >
-              <button
-                class="bg-blue-500 text-dial-gray-light py-2 px-4 rounded"
-                type="button"
-              >
-                Assign Play
-              </button>
             </div>
             <label
               class="flex gap-x-2 mb-2 items-center self-start form-field-label"

@@ -139,7 +139,7 @@ const PlaybookDetailNavigation = ({ playbook }) => {
           playbook.playbookPlays.map((playbookPlay, index) => {
             return (
               <div
-                key={index}
+                key={`playbook-plays-${index}`}
                 className={`
                   border-r-4 border-dial-gray-dark
                   hover:border-dial-sunshine hover:bg-dial-purple-light hover:text-dial-biscotti
@@ -161,7 +161,7 @@ const PlaybookDetailNavigation = ({ playbook }) => {
                     {
                       currentSlug === playbookPlay.playSlug && mappedMoves[playbookPlay.playSlug] &&
                         mappedMoves[playbookPlay.playSlug].map((moveName, index) =>
-                          <div key={index} className='block'>
+                          <div key={`playbook-play-move-${index}`} className='block'>
                             <MdPlayArrow size='0.8rem' className='inline mr-2 my-auto' />{moveName}
                           </div>
                         )
