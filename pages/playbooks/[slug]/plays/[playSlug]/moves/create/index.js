@@ -37,7 +37,7 @@ const CreateMoveInformation = ({ slug, playSlug, locale }) => {
 }
 
 const CreateMove = () => {
-  const { isAdminUser, loadingUserSession } = useUser()
+  const { user, loadingUserSession } = useUser()
   const router = useRouter()
   const { locale, query } = router
   const { slug, playSlug } = query
@@ -48,7 +48,7 @@ const CreateMove = () => {
       <ClientOnly>
         {loadingUserSession
           ? <Loading />
-          : isAdminUser
+          : user.isAdminUser || user.isEditorUser
             ? < CreateMoveInformation {...{ slug, playSlug, locale }} />
             : <Unauthorized />}
       </ClientOnly>

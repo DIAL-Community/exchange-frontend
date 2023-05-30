@@ -1,6 +1,4 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import { DndProvider } from 'react-dnd'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
@@ -8,7 +6,6 @@ import { render, waitForAllEffectsAndSelectToLoad } from '../../test-utils'
 import { PlaybookForm } from '../../../components/playbooks/PlaybookForm'
 import { PlayListProvider } from '../../../components/plays/PlayListContext'
 import { PlayFilterProvider } from '../../../components/context/PlayFilterContext'
-import { PlayPreviewProvider } from '../../../components/plays/PlayPreviewContext'
 import { CREATE_PLAYBOOK } from '../../../mutations/playbook'
 import { TAG_SEARCH_QUERY } from '../../../queries/tag'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
@@ -36,9 +33,7 @@ describe('Unit tests for PlaybookForm component.', () => {
       <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <PlaybookForm />
-            </PlayPreviewProvider>
+            <PlaybookForm />
           </PlayFilterProvider>
         </PlayListProvider>
       </CustomMockedProvider>
@@ -52,11 +47,7 @@ describe('Unit tests for PlaybookForm component.', () => {
       <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <DndProvider backend={HTML5Backend}>
-                <PlaybookForm playbook={draftPlaybook} />
-              </DndProvider>
-            </PlayPreviewProvider>
+            <PlaybookForm playbook={draftPlaybook} />
           </PlayFilterProvider>
         </PlayListProvider>
       </CustomMockedProvider>
@@ -71,9 +62,7 @@ describe('Unit tests for PlaybookForm component.', () => {
       <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <PlaybookForm />
-            </PlayPreviewProvider>
+            <PlaybookForm />
           </PlayFilterProvider>
         </PlayListProvider>
       </CustomMockedProvider>
@@ -95,9 +84,7 @@ describe('Unit tests for PlaybookForm component.', () => {
       <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <PlaybookForm />
-            </PlayPreviewProvider>
+            <PlaybookForm />
           </PlayFilterProvider>
         </PlayListProvider>
       </CustomMockedProvider>
@@ -131,7 +118,6 @@ describe('Unit tests for PlaybookForm component.', () => {
         overview: 'Test Playbook Overview',
         audience: '',
         outcomes: '',
-        plays: [],
         tags: [],
         draft: true
       },
@@ -142,11 +128,7 @@ describe('Unit tests for PlaybookForm component.', () => {
       <CustomMockedProvider mocks={[mockCreatePlaybook, mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <DndProvider backend={HTML5Backend}>
-                <PlaybookForm playbook={testPlaybook} />
-              </DndProvider>
-            </PlayPreviewProvider>
+            <PlaybookForm playbook={testPlaybook} />
           </PlayFilterProvider>
         </PlayListProvider>
       </CustomMockedProvider>
@@ -164,9 +146,7 @@ describe('Unit tests for PlaybookForm component.', () => {
         <CustomMockedProvider mocks={[mockTags]}>
           <PlayListProvider>
             <PlayFilterProvider>
-              <PlayPreviewProvider>
-                <PlaybookForm />
-              </PlayPreviewProvider>
+              <PlaybookForm />
             </PlayFilterProvider>
           </PlayListProvider>
         </CustomMockedProvider>
@@ -185,9 +165,7 @@ describe('Unit tests for PlaybookForm component.', () => {
       <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <PlaybookForm />
-            </PlayPreviewProvider>
+            <PlaybookForm />
           </PlayFilterProvider>
         </PlayListProvider>
       </CustomMockedProvider>
@@ -213,11 +191,7 @@ describe('Unit tests for PlaybookForm component.', () => {
       <CustomMockedProvider mocks={[mockTags]}>
         <PlayListProvider>
           <PlayFilterProvider>
-            <PlayPreviewProvider>
-              <DndProvider backend={HTML5Backend}>
-                <PlaybookForm playbook={draftPlaybook} />
-              </DndProvider>
-            </PlayPreviewProvider>
+            <PlaybookForm playbook={draftPlaybook} />
           </PlayFilterProvider>
         </PlayListProvider>
       </CustomMockedProvider>
@@ -237,11 +211,7 @@ describe('Unit tests for PlaybookForm component.', () => {
         <CustomMockedProvider mocks={[mockTags]}>
           <PlayListProvider>
             <PlayFilterProvider>
-              <PlayPreviewProvider>
-                <DndProvider backend={HTML5Backend}>
-                  <PlaybookForm playbook={publishedPlaybook} />
-                </DndProvider>
-              </PlayPreviewProvider>
+              <PlaybookForm playbook={publishedPlaybook} />
             </PlayFilterProvider>
           </PlayListProvider>
         </CustomMockedProvider>

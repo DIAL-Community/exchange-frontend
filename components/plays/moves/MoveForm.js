@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
-import {  useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
@@ -8,7 +8,7 @@ import { HtmlEditor } from '../../shared/HtmlEditor'
 import Breadcrumb from '../../shared/breadcrumb'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../../lib/ToastContext'
 import { useUser } from '../../../lib/hooks'
-import { AUTOSAVE_MOVE, CREATE_MOVE, CREATE_MOVE_RESOURCE } from '../../../mutations/move'
+import { AUTOSAVE_MOVE, CREATE_MOVE, CREATE_RESOURCE } from '../../../mutations/move'
 
 const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResource, removeResource, setEditing }) => {
   const [mutating, setMutating] = useState(false)
@@ -248,21 +248,40 @@ export const MoveForm = ({ playbook, play, move }) => {
   const { showToast } = useContext(ToastContext)
   const [createMove, { reset }] = useMutation(CREATE_MOVE, {
     onCompleted: (data) => {
+      setMutating(false)
       const { locale } = router
       const { createMove: response } = data
       if (response?.errors.length === 0 && response.move) {
-        setMutating(false)
         showToast(
-          format('move.submitted'),
+          format('move.submitted.success'),
           'success',
           'top-center',
           DEFAULT_AUTO_CLOSE_DELAY,
           null,
-          () => router.push(`/${locale}/playbooks/${playbook.slug}/plays/${play.slug}/edit`)
+          () => router.push(`/${locale}/playbooks/${playbook.slug}`)
         )
       } else {
+        setMutating(false)
+        showToast(
+          <div className='flex flex-col'>
+            <span>{response.errors}</span>
+          </div>,
+          'error',
+          'top-center'
+        )
         reset()
       }
+    },
+    onError: (error) => {
+      setMutating(false)
+      showToast(
+        <div className='flex flex-col'>
+          <span>{error?.message}</span>
+        </div>,
+        'error',
+        'top-center'
+      )
+      reset()
     }
   })
 
@@ -386,7 +405,7 @@ export const MoveForm = ({ playbook, play, move }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    const route = `/${router.locale}/playbooks/${playbook.slug}/plays/${play.slug}/edit`
+    const route = `/${router.locale}/playbooks/${playbook.slug}`
     router.push(route)
   }
 

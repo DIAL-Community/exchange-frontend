@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const CREATE_MOVE_RESOURCE = gql`
+export const CREATE_RESOURCE = gql`
   mutation (
     $playSlug: String!,
     $moveSlug: String!,
@@ -9,7 +9,7 @@ export const CREATE_MOVE_RESOURCE = gql`
     $description: String!,
     $index: Int!
   ) {
-    createMoveResource(
+    createResource(
       playSlug: $playSlug,
       moveSlug: $moveSlug,
       url: $url,
@@ -58,3 +58,14 @@ const generateMutationText = (mutationFunc) => {
 
 export const CREATE_MOVE = gql(generateMutationText('createMove'))
 export const AUTOSAVE_MOVE = gql(generateMutationText('autoSaveMove'))
+
+export const UNASSIGN_PLAY_MOVE = gql`
+  mutation DeletePlayMove ($playSlug: String!, $moveSlug: String!) {
+    deletePlayMove(playSlug: $playSlug, moveSlug: $moveSlug) {
+      play {
+        id
+      }
+      errors
+    }
+  }
+`

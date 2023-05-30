@@ -1,8 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react'
 import { PlaybookDetailProvider } from '../../../components/playbooks/PlaybookDetailContext'
-import { PLAYBOOK_QUERY } from '../../../queries/playbook'
-import { PLAYBOOK_PLAYS_QUERY } from '../../../components/playbooks/PlaybookDetailPlayList'
 import { MOVE_PREVIEW_QUERY } from '../../../queries/play'
+import { PLAYBOOK_PLAYS_QUERY, PLAYBOOK_QUERY } from '../../../queries/playbook'
 import PlaybookDetail from '../../../components/playbooks/PlaybookDetail'
 import CustomMockedProvider, { generateMockApolloData } from '../../utils/CustomMockedProvider'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
@@ -101,10 +100,14 @@ describe('Unit tests for playbook interaction.', () => {
     // Wait for all effect to be executed.
     await waitForAllEffects()
     // Playbook detail should have edit link for privileged users.
-    expect(screen.getByText('Edit')).toBeInTheDocument()
-    expect(screen.getByText('Edit').closest('a')).toHaveAttribute('href', `/en/playbooks/${slug}/edit`)
+    const [playbookEditButton, playEditButton] = screen.getAllByText('Edit')
+    expect(playbookEditButton).toBeInTheDocument()
+    expect(playbookEditButton.closest('a')).toHaveAttribute('href', `/en/playbooks/${slug}/edit`)
 
-    fireEvent.click(screen.getByText('Edit'))
+    expect(playEditButton.closest('a'))
+      .toHaveAttribute('href', `/en/playbooks/${slug}/plays/d4d_understand_the_problem/edit`)
+
+    fireEvent.click(playbookEditButton)
 
     // Expect this to match existing snapshot of the page.
     expect(component).toMatchSnapshot()
