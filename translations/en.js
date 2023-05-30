@@ -1596,6 +1596,7 @@ export const en = {
 
   'opportunity.name': 'Name',
   'opportunity.webAddress': 'Web Address',
+  'opportunity.leverist.webAddress': 'More information (at Leverist)',
   'opportunity.imageFile': 'Logo',
   'opportunity.openingDate': 'Opening Date',
   'opportunity.contact': 'Contact Information',
@@ -1642,5 +1643,30 @@ export const en = {
   `,
   'govstack.issue.submitFailed': 'Feedback submission failed. Please try again later.',
 
-  'govstack.label': 'GovStack'
+  'govstack.label': 'GovStack',
+
+  'play.unassign.title': 'Removing Play',
+  'play.unassign.confirmation': 'Are you sure you want to remove this play from the playbook?',
+  'toast.playbook.unassign.success': 'Play removed from playbook.',
+  'toast.playbook.unassign.failure': 'Removing play from playbook failed.',
+
+  'move.unassign.title': 'Removing Move',
+  'move.unassign.confirmation': 'Are you sure you want to remove this move from the play?',
+  'toast.play.unassign.success': 'Move removed from play.',
+  'toast.play.unassign.failure': 'Removing move from play failed.',
+
+  'move.submitted.success': 'Move submitted.',
+
+  'move.add': 'Add Move',
+  'move.rearrange': 'Rearrange Moves',
+
+  'play.add': 'Add Play',
+  'play.rearrange': 'Rearrange Plays',
+  'play.assignExistingPlay': 'Add Existing Plays',
+
+  'toast.move.rearrange.success': 'Order for the moves saved succesffully.',
+  'toast.move.rearrange.failure': 'Failed to save order for the moves.',
+  'toast.play.rearrange.success': 'Order for the plays saved succesffully.',
+  'toast.play.rearrange.failure': 'Failed to save order for the plays.',
+
 }

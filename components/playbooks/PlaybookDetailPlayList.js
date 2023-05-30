@@ -1,60 +1,33 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { FiMove } from 'react-icons/fi'
 import { HtmlViewer } from '../shared/HtmlViewer'
 import NotFound from '../shared/NotFound'
+import CreateButton from '../shared/CreateButton'
+import EditButton from '../shared/EditButton'
 import { Loading, Error } from '../shared/FetchStatus'
 import BuildingBlockCard from '../building-blocks/BuildingBlockCard'
 import ProductCard from '../products/ProductCard'
 import PlayPreviewMove from '../plays/PlayPreviewMove'
+import { useUser } from '../../lib/hooks'
+import { PLAYBOOK_PLAYS_QUERY } from '../../queries/playbook'
+import RearrangeMoves from '../plays/RearrangeMoves'
 import { PlaybookDetailDispatchContext } from './PlaybookDetailContext'
+import UnassignPlay from './UnassignPlay'
 
 const DEFAULT_PAGE_SIZE = 10
-export const PLAYBOOK_PLAYS_QUERY = gql`
-  query SearchPlaybookPlays($first: Int, $after: String, $slug: String!) {
-    searchPlaybookPlays(first: $first, after: $after, slug: $slug) {
-      totalCount
-      pageInfo {
-        endCursor
-        startCursor
-        hasPreviousPage
-        hasNextPage
-      }
-      nodes {
-        id
-        slug
-        name
-        imageFile
-        playDescription {
-          id
-          description
-        }
-        playMoves {
-          id
-          slug
-          name
-        }
-        products {
-          id
-          name
-          slug
-          imageFile
-        }
-        buildingBlocks {
-          id
-          name
-          slug
-          imageFile
-        }
-      }
-    }
-  }
-`
 
-const Play = ({ play, index }) => {
+const Play = ({ playbookSlug, play, index }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { locale } = useRouter()
+
+  const { user } = useUser()
+  const canEdit = user?.isAdminUser || user?.isEditorUser
 
   const { updateSlugInformation, setWindowHeight } = useContext(PlaybookDetailDispatchContext)
 
@@ -62,11 +35,32 @@ const Play = ({ play, index }) => {
   const [yValue, setYValue] = useState(0)
   const [height, setHeight] = useState(0)
 
+  const [displayDragable, setDisplayDragable] = useState(false)
+  const onDragableClose = () => {
+    setDisplayDragable(false)
+  }
+
   useEffect(() => {
     // Update context for this slug
     setWindowHeight(window.innerHeight)
     updateSlugInformation(play.slug, yValue, height)
   }, [play, yValue, height])
+
+  const generateEditLink = () => {
+    if (!canEdit) {
+      return '/edit-not-available'
+    }
+
+    return `/${locale}/playbooks/${playbookSlug}/plays/${play.slug}/edit`
+  }
+
+  const generateAddMoveLink = () => {
+    if (!canEdit) {
+      return '/add-move-not-available'
+    }
+
+    return `/${locale}/playbooks/${playbookSlug}/plays/${play.slug}/moves/create`
+  }
 
   useEffect(() => {
     // Update scrolling state information based on the observer data.
@@ -93,8 +87,14 @@ const Play = ({ play, index }) => {
   return (
     <div className='flex flex-col gap-4' ref={ref}>
       <div className='h-px border-b' />
-      <div className='font-semibold text-2xl py-4'>
-        {`${format('plays.label')} ${index + 1}. ${play.name}`}
+      <div className='flex'>
+        <div className='font-semibold text-2xl py-4'>
+          {`${format('plays.label')} ${index + 1}. ${play.name}`}
+        </div>
+        <div className='ml-auto my-auto flex gap-2'>
+          {canEdit && <EditButton type='link' href={generateEditLink()} />}
+          {canEdit && <UnassignPlay playbookSlug={playbookSlug} playSlug={play.slug} />}
+        </div>
       </div>
       <HtmlViewer
         initialContent={play?.playDescription?.description}
@@ -102,9 +102,44 @@ const Play = ({ play, index }) => {
         className='-mt-4'
       />
       <div className='flex flex-col gap-3'>
+        <div className='flex gap-2 ml-auto'>
+          {canEdit &&
+            <CreateButton
+              label={format('move.add')}
+              type='link'
+              href={generateAddMoveLink()}
+            />
+          }
+          {canEdit && play.playMoves.length > 0 &&
+            <button
+              type='button'
+              onClick={() => setDisplayDragable(!displayDragable)}
+              className='cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white'
+            >
+              <FiMove className='inline pb-0.5' />
+              <span className='text-sm px-1'>
+                {format('move.rearrange')}
+              </span>
+            </button>
+          }
+        </div>
         {
           play.playMoves.map((move, i) =>
-            <PlayPreviewMove key={i} playSlug={play.slug} moveSlug={move.slug} moveName={move.name} />
+            <>
+              <PlayPreviewMove
+                key={`move-${i}`}
+                playSlug={play.slug}
+                moveSlug={move.slug}
+                moveName={move.name}
+                playbookSlug={playbookSlug}
+              />
+              <RearrangeMoves
+                key={`rearrange-${i}`}
+                play={play}
+                displayDragable={displayDragable}
+                onDragableClose={onDragableClose}
+              />
+            </>
           )
         }
       </div>
@@ -117,7 +152,9 @@ const Play = ({ play, index }) => {
               dangerouslySetInnerHTML={{ __html: format('play.buildingBlocks.subtitle') }}
             />
             <div className='grid grid-cols-1 md:grid-cols-2'>
-              {play.buildingBlocks.map((bb, bbIdx) => <BuildingBlockCard key={bbIdx} buildingBlock={bb} listType='list' />)}
+              {play.buildingBlocks.map((bb, bbIdx) =>
+                <BuildingBlockCard key={`play-bb-${bbIdx}`} buildingBlock={bb} listType='list' />)
+              }
             </div>
           </div>
       }
@@ -132,7 +169,7 @@ const Play = ({ play, index }) => {
             <div className='grid grid-cols-1 md:grid-cols-2'>
               {play.products.map(
                 (product, productIdx) =>
-                  <ProductCard key={productIdx} product={product} listType='list' />
+                  <ProductCard key={`play-product-${productIdx}`} product={product} listType='list' />
               )}
             </div>
           </div>
@@ -190,7 +227,9 @@ const PlaybookDetailPlayList = ({ slug, locale }) => {
       loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
     >
       <div className='flex flex-col gap-6'>
-        {nodes.map((play, i) => <Play key={i} play={play} index={i} />)}
+        {nodes.map((play, i) =>
+          <Play key={`play-list-${i + 1}`} playbookSlug={slug} play={play} index={i} />
+        )}
       </div>
     </InfiniteScroll>
   )

@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import { FiPlusCircle } from 'react-icons/fi'
 
 const CreateButton = ({
   type = 'button',
@@ -9,18 +10,13 @@ const CreateButton = ({
 }) => {
   const innerHtml =
     <>
-      <img
-        src='/icons/edit.svg'
-        alt='Edit'
-        height='12px'
-        width='12px'
-      />
-      <span className='text-sm'>
+      <FiPlusCircle className='inline pb-0.5' />
+      <span className='text-sm px-1'>
         {label}
       </span>
     </>
 
-  const style = 'create-button gap-x-1.5'
+  const style = 'cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white'
 
   return (
     type === 'button' ? (

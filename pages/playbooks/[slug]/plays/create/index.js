@@ -3,24 +3,11 @@ import { useQuery } from '@apollo/client'
 import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
 import { PlayForm } from '../../../../../components/plays/PlayForm'
-import { MoveListProvider } from '../../../../../components/plays/moves/MoveListContext'
-import { MovePreviewProvider } from '../../../../../components/plays/moves/MovePreviewContext'
-import MovePreview from '../../../../../components/plays/moves/MovePreview'
 import { Loading, Error, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import ClientOnly from '../../../../../lib/ClientOnly'
 import NotFound from '../../../../../components/shared/NotFound'
 import { useUser } from '../../../../../lib/hooks'
 import { PLAYBOOK_QUERY } from '../../../../../queries/play'
-
-const CreateFormProvider = ({ children }) => {
-  return (
-    <MoveListProvider>
-      <MovePreviewProvider>
-        {children}
-      </MovePreviewProvider>
-    </MoveListProvider>
-  )
-}
 
 const CreatePlayInformation = ({ slug, locale }) => {
   const { loading, error, data } = useQuery(PLAYBOOK_QUERY, {
@@ -39,12 +26,7 @@ const CreatePlayInformation = ({ slug, locale }) => {
 
   return (
     <>
-      {data?.playbook &&
-        <CreateFormProvider>
-          <MovePreview />
-          <PlayForm playbook={data.playbook} />
-        </CreateFormProvider>
-      }
+      {data?.playbook && <PlayForm playbook={data.playbook} />}
     </>
   )
 }

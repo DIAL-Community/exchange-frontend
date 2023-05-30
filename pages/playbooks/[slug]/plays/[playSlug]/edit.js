@@ -5,23 +5,10 @@ import Header from '../../../../../components/Header'
 import Footer from '../../../../../components/Footer'
 import { Loading, Error, Unauthorized } from '../../../../../components/shared/FetchStatus'
 import { PlayForm } from '../../../../../components/plays/PlayForm'
-import { MovePreviewProvider } from '../../../../../components/plays/moves/MovePreviewContext'
-import { MoveListProvider } from '../../../../../components/plays/moves/MoveListContext'
-import MovePreview from '../../../../../components/plays/moves/MovePreview'
 import ClientOnly from '../../../../../lib/ClientOnly'
 import NotFound from '../../../../../components/shared/NotFound'
 import { useUser } from '../../../../../lib/hooks'
 import { PLAY_QUERY } from '../../../../../queries/play'
-
-const EditFormProvider = ({ children }) => {
-  return (
-    <MoveListProvider>
-      <MovePreviewProvider>
-        {children}
-      </MovePreviewProvider>
-    </MoveListProvider>
-  )
-}
 
 const EditPlayInformation = ({ slug, playSlug, locale }) => {
   const { loading, error, data, refetch } = useQuery(PLAY_QUERY, {
@@ -45,10 +32,7 @@ const EditPlayInformation = ({ slug, playSlug, locale }) => {
   return (
     <>
       {data?.play && data?.playbook &&
-        <EditFormProvider>
-          <MovePreview />
-          <PlayForm playbook={data.playbook} play={data.play} />
-        </EditFormProvider>
+        <PlayForm playbook={data.playbook} play={data.play} />
       }
     </>
   )
