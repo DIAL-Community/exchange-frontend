@@ -37,7 +37,7 @@ const Intro = ({ enabled, steps, startIndex, endIndex, previousPath, nextPath, c
       initialStep={startIndex}
       onBeforeChange={onBeforeChangeHandler}
       onExit={onExitHandler}
-      options={{ disableInteraction: true, exitOnOverlayClick: false }}
+      options={{ disableInteraction: true, exitOnOverlayClick: false, skipLabel: 'Skip' }}
     />
   )
 }
