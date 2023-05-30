@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -9,9 +9,6 @@ import { PlayForm } from '../../../components/plays/PlayForm'
 import { CREATE_PLAY } from '../../../mutations/play'
 import { PlayListProvider } from '../../../components/plays/PlayListContext'
 import { PlayFilterProvider } from '../../../components/context/PlayFilterContext'
-import { PlayPreviewProvider } from '../../../components/plays/PlayPreviewContext'
-import { MoveListProvider } from '../../../components/plays/moves/MoveListContext'
-import { MovePreviewProvider } from '../../../components/plays/moves/MovePreviewContext'
 import { mockNextAuthUseSession, mockNextUseRouter, statuses } from '../../utils/nextMockImplementation'
 import { BUILDING_BLOCK_SEARCH_QUERY } from '../../../queries/building-block'
 import { PRODUCT_SEARCH_QUERY } from '../../../queries/product'
@@ -32,7 +29,6 @@ describe('PlayForm component.', () => {
     slug: 'play',
     description: 'desc play',
     tags: ['tag_1','tag_2'],
-    moves: [{ name: 'test', slug: 'test', id: 1 }],
     playbookSlug: playbook.slug,
     productSlugs: ['product_1', 'product_2'],
     buildingBlockSlugs: ['bb_1', 'bb_2']
@@ -45,13 +41,7 @@ describe('PlayForm component.', () => {
   const PlayAndMoveProviders = ({ children }) => (
     <PlayListProvider>
       <PlayFilterProvider>
-        <PlayPreviewProvider>
-          <MoveListProvider>
-            <MovePreviewProvider>
-              {children}
-            </MovePreviewProvider>
-          </MoveListProvider>
-        </PlayPreviewProvider>
+        {children}
       </PlayFilterProvider>
     </PlayListProvider>
   )
@@ -145,10 +135,8 @@ describe('PlayForm component.', () => {
     )
     await waitForAllEffectsAndSelectToLoad(container)
 
-    await waitFor(() => {
-      fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID))
-    })
-    await screen.findByText('Play saved.')
+    await act(() => fireEvent.submit(getByTestId(SUBMIT_BUTTON_TEST_ID)))
+    expect(screen.queryByText('Play saved.')).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 })
