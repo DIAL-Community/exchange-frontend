@@ -1,34 +1,9 @@
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { Error, Loading } from '../shared/FetchStatus'
 import NotFound from '../shared/NotFound'
+import { SDG_QUERY } from '../../queries/sdg'
 import SDGDetailLeft from './SDGDetailLeft'
 import SDGDetailRight from './SDGDetailRight'
-
-const SDG_QUERY = gql`
-  query SDG($slug: String!) {
-    sdg(slug: $slug) {
-      id
-      name
-      slug
-      number
-      imageFile
-      longTitle
-      sdgTargets {
-        id
-        name
-        imageFile
-        targetNumber
-        useCases {
-          id
-          slug
-          name
-          imageFile
-          maturity
-        }
-      }
-    }
-  }
-`
 
 const SDGDetail = ({ slug }) => {
   const { loading, error, data } = useQuery(SDG_QUERY, {

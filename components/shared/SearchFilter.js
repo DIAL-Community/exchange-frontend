@@ -76,7 +76,8 @@ const SearchFilter = ({
       'building_blocks',
       'use_cases',
       'playbooks',
-      'workflows'
+      'workflows',
+      'resources'
     ]
     if (user.isEditorUser && editorEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails
@@ -94,7 +95,8 @@ const SearchFilter = ({
       'workflows',
       'countries',
       'rubric_categories',
-      'opportunities'
+      'opportunities',
+      'resources'
     ]
     if (user.isAdminUser && adminEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails

@@ -53,3 +53,29 @@ export const SDGS_QUERY = gql`
     }
   }
 `
+
+export const SDG_QUERY = gql`
+  query SDG($slug: String!) {
+    sdg(slug: $slug) {
+      id
+      name
+      slug
+      number
+      imageFile
+      longTitle
+      sdgTargets {
+        id
+        name
+        imageFile
+        targetNumber
+        useCases {
+          id
+          slug
+          name
+          imageFile
+          maturity
+        }
+      }
+    }
+  }
+`
