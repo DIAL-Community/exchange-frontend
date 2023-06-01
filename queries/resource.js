@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const RESOURCES_LIST_QUERY = gql`
+export const RESOURCES_SEARCH_QUERY = gql`
   query SearchResources(
     $first: Int
     $after: String

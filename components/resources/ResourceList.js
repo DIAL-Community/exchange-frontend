@@ -6,7 +6,7 @@ import { FilterContext } from '../context/FilterContext'
 import { UserFilterContext } from '../context/UserFilterContext'
 import { Loading, Error } from '../shared/FetchStatus'
 import NotFound from '../shared/NotFound'
-import { RESOURCES_LIST_QUERY } from '../../queries/resource'
+import { RESOURCES_SEARCH_QUERY } from '../../queries/resource'
 import { DEFAULT_PAGE_SIZE } from '../../lib/constants'
 import ResourceCard from './ResourceCard'
 
@@ -53,7 +53,7 @@ const ResourcesListQuery = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { loading, error, data, fetchMore } = useQuery(RESOURCES_LIST_QUERY, {
+  const { loading, error, data, fetchMore } = useQuery(RESOURCES_SEARCH_QUERY, {
     variables: {
       first: DEFAULT_PAGE_SIZE,
       search

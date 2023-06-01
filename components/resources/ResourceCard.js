@@ -20,28 +20,49 @@ const ResourceCard = ({ resource, listType }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const listDisplayType = () =>
-    <div className={containerElementStyle}>
-      <div className='bg-white border border-dial-gray shadow-lg rounded-md'>
-        <div className='flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6'>
-          <div className='w-10/12 lg:w-4/12 flex gap-2 my-auto text-dial-sapphire'>
-            <div className='block w-8 relative opacity-60'>
-              <Image
-                fill
-                className='object-contain'
-                alt={format('image.alt.logoFor', { name: resource.name })}
-                src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
-              />
+    <div className={containerElementStyle} data-testid='resource-card'>
+      <div className='bg-white shadow-lg rounded-md'>
+        <div className='flex lg:gap-x-4 px-4 py-6'>
+          <Link href={`/${collectionPath}/${resource.slug}`} className='w-11/12'>
+            <div className='flex flex-wrap gap-x-2'>
+              <div className='w-full lg:w-4/12 flex gap-2 my-auto text-dial-sapphire'>
+                <div className='block w-8 relative opacity-60'>
+                  <Image
+                    fill
+                    className='object-contain'
+                    alt={format('image.alt.logoFor', { name: resource.name })}
+                    src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + resource.imageFile}
+                  />
+                </div>
+                <div className='font-semibold'>
+                  {resource.name}
+                </div>
+              </div>
+              <div className='w-full lg:w-7/12 text-sm line-clamp-1'>
+                <div className='line-clamp-1'>
+                  {parse(resource.description)}
+                </div>
+              </div>
             </div>
-            <div className='w-full font-semibold'>
-              {resource.name}
-            </div>
-          </div>
+          </Link>
+          {resource.link &&
+            <a
+              href={prependUrlWithProtocol(resource.link)}
+              className='ml-auto text-sm text-dial-sunshine'
+              target='_blank' rel='noreferrer'
+            >
+              <div className='flex gap-2 opacity-50 hover:opacity-100'>
+                {format('resource.visitLink')}
+                <FaExternalLinkAlt className='my-auto' />
+              </div>
+            </a>
+          }
         </div>
       </div>
     </div>
 
   const cardDisplayType = () =>
-    <div className={containerElementStyle}>
+    <div className={containerElementStyle} data-testid='resource-card'>
       <div className='bg-white shadow-lg rounded-lg h-full'>
         <div className='flex flex-col'>
           <Link href={`/${collectionPath}/${resource.slug}`}>
@@ -68,7 +89,7 @@ const ResourceCard = ({ resource, listType }) => {
               </div>
             </div>
             {resource.link &&
-              <div className='bg-dial-biscotti hover:bg-dial-sunshine text-white mt-auto text-sm rounded-b-md'>
+              <div className='bg-dial-sunshine opacity-60 hover:opacity-100 text-white mt-auto text-sm rounded-b-md'>
                 <a
                   href={prependUrlWithProtocol(resource.link)}
                   className='flex flex-row justify-center'

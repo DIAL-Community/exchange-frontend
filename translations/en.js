@@ -1678,7 +1678,7 @@ export const en = {
   'resource.label': 'Resource',
   'resource.header': 'Resources',
   'resource.link': 'Resource Location',
-  'resource.visitLink': 'Visit Resource Location',
+  'resource.visitLink': 'Visit Resource',
   'resource.imageFile': 'Resource Logo',
   'resource.showInExchange': 'Show resource in the Exchange',
   'resource.showInWizard': 'Show resource in the recommendation wizard',
@@ -1686,7 +1686,6 @@ export const en = {
   'resource.delete.confirm.message': 'Are you sure you want to delete this resource?',
 
   'resource.submit.success': 'Resource submitted.',
-  'resource.submit.failure': 'Resource update failed.'
-
-
+  'resource.submit.failure': 'Resource update failed.',
+  'toast.resource.delete.success': 'Resource deleted.'
 }
