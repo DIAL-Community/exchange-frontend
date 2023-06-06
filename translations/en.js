@@ -634,6 +634,7 @@ export const en = {
   'filter.entity.countries': 'Countries',
   'filter.entity.rubric-categories': 'Rubric Categories',
   'filter.entity.resources': 'Resources',
+  'filter.entity.storefronts': 'Storefronts',
 
   'filter.byEntity': 'Filter by {entity}',
   'filter.searchFor': 'Search for {entity}',
@@ -1687,5 +1688,8 @@ export const en = {
 
   'resource.submit.success': 'Resource submitted.',
   'resource.submit.failure': 'Resource update failed.',
-  'toast.resource.delete.success': 'Resource deleted.'
+  'toast.resource.delete.success': 'Resource deleted.',
+
+  'storefront.label': 'Storefront',
+  'storefront.header': 'Storefronts'
 }
