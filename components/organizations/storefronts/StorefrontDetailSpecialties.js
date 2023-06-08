@@ -18,14 +18,12 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
 
   const client = useApolloClient()
 
+  const [isDirty, setIsDirty] = useState(false)
   const [countries, setCountries] = useState(organization.countries)
 
-  const [isDirty, setIsDirty] = useState(false)
-
-  const [updateOrganizationCountry, { data, loading }] = useMutation(UPDATE_ORGANIZATION_COUNTRY)
+  const [updateOrganizationSpecialties, { data, loading }] = useMutation(UPDATE_ORGANIZATION_SPECIALTY)
 
   const { user } = useUser()
-
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)
@@ -82,7 +80,7 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
 
   const displayModeBody = countries.length > 0
     ? (
-      <div className='grid grid-cols-1 md:grid-cols-2'>
+      <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
         {countries.map((country, countryIdx) => <CountryCard key={countryIdx} country={country} listType='list' />)}
       </div>
     ) : (

@@ -174,7 +174,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
         </div>
         <div className='h4 font-bold py-4'>{format('organization.label')}</div>
       </div>
-      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray lg:mr-6 shadow-lg'>
+      <div className='bg-white border-t border-l border-r border-dial-gray lg:mr-6 shadow-lg'>
         {
           organization.whenEndorsed && (
             <div className='flex flex-row p-1.5 border-b border-dial-gray text-xs font-semibold text-dial-cyan'>

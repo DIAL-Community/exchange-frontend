@@ -30,7 +30,7 @@ const StorefrontForm = React.memo(({ organization }) => {
   const [updateStorefront, { reset }] = useMutation(CREATE_ORGANIZATION, {
     onCompleted: (data) => {
       setMutating(false)
-      const { createStorefront: response } = data
+      const { createOrganization: response } = data
       if (response?.organization && response?.errors?.length === 0) {
         showToast(
           format('organization.submit.success'),
@@ -40,7 +40,7 @@ const StorefrontForm = React.memo(({ organization }) => {
           null,
           () => router.push(
             `/${router.locale}` +
-            `/organizations/${response?.organization?.slug}`
+            `/storefronts/${response?.organization?.slug}`
           )
         )
       } else {
@@ -76,7 +76,6 @@ const StorefrontForm = React.memo(({ organization }) => {
   })
 
   const isSingleAlias = useMemo(() => aliases.length === 1, [aliases])
-
   const isLastAlias = (aliasIndex) => aliasIndex === aliases.length - 1
 
   const slugNameMapping = useMemo(() => {
@@ -125,7 +124,7 @@ const StorefrontForm = React.memo(({ organization }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    let route = '/organizations'
+    let route = '/storefronts'
     if (organization) {
       route = `${route}/${organization.slug}`
     }

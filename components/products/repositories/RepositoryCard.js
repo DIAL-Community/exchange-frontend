@@ -20,7 +20,7 @@ const RepositoryCard = ({ productRepository, repositorySlug, listStyle }) => {
     } else {
       return [
         'text-product border-3 border-transparent hover:border-dial-sunshine cursor-pointer',
-        'border border-dial-gray hover:border-transparent card-drop-shadow'
+        'border border-dial-gray hover:border-transparent shadow-md'
       ]
     }
   }

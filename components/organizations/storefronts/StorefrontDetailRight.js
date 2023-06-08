@@ -62,65 +62,65 @@ const StorefrontDetailRight = ({ organization, commentsSectionRef }) => {
       <div className='hidden lg:block'>
         <Breadcrumb slugNameMapping={slugNameMapping} />
       </div>
-      <div className='flex flex-col lg:flex-row flex-wrap'>
-        <div className='flex flex-col flex-grow pb-4'>
-          <div className='text-sm text-dial-purple-light leading-6 tracking-wide'>
-            {format('organization.detail.website').toUpperCase()}
-          </div>
-          <div className='text-base text-dial-teal flex' data-testid='organization-website'>
-            <a
-              href={prependUrlWithProtocol(organization.website)}
-              className='border-b-2 border-transparent hover:border-dial-sunshine'
-              target='_blank'
-              rel='noreferrer'
-            >
-              <div className='my-auto'>{organization.website} ⧉</div>
-            </a>
-          </div>
-          {
-            organization.whenEndorsed &&
-              <>
-                <div className='text-sm leading-6 text-dial-purple-light pt-6 leading-6 tracking-wide'>
-                  {format('organization.detail.whenEndorsed').toUpperCase()}
-                </div>
-                <div className='text-base text-dial-teal pb-2'>
-                  <FormattedDate value={new Date(organization.whenEndorsed)} year='numeric' month='long' day='2-digit' />
-                </div>
-              </>
-          }
-          {
-            organization.endorserLevel && organization.endorserLevel !== 'none' &&
-              <>
-                <div className='text-sm leading-6 text-dial-purple-light pt-6 leading-6 tracking-wide'>
-                  {format('organization.detail.endorserLevel').toUpperCase()}
-                </div>
-                <div className='text-base text-dial-sunshine pb-2' data-testid='organization-endorser-level'>
-                  {organization.endorserLevel.toUpperCase()}
-                </div>
-              </>
-          }
+      <div className='flex flex-col'>
+        <div className='text-sm text-dial-purple-light'>
+          {format('organization.detail.website').toUpperCase()}
+        </div>
+        <div className='text-base text-dial-teal flex' data-testid='organization-website'>
+          <a
+            href={prependUrlWithProtocol(organization.website)}
+            className='border-b-2 border-transparent hover:border-dial-sunshine'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <div className='my-auto'>{organization.website} ⧉</div>
+          </a>
         </div>
         {
-          marker &&
-            <DynamicOfficeMarker {...marker} />
+          organization.whenEndorsed &&
+            <>
+              <div className='text-sm text-dial-purple-light pt-6'>
+                {format('organization.detail.whenEndorsed').toUpperCase()}
+              </div>
+              <div className='text-base text-dial-teal pb-2'>
+                <FormattedDate
+                  value={new Date(organization.whenEndorsed)}
+                  year='numeric'
+                  month='long'
+                  day='2-digit'
+                />
+              </div>
+            </>
         }
+        {
+          organization.endorserLevel && organization.endorserLevel !== 'none' &&
+            <>
+              <div className='text-sm text-dial-purple-light pt-6'>
+                {format('organization.detail.endorserLevel').toUpperCase()}
+              </div>
+              <div className='text-base text-dial-sunshine pb-2' data-testid='organization-endorser-level'>
+                {organization.endorserLevel.toUpperCase()}
+              </div>
+            </>
+        }
+        <div className={`mt-8 ${sectionHeaderStyle}`}>{format('product.description')}</div>
+        <HtmlViewer
+          initialContent={organization?.organizationDescription?.description}
+          className='-mb-12'
+        />
+        {canEdit && <OrganizationDetailOffices organization={organization} canEdit={canEdit} />}
+        {marker && <DynamicOfficeMarker {...marker} />}
+        {canEdit && <OrganizationDetailContacts organization={organization}/>}
+        {organization.sectors && <OrganizationDetailSectors organization={organization} canEdit={canEdit} />}
+        {organization.countries && <OrganizationDetailCountries organization={organization} canEdit={canEdit} />}
+        {organization.products && <OrganizationDetailProducts organization={organization} canEdit={canEdit} />}
+        {organization.projects && <OrganizationDetailProjects organization={organization} canEdit={canEdit} />}
+        <CommentsSection
+          commentsSectionRef={commentsSectionRef}
+          objectId={organization.id}
+          objectType={ObjectType.ORGANIZATION}
+        />
       </div>
-      <div className={`mt-8 ${sectionHeaderStyle}`}>{format('product.description')}</div>
-      <HtmlViewer
-        initialContent={organization?.organizationDescription?.description}
-        className='-mb-12'
-      />
-      {canEdit && <OrganizationDetailOffices organization={organization} canEdit={canEdit} />}
-      {canEdit && <OrganizationDetailContacts organization={organization}/>}
-      {organization.sectors && <OrganizationDetailSectors organization={organization} canEdit={canEdit} />}
-      {organization.countries && <OrganizationDetailCountries organization={organization} canEdit={canEdit} />}
-      {organization.products && <OrganizationDetailProducts organization={organization} canEdit={canEdit} />}
-      {organization.projects && <OrganizationDetailProjects organization={organization} canEdit={canEdit} />}
-      <CommentsSection
-        commentsSectionRef={commentsSectionRef}
-        objectId={organization.id}
-        objectType={ObjectType.ORGANIZATION}
-      />
     </div>
   )
 }

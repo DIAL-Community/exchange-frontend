@@ -20,7 +20,7 @@ const BuildingBlockDetailRight = ({ buildingBlock, canEdit, commentsSectionRef }
       </div>
       <HtmlViewer
         initialContent={buildingBlock?.buildingBlockDescription?.description}
-        className='px-12 border pt-12 border-dial-gray card-drop-shadow'
+        className='px-12 border pt-12 border-dial-gray shadow-md'
       />
       {buildingBlock.products && <BuildingBlockDetailProducts buildingBlock={buildingBlock} canEdit={canEdit} />}
       {buildingBlock.workflows && <BuildingBlockDetailWorkflows buildingBlock={buildingBlock} canEdit={canEdit} />}
