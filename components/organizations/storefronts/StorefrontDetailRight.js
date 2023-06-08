@@ -14,16 +14,14 @@ import OrganizationDetailContacts from '../OrganizationDetailContacts'
 import OrganizationDetailProducts from '../OrganizationDetailProducts'
 import OrganizationDetailOffices from '../OrganizationDetailOffices'
 import StorefrontDetailSpecialties from './StorefrontDetailSpecialties'
+import StorefrontDetailResources from './StorefrontDetailResources'
 
 const sectionHeaderStyle = 'card-title mb-3 text-dial-gray-dark'
 
 const DynamicOfficeMarker = (props) => {
   const OfficeMarker = useMemo(() => dynamic(
     () => import('../../shared/MapMarker'),
-    {
-      loading: () => <div>Loading Map data ...</div>,
-      ssr: false
-    }
+    { loading: () => <div>Loading Map data ...</div>, ssr: false }
   ), [])
 
   return <OfficeMarker {...props} />
@@ -104,19 +102,22 @@ const StorefrontDetailRight = ({ organization, commentsSectionRef }) => {
               </div>
             </>
         }
-        <div className={`mt-8 ${sectionHeaderStyle}`}>{format('product.description')}</div>
+        <div className={`mt-8 ${sectionHeaderStyle}`}>
+          {format('product.description')}
+        </div>
         <HtmlViewer
           initialContent={organization?.organizationDescription?.description}
           className='-mb-12'
         />
         <StorefrontDetailSpecialties organization={organization} canEdit={canEdit} />
-        {canEdit && <OrganizationDetailOffices organization={organization} canEdit={canEdit} />}
+        <StorefrontDetailResources organization={organization} canEdit={canEdit} />
         {marker && <DynamicOfficeMarker {...marker} />}
+        {canEdit && <OrganizationDetailOffices organization={organization} canEdit={canEdit} />}
         {canEdit && <OrganizationDetailContacts organization={organization}/>}
-        {organization.sectors && <OrganizationDetailSectors organization={organization} canEdit={canEdit} />}
-        {organization.countries && <OrganizationDetailCountries organization={organization} canEdit={canEdit} />}
-        {organization.products && <OrganizationDetailProducts organization={organization} canEdit={canEdit} />}
-        {organization.projects && <OrganizationDetailProjects organization={organization} canEdit={canEdit} />}
+        <OrganizationDetailSectors organization={organization} canEdit={canEdit} />
+        <OrganizationDetailCountries organization={organization} canEdit={canEdit} />
+        <OrganizationDetailProducts organization={organization} canEdit={canEdit} />
+        <OrganizationDetailProjects organization={organization} canEdit={canEdit} />
         <CommentsSection
           commentsSectionRef={commentsSectionRef}
           objectId={organization.id}

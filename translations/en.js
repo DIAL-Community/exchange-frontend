@@ -1695,5 +1695,6 @@ export const en = {
   'specialty.label': 'Specialty',
   'specialty.header': 'Specialties',
 
-  'storefront.no-specialty': "Organization storefront's doesn't have specialty information."
+  'storefront.no-specialty': "Organization storefront's doesn't have specialty information.",
+  'storefront.no-resource': "Organization storefront's doesn't have resource information."
 }

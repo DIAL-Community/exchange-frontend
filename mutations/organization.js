@@ -243,3 +243,21 @@ export const UPDATE_ORGANIZATION_SPECIALTIES = gql`
     }
   }
 `
+
+export const UPDATE_ORGANIZATION_RESOURCES = gql`
+  mutation UpdateOrganizationSpecialties(
+    $slug: String!,
+    $specialties: [String!]!
+  ) {
+    updateOrganizationSpecialties(
+      slug: $slug,
+      specialties: $specialties
+    ) {
+      organization {
+        id,
+        specialties
+      },
+      errors
+    }
+  }
+`
