@@ -6,8 +6,8 @@ import Footer from '../../../components/Footer'
 import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
 import ClientOnly from '../../../lib/ClientOnly'
 import NotFound from '../../../components/shared/NotFound'
-import OrganizationForm from '../../../components/organizations/OrganizationForm'
 import { useOrganizationOwnerUser, useUser } from '../../../lib/hooks'
+import StorefrontForm from '../../../components/organizations/storefronts/StorefrontForm'
 
 const ORGANIZATION_QUERY = gql`
   query Organization($slug: String!) {
@@ -15,12 +15,8 @@ const ORGANIZATION_QUERY = gql`
       id
       name
       slug
-      isMni
       website
       imageFile
-      isEndorser
-      whenEndorsed
-      endorserLevel
       aliases
       organizationDescription {
         description
@@ -66,7 +62,7 @@ const EditStorefront = () => {
           {loadingUserSession
             ? <Loading />
             : canEdit
-              ? <OrganizationForm organization={data.organization} />
+              ? <StorefrontForm organization={data.organization} />
               : <Unauthorized />}
         </ClientOnly>
       )}
