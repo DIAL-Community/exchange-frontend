@@ -63,7 +63,7 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
       updateOrganizationCountry({
         variables: {
           slug: organization.slug,
-          countriesSlugs: countries.map(({ slug }) => slug)
+          countrySlugs: countries.map(({ slug }) => slug)
         },
         context: {
           headers: {

@@ -48,11 +48,11 @@ export const CREATE_ORGANIZATION = gql`
 export const UPDATE_ORGANIZATION_COUNTRY = gql`
   mutation UpdateOrganizationCountry(
     $slug: String!,
-    $countriesSlugs: [String!]!
+    $countrySlugs: [String!]!
   ) {
     updateOrganizationCountry(
       slug: $slug,
-      countriesSlugs: $countriesSlugs
+      countrySlugs: $countrySlugs
     ) {
       organization {
         countries {
@@ -69,11 +69,11 @@ export const UPDATE_ORGANIZATION_COUNTRY = gql`
 export const UPDATE_ORGANIZATION_SECTORS = gql`
   mutation UpdateOrganizationSectors(
     $slug: String!,
-    $sectorsSlugs: [String!]!
+    $sectorSlugs: [String!]!
   ) {
     updateOrganizationSectors(
       slug: $slug,
-      sectorsSlugs: $sectorsSlugs
+      sectorSlugs: $sectorSlugs
     ) {
       organization {
         sectors {
@@ -90,11 +90,11 @@ export const UPDATE_ORGANIZATION_SECTORS = gql`
 export const UPDATE_ORGANIZATION_PROJECTS = gql`
   mutation UpdateOrganizationProjects(
     $slug: String!,
-    $projectsSlugs: [String!]!
+    $projectSlugs: [String!]!
   ) {
     updateOrganizationProjects(
       slug: $slug,
-      projectsSlugs: $projectsSlugs
+      projectSlugs: $projectSlugs
     ) {
       organization {
         projects {

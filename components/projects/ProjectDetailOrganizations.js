@@ -82,7 +82,7 @@ const ProductDetailOrganizations = ({ project, canEdit }) => {
       updateProjectOrganizations({
         variables: {
           slug: project.slug,
-          organizationsSlugs: organizations.map(({ slug }) => slug)
+          organizationSlugs: organizations.map(({ slug }) => slug)
         },
         context: {
           headers: {
