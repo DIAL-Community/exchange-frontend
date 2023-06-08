@@ -1,56 +1,64 @@
 import { useIntl } from 'react-intl'
-import { useState, useEffect, useCallback, useContext } from 'react'
+import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
-import { useApolloClient, useMutation } from '@apollo/client'
-import Pill from '../shared/Pill'
-import Select from '../shared/Select'
-import CountryCard from '../countries/CountryCard'
-import { COUNTRY_SEARCH_QUERY } from '../../queries/country'
-import EditableSection from '../shared/EditableSection'
-import { ToastContext } from '../../lib/ToastContext'
-import { UPDATE_ORGANIZATION_COUNTRY } from '../../mutations/organization'
-import { fetchSelectOptions } from '../../queries/utils'
-import { useUser } from '../../lib/hooks'
+import { useMutation } from '@apollo/client'
+import { BsPatchCheck } from 'react-icons/bs'
+import { ToastContext } from '../../../lib/ToastContext'
+import { useUser } from '../../../lib/hooks'
+import Select from '../../shared/Select'
+import Pill from '../../shared/Pill'
+import EditableSection from '../../shared/EditableSection'
+import { UPDATE_ORGANIZATION_SPECIALTIES } from '../../../mutations/organization'
 
-const OrganizationDetailCountries = ({ organization, canEdit }) => {
+const StorefrontDetailSpecialties = ({ organization, canEdit }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const client = useApolloClient()
-
   const [isDirty, setIsDirty] = useState(false)
-  const [countries, setCountries] = useState(organization.countries)
+  const [specialties, setSpecialties] = useState(organization.specialties ?? [])
 
-  const [updateOrganizationSpecialties, { data, loading }] = useMutation(UPDATE_ORGANIZATION_SPECIALTY)
+  const specialtyOptions = [
+    { value: 'UX & Design', label: 'UX & Design' },
+    { value: 'Big Data', label: 'Big Data' },
+    { value: 'AI / Machine Learning', label: 'AI / Machine Learning' },
+    { value: 'SaaS / Hosting Services', label: 'SaaS / Hosting Services' },
+    { value: 'Mobile Apps', label: 'Mobile Apps' }
+  ]
+
+  const [updateSpecialties, { reset, loading }] = useMutation(UPDATE_ORGANIZATION_SPECIALTIES, {
+    onCompleted: (data) => {
+      const { updateOrganizationSpecialties: response } = data
+      if (response?.organization && response?.errors?.length === 0) {
+        showToast(format('organization.submit.success'), 'success', 'top-center')
+        setSpecialties(response?.organization.specialties)
+        setIsDirty(false)
+      } else {
+        showToast(format('organization.submit.failure'), 'error', 'top-center')
+        setSpecialties(organization.specialties ?? [])
+        setIsDirty(false)
+        reset()
+      }
+    },
+    onError: () => {
+      showToast(format('organization.submit.failure'), 'error', 'top-center')
+      setSpecialties(organization.specialties ?? [])
+      setIsDirty(false)
+      reset()
+    }
+  })
 
   const { user } = useUser()
   const { locale } = useRouter()
 
   const { showToast } = useContext(ToastContext)
 
-  useEffect(() => {
-    if (data?.updateOrganizationCountry?.errors.length === 0 && data?.updateOrganizationCountry?.organization) {
-      setCountries(data.updateOrganizationCountry.organization.countries)
-      setIsDirty(false)
-      showToast(format('organization.countries.updated'), 'success', 'top-center')
-    }
-  }, [data, showToast, format])
-
-  const fetchedCountriesCallback = (data) => (
-    data.countries?.map((country) => ({
-      label: country.name,
-      value: country.id,
-      slug: country.slug
-    }))
-  )
-
-  const addCountry = (country) => {
-    setCountries([...countries.filter(({ slug }) => slug !== country.slug), { name: country.label, slug: country.slug }])
+  const addSpecialty = (specialty) => {
+    setSpecialties([...specialties.filter(existing => existing !== specialty.value), specialty.label])
     setIsDirty(true)
   }
 
-  const removeCountry = (country) => {
-    setCountries([...countries.filter(({ slug }) => slug !== country.slug)])
+  const removeSpecialty = (specialty) => {
+    setSpecialties([...specialties.filter(existing => existing !== specialty)])
     setIsDirty(true)
   }
 
@@ -58,10 +66,10 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
     if (user) {
       const { userEmail, userToken } = user
 
-      updateOrganizationCountry({
+      updateSpecialties({
         variables: {
           slug: organization.slug,
-          countrySlugs: countries.map(({ slug }) => slug)
+          specialties
         },
         context: {
           headers: {
@@ -74,46 +82,50 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
   }
 
   const onCancel = () => {
-    setCountries(data?.updateOrganizationCountry?.organization?.countries ?? organization.countries)
+    setSpecialties(organization.specialties)
     setIsDirty(false)
   }
 
-  const displayModeBody = countries.length > 0
+  const displayModeBody = specialties?.length > 0
     ? (
-      <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
-        {countries.map((country, countryIdx) => <CountryCard key={countryIdx} country={country} listType='list' />)}
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-3'>
+        {specialties.map((specialty, index) =>
+          <div key={index} className='border shadow-md rounded-md flex gap-3 px-4'>
+            <BsPatchCheck className='my-auto text-emerald-500' />
+            <div className='py-3'>{specialty}</div>
+          </div>
+        )}
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('organization.no-country')}
+        {format('storefront.no-specialty')}
       </div>
     )
 
   const editModeBody =
     <>
       <p className='card-title text-dial-stratos mb-3'>
-        {format('app.assign')} {format('country.header')}
+        {format('app.assign')} {format('specialty.header')}
       </p>
-      <label className='flex flex-col gap-y-2 mb-2' data-testid='country-search'>
-        {`${format('app.searchAndAssign')} ${format('country.header')}`}
+      <label className='flex flex-col gap-y-2 mb-2' data-testid='specialty-search'>
+        {`${format('app.searchAndAssign')} ${format('specialty.header')}`}
         <Select
-          async
           isSearch
           defaultOptions
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-          loadOptions={(input) => fetchSelectOptions(client, input, COUNTRY_SEARCH_QUERY, fetchedCountriesCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('country.header') })}
-          onChange={addCountry}
+          options={specialtyOptions}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('specialty.header') })}
+          onChange={addSpecialty}
           value={null}
         />
       </label>
       <div className='flex flex-wrap gap-3 mt-5'>
-        {countries.map((country, countryIdx) => (
+        {specialties?.map((specialty, index) => (
           <Pill
-            key={`country-${countryIdx}`}
-            label={country.name}
-            onRemove={() => removeCountry(country)}
+            key={`specialty-${index}`}
+            label={specialty}
+            onRemove={() => removeSpecialty(specialty)}
           />
         ))}
       </div>
@@ -122,7 +134,7 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
   return (
     <EditableSection
       canEdit={canEdit}
-      sectionHeader={format('country.header')}
+      sectionHeader={format('specialty.header')}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}
@@ -133,4 +145,4 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
   )
 }
 
-export default OrganizationDetailCountries
+export default StorefrontDetailSpecialties

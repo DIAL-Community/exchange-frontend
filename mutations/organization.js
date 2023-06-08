@@ -35,6 +35,7 @@ export const CREATE_ORGANIZATION = gql`
         endorserLevel
         isMni
         imageFile
+        specialties
         organizationDescription {
           description
           locale
@@ -45,7 +46,7 @@ export const CREATE_ORGANIZATION = gql`
   }
 `
 
-export const UPDATE_ORGANIZATION_COUNTRY = gql`
+export const UPDATE_ORGANIZATION_COUNTRIES = gql`
   mutation UpdateOrganizationCountry(
     $slug: String!,
     $countrySlugs: [String!]!
@@ -132,7 +133,7 @@ export const UPDATE_ORGANIZATION_CONTACTS = gql`
   }
 `
 
-export const UPDATE_ORGANIZATION_PRODUCT = gql`
+export const UPDATE_ORGANIZATION_PRODUCTS = gql`
   mutation UpdateOrganizationProducts(
     $slug: String!,
     $productSlugs: [String!]!
@@ -220,6 +221,24 @@ export const UPDATE_ORGANIZATION_OFFICES = gql`
           longitude
         }
       }
+      errors
+    }
+  }
+`
+
+export const UPDATE_ORGANIZATION_SPECIALTIES = gql`
+  mutation UpdateOrganizationSpecialties(
+    $slug: String!,
+    $specialties: [String!]!
+  ) {
+    updateOrganizationSpecialties(
+      slug: $slug,
+      specialties: $specialties
+    ) {
+      organization {
+        id,
+        specialties
+      },
       errors
     }
   }

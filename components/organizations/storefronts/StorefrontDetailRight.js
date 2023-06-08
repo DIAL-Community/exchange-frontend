@@ -13,6 +13,7 @@ import OrganizationDetailProjects from '../OrganizationDetailProjects'
 import OrganizationDetailContacts from '../OrganizationDetailContacts'
 import OrganizationDetailProducts from '../OrganizationDetailProducts'
 import OrganizationDetailOffices from '../OrganizationDetailOffices'
+import StorefrontDetailSpecialties from './StorefrontDetailSpecialties'
 
 const sectionHeaderStyle = 'card-title mb-3 text-dial-gray-dark'
 
@@ -108,6 +109,7 @@ const StorefrontDetailRight = ({ organization, commentsSectionRef }) => {
           initialContent={organization?.organizationDescription?.description}
           className='-mb-12'
         />
+        <StorefrontDetailSpecialties organization={organization} canEdit={canEdit} />
         {canEdit && <OrganizationDetailOffices organization={organization} canEdit={canEdit} />}
         {marker && <DynamicOfficeMarker {...marker} />}
         {canEdit && <OrganizationDetailContacts organization={organization}/>}

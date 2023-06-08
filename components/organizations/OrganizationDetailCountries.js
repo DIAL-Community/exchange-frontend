@@ -8,7 +8,7 @@ import CountryCard from '../countries/CountryCard'
 import { COUNTRY_SEARCH_QUERY } from '../../queries/country'
 import EditableSection from '../shared/EditableSection'
 import { ToastContext } from '../../lib/ToastContext'
-import { UPDATE_ORGANIZATION_COUNTRY } from '../../mutations/organization'
+import { UPDATE_ORGANIZATION_COUNTRIES } from '../../mutations/organization'
 import { fetchSelectOptions } from '../../queries/utils'
 import { useUser } from '../../lib/hooks'
 
@@ -22,7 +22,7 @@ const OrganizationDetailCountries = ({ organization, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateOrganizationCountry, { data, loading }] = useMutation(UPDATE_ORGANIZATION_COUNTRY)
+  const [updateOrganizationCountry, { data, loading }] = useMutation(UPDATE_ORGANIZATION_COUNTRIES)
 
   const { user } = useUser()
 

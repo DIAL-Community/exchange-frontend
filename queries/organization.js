@@ -22,6 +22,7 @@ export const ORGANIZATION_QUERY = gql`
       imageFile
       whenEndorsed
       endorserLevel
+      specialties
       organizationDescription {
         description
         locale

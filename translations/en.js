@@ -1691,5 +1691,9 @@ export const en = {
   'toast.resource.delete.success': 'Resource deleted.',
 
   'storefront.label': 'Storefront',
-  'storefront.header': 'Storefronts'
+  'storefront.header': 'Storefronts',
+  'specialty.label': 'Specialty',
+  'specialty.header': 'Specialties',
+
+  'storefront.no-specialty': "Organization storefront's doesn't have specialty information."
 }
