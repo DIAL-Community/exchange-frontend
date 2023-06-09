@@ -5,16 +5,16 @@ import Footer from '../../../components/Footer'
 import ClientOnly from '../../../lib/ClientOnly'
 import { Loading, Error } from '../../../components/shared/FetchStatus'
 import NotFound from '../../../components/shared/NotFound'
-import { WORKFLOW_DETAIL_QUERY } from '../../../queries/workflow'
-import WorkflowForm from '../../../components/workflows/WorkflowForm'
+import { RESOURCE_DETAIL_QUERY } from '../../../queries/resource'
+import ResourceForm from '../../../components/resources/ResourceForm'
 
-const EditWorkflow = () => {
+const EditResource = () => {
   const router = useRouter()
 
   const { locale } = router
   const { slug } = router.query
 
-  const { loading, error, data } = useQuery(WORKFLOW_DETAIL_QUERY, {
+  const { loading, error, data } = useQuery(RESOURCE_DETAIL_QUERY, {
     variables: { slug, locale },
     skip: !slug,
     context: { headers: { 'Accept-Language': locale } }
@@ -24,7 +24,7 @@ const EditWorkflow = () => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.workflow) {
+  } else if (!data?.resource) {
     return <NotFound />
   }
 
@@ -32,11 +32,11 @@ const EditWorkflow = () => {
     <>
       <Header />
       <ClientOnly>
-        {data?.workflow && <WorkflowForm workflow={data.workflow} />}
+        {data?.resource && <ResourceForm resource={data.resource} />}
       </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default EditWorkflow
+export default EditResource

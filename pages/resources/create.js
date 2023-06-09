@@ -1,16 +1,16 @@
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import ClientOnly from '../../lib/ClientOnly'
-import WorkflowForm from '../../components/workflows/WorkflowForm'
+import ResourceForm from '../../components/resources/ResourceForm'
 
-const CreateWorkflow = () => (
+const CreateResource = () => (
   <>
     <Header />
     <ClientOnly>
-      <WorkflowForm />
+      <ResourceForm />
     </ClientOnly>
     <Footer />
   </>
 )
 
-export default CreateWorkflow
+export default CreateResource

@@ -31,7 +31,8 @@ const basePathMappings = {
   moves: 'move.header',
   countries: 'country.header',
   rubric_categories: 'rubric-categories.header',
-  opportunities: 'opportunity.header'
+  opportunities: 'opportunity.header',
+  resources: 'resource.header'
 }
 
 export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>

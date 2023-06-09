@@ -633,6 +633,7 @@ export const en = {
   'filter.entity.candidateRoles': 'Candidate Roles',
   'filter.entity.countries': 'Countries',
   'filter.entity.rubric-categories': 'Rubric Categories',
+  'filter.entity.resources': 'Resources',
 
   'filter.byEntity': 'Filter by {entity}',
   'filter.searchFor': 'Search for {entity}',
@@ -1669,4 +1670,24 @@ export const en = {
   'toast.play.rearrange.success': 'Order for the plays saved succesffully.',
   'toast.play.rearrange.failure': 'Failed to save order for the plays.',
 
+  'resource.subHeader': `
+    These article and blogs provide information about the Digital Impact Exchange
+    and how it can be used to support the deployment of digital technologies.
+  `,
+
+  'header.blogs': 'Blogs / Articles',
+
+  'resource.label': 'Resource',
+  'resource.header': 'Resources',
+  'resource.link': 'Resource Location',
+  'resource.visitLink': 'Visit Resource',
+  'resource.imageFile': 'Resource Logo',
+  'resource.showInExchange': 'Show resource in the Exchange',
+  'resource.showInWizard': 'Show resource in the recommendation wizard',
+
+  'resource.delete.confirm.message': 'Are you sure you want to delete this resource?',
+
+  'resource.submit.success': 'Resource submitted.',
+  'resource.submit.failure': 'Resource update failed.',
+  'toast.resource.delete.success': 'Resource deleted.'
 }
