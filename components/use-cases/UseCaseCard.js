@@ -90,14 +90,21 @@ const UseCaseCard = ({ useCase, listType, newTab = false }) => {
         )}
       >
         <div className='flex flex-col'>
-          <div className='relative'>
-            <div className='absolute right-2 top-2'>
-              <div className='text-dial-gray-dark text-xs font-semibold'>
-                {useCase.maturity.toUpperCase()}
+          <div className='flex flex-row bg-dial-alice-blue rounded-t-lg py-2 px-2'>
+            { useCase.markdownUrl &&
+              <div className='px-2 py-1 bg-govstack-blue-light text-white rounded'>
+                <div className='text-xs font-semibold'>
+                  {format('govstack.label')}
+                </div>
+              </div>
+            }
+            <div className='ml-auto px-2 py-1 bg-dial-angel text-dial-stratos rounded'>
+              <div className='text-xs font-semibold'>
+                {useCase.maturity}
               </div>
             </div>
           </div>
-          <div className='flex text-dial-sapphire bg-dial-alice-blue h-24 rounded-t-lg'>
+          <div className='flex text-dial-sapphire bg-dial-alice-blue h-16'>
             <div className='px-4 text-sm text-center font-semibold m-auto'>
               {useCase.name}
             </div>

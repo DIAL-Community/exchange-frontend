@@ -10,6 +10,13 @@ module.exports = {
         'dial-sapphire': {
           DEFAULT: '#2e3192'
         },
+        'govstack-blue': {
+          DEFAULT: '#0539e3',
+          light: '#007aff'
+        },
+        'dial-christmas': {
+          DEFAULT: '#00873e'
+        },
         'dial-white-beech': {
           light: '#e2e8f0',
           DEFAULT: '#faf4ef'

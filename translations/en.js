@@ -652,6 +652,7 @@ export const en = {
   'filter.organization.aggregatorOnly': 'Only Aggregators',
   'filter.organization.endorserOnly': 'Only Endorser Organizations',
   'filter.useCase.showDraft': 'Show Draft (non-Validated) Use Cases',
+  'filter.useCase.govStackOnly': 'Show GovStack Only Use Cases',
 
   'filter.product.forCovid': 'COVID-19 Tools',
   'filter.product.endorsed': 'Show endorsed products',
@@ -1641,6 +1642,8 @@ export const en = {
     Use case is linked to a markdown definition. Description will be read from linked markdown.
   `,
   'govstack.issue.submitFailed': 'Feedback submission failed. Please try again later.',
+
+  'govstack.label': 'GovStack',
 
   'play.unassign.title': 'Removing Play',
   'play.unassign.confirmation': 'Are you sure you want to remove this play from the playbook?',
