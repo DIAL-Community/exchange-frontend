@@ -24,6 +24,7 @@ export const ORGANIZATION_QUERY = gql`
       endorserLevel
       specialties
       organizationDescription {
+        id
         description
         locale
       }
@@ -39,6 +40,7 @@ export const ORGANIZATION_QUERY = gql`
         longitude
       }
       sectors {
+        id
         name
         slug
       }
@@ -54,6 +56,7 @@ export const ORGANIZATION_QUERY = gql`
         imageFile
       }
       projects {
+        id
         name
         slug
         origin {
@@ -61,9 +64,16 @@ export const ORGANIZATION_QUERY = gql`
         }
       }
       contacts {
+        id
         name
         email
         title
+      }
+      resources {
+        id
+        name
+        slug
+        link
       }
     }
   }

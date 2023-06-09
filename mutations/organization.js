@@ -245,17 +245,22 @@ export const UPDATE_ORGANIZATION_SPECIALTIES = gql`
 `
 
 export const UPDATE_ORGANIZATION_RESOURCES = gql`
-  mutation UpdateOrganizationSpecialties(
+  mutation UpdateOrganizationResources(
     $slug: String!,
-    $specialties: [String!]!
+    $resourceSlugs: [String!]!
   ) {
-    updateOrganizationSpecialties(
+    updateOrganizationResources(
       slug: $slug,
-      specialties: $specialties
+      resourceSlugs: $resourceSlugs
     ) {
       organization {
         id,
-        specialties
+        resources {
+          id
+          name
+          slug
+          link
+        }
       },
       errors
     }

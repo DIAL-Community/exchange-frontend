@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
-import { BsPatchCheck } from 'react-icons/bs'
+import { FiExternalLink, FiDownload } from 'react-icons/fi'
 import { ToastContext } from '../../../lib/ToastContext'
 import { useUser } from '../../../lib/hooks'
 import Select from '../../shared/Select'
@@ -11,6 +11,7 @@ import EditableSection from '../../shared/EditableSection'
 import { UPDATE_ORGANIZATION_RESOURCES } from '../../../mutations/organization'
 import { fetchSelectOptions } from '../../../queries/utils'
 import { RESOURCE_SEARCH_QUERY } from '../../../queries/resource'
+import { prependUrlWithProtocol } from '../../../lib/utilities'
 
 const StorefrontDetailResources = ({ organization, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -49,12 +50,12 @@ const StorefrontDetailResources = ({ organization, canEdit }) => {
   const { showToast } = useContext(ToastContext)
 
   const addSpecialty = (resource) => {
-    setResources([...resources.filter(existing => existing !== resource.value), resource.label])
+    setResources([...resources.filter(existing => existing.slug !== resource.slug), resource])
     setIsDirty(true)
   }
 
   const removeSpecialty = (resource) => {
-    setResources([...resources.filter(existing => existing !== resource)])
+    setResources([...resources.filter(existing => existing.slug !== resource.slug)])
     setIsDirty(true)
   }
 
@@ -65,7 +66,7 @@ const StorefrontDetailResources = ({ organization, canEdit }) => {
       updateResources({
         variables: {
           slug: organization.slug,
-          resources
+          resourceSlugs: resources.map(resource => resource.slug)
         },
         context: {
           headers: {
@@ -95,8 +96,15 @@ const StorefrontDetailResources = ({ organization, canEdit }) => {
       <div className='grid grid-cols-1 md:grid-cols-2 gap-3'>
         {resources.map((resource, index) =>
           <div key={index} className='border shadow-md rounded-md flex gap-3 px-4'>
-            <BsPatchCheck className='my-auto text-emerald-500' />
-            <div className='py-3'>{resource}</div>
+            <div className='py-3'>{resource.name}</div>
+            <div className='ml-auto flex gap-3 my-auto'>
+              <a href={`/resources/${resource.slug}`} target='_blank' rel='noreferrer'>
+                <FiExternalLink className='text-sm' />
+              </a>
+              <a href={prependUrlWithProtocol(resource.link)} target='_blank' rel='noreferrer'>
+                <FiDownload className='text-sm' />
+              </a>
+            </div>
           </div>
         )}
       </div>
@@ -129,7 +137,7 @@ const StorefrontDetailResources = ({ organization, canEdit }) => {
         {resources?.map((resource, index) => (
           <Pill
             key={`resource-${index}`}
-            label={resource}
+            label={resource.name}
             onRemove={() => removeSpecialty(resource)}
           />
         ))}
