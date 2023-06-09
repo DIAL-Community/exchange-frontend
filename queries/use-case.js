@@ -83,6 +83,7 @@ export const USE_CASES_QUERY = gql`
     $after: String,
     $sdgs: [String!],
     $showBeta: Boolean,
+    $govStackOnly: Boolean,
     $search: String!
   ) {
     searchUseCases(
@@ -90,6 +91,7 @@ export const USE_CASES_QUERY = gql`
       after: $after,
       sdgs: $sdgs,
       showBeta: $showBeta,
+      govStackOnly: $govStackOnly,
       search: $search
     ) {
       totalCount
@@ -105,6 +107,7 @@ export const USE_CASES_QUERY = gql`
         slug
         imageFile
         maturity
+        markdownUrl
         sdgTargets {
           id
           name

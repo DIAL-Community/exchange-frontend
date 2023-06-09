@@ -1645,6 +1645,8 @@ export const en = {
   `,
   'govstack.issue.submitFailed': 'Feedback submission failed. Please try again later.',
 
+  'govstack.label': 'GovStack',
+
   'play.unassign.title': 'Removing Play',
   'play.unassign.confirmation': 'Are you sure you want to remove this play from the playbook?',
   'toast.playbook.unassign.success': 'Play removed from playbook.',
