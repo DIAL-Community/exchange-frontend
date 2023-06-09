@@ -14,6 +14,7 @@ import ValidationError from '../../shared/ValidationError'
 import UrlInput from '../../shared/UrlInput'
 import FileUploader from '../../shared/FileUploader'
 import { HtmlEditor } from '../../shared/HtmlEditor'
+import Checkbox from '../../shared/Checkbox'
 
 const StorefrontForm = React.memo(({ organization }) => {
   const { formatMessage } = useIntl()
@@ -63,7 +64,8 @@ const StorefrontForm = React.memo(({ organization }) => {
       name: organization?.name,
       aliases: organization?.aliases?.length ? organization?.aliases.map(value => ({ value })) : [{ value: '' }],
       website: organization?.website ?? '',
-      description: organization?.organizationDescription?.description
+      description: organization?.organizationDescription?.description,
+      hasStorefront: organization?.hasStorefront
     }
   })
 
@@ -97,14 +99,15 @@ const StorefrontForm = React.memo(({ organization }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const { name, imageFile, website, description, aliases } = data
+      const { name, imageFile, website, description, aliases, hasStorefront } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
         slug,
         aliases: aliases.map(({ value }) => value),
         website,
-        description
+        description,
+        hasStorefront
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -217,6 +220,19 @@ const StorefrontForm = React.memo(({ organization }) => {
                     </label>
                     <FileUploader {...register('imageFile')} />
                   </div>
+                  <div className='flex flex-col gap-y-2 mb-2' data-testid='organization-hero'>
+                    <label className='text-dial-sapphire'>
+                      {format('organization.heroImage')}
+                    </label>
+                    <FileUploader {...register('heroImage')} />
+                  </div>
+                  <label
+                    className='flex gap-x-2 mb-2 items-center self-start text-dial-sapphire'
+                    data-testid='organization-has-storefront'
+                  >
+                    <Checkbox {...register('hasStorefront')} />
+                    {format('organization.hasStorefront')}
+                  </label>
                 </div>
                 <div className='w-full lg:w-1/2'>
                   <div className='block flex flex-col gap-y-2' data-testid='organization-description'>

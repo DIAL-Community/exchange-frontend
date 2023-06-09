@@ -22,6 +22,7 @@ const ORGANIZATION_QUERY = gql`
       whenEndorsed
       endorserLevel
       aliases
+      hasStorefront
       organizationDescription {
         description
         locale

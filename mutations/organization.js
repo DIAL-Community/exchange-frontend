@@ -2,28 +2,32 @@ import { gql } from '@apollo/client'
 
 export const CREATE_ORGANIZATION = gql`
   mutation CreateOrganization(
-    $name: String!,
-    $slug: String!,
-    $aliases: JSON,
-    $imageFile: Upload,
-    $website: String,
-    $isEndorser: Boolean,
-    $whenEndorsed: ISO8601Date,
-    $endorserLevel: String,
-    $isMni: Boolean,
+    $name: String!
+    $slug: String!
+    $aliases: JSON
+    $imageFile: Upload
+    $website: String
+    $isEndorser: Boolean
+    $whenEndorsed: ISO8601Date
+    $endorserLevel: String
+    $isMni: Boolean
     $description: String
+    $hasStorefront: Boolean
+    $heroFile: Upload
   ) {
     createOrganization(
-      name: $name,
-      slug: $slug,
-      aliases: $aliases,
-      imageFile: $imageFile,
-      website: $website,
-      isEndorser: $isEndorser,
-      whenEndorsed: $whenEndorsed,
-      endorserLevel: $endorserLevel,
-      isMni: $isMni,
+      name: $name
+      slug: $slug
+      aliases: $aliases
+      imageFile: $imageFile
+      website: $website
+      isEndorser: $isEndorser
+      whenEndorsed: $whenEndorsed
+      endorserLevel: $endorserLevel
+      isMni: $isMni
       description: $description
+      hasStorefront: $hasStorefront
+      heroFile: $heroFile
     ) {
       organization {
         name
@@ -36,6 +40,8 @@ export const CREATE_ORGANIZATION = gql`
         isMni
         imageFile
         specialties
+        hasStorefront
+        heroFile
         organizationDescription {
           description
           locale

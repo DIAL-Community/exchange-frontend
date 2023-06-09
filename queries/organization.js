@@ -23,6 +23,7 @@ export const ORGANIZATION_QUERY = gql`
       whenEndorsed
       endorserLevel
       specialties
+      hasStorefront
       organizationDescription {
         id
         description

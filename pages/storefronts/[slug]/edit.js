@@ -18,6 +18,7 @@ const ORGANIZATION_QUERY = gql`
       website
       imageFile
       aliases
+      hasStorefront
       organizationDescription {
         description
         locale

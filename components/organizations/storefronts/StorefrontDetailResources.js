@@ -44,8 +44,9 @@ const StorefrontDetailResources = ({ organization, canEdit }) => {
     }
   })
 
+  const router = useRouter()
   const { user } = useUser()
-  const { locale } = useRouter()
+  const { locale } = router
 
   const { showToast } = useContext(ToastContext)
 
@@ -89,6 +90,10 @@ const StorefrontDetailResources = ({ organization, canEdit }) => {
   const onCancel = () => {
     setResources(organization.resources)
     setIsDirty(false)
+  }
+
+  const createResource = () => {
+    router.push(`/storefronts/${organization.slug}/resources/create`)
   }
 
   const displayModeBody = resources?.length > 0
@@ -154,6 +159,7 @@ const StorefrontDetailResources = ({ organization, canEdit }) => {
       isMutating={loading}
       displayModeBody={displayModeBody}
       editModeBody={editModeBody}
+      createAction={createResource}
     />
   )
 }

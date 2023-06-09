@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
-import ClientOnly from '../../../../lib/ClientOnly'
-import ProjectForm from '../../../../components/projects/ProjectForm'
-import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
-import { ORGANIZATION_QUERY } from '../../../../queries/organization'
+import Header from '../../../../components/Header'
+import ResourceForm from '../../../../components/resources/ResourceForm'
+import ClientOnly from '../../../../lib/ClientOnly'
 import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import NotFound from '../../../../components/shared/NotFound'
+import { ORGANIZATION_QUERY } from '../../../../queries/organization'
 
-const CreateProject = () => {
+const CreateResource = () => {
   const { locale, query } = useRouter()
   const { slug } = query
 
@@ -30,11 +30,11 @@ const CreateProject = () => {
     <>
       <Header />
       <ClientOnly>
-        <ProjectForm organization={data?.organization} />
+        <ResourceForm organization={data?.organization} />
       </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default CreateProject
+export default CreateResource

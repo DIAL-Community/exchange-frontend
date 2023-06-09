@@ -12,21 +12,20 @@ import ProjectCard from '../projects/ProjectCard'
 import { PROJECT_SEARCH_QUERY } from '../../queries/project'
 import { useUser } from '../../lib/hooks'
 
-const OrganizationDetailProjects = ({ organization, canEdit }) => {
+const OrganizationDetailProjects = ({ organization, canEdit, createAction }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
 
-  const [projects, setProjects] = useState(organization.projects)
-
   const [isDirty, setIsDirty] = useState(false)
+  const [projects, setProjects] = useState(organization.projects)
 
   const [updateOrganizationProjects, { data, loading }] = useMutation(UPDATE_ORGANIZATION_PROJECTS)
 
+  const router = useRouter()
   const { user } = useUser()
-
-  const { locale } = useRouter()
+  const { locale } = router
 
   const { showToast } = useContext(ToastContext)
 
@@ -136,6 +135,7 @@ const OrganizationDetailProjects = ({ organization, canEdit }) => {
         isMutating={loading}
         displayModeBody={displayModeBody}
         editModeBody={editModeBody}
+        createAction={createAction}
       />
     )
   )

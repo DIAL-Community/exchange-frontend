@@ -16,7 +16,7 @@ import FileUploader from '../shared/FileUploader'
 import UrlInput from '../shared/UrlInput'
 import Checkbox from '../shared/Checkbox'
 
-const ResourceForm = React.memo(({ resource }) => {
+const ResourceForm = React.memo(({ resource, organization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -89,8 +89,12 @@ const ResourceForm = React.memo(({ resource }) => {
       map[resource.slug] = resource.name
     }
 
+    if (organization) {
+      map[organization.slug] = organization.name
+    }
+
     return map
-  }, [resource, format])
+  }, [resource, organization, format])
 
   const doUpsert = async (data) => {
     if (canEdit) {
@@ -123,7 +127,11 @@ const ResourceForm = React.memo(({ resource }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/resources/${resource?.slug ?? ''}`)
+    if (!resource && organization) {
+      router.push(`/storefronts/${organization.slug}`)
+    } else {
+      router.push(`/resources/${resource?.slug ?? ''}`)
+    }
   }
 
   return (

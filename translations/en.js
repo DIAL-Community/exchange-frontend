@@ -1698,5 +1698,8 @@ export const en = {
   'specialty.header': 'Specialties',
 
   'storefront.no-specialty': "Organization storefront's doesn't have specialty information.",
-  'storefront.no-resource': "Organization storefront's doesn't have resource information."
+  'storefront.no-resource': "Organization storefront's doesn't have resource information.",
+
+  'organization.heroImage': 'Hero image file',
+  'organization.hasStorefront': 'Organization has a storefront'
 }

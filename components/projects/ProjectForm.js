@@ -17,7 +17,7 @@ import { ORGANIZATION_SEARCH_QUERY } from '../../queries/organization'
 import { Loading, Unauthorized } from '../shared/FetchStatus'
 import { useUser, useProductOwnerUser, useOrganizationOwnerUser } from '../../lib/hooks'
 
-const ProjectForm = React.memo(({ project }) => {
+const ProjectForm = React.memo(({ project, organization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -135,8 +135,12 @@ const ProjectForm = React.memo(({ project }) => {
       map[project.slug] = project.name
     }
 
+    if (organization) {
+      map[organization.slug] = organization.name
+    }
+
     return map
-  }, [project, format])
+  }, [project, organization, format])
 
   const doUpsert = async (data) => {
     if (user) {
@@ -170,7 +174,11 @@ const ProjectForm = React.memo(({ project }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/projects/${project?.slug ?? ''}`)
+    if (!project && organization) {
+      router.push(`/storefronts/${organization.slug}`)
+    } else {
+      router.push(`/projects/${project?.slug ?? ''}`)
+    }
   }
 
   return (
