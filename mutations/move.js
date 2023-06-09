@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const CREATE_RESOURCE = gql`
+export const CREATE_MOVE_RESOURCE = gql`
   mutation (
     $playSlug: String!,
     $moveSlug: String!,
@@ -9,7 +9,7 @@ export const CREATE_RESOURCE = gql`
     $description: String!,
     $index: Int!
   ) {
-    createResource(
+    createMoveResource(
       playSlug: $playSlug,
       moveSlug: $moveSlug,
       url: $url,

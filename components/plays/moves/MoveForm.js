@@ -8,7 +8,7 @@ import { HtmlEditor } from '../../shared/HtmlEditor'
 import Breadcrumb from '../../shared/breadcrumb'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../../lib/ToastContext'
 import { useUser } from '../../../lib/hooks'
-import { AUTOSAVE_MOVE, CREATE_MOVE, CREATE_RESOURCE } from '../../../mutations/move'
+import { AUTOSAVE_MOVE, CREATE_MOVE, CREATE_MOVE_RESOURCE } from '../../../mutations/move'
 
 const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResource, removeResource, setEditing }) => {
   const [mutating, setMutating] = useState(false)
@@ -20,9 +20,9 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)
 
-  const [createResource, { reset }] = useMutation(CREATE_RESOURCE, {
+  const [createMoveResource, { reset }] = useMutation(CREATE_MOVE_RESOURCE, {
     onCompleted: (data) => {
-      const { createResource: response } = data
+      const { createMoveResource: response } = data
       if (response.errors.length === 0 && response.move) {
         setEditing(false)
         setMutating(false)
@@ -62,7 +62,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
 
       updateResource(index, { name, description: resourceDescription, url })
       if (moveSlug) {
-        createResource({
+        createMoveResource({
           variables: {
             playSlug,
             moveSlug,
