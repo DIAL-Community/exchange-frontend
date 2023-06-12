@@ -8,6 +8,7 @@ export const HELP_MENU = 'menu-help'
 export const LANGUAGE_MENU = 'menu-language'
 export const RESOURCE_MENU = 'menu-resource'
 export const USER_MENU = 'menu-user'
+export const MARKETPLACE_MENU = 'menu-marketplace'
 
 export const NONE = ''
 
