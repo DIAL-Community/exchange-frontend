@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import classNames from 'classnames'
 import { signIn, signOut } from 'next-auth/react'
 import { useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
