@@ -99,7 +99,7 @@ const StorefrontForm = React.memo(({ organization }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const { name, imageFile, website, description, aliases, hasStorefront } = data
+      const { name, imageFile, heroFile, website, description, aliases, hasStorefront } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
@@ -109,8 +109,13 @@ const StorefrontForm = React.memo(({ organization }) => {
         description,
         hasStorefront
       }
+
       if (imageFile) {
         variables.imageFile = imageFile[0]
+      }
+
+      if (heroFile) {
+        variables.heroFile = heroFile[0]
       }
 
       updateStorefront({
@@ -224,7 +229,7 @@ const StorefrontForm = React.memo(({ organization }) => {
                     <label className='text-dial-sapphire'>
                       {format('organization.heroImage')}
                     </label>
-                    <FileUploader {...register('heroImage')} />
+                    <FileUploader {...register('heroFile')} />
                   </div>
                   <label
                     className='flex gap-x-2 mb-2 items-center self-start text-dial-sapphire'

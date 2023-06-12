@@ -49,8 +49,9 @@ const ORGANIZATIONS_QUERY = gql`
         name
         slug
         imageFile
-        whenEndorsed
+        heroFile
         website
+        specialties
         sectors {
           id
           slug

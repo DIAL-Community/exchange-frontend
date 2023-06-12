@@ -24,6 +24,7 @@ export const ORGANIZATION_QUERY = gql`
       endorserLevel
       specialties
       hasStorefront
+      heroFile
       organizationDescription {
         id
         description

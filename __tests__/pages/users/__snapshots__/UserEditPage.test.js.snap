@@ -266,7 +266,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                 href="menu-marketplace"
                 id="menu-marketplace"
               >
-                header.marketplace
+                Marketplace
                 <svg
                   aria-hidden="true"
                   class="ml-1 inline text-2xl"
@@ -1519,7 +1519,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                 href="menu-marketplace"
                 id="menu-marketplace"
               >
-                header.marketplace
+                Marketplace
                 <svg
                   aria-hidden="true"
                   class="ml-1 inline text-2xl"

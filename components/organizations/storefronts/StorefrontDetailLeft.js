@@ -66,7 +66,7 @@ const StorefrontDetailLeft = ({ organization, commentsSectionRef }) => {
           <div className='text-2xl font-semibold w-4/5 md:w-auto lg:w-64 2xl:w-80 text-dial-purple overflow-hidden'>
             {organization.name}
           </div>
-          <div className='m-auto w-3/5 h-3/5 relative' >
+          <div className='mx-auto mt-4 w-3/5 h-3/5 relative'>
             <Image
               fill
               className='w-40 object-contain'

@@ -23,10 +23,10 @@ const MarketplaceMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       {currentOpenMenu === MARKETPLACE_MENU &&
         <div className={DEFAULT_DROPDOWN_PANEL_STYLES} ref={marketplacePopover} role='menu'>
           <Link href='/opportunities' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('header.oppportunities')}
+            {format('opportunity.header')}
           </Link>
           <Link href='/storefronts' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-            {format('header.storefronts')}
+            {format('storefront.header')}
           </Link>
         </div>
       }

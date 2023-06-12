@@ -1,4 +1,4 @@
-import { FormattedDate, useIntl } from 'react-intl'
+import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useCallback, useMemo } from 'react'
 import dynamic from 'next/dynamic'
@@ -72,7 +72,16 @@ const StorefrontDetailRight = ({ organization, commentsSectionRef }) => {
       </div>
       <div className='flex flex-col'>
         <div className='relative mb-32'>
-          <div className='w-full h-44 bg-gradient-to-r from-dial-sapphire to-dial-lavender' />
+          {!organization.heroFile &&
+            <div className='w-full h-64 bg-gradient-to-r from-dial-sapphire to-dial-lavender' />
+          }
+          {organization.heroFile &&
+            <img
+              className='object-cover object-center w-full h-64'
+              alt={format('image.alt.logoFor', { name: organization.name })}
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + organization.heroFile}
+            />
+          }
           <div className={classNames(
             'w-full absolute bottom-0 left-0 z-10',
             'transform translate-y-1/2 lg:w-auto lg:translate-x-8',
@@ -103,33 +112,6 @@ const StorefrontDetailRight = ({ organization, commentsSectionRef }) => {
             <div className='my-auto'>{organization.website} ⧉</div>
           </a>
         </div>
-        {
-          organization.whenEndorsed &&
-            <>
-              <div className='text-sm text-dial-purple-light pt-6'>
-                {format('organization.detail.whenEndorsed').toUpperCase()}
-              </div>
-              <div className='text-base text-dial-teal pb-2'>
-                <FormattedDate
-                  value={new Date(organization.whenEndorsed)}
-                  year='numeric'
-                  month='long'
-                  day='2-digit'
-                />
-              </div>
-            </>
-        }
-        {
-          organization.endorserLevel && organization.endorserLevel !== 'none' &&
-            <>
-              <div className='text-sm text-dial-purple-light pt-6'>
-                {format('organization.detail.endorserLevel').toUpperCase()}
-              </div>
-              <div className='text-base text-dial-sunshine pb-2' data-testid='organization-endorser-level'>
-                {organization.endorserLevel.toUpperCase()}
-              </div>
-            </>
-        }
         <div className={`mt-8 ${sectionHeaderStyle}`}>
           {format('product.description')}
         </div>
