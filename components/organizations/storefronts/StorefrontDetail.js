@@ -23,7 +23,7 @@ const StorefrontDetail = ({ slug, locale }) => {
     return <Loading />
   } else if (error) {
     return <Error />
-  } else if (!data?.organization) {
+  } else if (!data?.organization || !data.organization.hasStorefront) {
     return <NotFound />
   }
 

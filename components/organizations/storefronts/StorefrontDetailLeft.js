@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
@@ -76,6 +77,13 @@ const StorefrontDetailLeft = ({ organization, commentsSectionRef }) => {
           </div>
         </div>
       </div>
+      <Link href={`/organizations/${organization.slug}`}>
+        <div className='bg-dial-sapphire text-white shadow-md rounded lg:mr-6 mt-2'>
+          <div className='py-3 px-4 text-center '>
+            View Organization Record
+          </div>
+        </div>
+      </Link>
     </>
   )
 }

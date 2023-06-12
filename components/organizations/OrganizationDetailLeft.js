@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { FaSpinner } from 'react-icons/fa'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { useLazyQuery, useMutation } from '@apollo/client'
+import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
@@ -236,6 +237,15 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
           }
         </div>
       </div>
+      {organization.hasStorefront &&
+        <Link href={`/storefronts/${organization.slug}`}>
+          <div className='bg-dial-gray-dark text-dial-sunshine shadow-md rounded lg:mr-6 mt-2'>
+            <div className='py-3 px-4 text-center '>
+              View Storefront
+            </div>
+          </div>
+        </Link>
+      }
     </>
   )
 }

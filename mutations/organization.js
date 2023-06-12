@@ -272,3 +272,52 @@ export const UPDATE_ORGANIZATION_RESOURCES = gql`
     }
   }
 `
+
+export const UPDATE_ORGANIZATION_CERTIFICATIONS = gql`
+  mutation UpdateOrganizationCertifications(
+    $slug: String!,
+    $productSlugs: [String!]!
+  ) {
+    updateOrganizationCertifications(
+      slug: $slug,
+      productSlugs: $productSlugs
+    ) {
+      organization {
+        id,
+        certifications
+        productCertifications {
+          id
+          name
+          slug
+          imageFile
+        }
+      },
+      errors
+    }
+  }
+`
+
+export const UPDATE_ORGANIZATION_BUILDING_BLOCKS = gql`
+  mutation UpdateOrganizationBuildingBlocks(
+    $slug: String!,
+    $buildingBlockSlugs: [String!]!
+  ) {
+    updateOrganizationBuildingBlocks(
+      slug: $slug,
+      buildingBlockSlugs: $buildingBlockSlugs
+    ) {
+      organization {
+        id,
+        buildingBlockCertifications {
+          id
+          name
+          slug
+          imageFile
+          category
+          maturity
+        }
+      },
+      errors
+    }
+  }
+`

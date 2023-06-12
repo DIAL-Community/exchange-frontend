@@ -14,7 +14,7 @@ const containerElementStyle = classNames(
   'border-3 border-transparent hover:border-dial-sunshine'
 )
 
-const StorefrontCard = ({ organization, listType, newTab = false }) => {
+const StorefrontCard = ({ organization, displayType, newTab = false }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -52,19 +52,6 @@ const StorefrontCard = ({ organization, listType, newTab = false }) => {
     <div data-testid='org-card' className={`group ${containerElementStyle}`}>
       <div className='bg-white shadow-lg rounded-lg h-full border'>
         <div className='flex flex-col'>
-          <div className='relative'>
-            <div className='absolute top-2 left-2'>
-              <div className='flex gap-2 text-xs font-semibold'>
-                {organization?.specialties?.length > 0 &&
-                  <div className='text-dial-gray-dark bg-white px-2 py-1 rounded'>
-                    {`${organization.specialties.length}
-                      ${organization.specialties.length > 1 ? format('specialty.header') : format('specialty.label')}
-                    `}
-                  </div>
-                }
-              </div>
-            </div>
-          </div>
           <Link href={`/${collectionPath}/${organization.slug}`}>
             <div className='flex flex-col'>
               <div className='flex text-dial-sapphire bg-dial-solitude h-28 rounded-t-lg'>
@@ -82,11 +69,33 @@ const StorefrontCard = ({ organization, listType, newTab = false }) => {
               </div>
             </div>
           </Link>
+          <hr />
+          <div className='text-xs text-dial-stratos font-semibold uppercase'>
+            <div className='px-4 py-2 flex gap-2'>
+              <span className='badge-avatar w-7 h-7'>
+                {organization.specialties.length > 0 ? organization.specialties.length : '-' }
+              </span>
+              <span className='my-auto'>
+                {organization.specialties.length > 1 ? format('specialty.header') : format('specialty.label')}
+              </span>
+            </div>
+          </div>
+          <hr />
+          <div className='text-xs text-dial-stratos font-semibold uppercase'>
+            <div className='px-4 py-2 flex gap-2'>
+              <span className='badge-avatar w-7 h-7'>
+                {organization.certifications.length > 0 ? organization.certifications.length : '-' }
+              </span>
+              <span className='my-auto'>
+                {organization.certifications.length > 1 ? format('certification.header') : format('certification.label')}
+              </span>
+            </div>
+          </div>
           {organization.website &&
-            <div className='bg-dial-biscotti hover:bg-dial-sunshine text-white mt-auto text-sm rounded-b-md'>
+            <div className='bg-dial-biscotti hover:bg-dial-sunshine text-white mt-auto rounded-b-md'>
               <a
                 href={prependUrlWithProtocol(organization.website)}
-                className='flex flex-row justify-center'
+                className='flex flex-row justify-center text-sm'
                 target='_blank' rel='noreferrer'
               >
                 <div className='py-3 flex gap-2'>
@@ -101,7 +110,7 @@ const StorefrontCard = ({ organization, listType, newTab = false }) => {
     </div>
 
   return (
-    listType === 'list'
+    displayType === 'list'
       ? newTab
         ? <Link href={`/${collectionPath}/${organization.slug}`}>
           {listDisplayType()}

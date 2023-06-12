@@ -1,9 +1,7 @@
 import { useCallback, useContext, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { gql, useQuery } from '@apollo/client'
-import { FixedSizeGrid, FixedSizeList } from 'react-window'
-import AutoSizer from 'react-virtualized-auto-sizer'
-import InfiniteLoader from 'react-window-infinite-loader'
+import InfiniteScroll from 'react-infinite-scroll-component'
 import { FilterContext } from '../../context/FilterContext'
 import { OrganizationFilterContext } from '../../context/OrganizationFilterContext'
 import { Loading, Error } from '../../shared/FetchStatus'
@@ -12,15 +10,6 @@ import StorefrontCard from './StorefrontCard'
 
 /* Default number of elements coming from graphql query. */
 const DEFAULT_PAGE_SIZE = 20
-/* Minimum width per product card. This will decide how many column we have in the page. */
-/* The value is based on the minimum required to render Bahmni card. */
-const MIN_ORGANIZATION_CARD_WIDTH = 280
-/* Default height of the product card. */
-const MIN_ORGANIZATION_CARD_HEIGHT = 310
-/* Default spacing between product card in a row. This is 0.5 rem. */
-const ORGANIZATION_CARD_GUTTER_SIZE = 16
-/* Height of the product's single list element when viewing the list view. */
-const MIN_ORGANIZATION_LIST_SIZE = 80
 
 const ORGANIZATIONS_QUERY = gql`
   query SearchStorefronts(
@@ -52,6 +41,7 @@ const ORGANIZATIONS_QUERY = gql`
         heroFile
         website
         specialties
+        certifications
         sectors {
           id
           slug
@@ -111,19 +101,22 @@ const StorefrontListQuery = () => {
     return <NotFound />
   }
 
-  const { searchStorefronts: { nodes, pageInfo, totalCount } } = data
+  const { searchStorefronts: { nodes, pageInfo } } = data
   if (nodes.length <= 0) {
     return (
-      <div className='px-3 py-4'>
+      <div className='py-4'>
         {format('noResults.entity', { entity: format('storefront.label').toLowerCase() })}
       </div>
     )
   }
 
-  const isProductLoaded = (index) => !pageInfo.hasNextPage || index < nodes.length
+  const gridStyles = `grid ${displayType === 'card'
+    ? 'grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'
+    : 'grid-cols-1'
+  }`
 
   return (
-    <>
+    <div style={{ minHeight: '50vh' }}>
       {
         displayType === 'list' &&
         <div className='flex flex-row my-3 px-4 gap-x-4'>
@@ -132,120 +125,20 @@ const StorefrontListQuery = () => {
           </div>
         </div>
       }
-      <div className={`${displayType === 'card' && '-mr-4'}`} style={{ height: 'calc(100vh + 600px)' }}>
-        <AutoSizer>
-          {({ height, width }) => (
-            <InfiniteLoader
-              isItemLoaded={isProductLoaded}
-              itemCount={totalCount}
-              loadMoreItems={handleLoadMore}
-            >
-              {({ onItemsRendered, ref }) => {
-                let columnCount = Math.floor(width / MIN_ORGANIZATION_CARD_WIDTH)
-                if (width < MIN_ORGANIZATION_CARD_WIDTH) {
-                  columnCount = 1
-                }
-
-                return (
-                  <>
-                    {
-                      displayType === 'card' &&
-                        <FixedSizeGrid
-                          className='no-scrollbars'
-                          height={height}
-                          width={(width)}
-                          rowHeight={MIN_ORGANIZATION_CARD_HEIGHT}
-                          columnWidth={width / columnCount}
-                          rowCount={Math.floor(totalCount / columnCount) + 1}
-                          columnCount={columnCount}
-                          onItemsRendered={({
-                            overscanColumnStartIndex,
-                            overscanColumnStopIndex,
-                            overscanRowStartIndex,
-                            overscanRowStopIndex,
-                            visibleColumnStartIndex,
-                            visibleColumnStopIndex,
-                            visibleRowStartIndex,
-                            visibleRowStopIndex
-                          }) => {
-                            onItemsRendered({
-                              overscanStartIndex: overscanColumnStartIndex + overscanRowStartIndex * columnCount,
-                              overscanStopIndex: overscanColumnStopIndex + overscanRowStopIndex * columnCount,
-                              visibleStartIndex: visibleColumnStartIndex + visibleRowStartIndex * columnCount,
-                              visibleStopIndex: visibleColumnStopIndex + visibleRowStopIndex * columnCount
-                            })
-                          }}
-                          ref={ref}
-                        >
-                          {({ columnIndex, rowIndex, style }) => {
-                            const currentIndex = rowIndex * columnCount + columnIndex
-                            const organization = nodes[currentIndex]
-
-                            return (
-                              <div
-                                style={{
-                                  ...style,
-                                  width: style.width - ORGANIZATION_CARD_GUTTER_SIZE,
-                                  height: style.height - ORGANIZATION_CARD_GUTTER_SIZE
-                                }}
-                              >
-                                {
-                                  currentIndex < nodes.length && organization &&
-                                    <StorefrontCard listType={displayType} {...{ organization }} />
-                                }
-                                {currentIndex < nodes.length && !organization && <Loading />}
-                              </div>
-                            )
-                          }}
-                        </FixedSizeGrid>
-                    }
-                    {
-                      displayType === 'list' &&
-                        <FixedSizeList
-                          className='no-scrollbars'
-                          height={height}
-                          width={(width)}
-                          itemSize={(MIN_ORGANIZATION_LIST_SIZE)}
-                          columnWidth={width / columnCount}
-                          itemCount={totalCount}
-                          onItemsRendered={({
-                            overscanStartIndex,
-                            overscanStopIndex,
-                            visibleStartIndex,
-                            visibleStopIndex
-                          }) => {
-                            onItemsRendered({
-                              overscanStartIndex,
-                              overscanStopIndex,
-                              visibleStartIndex,
-                              visibleStopIndex
-                            })
-                          }}
-                          ref={ref}
-                        >
-                          {({ index, style }) => {
-                            const organization = nodes[index]
-
-                            return (
-                              <div style={style}>
-                                {
-                                  index < nodes.length && organization &&
-                                    <StorefrontCard listType={displayType} {...{ organization }} />
-                                }
-                                {index < nodes.length && !organization && <Loading />}
-                              </div>
-                            )
-                          }}
-                        </FixedSizeList>
-                    }
-                  </>
-                )
-              }}
-            </InfiniteLoader>
+      <InfiniteScroll
+        className='relative infinite-scroll-default-height'
+        dataLength={nodes.length}
+        next={handleLoadMore}
+        hasMore={pageInfo.hasNextPage}
+        loader={<div className='relative text-center mt-3'>{format('general.loadingData')}</div>}
+      >
+        <div className={gridStyles}>
+          {nodes.map((organization, index) =>
+            <StorefrontCard key={index} displayType={displayType} {...{ organization }} />
           )}
-        </AutoSizer>
-      </div>
-    </>
+        </div>
+      </InfiniteScroll>
+    </div>
   )
 }
 

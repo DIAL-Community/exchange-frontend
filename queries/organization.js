@@ -41,6 +41,20 @@ export const ORGANIZATION_QUERY = gql`
         latitude
         longitude
       }
+      buildingBlockCertifications {
+        id
+        name
+        slug
+        imageFile
+        category
+        maturity
+      }
+      productCertifications {
+        id
+        name
+        slug
+        imageFile
+      }
       sectors {
         id
         name
