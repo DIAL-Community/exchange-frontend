@@ -54,7 +54,7 @@ const StorefrontCard = ({ organization, displayType, newTab = false }) => {
         <div className='flex flex-col'>
           <Link href={`/${collectionPath}/${organization.slug}`}>
             <div className='flex flex-col'>
-              <div className='flex text-dial-sapphire bg-dial-solitude h-28 rounded-t-lg'>
+              <div className='flex text-dial-sapphire bg-dial-solitude h-20 rounded-t-lg'>
                 <div className='px-4 text-sm text-center font-semibold m-auto'>
                   {organization.name}
                 </div>
