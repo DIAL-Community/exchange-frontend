@@ -86,7 +86,13 @@ const ProjectForm = React.memo(({ project, organization }) => {
           'top-center',
           1000,
           null,
-          () => router.push(`/${router.locale}/projects/${response?.project?.slug}`)
+          () => {
+            if (organization) {
+              router.push(`/storefronts/${organization.slug}`)
+            } else {
+              router.push(`/${router.locale}/projects/${response?.project?.slug}`)
+            }
+          }
         )
       } else {
         setMutating(false)
@@ -117,7 +123,8 @@ const ProjectForm = React.memo(({ project, organization }) => {
       startDate: project?.startDate ?? null,
       endDate: project?.endDate ?? null,
       projectUrl: project?.projectWebsite,
-      description: project?.projectDescription?.description
+      description: project?.projectDescription?.description,
+      organization: organization ? { value: parseInt(organization.id), label: organization.name } : null
     }
   })
 

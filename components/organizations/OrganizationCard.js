@@ -68,7 +68,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
 
   const cardDisplayType = () =>
     <div data-testid='org-card' className={`group ${containerElementStyle}`}>
-      <div className='bg-white shadow-lg rounded-lg h-full border'>
+      <div className='bg-white shadow-lg rounded-lg h-full border-t'>
         <div className='flex flex-col'>
           <div className='relative'>
             <div className='absolute top-2 left-2'>

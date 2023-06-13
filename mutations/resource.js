@@ -22,6 +22,7 @@ export const CREATE_RESOURCE = gql`
     $link: String
     $showInExchange: Boolean!
     $showInWizard: Boolean!
+    $organizationSlug: String
   ) {
     createResource(
       name: $name
@@ -31,6 +32,7 @@ export const CREATE_RESOURCE = gql`
       description: $description
       showInExchange: $showInExchange
       showInWizard: $showInWizard
+      organizationSlug: $organizationSlug
     ) {
       resource {
         id

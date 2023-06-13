@@ -35,14 +35,23 @@ const StorefrontCard = ({ organization, displayType, newTab = false }) => {
               {organization.name}
             </div>
           </div>
-          <div className='ml-auto text-sm lg:text-base my-auto text-dial-purple line-clamp-1'>
-            {organization?.specialties?.length > 0 &&
-              <div className='text-dial-gray-dark bg-white px-2 py-1 rounded'>
-                {`${organization.specialties.length}
-                  ${organization.specialties.length > 1 ? format('specialty.header') : format('specialty.label')}
-                `}
-              </div>
-            }
+          <div className='ml-auto my-auto text-sm text-dial-purple flex gap-3'>
+            <div className='flex gap-1'>
+              <span className='badge-avatar w-7 h-7'>
+                {organization.specialties.length > 0 ? organization.specialties.length : '-' }
+              </span>
+              <span className='my-auto'>
+                {organization.specialties.length > 1 ? format('specialty.header') : format('specialty.label')}
+              </span>
+            </div>
+            <div className='flex gap-2'>
+              <span className='badge-avatar w-7 h-7'>
+                {organization.certifications.length > 0 ? organization.certifications.length : '-' }
+              </span>
+              <span className='my-auto'>
+                {organization.certifications.length > 1 ? format('certification.header') : format('certification.label')}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -50,7 +59,7 @@ const StorefrontCard = ({ organization, displayType, newTab = false }) => {
 
   const cardDisplayType = () =>
     <div data-testid='org-card' className={`group ${containerElementStyle}`}>
-      <div className='bg-white shadow-lg rounded-lg h-full border'>
+      <div className='bg-white shadow-lg rounded-lg h-full border-t'>
         <div className='flex flex-col'>
           <Link href={`/${collectionPath}/${organization.slug}`}>
             <div className='flex flex-col'>
@@ -111,7 +120,7 @@ const StorefrontCard = ({ organization, displayType, newTab = false }) => {
 
   return (
     displayType === 'list'
-      ? newTab
+      ? !newTab
         ? <Link href={`/${collectionPath}/${organization.slug}`}>
           {listDisplayType()}
         </Link>

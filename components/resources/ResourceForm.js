@@ -43,7 +43,13 @@ const ResourceForm = React.memo(({ resource, organization }) => {
           'top-center',
           1000,
           null,
-          () => router.push(`/${router.locale}/resources/${response?.resource?.slug}`)
+          () => {
+            if (organization) {
+              router.push(`/${router.locale}/storefronts/${organization.slug}`)
+            } else {
+              router.push(`/${router.locale}/resources/${response?.resource?.slug}`)
+            }
+          }
         )
         setMutating(false)
       } else {
@@ -111,6 +117,10 @@ const ResourceForm = React.memo(({ resource, organization }) => {
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
+      }
+
+      if (organization) {
+        variables.organizationSlug = organization.slug
       }
 
       updateResource({
@@ -242,6 +252,11 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                     {reverting && <FaSpinner className='spinner ml-3' />}
                   </button>
                 </div>
+                { organization &&
+                  <div className='text-sm italic text-emerald-500'>
+                    {format('resource.fromStorefront')}
+                  </div>
+                }
               </div>
             </form>
           </div>

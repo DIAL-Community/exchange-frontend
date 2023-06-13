@@ -77,6 +77,7 @@ export const ORGANIZATION_QUERY = gql`
         slug
         origin {
           slug
+          name
         }
       }
       contacts {

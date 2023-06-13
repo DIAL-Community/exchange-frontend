@@ -1688,6 +1688,7 @@ export const en = {
   'resource.showInWizard': 'Show resource in the recommendation wizard',
 
   'resource.delete.confirm.message': 'Are you sure you want to delete this resource?',
+  'resource.fromStorefront': 'Resource created from storefront will  automatically assigned to the storefront.',
 
   'resource.submit.success': 'Resource submitted.',
   'resource.submit.failure': 'Resource update failed.',
