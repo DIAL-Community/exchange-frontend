@@ -76,7 +76,7 @@ const OrganizationList = (props) => {
             ))
             : (
               <div className='flex justify-self-center text-dial-gray-dark'>{
-                format('noResults.entity', { entity: format('organizations.label') })
+                format('noResults.entity', { entity: format('organization.label') })
               }
               </div>
             )
