@@ -17,6 +17,8 @@ const ORGANIZATIONS_QUERY = gql`
     $after: String
     $sectors: [String!]
     $countries: [String!]
+    $buildingBlocks: [String!]
+    $specialties: [String!]
     $search: String!
   ) {
     searchStorefronts(
@@ -24,6 +26,8 @@ const ORGANIZATIONS_QUERY = gql`
       after: $after
       sectors: $sectors
       countries: $countries
+      buildingBlocks: $buildingBlocks
+      specialties: $specialties
       search: $search
     ) {
       totalCount
@@ -54,7 +58,7 @@ const ORGANIZATIONS_QUERY = gql`
 
 const StorefrontListQuery = () => {
   const { displayType, setResultCounts } = useContext(FilterContext)
-  const { countries, sectors, search } = useContext(OrganizationFilterContext)
+  const { countries, sectors, specialties, search } = useContext(OrganizationFilterContext)
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
@@ -64,6 +68,7 @@ const StorefrontListQuery = () => {
       first: DEFAULT_PAGE_SIZE,
       countries: countries.map(country => country.value),
       sectors: sectors.map(sector => sector.value),
+      specialties: specialties.map(sector => sector.value),
       search
     },
     fetchPolicy: 'network-only',
@@ -77,6 +82,7 @@ const StorefrontListQuery = () => {
         first: DEFAULT_PAGE_SIZE,
         countries: countries.map(country => country.value),
         sectors: sectors.map(sector => sector.value),
+        specialties: specialties.map(sector => sector.value),
         search
       }
     })

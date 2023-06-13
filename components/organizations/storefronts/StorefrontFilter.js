@@ -4,13 +4,14 @@ import { OrganizationFilterContext, OrganizationFilterDispatchContext }
   from '../../context/OrganizationFilterContext'
 import { CountryAutocomplete } from '../../filter/element/Country'
 import { SectorAutocomplete } from '../../filter/element/Sector'
+import { SpecialtySelect } from '../../filter/element/Specialties'
 
 const StorefrontFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sectors, countries } = useContext(OrganizationFilterContext)
-  const { setSectors, setCountries } = useContext(OrganizationFilterDispatchContext)
+  const { specialties, sectors, countries } = useContext(OrganizationFilterContext)
+  const { setSpecialties, setSectors, setCountries } = useContext(OrganizationFilterDispatchContext)
 
   return (
     <div className='pt-6 pb-10 bg-dial-solitude rounded-lg text-dial-stratos'>
@@ -22,6 +23,7 @@ const StorefrontFilter = () => {
         <div className='flex flex-col gap-3 px-6'>
           <CountryAutocomplete {...{ countries, setCountries }} />
           <SectorAutocomplete {...{ sectors, setSectors }} />
+          <SpecialtySelect {...{ specialties, setSpecialties }} />
         </div>
       </div>
     </div>

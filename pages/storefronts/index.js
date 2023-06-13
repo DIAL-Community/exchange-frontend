@@ -7,12 +7,12 @@ import QueryNotification from '../../components/shared/QueryNotification'
 import GradientBackground from '../../components/shared/GradientBackground'
 import PageContent from '../../components/main/PageContent'
 import StorefrontFilter from '../../components/organizations/storefronts/StorefrontFilter'
-import OrganizationActiveFilter from '../../components/organizations/OrganizationActiveFilter'
 import SearchFilter from '../../components/shared/SearchFilter'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext }
   from '../../components/context/OrganizationFilterContext'
 import ClientOnly from '../../lib/ClientOnly'
 import StorefrontListQuery from '../../components/organizations/storefronts/StorefrontList'
+import StorefrontActiveFilter from '../../components/organizations/storefronts/StorefrontActiveFilter'
 
 const Storefronts = () => {
   const { formatMessage } = useIntl()
@@ -48,7 +48,7 @@ const Storefronts = () => {
               exportJson={false}
             />
           }
-          activeFilter={<OrganizationActiveFilter />}
+          activeFilter={<StorefrontActiveFilter />}
         />
       </ClientOnly>
       <Footer />

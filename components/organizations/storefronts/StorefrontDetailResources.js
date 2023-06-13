@@ -83,7 +83,8 @@ const StorefrontDetailResources = ({ organization, canEdit }) => {
     data.resources?.map((resource) => ({
       label: resource.name,
       value: resource.id,
-      slug: resource.slug
+      slug: resource.slug,
+      name: resource.name
     }))
   )
 

@@ -9,6 +9,7 @@ import Select from '../../shared/Select'
 import Pill from '../../shared/Pill'
 import EditableSection from '../../shared/EditableSection'
 import { UPDATE_ORGANIZATION_SPECIALTIES } from '../../../mutations/organization'
+import { getSpecialtyOptions } from '../../../lib/utilities'
 
 const StorefrontDetailSpecialties = ({ organization, canEdit }) => {
   const { formatMessage } = useIntl()
@@ -16,14 +17,6 @@ const StorefrontDetailSpecialties = ({ organization, canEdit }) => {
 
   const [isDirty, setIsDirty] = useState(false)
   const [specialties, setSpecialties] = useState(organization.specialties ?? [])
-
-  const specialtyOptions = [
-    { value: 'UX & Design', label: 'UX & Design' },
-    { value: 'Big Data', label: 'Big Data' },
-    { value: 'AI / Machine Learning', label: 'AI / Machine Learning' },
-    { value: 'SaaS / Hosting Services', label: 'SaaS / Hosting Services' },
-    { value: 'Mobile Apps', label: 'Mobile Apps' }
-  ]
 
   const [updateSpecialties, { reset, loading }] = useMutation(UPDATE_ORGANIZATION_SPECIALTIES, {
     onCompleted: (data) => {
@@ -114,7 +107,7 @@ const StorefrontDetailSpecialties = ({ organization, canEdit }) => {
           defaultOptions
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
-          options={specialtyOptions}
+          options={getSpecialtyOptions()}
           noOptionsMessage={() => format('filter.searchFor', { entity: format('specialty.header') })}
           onChange={addSpecialty}
           value={null}
