@@ -109,7 +109,9 @@ export const UPDATE_ORGANIZATION_PROJECTS = gql`
           name,
           slug,
           origin {
+            id
             slug
+            name
           }
         }
       },

@@ -13,6 +13,7 @@ import { OrganizationFilterContext, OrganizationFilterDispatchContext }
 import ClientOnly from '../../lib/ClientOnly'
 import StorefrontListQuery from '../../components/organizations/storefronts/StorefrontList'
 import StorefrontActiveFilter from '../../components/organizations/storefronts/StorefrontActiveFilter'
+import { useUser } from '../../lib/hooks'
 
 const Storefronts = () => {
   const { formatMessage } = useIntl()
@@ -20,6 +21,8 @@ const Storefronts = () => {
 
   const { search } = useContext(OrganizationFilterContext)
   const { setSearch } = useContext(OrganizationFilterDispatchContext)
+
+  const { isAdminUser } = useUser()
 
   return (
     <>
@@ -46,6 +49,7 @@ const Storefronts = () => {
               hint='filter.entity.storefronts'
               exportCsv={false}
               exportJson={false}
+              createNew={isAdminUser}
             />
           }
           activeFilter={<StorefrontActiveFilter />}

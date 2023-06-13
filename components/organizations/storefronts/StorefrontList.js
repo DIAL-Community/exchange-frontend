@@ -58,7 +58,7 @@ const ORGANIZATIONS_QUERY = gql`
 
 const StorefrontListQuery = () => {
   const { displayType, setResultCounts } = useContext(FilterContext)
-  const { countries, sectors, specialties, search } = useContext(OrganizationFilterContext)
+  const { countries, sectors, specialties, buildingBlocks, search } = useContext(OrganizationFilterContext)
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
@@ -69,6 +69,7 @@ const StorefrontListQuery = () => {
       countries: countries.map(country => country.value),
       sectors: sectors.map(sector => sector.value),
       specialties: specialties.map(sector => sector.value),
+      buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
       search
     },
     fetchPolicy: 'network-only',

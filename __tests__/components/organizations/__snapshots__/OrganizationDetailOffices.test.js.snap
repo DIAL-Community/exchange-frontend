@@ -53,7 +53,7 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
       </div>
     </div>
     <div
-      class="grid grid-cols-1 lg:grid-cols-2"
+      class="grid grid-cols-1 lg:grid-cols-2 gap-2"
     >
       <div
         class="border border-dial-gray shadow-md rounded-md"
@@ -259,7 +259,7 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
       />
     </div>
     <div
-      class="grid grid-cols-1 lg:grid-cols-2"
+      class="grid grid-cols-1 lg:grid-cols-2 gap-2"
     >
       <div
         class="border border-dial-gray shadow-md rounded-md"

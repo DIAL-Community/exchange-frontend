@@ -20,8 +20,8 @@ export const CREATE_RESOURCE = gql`
     $imageFile: Upload
     $description: String
     $link: String
-    $showInExchange: Boolean!
-    $showInWizard: Boolean!
+    $showInExchange: Boolean
+    $showInWizard: Boolean
     $organizationSlug: String
   ) {
     createResource(

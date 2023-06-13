@@ -77,8 +77,7 @@ const SearchFilter = ({
       'use_cases',
       'playbooks',
       'workflows',
-      'resources',
-      'storefronts'
+      'resources'
     ]
     if (user.isEditorUser && editorEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails

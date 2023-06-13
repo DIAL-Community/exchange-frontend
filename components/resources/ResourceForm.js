@@ -10,7 +10,7 @@ import Input from '../shared/Input'
 import { ToastContext } from '../../lib/ToastContext'
 import ValidationError from '../shared/ValidationError'
 import { Loading, Unauthorized } from '../shared/FetchStatus'
-import { useUser } from '../../lib/hooks'
+import { useOrganizationOwnerUser, useUser } from '../../lib/hooks'
 import { CREATE_RESOURCE } from '../../mutations/resource'
 import FileUploader from '../shared/FileUploader'
 import UrlInput from '../shared/UrlInput'
@@ -25,8 +25,9 @@ const ResourceForm = React.memo(({ resource, organization }) => {
   const router = useRouter()
   const { locale } = router
 
-  const { user, loadingUserSession } = useUser()
-  const canEdit = user?.isAdminUser || user?.isEditorUser
+  const { isOrganizationOwner } = useOrganizationOwnerUser(organization)
+  const { user, isAdminUser, loadingUserSession } = useUser()
+  const canEdit = user?.isAdminUser || user?.isEditorUser || (organization && isOrganizationOwner)
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -200,14 +201,18 @@ const ResourceForm = React.memo(({ resource, organization }) => {
                       />
                       {errors.link && <ValidationError value={errors.link?.message} />}
                     </div>
-                    <label className='flex gap-x-2 mb-2 items-center self-start'>
-                      <Checkbox {...register('showInExchange')} />
-                      {format('resource.showInExchange')}
-                    </label>
-                    <label className='flex gap-x-2 mb-2 items-center self-start'>
-                      <Checkbox {...register('showInWizard')} />
-                      {format('resource.showInWizard')}
-                    </label>
+                    {isAdminUser &&
+                      <label className='flex gap-x-2 mb-2 items-center self-start'>
+                        <Checkbox {...register('showInExchange')} />
+                        {format('resource.showInExchange')}
+                      </label>
+                    }
+                    {isAdminUser &&
+                      <label className='flex gap-x-2 mb-2 items-center self-start'>
+                        <Checkbox {...register('showInWizard')} />
+                        {format('resource.showInWizard')}
+                      </label>
+                    }
                   </div>
                   <div className='w-full lg:w-1/2'>
                     <div className='block flex flex-col gap-y-2' data-testid='resource-description'>

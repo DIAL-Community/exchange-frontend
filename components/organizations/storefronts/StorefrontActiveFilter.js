@@ -8,6 +8,7 @@ import { SpecialtyFilters } from '../../filter/element/Specialties'
 import { QueryParamContext } from '../../context/QueryParamContext'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../../context/OrganizationFilterContext'
 import { parseQuery } from '../../shared/SharableLink'
+import { BuildingBlockFilters } from '../../filter/element/BuildingBlock'
 
 const SharableLink = dynamic(() => import('../../shared/SharableLink'), { ssr: false })
 
@@ -18,11 +19,11 @@ const StorefrontActiveFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sectors, countries, specialties } = useContext(OrganizationFilterContext)
-  const { setSectors, setCountries, setSpecialties } = useContext(OrganizationFilterDispatchContext)
+  const { sectors, countries, specialties, buildingBlocks } = useContext(OrganizationFilterContext)
+  const { setSectors, setCountries, setSpecialties, setBuildingBlocks } = useContext(OrganizationFilterDispatchContext)
 
   const filterCount = () => {
-    return countries.length + sectors.length + specialties.length
+    return countries.length + sectors.length + specialties.length + buildingBlocks.length
   }
 
   const clearFilter = (e) => {
@@ -30,6 +31,7 @@ const StorefrontActiveFilter = () => {
     setCountries([])
     setSectors([])
     setSpecialties([])
+    setBuildingBlocks([])
   }
 
   const sharableLink = () => {
@@ -38,11 +40,12 @@ const StorefrontActiveFilter = () => {
 
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
     const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
-    const specialtyFilters = specialties.map(year => `specialties=${year.value}--${year.label}`)
+    const specialtyFilters = specialties.map(s => `specialties=${s.value}--${s.label}`)
+    const buildingBlockFilters = specialties.map(b => `buildingBlocks=${b.value}--${b.label}`)
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, ...countryFilters, ...sectorFilters, ...specialtyFilters
+      activeFilter, ...countryFilters, ...sectorFilters, ...specialtyFilters, ...buildingBlockFilters
     ].filter(f => f).join('&')
 
     return `${baseUrl}/${basePath}?${filterParameters}`
@@ -54,6 +57,7 @@ const StorefrontActiveFilter = () => {
       parseQuery(query, 'countries', countries, setCountries)
       parseQuery(query, 'sectors', sectors, setSectors)
       parseQuery(query, 'specialties', specialties, setSpecialties)
+      parseQuery(query, 'buildingBlocks', buildingBlocks, setBuildingBlocks)
     }
   })
 
@@ -63,6 +67,7 @@ const StorefrontActiveFilter = () => {
         <CountryFilters {...{ countries, setCountries }} />
         <SectorFilters {...{ sectors, setSectors }} />
         <SpecialtyFilters {...{ specialties, setSpecialties }} />
+        <BuildingBlockFilters {...{ buildingBlocks, setBuildingBlocks }} />
 
         <div className='flex px-2 py-1 mt-2 text-sm text-dial-gray-dark'>
           <a

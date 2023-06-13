@@ -39,10 +39,10 @@ const StorefrontForm = React.memo(({ organization }) => {
           'top-center',
           DEFAULT_AUTO_CLOSE_DELAY,
           null,
-          () => router.push(
-            `/${router.locale}` +
-            `/storefronts/${response?.organization?.slug}`
-          )
+          () => {
+            const basePath = response?.organization?.hasStorefront ? 'storefronts' : 'organizations'
+            router.push(`/${router.locale}/${basePath}/${response?.organization?.slug}`)
+          }
         )
       } else {
         showToast(format('organization.submit.failure'), 'error', 'top-center')

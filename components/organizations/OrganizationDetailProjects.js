@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { useState, useEffect, useCallback, useContext } from 'react'
+import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
 import Pill from '../shared/Pill'
@@ -21,21 +21,33 @@ const OrganizationDetailProjects = ({ organization, canEdit, createAction }) => 
   const [isDirty, setIsDirty] = useState(false)
   const [projects, setProjects] = useState(organization.projects)
 
-  const [updateOrganizationProjects, { data, loading }] = useMutation(UPDATE_ORGANIZATION_PROJECTS)
+  const { showToast } = useContext(ToastContext)
+
+  const [updateOrganizationProjects, { data, loading, reset }] = useMutation(UPDATE_ORGANIZATION_PROJECTS, {
+    onCompleted: (data) => {
+      const { updateOrganizationProjects: response } = data
+      if (response?.organization && response?.errors?.length === 0) {
+        showToast(format('organization.submit.success'), 'success', 'top-center')
+        setProjects(response?.organization.projects)
+        setIsDirty(false)
+      } else {
+        showToast(format('organization.submit.failure'), 'error', 'top-center')
+        setProjects(organization.projects ?? [])
+        setIsDirty(false)
+        reset()
+      }
+    },
+    onError: () => {
+      showToast(format('organization.submit.failure'), 'error', 'top-center')
+      setProjects(organization.projects ?? [])
+      setIsDirty(false)
+      reset()
+    }
+  })
 
   const router = useRouter()
   const { user } = useUser()
   const { locale } = router
-
-  const { showToast } = useContext(ToastContext)
-
-  useEffect(() => {
-    if (data?.updateOrganizationProjects?.errors.length === 0 && data?.updateOrganizationProjects?.organization) {
-      setProjects(data.updateOrganizationProjects.organization.projects)
-      setIsDirty(false)
-      showToast(format('organization.projects.updated'), 'success', 'top-center')
-    }
-  }, [data, showToast, format])
 
   const fetchedProjectsCallback = (data) => (
     data.projects.map((project) => ({
