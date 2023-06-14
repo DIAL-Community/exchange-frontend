@@ -6,13 +6,15 @@ import { CountryAutocomplete } from '../../filter/element/Country'
 import { SectorAutocomplete } from '../../filter/element/Sector'
 import { SpecialtySelect } from '../../filter/element/Specialties'
 import { BuildingBlockAutocomplete } from '../../filter/element/BuildingBlock'
+import { ProductAutocomplete } from '../../filter/element/Product'
 
 const StorefrontFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { specialties, sectors, countries, buildingBlocks } = useContext(OrganizationFilterContext)
-  const { setSpecialties, setSectors, setCountries, setBuildingBlocks } = useContext(OrganizationFilterDispatchContext)
+  const { specialties, sectors, countries, buildingBlocks, certifications } = useContext(OrganizationFilterContext)
+  const { setSpecialties, setSectors, setCountries, setBuildingBlocks, setCertifications }
+    = useContext(OrganizationFilterDispatchContext)
 
   return (
     <div className='pt-6 pb-10 bg-dial-solitude rounded-lg text-dial-stratos'>
@@ -25,6 +27,11 @@ const StorefrontFilter = () => {
           <CountryAutocomplete {...{ countries, setCountries }} />
           <SectorAutocomplete {...{ sectors, setSectors }} />
           <BuildingBlockAutocomplete {...{ buildingBlocks, setBuildingBlocks }} />
+          <ProductAutocomplete
+            products={certifications}
+            setProducts={setCertifications}
+            placeholder={format('filter.byEntity', { entity: format('certification.label') })}
+          />
           <SpecialtySelect {...{ specialties, setSpecialties }} />
         </div>
       </div>

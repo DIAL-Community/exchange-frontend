@@ -9,6 +9,7 @@ import { QueryParamContext } from '../../context/QueryParamContext'
 import { OrganizationFilterContext, OrganizationFilterDispatchContext } from '../../context/OrganizationFilterContext'
 import { parseQuery } from '../../shared/SharableLink'
 import { BuildingBlockFilters } from '../../filter/element/BuildingBlock'
+import { ProductFilters } from '../../filter/element/Product'
 
 const SharableLink = dynamic(() => import('../../shared/SharableLink'), { ssr: false })
 
@@ -19,11 +20,12 @@ const StorefrontActiveFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sectors, countries, specialties, buildingBlocks } = useContext(OrganizationFilterContext)
-  const { setSectors, setCountries, setSpecialties, setBuildingBlocks } = useContext(OrganizationFilterDispatchContext)
+  const { sectors, countries, specialties, buildingBlocks, certifications } = useContext(OrganizationFilterContext)
+  const { setSectors, setCountries, setSpecialties, setBuildingBlocks, setCertifications }
+    = useContext(OrganizationFilterDispatchContext)
 
   const filterCount = () => {
-    return countries.length + sectors.length + specialties.length + buildingBlocks.length
+    return countries.length + sectors.length + specialties.length + buildingBlocks.length + certifications.length
   }
 
   const clearFilter = (e) => {
@@ -32,6 +34,7 @@ const StorefrontActiveFilter = () => {
     setSectors([])
     setSpecialties([])
     setBuildingBlocks([])
+    setCertifications([])
   }
 
   const sharableLink = () => {
@@ -41,11 +44,14 @@ const StorefrontActiveFilter = () => {
     const countryFilters = countries.map(country => `countries=${country.value}--${country.label}`)
     const sectorFilters = sectors.map(sector => `sectors=${sector.value}--${sector.label}`)
     const specialtyFilters = specialties.map(s => `specialties=${s.value}--${s.label}`)
-    const buildingBlockFilters = specialties.map(b => `buildingBlocks=${b.value}--${b.label}`)
+    const buildingBlockFilters = buildingBlocks.map(b => `buildingBlocks=${b.value}--${b.label}`)
+    const certificationFilters = certifications.map(p => `certifications=${p.value}--${p.label}`)
 
     const activeFilter = 'shareCatalog=true'
     const filterParameters = [
-      activeFilter, ...countryFilters, ...sectorFilters, ...specialtyFilters, ...buildingBlockFilters
+      activeFilter,
+      ...countryFilters, ...sectorFilters,
+      ...specialtyFilters, ...buildingBlockFilters, ...certificationFilters
     ].filter(f => f).join('&')
 
     return `${baseUrl}/${basePath}?${filterParameters}`
@@ -58,16 +64,18 @@ const StorefrontActiveFilter = () => {
       parseQuery(query, 'sectors', sectors, setSectors)
       parseQuery(query, 'specialties', specialties, setSpecialties)
       parseQuery(query, 'buildingBlocks', buildingBlocks, setBuildingBlocks)
+      parseQuery(query, 'certifications', certifications, setCertifications)
     }
   })
 
   return (
     <div className={`flex flex-row pt-2 ${filterCount() > 0 ? 'block' : 'hidden'}`}>
-      <div className='flex flex-row flex-wrap px-1 gap-2'>
+      <div className='flex flex-row flex-wrap gap-2'>
         <CountryFilters {...{ countries, setCountries }} />
         <SectorFilters {...{ sectors, setSectors }} />
         <SpecialtyFilters {...{ specialties, setSpecialties }} />
         <BuildingBlockFilters {...{ buildingBlocks, setBuildingBlocks }} />
+        <ProductFilters products={certifications} setProducts={setCertifications} />
 
         <div className='flex px-2 py-1 mt-2 text-sm text-dial-gray-dark'>
           <a

@@ -11,8 +11,9 @@ const OrganizationFilterProvider = ({ children }) => {
   const [countries, setCountries] = useState([])
   const [sectors, setSectors] = useState([])
 
-  const [buildingBlocks, setBuildingBlocks] = useState([])
   const [specialties, setSpecialties] = useState([])
+  const [certifications, setCertifications] = useState([])
+  const [buildingBlocks, setBuildingBlocks] = useState([])
 
   const [search, setSearch] = useState('')
   const [sortColumn, setSortColumn] = useState('name')
@@ -25,8 +26,9 @@ const OrganizationFilterProvider = ({ children }) => {
     years,
     countries,
     sectors,
-    buildingBlocks,
     specialties,
+    certifications,
+    buildingBlocks,
     search,
     sortColumn,
     sortDirection
@@ -39,8 +41,9 @@ const OrganizationFilterProvider = ({ children }) => {
     setYears,
     setCountries,
     setSectors,
-    setBuildingBlocks,
     setSpecialties,
+    setCertifications,
+    setBuildingBlocks,
     setSearch,
     setSortColumn,
     setSortDirection

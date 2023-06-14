@@ -19,6 +19,7 @@ const ORGANIZATIONS_QUERY = gql`
     $countries: [String!]
     $buildingBlocks: [String!]
     $specialties: [String!]
+    $certifications: [String!]
     $search: String!
   ) {
     searchStorefronts(
@@ -28,6 +29,7 @@ const ORGANIZATIONS_QUERY = gql`
       countries: $countries
       buildingBlocks: $buildingBlocks
       specialties: $specialties
+      certifications: $certifications
       search: $search
     ) {
       totalCount
@@ -58,7 +60,7 @@ const ORGANIZATIONS_QUERY = gql`
 
 const StorefrontListQuery = () => {
   const { displayType, setResultCounts } = useContext(FilterContext)
-  const { countries, sectors, specialties, buildingBlocks, search } = useContext(OrganizationFilterContext)
+  const { countries, sectors, specialties, buildingBlocks, certifications, search } = useContext(OrganizationFilterContext)
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
@@ -68,8 +70,9 @@ const StorefrontListQuery = () => {
       first: DEFAULT_PAGE_SIZE,
       countries: countries.map(country => country.value),
       sectors: sectors.map(sector => sector.value),
-      specialties: specialties.map(sector => sector.value),
-      buildingBlocks: buildingBlocks.map(buildingBlock => buildingBlock.value),
+      specialties: specialties.map(s => s.value),
+      certifications: certifications.map(c => c.value),
+      buildingBlocks: buildingBlocks.map(b => b.value),
       search
     },
     fetchPolicy: 'network-only',
@@ -83,7 +86,9 @@ const StorefrontListQuery = () => {
         first: DEFAULT_PAGE_SIZE,
         countries: countries.map(country => country.value),
         sectors: sectors.map(sector => sector.value),
-        specialties: specialties.map(sector => sector.value),
+        specialties: specialties.map(s => s.value),
+        certifications: certifications.map(c => c.value),
+        buildingBlocks: buildingBlocks.map(b => b.value),
         search
       }
     })
