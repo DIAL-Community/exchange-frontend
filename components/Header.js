@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import classNames from 'classnames'
 import { signIn, signOut } from 'next-auth/react'
 import { useContext, useEffect, useState } from 'react'
@@ -128,10 +127,9 @@ const Header = ({ isOnAuthPage = false }) => {
   return (
     <header className='z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-8 xl:px-16'>
-        <Link href='/' className='flex py-6 image-block-hack'>
-          <Image
-            width={154}
-            height={44}
+        <Link href='/' className='flex py-5'>
+          <img
+            className='object-center object-contain'
             src='/assets/exchange/exchange-logo.png'
             alt='Digital Impact Exchage Logo.'
           />
@@ -140,8 +138,8 @@ const Header = ({ isOnAuthPage = false }) => {
           <svg
             className='fill-current text-gray-900'
             xmlns='http://www.w3.org/2000/svg'
-            width='20'
-            height='20'
+            width='16'
+            height='16'
             viewBox='0 0 20 20'
           >
             <title>{format('app.menu')}</title>
