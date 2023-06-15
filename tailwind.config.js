@@ -10,10 +10,30 @@ module.exports = {
         3: '3px'
       },
       colors: {
-        // Part of the UX refresh.
+        'dial-blue-chalk': {
+          DEFAULT: '#e6e9fc'
+        },
         'dial-sapphire': {
           DEFAULT: '#2e3192'
         },
+        'dial-stratos': {
+          DEFAULT: '#000542'
+        },
+        'dial-iris-blue': {
+          DEFAULT: '#485cd5'
+        },
+        'dial-blueberry': {
+          DEFAULT: '#574f8a'
+        },
+        'dial-slate': {
+          300: '#ccd5e1',
+          500: '#65758a',
+          600: '#485668'
+        },
+        'dial-menu-hover': {
+          DEFAULT: '#eceeef'
+        },
+        // Part of the UX refresh.
         'govstack-blue': {
           DEFAULT: '#0539e3',
           light: '#007aff'
@@ -25,9 +45,6 @@ module.exports = {
           light: '#e2e8f0',
           DEFAULT: '#faf4ef'
         },
-        'dial-stratos': {
-          DEFAULT: '#000542'
-        },
         'dial-sunshine': {
           DEFAULT: '#faa92b'
         },
@@ -38,9 +55,6 @@ module.exports = {
         'dial-solitude': {
           DEFAULT: '#e2e8f0'
         },
-        'dial-iris-blue': {
-          DEFAULT: '#485cd5'
-        },
         'dial-eggshell': {
           DEFAULT: '#faeedc'
         },
@@ -50,9 +64,6 @@ module.exports = {
         'dial-ice': {
           DEFAULT: '#d4ffef'
         },
-        'dial-blue-chalk': {
-          DEFAULT: '#e6e9fc'
-        },
         'dial-angel': {
           DEFAULT: '#c7ccf4'
         },
@@ -61,9 +72,6 @@ module.exports = {
         },
         'dial-amethyst-smoke': {
           DEFAULT: '#9996ef'
-        },
-        'dial-blueberry': {
-          DEFAULT: '#574f8a'
         },
         'dial-biscotti': {
           DEFAULT: '#fad3a2'

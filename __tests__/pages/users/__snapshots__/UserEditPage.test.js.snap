@@ -249,23 +249,23 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
             </li>
           </ul>
           <ul
-            class="hidden xl:flex items-center text-dial-white-beech pt-4 xl:pt-0 xl:gap-x-2"
+            class="hidden xl:flex items-center text-dial-white-beech gap-x-3"
           >
             <li
-              class="relative mt-2 xl:mt-0 text-right"
+              class="text-right"
             >
               <a
-                class="xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer border-b-2 border-transparent hover:border-dial-sunshine"
+                class="cursor-pointer py-2 border-b border-transparent hover:border-dial-sunshine"
                 href="/opportunities"
               >
                 Opportunities
               </a>
             </li>
             <li
-              class="relative mt-2 xl:mt-0 text-right"
+              class="relative text-right"
             >
               <a
-                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-sunshine lg:mb-0 mb-2 cursor-pointer"
+                class="pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine"
                 data-testid="menu-about"
                 href="menu-about"
                 id="menu-about"
@@ -273,7 +273,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                 About
                 <svg
                   aria-hidden="true"
-                  class="ml-1 inline text-2xl"
+                  class="inline text-xl"
                   fill="currentColor"
                   height="1em"
                   id="svg-down-menu-about"
@@ -292,10 +292,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               </a>
             </li>
             <li
-              class="relative mt-2 xl:mt-0 text-right"
+              class="relative text-right"
             >
               <a
-                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-sunshine lg:mb-0 mb-2 cursor-pointer"
+                class="pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine"
                 data-testid="menu-help"
                 href="menu-help"
                 id="menu-help"
@@ -303,7 +303,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                 Help
                 <svg
                   aria-hidden="true"
-                  class="ml-1 inline text-2xl"
+                  class="inline text-xl"
                   fill="currentColor"
                   height="1em"
                   id="svg-down-menu-help"
@@ -322,10 +322,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               </a>
             </li>
             <li
-              class="relative mt-2 xl:mt-0 text-right"
+              class="relative text-right"
             >
               <a
-                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-sunshine lg:mb-0 mb-2 cursor-pointer"
+                class="pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine"
                 data-testid="menu-resource"
                 href="menu-resource"
                 id="menu-resource"
@@ -333,7 +333,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                 Resources
                 <svg
                   aria-hidden="true"
-                  class="ml-1 inline text-2xl"
+                  class="inline text-xl"
                   fill="currentColor"
                   height="1em"
                   id="svg-down-menu-resource"
@@ -355,7 +355,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               class="relative mt-2 xl:mt-0 text-right"
             >
               <a
-                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-sunshine lg:mb-0 mb-2 cursor-pointer"
+                class="pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine"
                 data-testid="menu-admin"
                 href="menu-admin"
                 id="menu-admin"
@@ -363,7 +363,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                 Admin
                 <svg
                   aria-hidden="true"
-                  class="ml-1 inline text-2xl"
+                  class="inline text-xl"
                   fill="currentColor"
                   height="1em"
                   id="svg-down-menu-admin"
@@ -402,10 +402,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
               </a>
             </li>
             <li
-              class="relative mt-2 xl:mt-0 text-right"
+              class="relative text-right"
             >
               <a
-                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-sunshine lg:mb-0 mb-2 cursor-pointer"
+                class="pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine"
                 data-testid="menu-language"
                 href="menu-language"
                 id="menu-language"
@@ -413,7 +413,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                 English (en)
                 <svg
                   aria-hidden="true"
-                  class="ml-1 inline text-2xl"
+                  class="inline text-xl"
                   fill="currentColor"
                   height="1em"
                   id="svg-down-menu-language"
@@ -1476,23 +1476,23 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
             </li>
           </ul>
           <ul
-            class="hidden xl:flex items-center text-dial-white-beech pt-4 xl:pt-0 xl:gap-x-2"
+            class="hidden xl:flex items-center text-dial-white-beech gap-x-3"
           >
             <li
-              class="relative mt-2 xl:mt-0 text-right"
+              class="text-right"
             >
               <a
-                class="xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer border-b-2 border-transparent hover:border-dial-sunshine"
+                class="cursor-pointer py-2 border-b border-transparent hover:border-dial-sunshine"
                 href="/opportunities"
               >
                 Opportunities
               </a>
             </li>
             <li
-              class="relative mt-2 xl:mt-0 text-right"
+              class="relative text-right"
             >
               <a
-                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-sunshine lg:mb-0 mb-2 cursor-pointer"
+                class="pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine"
                 data-testid="menu-about"
                 href="menu-about"
                 id="menu-about"
@@ -1500,7 +1500,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                 About
                 <svg
                   aria-hidden="true"
-                  class="ml-1 inline text-2xl"
+                  class="inline text-xl"
                   fill="currentColor"
                   height="1em"
                   id="svg-down-menu-about"
@@ -1519,10 +1519,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               </a>
             </li>
             <li
-              class="relative mt-2 xl:mt-0 text-right"
+              class="relative text-right"
             >
               <a
-                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-sunshine lg:mb-0 mb-2 cursor-pointer"
+                class="pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine"
                 data-testid="menu-help"
                 href="menu-help"
                 id="menu-help"
@@ -1530,7 +1530,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                 Help
                 <svg
                   aria-hidden="true"
-                  class="ml-1 inline text-2xl"
+                  class="inline text-xl"
                   fill="currentColor"
                   height="1em"
                   id="svg-down-menu-help"
@@ -1549,10 +1549,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               </a>
             </li>
             <li
-              class="relative mt-2 xl:mt-0 text-right"
+              class="relative text-right"
             >
               <a
-                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-sunshine lg:mb-0 mb-2 cursor-pointer"
+                class="pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine"
                 data-testid="menu-resource"
                 href="menu-resource"
                 id="menu-resource"
@@ -1560,7 +1560,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                 Resources
                 <svg
                   aria-hidden="true"
-                  class="ml-1 inline text-2xl"
+                  class="inline text-xl"
                   fill="currentColor"
                   height="1em"
                   id="svg-down-menu-resource"
@@ -1579,12 +1579,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               </a>
             </li>
             <li
-              class="relative mt-2 xl:mt-0 text-right intro-overview-signup"
+              class="text-right intro-overview-signup"
             >
               <a
-                class="
-    block px-4 py-2 text-base text-white-beech hover:bg-gray-100 hover:text-gray-900
-  "
+                class="px-3 py-2 text-base text-white hover:text-slate-600 hover:bg-dial-menu-hover rounded-md"
                 data-testid="login"
                 href="signin"
                 role="menuitem"
@@ -1593,10 +1591,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
               </a>
             </li>
             <li
-              class="relative mt-2 xl:mt-0 text-right"
+              class="relative text-right"
             >
               <a
-                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-sunshine lg:mb-0 mb-2 cursor-pointer"
+                class="pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine"
                 data-testid="menu-language"
                 href="menu-language"
                 id="menu-language"
@@ -1604,7 +1602,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                 English (en)
                 <svg
                   aria-hidden="true"
-                  class="ml-1 inline text-2xl"
+                  class="inline text-xl"
                   fill="currentColor"
                   height="1em"
                   id="svg-down-menu-language"

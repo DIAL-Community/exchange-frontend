@@ -16,8 +16,13 @@ module.exports = removeImports(withTranspileModules({
     localeDetection: false
   },
   images: {
-    domains: ['localhost','solutions-dev.dial.community','solutions.dial.community',
-      'exchange.dial.global', 'exchange-dev.dial.global']
+    domains: [
+      'localhost',
+      'solutions-dev.dial.community',
+      'solutions.dial.community',
+      'exchange.dial.global',
+      'exchange-dev.dial.global'
+    ]
   },
   async headers() {
     return [

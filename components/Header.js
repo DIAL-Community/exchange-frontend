@@ -16,9 +16,11 @@ import HelpMenu from './shared/menu/HelpMenu'
 import LanguageMenu from './shared/menu/LanguageMenu'
 import { NONE } from './shared/menu/MenuCommon'
 
-const dropdownMenuStyles = `
-    block px-4 py-2 text-base text-white-beech hover:bg-gray-100 hover:text-gray-900
-  `
+const dropdownMenuStyles = classNames(
+  'px-3 py-2',
+  'text-base text-white hover:text-slate-600',
+  'hover:bg-dial-menu-hover rounded-md'
+)
 
 const Header = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
@@ -112,7 +114,7 @@ const Header = ({ isOnAuthPage = false }) => {
     </>
 
   const withoutUser =
-    <li className='relative mt-2 xl:mt-0 text-right intro-overview-signup'>
+    <li className='text-right intro-overview-signup'>
       <a
         data-testid='login'
         href='signin'
@@ -150,35 +152,35 @@ const Header = ({ isOnAuthPage = false }) => {
         <div className='hidden xl:flex xl:items-center xl:w-auto w-full ml-auto mx-2' id='menu'>
           <nav>
             <MobileMenu menuExpanded={menuExpanded} setMenuExpanded={setMenuExpanded} />
-            <ul className='hidden xl:flex items-center text-dial-white-beech pt-4 xl:pt-0 xl:gap-x-2'>
+            <ul className='hidden xl:flex items-center text-dial-white-beech gap-x-3'>
               {!isOnAuthPage
                 && (
                   <>
-                    <li className='relative mt-2 xl:mt-0 text-right'>
+                    <li className='text-right'>
                       <Link
                         href='/opportunities'
                         className={classNames(
-                          'xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer',
-                          'border-b-2 border-transparent hover:border-dial-sunshine'
+                          'cursor-pointer py-2',
+                          'border-b border-transparent hover:border-dial-sunshine'
                         )}
                       >
                         {format('opportunity.header')}
                       </Link>
                     </li>
-                    <li className='relative mt-2 xl:mt-0 text-right'>
+                    <li className='relative text-right'>
                       <AboutMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
-                    <li className='relative mt-2 xl:mt-0 text-right'>
+                    <li className='relative text-right'>
                       <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
-                    <li className='relative mt-2 xl:mt-0 text-right'>
+                    <li className='relative text-right'>
                       <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
                     { user ? withUser : withoutUser }
                   </>
                 )
               }
-              <li className='relative mt-2 xl:mt-0 text-right'>
+              <li className='relative text-right'>
                 <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
             </ul>

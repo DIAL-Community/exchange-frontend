@@ -23,7 +23,8 @@ export const MenuHeader = forwardRef(({ id, href, title, onToggleDropdown, curre
     <a
       id={id}
       href={href ?? id}
-      className='lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-sunshine lg:mb-0 mb-2 cursor-pointer'
+      // Adding pl-1 to balance out the right padding on the chevron icon
+      className='pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine'
       ref={ref}
       onClick={onClickHandler}
       data-testid={id}
@@ -31,8 +32,8 @@ export const MenuHeader = forwardRef(({ id, href, title, onToggleDropdown, curre
       {formatMessage({ id: title })}
       {
         currentOpenMenu === id
-          ? <HiChevronUp className='ml-1 inline text-2xl' id={`svg-up-${id}`} />
-          : <HiChevronDown className='ml-1 inline text-2xl' id={`svg-down-${id}`} />
+          ? <HiChevronUp className='inline text-xl' id={`svg-up-${id}`} />
+          : <HiChevronDown className='inline text-xl' id={`svg-down-${id}`} />
       }
     </a>
   )
