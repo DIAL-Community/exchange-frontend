@@ -1689,5 +1689,14 @@ export const en = {
 
   'resource.submit.success': 'Resource submitted.',
   'resource.submit.failure': 'Resource update failed.',
-  'toast.resource.delete.success': 'Resource deleted.'
+  'toast.resource.delete.success': 'Resource deleted.',
+
+  'ui.shared.navigateTools': 'Navigate Tools',
+  'ui.shared.exportJson': 'Export data (JSON)',
+  'ui.shared.exportCsv': 'Export data (CSV)',
+
+  'ui.useCase.ribbonTitle': 'Use Cases',
+  'ui.useCase.header': 'Use Cases',
+  'ui.useCase.whatIs': 'What is a Use Case?',
+  'ui.useCase.createNew': 'Create a new Use Case'
 }
