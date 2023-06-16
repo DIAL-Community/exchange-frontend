@@ -1,4 +1,5 @@
 import Bookmark from '../shared/Bookmark'
+import Comment from '../shared/Comment'
 import Share from '../shared/Share'
 
 const UseCaseListLeft = () => {
@@ -8,6 +9,8 @@ const UseCaseListLeft = () => {
         <Bookmark />
         <hr />
         <Share />
+        <hr />
+        <Comment />
       </div>
     </div>
   )

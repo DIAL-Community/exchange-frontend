@@ -12,11 +12,11 @@ const Bookmark = () => {
           height={40}
           className='object-contain'
         />
-        <div className='text-xs my-auto'>
+        <div className='text-sm my-auto'>
           Bookmark this page
         </div>
       </div>
-      <div className='text-xs text-dial-stratos'>
+      <div className='text-sm text-dial-stratos'>
         Your bookmarks can be found in your Account page
       </div>
     </div>
