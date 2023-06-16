@@ -5,10 +5,10 @@ const UseCaseList = () => {
   return (
     <div className='px-48'>
       <div className='flex flex-row gap-x-4'>
-        <div className='basis-1/4'>
+        <div className='basis-1/3'>
           <UseCaseListLeft />
         </div>
-        <div className='basis-3/4'>
+        <div className='basis-2/3'>
           <UseCaseListRight />
         </div>
       </div>

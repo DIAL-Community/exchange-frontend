@@ -27,12 +27,16 @@ module.exports = {
         },
         'dial-slate': {
           100: '#f1f5f9',
+          200: '#e2e8f0',
           300: '#ccd5e1',
           500: '#65758a',
           600: '#485668'
         },
         'dial-menu-hover': {
           DEFAULT: '#eceeef'
+        },
+        'dial-angel': {
+          DEFAULT: '#c7ccf4'
         },
         // Part of the UX refresh.
         'govstack-blue': {
@@ -64,9 +68,6 @@ module.exports = {
         },
         'dial-ice': {
           DEFAULT: '#d4ffef'
-        },
-        'dial-angel': {
-          DEFAULT: '#c7ccf4'
         },
         'dial-lavender': {
           DEFAULT: '#96a2ef'
