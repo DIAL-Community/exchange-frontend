@@ -10,25 +10,21 @@ const TabNav = () => {
   const [categories] = useState(['Use cases', 'What is a use case?', 'Create a new use case'])
 
   return (
-    <div className='px-32'>
+    <div className='px-32 sticky-under-ribbon'>
       <ul className='flex flex-row list-none pt-2 gap-x-2'>
-        {
-          categories.map((filterItem, index) => {
-            return (
-              <li
-                key={`menu-${filterItem}`}
-                className={classNames(
-                  'rounded-t px-4 py-3 text-sm',
-                  index === active
-                    ? 'text-white bg-dial-slate-500'
-                    : 'bg-dial-slate-300 text-dial-slate-500'
-                )}
-              >
-                {format(filterItem)}
-              </li>
-            )
-          })
-        }
+        {categories.map((category, index) => {
+          return <li
+            key={`tab-menu-${category}`}
+            className={classNames(
+              'rounded-t px-4 py-3 text-sm',
+              index === active
+                ? 'text-white bg-dial-slate-500'
+                : 'bg-dial-slate-300 text-dial-slate-500'
+            )}
+          >
+            {format(category)}
+          </li>
+        })}
       </ul>
       <div className='shadow-md-lg'>
         <div className='border-b-8 border-dial-slate-500' />

@@ -17,7 +17,12 @@
 }
 
 .ribbon-inner {
-    height: var(--ribbon-inner-height);
-    position: sticky;
-    top: var(--header-height);
+  position: sticky;
+  height: var(--ribbon-inner-height);
+  top: var(--header-height);
+}
+
+.sticky-under-ribbon {
+  position: sticky;
+  top: calc(var(--header-height) + var(--ribbon-inner-height))
 }
