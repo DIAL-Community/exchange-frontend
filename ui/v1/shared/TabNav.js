@@ -23,7 +23,7 @@ const TabNav = ({ tabNames, exportJson = true, exportCsv = true }) => {
   }
 
   return (
-    <div className='px-48 sticky-under-ribbon'>
+    <div className='px-48 sticky-under-ribbon bg-white'>
       <div className='flex flex-row'>
         <ul className='flex flex-row list-none pt-2 gap-x-1'>
           {categories.map((category, index) => {

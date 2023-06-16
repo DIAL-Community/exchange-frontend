@@ -26,6 +26,7 @@ module.exports = {
           DEFAULT: '#574f8a'
         },
         'dial-slate': {
+          100: '#f1f5f9',
           300: '#ccd5e1',
           500: '#65758a',
           600: '#485668'

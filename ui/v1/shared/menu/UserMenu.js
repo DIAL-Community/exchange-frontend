@@ -35,8 +35,8 @@ const UserMenu = ({ currentOpenMenu, onToggleDropdown }) => {
         ref={buttonRef}
         onClick={toggleSwitcher}
       >
-        <div id={USER_MENU} className="username-avatar">
-          <span className="text-dial-gray-dark">
+        <div id={USER_MENU} className='username-avatar'>
+          <span className='text-dial-gray-dark'>
             {userName.substring(0, 2)}
           </span>
         </div>

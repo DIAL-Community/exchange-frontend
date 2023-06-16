@@ -130,10 +130,10 @@ const Header = ({ isOnAuthPage = false }) => {
   return (
     <header className='z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-8 xl:px-48'>
-        <Link href='/' className='my-auto'>
+        <Link href='/' className='my-auto py-3'>
           <img
             className='object-center object-contain'
-            src='/assets/exchange/exchange-logo.png'
+            src='/ui/v1/exchange-logo.svg'
             alt='Digital Impact Exchage Logo.'
           />
         </Link>
@@ -150,7 +150,7 @@ const Header = ({ isOnAuthPage = false }) => {
           </svg>
         </label>
         <input className='hidden' type='checkbox' id='menu-toggle' checked={menuExpanded} onChange={toggleMenu} />
-        <div className='hidden xl:flex xl:items-center xl:w-auto w-full ml-auto text-sm' id='menu'>
+        <div className='hidden xl:flex xl:items-center ml-auto text-sm' id='menu'>
           <nav>
             <ul className='hidden xl:flex items-center text-dial-white-beech gap-x-3'>
               {!isOnAuthPage
