@@ -8,7 +8,7 @@ const Bookmark = () => {
   return (
     <div className='flex flex-col gap-3 py-3'>
       <div className='text-lg text-dial-sapphire font-semibold'>
-        Bookmark
+        {format('ui.bookmark.title')}
       </div>
       <div className='flex flex-row gap-x-3'>
         <img
@@ -19,11 +19,11 @@ const Bookmark = () => {
           className='object-contain'
         />
         <div className='text-sm my-auto'>
-          Bookmark this page
+          {format('ui.bookmark.bookmarkThis')}
         </div>
       </div>
       <div className='text-sm text-dial-stratos'>
-        Your bookmarks can be found in your Account page
+        {format('ui.bookmark.subTitle')}
       </div>
     </div>
   )

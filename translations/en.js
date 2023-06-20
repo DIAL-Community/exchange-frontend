@@ -1720,5 +1720,34 @@ export const en = {
   'ui.useCase.whatIs': 'What is a Use Case?',
   'ui.useCase.createNew': 'Create a new Use Case',
 
-  'ui.image.logoAlt': 'Logo of {name}.'
+  'ui.image.logoAlt': 'Logo of {name}.',
+
+  'ui.bookmark.title': 'Bookmark',
+  'ui.bookmark.subTitle': 'Your bookmarks can be found in your Account page.',
+  'ui.bookmark.bookmarkThis': 'Bookmark this page.',
+
+  'ui.comment.title': 'Post a comment',
+  'ui.comment.subTitle': `
+    Have a question for the community on this
+    {entity} or have some insight you would like to share?
+  `,
+
+  'ui.share.title': 'Share',
+
+  'ui.footer.connect.title': 'Connect with us',
+  'ui.footer.connect.subTitle': `
+    Sign up for our newsletter to learn more about the Digital Impact Exchange
+    and how you can be involved.
+  `,
+  'ui.footer.connect.newsletter': 'Sign up for our newsletter',
+
+  'ui.footer.disclaimer.privacyPolicy': 'Privacy Policy',
+  'ui.footer.disclaimer.termsOfUse': 'Terms of Use',
+  'ui.footer.disclaimer.copyright': 'Copyright © {year}',
+
+  'ui.footer.poweredBy.title': 'Powered by',
+  'ui.footer.poweredBy.subTitle': `
+    The Digital Impact Exchange is a project of the Digital Impact Alliance
+  `
+
 }

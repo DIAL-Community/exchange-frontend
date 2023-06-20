@@ -8,7 +8,7 @@ const PoweredBy = () => {
   return (
     <div className='flex flex-col gap-3 py-3'>
       <div className='text-lg text-dial-sapphire font-semibold'>
-        Powered by
+        {format('ui.footer.poweredBy.title')}
       </div>
       <hr className='bg-dial-angel'/>
       <div className='flex gap-x-8'>
@@ -19,8 +19,7 @@ const PoweredBy = () => {
           className='object-contain'
         />
         <div className='text-sm text-dial-stratos'>
-          The Digital Impact Exchange is a
-          project of the Digital Impact Alliance
+          {format('ui.footer.poweredBy.subTitle')}
         </div>
       </div>
       <div className='flex gap-3 ml-auto pt-3'>
