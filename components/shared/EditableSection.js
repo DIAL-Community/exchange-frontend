@@ -37,7 +37,7 @@ const EditableSection = ({
           {canEdit && !isInEditMode &&
             <EditButton onClick={() => setIsInEditMode(true)} className='mr-2' />
           }
-          {createAction && !isInEditMode &&
+          {createAction && canEdit && !isInEditMode &&
             <CreateButton label={format('app.create-new')} onClick={createAction} className='mr-2' />
           }
         </div>

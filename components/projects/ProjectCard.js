@@ -56,13 +56,15 @@ const ProjectCard = ({ project, listType, newTab = false }) => {
                 {project.products.length > 0 && project.products.map(p => p.name).join(', ')}
               </div>
           }
-          <div className='absolute top-4 lg:top-1/3 right-4 lg:w-1/12 lg:justify-end'>
+          <div className='absolute top-4 lg:top-1/3 right-4'>
             <div
               className='text-right text-sm font-semibold text-dial-cyan'
               data-tooltip-content={format(
                 'tooltip.forEntity',
                 { entity: format('origin.label'), name: project.origin.name }
               )}
+              data-tooltip-id='react-tooltip'
+              data-tooltip-place='left'
             >
               {(ORIGIN_ACRONYMS[project.origin.slug.toLowerCase()] || project.origin.slug).toUpperCase()}
             </div>

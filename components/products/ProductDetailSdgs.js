@@ -94,7 +94,7 @@ const ProductDetailSdgs = ({ product, canEdit }) => {
         variables: {
           slug: product.slug,
           mappingStatus: mappingStatus.value,
-          sdgsSlugs: sdgs.map(({ slug }) => slug)
+          sdgSlugs: sdgs.map(({ slug }) => slug)
         },
         context: {
           headers: {

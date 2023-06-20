@@ -74,7 +74,7 @@ const ProjectDetailCountries = ({ project, canEdit }) => {
       updateProjectCountries({
         variables: {
           slug: project.slug,
-          countriesSlugs: countries.map(({ slug }) => slug)
+          countrySlugs: countries.map(({ slug }) => slug)
         },
         context: {
           headers: {

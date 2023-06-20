@@ -244,7 +244,7 @@ exports[`Unit test for the ProjectDetailCountries component. Should match snapsh
         class="border-3 border-transparent"
       >
         <div
-          class="bg-white border border-dial-gray card-drop-shadow"
+          class="bg-white border border-dial-gray shadow-md"
         >
           <div
             class="p-4 font-semibold text-button-gray"
@@ -451,7 +451,7 @@ exports[`Unit test for the ProjectDetailCountries component. Should match snapsh
         class="border-3 border-transparent"
       >
         <div
-          class="bg-white border border-dial-gray card-drop-shadow"
+          class="bg-white border border-dial-gray shadow-md"
         >
           <div
             class="p-4 font-semibold text-button-gray"

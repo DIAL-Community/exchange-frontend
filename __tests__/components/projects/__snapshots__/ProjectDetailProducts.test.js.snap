@@ -477,7 +477,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
             class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-4"
             >
               <div
                 class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
@@ -527,7 +527,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
             class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-4"
             >
               <div
                 class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
@@ -777,7 +777,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
             class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-4"
             >
               <div
                 class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"
@@ -827,7 +827,7 @@ exports[`Unit test for the ProjectDetailProducts component. Should match snapsho
             class="bg-white border border-dial-gray shadow-lg rounded-md"
           >
             <div
-              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6"
+              class="relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-4"
             >
               <div
                 class="w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto"

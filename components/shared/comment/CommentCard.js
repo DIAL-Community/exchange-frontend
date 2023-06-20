@@ -9,7 +9,7 @@ const CommentCard = ({ commentId, authorFullName, authorAvatarUrl, text, replies
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className={classNames('bg-white border border-dial-gray card-drop-shadow', className)}>
+    <div className={classNames('bg-white border border-dial-gray shadow-md', className)}>
       <div className='flex flex-row flex-wrap gap-x-8 p-4 items-center'>
         <div className='inline-flex gap-x-2 items-center text-dial-gray-dark font-bold self-start'>
           <img

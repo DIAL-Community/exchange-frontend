@@ -35,7 +35,7 @@ const DatasetCard = ({ dataset, listType }) => {
           ? (
             <div className={classNames('card', { 'flip-horizontal':  shouldFlipCard(status) })}>
               <div className='card-body border-3 border-transparent'>
-                <div className={classNames('card-front border border-dial-gray card-drop-shadow bg-white',
+                <div className={classNames('card-front border border-dial-gray shadow-md bg-white',
                   { 'bg-red-50': dataset.rejected === true || status === CandidateStatusType.REJECTED },
                   { 'bg-emerald-50': dataset.rejected === false || status === CandidateStatusType.APPROVED }
                 )}>
@@ -119,7 +119,7 @@ const DatasetCard = ({ dataset, listType }) => {
           : (
             <div className={classNames('card', { 'flip-vertical':  shouldFlipCard(status) })}>
               <div className='card-body border-3 border-transparent text-dial-purple h-full'>
-                <div className='card-front h-full flex flex-col border border-dial-gray card-drop-shadow'>
+                <div className='card-front h-full flex flex-col border border-dial-gray shadow-md'>
                   <div className='flex flex-row p-1.5 border-b border-dial-gray dataset-card-header'>
                     {
                       (dataset.rejected === true || status === CandidateStatusType.REJECTED) &&

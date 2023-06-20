@@ -83,7 +83,7 @@ exports[`Unit test for the CommentsList component. Should match snapshot with co
         class="flex flex-col gap-3"
       >
         <div
-          class="bg-white border border-dial-gray card-drop-shadow"
+          class="bg-white border border-dial-gray shadow-md"
         >
           <div
             class="flex flex-row flex-wrap gap-x-8 p-4 items-center"
@@ -135,7 +135,7 @@ exports[`Unit test for the CommentsList component. Should match snapshot with co
             class="pl-10 p-3 flex flex-col gap-3"
           >
             <div
-              class="bg-white border border-dial-gray card-drop-shadow border-l-4"
+              class="bg-white border border-dial-gray shadow-md border-l-4"
             >
               <div
                 class="flex flex-row flex-wrap gap-x-8 p-4 items-center"

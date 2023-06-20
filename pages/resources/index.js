@@ -8,11 +8,14 @@ import SearchFilter from '../../components/shared/SearchFilter'
 import { UserFilterContext, UserFilterDispatchContext } from '../../components/context/UserFilterContext'
 import ClientOnly from '../../lib/ClientOnly'
 import PageContent from '../../components/main/PageContent'
+import { useUser } from '../../lib/hooks'
 const ResourcesListQuery = dynamic(() => import('../../components/resources/ResourceList'), { ssr: false })
 
 const Resources = () => {
   const { search } = useContext(UserFilterContext)
   const { setSearch } = useContext(UserFilterDispatchContext)
+
+  const { isAdminUser } = useUser()
 
   return (
     <>
@@ -29,6 +32,7 @@ const Resources = () => {
               hint='filter.entity.resources'
               exportJson={false}
               exportCsv={false}
+              createNew={isAdminUser}
             />
           }
         />

@@ -30,11 +30,11 @@ export const CREATE_USE_CASE_STEP = gql`
 
 export const UPDATE_USE_CASE_SDG_TARGETS = gql`
   mutation UpdateUseCaseSdgTargets (
-    $sdgTargetsIds: [Int!]!
+    $sdgTargetIds: [Int!]!
     $slug: String!
   ) {
     updateUseCaseSdgTargets (
-      sdgTargetsIds: $sdgTargetsIds
+      sdgTargetIds: $sdgTargetIds
       slug: $slug
     ) {
       useCase {

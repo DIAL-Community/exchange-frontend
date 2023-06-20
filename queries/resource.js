@@ -34,6 +34,16 @@ export const RESOURCES_SEARCH_QUERY = gql`
   }
 `
 
+export const RESOURCE_SEARCH_QUERY = gql`
+  query Resources($search: String!) {
+    resources(search: $search) {
+      id
+      name
+      slug
+    }
+  }
+`
+
 export const RESOURCE_DETAIL_QUERY = gql`
   query Resource($slug: String!) {
     resource(slug: $slug) {

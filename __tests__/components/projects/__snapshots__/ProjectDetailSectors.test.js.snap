@@ -262,14 +262,14 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
       class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
-        class="border-3 border-transparent"
+        class="rounded-md border-3 border-transparent"
         data-testid="sector-card"
       >
         <div
-          class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
+          class="flex border border-dial-gray shadow-md px-3 h-16 rounded-md"
         >
           <div
-            class="flex items-center p-4"
+            class="flex items-center"
           >
             <div
               class="inline-block font-semibold text-button-gray"
@@ -340,14 +340,14 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
       class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
-        class="border-3 border-transparent"
+        class="rounded-md border-3 border-transparent"
         data-testid="sector-card"
       >
         <div
-          class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
+          class="flex border border-dial-gray shadow-md px-3 h-16 rounded-md"
         >
           <div
-            class="flex items-center p-4"
+            class="flex items-center"
           >
             <div
               class="inline-block font-semibold text-button-gray"
@@ -552,14 +552,14 @@ exports[`Unit test for the ProjectDetailSectors component. Should match snapshot
       class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
-        class="border-3 border-transparent"
+        class="rounded-md border-3 border-transparent"
         data-testid="sector-card"
       >
         <div
-          class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
+          class="flex border border-dial-gray shadow-md px-3 h-16 rounded-md"
         >
           <div
-            class="flex items-center p-4"
+            class="flex items-center"
           >
             <div
               class="inline-block font-semibold text-button-gray"

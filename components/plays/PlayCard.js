@@ -16,7 +16,7 @@ const PlayCard = ({ play }) => {
   }
 
   return (
-    <div className='bg-white border border-dial-gray border-opacity-50 card-drop-shadow'>
+    <div className='bg-white border border-dial-gray border-opacity-50 shadow-md'>
       <div className='flex flex-row gap-4 px-3 py-4 h-16'>
         <div className='w-3/6 font-semibold my-auto whitespace-nowrap overflow-hidden text-ellipsis'>
           {play.name}

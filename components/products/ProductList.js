@@ -23,7 +23,7 @@ const MIN_PRODUCT_CARD_HEIGHT = 360
 /* Because we're adding this spacing, make sure the container right margin is offsetted by 1rem. */
 const PRODUCT_CARD_GUTTER_SIZE = 16
 /* Height of the product's single list element when viewing the list view. */
-const MIN_PRODUCT_LIST_SIZE = 80
+const MIN_PRODUCT_LIST_SIZE = 68
 
 const ProductListQuery = () => {
   const { displayType, setResultCounts } = useContext(FilterContext)

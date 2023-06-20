@@ -65,7 +65,7 @@ const ProductCard = ({ product, listType, newTab = false }) => {
   const listDisplayType = () =>
     <div className={`${containerElementStyle}`}>
       <div className='bg-white border border-dial-gray shadow-lg rounded-md'>
-        <div className='relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-6'>
+        <div className='relative flex flex-row flex-wrap gap-x-2 lg:gap-x-4 px-4 py-4'>
           <div className='w-10/12 lg:w-4/12 flex text-dial-gray-dark my-auto'>
             <div className='block w-8 relative'>
               <Image

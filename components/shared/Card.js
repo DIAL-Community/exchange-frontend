@@ -9,7 +9,7 @@ const Card = ({ onClick, href, children, className }) => {
   )
 
   const CardBody = () => (
-    <div className={classNames(className, 'grid gap-x-4 py-4 px-8 w-full border border-dial-gray card-drop-shadow')}>
+    <div className={classNames(className, 'grid gap-x-4 py-4 px-8 w-full border border-dial-gray shadow-md')}>
       {children}
     </div>
   )
