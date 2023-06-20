@@ -10,7 +10,7 @@ exports[`Unit test for the TagCard component Should match snapshot - user is NOT
     data-testid="tag-card"
   >
     <div
-      class="border border-dial-gray card-drop-shadow"
+      class="border border-dial-gray shadow-md"
     >
       <div
         class="flex gap-3 my-5 px-4"
@@ -41,7 +41,7 @@ exports[`Unit test for the TagCard component Should match snapshot - user is NOT
     data-testid="tag-card"
   >
     <div
-      class="border border-dial-gray card-drop-shadow"
+      class="border border-dial-gray shadow-md"
     >
       <div
         class="flex gap-3 my-5 px-4"
@@ -72,7 +72,7 @@ exports[`Unit test for the TagCard component Should match snapshot - user is an 
     data-testid="tag-card"
   >
     <div
-      class="border border-dial-gray card-drop-shadow"
+      class="border border-dial-gray shadow-md"
     >
       <div
         class="flex gap-3 my-5 px-4"
@@ -103,7 +103,7 @@ exports[`Unit test for the TagCard component Should match snapshot - user is an 
     data-testid="tag-card"
   >
     <div
-      class="border border-dial-gray card-drop-shadow"
+      class="border border-dial-gray shadow-md"
     >
       <div
         class="flex gap-3 my-5 px-4"

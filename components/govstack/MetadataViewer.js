@@ -33,7 +33,7 @@ const MetadataViewer = () => {
           return (
             <Link key={index} href={`building-blocks/${apiMapping.label}`}>
               <div className={containerElementStyle}>
-                <div className='py-2 bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
+                <div className='py-2 bg-white border border-dial-gray hover:border-transparent shadow-md'>
                   <div className='py-4 px-4 flex text-base font-semibold'>
                     {`${DEFAULT_REPO_OWNER}/${apiMapping.label}`}
                     <AiOutlineArrowRight className='ml-auto my-auto' />

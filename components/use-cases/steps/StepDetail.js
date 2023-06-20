@@ -27,7 +27,7 @@ const UseCaseStepInformation = ({ useCaseStep, useCase, canEdit }) => {
       </div>
       <HtmlViewer
         initialContent={useCaseStep?.useCaseStepDescription?.description}
-        className='px-6 pt-6 border border-dial-gray card-drop-shadow'
+        className='px-6 pt-6 border border-dial-gray shadow-md'
       />
       {useCaseStep.workflows &&
         <UseCaseStepDetailWorkflows

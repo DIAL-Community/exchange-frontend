@@ -10,13 +10,13 @@ import Input from '../shared/Input'
 import { ToastContext } from '../../lib/ToastContext'
 import ValidationError from '../shared/ValidationError'
 import { Loading, Unauthorized } from '../shared/FetchStatus'
-import { useUser } from '../../lib/hooks'
+import { useOrganizationOwnerUser, useUser } from '../../lib/hooks'
 import { CREATE_RESOURCE } from '../../mutations/resource'
 import FileUploader from '../shared/FileUploader'
 import UrlInput from '../shared/UrlInput'
 import Checkbox from '../shared/Checkbox'
 
-const ResourceForm = React.memo(({ resource }) => {
+const ResourceForm = React.memo(({ resource, organization }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -25,8 +25,9 @@ const ResourceForm = React.memo(({ resource }) => {
   const router = useRouter()
   const { locale } = router
 
-  const { user, loadingUserSession } = useUser()
-  const canEdit = user?.isAdminUser || user?.isEditorUser
+  const { isOrganizationOwner } = useOrganizationOwnerUser(organization)
+  const { user, isAdminUser, loadingUserSession } = useUser()
+  const canEdit = user?.isAdminUser || user?.isEditorUser || (organization && isOrganizationOwner)
 
   const [mutating, setMutating] = useState(false)
   const [reverting, setReverting] = useState(false)
@@ -43,7 +44,13 @@ const ResourceForm = React.memo(({ resource }) => {
           'top-center',
           1000,
           null,
-          () => router.push(`/${router.locale}/resources/${response?.resource?.slug}`)
+          () => {
+            if (organization) {
+              router.push(`/${router.locale}/storefronts/${organization.slug}`)
+            } else {
+              router.push(`/${router.locale}/resources/${response?.resource?.slug}`)
+            }
+          }
         )
         setMutating(false)
       } else {
@@ -89,8 +96,12 @@ const ResourceForm = React.memo(({ resource }) => {
       map[resource.slug] = resource.name
     }
 
+    if (organization) {
+      map[organization.slug] = organization.name
+    }
+
     return map
-  }, [resource, format])
+  }, [resource, organization, format])
 
   const doUpsert = async (data) => {
     if (canEdit) {
@@ -109,6 +120,10 @@ const ResourceForm = React.memo(({ resource }) => {
         variables.imageFile = imageFile[0]
       }
 
+      if (organization) {
+        variables.organizationSlug = organization.slug
+      }
+
       updateResource({
         variables,
         context: {
@@ -123,7 +138,11 @@ const ResourceForm = React.memo(({ resource }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/resources/${resource?.slug ?? ''}`)
+    if (!resource && organization) {
+      router.push(`/storefronts/${organization.slug}`)
+    } else {
+      router.push(`/resources/${resource?.slug ?? ''}`)
+    }
   }
 
   return (
@@ -182,14 +201,18 @@ const ResourceForm = React.memo(({ resource }) => {
                       />
                       {errors.link && <ValidationError value={errors.link?.message} />}
                     </div>
-                    <label className='flex gap-x-2 mb-2 items-center self-start'>
-                      <Checkbox {...register('showInExchange')} />
-                      {format('resource.showInExchange')}
-                    </label>
-                    <label className='flex gap-x-2 mb-2 items-center self-start'>
-                      <Checkbox {...register('showInWizard')} />
-                      {format('resource.showInWizard')}
-                    </label>
+                    {isAdminUser &&
+                      <label className='flex gap-x-2 mb-2 items-center self-start'>
+                        <Checkbox {...register('showInExchange')} />
+                        {format('resource.showInExchange')}
+                      </label>
+                    }
+                    {isAdminUser &&
+                      <label className='flex gap-x-2 mb-2 items-center self-start'>
+                        <Checkbox {...register('showInWizard')} />
+                        {format('resource.showInWizard')}
+                      </label>
+                    }
                   </div>
                   <div className='w-full lg:w-1/2'>
                     <div className='block flex flex-col gap-y-2' data-testid='resource-description'>
@@ -234,6 +257,11 @@ const ResourceForm = React.memo(({ resource }) => {
                     {reverting && <FaSpinner className='spinner ml-3' />}
                   </button>
                 </div>
+                { organization &&
+                  <div className='text-sm italic text-emerald-500'>
+                    {format('resource.fromStorefront')}
+                  </div>
+                }
               </div>
             </form>
           </div>

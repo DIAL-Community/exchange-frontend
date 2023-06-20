@@ -517,7 +517,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                   data-testid="tag-card"
                 >
                   <div
-                    class="border border-dial-gray card-drop-shadow"
+                    class="border border-dial-gray shadow-md"
                   >
                     <div
                       class="flex gap-3 my-5 px-4"
@@ -540,7 +540,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                   data-testid="tag-card"
                 >
                   <div
-                    class="border border-dial-gray card-drop-shadow"
+                    class="border border-dial-gray shadow-md"
                   >
                     <div
                       class="flex gap-3 my-5 px-4"
@@ -1404,7 +1404,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                 data-testid="tag-card"
               >
                 <div
-                  class="border border-dial-gray card-drop-shadow"
+                  class="border border-dial-gray shadow-md"
                 >
                   <div
                     class="flex gap-3 my-5 px-4"
@@ -1427,7 +1427,7 @@ exports[`Unit tests for playbook interaction. Privileged user should be able to 
                 data-testid="tag-card"
               >
                 <div
-                  class="border border-dial-gray card-drop-shadow"
+                  class="border border-dial-gray shadow-md"
                 >
                   <div
                     class="flex gap-3 my-5 px-4"
@@ -2328,7 +2328,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                   data-testid="tag-card"
                 >
                   <div
-                    class="border border-dial-gray card-drop-shadow"
+                    class="border border-dial-gray shadow-md"
                   >
                     <div
                       class="flex gap-3 my-5 px-4"
@@ -2351,7 +2351,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                   data-testid="tag-card"
                 >
                   <div
-                    class="border border-dial-gray card-drop-shadow"
+                    class="border border-dial-gray shadow-md"
                   >
                     <div
                       class="flex gap-3 my-5 px-4"
@@ -2866,7 +2866,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                 data-testid="tag-card"
               >
                 <div
-                  class="border border-dial-gray card-drop-shadow"
+                  class="border border-dial-gray shadow-md"
                 >
                   <div
                     class="flex gap-3 my-5 px-4"
@@ -2889,7 +2889,7 @@ exports[`Unit tests for playbook interaction. Should render playbook data when a
                 data-testid="tag-card"
               >
                 <div
-                  class="border border-dial-gray card-drop-shadow"
+                  class="border border-dial-gray shadow-md"
                 >
                   <div
                     class="flex gap-3 my-5 px-4"

@@ -153,7 +153,7 @@ const ResourceViewer = ({ index, resource, removeResource, setEditing }) => {
   return (
     <div className='flex flex-row gap-3 px-3'>
       <div className='py-3 font-semibold my-auto'>{index + 1})</div>
-      <div className='bg-white border border-dial-gray border-opacity-50 card-drop-shadow w-full'>
+      <div className='bg-white border border-dial-gray border-opacity-50 shadow-md w-full'>
         <div className='flex gap-4 px-3 py-3 w-full'>
           <div className='w-3/12 font-semibold my-auto overflow-hidden text-ellipsis'>
             {resource.name}

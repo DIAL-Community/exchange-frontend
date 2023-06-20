@@ -6,14 +6,14 @@ exports[`Unit test for the SectorCard component Should match snapshot - user is 
     class="Toastify"
   />
   <div
-    class="border-3 border-transparent"
+    class="rounded-md border-3 border-transparent"
     data-testid="sector-card"
   >
     <div
-      class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
+      class="flex border border-dial-gray shadow-md px-3 h-16 rounded-md"
     >
       <div
-        class="flex items-center p-4"
+        class="flex items-center"
       >
         <div
           class="inline-block font-semibold text-button-gray"
@@ -32,14 +32,14 @@ exports[`Unit test for the SectorCard component Should match snapshot - user is 
     class="Toastify"
   />
   <div
-    class="hover:border-dial-sunshine text-button-gray border-3 border-transparent"
+    class="hover:border-dial-sunshine text-button-gray rounded-md border-3 border-transparent"
     data-testid="sector-card"
   >
     <div
-      class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
+      class="flex border border-dial-gray shadow-md px-3 h-16 rounded-md"
     >
       <div
-        class="flex-1 cursor-pointer flex items-center p-4"
+        class="flex-1 cursor-pointer flex items-center"
       >
         <div
           class="inline-flex items-center gap-x-2 inline-block font-semibold text-button-gray"
@@ -67,7 +67,7 @@ exports[`Unit test for the SectorCard component Should match snapshot - user is 
         </div>
       </div>
       <div
-        class="inline-flex items-center gap-x-2 p-4"
+        class="inline-flex items-center gap-x-2"
       >
         <button
           class="cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
@@ -136,14 +136,14 @@ exports[`Unit test for the SectorCard component Should match snapshot - user is 
     class="Toastify"
   />
   <div
-    class="border-3 border-transparent"
+    class="rounded-md border-3 border-transparent"
     data-testid="sector-card"
   >
     <div
-      class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
+      class="flex border border-dial-gray shadow-md px-3 h-16 rounded-md"
     >
       <div
-        class="flex items-center p-4"
+        class="flex items-center"
       >
         <div
           class="inline-block font-semibold text-button-gray"
@@ -162,14 +162,14 @@ exports[`Unit test for the SectorCard component Should match snapshot - user is 
     class="Toastify"
   />
   <div
-    class="hover:border-dial-sunshine text-button-gray border-3 border-transparent"
+    class="hover:border-dial-sunshine text-button-gray rounded-md border-3 border-transparent"
     data-testid="sector-card"
   >
     <div
-      class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
+      class="flex border border-dial-gray shadow-md px-3 h-16 rounded-md"
     >
       <div
-        class="flex-1 cursor-pointer flex items-center p-4"
+        class="flex-1 cursor-pointer flex items-center"
       >
         <div
           class="inline-flex items-center gap-x-2 inline-block font-semibold text-button-gray"

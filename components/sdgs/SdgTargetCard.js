@@ -18,7 +18,7 @@ const SdgTargetCard = ({ sdgTarget }) => {
           hover:text-dial-sunshine cursor-pointer
         `}
       >
-        <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
+        <div className='bg-white border border-dial-gray hover:border-transparent shadow-md'>
           <div className='flex flex-row text-dial-gray-dark'>
             <div className='px-4 my-auto text-sm font-semibold text-dial-sunshine w-3/12 md:w-2/12'>
               {`${format('sdg.target.title')}: ${sdgTarget.targetNumber}`}

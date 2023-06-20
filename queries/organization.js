@@ -22,7 +22,11 @@ export const ORGANIZATION_QUERY = gql`
       imageFile
       whenEndorsed
       endorserLevel
+      specialties
+      hasStorefront
+      heroFile
       organizationDescription {
+        id
         description
         locale
       }
@@ -37,7 +41,22 @@ export const ORGANIZATION_QUERY = gql`
         latitude
         longitude
       }
+      buildingBlockCertifications {
+        id
+        name
+        slug
+        imageFile
+        category
+        maturity
+      }
+      productCertifications {
+        id
+        name
+        slug
+        imageFile
+      }
       sectors {
+        id
         name
         slug
       }
@@ -53,16 +72,25 @@ export const ORGANIZATION_QUERY = gql`
         imageFile
       }
       projects {
+        id
         name
         slug
         origin {
           slug
+          name
         }
       }
       contacts {
+        id
         name
         email
         title
+      }
+      resources {
+        id
+        name
+        slug
+        link
       }
     }
   }

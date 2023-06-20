@@ -91,7 +91,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
 
       updateUseCaseSdgTargets({
         variables: {
-          sdgTargetsIds: sdgTargets.map(({ id }) => parseInt(id)),
+          sdgTargetIds: sdgTargets.map(({ id }) => parseInt(id)),
           slug: useCase.slug
         },
         context: {

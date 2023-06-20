@@ -117,7 +117,7 @@ const RoleCard = ({ role, listType }) => {
           : (
             <div className={`card ${status === 'rejection' || status === 'approval' ? 'flip-vertical' : ''}`}>
               <div className='card-body border-3 border-transparent text-dial-purple cursor-pointer h-full'>
-                <div className='card-front h-full flex flex-col border border-dial-gray card-drop-shadow'>
+                <div className='card-front h-full flex flex-col border border-dial-gray shadow-md'>
                   <div className='flex flex-row p-1.5 border-b border-dial-gray'>
                     {
                       (String(role.rejected) === 'true' || status === 'rejected') &&

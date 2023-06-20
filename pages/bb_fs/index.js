@@ -129,7 +129,7 @@ const BBFullScreen = () => {
           return (
             <div key={i} className='m-2'>
               <a href={getUrl(bb)} target='_blank' rel='noreferrer'>
-                <div className='h-full flex flex-col border border-dial-gray hover:border-dial-sunshine card-drop-shadow'>
+                <div className='h-full flex flex-col border border-dial-gray hover:border-dial-sunshine shadow-md'>
                   <div
                     className={`
                       text-2xl text-white font-semibold overflow-hidden h-1/5 w-full flex flex-row gap-x-1.5 p-2

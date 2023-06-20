@@ -63,7 +63,7 @@ const OrganizationDetailSectors = ({ organization, canEdit }) => {
       updateOrganizationSectors({
         variables: {
           slug: organization.slug,
-          sectorsSlugs: sectors.map(({ slug }) => slug)
+          sectorSlugs: sectors.map(({ slug }) => slug)
         },
         context: {
           headers: {

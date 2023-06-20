@@ -30,11 +30,11 @@ export const CREATE_BUILDING_BLOCK = gql`
 export const UPDATE_BUILDING_BLOCK_WORKFLOWS = gql`
    mutation UpdateBuildingBlockWorkflows(
     $slug: String!
-    $workflowsSlugs: [String!]!
+    $workflowSlugs: [String!]!
   ) {
     updateBuildingBlockWorkflows(
       slug: $slug,
-      workflowsSlugs: $workflowsSlugs
+      workflowSlugs: $workflowSlugs
     ) {
       buildingBlock {
         slug

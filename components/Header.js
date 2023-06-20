@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import classNames from 'classnames'
 import { signIn, signOut } from 'next-auth/react'
 import { useContext, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
@@ -16,6 +15,7 @@ import AboutMenu from './shared/menu/AboutMenu'
 import HelpMenu from './shared/menu/HelpMenu'
 import LanguageMenu from './shared/menu/LanguageMenu'
 import { NONE } from './shared/menu/MenuCommon'
+import MarketplaceMenu from './shared/menu/Marketplace'
 
 const dropdownMenuStyles = `
     block px-4 py-2 text-base text-white-beech hover:bg-gray-100 hover:text-gray-900
@@ -157,15 +157,7 @@ const Header = ({ isOnAuthPage = false }) => {
                 && (
                   <>
                     <li className='relative mt-2 xl:mt-0 text-right'>
-                      <Link
-                        href='/opportunities'
-                        className={classNames(
-                          'xl:p-2 px-0 xl:mb-0 mb-2 cursor-pointer',
-                          'border-b-2 border-transparent hover:border-dial-sunshine'
-                        )}
-                      >
-                        {format('opportunity.header')}
-                      </Link>
+                      <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
                     <li className='relative mt-2 xl:mt-0 text-right'>
                       <AboutMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />

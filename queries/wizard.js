@@ -49,8 +49,8 @@ export const WIZARD_QUERY = gql`
 `
 
 export const WIZARD_USE_CASES_FOR_SECTOR = gql`
-  query UseCasesForSector ($sectorsSlugs: [String!]!) {
-    useCasesForSector (sectorsSlugs: $sectorsSlugs) {
+  query UseCasesForSector ($sectorSlugs: [String!]!) {
+    useCasesForSector (sectorSlugs: $sectorSlugs) {
       name
     }
   }

@@ -96,7 +96,8 @@ const SearchFilter = ({
       'countries',
       'rubric_categories',
       'opportunities',
-      'resources'
+      'resources',
+      'storefronts'
     ]
     if (user.isAdminUser && adminEditPaths.some(el => linkPath.includes(el))) {
       // These create functions are in React, not Rails

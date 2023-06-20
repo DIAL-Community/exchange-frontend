@@ -84,7 +84,7 @@ const OrganizationCard = ({ organization, listType }) => {
         listType === 'list'
           ? (
             <div className='border-3 border-transparent'>
-              <div className={classNames('border border-dial-gray card-drop-shadow bg-white',
+              <div className={classNames('border border-dial-gray shadow-md bg-white',
                 { 'bg-red-50': organization.rejected === true || status === CandidateStatusType.REJECTED },
                 { 'bg-emerald-50': organization.rejected === false || status === CandidateStatusType.APPROVED }
               )}
@@ -148,7 +148,7 @@ const OrganizationCard = ({ organization, listType }) => {
           )
           : (
             <div className='border-3 border-transparent text-dial-purple h-full'>
-              <div className='h-full flex flex-col border border-dial-gray card-drop-shadow'>
+              <div className='h-full flex flex-col border border-dial-gray shadow-md'>
                 <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
                   {
                     (organization.rejected === true || status === CandidateStatusType.REJECTED) &&

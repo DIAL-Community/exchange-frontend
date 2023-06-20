@@ -270,7 +270,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         "
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray hover:border-transparent shadow-md"
           >
             <div
               class="flex flex-row text-dial-gray-dark"
@@ -299,7 +299,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         "
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray hover:border-transparent shadow-md"
           >
             <div
               class="flex flex-row text-dial-gray-dark"
@@ -543,7 +543,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         "
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray hover:border-transparent shadow-md"
           >
             <div
               class="flex flex-row text-dial-gray-dark"
@@ -572,7 +572,7 @@ exports[`Unit tests for the ProductDetailSdgTargets component. Should match snap
         "
         >
           <div
-            class="bg-white border border-dial-gray hover:border-transparent card-drop-shadow"
+            class="bg-white border border-dial-gray hover:border-transparent shadow-md"
           >
             <div
               class="flex flex-row text-dial-gray-dark"

@@ -53,22 +53,18 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
       </div>
     </div>
     <div
-      class="grid grid-cols-1 lg:grid-cols-2"
+      class="grid grid-cols-1 lg:grid-cols-2 gap-2"
     >
       <div
-        class="border-3 border-transparent"
+        class="border border-dial-gray shadow-md rounded-md"
       >
         <div
-          class="border border-dial-gray card-drop-shadow"
+          class="my-4 px-4"
         >
           <div
-            class="my-4 px-4"
+            class="pr-3 font-semibold line-clamp-1 text-button-gray"
           >
-            <div
-              class="pr-3 font-semibold line-clamp-1 text-button-gray"
-            >
-              Test Office Location
-            </div>
+            Test Office Location
           </div>
         </div>
       </div>
@@ -263,22 +259,18 @@ exports[`Unit test for the OrganizationDetailOffices component. Should match sna
       />
     </div>
     <div
-      class="grid grid-cols-1 lg:grid-cols-2"
+      class="grid grid-cols-1 lg:grid-cols-2 gap-2"
     >
       <div
-        class="border-3 border-transparent"
+        class="border border-dial-gray shadow-md rounded-md"
       >
         <div
-          class="border border-dial-gray card-drop-shadow"
+          class="my-4 px-4"
         >
           <div
-            class="my-4 px-4"
+            class="pr-3 font-semibold line-clamp-1 text-button-gray"
           >
-            <div
-              class="pr-3 font-semibold line-clamp-1 text-button-gray"
-            >
-              Test Office Location
-            </div>
+            Test Office Location
           </div>
         </div>
       </div>
