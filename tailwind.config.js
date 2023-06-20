@@ -38,6 +38,9 @@ module.exports = {
         'dial-angel': {
           DEFAULT: '#c7ccf4'
         },
+        'dial-cotton': {
+          DEFAULT: '#f3f5ff'
+        },
         // Part of the UX refresh.
         'govstack-blue': {
           DEFAULT: '#0539e3',

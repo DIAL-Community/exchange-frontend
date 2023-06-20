@@ -7,28 +7,28 @@ const Share = () => {
       <div className='flex flex-row gap-3'>
         <img
           src='/ui/v1/twitter-icon.svg'
-          alt='Logo for sharing  the current page to twitter.'
+          alt='Logo of twitter.'
           width={40}
           height={40}
           className='object-contain'
         />
         <img
           src='/ui/v1/linkedin-icon.svg'
-          alt='Logo for sharing the current page to linkedin.'
+          alt='Logo of linkedin.'
           width={40}
           height={40}
           className='object-contain'
         />
         <img
           src='/ui/v1/email-icon.svg'
-          alt='Logo for emailing the current page.'
+          alt='Logo of email.'
           width={40}
           height={40}
           className='object-contain'
         />
         <img
           src='/ui/v1/copy-icon.svg'
-          alt='Logo for copying url of the current page.'
+          alt='Logo of copy url.'
           width={40}
           height={40}
           className='object-contain'

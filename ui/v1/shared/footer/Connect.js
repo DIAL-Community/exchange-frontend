@@ -9,10 +9,10 @@ const Connect = () => {
         Sign up for our newsletter to learn more about the Digital Impact Exchange
         and how you can be involved.
       </div>
-      <div className='flex text-white'>
+      <div className='flex text-white pt-3'>
         <div className='bg-dial-iris-blue rounded-md text-sm'>
           <div className='px-5 py-3'>
-            Sign up to our newsletter
+            Sign up for our newsletter
           </div>
         </div>
       </div>

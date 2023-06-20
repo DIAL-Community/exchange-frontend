@@ -29,7 +29,7 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage }) => {
 
   return (
     <div className={`${ribbonBg} ribbon-outer rounded-b-[32px]`}>
-      <div className='ribbon-inner w-full px-48'>
+      <div className='ribbon-inner w-full px-56'>
         <div className='h-28 flex'>
           <div className='basis-1/2 flex gap-4'>
             { titleImage }

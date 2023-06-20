@@ -5,10 +5,10 @@ import PoweredBy from './footer/PoweredBy'
 
 const Footer = () => {
   return (
-    <div className='bg-dial-slate-100 max-w-catalog mx-auto'>
-      <div className='mx-48 py-8'>
+    <div className='bg-dial-cotton max-w-catalog mx-auto'>
+      <div className='px-56 py-8'>
         <div className='flex flex-col px-6'>
-          <div className='flex gap-8'>
+          <div className='flex gap-x-48'>
             <div className='basis-3/5'>
               <Connect />
             </div>
@@ -20,7 +20,7 @@ const Footer = () => {
             <div className='basis-3/5'>
               <Partner />
             </div>
-            <div className='basis-2/5'>
+            <div className='basis-2/5 mt-auto'>
               <Disclaimer />
             </div>
           </div>
