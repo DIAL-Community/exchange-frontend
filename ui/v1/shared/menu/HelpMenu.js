@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useCallback, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
@@ -64,12 +65,34 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
               {format('header.documentation')}
             </a>
             <a
+              className={DEFAULT_DROPDOWN_MENU_STYLES}
+              href='//solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/overview'
+              target='_blank'
+              rel='noreferrer'
+              role='menuitem'
+            >
+              {format('header.confluence')}
+            </a>
+            <hr className='mx-4 bg-dial-slate-200' />
+            <a
+              className={DEFAULT_DROPDOWN_MENU_STYLES}
+              href='//digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'
+              target='_blank'
+              rel='noreferrer'
+              role='menuitem'
+            >
+              {format('header.newsletter')}
+            </a>
+            <a
               href='reportIssue'
               className={DEFAULT_DROPDOWN_MENU_STYLES}
               onClick={(e) => showFeedbackForm(e)}
             >
               {format('app.reportIssue')}
             </a>
+            <Link href='/about' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('header.about')}
+            </Link>
           </div>
       }
       {showForm && <ReportIssue showForm={showForm} hideFeedbackForm={hideFeedbackForm} />}

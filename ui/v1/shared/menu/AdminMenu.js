@@ -31,7 +31,7 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
             <Link href='/users' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
               {format('header.admin.users')}
             </Link>
-            <hr className='mx-4 border border-gray-200' />
+            <hr className='mx-4 bg-dial-slate-200' />
             <Link href='/countries' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
               {format('header.admin.countries')}
             </Link>
@@ -41,7 +41,7 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
             <Link href='/tags' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
               {format('header.admin.tags')}
             </Link>
-            <hr className='mx-4 border border-gray-200' />
+            <hr className='mx-4 bg-dial-slate-200' />
             <Link href='/candidate/datasets' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
               {format('header.admin.candidate_datasets')}
             </Link>
@@ -54,11 +54,11 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
             <Link href='/candidate/roles' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
               {format('header.admin.candidate_roles')}
             </Link>
-            <hr className='mx-4 border border-gray-200' />
+            <hr className='mx-4 bg-dial-slate-200' />
             <Link href='/rubric_categories' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
               {format('rubric-categories.header')}
             </Link>
-            <hr className='mx-4 border border-gray-200' />
+            <hr className='mx-4 bg-dial-slate-200' />
             <Link href='/spreadsheets/datasets' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
               {format('spreadsheet.dataset.header')}
             </Link>

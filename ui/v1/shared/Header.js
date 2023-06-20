@@ -12,7 +12,6 @@ import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../../../queries/user'
 import { NONE } from './menu/MenuCommon'
 import AdminMenu from './menu/AdminMenu'
 import UserMenu from './menu/UserMenu'
-import AboutMenu from './menu/AboutMenu'
 import HelpMenu from './menu/HelpMenu'
 import ResourceMenu from './menu/ResourceMenu'
 import LanguageMenu from './menu/LanguageMenu'
@@ -161,15 +160,12 @@ const Header = ({ isOnAuthPage = false }) => {
                       <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
                     <li className='relative text-right'>
-                      <AboutMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-                    </li>
-                    <li className='relative text-right'>
-                      <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-                    </li>
-                    <li className='relative text-right'>
                       <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
                     { user ? withUser : withoutUser }
+                    <li className='relative text-right'>
+                      <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                    </li>
                   </>
                 )
               }
