@@ -252,10 +252,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
             class="hidden xl:flex items-center text-dial-white-beech gap-x-3"
           >
             <li
-              class="text-right"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
-                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-sunshine lg:mb-0 mb-2 cursor-pointer"
+                class="pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine"
                 data-testid="menu-marketplace"
                 href="menu-marketplace"
                 id="menu-marketplace"
@@ -263,7 +263,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
                 Marketplace
                 <svg
                   aria-hidden="true"
-                  class="ml-1 inline text-2xl"
+                  class="inline text-xl"
                   fill="currentColor"
                   height="1em"
                   id="svg-down-menu-marketplace"
@@ -1295,9 +1295,9 @@ exports[`Unit test for the EditUser component. Should match snapshot - edit. 1`]
             <div
               class="block"
             >
-              ©
+              © 
               2023
-
+               
               Digital Impact Alliance
             </div>
           </div>
@@ -1499,10 +1499,10 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
             class="hidden xl:flex items-center text-dial-white-beech gap-x-3"
           >
             <li
-              class="text-right"
+              class="relative mt-2 xl:mt-0 text-right"
             >
               <a
-                class="lg:p-2 px-0 border-b-2 border-transparent hover:border-dial-sunshine lg:mb-0 mb-2 cursor-pointer"
+                class="pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine"
                 data-testid="menu-marketplace"
                 href="menu-marketplace"
                 id="menu-marketplace"
@@ -1510,7 +1510,7 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
                 Marketplace
                 <svg
                   aria-hidden="true"
-                  class="ml-1 inline text-2xl"
+                  class="inline text-xl"
                   fill="currentColor"
                   height="1em"
                   id="svg-down-menu-marketplace"
@@ -2067,9 +2067,9 @@ exports[`Unit test for the EditUser component. Should match snapshot - unauthori
             <div
               class="block"
             >
-              ©
+              © 
               2023
-
+               
               Digital Impact Alliance
             </div>
           </div>
