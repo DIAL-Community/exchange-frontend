@@ -1,4 +1,10 @@
+import { useCallback } from 'react'
+import { useIntl } from 'react-intl'
+
 const Bookmark = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   return (
     <div className='flex flex-col gap-3 py-3'>
       <div className='text-lg text-dial-sapphire font-semibold'>
@@ -7,7 +13,7 @@ const Bookmark = () => {
       <div className='flex flex-row gap-x-3'>
         <img
           src='/ui/v1/bookmark-icon.svg'
-          alt='Logo for bookmarking the current page.'
+          alt={format('ui.image.logoAlt', { name: 'Bookmark' })}
           width={40}
           height={40}
           className='object-contain'

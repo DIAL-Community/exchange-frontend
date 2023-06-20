@@ -1,10 +1,15 @@
+import { useIntl } from 'react-intl'
+import { useCallback } from 'react'
 import Ribbon from '../shared/Ribbon'
 
 const UseCaseRibbon = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
   const titleImage =
     <img
       src='/ui/v1/use-case-header.svg'
-      alt='Logo for use case header.'
+      alt={format('ui.image.logoAlt', { name: 'Use Cases' })}
       width={70}
       height={70}
       className='object-contain'

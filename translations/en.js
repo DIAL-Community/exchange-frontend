@@ -1718,5 +1718,7 @@ export const en = {
   'ui.useCase.ribbonTitle': 'Use Cases',
   'ui.useCase.header': 'Use Cases',
   'ui.useCase.whatIs': 'What is a Use Case?',
-  'ui.useCase.createNew': 'Create a new Use Case'
+  'ui.useCase.createNew': 'Create a new Use Case',
+
+  'ui.image.logoAlt': 'Logo of {name}.'
 }

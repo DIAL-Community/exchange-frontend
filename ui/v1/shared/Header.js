@@ -134,7 +134,7 @@ const Header = ({ isOnAuthPage = false }) => {
           <img
             className='object-center object-contain'
             src='/ui/v1/exchange-logo.svg'
-            alt='Digital Impact Exchage Logo.'
+            alt={format('ui.image.logoAlt', { name: 'Digital Impact Exchange' })}
           />
         </Link>
         <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block xl:hidden'>
