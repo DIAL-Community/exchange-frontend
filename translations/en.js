@@ -1748,6 +1748,10 @@ export const en = {
   'ui.footer.poweredBy.title': 'Powered by',
   'ui.footer.poweredBy.subTitle': `
     The Digital Impact Exchange is a project of the Digital Impact Alliance
-  `
+  `,
+
+  'ui.ribbon.nav.ariaLabel': 'Current active navigation'
+
+
 
 }

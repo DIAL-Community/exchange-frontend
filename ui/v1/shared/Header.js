@@ -128,7 +128,7 @@ const Header = ({ isOnAuthPage = false }) => {
     </li>
 
   return (
-    <header className='z-70 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
+    <header className='z-50 sticky top-0 bg-dial-sapphire max-w-catalog mx-auto'>
       <div className='flex flex-wrap header-min-height px-8 xl:px-56'>
         <Link href='/' className='my-auto py-3'>
           <img

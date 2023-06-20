@@ -28,7 +28,7 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage }) => {
   }, [pathname, format])
 
   return (
-    <div className={`${ribbonBg} ribbon-outer rounded-b-[32px]`}>
+    <div className={`${ribbonBg} ribbon-outer rounded-b-[32px] z-40`}>
       <div className='ribbon-inner w-full px-56'>
         <div className='h-28 flex'>
           <div className='basis-1/2 flex gap-4'>
@@ -37,7 +37,7 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage }) => {
               {format(titleKey)}
             </div>
           </div>
-          <div className='h-28 basis-1/3 flex ml-auto'>
+          <div className='h-28 basis-1/3 flex ml-auto z-40'>
             <div className='block basis-1/2 ml-auto my-auto'>
               <div className='flex flex-col gap-1 text-sm'>
                 <div className='text-dial-slate-600 font-bold'>
@@ -45,7 +45,7 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage }) => {
                 </div>
                 <Select
                   async
-                  aria-label='Current active navigation'
+                  aria-label={format('ui.ribbon.ariaLabel')}
                   cacheOptions
                   defaultOptions={options}
                   loadOptions={fetchOptions}
