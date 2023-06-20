@@ -77,7 +77,7 @@ const ProductList = (props) => {
               <ProductCard key={product.id} listType={displayType} {...{ filterDisplayed, product }} />
             ))
             : (
-              <div className='flex justify-self-center text-dial-gray-dark'>{
+              <div className='text-dial-gray-dark'>{
                 format('noResults.entity', { entity: format('products.label') })
               }
               </div>

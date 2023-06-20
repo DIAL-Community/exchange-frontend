@@ -314,6 +314,18 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                   />
                   MNI
                 </label>
+                <label
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
+                  data-testid="organization-has-storefront"
+                >
+                  <input
+                    class="h-8 w-8"
+                    data-testid="checkbox"
+                    name="hasStorefront"
+                    type="checkbox"
+                  />
+                  Organization has a storefront
+                </label>
               </div>
               <div
                 class="w-full lg:w-1/2"
@@ -757,6 +769,18 @@ exports[`Unit tests for the OrganizationForm component. Should match snapshot - 
                     type="checkbox"
                   />
                   MNI
+                </label>
+                <label
+                  class="flex gap-x-2 mb-2 items-center self-start text-dial-sapphire"
+                  data-testid="organization-has-storefront"
+                >
+                  <input
+                    class="h-8 w-8"
+                    data-testid="checkbox"
+                    name="hasStorefront"
+                    type="checkbox"
+                  />
+                  Organization has a storefront
                 </label>
               </div>
               <div

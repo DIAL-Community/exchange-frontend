@@ -15,7 +15,7 @@ const containerElementStyle = `
 const UserCard = ({ user, listType, newTab = false }) => {
   const listDisplayType = () =>
     <div className={containerElementStyle}>
-      <div className='bg-white border border-dial-gray hover:border-transparent card-drop-shadow'>
+      <div className='bg-white border border-dial-gray hover:border-transparent shadow-md'>
         <div className='grid grid-cols-12 gap-x-4 py-4 px-4'>
           <div className={`col-span-8 text-base font-semibold ${ellipsisTextStyle}`}>
             <img src='/icons/user.svg' className='inline mx-2' alt='Back' height='20px' width='20px' />
@@ -32,7 +32,7 @@ const UserCard = ({ user, listType, newTab = false }) => {
 
   const cardDisplayType = () =>
     <div className={containerElementStyle}>
-      <div className='border border-dial-gray hover:border-transparent card-drop-shadow'>
+      <div className='border border-dial-gray hover:border-transparent shadow-md'>
         <div className='flex flex-row p-1.5 border-b border-dial-gray'>
           <div className='ml-auto text-button-gray-light text-sm font-semibold'>
             {user.roles.toUpperCase()}

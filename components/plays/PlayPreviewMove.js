@@ -114,7 +114,7 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = fal
                               key={resource.i}
                               className={classNames(
                                 'group border-2 border-gray-300 hover:border-dial-sunshine',
-                                'card-drop-shadow'
+                                'shadow-md'
                               )}
                             >
                               <div className='flex'>

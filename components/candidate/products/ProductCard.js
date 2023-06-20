@@ -24,7 +24,7 @@ const ProductCard = ({ product, listType }) => {
   const listView =
     <div className={classNames('card', { 'flip-horizontal': shouldFlipCard(status) })}>
       <div className='card-body border-3 border-transparent'>
-        <div className={classNames('card-front border border-dial-gray card-drop-shadow bg-white h-full',
+        <div className={classNames('card-front border border-dial-gray shadow-md bg-white h-full',
           { 'bg-red-50': product.rejected === true || status === CandidateStatusType.REJECTED },
           { 'bg-emerald-50': product.rejected === false || status === CandidateStatusType.APPROVED }
         )}>
@@ -120,7 +120,7 @@ const ProductCard = ({ product, listType }) => {
   const cardView =
     <div className={classNames('card', { 'flip-vertical': shouldFlipCard(status) })}>
       <div className='card-body border-3 border-transparent text-product h-full'>
-        <div className='card-front h-full flex flex-col border border-dial-gray  card-drop-shadow'>
+        <div className='card-front h-full flex flex-col border border-dial-gray  shadow-md'>
           <div className='flex flex-row p-1.5 border-b border-dial-gray product-card-header'>
             {
               (product.rejected === true || status === CandidateStatusType.REJECTED) &&

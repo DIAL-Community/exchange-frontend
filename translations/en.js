@@ -326,6 +326,7 @@ export const en = {
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',
   'buildingBlock.label': 'Building Block',
+  'buildingBlock.header': 'Building Blocks',
   'building-block.no-product': 'We do not have any Product information for this Building Block.',
   'building-block.disclaimer': 'Note: As part of the <a href="https://govstack.global">GovStack Initiative</a>, DIAL is working to map digital platforms with key Building Block functionalities. Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative examples of how these tools may support building block functionalities. As Building Block specifications are developed, products that are aligned with the specifications will be tagged as such.',
   'building-block.spec-link': 'The GovStack initiative has published a full specification for this building block. You can view the documentation at this link: ',
@@ -634,6 +635,7 @@ export const en = {
   'filter.entity.countries': 'Countries',
   'filter.entity.rubric-categories': 'Rubric Categories',
   'filter.entity.resources': 'Resources',
+  'filter.entity.storefronts': 'Storefronts',
 
   'filter.byEntity': 'Filter by {entity}',
   'filter.searchFor': 'Search for {entity}',
@@ -1686,10 +1688,28 @@ export const en = {
   'resource.showInWizard': 'Show resource in the recommendation wizard',
 
   'resource.delete.confirm.message': 'Are you sure you want to delete this resource?',
+  'resource.fromStorefront': 'Resource created from storefront will  automatically assigned to the storefront.',
 
   'resource.submit.success': 'Resource submitted.',
   'resource.submit.failure': 'Resource update failed.',
   'toast.resource.delete.success': 'Resource deleted.',
+
+  'storefront.label': 'Storefront',
+  'storefront.header': 'Storefronts',
+  'specialty.label': 'Specialty',
+  'specialty.header': 'Specialties',
+  'certification.label': 'Certification',
+  'certification.header': 'Certifications',
+
+  'header.marketplace': 'Marketplace',
+
+  'storefront.no-specialty': "Organization storefront's doesn't have specialty information.",
+  'storefront.no-resource': "Organization storefront's doesn't have resource information.",
+  'storefront.no-buildingBlock': "Organization storefront's doesn't have building block information.",
+  'storefront.no-certification': "Organization storefront's doesn't have certification information.",
+
+  'organization.heroImage': 'Hero image file',
+  'organization.hasStorefront': 'Organization has a storefront',
 
   'ui.shared.navigateTools': 'Navigate Tools',
   'ui.shared.exportJson': 'Export data (JSON)',

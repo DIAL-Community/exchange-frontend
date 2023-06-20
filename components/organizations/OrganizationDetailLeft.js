@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { FaSpinner } from 'react-icons/fa'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { useLazyQuery, useMutation } from '@apollo/client'
+import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '../shared/breadcrumb'
 import EditButton from '../shared/EditButton'
@@ -174,7 +175,7 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
         </div>
         <div className='h4 font-bold py-4'>{format('organization.label')}</div>
       </div>
-      <div className='bg-white border-t-2 border-l-2 border-r-2 border-dial-gray lg:mr-6 shadow-lg'>
+      <div className='bg-white border-t border-l border-r border-dial-gray lg:mr-6 shadow-lg'>
         {
           organization.whenEndorsed && (
             <div className='flex flex-row p-1.5 border-b border-dial-gray text-xs font-semibold text-dial-cyan'>
@@ -236,6 +237,15 @@ const OrganizationDetailLeft = ({ organization, commentsSectionRef }) => {
           }
         </div>
       </div>
+      {organization.hasStorefront &&
+        <Link href={`/storefronts/${organization.slug}`}>
+          <div className='bg-dial-gray-dark text-dial-sunshine shadow-md rounded lg:mr-6 mt-2'>
+            <div className='py-3 px-4 text-center '>
+              View Storefront
+            </div>
+          </div>
+        </Link>
+      }
     </>
   )
 }

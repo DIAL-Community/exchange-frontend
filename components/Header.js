@@ -15,6 +15,7 @@ import AboutMenu from './shared/menu/AboutMenu'
 import HelpMenu from './shared/menu/HelpMenu'
 import LanguageMenu from './shared/menu/LanguageMenu'
 import { NONE } from './shared/menu/MenuCommon'
+import MarketplaceMenu from './shared/menu/Marketplace'
 
 const dropdownMenuStyles = classNames(
   'px-3 py-2',
@@ -156,16 +157,8 @@ const Header = ({ isOnAuthPage = false }) => {
               {!isOnAuthPage
                 && (
                   <>
-                    <li className='text-right'>
-                      <Link
-                        href='/opportunities'
-                        className={classNames(
-                          'cursor-pointer py-2',
-                          'border-b border-transparent hover:border-dial-sunshine'
-                        )}
-                      >
-                        {format('opportunity.header')}
-                      </Link>
+                    <li className='relative mt-2 xl:mt-0 text-right'>
+                      <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
                     </li>
                     <li className='relative text-right'>
                       <AboutMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
