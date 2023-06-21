@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import Link from 'next/link'
 import parse from 'html-react-parser'
 import { DisplayType } from '../utils/constants'
 
@@ -45,7 +46,9 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
     </div>
 
   return (
-    displayType === DisplayType.LARGE_CARD && displayLargeCard()
+    <Link href={`/ui/v1/use-cases/${useCase.slug}`}>
+      {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
+    </Link>
   )
 }
 
