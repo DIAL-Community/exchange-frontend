@@ -1,15 +1,15 @@
-import UseCaseListLeft from './UseCaseListLeft'
-import UseCaseListRight from './UseCaseListRight'
+import UseCaseMainLeft from './UseCaseMainLeft'
+import UseCaseMainRight from './UseCaseMainRight'
 
-const UseCaseList = () => {
+const UseCaseList = ({ activeTab }) => {
   return (
     <div className='px-56'>
       <div className='flex flex-row gap-x-8'>
         <div className='basis-1/3'>
-          <UseCaseListLeft />
+          <UseCaseMainLeft activeTab={activeTab} />
         </div>
         <div className='basis-2/3'>
-          <UseCaseListRight />
+          <UseCaseMainRight activeTab={activeTab} />
         </div>
       </div>
     </div>

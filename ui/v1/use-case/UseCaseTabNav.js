@@ -1,6 +1,6 @@
 import TabNav from '../shared/TabNav'
 
-const UseCaseTabNav = () => {
+const UseCaseTabNav = ({ activeTab, setActiveTab }) => {
   const tabNames = [
     'ui.useCase.header',
     'ui.useCase.whatIs',
@@ -8,7 +8,7 @@ const UseCaseTabNav = () => {
   ]
 
   return (
-    <TabNav tabNames={tabNames} />
+    <TabNav { ...{ tabNames, activeTab, setActiveTab }}/>
   )
 }
 

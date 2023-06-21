@@ -822,6 +822,7 @@ export const en = {
   'organization.hint.characteristics': `The organization cards provide a quick overview of each organization, including information on the products they support, the projects or work they have been connected to, the sectors they are engaged with and the countries in which they work.`,
   'organization.hint.description': `The Exchange tracks several different types of organizations:<ul><li>Organizations that have endorsed the Principles for Digital Development</li><li>Mobile Network Aggregators</li><li>Funders and Maintainers of open source tools (products)</li></ul>`,
 
+  'useCase.hint.title': 'What is Use Case?',
   'useCase.hint.characteristicTitle': 'Characteristics',
   'useCase.hint.descriptionTitle': 'Description',
   'useCase.hint.subtitle': `A Use Case defines the steps that an individual or system will undertake in order to achieve a business objective.`,

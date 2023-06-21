@@ -1,13 +1,10 @@
 import classNames from 'classnames'
 import { useIntl } from 'react-intl'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 
-const TabNav = ({ tabNames, exportJson = true, exportCsv = true }) => {
+const TabNav = ({ tabNames, activeTab, setActiveTab, exportJson = true, exportCsv = true }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const [activeTab, setActiveTab] = useState(0)
-  const [categories] = useState(tabNames)
 
   const handleTabClicked = (e, index) => {
     e.preventDefault()
@@ -26,9 +23,9 @@ const TabNav = ({ tabNames, exportJson = true, exportCsv = true }) => {
     <div className='px-56 sticky-under-ribbon bg-white z-40'>
       <div className='flex flex-row'>
         <ul className='flex flex-row list-none pt-2 gap-x-1'>
-          {categories.map((category, index) => {
+          {tabNames.map((tabName, index) => {
             return <li
-              key={`tab-menu-${category}`}
+              key={`tab-menu-${tabName}`}
               className={classNames(
                 'rounded-t text-sm',
                 index === activeTab
@@ -38,7 +35,7 @@ const TabNav = ({ tabNames, exportJson = true, exportCsv = true }) => {
             >
               <a href='#' onClick={(e) => handleTabClicked(e, index)}>
                 <div className='px-4 py-3'>
-                  {format(category)}
+                  {format(tabName)}
                 </div>
               </a>
             </li>
