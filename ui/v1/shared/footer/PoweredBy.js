@@ -12,12 +12,14 @@ const PoweredBy = () => {
       </div>
       <hr className='bg-dial-angel'/>
       <div className='flex gap-x-8'>
-        <img
-          src='/ui/v1/dial-logo.svg'
-          alt={format('ui.image.logoAlt', { name: 'DIAL' })}
-          width={96}
-          className='object-contain'
-        />
+        <a href='//dial.global' target='_blank' rel='noreferrer'>
+          <img
+            src='/ui/v1/dial-logo.svg'
+            alt={format('ui.image.logoAlt', { name: 'DIAL' })}
+            width={96}
+            className='object-contain'
+          />
+        </a>
         <div className='text-sm text-dial-stratos'>
           {format('ui.footer.poweredBy.subTitle')}
         </div>

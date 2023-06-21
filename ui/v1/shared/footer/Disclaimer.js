@@ -7,9 +7,16 @@ const Disclaimer = () => {
 
   return (
     <div className='flex flex-col gap-y-2 py-3'>
-      <div className='text-sm text-dial-stratos ml-auto'>
-        {format('ui.footer.disclaimer.privacyPolicy')}
-      </div>
+      <a
+        href='/privacy-policy'
+        target='_blank'
+        rel='noreferrer'
+        className='ml-auto'
+      >
+        <div className='text-sm text-dial-stratos'>
+          {format('ui.footer.disclaimer.privacyPolicy')}
+        </div>
+      </a>
       <div className='text-sm text-dial-stratos ml-auto'>
         {format('ui.footer.disclaimer.termsOfUse')}
       </div>

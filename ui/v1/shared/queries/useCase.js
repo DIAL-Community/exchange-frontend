@@ -31,9 +31,7 @@ export const PAGINATED_USE_CASES_QUERY = gql`
           slug
           name
         }
-        useCaseDescription {
-          description
-        }
+        sanitizedDescription
         buildingBlocks {
           id
           slug

@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import parse from 'html-react-parser'
 import { DisplayType } from '../utils/constants'
 
 const UseCaseCard = ({ displayType, index, useCase }) => {
@@ -22,13 +23,9 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
           <div className='text-lg font-semibold text-dial-blueberry'>
             {useCase.name}
           </div>
-          {/*
-          <HtmlViewer
-            initialContent={useCase?.useCaseDescription?.description}
-            editorId={`${index}-use-case-detail`}
-            className='-mb-12'
-          />
-          */}
+          <div className='line-clamp-4 max-w-3xl'>
+            {parse(useCase?.sanitizedDescription)}
+          </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
               {format('ui.sdgTarget.header')} ({useCase.sdgTargets?.length ?? 0})

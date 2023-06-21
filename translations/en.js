@@ -1750,6 +1750,8 @@ export const en = {
     The Digital Impact Exchange is a project of the Digital Impact Alliance
   `,
 
+  'ui.footer.partner.title': 'Our partners and supporters',
+
   'ui.ribbon.nav.ariaLabel': 'Current active navigation',
   'ui.pagination.nextLabel': '>',
   'ui.pagination.prevLabel': '<',

@@ -23,7 +23,7 @@ const UseCaseListRight = () => {
     variables: {
       search,
       sdgs: sdgs.map(sdg => sdg.value),
-      showBeta: true,
+      showBeta,
       govStackOnly,
       limit: DEFAULT_PAGE_SIZE,
       offset: pageOffset
