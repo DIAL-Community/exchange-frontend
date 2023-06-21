@@ -4,7 +4,7 @@ import UseCaseListRight from './UseCaseListRight'
 const UseCaseList = () => {
   return (
     <div className='px-56'>
-      <div className='flex flex-row gap-x-4'>
+      <div className='flex flex-row gap-x-8'>
         <div className='basis-1/3'>
           <UseCaseListLeft />
         </div>

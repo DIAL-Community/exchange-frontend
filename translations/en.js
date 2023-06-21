@@ -1750,8 +1750,13 @@ export const en = {
     The Digital Impact Exchange is a project of the Digital Impact Alliance
   `,
 
-  'ui.ribbon.nav.ariaLabel': 'Current active navigation'
+  'ui.ribbon.nav.ariaLabel': 'Current active navigation',
+  'ui.pagination.nextLabel': '>',
+  'ui.pagination.prevLabel': '<',
+  'ui.pagination.showingLabel': 'Showing {firstRecord} - {lastRecord} of {totalRecords} total',
 
+  'ui.sdgTarget.header': 'SDG Targets',
 
-
+  'ui.buildingBlock.ribbonTitle': 'Building Blocks',
+  'ui.buildingBlock.header': 'Building Blocks',
 }

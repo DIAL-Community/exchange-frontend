@@ -45,7 +45,7 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage }) => {
                 </div>
                 <Select
                   async
-                  aria-label={format('ui.ribbon.ariaLabel')}
+                  aria-label={format('ui.ribbon.nav.ariaLabel')}
                   cacheOptions
                   defaultOptions={options}
                   loadOptions={fetchOptions}
