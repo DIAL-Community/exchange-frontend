@@ -38,3 +38,7 @@
 .catalog-filter input:focus {
   box-shadow: none !important;
 }
+
+.dial-blueberry-filter {
+  filter: invert(31%) sepia(10%) saturate(2669%) hue-rotate(208deg) brightness(95%) contrast(86%);
+}

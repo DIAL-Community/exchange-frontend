@@ -23,6 +23,7 @@ export const PAGINATED_USE_CASES_QUERY = gql`
         id
         slug
         name
+        imageFile
         maturity
         markdownUrl
         sector {
