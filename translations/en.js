@@ -1712,6 +1712,7 @@ export const en = {
   'organization.heroImage': 'Hero image file',
   'organization.hasStorefront': 'Organization has a storefront',
 
+  'ui.shared.jumpTo': 'Jump To',
   'ui.shared.navigateTools': 'Navigate Tools',
   'ui.shared.exportJson': 'Export data (JSON)',
   'ui.shared.exportCsv': 'Export data (CSV)',
@@ -1720,6 +1721,13 @@ export const en = {
   'ui.useCase.header': 'Use Cases',
   'ui.useCase.whatIs': 'What is a Use Case?',
   'ui.useCase.createNew': 'Create a new Use Case',
+
+  'ui.useCase.detail.description': 'Description',
+  'ui.useCase.detail.steps': 'Use Case Steps',
+  'ui.useCase.detail.workflows': 'Workflows',
+  'ui.useCase.detail.sdgTargets': 'SDG Targets',
+  'ui.useCase.detail.buildingBlocks': 'Building Blocks',
+  'ui.useCase.detail.tags': 'Tags',
 
   'ui.image.logoAlt': 'Logo of {name}.',
 
