@@ -39,7 +39,7 @@ const UseCaseDetailNav = ({ scrollRef }) => {
   }
 
   const fetchOptions = async (input) => {
-    return navOptions.filter(({ label }) => label.indexOf(input) >= 0)
+    return navOptions.filter(({ label }) => label.toLowerCase().indexOf(input.toLowerCase()) >= 0)
   }
 
   return (
