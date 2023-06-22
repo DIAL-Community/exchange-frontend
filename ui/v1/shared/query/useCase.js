@@ -58,3 +58,45 @@ export const PAGINATED_USE_CASES_QUERY = gql`
     }
   }
 `
+
+export const USE_CASE_DETAIL_QUERY = gql`
+  query UseCase($slug: String!) {
+    useCase(slug: $slug) {
+      id
+      name
+      slug
+      sector {
+        id
+        slug
+        name
+      }
+      maturity
+      imageFile
+      markdownUrl
+      useCaseDescription {
+        description
+      }
+      sdgTargets {
+        id
+        name
+        targetNumber
+        sdgNumber
+      }
+      workflows {
+        id
+        name
+        slug
+        imageFile
+      }
+      buildingBlocks {
+        id
+        name
+        slug
+        maturity
+        category
+        imageFile
+      }
+      tags
+    }
+  }
+`

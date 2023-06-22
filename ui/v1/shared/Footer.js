@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div className='bg-dial-cotton max-w-catalog mx-auto'>
       <div className='px-56 py-8'>
-        <div className='flex flex-col px-6'>
+        <div className='flex flex-col'>
           <div className='flex gap-x-48'>
             <div className='basis-3/5'>
               <Connect />

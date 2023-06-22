@@ -1,11 +1,11 @@
 :root {
   --header-height: 92px;
 
-  --ribbon-outer-height: 10rem;
-  --ribbon-inner-height: 7rem;
+  --ribbon-outer-height: 8rem;
+  --ribbon-inner-height: 6rem;
   --ribbon-difference: calc(var(--ribbon-outer-height) - var(--ribbon-inner-height));
 
-  --under-ribbon-padding: 2rem;
+  --under-ribbon-padding: 0.5rem;
 }
 
 .ribbon-outer {

@@ -1,6 +1,6 @@
-import Bookmark from '../shared/filter/Bookmark'
-import Comment from '../shared/filter/Comment'
-import Share from '../shared/filter/Share'
+import Bookmark from '../../common/filter/Bookmark'
+import Comment from '../../common/filter/Comment'
+import Share from '../../common/filter/Share'
 
 const UseCaseListLeft = () => {
   return (

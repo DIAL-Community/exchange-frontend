@@ -1,10 +1,11 @@
 import { useCallback, useContext, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { USE_CASE_PAGINATION_ATTRIBUTES_QUERY } from '../shared/queries/useCase'
-import { UseCaseFilterContext } from '../../../components/context/UseCaseFilterContext'
-import PaginationStructure from '../shared/PaginationStructure'
-import ListStructure from './list/ListStructure'
+import { UseCaseFilterContext } from '../../../../components/context/UseCaseFilterContext'
+import { USE_CASE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/useCase'
+import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import Pagination from '../../shared/Pagination'
+import ListStructure from './ListStructure'
 
 const UseCaseListRight = () => {
   const { formatMessage } = useIntl()
@@ -13,8 +14,6 @@ const UseCaseListRight = () => {
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
   const topRef = useRef(null)
-
-  const DEFAULT_PAGE_SIZE = 4
 
   const handlePageClick = (event) => {
     setPageNumber(event.selected)
@@ -51,7 +50,7 @@ const UseCaseListRight = () => {
       { loading && format('ui.pagination.loadingInfo') }
       { error && format('ui.pagination.loadingInfoError') }
       { data &&
-        <PaginationStructure
+        <Pagination
           pageNumber={pageNumber}
           totalCount={data.useCasePaginationAttributes.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}

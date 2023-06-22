@@ -1757,8 +1757,8 @@ export const en = {
   'ui.pagination.nextLabel': '>',
   'ui.pagination.prevLabel': '<',
   'ui.pagination.showingLabel': 'Showing {firstRecord} - {lastRecord} of {totalRecords} total',
-  'ui.pagination.loadingInfo': 'Loading pagination information ...',
-  'ui.pagination.loadingInfoError': 'Unable to load pagination information.',
+  'ui.pagination.loadingInfo': 'Loading page information ...',
+  'ui.pagination.loadingInfoError': 'Unable to load page information.',
 
   'ui.sdgTarget.header': 'SDG Targets',
 
