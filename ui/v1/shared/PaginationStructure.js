@@ -1,33 +1,11 @@
-import { useQuery } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { useCallback, useContext } from 'react'
+import { useCallback, } from 'react'
 import ReactPaginate from 'react-paginate'
-import { USE_CASE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/queries/useCase'
-import { UseCaseFilterContext } from '../../../../components/context/UseCaseFilterContext'
 
-const PaginationStructure = ({ pageNumber, pageOffset, defaultPageSize, pageClickHandler }) => {
+const PaginationStructure = ({ pageNumber, totalCount, defaultPageSize, pageClickHandler }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sdgs, showBeta, govStackOnly, search } = useContext(UseCaseFilterContext)
-  const { loading, error, data } = useQuery(USE_CASE_PAGINATION_ATTRIBUTES_QUERY, {
-    variables: {
-      search,
-      sdgs: sdgs.map(sdg => sdg.value),
-      showBeta,
-      govStackOnly,
-      limit: defaultPageSize,
-      offset: pageOffset
-    }
-  })
-
-  if (loading) {
-    return 'Loading pagination information.'
-  } else if (error) {
-    return 'Unable to load pagination information.'
-  }
-
-  const { useCasePaginationAttributes: { totalCount } } = data
   const firstRecord = pageNumber * defaultPageSize + 1
   const lastRecord = (pageNumber + 1) * defaultPageSize > totalCount
     ? totalCount
