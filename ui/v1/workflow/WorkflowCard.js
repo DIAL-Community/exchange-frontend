@@ -14,10 +14,9 @@ const WorkflowCard = ({ displayType, index, workflow }) => {
         <img
           // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
           src='/ui/v1/use-case-header.svg'
-          alt={format('ui.image.logoAlt', { name: 'Use Case' })}
+          alt={format('ui.image.logoAlt', { name:  format('ui.workflow.header') })}
           width={70}
           height={70}
-          // className='object-contain dial-blueberry-filter'
           className='object-contain'
         />
         <div className='flex flex-col gap-y-3'>
@@ -25,7 +24,7 @@ const WorkflowCard = ({ displayType, index, workflow }) => {
             {workflow.name}
           </div>
           <div className='line-clamp-4 max-w-3xl'>
-            {parse(workflow?.sanitizedDescription)}
+            {workflow.workflowDescription && parse(workflow?.workflowDescription?.description)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
@@ -36,25 +35,19 @@ const WorkflowCard = ({ displayType, index, workflow }) => {
               {format('ui.buildingBlock.header')} ({workflow.buildingBlocks?.length ?? 0})
             </div>
           </div>
-          <div className='flex text-[10px] text-white'>
-            <div className='px-6 py-1 rounded-lg bg-dial-slate-500'>
-              {workflow.maturity}
-            </div>
-          </div>
         </div>
       </div>
     </div>
 
   const displaySmallCard = () =>
     <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg'>
-      <div className='flex flex-row gap-x-3 px-4 py-6'>
+      <div className='flex flex-row gap-x-3 px-6 py-3'>
         <img
           // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
           src='/ui/v1/workflow-header.svg'
-          alt={format('ui.image.logoAlt', { name: 'Workflow' })}
+          alt={format('ui.image.logoAlt', { name:  format('ui.workflow.header') })}
           width={40}
           height={40}
-          // className='object-contain dial-blueberry-filter'
           className='object-contain'
         />
         <div className='text-sm font-semibold text-dial-plum my-auto'>
@@ -64,7 +57,7 @@ const WorkflowCard = ({ displayType, index, workflow }) => {
     </div>
 
   return (
-    <Link href={`/ui/v1/use-cases/${workflow.slug}`}>
+    <Link href={`/ui/v1/workflows/${workflow.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>

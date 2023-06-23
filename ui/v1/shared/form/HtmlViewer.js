@@ -46,6 +46,11 @@ export const HtmlViewer = ({ initialContent, editorId, className }) => {
               .mce-content-body > p:first-child {
                 margin: 0;
               }
+
+              .mce-content-body > #stakeholders {
+                font-size: 1.125rem;
+                line-height: 1.75rem;
+              }
             `,
             branding: false
           }}

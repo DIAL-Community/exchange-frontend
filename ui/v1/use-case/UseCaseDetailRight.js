@@ -1,9 +1,10 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { HtmlViewer } from '../../../components/shared/HtmlViewer'
 import WorkflowCard from '../workflow/WorkflowCard'
 import { DisplayType } from '../utils/constants'
 import BuildingBlockCard from '../building-block/BuildingBlockCard'
+import SdgTargetCard from '../sdg-target/SdgTargetCard'
+import { HtmlViewer } from '../shared/form/HtmlViewer'
 
 const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   const { formatMessage } = useIntl()
@@ -28,7 +29,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   return (
     <div className='flex flex-col gap-y-4 py-8 px-6'>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-2xl text-dial-blueberry' ref={descRef}>
+        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={descRef}>
           {format('ui.useCase.detail.description')}
         </div>
         <div className='block'>
@@ -40,11 +41,11 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
       </div>
       <hr className='bg-dial-blue-chalk'/>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-2xl text-dial-blueberry py-3' ref={stepRef}>
+        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={stepRef}>
           {format('ui.useCase.detail.steps')}
         </div>
         <div className='flex flex-col gap-y-3'>
-          {useCase.useCaseSteps.length > 0 && useCase.useCaseSteps.map((useCaseStep, index) =>
+          {useCase?.useCaseSteps?.map((useCaseStep, index) =>
             <div key={index} className='rounded-md bg-dial-cotton'>
               <div className='flex flex-col gap-y-3 text-dial-blueberry px-6 py-4'>
                 <div className='text-base'>
@@ -68,42 +69,59 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
           )}
         </div>
       </div>
+      <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-2xl text-dial-blueberry py-3' ref={workflowRef}>
+        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={workflowRef}>
           {format('ui.useCase.detail.workflows')}
         </div>
         <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
-          {useCase.workflows.length > 0 && useCase.workflows.map((workflow, index) =>
-            <div key={index} className='basis-1/2'>
-              <WorkflowCard workflow={workflow} index={index} displayType={DisplayType.SMALL_CARD} />
+          {useCase?.workflows?.map((workflow, index) =>
+            <div key={`workflow-${index}`}>
+              <WorkflowCard
+                index={index}
+                workflow={workflow}
+                displayType={DisplayType.SMALL_CARD}
+              />
             </div>
           )}
         </div>
       </div>
+      <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-2xl text-dial-blueberry py-3' ref={sdgTargetRef}>
+        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={sdgTargetRef}>
           {format('ui.useCase.detail.sdgTargets')}
         </div>
-        <div>
+        <div className='flex flex-col gap-y-4'>
+          {useCase?.sdgTargets?.map((sdgTarget, index) =>
+            <div key={`sdg-target-${index}`}>
+              <SdgTargetCard sdgTarget={sdgTarget} displayType={DisplayType.SMALL_CARD} />
+            </div>
+          )}
         </div>
       </div>
+      <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-2xl text-dial-blueberry py-3' ref={buildingBlockRef}>
+        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={buildingBlockRef}>
           {format('ui.useCase.detail.buildingBlocks')}
         </div>
         <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
-          {useCase.buildingBlocks.length > 0 && useCase.buildingBlocks.map((buildingBlock, index) =>
-            <div key={index} className='basis-1/2'>
-              <BuildingBlockCard buildingBlock={buildingBlock} index={index} displayType={DisplayType.SMALL_CARD} />
+          {useCase?.buildingBlocks?.map((buildingBlock, index) =>
+            <div key={`building-block-${index}`}>
+              <BuildingBlockCard
+                index={index}
+                buildingBlock={buildingBlock}
+                displayType={DisplayType.SMALL_CARD}
+              />
             </div>
           )}
         </div>
       </div>
+      <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-2xl text-dial-blueberry py-3' ref={tagRef}>
+        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={tagRef}>
           {format('ui.useCase.detail.tags')}
         </div>
-        <div className='italic'>
+        <div className='italic text-sm'>
           {useCase.tags.join(', ')}
         </div>
       </div>

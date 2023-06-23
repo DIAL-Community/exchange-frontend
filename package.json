@@ -25,7 +25,6 @@
     "@octokit/core": "^4.1.0",
     "@popperjs/core": "^2.9.1",
     "@react-pdf/renderer": "^3.0.0",
-    "@tailwindcss/line-clamp": "^0.4.0",
     "@tinymce/tinymce-react": "^4.0.0",
     "@uiw/react-md-editor": "^3.18.1",
     "@use-cookie-consent/react": "^0.3.7",

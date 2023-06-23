@@ -94,7 +94,12 @@ export const USE_CASE_DETAIL_QUERY = gql`
         id
         name
         targetNumber
-        sdgNumber
+        sdg {
+          id
+          name
+          slug
+          number
+        }
       }
       workflows {
         id

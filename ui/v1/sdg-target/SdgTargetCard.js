@@ -8,16 +8,16 @@ const SdgTargetCard = ({ displayType, index, sdgTarget }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const filename = `0${sdgTarget.sdg.number}`.slice(-2)
+
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-cotton'}`}>
       <div className='flex flex-row gap-x-6'>
         <img
-          // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + sdgTarget.imageFile}
-          src='/ui/v1/use-case-header.svg'
-          alt={format('ui.image.logoAlt', { name: 'Use Cases' })}
+          src={`/assets/sdg/sdg_${filename}.png`}
+          alt={format('ui.image.logoAlt', { name:  format('ui.sdgTarget.header') })}
           width={70}
           height={70}
-          // className='object-contain dial-blueberry-filter'
           className='object-contain'
         />
         <div className='flex flex-col gap-y-3'>
@@ -36,18 +36,38 @@ const SdgTargetCard = ({ displayType, index, sdgTarget }) => {
               {format('ui.buildingBlock.header')} ({sdgTarget.buildingBlocks?.length ?? 0})
             </div>
           </div>
-          <div className='flex text-[10px] text-white'>
-            <div className='px-6 py-1 rounded-lg bg-dial-slate-500'>
-              {sdgTarget.maturity}
-            </div>
+        </div>
+      </div>
+    </div>
+
+  const displaySmallCard = () =>
+    <div className='flex flex-row gap-x-3 px-6'>
+      <div className='basis-1/6'>
+        <img
+          src={`/assets/sdg/sdg_${filename}.png`}
+          alt={format('ui.image.logoAlt', { name:  format('ui.sdg.header') })}
+          className='object-contain'
+        />
+      </div>
+      <div className='basis-5/6'>
+        <div className='flex flex-col gap-y-1'>
+          <div className='text-lg font-semibold text-dial-blueberry pb-3'>
+            {sdgTarget.sdg.name}
+          </div>
+          <div className='text-sm font-semibold text-dial-blueberry my-auto'>
+            {`Target ${sdgTarget.targetNumber}`}
+          </div>
+          <div className='text-sm text-dial-stratos my-auto'>
+            {sdgTarget.name}
           </div>
         </div>
       </div>
     </div>
 
   return (
-    <Link href={`/ui/v1/use-cases/${sdgTarget.slug}`}>
+    <Link href={`/ui/v1/sdg-targets/${sdgTarget.sdg.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
+      {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>
   )
 }

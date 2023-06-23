@@ -1768,12 +1768,14 @@ export const en = {
   'ui.pagination.loadingInfo': 'Loading page information ...',
   'ui.pagination.loadingInfoError': 'Unable to load page information.',
 
-  'ui.sdgTarget.header': 'SDG Targets',
+  'ui.sdg.header': 'SDG',
+
+  'ui.sdgTarget.header': 'SDG Target',
 
   'ui.product.header': 'Product',
 
   'ui.workflow.header': 'Workflow',
 
-  'ui.buildingBlock.ribbonTitle': 'Building Blocks',
   'ui.buildingBlock.header': 'Building Blocks',
+  'ui.buildingBlock.ribbonTitle': 'Building Blocks',
 }

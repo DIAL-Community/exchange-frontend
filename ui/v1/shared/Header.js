@@ -1,12 +1,10 @@
 import { useQuery } from '@apollo/client'
 import classNames from 'classnames'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useEffect } from 'react'
-import { useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { signIn, signOut } from 'next-auth/react'
-import { ToastContext } from '../../../lib/ToastContext'
 import { useUser } from '../../../lib/hooks'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../../../queries/user'
 import { NONE } from './menu/MenuCommon'
@@ -25,9 +23,7 @@ const dropdownMenuStyles = classNames(
 
 const Header = ({ isOnAuthPage = false }) => {
   const { formatMessage } = useIntl()
-  const format = (id, values) => formatMessage({ id }, { ...values })
-
-  const { showToast } = useContext(ToastContext)
+  const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
 
   const { user, isAdminUser } = useUser()
   const signInUser = (e) => {
@@ -80,27 +76,19 @@ const Header = ({ isOnAuthPage = false }) => {
     }
   }, [currentOpenMenu])
 
-  const { data: dataUserToken } = useQuery(USER_AUTHENTICATION_TOKEN_CHECK_QUERY, {
+  useQuery(USER_AUTHENTICATION_TOKEN_CHECK_QUERY, {
     variables: {
       userId: user?.id,
       userAuthenticationToken: user?.userToken
     },
     skip: !user,
-  })
-
-  if (dataUserToken?.userAuthenticationTokenCheck === false) {
-    showToast(
-      format('user.tokenExpired'),
-      'error',
-      'top-center',
-      5000,
-      null,
-      () => {
+    onCompleted: (data) => {
+      if (data?.userAuthenticationTokenCheck === false) {
         signOut({ redirect: false })
         signIn()
-      },
-    )
-  }
+      }
+    }
+  })
 
   const withUser =
     <>

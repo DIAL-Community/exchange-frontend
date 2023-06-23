@@ -10,9 +10,6 @@ module.exports = {
         3: '3px'
       },
       colors: {
-        'dial-blue-chalk': {
-          DEFAULT: '#e6e9fc'
-        },
         'dial-sapphire': {
           DEFAULT: '#2e3192'
         },
@@ -21,9 +18,6 @@ module.exports = {
         },
         'dial-iris-blue': {
           DEFAULT: '#485cd5'
-        },
-        'dial-blueberry': {
-          DEFAULT: '#574f8a'
         },
         'dial-slate': {
           100: '#f1f5f9',
@@ -38,9 +32,17 @@ module.exports = {
         'dial-angel': {
           DEFAULT: '#c7ccf4'
         },
+        // Use case color scheme
         'dial-cotton': {
           DEFAULT: '#f3f5ff'
         },
+        'dial-blue-chalk': {
+          DEFAULT: '#e6e9fc'
+        },
+        'dial-blueberry': {
+          DEFAULT: '#574f8a'
+        },
+        // Workflow color scheme
         'dial-plum': {
           DEFAULT: '#712a9b'
         },
@@ -52,6 +54,7 @@ module.exports = {
           light: '#ebeaf9',
           DEFAULT: '#d9d7f8'
         },
+        // Building block color scheme
         'dial-warm-beech': {
           DEFAULT: '#fff0e3'
         },
@@ -64,6 +67,20 @@ module.exports = {
         'building-block-bg': {
           light: '#fff0e3',
           DEFAULT: '#ffe7c8'
+        },
+        // Product color scheme
+        'ethereal': {
+          DEFAULT: '#f3fffb'
+        },
+        'spearmint': {
+          DEFAULT: '#e5fbf3'
+        },
+        'meadow': {
+          DEFAULT: '#106d38'
+        },
+        'product-bg': {
+          light: '#d8f3e9',
+          DEFAULT: '#f3fffb'
         },
         // Part of the UX refresh.
         'govstack-blue': {
@@ -221,7 +238,6 @@ module.exports = {
     }
   },
   plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/line-clamp')
+    require('@tailwindcss/forms')
   ]
 }

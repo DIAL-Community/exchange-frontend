@@ -2,7 +2,8 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
-import { DisplayType } from '../utils/constants'
+import classNames from 'classnames'
+import { DisplayType, MaturityStatus } from '../utils/constants'
 
 const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
   const { formatMessage } = useIntl()
@@ -13,19 +14,18 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
       <div className='flex flex-row gap-x-6'>
         <img
           // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
-          src='/ui/v1/use-case-header.svg'
-          alt={format('ui.image.logoAlt', { name: 'Use Cases' })}
+          src='/ui/v1/building-block-header.svg'
+          alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.header') })}
           width={70}
           height={70}
-          // className='object-contain dial-blueberry-filter'
           className='object-contain'
         />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-lg font-semibold text-dial-blueberry'>
+          <div className='text-lg font-semibold text-dial-ochre'>
             {buildingBlock.name}
           </div>
           <div className='line-clamp-4 max-w-3xl'>
-            {parse(buildingBlock?.sanitizedDescription)}
+            {buildingBlock.buildingBlockDescription && parse(buildingBlock?.buildingBlockDescription?.description)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
@@ -37,7 +37,7 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
             </div>
           </div>
           <div className='flex text-[10px] text-white'>
-            <div className='px-6 py-1 rounded-lg bg-dial-slate-500'>
+            <div className='px-6 py-1 rounded bg-dial-slate-500'>
               {buildingBlock.maturity}
             </div>
           </div>
@@ -47,24 +47,37 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
 
   const displaySmallCard = () =>
     <div className='rounded-lg bg-gradient-to-r from-building-block-bg-light to-building-block-bg'>
-      <div className='flex flex-row gap-x-3 px-4 py-6'>
+      <div className='flex flex-row gap-x-3 px-6 py-3'>
         <img
           // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
           src='/ui/v1/building-block-header.svg'
-          alt={format('ui.image.logoAlt', { name: 'Workflow' })}
+          alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.header') })}
           width={40}
           height={40}
-          // className='object-contain dial-blueberry-filter'
           className='object-contain'
         />
-        <div className='text-sm font-semibold text-dial-ochre my-auto'>
-          {buildingBlock.name}
+        <div className='flex flex-col gap-y-1'>
+          <div className='text-sm font-semibold text-dial-ochre my-auto'>
+            {buildingBlock.name}
+          </div>
+          <div className='flex text-[10px] text-white'>
+            <div
+              className={classNames(
+                'px-6 py-0.5 rounded',
+                buildingBlock.maturity === MaturityStatus.DRAFT
+                  ? 'border border-dial-slate-500 text-dial-slate-500'
+                  : 'bg-dial-slate-500'
+              )}
+            >
+              {buildingBlock.maturity}
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
   return (
-    <Link href={`/ui/v1/use-cases/${buildingBlock.slug}`}>
+    <Link href={`/ui/v1/building-blocks/${buildingBlock.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>
