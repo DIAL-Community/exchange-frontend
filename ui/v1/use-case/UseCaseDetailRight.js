@@ -4,12 +4,16 @@ import WorkflowCard from '../workflow/WorkflowCard'
 import { DisplayType } from '../utils/constants'
 import BuildingBlockCard from '../building-block/BuildingBlockCard'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
+import { useUser } from '../../../lib/hooks'
 import UseCaseDetailSdgTargets from './fragments/UseCaseDetailSdgTargets'
 import UseCaseDetailTags from './fragments/UseCaseDetailSdgTags'
 
 const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = (isAdminUser || isEditorUser) && !useCase.markdownUrl
 
   const descRef = useRef()
   const stepRef = useRef()
@@ -89,7 +93,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3' ref={sdgTargetRef}>
-        <UseCaseDetailSdgTargets useCase={useCase} canEdit={true} />
+        <UseCaseDetailSdgTargets useCase={useCase} canEdit={canEdit} />
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
@@ -110,7 +114,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3' ref={tagRef}>
-        <UseCaseDetailTags useCase={useCase} canEdit={true} />
+        <UseCaseDetailTags useCase={useCase} canEdit={canEdit} />
       </div>
     </div>
   )

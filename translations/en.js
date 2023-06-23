@@ -1719,7 +1719,6 @@ export const en = {
 
   'ui.useCase.label': 'Use Case',
   'ui.useCase.header': 'Use Cases',
-  'ui.useCase.ribbonTitle': 'Use Cases',
   'ui.useCase.whatIs': 'What is a Use Case?',
   'ui.useCase.createNew': 'Create a new Use Case',
 
@@ -1729,6 +1728,7 @@ export const en = {
   'ui.useCase.detail.sdgTargets': 'SDG Targets',
   'ui.useCase.detail.buildingBlocks': 'Building Blocks',
   'ui.useCase.detail.tags': 'Tags',
+  'ui.useCase.detail.noData': 'We do not have any {entity} information for this use case.',
 
   'ui.image.logoAlt': 'Logo of {name}.',
 
@@ -1781,6 +1781,9 @@ export const en = {
   'ui.workflow.label': 'Workflow',
   'ui.workflow.header': 'Workflows',
 
+  'ui.buildingBlock.label': 'Building Block',
   'ui.buildingBlock.header': 'Building Blocks',
-  'ui.buildingBlock.ribbonTitle': 'Building Blocks',
+
+  'ui.tag.label': 'Tag',
+  'ui.tag.header': 'Tags',
 }

@@ -94,7 +94,7 @@ const UseCaseDetailTags = ({ useCase, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('ui.useCase.detail.noTag')}
+        {format('ui.useCase.detail.noData', { entity: format('ui.tag.label') })}
       </div>
     )
 

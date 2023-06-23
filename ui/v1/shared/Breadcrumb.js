@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
+import { REBRAND_BASE_PATH } from '../utils/constants'
 
 const convertBreadcrumb = string => {
   return string
@@ -42,22 +43,19 @@ const Breadcrumb = ({ slugNameMapping }) => {
   const { asPath } = useRouter()
   const [breadcrumbs, setBreadcrumbs] = useState([])
 
-  // TODO: Update base path if we're moving path around
-  const basePath = '/ui/v1/'
-
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   useEffect(() => {
-    const linkPath = asPath.replace(basePath, '').split('/')
+    const linkPath = asPath.replace(REBRAND_BASE_PATH, '').split('/')
     const pathArray = linkPath.map((path, i) => {
       const label = basePathMappings[path] ? format(basePathMappings[path]) : slugNameMapping[path]
 
-      return { breadcrumb: label, href: `${basePath}${linkPath.slice(0, i + 1).join('/')}` }
+      return { breadcrumb: label, href: `${REBRAND_BASE_PATH}${linkPath.slice(0, i + 1).join('/')}` }
     })
 
     setBreadcrumbs(pathArray)
-  }, [slugNameMapping, basePath, asPath, format])
+  }, [slugNameMapping, asPath, format])
 
   if (!breadcrumbs) {
     return null

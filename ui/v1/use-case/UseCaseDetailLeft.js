@@ -10,7 +10,7 @@ const UseCaseDetailLeft = ({ scrollRef, useCase }) => {
       <div className='flex flex-col gap-y-3 px-6 py-8'>
         <UseCaseDetailHeader useCase={useCase}/>
         <hr className='bg-slate-200'/>
-        <UseCaseDetailNav scrollRef={scrollRef} />
+        <UseCaseDetailNav useCase={useCase} scrollRef={scrollRef} />
         <hr className='bg-slate-200'/>
         <Bookmark />
         <hr className='bg-slate-200'/>
