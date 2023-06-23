@@ -14,7 +14,7 @@ const UseCaseDetailNav = ({ scrollRef, useCase }) => {
   if (useCase.useCaseSteps) {
     stepNavOptions = useCase.useCaseSteps.map((useCaseStep, index) => {
       return {
-        label: `  ${index + 1}. ${useCaseStep.name}`,
+        label: <div className='px-2'>{`${index + 1}. ${useCaseStep.name}`}</div>,
         value: `ui.useCase.detail.steps.${useCaseStep.slug}`
       }
     })
