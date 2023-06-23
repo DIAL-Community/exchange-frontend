@@ -44,7 +44,7 @@ const UseCaseDetailNav = ({ scrollRef, useCase }) => {
     const { value } = selectedNav
     if (value.indexOf('ui.useCase.detail.steps.') >= 0) {
       const destinationSlug = value.replace('ui.useCase.detail.steps.', '')
-      const destinationRoute = `${REBRAND_BASE_PATH}/use-cases/${useCase.slug}/steps/${destinationSlug}`
+      const destinationRoute = `${REBRAND_BASE_PATH}use-cases/${useCase.slug}/steps/${destinationSlug}`
       router.push(destinationRoute)
     } else if (scrollRef && scrollRef.current) {
       const scrollTargetRef = scrollRef.current.find(ref => ref.value === value)

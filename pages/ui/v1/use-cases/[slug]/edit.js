@@ -6,9 +6,9 @@ import { Tooltip } from 'react-tooltip'
 import Header from '../../../../../ui/v1/shared/Header'
 import ClientOnly from '../../../../../lib/ClientOnly'
 import Footer from '../../../../../ui/v1/shared/Footer'
-import UseCaseDetail from '../../../../../ui/v1/use-case/UseCaseDetail'
+import UseCaseEdit from '../../../../../ui/v1/use-case/UseCaseEdit'
 
-const UseCasePage = () => {
+const EditUseCasePage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -30,7 +30,7 @@ const UseCasePage = () => {
       <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
         <div className='flex flex-col'>
-          <UseCaseDetail slug={slug} locale={locale} />
+          <UseCaseEdit slug={slug} locale={locale} />
         </div>
       </ClientOnly>
       <Footer />
@@ -38,4 +38,4 @@ const UseCasePage = () => {
   )
 }
 
-export default UseCasePage
+export default EditUseCasePage
