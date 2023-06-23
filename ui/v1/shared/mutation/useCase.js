@@ -57,3 +57,21 @@ export const UPDATE_USE_CASE_SDG_TARGETS = gql`
     }
   }
 `
+
+export const UPDATE_USE_CASE_TAGS = gql`
+  mutation UpdateUseCaseTags(
+    $slug: String!
+    $tags: [String!]!
+  ) {
+    updateUseCaseTags(
+      slug: $slug
+      tags: $tags
+    ) {
+      useCase {
+        id
+        tags
+      }
+      errors
+    }
+  }
+`

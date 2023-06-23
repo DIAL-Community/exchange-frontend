@@ -5,6 +5,7 @@ import { DisplayType } from '../utils/constants'
 import BuildingBlockCard from '../building-block/BuildingBlockCard'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import UseCaseDetailSdgTargets from './fragments/UseCaseDetailSdgTargets'
+import UseCaseDetailTags from './fragments/UseCaseDetailSdgTags'
 
 const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   const { formatMessage } = useIntl()
@@ -108,13 +109,8 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         </div>
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>
-      <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={tagRef}>
-          {format('ui.useCase.detail.tags')}
-        </div>
-        <div className='italic text-sm'>
-          {useCase.tags.join(', ')}
-        </div>
+      <div className='flex flex-col gap-y-3' ref={tagRef}>
+        <UseCaseDetailTags useCase={useCase} canEdit={true} />
       </div>
     </div>
   )
