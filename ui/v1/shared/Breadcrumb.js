@@ -16,7 +16,7 @@ const convertBreadcrumb = string => {
 
 const basePathMappings = {
   sdgs: 'sdg.header',
-  use_cases: 'useCase.header',
+  'use-cases': 'useCase.header',
   use_case_steps: 'useCaseStep.header',
   workflows: 'workflow.header',
   building_blocks: 'building-block.header',
@@ -38,46 +38,41 @@ const basePathMappings = {
 
 export const BREADCRUMB_SEPARATOR = <>&nbsp;&gt;&nbsp;</>
 
-const Breadcrumb = (props) => {
-  const { slugNameMapping } = props
-
+const Breadcrumb = ({ slugNameMapping }) => {
   const { asPath } = useRouter()
   const [breadcrumbs, setBreadcrumbs] = useState([])
+
+  // TODO: Update base path if we're moving path around
+  const basePath = '/ui/v1/'
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   useEffect(() => {
-    const linkPath = asPath.split('/')
-    linkPath.shift()
-
+    const linkPath = asPath.replace(basePath, '').split('/')
     const pathArray = linkPath.map((path, i) => {
-      const userFriendlyPath = basePathMappings[path] ? format(basePathMappings[path]) : slugNameMapping[path]
+      const label = basePathMappings[path] ? format(basePathMappings[path]) : slugNameMapping[path]
 
-      return { breadcrumb: userFriendlyPath, href: '/' + linkPath.slice(0, i + 1).join('/') }
+      return { breadcrumb: label, href: `${basePath}${linkPath.slice(0, i + 1).join('/')}` }
     })
 
     setBreadcrumbs(pathArray)
-  }, [slugNameMapping, asPath, format])
+  }, [slugNameMapping, basePath, asPath, format])
 
   if (!breadcrumbs) {
     return null
   }
 
   return (
-    // Use this to make this sticky: <div className='bg-white sticky py-4' style={{ top: '66px', zIndex: 1 }}>
-    <div className='bg-white pb-3 lg:py-4 whitespace-nowrap text-ellipsis overflow-hidden'>
-      <Link href='/' className='inline text-dial-sapphire h5'>
+    <div className='whitespace-nowrap text-ellipsis overflow-hidden'>
+      <Link href='/ui/v1/' className='h5'>
         {format('app.home')}
       </Link>
       {breadcrumbs.map((breadcrumb, i) => {
         return (
           <div key={i} className='inline h5'>
             {BREADCRUMB_SEPARATOR}
-            <Link
-              href={breadcrumb.href}
-              className={`${i === breadcrumbs.length - 1 ? 'text-dial-gray-dark' : 'text-dial-sapphire'}`}
-            >
+            <Link href={breadcrumb.href}>
               {convertBreadcrumb(breadcrumb.breadcrumb)}
             </Link>
           </div>
