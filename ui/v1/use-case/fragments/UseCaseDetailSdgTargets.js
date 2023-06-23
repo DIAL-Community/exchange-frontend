@@ -13,7 +13,7 @@ import { SDG_TARGET_SEARCH_QUERY } from '../../shared/query/sdgTarget'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 
-const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
+const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -113,13 +113,13 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
       </div>
     )) : (
       <div className='text-sm text-dial-stratos'>
-        {format('ui.useCase.detail.noSdgTargets')}
+        {format('ui.common.detail.noData', { entity: format('ui.sdgTarget.label') })}
       </div>
     )
 
   const sectionHeader =
-    <div className='text-xl font-semibold text-dial-blueberry'>
-      {format('ui.useCase.detail.sdgTargets')}
+    <div className='text-xl font-semibold text-dial-blueberry' ref={headerRef}>
+      {format('ui.sdgTarget.header')}
     </div>
 
   const editModeBody =

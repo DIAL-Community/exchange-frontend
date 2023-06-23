@@ -1717,20 +1717,16 @@ export const en = {
   'ui.shared.exportJson': 'Export data (JSON)',
   'ui.shared.exportCsv': 'Export data (CSV)',
 
+  'ui.image.logoAlt': 'Logo of {name}.',
+  'ui.common.detail.description': 'Description',
+  'ui.common.detail.noData': 'We do not have any {entity} information for this use case.',
+
   'ui.useCase.label': 'Use Case',
   'ui.useCase.header': 'Use Cases',
   'ui.useCase.whatIs': 'What is a Use Case?',
   'ui.useCase.createNew': 'Create a new Use Case',
 
-  'ui.useCase.detail.description': 'Description',
   'ui.useCase.detail.steps': 'Use Case Steps',
-  'ui.useCase.detail.workflows': 'Workflows',
-  'ui.useCase.detail.sdgTargets': 'SDG Targets',
-  'ui.useCase.detail.buildingBlocks': 'Building Blocks',
-  'ui.useCase.detail.tags': 'Tags',
-  'ui.useCase.detail.noData': 'We do not have any {entity} information for this use case.',
-
-  'ui.image.logoAlt': 'Logo of {name}.',
 
   'ui.bookmark.title': 'Bookmark',
   'ui.bookmark.subTitle': 'Your bookmarks can be found in your Account page.',
@@ -1777,6 +1773,9 @@ export const en = {
 
   'ui.product.label': 'Product',
   'ui.product.header': 'Products',
+
+  'ui.dataset.label': 'Product',
+  'ui.dataset.header': 'Products',
 
   'ui.workflow.label': 'Workflow',
   'ui.workflow.header': 'Workflows',

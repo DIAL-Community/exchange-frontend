@@ -23,7 +23,7 @@ const UseCaseDetail = ({ slug }) => {
 
   const slugNameMapping = (() => {
     const map = {}
-    map[useCase.slug] = data.useCase.name
+    map[useCase.slug] = useCase.name
 
     return map
   })()

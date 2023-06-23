@@ -18,7 +18,7 @@ const convertBreadcrumb = string => {
 const basePathMappings = {
   sdgs: 'sdg.header',
   'use-cases': 'useCase.header',
-  use_case_steps: 'useCaseStep.header',
+  'use-case-steps': 'useCaseStep.header',
   workflows: 'workflow.header',
   building_blocks: 'building-block.header',
   products: 'product.header',

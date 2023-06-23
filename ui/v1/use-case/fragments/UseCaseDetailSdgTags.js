@@ -11,7 +11,7 @@ import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { TAG_SEARCH_QUERY } from '../../shared/query/tag'
 
-const UseCaseDetailTags = ({ useCase, canEdit }) => {
+const UseCaseDetailTags = ({ useCase, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -83,8 +83,8 @@ const UseCaseDetailTags = ({ useCase, canEdit }) => {
   }
 
   const sectionHeader =
-    <div className='text-xl font-semibold text-dial-blueberry'>
-      {format('ui.useCase.detail.sdgTargets')}
+    <div className='text-xl font-semibold text-dial-blueberry' ref={headerRef}>
+      {format('ui.tag.header')}
     </div>
 
   const displayModeBody = tags.length
@@ -94,7 +94,7 @@ const UseCaseDetailTags = ({ useCase, canEdit }) => {
       </div>
     ) : (
       <div className='text-sm pb-5 text-button-gray'>
-        {format('ui.useCase.detail.noData', { entity: format('ui.tag.label') })}
+        {format('ui.common.detail.noData', { entity: format('ui.tag.label') })}
       </div>
     )
 

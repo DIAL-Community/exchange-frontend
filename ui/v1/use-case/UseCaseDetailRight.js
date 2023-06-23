@@ -23,24 +23,24 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   const tagRef = useRef()
 
   useImperativeHandle(ref, () => ([
-    { value: 'ui.useCase.detail.description', ref: descRef },
+    { value: 'ui.common.detail.description', ref: descRef },
     { value: 'ui.useCase.detail.steps', ref: stepRef },
-    { value: 'ui.useCase.detail.workflows', ref: workflowRef },
-    { value: 'ui.useCase.detail.sdgTargets', ref: sdgTargetRef },
-    { value: 'ui.useCase.detail.buildingBlocks', ref: buildingBlockRef },
-    { value: 'ui.useCase.detail.tags', ref: tagRef }
+    { value: 'ui.workflow.header', ref: workflowRef },
+    { value: 'ui.sdgTarget.header', ref: sdgTargetRef },
+    { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
+    { value: 'ui.tag.header', ref: tagRef }
   ]), [])
 
   return (
     <div className='flex flex-col gap-y-4 py-8 px-6'>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={descRef}>
-          {format('ui.useCase.detail.description')}
+          {format('ui.common.detail.description')}
         </div>
         <div className='block'>
           <HtmlViewer
             initialContent={useCase?.useCaseDescription?.description}
-            editorId='use-case-detail'
+            editorId='use-case-description'
           />
         </div>
       </div>
@@ -77,7 +77,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
       <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={workflowRef}>
-          {format('ui.useCase.detail.workflows')}
+          {format('ui.workflow.header')}
         </div>
         <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
           {useCase?.workflows?.map((workflow, index) =>
@@ -92,13 +92,13 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         </div>
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>
-      <div className='flex flex-col gap-y-3' ref={sdgTargetRef}>
-        <UseCaseDetailSdgTargets useCase={useCase} canEdit={canEdit} />
+      <div className='flex flex-col gap-y-3'>
+        <UseCaseDetailSdgTargets useCase={useCase} canEdit={canEdit} headerRef={sdgTargetRef}/>
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={buildingBlockRef}>
-          {format('ui.useCase.detail.buildingBlocks')}
+          {format('ui.buildingBlock.header')}
         </div>
         <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
           {useCase?.buildingBlocks?.map((buildingBlock, index) =>
@@ -113,8 +113,8 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         </div>
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>
-      <div className='flex flex-col gap-y-3' ref={tagRef}>
-        <UseCaseDetailTags useCase={useCase} canEdit={canEdit} />
+      <div className='flex flex-col gap-y-3'>
+        <UseCaseDetailTags useCase={useCase} canEdit={canEdit} headerRef={tagRef} />
       </div>
     </div>
   )

@@ -21,30 +21,33 @@ const UseCaseDetailNav = ({ scrollRef, useCase }) => {
   }
 
   const navOptions = [{
-    label: format('ui.useCase.detail.description'),
-    value: 'ui.useCase.detail.description'
+    label: format('ui.common.detail.description'),
+    value: 'ui.common.detail.description'
   }, {
     label: format('ui.useCase.detail.steps'),
     value: 'ui.useCase.detail.steps'
   }, ...stepNavOptions, {
-    label: format('ui.useCase.detail.workflows'),
-    value: 'ui.useCase.detail.workflows'
+    label: format('ui.workflow.header'),
+    value: 'ui.workflow.header'
   }, {
-    label: format('ui.useCase.detail.sdgTargets'),
-    value: 'ui.useCase.detail.sdgTargets'
+    label: format('ui.sdgTarget.header'),
+    value: 'ui.sdgTarget.header'
   }, {
-    label: format('ui.useCase.detail.buildingBlocks'),
-    value: 'ui.useCase.detail.buildingBlocks'
+    label: format('ui.buildingBlock.header'),
+    value: 'ui.buildingBlock.header'
   }, {
-    label: format('ui.useCase.detail.tags'),
-    value: 'ui.useCase.detail.tags'
+    label: format('ui.tag.header'),
+    value: 'ui.tag.header'
   }]
 
   const onNavigationChange = (selectedNav) => {
     const { value } = selectedNav
     if (value.indexOf('ui.useCase.detail.steps.') >= 0) {
       const destinationSlug = value.replace('ui.useCase.detail.steps.', '')
-      const destinationRoute = `${REBRAND_BASE_PATH}use-cases/${useCase.slug}/steps/${destinationSlug}`
+      const destinationRoute =
+        `${REBRAND_BASE_PATH}` +
+        `use-cases/${useCase.slug}/` +
+        `use-case-steps/${destinationSlug}`
       router.push(destinationRoute)
     } else if (scrollRef && scrollRef.current) {
       const scrollTargetRef = scrollRef.current.find(ref => ref.value === value)
