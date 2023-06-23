@@ -14,14 +14,14 @@ const WorkflowCard = ({ displayType, index, workflow }) => {
         <img
           // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
           src='/ui/v1/use-case-header.svg'
-          alt={format('ui.image.logoAlt', { name: 'Use Cases' })}
+          alt={format('ui.image.logoAlt', { name: 'Use Case' })}
           width={70}
           height={70}
           // className='object-contain dial-blueberry-filter'
           className='object-contain'
         />
         <div className='flex flex-col gap-y-3'>
-          <div className='text-lg font-semibold text-dial-blueberry'>
+          <div className='text-lg font-semibold text-dial-plum'>
             {workflow.name}
           </div>
           <div className='line-clamp-4 max-w-3xl'>
@@ -45,9 +45,28 @@ const WorkflowCard = ({ displayType, index, workflow }) => {
       </div>
     </div>
 
+  const displaySmallCard = () =>
+    <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg'>
+      <div className='flex flex-row gap-x-3 px-4 py-6'>
+        <img
+          // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
+          src='/ui/v1/workflow-header.svg'
+          alt={format('ui.image.logoAlt', { name: 'Workflow' })}
+          width={40}
+          height={40}
+          // className='object-contain dial-blueberry-filter'
+          className='object-contain'
+        />
+        <div className='text-sm font-semibold text-dial-plum my-auto'>
+          {workflow.name}
+        </div>
+      </div>
+    </div>
+
   return (
     <Link href={`/ui/v1/use-cases/${workflow.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
+      {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>
   )
 }

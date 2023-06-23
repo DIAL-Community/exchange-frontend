@@ -1770,6 +1770,10 @@ export const en = {
 
   'ui.sdgTarget.header': 'SDG Targets',
 
+  'ui.product.header': 'Product',
+
+  'ui.workflow.header': 'Workflow',
+
   'ui.buildingBlock.ribbonTitle': 'Building Blocks',
   'ui.buildingBlock.header': 'Building Blocks',
 }

@@ -45,9 +45,28 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
       </div>
     </div>
 
+  const displaySmallCard = () =>
+    <div className='rounded-lg bg-gradient-to-r from-building-block-bg-light to-building-block-bg'>
+      <div className='flex flex-row gap-x-3 px-4 py-6'>
+        <img
+          // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
+          src='/ui/v1/building-block-header.svg'
+          alt={format('ui.image.logoAlt', { name: 'Workflow' })}
+          width={40}
+          height={40}
+          // className='object-contain dial-blueberry-filter'
+          className='object-contain'
+        />
+        <div className='text-sm font-semibold text-dial-ochre my-auto'>
+          {buildingBlock.name}
+        </div>
+      </div>
+    </div>
+
   return (
     <Link href={`/ui/v1/use-cases/${buildingBlock.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
+      {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>
   )
 }

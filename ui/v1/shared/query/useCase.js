@@ -76,6 +76,20 @@ export const USE_CASE_DETAIL_QUERY = gql`
       useCaseDescription {
         description
       }
+      useCaseSteps {
+        id
+        name
+        slug
+        workflows {
+          id
+        }
+        products {
+          id
+        }
+        buildingBlocks {
+          id
+        }
+      }
       sdgTargets {
         id
         name

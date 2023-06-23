@@ -1,6 +1,9 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { HtmlViewer } from '../../../components/shared/HtmlViewer'
+import WorkflowCard from '../workflow/WorkflowCard'
+import { DisplayType } from '../utils/constants'
+import BuildingBlockCard from '../building-block/BuildingBlockCard'
 
 const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   const { formatMessage } = useIntl()
@@ -25,7 +28,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   return (
     <div className='flex flex-col gap-y-4 py-8 px-6'>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-2xl font-semibold text-dial-blueberry' ref={descRef}>
+        <div className='text-2xl text-dial-blueberry' ref={descRef}>
           {format('ui.useCase.detail.description')}
         </div>
         <div className='block'>
@@ -35,186 +38,73 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
           />
         </div>
       </div>
+      <hr className='bg-dial-blue-chalk'/>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-2xl font-semibold text-dial-blueberry' ref={stepRef}>
+        <div className='text-2xl text-dial-blueberry py-3' ref={stepRef}>
           {format('ui.useCase.detail.steps')}
         </div>
         <div className='flex flex-col gap-y-3'>
-          {useCase.steps.length > 0 && useCase.steps.map((step, index) =>
+          {useCase.useCaseSteps.length > 0 && useCase.useCaseSteps.map((useCaseStep, index) =>
             <div key={index} className='rounded-md bg-dial-cotton'>
-              <div className='flex flex-col gap-y-3'>
-                {step.name}
+              <div className='flex flex-col gap-y-3 text-dial-blueberry px-6 py-4'>
+                <div className='text-base'>
+                  {`${index + 1}. ${useCaseStep.name}`}
+                </div>
+                <div className='flex gap-x-2 text-xs text-dial-stratos'>
+                  <div className='text-sm'>
+                    {format('ui.workflow.header')} ({useCaseStep.workflows?.length ?? 0})
+                  </div>
+                  <div className='border border-r border-dial-slate-300' />
+                  <div className='text-sm'>
+                    {format('ui.buildingBlock.header')} ({useCaseStep.buildingBlocks?.length ?? 0})
+                  </div>
+                  <div className='border border-r border-dial-slate-300' />
+                  <div className='text-sm'>
+                    {format('ui.product.header')} ({useCaseStep.product?.length ?? 0})
+                  </div>
+                </div>
               </div>
             </div>
           )}
         </div>
       </div>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-2xl font-semibold text-dial-blueberry' ref={workflowRef}>
+        <div className='text-2xl text-dial-blueberry py-3' ref={workflowRef}>
           {format('ui.useCase.detail.workflows')}
         </div>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae dui felis.
-          Fusce nec efficitur neque. Nulla arcu urna, interdum a pulvinar egestas, varius quis
-          enim. Nam sed erat ut diam condimentum porttitor. Vivamus non viverra neque, nec
-          finibus ipsum. Ut id lacus dui. Donec nunc eros, sodales placerat fringilla quis,
-          maximus non nisi. Phasellus ligula neque, sollicitudin in erat vitae, aliquet dictum
-          velit. Nulla ultricies erat sit amet auctor lacinia. Nunc tincidunt velit a porta
-          bibendum. Ut justo tellus, fermentum sodales tristique eget, commodo ultricies risus.
-          Pellentesque at ipsum nulla. Aliquam felis nulla, lacinia convallis fermentum et,
-          gravida non ex.
-
-          Fusce a turpis efficitur, placerat mi nec, euismod orci. Praesent quis eros vitae velit
-          hendrerit molestie. Maecenas eget aliquet leo, quis luctus ipsum. Phasellus non augue
-          dolor. Nunc dictum, justo non semper condimentum, neque sem varius nunc, sollicitudin
-          eleifend quam lacus id nisl. Vestibulum luctus mollis dolor non condimentum. Phasellus
-          pretium auctor est.
-
-          Nulla ac mi aliquet, feugiat enim vitae, consequat purus. Quisque commodo non libero nec
-          malesuada. Mauris eu sem lorem. Pellentesque habitant morbi tristique senectus et netus et
-          malesuada fames ac turpis egestas. Donec eget nulla est. Quisque tincidunt metus ligula,
-          pharetra bibendum nulla lacinia ac. Nunc at lacus eget justo imperdiet rutrum in et tellus.
-
-          Cras aliquet nulla nibh, nec egestas urna ultrices in. Donec interdum neque a ex hendrerit,
-          nec feugiat erat dapibus. Morbi in eleifend metus. Nunc interdum risus ut magna scelerisque
-          scelerisque. Maecenas tincidunt hendrerit faucibus. Interdum et malesuada fames ac ante ipsum
-          primis in faucibus. Phasellus in ullamcorper massa. Donec est erat, aliquam et dui in,
-          bibendum finibus mi. Morbi tincidunt luctus neque, dapibus mollis elit faucibus vel. Duis
-          semper ante a lectus vestibulum cursus. Donec nec fermentum elit, non imperdiet lectus.
-          Maecenas non ex velit. Maecenas vulputate fringilla lectus, nec ultricies metus lobortis
-          vel. Etiam quis auctor orci, ut condimentum sapien.
-
-          Suspendisse volutpat sapien sit amet consectetur fermentum. Donec quis suscipit metus.
-          Maecenas tincidunt euismod pulvinar. Vivamus auctor fermentum risus hendrerit bibendum.
-          Praesent condimentum nunc a diam commodo, a feugiat ligula pharetra. Donec dolor tellus,
-          mollis nec sem in, malesuada volutpat purus. Curabitur rutrum varius justo volutpat
-          ultricies. Aenean sagittis id odio sed hendrerit.
+        <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
+          {useCase.workflows.length > 0 && useCase.workflows.map((workflow, index) =>
+            <div key={index} className='basis-1/2'>
+              <WorkflowCard workflow={workflow} index={index} displayType={DisplayType.SMALL_CARD} />
+            </div>
+          )}
         </div>
       </div>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-2xl font-semibold text-dial-blueberry' ref={sdgTargetRef}>
+        <div className='text-2xl text-dial-blueberry py-3' ref={sdgTargetRef}>
           {format('ui.useCase.detail.sdgTargets')}
         </div>
         <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae dui felis.
-          Fusce nec efficitur neque. Nulla arcu urna, interdum a pulvinar egestas, varius quis
-          enim. Nam sed erat ut diam condimentum porttitor. Vivamus non viverra neque, nec
-          finibus ipsum. Ut id lacus dui. Donec nunc eros, sodales placerat fringilla quis,
-          maximus non nisi. Phasellus ligula neque, sollicitudin in erat vitae, aliquet dictum
-          velit. Nulla ultricies erat sit amet auctor lacinia. Nunc tincidunt velit a porta
-          bibendum. Ut justo tellus, fermentum sodales tristique eget, commodo ultricies risus.
-          Pellentesque at ipsum nulla. Aliquam felis nulla, lacinia convallis fermentum et,
-          gravida non ex.
-
-          Fusce a turpis efficitur, placerat mi nec, euismod orci. Praesent quis eros vitae velit
-          hendrerit molestie. Maecenas eget aliquet leo, quis luctus ipsum. Phasellus non augue
-          dolor. Nunc dictum, justo non semper condimentum, neque sem varius nunc, sollicitudin
-          eleifend quam lacus id nisl. Vestibulum luctus mollis dolor non condimentum. Phasellus
-          pretium auctor est.
-
-          Nulla ac mi aliquet, feugiat enim vitae, consequat purus. Quisque commodo non libero nec
-          malesuada. Mauris eu sem lorem. Pellentesque habitant morbi tristique senectus et netus et
-          malesuada fames ac turpis egestas. Donec eget nulla est. Quisque tincidunt metus ligula,
-          pharetra bibendum nulla lacinia ac. Nunc at lacus eget justo imperdiet rutrum in et tellus.
-
-          Cras aliquet nulla nibh, nec egestas urna ultrices in. Donec interdum neque a ex hendrerit,
-          nec feugiat erat dapibus. Morbi in eleifend metus. Nunc interdum risus ut magna scelerisque
-          scelerisque. Maecenas tincidunt hendrerit faucibus. Interdum et malesuada fames ac ante ipsum
-          primis in faucibus. Phasellus in ullamcorper massa. Donec est erat, aliquam et dui in,
-          bibendum finibus mi. Morbi tincidunt luctus neque, dapibus mollis elit faucibus vel. Duis
-          semper ante a lectus vestibulum cursus. Donec nec fermentum elit, non imperdiet lectus.
-          Maecenas non ex velit. Maecenas vulputate fringilla lectus, nec ultricies metus lobortis
-          vel. Etiam quis auctor orci, ut condimentum sapien.
-
-          Suspendisse volutpat sapien sit amet consectetur fermentum. Donec quis suscipit metus.
-          Maecenas tincidunt euismod pulvinar. Vivamus auctor fermentum risus hendrerit bibendum.
-          Praesent condimentum nunc a diam commodo, a feugiat ligula pharetra. Donec dolor tellus,
-          mollis nec sem in, malesuada volutpat purus. Curabitur rutrum varius justo volutpat
-          ultricies. Aenean sagittis id odio sed hendrerit.
         </div>
       </div>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-2xl font-semibold text-dial-blueberry' ref={buildingBlockRef}>
+        <div className='text-2xl text-dial-blueberry py-3' ref={buildingBlockRef}>
           {format('ui.useCase.detail.buildingBlocks')}
         </div>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae dui felis.
-          Fusce nec efficitur neque. Nulla arcu urna, interdum a pulvinar egestas, varius quis
-          enim. Nam sed erat ut diam condimentum porttitor. Vivamus non viverra neque, nec
-          finibus ipsum. Ut id lacus dui. Donec nunc eros, sodales placerat fringilla quis,
-          maximus non nisi. Phasellus ligula neque, sollicitudin in erat vitae, aliquet dictum
-          velit. Nulla ultricies erat sit amet auctor lacinia. Nunc tincidunt velit a porta
-          bibendum. Ut justo tellus, fermentum sodales tristique eget, commodo ultricies risus.
-          Pellentesque at ipsum nulla. Aliquam felis nulla, lacinia convallis fermentum et,
-          gravida non ex.
-
-          Fusce a turpis efficitur, placerat mi nec, euismod orci. Praesent quis eros vitae velit
-          hendrerit molestie. Maecenas eget aliquet leo, quis luctus ipsum. Phasellus non augue
-          dolor. Nunc dictum, justo non semper condimentum, neque sem varius nunc, sollicitudin
-          eleifend quam lacus id nisl. Vestibulum luctus mollis dolor non condimentum. Phasellus
-          pretium auctor est.
-
-          Nulla ac mi aliquet, feugiat enim vitae, consequat purus. Quisque commodo non libero nec
-          malesuada. Mauris eu sem lorem. Pellentesque habitant morbi tristique senectus et netus et
-          malesuada fames ac turpis egestas. Donec eget nulla est. Quisque tincidunt metus ligula,
-          pharetra bibendum nulla lacinia ac. Nunc at lacus eget justo imperdiet rutrum in et tellus.
-
-          Cras aliquet nulla nibh, nec egestas urna ultrices in. Donec interdum neque a ex hendrerit,
-          nec feugiat erat dapibus. Morbi in eleifend metus. Nunc interdum risus ut magna scelerisque
-          scelerisque. Maecenas tincidunt hendrerit faucibus. Interdum et malesuada fames ac ante ipsum
-          primis in faucibus. Phasellus in ullamcorper massa. Donec est erat, aliquam et dui in,
-          bibendum finibus mi. Morbi tincidunt luctus neque, dapibus mollis elit faucibus vel. Duis
-          semper ante a lectus vestibulum cursus. Donec nec fermentum elit, non imperdiet lectus.
-          Maecenas non ex velit. Maecenas vulputate fringilla lectus, nec ultricies metus lobortis
-          vel. Etiam quis auctor orci, ut condimentum sapien.
-
-          Suspendisse volutpat sapien sit amet consectetur fermentum. Donec quis suscipit metus.
-          Maecenas tincidunt euismod pulvinar. Vivamus auctor fermentum risus hendrerit bibendum.
-          Praesent condimentum nunc a diam commodo, a feugiat ligula pharetra. Donec dolor tellus,
-          mollis nec sem in, malesuada volutpat purus. Curabitur rutrum varius justo volutpat
-          ultricies. Aenean sagittis id odio sed hendrerit.
+        <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
+          {useCase.buildingBlocks.length > 0 && useCase.buildingBlocks.map((buildingBlock, index) =>
+            <div key={index} className='basis-1/2'>
+              <BuildingBlockCard buildingBlock={buildingBlock} index={index} displayType={DisplayType.SMALL_CARD} />
+            </div>
+          )}
         </div>
       </div>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-2xl font-semibold text-dial-blueberry' ref={tagRef}>
+        <div className='text-2xl text-dial-blueberry py-3' ref={tagRef}>
           {format('ui.useCase.detail.tags')}
         </div>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae dui felis.
-          Fusce nec efficitur neque. Nulla arcu urna, interdum a pulvinar egestas, varius quis
-          enim. Nam sed erat ut diam condimentum porttitor. Vivamus non viverra neque, nec
-          finibus ipsum. Ut id lacus dui. Donec nunc eros, sodales placerat fringilla quis,
-          maximus non nisi. Phasellus ligula neque, sollicitudin in erat vitae, aliquet dictum
-          velit. Nulla ultricies erat sit amet auctor lacinia. Nunc tincidunt velit a porta
-          bibendum. Ut justo tellus, fermentum sodales tristique eget, commodo ultricies risus.
-          Pellentesque at ipsum nulla. Aliquam felis nulla, lacinia convallis fermentum et,
-          gravida non ex.
-
-          Fusce a turpis efficitur, placerat mi nec, euismod orci. Praesent quis eros vitae velit
-          hendrerit molestie. Maecenas eget aliquet leo, quis luctus ipsum. Phasellus non augue
-          dolor. Nunc dictum, justo non semper condimentum, neque sem varius nunc, sollicitudin
-          eleifend quam lacus id nisl. Vestibulum luctus mollis dolor non condimentum. Phasellus
-          pretium auctor est.
-
-          Nulla ac mi aliquet, feugiat enim vitae, consequat purus. Quisque commodo non libero nec
-          malesuada. Mauris eu sem lorem. Pellentesque habitant morbi tristique senectus et netus et
-          malesuada fames ac turpis egestas. Donec eget nulla est. Quisque tincidunt metus ligula,
-          pharetra bibendum nulla lacinia ac. Nunc at lacus eget justo imperdiet rutrum in et tellus.
-
-          Cras aliquet nulla nibh, nec egestas urna ultrices in. Donec interdum neque a ex hendrerit,
-          nec feugiat erat dapibus. Morbi in eleifend metus. Nunc interdum risus ut magna scelerisque
-          scelerisque. Maecenas tincidunt hendrerit faucibus. Interdum et malesuada fames ac ante ipsum
-          primis in faucibus. Phasellus in ullamcorper massa. Donec est erat, aliquam et dui in,
-          bibendum finibus mi. Morbi tincidunt luctus neque, dapibus mollis elit faucibus vel. Duis
-          semper ante a lectus vestibulum cursus. Donec nec fermentum elit, non imperdiet lectus.
-          Maecenas non ex velit. Maecenas vulputate fringilla lectus, nec ultricies metus lobortis
-          vel. Etiam quis auctor orci, ut condimentum sapien.
-
-          Suspendisse volutpat sapien sit amet consectetur fermentum. Donec quis suscipit metus.
-          Maecenas tincidunt euismod pulvinar. Vivamus auctor fermentum risus hendrerit bibendum.
-          Praesent condimentum nunc a diam commodo, a feugiat ligula pharetra. Donec dolor tellus,
-          mollis nec sem in, malesuada volutpat purus. Curabitur rutrum varius justo volutpat
-          ultricies. Aenean sagittis id odio sed hendrerit.
+        <div className='italic'>
+          {useCase.tags.join(', ')}
         </div>
       </div>
     </div>

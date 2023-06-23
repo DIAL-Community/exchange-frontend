@@ -41,6 +41,30 @@ module.exports = {
         'dial-cotton': {
           DEFAULT: '#f3f5ff'
         },
+        'dial-plum': {
+          DEFAULT: '#712a9b'
+        },
+        'dial-violet': {
+          light: '#ecebf9',
+          DEFAULT: '#d9d7f8'
+        },
+        'workflow-bg': {
+          light: '#ebeaf9',
+          DEFAULT: '#d9d7f8'
+        },
+        'dial-warm-beech': {
+          DEFAULT: '#fff0e3'
+        },
+        'dial-orange': {
+          DEFAULT: '#ff8700'
+        },
+        'dial-ochre': {
+          DEFAULT: '#8a4900'
+        },
+        'building-block-bg': {
+          light: '#fff0e3',
+          DEFAULT: '#ffe7c8'
+        },
         // Part of the UX refresh.
         'govstack-blue': {
           DEFAULT: '#0539e3',
@@ -114,9 +138,6 @@ module.exports = {
         'dial-cyan': {
           DEFAULT: '#2fd1c5'
         },
-        'dial-violet': {
-          DEFAULT: '#613970'
-        },
         'dial-not-active': {
           DEFAULT: '#647883'
         },
@@ -142,10 +163,6 @@ module.exports = {
         carousel: {
           DEFAULT: '#3f9edd',
           light: '#eef6fc'
-        },
-        'dial-orange': {
-          DEFAULT: '',
-          light: '#ffc862'
         },
         'dial-hero-graphic': {
           light: '#f5f6fa',
