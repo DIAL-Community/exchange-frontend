@@ -3,8 +3,8 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import WorkflowCard from '../workflow/WorkflowCard'
 import { DisplayType } from '../utils/constants'
 import BuildingBlockCard from '../building-block/BuildingBlockCard'
-import SdgTargetCard from '../sdg-target/SdgTargetCard'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
+import UseCaseDetailSdgTargets from './fragments/UseCaseDetailSdgTargets'
 
 const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   const { formatMessage } = useIntl()
@@ -87,17 +87,8 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
         </div>
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>
-      <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={sdgTargetRef}>
-          {format('ui.useCase.detail.sdgTargets')}
-        </div>
-        <div className='flex flex-col gap-y-4'>
-          {useCase?.sdgTargets?.map((sdgTarget, index) =>
-            <div key={`sdg-target-${index}`}>
-              <SdgTargetCard sdgTarget={sdgTarget} displayType={DisplayType.SMALL_CARD} />
-            </div>
-          )}
-        </div>
+      <div className='flex flex-col gap-y-3' ref={sdgTargetRef}>
+        <UseCaseDetailSdgTargets useCase={useCase} canEdit={true} />
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>

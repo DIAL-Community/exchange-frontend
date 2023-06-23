@@ -14,7 +14,7 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
         <img
           // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
           src='/ui/v1/use-case-header.svg'
-          alt={format('ui.image.logoAlt', { name: 'Use Cases' })}
+          alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
           width={70}
           height={70}
           // className='object-contain dial-blueberry-filter'

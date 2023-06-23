@@ -29,3 +29,31 @@ export const CREATE_USE_CASE = gql`
     }
   }
 `
+
+export const UPDATE_USE_CASE_SDG_TARGETS = gql`
+  mutation UpdateUseCaseSdgTargets (
+    $sdgTargetIds: [Int!]!
+    $slug: String!
+  ) {
+    updateUseCaseSdgTargets (
+      sdgTargetIds: $sdgTargetIds
+      slug: $slug
+    ) {
+      useCase {
+        id
+        slug
+        sdgTargets {
+          id
+          name
+          targetNumber
+          sdg {
+            id
+            name
+            number
+          }
+        }
+      }
+      errors
+    }
+  }
+`

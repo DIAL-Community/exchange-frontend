@@ -51,7 +51,7 @@ const SdgTargetCard = ({ displayType, index, sdgTarget }) => {
       </div>
       <div className='basis-5/6'>
         <div className='flex flex-col gap-y-1'>
-          <div className='text-lg font-semibold text-dial-blueberry pb-3'>
+          <div className='font-semibold text-dial-blueberry pt-1 pb-3'>
             {sdgTarget.sdg.name}
           </div>
           <div className='text-sm font-semibold text-dial-blueberry my-auto'>

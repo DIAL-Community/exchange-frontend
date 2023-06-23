@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Select from '../../shared/form/Select'
 
-const UseCaseDetailNav = ({ scrollRef }) => {
+const UseCaseDetailNav = ({ scrollRef, useCase, useCaseStep }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -43,7 +43,7 @@ const UseCaseDetailNav = ({ scrollRef }) => {
   }
 
   return (
-    <div className='flex flex-col gap-y-3 text-sm'>
+    <div className='flex flex-col gap-y-3 text-sm py-3'>
       <div className='font-semibold text-dial-blueberry'>
         {format('ui.shared.jumpTo')}
       </div>

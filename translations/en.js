@@ -1717,8 +1717,9 @@ export const en = {
   'ui.shared.exportJson': 'Export data (JSON)',
   'ui.shared.exportCsv': 'Export data (CSV)',
 
-  'ui.useCase.ribbonTitle': 'Use Cases',
+  'ui.useCase.label': 'Use Case',
   'ui.useCase.header': 'Use Cases',
+  'ui.useCase.ribbonTitle': 'Use Cases',
   'ui.useCase.whatIs': 'What is a Use Case?',
   'ui.useCase.createNew': 'Create a new Use Case',
 
@@ -1768,13 +1769,17 @@ export const en = {
   'ui.pagination.loadingInfo': 'Loading page information ...',
   'ui.pagination.loadingInfoError': 'Unable to load page information.',
 
-  'ui.sdg.header': 'SDG',
+  'ui.sdg.label': 'SDG',
+  'ui.sdg.header': 'SDGs',
 
-  'ui.sdgTarget.header': 'SDG Target',
+  'ui.sdgTarget.label': 'SDG Target',
+  'ui.sdgTarget.header': 'SDG Targets',
 
-  'ui.product.header': 'Product',
+  'ui.product.label': 'Product',
+  'ui.product.header': 'Products',
 
-  'ui.workflow.header': 'Workflow',
+  'ui.workflow.label': 'Workflow',
+  'ui.workflow.header': 'Workflows',
 
   'ui.buildingBlock.header': 'Building Blocks',
   'ui.buildingBlock.ribbonTitle': 'Building Blocks',
