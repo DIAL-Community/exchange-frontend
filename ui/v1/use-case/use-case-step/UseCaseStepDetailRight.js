@@ -1,6 +1,10 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
+import UseCaseStepDetailDatasets from './UseCaseStepDetailDatasets'
+import UseCaseStepDetailProducts from './UseCaseStepDetailProducts'
+import UseCaseStepDetailWorkflows from './UseCaseStepDetailWorkflows'
+import UseCaseStepDetailBuildingBlocks from './UseCaseStepDetailBuildingBlocks'
 
 const UseCaseStepDetailRight = forwardRef(({ useCaseStep }, ref) => {
   const { formatMessage } = useIntl()
@@ -35,27 +39,35 @@ const UseCaseStepDetailRight = forwardRef(({ useCaseStep }, ref) => {
       </div>
       <hr className='bg-dial-blue-chalk'/>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={datasetRef}>
-          {format('ui.dataset.header')}
-        </div>
+        <UseCaseStepDetailDatasets
+          useCaseStep={useCaseStep}
+          canEdit={true}
+          headerRef={datasetRef}
+        />
       </div>
       <hr className='bg-dial-blue-chalk'/>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={productRef}>
-          {format('ui.product.header')}
-        </div>
+        <UseCaseStepDetailProducts
+          useCaseStep={useCaseStep}
+          canEdit={true}
+          headerRef={productRef}
+        />
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={workflowRef}>
-          {format('ui.workflow.header')}
-        </div>
+        <UseCaseStepDetailWorkflows
+          useCaseStep={useCaseStep}
+          canEdit={true}
+          headerRef={workflowRef}
+        />
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={buildingBlockRef}>
-          {format('ui.buildingBlock.header')}
-        </div>
+        <UseCaseStepDetailBuildingBlocks
+          useCaseStep={useCaseStep}
+          canEdit={true}
+          headerRef={buildingBlockRef}
+        />
       </div>
     </div>
   )
