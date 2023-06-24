@@ -53,6 +53,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
     data.datasets?.map((dataset) => ({
       id: dataset.id,
       name: dataset.name,
+      slug: dataset.slug,
       label: dataset.name
     }))
   )
@@ -61,7 +62,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
     setDatasets([
       ...[
         ...datasets.filter(({ id }) => id !== dataset.id),
-        { id: dataset.id, name: dataset.name }
+        { id: dataset.id, name: dataset.name, slug: dataset.slug }
       ]
     ])
     setIsDirty(true)
@@ -78,7 +79,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
 
       updateUseCaseStepDatasets({
         variables: {
-          datasetIds: datasets.map(({ id }) => parseInt(id)),
+          datasetSlugs: datasets.map(({ slug }) => slug),
           slug: useCaseStep.slug
         },
         context: {

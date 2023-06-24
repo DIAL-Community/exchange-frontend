@@ -39,8 +39,8 @@ export const UPDATE_USE_CASE_STEP_DATASETS = gql`
         datasets {
           id
           slug
-          imageFile
           name
+          imageFile
         }
       }
       errors
@@ -61,9 +61,10 @@ export const UPDATE_USE_CASE_STEP_PRODUCTS = gql`
         id
         slug
         products {
+          id
           slug
-          imageFile
           name
+          imageFile
         }
       }
       errors
@@ -88,6 +89,7 @@ export const UPDATE_USE_CASE_STEP_BUILDING_BLOCKS = gql`
           slug
           name
           imageFile
+          maturity
         }
       }
       errors

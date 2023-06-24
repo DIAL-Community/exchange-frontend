@@ -1774,8 +1774,8 @@ export const en = {
   'ui.product.label': 'Product',
   'ui.product.header': 'Products',
 
-  'ui.dataset.label': 'Product',
-  'ui.dataset.header': 'Products',
+  'ui.dataset.label': 'Dataset',
+  'ui.dataset.header': 'Datasets',
 
   'ui.workflow.label': 'Workflow',
   'ui.workflow.header': 'Workflows',

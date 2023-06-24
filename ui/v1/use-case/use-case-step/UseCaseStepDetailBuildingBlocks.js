@@ -53,6 +53,7 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit, headerRef }) =>
     data.buildingBlocks?.map((buildingBlock) => ({
       id: buildingBlock.id,
       name: buildingBlock.name,
+      slug: buildingBlock.slug,
       label: buildingBlock.name
     }))
   )
@@ -61,7 +62,7 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit, headerRef }) =>
     setBuildingBlocks([
       ...[
         ...buildingBlocks.filter(({ id }) => id !== buildingBlock.id),
-        { id: buildingBlock.id, name: buildingBlock.name }
+        { id: buildingBlock.id, name: buildingBlock.name, slug: buildingBlock.slug  }
       ]
     ])
     setIsDirty(true)
@@ -78,7 +79,7 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit, headerRef }) =>
 
       updateUseCaseStepBuildingBlocks({
         variables: {
-          buildingBlockIds: buildingBlocks.map(({ id }) => parseInt(id)),
+          buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug),
           slug: useCaseStep.slug
         },
         context: {

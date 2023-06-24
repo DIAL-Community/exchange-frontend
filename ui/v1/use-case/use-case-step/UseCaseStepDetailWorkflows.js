@@ -53,6 +53,7 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit, headerRef }) => {
     data.workflows?.map((workflow) => ({
       id: workflow.id,
       name: workflow.name,
+      slug: workflow.slug,
       label: workflow.name
     }))
   )
@@ -61,7 +62,7 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit, headerRef }) => {
     setWorkflows([
       ...[
         ...workflows.filter(({ id }) => id !== workflow.id),
-        { id: workflow.id, name: workflow.name }
+        { id: workflow.id, name: workflow.name, slug: workflow.slug  }
       ]
     ])
     setIsDirty(true)
@@ -78,7 +79,7 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit, headerRef }) => {
 
       updateUseCaseStepWorkflows({
         variables: {
-          workflowIds: workflows.map(({ id }) => parseInt(id)),
+          workflowSlugs: workflows.map(({ slug }) => slug),
           slug: useCaseStep.slug
         },
         context: {

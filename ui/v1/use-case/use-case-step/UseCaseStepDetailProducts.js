@@ -53,6 +53,7 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit, headerRef }) => {
     data.products?.map((product) => ({
       id: product.id,
       name: product.name,
+      slug: product.slug,
       label: product.name
     }))
   )
@@ -61,7 +62,7 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit, headerRef }) => {
     setProducts([
       ...[
         ...products.filter(({ id }) => id !== product.id),
-        { id: product.id, name: product.name }
+        { id: product.id, name: product.name, slug: product.slug  }
       ]
     ])
     setIsDirty(true)
@@ -78,7 +79,7 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit, headerRef }) => {
 
       updateUseCaseStepProducts({
         variables: {
-          productIds: products.map(({ id }) => parseInt(id)),
+          productSlugs: products.map(({ slug }) => slug),
           slug: useCaseStep.slug
         },
         context: {
