@@ -9,7 +9,7 @@ import { fetchSelectOptions } from '../../utils/search'
 import Pill from '../../shared/form/Pill'
 import EditableSection from '../../shared/EditableSection'
 import { UPDATE_USE_CASE_STEP_PRODUCTS } from '../../shared/mutation/useCaseStep'
-import { SDG_TARGET_SEARCH_QUERY } from '../../shared/query/product'
+import { PRODUCT_SEARCH_QUERY } from '../../shared/query/product'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 
@@ -123,7 +123,7 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit, headerRef }) => {
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) =>
-            fetchSelectOptions(client, input, SDG_TARGET_SEARCH_QUERY, fetchedProductsCallback)
+            fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchedProductsCallback)
           }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.product.label') })}
           onChange={addProducts}

@@ -9,7 +9,7 @@ import { fetchSelectOptions } from '../../utils/search'
 import Pill from '../../shared/form/Pill'
 import EditableSection from '../../shared/EditableSection'
 import { UPDATE_USE_CASE_STEP_DATASETS } from '../../shared/mutation/useCaseStep'
-import { SDG_TARGET_SEARCH_QUERY } from '../../shared/query/dataset'
+import { DATASET_SEARCH_QUERY } from '../../shared/query/dataset'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 
@@ -123,7 +123,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) =>
-            fetchSelectOptions(client, input, SDG_TARGET_SEARCH_QUERY, fetchedDatasetsCallback)
+            fetchSelectOptions(client, input, DATASET_SEARCH_QUERY, fetchedDatasetsCallback)
           }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.dataset.label') })}
           onChange={addDatasets}

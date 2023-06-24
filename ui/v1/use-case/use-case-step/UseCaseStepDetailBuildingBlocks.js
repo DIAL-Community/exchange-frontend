@@ -9,7 +9,7 @@ import { fetchSelectOptions } from '../../utils/search'
 import Pill from '../../shared/form/Pill'
 import EditableSection from '../../shared/EditableSection'
 import { UPDATE_USE_CASE_STEP_BUILDING_BLOCKS } from '../../shared/mutation/useCaseStep'
-import { SDG_TARGET_SEARCH_QUERY } from '../../shared/query/buildingBlock'
+import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 
@@ -123,7 +123,7 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit, headerRef }) =>
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) =>
-            fetchSelectOptions(client, input, SDG_TARGET_SEARCH_QUERY, fetchedBuildingBlocksCallback)
+            fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)
           }
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.buildingBlock.label') })}
           onChange={addBuildingBlocks}
