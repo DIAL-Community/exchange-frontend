@@ -98,15 +98,16 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit, headerRef }) => {
   }
 
   const displayModeBody = workflows.length
-    ? (workflows?.map((workflow, index) =>
-      <div key={`workflow-${index}`}>
-        <WorkflowCard workflow={workflow} displayType={DisplayType.SMALL_CARD} />
-      </div>
-    )) : (
-      <div className='text-sm text-dial-stratos'>
-        {format('ui.common.detail.noData', { entity: format('ui.workflow.label') })}
-      </div>
-    )
+    ? <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
+      {workflows?.map((workflow, index) =>
+        <div key={`workflow-${index}`}>
+          <WorkflowCard workflow={workflow} displayType={DisplayType.SMALL_CARD} />
+        </div>
+      )}
+    </div>
+    : <div className='text-sm text-dial-stratos'>
+      {format('ui.common.detail.noData', { entity: format('ui.workflow.label') })}
+    </div>
 
   const sectionHeader =
     <div className='text-xl font-semibold text-dial-blueberry' ref={headerRef}>

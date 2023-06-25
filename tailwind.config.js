@@ -79,8 +79,8 @@ module.exports = {
           DEFAULT: '#106d38'
         },
         'product-bg': {
-          light: '#d8f3e9',
-          DEFAULT: '#f3fffb'
+          DEFAULT: '#d8f3e9',
+          light: '#f3fffb'
         },
         // Part of the UX refresh.
         'govstack-blue': {

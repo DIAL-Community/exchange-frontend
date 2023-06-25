@@ -36,10 +36,18 @@ const UseCaseStepDetail = ({ slug, stepSlug }) => {
       </div>
       <div className='flex flex-row gap-x-8'>
         <div className='basis-1/3'>
-          <UseCaseStepDetailLeft scrollRef={scrollRef} useCase={useCase}  useCaseStep={useCaseStep} />
+          <UseCaseStepDetailLeft
+            scrollRef={scrollRef}
+            useCase={useCase}
+            useCaseStep={useCaseStep}
+          />
         </div>
         <div className='basis-2/3'>
-          <UseCaseStepDetailRight ref={scrollRef} useCase={useCase} useCaseStep={useCaseStep} />
+          <UseCaseStepDetailRight
+            ref={scrollRef}
+            useCase={useCase}
+            useCaseStep={useCaseStep}
+          />
         </div>
       </div>
     </div>

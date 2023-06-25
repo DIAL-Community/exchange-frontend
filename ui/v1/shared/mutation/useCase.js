@@ -30,6 +30,19 @@ export const CREATE_USE_CASE = gql`
   }
 `
 
+export const DELETE_USE_CASE = gql`
+  mutation DeleteUseCase($id: ID!) {
+    deleteUseCase(id: $id) {
+      useCase {
+       id
+       slug
+       name
+      }
+      errors
+    }
+  }
+`
+
 export const UPDATE_USE_CASE_SDG_TARGETS = gql`
   mutation UpdateUseCaseSdgTargets (
     $sdgTargetIds: [Int!]!

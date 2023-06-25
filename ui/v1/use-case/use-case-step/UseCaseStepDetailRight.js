@@ -1,12 +1,13 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
+import { useUser } from '../../../../lib/hooks'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
 import UseCaseStepDetailDatasets from './UseCaseStepDetailDatasets'
 import UseCaseStepDetailProducts from './UseCaseStepDetailProducts'
 import UseCaseStepDetailWorkflows from './UseCaseStepDetailWorkflows'
 import UseCaseStepDetailBuildingBlocks from './UseCaseStepDetailBuildingBlocks'
 
-const UseCaseStepDetailRight = forwardRef(({ useCaseStep }, ref) => {
+const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -15,6 +16,9 @@ const UseCaseStepDetailRight = forwardRef(({ useCaseStep }, ref) => {
   const productRef = useRef()
   const workflowRef = useRef()
   const buildingBlockRef = useRef()
+
+  const { isAdminUser, isEditorUser } = useUser()
+  const canEdit = (isAdminUser || isEditorUser) && !useCase.markdownUrl
 
   useImperativeHandle(ref, () => ([
     { value: 'ui.common.detail.description', ref: descRef },
@@ -41,7 +45,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCaseStep }, ref) => {
       <div className='flex flex-col gap-y-3'>
         <UseCaseStepDetailDatasets
           useCaseStep={useCaseStep}
-          canEdit={true}
+          canEdit={canEdit}
           headerRef={datasetRef}
         />
       </div>
@@ -49,7 +53,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCaseStep }, ref) => {
       <div className='flex flex-col gap-y-3'>
         <UseCaseStepDetailProducts
           useCaseStep={useCaseStep}
-          canEdit={true}
+          canEdit={canEdit}
           headerRef={productRef}
         />
       </div>
@@ -57,7 +61,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCaseStep }, ref) => {
       <div className='flex flex-col gap-y-3'>
         <UseCaseStepDetailWorkflows
           useCaseStep={useCaseStep}
-          canEdit={true}
+          canEdit={canEdit}
           headerRef={workflowRef}
         />
       </div>
@@ -65,7 +69,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCaseStep }, ref) => {
       <div className='flex flex-col gap-y-3'>
         <UseCaseStepDetailBuildingBlocks
           useCaseStep={useCaseStep}
-          canEdit={true}
+          canEdit={canEdit}
           headerRef={buildingBlockRef}
         />
       </div>

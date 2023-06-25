@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
-import { DisplayType } from '../utils/constants'
+import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
 
 const DatasetCard = ({ displayType, index, dataset }) => {
   const { formatMessage } = useIntl()
@@ -49,7 +49,7 @@ const DatasetCard = ({ displayType, index, dataset }) => {
       <div className='flex flex-row gap-x-3 px-6 py-3'>
         <img
           // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
-          src='/ui/v1/dataset-header.svg'
+          src='/ui/v1/product-header.svg'
           alt={format('ui.image.logoAlt', { name: format('ui.dataset.header') })}
           width={40}
           height={40}
@@ -62,7 +62,7 @@ const DatasetCard = ({ displayType, index, dataset }) => {
     </div>
 
   return (
-    <Link href={`/ui/v1/datasets/${dataset.slug}`}>
+    <Link href={`${REBRAND_BASE_PATH}datasets/${dataset.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>

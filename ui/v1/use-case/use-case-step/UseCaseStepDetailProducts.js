@@ -98,15 +98,16 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit, headerRef }) => {
   }
 
   const displayModeBody = products.length
-    ? (products?.map((product, index) =>
-      <div key={`product-${index}`}>
-        <ProductCard product={product} displayType={DisplayType.SMALL_CARD} />
-      </div>
-    )) : (
-      <div className='text-sm text-dial-stratos'>
-        {format('ui.common.detail.noData', { entity: format('ui.product.label') })}
-      </div>
-    )
+    ? <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
+      {products?.map((product, index) =>
+        <div key={`product-${index}`}>
+          <ProductCard product={product} displayType={DisplayType.SMALL_CARD} />
+        </div>
+      )}
+    </div>
+    : <div className='text-sm text-dial-stratos'>
+      {format('ui.common.detail.noData', { entity: format('ui.product.label') })}
+    </div>
 
   const sectionHeader =
     <div className='text-xl font-semibold text-dial-blueberry' ref={headerRef}>

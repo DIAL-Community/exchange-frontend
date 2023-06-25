@@ -16,7 +16,7 @@ import { CREATE_USE_CASE } from '../../shared/mutation/useCase'
 import { SECTOR_SEARCH_QUERY } from '../../shared/query/sector'
 import { generateMaturityOptions } from '../../shared/form/options'
 import { PAGINATED_USE_CASES_QUERY, USE_CASE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/useCase'
-import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
+import { DEFAULT_PAGE_SIZE, REBRAND_BASE_PATH } from '../../utils/constants'
 
 const UseCaseForm = React.memo(({ useCase }) => {
   const { formatMessage } = useIntl()
@@ -63,7 +63,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
       if (response?.useCase && response?.errors?.length === 0) {
         setMutating(false)
         showToast(format('useCase.submit.success'), 'success', 'top-center', 1000, null, () =>
-          router.push(`/${router.locale}/ui/v1/use-cases/${response?.useCase?.slug}`)
+          router.push(`/${router.locale}${REBRAND_BASE_PATH}/use-cases/${response?.useCase?.slug}`)
         )
       } else {
         setMutating(false)

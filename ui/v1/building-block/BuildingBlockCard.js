@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
 import classNames from 'classnames'
-import { DisplayType, MaturityStatus } from '../utils/constants'
+import { DisplayType, MaturityStatus, REBRAND_BASE_PATH } from '../utils/constants'
 
 const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
   const { formatMessage } = useIntl()
@@ -77,7 +77,7 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
     </div>
 
   return (
-    <Link href={`/ui/v1/building-blocks/${buildingBlock.slug}`}>
+    <Link href={`${REBRAND_BASE_PATH}building-blocks/${buildingBlock.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>

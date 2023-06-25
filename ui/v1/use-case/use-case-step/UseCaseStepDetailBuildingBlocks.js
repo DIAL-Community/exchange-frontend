@@ -98,15 +98,16 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit, headerRef }) =>
   }
 
   const displayModeBody = buildingBlocks.length
-    ? (buildingBlocks?.map((buildingBlock, index) =>
-      <div key={`building-block-${index}`}>
-        <BuildingBlockCard buildingBlock={buildingBlock} displayType={DisplayType.SMALL_CARD} />
-      </div>
-    )) : (
-      <div className='text-sm text-dial-stratos'>
-        {format('ui.common.detail.noData', { entity: format('ui.buildingBlock.label') })}
-      </div>
-    )
+    ? <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
+      {buildingBlocks?.map((buildingBlock, index) =>
+        <div key={`building-block-${index}`}>
+          <BuildingBlockCard buildingBlock={buildingBlock} displayType={DisplayType.SMALL_CARD} />
+        </div>
+      )}
+    </div>
+    : <div className='text-sm text-dial-stratos'>
+      {format('ui.common.detail.noData', { entity: format('ui.buildingBlock.label') })}
+    </div>
 
   const sectionHeader =
     <div className='text-xl font-semibold text-dial-blueberry' ref={headerRef}>

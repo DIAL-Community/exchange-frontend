@@ -1728,6 +1728,9 @@ export const en = {
 
   'ui.useCase.detail.steps': 'Use Case Steps',
 
+  'ui.useCaseStep.label': 'Use Case Step',
+  'ui.useCaseStep.header': 'Use Case Steps',
+
   'ui.bookmark.title': 'Bookmark',
   'ui.bookmark.subTitle': 'Your bookmarks can be found in your Account page.',
   'ui.bookmark.bookmarkThis': 'Bookmark this page.',
