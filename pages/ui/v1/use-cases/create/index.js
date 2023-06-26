@@ -1,19 +1,15 @@
 import { NextSeo } from 'next-seo'
 import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 import { Tooltip } from 'react-tooltip'
-import Header from '../../../../../../../ui/v1/shared/Header'
-import ClientOnly from '../../../../../../../lib/ClientOnly'
-import Footer from '../../../../../../../ui/v1/shared/Footer'
-import UseCaseStepEdit from '../../../../../../../ui/v1/use-case/use-case-step/UseCaseStepEdit'
+import Header from '../../../../../ui/v1/shared/Header'
+import ClientOnly from '../../../../../lib/ClientOnly'
+import Footer from '../../../../../ui/v1/shared/Footer'
+import UseCaseCreate from '../../../../../ui/v1/use-case/UseCaseCreate'
 
-const EditUseCaseStepPage = () => {
+const EditUseCasePage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
-
-  const router = useRouter()
-  const { query: { slug, stepSlug } }= router
 
   return (
     <>
@@ -29,11 +25,13 @@ const EditUseCaseStepPage = () => {
       <Header />
       <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
-        <UseCaseStepEdit slug={slug} stepSlug={stepSlug} />
+        <div className='flex flex-col'>
+          <UseCaseCreate />
+        </div>
       </ClientOnly>
       <Footer />
     </>
   )
 }
 
-export default EditUseCaseStepPage
+export default EditUseCasePage

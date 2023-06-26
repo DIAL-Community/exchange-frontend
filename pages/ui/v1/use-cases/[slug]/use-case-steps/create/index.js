@@ -6,14 +6,14 @@ import { Tooltip } from 'react-tooltip'
 import Header from '../../../../../../../ui/v1/shared/Header'
 import ClientOnly from '../../../../../../../lib/ClientOnly'
 import Footer from '../../../../../../../ui/v1/shared/Footer'
-import UseCaseStepEdit from '../../../../../../../ui/v1/use-case/use-case-step/UseCaseStepEdit'
+import UseCaseStepCreate from '../../../../../../../ui/v1/use-case/use-case-step/UseCaseStepCreate'
 
 const EditUseCaseStepPage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const router = useRouter()
-  const { query: { slug, stepSlug } }= router
+  const { query: { slug } }= router
 
   return (
     <>
@@ -29,7 +29,7 @@ const EditUseCaseStepPage = () => {
       <Header />
       <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
-        <UseCaseStepEdit slug={slug} stepSlug={stepSlug} />
+        <UseCaseStepCreate slug={slug} />
       </ClientOnly>
       <Footer />
     </>

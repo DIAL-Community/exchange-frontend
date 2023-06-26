@@ -2,10 +2,10 @@ import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import { useUser } from '../../../../lib/hooks'
 import { HtmlViewer } from '../../shared/form/HtmlViewer'
-import UseCaseStepDetailDatasets from './UseCaseStepDetailDatasets'
-import UseCaseStepDetailProducts from './UseCaseStepDetailProducts'
-import UseCaseStepDetailWorkflows from './UseCaseStepDetailWorkflows'
-import UseCaseStepDetailBuildingBlocks from './UseCaseStepDetailBuildingBlocks'
+import UseCaseStepDetailDatasets from './fragments/UseCaseStepDetailDatasets'
+import UseCaseStepDetailProducts from './fragments/UseCaseStepDetailProducts'
+import UseCaseStepDetailWorkflows from './fragments/UseCaseStepDetailWorkflows'
+import UseCaseStepDetailBuildingBlocks from './fragments/UseCaseStepDetailBuildingBlocks'
 
 const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
   const { formatMessage } = useIntl()

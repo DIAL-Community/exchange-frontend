@@ -12,8 +12,7 @@ const EditUseCasePage = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { locale, query } = useRouter()
-  const { slug } = query
+  const { locale, query: { slug } } = useRouter()
 
   return (
     <>
