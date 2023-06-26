@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { USE_CASE_DETAIL_QUERY } from '../shared/query/useCase'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading } from '../shared/FetchStatus'
+import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import UseCaseForm from './fragments/UseCaseForm'
 import UseCaseEditLeft from './UseCaseEditLeft'
 
@@ -19,6 +19,8 @@ const UseCaseEdit = ({ slug }) => {
     return <Loading />
   } else if (error) {
     return <Error />
+  } else if (!data?.useCase) {
+    return <NotFound />
   }
 
   const { useCase } = data

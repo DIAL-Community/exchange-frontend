@@ -27,15 +27,13 @@ const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isCon
             <Dialog.Panel className={`
                 inline-block w-4/5 md:w-3/5 lg:w-3/5 xl:w-1/2 p-8
                 transform bg-white shadow-xl rounded-2xl`}>
-              <Dialog.Title className='card-title pb-3 text-xl xl:text-2xl text-dial-sapphire'>
-                <span data-testid='title'>
-                  {title}
-                </span>
+              <Dialog.Title className='text-lg font-semibold pb-3 text-dial-sapphire'>
+                {title}
               </Dialog.Title>
-              <span className='flex flex-col pb-3' data-testid='message'>
+              <span className='flex flex-col pb-3 text-sm'>
                 {message}
               </span>
-              <div className='flex justify-center sm:justify-end gap-3 text-xl'>
+              <div className='flex justify-center sm:justify-end gap-3'>
                 <button
                   type='button'
                   className='submit-button'

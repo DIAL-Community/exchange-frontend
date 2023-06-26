@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useQuery } from '@apollo/client'
 import { USE_CASE_DETAIL_QUERY } from '../shared/query/useCase'
 import Breadcrumb from '../shared/Breadcrumb'
-import { Error, Loading } from '../shared/FetchStatus'
+import { Error, Loading, NotFound } from '../shared/FetchStatus'
 import UseCaseDetailRight from './UseCaseDetailRight'
 import UseCaseDetailLeft from './UseCaseDetailLeft'
 
@@ -17,6 +17,8 @@ const UseCaseDetail = ({ slug }) => {
     return <Loading />
   } else if (error) {
     return <Error />
+  } else if (!data?.useCase) {
+    return <NotFound />
   }
 
   const { useCase } = data

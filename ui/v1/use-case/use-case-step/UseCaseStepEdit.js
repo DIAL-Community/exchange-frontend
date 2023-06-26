@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Error, Loading } from '../../shared/FetchStatus'
+import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { USE_CASE_STEP_QUERY } from '../../shared/query/useCaseStep'
 import UseCaseStepForm from './fragments/UseCaseStepForm'
@@ -14,6 +14,8 @@ const UseCaseStepEdit = ({ slug, stepSlug }) => {
     return <Loading />
   } else if (error) {
     return <Error />
+  } else if (!data?.useCase) {
+    return <NotFound />
   }
 
   const { useCase, useCaseStep } = data

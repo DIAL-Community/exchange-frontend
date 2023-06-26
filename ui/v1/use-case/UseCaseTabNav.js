@@ -5,7 +5,7 @@ import { ExportType, asyncExport, convertKeys } from '../utils/export'
 import { useUser } from '../../../lib/hooks'
 
 const UseCaseTabNav = ({ activeTab, setActiveTab }) => {
-  const { user: { userEmail } } = useUser()
+  const { user } = useUser()
 
   const tabNames = [
     'ui.useCase.header',
@@ -17,12 +17,12 @@ const UseCaseTabNav = ({ activeTab, setActiveTab }) => {
 
   const exportCsvFn = () => {
     const exportParameters = convertKeys({ pageSize: -1, ...useCaseFilters })
-    asyncExport(ExportType.EXPORT_AS_CSV, 'use_cases', exportParameters, userEmail)
+    asyncExport(ExportType.EXPORT_AS_CSV, 'use_cases', exportParameters, user.userEmail)
   }
 
   const exportJsonFn = () => {
     const exportParameters = convertKeys({ pageSize: -1, ...useCaseFilters })
-    asyncExport(ExportType.EXPORT_AS_JSON, 'use_cases', exportParameters, userEmail)
+    asyncExport(ExportType.EXPORT_AS_JSON, 'use_cases', exportParameters, user.userEmail)
   }
 
   return (

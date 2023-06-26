@@ -1,12 +1,14 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import WorkflowCard from '../workflow/WorkflowCard'
-import { DisplayType } from '../utils/constants'
+import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
+import EditButton from '../shared/form/EditButton'
 import BuildingBlockCard from '../building-block/BuildingBlockCard'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import UseCaseDetailSdgTargets from './fragments/UseCaseDetailSdgTargets'
 import UseCaseDetailTags from './fragments/UseCaseDetailSdgTags'
+import DeleteUseCase from './DeleteUseCase'
 
 const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   const { formatMessage } = useIntl()
@@ -34,6 +36,10 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
   return (
     <div className='flex flex-col gap-y-4 py-4'>
       <div className='flex flex-col gap-y-3'>
+        <div className='flex gap-x-3 ml-auto'>
+          {canEdit && <EditButton type='link' href={`${REBRAND_BASE_PATH}use-cases/${useCase.slug}/edit`} />}
+          {isAdminUser && <DeleteUseCase useCase={useCase} />}
+        </div>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={descRef}>
           {format('ui.common.detail.description')}
         </div>

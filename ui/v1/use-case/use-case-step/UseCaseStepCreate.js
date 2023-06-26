@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { useCallback } from 'react'
-import { Error, Loading } from '../../shared/FetchStatus'
+import { Error, Loading, NotFound } from '../../shared/FetchStatus'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { USE_CASE_DETAIL_QUERY } from '../../shared/query/useCase'
 import UseCaseStepForm from './fragments/UseCaseStepForm'
@@ -19,6 +19,8 @@ const UseCaseStepCreate = ({ slug }) => {
     return <Loading />
   } else if (error) {
     return <Error />
+  } else if (!data?.useCase) {
+    return <NotFound />
   }
 
   const { useCase } = data

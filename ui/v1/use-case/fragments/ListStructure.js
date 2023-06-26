@@ -6,6 +6,7 @@ import { UseCaseFilterContext } from '../../../../components/context/UseCaseFilt
 import UseCaseCard from '../UseCaseCard'
 import { DisplayType } from '../../utils/constants'
 import { FilterContext } from '../../../../components/context/FilterContext'
+import { NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { setResultCounts } = useContext(FilterContext)
@@ -44,6 +45,8 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
     return <Loading />
   } else if (error) {
     return <Error />
+  } else if (!data?.paginatedUseCases) {
+    return <NotFound />
   }
 
   const { paginatedUseCases: useCases } = data

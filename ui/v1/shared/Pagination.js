@@ -32,18 +32,19 @@ const PaginationStructure = ({ pageNumber, totalCount, defaultPageSize, pageClic
           marginPagesDisplayed={2}
           pageCount={Math.ceil(totalCount / defaultPageSize)}
           renderOnZeroPageCount={null}
+          disabledClassName='opacity-30'
           // Flex the main container and add gap
-          containerClassName='flex gap-x-3 text-sm font-semibold'
+          containerClassName='flex gap-x-3 text-sm text-dial-slate-300 font-semibold'
           // Each will have rounded border
-          pageClassName='border border-dial-slate-300 rounded-md'
-          activeClassName='border border-dial-iris-blue'
+          pageClassName='border border-current rounded-md'
+          activeClassName='text-dial-iris-blue'
           // Set the width, height, leading and text center to center text
-          pageLinkClassName='block w-10 h-10 leading-10 text-center'
+          pageLinkClassName='block w-10 h-10 leading-10 text-center text-dial-slate-500'
           // Previous and next link will have similar treatment
-          previousClassName='border border-dial-slate-300 rounded-md'
-          previousLinkClassName='block w-10 h-10 leading-10 text-center'
-          nextClassName='border border-dial-slate-300 rounded-md'
-          nextLinkClassName='block w-10 h-10 leading-10 text-center'
+          previousClassName='border border-current rounded-md'
+          previousLinkClassName='block w-10 h-10 leading-10 text-center text-dial-slate-500'
+          nextClassName='border border-current rounded-md'
+          nextLinkClassName='block w-10 h-10 leading-10 text-center text-dial-slate-500'
         />
       </div>
       <hr className='bg-dial-slate-300'/>

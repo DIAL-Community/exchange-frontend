@@ -2,11 +2,11 @@ import { useIntl } from 'react-intl'
 import { useCallback, useContext, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { REBRAND_BASE_PATH } from '../utils/constants'
+import { DEFAULT_PAGE_SIZE, REBRAND_BASE_PATH } from '../utils/constants'
 import { ToastContext } from '../../../lib/ToastContext'
 import { useUser } from '../../../lib/hooks'
 import { DELETE_USE_CASE } from '../shared/mutation/useCase'
-import { USE_CASE_DETAIL_QUERY } from '../shared/query/useCase'
+import { PAGINATED_USE_CASES_QUERY, USE_CASE_DETAIL_QUERY } from '../shared/query/useCase'
 import DeleteButton from '../shared/form/DeleteButton'
 import ConfirmActionDialog from '../shared/form/ConfirmActionDialog'
 
@@ -28,6 +28,9 @@ const DeleteUseCase = ({ useCase }) => {
     refetchQueries: [{
       query: USE_CASE_DETAIL_QUERY,
       variables: { slug: useCase.slug }
+    }, {
+      query: PAGINATED_USE_CASES_QUERY,
+      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
     }],
     onCompleted: (data) => {
       const { deleteUseCase: response } = data
