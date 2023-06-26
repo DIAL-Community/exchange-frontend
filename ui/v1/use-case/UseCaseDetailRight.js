@@ -1,11 +1,14 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
+import Link from 'next/link'
+import { FaArrowRight } from 'react-icons/fa'
 import WorkflowCard from '../workflow/WorkflowCard'
 import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import BuildingBlockCard from '../building-block/BuildingBlockCard'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
+import CreateButton from '../shared/form/CreateButton'
 import UseCaseDetailSdgTargets from './fragments/UseCaseDetailSdgTargets'
 import UseCaseDetailTags from './fragments/UseCaseDetailSdgTags'
 import DeleteUseCase from './DeleteUseCase'
@@ -37,7 +40,12 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
     <div className='flex flex-col gap-y-4 py-4'>
       <div className='flex flex-col gap-y-3'>
         <div className='flex gap-x-3 ml-auto'>
-          {canEdit && <EditButton type='link' href={`${REBRAND_BASE_PATH}use-cases/${useCase.slug}/edit`} />}
+          {canEdit &&
+            <EditButton
+              type='link'
+              href={`${REBRAND_BASE_PATH}use-cases/${useCase.slug}/edit`}
+            />
+          }
           {isAdminUser && <DeleteUseCase useCase={useCase} />}
         </div>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={descRef}>
@@ -52,31 +60,55 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
       </div>
       <hr className='bg-dial-blue-chalk'/>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-blueberry py-3' ref={stepRef}>
-          {format('ui.useCase.detail.steps')}
+        <div className='flex flex-row py-3' ref={stepRef}>
+          <div className='text-xl font-semibold text-dial-blueberry '>
+            {format('ui.useCase.detail.steps')}
+          </div>
+          {canEdit &&
+            <CreateButton
+              type='link'
+              className='ml-auto'
+              label={format('app.create')}
+              href={
+                `${REBRAND_BASE_PATH}` +
+                `use-cases/${useCase.slug}` +
+                '/use-case-steps/create'
+              }
+            />
+          }
         </div>
         <div className='flex flex-col gap-y-3'>
           {useCase?.useCaseSteps?.map((useCaseStep, index) =>
-            <div key={index} className='rounded-md bg-dial-cotton'>
-              <div className='flex flex-col gap-y-3 text-dial-blueberry px-6 py-4'>
-                <div className='text-base'>
-                  {`${index + 1}. ${useCaseStep.name}`}
+            <Link
+              key={index}
+              href={
+                `${REBRAND_BASE_PATH}` +
+                `use-cases/${useCase.slug}/` +
+                `use-case-steps/${useCaseStep.slug}`
+              }
+            >
+              <div className='rounded-md bg-dial-cotton flex'>
+                <div className='flex flex-col gap-y-3 text-dial-blueberry px-6 py-4'>
+                  <div className='text-base'>
+                    {`${index + 1}. ${useCaseStep.name}`}
+                  </div>
+                  <div className='flex gap-x-2 text-xs text-dial-stratos'>
+                    <div className='text-sm'>
+                      {format('ui.workflow.header')} ({useCaseStep.workflows?.length ?? 0})
+                    </div>
+                    <div className='border border-r border-dial-slate-300' />
+                    <div className='text-sm'>
+                      {format('ui.buildingBlock.header')} ({useCaseStep.buildingBlocks?.length ?? 0})
+                    </div>
+                    <div className='border border-r border-dial-slate-300' />
+                    <div className='text-sm'>
+                      {format('ui.product.header')} ({useCaseStep.product?.length ?? 0})
+                    </div>
+                  </div>
                 </div>
-                <div className='flex gap-x-2 text-xs text-dial-stratos'>
-                  <div className='text-sm'>
-                    {format('ui.workflow.header')} ({useCaseStep.workflows?.length ?? 0})
-                  </div>
-                  <div className='border border-r border-dial-slate-300' />
-                  <div className='text-sm'>
-                    {format('ui.buildingBlock.header')} ({useCaseStep.buildingBlocks?.length ?? 0})
-                  </div>
-                  <div className='border border-r border-dial-slate-300' />
-                  <div className='text-sm'>
-                    {format('ui.product.header')} ({useCaseStep.product?.length ?? 0})
-                  </div>
-                </div>
+                <FaArrowRight className='ml-auto mr-3 my-auto' />
               </div>
-            </div>
+            </Link>
           )}
         </div>
       </div>

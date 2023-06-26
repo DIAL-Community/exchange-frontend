@@ -3,9 +3,9 @@ import { FiPlusCircle } from 'react-icons/fi'
 
 const CreateButton = ({
   type = 'button',
+  href,
   label,
   onClick,
-  href,
   className
 }) => {
   const innerHtml =
