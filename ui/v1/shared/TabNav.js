@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import { useIntl } from 'react-intl'
 import { useCallback } from 'react'
 
-const TabNav = ({ tabNames, activeTab, setActiveTab, exportJson = true, exportCsv = true }) => {
+const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -13,10 +13,12 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJson = true, exportCs
 
   const exportCsvClicked = (e) => {
     e.preventDefault()
+    exportCsvFn()
   }
 
   const exportJsonClicked = (e) => {
     e.preventDefault()
+    exportJsonFn()
   }
 
   return (
@@ -41,8 +43,8 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJson = true, exportCs
             </li>
           })}
         </ul>
-        <div className='ml-auto flex flex-row gap-x-2 my-auto text-xs text-white font-bold'>
-          {exportJson &&
+        <div className='ml-auto flex flex-row gap-x-2 my-auto text-xs text-white font-semibold'>
+          {exportJsonFn &&
             <div className='bg-dial-iris-blue rounded-md'>
               <a href='#' onClick={exportJsonClicked}>
                 <div className='px-5 py-1.5'>
@@ -51,7 +53,7 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJson = true, exportCs
               </a>
             </div>
           }
-          {exportCsv &&
+          {exportCsvFn &&
             <div className='bg-dial-iris-blue rounded-md'>
               <a href='#' onClick={exportCsvClicked}>
                 <div className='px-5 py-1.5'>
