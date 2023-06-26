@@ -143,14 +143,14 @@ const UseCaseForm = React.memo(({ useCase }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/use-cases/${slug}`)
+    router.push(`${REBRAND_BASE_PATH}use-cases/${slug}`)
   }
 
   return loadingUserSession || loadingSectors ? (
     <Loading />
   ) : isAdminUser || isEditorUser ? (
     <form onSubmit={handleSubmit(doUpsert)}>
-      <div className='py-8 px-6'>
+      <div className='py-8'>
         <div className='flex flex-col gap-y-4'>
           <div className='text-xl font-semibold text-dial-blueberry'>
             {useCase

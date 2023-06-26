@@ -5,9 +5,12 @@ import { PAGINATED_USE_CASES_QUERY } from '../../shared/query/useCase'
 import { UseCaseFilterContext } from '../../../../components/context/UseCaseFilterContext'
 import UseCaseCard from '../UseCaseCard'
 import { DisplayType } from '../../utils/constants'
+import { FilterContext } from '../../../../components/context/FilterContext'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
+  const { setResultCounts } = useContext(FilterContext)
   const { sdgs, showBeta, govStackOnly, search } = useContext(UseCaseFilterContext)
+
   const { loading, error, data, fetchMore } = useQuery(PAGINATED_USE_CASES_QUERY, {
     variables: {
       search,
@@ -16,6 +19,11 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       govStackOnly,
       limit: defaultPageSize,
       offset: pageOffset
+    },
+    onCompleted: (data) => {
+      setResultCounts(resultCount => {
+        return { ...resultCount, 'filter.entity.useCases': data.paginatedUseCases.length }
+      })
     }
   })
 
@@ -53,7 +61,6 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       )}
     </div>
   )
-
 }
 
 export default ListStructure

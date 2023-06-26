@@ -1,4 +1,4 @@
-import { useCallback, useContext, useRef, useState } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
 import { UseCaseFilterContext } from '../../../../components/context/UseCaseFilterContext'
@@ -6,10 +6,13 @@ import { USE_CASE_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/useCase
 import { DEFAULT_PAGE_SIZE } from '../../utils/constants'
 import Pagination from '../../shared/Pagination'
 import ListStructure from './ListStructure'
+import UseCaseSearchBar from './UseCaseSearchBar'
 
 const UseCaseListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { sdgs, showBeta, govStackOnly, search } = useContext(UseCaseFilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
@@ -28,7 +31,11 @@ const UseCaseListRight = () => {
     }
   }
 
-  const { sdgs, showBeta, govStackOnly, search } = useContext(UseCaseFilterContext)
+  useEffect(() => {
+    setPageNumber(0)
+    setPageOffset(0)
+  }, [search])
+
   const { loading, error, data } = useQuery(USE_CASE_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
       search,
@@ -40,9 +47,7 @@ const UseCaseListRight = () => {
 
   return (
     <>
-      <div className='py-8' ref={topRef}>
-        Filtering part
-      </div>
+      <UseCaseSearchBar ref={topRef} />
       <ListStructure
         pageOffset={pageOffset}
         defaultPageSize={DEFAULT_PAGE_SIZE}

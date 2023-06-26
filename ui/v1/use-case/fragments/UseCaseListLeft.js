@@ -5,7 +5,7 @@ import Share from '../../shared/common/Share'
 const UseCaseListLeft = () => {
   return (
     <div className='bg-dial-slate-100 h-full'>
-      <div className='flex flex-col gap-y-3 px-6 py-8'>
+      <div className='flex flex-col gap-y-3 px-6 py-3'>
         <Bookmark />
         <hr className='bg-slate-200'/>
         <Share />

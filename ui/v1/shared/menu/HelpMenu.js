@@ -48,6 +48,9 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       {
         currentOpenMenu === HELP_MENU &&
           <div className={DEFAULT_DROPDOWN_PANEL_STYLES} ref={helpPopover} role='menu'>
+            <Link href='/about' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('header.about')}
+            </Link>
             <a
               href='startOverviewTour'
               className={DEFAULT_DROPDOWN_MENU_STYLES}
@@ -90,9 +93,6 @@ const HelpMenu = ({ currentOpenMenu, onToggleDropdown }) => {
             >
               {format('app.reportIssue')}
             </a>
-            <Link href='/about' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
-              {format('header.about')}
-            </Link>
           </div>
       }
       {showForm && <ReportIssue showForm={showForm} hideFeedbackForm={hideFeedbackForm} />}

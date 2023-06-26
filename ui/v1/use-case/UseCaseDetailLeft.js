@@ -7,7 +7,7 @@ import UseCaseDetailNav from './fragments/UseCaseDetailNav'
 const UseCaseDetailLeft = ({ scrollRef, useCase }) => {
   return (
     <div className='bg-dial-slate-100 h-full'>
-      <div className='flex flex-col gap-y-3 px-6 py-8'>
+      <div className='flex flex-col gap-y-3 px-6 py-3'>
         <UseCaseDetailHeader useCase={useCase}/>
         <hr className='bg-slate-200'/>
         <UseCaseDetailNav useCase={useCase} scrollRef={scrollRef} />

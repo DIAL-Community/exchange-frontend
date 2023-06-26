@@ -2,8 +2,8 @@ import { useQuery } from '@apollo/client'
 import { Error, Loading } from '../../shared/FetchStatus'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { USE_CASE_STEP_QUERY } from '../../shared/query/useCaseStep'
-import UseCaseStepDetailLeft from './UseCaseStepDetailLeft'
 import UseCaseStepForm from './fragments/UseCaseStepForm'
+import UseCaseStepEditLeft from './UseCaseStepEditLeft'
 
 const UseCaseStepEdit = ({ slug, stepSlug }) => {
   const { loading, error, data } = useQuery(USE_CASE_STEP_QUERY, {
@@ -33,7 +33,7 @@ const UseCaseStepEdit = ({ slug, stepSlug }) => {
       </div>
       <div className='flex flex-row gap-x-8'>
         <div className='basis-1/3'>
-          <UseCaseStepDetailLeft
+          <UseCaseStepEditLeft
             useCase={useCase}
             useCaseStep={useCaseStep}
           />

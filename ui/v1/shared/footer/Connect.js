@@ -16,9 +16,15 @@ const Connect = () => {
       </div>
       <div className='flex text-white pt-3'>
         <div className='bg-dial-iris-blue rounded-md text-sm'>
-          <div className='px-5 py-3'>
-            {format('ui.footer.connect.newsletter')}
-          </div>
+          <a
+            href='//digitalimpactalliance.us11.list-manage.com/subscribe?u=38fb36c13a6fa71469439b2ab&id=18657ed3a5'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <div className='px-5 py-3'>
+              {format('ui.footer.connect.newsletter')}
+            </div>
+          </a>
         </div>
       </div>
     </div>

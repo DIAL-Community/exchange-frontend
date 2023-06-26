@@ -1713,6 +1713,7 @@ export const en = {
   'organization.hasStorefront': 'Organization has a storefront',
 
   'ui.shared.jumpTo': 'Jump To',
+  'ui.shared.searchBar.result': 'Showing {totalCount} {entity}',
   'ui.shared.navigateTools': 'Navigate Tools',
   'ui.shared.exportJson': 'Export data (JSON)',
   'ui.shared.exportCsv': 'Export data (CSV)',

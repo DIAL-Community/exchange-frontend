@@ -11,6 +11,7 @@ import ValidationError from '../../../shared/form/ValidationError'
 import { Loading, Unauthorized } from '../../../shared/FetchStatus'
 import Input from '../../../shared/form/Input'
 import { HtmlEditor } from '../../../shared/form/HtmlEditor'
+import { REBRAND_BASE_PATH } from '../../../utils/constants'
 
 const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
   const { formatMessage } = useIntl()
@@ -52,7 +53,7 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
           1000,
           null,
           () => router.push(
-            `/${router.locale}` +
+            `/${router.locale}${REBRAND_BASE_PATH}` +
             `/use-cases/${data.createUseCaseStep.useCaseStep.useCase.slug}` +
             `/use-case-steps/${data.createUseCaseStep.useCaseStep.slug}`
           )
@@ -109,13 +110,13 @@ const UseCaseStepForm = React.memo(({ useCaseStep, useCase }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`/use_cases/${useCase?.slug}/${slug && 'use_case_steps/' + slug}`)
+    router.push(`${REBRAND_BASE_PATH}/use-cases/${useCase?.slug}/${slug && 'use-case-steps/' + slug}`)
   }
 
   return (
     loadingUserSession  ? <Loading /> : canEdit ? (
       <form onSubmit={handleSubmit(doUpsert)}>
-        <div className='py-8 px-6'>
+        <div className='py-8'>
           <div className='flex flex-col gap-y-4'>
             <div className='text-2xl font-semibold text-dial-sapphire'>
               {useCaseStep?.slug

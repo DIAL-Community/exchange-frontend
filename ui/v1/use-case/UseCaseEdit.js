@@ -39,7 +39,7 @@ const UseCaseEdit = ({ slug }) => {
       </div>
       <div className='flex flex-row gap-x-8'>
         <div className='basis-1/3'>
-          <UseCaseEditLeft useCase={useCase} showNav={false} />
+          <UseCaseEditLeft useCase={useCase} />
         </div>
         <div className='basis-2/3'>
           <UseCaseForm useCase={useCase} />

@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Breadcrumb from '../shared/Breadcrumb'
 import UseCaseForm from './fragments/UseCaseForm'
-import UseCaseListLeft from './fragments/UseCaseListLeft'
+import UseCaseCreateLeft from './UseCaseCreateLeft'
 
 const UseCaseCreate = () => {
   const { formatMessage } = useIntl()
@@ -23,7 +23,7 @@ const UseCaseCreate = () => {
       </div>
       <div className='flex flex-row gap-x-8'>
         <div className='basis-1/3'>
-          <UseCaseListLeft />
+          <UseCaseCreateLeft />
         </div>
         <div className='basis-2/3'>
           <UseCaseForm />

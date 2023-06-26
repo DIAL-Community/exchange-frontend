@@ -1,14 +1,13 @@
 import { useIntl } from 'react-intl'
 import { useQuery } from '@apollo/client'
-import { useCallback, useRef } from 'react'
+import { useCallback } from 'react'
 import { Error, Loading } from '../../shared/FetchStatus'
 import Breadcrumb from '../../shared/Breadcrumb'
 import { USE_CASE_DETAIL_QUERY } from '../../shared/query/useCase'
-import UseCaseStepDetailLeft from './UseCaseStepDetailLeft'
 import UseCaseStepForm from './fragments/UseCaseStepForm'
+import UseCaseStepCreateLeft from './UseCaseStepCreateLeft'
 
 const UseCaseStepCreate = ({ slug }) => {
-  const scrollRef = useRef(null)
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -40,16 +39,10 @@ const UseCaseStepCreate = ({ slug }) => {
       </div>
       <div className='flex flex-row gap-x-8'>
         <div className='basis-1/3'>
-          <UseCaseStepDetailLeft
-            scrollRef={scrollRef}
-            useCase={useCase}
-          />
+          <UseCaseStepCreateLeft useCase={useCase} />
         </div>
         <div className='basis-2/3'>
-          <UseCaseStepForm
-            ref={scrollRef}
-            useCase={useCase}
-          />
+          <UseCaseStepForm useCase={useCase} />
         </div>
       </div>
     </div>

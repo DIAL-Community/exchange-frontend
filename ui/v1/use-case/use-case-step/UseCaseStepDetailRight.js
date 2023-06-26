@@ -29,7 +29,7 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
   ]), [])
 
   return (
-    <div className='flex flex-col gap-y-4 py-8 px-6'>
+    <div className='flex flex-col gap-y-4 pt-4 pb-8'>
       <div className='flex flex-col gap-y-3'>
         <div className='text-xl font-semibold text-dial-blueberry py-3' ref={descRef}>
           {format('ui.common.detail.description')}
