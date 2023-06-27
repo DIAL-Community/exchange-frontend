@@ -491,8 +491,8 @@ body {
   visibility: hidden;
 }
 
-.introjs-skipbutton { 
-  color: #fff !important; 
+.introjs-skipbutton {
+  color: #fff !important;
   right: 20px !important;
   font-size: 14px !important;
   font-weight: 400 !important;

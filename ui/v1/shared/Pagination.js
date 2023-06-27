@@ -33,6 +33,7 @@ const PaginationStructure = ({ pageNumber, totalCount, defaultPageSize, pageClic
           pageCount={Math.ceil(totalCount / defaultPageSize)}
           renderOnZeroPageCount={null}
           disabledClassName='opacity-30'
+          breakClassName='my-auto'
           // Flex the main container and add gap
           containerClassName='flex gap-x-3 text-sm text-dial-slate-300 font-semibold'
           // Each will have rounded border

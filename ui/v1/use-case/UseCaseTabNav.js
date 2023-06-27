@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { UseCaseFilterContext } from '../../../components/context/UseCaseFilterContext'
 import TabNav from '../shared/TabNav'
 import { ExportType, asyncExport, convertKeys } from '../utils/export'
@@ -7,11 +7,19 @@ import { useUser } from '../../../lib/hooks'
 const UseCaseTabNav = ({ activeTab, setActiveTab }) => {
   const { user } = useUser()
 
-  const tabNames = [
+  const [tabNames, setTabNames] = useState([
     'ui.useCase.header',
-    'ui.useCase.whatIs',
-    'ui.useCase.createNew'
-  ]
+    'ui.useCase.whatIs'
+  ])
+
+  useEffect(() => {
+    if (user?.isAdminUser) {
+      setTabNames(tabNames => [
+        ...tabNames.filter(tabName => tabName !== 'ui.useCase.createNew'),
+        'ui.useCase.createNew'
+      ])
+    }
+  }, [user])
 
   const useCaseFilters = useContext(UseCaseFilterContext)
 

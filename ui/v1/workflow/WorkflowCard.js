@@ -43,8 +43,8 @@ const WorkflowCard = ({ displayType, index, workflow }) => {
     <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg'>
       <div className='flex flex-row gap-x-3 px-6 py-3'>
         <img
-          // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
-          src='/ui/v1/workflow-header.svg'
+          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
+          // src='/ui/v1/workflow-header.svg'
           alt={format('ui.image.logoAlt', { name:  format('ui.workflow.header') })}
           width={40}
           height={40}

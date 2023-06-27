@@ -49,8 +49,8 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
     <div className='rounded-lg bg-gradient-to-r from-building-block-bg-light to-building-block-bg'>
       <div className='flex flex-row gap-x-3 px-6 py-3'>
         <img
-          // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
-          src='/ui/v1/building-block-header.svg'
+          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
+          // src='/ui/v1/building-block-header.svg'
           alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.header') })}
           width={40}
           height={40}

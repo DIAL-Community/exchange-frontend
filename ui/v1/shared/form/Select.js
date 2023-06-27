@@ -29,6 +29,11 @@ const Select = React.forwardRef(({
         color: '#46465a'
       }
     }),
+    groupHeading: (provided) => ({
+      ...provided,
+      fontSize: '0.8rem',
+      fontWeight: 600
+    }),
     indicatorSeparator: (provided) => ({
       ...provided,
       backgroundColor: '#46465a'

@@ -1727,6 +1727,9 @@ export const en = {
   'ui.useCase.whatIs': 'What is a Use Case?',
   'ui.useCase.createNew': 'Create a new Use Case',
 
+  'ui.useCase.filter.showDraft': 'Show draft (non-validated) use cases',
+  'ui.useCase.filter.govStackOnly': 'Show use cases from GovStack',
+
   'ui.useCase.detail.steps': 'Use Case Steps',
   'ui.useCase.parent.detail': 'Parent Use Case',
 
@@ -1790,4 +1793,7 @@ export const en = {
 
   'ui.tag.label': 'Tag',
   'ui.tag.header': 'Tags',
+
+  'ui.sdg.label': 'SDG',
+  'ui.sdg.header': 'SDGs',
 }

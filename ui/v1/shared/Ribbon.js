@@ -40,7 +40,7 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage }) => {
           <div className='h-24 basis-1/3 flex ml-auto z-40'>
             <div className='block basis-1/2 ml-auto my-auto'>
               <div className='flex flex-col gap-1 text-sm'>
-                <div className='text-dial-slate-600 font-bold'>
+                <div className='text-dial-slate-600 font-semibold'>
                   {format('ui.shared.navigateTools')}
                 </div>
                 <Select
