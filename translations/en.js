@@ -1728,6 +1728,7 @@ export const en = {
   'ui.useCase.createNew': 'Create a new Use Case',
 
   'ui.useCase.detail.steps': 'Use Case Steps',
+  'ui.useCase.parent.detail': 'Parent Use Case',
 
   'ui.useCaseStep.label': 'Use Case Step',
   'ui.useCaseStep.header': 'Use Case Steps',

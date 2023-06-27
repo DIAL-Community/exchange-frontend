@@ -10,6 +10,11 @@ export const USE_CASE_STEP_QUERY = gql`
       name
       slug
       markdownUrl
+      useCaseSteps {
+        id
+        name
+        slug
+      }
     }
     useCaseStep(slug: $stepSlug) {
       id

@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import Select from '../../shared/form/Select'
-import { REBRAND_BASE_PATH } from '../../utils/constants'
+import Select from '../../../shared/form/Select'
+import { REBRAND_BASE_PATH } from '../../../utils/constants'
 
-const UseCaseDetailNav = ({ scrollRef, useCase }) => {
+const UseCaseStepDetailNav = ({ scrollRef, useCase }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -20,24 +20,24 @@ const UseCaseDetailNav = ({ scrollRef, useCase }) => {
     })
   }
 
-  const navOptions = [{
+  const navOptions = [ {
+    label: format('ui.useCase.parent.detail'),
+    value: 'ui.useCase.parent.detail'
+  }, ...stepNavOptions, {
     label: format('ui.common.detail.description'),
     value: 'ui.common.detail.description'
   }, {
-    label: format('ui.useCase.detail.steps'),
-    value: 'ui.useCase.detail.steps'
-  }, ...stepNavOptions, {
+    label: format('ui.dataset.header'),
+    value: 'ui.dataset.header'
+  }, {
+    label: format('ui.product.header'),
+    value: 'ui.product.header'
+  }, {
     label: format('ui.workflow.header'),
     value: 'ui.workflow.header'
   }, {
-    label: format('ui.sdgTarget.header'),
-    value: 'ui.sdgTarget.header'
-  }, {
     label: format('ui.buildingBlock.header'),
     value: 'ui.buildingBlock.header'
-  }, {
-    label: format('ui.tag.header'),
-    value: 'ui.tag.header'
   }]
 
   const onNavigationChange = (selectedNav) => {
@@ -48,6 +48,9 @@ const UseCaseDetailNav = ({ scrollRef, useCase }) => {
         `${REBRAND_BASE_PATH}` +
         `use-cases/${useCase.slug}/` +
         `use-case-steps/${destinationSlug}`
+      router.push(destinationRoute)
+    } else if (value.indexOf('ui.useCase.parent.detail') >= 0) {
+      const destinationRoute = `${REBRAND_BASE_PATH}use-cases/${useCase.slug}`
       router.push(destinationRoute)
     } else if (scrollRef && scrollRef.current) {
       const scrollTargetRef = scrollRef.current.find(ref => ref.value === value)
@@ -81,4 +84,4 @@ const UseCaseDetailNav = ({ scrollRef, useCase }) => {
   )
 }
 
-export default UseCaseDetailNav
+export default UseCaseStepDetailNav
