@@ -40,7 +40,7 @@ const UseCaseFilter = () => {
   return (
     <div className='flex flex-col gap-y-4 py-3'>
       {filteringUseCase() &&
-        <div className='flex flex-col gap-y-4'>
+        <div className='flex flex-col gap-y-3'>
           <div className='flex'>
             <div className='text-sm font-semibold text-dial-sapphire'>
               Filtered by:
@@ -52,19 +52,27 @@ const UseCaseFilter = () => {
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
             <SdgActiveFilters sdgs={sdgs} setSdgs={setSDGs} />
             {showBeta && (
-              <div className='flex flex-row gap-1'>
-                {format('ui.useCase.filter.showDraft')}
-                <button onClick={toggleShowBeta}>
-                  <IoClose size='1rem' />
-                </button>
+              <div className='bg-dial-slate-400 px-2 py-1 rounded'>
+                <div className='flex flex-row gap-1'>
+                  <div className='flex gap-x-1'>
+                    {format('ui.useCase.filter.showDraft')}
+                    <button onClick={toggleShowBeta}>
+                      <IoClose size='1rem' />
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
             {govStackOnly && (
-              <div className='flex flex-row gap-1'>
-                {format('ui.useCase.filter.govStackOnly')}
-                <button onClick={toggleShowGovStack}>
-                  <IoClose size='1rem' />
-                </button>
+              <div className='bg-dial-slate-400 px-2 py-1 rounded'>
+                <div className='flex flex-row gap-1'>
+                  <div className='flex gap-x-1'>
+                    {format('ui.useCase.filter.govStackOnly')}
+                    <button onClick={toggleShowGovStack}>
+                      <IoClose size='1rem' />
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -75,17 +83,7 @@ const UseCaseFilter = () => {
           Filter your results by:
         </div>
         <hr className='bg-slate-200'/>
-        <button className='flex'>
-          <div className='text-dial-stratos text-sm px-4'>
-            SDG
-          </div>
-          <div className='text-dial-iris-blue text-sm ml-auto'>
-            +
-          </div>
-        </button>
-        <div className='pl-4 text-sm'>
-          <SdgAutocomplete sdgs={sdgs} setSdgs={setSDGs} />
-        </div>
+        <SdgAutocomplete sdgs={sdgs} setSdgs={setSDGs} />
         <hr className='bg-slate-200'/>
       </div>
       <div className='flex flex-col gap-y-4'>
