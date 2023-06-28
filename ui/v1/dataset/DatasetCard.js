@@ -48,7 +48,7 @@ const DatasetCard = ({ displayType, index, dataset }) => {
     <div className='rounded-lg bg-gradient-to-r from-dataset-bg-light to-dataset-bg h-16'>
       <div className='flex flex-row gap-x-3 px-6 py-3 h-full'>
         {dataset.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='rounded-full bg-dial-plum w-10 h-10'>
+          <div className='rounded-full bg-dial-blueberry w-10 h-10'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + dataset.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.workflow.header') })}
@@ -65,7 +65,7 @@ const DatasetCard = ({ displayType, index, dataset }) => {
             className='object-contain'
           />
         }
-        <div className='text-sm font-semibold text-dial-meadow my-auto'>
+        <div className='text-sm font-semibold text-dial-blueberry my-auto'>
           {dataset.name}
         </div>
       </div>

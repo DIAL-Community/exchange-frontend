@@ -52,7 +52,7 @@ const ProductCard = ({ displayType, index, product }) => {
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.workflow.header') })}
-              className='object-contain w-6 h-6 my-2 mx-auto white-filter'
+              className='object-contain w-10 h-10 my-auto'
             />
           </div>
         }
