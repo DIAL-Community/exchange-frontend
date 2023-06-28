@@ -92,7 +92,7 @@ const Description = () => {
                       <div className='grid grid-cols-3'>
                         <a
                           className='py-3'
-                          href='https://solutions-catalog.atlassian.net/l/cp/czeCMrc1'
+                          href='https://digital-impact-exchange.atlassian.net/l/cp/czeCMrc1'
                           target='_blank'
                           rel='noreferrer'
                         >
@@ -108,7 +108,7 @@ const Description = () => {
                         <div className='py-1 col-span-2'>
                           <a
                             className='block px-3 py-1 text-dial-iris-blue'
-                            href='https://solutions-catalog.atlassian.net/l/cp/DGrrxAnW'
+                            href='https://digital-impact-exchange.atlassian.net/l/cp/DGrrxAnW'
                             target='_blank'
                             rel='noreferrer'
                           >
@@ -116,7 +116,7 @@ const Description = () => {
                           </a>
                           <a
                             className='block px-3 py-1 text-dial-iris-blue'
-                            href='https://solutions-catalog.atlassian.net/l/cp/P53p9r7G'
+                            href='https://digital-impact-exchange.atlassian.net/l/cp/P53p9r7G'
                             target='_blank'
                             rel='noreferrer'
                           >
@@ -124,7 +124,7 @@ const Description = () => {
                           </a>
                           <a
                             className='block px-3 py-1 text-dial-iris-blue'
-                            href='https://solutions-catalog.atlassian.net/l/cp/CFvP6bww'
+                            href='https://digital-impact-exchange.atlassian.net/l/cp/CFvP6bww'
                             target='_blank'
                             rel='noreferrer'
                           >
@@ -132,14 +132,14 @@ const Description = () => {
                           </a>
                           <a
                             className='block px-3 py-1 text-dial-iris-blue'
-                            href='https://solutions-catalog.atlassian.net/l/cp/k4jKPf9A'
+                            href='https://digital-impact-exchange.atlassian.net/l/cp/k4jKPf9A'
                             target='_blank' rel='noreferrer'
                           >
                             {format('definition.tutorial.products')}
                           </a>
                           <a
                             className='block px-3 py-1 text-dial-iris-blue'
-                            href='https://solutions-catalog.atlassian.net/l/cp/z7NDG7BS'
+                            href='https://digital-impact-exchange.atlassian.net/l/cp/z7NDG7BS'
                             target='_blank'
                             rel='noreferrer'
                           >
@@ -147,7 +147,7 @@ const Description = () => {
                           </a>
                           <a
                             className='block px-3 py-1 text-dial-iris-blue'
-                            href='https://solutions-catalog.atlassian.net/l/cp/ZRURfBN4'
+                            href='https://digital-impact-exchange.atlassian.net/l/cp/ZRURfBN4'
                             target='_blank'
                             rel='noreferrer'
                           >
@@ -155,7 +155,7 @@ const Description = () => {
                           </a>
                           <a
                             className='block px-3 py-1 text-dial-iris-blue'
-                            href='https://solutions-catalog.atlassian.net/l/cp/wosCpaFc'
+                            href='https://digital-impact-exchange.atlassian.net/l/cp/wosCpaFc'
                             target='_blank'
                             rel='noreferrer'
                           >
@@ -163,7 +163,7 @@ const Description = () => {
                           </a>
                           <a
                             className='block px-3 py-1 text-dial-iris-blue'
-                            href='https://solutions-catalog.atlassian.net/l/cp/tMS1kGMs'
+                            href='https://digital-impact-exchange.atlassian.net/l/cp/tMS1kGMs'
                             target='_blank'
                             rel='noreferrer'
                           >
@@ -171,7 +171,7 @@ const Description = () => {
                           </a>
                           <a
                             className='block px-3 py-1 text-dial-iris-blue'
-                            href='https://solutions-catalog.atlassian.net/l/cp/yfSzEQHT'
+                            href='https://digital-impact-exchange.atlassian.net/l/cp/yfSzEQHT'
                             target='_blank'
                             rel='noreferrer'
                           >

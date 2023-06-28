@@ -16,7 +16,7 @@ Catalog back-end/API, which can be referenced at: https://gitlab.com/dial/online
 ## Documentation
 Complete documentation is available (including detailed installation and configuration instructions) at [DIAL Online Catalog Documentation](https://docs.dial.community/projects/product-registry/en/latest/)
 
-Please also reference the [Wiki page for the Catalog](https://solutions-catalog.atlassian.net/wiki/spaces/SOLUTIONS/overview?homepageId=33072), which contains information about upcoming feature development, releases, and additional documentation.
+Please also reference the [Wiki page for the Catalog](https://digital-impact-exchange.atlassian.net/wiki/spaces/SOLUTIONS/overview?homepageId=33072), which contains information about upcoming feature development, releases, and additional documentation.
 
 ## Development environment setup
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
