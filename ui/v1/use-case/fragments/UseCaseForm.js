@@ -150,7 +150,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
     <Loading />
   ) : isAdminUser || isEditorUser ? (
     <form onSubmit={handleSubmit(doUpsert)}>
-      <div className='py-8'>
+      <div className='py-4'>
         <div className='flex flex-col gap-y-4'>
           <div className='text-xl font-semibold text-dial-blueberry'>
             {useCase
