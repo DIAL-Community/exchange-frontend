@@ -36,6 +36,20 @@ export const PLAYS_QUERY = gql`
   }
 `
 
+export const REFRESH_PLAY_QUERY =   gql`
+  query Play($slug: String!) {
+    play(slug: $slug) {
+      id
+      name
+      slug
+      playMoves {
+        id
+        name
+      }
+    }
+  }
+`
+
 export const PLAYBOOK_QUERY = gql`
   query Playbook($playbookSlug: String!) {
     playbook(slug: $playbookSlug) {
@@ -89,10 +103,12 @@ export const PLAY_QUERY = gql`
       products {
         name
         slug
+        imageFile
       }
       buildingBlocks {
         name
         slug
+        imageFile
       }
     }
     playbook(slug: $playbookSlug) {

@@ -3,7 +3,7 @@ import Footer from '../../components/Footer'
 import ClientOnly from '../../lib/ClientOnly'
 import WorkflowForm from '../../components/workflows/WorkflowForm'
 
-const CreateBuildingBlock = () => (
+const CreateWorkflow = () => (
   <>
     <Header />
     <ClientOnly>
@@ -13,4 +13,4 @@ const CreateBuildingBlock = () => (
   </>
 )
 
-export default CreateBuildingBlock
+export default CreateWorkflow

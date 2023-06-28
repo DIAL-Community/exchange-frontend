@@ -24,7 +24,15 @@ module.exports = {
   },
   // Add more setup options before each test is run
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/', 'test-utils.js', 'data/', 'utils/', 'cypress/'],
+  testPathIgnorePatterns: [
+    '<rootDir>/node_modules/',
+    '<rootDir>/.history/',
+    '<rootDir>/.next/',
+    'test-utils.js',
+    'data/',
+    'utils/',
+    'cypress/'
+  ],
   testEnvironment: 'jsdom',
   transform: {
     // Use babel-jest to transpile tests with the next/babel preset

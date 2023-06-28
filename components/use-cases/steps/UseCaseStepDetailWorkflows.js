@@ -77,7 +77,7 @@ const UseCaseStepDetailWorkflows = ({ useCaseStep, canEdit }) => {
       updateUseCaseStepWorkflows({
         variables: {
           slug: useCaseStep.slug,
-          workflowsSlugs: workflows.map(({ slug }) => slug)
+          workflowSlugs: workflows.map(({ slug }) => slug)
         },
         context: {
           headers: {

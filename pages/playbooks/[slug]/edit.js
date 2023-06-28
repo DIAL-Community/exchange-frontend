@@ -4,24 +4,11 @@ import { useQuery } from '@apollo/client'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import { Loading, Error, Unauthorized } from '../../../components/shared/FetchStatus'
-import PlayPreview from '../../../components/plays/PlayPreview'
 import { PlaybookForm } from '../../../components/playbooks/PlaybookForm'
-import { PlayListProvider } from '../../../components/plays/PlayListContext'
-import { PlayPreviewProvider } from '../../../components/plays/PlayPreviewContext'
 import ClientOnly from '../../../lib/ClientOnly'
 import NotFound from '../../../components/shared/NotFound'
 import { useUser } from '../../../lib/hooks'
 import { PLAYBOOK_QUERY } from '../../../queries/playbook'
-
-const EditFormProvider = ({ children }) => {
-  return (
-    <PlayListProvider>
-      <PlayPreviewProvider>
-        {children}
-      </PlayPreviewProvider>
-    </PlayListProvider>
-  )
-}
 
 function EditPlaybook () {
   const router = useRouter()
@@ -56,13 +43,9 @@ function EditPlaybook () {
           {loadingUserSession
             ? <Loading />
             : isAdminUser || isEditorUser
-              ? (
-                <EditFormProvider>
-                  <PlayPreview />
-                  <PlaybookForm playbook={data.playbook} />
-                </EditFormProvider>
-              )
-              : <Unauthorized />}
+              ? <PlaybookForm playbook={data.playbook} />
+              : <Unauthorized />
+          }
         </ClientOnly>
       )}
       <Footer />

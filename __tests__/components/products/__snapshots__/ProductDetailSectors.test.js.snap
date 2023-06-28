@@ -227,18 +227,31 @@ exports[`Unit test for the ProductDetailSectors component. Should match snapshot
         class="gap-3"
       >
         <button
-          class="mr-2 flex items-center gap-x-1.5 bg-dial-iris-blue px-2 py-1 rounded-md text-white"
+          class="mr-2 cursor-pointer bg-dial-iris-blue px-2 py-0.5 rounded text-white"
           data-testid="edit-button"
           type="button"
         >
-          <img
-            alt="Edit"
-            height="12px"
-            src="/icons/edit.svg"
-            width="12px"
-          />
+          <svg
+            class="inline pb-0.5"
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 20h9"
+            />
+            <path
+              d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+            />
+          </svg>
           <span
-            class="text-sm"
+            class="text-sm px-1"
           >
             Edit
           </span>
@@ -249,14 +262,14 @@ exports[`Unit test for the ProductDetailSectors component. Should match snapshot
       class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
-        class="border-3 border-transparent"
+        class="rounded-md border-3 border-transparent"
         data-testid="sector-card"
       >
         <div
-          class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
+          class="flex border border-dial-gray shadow-md px-3 h-16 rounded-md"
         >
           <div
-            class="flex items-center p-4"
+            class="flex items-center"
           >
             <div
               class="inline-block font-semibold text-button-gray"
@@ -461,14 +474,14 @@ exports[`Unit test for the ProductDetailSectors component. Should match snapshot
       class="grid grid-cols-1 lg:grid-cols-2"
     >
       <div
-        class="border-3 border-transparent"
+        class="rounded-md border-3 border-transparent"
         data-testid="sector-card"
       >
         <div
-          class="flex justify-between border border-dial-gray card-drop-shadow px-4 h-16"
+          class="flex border border-dial-gray shadow-md px-3 h-16 rounded-md"
         >
           <div
-            class="flex items-center p-4"
+            class="flex items-center"
           >
             <div
               class="inline-block font-semibold text-button-gray"

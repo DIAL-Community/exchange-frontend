@@ -79,7 +79,8 @@ const OrganizationForm = React.memo(({ organization }) => {
       endorserLevel:
         endorserLevelOptions.find(({ value }) => value === organization?.endorserLevel) ?? defaultEndorserLevel,
       isMni: organization?.isMni,
-      description: organization?.organizationDescription?.description
+      description: organization?.organizationDescription?.description,
+      hasStorefront: organization?.hasStorefront,
     }
   })
 
@@ -114,7 +115,18 @@ const OrganizationForm = React.memo(({ organization }) => {
       setMutating(true)
       // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const { name, imageFile, website, isEndorser, whenEndorsed, endorserLevel, isMni, description, aliases } = data
+      const {
+        name,
+        imageFile,
+        website,
+        isEndorser,
+        whenEndorsed,
+        endorserLevel,
+        isMni,
+        description,
+        aliases,
+        hasStorefront
+      } = data
       // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
@@ -125,7 +137,8 @@ const OrganizationForm = React.memo(({ organization }) => {
         whenEndorsed: whenEndorsed || null,
         endorserLevel: endorserLevel.value,
         isMni,
-        description
+        description,
+        hasStorefront
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -279,6 +292,13 @@ const OrganizationForm = React.memo(({ organization }) => {
                   >
                     <Checkbox {...register('isMni')} />
                     {format('organization.isMni')}
+                  </label>
+                  <label
+                    className='flex gap-x-2 mb-2 items-center self-start text-dial-sapphire'
+                    data-testid='organization-has-storefront'
+                  >
+                    <Checkbox {...register('hasStorefront')} />
+                    {format('organization.hasStorefront')}
                   </label>
                 </div>
                 <div className='w-full lg:w-1/2'>

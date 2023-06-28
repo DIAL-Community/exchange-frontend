@@ -90,7 +90,7 @@ const OrganizationDetailContacts = ({ organization }) => {
 
   const displayModeBody = organization && contacts.length > 0
     ? (
-      <div className='grid grid-cols-1 lg:grid-cols-2'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
         {contacts.map((contact, index) => <ContactCard key={index} contact={contact} listType='list'/>)}
       </div>
     ) : (

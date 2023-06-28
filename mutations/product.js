@@ -72,11 +72,11 @@ export const UPDATE_PRODUCT_BUILDING_BLOCKS = gql`
 export const UPDATE_PRODUCT_SECTORS = gql`
   mutation UpdateProductSectors(
     $slug: String!
-    $sectorsSlugs: [String!]!
+    $sectorSlugs: [String!]!
   ) {
     updateProductSectors(
       slug: $slug
-      sectorsSlugs: $sectorsSlugs
+      sectorSlugs: $sectorSlugs
     ) {
       product {
         id
@@ -94,11 +94,11 @@ export const UPDATE_PRODUCT_SECTORS = gql`
 export const UPDATE_PRODUCT_PROJECTS = gql`
   mutation UpdateProductProjects(
     $slug: String!
-    $projectsSlugs: [String!]!
+    $projectSlugs: [String!]!
   ) {
     updateProductProjects(
       slug: $slug
-      projectsSlugs: $projectsSlugs
+      projectSlugs: $projectSlugs
     ) {
       product {
         id
@@ -120,11 +120,11 @@ export const UPDATE_PRODUCT_PROJECTS = gql`
 export const UPDATE_PRODUCT_ORGANIZATION = gql`
   mutation UpdateProductOrganization(
     $slug: String!
-    $organizationsSlugs: [String!]!
+    $organizationSlugs: [String!]!
   ) {
     updateProductOrganizations(
       slug: $slug
-      organizationsSlugs: $organizationsSlugs
+      organizationSlugs: $organizationSlugs
     ) {
       product {
         id
@@ -166,12 +166,12 @@ export const UPDATE_PRODUCT_TAGS = gql`
 export const UPDATE_PRODUCT_SDGS = gql`
   mutation UpdateProductSdgs(
     $slug: String!
-    $sdgsSlugs: [String!]!
+    $sdgSlugs: [String!]!
     $mappingStatus: String!
   ) {
     updateProductSdgs(
       slug: $slug
-      sdgsSlugs: $sdgsSlugs
+      sdgSlugs: $sdgSlugs
       mappingStatus: $mappingStatus
     ) {
       product {

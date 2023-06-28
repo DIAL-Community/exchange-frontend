@@ -69,7 +69,9 @@ const PlaybookDetailOverview = ({ playbook, locale, allowEmbedCreation, comments
         <>
           <div className='h4 mt-3'>{format('playbook.tags')}:</div>
           <div className='grid grid-cols-1 md:grid-cols-2'>
-            {playbook.tags.map((tag, tagIdx) => <TagCard tag={tag} listType='list' key={tagIdx} />)}
+            {playbook.tags.map((tag, tagIdx) =>
+              <TagCard tag={tag} listType='list' key={`playbook-tag-${tagIdx}`} />)
+            }
           </div>
         </>
       }

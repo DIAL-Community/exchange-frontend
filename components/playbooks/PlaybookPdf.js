@@ -121,7 +121,7 @@ const MoveContent = ({ move, format }) => {
                             key={resource.i}
                             className={`
                               group border-2 border-gray-300 hover:border-dial-sunshine
-                              card-drop-shadow
+                              shadow-md
                             `}
                           >
                             <div className='flex'>

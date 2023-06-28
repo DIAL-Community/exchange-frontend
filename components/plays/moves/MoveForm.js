@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { Controller, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 import { FaPlusCircle, FaSpinner } from 'react-icons/fa'
@@ -8,65 +8,7 @@ import { HtmlEditor } from '../../shared/HtmlEditor'
 import Breadcrumb from '../../shared/breadcrumb'
 import { DEFAULT_AUTO_CLOSE_DELAY, ToastContext } from '../../../lib/ToastContext'
 import { useUser } from '../../../lib/hooks'
-
-const CREATE_RESOURCE = gql`
-  mutation (
-    $playSlug: String!,
-    $moveSlug: String!,
-    $url: String!,
-    $name: String!,
-    $description: String!,
-    $index: Int!
-  ) {
-    createResource(
-      playSlug: $playSlug,
-      moveSlug: $moveSlug,
-      url: $url,
-      name: $name,
-      description: $description,
-      index: $index
-    ) {
-      move {
-        id
-        name
-        slug
-      }
-      errors
-    }
-  }
-`
-const generateMutationText = (mutationFunc) => {
-  return `
-    mutation (
-      $playSlug: String!,
-      $moveSlug: String!,
-      $name: String!,
-      $description: String!,
-      $resources: JSON!
-    ) {
-      ${mutationFunc} (
-        playSlug: $playSlug,
-        moveSlug: $moveSlug,
-        name: $name,
-        description: $description,
-        resources: $resources
-      ) {
-        move {
-          id
-          name
-          slug
-          play {
-            slug
-          }
-        }
-        errors
-      }
-    }
-  `
-}
-
-const CREATE_MOVE = gql(generateMutationText('createMove'))
-const AUTOSAVE_MOVE = gql(generateMutationText('autoSaveMove'))
+import { AUTOSAVE_MOVE, CREATE_MOVE, CREATE_MOVE_RESOURCE } from '../../../mutations/move'
 
 const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResource, removeResource, setEditing }) => {
   const [mutating, setMutating] = useState(false)
@@ -78,9 +20,9 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
   const { locale } = useRouter()
   const { showToast } = useContext(ToastContext)
 
-  const [createResource, { reset }] = useMutation(CREATE_RESOURCE, {
+  const [createMoveResource, { reset }] = useMutation(CREATE_MOVE_RESOURCE, {
     onCompleted: (data) => {
-      const { createResource: response } = data
+      const { createMoveResource: response } = data
       if (response.errors.length === 0 && response.move) {
         setEditing(false)
         setMutating(false)
@@ -120,7 +62,7 @@ const ResourceFormEditor = ({ index, moveSlug, playSlug, resource, updateResourc
 
       updateResource(index, { name, description: resourceDescription, url })
       if (moveSlug) {
-        createResource({
+        createMoveResource({
           variables: {
             playSlug,
             moveSlug,
@@ -211,7 +153,7 @@ const ResourceViewer = ({ index, resource, removeResource, setEditing }) => {
   return (
     <div className='flex flex-row gap-3 px-3'>
       <div className='py-3 font-semibold my-auto'>{index + 1})</div>
-      <div className='bg-white border border-dial-gray border-opacity-50 card-drop-shadow w-full'>
+      <div className='bg-white border border-dial-gray border-opacity-50 shadow-md w-full'>
         <div className='flex gap-4 px-3 py-3 w-full'>
           <div className='w-3/12 font-semibold my-auto overflow-hidden text-ellipsis'>
             {resource.name}
@@ -306,21 +248,40 @@ export const MoveForm = ({ playbook, play, move }) => {
   const { showToast } = useContext(ToastContext)
   const [createMove, { reset }] = useMutation(CREATE_MOVE, {
     onCompleted: (data) => {
+      setMutating(false)
       const { locale } = router
       const { createMove: response } = data
       if (response?.errors.length === 0 && response.move) {
-        setMutating(false)
         showToast(
-          format('move.submitted'),
+          format('move.submitted.success'),
           'success',
           'top-center',
           DEFAULT_AUTO_CLOSE_DELAY,
           null,
-          () => router.push(`/${locale}/playbooks/${playbook.slug}/plays/${play.slug}/edit`)
+          () => router.push(`/${locale}/playbooks/${playbook.slug}`)
         )
       } else {
+        setMutating(false)
+        showToast(
+          <div className='flex flex-col'>
+            <span>{response.errors}</span>
+          </div>,
+          'error',
+          'top-center'
+        )
         reset()
       }
+    },
+    onError: (error) => {
+      setMutating(false)
+      showToast(
+        <div className='flex flex-col'>
+          <span>{error?.message}</span>
+        </div>,
+        'error',
+        'top-center'
+      )
+      reset()
     }
   })
 
@@ -444,7 +405,7 @@ export const MoveForm = ({ playbook, play, move }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    const route = `/${router.locale}/playbooks/${playbook.slug}/plays/${play.slug}/edit`
+    const route = `/${router.locale}/playbooks/${playbook.slug}`
     router.push(route)
   }
 

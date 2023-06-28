@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { useState, useEffect, useCallback, useContext } from 'react'
+import { useState, useCallback, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useApolloClient, useMutation } from '@apollo/client'
 import Pill from '../shared/Pill'
@@ -12,31 +12,42 @@ import ProjectCard from '../projects/ProjectCard'
 import { PROJECT_SEARCH_QUERY } from '../../queries/project'
 import { useUser } from '../../lib/hooks'
 
-const OrganizationDetailProjects = ({ organization, canEdit }) => {
+const OrganizationDetailProjects = ({ organization, canEdit, createAction }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
 
-  const [projects, setProjects] = useState(organization.projects)
-
   const [isDirty, setIsDirty] = useState(false)
-
-  const [updateOrganizationProjects, { data, loading }] = useMutation(UPDATE_ORGANIZATION_PROJECTS)
-
-  const { user } = useUser()
-
-  const { locale } = useRouter()
+  const [projects, setProjects] = useState(organization.projects)
 
   const { showToast } = useContext(ToastContext)
 
-  useEffect(() => {
-    if (data?.updateOrganizationProjects?.errors.length === 0 && data?.updateOrganizationProjects?.organization) {
-      setProjects(data.updateOrganizationProjects.organization.projects)
+  const [updateOrganizationProjects, { data, loading, reset }] = useMutation(UPDATE_ORGANIZATION_PROJECTS, {
+    onCompleted: (data) => {
+      const { updateOrganizationProjects: response } = data
+      if (response?.organization && response?.errors?.length === 0) {
+        showToast(format('organization.submit.success'), 'success', 'top-center')
+        setProjects(response?.organization.projects)
+        setIsDirty(false)
+      } else {
+        showToast(format('organization.submit.failure'), 'error', 'top-center')
+        setProjects(organization.projects ?? [])
+        setIsDirty(false)
+        reset()
+      }
+    },
+    onError: () => {
+      showToast(format('organization.submit.failure'), 'error', 'top-center')
+      setProjects(organization.projects ?? [])
       setIsDirty(false)
-      showToast(format('organization.projects.updated'), 'success', 'top-center')
+      reset()
     }
-  }, [data, showToast, format])
+  })
+
+  const router = useRouter()
+  const { user } = useUser()
+  const { locale } = router
 
   const fetchedProjectsCallback = (data) => (
     data.projects.map((project) => ({
@@ -67,7 +78,7 @@ const OrganizationDetailProjects = ({ organization, canEdit }) => {
       updateOrganizationProjects({
         variables: {
           slug: organization.slug,
-          projectsSlugs: projects.map(({ slug }) => slug)
+          projectSlugs: projects.map(({ slug }) => slug)
         },
         context: {
           headers: {
@@ -136,6 +147,7 @@ const OrganizationDetailProjects = ({ organization, canEdit }) => {
         isMutating={loading}
         displayModeBody={displayModeBody}
         editModeBody={editModeBody}
+        createAction={createAction}
       />
     )
   )

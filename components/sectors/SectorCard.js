@@ -26,14 +26,14 @@ const SectorCard = ({ sector, listType = DisplayType.LIST, displayEditButtons = 
       <div
         className={classNames(
           { 'hover:border-dial-sunshine text-button-gray': displayEditButtons },
-          'border-3 border-transparent'
+          'rounded-md border-3 border-transparent'
         )}
         data-testid='sector-card'
       >
-        <div className='flex justify-between border border-dial-gray card-drop-shadow px-4 h-16'>
+        <div className='flex border border-dial-gray shadow-md px-3 h-16 rounded-md'>
           <div
             onClick={toggleSectorDetailDialog}
-            className={classNames({ 'flex-1 cursor-pointer': displayEditButtons }, 'flex items-center p-4')}
+            className={classNames({ 'flex-1 cursor-pointer': displayEditButtons }, 'flex items-center')}
           >
             <div
               className={classNames(
@@ -56,7 +56,7 @@ const SectorCard = ({ sector, listType = DisplayType.LIST, displayEditButtons = 
             </div>
           </div>
           {isAdminUser && displayEditButtons && (
-            <div className='inline-flex items-center gap-x-2 p-4'>
+            <div className='inline-flex items-center gap-x-2'>
               <SectorDetail sector={sector} isOpen={isDetailDialogOpen} onClose={toggleSectorDetailDialog} />
               <EditButton onClick={toggleSectorFormDialog} />
               <SectorForm isOpen={isFormDialogOpen} onClose={toggleSectorFormDialog} sector={sector} />

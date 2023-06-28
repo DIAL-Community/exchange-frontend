@@ -70,7 +70,7 @@ const ProjectDetailSectors = ({ project, canEdit }) => {
       updateProjectSectors({
         variables: {
           slug: project.slug,
-          sectorsSlugs: sectors.map(({ slug }) => slug)
+          sectorSlugs: sectors.map(({ slug }) => slug)
         },
         context: {
           headers: {

@@ -2,28 +2,32 @@ import { gql } from '@apollo/client'
 
 export const CREATE_ORGANIZATION = gql`
   mutation CreateOrganization(
-    $name: String!,
-    $slug: String!,
-    $aliases: JSON,
-    $imageFile: Upload,
-    $website: String,
-    $isEndorser: Boolean,
-    $whenEndorsed: ISO8601Date,
-    $endorserLevel: String,
-    $isMni: Boolean,
+    $name: String!
+    $slug: String!
+    $aliases: JSON
+    $imageFile: Upload
+    $website: String
+    $isEndorser: Boolean
+    $whenEndorsed: ISO8601Date
+    $endorserLevel: String
+    $isMni: Boolean
     $description: String
+    $hasStorefront: Boolean
+    $heroFile: Upload
   ) {
     createOrganization(
-      name: $name,
-      slug: $slug,
-      aliases: $aliases,
-      imageFile: $imageFile,
-      website: $website,
-      isEndorser: $isEndorser,
-      whenEndorsed: $whenEndorsed,
-      endorserLevel: $endorserLevel,
-      isMni: $isMni,
+      name: $name
+      slug: $slug
+      aliases: $aliases
+      imageFile: $imageFile
+      website: $website
+      isEndorser: $isEndorser
+      whenEndorsed: $whenEndorsed
+      endorserLevel: $endorserLevel
+      isMni: $isMni
       description: $description
+      hasStorefront: $hasStorefront
+      heroFile: $heroFile
     ) {
       organization {
         name
@@ -35,6 +39,9 @@ export const CREATE_ORGANIZATION = gql`
         endorserLevel
         isMni
         imageFile
+        specialties
+        hasStorefront
+        heroFile
         organizationDescription {
           description
           locale
@@ -45,14 +52,14 @@ export const CREATE_ORGANIZATION = gql`
   }
 `
 
-export const UPDATE_ORGANIZATION_COUNTRY = gql`
+export const UPDATE_ORGANIZATION_COUNTRIES = gql`
   mutation UpdateOrganizationCountry(
     $slug: String!,
-    $countriesSlugs: [String!]!
+    $countrySlugs: [String!]!
   ) {
     updateOrganizationCountry(
       slug: $slug,
-      countriesSlugs: $countriesSlugs
+      countrySlugs: $countrySlugs
     ) {
       organization {
         countries {
@@ -69,11 +76,11 @@ export const UPDATE_ORGANIZATION_COUNTRY = gql`
 export const UPDATE_ORGANIZATION_SECTORS = gql`
   mutation UpdateOrganizationSectors(
     $slug: String!,
-    $sectorsSlugs: [String!]!
+    $sectorSlugs: [String!]!
   ) {
     updateOrganizationSectors(
       slug: $slug,
-      sectorsSlugs: $sectorsSlugs
+      sectorSlugs: $sectorSlugs
     ) {
       organization {
         sectors {
@@ -90,11 +97,11 @@ export const UPDATE_ORGANIZATION_SECTORS = gql`
 export const UPDATE_ORGANIZATION_PROJECTS = gql`
   mutation UpdateOrganizationProjects(
     $slug: String!,
-    $projectsSlugs: [String!]!
+    $projectSlugs: [String!]!
   ) {
     updateOrganizationProjects(
       slug: $slug,
-      projectsSlugs: $projectsSlugs
+      projectSlugs: $projectSlugs
     ) {
       organization {
         projects {
@@ -102,7 +109,9 @@ export const UPDATE_ORGANIZATION_PROJECTS = gql`
           name,
           slug,
           origin {
+            id
             slug
+            name
           }
         }
       },
@@ -132,7 +141,7 @@ export const UPDATE_ORGANIZATION_CONTACTS = gql`
   }
 `
 
-export const UPDATE_ORGANIZATION_PRODUCT = gql`
+export const UPDATE_ORGANIZATION_PRODUCTS = gql`
   mutation UpdateOrganizationProducts(
     $slug: String!,
     $productSlugs: [String!]!
@@ -220,6 +229,96 @@ export const UPDATE_ORGANIZATION_OFFICES = gql`
           longitude
         }
       }
+      errors
+    }
+  }
+`
+
+export const UPDATE_ORGANIZATION_SPECIALTIES = gql`
+  mutation UpdateOrganizationSpecialties(
+    $slug: String!,
+    $specialties: [String!]!
+  ) {
+    updateOrganizationSpecialties(
+      slug: $slug,
+      specialties: $specialties
+    ) {
+      organization {
+        id,
+        specialties
+      },
+      errors
+    }
+  }
+`
+
+export const UPDATE_ORGANIZATION_RESOURCES = gql`
+  mutation UpdateOrganizationResources(
+    $slug: String!,
+    $resourceSlugs: [String!]!
+  ) {
+    updateOrganizationResources(
+      slug: $slug,
+      resourceSlugs: $resourceSlugs
+    ) {
+      organization {
+        id,
+        resources {
+          id
+          name
+          slug
+          link
+        }
+      },
+      errors
+    }
+  }
+`
+
+export const UPDATE_ORGANIZATION_CERTIFICATIONS = gql`
+  mutation UpdateOrganizationCertifications(
+    $slug: String!,
+    $productSlugs: [String!]!
+  ) {
+    updateOrganizationCertifications(
+      slug: $slug,
+      productSlugs: $productSlugs
+    ) {
+      organization {
+        id,
+        certifications
+        productCertifications {
+          id
+          name
+          slug
+          imageFile
+        }
+      },
+      errors
+    }
+  }
+`
+
+export const UPDATE_ORGANIZATION_BUILDING_BLOCKS = gql`
+  mutation UpdateOrganizationBuildingBlocks(
+    $slug: String!,
+    $buildingBlockSlugs: [String!]!
+  ) {
+    updateOrganizationBuildingBlocks(
+      slug: $slug,
+      buildingBlockSlugs: $buildingBlockSlugs
+    ) {
+      organization {
+        id,
+        buildingBlockCertifications {
+          id
+          name
+          slug
+          imageFile
+          category
+          maturity
+        }
+      },
       errors
     }
   }

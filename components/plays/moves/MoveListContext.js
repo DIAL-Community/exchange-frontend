@@ -5,9 +5,10 @@ const MoveListDispatchContext = createContext()
 
 const MoveListProvider = ({ children }) => {
   const [currentMoves, setCurrentMoves] = useState([])
+  const [dirty, setDirty] = useState(false)
 
-  const values = { currentMoves }
-  const dispatchValues = { setCurrentMoves }
+  const values = { currentMoves, dirty }
+  const dispatchValues = { setCurrentMoves, setDirty }
 
   return (
     <MoveListContext.Provider value={values}>

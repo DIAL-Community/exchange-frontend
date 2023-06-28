@@ -44,6 +44,9 @@ const ResourceMenu = ({ currentOpenMenu, onToggleDropdown }) => {
             >
               {format('header.SDGFramework')}
             </a>
+            <Link href='/resources' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+              {format('header.blogs')}
+            </Link>
           </div>
       }
     </>

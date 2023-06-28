@@ -326,6 +326,7 @@ export const en = {
   'building-block.header': 'Building Blocks',
   'building-block.label': 'Building Block',
   'buildingBlock.label': 'Building Block',
+  'buildingBlock.header': 'Building Blocks',
   'building-block.no-product': 'We do not have any Product information for this Building Block.',
   'building-block.disclaimer': 'Note: As part of the <a href="https://govstack.global">GovStack Initiative</a>, DIAL is working to map digital platforms with key Building Block functionalities. Currently, all mappings between products and building blocks are "Beta" and are shown as illustrative examples of how these tools may support building block functionalities. As Building Block specifications are developed, products that are aligned with the specifications will be tagged as such.',
   'building-block.spec-link': 'The GovStack initiative has published a full specification for this building block. You can view the documentation at this link: ',
@@ -633,6 +634,8 @@ export const en = {
   'filter.entity.candidateRoles': 'Candidate Roles',
   'filter.entity.countries': 'Countries',
   'filter.entity.rubric-categories': 'Rubric Categories',
+  'filter.entity.resources': 'Resources',
+  'filter.entity.storefronts': 'Storefronts',
 
   'filter.byEntity': 'Filter by {entity}',
   'filter.searchFor': 'Search for {entity}',
@@ -652,6 +655,7 @@ export const en = {
   'filter.organization.aggregatorOnly': 'Only Aggregators',
   'filter.organization.endorserOnly': 'Only Endorser Organizations',
   'filter.useCase.showDraft': 'Show Draft (non-Validated) Use Cases',
+  'filter.useCase.govStackOnly': 'Show GovStack Only Use Cases',
 
   'filter.product.forCovid': 'COVID-19 Tools',
   'filter.product.endorsed': 'Show endorsed products',
@@ -1595,6 +1599,7 @@ export const en = {
 
   'opportunity.name': 'Name',
   'opportunity.webAddress': 'Web Address',
+  'opportunity.leverist.webAddress': 'More information (at Leverist)',
   'opportunity.imageFile': 'Logo',
   'opportunity.openingDate': 'Opening Date',
   'opportunity.contact': 'Contact Information',
@@ -1639,5 +1644,70 @@ export const en = {
   'useCase.markdownWarning': `
     Use case is linked to a markdown definition. Description will be read from linked markdown.
   `,
-  'govstack.issue.submitFailed': 'Feedback submission failed. Please try again later.'
+  'govstack.issue.submitFailed': 'Feedback submission failed. Please try again later.',
+
+  'govstack.label': 'GovStack',
+
+  'play.unassign.title': 'Removing Play',
+  'play.unassign.confirmation': 'Are you sure you want to remove this play from the playbook?',
+  'toast.playbook.unassign.success': 'Play removed from playbook.',
+  'toast.playbook.unassign.failure': 'Removing play from playbook failed.',
+
+  'move.unassign.title': 'Removing Move',
+  'move.unassign.confirmation': 'Are you sure you want to remove this move from the play?',
+  'toast.play.unassign.success': 'Move removed from play.',
+  'toast.play.unassign.failure': 'Removing move from play failed.',
+
+  'move.submitted.success': 'Move submitted.',
+
+  'move.add': 'Add Move',
+  'move.rearrange': 'Rearrange Moves',
+
+  'play.add': 'Add Play',
+  'play.rearrange': 'Rearrange Plays',
+  'play.assignExistingPlay': 'Add Existing Plays',
+
+  'toast.move.rearrange.success': 'Order for the moves saved succesffully.',
+  'toast.move.rearrange.failure': 'Failed to save order for the moves.',
+  'toast.play.rearrange.success': 'Order for the plays saved succesffully.',
+  'toast.play.rearrange.failure': 'Failed to save order for the plays.',
+
+  'resource.subHeader': `
+    These article and blogs provide information about the Digital Impact Exchange
+    and how it can be used to support the deployment of digital technologies.
+  `,
+
+  'header.blogs': 'Blogs / Articles',
+
+  'resource.label': 'Resource',
+  'resource.header': 'Resources',
+  'resource.link': 'Resource Location',
+  'resource.visitLink': 'Visit Resource',
+  'resource.imageFile': 'Resource Logo',
+  'resource.showInExchange': 'Show resource in the Exchange',
+  'resource.showInWizard': 'Show resource in the recommendation wizard',
+
+  'resource.delete.confirm.message': 'Are you sure you want to delete this resource?',
+  'resource.fromStorefront': 'Resource created from storefront will  automatically assigned to the storefront.',
+
+  'resource.submit.success': 'Resource submitted.',
+  'resource.submit.failure': 'Resource update failed.',
+  'toast.resource.delete.success': 'Resource deleted.',
+
+  'storefront.label': 'Storefront',
+  'storefront.header': 'Storefronts',
+  'specialty.label': 'Specialty',
+  'specialty.header': 'Specialties',
+  'certification.label': 'Certification',
+  'certification.header': 'Certifications',
+
+  'header.marketplace': 'Marketplace',
+
+  'storefront.no-specialty': "Organization storefront's doesn't have specialty information.",
+  'storefront.no-resource': "Organization storefront's doesn't have resource information.",
+  'storefront.no-buildingBlock': "Organization storefront's doesn't have building block information.",
+  'storefront.no-certification': "Organization storefront's doesn't have certification information.",
+
+  'organization.heroImage': 'Hero image file',
+  'organization.hasStorefront': 'Organization has a storefront'
 }

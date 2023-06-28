@@ -75,7 +75,7 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit }) => {
       updateUseCaseStepDatasets({
         variables: {
           slug: useCaseStep.slug,
-          datasetsSlugs: datasets.map(({ slug }) => slug)
+          datasetSlugs: datasets.map(({ slug }) => slug)
         },
         context: {
           headers: {

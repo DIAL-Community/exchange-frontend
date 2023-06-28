@@ -68,12 +68,7 @@ const OrganizationCard = ({ organization, listType, newTab = false }) => {
 
   const cardDisplayType = () =>
     <div data-testid='org-card' className={`group ${containerElementStyle}`}>
-      <div
-        className={classNames(
-          'bg-white shadow-lg rounded-lg h-full',
-          'border border-dial-gray hover:border-transparent'
-        )}
-      >
+      <div className='bg-white shadow-lg rounded-lg h-full border-t'>
         <div className='flex flex-col'>
           <div className='relative'>
             <div className='absolute top-2 left-2'>

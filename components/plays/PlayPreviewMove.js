@@ -1,14 +1,17 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
-import { useIntl } from 'react-intl'
+import { FiEdit3 } from 'react-icons/fi'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { useLazyQuery } from '@apollo/client'
 import { HiExternalLink } from 'react-icons/hi'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { HtmlViewer } from '../shared/HtmlViewer'
 import { MOVE_PREVIEW_QUERY } from '../../queries/play'
+import { useUser } from '../../lib/hooks'
+import UnassignMove from './UnassignMove'
 
-const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
+const PlayPreviewMove = ({ moveName, moveSlug, playSlug, playbookSlug, pdf = false }) => {
   const { formatMessage } = useIntl()
   const format = (id) => formatMessage({ id })
   const [openingDetail, setOpeningDetail] = useState(pdf)
@@ -20,15 +23,26 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
 
   const { locale } = useRouter()
 
+  const { user } = useUser()
+  const canEdit = user?.isAdminUser || user?.isEditorUser
+
   const [loadDetailData, { data, called, loading }] = useLazyQuery(MOVE_PREVIEW_QUERY, {
     variables: { playSlug, slug: moveSlug },
     context: { headers: { 'Accept-Language': locale } },
     skip: !moveSlug
   })
 
+  const generateEditLink = () => {
+    if (!user) {
+      return '/edit-not-available'
+    }
+
+    return `/${locale}/playbooks/${playbookSlug}/plays/${playSlug}/moves/${moveSlug}/edit`
+  }
+
   return (
     <div className='flex flex-col border border-dial-orange-light'>
-      <div className='move-header cursor-pointer' onClick={toggleDetail}>
+      <div className='move-header'>
         <div className='move-animation-base bg-dial-biscotti h-14' />
         <div
           className={classNames(
@@ -38,9 +52,43 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
           )}
         />
         <div className='flex move-header'>
-          <div className='font-semibold px-4 py-4 my-auto'>{moveName}</div>
+          <div
+            className='font-semibold px-4 py-4 my-auto cursor-pointer flex-grow'
+            onClick={toggleDetail}
+          >
+            {moveName}
+          </div>
           <div className='ml-auto my-auto px-4'>
-            {openingDetail ? <BsChevronUp /> : <BsChevronDown />}
+            <div className='flex gap-2'>
+              {canEdit &&
+                <a
+                  href={generateEditLink()}
+                  className='cursor-pointer bg-white px-2 py-0.5 rounded'
+                >
+                  <FiEdit3 className='inline pb-0.5' />
+                  <span className='text-sm px-1'>
+                    <FormattedMessage id='app.edit' />
+                  </span>
+                </a>
+              }
+              {canEdit &&
+                <UnassignMove
+                  playbookSlug={playbookSlug}
+                  playSlug={playSlug}
+                  moveSlug={moveSlug}
+                />
+              }
+              <button
+                type='button'
+                onClick={toggleDetail}
+                className='cursor-pointer bg-white px-2 py-1.5 rounded'
+              >
+                {openingDetail
+                  ? <BsChevronUp className='cursor-pointer p-01 text-dial-stratos'/>
+                  : <BsChevronDown className='cursor-pointer p-0.5 text-dial-stratos'/>
+                }
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -66,7 +114,7 @@ const PlayPreviewMove = ({ moveName, moveSlug, playSlug, pdf = false }) => {
                               key={resource.i}
                               className={classNames(
                                 'group border-2 border-gray-300 hover:border-dial-sunshine',
-                                'card-drop-shadow'
+                                'shadow-md'
                               )}
                             >
                               <div className='flex'>
