@@ -37,7 +37,7 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
             </div>
           </div>
           <div className='flex text-[10px] text-white'>
-            <div className='px-6 py-1 rounded-lg bg-dial-slate-500'>
+            <div className='px-6 py-1 rounded-lg bg-dial-blueberry'>
               {useCase.maturity}
             </div>
           </div>

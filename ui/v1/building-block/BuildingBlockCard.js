@@ -68,8 +68,8 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
               className={classNames(
                 'px-6 py-0.5 rounded',
                 buildingBlock.maturity === MaturityStatus.DRAFT
-                  ? 'border border-dial-slate-500 text-dial-slate-500'
-                  : 'bg-dial-slate-500'
+                  ? 'border border-dial-orange text-dial-orange'
+                  : 'bg-dial-orange'
               )}
             >
               {buildingBlock.maturity}
