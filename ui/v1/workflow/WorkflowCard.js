@@ -2,6 +2,7 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import parse from 'html-react-parser'
+import classNames from 'classnames'
 import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
 
 const WorkflowCard = ({ displayType, index, workflow }) => {
@@ -41,15 +42,18 @@ const WorkflowCard = ({ displayType, index, workflow }) => {
 
   const displaySmallCard = () =>
     <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg'>
-      <div className='flex flex-row gap-x-3 px-6 py-3'>
-        <img
-          src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
-          // src='/ui/v1/workflow-header.svg'
-          alt={format('ui.image.logoAlt', { name:  format('ui.workflow.header') })}
-          width={40}
-          height={40}
-          className='object-contain'
-        />
+      <div className='flex flex-row gap-x-3 px-4 py-3'>
+        <div className='rounded-full bg-dial-plum w-10 h-10'>
+          <img
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
+            // src='/ui/v1/workflow-header.svg'
+            alt={format('ui.image.logoAlt', { name: format('ui.workflow.header') })}
+            className={classNames(
+              'object-contain w-6 h-6 my-2 mx-auto',
+              workflow.imageFile.indexOf('placeholder.svg') <= 0 ? 'w-6 h-6 my-2 white-filter' : '',
+            )}
+          />
+        </div>
         <div className='text-sm font-semibold text-dial-plum my-auto'>
           {workflow.name}
         </div>

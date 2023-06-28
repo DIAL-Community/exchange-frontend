@@ -76,12 +76,16 @@ module.exports = {
         'spearmint': {
           DEFAULT: '#e5fbf3'
         },
-        'meadow': {
+        'dial-meadow': {
           DEFAULT: '#106d38'
         },
         'product-bg': {
           DEFAULT: '#d8f3e9',
           light: '#f3fffb'
+        },
+        'dataset-bg': {
+          light: '#ebeaf9',
+          DEFAULT: '#d9d7f8'
         },
         // Part of the UX refresh.
         'govstack-blue': {

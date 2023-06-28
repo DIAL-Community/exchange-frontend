@@ -46,7 +46,7 @@ const SdgTargetCard = ({ displayType, index, sdgTarget }) => {
         <img
           src={`/assets/sdg/sdg_${filename}.png`}
           alt={format('ui.image.logoAlt', { name:  format('ui.sdg.header') })}
-          className='object-contain'
+          className='object-contain w-32 h-32'
         />
       </div>
       <div className='basis-5/6'>

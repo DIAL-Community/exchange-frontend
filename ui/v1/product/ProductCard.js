@@ -45,16 +45,24 @@ const ProductCard = ({ displayType, index, product }) => {
     </div>
 
   const displaySmallCard = () =>
-    <div className='rounded-lg bg-gradient-to-r from-product-bg-light to-product-bg'>
-      <div className='flex flex-row gap-x-3 px-6 py-3'>
-        <img
-          // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + workflow.imageFile}
-          src='/ui/v1/product-header.svg'
-          alt={format('ui.image.logoAlt', { name: format('ui.product.header') })}
-          width={40}
-          height={40}
-          className='object-contain'
-        />
+    <div className='rounded-lg bg-gradient-to-r from-product-bg-light to-product-bg h-16'>
+      <div className='flex flex-row gap-x-3 px-6 h-full'>
+        {product.imageFile.indexOf('placeholder.svg') >= 0 &&
+          <div className='rounded-full bg-dial-plum w-10 h-10'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.workflow.header') })}
+              className='object-contain w-6 h-6 my-2 mx-auto white-filter'
+            />
+          </div>
+        }
+        {product.imageFile.indexOf('placeholder.svg') < 0 &&
+          <img
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
+            alt={format('ui.image.logoAlt', { name: format('ui.product.header') })}
+            className='object-contain w-10 h-10 my-auto'
+          />
+        }
         <div className='text-sm font-semibold text-dial-meadow my-auto'>
           {product.name}
         </div>

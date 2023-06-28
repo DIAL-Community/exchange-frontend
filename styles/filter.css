@@ -39,6 +39,6 @@
   box-shadow: none !important;
 }
 
-.dial-blueberry-filter {
-  filter: invert(31%) sepia(10%) saturate(2669%) hue-rotate(208deg) brightness(95%) contrast(86%);
+.white-filter {
+  filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(85deg) brightness(110%) contrast(101%);
 }
