@@ -66,14 +66,14 @@ export const SdgActiveFilters = ({ sdgs, setSdgs }) => {
       {sdgs?.map((sdg, sdgIndex) => (
         <div key={sdgIndex} className='bg-dial-slate-400 px-2 py-1 rounded'>
           <div className='flex flex-row gap-1'>
-            <div className='flex gap-x-1'>
+            <div className='flex gap-x-1 text-white'>
               {sdg.label}
               <div className='inline opacity-40'>
                 ({format('ui.sdg.label')})
               </div>
             </div>
             <button onClick={() => removeSdg(sdg.slug)}>
-              <IoClose size='1rem' />
+              <IoClose size='1rem' className='text-white' />
             </button>
           </div>
         </div>
