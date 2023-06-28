@@ -11,15 +11,24 @@ const UseCaseDetailHeader = ({ useCase }) => {
         {useCase.name}
       </div>
       <div className='flex justify-center items-center py-16 bg-white rounded'>
-        <img
-          // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
-          src='/ui/v1/use-case-header.svg'
-          alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
-          width={100}
-          height={100}
-          // className='object-contain dial-blueberry-filter'
-          className='object-contain object-center'
-        />
+        {useCase.imageFile.indexOf('placeholder.svg') < 0 &&
+          <div className='w-20 h-20 px-1 py-1 rounded-full bg-dial-blueberry'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
+              className='object-contain dial-blueberry-filter w-14 h-14 mx-auto my-2 white-filter'
+            />
+          </div>
+        }
+        {useCase.imageFile.indexOf('placeholder.svg') >= 0 &&
+          <div className='w-20 h-20'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
+              className='object-contain dial-blueberry-filter'
+            />
+          </div>
+        }
       </div>
     </div>
   )

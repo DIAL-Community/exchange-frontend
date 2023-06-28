@@ -11,15 +11,24 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-cotton'}`}>
       <div className='flex flex-row gap-x-6'>
-        <img
-          // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
-          src='/ui/v1/use-case-header.svg'
-          alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
-          width={70}
-          height={70}
-          // className='object-contain dial-blueberry-filter'
-          className='object-contain'
-        />
+        {useCase.imageFile.indexOf('placeholder.svg') < 0 &&
+          <div className='w-16 h-16 px-1 py-1 rounded-full bg-dial-blueberry'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
+              className='object-contain dial-blueberry-filter w-10 h-10 mx-auto my-2 white-filter'
+            />
+          </div>
+        }
+        {useCase.imageFile.indexOf('placeholder.svg') >= 0 &&
+          <div className='w-16 h-16'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
+              className='object-contain dial-blueberry-filter'
+            />
+          </div>
+        }
         <div className='flex flex-col gap-y-3'>
           <div className='text-lg font-semibold text-dial-blueberry'>
             {useCase.name}
