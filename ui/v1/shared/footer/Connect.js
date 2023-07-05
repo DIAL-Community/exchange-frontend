@@ -21,7 +21,7 @@ const Connect = () => {
             target='_blank'
             rel='noreferrer'
           >
-            <div className='px-5 py-3'>
+            <div className='px-5 py-2.5'>
               {format('ui.footer.connect.newsletter')}
             </div>
           </a>

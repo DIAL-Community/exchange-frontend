@@ -79,6 +79,7 @@
     "sharp": "^0.32.1",
     "styled-jsx": "^5.0.6",
     "swagger-ui-react": "^4.15.2",
+    "swiper": "^10.0.3",
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {

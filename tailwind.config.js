@@ -33,6 +33,9 @@ module.exports = {
         'dial-angel': {
           DEFAULT: '#c7ccf4'
         },
+        'dial-white-linen': {
+          DEFAULT: '#faf4ef'
+        },
         // Use case color scheme
         'dial-cotton': {
           DEFAULT: '#f3f5ff'
@@ -41,6 +44,7 @@ module.exports = {
           DEFAULT: '#e6e9fc'
         },
         'dial-blueberry': {
+          dark: '#4a4181',
           DEFAULT: '#574f8a'
         },
         // Workflow color scheme
