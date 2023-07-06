@@ -361,7 +361,7 @@ const MobileMenu = ({ menuExpanded, setMenuExpaded }) => {
     <>
       {menuExpanded &&
         <div className='absolute top-16 right-0 w-full max-w-md'>
-          <div className='shadow-lg bg-dial-iris-blue text-white'>
+          <div className='shadow-lg bg-dial-iris-blue text-white cursor-pointer'>
             <ul className='flex flex-col max-h-[640px] lg:max-h-full overflow-scroll py-4'>
               <ToolMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
               <SupportingMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />

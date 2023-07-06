@@ -160,7 +160,7 @@ const HamburgerMenu = ({ menuExpanded, onMenuClicked }) => {
     <>
       <label
         htmlFor='burger'
-        className='ml-auto my-auto pointer-cursor block xl:hidden z-30'
+        className='ml-auto my-auto cursor-pointer block xl:hidden z-30'
       >
         <svg
           className='fill-current text-white'
