@@ -6,7 +6,7 @@ const ToolDefinition = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='px-56 text-dial-stratos'>
+    <div className='px-8 xl:px-56 text-dial-stratos'>
       <div className='flex flex-col gap-y-8'>
         <div className='text-2xl font-semibold'>
           Let’s get started ...
@@ -15,7 +15,7 @@ const ToolDefinition = () => {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Aliquam at cursus est, luctus vestibulum urna. Phasellus quis dolor enim.
         </div>
-        <div className='grid grid-cols-3 gap-8'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
           <div className='rounded-md shadow-lg border'>
             <div className='px-8 py-6'>
               <div className='flex flex-col gap-6'>

@@ -1,14 +1,14 @@
 import UseCaseMainLeft from './UseCaseMainLeft'
 import UseCaseMainRight from './UseCaseMainRight'
 
-const UseCaseList = ({ activeTab }) => {
+const UseCaseMain = ({ activeTab }) => {
   return (
-    <div className='px-56'>
-      <div className='flex flex-row gap-x-8'>
-        <div className='basis-1/3'>
+    <div className='px-8 xl:px-56'>
+      <div className='grid grid-cols-3 gap-x-8'>
+        <div className='col-span-1'>
           <UseCaseMainLeft activeTab={activeTab} />
         </div>
-        <div className='basis-2/3'>
+        <div className='col-span-2'>
           <UseCaseMainRight activeTab={activeTab} />
         </div>
       </div>
@@ -16,4 +16,4 @@ const UseCaseList = ({ activeTab }) => {
   )
 }
 
-export default UseCaseList
+export default UseCaseMain

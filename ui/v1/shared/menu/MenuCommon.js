@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
-import { forwardRef } from 'react'
 
 export const ABOUT_MENU = 'menu-about'
 export const ADMIN_MENU = 'menu-admin'
@@ -12,7 +11,7 @@ export const MARKETPLACE_MENU = 'menu-marketplace'
 
 export const NONE = ''
 
-export const MenuHeader = forwardRef(({ id, href, title, onToggleDropdown, currentOpenMenu }, ref) => {
+export const MenuHeader = ({ id, href, title, onToggleDropdown, currentOpenMenu }) => {
   const { formatMessage } = useIntl()
 
   const onClickHandler = (e) => {
@@ -26,7 +25,6 @@ export const MenuHeader = forwardRef(({ id, href, title, onToggleDropdown, curre
       href={href ?? id}
       // Adding pl-1 to balance out the right padding on the chevron icon
       className='pl-1 py-2 cursor-pointer border-b border-transparent hover:border-dial-sunshine'
-      ref={ref}
       onClick={onClickHandler}
       data-testid={id}
     >
@@ -38,6 +36,4 @@ export const MenuHeader = forwardRef(({ id, href, title, onToggleDropdown, curre
       }
     </a>
   )
-})
-
-MenuHeader.displayName = 'CommonMenuHeader'
+}

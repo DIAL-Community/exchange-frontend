@@ -29,7 +29,7 @@ const UseCaseStepEdit = ({ slug, stepSlug }) => {
   })()
 
   return (
-    <div className='px-56 flex flex-col'>
+    <div className='px-8 xl:px-56 flex flex-col'>
       <div className='px-6 py-4 bg-dial-blue-chalk text-dial-stratos ribbon-detail z-40'>
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>

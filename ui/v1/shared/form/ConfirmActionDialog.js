@@ -25,7 +25,7 @@ const ConfirmActionDialog = ({ title, message, isOpen, onClose, onConfirm, isCon
             leaveTo='opacity-0 scale-95'
           >
             <Dialog.Panel className={`
-                inline-block w-4/5 md:w-3/5 lg:w-3/5 xl:w-1/2 p-8
+                inline-block w-4/5 md:w-3/5 xl:w-3/5 xl:w-1/2 p-8
                 transform bg-white shadow-xl rounded-2xl`}>
               <Dialog.Title className='text-lg font-semibold pb-3 text-dial-sapphire'>
                 {title}

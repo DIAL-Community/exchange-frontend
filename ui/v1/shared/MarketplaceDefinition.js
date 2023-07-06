@@ -1,7 +1,7 @@
 const MarketplaceDefinition = () => {
   return (
     <div className='bg-dial-blueberry'>
-      <div className='px-56 pt-8 pb-12 text-white'>
+      <div className='px-8 xl:px-56 pt-8 pb-12 text-white'>
         <div className='flex flex-col gap-y-3'>
           <div className='text-2xl font-semibold'>
             The Digital Exchange Marketplace
@@ -11,7 +11,7 @@ const MarketplaceDefinition = () => {
             Aliquam at cursus est, luctus vestibulum urna. Phasellus
             quis dolor enim. Sed rhoncus lacus felis, quis lobortis turpis.
           </div>
-          <div className='grid grid-cols-3 gap-8 py-8'>
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 py-8'>
             <div className='flex flex-col gap-3'>
               <div className='text-lg font-semibold'>
                 Opportunities

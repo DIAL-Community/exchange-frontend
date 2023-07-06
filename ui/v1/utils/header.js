@@ -1,10 +1,10 @@
-const TOOL_NAVIGATION_ITEMS = {
+export const TOOL_NAVIGATION_ITEMS = {
   'filter.entity.useCases': 'use-cases',
   'filter.entity.buildingBlocks': 'building-blocks',
   'filter.entity.products': 'products'
 }
 
-const SUPPORTING_NAVIGATION_ITEMS = {
+export const SUPPORTING_NAVIGATION_ITEMS = {
   'filter.entity.maps': 'maps',
   'filter.entity.datasets': 'datasets',
   'filter.entity.organizations': 'organizations',

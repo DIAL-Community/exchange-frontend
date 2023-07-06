@@ -1,10 +1,10 @@
 import { useQuery } from '@apollo/client'
-import classNames from 'classnames'
-import Link from 'next/link'
 import { useCallback, useState } from 'react'
 import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { signIn, signOut } from 'next-auth/react'
+import Link from 'next/link'
+import classNames from 'classnames'
 import { useUser } from '../../../lib/hooks'
 import { USER_AUTHENTICATION_TOKEN_CHECK_QUERY } from '../../../queries/user'
 import { NONE } from './menu/MenuCommon'
@@ -13,7 +13,8 @@ import UserMenu from './menu/UserMenu'
 import HelpMenu from './menu/HelpMenu'
 import ResourceMenu from './menu/ResourceMenu'
 import LanguageMenu from './menu/LanguageMenu'
-import MarketplaceMenu from './menu/Marketplace'
+import MarketplaceMenu from './menu/MarketplaceMenu'
+import MobileMenu from './MobileMenu'
 
 const dropdownMenuStyles = classNames(
   'px-3 py-2',
@@ -40,7 +41,7 @@ const Header = ({ isOnAuthPage = false }) => {
     setCurrentOpenMenu(currentOpenMenu === expectedMenuItem ? NONE : expectedMenuItem)
   }
 
-  const toggleMenu = () => {
+  const toggleMobileMenu = () => {
     setMenuExpanded(!menuExpanded)
   }
 
@@ -125,46 +126,61 @@ const Header = ({ isOnAuthPage = false }) => {
             alt={format('ui.image.logoAlt', { name: 'Digital Impact Exchange' })}
           />
         </Link>
-        <label htmlFor='menu-toggle' className='ml-auto my-auto pointer-cursor block xl:hidden'>
-          <svg
-            className='fill-current text-gray-900'
-            xmlns='http://www.w3.org/2000/svg'
-            width='16'
-            height='16'
-            viewBox='0 0 20 20'
-          >
-            <title>{format('app.menu')}</title>
-            <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
-          </svg>
-        </label>
-        <input className='hidden' type='checkbox' id='menu-toggle' checked={menuExpanded} onChange={toggleMenu} />
-        <div className='hidden xl:flex xl:items-center ml-auto text-sm' id='menu'>
-          <nav>
-            <ul className='hidden xl:flex items-center text-dial-white-beech gap-x-3'>
-              {!isOnAuthPage
-                && (
-                  <>
-                    <li className='relative text-right'>
-                      <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-                    </li>
-                    <li className='relative text-right'>
-                      <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-                    </li>
-                    { user ? withUser : withoutUser }
-                    <li className='relative text-right'>
-                      <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
-                    </li>
-                  </>
-                )
-              }
+        <HamburgerMenu menuExpanded={menuExpanded} onMenuClicked={toggleMobileMenu} />
+        <ul className='hidden xl:flex items-center ml-auto text-dial-white-beech gap-x-3'>
+          {!isOnAuthPage &&
+            <>
               <li className='relative text-right'>
-                <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+                <MarketplaceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
               </li>
-            </ul>
-          </nav>
-        </div>
+              <li className='relative text-right'>
+                <ResourceMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+              </li>
+              { user ? withUser : withoutUser }
+              <li className='relative text-right'>
+                <HelpMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+              </li>
+            </>
+          }
+          <li className='relative text-right'>
+            <LanguageMenu currentOpenMenu={currentOpenMenu} onToggleDropdown={toggleDropdownSwitcher} />
+          </li>
+        </ul>
       </div>
+      <MobileMenu menuExpanded={menuExpanded} setMenuExpanded={setMenuExpanded} />
     </header>
+  )
+}
+
+const HamburgerMenu = ({ menuExpanded, onMenuClicked }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
+
+  return (
+    <>
+      <label
+        htmlFor='burger'
+        className='ml-auto my-auto pointer-cursor block xl:hidden z-30'
+      >
+        <svg
+          className='fill-current text-white'
+          xmlns='http://www.w3.org/2000/svg'
+          width='16'
+          height='16'
+          viewBox='0 0 20 20'
+        >
+          <title>{format('app.menu')}</title>
+          <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
+        </svg>
+      </label>
+      <input
+        id='burger'
+        type='checkbox'
+        className='hidden'
+        checked={menuExpanded}
+        onChange={onMenuClicked}
+      />
+    </>
   )
 }
 

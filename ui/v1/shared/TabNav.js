@@ -22,7 +22,7 @@ const TabNav = ({ tabNames, activeTab, setActiveTab, exportJsonFn, exportCsvFn }
   }
 
   return (
-    <div className='px-56 sticky-under-ribbon bg-white z-30'>
+    <div className='px-8 xl:px-56 sticky-under-ribbon bg-white z-30'>
       <div className='flex flex-row'>
         <ul className='flex flex-row list-none pt-2 gap-x-1'>
           {tabNames.map((tabName, index) => {

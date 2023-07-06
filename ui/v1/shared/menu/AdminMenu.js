@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { useCallback, useRef } from 'react'
+import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { ADMIN_MENU, MenuHeader } from './MenuCommon'
 import { DEFAULT_DROPDOWN_MENU_STYLES, DEFAULT_DROPDOWN_PANEL_STYLES } from './MenuStyleCommon'
@@ -8,14 +8,10 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const adminPopoverButton = useRef()
-  const adminPopoverRe = useRef()
-
   return (
     <>
       <MenuHeader
         id={ADMIN_MENU}
-        ref={adminPopoverButton}
         title='header.admin'
         onToggleDropdown={onToggleDropdown}
         currentOpenMenu={currentOpenMenu}
@@ -24,7 +20,6 @@ const AdminMenu = ({ currentOpenMenu, onToggleDropdown }) => {
         currentOpenMenu === ADMIN_MENU &&
           <div
             className={DEFAULT_DROPDOWN_PANEL_STYLES}
-            ref={adminPopoverRe}
             role='menu'
             data-testid='menu-admin-items'
           >

@@ -1,6 +1,6 @@
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
-import { useCallback, useRef } from 'react'
+import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../../lib/hooks'
 import { USER_MENU } from './MenuCommon'
@@ -12,9 +12,6 @@ const UserMenu = ({ currentOpenMenu, onToggleDropdown }) => {
 
   const { user } = useUser()
   const userName = user.userName.toUpperCase()
-
-  const buttonRef = useRef()
-  const popoverRef = useRef()
 
   const signOutUser = (e) => {
     e.preventDefault()
@@ -32,7 +29,6 @@ const UserMenu = ({ currentOpenMenu, onToggleDropdown }) => {
         id={USER_MENU}
         href={USER_MENU}
         data-testid='user-menu'
-        ref={buttonRef}
         onClick={toggleSwitcher}
       >
         <div id={USER_MENU} className='username-avatar'>
@@ -43,7 +39,7 @@ const UserMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       </a>
       {
         currentOpenMenu === USER_MENU &&
-          <div className={DEFAULT_DROPDOWN_PANEL_STYLES} ref={popoverRef} role='menu'>
+          <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
             <Link href='/auth/profile' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
               {format('header.profile')}
             </Link>

@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Breadcrumb from '../shared/Breadcrumb'
 import UseCaseForm from './fragments/UseCaseForm'
-import UseCaseCreateLeft from './UseCaseCreateLeft'
+import UseCaseSimpleLeft from './fragments/UseCaseSimpleLeft'
 
 const UseCaseCreate = () => {
   const { formatMessage } = useIntl()
@@ -17,15 +17,15 @@ const UseCaseCreate = () => {
   })()
 
   return (
-    <div className='px-56 flex flex-col'>
+    <div className='px-8 xl:px-56 flex flex-col'>
       <div className='px-6 py-4 bg-dial-blue-chalk text-dial-stratos ribbon-detail z-40'>
         <Breadcrumb slugNameMapping={slugNameMapping}/>
       </div>
-      <div className='flex flex-row gap-x-8'>
-        <div className='basis-1/3'>
-          <UseCaseCreateLeft />
+      <div className='grid grid-cols-3 gap-x-8'>
+        <div className='col-span-1'>
+          <UseCaseSimpleLeft />
         </div>
-        <div className='basis-2/3'>
+        <div className='col-span-2'>
           <UseCaseForm />
         </div>
       </div>
