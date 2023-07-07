@@ -55,7 +55,7 @@ const SdgCard = ({ displayType, index, sdg }) => {
     </div>
 
   return (
-    <Link href={`${REBRAND_BASE_PATH}sdgs/${sdg.slug}`}>
+    <Link href={`${REBRAND_BASE_PATH}/sdgs/${sdg.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>

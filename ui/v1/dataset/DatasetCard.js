@@ -72,7 +72,7 @@ const DatasetCard = ({ displayType, index, dataset }) => {
     </div>
 
   return (
-    <Link href={`${REBRAND_BASE_PATH}datasets/${dataset.slug}`}>
+    <Link href={`${REBRAND_BASE_PATH}/datasets/${dataset.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>

@@ -61,7 +61,7 @@ const WorkflowCard = ({ displayType, index, workflow }) => {
     </div>
 
   return (
-    <Link href={`${REBRAND_BASE_PATH}workflows/${workflow.slug}`}>
+    <Link href={`${REBRAND_BASE_PATH}/workflows/${workflow.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>

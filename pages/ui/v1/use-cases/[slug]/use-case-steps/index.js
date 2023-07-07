@@ -17,7 +17,7 @@ const UseCaseStepListPage = () => {
   const { query: { slug } }= router
 
   useEffect(() => {
-    router.push(`${REBRAND_BASE_PATH}use-cases/${slug}`)
+    router.push(`${REBRAND_BASE_PATH}/use-cases/${slug}`)
   }, [router, slug])
 
   return (

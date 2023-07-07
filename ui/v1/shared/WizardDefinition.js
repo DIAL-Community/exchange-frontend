@@ -1,14 +1,11 @@
 const WizardDefinition = () => {
   return (
-    <div className='relative h-[297px]'>
-      <div className='absolute top-0 left-0 w-full h-[297px] bg-dial-white-linen' />
-      <div className='absolute top-0 left-0 w-full h-[297px] '>
+    <div className='relative h-[400px] lg:h-[297px]'>
+      <div className='absolute top-0 left-0 w-full h-[400px] lg:h-[297px] bg-dial-white-linen' />
+      <div className='absolute top-0 left-0 w-full h-[400px] lg:h-[297px]'>
         <div
-          className='bg-auto bg-right bg-no-repeat'
-          style={{
-            backgroundImage: 'url("/ui/v1/wizard-bg.svg")',
-            height: '297px'
-          }}
+          className='bg-cover lg:bg-auto bg-right bg-no-repeat h-[400px] lg:h-[297px]'
+          style={{ backgroundImage: 'url("/ui/v1/wizard-bg.svg")' }}
         >
           <div className='px-8 xl:px-56'>
             <div className='flex flex-col gap-y-6'>

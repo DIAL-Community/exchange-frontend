@@ -80,7 +80,7 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
     </div>
 
   return (
-    <Link href={`${REBRAND_BASE_PATH}building-blocks/${buildingBlock.slug}`}>
+    <Link href={`${REBRAND_BASE_PATH}/building-blocks/${buildingBlock.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>

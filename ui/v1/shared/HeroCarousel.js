@@ -44,7 +44,7 @@ const GovStackHero = ({ children }) => {
 
 const HeroCarousel = () => {
   return (
-    <div className='h-[400px]'>
+    <div className='h-[345px] xl:h-[400px]'>
       <Swiper
         pagination={true}
         autoplay={{
@@ -55,7 +55,7 @@ const HeroCarousel = () => {
       >
         <SwiperSlide>
           <DigitalExchangeHero>
-            <div className='flex flex-col gap-y-6 text-white px-8 xl:px-56 py-[8rem]'>
+            <div className='flex flex-col gap-y-6 text-white px-8 xl:px-56 py-[6rem] xl:py-[8rem]'>
               <div className='text-3xl'>Welcome</div>
               <div className='text-base max-w-prose'>
                 The Digital Impact Exchange enables digital changemakers to connect,
@@ -67,7 +67,7 @@ const HeroCarousel = () => {
         </SwiperSlide>
         <SwiperSlide>
           <GovStackHero>
-            <div className='flex flex-col gap-y-6 text-white px-8 xl:px-56 py-[8rem]'>
+            <div className='flex flex-col gap-y-6 text-white px-8 xl:px-56 py-[6rem] xl:py-[8rem]'>
               <div className='text-3xl'>GovStack</div>
               <div className='text-base'>Accelerating the digital transformation of government services</div>
               <div className='flex text-sm text-dial-stratos'>

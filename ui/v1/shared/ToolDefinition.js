@@ -1,5 +1,7 @@
+import Link from 'next/link'
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
+import { REBRAND_BASE_PATH } from '../utils/constants'
 
 const ToolDefinition = () => {
   const { formatMessage } = useIntl()
@@ -16,7 +18,7 @@ const ToolDefinition = () => {
           Aliquam at cursus est, luctus vestibulum urna. Phasellus quis dolor enim.
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
-          <div className='rounded-md shadow-lg border'>
+          <Link href={`${REBRAND_BASE_PATH}/use-cases`} className='rounded-md shadow-lg border'>
             <div className='px-8 py-6'>
               <div className='flex flex-col gap-6'>
                 <div className='flex flex-row gap-x-3'>
@@ -37,8 +39,8 @@ const ToolDefinition = () => {
                 </div>
               </div>
             </div>
-          </div>
-          <div className='rounded-md shadow-lg border'>
+          </Link>
+          <Link href={`${REBRAND_BASE_PATH}/building-blocks`} className='rounded-md shadow-lg border'>
             <div className='px-8 pt-6 pb-12'>
               <div className='flex flex-col gap-6'>
                 <div className='flex flex-row gap-x-3'>
@@ -60,8 +62,8 @@ const ToolDefinition = () => {
                 </div>
               </div>
             </div>
-          </div>
-          <div className='rounded-md shadow-lg border'>
+          </Link>
+          <Link href={`${REBRAND_BASE_PATH}/products`} className='rounded-md shadow-lg border'>
             <div className='px-8 py-6'>
               <div className='flex flex-col gap-6'>
                 <div className='flex flex-row gap-x-3'>
@@ -82,7 +84,7 @@ const ToolDefinition = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </div>

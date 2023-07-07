@@ -39,8 +39,8 @@ const UseCaseStepDetailRight = forwardRef(({ useCase, useCaseStep }, ref) => {
               type='link'
               href={
                 `${REBRAND_BASE_PATH}` +
-                `use-cases/${useCase.slug}/` +
-                `use-case-steps/${useCaseStep.slug}/edit`
+                `/use-cases/${useCase.slug}` +
+                `/use-case-steps/${useCaseStep.slug}/edit`
               }
             />
           }

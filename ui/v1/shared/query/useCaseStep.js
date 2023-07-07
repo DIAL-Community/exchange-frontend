@@ -9,6 +9,7 @@ export const USE_CASE_STEP_QUERY = gql`
       id
       name
       slug
+      imageFile
       markdownUrl
       useCaseSteps {
         id

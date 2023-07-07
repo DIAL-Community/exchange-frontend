@@ -70,7 +70,7 @@ const ProductCard = ({ displayType, index, product }) => {
     </div>
 
   return (
-    <Link href={`${REBRAND_BASE_PATH}products/${product.slug}`}>
+    <Link href={`${REBRAND_BASE_PATH}/products/${product.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
       {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>

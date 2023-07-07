@@ -29,11 +29,11 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
             />
           </div>
         }
-        <div className='flex flex-col gap-y-3'>
+        <div className='flex flex-col gap-y-3 max-w-lg xl:max-w-3xl'>
           <div className='text-lg font-semibold text-dial-blueberry'>
             {useCase.name}
           </div>
-          <div className='line-clamp-4 max-w-3xl'>
+          <div className='line-clamp-4'>
             {parse(useCase?.sanitizedDescription)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
@@ -55,7 +55,7 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
     </div>
 
   return (
-    <Link href={`${REBRAND_BASE_PATH}use-cases/${useCase.slug}`}>
+    <Link href={`${REBRAND_BASE_PATH}/use-cases/${useCase.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
     </Link>
   )

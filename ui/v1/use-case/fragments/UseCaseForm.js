@@ -143,7 +143,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
 
   const cancelForm = () => {
     setReverting(true)
-    router.push(`${REBRAND_BASE_PATH}use-cases/${slug}`)
+    router.push(`${REBRAND_BASE_PATH}/use-cases/${slug}`)
   }
 
   return loadingUserSession || loadingSectors ? (

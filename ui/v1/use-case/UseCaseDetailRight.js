@@ -43,7 +43,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
           {canEdit &&
             <EditButton
               type='link'
-              href={`${REBRAND_BASE_PATH}use-cases/${useCase.slug}/edit`}
+              href={`${REBRAND_BASE_PATH}/use-cases/${useCase.slug}/edit`}
             />
           }
           {isAdminUser && <DeleteUseCase useCase={useCase} />}
@@ -71,7 +71,7 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
               label={format('app.create')}
               href={
                 `${REBRAND_BASE_PATH}` +
-                `use-cases/${useCase.slug}` +
+                `/use-cases/${useCase.slug}` +
                 '/use-case-steps/create'
               }
             />
@@ -83,8 +83,8 @@ const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {
               key={index}
               href={
                 `${REBRAND_BASE_PATH}` +
-                `use-cases/${useCase.slug}/` +
-                `use-case-steps/${useCaseStep.slug}`
+                `/use-cases/${useCase.slug}` +
+                `/use-case-steps/${useCaseStep.slug}`
               }
             >
               <div className='rounded-md bg-dial-cotton flex'>

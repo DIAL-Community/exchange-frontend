@@ -47,7 +47,7 @@ const MarketplaceMenu = ({ currentMenu, setCurrentMenu }) => {
           {MARKETPLACE_MENU_ITEMS.map(({ label, link }) => {
             return (
               <li key={`mobile-nav-${label}`}>
-                <Link href={`${REBRAND_BASE_PATH}${link}`}>
+                <Link href={`${REBRAND_BASE_PATH}/${link}`}>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format(label)}
                   </div>
@@ -94,7 +94,7 @@ const ToolMenu = ({ currentMenu, setCurrentMenu }) => {
           {Object.entries(TOOL_NAVIGATION_ITEMS).map(([key, value]) => {
             return (
               <li key={`mobile-nav-${key}`}>
-                <Link href={`${REBRAND_BASE_PATH}${value}`}>
+                <Link href={`${REBRAND_BASE_PATH}/${value}`}>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format(key)}
                   </div>
@@ -141,7 +141,7 @@ const SupportingMenu = ({ currentMenu, setCurrentMenu }) => {
           {Object.entries(SUPPORTING_NAVIGATION_ITEMS).map(([key, value]) => {
             return (
               <li key={`mobile-nav-${key}`}>
-                <Link href={`${REBRAND_BASE_PATH}${value}`}>
+                <Link href={`${REBRAND_BASE_PATH}/${value}`}>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format(key)}
                   </div>
@@ -207,7 +207,7 @@ const ResourceMenu = ({ currentMenu, setCurrentMenu }) => {
                     {format(label)}
                   </div>
                 </a>
-                : <Link href={`${REBRAND_BASE_PATH}${link}`}>
+                : <Link href={`${REBRAND_BASE_PATH}/${link}`}>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format(label)}
                   </div>
@@ -312,7 +312,7 @@ const HelpMenu = ({ currentMenu, setCurrentMenu }) => {
                     {format(label)}
                   </div>
                 </a>
-                : <Link href={`${REBRAND_BASE_PATH}${link}`}>
+                : <Link href={`${REBRAND_BASE_PATH}/${link}`}>
                   <div className='flex flex-row gap-x-2 px-8 py-4'>
                     {format(label)}
                   </div>
