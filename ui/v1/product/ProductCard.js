@@ -25,7 +25,7 @@ const ProductCard = ({ displayType, index, product }) => {
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
-              className='object-contain'
+              className='object-contain w-16 h-16'
             />
           </div>
         }

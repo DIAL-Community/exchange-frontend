@@ -21,17 +21,16 @@ const FileUploader = React.forwardRef(({ onChange, onBlur, isInvalid = false, cl
           type='file'
           onChange={onChange}
           onBlur={onBlur}
-          className={classNames({ 'validation-error': isInvalid }, 'bg-white file:hidden w-full pr-10')}
+          className={classNames({ 'validation-error': isInvalid }, 'bg-white file:hidden w-full text-sm')}
           accept='.jpg,.jpeg,.png,.bmp'
-          data-testid='file-uploader'
         />
         <div className='-ml-11 flex p-1'>
-          <span className='h-full pl-1 border-l text-2xl text-dial-gray-dark border-dial-gray-dark'>
+          <span className='h-full pl-1 border-l text-dial-gray-dark border-dial-gray-dark'>
             <ImFilePicture />
           </span>
         </div>
       </label>
-      <div className='text-xs italic text-dial-sapphire'>
+      <div className='text-xs italic'>
         {format('upload.supportedFormats')}
       </div>
     </>

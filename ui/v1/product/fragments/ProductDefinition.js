@@ -9,7 +9,7 @@ const ProductDefinition = () => {
   return (
     <div className='flex flex-col gap-y-6 py-4'>
       <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-blueberry'>
+        <div className='text-xl font-semibold text-dial-meadow'>
           {format('product.hint.title')}
         </div>
         <div className='text-sm text-dial-stratos'>
@@ -17,7 +17,7 @@ const ProductDefinition = () => {
         </div>
       </div>
       <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-blueberry'>
+        <div className='text-xl font-semibold text-dial-meadow'>
           {format('product.hint.characteristicTitle')}
         </div>
         <div className='text-sm text-dial-stratos fr-view'>
@@ -25,11 +25,11 @@ const ProductDefinition = () => {
         </div>
       </div>
       <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-blueberry'>
+        <div className='text-xl font-semibold text-dial-meadow'>
           {format('product.hint.descriptionTitle')}
         </div>
         <div className='text-sm text-dial-stratos'>
-          {format('product.hint.description')}
+          {parse(format('product.hint.description'))}
         </div>
       </div>
     </div>

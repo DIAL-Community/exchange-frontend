@@ -1,5 +1,5 @@
 const ValidationError = ({ value }) => (
-  <p className='text-sm text-validation-error'>
+  <p className='text-xs italic text-validation-error'>
     {value}
   </p>
 )

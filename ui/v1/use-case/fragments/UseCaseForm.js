@@ -157,7 +157,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
               ? format('app.edit-entity', { entity: useCase.name })
               : `${format('app.create-new')} ${format('useCase.label')}`}
           </div>
-          <div className='flex flex-col gap-y-2' data-testid='use-case-name'>
+          <div className='flex flex-col gap-y-2'>
             <label className='required-field text-dial-blueberry' htmlFor='name'>
               {format('useCase.name')}
             </label>
@@ -192,7 +192,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
             />
             {errors.sector && <ValidationError value={errors.sector?.message} />}
           </div>
-          <div className='flex flex-col gap-y-2' data-testid='use-case-maturity'>
+          <div className='flex flex-col gap-y-2'>
             <label className='required-field text-dial-blueberry' htmlFor='use-case-maturity'>
               {format('useCase.maturity')}
             </label>
@@ -225,7 +225,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
             </label>
             <FileUploader {...register('imageFile')} id='image-uploader' />
           </div>
-          <div className='block flex flex-col gap-y-2' data-testid='use-case-description'>
+          <div className='block flex flex-col gap-y-2'>
             <label className='text-dial-sapphire required-field'>
               {format('useCase.description')}
             </label>

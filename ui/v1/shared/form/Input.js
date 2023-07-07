@@ -23,7 +23,7 @@ export const Input = React.forwardRef(
       onChange={onChange}
       onBlur={onBlur}
       placeholder={placeholder}
-      className={classNames({ 'validation-error': isInvalid }, className, 'w-full')}
+      className={classNames({ 'validation-error': isInvalid }, className, 'w-full text-sm')}
     />
 )
 

@@ -1,7 +1,7 @@
 import { MdClose } from 'react-icons/md'
 
 export const SearchInput = ({ value, placeholder, onChange }) => (
-  <label htmlFor='search-bar' className='relative focus-within:text-gray-600 block'>
+  <label htmlFor='search-bar' className='relative block'>
     <input
       id='search-bar'
       type='text'

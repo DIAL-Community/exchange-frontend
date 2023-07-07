@@ -31,13 +31,13 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor }) => {
     <div className={`${ribbonBg} ribbon-outer rounded-b-[32px] z-40`}>
       <div className='ribbon-inner w-full px-8 xl:px-56'>
         <div className='h-24 flex'>
-          <div className='basis-1/2 flex gap-4'>
+          <div className='basis-3/4 flex gap-4'>
             { titleImage }
             <div className={`text-2xl font-light ${titleColor} my-auto flex-grow`}>
               {format(titleKey)}
             </div>
           </div>
-          <div className='basis-1/3 ml-auto my-auto z-40'>
+          <div className='basis-1/4 ml-auto my-auto z-40'>
             <div className='flex flex-col gap-1 text-sm w-prose'>
               <div className='text-dial-slate-600 font-semibold'>
                 {format('ui.shared.navigateTools')}

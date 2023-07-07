@@ -175,7 +175,7 @@ body {
   .url-input {
     @apply border;
     @apply border-transparent;
-    @apply hover:border-dial-sapphire;
+    @apply hover:border-dial-cotton;
     @apply text-dial-gray-dark;
     @apply shadow-md;
     @apply rounded-md;
@@ -238,10 +238,6 @@ body {
   button[type='button'] {
     @apply rounded-md;
     @apply text-white;
-  }
-
-  button:focus,
-  button:focus-visible {
   }
 
   /* TinyMCE HTML editor - textarea */

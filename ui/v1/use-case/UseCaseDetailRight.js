@@ -10,7 +10,7 @@ import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import CreateButton from '../shared/form/CreateButton'
 import UseCaseDetailSdgTargets from './fragments/UseCaseDetailSdgTargets'
-import UseCaseDetailTags from './fragments/UseCaseDetailSdgTags'
+import UseCaseDetailTags from './fragments/UseCaseDetailTags'
 import DeleteUseCase from './DeleteUseCase'
 
 const UseCaseDetailRight = forwardRef(({ useCase }, ref) => {

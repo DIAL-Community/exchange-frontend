@@ -797,6 +797,7 @@ export const en = {
   'organization.endorsedOn': 'Endorsed On',
   'organization.visitWebsite': 'Visit website',
 
+  'product.hint.title': 'What is a Product?',
   'product.hint.characteristicTitle': 'Reading the Product Cards',
   'product.hint.descriptionTitle': 'Icons used on the product cards',
   'product.hint.subtitle': `A Product is a specific technology offering that is designed to implement one or more Building Blocks.`,
@@ -822,7 +823,7 @@ export const en = {
   'organization.hint.characteristics': `The organization cards provide a quick overview of each organization, including information on the products they support, the projects or work they have been connected to, the sectors they are engaged with and the countries in which they work.`,
   'organization.hint.description': `The Exchange tracks several different types of organizations:<ul><li>Organizations that have endorsed the Principles for Digital Development</li><li>Mobile Network Aggregators</li><li>Funders and Maintainers of open source tools (products)</li></ul>`,
 
-  'useCase.hint.title': 'What is Use Case?',
+  'useCase.hint.title': 'What is a Use Case?',
   'useCase.hint.characteristicTitle': 'Characteristics',
   'useCase.hint.descriptionTitle': 'Description',
   'useCase.hint.subtitle': `A Use Case defines the steps that an individual or system will undertake in order to achieve a business objective.`,
@@ -1781,6 +1782,9 @@ export const en = {
 
   'ui.product.label': 'Product',
   'ui.product.header': 'Products',
+
+  'ui.product.whatIs': 'What is a Product?',
+  'ui.product.createNew': 'Create a new Product',
 
   'ui.dataset.label': 'Dataset',
   'ui.dataset.header': 'Datasets',

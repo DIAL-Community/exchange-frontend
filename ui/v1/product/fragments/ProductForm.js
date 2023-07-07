@@ -1,22 +1,21 @@
-import React, { useState, useCallback, useMemo, useContext, useEffect } from 'react'
+import React, { useState, useCallback, useContext, useMemo } from 'react'
 import { useRouter } from 'next/router'
-import { useMutation, useQuery } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
-import { FaSpinner } from 'react-icons/fa'
-import { Controller, useForm } from 'react-hook-form'
+import { FaMinus, FaPlus, FaSpinner } from 'react-icons/fa'
+import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { ToastContext } from '../../../../lib/ToastContext'
 import { useUser } from '../../../../lib/hooks'
 import { Loading, Unauthorized } from '../../../../components/shared/FetchStatus'
 import Input from '../../shared/form/Input'
 import ValidationError from '../../shared/form/ValidationError'
-import Select from '../../shared/form/Select'
 import FileUploader from '../../shared/form/FileUploader'
 import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_PRODUCT } from '../../shared/mutation/product'
-import { SECTOR_SEARCH_QUERY } from '../../shared/query/sector'
-import { generateMaturityOptions } from '../../shared/form/options'
-import { PAGINATED_PRODUCTS_QUERY, PRODUCT_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/product'
-import { DEFAULT_PAGE_SIZE, REBRAND_BASE_PATH } from '../../utils/constants'
+import { REBRAND_BASE_PATH } from '../../utils/constants'
+import IconButton from '../../shared/form/IconButton'
+import UrlInput from '../../shared/form/UrlInput'
+import Checkbox from '../../shared/form/Checkbox'
 
 const ProductForm = React.memo(({ product }) => {
   const { formatMessage } = useIntl()
@@ -34,52 +33,35 @@ const ProductForm = React.memo(({ product }) => {
   const router = useRouter()
   const { locale } = router
 
-  const { data: sectorsData, loading: loadingSectors } = useQuery(SECTOR_SEARCH_QUERY, {
-    variables: { search: '', locale }
-  })
-
-  const sectorOptions = useMemo(
-    () =>
-      sectorsData?.sectors?.map(({ id, slug, name }) => ({
-        label: name,
-        value: parseInt(id),
-        slug
-      })) ?? [],
-    [sectorsData]
-  )
-
-  const maturityOptions = useMemo(() => generateMaturityOptions(format), [format])
-
   const [updateProduct, { reset }] = useMutation(CREATE_PRODUCT, {
-    refetchQueries: [{
-      query: PRODUCT_PAGINATION_ATTRIBUTES_QUERY,
-      variables: { search: '' }
-    }, {
-      query: PAGINATED_PRODUCTS_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
-    }],
     onCompleted: (data) => {
-      const { createProduct: response } = data
-      if (response?.product && response?.errors?.length === 0) {
+      if (data.createProduct.product && data.createProduct.errors.length === 0) {
         setMutating(false)
         showToast(format('product.submit.success'), 'success', 'top-center', 1000, null, () =>
-          router.push(`/${router.locale}${REBRAND_BASE_PATH}/products/${response?.product?.slug}`)
+          router.push(`/${router.locale}/products/${data.createProduct.product.slug}`)
         )
       } else {
         setMutating(false)
-        showToast(format('product.submit.failure'), 'error', 'top-center')
+        showToast(
+          <div className='flex flex-col'>
+            <span>{format('product.submit.failure')}</span>
+          </div>,
+          'error',
+          'top-center',
+          1000
+        )
         reset()
       }
     },
-    onError: (error) => {
+    onError: () => {
       setMutating(false)
       showToast(
         <div className='flex flex-col'>
           <span>{format('product.submit.failure')}</span>
-          <span>{error?.message}</span>
         </div>,
         'error',
-        'top-center'
+        'top-center',
+        1000
       )
       reset()
     }
@@ -88,7 +70,6 @@ const ProductForm = React.memo(({ product }) => {
   const {
     handleSubmit,
     register,
-    setValue,
     control,
     formState: { errors }
   } = useForm({
@@ -97,33 +78,56 @@ const ProductForm = React.memo(({ product }) => {
     shouldUnregister: true,
     defaultValues: {
       name: product?.name,
-      maturity: maturityOptions.find(({ value }) => value === product?.maturity),
+      aliases: product?.aliases?.length ? product?.aliases.map((value) => ({ value })) : [{ value: '' }],
+      website: product?.website,
       description: product?.productDescription?.description,
-      markdownUrl: product?.markdownUrl
+      commercialProduct: product?.commercialProduct,
+      hostingModel: product?.hostingModel,
+      pricingModel: product?.pricingModel,
+      pricingDetails: product?.pricingDetails,
+      pricingUrl: product?.pricingUrl
     }
   })
 
-  useEffect(
-    () =>
-      setValue(
-        'sector',
-        sectorOptions.find(({ slug }) => slug === product?.sector.slug)
-      ),
-    [sectorOptions, setValue, product?.sector.slug]
-  )
+  const { fields: aliases, append, remove } = useFieldArray({
+    control,
+    name: 'aliases',
+    shouldUnregister: true
+  })
+
+  const isSingleAlias = useMemo(() => aliases.length === 1, [aliases])
+  const isLastAlias = (aliasIndex) => aliasIndex === aliases.length - 1
 
   const doUpsert = async (data) => {
     if (user) {
+      // Set the loading indicator.
       setMutating(true)
+      // Pull all needed data from session and form.
       const { userEmail, userToken } = user
-      const { name, sector, maturity, imageFile, description, markdownUrl } = data
+      const {
+        name,
+        imageFile,
+        website,
+        description,
+        aliases,
+        commercialProduct,
+        pricingUrl,
+        hostingModel,
+        pricingModel,
+        pricingDetails
+      } = data
+      // Send graph query to the backend. Set the base variables needed to perform update.
       const variables = {
         name,
         slug,
-        sectorSlug: sector.slug,
-        maturity: maturity.value,
+        aliases: aliases.map(({ value }) => value),
+        website,
         description,
-        markdownUrl
+        commercialProduct,
+        pricingUrl,
+        hostingModel,
+        pricingModel,
+        pricingDetails
       }
       if (imageFile) {
         variables.imageFile = imageFile[0]
@@ -146,95 +150,76 @@ const ProductForm = React.memo(({ product }) => {
     router.push(`${REBRAND_BASE_PATH}/products/${slug}`)
   }
 
-  return loadingUserSession || loadingSectors ? (
+  return loadingUserSession ? (
     <Loading />
   ) : isAdminUser || isEditorUser ? (
     <form onSubmit={handleSubmit(doUpsert)}>
       <div className='py-4'>
-        <div className='flex flex-col gap-y-4'>
-          <div className='text-xl font-semibold text-dial-blueberry'>
+        <div className='flex flex-col gap-y-4 text-dial-meadow'>
+          <div className='text-xl font-semibold'>
             {product
               ? format('app.edit-entity', { entity: product.name })
               : `${format('app.create-new')} ${format('product.label')}`}
           </div>
-          <div className='flex flex-col gap-y-2' data-testid='product-name'>
-            <label className='required-field text-dial-blueberry' htmlFor='name'>
+          <div className='flex flex-col gap-y-2'>
+            <label className='required-field' htmlFor='name'>
               {format('product.name')}
             </label>
             <Input
               {...register('name', { required: format('validation.required') })}
               id='name'
-              className='text-sm'
               placeholder={format('product.name')}
               isInvalid={errors.name}
             />
             {errors.name && <ValidationError value={errors.name?.message} />}
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='required-field text-dial-blueberry' htmlFor='product-sector'>
-              {format('product.sector')}
-            </label>
-            <Controller
-              name='sector'
-              control={control}
-              rules={{ required: format('validation.required') }}
-              defaultValue={sectorOptions.find(({ slug }) => slug === product?.sector.slug)}
-              render={({ field }) => (
-                <Select
-                  id='product-sector'
-                  {...field}
-                  isSearch
-                  options={sectorOptions}
-                  placeholder={format('product.sector')}
-                  isInvalid={errors.sector}
-                />
-              )}
-            />
-            {errors.sector && <ValidationError value={errors.sector?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2' data-testid='product-maturity'>
-            <label className='required-field text-dial-blueberry' htmlFor='product-maturity'>
-              {format('product.maturity')}
-            </label>
-            <Controller
-              name='maturity'
-              control={control}
-              rules={{ required: format('validation.required') }}
-              render={({ field }) => (
-                <Select
-                  id='product-maturity'
-                  {...field}
-                  isSearch
-                  options={maturityOptions}
-                  placeholder={format('product.maturity')}
-                  isInvalid={errors.maturity}
-                />
-              )}
-            />
-            {errors.maturity && <ValidationError value={errors.maturity?.message} />}
+            <label>{format('product.aliases')}</label>
+            {aliases.map((alias, aliasIdx) => (
+              <div key={alias.id} className='flex gap-x-2'>
+                <Input {...register(`aliases.${aliasIdx}.value`)} placeholder={format('product.alias')} />
+                {isLastAlias(aliasIdx) &&
+                  <IconButton
+                    className='bg-dial-meadow'
+                    icon={<FaPlus className='text-sm' />}
+                    onClick={() => append({ value: '' })}
+                  />
+                }
+                {!isSingleAlias &&
+                  <IconButton
+                    className='bg-dial-meadow'
+                    icon={<FaMinus className='text-sm' />}
+                    onClick={() => remove(aliasIdx)}
+                  />
+                }
+              </div>
+            ))}
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire' htmlFor='markdown-url'>
-              {format('product.markdownUrl')}
+            <label htmlFor='website'>
+              {format('product.website')}
             </label>
-            <Input {...register('markdownUrl')} id='markdown-url' placeholder={format('product.markdownUrl')} />
+            <Controller
+              id='website'
+              name='website'
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <UrlInput value={value} onChange={onChange} id='website' placeholder={format('product.website')} />
+              )}
+            />
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire' htmlFor='image-uploader'>
-              {format('product.imageFile')}
-            </label>
-            <FileUploader {...register('imageFile')} id='image-uploader' />
+            <label>{format('product.imageFile')}</label>
+            <FileUploader {...register('imageFile')} />
           </div>
-          <div className='block flex flex-col gap-y-2' data-testid='product-description'>
-            <label className='text-dial-sapphire required-field'>
-              {format('product.description')}
-            </label>
+          <div className='block flex flex-col gap-y-2'>
+            <label className='required-field'>{format('product.description')}</label>
             <Controller
               name='description'
               control={control}
               render={({ field: { value, onChange } }) => (
                 <HtmlEditor
-                  editorId='product-description-editor'
+                  editorId='description-editor'
                   onChange={onChange}
                   initialContent={value}
                   placeholder={format('product.description')}
@@ -245,30 +230,67 @@ const ProductForm = React.memo(({ product }) => {
             />
             {errors.description && <ValidationError value={errors.description?.message} />}
           </div>
+          <hr className='my-3' />
+          <iv className='text-2xl font-semibold pb-4'>{format('product.pricingInformation')}</iv>
+          <label className='flex gap-x-2 mb-2 items-center self-start'>
+            <Checkbox {...register('commercialProduct')} />
+            {format('product.commercialProduct')}
+          </label>
+          <div className='flex flex-col gap-y-2'>
+            <label htmlFor='pricingUrl'>
+              {format('product.pricingUrl')}
+            </label>
+            <Controller
+              name='pricingUrl'
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <UrlInput
+                  value={value}
+                  onChange={onChange}
+                  id='pricingUrl'
+                  placeholder={format('product.pricingUrl')}
+                />
+              )}
+            />
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label htmlFor='hostingModel'>
+              {format('product.hostingModel')}
+            </label>
+            <Input {...register('hostingModel')} id='hostingModel' placeholder={format('product.hostingModel')} />
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <label htmlFor='pricingModel'>
+              {format('product.pricingModel')}
+            </label>
+            <Input {...register('pricingModel')} id='pricingModel' placeholder={format('product.pricingModel')} />
+          </div>
+          <div className='block flex flex-col gap-y-2'>
+            <label>{format('product.pricing.details')}</label>
+            <Controller
+              name='pricingDetails'
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <HtmlEditor
+                  editorId='pricing-details-editor'
+                  onChange={onChange}
+                  initialContent={value}
+                  placeholder={format('product.pricing.details')}
+                  isInvalid={errors.pricingDetails}
+                />
+              )}
+            />
+          </div>
           <div className='flex flex-wrap text-base mt-6 gap-3'>
-            <button
-              type='submit'
-              className='submit-button'
-              disabled={mutating || reverting}
-            >
+            <button type='submit' className='submit-button' disabled={mutating || reverting}>
               {`${format('app.submit')} ${format('product.label')}`}
               {mutating && <FaSpinner className='spinner ml-3' />}
             </button>
-            <button
-              type='button'
-              className='cancel-button'
-              disabled={mutating || reverting}
-              onClick={cancelForm}
-            >
+            <button type='button' className='cancel-button' disabled={mutating || reverting} onClick={cancelForm}>
               {format('app.cancel')}
               {reverting && <FaSpinner className='spinner ml-3' />}
             </button>
           </div>
-          {product?.markdownUrl && (
-            <div className='text-sm italic text-red-500 -mt-3'>
-              {format('product.markdownWarning')}
-            </div>
-          )}
         </div>
       </div>
     </form>

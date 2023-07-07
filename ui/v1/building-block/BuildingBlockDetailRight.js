@@ -10,7 +10,7 @@ import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import CreateButton from '../shared/form/CreateButton'
 import BuildingBlockDetailSdgTargets from './fragments/BuildingBlockDetailSdgTargets'
-import BuildingBlockDetailTags from './fragments/BuildingBlockDetailSdgTags'
+import BuildingBlockDetailTags from './fragments/BuildingBlockDetailTags'
 import DeleteBuildingBlock from './DeleteBuildingBlock'
 
 const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
