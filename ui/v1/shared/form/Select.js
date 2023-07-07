@@ -18,6 +18,7 @@ const Select = React.forwardRef(({
   isSearch = false,
   controlSize = null,
   isInvalid = false,
+  isBorderless = false,
   className,
   ...otherProps
 }, ref) => {
@@ -49,7 +50,13 @@ const Select = React.forwardRef(({
     container: (provided, { isFocused }) => ({
       ...provided,
       boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-      outline: isFocused ? '1px solid #2e3192' : isInvalid ? '1px solid #e11d48' : '1px solid #000542',
+      outline: isBorderless
+        ? 'none'
+        : isFocused
+          ? '1px solid #2e3192'
+          : isInvalid
+            ? '1px solid #e11d48'
+            : '1px solid #000542',
       borderRadius: '0.375rem'
     }),
     control: (provided) => ({

@@ -16,7 +16,7 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
-              className='object-contain dial-blueberry-filter w-10 h-10 mx-auto my-2 white-filter'
+              className='object-contain w-10 h-10 mx-auto my-2 white-filter'
             />
           </div>
         }
@@ -25,7 +25,7 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
-              className='object-contain dial-blueberry-filter'
+              className='object-contain'
             />
           </div>
         }
@@ -33,7 +33,7 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
           <div className='text-lg font-semibold text-dial-blueberry'>
             {useCase.name}
           </div>
-          <div className='line-clamp-4'>
+          <div className='line-clamp-4 text-dial-stratos'>
             {parse(useCase?.sanitizedDescription)}
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>

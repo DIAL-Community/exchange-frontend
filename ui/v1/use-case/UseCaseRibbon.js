@@ -20,6 +20,7 @@ const UseCaseRibbon = () => {
       ribbonBg='bg-dial-blue-chalk'
       titleImage={titleImage}
       titleKey={'ui.useCase.header'}
+      titleColor='text-dial-blueberry'
     />
   )
 }

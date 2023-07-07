@@ -74,10 +74,10 @@ module.exports = {
           DEFAULT: '#ffe7c8'
         },
         // Product color scheme
-        'ethereal': {
+        'dial-ethereal': {
           DEFAULT: '#f3fffb'
         },
-        'spearmint': {
+        'dial-spearmint': {
           DEFAULT: '#e5fbf3'
         },
         'dial-meadow': {

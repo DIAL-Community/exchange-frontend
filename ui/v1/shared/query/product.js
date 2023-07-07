@@ -37,24 +37,19 @@ export const PAGINATED_PRODUCTS_QUERY = gql`
       imageFile
       overallMaturityScore
       commercialProduct
-      endorsers {
-        name
-        slug
-      }
       origins {
+        id
         name
         slug
       }
       buildingBlocks {
-        slug
-        name
-        imageFile
+        id
       }
       sustainableDevelopmentGoals {
-        slug
-        name
+        id
       }
       productDescription {
+        id
         description
         locale
       }

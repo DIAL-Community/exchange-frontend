@@ -15,7 +15,8 @@ import { HtmlEditor } from '../../shared/form/HtmlEditor'
 import { CREATE_BUILDING_BLOCK } from '../../shared/mutation/buildingBlock'
 import { SECTOR_SEARCH_QUERY } from '../../shared/query/sector'
 import { generateMaturityOptions } from '../../shared/form/options'
-import { PAGINATED_BUILDING_BLOCKS_QUERY, BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY } from '../../shared/query/buildingBlock'
+import { PAGINATED_BUILDING_BLOCKS_QUERY, BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY }
+  from '../../shared/query/buildingBlock'
 import { DEFAULT_PAGE_SIZE, REBRAND_BASE_PATH } from '../../utils/constants'
 
 const BuildingBlockForm = React.memo(({ buildingBlock }) => {

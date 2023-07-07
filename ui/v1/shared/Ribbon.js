@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { currentActiveNav, navOptions } from '../utils/header'
 import Select from './form/Select'
 
-const Ribbon = ({ ribbonBg, titleKey, titleImage }) => {
+const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
@@ -33,26 +33,25 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage }) => {
         <div className='h-24 flex'>
           <div className='basis-1/2 flex gap-4'>
             { titleImage }
-            <div className='text-2xl font-light text-dial-sapphire my-auto flex-grow'>
+            <div className={`text-2xl font-light ${titleColor} my-auto flex-grow`}>
               {format(titleKey)}
             </div>
           </div>
-          <div className='h-24 basis-1/3 flex ml-auto z-40'>
-            <div className='block basis-1/2 ml-auto my-auto'>
-              <div className='flex flex-col gap-1 text-sm'>
-                <div className='text-dial-slate-600 font-semibold'>
-                  {format('ui.shared.navigateTools')}
-                </div>
-                <Select
-                  async
-                  aria-label={format('ui.ribbon.nav.ariaLabel')}
-                  cacheOptions
-                  defaultOptions={options}
-                  loadOptions={fetchOptions}
-                  onChange={onNavigationChange}
-                  value={currentNav}
-                />
+          <div className='basis-1/3 ml-auto my-auto z-40'>
+            <div className='flex flex-col gap-1 text-sm w-prose'>
+              <div className='text-dial-slate-600 font-semibold'>
+                {format('ui.shared.navigateTools')}
               </div>
+              <Select
+                async
+                aria-label={format('ui.ribbon.nav.ariaLabel')}
+                cacheOptions
+                isBorderless
+                defaultOptions={options}
+                loadOptions={fetchOptions}
+                onChange={onNavigationChange}
+                value={currentNav}
+              />
             </div>
           </div>
         </div>

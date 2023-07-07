@@ -17,9 +17,10 @@ const ProductRibbon = () => {
 
   return (
     <Ribbon
-      ribbonBg='bg-dial-blue-chalk'
+      ribbonBg='bg-dial-spearmint'
       titleImage={titleImage}
       titleKey={'ui.product.header'}
+      titleColor='text-dial-meadow'
     />
   )
 }
