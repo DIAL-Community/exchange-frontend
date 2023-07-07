@@ -57,7 +57,7 @@ const UseCaseListRight = () => {
       { data &&
         <Pagination
           pageNumber={pageNumber}
-          totalCount={data.useCasePaginationAttributes.totalCount}
+          totalCount={data.paginationAttributeUseCase.totalCount}
           defaultPageSize={DEFAULT_PAGE_SIZE}
           pageClickHandler={handlePageClick}
         />

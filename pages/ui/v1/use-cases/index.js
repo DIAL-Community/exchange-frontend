@@ -27,17 +27,17 @@ const UseCaseListPage = () => {
           )
         }
       />
-      <QueryNotification />
-      <Header />
-      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
+        <QueryNotification />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <div className='flex flex-col'>
           <UseCaseRibbon />
           <UseCaseTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
           <UseCaseMain activeTab={activeTab} />
         </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }

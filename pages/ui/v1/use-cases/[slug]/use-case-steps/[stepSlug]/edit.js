@@ -26,12 +26,12 @@ const EditUseCaseStepPage = () => {
           )
         }
       />
-      <Header />
-      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <UseCaseStepEdit slug={slug} stepSlug={stepSlug} />
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }

@@ -1,0 +1,63 @@
+import { useContext, useEffect } from 'react'
+import { useQuery } from '@apollo/client'
+import { Error, Loading } from '../../../../components/shared/FetchStatus'
+import { PAGINATED_PRODUCTS_QUERY } from '../../shared/query/product'
+import { ProductFilterContext } from '../../../../components/context/ProductFilterContext'
+import ProductCard from '../ProductCard'
+import { DisplayType } from '../../utils/constants'
+import { FilterContext } from '../../../../components/context/FilterContext'
+import { NotFound } from '../../shared/FetchStatus'
+
+const ListStructure = ({ pageOffset, defaultPageSize }) => {
+  const { setResultCounts } = useContext(FilterContext)
+  const { search } = useContext(ProductFilterContext)
+
+  const { loading, error, data, fetchMore } = useQuery(PAGINATED_PRODUCTS_QUERY, {
+    variables: {
+      search,
+      limit: defaultPageSize,
+      offset: pageOffset
+    },
+    onCompleted: (data) => {
+      setResultCounts(resultCount => {
+        return { ...resultCount, 'filter.entity.products': data.paginatedProductsRedux.length }
+      })
+    }
+  })
+
+  useEffect(() => {
+    fetchMore({
+      variables: {
+        search,
+        limit: defaultPageSize,
+        offset: pageOffset
+      }
+    })
+  }, [search, pageOffset, defaultPageSize, fetchMore])
+
+  if (loading) {
+    return <Loading />
+  } else if (error) {
+    return <Error />
+  } else if (!data?.paginatedProductsRedux) {
+    return <NotFound />
+  }
+
+  const { paginatedProductsRedux: products } = data
+
+  return (
+    <div className='flex flex-col gap-3'>
+      {products.map((product, index) =>
+        <div key={index}>
+          <ProductCard
+            index={index}
+            product={product}
+            displayType={DisplayType.LARGE_CARD}
+          />
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default ListStructure

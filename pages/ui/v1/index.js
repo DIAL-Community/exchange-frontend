@@ -26,10 +26,10 @@ const LandingPage = () => {
           )
         }
       />
-      <QueryNotification />
-      <Header />
-      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
+        <QueryNotification />
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <div className='flex flex-col'>
           <div className='xl:h-screen'>
             <HeroCarousel />
@@ -40,8 +40,8 @@ const LandingPage = () => {
           <WizardDefinition />
           <MarketplaceDefinition />
         </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }

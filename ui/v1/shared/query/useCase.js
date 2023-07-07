@@ -1,13 +1,13 @@
 import { gql } from '@apollo/client'
 
 export const USE_CASE_PAGINATION_ATTRIBUTES_QUERY = gql`
-  query UseCasePaginationAttributesQuery(
+  query PaginationAttributeUseCase(
     $search: String!
     $sdgs: [String!]
     $showBeta: Boolean
     $govStackOnly: Boolean
   ) {
-    useCasePaginationAttributes(
+    paginationAttributeUseCase(
       search: $search
       sdgs: $sdgs
       showBeta: $showBeta
@@ -19,7 +19,7 @@ export const USE_CASE_PAGINATION_ATTRIBUTES_QUERY = gql`
 `
 
 export const PAGINATED_USE_CASES_QUERY = gql`
-  query PaginatedUseCasesQuery(
+  query PaginatedUseCases(
     $search: String!
     $sdgs: [String!]
     $showBeta: Boolean

@@ -47,11 +47,20 @@ const Breadcrumb = ({ slugNameMapping }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   useEffect(() => {
-    const linkPath = asPath.replace(REBRAND_BASE_PATH, '').split('/')
-    const pathArray = linkPath.map((path, i) => {
-      const label = basePathMappings[path] ? format(basePathMappings[path]) : slugNameMapping[path]
+    const linkPath = asPath
+      .replace(REBRAND_BASE_PATH, '')
+      .split('/')
+      .filter(path => path)
 
-      return { breadcrumb: label, href: `${REBRAND_BASE_PATH}/${linkPath.slice(0, i + 1).join('/')}` }
+    const pathArray = linkPath.map((path, i) => {
+      const label = basePathMappings[path]
+        ? format(basePathMappings[path])
+        : slugNameMapping[path]
+
+      return {
+        breadcrumb: label,
+        href: `${REBRAND_BASE_PATH}/${linkPath.slice(0, i + 1).join('/')}`
+      }
     })
 
     setBreadcrumbs(pathArray)

@@ -25,14 +25,14 @@ const EditUseCasePage = () => {
           )
         }
       />
-      <Header />
-      <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
       <ClientOnly>
+        <Header />
+        <Tooltip id='react-tooltip' className='tooltip-prose z-20' />
         <div className='flex flex-col'>
           <UseCaseEdit slug={slug} locale={locale} />
         </div>
+        <Footer />
       </ClientOnly>
-      <Footer />
     </>
   )
 }

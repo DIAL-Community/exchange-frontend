@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
+import { signIn, signOut } from 'next-auth/react'
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri'
 import { useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
@@ -222,6 +223,9 @@ const ResourceMenu = ({ currentMenu, setCurrentMenu }) => {
 }
 
 const UserMenu = ({ currentMenu, setCurrentMenu }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
+
   const { user } = useUser()
 
   const toggleSubMenu = () => {
@@ -251,6 +255,17 @@ const UserMenu = ({ currentMenu, setCurrentMenu }) => {
               }
             </div>
           </a>
+          {currentMenu === USER_MENU &&
+            <ul className='px-6'>
+              <li>
+                <button onClick={signOut} className='w-full text-left'>
+                  <div className='mx-8 py-4'>
+                    {format('header.signOut')}
+                  </div>
+                </button>
+              </li>
+            </ul>
+          }
         </li>
       }
     </>
@@ -406,6 +421,8 @@ const MobileMenu = ({ menuExpanded, setMenuExpaded }) => {
 
   const [currentMenu, setCurrentMenu] = useState(NONE)
 
+  const { user } = useUser()
+
   const hideMenu = () => {
     setMenuExpaded(false)
   }
@@ -416,6 +433,13 @@ const MobileMenu = ({ menuExpanded, setMenuExpaded }) => {
         <div className='absolute top-16 right-0 w-full max-w-md'>
           <div className='shadow-lg bg-dial-iris-blue text-white cursor-pointer'>
             <ul className='flex flex-col max-h-[640px] lg:max-h-full overflow-scroll py-4'>
+              {!user &&
+                <div className='mx-8 my-4'>
+                  <button className='border border-white rounded-md w-full' onClick={signIn}>
+                    <div className='py-2.5'>Login</div>
+                  </button>
+                </div>
+              }
               <MarketplaceMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
               <ToolMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
               <SupportingMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />

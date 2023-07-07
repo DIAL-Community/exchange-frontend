@@ -80,27 +80,28 @@ const Header = ({ isOnAuthPage = false }) => {
     }
   }, [currentOpenMenu])
 
-  const { data: dataUserToken } = useQuery(USER_AUTHENTICATION_TOKEN_CHECK_QUERY, {
+  useQuery(USER_AUTHENTICATION_TOKEN_CHECK_QUERY, {
     variables: {
       userId: user?.id,
       userAuthenticationToken: user?.userToken
     },
     skip: !user,
+    onCompleted: (data) => {
+      if (data.userAuthenticationTokenCheck === false) {
+        showToast(
+          format('user.tokenExpired'),
+          'error',
+          'top-center',
+          5000,
+          null,
+          () => {
+            signOut({ redirect: false })
+            signIn()
+          }
+        )
+      }
+    }
   })
-
-  if (dataUserToken?.userAuthenticationTokenCheck === false) {
-    showToast(
-      format('user.tokenExpired'),
-      'error',
-      'top-center',
-      5000,
-      null,
-      () => {
-        signOut({ redirect: false })
-        signIn()
-      },
-    )
-  }
 
   const withUser =
     <>
