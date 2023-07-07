@@ -6,7 +6,60 @@ import { useRouter } from 'next/router'
 import { useUser } from '../../../lib/hooks'
 import { REBRAND_BASE_PATH } from '../utils/constants'
 import { SUPPORTING_NAVIGATION_ITEMS, TOOL_NAVIGATION_ITEMS } from '../utils/header'
-import { HELP_MENU, LANGUAGE_MENU, NONE, RESOURCE_MENU, USER_MENU } from './menu/MenuCommon'
+import { HELP_MENU, LANGUAGE_MENU, MARKETPLACE_MENU, NONE, RESOURCE_MENU, USER_MENU } from './menu/MenuCommon'
+
+const MarketplaceMenu = ({ currentMenu, setCurrentMenu }) => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id, values) => formatMessage({ id }, { ...values }), [formatMessage])
+
+  const toggleSubMenu = () => {
+    setCurrentMenu(currentMenu === MARKETPLACE_MENU ? NONE : MARKETPLACE_MENU)
+  }
+
+  const MARKETPLACE_MENU_ITEMS = [{
+    label: 'opportunity.header',
+    link: '/opportunities'
+  }, {
+    label: 'storefront.header',
+    link: 'storefronts'
+  }]
+
+  return (
+    <li>
+      <a
+        href='tool'
+        id={MARKETPLACE_MENU}
+        onClick={(e) => {
+          e.preventDefault()
+          toggleSubMenu()
+        }}
+      >
+        <div className='flex flex-row gap-x-2 mx-8 py-4'>
+          Marketplace
+          {currentMenu === MARKETPLACE_MENU
+            ? <RiArrowUpSLine className='text-base inline my-auto' />
+            : <RiArrowDownSLine className='text-base inline my-auto' />
+          }
+        </div>
+      </a>
+      {currentMenu === MARKETPLACE_MENU &&
+        <ul className='px-6'>
+          {MARKETPLACE_MENU_ITEMS.map(({ label, link }) => {
+            return (
+              <li key={`mobile-nav-${label}`}>
+                <Link href={`${REBRAND_BASE_PATH}${link}`}>
+                  <div className='flex flex-row gap-x-2 px-8 py-4'>
+                    {format(label)}
+                  </div>
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      }
+    </li>
+  )
+}
 
 const ToolMenu = ({ currentMenu, setCurrentMenu }) => {
   const TOOL_MENU = 'menu-tool'
@@ -363,6 +416,7 @@ const MobileMenu = ({ menuExpanded, setMenuExpaded }) => {
         <div className='absolute top-16 right-0 w-full max-w-md'>
           <div className='shadow-lg bg-dial-iris-blue text-white cursor-pointer'>
             <ul className='flex flex-col max-h-[640px] lg:max-h-full overflow-scroll py-4'>
+              <MarketplaceMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
               <ToolMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
               <SupportingMenu {...{ currentMenu, setCurrentMenu, hideMenu }} />
               <li>
