@@ -10,4 +10,9 @@ export const MaturityStatus = {
   PUBLISHED: 'PUBLISHED'
 }
 
+export const CategoryType = {
+  DPI: 'DPI',
+  FUNCTIONAL: 'FUNCTIONAL'
+}
+
 export const DEFAULT_PAGE_SIZE = 8

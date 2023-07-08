@@ -5,6 +5,8 @@ import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import DeleteBuildingBlock from './DeleteBuildingBlock'
+import BuildingBlockDetailWorkflows from './fragments/BuildingBlockStepDetailWorkflows'
+import BuildingBlockDetailProducts from './fragments/BuildingBlockDetailProducts'
 
 const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
   const { formatMessage } = useIntl()
@@ -14,19 +16,13 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
   const canEdit = (isAdminUser || isEditorUser) && !buildingBlock.markdownUrl
 
   const descRef = useRef()
-  const stepRef = useRef()
+  const productRef = useRef()
   const workflowRef = useRef()
-  const sdgTargetRef = useRef()
-  const buildingBlockRef = useRef()
-  const tagRef = useRef()
 
   useImperativeHandle(ref, () => ([
     { value: 'ui.common.detail.description', ref: descRef },
-    { value: 'ui.buildingBlock.detail.steps', ref: stepRef },
     { value: 'ui.workflow.header', ref: workflowRef },
-    { value: 'ui.sdgTarget.header', ref: sdgTargetRef },
-    { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
-    { value: 'ui.tag.header', ref: tagRef }
+    { value: 'ui.product.header', ref: productRef }
   ]), [])
 
   return (
@@ -48,6 +44,22 @@ const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
           <HtmlViewer
             initialContent={buildingBlock?.buildingBlockDescription?.description}
             editorId='buildingBlock-description'
+          />
+        </div>
+        <hr className='bg-dial-blue-chalk' />
+        <div className='flex flex-col gap-y-3'>
+          <BuildingBlockDetailProducts
+            buildingBlock={buildingBlock}
+            canEdit={canEdit}
+            headerRef={productRef}
+          />
+        </div>
+        <hr className='bg-dial-blue-chalk mt-6' />
+        <div className='flex flex-col gap-y-3'>
+          <BuildingBlockDetailWorkflows
+            buildingBlock={buildingBlock}
+            canEdit={canEdit}
+            headerRef={workflowRef}
           />
         </div>
       </div>

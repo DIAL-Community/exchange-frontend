@@ -51,13 +51,16 @@ const UseCaseForm = React.memo(({ useCase }) => {
   const maturityOptions = useMemo(() => generateMaturityOptions(format), [format])
 
   const [updateUseCase, { reset }] = useMutation(CREATE_USE_CASE, {
-    refetchQueries: [{
-      query: USE_CASE_PAGINATION_ATTRIBUTES_QUERY,
-      variables: { search: '' }
-    }, {
-      query: PAGINATED_USE_CASES_QUERY,
-      variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
-    }],
+    refetchQueries: [
+      {
+        query: USE_CASE_PAGINATION_ATTRIBUTES_QUERY,
+        variables: { search: '' }
+      },
+      {
+        query: PAGINATED_USE_CASES_QUERY,
+        variables: { search: '', limit: DEFAULT_PAGE_SIZE, offset: 0 }
+      }
+    ],
     onCompleted: (data) => {
       const { createUseCase: response } = data
       if (response?.useCase && response?.errors?.length === 0) {
@@ -146,135 +149,120 @@ const UseCaseForm = React.memo(({ useCase }) => {
     router.push(`${REBRAND_BASE_PATH}/use-cases/${slug}`)
   }
 
-  return loadingUserSession || loadingSectors ? (
-    <Loading />
-  ) : isAdminUser || isEditorUser ? (
-    <form onSubmit={handleSubmit(doUpsert)}>
-      <div className='py-4'>
-        <div className='flex flex-col gap-y-4'>
-          <div className='text-xl font-semibold text-dial-blueberry'>
-            {useCase
-              ? format('app.edit-entity', { entity: useCase.name })
-              : `${format('app.create-new')} ${format('useCase.label')}`}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='required-field text-dial-blueberry' htmlFor='name'>
-              {format('useCase.name')}
-            </label>
-            <Input
-              {...register('name', { required: format('validation.required') })}
-              id='name'
-              className='text-sm'
-              placeholder={format('useCase.name')}
-              isInvalid={errors.name}
-            />
-            {errors.name && <ValidationError value={errors.name?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='required-field text-dial-blueberry' htmlFor='use-case-sector'>
-              {format('useCase.sector')}
-            </label>
-            <Controller
-              name='sector'
-              control={control}
-              rules={{ required: format('validation.required') }}
-              defaultValue={sectorOptions.find(({ slug }) => slug === useCase?.sector.slug)}
-              render={({ field }) => (
-                <Select
-                  id='use-case-sector'
-                  {...field}
-                  isSearch
-                  options={sectorOptions}
-                  placeholder={format('useCase.sector')}
-                  isInvalid={errors.sector}
-                />
-              )}
-            />
-            {errors.sector && <ValidationError value={errors.sector?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='required-field text-dial-blueberry' htmlFor='use-case-maturity'>
-              {format('useCase.maturity')}
-            </label>
-            <Controller
-              name='maturity'
-              control={control}
-              rules={{ required: format('validation.required') }}
-              render={({ field }) => (
-                <Select
-                  id='use-case-maturity'
-                  {...field}
-                  isSearch
-                  options={maturityOptions}
-                  placeholder={format('useCase.maturity')}
-                  isInvalid={errors.maturity}
-                />
-              )}
-            />
-            {errors.maturity && <ValidationError value={errors.maturity?.message} />}
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire' htmlFor='markdown-url'>
-              {format('useCase.markdownUrl')}
-            </label>
-            <Input {...register('markdownUrl')} id='markdown-url' placeholder={format('useCase.markdownUrl')} />
-          </div>
-          <div className='flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire' htmlFor='image-uploader'>
-              {format('useCase.imageFile')}
-            </label>
-            <FileUploader {...register('imageFile')} id='image-uploader' />
-          </div>
-          <div className='block flex flex-col gap-y-2'>
-            <label className='text-dial-sapphire required-field'>
-              {format('useCase.description')}
-            </label>
-            <Controller
-              name='description'
-              control={control}
-              render={({ field: { value, onChange } }) => (
-                <HtmlEditor
-                  editorId='use-case-description-editor'
-                  onChange={onChange}
-                  initialContent={value}
-                  placeholder={format('useCase.description')}
-                  isInvalid={errors.description}
-                />
-              )}
-              rules={{ required: format('validation.required') }}
-            />
-            {errors.description && <ValidationError value={errors.description?.message} />}
-          </div>
-          <div className='flex flex-wrap text-base mt-6 gap-3'>
-            <button
-              type='submit'
-              className='submit-button'
-              disabled={mutating || reverting}
-            >
-              {`${format('app.submit')} ${format('useCase.label')}`}
-              {mutating && <FaSpinner className='spinner ml-3' />}
-            </button>
-            <button
-              type='button'
-              className='cancel-button'
-              disabled={mutating || reverting}
-              onClick={cancelForm}
-            >
-              {format('app.cancel')}
-              {reverting && <FaSpinner className='spinner ml-3' />}
-            </button>
-          </div>
-          {useCase?.markdownUrl && (
-            <div className='text-sm italic text-red-500 -mt-3'>
-              {format('useCase.markdownWarning')}
+  return loadingUserSession || loadingSectors
+    ? <Loading />
+    : isAdminUser || isEditorUser ?
+      <form onSubmit={handleSubmit(doUpsert)}>
+        <div className='py-4'>
+          <div className='flex flex-col gap-y-4'>
+            <div className='text-xl font-semibold text-dial-blueberry'>
+              {useCase
+                ? format('app.edit-entity', { entity: useCase.name })
+                : `${format('app.create-new')} ${format('useCase.label')}`}
             </div>
-          )}
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field text-dial-blueberry' htmlFor='name'>
+                {format('useCase.name')}
+              </label>
+              <Input
+                {...register('name', { required: format('validation.required') })}
+                id='name'
+                className='text-sm'
+                placeholder={format('useCase.name')}
+                isInvalid={errors.name}
+              />
+              {errors.name && <ValidationError value={errors.name?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field text-dial-blueberry' htmlFor='use-case-sector'>
+                {format('useCase.sector')}
+              </label>
+              <Controller
+                name='sector'
+                control={control}
+                rules={{ required: format('validation.required') }}
+                defaultValue={sectorOptions.find(({ slug }) => slug === useCase?.sector.slug)}
+                render={({ field }) => (
+                  <Select
+                    id='use-case-sector'
+                    {...field}
+                    isSearch
+                    options={sectorOptions}
+                    placeholder={format('useCase.sector')}
+                    isInvalid={errors.sector}
+                  />
+                )}
+              />
+              {errors.sector && <ValidationError value={errors.sector?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='required-field text-dial-blueberry' htmlFor='use-case-maturity'>
+                {format('useCase.maturity')}
+              </label>
+              <Controller
+                name='maturity'
+                control={control}
+                rules={{ required: format('validation.required') }}
+                render={({ field }) => (
+                  <Select
+                    id='use-case-maturity'
+                    {...field}
+                    isSearch
+                    options={maturityOptions}
+                    placeholder={format('useCase.maturity')}
+                    isInvalid={errors.maturity}
+                  />
+                )}
+              />
+              {errors.maturity && <ValidationError value={errors.maturity?.message} />}
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='text-dial-sapphire' htmlFor='markdown-url'>
+                {format('useCase.markdownUrl')}
+              </label>
+              <Input {...register('markdownUrl')} id='markdown-url' placeholder={format('useCase.markdownUrl')} />
+            </div>
+            <div className='flex flex-col gap-y-2'>
+              <label className='text-dial-sapphire' htmlFor='image-uploader'>
+                {format('useCase.imageFile')}
+              </label>
+              <FileUploader {...register('imageFile')} id='image-uploader' />
+            </div>
+            <div className='block flex flex-col gap-y-2'>
+              <label className='text-dial-sapphire required-field'>{format('useCase.description')}</label>
+              <Controller
+                name='description'
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <HtmlEditor
+                    editorId='use-case-description-editor'
+                    onChange={onChange}
+                    initialContent={value}
+                    placeholder={format('useCase.description')}
+                    isInvalid={errors.description}
+                  />
+                )}
+                rules={{ required: format('validation.required') }}
+              />
+              {errors.description && <ValidationError value={errors.description?.message} />}
+            </div>
+            <div className='flex flex-wrap text-base mt-6 gap-3'>
+              <button type='submit' className='submit-button' disabled={mutating || reverting}>
+                {`${format('app.submit')} ${format('useCase.label')}`}
+                {mutating && <FaSpinner className='spinner ml-3' />}
+              </button>
+              <button type='button' className='cancel-button' disabled={mutating || reverting} onClick={cancelForm}>
+                {format('app.cancel')}
+                {reverting && <FaSpinner className='spinner ml-3' />}
+              </button>
+            </div>
+            {useCase?.markdownUrl && (
+              <div className='text-sm italic text-red-500 -mt-3'>{format('useCase.markdownWarning')}</div>
+            )}
+          </div>
         </div>
-      </div>
-    </form>
-  ) : (
-    <Unauthorized />
-  )
+      </form>
+      : <Unauthorized />
 })
 
 UseCaseForm.displayName = 'UseCaseForm'
