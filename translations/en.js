@@ -585,6 +585,7 @@ export const en = {
   'error.tryAgain': 'Try Again',
   'error.goBack': 'Go Back to Exchange',
 
+  'buildingBlock.hint.title': 'What is a Building Block?',
   'buildingBlock.hint.subtitle': `Building blocks are enterprise-ready, reusable software components
     providing key functionality facilitating generic WorkFlows across multiple sectors.
   `,
@@ -1794,6 +1795,9 @@ export const en = {
 
   'ui.buildingBlock.label': 'Building Block',
   'ui.buildingBlock.header': 'Building Blocks',
+
+  'ui.buildingBlock.whatIs': 'What is a Building Block?',
+  'ui.buildingBlock.createNew': 'Create a new Building Block',
 
   'ui.tag.label': 'Tag',
   'ui.tag.header': 'Tags',

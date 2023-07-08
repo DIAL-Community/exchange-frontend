@@ -9,7 +9,7 @@ const BuildingBlockDefinition = () => {
   return (
     <div className='flex flex-col gap-y-6 py-4'>
       <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-blueberry'>
+        <div className='text-xl font-semibold text-dial-ochre'>
           {format('buildingBlock.hint.title')}
         </div>
         <div className='text-sm text-dial-stratos'>
@@ -17,7 +17,7 @@ const BuildingBlockDefinition = () => {
         </div>
       </div>
       <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-blueberry'>
+        <div className='text-xl font-semibold text-dial-ochre'>
           {format('buildingBlock.hint.characteristicTitle')}
         </div>
         <div className='text-sm text-dial-stratos fr-view'>
@@ -25,7 +25,7 @@ const BuildingBlockDefinition = () => {
         </div>
       </div>
       <div className='flex flex-col gap-y-4'>
-        <div className='text-xl font-semibold text-dial-blueberry'>
+        <div className='text-xl font-semibold text-dial-ochre'>
           {format('buildingBlock.hint.descriptionTitle')}
         </div>
         <div className='text-sm text-dial-stratos'>

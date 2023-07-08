@@ -39,12 +39,19 @@ export const PAGINATED_BUILDING_BLOCKS_QUERY = gql`
       maturity
       category
       specUrl
+      buildingBlockDescription {
+        id
+        description
+        locale
+      }
       workflows {
+        id
         slug
         name
         imageFile
       }
       products {
+        id
         slug
         name
         imageFile
@@ -63,15 +70,18 @@ export const BUILDING_BLOCK_DETAIL_QUERY = gql`
       category
       specUrl
       buildingBlockDescription {
+        id
         description
         locale
       }
       workflows {
+        id
         name
         slug
         imageFile
       }
       products {
+        id
         name
         slug
         imageFile

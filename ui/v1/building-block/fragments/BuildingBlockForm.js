@@ -153,13 +153,13 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
     <form onSubmit={handleSubmit(doUpsert)}>
       <div className='py-4'>
         <div className='flex flex-col gap-y-4'>
-          <div className='text-xl font-semibold text-dial-blueberry'>
+          <div className='text-xl font-semibold text-dial-ochre'>
             {buildingBlock
               ? format('app.edit-entity', { entity: buildingBlock.name })
               : `${format('app.create-new')} ${format('buildingBlock.label')}`}
           </div>
           <div className='flex flex-col gap-y-2' data-testid='buildingBlock-name'>
-            <label className='required-field text-dial-blueberry' htmlFor='name'>
+            <label className='required-field text-dial-ochre' htmlFor='name'>
               {format('buildingBlock.name')}
             </label>
             <Input
@@ -172,7 +172,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
             {errors.name && <ValidationError value={errors.name?.message} />}
           </div>
           <div className='flex flex-col gap-y-2'>
-            <label className='required-field text-dial-blueberry' htmlFor='buildingBlock-sector'>
+            <label className='required-field text-dial-ochre' htmlFor='buildingBlock-sector'>
               {format('buildingBlock.sector')}
             </label>
             <Controller
@@ -194,7 +194,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
             {errors.sector && <ValidationError value={errors.sector?.message} />}
           </div>
           <div className='flex flex-col gap-y-2' data-testid='buildingBlock-maturity'>
-            <label className='required-field text-dial-blueberry' htmlFor='buildingBlock-maturity'>
+            <label className='required-field text-dial-ochre' htmlFor='buildingBlock-maturity'>
               {format('buildingBlock.maturity')}
             </label>
             <Controller

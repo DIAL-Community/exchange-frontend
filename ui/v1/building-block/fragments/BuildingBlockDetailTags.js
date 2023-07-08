@@ -83,7 +83,7 @@ const BuildingBlockDetailTags = ({ buildingBlock, canEdit, headerRef }) => {
   }
 
   const sectionHeader =
-    <div className='text-xl font-semibold text-dial-blueberry' ref={headerRef}>
+    <div className='text-xl font-semibold text-dial-ochre' ref={headerRef}>
       {format('ui.tag.header')}
     </div>
 

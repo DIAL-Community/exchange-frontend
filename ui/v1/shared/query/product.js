@@ -77,18 +77,22 @@ export const PRODUCT_DETAIL_QUERY = gql`
       hostingModel
       languages
       productDescription {
+        id
         description
         locale
       }
       origins {
+        id
         name
         slug
       }
       endorsers {
+        id
         name
         slug
       }
       interoperatesWith {
+        id
         name
         slug
         imageFile
@@ -97,6 +101,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
         }
       }
       includes {
+        id
         name
         slug
         imageFile
@@ -105,6 +110,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
         }
       }
       organizations {
+        id
         name
         slug
         imageFile
@@ -115,14 +121,17 @@ export const PRODUCT_DETAIL_QUERY = gql`
         }
       }
       currentProjects(first:10) {
+        id
         name
         slug
         origin {
+          id
           name
           slug
         }
       }
       buildingBlocks {
+        id
         name
         slug
         imageFile
@@ -138,12 +147,14 @@ export const PRODUCT_DETAIL_QUERY = gql`
       }
       sustainableDevelopmentGoalsMappingStatus
       sectors {
+        id
         name
         slug
         isDisplayable
       }
       manualUpdate
       mainRepository {
+        id
         mainRepository
         name
         slug
@@ -152,6 +163,7 @@ export const PRODUCT_DETAIL_QUERY = gql`
       overallMaturityScore
       maturityScoreDetails
       playbooks {
+        id
         name
         slug
         imageFile

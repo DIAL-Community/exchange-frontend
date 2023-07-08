@@ -23,25 +23,30 @@ export const USE_CASE_STEP_QUERY = gql`
       slug
       stepNumber
       useCaseStepDescription {
+        id
         description
         locale
       }
       workflows {
+        id
         name
         slug
         imageFile
       }
       products {
+        id
         name
         slug
         imageFile
       }
       datasets {
+        id
         name
         slug
         imageFile
       }
       buildingBlocks {
+        id
         slug
         name
         imageFile

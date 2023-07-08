@@ -10,16 +10,26 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const displayLargeCard = () =>
-    <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-cotton'}`}>
+    <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-warm-beech'}`}>
       <div className='flex flex-row gap-x-6'>
-        <img
-          // src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
-          src='/ui/v1/building-block-header.svg'
-          alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.header') })}
-          width={70}
-          height={70}
-          className='object-contain'
-        />
+        {buildingBlock.imageFile.indexOf('placeholder.svg') < 0 &&
+          <div className='w-16 h-16 px-1 py-1 rounded-full bg-dial-orange'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
+              className='object-contain w-10 h-10 mx-auto my-2 white-filter'
+            />
+          </div>
+        }
+        {buildingBlock.imageFile.indexOf('placeholder.svg') >= 0 &&
+          <div className='w-16 h-16'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
+              className='object-contain'
+            />
+          </div>
+        }
         <div className='flex flex-col gap-y-3'>
           <div className='text-lg font-semibold text-dial-ochre'>
             {buildingBlock.name}

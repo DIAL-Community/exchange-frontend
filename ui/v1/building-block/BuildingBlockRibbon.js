@@ -17,9 +17,10 @@ const BuildingBlockRibbon = () => {
 
   return (
     <Ribbon
-      ribbonBg='bg-dial-blue-chalk'
+      ribbonBg='bg-dial-warm-beech'
       titleImage={titleImage}
       titleKey={'ui.buildingBlock.header'}
+      titleColor='text-dial-ochre'
     />
   )
 }

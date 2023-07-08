@@ -65,7 +65,7 @@ const BuildingBlockDetailNav = ({ scrollRef, buildingBlock }) => {
 
   return (
     <div className='flex flex-col gap-y-3 text-sm py-3'>
-      <div className='font-semibold text-dial-blueberry'>
+      <div className='font-semibold text-dial-ochre'>
         {format('ui.shared.jumpTo')}
       </div>
       <Select

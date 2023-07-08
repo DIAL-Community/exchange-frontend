@@ -7,16 +7,16 @@ const BuildingBlockDetailHeader = ({ buildingBlock }) => {
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
-      <div className='text-xl text-dial-blueberry'>
+      <div className='text-xl text-dial-ochre'>
         {buildingBlock.name}
       </div>
       <div className='flex justify-center items-center py-16 bg-white rounded'>
         {buildingBlock.imageFile.indexOf('placeholder.svg') < 0 &&
-          <div className='w-20 h-20 px-1 py-1 rounded-full bg-dial-blueberry'>
+          <div className='w-20 h-20 px-1 py-1 rounded-full bg-dial-orange'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
-              className='object-contain dial-blueberry-filter w-14 h-14 mx-auto my-2 white-filter'
+              className='object-contain dial-ochre-filter w-14 h-14 mx-auto my-2 white-filter'
             />
           </div>
         }
@@ -25,7 +25,7 @@ const BuildingBlockDetailHeader = ({ buildingBlock }) => {
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
-              className='object-contain dial-blueberry-filter'
+              className='object-contain dial-ochre-filter'
             />
           </div>
         }

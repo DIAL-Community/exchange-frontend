@@ -8,7 +8,7 @@ const BuildingBlockSimpleLeft = () => {
   return (
     <div className='bg-dial-slate-100 h-full'>
       <div className='flex flex-col gap-y-3 px-6 py-4'>
-        <div className='text-xl font-semibold text-dial-blueberry'>
+        <div className='text-xl font-semibold text-dial-ochre'>
           {format('ui.buildingBlock.label')}
         </div>
         <div className='flex justify-center items-center py-16 bg-white rounded'>
