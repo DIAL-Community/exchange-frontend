@@ -5,7 +5,7 @@ import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import DeleteBuildingBlock from './DeleteBuildingBlock'
-import BuildingBlockDetailWorkflows from './fragments/BuildingBlockStepDetailWorkflows'
+import BuildingBlockDetailWorkflows from './fragments/BuildingBlockDetailWorkflows'
 import BuildingBlockDetailProducts from './fragments/BuildingBlockDetailProducts'
 
 const BuildingBlockDetailRight = forwardRef(({ buildingBlock }, ref) => {
