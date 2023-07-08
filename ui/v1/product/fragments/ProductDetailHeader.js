@@ -7,7 +7,7 @@ const ProductDetailHeader = ({ product }) => {
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
-      <div className='text-xl text-dial-meadow'>
+      <div className='text-xl text-dial-meadow font-semibold'>
         {product.name}
       </div>
       <div className='flex justify-center items-center py-16 bg-white rounded'>

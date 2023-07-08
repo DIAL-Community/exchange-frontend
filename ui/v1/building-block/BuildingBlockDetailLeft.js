@@ -10,7 +10,7 @@ const BuildingBlockDetailLeft = ({ scrollRef, buildingBlock }) => {
       <div className='flex flex-col gap-y-3 px-6 py-3'>
         <BuildingBlockDetailHeader buildingBlock={buildingBlock}/>
         <hr className='bg-slate-200'/>
-        <BuildingBlockDetailNav buildingBlock={buildingBlock} scrollRef={scrollRef} />
+        <BuildingBlockDetailNav scrollRef={scrollRef} />
         <hr className='bg-slate-200'/>
         <Bookmark />
         <hr className='bg-slate-200'/>

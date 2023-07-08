@@ -106,7 +106,10 @@ const UseCaseStepDetailBuildingBlocks = ({ useCaseStep, canEdit, headerRef }) =>
       )}
     </div>
     : <div className='text-sm text-dial-stratos'>
-      {format('ui.common.detail.noData', { entity: format('ui.buildingBlock.label') })}
+      {format( 'ui.common.detail.noData', {
+        entity: format('ui.buildingBlock.label'),
+        base: format('ui.useCaseStep.label')
+      })}
     </div>
 
   const sectionHeader =

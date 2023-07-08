@@ -88,15 +88,15 @@ const UseCaseDetailTags = ({ useCase, canEdit, headerRef }) => {
     </div>
 
   const displayModeBody = tags.length
-    ? (
-      <div className='italic text-sm'>
-        {tags.join(', ')}
-      </div>
-    ) : (
-      <div className='text-sm pb-5 text-button-gray'>
-        {format('ui.common.detail.noData', { entity: format('ui.tag.label') })}
-      </div>
-    )
+    ? <div className='italic text-sm'>
+      {tags.join(', ')}
+    </div>
+    : <div className='text-sm pb-5 text-button-gray'>
+      {format('ui.common.detail.noData', {
+        entity: format('ui.tag.label'),
+        base: format('ui.useCase.label')
+      })}
+    </div>
 
   const editModeBody =
     <div className='px-8 py-4 flex flex-col gap-y-3 text-sm'>

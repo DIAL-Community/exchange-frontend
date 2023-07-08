@@ -7,7 +7,7 @@ const UseCaseDetailHeader = ({ useCase }) => {
 
   return (
     <div className='flex flex-col gap-y-4 py-3'>
-      <div className='text-xl text-dial-blueberry'>
+      <div className='text-xl text-dial-blueberry font-semibold'>
         {useCase.name}
       </div>
       <div className='flex justify-center items-center py-16 bg-white rounded'>

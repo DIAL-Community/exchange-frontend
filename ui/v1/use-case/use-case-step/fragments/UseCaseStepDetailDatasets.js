@@ -106,7 +106,10 @@ const UseCaseStepDetailDatasets = ({ useCaseStep, canEdit, headerRef }) => {
       )}
     </div>
     : <div className='text-sm text-dial-stratos'>
-      {format('ui.common.detail.noData', { entity: format('ui.dataset.label') })}
+      {format( 'ui.common.detail.noData', {
+        entity: format('ui.dataset.label'),
+        base: format('ui.useCaseStep.label')
+      })}
     </div>
 
   const sectionHeader =

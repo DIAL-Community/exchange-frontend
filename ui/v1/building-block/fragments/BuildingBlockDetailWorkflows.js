@@ -106,7 +106,10 @@ const BuildingBlockDetailWorkflows = ({ buildingBlock, canEdit, headerRef }) => 
       )}
     </div>
     : <div className='text-sm text-dial-stratos'>
-      {format('ui.common.detail.noData', { entity: format('ui.workflow.label') })}
+      {format( 'ui.common.detail.noData', {
+        entity: format('ui.workflow.label'),
+        base: format('ui.buildingBlock.label')
+      })}
     </div>
 
   const sectionHeader =

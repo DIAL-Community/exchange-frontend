@@ -106,7 +106,10 @@ const UseCaseStepDetailProducts = ({ useCaseStep, canEdit, headerRef }) => {
       )}
     </div>
     : <div className='text-sm text-dial-stratos'>
-      {format('ui.common.detail.noData', { entity: format('ui.product.label') })}
+      {format( 'ui.common.detail.noData', {
+        entity: format('ui.product.label'),
+        base: format('ui.useCaseStep.label')
+      })}
     </div>
 
   const sectionHeader =

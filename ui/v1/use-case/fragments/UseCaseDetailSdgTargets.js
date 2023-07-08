@@ -107,15 +107,17 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
   }
 
   const displayModeBody = sdgTargets.length
-    ? (sdgTargets?.map((sdgTarget, index) =>
+    ? sdgTargets?.map((sdgTarget, index) =>
       <div key={`sdg-target-${index}`}>
         <SdgTargetCard sdgTarget={sdgTarget} displayType={DisplayType.SMALL_CARD} />
       </div>
-    )) : (
-      <div className='text-sm text-dial-stratos'>
-        {format('ui.common.detail.noData', { entity: format('ui.sdgTarget.label') })}
-      </div>
     )
+    : <div className='text-sm text-dial-stratos'>
+      {format('ui.common.detail.noData', {
+        entity: format('ui.sdgTarget.label'),
+        base: format('ui.useCase.label')
+      })}
+    </div>
 
   const sectionHeader =
     <div className='text-xl font-semibold text-dial-blueberry' ref={headerRef}>

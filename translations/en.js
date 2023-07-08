@@ -1722,7 +1722,7 @@ export const en = {
 
   'ui.image.logoAlt': 'Logo of {name}.',
   'ui.common.detail.description': 'Description',
-  'ui.common.detail.noData': 'We do not have any {entity} information for this use case.',
+  'ui.common.detail.noData': 'We do not have any {entity} information for this {base}.',
 
   'ui.useCase.label': 'Use Case',
   'ui.useCase.header': 'Use Cases',
