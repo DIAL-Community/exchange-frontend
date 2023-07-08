@@ -40,6 +40,7 @@ const BuildingBlockDetailNav = ({ scrollRef }) => {
       </div>
       <Select
         async
+        isBorderless
         aria-label={format('ui.ribbon.nav.ariaLabel')}
         cacheOptions
         defaultOptions={navOptions}

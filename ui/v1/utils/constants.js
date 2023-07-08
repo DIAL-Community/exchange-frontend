@@ -15,4 +15,11 @@ export const CategoryType = {
   FUNCTIONAL: 'FUNCTIONAL'
 }
 
+export const MappingStatus = {
+  BETA: 'BETA',
+  MATURE: 'MATURE',
+  SELF_REPORTED: 'SELF-REPORTED',
+  VALIDATED: 'VALIDATED'
+}
+
 export const DEFAULT_PAGE_SIZE = 8

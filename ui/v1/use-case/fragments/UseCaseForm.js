@@ -187,6 +187,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
                     id='use-case-sector'
                     {...field}
                     isSearch
+                    isBorderless
                     options={sectorOptions}
                     placeholder={format('useCase.sector')}
                     isInvalid={errors.sector}
@@ -208,6 +209,7 @@ const UseCaseForm = React.memo(({ useCase }) => {
                     id='use-case-maturity'
                     {...field}
                     isSearch
+                    isBorderless
                     options={maturityOptions}
                     placeholder={format('useCase.maturity')}
                     isInvalid={errors.maturity}

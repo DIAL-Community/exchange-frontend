@@ -12,6 +12,7 @@ import { fetchSelectOptions } from '../../utils/search'
 import { DisplayType } from '../../utils/constants'
 import { UPDATE_BUILDING_BLOCK_PRODUCTS } from '../../shared/mutation/buildingBlock'
 import ProductCard from '../../product/ProductCard'
+import { generateMappingStatusOptions } from '../../shared/form/options'
 
 const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
@@ -21,6 +22,20 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
 
   const [products, setProducts] = useState(buildingBlock.products)
   const [isDirty, setIsDirty] = useState(false)
+
+  const mappingStatusOptions =
+    generateMappingStatusOptions(format)
+      .filter(
+        (status) =>
+          status.label === `${format('shared.mappingStatus.beta')}` ||
+          status.label === `${format('shared.mappingStatus.validated')}`
+      )
+
+  const [mappingStatus, setMappingStatus] = useState(
+    mappingStatusOptions.find(({ value: mappingStatus }) =>
+      mappingStatus === (buildingBlock?.products.buildingBlocksMappingStatus)
+    ) ?? mappingStatusOptions?.[0]
+  )
 
   const [updateBuildingBlockProducts, { loading, reset }] = useMutation(UPDATE_BUILDING_BLOCK_PRODUCTS, {
     onError() {
@@ -73,6 +88,11 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
     setIsDirty(true)
   }
 
+  const updateMappingStatus = (selectedMappingStatus) => {
+    setMappingStatus(selectedMappingStatus)
+    setIsDirty(true)
+  }
+
   const onSubmit = () => {
     if (user) {
       const { userEmail, userToken } = user
@@ -119,11 +139,22 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
 
   const editModeBody =
     <div className='px-8 py-4 flex flex-col gap-y-3 text-sm'>
+      <label className='flex flex-col gap-y-2 mb-2'>
+        {format('app.mappingStatus')}
+        <Select
+          isBorderless
+          options={mappingStatusOptions}
+          placeholder={format('app.mappingStatus')}
+          onChange={updateMappingStatus}
+          value={mappingStatus}
+        />
+      </label>
       <label className='flex flex-col gap-y-2'>
         {`${format('app.searchAndAssign')} ${format('ui.product.label')}`}
         <Select
           async
           isSearch
+          isBorderless
           defaultOptions
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}

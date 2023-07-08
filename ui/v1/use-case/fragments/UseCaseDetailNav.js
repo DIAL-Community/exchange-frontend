@@ -70,6 +70,7 @@ const UseCaseDetailNav = ({ scrollRef, useCase }) => {
       </div>
       <Select
         async
+        isBorderless
         aria-label={format('ui.ribbon.nav.ariaLabel')}
         cacheOptions
         defaultOptions={navOptions}

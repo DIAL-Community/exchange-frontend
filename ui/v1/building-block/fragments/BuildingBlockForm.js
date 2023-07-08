@@ -156,6 +156,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
                   <Select
                     {...field}
                     isSearch
+                    isBorderless
                     options={maturityOptions}
                     placeholder={format('building-block.maturity')}
                     isInvalid={errors.maturity}
@@ -174,6 +175,7 @@ const BuildingBlockForm = React.memo(({ buildingBlock }) => {
                   <Select
                     {...field}
                     isSearch
+                    isBorderless
                     options={categoryOptions}
                     placeholder={format('buildingBlock.category')}
                   />

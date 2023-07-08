@@ -131,6 +131,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit, headerRef }) => {
         <Select
           async
           isSearch
+          isBorderless
           defaultOptions
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}

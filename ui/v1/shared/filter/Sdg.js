@@ -38,6 +38,7 @@ export const SdgAutocomplete = ({ sdgs, setSdgs, placeholder }) => {
       {showFilter &&
         <Select
           async
+          isBorderless
           aria-label={format('filter.byEntity', { entity: format('ui.sdg.label') })}
           className='ml-4 rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions
