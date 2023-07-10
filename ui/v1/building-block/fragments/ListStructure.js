@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import { PAGINATED_BUILDING_BLOCKS_QUERY } from '../../shared/query/buildingBlock'
@@ -10,11 +10,16 @@ import { NotFound } from '../../shared/FetchStatus'
 
 const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { setResultCounts } = useContext(FilterContext)
-  const { search } = useContext(BuildingBlockFilterContext)
+  const { search, sdgs, useCases, workflows, categoryTypes, showMature } = useContext(BuildingBlockFilterContext)
 
-  const { loading, error, data, fetchMore } = useQuery(PAGINATED_BUILDING_BLOCKS_QUERY, {
+  const { loading, error, data } = useQuery(PAGINATED_BUILDING_BLOCKS_QUERY, {
     variables: {
       search,
+      sdgs: sdgs.map(sdg => sdg.value),
+      useCases: useCases.map(useCase => useCase.value),
+      workflows: workflows.map(workflow => workflow.value),
+      categoryTypes: categoryTypes.map(categoryType => categoryType.value),
+      showMature,
       limit: defaultPageSize,
       offset: pageOffset
     },
@@ -24,16 +29,6 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       })
     }
   })
-
-  useEffect(() => {
-    fetchMore({
-      variables: {
-        search,
-        limit: defaultPageSize,
-        offset: pageOffset
-      }
-    })
-  }, [search, pageOffset, defaultPageSize, fetchMore])
 
   if (loading) {
     return <Loading />

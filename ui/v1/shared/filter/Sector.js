@@ -5,7 +5,7 @@ import { BsPlus } from 'react-icons/bs'
 import { useApolloClient } from '@apollo/client'
 import Select from '../form/Select'
 import { fetchSelectOptions } from '../../utils/search'
-import { SECTOR_SEARCH_QUERY } from '../../../../queries/sector'
+import { SECTOR_SEARCH_QUERY } from '../query/sector'
 
 export const SectorAutocomplete = ({ sectors, setSectors, placeholder }) => {
   const client = useApolloClient()

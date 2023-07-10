@@ -4,34 +4,33 @@ import { IoClose } from 'react-icons/io5'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext }
   from '../../../../components/context/BuildingBlockFilterContext'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
+import { UseCaseActiveFilters, UseCaseAutocomplete } from '../../shared/filter/UseCase'
+import { WorkflowActiveFilters, WorkflowAutocomplete } from '../../shared/filter/Workflow'
+import { CategoryTypeActiveFilters, CategoryTypeAutocomplete } from '../../shared/filter/CategoryType'
+import Checkbox from '../../shared/form/Checkbox'
 
 const BuildingBlockFilter = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { sdgs, showBeta, govStackOnly } = useContext(BuildingBlockFilterContext)
-  const { setSDGs, setShowBeta, setShowGovStack } = useContext(BuildingBlockFilterDispatchContext)
-
-  const toggleShowBeta = () => {
-    setShowBeta(!showBeta)
-  }
-
-  const toggleShowGovStack = () => {
-    setShowGovStack(!govStackOnly)
-  }
+  const { sdgs, useCases, workflows, categoryTypes, showMature } = useContext(BuildingBlockFilterContext)
+  const { setSDGs, setUseCases, setWorkflows, setCategoryTypes, setShowMature }
+    = useContext(BuildingBlockFilterDispatchContext)
 
   const clearFilter = (e) => {
     e.preventDefault()
     setSDGs([])
-    setShowBeta(false)
-    setShowGovStack(false)
+    setUseCases([])
+    setWorkflows([])
+    setCategoryTypes([])
+    setShowMature(false)
   }
 
+  const toggleShowMature = () => setShowMature(!showMature)
+
   const filteringBuildingBlock = () => {
-    let count = 0
-    count = showBeta ? count + 1 : count
-    count = govStackOnly ? count + 1 : count
-    count = count + sdgs.length
+    let count = showMature ? 1 : 0
+    count = count + sdgs.length + useCases.length + workflows.length + categoryTypes.length > 0
 
     return count > 0
   }
@@ -52,24 +51,15 @@ const BuildingBlockFilter = () => {
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
             <SdgActiveFilters sdgs={sdgs} setSdgs={setSDGs} />
-            {showBeta && (
+            <UseCaseActiveFilters useCases={useCases} setUseCases={setUseCases} />
+            <WorkflowActiveFilters workflows={workflows} setWorkflows={setWorkflows} />
+            <CategoryTypeActiveFilters categoryTypes={categoryTypes} setCategoryTypes={setCategoryTypes} />
+            {showMature && (
               <div className='bg-dial-slate-400 px-2 py-1 rounded'>
                 <div className='flex flex-row gap-1'>
                   <div className='flex gap-x-1'>
-                    {format('ui.buildingBlock.filter.showDraft')}
-                    <button onClick={toggleShowBeta}>
-                      <IoClose size='1rem' />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-            {govStackOnly && (
-              <div className='bg-dial-slate-400 px-2 py-1 rounded'>
-                <div className='flex flex-row gap-1'>
-                  <div className='flex gap-x-1'>
-                    {format('ui.buildingBlock.filter.govStackOnly')}
-                    <button onClick={toggleShowGovStack}>
+                    {format('ui.buildingBlock.filter.showMature')}
+                    <button onClick={toggleShowMature}>
                       <IoClose size='1rem' />
                     </button>
                   </div>
@@ -85,6 +75,20 @@ const BuildingBlockFilter = () => {
         </div>
         <hr className='bg-slate-200'/>
         <SdgAutocomplete sdgs={sdgs} setSdgs={setSDGs} />
+        <UseCaseAutocomplete useCases={useCases} setUseCases={setUseCases} />
+        <WorkflowAutocomplete workflows={workflows} setWorkflows={setWorkflows} />
+      </div>
+      <div className='flex flex-col gap-y-4'>
+        <div className='text-sm font-semibold text-dial-sapphire'>
+          {format('ui.filter.subtitle', { entity: format('ui.buildingBlock.label').toLowerCase() })}:
+        </div>
+        <CategoryTypeAutocomplete categoryTypes={categoryTypes} setCategoryTypes={setCategoryTypes} />
+        <label className='flex pl-4'>
+          <Checkbox onChange={toggleShowMature} value={showMature} />
+          <span className='mx-2 my-auto text-sm'>
+            {format('ui.buildingBlock.filter.showMature')}
+          </span>
+        </label>
       </div>
     </div>
   )

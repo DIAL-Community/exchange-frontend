@@ -3,9 +3,19 @@ import { gql } from '@apollo/client'
 export const BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeBuildingBlock(
     $search: String!
+    $sdgs: [String!]
+    $useCases: [String!]
+    $workflows: [String!]
+    $categoryTypes: [String!]
+    $showMature: Boolean
   ) {
     paginationAttributeBuildingBlock(
       search: $search
+      sdgs: $sdgs
+      useCases: $useCases
+      workflows: $workflows
+      categoryTypes: $categoryTypes
+      showMature: $showMature
     ) {
       totalCount
     }
@@ -46,15 +56,9 @@ export const PAGINATED_BUILDING_BLOCKS_QUERY = gql`
       }
       workflows {
         id
-        slug
-        name
-        imageFile
       }
       products {
         id
-        slug
-        name
-        imageFile
       }
     }
   }

@@ -39,11 +39,11 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
           </div>
           <div className='flex gap-x-2 text-dial-stratos'>
             <div className='text-sm'>
-              {format('ui.sdgTarget.header')} ({buildingBlock.sdgTargets?.length ?? 0})
+              {format('ui.workflow.header')} ({buildingBlock.workflows?.length ?? 0})
             </div>
             <div className='border border-r border-dial-slate-300' />
             <div className='text-sm'>
-              {format('ui.buildingBlock.header')} ({buildingBlock.buildingBlocks?.length ?? 0})
+              {format('ui.product.header')} ({buildingBlock.products?.length ?? 0})
             </div>
           </div>
           <div className='flex text-[10px] text-white'>

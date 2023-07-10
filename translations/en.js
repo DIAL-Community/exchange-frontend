@@ -343,6 +343,10 @@ export const en = {
   'toast.building-block.delete.success': 'Building block deleted successfully.',
   'toast.building-block.delete.failure': 'Building block deletion failed.',
 
+  'buildingBlock.delete.confirm.message': 'Are you sure you want to delete this building block?',
+  'toast.buildingBlock.delete.success': 'Building block deleted successfully.',
+  'toast.buildingBlock.delete.failure': 'Building block deletion failed.',
+
   'dataset.delete.confirm.message': 'Are you sure you want to delete this open data record?',
   'toast.dataset.delete.success': 'Open data record deleted successfully.',
   'toast.dataset.delete.failure': 'Open data record deletion failed.',
@@ -1715,7 +1719,6 @@ export const en = {
   'organization.hasStorefront': 'Organization has a storefront',
 
   'ui.shared.jumpTo': 'Jump To',
-  'ui.shared.searchBar.result': 'Showing {totalCount} {entity}',
   'ui.shared.navigateTools': 'Navigate Tools',
   'ui.shared.exportJson': 'Export data (JSON)',
   'ui.shared.exportCsv': 'Export data (CSV)',
@@ -1771,6 +1774,7 @@ export const en = {
   'ui.ribbon.nav.ariaLabel': 'Current active navigation',
   'ui.pagination.nextLabel': '>',
   'ui.pagination.prevLabel': '<',
+  'ui.pagination.noRecord': 'Showing 0 total',
   'ui.pagination.showingLabel': 'Showing {firstRecord} - {lastRecord} of {totalRecords} total',
   'ui.pagination.loadingInfo': 'Loading page information ...',
   'ui.pagination.loadingInfoError': 'Unable to load page information.',
@@ -1815,6 +1819,9 @@ export const en = {
     such.
   `,
 
+  'ui.buildingBlock.filter.showMature': 'Show only published building block',
+  'ui.categoryType.label': 'Building Block Category Type',
+
   'ui.tag.label': 'Tag',
   'ui.tag.header': 'Tags',
 
@@ -1824,7 +1831,7 @@ export const en = {
   'ui.filter.filteredBy': 'Filtered by',
   'ui.filter.title': 'Filter your results by',
 
-  'ui.filter.useCase.filterMore': 'Refine with use case filters',
+  'ui.filter.subtitle': 'Refine with {entity} filters',
 
   'ui.filter.clearAll': 'Clear all'
 }

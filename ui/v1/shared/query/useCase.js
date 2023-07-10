@@ -1,5 +1,15 @@
 import { gql } from '@apollo/client'
 
+export const USE_CASE_SEARCH_QUERY = gql`
+  query UseCases($search: String!, $mature: Boolean!) {
+    useCases(search: $search, mature: $mature) {
+      id
+      name
+      slug
+    }
+  }
+`
+
 export const USE_CASE_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeUseCase(
     $search: String!

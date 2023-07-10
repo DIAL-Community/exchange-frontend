@@ -5,7 +5,7 @@ import { BsPlus } from 'react-icons/bs'
 import { useApolloClient } from '@apollo/client'
 import Select from '../form/Select'
 import { fetchSelectOptions } from '../../utils/search'
-import { TAG_SEARCH_QUERY } from '../../../../queries/tag'
+import { TAG_SEARCH_QUERY } from '../query/tag'
 
 export const TagAutocomplete = ({ tags, setTags, placeholder }) => {
   const client = useApolloClient()

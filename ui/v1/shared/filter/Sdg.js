@@ -5,7 +5,7 @@ import { BsPlus } from 'react-icons/bs'
 import { useApolloClient } from '@apollo/client'
 import Select from '../form/Select'
 import { fetchSelectOptions } from '../../utils/search'
-import { SDG_SEARCH_QUERY } from '../../../../queries/sdg'
+import { SDG_SEARCH_QUERY } from '../query/sdg'
 
 export const SdgAutocomplete = ({ sdgs, setSdgs, placeholder }) => {
   const client = useApolloClient()

@@ -18,7 +18,12 @@ export const generateMappingStatusOptions = (format) => [
 ]
 
 export const generateLicenseTypeOptions = (format) => [
-  { value: LicenseTypeFilter.ALL, label: format('licenseType.allType') },
-  { value: LicenseTypeFilter.COMMERCIAL, label: format('licenseType.commercialOnly') },
-  { value: LicenseTypeFilter.OPEN_SOURCE, label: format('licenseType.ossOnly') }
+  { label: format('licenseType.allType'), value: LicenseTypeFilter.ALL },
+  { label: format('licenseType.commercialOnly'), value: LicenseTypeFilter.COMMERCIAL },
+  { label: format('licenseType.ossOnly'), value: LicenseTypeFilter.OPEN_SOURCE }
+]
+
+export const generateCategoryTypeOptions = (format) => [
+  { label: format('buildingBlock.category.dpi'), value: CategoryType.DPI },
+  { label: format('buildingBlock.category.functional'), value: CategoryType.FUNCTIONAL }
 ]

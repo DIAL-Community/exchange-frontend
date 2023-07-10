@@ -88,7 +88,7 @@ const UseCaseFilter = () => {
       </div>
       <div className='flex flex-col gap-y-4'>
         <div className='text-sm font-semibold text-dial-sapphire'>
-          {format('ui.filter.useCase.filterMore')}:
+          {format('ui.filter.subtitle', { entity: format('ui.useCase.label').toLowerCase() })}:
         </div>
         <label className='flex pl-4'>
           <Checkbox onChange={toggleShowBeta} value={showBeta} />

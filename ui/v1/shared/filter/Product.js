@@ -5,9 +5,9 @@ import { BsPlus } from 'react-icons/bs'
 import { useApolloClient } from '@apollo/client'
 import Select from '../form/Select'
 import { fetchSelectOptions } from '../../utils/search'
-import { ORIGIN_SEARCH_QUERY } from '../query/origin'
+import { PRODUCT_SEARCH_QUERY } from '../query/product'
 
-export const OriginAutocomplete = ({ origins, setOrigins, placeholder }) => {
+export const ProductAutocomplete = ({ products, setProducts, placeholder }) => {
   const client = useApolloClient()
 
   const [showFilter, setShowFilter] = useState(false)
@@ -15,17 +15,17 @@ export const OriginAutocomplete = ({ origins, setOrigins, placeholder }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.origin.label') })
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.product.label') })
 
-  const selectOrigin = (origin) => {
-    setOrigins([...origins.filter(s => s.value !== origin.value), origin])
+  const selectProduct = (product) => {
+    setProducts([...products.filter(s => s.value !== product.value), product])
   }
 
   const fetchCallback = (data) => (
-    data?.origins.map((origin) => ({
-      label: origin.name,
-      value: origin.id,
-      slug: origin.slug
+    data?.products.map((product) => ({
+      label: product.name,
+      value: product.id,
+      slug: product.slug
     }))
   )
 
@@ -33,7 +33,7 @@ export const OriginAutocomplete = ({ origins, setOrigins, placeholder }) => {
     <div className='flex flex-col gap-y-3'>
       <button className='flex' onClick={() => setShowFilter(!showFilter)}>
         <div className='text-dial-stratos text-sm ml-4'>
-          {format('ui.origin.label')}
+          {format('ui.product.label')}
         </div>
         <BsPlus className='ml-auto' />
       </button>
@@ -41,13 +41,13 @@ export const OriginAutocomplete = ({ origins, setOrigins, placeholder }) => {
         <Select
           async
           isBorderless
-          aria-label={format('filter.byEntity', { entity: format('ui.origin.label') })}
+          aria-label={format('filter.byEntity', { entity: format('ui.product.label') })}
           className='ml-4 rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions
           defaultOptions
-          loadOptions={(input) => fetchSelectOptions(client, input, ORIGIN_SEARCH_QUERY, fetchCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.origin.label') })}
-          onChange={selectOrigin}
+          loadOptions={(input) => fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchCallback)}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.product.label') })}
+          onChange={selectProduct}
           placeholder={controlPlaceholder}
           value=''
         />
@@ -56,26 +56,26 @@ export const OriginAutocomplete = ({ origins, setOrigins, placeholder }) => {
   )
 }
 
-export const OriginActiveFilters = ({ origins, setOrigins }) => {
+export const ProductActiveFilters = ({ products, setProducts }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const removeOrigin = (originSlug) => {
-    setOrigins(origins => [...origins.filter(origin => origin.slug !== originSlug)])
+  const removeProduct = (productSlug) => {
+    setProducts(products => [...products.filter(product => product.slug !== productSlug)])
   }
 
   return (
     <>
-      {origins?.map((origin, originIndex) => (
-        <div key={originIndex} className='bg-dial-slate-400 px-2 py-1 rounded'>
+      {products?.map((product, productIndex) => (
+        <div key={productIndex} className='bg-dial-slate-400 px-2 py-1 rounded'>
           <div className='flex flex-row gap-1'>
             <div className='flex gap-x-1 text-white'>
-              {origin.label}
+              {product.label}
               <div className='inline opacity-40'>
-                ({format('ui.origin.label')})
+                ({format('ui.product.label')})
               </div>
             </div>
-            <button onClick={() => removeOrigin(origin.slug)}>
+            <button onClick={() => removeProduct(product.slug)}>
               <IoClose size='1rem' className='text-white' />
             </button>
           </div>

@@ -12,7 +12,7 @@ const BuildingBlockListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(BuildingBlockFilterContext)
+  const { search, sdgs, useCases, workflows, categoryTypes, showMature } = useContext(BuildingBlockFilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
@@ -38,7 +38,12 @@ const BuildingBlockListRight = () => {
 
   const { loading, error, data } = useQuery(BUILDING_BLOCK_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
-      search
+      search,
+      sdgs: sdgs.map(sdg => sdg.value),
+      useCases: useCases.map(useCase => useCase.value),
+      workflows: workflows.map(workflow => workflow.value),
+      categoryTypes: categoryTypes.map(categoryType => categoryType.value),
+      showMature
     }
   })
 
