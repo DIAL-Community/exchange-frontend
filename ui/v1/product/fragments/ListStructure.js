@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import { Error, Loading } from '../../../../components/shared/FetchStatus'
 import { PAGINATED_PRODUCTS_QUERY } from '../../shared/query/product'
@@ -12,9 +12,15 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
   const { setResultCounts } = useContext(FilterContext)
   const { search } = useContext(ProductFilterContext)
 
-  const { loading, error, data, fetchMore } = useQuery(PAGINATED_PRODUCTS_QUERY, {
+  const { origins, sectors, tags, licenseTypes } = useContext(ProductFilterContext)
+
+  const { loading, error, data } = useQuery(PAGINATED_PRODUCTS_QUERY, {
     variables: {
       search,
+      origins: origins.map(origin => origin.value),
+      sectors: sectors.map(sector => sector.value),
+      tags: tags.map(tag => tag.label),
+      licenseTypes: licenseTypes.map(licenseType => licenseType.value),
       limit: defaultPageSize,
       offset: pageOffset
     },
@@ -24,16 +30,6 @@ const ListStructure = ({ pageOffset, defaultPageSize }) => {
       })
     }
   })
-
-  useEffect(() => {
-    fetchMore({
-      variables: {
-        search,
-        limit: defaultPageSize,
-        offset: pageOffset
-      }
-    })
-  }, [search, pageOffset, defaultPageSize, fetchMore])
 
   if (loading) {
     return <Loading />

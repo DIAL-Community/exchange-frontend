@@ -43,7 +43,7 @@ const UseCaseFilter = () => {
         <div className='flex flex-col gap-y-3'>
           <div className='flex'>
             <div className='text-sm font-semibold text-dial-sapphire'>
-              Filtered by:
+              {format('ui.filter.filteredBy')}:
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
               <button onClick={clearFilter}>Clear all</button>
@@ -80,7 +80,7 @@ const UseCaseFilter = () => {
       }
       <div className='flex flex-col gap-y-4'>
         <div className='text-sm font-semibold text-dial-sapphire'>
-          Filter your results by:
+          {format('ui.filter.title')}:
         </div>
         <hr className='bg-slate-200'/>
         <SdgAutocomplete sdgs={sdgs} setSdgs={setSDGs} />
@@ -88,7 +88,7 @@ const UseCaseFilter = () => {
       </div>
       <div className='flex flex-col gap-y-4'>
         <div className='text-sm font-semibold text-dial-sapphire'>
-          Refine with use case filters:
+          {format('ui.filter.useCase.filterMore')}:
         </div>
         <label className='flex pl-4'>
           <Checkbox onChange={toggleShowBeta} value={showBeta} />

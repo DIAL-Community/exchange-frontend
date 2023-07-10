@@ -1804,4 +1804,11 @@ export const en = {
 
   'ui.sdg.label': 'SDG',
   'ui.sdg.header': 'SDGs',
+
+  'ui.filter.filteredBy': 'Filtered by',
+  'ui.filter.title': 'Filter your results by',
+
+  'ui.filter.useCase.filterMore': 'Refine with use case filters',
+
+  'ui.filter.clearAll': 'Clear all'
 }

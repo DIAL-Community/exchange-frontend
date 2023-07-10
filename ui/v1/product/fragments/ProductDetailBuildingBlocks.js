@@ -5,22 +5,22 @@ import { useIntl } from 'react-intl'
 import { useUser } from '../../../../lib/hooks'
 import { ToastContext } from '../../../../lib/ToastContext'
 import Select from '../../shared/form/Select'
-import { PRODUCT_SEARCH_QUERY } from '../../../../queries/product'
 import EditableSection from '../../shared/EditableSection'
 import Pill from '../../shared/form/Pill'
 import { fetchSelectOptions } from '../../utils/search'
 import { DisplayType } from '../../utils/constants'
-import { UPDATE_BUILDING_BLOCK_PRODUCTS } from '../../shared/mutation/buildingBlock'
-import ProductCard from '../../product/ProductCard'
+import { UPDATE_PRODUCT_BUILDING_BLOCKS } from '../../shared/mutation/product'
 import { generateMappingStatusOptions } from '../../shared/form/options'
+import { BUILDING_BLOCK_SEARCH_QUERY } from '../../shared/query/buildingBlock'
+import BuildingBlockCard from '../../building-block/BuildingBlockCard'
 
-const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
+const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const client = useApolloClient()
 
-  const [products, setProducts] = useState(buildingBlock.products)
+  const [buildingBlocks, setBuildingBlocks] = useState(product.buildingBlocks)
   const [isDirty, setIsDirty] = useState(false)
 
   const mappingStatusOptions =
@@ -33,27 +33,27 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
 
   const [mappingStatus, setMappingStatus] = useState(
     mappingStatusOptions.find(({ value: mappingStatus }) =>
-      mappingStatus === (buildingBlock?.products.buildingBlocksMappingStatus)
+      mappingStatus === (product?.buildingBlocks.productsMappingStatus)
     ) ?? mappingStatusOptions?.[0]
   )
 
-  const [updateBuildingBlockProducts, { loading, reset }] = useMutation(UPDATE_BUILDING_BLOCK_PRODUCTS, {
+  const [updateProductBuildingBlocks, { loading, reset }] = useMutation(UPDATE_PRODUCT_BUILDING_BLOCKS, {
     onError() {
       setIsDirty(false)
-      setProducts(buildingBlock?.products)
-      showToast(format('toast.products.update.failure'), 'error', 'top-center')
+      setBuildingBlocks(product?.buildingBlocks)
+      showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
       reset()
     },
     onCompleted: (data) => {
-      const { updateBuildingBlockProducts: response } = data
-      if (response?.buildingBlock && response?.errors?.length === 0) {
+      const { updateProductBuildingBlocks: response } = data
+      if (response?.product && response?.errors?.length === 0) {
         setIsDirty(false)
-        setProducts(response?.buildingBlock?.products)
-        showToast(format('toast.products.update.success'), 'success', 'top-center')
+        setBuildingBlocks(response?.product?.buildingBlocks)
+        showToast(format('toast.buildingBlocks.update.success'), 'success', 'top-center')
       } else {
         setIsDirty(false)
-        setProducts(buildingBlock?.products)
-        showToast(format('toast.products.update.failure'), 'error', 'top-center')
+        setBuildingBlocks(product?.buildingBlocks)
+        showToast(format('toast.buildingBlocks.update.failure'), 'error', 'top-center')
         reset()
       }
     }
@@ -64,27 +64,27 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
 
   const { showToast } = useContext(ToastContext)
 
-  const fetchedProductsCallback = (data) => (
-    data.products?.map((product) => ({
-      id: product.id,
-      name: product.name,
-      slug: product.slug,
-      label: product.name
+  const fetchedBuildingBlocksCallback = (data) => (
+    data.buildingBlocks?.map((buildingBlock) => ({
+      id: buildingBlock.id,
+      name: buildingBlock.name,
+      slug: buildingBlock.slug,
+      label: buildingBlock.name
     }))
   )
 
-  const addProducts = (product) => {
-    setProducts([
+  const addBuildingBlocks = (buildingBlock) => {
+    setBuildingBlocks([
       ...[
-        ...products.filter(({ id }) => id !== product.id),
-        { id: product.id, name: product.name, slug: product.slug  }
+        ...buildingBlocks.filter(({ id }) => id !== buildingBlock.id),
+        { id: buildingBlock.id, name: buildingBlock.name, slug: buildingBlock.slug  }
       ]
     ])
     setIsDirty(true)
   }
 
-  const removeProducts = (product) => {
-    setProducts([...products.filter(({ id }) => id !== product.id)])
+  const removeBuildingBlocks = (buildingBlock) => {
+    setBuildingBlocks([...buildingBlocks.filter(({ id }) => id !== buildingBlock.id)])
     setIsDirty(true)
   }
 
@@ -97,11 +97,11 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
     if (user) {
       const { userEmail, userToken } = user
 
-      updateBuildingBlockProducts({
+      updateProductBuildingBlocks({
         variables: {
+          slug: product.slug,
           mappingStatus: mappingStatus.value,
-          productSlugs: products.map(({ slug }) => slug),
-          slug: buildingBlock.slug
+          buildingBlockSlugs: buildingBlocks.map(({ slug }) => slug)
         },
         context: {
           headers: {
@@ -114,28 +114,28 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
   }
 
   const onCancel = () => {
-    setProducts(buildingBlock.products)
+    setBuildingBlocks(product.buildingBlocks)
     setIsDirty(false)
   }
 
-  const displayModeBody = products.length
+  const displayModeBody = buildingBlocks.length
     ? <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
-      {products?.map((product, index) =>
-        <div key={`product-${index}`}>
-          <ProductCard product={product} displayType={DisplayType.SMALL_CARD} />
+      {buildingBlocks?.map((buildingBlock, index) =>
+        <div key={`building-block-${index}`}>
+          <BuildingBlockCard buildingBlock={buildingBlock} displayType={DisplayType.SMALL_CARD} />
         </div>
       )}
     </div>
     : <div className='text-sm text-dial-stratos'>
       {format( 'ui.common.detail.noData', {
-        entity: format('ui.product.label'),
-        base: format('ui.buildingBlock.label')
+        entity: format('ui.buildingBlock.label'),
+        base: format('ui.product.label')
       })}
     </div>
 
   const sectionHeader =
-    <div className='text-xl font-semibold text-dial-blueberry' ref={headerRef}>
-      {format('ui.product.header')}
+    <div className='text-xl font-semibold text-dial-ochre' ref={headerRef}>
+      {format('ui.buildingBlock.header')}
     </div>
 
   const editModeBody =
@@ -151,7 +151,7 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
         />
       </label>
       <label className='flex flex-col gap-y-2'>
-        {`${format('app.searchAndAssign')} ${format('ui.product.label')}`}
+        {`${format('app.searchAndAssign')} ${format('ui.buildingBlock.label')}`}
         <Select
           async
           isSearch
@@ -160,19 +160,19 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
           cacheOptions
           placeholder={format('shared.select.autocomplete.defaultPlaceholder')}
           loadOptions={(input) =>
-            fetchSelectOptions(client, input, PRODUCT_SEARCH_QUERY, fetchedProductsCallback)
+            fetchSelectOptions(client, input, BUILDING_BLOCK_SEARCH_QUERY, fetchedBuildingBlocksCallback)
           }
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.product.label') })}
-          onChange={addProducts}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.buildingBlock.label') })}
+          onChange={addBuildingBlocks}
           value={null}
         />
       </label>
       <div className='flex flex-wrap gap-3'>
-        {products.map((product, productIdx) => (
+        {buildingBlocks.map((buildingBlock, buildingBlockIdx) => (
           <Pill
-            key={`products-${productIdx}`}
-            label={product.name}
-            onRemove={() => removeProducts(product)}
+            key={`buildingBlocks-${buildingBlockIdx}`}
+            label={buildingBlock.name}
+            onRemove={() => removeBuildingBlocks(buildingBlock)}
           />
         ))}
       </div>
@@ -192,4 +192,4 @@ const BuildingBlockDetailProducts = ({ buildingBlock, canEdit, headerRef }) => {
   )
 }
 
-export default BuildingBlockDetailProducts
+export default ProductDetailBuildingBlocks

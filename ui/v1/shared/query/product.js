@@ -2,9 +2,17 @@ import { gql } from '@apollo/client'
 
 export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
   query PaginationAttributeProduct(
+    $licenseTypes: [String!]
+    $origins: [String!]
+    $sectors: [String!]
+    $tags: [String!]
     $search: String!
   ) {
     paginationAttributeProduct(
+      licenseTypes: $licenseTypes
+      origins: $origins
+      sectors: $sectors
+      tags: $tags
       search: $search
     ) {
       totalCount
@@ -14,19 +22,19 @@ export const PRODUCT_PAGINATION_ATTRIBUTES_QUERY = gql`
 
 export const PAGINATED_PRODUCTS_QUERY = gql`
   query PaginatedProductsRedux(
+    $licenseTypes: [String!]
     $origins: [String!]
     $sectors: [String!]
     $tags: [String!]
-    $licenseTypes: [String!]
     $search: String!
     $limit: Int!
     $offset: Int!
   ) {
     paginatedProductsRedux(
+      licenseTypes: $licenseTypes
       origins: $origins
       sectors: $sectors
       tags: $tags
-      licenseTypes: $licenseTypes
       search: $search
       offsetAttributes: { limit: $limit, offset: $offset }
     ) {

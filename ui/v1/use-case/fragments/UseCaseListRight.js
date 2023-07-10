@@ -34,7 +34,7 @@ const UseCaseListRight = () => {
   useEffect(() => {
     setPageNumber(0)
     setPageOffset(0)
-  }, [search])
+  }, [search, sdgs, showBeta, govStackOnly])
 
   const { loading, error, data } = useQuery(USE_CASE_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {

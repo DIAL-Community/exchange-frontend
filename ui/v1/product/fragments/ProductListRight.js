@@ -12,7 +12,7 @@ const ProductListRight = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const { search } = useContext(ProductFilterContext)
+  const { search, origins, sectors, tags, licenseTypes } = useContext(ProductFilterContext)
 
   const [pageNumber, setPageNumber] = useState(0)
   const [pageOffset, setPageOffset] = useState(0)
@@ -34,11 +34,16 @@ const ProductListRight = () => {
   useEffect(() => {
     setPageNumber(0)
     setPageOffset(0)
-  }, [search])
+    console.log('tags: ', tags)
+  }, [search, origins, sectors, tags, licenseTypes])
 
   const { loading, error, data } = useQuery(PRODUCT_PAGINATION_ATTRIBUTES_QUERY, {
     variables: {
-      search
+      search,
+      origins: origins.map(origin => origin.value),
+      sectors: sectors.map(sector => sector.value),
+      tags: tags.map(tag => tag.label),
+      licenseTypes: licenseTypes.map(licenseType => licenseType.value)
     }
   })
 

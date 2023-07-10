@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl'
 import { IoClose } from 'react-icons/io5'
 import { BuildingBlockFilterContext, BuildingBlockFilterDispatchContext }
   from '../../../../components/context/BuildingBlockFilterContext'
-import Checkbox from '../../shared/form/Checkbox'
 import { SdgActiveFilters, SdgAutocomplete } from '../../shared/filter/Sdg'
 
 const BuildingBlockFilter = () => {
@@ -43,10 +42,12 @@ const BuildingBlockFilter = () => {
         <div className='flex flex-col gap-y-3'>
           <div className='flex'>
             <div className='text-sm font-semibold text-dial-sapphire'>
-              Filtered by:
+              {format('ui.filter.filteredBy')}
             </div>
             <div className='ml-auto text-sm text-dial-stratos'>
-              <button onClick={clearFilter}>Clear all</button>
+              <button onClick={clearFilter}>
+                {format('ui.filter.clearAll')}
+              </button>
             </div>
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
@@ -80,28 +81,10 @@ const BuildingBlockFilter = () => {
       }
       <div className='flex flex-col gap-y-4'>
         <div className='text-sm font-semibold text-dial-sapphire'>
-          Filter your results by:
+          {format('ui.filter.title')}
         </div>
         <hr className='bg-slate-200'/>
         <SdgAutocomplete sdgs={sdgs} setSdgs={setSDGs} />
-        <hr className='bg-slate-200'/>
-      </div>
-      <div className='flex flex-col gap-y-4'>
-        <div className='text-sm font-semibold text-dial-sapphire'>
-          Refine with use case filters:
-        </div>
-        <label className='flex pl-4'>
-          <Checkbox onChange={toggleShowBeta} value={showBeta} />
-          <span className='mx-2 my-auto text-sm'>
-            {format('ui.buildingBlock.filter.showDraft')}
-          </span>
-        </label>
-        <label className='flex pl-4'>
-          <Checkbox onChange={toggleShowGovStack} value={govStackOnly} />
-          <span className='mx-2 my-auto text-sm'>
-            {format('ui.buildingBlock.filter.govStackOnly')}
-          </span>
-        </label>
       </div>
     </div>
   )

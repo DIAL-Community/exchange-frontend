@@ -1,12 +1,12 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
+import { REBRAND_BASE_PATH } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
-import BuildingBlockCard from '../building-block/BuildingBlockCard'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
 import ProductDetailTags from './fragments/ProductDetailTags'
 import DeleteProduct from './DeleteProduct'
+import ProductDetailBuildingBlocks from './fragments/ProductDetailBuildingBlocks'
 
 const ProductDetailRight = forwardRef(({ product }, ref) => {
   const { formatMessage } = useIntl()
@@ -55,20 +55,7 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
-        <div className='text-xl font-semibold text-dial-meadow py-3' ref={buildingBlockRef}>
-          {format('ui.buildingBlock.header')}
-        </div>
-        <div className='grid grid-cols-2 gap-x-8 gap-y-4'>
-          {product?.buildingBlocks?.map((buildingBlock, index) =>
-            <div key={`building-block-${index}`}>
-              <BuildingBlockCard
-                index={index}
-                buildingBlock={buildingBlock}
-                displayType={DisplayType.SMALL_CARD}
-              />
-            </div>
-          )}
-        </div>
+        <ProductDetailBuildingBlocks product={product} canEdit={canEdit} headerRef={buildingBlockRef} />
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
