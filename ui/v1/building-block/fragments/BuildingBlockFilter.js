@@ -14,12 +14,12 @@ const BuildingBlockFilter = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   const { sdgs, useCases, workflows, categoryTypes, showMature } = useContext(BuildingBlockFilterContext)
-  const { setSDGs, setUseCases, setWorkflows, setCategoryTypes, setShowMature }
+  const { setSdgs, setUseCases, setWorkflows, setCategoryTypes, setShowMature }
     = useContext(BuildingBlockFilterDispatchContext)
 
   const clearFilter = (e) => {
     e.preventDefault()
-    setSDGs([])
+    setSdgs([])
     setUseCases([])
     setWorkflows([])
     setCategoryTypes([])
@@ -50,7 +50,7 @@ const BuildingBlockFilter = () => {
             </div>
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
-            <SdgActiveFilters sdgs={sdgs} setSdgs={setSDGs} />
+            <SdgActiveFilters sdgs={sdgs} setSdgs={setSdgs} />
             <UseCaseActiveFilters useCases={useCases} setUseCases={setUseCases} />
             <WorkflowActiveFilters workflows={workflows} setWorkflows={setWorkflows} />
             <CategoryTypeActiveFilters categoryTypes={categoryTypes} setCategoryTypes={setCategoryTypes} />
@@ -74,15 +74,19 @@ const BuildingBlockFilter = () => {
           {format('ui.filter.title')}
         </div>
         <hr className='bg-slate-200'/>
-        <SdgAutocomplete sdgs={sdgs} setSdgs={setSDGs} />
+        <SdgAutocomplete sdgs={sdgs} setSdgs={setSdgs} />
+        <hr className='bg-slate-200'/>
         <UseCaseAutocomplete useCases={useCases} setUseCases={setUseCases} />
+        <hr className='bg-slate-200'/>
         <WorkflowAutocomplete workflows={workflows} setWorkflows={setWorkflows} />
+        <hr className='bg-slate-200'/>
       </div>
       <div className='flex flex-col gap-y-4'>
         <div className='text-sm font-semibold text-dial-sapphire'>
           {format('ui.filter.subtitle', { entity: format('ui.buildingBlock.label').toLowerCase() })}:
         </div>
         <CategoryTypeAutocomplete categoryTypes={categoryTypes} setCategoryTypes={setCategoryTypes} />
+        <hr className='bg-slate-200'/>
         <label className='flex pl-4'>
           <Checkbox onChange={toggleShowMature} value={showMature} />
           <span className='mx-2 my-auto text-sm'>

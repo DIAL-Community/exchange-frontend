@@ -54,9 +54,35 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
       </div>
     </div>
 
+  const displaySmallCard = () =>
+    <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
+      <div className='flex flex-row gap-x-3 px-6 h-full'>
+        {useCase.imageFile.indexOf('placeholder.svg') >= 0 &&
+          <div className='rounded-full bg-dial-blueberry w-10 h-10 my-auto'>
+            <img
+              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+              alt={format('ui.image.logoAlt', { name: format('ui.useCase.header') })}
+              className='object-contain w-10 h-10 my-auto'
+            />
+          </div>
+        }
+        {useCase.imageFile.indexOf('placeholder.svg') < 0 &&
+          <img
+            src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
+            alt={format('ui.image.logoAlt', { name: format('ui.useCase.header') })}
+            className='object-contain w-10 h-10 my-auto'
+          />
+        }
+        <div className='text-sm font-semibold text-dial-blueberry my-auto'>
+          {useCase.name}
+        </div>
+      </div>
+    </div>
+
   return (
     <Link href={`${REBRAND_BASE_PATH}/use-cases/${useCase.slug}`}>
       {displayType === DisplayType.LARGE_CARD && displayLargeCard()}
+      {displayType === DisplayType.SMALL_CARD && displaySmallCard()}
     </Link>
   )
 }

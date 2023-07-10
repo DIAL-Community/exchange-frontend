@@ -9,7 +9,7 @@ const BuildingBlockRibbon = () => {
   const titleImage =
     <img
       src='/ui/v1/building-block-header.svg'
-      alt={format('ui.image.logoAlt', { name: 'Use Cases' })}
+      alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
       width={70}
       height={70}
       className='object-contain'

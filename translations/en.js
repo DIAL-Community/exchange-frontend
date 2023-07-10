@@ -1742,8 +1742,9 @@ export const en = {
   'ui.useCaseStep.header': 'Use Case Steps',
 
   'ui.bookmark.title': 'Bookmark',
-  'ui.bookmark.subTitle': 'Your bookmarks can be found in your Account page.',
+  'ui.bookmark.subtitle': 'Your bookmarks can be found in your Account page.',
   'ui.bookmark.bookmarkThis': 'Bookmark this page.',
+  'ui.bookmark.object.subtitle': 'The following are bookmarked {objects}.',
 
   'ui.comment.title': 'Post a comment',
   'ui.comment.subTitle': `
@@ -1806,6 +1807,11 @@ export const en = {
   'ui.sector.label': 'Sector',
   'ui.sector.header': 'Sectors',
 
+  'ui.user.label': 'User',
+  'ui.profile.title': 'Your account',
+  'ui.profile.label': 'Profile',
+  'ui.profile.bookmark': 'Your bookmarks',
+
   'ui.buildingBlock.label': 'Building Block',
   'ui.buildingBlock.header': 'Building Blocks',
   'ui.buildingBlock.whatIs': 'What is a Building Block?',
@@ -1828,10 +1834,23 @@ export const en = {
   'ui.sdg.label': 'SDG',
   'ui.sdg.header': 'SDGs',
 
+  'ui.exchange.title': 'The Digital Exchange Marketplace',
+
+  'ui.opportunity.label': 'Opportunity',
+  'ui.opportunity.header': 'Opportunities',
+
+  'ui.storefront.label': 'Storefront',
+  'ui.storefront.header': 'Storefronts',
+
+  'ui.compareTool.label': 'Comparison Tool',
+  'ui.compareTool.header': 'Comparison Tools',
+
   'ui.filter.filteredBy': 'Filtered by',
   'ui.filter.title': 'Filter your results by',
-
   'ui.filter.subtitle': 'Refine with {entity} filters',
+  'ui.filter.clearAll': 'Clear all',
 
-  'ui.filter.clearAll': 'Clear all'
+  'ui.tool.getStarted': `Let's get started`,
+
+  'ui.user.label': 'User'
 }

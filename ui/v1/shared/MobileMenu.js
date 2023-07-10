@@ -258,6 +258,13 @@ const UserMenu = ({ currentMenu, setCurrentMenu }) => {
           {currentMenu === USER_MENU &&
             <ul className='px-6'>
               <li>
+                <Link href={`${REBRAND_BASE_PATH}/users/${user.id}`}>
+                  <div className='flex flex-row gap-x-2 px-8 py-4'>
+                    {format('header.profile')}
+                  </div>
+                </Link>
+              </li>
+              <li>
                 <button onClick={signOut} className='w-full text-left'>
                   <div className='mx-8 py-4'>
                     {format('header.signOut')}

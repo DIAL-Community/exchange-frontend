@@ -25,12 +25,12 @@ const ProductTabNav = ({ activeTab, setActiveTab }) => {
 
   const exportCsvFn = () => {
     const exportParameters = convertKeys({ pageSize: -1, ...productFilters })
-    asyncExport(ExportType.EXPORT_AS_CSV, 'use_cases', exportParameters, user.userEmail)
+    asyncExport(ExportType.EXPORT_AS_CSV, 'products', exportParameters, user.userEmail)
   }
 
   const exportJsonFn = () => {
     const exportParameters = convertKeys({ pageSize: -1, ...productFilters })
-    asyncExport(ExportType.EXPORT_AS_JSON, 'use_cases', exportParameters, user.userEmail)
+    asyncExport(ExportType.EXPORT_AS_JSON, 'products', exportParameters, user.userEmail)
   }
 
   return (

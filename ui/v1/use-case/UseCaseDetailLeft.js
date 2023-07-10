@@ -12,7 +12,7 @@ const UseCaseDetailLeft = ({ scrollRef, useCase }) => {
         <hr className='bg-slate-200'/>
         <UseCaseDetailNav useCase={useCase} scrollRef={scrollRef} />
         <hr className='bg-slate-200'/>
-        <Bookmark />
+        <Bookmark object={useCase} objectType='USE-CASE' />
         <hr className='bg-slate-200'/>
         <Share />
         <hr className='bg-slate-200'/>

@@ -11,7 +11,7 @@ const ToolDefinition = () => {
     <div className='px-8 xl:px-56 text-dial-stratos'>
       <div className='flex flex-col gap-y-8'>
         <div className='text-2xl font-semibold'>
-          Let’s get started ...
+          {format('ui.tool.getStarted')} ...
         </div>
         <div className='text-sm max-w-prose'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -24,7 +24,7 @@ const ToolDefinition = () => {
                 <div className='flex flex-row gap-x-3'>
                   <img
                     src='/ui/v1/use-case-header.svg'
-                    alt={format('ui.image.logoAlt', { name: 'Use Cases' })}
+                    alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
                     width={50}
                     height={50}
                     className='object-contain'
@@ -34,8 +34,7 @@ const ToolDefinition = () => {
                   </div>
                 </div>
                 <div className='text-sm'>
-                  A Use Case defines the steps that an individual or system will
-                  undertake in order to achieve a business objective.
+                  {format('useCase.hint.subtitle')}
                 </div>
               </div>
             </div>
@@ -46,7 +45,7 @@ const ToolDefinition = () => {
                 <div className='flex flex-row gap-x-3'>
                   <img
                     src='/ui/v1/building-block-header.svg'
-                    alt={format('ui.image.logoAlt', { name: 'Use Cases' })}
+                    alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
                     width={50}
                     height={50}
                     className='object-contain'
@@ -56,9 +55,7 @@ const ToolDefinition = () => {
                   </div>
                 </div>
                 <div className='text-sm'>
-                  Building blocks form the foundations of Use cases and are enterprise-ready,
-                  reusable software components providing key functionality facilitating generic
-                  WorkFlows across multiple sectors.
+                  {format('buildingBlock.hint.subtitle')}
                 </div>
               </div>
             </div>
@@ -69,7 +66,7 @@ const ToolDefinition = () => {
                 <div className='flex flex-row gap-x-3'>
                   <img
                     src='/ui/v1/product-header.svg'
-                    alt={format('ui.image.logoAlt', { name: 'Use Cases' })}
+                    alt={format('ui.image.logoAlt', { name: format('ui.product.label') })}
                     width={50}
                     height={50}
                     className='object-contain'
@@ -79,8 +76,7 @@ const ToolDefinition = () => {
                   </div>
                 </div>
                 <div className=''>
-                  A Product is a specific technology offering that is designed to implement
-                  one or more Building Blocks.
+                  {format('product.hint.subtitle')}
                 </div>
               </div>
             </div>

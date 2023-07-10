@@ -25,12 +25,12 @@ const BuildingBlockTabNav = ({ activeTab, setActiveTab }) => {
 
   const exportCsvFn = () => {
     const exportParameters = convertKeys({ pageSize: -1, ...buildingBlockFilters })
-    asyncExport(ExportType.EXPORT_AS_CSV, 'use_cases', exportParameters, user.userEmail)
+    asyncExport(ExportType.EXPORT_AS_CSV, 'building_blocks', exportParameters, user.userEmail)
   }
 
   const exportJsonFn = () => {
     const exportParameters = convertKeys({ pageSize: -1, ...buildingBlockFilters })
-    asyncExport(ExportType.EXPORT_AS_JSON, 'use_cases', exportParameters, user.userEmail)
+    asyncExport(ExportType.EXPORT_AS_JSON, 'building_blocks', exportParameters, user.userEmail)
   }
 
   return (

@@ -11,8 +11,6 @@ const UseCaseListLeft = () => {
         <hr className='bg-slate-200'/>
         <Bookmark />
         <hr className='bg-slate-200'/>
-        <Bookmark />
-        <hr className='bg-slate-200'/>
         <Share />
         <hr className='bg-slate-200'/>
         <Comment />

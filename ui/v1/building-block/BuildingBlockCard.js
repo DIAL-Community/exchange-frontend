@@ -61,7 +61,6 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
         <div className='rounded-full bg-dial-orange w-10 h-10'>
           <img
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
-            // src='/ui/v1/workflow-header.svg'
             alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.header') })}
             className={classNames(
               'object-contain mx-auto',

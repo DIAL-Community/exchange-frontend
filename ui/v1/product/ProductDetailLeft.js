@@ -12,7 +12,7 @@ const ProductDetailLeft = ({ scrollRef, product }) => {
         <hr className='bg-slate-200'/>
         <ProductDetailNav product={product} scrollRef={scrollRef} />
         <hr className='bg-slate-200'/>
-        <Bookmark />
+        <Bookmark object={product} objectType='PRODUCT' />
         <hr className='bg-slate-200'/>
         <Share />
         <hr className='bg-slate-200'/>

@@ -4,7 +4,7 @@ import { IoClose } from 'react-icons/io5'
 import { BsPlus } from 'react-icons/bs'
 import { useApolloClient } from '@apollo/client'
 import Select from '../form/Select'
-import { fetchSelectOptions } from '../../utils/search'
+import { fetchSelectOptionsWithMaturity } from '../../utils/search'
 import { USE_CASE_SEARCH_QUERY } from '../query/useCase'
 
 export const UseCaseAutocomplete = ({ useCases, setUseCases, placeholder }) => {
@@ -45,7 +45,7 @@ export const UseCaseAutocomplete = ({ useCases, setUseCases, placeholder }) => {
           className='ml-4 rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions
           defaultOptions
-          loadOptions={(input) => fetchSelectOptions(client, input, USE_CASE_SEARCH_QUERY, fetchCallback)}
+          loadOptions={(input) => fetchSelectOptionsWithMaturity(client, input, USE_CASE_SEARCH_QUERY, fetchCallback)}
           noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.useCase.label') })}
           onChange={selectUseCase}
           placeholder={controlPlaceholder}

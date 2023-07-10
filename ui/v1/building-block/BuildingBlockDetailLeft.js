@@ -12,7 +12,7 @@ const BuildingBlockDetailLeft = ({ scrollRef, buildingBlock }) => {
         <hr className='bg-slate-200'/>
         <BuildingBlockDetailNav scrollRef={scrollRef} />
         <hr className='bg-slate-200'/>
-        <Bookmark />
+        <Bookmark object={buildingBlock} objectType='BUILDING-BLOCK' />
         <hr className='bg-slate-200'/>
         <Share />
         <hr className='bg-slate-200'/>

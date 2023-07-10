@@ -7,7 +7,7 @@ const UserBookmarkLeft = () => {
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
   return (
-    <div className='bg-dial-slate-100 h-full'>
+    <div className='bg-dial-slate-100 h-full py-3'>
       <div className='flex flex-col gap-4 px-6 py-3'>
         <div className='text-2xl font-semibold text-dial-blueberry'>
           {format('ui.profile.bookmark')}
@@ -34,13 +34,6 @@ const UserBookmarkLeft = () => {
           <Checkbox />
           <span className='mx-2 my-auto text-sm'>
             {format('ui.product.header')}
-          </span>
-        </label>
-        <hr className='bg-slate-200'/>
-        <label className='flex'>
-          <Checkbox />
-          <span className='mx-2 my-auto text-sm'>
-            {format('ui.workflow.header')}
           </span>
         </label>
         <hr className='bg-slate-200'/>

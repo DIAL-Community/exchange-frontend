@@ -96,6 +96,7 @@ const UseCaseFilter = () => {
             {format('ui.useCase.filter.showDraft')}
           </span>
         </label>
+        <hr className='bg-slate-200'/>
         <label className='flex pl-4'>
           <Checkbox onChange={toggleShowGovStack} value={govStackOnly} />
           <span className='mx-2 my-auto text-sm'>

@@ -56,7 +56,7 @@ const ProductCard = ({ displayType, index, product }) => {
           <div className='rounded-full bg-dial-plum w-10 h-10'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.workflow.header') })}
+              alt={format('ui.image.logoAlt', { name: format('ui.product.header') })}
               className='object-contain w-10 h-10 my-auto'
             />
           </div>

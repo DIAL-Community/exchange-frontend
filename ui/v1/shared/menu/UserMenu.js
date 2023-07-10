@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { useUser } from '../../../../lib/hooks'
+import { REBRAND_BASE_PATH } from '../../utils/constants'
 import { USER_MENU } from './MenuCommon'
 import { DEFAULT_DROPDOWN_MENU_STYLES, DEFAULT_DROPDOWN_PANEL_STYLES } from './MenuStyleCommon'
 
@@ -40,7 +41,7 @@ const UserMenu = ({ currentOpenMenu, onToggleDropdown }) => {
       {
         currentOpenMenu === USER_MENU &&
           <div className={DEFAULT_DROPDOWN_PANEL_STYLES} role='menu'>
-            <Link href='/auth/profile' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
+            <Link href={`${REBRAND_BASE_PATH}/users/${user.id}`} role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES}>
               {format('header.profile')}
             </Link>
             <a href='signOut' role='menuitem' className={DEFAULT_DROPDOWN_MENU_STYLES} onClick={signOutUser}>

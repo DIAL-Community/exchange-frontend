@@ -11,8 +11,8 @@ const UserProfileDetail = () => {
   console.log(user)
 
   return (
-    <div className='grid grid-cols-5 gap-8 px-8 py-8'>
-      <div className='flex mb-auto'>
+    <div className='grid grid-cols-6 gap-8 px-8 py-8'>
+      <div className='flex mb-auto mx-auto'>
         <img
           src='/ui/v1/user-header.svg'
           alt={format('ui.image.logoAlt', { name: format('ui.profile.label') })}
@@ -21,7 +21,7 @@ const UserProfileDetail = () => {
           className='object-contain object-center'
         />
       </div>
-      <div className='col-span-4'>
+      <div className='col-span-5'>
         <div className='flex flex-col'>
           <div className='grid grid-cols-2'>
             <div className='flex flex-col gap-8'>

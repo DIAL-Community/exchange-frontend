@@ -23,6 +23,8 @@ const ProductFilterProvider = ({ children }) => {
   const [sortColumn, setSortColumn] = useState('name')
   const [sortDirection, setSortDirection] = useState('asc')
 
+  const setSdgs = setSDGs
+
   const productFilterValues = {
     isEndorsed,
     productDeployable,
@@ -50,6 +52,7 @@ const ProductFilterProvider = ({ children }) => {
     setSectors,
     setOrganizations,
     setSDGs,
+    setSdgs,
     setTags,
     setUseCases,
     setWorkflows,
