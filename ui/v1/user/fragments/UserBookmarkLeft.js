@@ -1,10 +1,26 @@
-import { useCallback } from 'react'
+import { useCallback, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import Checkbox from '../../shared/form/Checkbox'
+import { BookmarkDisplayContext } from './BookmarkDisplayContext'
 
 const UserBookmarkLeft = () => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
+
+  const { displayUseCases, displayProducts, displayBuildingBlocks } = useContext(BookmarkDisplayContext)
+  const { setDisplayUseCases, setDisplayProducts, setDisplayBuildingBlocks } = useContext(BookmarkDisplayContext)
+
+  const toggleDisplayUseCases = () => {
+    setDisplayUseCases(!displayUseCases)
+  }
+
+  const toggleDisplayBuildingBlocks = () => {
+    setDisplayBuildingBlocks(!displayBuildingBlocks)
+  }
+
+  const toggleDisplayProducts = () => {
+    setDisplayProducts(!displayProducts)
+  }
 
   return (
     <div className='bg-dial-slate-100 h-full py-3'>
@@ -17,30 +33,23 @@ const UserBookmarkLeft = () => {
         </div>
         <hr className='bg-slate-200'/>
         <label className='flex'>
-          <Checkbox />
+          <Checkbox onChange={toggleDisplayUseCases} value={displayUseCases} />
           <span className='mx-2 my-auto text-sm'>
             {format('ui.useCase.header')}
           </span>
         </label>
         <hr className='bg-slate-200'/>
         <label className='flex'>
-          <Checkbox />
+          <Checkbox  onChange={toggleDisplayBuildingBlocks} value={displayBuildingBlocks}/>
           <span className='mx-2 my-auto text-sm'>
             {format('ui.buildingBlock.header')}
           </span>
         </label>
         <hr className='bg-slate-200'/>
         <label className='flex'>
-          <Checkbox />
+          <Checkbox  onChange={toggleDisplayProducts} value={displayProducts}/>
           <span className='mx-2 my-auto text-sm'>
             {format('ui.product.header')}
-          </span>
-        </label>
-        <hr className='bg-slate-200'/>
-        <label className='flex'>
-          <Checkbox />
-          <span className='mx-2 my-auto text-sm'>
-            {format('ui.sdg.header')}
           </span>
         </label>
         <hr className='bg-slate-200'/>

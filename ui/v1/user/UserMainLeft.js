@@ -1,10 +1,10 @@
 import UserBookmarkLeft from './fragments/UserBookmarkLeft'
 
-const UserMainLeft = ({ activeTab }) => {
+const UserMainLeft = ({ activeTab, toggleRef }) => {
 
   return (
     <>
-      { activeTab === 1 && <UserBookmarkLeft />}
+      { activeTab === 1 && <UserBookmarkLeft toggleRef={toggleRef} />}
     </>
   )
 }

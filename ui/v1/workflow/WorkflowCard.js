@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
-import parse from 'html-react-parser'
 import classNames from 'classnames'
+import parse from 'html-react-parser'
 import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
 
 const WorkflowCard = ({ displayType, index, workflow }) => {

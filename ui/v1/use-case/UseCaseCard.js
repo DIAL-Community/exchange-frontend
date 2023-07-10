@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
+import classNames from 'classnames'
 import parse from 'html-react-parser'
 import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
 
@@ -57,22 +58,16 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
   const displaySmallCard = () =>
     <div className='rounded-lg bg-gradient-to-r from-workflow-bg-light to-workflow-bg h-16'>
       <div className='flex flex-row gap-x-3 px-6 h-full'>
-        {useCase.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='rounded-full bg-dial-blueberry w-10 h-10 my-auto'>
-            <img
-              src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
-              alt={format('ui.image.logoAlt', { name: format('ui.useCase.header') })}
-              className='object-contain w-10 h-10 my-auto'
-            />
-          </div>
-        }
-        {useCase.imageFile.indexOf('placeholder.svg') < 0 &&
+        <div className='rounded-full bg-dial-blueberry w-10 h-10 my-auto'>
           <img
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
-            alt={format('ui.image.logoAlt', { name: format('ui.useCase.header') })}
-            className='object-contain w-10 h-10 my-auto'
+            alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.header') })}
+            className={classNames(
+              'object-contain mx-auto',
+              useCase.imageFile.indexOf('placeholder.svg') <= 0 ? 'w-6 h-6 my-2 white-filter' : '',
+            )}
           />
-        }
+        </div>
         <div className='text-sm font-semibold text-dial-blueberry my-auto'>
           {useCase.name}
         </div>

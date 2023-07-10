@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
-import parse from 'html-react-parser'
 import classNames from 'classnames'
+import parse from 'html-react-parser'
 import { DisplayType, MaturityStatus, REBRAND_BASE_PATH } from '../utils/constants'
 
 const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
@@ -30,7 +30,7 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
             />
           </div>
         }
-        <div className='flex flex-col gap-y-3'>
+        <div className='flex flex-col gap-y-3 max-w-lg xl:max-w-3xl'>
           <div className='text-lg font-semibold text-dial-ochre'>
             {buildingBlock.name}
           </div>
@@ -63,7 +63,7 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
             src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
             alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.header') })}
             className={classNames(
-              'object-contain mx-auto',
+              'object-contain w-6 h-6 my-2 mx-auto',
               buildingBlock.imageFile.indexOf('placeholder.svg') <= 0 ? 'w-6 h-6 my-2 white-filter' : '',
             )}
           />
