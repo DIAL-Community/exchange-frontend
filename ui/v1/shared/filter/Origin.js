@@ -5,9 +5,9 @@ import { BsPlus } from 'react-icons/bs'
 import { useApolloClient } from '@apollo/client'
 import Select from '../form/Select'
 import { fetchSelectOptions } from '../../utils/search'
-import { SDG_SEARCH_QUERY } from '../../../../queries/sdg'
+import { ORIGIN_SEARCH_QUERY } from '../../../../queries/origin'
 
-export const SdgAutocomplete = ({ sdgs, setSdgs, placeholder }) => {
+export const OriginAutocomplete = ({ origins, setOrigins, placeholder }) => {
   const client = useApolloClient()
 
   const [showFilter, setShowFilter] = useState(false)
@@ -15,37 +15,39 @@ export const SdgAutocomplete = ({ sdgs, setSdgs, placeholder }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.sdg.label') })
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.origin.label') })
 
-  const selectSdg = (sdg) => {
-    setSdgs([...sdgs.filter(s => s.value !== sdg.value), sdg])
+  const selectOrigin = (origin) => {
+    setOrigins([...origins.filter(s => s.value !== origin.value), origin])
   }
 
   const fetchCallback = (data) => (
-    data?.sdgs.map((sdg) => ({
-      label: `${sdg.number}. ${sdg.name}`,
-      value: sdg.id,
-      slug: sdg.slug
+    data?.origins.map((origin) => ({
+      label: origin.name,
+      value: origin.id,
+      slug: origin.slug
     }))
   )
 
   return (
     <div className='flex flex-col gap-y-3'>
       <button className='flex' onClick={() => setShowFilter(!showFilter)}>
-        <div className='text-dial-stratos text-sm ml-4'>SDG</div>
+        <div className='text-dial-stratos text-sm ml-4'>
+          {format('ui.origin.label')}
+        </div>
         <BsPlus className='ml-auto' />
       </button>
       {showFilter &&
         <Select
           async
           isBorderless
-          aria-label={format('filter.byEntity', { entity: format('ui.sdg.label') })}
+          aria-label={format('filter.byEntity', { entity: format('ui.origin.label') })}
           className='ml-4 rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions
           defaultOptions
-          loadOptions={(input) => fetchSelectOptions(client, input, SDG_SEARCH_QUERY, fetchCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.sdg.label') })}
-          onChange={selectSdg}
+          loadOptions={(input) => fetchSelectOptions(client, input, ORIGIN_SEARCH_QUERY, fetchCallback)}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.origin.label') })}
+          onChange={selectOrigin}
           placeholder={controlPlaceholder}
           value=''
         />
@@ -54,26 +56,26 @@ export const SdgAutocomplete = ({ sdgs, setSdgs, placeholder }) => {
   )
 }
 
-export const SdgActiveFilters = ({ sdgs, setSdgs }) => {
+export const OriginActiveFilters = ({ origins, setOrigins }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const removeSdg = (sdgSlug) => {
-    setSdgs(sdgs => [...sdgs.filter(sdg => sdg.slug !== sdgSlug)])
+  const removeOrigin = (originSlug) => {
+    setOrigins(origins => [...origins.filter(origin => origin.slug !== originSlug)])
   }
 
   return (
     <>
-      {sdgs?.map((sdg, sdgIndex) => (
-        <div key={sdgIndex} className='bg-dial-slate-400 px-2 py-1 rounded'>
+      {origins?.map((origin, originIndex) => (
+        <div key={originIndex} className='bg-dial-slate-400 px-2 py-1 rounded'>
           <div className='flex flex-row gap-1'>
             <div className='flex gap-x-1 text-white'>
-              {sdg.label}
+              {origin.label}
               <div className='inline opacity-40'>
-                ({format('ui.sdg.label')})
+                ({format('ui.origin.label')})
               </div>
             </div>
-            <button onClick={() => removeSdg(sdg.slug)}>
+            <button onClick={() => removeOrigin(origin.slug)}>
               <IoClose size='1rem' className='text-white' />
             </button>
           </div>

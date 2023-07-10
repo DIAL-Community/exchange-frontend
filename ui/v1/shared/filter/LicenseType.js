@@ -1,51 +1,47 @@
 import { useIntl } from 'react-intl'
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { IoClose } from 'react-icons/io5'
 import { BsPlus } from 'react-icons/bs'
-import { useApolloClient } from '@apollo/client'
 import Select from '../form/Select'
-import { fetchSelectOptions } from '../../utils/search'
-import { SDG_SEARCH_QUERY } from '../../../../queries/sdg'
+import { generateLicenseTypeOptions } from '../form/options'
 
-export const SdgAutocomplete = ({ sdgs, setSdgs, placeholder }) => {
-  const client = useApolloClient()
-
+export const LicenseTypeAutocomplete = ({ licenseTypes, setLicenseTypes, placeholder }) => {
   const [showFilter, setShowFilter] = useState(false)
 
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('ui.sdg.label') })
+  const controlPlaceholder = placeholder ?? format('filter.byEntity', { entity: format('licenseType.label') })
 
-  const selectSdg = (sdg) => {
-    setSdgs([...sdgs.filter(s => s.value !== sdg.value), sdg])
+  const selectLicenseType = (licenseType) => {
+    setLicenseTypes([...licenseTypes.filter(({ value }) => value !== licenseType.value), licenseType])
   }
 
-  const fetchCallback = (data) => (
-    data?.sdgs.map((sdg) => ({
-      label: `${sdg.number}. ${sdg.name}`,
-      value: sdg.id,
-      slug: sdg.slug
-    }))
-  )
+  const options = useMemo(() => generateLicenseTypeOptions(format), [format])
+
+  const loadOptions = async (input) => {
+    return options.filter(({ label }) => label.indexOf(input) >= 0)
+  }
 
   return (
     <div className='flex flex-col gap-y-3'>
       <button className='flex' onClick={() => setShowFilter(!showFilter)}>
-        <div className='text-dial-stratos text-sm ml-4'>SDG</div>
+        <div className='text-dial-stratos text-sm ml-4'>
+          {format('ui.licenseType.label')}
+        </div>
         <BsPlus className='ml-auto' />
       </button>
       {showFilter &&
         <Select
           async
           isBorderless
-          aria-label={format('filter.byEntity', { entity: format('ui.sdg.label') })}
+          aria-label={format('filter.byEntity', { entity: format('ui.licenseType.label') })}
           className='ml-4 rounded text-sm text-dial-gray-dark my-auto'
           cacheOptions
           defaultOptions
-          loadOptions={(input) => fetchSelectOptions(client, input, SDG_SEARCH_QUERY, fetchCallback)}
-          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.sdg.label') })}
-          onChange={selectSdg}
+          loadOptions={loadOptions}
+          noOptionsMessage={() => format('filter.searchFor', { entity: format('ui.licenseType.label') })}
+          onChange={selectLicenseType}
           placeholder={controlPlaceholder}
           value=''
         />
@@ -54,26 +50,26 @@ export const SdgAutocomplete = ({ sdgs, setSdgs, placeholder }) => {
   )
 }
 
-export const SdgActiveFilters = ({ sdgs, setSdgs }) => {
+export const LicenseTypeActiveFilters = ({ licenseTypes, setLicenseTypes }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
-  const removeSdg = (sdgSlug) => {
-    setSdgs(sdgs => [...sdgs.filter(sdg => sdg.slug !== sdgSlug)])
+  const removeLicenseType = (licenseTypeSlug) => {
+    setLicenseTypes(licenseTypes => [...licenseTypes.filter(licenseType => licenseType.slug !== licenseTypeSlug)])
   }
 
   return (
     <>
-      {sdgs?.map((sdg, sdgIndex) => (
-        <div key={sdgIndex} className='bg-dial-slate-400 px-2 py-1 rounded'>
+      {licenseTypes?.map((licenseType, licenseTypeIndex) => (
+        <div key={licenseTypeIndex} className='bg-dial-slate-400 px-2 py-1 rounded'>
           <div className='flex flex-row gap-1'>
             <div className='flex gap-x-1 text-white'>
-              {sdg.label}
+              {licenseType.label}
               <div className='inline opacity-40'>
-                ({format('ui.sdg.label')})
+                ({format('ui.licenseType.label')})
               </div>
             </div>
-            <button onClick={() => removeSdg(sdg.slug)}>
+            <button onClick={() => removeLicenseType(licenseType.slug)}>
               <IoClose size='1rem' className='text-white' />
             </button>
           </div>

@@ -1,4 +1,4 @@
-import { CategoryType, MappingStatus, MaturityStatus } from '../../utils/constants'
+import { CategoryType, LicenseTypeFilter, MappingStatus, MaturityStatus } from '../../utils/constants'
 
 export const generateMaturityOptions = (format) => [
   { label: format('shared.maturity.draft'), value: MaturityStatus.DRAFT },
@@ -15,4 +15,10 @@ export const generateMappingStatusOptions = (format) => [
   { label: format('shared.mappingStatus.mature'), value: MappingStatus.MATURE },
   { label: format('shared.mappingStatus.selfReported'), value: MappingStatus.SELF_REPORTED },
   { label: format('shared.mappingStatus.validated'), value: MappingStatus.VALIDATED }
+]
+
+export const generateLicenseTypeOptions = (format) => [
+  { value: LicenseTypeFilter.ALL, label: format('licenseType.allType') },
+  { value: LicenseTypeFilter.COMMERCIAL, label: format('licenseType.commercialOnly') },
+  { value: LicenseTypeFilter.OPEN_SOURCE, label: format('licenseType.ossOnly') }
 ]

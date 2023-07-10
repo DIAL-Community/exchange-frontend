@@ -7,6 +7,7 @@ import CreateButton from './form/CreateButton'
 const EditableSection = ({
   canEdit,
   sectionHeader,
+  sectionDisclaimer,
   editModeBody,
   displayModeBody,
   isDirty,
@@ -42,6 +43,7 @@ const EditableSection = ({
           }
         </div>
       </div>
+      {sectionDisclaimer}
       {isInEditMode
         ? (
           <div className='bg-edit'>

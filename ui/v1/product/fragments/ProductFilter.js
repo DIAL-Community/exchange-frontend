@@ -3,6 +3,9 @@ import { useIntl } from 'react-intl'
 import { ProductFilterContext, ProductFilterDispatchContext }
   from '../../../../components/context/ProductFilterContext'
 import { TagActiveFilters, TagAutocomplete } from '../../shared/filter/Tag'
+import { LicenseTypeActiveFilters, LicenseTypeAutocomplete } from '../../shared/filter/LicenseType'
+import { OriginActiveFilters, OriginAutocomplete } from '../../shared/filter/Origin'
+import { SectorActiveFilters, SectorAutocomplete } from '../../shared/filter/Sector'
 
 const ProductFilter = () => {
   const { formatMessage } = useIntl()
@@ -39,6 +42,9 @@ const ProductFilter = () => {
             </div>
           </div>
           <div className='flex flex-row flex-wrap gap-1 text-sm'>
+            <OriginActiveFilters origins={origins} setOrigins={setOrigins} />
+            <LicenseTypeActiveFilters licenseTypes={licenseTypes} setLicenseTypes={setLicenseTypes} />
+            <SectorActiveFilters sectors={sectors} setSectors={setSectors} />
             <TagActiveFilters tags={tags} setTags={setTags} />
           </div>
         </div>
@@ -48,6 +54,9 @@ const ProductFilter = () => {
           {format('ui.filter.title')}
         </div>
         <hr className='bg-slate-200'/>
+        <LicenseTypeAutocomplete licenseTypes={licenseTypes} setLicenseTypes={setLicenseTypes} />
+        <OriginAutocomplete origins={origins} setOrigins={setOrigins} />
+        <SectorAutocomplete sectors={sectors} setSectors={setSectors} />
         <TagAutocomplete tags={tags} setTags={setTags} />
       </div>
     </div>

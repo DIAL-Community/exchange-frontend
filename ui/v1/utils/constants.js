@@ -22,4 +22,10 @@ export const MappingStatus = {
   VALIDATED: 'VALIDATED'
 }
 
+export const LicenseTypeFilter = {
+  ALL: 'all_license',
+  COMMERCIAL: 'commercial_only',
+  OPEN_SOURCE:'oss_only'
+}
+
 export const DEFAULT_PAGE_SIZE = 8

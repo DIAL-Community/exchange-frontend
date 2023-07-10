@@ -138,6 +138,11 @@ const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
       {format('ui.buildingBlock.header')}
     </div>
 
+  const sectionDisclaimer =
+    <div className='text-xs italic text-dial-stratos'>
+      {format('ui.buildingBlock.disclaimer')}
+    </div>
+
   const editModeBody =
     <div className='px-8 py-4 flex flex-col gap-y-3 text-sm'>
       <label className='flex flex-col gap-y-2 mb-2'>
@@ -182,6 +187,7 @@ const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
     <EditableSection
       canEdit={canEdit}
       sectionHeader={sectionHeader}
+      sectionDisclaimer={sectionDisclaimer}
       onSubmit={onSubmit}
       onCancel={onCancel}
       isDirty={isDirty}

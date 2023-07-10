@@ -32,7 +32,9 @@ export const TagAutocomplete = ({ tags, setTags, placeholder }) => {
   return (
     <div className='flex flex-col gap-y-3'>
       <button className='flex' onClick={() => setShowFilter(!showFilter)}>
-        <div className='text-dial-stratos text-sm ml-4'>Tag</div>
+        <div className='text-dial-stratos text-sm ml-4'>
+          {format('ui.tag.label')}
+        </div>
         <BsPlus className='ml-auto' />
       </button>
       {showFilter &&

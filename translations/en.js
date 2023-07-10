@@ -1793,11 +1793,27 @@ export const en = {
   'ui.workflow.label': 'Workflow',
   'ui.workflow.header': 'Workflows',
 
+  'ui.licenseType.label': 'License Type',
+  'ui.licenseType.header': 'License Types',
+
+  'ui.origin.label': 'Origin',
+  'ui.origin.header': 'Origins',
+
+  'ui.sector.label': 'Sector',
+  'ui.sector.header': 'Sectors',
+
   'ui.buildingBlock.label': 'Building Block',
   'ui.buildingBlock.header': 'Building Blocks',
-
   'ui.buildingBlock.whatIs': 'What is a Building Block?',
   'ui.buildingBlock.createNew': 'Create a new Building Block',
+  'ui.buildingBlock.disclaimer': `
+    Note: As part of the GovStack Initiative, DIAL is working to map digital platforms
+    with key Building Block functionalities. Currently, all mappings between products
+    and building blocks are "Beta" and are shown as illustrative examples of how these
+    tools may support building block functionalities. As Building Block specifications
+    are developed, products that are aligned with the specifications will be tagged as
+    such.
+  `,
 
   'ui.tag.label': 'Tag',
   'ui.tag.header': 'Tags',
