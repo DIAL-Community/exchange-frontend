@@ -52,10 +52,10 @@ const SdgTargetCard = ({ displayType, index, sdgTarget }) => {
       <div className='basis-5/6'>
         <div className='flex flex-col gap-y-1'>
           <div className='font-semibold text-dial-blueberry pt-1 pb-3'>
-            {sdgTarget.sdg.name}
+            {`${sdgTarget.sdg.number}. ${sdgTarget.sdg.name}`}
           </div>
           <div className='text-sm font-semibold text-dial-blueberry my-auto'>
-            {`Target ${sdgTarget.targetNumber}`}
+            {`${format('ui.sdgTarget.target')} ${sdgTarget.targetNumber}`}
           </div>
           <div className='text-sm text-dial-stratos my-auto'>
             {sdgTarget.name}

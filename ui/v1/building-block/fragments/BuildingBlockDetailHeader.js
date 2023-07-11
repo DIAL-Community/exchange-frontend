@@ -10,7 +10,7 @@ const BuildingBlockDetailHeader = ({ buildingBlock }) => {
       <div className='text-xl text-dial-ochre font-semibold'>
         {buildingBlock.name}
       </div>
-      <div className='flex justify-center items-center py-16 bg-white rounded'>
+      <div className='flex justify-center items-center py-16 bg-white rounded border'>
         {buildingBlock.imageFile.indexOf('placeholder.svg') < 0 &&
           <div className='w-20 h-20 px-1 py-1 rounded-full bg-dial-orange'>
             <img

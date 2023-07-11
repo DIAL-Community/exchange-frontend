@@ -5,10 +5,10 @@ const ProductMain = ({ activeTab }) => {
   return (
     <div className='px-8 xl:px-56'>
       <div className='grid grid-cols-3 gap-x-8'>
-        <div className='col-span-1'>
+        <div className='hidden xl:block col-span-1'>
           <ProductMainLeft activeTab={activeTab} />
         </div>
-        <div className='col-span-2'>
+        <div className='col-span-3 xl:col-span-2'>
           <ProductMainRight activeTab={activeTab} />
         </div>
       </div>

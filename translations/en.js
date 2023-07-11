@@ -1789,6 +1789,7 @@ export const en = {
 
   'ui.sdgTarget.label': 'SDG Target',
   'ui.sdgTarget.header': 'SDG Targets',
+  'ui.sdgTarget.target': 'Target',
 
   'ui.sdgTarget.longLabel': 'Sustainable Development Goal Target',
   'ui.sdgTarget.longHeader': 'Sustainable Development Goal Targets',
@@ -1827,6 +1828,7 @@ export const en = {
   'ui.sector.header': 'Sectors',
 
   'ui.user.label': 'User',
+  'ui.user.header': 'Users',
   'ui.profile.title': 'Your account',
   'ui.profile.label': 'Profile',
   'ui.profile.bookmark': 'Your bookmarks',

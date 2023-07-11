@@ -14,7 +14,7 @@ const ProductDetailHeader = ({ product }) => {
       <div className='text-xl text-dial-meadow font-semibold'>
         {product.name}
       </div>
-      <div className='flex justify-center items-center py-16 bg-white rounded'>
+      <div className='flex justify-center items-center py-16 bg-white rounded border'>
         {product.imageFile.indexOf('placeholder.svg') < 0 &&
           <div className='inline'>
             <img
@@ -41,7 +41,7 @@ const ProductDetailHeader = ({ product }) => {
           </div>
           <div className='flex text-dial-stratos'>
             <a href={prependUrlWithProtocol(product.website)} target='_blank' rel='noreferrer'>
-              <div className='border-b border-transparent hover:border-dial-iris-blue'>
+              <div className='border-b border-dial-iris-blue'>
                 {product.website} ⧉
               </div>
             </a>
@@ -80,7 +80,7 @@ const ProductDetailHeader = ({ product }) => {
             target='_blank'
             rel='noreferrer'
           >
-            <div className='border-b border-transparent hover:border-dial-iris-blue'>
+            <div className='border-b border-dial-iris-blue'>
               Find more information here ⧉
             </div>
           </a>

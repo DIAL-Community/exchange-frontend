@@ -70,7 +70,7 @@ const UserProfileDetail = () => {
               <div className='text-sm text-dial-stratos'>
                 <button
                   onClick={signOut}
-                  className='border-b border-transparent hover:border-dial-iris-blue'
+                  className='border-b border-dial-iris-blue'
                 >
                   Change password
                 </button>
@@ -87,7 +87,7 @@ const UserProfileDetail = () => {
                 <div className='text-sm text-dial-stratos'>
                   <button
                     onClick={signOut}
-                    className='border-b border-transparent hover:border-dial-iris-blue'
+                    className='border-b border-dial-iris-blue'
                   >
                     {format('header.signOut')}
                   </button>
@@ -102,7 +102,7 @@ const UserProfileDetail = () => {
                 <div className='text-sm text-dial-stratos'>
                   <button
                     onClick={signOut}
-                    className='border-b border-transparent hover:border-dial-iris-blue'
+                    className='border-b border-dial-iris-blue'
                   >
                     Delete account
                   </button>

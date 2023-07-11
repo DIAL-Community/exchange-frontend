@@ -1,21 +1,17 @@
 :root {
   --header-height: 92px;
 
-  --ribbon-outer-height: 8rem;
+  --ribbon-outer-height: 8.5rem;
   --ribbon-inner-height: 6rem;
   --ribbon-difference: calc(var(--ribbon-outer-height) - var(--ribbon-inner-height));
 
-  --under-ribbon-padding: 0.5rem;
+  --under-ribbon-padding: 1rem;
 }
 
 .ribbon-outer {
   position: sticky;
   top: calc(var(--header-height) - var(--ribbon-difference));
   height: var(--ribbon-outer-height);
-
-  /* The layout, always center the inner ribbon in the outer ribbon. */
-  display: flex;
-  align-items: center;
 }
 
 .ribbon-inner {

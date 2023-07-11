@@ -29,7 +29,7 @@ const ProductCard = ({ displayType, index, product }) => {
             />
           </div>
         }
-        <div className='flex flex-col gap-y-3 max-w-lg xl:max-w-3xl'>
+        <div className='flex flex-col gap-y-3 max-w-3xl'>
           <div className='text-lg font-semibold text-dial-meadow'>
             {product.name}
           </div>

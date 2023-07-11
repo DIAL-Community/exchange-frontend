@@ -36,10 +36,12 @@ const UiReroutePage = () => {
           ? <Loading />
           : !user
             ? <Unauthorized />
-            : <div className='flex flex-col'>
-              <UserRibbon />
-              <UserTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
-              <UserMain activeTab={activeTab} />
+            : <div className='min-h-[80vh]'>
+              <div className='flex flex-col'>
+                <UserRibbon />
+                <UserTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+                <UserMain activeTab={activeTab} />
+              </div>
             </div>
         }
         <Footer />

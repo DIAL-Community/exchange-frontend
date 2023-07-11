@@ -10,7 +10,7 @@ const UseCaseDetailHeader = ({ useCase }) => {
       <div className='text-xl text-dial-blueberry font-semibold'>
         {useCase.name}
       </div>
-      <div className='flex justify-center items-center py-16 bg-white rounded'>
+      <div className='flex justify-center items-center py-16 bg-white rounded border'>
         {useCase.imageFile.indexOf('placeholder.svg') < 0 &&
           <div className='w-20 h-20 px-1 py-1 rounded-full bg-dial-blueberry'>
             <img

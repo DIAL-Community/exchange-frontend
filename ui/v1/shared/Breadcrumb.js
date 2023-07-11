@@ -52,16 +52,17 @@ const Breadcrumb = ({ slugNameMapping }) => {
       .split('/')
       .filter(path => path)
 
-    const pathArray = linkPath.map((path, i) => {
-      const label = basePathMappings[path]
-        ? format(basePathMappings[path])
-        : slugNameMapping[path]
+    const pathArray = linkPath
+      .map((path, i) => {
+        const label = basePathMappings[path]
+          ? format(basePathMappings[path])
+          : slugNameMapping[path]
 
-      return {
-        breadcrumb: label,
-        href: `${REBRAND_BASE_PATH}/${linkPath.slice(0, i + 1).join('/')}`
-      }
-    })
+        return {
+          breadcrumb: label,
+          href: `${REBRAND_BASE_PATH}/${linkPath.slice(0, i + 1).join('/')}`
+        }
+      })
 
     setBreadcrumbs(pathArray)
   }, [slugNameMapping, asPath, format])

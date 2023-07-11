@@ -23,7 +23,7 @@ const UserBookmarkLeft = () => {
   }
 
   return (
-    <div className='bg-dial-slate-100 h-full py-3'>
+    <div className='bg-dial-slate-100 py-3 h-full'>
       <div className='flex flex-col gap-4 px-6 py-3'>
         <div className='text-2xl font-semibold text-dial-blueberry'>
           {format('ui.profile.bookmark')}

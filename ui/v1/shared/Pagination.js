@@ -14,7 +14,7 @@ const PaginationStructure = ({ pageNumber, totalCount, defaultPageSize, pageClic
   return (
     <div className='flex flex-col gap-y-4 my-6'>
       <hr className='bg-dial-slate-300'/>
-      <div className='flex flex-row gap-x-16'>
+      <div className='flex flex-col xl:flex-row gap-x-16 gap-y-3'>
         <div className='my-auto text-sm font-semibold'>
           {totalCount <= 0 && format('ui.pagination.noRecord')}
           {totalCount > 0 && format('ui.pagination.showingLabel', {

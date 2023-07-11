@@ -30,7 +30,7 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
             />
           </div>
         }
-        <div className='flex flex-col gap-y-3 max-w-lg xl:max-w-3xl'>
+        <div className='flex flex-col gap-y-3 max-w-3xl'>
           <div className='text-lg font-semibold text-dial-blueberry'>
             {useCase.name}
           </div>
