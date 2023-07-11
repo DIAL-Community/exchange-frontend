@@ -11,9 +11,9 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
 
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-cotton'}`}>
-      <div className='flex flex-row gap-x-6'>
+      <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         {useCase.imageFile.indexOf('placeholder.svg') < 0 &&
-          <div className='w-16 h-16 px-1 py-1 rounded-full bg-dial-blueberry'>
+          <div className='w-16 h-16 mx-auto px-1 py-1 rounded-full bg-dial-blueberry'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
@@ -22,7 +22,7 @@ const UseCaseCard = ({ displayType, index, useCase }) => {
           </div>
         }
         {useCase.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='w-16 h-16'>
+          <div className='w-16 h-16 mx-auto'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + useCase.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}

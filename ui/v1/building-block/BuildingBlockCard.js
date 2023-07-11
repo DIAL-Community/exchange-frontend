@@ -11,9 +11,9 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
 
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-warm-beech'}`}>
-      <div className='flex flex-row gap-x-6'>
+      <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         {buildingBlock.imageFile.indexOf('placeholder.svg') < 0 &&
-          <div className='w-16 h-16 px-1 py-1 rounded-full bg-dial-orange'>
+          <div className='w-16 h-16 mx-auto px-1 py-1 rounded-full bg-dial-orange'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}
@@ -22,7 +22,7 @@ const BuildingBlockCard = ({ displayType, index, buildingBlock }) => {
           </div>
         }
         {buildingBlock.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='w-16 h-16'>
+          <div className='w-16 h-16 mx-auto'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + buildingBlock.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.buildingBlock.label') })}

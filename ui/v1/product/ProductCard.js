@@ -10,9 +10,9 @@ const ProductCard = ({ displayType, index, product }) => {
 
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-spearmint'}`}>
-      <div className='flex flex-row gap-x-6'>
+      <div className='flex flex-col lg:flex-row gap-x-6 gap-y-3'>
         {product.imageFile.indexOf('placeholder.svg') < 0 &&
-          <div className='w-20 h-20 bg-white border'>
+          <div className='w-20 h-20 mx-auto bg-white border'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}
@@ -21,7 +21,7 @@ const ProductCard = ({ displayType, index, product }) => {
           </div>
         }
         {product.imageFile.indexOf('placeholder.svg') >= 0 &&
-          <div className='w-20 h-20'>
+          <div className='w-20 h-20 mx-auto'>
             <img
               src={process.env.NEXT_PUBLIC_GRAPHQL_SERVER + product.imageFile}
               alt={format('ui.image.logoAlt', { name: format('ui.useCase.label') })}

@@ -36,7 +36,7 @@ const Ribbon = ({ ribbonBg, titleKey, titleImage, titleColor, breadcrumb }) => {
         </div>
         <div className='ribbon-inner w-full px-8 xl:px-56 my-auto'>
           <div className='flex'>
-            <div className='basis-3/4 flex flex-col gap-4'>
+            <div className='basis-full lg:basis-3/4 flex flex-col gap-4'>
               <div className='flex gap-4 my-auto'>
                 {titleImage}
                 <div className={`text-2xl font-light ${titleColor} my-auto flex-grow`}>
