@@ -146,14 +146,17 @@ export const PRODUCT_DETAIL_QUERY = gql`
         maturity
       }
       buildingBlocksMappingStatus
-      sustainableDevelopmentGoals {
+      sdgs {
         id
         name
         slug
         imageFile
         number
+        sdgTargets {
+          id
+        }
       }
-      sustainableDevelopmentGoalsMappingStatus
+      sdgsMappingStatus
       sectors {
         id
         name

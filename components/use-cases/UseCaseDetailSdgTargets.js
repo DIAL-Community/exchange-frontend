@@ -24,7 +24,7 @@ const UseCaseDetailSdgTargets = ({ useCase, canEdit }) => {
   const [sdgTargets, setSdgTargets] = useState(useCase.sdgTargets)
   const [isDirty, setIsDirty] = useState(false)
 
-  const [updateUseCaseSdgTargets, { data, loading, reset }] = useMutation(UPDATE_USE_CASE_SDG_TARGETS,{
+  const [updateUseCaseSdgTargets, { data, loading, reset }] = useMutation(UPDATE_USE_CASE_SDG_TARGETS, {
     onError() {
       setIsDirty(false)
       setSdgTargets(useCase?.sdgTargets)

@@ -33,7 +33,7 @@ const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
 
   const [mappingStatus, setMappingStatus] = useState(
     mappingStatusOptions.find(({ value: mappingStatus }) =>
-      mappingStatus === (product?.buildingBlocks.productsMappingStatus)
+      mappingStatus === (product?.buildingBlocksMappingStatus)
     ) ?? mappingStatusOptions?.[0]
   )
 
@@ -134,12 +134,12 @@ const ProductDetailBuildingBlocks = ({ product, canEdit, headerRef }) => {
     </div>
 
   const sectionHeader =
-    <div className='text-xl font-semibold text-dial-ochre' ref={headerRef}>
+    <div className='text-xl font-semibold text-dial-meadow' ref={headerRef}>
       {format('ui.buildingBlock.header')}
     </div>
 
   const sectionDisclaimer =
-    <div className='text-xs italic text-dial-stratos'>
+    <div className='text-xs italic text-dial-stratos mb-3'>
       {format('ui.buildingBlock.disclaimer')}
     </div>
 

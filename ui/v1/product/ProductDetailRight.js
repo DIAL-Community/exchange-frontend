@@ -7,6 +7,8 @@ import { useUser } from '../../../lib/hooks'
 import ProductDetailTags from './fragments/ProductDetailTags'
 import DeleteProduct from './DeleteProduct'
 import ProductDetailBuildingBlocks from './fragments/ProductDetailBuildingBlocks'
+import ProductDetailSdgs from './fragments/ProductDetailSdgs'
+import ProductDetailOrganizations from './fragments/ProductDetailOrganizations'
 
 const ProductDetailRight = forwardRef(({ product }, ref) => {
   const { formatMessage } = useIntl()
@@ -16,18 +18,18 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
   const canEdit = (isAdminUser || isEditorUser) && !product.markdownUrl
 
   const descRef = useRef()
-  const stepRef = useRef()
-  const workflowRef = useRef()
-  const sdgTargetRef = useRef()
+  const pricingRef = useRef()
+  const sdgRef = useRef()
   const buildingBlockRef = useRef()
+  const organizationRef = useRef()
   const tagRef = useRef()
 
   useImperativeHandle(ref, () => ([
     { value: 'ui.common.detail.description', ref: descRef },
-    { value: 'ui.product.detail.steps', ref: stepRef },
-    { value: 'ui.workflow.header', ref: workflowRef },
-    { value: 'ui.sdgTarget.header', ref: sdgTargetRef },
+    { value: 'ui.product.pricing.title', ref: pricingRef },
+    { value: 'ui.sdg.header', ref: sdgRef },
     { value: 'ui.buildingBlock.header', ref: buildingBlockRef },
+    { value: 'ui.organization.header', ref: organizationRef },
     { value: 'ui.tag.header', ref: tagRef }
   ]), [])
 
@@ -55,9 +57,32 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
       </div>
       <hr className='bg-dial-blue-chalk mt-6'/>
       <div className='flex flex-col gap-y-3'>
+        <div className='text-xl font-semibold text-dial-meadow py-3' ref={pricingRef}>
+          {format('ui.product.pricing.title')}
+        </div>
+        <div className='text-sm'>
+          {format('ui.product.pricing.hostingModel')}
+        </div>
+        <div className='text-sm'>
+          {format('ui.product.pricing.pricingModel')}
+        </div>
+        <div className='text-sm'>
+          {format('ui.product.pricing.detailPricing')}
+        </div>
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6 mb-3'/>
+      <div className='flex flex-col gap-y-3'>
+        <ProductDetailSdgs product={product} canEdit={canEdit} headerRef={sdgRef} />
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6 mb-3'/>
+      <div className='flex flex-col gap-y-3'>
         <ProductDetailBuildingBlocks product={product} canEdit={canEdit} headerRef={buildingBlockRef} />
       </div>
-      <hr className='bg-dial-blue-chalk mt-6'/>
+      <hr className='bg-dial-blue-chalk mt-6 mb-3'/>
+      <div className='flex flex-col gap-y-3'>
+        <ProductDetailOrganizations product={product} canEdit={canEdit} headerRef={organizationRef} />
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6 mb-3'/>
       <div className='flex flex-col gap-y-3'>
         <ProductDetailTags product={product} canEdit={canEdit} headerRef={tagRef} />
       </div>

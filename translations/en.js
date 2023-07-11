@@ -1745,6 +1745,8 @@ export const en = {
   'ui.bookmark.subtitle': 'Your bookmarks can be found in your Account page.',
   'ui.bookmark.bookmarkThis': 'Bookmark this page.',
   'ui.bookmark.object.subtitle': 'The following are bookmarked {objects}.',
+  'toast.addBookmark.success': 'Page bookmarked.',
+  'toast.addBookmark.failure': 'Unable to bookmarke page.',
 
   'ui.comment.title': 'Post a comment',
   'ui.comment.subTitle': `
@@ -1782,15 +1784,26 @@ export const en = {
 
   'ui.sdg.label': 'SDG',
   'ui.sdg.header': 'SDGs',
+  'ui.sdg.longLabel': 'Sustainable Development Goal',
+  'ui.sdg.longHeader': 'Sustainable Development Goals',
 
   'ui.sdgTarget.label': 'SDG Target',
   'ui.sdgTarget.header': 'SDG Targets',
+
+  'ui.sdgTarget.longLabel': 'Sustainable Development Goal Target',
+  'ui.sdgTarget.longHeader': 'Sustainable Development Goal Targets',
 
   'ui.product.label': 'Product',
   'ui.product.header': 'Products',
 
   'ui.product.whatIs': 'What is a Product?',
   'ui.product.createNew': 'Create a new Product',
+
+  'ui.product.pricing.title': 'Pricing Information',
+  'ui.product.pricing.hostingModel': 'Hosting Model',
+  'ui.product.pricing.pricingModel': 'PricingModel Model',
+  'ui.product.pricing.detailPricing': 'Detail Pricing Information',
+
 
   'ui.dataset.label': 'Dataset',
   'ui.dataset.header': 'Datasets',
@@ -1803,6 +1816,12 @@ export const en = {
 
   'ui.origin.label': 'Origin',
   'ui.origin.header': 'Origins',
+
+  'ui.organization.label': 'Organization',
+  'ui.organization.header': 'Organizations',
+  'ui.organization.disclaimer': `
+    The following organizations support the development and / or implementation of this product.
+  `,
 
   'ui.sector.label': 'Sector',
   'ui.sector.header': 'Sectors',

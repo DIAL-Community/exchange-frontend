@@ -130,7 +130,7 @@ export const UPDATE_PRODUCT_PROJECTS = gql`
   }
 `
 
-export const UPDATE_PRODUCT_ORGANIZATION = gql`
+export const UPDATE_PRODUCT_ORGANIZATIONS = gql`
   mutation UpdateProductOrganization(
     $slug: String!
     $organizationSlugs: [String!]!

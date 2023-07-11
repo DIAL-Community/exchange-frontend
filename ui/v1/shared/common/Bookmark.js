@@ -58,7 +58,7 @@ const Bookmark = ({ object, objectType }) => {
       <div className='flex flex-row gap-x-3'>
         <img
           src='/ui/v1/bookmark-icon.svg'
-          alt={format('ui.image.logoAlt', { name: format('ui.bookmark.label') })}
+          alt={format('ui.image.logoAlt', { name: format('ui.bookmark.title') })}
           width={40}
           height={40}
           className='object-contain'

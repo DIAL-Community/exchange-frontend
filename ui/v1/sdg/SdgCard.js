@@ -8,6 +8,8 @@ const SdgCard = ({ displayType, index, sdg }) => {
   const { formatMessage } = useIntl()
   const format = useCallback((id, values) => formatMessage({ id }, values), [formatMessage])
 
+  const filename = `0${sdg.number}`.slice(-2)
+
   const displayLargeCard = () =>
     <div className={`px-4 py-6 rounded-lg ${index % 2 === 0 && 'bg-dial-cotton'}`}>
       <div className='flex flex-row gap-x-6'>
@@ -39,17 +41,22 @@ const SdgCard = ({ displayType, index, sdg }) => {
     </div>
 
   const displaySmallCard = () =>
-    <div className='rounded-lg bg-gradient-to-r from-building-block-bg-light to-building-block-bg'>
-      <div className='flex flex-row gap-x-3 px-6 py-3'>
+    <div className='flex flex-row gap-x-3 px-6'>
+      <div className='basis-1/6'>
         <img
-          src={`/assets/sdg/sdg_${('0' + sdg.number).slice(-2)}.png`}
+          src={`/assets/sdg/sdg_${filename}.png`}
           alt={format('ui.image.logoAlt', { name:  format('ui.sdg.header') })}
-          width={40}
-          height={40}
-          className='object-contain'
+          className='object-contain w-24 h-24'
         />
-        <div className='text-sm font-semibold text-dial-ochre my-auto'>
-          {sdg.name}
+      </div>
+      <div className='basis-5/6'>
+        <div className='flex flex-col gap-y-1'>
+          <div className='text-sm font-semibold text-dial-meadow my-auto py-1'>
+            {`${sdg.number} .${sdg.name}`}
+          </div>
+          <div className='text-xs text-dial-stratos my-auto py-1'>
+            ({sdg.sdgTargets.length} {format('ui.sdgTarget.header')})
+          </div>
         </div>
       </div>
     </div>
