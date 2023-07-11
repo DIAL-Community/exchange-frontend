@@ -54,8 +54,9 @@ const SdgCard = ({ displayType, index, sdg }) => {
           <div className='text-sm font-semibold text-dial-meadow my-auto py-1'>
             {`${sdg.number} .${sdg.name}`}
           </div>
-          <div className='text-xs text-dial-stratos my-auto py-1'>
+          <div className='text-xs text-dial-stratos my-auto flex flex-row gap-x-2'>
             ({sdg.sdgTargets.length} {format('ui.sdgTarget.header')})
+            <div className='inline border-b border-dial-iris-blue'>Learn more about this</div>
           </div>
         </div>
       </div>

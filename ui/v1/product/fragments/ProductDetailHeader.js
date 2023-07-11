@@ -63,6 +63,7 @@ const ProductDetailHeader = ({ product }) => {
             {format('ui.sector.header')}
           </div>
           <div className='flex flex-col gap-y-2 text-dial-stratos'>
+            {product.sectors.length === 0 && format('general.na')}
             {product.sectors.map((sector, index) => {
               return <div key={index}>{sector.name}</div>
             })}

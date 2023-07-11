@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
-import { REBRAND_BASE_PATH } from '../utils/constants'
+import { DisplayType, REBRAND_BASE_PATH } from '../utils/constants'
 import EditButton from '../shared/form/EditButton'
 import { HtmlViewer } from '../shared/form/HtmlViewer'
 import { useUser } from '../../../lib/hooks'
@@ -9,6 +9,7 @@ import DeleteProduct from './DeleteProduct'
 import ProductDetailBuildingBlocks from './fragments/ProductDetailBuildingBlocks'
 import ProductDetailSdgs from './fragments/ProductDetailSdgs'
 import ProductDetailOrganizations from './fragments/ProductDetailOrganizations'
+import ProductCard from './ProductCard'
 
 const ProductDetailRight = forwardRef(({ product }, ref) => {
   const { formatMessage } = useIntl()
@@ -85,6 +86,45 @@ const ProductDetailRight = forwardRef(({ product }, ref) => {
       <hr className='bg-dial-blue-chalk mt-6 mb-3'/>
       <div className='flex flex-col gap-y-3'>
         <ProductDetailTags product={product} canEdit={canEdit} headerRef={tagRef} />
+      </div>
+      <hr className='bg-dial-blue-chalk mt-6 mb-3'/>
+      <div className='grid grid-cols-1 xl:grid-cols-2 gap-y-12 xl:gap-y-0'>
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-xl font-semibold text-dial-meadow'>
+            {format('product.interoperable')}
+          </div>
+          {product.interoperatesWith.length > 0
+            ? product.interoperatesWith.map((interoperateProd, index) =>
+              <div key={index} className='pb-5 mr-6'>
+                <ProductCard product={interoperateProd} displayType={DisplayType.SMALL_CARD} />
+              </div>
+            )
+            : <div className='text-sm text-dial-stratos'>
+              {format('ui.common.detail.noData', {
+                entity: 'interoperable product',
+                base: format('ui.product.label')
+              })}
+            </div>
+          }
+        </div>
+        <div className='flex flex-col gap-y-3'>
+          <div className='text-xl font-semibold text-dial-meadow'>
+            {format('product.included')}
+          </div>
+          {product.includes.length > 0
+            ? product.includes.map((includeProduct, index) =>
+              <div key={index} className='pb-5 mr-6'>
+                <ProductCard product={includeProduct} displayType={DisplayType.SMALL_CARD} />
+              </div>
+            )
+            : <div className='text-sm text-dial-stratos'>
+              {format('ui.common.detail.noData', {
+                entity: 'included product',
+                base: format('ui.product.label')
+              })}
+            </div>
+          }
+        </div>
       </div>
     </div>
   )
