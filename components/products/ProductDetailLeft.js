@@ -128,7 +128,8 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
       setContactState(CONTACT_STATES[2])
       if (response.status === 200) {
         const ownerData = await response.json()
-        setEmailAddress(ownerData.owner.email)
+        const [ownerInformation] = ownerData.owner
+        setEmailAddress(ownerInformation.email)
       } else {
         setContactState(CONTACT_STATES[3])
       }
@@ -268,19 +269,19 @@ const ProductDetailLeft = ({ product, commentsSectionRef }) => {
                 </div>
               </>
           }
-          {
-            user && product.owner && contactState === CONTACT_STATES[0] &&
-              <>
-                <div className='border-l border-dial-gray-light mt-2' />
-                <button
-                  className='text-dial-sunshine block mt-2 border-b border-transparent hover:border-dial-sunshine'
-                  onClick={() => setContactState(CONTACT_STATES[1])}
-                >
-                  {format('ownership.reveal')}
-                </button>
-              </>
-          }
         </div>
+        {
+          user && product.owner && contactState === CONTACT_STATES[0] &&
+            <>
+              <div className='border-l border-dial-gray-light mt-2' />
+              <button
+                className='text-dial-sunshine block mt-2 border-b border-transparent hover:border-dial-sunshine'
+                onClick={() => setContactState(CONTACT_STATES[1])}
+              >
+                {format('ownership.reveal')}
+              </button>
+            </>
+        }
         {
           user && product.owner &&
             <>
