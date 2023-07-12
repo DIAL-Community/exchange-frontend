@@ -75,6 +75,20 @@ const subMenus = {
       }
     ]
   },
+  'header.marketplace': {
+    type: 'link',
+    items: [
+      {
+        label: 'opportunity.header',
+        link: '/opportunities'
+      },
+      {
+        label: 'storefront.header',
+        link: '/storefronts',
+        external: true
+      }
+    ]
+  },
   'header.catalog': {
     type: 'link',
     items: [
@@ -263,11 +277,11 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
           <ul className='block xl:hidden mt-6 text-sm text-dial-white-beech' style={{ minHeight: user ? '405px' : '370px' }}>
             <li className='py-4 border-b'>
               <a
-                className='mx-6 font-semibold' href='/switch-language'
-                onClick={(e) => openSubMenu(e, 'header.selectLanguage')}
+                className='mx-6 font-semibold' href='/expand-marketplace'
+                onClick={(e) => openSubMenu(e, 'header.marketplace')}
               >
-                {format('header.selectLanguage')}
-                <RiArrowRightSLine className='text-base inline ml-2 text-base' />
+                {format('header.marketplace')}
+                <RiArrowRightSLine className='text-base inline ml-2' />
               </a>
             </li>
             <li className='py-4 border-b'>
@@ -330,13 +344,22 @@ const MainMenu = ({ menuExpanded, setMenuExpanded, parent, setParent }) => {
                   </li>
                 )
             }
-            <li className='py-4'>
+            <li className='py-4 border-b'>
               <a
                 className='mx-6 font-semibold'
                 href={`https://docs.dial.community/projects/product-registry/${locale}/latest/`}
                 target='_blank' rel='noreferrer'
               >
                 {format('header.help')}
+              </a>
+            </li>
+            <li className='py-4'>
+              <a
+                className='mx-6 font-semibold' href='/switch-language'
+                onClick={(e) => openSubMenu(e, 'header.selectLanguage')}
+              >
+                {format('header.selectLanguage')}
+                <RiArrowRightSLine className='text-base inline ml-2 text-base' />
               </a>
             </li>
           </ul>
